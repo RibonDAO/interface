@@ -5,6 +5,7 @@ import CausesPage from "pages/donations/CausesPage";
 import CurrentUserProvider from "contexts/currentUserContext";
 import ConfirmEmailPage from "pages/donations/ConfirmEmailPage";
 import DonationInProcesPage from "pages/donations/DonationInProcesPage";
+import Protocol from "pages/Protocol";
 
 function RoutesComponent(): JSX.Element {
   return (
@@ -14,6 +15,16 @@ function RoutesComponent(): JSX.Element {
           <WalletProvider>
             <CurrentUserProvider>
               <CausesPage />
+            </CurrentUserProvider>
+          </WalletProvider>
+        </Suspense>
+      </Route>
+
+      <Route path="/protocol" exact>
+        <Suspense fallback={<div />}>
+          <WalletProvider>
+            <CurrentUserProvider>
+              <Protocol />
             </CurrentUserProvider>
           </WalletProvider>
         </Suspense>

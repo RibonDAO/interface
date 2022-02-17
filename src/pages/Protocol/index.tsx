@@ -10,19 +10,13 @@ function Protocol(): JSX.Element {
   const { wallet, connectWallet } = useWalletContext();
   const { isValidNetwork, currentNetwork } = useNetwork();
   const contract = useContract({
-    address: "0xf78e690500Fa6f544F8940e930C52d8d4d7468a4",
+    address: "0x1B68da1C6FAfc10eDD0d724bC0c52928764a2c6f",
     ABI: RibonAbi.abi,
   });
   const donationToken = useContract({
-    address: "0x21A72dc641c8e5f13717a7e087d6D63B4f9A3574",
+    address: "0x3cC080dF7872a93B52C44Bd1EB120681516554e6",
     ABI: TokenAbi.abi,
   });
-
-  // async function getIntegrations() {
-  //   console.log(contract);
-  //   const integrations = await contract?.getDonationPoolBalance();
-  //   console.log(integrations);
-  // }
 
   async function addNonProfitToWhitelist() {
     await contract?.addNonProfitToWhitelist(
@@ -46,7 +40,7 @@ function Protocol(): JSX.Element {
   }
 
   async function donateThroughIntegration() {
-    await contract?.donateThroughIntegration("0xf3b2a5c54aa76970471820bd1bf1e90e64f2cfc5",  wallet, ethers.utils.parseEther("1"));
+    await contract?.donateThroughIntegration("0xf3b2a5c54aa76970471820bd1bf1e90e64f2cfc5", wallet, ethers.utils.parseEther("1"));
   }
 
   return (

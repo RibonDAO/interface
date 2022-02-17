@@ -4,7 +4,10 @@ import { ethers } from "ethers";
 import { useWalletContext } from "contexts/walletContext";
 import { useContract } from "hooks/useContract";
 import { useNetwork } from "hooks/useNetwork";
+import Integrations from "./Integrations";
+import NonProfits from "./NonProfits";
 import * as S from "./styles";
+import Promoters from "./Promoters";
 
 function Protocol(): JSX.Element {
   const { wallet, connectWallet } = useWalletContext();
@@ -17,12 +20,6 @@ function Protocol(): JSX.Element {
     address: "0x21A72dc641c8e5f13717a7e087d6D63B4f9A3574",
     ABI: TokenAbi.abi,
   });
-
-  // async function getIntegrations() {
-  //   console.log(contract);
-  //   const integrations = await contract?.getDonationPoolBalance();
-  //   console.log(integrations);
-  // }
 
   async function addNonProfitToWhitelist() {
     await contract?.addNonProfitToWhitelist(
@@ -70,6 +67,12 @@ function Protocol(): JSX.Element {
   return (
     <S.Container>
       <h1>Protocol</h1>
+      <h1>Ngos</h1>
+      <NonProfits />
+      <h1>Integrations</h1>
+      <Integrations />
+      <h1>Promoter</h1>
+      <Promoters />
       <button type="button" onClick={connectWallet}>
         Conectar Carteira
       </button>

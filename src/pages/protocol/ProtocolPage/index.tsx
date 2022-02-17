@@ -23,7 +23,7 @@ function ProtocolPage(): JSX.Element {
 
   async function addNonProfitToWhitelist() {
     await contract?.addNonProfitToWhitelist(
-      "0xf3b2a5c54aa76970471820bD1BF1e90E64f2Cfc5",
+      "0xF20c382d2A95EB19f9164435aed59E5C59bc1fd9",
     );
   }
 

@@ -1,11 +1,11 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
 import WalletProvider from "contexts/walletContext";
 import CausesPage from "pages/donations/CausesPage";
 import CurrentUserProvider from "contexts/currentUserContext";
 import ConfirmEmailPage from "pages/donations/ConfirmEmailPage";
 import DonationInProcesPage from "pages/donations/DonationInProcesPage";
-import Protocol from "pages/Protocol";
+import Protocol from "pages/protocol/ProtocolPage";
 
 function RoutesComponent(): JSX.Element {
   return (

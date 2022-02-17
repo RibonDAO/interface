@@ -4,12 +4,12 @@ import { ethers } from "ethers";
 import { useWalletContext } from "contexts/walletContext";
 import { useContract } from "hooks/useContract";
 import { useNetwork } from "hooks/useNetwork";
-import Integrations from "./Integrations";
-import NonProfits from "./NonProfits";
-import * as S from "./styles";
-import Promoters from "./Promoters";
+import Integrations from "../IntegrationsPage";
+import NonProfits from "../NonProfitsPage";
+import * as S from "../styles";
+import Promoters from "../PromotersPage";
 
-function Protocol(): JSX.Element {
+function ProtocolPage(): JSX.Element {
   const { wallet, connectWallet } = useWalletContext();
   const { isValidNetwork, currentNetwork } = useNetwork();
   const contract = useContract({
@@ -112,4 +112,4 @@ function Protocol(): JSX.Element {
   );
 }
 
-export default Protocol;
+export default ProtocolPage;

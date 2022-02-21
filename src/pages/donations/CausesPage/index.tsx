@@ -9,7 +9,13 @@ import useNavigation from "hooks/useNavigation";
 import NonProfit from "types/entities/NonProfit";
 import useNonProfits from "hooks/apiHooks/useNonProfits";
 import Loader from "components/atomics/Loader";
+import { useLocation } from "react-router-dom";
+import ModalError from "components/moleculars/modals/ModalError";
 import * as S from "./styles";
+
+type LocationStateType = {
+  failedDonation: boolean;
+};
 
 function CausesPage(): JSX.Element {
   const [donationModalVisible, setDonationModalVisible] = useState(true);
@@ -18,6 +24,13 @@ function CausesPage(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
+
+  const { state } = useLocation<LocationStateType>();
+
+  const [warningModalVisible, setWarningModalVisible] = useState(
+    state?.failedDonation,
+  );
+
   const { navigateTo } = useNavigation();
 
   const { nonProfits, isLoading } = useNonProfits();
@@ -28,6 +41,10 @@ function CausesPage(): JSX.Element {
 
   const closeDonationModal = useCallback(() => {
     setDonationModalVisible(false);
+  }, []);
+
+  const closeWarningModal = useCallback(() => {
+    setWarningModalVisible(false);
   }, []);
 
   const closeConfirmModal = useCallback(() => {
@@ -78,6 +95,15 @@ function CausesPage(): JSX.Element {
         visible={confirmModalVisible}
         onClose={closeConfirmModal}
         roundIcon
+      />
+
+      <ModalError
+        visible={warningModalVisible}
+        title={t("errorModalTitle")}
+        body={t("errorModalText")}
+        buttonText={t("errorModalButtonText")}
+        onClose={closeWarningModal}
+        warning
       />
 
       <Header sideLogo="https://i.imgur.com/kJA77FC.png" />

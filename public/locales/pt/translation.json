@@ -9,7 +9,10 @@
       "confirmModalSecondaryButtonText": "Cancelar",
       "donateText": "Doar",
       "pageTitle": "Causas",
-      "pageSubtitle": "Doe de graça para uma causa de sua escolha"
+      "pageSubtitle": "Doe de graça para uma causa de sua escolha",
+      "errorModalTitle": "Falha no processo",
+      "errorModalText": "Não foi possível concluir esta ação. Por favor verifique sua conexão com a internet e tente novamente.",
+      "errorModalButtonText": "Ok"
     },
     "donationDonePage": {
       "title": "Obrigada pela sua doação!",

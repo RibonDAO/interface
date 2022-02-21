@@ -9,7 +9,10 @@
       "confirmModalSecondaryButtonText": "Cancel",
       "donateText": "Donate",
       "pageTitle": "Causes",
-      "pageSubtitle": "Donate for free for a cause of your choice"
+      "pageSubtitle": "Donate for free for a cause of your choice",
+      "errorModalTitle": "Process failed",
+      "errorModalText": "It was not possible to finish this action. Please, check your internet connection and try again.",
+      "errorModalButtonText": "Ok"
     },
     "donationDonePage": {
       "title": "Thank you for your donation!",

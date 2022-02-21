@@ -9,6 +9,10 @@ import useNavigation from "hooks/useNavigation";
 import NonProfit from "types/entities/NonProfit";
 import useNonProfits from "hooks/apiHooks/useNonProfits";
 import Loader from "components/atomics/Loader";
+import Integration from "types/entities/Integration";
+import integrationsApi from "services/api/integrationsApi";
+import useQueryParams from "hooks/useQueryParams";
+import { logError } from "services/crashReport";
 import { useLocation } from "react-router-dom";
 import ModalError from "components/moleculars/modals/ModalError";
 import * as S from "./styles";
@@ -21,6 +25,9 @@ function CausesPage(): JSX.Element {
   const [donationModalVisible, setDonationModalVisible] = useState(true);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
   const [chosenNonProfit, setChosenNonProfit] = useState<NonProfit>();
+  const [integration, setIntegration] = useState<Integration>();
+  const queryParams = useQueryParams();
+
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
@@ -32,11 +39,29 @@ function CausesPage(): JSX.Element {
   );
 
   const { navigateTo } = useNavigation();
-
   const { nonProfits, isLoading } = useNonProfits();
 
   useEffect(() => {
     logEvent("donateIntroDial_view");
+  }, []);
+
+  useEffect(() => {
+    async function fetchIntegration() {
+      try {
+        const integrationId = queryParams.get("integration_id");
+        if (!integrationId) return;
+
+        const { data } = await integrationsApi.getIntegration(
+          parseInt(integrationId, 10),
+        );
+
+        setIntegration(data);
+      } catch (e) {
+        logError(e);
+      }
+    }
+
+    fetchIntegration();
   }, []);
 
   const closeDonationModal = useCallback(() => {
@@ -54,7 +79,7 @@ function CausesPage(): JSX.Element {
   const donate = useCallback(() => {
     navigateTo({
       pathname: "/donation-in-process",
-      state: { nonProfit: chosenNonProfit },
+      state: { nonProfit: chosenNonProfit, integration },
     });
     logEvent("donateConfirmDialButton_click", {
       causeId: chosenNonProfit?.id,
@@ -97,6 +122,7 @@ function CausesPage(): JSX.Element {
         roundIcon
       />
 
+      <Header sideLogo={integration?.logo} />
       <ModalError
         visible={warningModalVisible}
         title={t("errorModalTitle")}
@@ -106,7 +132,6 @@ function CausesPage(): JSX.Element {
         warning
       />
 
-      <Header sideLogo="https://i.imgur.com/kJA77FC.png" />
       <S.BodyContainer>
         <S.Title>{t("pageTitle")}</S.Title>
         <S.Text>{t("pageSubtitle")}</S.Text>

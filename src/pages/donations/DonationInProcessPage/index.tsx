@@ -8,11 +8,13 @@ import { useLocation } from "react-router-dom";
 import NonProfit from "types/entities/NonProfit";
 import theme from "styles/theme";
 import useDonations from "hooks/apiHooks/useDonations";
+import { logError } from "services/crashReport";
+import Integration from "types/entities/Integration";
 import * as S from "./styles";
-import { logError } from "../../../services/crashReport";
 
 type LocationStateType = {
   nonProfit: NonProfit;
+  integration: Integration;
 };
 
 function DonationInProcessPage(): JSX.Element {
@@ -21,13 +23,13 @@ function DonationInProcessPage(): JSX.Element {
   });
   const { navigateTo } = useNavigation();
   const {
-    state: { nonProfit },
+    state: { nonProfit, integration },
   } = useLocation<LocationStateType>();
   const { donate } = useDonations();
 
   async function handleDonation() {
     try {
-      await donate(1, nonProfit.id);
+      await donate(integration?.id, nonProfit.id);
       navigateTo({ pathname: "/donation-done", state: { nonProfit } });
     } catch (e) {
       navigateTo({ pathname: "/", state: { failedDonation: true } });

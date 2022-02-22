@@ -2,7 +2,9 @@ import CardRoundDoubleImage from "components/moleculars/cards/CardRoundDoubleIma
 import CardSideSquareImageButton from "components/moleculars/cards/CardSideSquareImageButton";
 import useNavigation from "hooks/useNavigation";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { logEvent } from "services/analytics";
 import theme from "styles/theme";
 import NonProfit from "types/entities/NonProfit";
 import * as S from "./styles";
@@ -23,6 +25,10 @@ function DonationDonePage(): JSX.Element {
   const handleFinishButtonClick = () => {
     navigateTo("/");
   };
+
+  useEffect(() => {
+    logEvent("donateFinishedDonation_view", { selected: nonProfit?.id });
+  }, []);
 
   return (
     <S.Container>

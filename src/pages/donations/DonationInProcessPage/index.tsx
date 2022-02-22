@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import useNavigation from "hooks/useNavigation";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { logEvent } from "services/analytics";
 import NonProfit from "types/entities/NonProfit";
 import theme from "styles/theme";
 import useDonations from "hooks/apiHooks/useDonations";
@@ -39,6 +40,7 @@ function DonationInProcessPage(): JSX.Element {
   }
 
   useEffect(() => {
+    logEvent("donateSendingDonation_view", { selected: nonProfit?.id });
     handleDonation();
   }, []);
 

@@ -1,8 +1,8 @@
 {
   "donations": {
     "causesPage": {
-      "donationModalTitle": "Donate for free!",
-      "donationModalBody": "Choose one cause and send a donation sponsored by Ribon’s supporters.",
+      "donationModalTitle": "You got a donation ticket",
+      "donationModalBody": "Use your daily tickets to make donations to be sponsored by Ribon’s supporters.",
       "donationModalButtonText": "Continue",
       "confirmModalTitle": "Confirm your donation",
       "confirmModalPrimaryButtonText": "Confirm",

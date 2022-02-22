@@ -1,7 +1,7 @@
 import Header from "components/atomics/sections/Header";
 import CardCenterImageButton from "components/moleculars/cards/CardCenterImageButton";
 import { useCallback, useEffect, useState } from "react";
-import Heart from "assets/images/heart.svg";
+import Ticket from "assets/images/ticket.png";
 import ModalIcon from "components/moleculars/modals/ModalIcon";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "services/analytics";
@@ -101,7 +101,7 @@ function CausesPage(): JSX.Element {
   return (
     <S.Container>
       <ModalIcon
-        icon={Heart}
+        icon={Ticket}
         title={t("donationModalTitle")}
         body={t("donationModalBody")}
         primaryButtonText={t("donationModalButtonText")}
@@ -110,7 +110,7 @@ function CausesPage(): JSX.Element {
         primaryButtonCallback={closeDonationModal}
       />
       <ModalIcon
-        icon={chosenNonProfit?.mainImage}
+        icon={Ticket}
         title={t("confirmModalTitle")}
         body={chosenNonProfit?.impactDescription}
         primaryButtonText={t("confirmModalPrimaryButtonText")}

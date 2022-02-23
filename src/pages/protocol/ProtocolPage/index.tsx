@@ -13,11 +13,11 @@ function ProtocolPage(): JSX.Element {
   const { wallet, connectWallet } = useWalletContext();
   const { isValidNetwork, currentNetwork } = useNetwork();
   const contract = useContract({
-    address: "0x7e82A9e4702Af6b90a2B8d02d64752334bbdC8d5",
+    address: "0x93Db1426dAee2a1F0dD7dC5FDc3521d7e6A508Ba",
     ABI: RibonAbi.abi,
   });
   const donationToken = useContract({
-    address: "0xE942a1C5E61CE47CA73c91576e12520F86588e96",
+    address: "0xb118E50D4e32b1cb799b7CB97648c1c9073e7E4f",
     ABI: TokenAbi.abi,
   });
 

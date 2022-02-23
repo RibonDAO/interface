@@ -1,11 +1,11 @@
 import { AxiosResponse } from "axios";
-import api from "..";
+import { apiGet } from "..";
 
 const {{camelCase name}}Api = {
   // FIXME: CHANGE THIS "ANY" RETURN TYPE ON AXIOS_RESPONSE!
   // For example: if you're getting a list of feeds you can have a AxiosResponse<Feed[]>
   exampleFunction: (): Promise<AxiosResponse<any>> => {
-    return api.get("/api/v1/sample_url");
+    return apiGet("sample_url");
   },
 };
 

@@ -1,15 +1,25 @@
 {
   "donations": {
     "causesPage": {
-      "donationModalTitle": "Donate for free!",
-      "donationModalBody": "Choose one cause and send a donation sponsored by Ribon’s supporters.",
+      "donationModalTitle": "You got a donation ticket",
+      "donationModalBody": "Use your daily tickets to make donations to be sponsored by Ribon’s supporters.",
       "donationModalButtonText": "Continue",
       "confirmModalTitle": "Confirm your donation",
       "confirmModalPrimaryButtonText": "Confirm",
       "confirmModalSecondaryButtonText": "Cancel",
       "donateText": "Donate",
       "pageTitle": "Causes",
-      "pageSubtitle": "Donate for free for a cause of your choice"
+      "pageSubtitle": "Donate for free for a cause of your choice",
+      "errorModalTitle": "Process failed",
+      "errorModalText": "It was not possible to finish this action. Please, check your internet connection and try again.",
+      "errorModalButtonText": "Ok"
+    },
+    "donationDonePage": {
+      "title": "Thank you for your donation!",
+      "subtitle": "1 day of pet food for rescued animals",
+      "button": "Finish",
+      "ngoTitle": "About Amor em Patas",
+      "ngoInformation": "Amor em Patas is an organization that aims to rescue abandoned animals, take care of them and seek adoption."
     },
     "donationInProcess": {
       "animationText": "Donating...",

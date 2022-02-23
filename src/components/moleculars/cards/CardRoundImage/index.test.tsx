@@ -7,21 +7,10 @@ import CardRoundImage from ".";
 describe("CardRoundImage", () => {
   it("should render without error", () => {
     renderComponent(
-      <CardRoundImage
-        rightImage=""
-        leftImage=""
-        centerImage=""
-        bottomImage=""
-        rightImageAlt="rightImage"
-        leftImageAlt="leftImage"
-        centerImageAlt="centerImage"
-        bottomImageAlt="bottomImage"
-      />,
+      <CardRoundImage image="" logo="" imageAlt="image" logoAlt="logoAlt" />,
     );
 
-    expectImageToBeInTheDocument("rightImage");
-    expectImageToBeInTheDocument("leftImage");
-    expectImageToBeInTheDocument("centerImage");
-    expectImageToBeInTheDocument("bottomImage");
+    expectImageToBeInTheDocument("image");
+    expectImageToBeInTheDocument("logoAlt");
   });
 });

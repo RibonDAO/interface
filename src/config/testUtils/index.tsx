@@ -66,6 +66,7 @@ export type RenderComponentProps = {
   history?: MemoryHistory;
   walletProviderValue?: Partial<IWalletContext>;
   currentUserProviderValue?: Partial<ICurrentUserContext>;
+  locationState?: Record<any, any>;
 };
 export function renderComponent(
   component: JSX.Element,
@@ -73,16 +74,19 @@ export function renderComponent(
     history = createMemoryHistory(),
     walletProviderValue = {},
     currentUserProviderValue = {},
+    locationState = {},
   }: RenderComponentProps = {},
 ): RenderWithContextResult {
   const queryClient = new QueryClient();
+  const historyObject = history;
+  historyObject.location.state = locationState;
 
   return {
     component: render(
       <ThemeProvider theme={theme}>
         <QueryClientProvider client={queryClient}>
           <I18nextProvider i18n={i18n}>
-            <Router history={history}>
+            <Router history={historyObject}>
               {renderProvider(
                 WalletProvider,
                 WalletContext,

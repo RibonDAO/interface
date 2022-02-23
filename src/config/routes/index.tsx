@@ -4,8 +4,9 @@ import WalletProvider from "contexts/walletContext";
 import CausesPage from "pages/donations/CausesPage";
 import CurrentUserProvider from "contexts/currentUserContext";
 import ConfirmEmailPage from "pages/donations/ConfirmEmailPage";
-import DonationInProcesPage from "pages/donations/DonationInProcesPage";
 import Protocol from "pages/protocol/ProtocolPage";
+import DonationDonePage from "pages/donations/DonationDonePage";
+import DonationInProcessPage from "pages/donations/DonationInProcessPage";
 
 function RoutesComponent(): JSX.Element {
   return (
@@ -38,10 +39,18 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
+      <Route path="/donation-done" exact>
+        <Suspense fallback={<div />}>
+          <CurrentUserProvider>
+            <DonationDonePage />
+          </CurrentUserProvider>
+        </Suspense>
+      </Route>
+
       <Route path="/donation-in-process" exact>
         <Suspense fallback={<div />}>
           <CurrentUserProvider>
-            <DonationInProcesPage />
+            <DonationInProcessPage />
           </CurrentUserProvider>
         </Suspense>
       </Route>

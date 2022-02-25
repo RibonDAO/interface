@@ -13,6 +13,7 @@ const Template: ComponentStory<typeof Button> = function (args: Props) {
 
 export const Primary = Template.bind({});
 export const Outline = Template.bind({});
+export const Disabled = Template.bind({});
 
 Primary.args = {
   text: "Button",
@@ -21,4 +22,9 @@ Primary.args = {
 Outline.args = {
   text: "Button",
   outline: true,
+};
+
+Disabled.args = {
+  text: "Button",
+  disabled: true,
 };

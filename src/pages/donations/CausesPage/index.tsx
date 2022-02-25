@@ -1,7 +1,7 @@
 import Header from "components/atomics/sections/Header";
 import CardCenterImageButton from "components/moleculars/cards/CardCenterImageButton";
 import { useCallback, useEffect, useState } from "react";
-import Ticket from "assets/images/ticket.png";
+import Ticket from "assets/images/ticket.svg";
 import ModalIcon from "components/moleculars/modals/ModalIcon";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "services/analytics";

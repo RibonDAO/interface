@@ -13,6 +13,7 @@ export interface ICurrentUserContext {
   currentUser: User | undefined;
   setCurrentUser: Dispatch<SetStateAction<User | undefined>>;
   updateCurrentUser: (data: Partial<User>) => void;
+  logoutCurrentUser: () => void;
   signedIn: boolean;
 }
 
@@ -24,16 +25,36 @@ export const CurrentUserContext = createContext<ICurrentUserContext>(
   {} as ICurrentUserContext,
 );
 
+export const CURRENT_USER_KEY = "CURRENT_USER_KEY";
+
 function CurrentUserProvider({ children }: Props) {
-  const [currentUser, setCurrentUser] = useState<User>();
+  function getUserFromLocalStorage() {
+    const user = localStorage.getItem(CURRENT_USER_KEY);
+    if (!user || user === "undefined") return undefined;
+
+    return JSON.parse(user);
+  }
+
+  const [currentUser, setCurrentUser] = useState<User | undefined>(
+    getUserFromLocalStorage(),
+  );
   const [signedIn, setSignedIn] = useState(false);
 
   function updateCurrentUser(data: Partial<User>) {
     setCurrentUser({ ...currentUser, data } as User);
   }
 
+  function logoutCurrentUser() {
+    setCurrentUser(undefined);
+  }
+
+  function setUserInLocalStorage() {
+    localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(currentUser));
+  }
+
   useEffect(() => {
     setSignedIn(!!currentUser);
+    setUserInLocalStorage();
   }, [currentUser]);
 
   const currentUserObject: ICurrentUserContext = useMemo(
@@ -42,6 +63,7 @@ function CurrentUserProvider({ children }: Props) {
       setCurrentUser,
       updateCurrentUser,
       signedIn,
+      logoutCurrentUser,
     }),
     [currentUser, signedIn],
   );

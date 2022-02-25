@@ -26,3 +26,19 @@ export const LOAD_PROMOTERS = gql`
     }
   }
 `;
+
+export const LOAD_USER_IMPACT = gql`
+  query {
+    donationBalances(
+      where: {
+        user: "0xe5b3a11f62334edbdaf5dafb8d9321379434cccbe4f33006d346ec3b6f8bc8cf"
+      }
+    ) {
+      id
+      integration
+      totalDonated
+      nonProfit
+      user
+    }
+  }
+`;

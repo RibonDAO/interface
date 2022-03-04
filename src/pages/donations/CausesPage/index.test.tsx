@@ -1,6 +1,7 @@
 import React from "react";
 import { expectTextToBeInTheDocument, renderComponent } from "config/testUtils";
 import Header from "components/atomics/sections/Header";
+import { mockRequest } from "config/testUtils/test-helper";
 import Causes from ".";
 
 jest.mock(
@@ -13,6 +14,10 @@ jest.mock(
 // const spy = jest.spyOn(Header, "Header");
 
 describe("Causes", () => {
+  mockRequest("/api/v1/non_profits", {
+    payload: [],
+  });
+
   beforeEach(() => {
     renderComponent(<Causes />);
   });

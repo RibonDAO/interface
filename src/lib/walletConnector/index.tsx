@@ -2,10 +2,9 @@ import { logError } from "services/crashReport";
 
 export async function checkConnectionRequest(): Promise<string | null> {
   try {
-    const { ethereum, alert } = window;
+    const { ethereum } = window;
 
     if (!ethereum) {
-      alert("Make sure you have metamask!");
       return null;
     }
 
@@ -24,10 +23,9 @@ export async function checkConnectionRequest(): Promise<string | null> {
 
 export async function connectWalletRequest(): Promise<string | null> {
   try {
-    const { ethereum, alert } = window;
+    const { ethereum } = window;
 
     if (!ethereum) {
-      alert("Get MetaMask!");
       return null;
     }
 

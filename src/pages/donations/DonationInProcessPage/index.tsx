@@ -11,6 +11,7 @@ import theme from "styles/theme";
 import useDonations from "hooks/apiHooks/useDonations";
 import { logError } from "services/crashReport";
 import Integration from "types/entities/Integration";
+import { useCurrentUser } from "contexts/currentUserContext";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -27,14 +28,16 @@ function DonationInProcessPage(): JSX.Element {
     state: { nonProfit, integration },
   } = useLocation<LocationStateType>();
   const { donate } = useDonations();
+  const { currentUser } = useCurrentUser();
 
   async function handleDonation() {
+    if (!currentUser) return;
+
     try {
-      await donate(integration?.id, nonProfit.id);
+      await donate(integration?.id, nonProfit.id, currentUser.email);
       navigateTo({ pathname: "/donation-done", state: { nonProfit } });
     } catch (e) {
       navigateTo({ pathname: "/", state: { failedDonation: true } });
-
       logError(e);
     }
   }

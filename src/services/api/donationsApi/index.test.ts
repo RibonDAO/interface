@@ -9,11 +9,12 @@ describe("donationsApi", () => {
     });
 
     it("expects to send a get request with the correct info: url, params and headers", () => {
-      donationsApi.postDonation(1, 1);
+      donationsApi.postDonation(1, 1, "user@test.com");
 
       expect(api.post).toHaveBeenCalledWith("/api/v1/donations", {
         integrationId: 1,
         nonProfitId: 1,
+        email: "user@test.com",
       });
     });
   });

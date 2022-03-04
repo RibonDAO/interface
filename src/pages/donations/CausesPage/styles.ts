@@ -67,3 +67,17 @@ export const CausesCardContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const FooterText = styled.h5`
+  ${({ theme }) => css`
+    line-height: 19px;
+    color: ${theme.colors.darkGray};
+    text-align: center;
+    font-weight: 400;
+
+    a {
+      color: ${theme.colors.ribonBlue};
+      text-decoration: none;
+    }
+  `}
+`;

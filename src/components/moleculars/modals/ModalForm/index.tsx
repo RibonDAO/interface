@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FormEventHandler, useEffect } from "react";
 import ReactModal from "react-modal";
 import theme from "styles/theme";
 import Button, { onClickType } from "components/atomics/Button";
@@ -24,6 +24,7 @@ export type Props = {
   primaryButtonColor?: string;
   primaryButtonBorderColor?: string;
   primaryButtonCallback?: onClickType;
+  primaryButtonDisabled?: boolean;
   secondaryButtonText?: string | null;
   secondaryButtonLink?: string;
   secondaryButtonTextColor?: string;
@@ -40,6 +41,7 @@ export type Props = {
   initialState: Record<any, any>;
   onFormSubmit: (values: Record<any, any>) => void;
   footer?: JSX.Element;
+  onValuesChange?: (values: Record<any, any>) => void;
 };
 
 function ModalForm({
@@ -51,6 +53,7 @@ function ModalForm({
   primaryButtonTextColor = "white",
   primaryButtonColor = theme.colors.ribonBlue,
   primaryButtonBorderColor,
+  primaryButtonDisabled,
   secondaryButtonText = null,
   secondaryButtonTextColor = theme.colors.darkGray,
   secondaryButtonBorderColor,
@@ -64,9 +67,14 @@ function ModalForm({
   initialState,
   onFormSubmit,
   footer,
+  onValuesChange,
 }: Props): JSX.Element {
   // eslint-disable-next-line no-use-before-define
   const [onChange, onSubmit, values] = useForm(handleOnSubmit, initialState);
+
+  useEffect(() => {
+    if (onValuesChange) onValuesChange(values);
+  }, [values]);
 
   function handleOnSubmit() {
     onFormSubmit(values);
@@ -86,10 +94,11 @@ function ModalForm({
     >
       {renderIcon()}
       {title && <S.Title color={titleColor}>{title}</S.Title>}
-      <form onSubmit={onSubmit as any}>
+      <form onSubmit={onSubmit as FormEventHandler<HTMLFormElement>}>
         <S.FormContainer>
           {formFields.map((field) => (
             <S.Input
+              key={field.id}
               name={field.name}
               id={field.id}
               type={field.type}
@@ -107,6 +116,7 @@ function ModalForm({
               borderColor={primaryButtonBorderColor}
               onClick={primaryButtonCallback}
               type="submit"
+              disabled={primaryButtonDisabled}
             />
           )}
         </S.FormContainer>

@@ -4,7 +4,8 @@
       "donationModalTitle": "You got a donation ticket",
       "donationModalBody": "Use your daily tickets to make donations to be sponsored by Ribon’s supporters.",
       "donationModalButtonText": "Continue",
-      "confirmModalTitle": "Confirm your donation",
+      "confirmModalTitle": "Enter your e-mail to use your ticket",
+      "confirmModalAuthTitle": "Confirm your donation",
       "confirmModalPrimaryButtonText": "Confirm",
       "confirmModalSecondaryButtonText": "Cancel",
       "donateText": "Donate",
@@ -12,7 +13,15 @@
       "pageSubtitle": "Donate for free for a cause of your choice",
       "errorModalTitle": "Process failed",
       "errorModalText": "It was not possible to finish this action. Please, check your internet connection and try again.",
-      "errorModalButtonText": "Ok"
+      "errorModalButtonText": "Ok",
+      "modalForm": {
+        "footerStartText": "By signing up you agree to Ribon’s",
+        "footerAnd": "and",
+        "useTermsText": "Terms of Service",
+        "privacyPolicyText": "Privacy Policy",
+        "privacyPolicyLink": "https://blog.ribon.io/2021/09/16/privacy-and-retention-of-personal-data-policy/",
+        "useTermsLink": "https://blog.ribon.io/2021/07/12/termos-e-condicoes-de-uso-da-ribon/"
+      }
     },
     "donationDonePage": {
       "title": "Thank you for your donation!",
@@ -24,6 +33,10 @@
     "donationInProcess": {
       "animationText": "Donating...",
       "impactText": "Ribon’s supporters are those responsible for paying for the free donations"
+    },
+    "menu":{
+      "impactTitle": "Impact",
+      "causesPageTitle": "Causes"
     }
   }
 }

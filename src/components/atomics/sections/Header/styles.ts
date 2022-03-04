@@ -16,12 +16,10 @@ export const Container = styled.div`
 `;
 
 export const Logo = styled.img`
-  ${({ theme }) => css`
-    @media (min-width: ${theme.breakpoints.pad}) {
-      height: 32px;
-      width: auto;
-      object-fit: contain;
-    }
+  ${() => css`
+    height: 32px;
+    width: 64px;
+    object-fit: contain;
   `}
 `;
 

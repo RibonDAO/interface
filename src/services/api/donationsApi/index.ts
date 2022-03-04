@@ -7,8 +7,9 @@ const donationsApi = {
   postDonation: (
     integrationId: number,
     nonProfitId: number,
+    email: string,
   ): Promise<AxiosResponse<any>> =>
-    apiPost("donations", { integrationId, nonProfitId }),
+    apiPost("donations", { integrationId, nonProfitId, email }),
 };
 
 export default donationsApi;

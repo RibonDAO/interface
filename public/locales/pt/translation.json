@@ -4,7 +4,8 @@
       "donationModalTitle": "Doe de graça!",
       "donationModalBody": "Use seus tickets diários para fazer doações a serem patrocinadas pelos apoiadores da Ribon.",
       "donationModalButtonText": "Continuar",
-      "confirmModalTitle": "Confirme sua doação",
+      "confirmModalTitle": "Insira seu e-mail para usar seu vale doação",
+      "confirmModalAuthTitle": "Confirmar doação",
       "confirmModalPrimaryButtonText": "Confirmar",
       "confirmModalSecondaryButtonText": "Cancelar",
       "donateText": "Doar",
@@ -12,7 +13,15 @@
       "pageSubtitle": "Doe de graça para uma causa de sua escolha",
       "errorModalTitle": "Falha no processo",
       "errorModalText": "Não foi possível concluir esta ação. Por favor verifique sua conexão com a internet e tente novamente.",
-      "errorModalButtonText": "Ok"
+      "errorModalButtonText": "Ok",
+      "modalForm": {
+        "footerStartText": "Ao inserir seu e-mail e se inscrever, você aceita os",
+        "footerAnd": "e",
+        "useTermsText": "Termos de Serviço",
+        "privacyPolicyText": "Política de Privacidade",
+        "privacyPolicyLink": "https://blog.ribon.io/2017/12/20/politica-de-privacidade/",
+        "useTermsLink": "https://blog.ribon.io/2021/07/12/termos-e-condicoes-de-uso-da-ribon/"
+      }
     },
     "donationDonePage": {
       "title": "Obrigada pela sua doação!",
@@ -24,6 +33,10 @@
     "donationInProcess": {
       "animationText": "Doando...",
       "impactText": "Os apoiadores da Ribon são os responsáveis pelo pagamento das doações gratuitas"
+    },
+    "menu":{
+      "impactTitle": "Impacto",
+      "causesPageTitle": "Causas"
     }
   }
 }

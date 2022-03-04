@@ -4,6 +4,8 @@ import { screen, act, fireEvent } from "@testing-library/react";
 import { renderComponent } from "config/testUtils";
 import useNavigation, { NavigationProps } from ".";
 
+jest.unmock("hooks/useNavigation");
+
 const GO_TO_PAGE_BTN = "Go to other";
 const GO_TO_PAGE_WITH_SEARCH_BTN = "Go to other with search";
 const GO_BACK_BTN = "Go Back";

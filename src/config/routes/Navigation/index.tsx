@@ -18,6 +18,7 @@ function Navigation(): JSX.Element {
   const { isDesktop } = useBreakpoint();
 
   const location = useLocation();
+  const { search } = location;
   const isImpactPage = ["/impact"].includes(location.pathname);
   const isCausesPage = ["/"].includes(location.pathname);
 
@@ -26,22 +27,22 @@ function Navigation(): JSX.Element {
 
   return isDesktop ? (
     <S.ContainerDesktop>
-      <S.StyledLink to="/">
+      <S.StyledLink to={{ pathname: "/", search }}>
         <S.Icon src={iconCausesPage} />
         <S.Title enabled={isCausesPage}>{t("causesPageTitle")}</S.Title>
       </S.StyledLink>
-      <S.StyledLink to="/impact">
+      <S.StyledLink to={{ pathname: "/impact", search }}>
         <S.Icon src={iconImpactPage} />
         <S.Title enabled={isImpactPage}>{t("impactTitle")}</S.Title>
       </S.StyledLink>
     </S.ContainerDesktop>
   ) : (
     <S.ContainerMobile>
-      <S.StyledLink to="/">
+      <S.StyledLink to={{ pathname: "/", search }}>
         <S.Icon src={iconCausesPage} />
         <S.Title enabled={isCausesPage}>{t("causesPageTitle")}</S.Title>
       </S.StyledLink>
-      <S.StyledLink to="/impact">
+      <S.StyledLink to={{ pathname: "/impact", search }}>
         <S.Icon src={iconImpactPage} />
         <S.Title enabled={isImpactPage}>{t("impactTitle")}</S.Title>
       </S.StyledLink>

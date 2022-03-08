@@ -7,13 +7,20 @@ type Props = {
   ribonsColor?: string;
   leftIcon?: string;
   disabled?: boolean;
+  borderRadius?: string;
 };
 
 export const Container = styled.button`
-  ${({ disabled, textColor, borderColor, backgroundColor }: Props) => css`
+  ${({
+    disabled,
+    textColor,
+    borderColor,
+    backgroundColor,
+    borderRadius,
+  }: Props) => css`
     position: relative;
     border: 1px solid black;
-    border-radius: 8px;
+    border-radius: ${borderRadius || "8px"};
     width: 100%;
     font-size: 16px;
     font-weight: bold;

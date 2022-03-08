@@ -17,6 +17,7 @@ export type Props = {
   onClick: onClickType;
   outline?: boolean;
   disabled?: boolean;
+  round?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export default function Button({
@@ -31,6 +32,7 @@ export default function Button({
   altLeftIconText = "left icon",
   outline = false,
   disabled = false,
+  round = false,
   ...props
 }: Props): JSX.Element {
   function activeTextColor() {
@@ -39,10 +41,16 @@ export default function Button({
   }
 
   function activeBackgroundColor() {
-    if (outline) return theme.colors.ribonBlue;
+    if (outline) return theme.colors.ribonWhite;
     if (disabled) return theme.colors.darkGray;
 
     return backgroundColor;
+  }
+
+  function borderRadius() {
+    if (round) return "80px";
+
+    return "8px";
   }
 
   return (
@@ -54,6 +62,7 @@ export default function Button({
       onClick={onClick}
       leftIcon={leftIcon}
       disabled={disabled}
+      borderRadius={borderRadius()}
       {...props}
     >
       {leftIcon && <img id="left-icon" src={leftIcon} alt={altLeftIconText} />}

@@ -26,7 +26,7 @@ export function renderWithTheme(children: React.ReactNode): RenderResult {
   return render(<ThemeProvider theme={theme}>{children}</ThemeProvider>);
 }
 
-interface RenderWithContextResult {
+export interface RenderWithContextResult {
   component: RenderResult;
   history: MemoryHistory;
   value?: IWalletContext;

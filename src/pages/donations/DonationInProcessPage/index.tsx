@@ -55,7 +55,7 @@ function DonationInProcessPage(): JSX.Element {
       />
       <S.AnimationContainer>
         <S.LoaderContainer>
-          <Loader />
+          <Loader width={30} height={30} />
           <S.AnimationText>{t("animationText")}</S.AnimationText>
         </S.LoaderContainer>
         <S.DividerContainer>

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import theme, { Breakpoint } from "../../styles/theme";
+import theme, { Breakpoint } from "styles/theme";
 
 interface WindowSize {
   width: number;

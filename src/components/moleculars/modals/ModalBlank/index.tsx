@@ -1,3 +1,4 @@
+import { Styles } from "react-modal";
 import { defaultCustomStyles } from "../defaultCustomStyles";
 import * as S from "./styles";
 
@@ -6,6 +7,7 @@ export type Props = {
   contentLabel?: string;
   children?: JSX.Element[] | JSX.Element | null;
   onClose?: () => void;
+  customStyles?: Styles;
 };
 
 function ModalBlank({
@@ -13,12 +15,13 @@ function ModalBlank({
   children = null,
   onClose = () => {},
   contentLabel,
+  customStyles,
 }: Props): JSX.Element {
   return (
     <S.BlankModal
       isOpen={visible}
       onRequestClose={onClose}
-      style={defaultCustomStyles}
+      style={{ ...defaultCustomStyles, ...customStyles }}
       contentLabel={contentLabel}
       ariaHideApp={false}
     >

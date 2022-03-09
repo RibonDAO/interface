@@ -2,8 +2,8 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import CardSideImageButton from "components/moleculars/cards/CardSideImageButton";
 import image from "assets/images/newspaper.svg";
 import theme from "styles/theme";
+import CardCircleImage from "components/moleculars/cards/CardCircleImage";
 import Carousel, { Props } from ".";
-import CardCircleImage from "../../cards/CardCircleImage";
 
 export default {
   title: "Carousel",

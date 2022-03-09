@@ -10,9 +10,15 @@ export type Props = {
   leftText: string;
   rightText: string;
   onSwitch?: (checked: boolean) => void;
+  initialCheckState?: boolean;
 };
-function ButtonSwitch({ leftText, rightText, onSwitch }: Props): JSX.Element {
-  const [checked, setChecked] = useState(false);
+function ButtonSwitch({
+  leftText,
+  rightText,
+  onSwitch,
+  initialCheckState = false,
+}: Props): JSX.Element {
+  const [checked, setChecked] = useState(initialCheckState);
 
   const handleChange = () => {
     setChecked(!checked);

@@ -13,7 +13,7 @@ export const Container = styled.div`
       max-width: 340px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+
       align-items: center;
       margin: 0 auto;
     }

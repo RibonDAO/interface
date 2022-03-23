@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import Ticket from "assets/images/ticket.svg";
 import ModalIcon from "components/moleculars/modals/ModalIcon";
 import { useTranslation } from "react-i18next";
+import { today } from "lib/dateTodayFormatter";
 import { logEvent } from "services/analytics";
 import useNavigation from "hooks/useNavigation";
 import NonProfit from "types/entities/NonProfit";
@@ -16,6 +17,7 @@ import { useLocation } from "react-router-dom";
 import ModalError from "components/moleculars/modals/ModalError";
 import useUsers from "hooks/apiHooks/useUsers";
 import { useCurrentUser } from "contexts/currentUserContext";
+import blockedIcon from "assets/images/il-ticket-gray.svg";
 import * as S from "./styles";
 import ConfirmEmail from "./ConfirmEmail";
 
@@ -26,6 +28,7 @@ type LocationStateType = {
 function CausesPage(): JSX.Element {
   const [donationModalVisible, setDonationModalVisible] = useState(true);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
+  const [blockedModalVisible, setBlockedModalVisible] = useState(false);
   const [chosenNonProfit, setChosenNonProfit] = useState<NonProfit>();
   const [integration, setIntegration] = useState<Integration>();
   const queryParams = useQueryParams();
@@ -40,7 +43,8 @@ function CausesPage(): JSX.Element {
   const { navigateTo } = useNavigation();
   const { nonProfits, isLoading } = useNonProfits();
   const { findOrCreateUser } = useUsers();
-  const { signedIn, setCurrentUser, currentUser } = useCurrentUser();
+  const { signedIn, setCurrentUser, currentUser, userLastDonation } =
+    useCurrentUser();
 
   useEffect(() => {
     logEvent("donateIntroDial_view");
@@ -77,6 +81,14 @@ function CausesPage(): JSX.Element {
     setConfirmModalVisible(false);
   }, []);
 
+  const closeBlockedModal = useCallback(() => {
+    setBlockedModalVisible(false);
+  }, []);
+
+  function hasDonateToday() {
+    return userLastDonation === today();
+  }
+
   const donate = useCallback(
     async (email: string) => {
       try {
@@ -107,7 +119,11 @@ function CausesPage(): JSX.Element {
       causeId: nonProfit.id,
     });
     chooseNonProfit(nonProfit);
-    setConfirmModalVisible(true);
+    if (hasDonateToday()) {
+      setBlockedModalVisible(true);
+    } else {
+      setConfirmModalVisible(true);
+    }
   }
 
   return (
@@ -159,6 +175,16 @@ function CausesPage(): JSX.Element {
         warning
       />
 
+      <ModalIcon
+        visible={blockedModalVisible}
+        title={t("blockedModalTitle")}
+        body={t("blockedModalText")}
+        primaryButtonText={t("blockedModalButtonText")}
+        primaryButtonCallback={closeBlockedModal}
+        onClose={closeBlockedModal}
+        icon={blockedIcon}
+      />
+
       <S.BodyContainer>
         <S.Title>{t("pageTitle")}</S.Title>
         <S.Text>{t("pageSubtitle")}</S.Text>
@@ -171,8 +197,11 @@ function CausesPage(): JSX.Element {
                 <CardCenterImageButton
                   image={nonProfit.mainImage}
                   title={nonProfit.impactDescription}
-                  buttonText={t("donateText")}
+                  buttonText={
+                    hasDonateToday() ? t("donateBlockedText") : t("donateText")
+                  }
                   onClickButton={() => handleButtonClick(nonProfit)}
+                  softDisabled={hasDonateToday()}
                 />
               </S.CausesCardContainer>
             ))}

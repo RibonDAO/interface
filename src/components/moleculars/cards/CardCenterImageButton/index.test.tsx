@@ -11,6 +11,7 @@ describe("CardCenterImageButton", () => {
         title="Recursos de saúde básica para famílias"
         buttonText=""
         onClickButton={() => {}}
+        softDisabled={false}
       />,
     );
     expect(

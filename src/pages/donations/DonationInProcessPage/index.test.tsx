@@ -32,7 +32,7 @@ describe("DonationInProcessPage", () => {
     it("goes to the donation finish page", async () => {
       renderComponent(<DonationInProcessPage />, {
         currentUserProviderValue: {
-          currentUser: { email: "user@email.com" },
+          currentUser: { email: "user@email.com", id: 1 },
         },
         locationState: {
           integration,
@@ -59,7 +59,7 @@ describe("DonationInProcessPage", () => {
     it("goes to the root page with failed donation", async () => {
       renderComponent(<DonationInProcessPage />, {
         currentUserProviderValue: {
-          currentUser: { email: "user@email.com" },
+          currentUser: { email: "user@email.com", id: 1 },
         },
         locationState: {
           integration,

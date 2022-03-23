@@ -11,7 +11,9 @@ import User from "types/entities/User";
 
 export interface ICurrentUserContext {
   currentUser: User | undefined;
+  userLastDonation: string | undefined;
   setCurrentUser: Dispatch<SetStateAction<User | undefined>>;
+  setUserLastDonation: Dispatch<SetStateAction<string>>;
   updateCurrentUser: (data: Partial<User>) => void;
   logoutCurrentUser: () => void;
   signedIn: boolean;
@@ -26,6 +28,7 @@ export const CurrentUserContext = createContext<ICurrentUserContext>(
 );
 
 export const CURRENT_USER_KEY = "CURRENT_USER_KEY";
+export const CURRENT_USER_LAST_DONATION_KEY = "CURRENT_USER_LAST_DONATION_KEY";
 
 function CurrentUserProvider({ children }: Props) {
   function getUserFromLocalStorage() {
@@ -37,6 +40,19 @@ function CurrentUserProvider({ children }: Props) {
 
   const [currentUser, setCurrentUser] = useState<User | undefined>(
     getUserFromLocalStorage(),
+  );
+
+  function getUserLastDonationFromLocalStorage() {
+    const lastDonation = localStorage.getItem(
+      `${CURRENT_USER_LAST_DONATION_KEY}_${currentUser?.id}`,
+    );
+    if (!lastDonation || lastDonation === "undefined") return undefined;
+
+    return JSON.parse(lastDonation);
+  }
+
+  const [userLastDonation, setUserLastDonation] = useState<string | "">(
+    getUserLastDonationFromLocalStorage(),
   );
   const [signedIn, setSignedIn] = useState(false);
 
@@ -52,20 +68,30 @@ function CurrentUserProvider({ children }: Props) {
     localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(currentUser));
   }
 
+  function setUserLastDonationInLocalStorage() {
+    localStorage.setItem(
+      `${CURRENT_USER_LAST_DONATION_KEY}_${currentUser?.id}`,
+      JSON.stringify(userLastDonation),
+    );
+  }
+
   useEffect(() => {
     setSignedIn(!!currentUser);
     setUserInLocalStorage();
-  }, [currentUser]);
+    setUserLastDonationInLocalStorage();
+  }, [currentUser, userLastDonation]);
 
   const currentUserObject: ICurrentUserContext = useMemo(
     () => ({
       currentUser,
+      userLastDonation,
       setCurrentUser,
+      setUserLastDonation,
       updateCurrentUser,
       signedIn,
       logoutCurrentUser,
     }),
-    [currentUser, signedIn],
+    [currentUser, userLastDonation, signedIn],
   );
 
   return (

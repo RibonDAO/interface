@@ -13,7 +13,7 @@ export const ContainerDesktop = styled.div`
     align-items: center;
     padding: 50px 50px 0px 50px;
     width: 80px;
-    background: #ffffff;
+    background: #fbfbfd;
     box-shadow: 0px 4px 12px rgba(24, 86, 105, 0.15);
   `}
 `;
@@ -26,7 +26,7 @@ export const ContainerMobile = styled.div`
     position: absolute;
     width: 100%;
     align-self: flex-end;
-    background: #ffffff;
+    background: #fbfbfd;
     box-shadow: 0px 4px 12px rgba(24, 86, 105, 0.15);
   `}
 `;
@@ -35,6 +35,7 @@ export const Title = styled.p`
   ${({ enabled }: Props) => css`
     color: ${enabled ? theme.colors.ribonBlack : theme.colors.darkGray};
     text-decoration: none;
+    font-size: 12px;
   `}
 `;
 
@@ -43,12 +44,12 @@ export const StyledLink = styled(Link)`
     text-decoration: none;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 10px;
   `}
 `;
 
 export const Icon = styled.img`
   ${() => css`
-    height: 32px;
+    height: 24px;
   `}
 `;

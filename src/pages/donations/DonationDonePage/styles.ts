@@ -25,7 +25,7 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 28px;
   `}
 `;
 
@@ -46,8 +46,8 @@ export const Title = styled.h5`
 export const Subtitle = styled.h6`
   ${() => css`
     color: ${({ theme }) => theme.colors.ribonBlue};
-    margin-top: 16px;
-    font-weight: bold;
+    margin-top: 4px;
+    margin-bottom: 24px;
     font-size: 16px;
     line-height: 160%;
 

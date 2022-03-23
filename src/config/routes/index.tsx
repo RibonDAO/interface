@@ -36,9 +36,7 @@ function RoutesComponent(): JSX.Element {
       <Route path="/donation-done" exact>
         <Suspense fallback={<div />}>
           <CurrentUserProvider>
-            <MainLayout>
-              <DonationDonePage />
-            </MainLayout>
+            <DonationDonePage />
           </CurrentUserProvider>
         </Suspense>
       </Route>

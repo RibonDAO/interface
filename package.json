@@ -38,6 +38,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "testCoverage": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject",
     "generate": "yarn plop --plopfile ./generators/plopfile.js",
     "lint": "eslint src/**/*.ts src/**/*.tsx && prettier --check src/**/*.ts src/**/*.tsx",

@@ -62,6 +62,7 @@ function CurrentUserProvider({ children }: Props) {
 
   function logoutCurrentUser() {
     setCurrentUser(undefined);
+    localStorage.removeItem(CURRENT_USER_KEY);
   }
 
   function setUserInLocalStorage() {

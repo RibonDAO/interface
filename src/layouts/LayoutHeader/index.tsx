@@ -4,16 +4,20 @@ import useQueryParams from "hooks/useQueryParams";
 import useIntegration from "hooks/apiHooks/useIntegration";
 import cogIcon from "assets/icons/cog-icon.svg";
 import { useState } from "react";
+import { useCurrentUser } from "contexts/currentUserContext";
+import { Divider } from "components/atomics/Divider/styles";
 import theme from "styles/theme";
 import useBreakpoint from "hooks/useBreakpoint";
-import * as S from "./styles";
 import ChangeLanguageItem from "./ChangeLanguageItem";
+import LogoutItem from "./LogoutItem";
+import * as S from "./styles";
 
 function LayoutHeader(): JSX.Element {
   const queryParams = useQueryParams();
   const integrationId = queryParams.get("integration_id");
   const [menuVisible, setMenuVisible] = useState(false);
   const { isMobile } = useBreakpoint();
+  const { signedIn } = useCurrentUser();
 
   if (!integrationId) return <div />;
 
@@ -50,6 +54,8 @@ function LayoutHeader(): JSX.Element {
         }}
       >
         <ChangeLanguageItem />
+        <Divider color={theme.colors.lightGray} />
+        {signedIn ? <LogoutItem /> : <div />}
       </ModalBlank>
       <Header
         sideLogo={integration?.logo}

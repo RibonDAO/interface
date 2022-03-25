@@ -2,9 +2,12 @@ import ModalBlank from "components/moleculars/modals/ModalBlank";
 import Header from "components/atomics/sections/Header";
 import useQueryParams from "hooks/useQueryParams";
 import useIntegration from "hooks/apiHooks/useIntegration";
-import cogIcon from "assets/icons/cog-icon.svg";
-import { useState } from "react";
 import { useCurrentUser } from "contexts/currentUserContext";
+import { today } from "lib/dateTodayFormatter";
+import cogIcon from "assets/icons/cog-icon.svg";
+import ticketOn from "assets/icons/ticket-icon-on.svg";
+import ticketOff from "assets/icons/ticket-icon-off.svg";
+import { useState } from "react";
 import { Divider } from "components/atomics/Divider/styles";
 import theme from "styles/theme";
 import useBreakpoint from "hooks/useBreakpoint";
@@ -17,7 +20,7 @@ function LayoutHeader(): JSX.Element {
   const integrationId = queryParams.get("integration_id");
   const [menuVisible, setMenuVisible] = useState(false);
   const { isMobile } = useBreakpoint();
-  const { signedIn } = useCurrentUser();
+  const { userLastDonation, signedIn } = useCurrentUser();
 
   if (!integrationId) return <div />;
 
@@ -29,6 +32,10 @@ function LayoutHeader(): JSX.Element {
 
   function closeMenu() {
     setMenuVisible(false);
+  }
+
+  function hasDonateToday() {
+    return userLastDonation === today();
   }
 
   return (
@@ -59,7 +66,23 @@ function LayoutHeader(): JSX.Element {
       </ModalBlank>
       <Header
         sideLogo={integration?.logo}
-        rightComponent={<S.Settings onClick={() => openMenu()} src={cogIcon} />}
+        rightComponent={
+          <S.ContainerRight>
+            <S.CounterContainer>
+              <S.TicketsAmount
+                color={
+                  hasDonateToday()
+                    ? theme.colors.darkGray
+                    : theme.colors.ribonBlue
+                }
+              >
+                {hasDonateToday() ? 0 : 1}
+              </S.TicketsAmount>
+              <S.CounterImage src={hasDonateToday() ? ticketOff : ticketOn} />
+            </S.CounterContainer>
+            <S.Settings onClick={() => openMenu()} src={cogIcon} />
+          </S.ContainerRight>
+        }
       />
     </S.Container>
   );

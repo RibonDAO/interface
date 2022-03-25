@@ -120,7 +120,9 @@ function CausesPage(): JSX.Element {
     });
     chooseNonProfit(nonProfit);
     if (hasDonateToday()) {
+      logEvent("donateFinishedDonation_view");
       setBlockedModalVisible(true);
+      logEvent("donateBlockedDonation_view");
     } else {
       setConfirmModalVisible(true);
     }

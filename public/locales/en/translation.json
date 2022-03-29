@@ -39,8 +39,9 @@
       "impactText": "Ribon’s supporters are those responsible for paying for the free donations"
     },
     "menu":{
-      "impactTitle": "Impact",
-      "causesPageTitle": "Causes"
+      "impactPageTitle": "Impact",
+      "causesPageTitle": "Causes",
+      "fundPageTitle": "Fund"
     }
   },
   "layouts": {

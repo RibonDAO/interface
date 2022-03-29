@@ -10,6 +10,16 @@ export const Container = styled.div`
   `}
 `;
 
+export const BodyContainer = styled.div`
+  padding: 0 16px 16px 16px;
+
+  ${({ theme }) => css`
+    @media (min-width: ${theme.breakpoints.pad}) {
+      padding: 0;
+    }
+  `}
+`;
+
 export const Settings = styled.img`
   ${() => css`
     cursor: pointer;

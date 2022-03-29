@@ -7,6 +7,7 @@ import ConfirmEmailPage from "pages/donations/ConfirmEmailPage";
 import DonationDonePage from "pages/donations/DonationDonePage";
 import DonationInProcessPage from "pages/donations/DonationInProcessPage";
 import MainLayout from "layouts/MainLayout";
+import FundPage from "pages/promoters/FundPage";
 import Navigation from "./Navigation";
 
 function RoutesComponent(): JSX.Element {
@@ -50,9 +51,19 @@ function RoutesComponent(): JSX.Element {
       </Route>
 
       <Route path="/impact" exact>
-        <MainLayout>
-          <div />
-        </MainLayout>
+        <Suspense fallback={<div />}>
+          <MainLayout>
+            <div />
+          </MainLayout>
+        </Suspense>
+      </Route>
+
+      <Route path="/promoters/fund" exact>
+        <Suspense fallback={<div />}>
+          <MainLayout>
+            <FundPage />
+          </MainLayout>
+        </Suspense>
       </Route>
 
       <Route path="/fund" exact>

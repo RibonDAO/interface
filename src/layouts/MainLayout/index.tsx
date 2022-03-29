@@ -11,7 +11,7 @@ function MainLayout({ children }: Props): JSX.Element {
       <Navigation />
       <S.Container>
         <LayoutHeader />
-        {children}
+        <S.BodyContainer>{children}</S.BodyContainer>
       </S.Container>
     </>
   );

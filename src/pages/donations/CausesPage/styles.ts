@@ -4,7 +4,6 @@ export const Container = styled.div``;
 
 export const BodyContainer = styled.div`
   width: 100%;
-  padding: 0 16px 16px 16px;
 
   ${({ theme }) => css`
     @media (min-width: ${theme.breakpoints.pad}) {

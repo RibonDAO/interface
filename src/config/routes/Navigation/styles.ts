@@ -1,25 +1,13 @@
 import styled, { css } from "styled-components";
-import theme from "styles/theme";
 import { Link } from "react-router-dom";
 
 type Props = {
+  theme: any;
   enabled: boolean;
 };
 
-export const ContainerDesktop = styled.div`
-  ${() => css`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 50px 50px 0px 50px;
-    width: 80px;
-    background: #fbfbfd;
-    box-shadow: 0px 4px 12px rgba(24, 86, 105, 0.15);
-  `}
-`;
-
-export const ContainerMobile = styled.div`
-  ${() => css`
+export const Container = styled.div`
+  ${({ theme }) => css`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -28,11 +16,25 @@ export const ContainerMobile = styled.div`
     align-self: flex-end;
     background: #fbfbfd;
     box-shadow: 0px 4px 12px rgba(24, 86, 105, 0.15);
+
+    @media (min-width: ${theme.breakpoints.pad}) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px 50px 0px 50px;
+      width: 80px;
+      position: static;
+      align-self: flex-start;
+      justify-content: flex-start;
+      min-height: 100vh;
+      background: #fbfbfd;
+      box-shadow: 0px 4px 12px rgba(24, 86, 105, 0.15);
+    }
   `}
 `;
 
 export const Title = styled.p`
-  ${({ enabled }: Props) => css`
+  ${({ theme, enabled }: Props) => css`
     color: ${enabled ? theme.colors.ribonBlack : theme.colors.darkGray};
     text-decoration: none;
     font-size: 12px;
@@ -45,6 +47,7 @@ export const StyledLink = styled(Link)`
     display: flex;
     flex-direction: column;
     padding: 10px;
+    margin-bottom: 12px;
   `}
 `;
 

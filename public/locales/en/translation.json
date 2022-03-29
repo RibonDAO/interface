@@ -39,6 +39,7 @@
       "impactText": "Ribon’s supporters are those responsible for paying for the free donations"
     },
     "menu":{
+      "impactTitle": "Impact",
       "impactPageTitle": "Impact",
       "causesPageTitle": "Causes",
       "fundPageTitle": "Fund"
@@ -51,13 +52,21 @@
       },
       "logoutItem": {
         "logoutButton": "Sign Out",
-        "logoutModalTitle": "Do you really want to sign out?", 
+        "logoutModalTitle": "Do you really want to sign out?",
         "logoutModalSubtitle": "You will need to sign in again to make a new donation.",
         "confirmModalButton": "Sign out",
         "cancelModalButton": "Cancel",
         "successModalTitle": "Signed out successfully",
         "successModalButton": "Ok"
       }
+    }
+  },
+  "promoters": {
+    "fundPage": {
+      "title": "Fund",
+      "subtitle": "Help charities by funding donation tickets",
+      "fundBalance": "Fund balance",
+      "fundSupportButtonText": "Support the fund"
     }
   }
 }

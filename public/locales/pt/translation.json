@@ -51,13 +51,21 @@
       },
       "logoutItem": {
         "logoutButton": "Sair",
-        "logoutModalTitle": "Quer mesmo sair desta conta?", 
+        "logoutModalTitle": "Quer mesmo sair desta conta?",
         "logoutModalSubtitle": "Ao sair, você precisará entrar novamente para fazer uma nova doação.",
         "confirmModalButton": "Confirmar",
         "cancelModalButton": "Cancelar",
         "successModalTitle": "Você saiu da sua conta",
         "successModalButton": "Fechar"
       }
+    }
+  },
+  "promoters": {
+    "fundPage": {
+      "title": "Fundo",
+      "subtitle": "Ajuda instituições patrocinando tickets de doação",
+      "fundBalance": "Balanço do Fundo",
+      "fundSupportButtonText": "Ajudar o fundo"
     }
   }
 }

@@ -58,6 +58,9 @@
         "successModalTitle": "Você saiu da sua conta",
         "successModalButton": "Fechar"
       }
+    },
+    "walletLayout": {
+      "connectWallet": "Conectar"
     }
   },
   "promoters": {

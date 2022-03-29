@@ -59,6 +59,9 @@
         "successModalTitle": "Signed out successfully",
         "successModalButton": "Ok"
       }
+    },
+    "walletLayout": {
+      "connectWallet": "Connect"
     }
   },
   "promoters": {

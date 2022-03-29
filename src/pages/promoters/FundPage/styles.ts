@@ -7,7 +7,7 @@ export const Container = styled.div`
 export const CardContainer = styled.div`
   ${({ theme }) => css`
     @media (min-width: ${theme.breakpoints.pad}) {
-      width: 50%;
+      max-width: 328px;
     }
   `}
 `;
@@ -50,6 +50,7 @@ export const Subtitle = styled.p`
 
     @media (min-width: ${theme.breakpoints.pad}) {
       margin: 8px 0 28px 0;
+      font-size: 16px;
     }
   `}
 `;

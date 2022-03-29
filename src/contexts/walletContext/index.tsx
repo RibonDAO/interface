@@ -1,5 +1,7 @@
 import React, {
   createContext,
+  Dispatch,
+  SetStateAction,
   useCallback,
   useContext,
   useEffect,
@@ -15,6 +17,7 @@ export interface IWalletContext {
   wallet: string | null;
   checkIfWalletIsConnected: () => void;
   connectWallet: () => void;
+  setWallet: Dispatch<SetStateAction<string | null>>;
 }
 
 export type Props = {
@@ -47,6 +50,7 @@ function WalletProvider({ children }: Props) {
       wallet,
       checkIfWalletIsConnected,
       connectWallet,
+      setWallet,
     }),
     [wallet, checkIfWalletIsConnected, connectWallet],
   );

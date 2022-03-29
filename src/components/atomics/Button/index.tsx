@@ -23,7 +23,7 @@ export type Props = {
 
 export default function Button({
   text,
-  textColor = theme.colors.ribonWhite,
+  textColor,
   backgroundColor = theme.colors.ribonBlue,
   softDisabled = false,
   borderColor = "",
@@ -41,6 +41,8 @@ export default function Button({
   function activeTextColor() {
     if (outline && !textColor) return theme.colors.ribonBlue;
     if (softDisabled) return theme.colors.darkGray;
+    if (!textColor) return theme.colors.ribonWhite;
+
     return textColor;
   }
 

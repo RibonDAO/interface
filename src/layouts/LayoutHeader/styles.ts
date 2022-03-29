@@ -8,12 +8,22 @@ export const ContainerRight = styled.div`
   ${() => css`
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
   `}
 `;
 
 export const Settings = styled.img`
   ${() => css`
     cursor: pointer;
+  `}
+`;
+
+export const RightContainer = styled.div`
+  ${() => css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
   `}
 `;
 
@@ -35,6 +45,7 @@ export const CounterContainer = styled.div`
     border: 1px solid ${theme.colors.lightGray};
     box-sizing: border-box;
     border-radius: 4px;
+    margin-left: 8px;
   `}
 `;
 

@@ -15,7 +15,11 @@ import ChangeLanguageItem from "./ChangeLanguageItem";
 import LogoutItem from "./LogoutItem";
 import * as S from "./styles";
 
-function LayoutHeader(): JSX.Element {
+export type Props = {
+  rightComponent?: JSX.Element;
+};
+
+function LayoutHeader({ rightComponent }: Props): JSX.Element {
   const queryParams = useQueryParams();
   const integrationId = queryParams.get("integration_id");
   const [menuVisible, setMenuVisible] = useState(false);
@@ -68,6 +72,7 @@ function LayoutHeader(): JSX.Element {
         sideLogo={integration?.logo}
         rightComponent={
           <S.ContainerRight>
+            {rightComponent}
             <S.CounterContainer>
               <S.TicketsAmount
                 color={

@@ -4,8 +4,24 @@
   "sourceName": "contracts/Ribon.sol",
   "abi": [
     {
-      "inputs": [],
-      "stateMutability": "payable",
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_donationToken",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_integrationCouncil",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_nonProfitCouncil",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
       "type": "constructor"
     },
     {
@@ -14,23 +30,29 @@
         {
           "indexed": false,
           "internalType": "address",
-          "name": "doner",
+          "name": "user",
           "type": "address"
         },
         {
           "indexed": false,
-          "internalType": "uint32",
-          "name": "quantity",
-          "type": "uint32"
+          "internalType": "address",
+          "name": "integration",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "nonProfit",
+          "type": "address"
         },
         {
           "indexed": false,
           "internalType": "uint256",
-          "name": "timestamp",
+          "name": "amount",
           "type": "uint256"
         }
       ],
-      "name": "NewDonation",
+      "name": "DonationAdded",
       "type": "event"
     },
     {
@@ -38,24 +60,18 @@
       "inputs": [
         {
           "indexed": false,
-          "internalType": "string",
-          "name": "name",
-          "type": "string"
-        },
-        {
-          "indexed": false,
           "internalType": "address",
-          "name": "integrationAccount",
+          "name": "integration",
           "type": "address"
         },
         {
           "indexed": false,
-          "internalType": "uint32",
-          "name": "totalDonated",
-          "type": "uint32"
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
         }
       ],
-      "name": "NewIntegration",
+      "name": "IntegrationBalanceUpdated",
       "type": "event"
     },
     {
@@ -63,24 +79,12 @@
       "inputs": [
         {
           "indexed": false,
-          "internalType": "string",
-          "name": "name",
-          "type": "string"
-        },
-        {
-          "indexed": false,
           "internalType": "address",
-          "name": "ngoAccount",
+          "name": "nonProfit",
           "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint32",
-          "name": "totalReceived",
-          "type": "uint32"
         }
       ],
-      "name": "NewNgo",
+      "name": "NonProfitAdded",
       "type": "event"
     },
     {
@@ -88,65 +92,55 @@
       "inputs": [
         {
           "indexed": false,
-          "internalType": "uint256",
-          "name": "balance",
-          "type": "uint256"
+          "internalType": "address",
+          "name": "nonProfit",
+          "type": "address"
+        }
+      ],
+      "name": "NonProfitRemoved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "promoter",
+          "type": "address"
         },
         {
           "indexed": false,
           "internalType": "uint256",
-          "name": "totalDonated",
+          "name": "amount",
           "type": "uint256"
         }
       ],
-      "name": "NewUser",
+      "name": "PoolBalanceIncreased",
       "type": "event"
     },
     {
       "inputs": [
         {
-          "internalType": "string",
-          "name": "_name",
-          "type": "string"
-        },
-        {
-          "internalType": "address",
-          "name": "_integrationAccount",
-          "type": "address"
-        }
-      ],
-      "name": "_createIntegration",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_name",
-          "type": "string"
-        },
-        {
-          "internalType": "address",
-          "name": "_ngoAccount",
-          "type": "address"
-        }
-      ],
-      "name": "_createNgo",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
           "internalType": "uint256",
-          "name": "_NgoId",
+          "name": "_amount",
           "type": "uint256"
         }
       ],
-      "name": "addNgoToWhitelist",
+      "name": "addDonationPoolBalance",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_nonProfit",
+          "type": "address"
+        }
+      ],
+      "name": "addNonProfitToWhitelist",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -154,41 +148,24 @@
     {
       "inputs": [
         {
-          "internalType": "uint32",
-          "name": "_quantity",
-          "type": "uint32"
+          "internalType": "address",
+          "name": "_nonProfit",
+          "type": "address"
         },
         {
-          "components": [
-            {
-              "internalType": "string",
-              "name": "name",
-              "type": "string"
-            },
-            {
-              "internalType": "address",
-              "name": "ngoAccount",
-              "type": "address"
-            },
-            {
-              "internalType": "uint32",
-              "name": "totalReceived",
-              "type": "uint32"
-            },
-            {
-              "internalType": "bool",
-              "name": "isOnWhitelist",
-              "type": "bool"
-            }
-          ],
-          "internalType": "struct Ribon.Ngo",
-          "name": "_ngo",
-          "type": "tuple"
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
         }
       ],
-      "name": "donate",
+      "name": "donateThroughIntegration",
       "outputs": [],
-      "stateMutability": "nonpayable",
+      "stateMutability": "payable",
       "type": "function"
     },
     {
@@ -206,107 +183,12 @@
     },
     {
       "inputs": [],
-      "name": "getAllDonations",
+      "name": "donationToken",
       "outputs": [
         {
-          "components": [
-            {
-              "internalType": "address",
-              "name": "doner",
-              "type": "address"
-            },
-            {
-              "internalType": "uint32",
-              "name": "quantity",
-              "type": "uint32"
-            },
-            {
-              "internalType": "uint256",
-              "name": "timestamp",
-              "type": "uint256"
-            }
-          ],
-          "internalType": "struct Ribon.Donation[]",
+          "internalType": "contract IERC20",
           "name": "",
-          "type": "tuple[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getAllIntegrations",
-      "outputs": [
-        {
-          "components": [
-            {
-              "internalType": "string",
-              "name": "name",
-              "type": "string"
-            },
-            {
-              "internalType": "address",
-              "name": "integrationAccount",
-              "type": "address"
-            },
-            {
-              "internalType": "uint32",
-              "name": "totalDonated",
-              "type": "uint32"
-            }
-          ],
-          "internalType": "struct Ribon.Integration[]",
-          "name": "",
-          "type": "tuple[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getAllNgos",
-      "outputs": [
-        {
-          "components": [
-            {
-              "internalType": "string",
-              "name": "name",
-              "type": "string"
-            },
-            {
-              "internalType": "address",
-              "name": "ngoAccount",
-              "type": "address"
-            },
-            {
-              "internalType": "uint32",
-              "name": "totalReceived",
-              "type": "uint32"
-            },
-            {
-              "internalType": "bool",
-              "name": "isOnWhitelist",
-              "type": "bool"
-            }
-          ],
-          "internalType": "struct Ribon.Ngo[]",
-          "name": "",
-          "type": "tuple[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getDonationPoolBalance",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
+          "type": "address"
         }
       ],
       "stateMutability": "view",
@@ -315,34 +197,12 @@
     {
       "inputs": [
         {
-          "components": [
-            {
-              "internalType": "string",
-              "name": "name",
-              "type": "string"
-            },
-            {
-              "internalType": "address",
-              "name": "ngoAccount",
-              "type": "address"
-            },
-            {
-              "internalType": "uint32",
-              "name": "totalReceived",
-              "type": "uint32"
-            },
-            {
-              "internalType": "bool",
-              "name": "isOnWhitelist",
-              "type": "bool"
-            }
-          ],
-          "internalType": "struct Ribon.Ngo",
-          "name": "_ngo",
-          "type": "tuple"
+          "internalType": "address",
+          "name": "_integration",
+          "type": "address"
         }
       ],
-      "name": "getNgoTotalReceived",
+      "name": "getIntegrationBalance",
       "outputs": [
         {
           "internalType": "uint256",
@@ -350,38 +210,33 @@
           "type": "uint256"
         }
       ],
-      "stateMutability": "pure",
+      "stateMutability": "view",
       "type": "function"
     },
     {
-      "inputs": [
-        {
-          "components": [
-            {
-              "internalType": "uint256",
-              "name": "balance",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "totalDonated",
-              "type": "uint256"
-            }
-          ],
-          "internalType": "struct Ribon.User",
-          "name": "_user",
-          "type": "tuple"
-        }
-      ],
-      "name": "getUserTotalDonated",
+      "inputs": [],
+      "name": "getIntegrationCouncil",
       "outputs": [
         {
-          "internalType": "uint256",
+          "internalType": "address",
           "name": "",
-          "type": "uint256"
+          "type": "address"
         }
       ],
-      "stateMutability": "pure",
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "integrationCouncil",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -392,7 +247,7 @@
           "type": "address"
         }
       ],
-      "name": "lastDonatedAt",
+      "name": "integrations",
       "outputs": [
         {
           "internalType": "uint256",
@@ -406,27 +261,83 @@
     {
       "inputs": [
         {
-          "internalType": "uint256",
-          "name": "_NgoId",
-          "type": "uint256"
+          "internalType": "address",
+          "name": "_nonProfit",
+          "type": "address"
         }
       ],
-      "name": "removeNgoFromWhitelist",
+      "name": "isNonProfitOnWhitelist",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "nonProfitCouncil",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "nonProfits",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_nonProfit",
+          "type": "address"
+        }
+      ],
+      "name": "removeNonProfitFromWhitelist",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
     },
     {
-      "inputs": [],
-      "name": "totalDonated",
-      "outputs": [
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_integration",
+          "type": "address"
+        },
         {
           "internalType": "uint256",
-          "name": "",
+          "name": "_amount",
           "type": "uint256"
         }
       ],
-      "stateMutability": "view",
+      "name": "updateIntegrationBalance",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
     }
   ],

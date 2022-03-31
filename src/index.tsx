@@ -11,7 +11,6 @@ declare global {
   }
 }
 
-window.ethereum = window.ethereum || {};
 initializeFirebase();
 initializeSentry();
 

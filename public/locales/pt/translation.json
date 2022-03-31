@@ -31,7 +31,7 @@
       "title": "Obrigada pela sua doação!",
       "subtitle": "1 dia de ração para animais resgatados",
       "button": "Terminar",
-      "ngoTitle": "Sobre Amor em Patas",
+      "ngoTitle": "Sobre ",
       "ngoInformation": "Amor em Patas é uma organização que tem como objetivo resgatar animais abandonados, cuidar deles e buscar adoção."
     },
     "donationInProcess": {
@@ -62,6 +62,14 @@
     "walletLayout": {
       "connectWallet": "Conectar"
     }
+  },
+  "impactPage": {
+    "title": "Impacto",
+    "subtitle": "Você usou {{ticketsUsed}} tickets",
+    "impactText": "Você doou ",
+    "button": "Ver todos",
+    "noImpactText": "O resumo do impacto das suas doações será mostrado aqui",
+    "noImpactButton": "Doar agora"
   },
   "promoters": {
     "fundPage": {

@@ -31,7 +31,7 @@
       "title": "Thank you for your donation!",
       "subtitle": "1 day of pet food for rescued animals",
       "button": "Finish",
-      "ngoTitle": "About Amor em Patas",
+      "ngoTitle": "About ",
       "ngoInformation": "Amor em Patas is an organization that aims to rescue abandoned animals, take care of them and seek adoption."
     },
     "donationInProcess": {
@@ -63,6 +63,14 @@
     "walletLayout": {
       "connectWallet": "Connect"
     }
+  },
+  "impactPage": {
+    "title": "Impact",
+    "subtitle": "You used {{ticketsUsed}} tickets",
+    "impactText": "You donated ",
+    "button": "Show more",
+    "noImpactText": "Your donation impact summary will be shown here",
+    "noImpactButton": "Donate now"
   },
   "promoters": {
     "fundPage": {

@@ -6,6 +6,7 @@ import CurrentUserProvider from "contexts/currentUserContext";
 import ConfirmEmailPage from "pages/donations/ConfirmEmailPage";
 import DonationDonePage from "pages/donations/DonationDonePage";
 import DonationInProcessPage from "pages/donations/DonationInProcessPage";
+import ImpactPage from "pages/ImpactPage";
 import MainLayout from "layouts/MainLayout";
 import FundPage from "pages/promoters/FundPage";
 import WalletLayout from "layouts/WalletLayout";
@@ -53,9 +54,11 @@ function RoutesComponent(): JSX.Element {
 
       <Route path="/impact" exact>
         <Suspense fallback={<div />}>
-          <MainLayout>
-            <div />
-          </MainLayout>
+          <CurrentUserProvider>
+            <MainLayout>
+              <ImpactPage />
+            </MainLayout>
+          </CurrentUserProvider>
         </Suspense>
       </Route>
 

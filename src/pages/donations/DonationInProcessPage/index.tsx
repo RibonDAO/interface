@@ -42,8 +42,12 @@ function DonationInProcessPage(): JSX.Element {
       await donate(integration?.id, nonProfit.id, currentUser.email);
       navigateTo({ pathname: "/donation-done", state: { nonProfit } });
       saveLastDonation();
-    } catch (e) {
-      navigateTo({ pathname: "/", state: { failedDonation: true } });
+    } catch (e: any) {
+      if (e.response.status === 403) {
+        navigateTo({ pathname: "/", state: { blockedDonation: true } });
+      } else {
+        navigateTo({ pathname: "/", state: { failedDonation: true } });
+      }
       logError(e);
     }
   }

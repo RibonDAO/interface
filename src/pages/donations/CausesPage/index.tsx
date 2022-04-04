@@ -23,12 +23,11 @@ import ConfirmEmail from "./ConfirmEmail";
 
 type LocationStateType = {
   failedDonation: boolean;
+  blockedDonation: boolean;
 };
 
 function CausesPage(): JSX.Element {
-  const [donationModalVisible, setDonationModalVisible] = useState(true);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
-  const [blockedModalVisible, setBlockedModalVisible] = useState(false);
   const [chosenNonProfit, setChosenNonProfit] = useState<NonProfit>();
   const [integration, setIntegration] = useState<Integration>();
   const queryParams = useQueryParams();
@@ -40,6 +39,13 @@ function CausesPage(): JSX.Element {
   const [warningModalVisible, setWarningModalVisible] = useState(
     state?.failedDonation,
   );
+  const [blockedModalVisible, setBlockedModalVisible] = useState(
+    state?.blockedDonation,
+  );
+  const [donationModalVisible, setDonationModalVisible] = useState(
+    !state?.blockedDonation,
+  );
+
   const { navigateTo } = useNavigation();
   const { nonProfits, isLoading } = useNonProfits();
   const { findOrCreateUser } = useUsers();
@@ -135,7 +141,7 @@ function CausesPage(): JSX.Element {
         title={t("donationModalTitle")}
         body={t("donationModalBody")}
         primaryButtonText={t("donationModalButtonText")}
-        visible={donationModalVisible}
+        visible={donationModalVisible && !hasDonateToday()}
         onClose={closeDonationModal}
         primaryButtonCallback={closeDonationModal}
       />

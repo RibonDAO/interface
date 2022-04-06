@@ -11,13 +11,13 @@ import useNonProfits from "hooks/apiHooks/useNonProfits";
 import Loader from "components/atomics/Loader";
 import Integration from "types/entities/Integration";
 import integrationsApi from "services/api/integrationsApi";
-import useQueryParams from "hooks/useQueryParams";
 import { logError } from "services/crashReport";
 import { useLocation } from "react-router-dom";
 import ModalError from "components/moleculars/modals/ModalError";
 import useUsers from "hooks/apiHooks/useUsers";
 import { useCurrentUser } from "contexts/currentUserContext";
 import blockedIcon from "assets/images/il-ticket-gray.svg";
+import { useIntegrationId } from "hooks/useIntegrationId";
 import * as S from "./styles";
 import ConfirmEmail from "./ConfirmEmail";
 
@@ -30,7 +30,7 @@ function CausesPage(): JSX.Element {
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
   const [chosenNonProfit, setChosenNonProfit] = useState<NonProfit>();
   const [integration, setIntegration] = useState<Integration>();
-  const queryParams = useQueryParams();
+  const integrationId = useIntegrationId();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
@@ -59,12 +59,9 @@ function CausesPage(): JSX.Element {
   useEffect(() => {
     async function fetchIntegration() {
       try {
-        const integrationId = queryParams.get("integration_id");
         if (!integrationId) return;
 
-        const { data } = await integrationsApi.getIntegration(
-          parseInt(integrationId, 10),
-        );
+        const { data } = await integrationsApi.getIntegration(integrationId);
 
         setIntegration(data);
       } catch (e) {

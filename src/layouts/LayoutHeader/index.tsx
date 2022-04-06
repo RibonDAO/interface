@@ -1,6 +1,5 @@
 import ModalBlank from "components/moleculars/modals/ModalBlank";
 import Header from "components/atomics/sections/Header";
-import useQueryParams from "hooks/useQueryParams";
 import useIntegration from "hooks/apiHooks/useIntegration";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { today } from "lib/dateTodayFormatter";
@@ -11,6 +10,7 @@ import { useState } from "react";
 import { Divider } from "components/atomics/Divider/styles";
 import theme from "styles/theme";
 import useBreakpoint from "hooks/useBreakpoint";
+import { useIntegrationId } from "hooks/useIntegrationId";
 import ChangeLanguageItem from "./ChangeLanguageItem";
 import LogoutItem from "./LogoutItem";
 import * as S from "./styles";
@@ -20,15 +20,14 @@ export type Props = {
 };
 
 function LayoutHeader({ rightComponent }: Props): JSX.Element {
-  const queryParams = useQueryParams();
-  const integrationId = queryParams.get("integration_id");
+  const integrationId = useIntegrationId();
   const [menuVisible, setMenuVisible] = useState(false);
   const { isMobile } = useBreakpoint();
   const { userLastDonation, signedIn } = useCurrentUser();
 
   if (!integrationId) return <div />;
 
-  const { integration } = useIntegration(parseInt(integrationId, 10));
+  const { integration } = useIntegration(integrationId);
 
   function openMenu() {
     setMenuVisible(true);

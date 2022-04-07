@@ -64,11 +64,13 @@ function RoutesComponent(): JSX.Element {
 
       <Route path="/promoters/fund" exact>
         <Suspense fallback={<div />}>
-          <WalletProvider>
-            <WalletLayout>
-              <FundPage />
-            </WalletLayout>
-          </WalletProvider>
+          <CurrentUserProvider>
+            <WalletProvider>
+              <WalletLayout>
+                <FundPage />
+              </WalletLayout>
+            </WalletProvider>
+          </CurrentUserProvider>
         </Suspense>
       </Route>
 

@@ -89,9 +89,7 @@ export function onAccountChange(callback: (accounts: string[]) => void) {
 
     if (!ethereum) return;
 
-    ethereum.on("accountsChanged", (accounts: string[]) => {
-      callback(accounts);
-    });
+    ethereum.on("accountsChanged", callback);
   } catch (error) {
     logError(error);
   }

@@ -126,6 +126,19 @@ export function mockNavigation() {
   }));
 }
 
+export const mockLogErrorFunction = jest.fn();
+export function mockLogError() {
+  return jest.mock("services/crashReport", () => ({
+    __esModule: true,
+    logError: mockLogErrorFunction,
+  }));
+}
+export function expectLogErrorToHaveBeenCalled(error?: any) {
+  if (error) return expect(mockLogErrorFunction).toHaveBeenCalledWith(error);
+
+  return expect(mockLogErrorFunction).toHaveBeenCalled();
+}
+
 type expectPageToNavigateToType = {
   state?: Record<any, any>;
 };

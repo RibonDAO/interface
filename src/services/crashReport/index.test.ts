@@ -4,6 +4,7 @@ import { logError } from ".";
 jest.spyOn(Sentry, "setTags");
 jest.spyOn(Sentry, "captureException");
 jest.spyOn(Sentry, "setContext");
+jest.unmock("services/crashReport");
 
 describe("#logError", () => {
   const INITIAL_ENV = process.env;

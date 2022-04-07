@@ -79,5 +79,12 @@
       "fundBalance": "Fund balance",
       "fundSupportButtonText": "Support the fund"
     }
+  },
+  "contexts": {
+    "walletContext": {
+      "ethereumNotFoundMessage": "Install Metamask to continue",
+      "userRejectedConnectionMessage": "Wallet connection rejected",
+      "onErrorMessage": "Wallet connection failed"
+    }
   }
 }

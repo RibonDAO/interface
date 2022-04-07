@@ -78,5 +78,12 @@
       "fundBalance": "Balanço do Fundo",
       "fundSupportButtonText": "Ajudar o fundo"
     }
+  },
+  "contexts": {
+    "walletContext": {
+      "ethereumNotFoundMessage": "Instale a Metamask para continuar",
+      "userRejectedConnectionMessage": "Conexão com a carteira negada",
+      "onErrorMessage": "Falha na conexão da carteira"
+    }
   }
 }

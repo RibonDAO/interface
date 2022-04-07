@@ -12,6 +12,8 @@ import {
   checkConnectionRequest,
   connectWalletRequest,
 } from "lib/walletConnector";
+import { useTranslation } from "react-i18next";
+import useToast from "hooks/useToast";
 
 export interface IWalletContext {
   wallet: string | null;
@@ -30,6 +32,10 @@ export const WalletContext = createContext<IWalletContext>(
 
 function WalletProvider({ children }: Props) {
   const [wallet, setWallet] = useState<string | null>(null);
+  const toast = useToast();
+  const { t } = useTranslation("translation", {
+    keyPrefix: "contexts.walletContext",
+  });
 
   const checkIfWalletIsConnected = useCallback(async () => {
     const checkConnectionRequestResponse = await checkConnectionRequest();
@@ -41,7 +47,21 @@ function WalletProvider({ children }: Props) {
   }, [checkIfWalletIsConnected]);
 
   const connectWallet = useCallback(async () => {
-    const connectWalletResponse = await connectWalletRequest();
+    const connectWalletResponse = await connectWalletRequest({
+      onEthereumNotFound: () => {
+        toast({
+          type: "error",
+          message: t("ethereumNotFoundMessage"),
+          link: "https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en",
+        });
+      },
+      onUserRejectedConnection: () => {
+        toast({ type: "error", message: t("userRejectedConnectionMessage") });
+      },
+      onError: () => {
+        toast({ type: "error", message: t("onErrorMessage") });
+      },
+    });
     setWallet(connectWalletResponse);
   }, []);
 

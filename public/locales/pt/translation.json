@@ -77,6 +77,14 @@
       "subtitle": "Ajuda instituições patrocinando tickets de doação",
       "fundBalance": "Balanço do Fundo",
       "fundSupportButtonText": "Ajudar o fundo"
+    },
+    "supportFundPage": {
+      "title": "Ajude o Fundo",
+      "subtitle": "Quanto você quer contribuir?",
+      "buttonText": "Confirmar doação",
+      "disabledButtonText": "Insira uma quantidade de USDC",
+      "networkText": "*Certifique-se de conectar sua carteira à rede da Polygon.",
+      "transactionSuccessText": "Transação processada"
     }
   },
   "contexts": {

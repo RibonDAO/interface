@@ -15960,6 +15960,11 @@ signal-exit@^3.0.0, signal-exit@^3.0.2, signal-exit@^3.0.3:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.6.tgz#24e630c4b0f03fea446a2bd299e62b4a6ca8d0af"
   integrity sha512-sDl4qMFpijcGw22U5w63KmD3cZJfBuFlVNbVMKje2keoKML7X2UzWbc4XrmEbDwg0NXJc3yv4/ox7b+JWb57kQ==
 
+simple-mask-money@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/simple-mask-money/-/simple-mask-money-3.0.1.tgz#f96dbe641f0cfa5a0458017a1b92b0402e78bd25"
+  integrity sha512-EdQsBiOE0MhWCpCkUzUm7vbxPviTn/FWXQV6kmYggFLBlBDdWbJGyithizmwdeBFQiunPBZruU2xoX2H8Qlv9w==
+
 sisteransi@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-1.0.5.tgz#134d681297756437cc05ca01370d3a7a571075ed"

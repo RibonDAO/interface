@@ -9,6 +9,7 @@ import DonationInProcessPage from "pages/donations/DonationInProcessPage";
 import ImpactPage from "pages/ImpactPage";
 import MainLayout from "layouts/MainLayout";
 import FundPage from "pages/promoters/FundPage";
+import SupportFundPage from "pages/promoters/SupportFundPage";
 import WalletLayout from "layouts/WalletLayout";
 import Navigation from "./Navigation";
 
@@ -71,6 +72,16 @@ function RoutesComponent(): JSX.Element {
               </WalletLayout>
             </WalletProvider>
           </CurrentUserProvider>
+        </Suspense>
+      </Route>
+
+      <Route path="/promoters/support-fund" exact>
+        <Suspense fallback={<div />}>
+          <WalletProvider>
+            <WalletLayout hideNavigation>
+              <SupportFundPage />
+            </WalletLayout>
+          </WalletProvider>
         </Suspense>
       </Route>
 

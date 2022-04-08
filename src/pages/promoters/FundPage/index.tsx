@@ -2,27 +2,55 @@ import { useTranslation } from "react-i18next";
 import CardBlank from "components/moleculars/cards/CardBlank";
 import Button from "components/atomics/Button";
 import { useEffect, useState } from "react";
-import { balanceOf, RIBON_CONTRACT_ADDRESS } from "utils/contractUtils";
+import {
+  DONATION_TOKEN_CONTRACT_ADDRESS,
+  RIBON_CONTRACT_ADDRESS,
+} from "utils/contractUtils";
+import { utils } from "ethers";
 import { useWalletContext } from "contexts/walletContext";
+import useNavigation from "hooks/useNavigation";
+import { useContract } from "hooks/useContract";
+import DonationTokenAbi from "utils/abis/DonationToken.json";
+import RibonAbi from "utils/abis/RibonAbi.json";
+import { logError } from "services/crashReport";
 import * as S from "./styles";
 
 function FundPage(): JSX.Element {
-  const [donationPoolBalance, setDonationPoolBalance] = useState<number | null>(
+  const [donationPoolBalance, setDonationPoolBalance] = useState<string | null>(
     null,
   );
+  const { navigateTo } = useNavigation();
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.fundPage",
   });
   const { wallet, connectWallet } = useWalletContext();
+  const donationTokenContract = useContract({
+    address: DONATION_TOKEN_CONTRACT_ADDRESS,
+    ABI: DonationTokenAbi.abi,
+  });
+  const contract = useContract({
+    address: RIBON_CONTRACT_ADDRESS,
+    ABI: RibonAbi.abi,
+  });
 
   async function fetchContractBalance() {
-    const balance = await balanceOf(RIBON_CONTRACT_ADDRESS);
-    setDonationPoolBalance(Number(balance));
+    try {
+      const balance = await donationTokenContract?.balanceOf(
+        RIBON_CONTRACT_ADDRESS,
+      );
+      const formattedBalance = parseFloat(utils.formatEther(balance)).toFixed(
+        2,
+      );
+
+      setDonationPoolBalance(formattedBalance);
+    } catch (e) {
+      logError(e);
+    }
   }
 
   const handleSupportButtonClick = () => {
     if (wallet) {
-      // navigate to form page
+      navigateTo("/promoters/support-fund");
       return;
     }
 
@@ -31,6 +59,12 @@ function FundPage(): JSX.Element {
 
   useEffect(() => {
     fetchContractBalance();
+  }, []);
+
+  useEffect(() => {
+    contract?.on("PoolBalanceIncreased", () => {
+      fetchContractBalance();
+    });
   }, []);
 
   return (

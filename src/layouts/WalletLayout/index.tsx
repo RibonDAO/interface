@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { useWalletContext } from "contexts/walletContext";
 import { getChain, onAccountChange, validChain } from "lib/walletConnector";
+import WalletIcon from "assets/icons/wallet-icon.svg";
 import * as S from "./styles";
 
 export type Props = {
@@ -55,6 +56,7 @@ function WalletLayout({ children }: Props): JSX.Element {
               onClick={handleWalletButtonClick}
               outline
               round
+              rightIcon={WalletIcon}
             />
           }
         />

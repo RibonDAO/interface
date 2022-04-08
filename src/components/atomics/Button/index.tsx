@@ -14,7 +14,9 @@ export type Props = {
   ribons?: boolean;
   ribonsColor?: string;
   leftIcon?: string;
+  rightIcon?: string;
   altLeftIconText?: string;
+  altRightIconText?: string;
   onClick: onClickType;
   outline?: boolean;
   disabled?: boolean;
@@ -30,8 +32,10 @@ export default function Button({
   ribons = false,
   ribonsColor = theme.colors.ribonBlue,
   leftIcon,
+  rightIcon,
   onClick,
   altLeftIconText = "left icon",
+  altRightIconText = "right icon",
   outline = false,
   disabled = false,
   round = false,
@@ -81,6 +85,9 @@ export default function Button({
     >
       {leftIcon && <img id="left-icon" src={leftIcon} alt={altLeftIconText} />}
       {text}
+      {rightIcon && (
+        <img id="right-icon" src={rightIcon} alt={altRightIconText} />
+      )}
       {ribons && <RibonIcon />}
     </S.Container>
   );

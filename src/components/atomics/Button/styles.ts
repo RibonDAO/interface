@@ -38,8 +38,11 @@ export const Container = styled.button`
     }
 
     #left-icon {
-      position: absolute;
-      left: 8px;
+      margin-right: 4px;
+    }
+
+    #right-icon {
+      margin-left: 4px;
     }
 
     svg {

@@ -1,5 +1,8 @@
 import { logError } from "services/crashReport";
-import { permittedChainIds } from "config/chains/permittedChains";
+import {
+  permittedChainIds,
+  POLYGON_MUMBAI_TEST_NET_CHAIN_ID,
+} from "../../config/chains/permittedChains";
 
 export async function checkConnectionRequest(): Promise<string | null> {
   try {
@@ -20,6 +23,35 @@ export async function checkConnectionRequest(): Promise<string | null> {
   }
 
   return null;
+}
+
+export async function changeNetwork() {
+  try {
+    const { ethereum } = window;
+    const networkName = "Mumbai Testnet";
+    const symbolName = "MATIC";
+
+    if (ethereum) {
+      ethereum.request({
+        method: "wallet_addEthereumChain",
+        params: [
+          {
+            chainId: POLYGON_MUMBAI_TEST_NET_CHAIN_ID,
+            chainName: networkName,
+            nativeCurrency: {
+              name: symbolName,
+              symbol: symbolName,
+              decimals: 18,
+            },
+            rpcUrls: ["https://rpc-mumbai.matic.today"],
+            blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
+          },
+        ],
+      });
+    }
+  } catch (error: any) {
+    logError(error);
+  }
 }
 
 type ConnectWalletRequestProps = {
@@ -45,6 +77,8 @@ export async function connectWalletRequest({
     const accounts = await ethereum.request({
       method: "eth_requestAccounts",
     });
+
+    changeNetwork();
 
     return accounts[0];
   } catch (error: any) {

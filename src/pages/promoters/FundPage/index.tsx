@@ -13,6 +13,7 @@ import { useContract } from "hooks/useContract";
 import DonationTokenAbi from "utils/abis/DonationToken.json";
 import RibonAbi from "utils/abis/RibonAbi.json";
 import { logError } from "services/crashReport";
+import { logEvent } from "services/analytics";
 import * as S from "./styles";
 
 function FundPage(): JSX.Element {
@@ -49,7 +50,13 @@ function FundPage(): JSX.Element {
   }
 
   const handleSupportButtonClick = () => {
+    logEvent("fundConWalletBtn_click", {
+      from: "supportButton",
+    });
     if (wallet) {
+      logEvent("fundSupportBtn_click", {
+        from: "fundBalance",
+      });
       navigateTo("/promoters/support-fund");
       return;
     }
@@ -59,6 +66,10 @@ function FundPage(): JSX.Element {
 
   useEffect(() => {
     fetchContractBalance();
+  }, []);
+
+  useEffect(() => {
+    logEvent("fundScreen_view");
   }, []);
 
   useEffect(() => {

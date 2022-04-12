@@ -1,10 +1,10 @@
+import * as CrashReport from "services/crashReport";
 import {
   logEvent,
   setUserProperties,
   setUserId,
   convertParamsToString,
 } from ".";
-import * as CrashReport from "../crashReport";
 
 const mockAnalytics = {
   logEvent: jest.fn(),

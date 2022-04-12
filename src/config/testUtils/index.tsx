@@ -21,6 +21,12 @@ import CurrentUserProvider, {
   CurrentUserContext,
   ICurrentUserContext,
 } from "contexts/currentUserContext";
+import {
+  ToastContextProvider,
+  ToastContext,
+  IToastContext,
+} from "contexts/toastContext";
+import { mockLogErrorFunction, mockNavigationFunction } from "setupTests";
 
 export function renderWithTheme(children: React.ReactNode): RenderResult {
   return render(<ThemeProvider theme={theme}>{children}</ThemeProvider>);
@@ -66,6 +72,7 @@ export type RenderComponentProps = {
   history?: MemoryHistory;
   walletProviderValue?: Partial<IWalletContext>;
   currentUserProviderValue?: Partial<ICurrentUserContext>;
+  toastProviderValue?: Partial<IToastContext>;
   locationState?: Record<any, any>;
 };
 export function renderComponent(
@@ -74,6 +81,7 @@ export function renderComponent(
     history = createMemoryHistory(),
     walletProviderValue = {},
     currentUserProviderValue = {},
+    toastProviderValue = {},
     locationState = {},
   }: RenderComponentProps = {},
 ): RenderWithContextResult {
@@ -95,7 +103,12 @@ export function renderComponent(
                   CurrentUserProvider,
                   CurrentUserContext,
                   currentUserProviderValue,
-                  component,
+                  renderProvider(
+                    ToastContextProvider,
+                    ToastContext,
+                    toastProviderValue,
+                    component,
+                  ),
                 ),
               )}
             </Router>
@@ -115,24 +128,6 @@ export function expectImageToBeInTheDocument(alt: string) {
   return expect(screen.getByAltText(alt)).toBeInTheDocument();
 }
 
-export const mockNavigationFunction = jest.fn();
-export function mockNavigation() {
-  return jest.mock("hooks/useNavigation", () => ({
-    __esModule: true,
-    default: () => ({
-      navigateTo: mockNavigationFunction,
-      history: { location: {}, search: "" },
-    }),
-  }));
-}
-
-export const mockLogErrorFunction = jest.fn();
-export function mockLogError() {
-  return jest.mock("services/crashReport", () => ({
-    __esModule: true,
-    logError: mockLogErrorFunction,
-  }));
-}
 export function expectLogErrorToHaveBeenCalled(error?: any) {
   if (error) return expect(mockLogErrorFunction).toHaveBeenCalledWith(error);
 

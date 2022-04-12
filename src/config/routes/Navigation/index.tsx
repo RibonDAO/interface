@@ -30,23 +30,26 @@ function Navigation(): JSX.Element {
       iconOn: CausesIconOn,
       iconOff: CausesIconOff,
       title: t("causesPageTitle"),
+      event: "homeNavBtn_click",
     },
     {
       path: "/promoters/fund",
       iconOn: FundIconOn,
       iconOff: FundIconOff,
       title: t("fundPageTitle"),
+      event: "fundNavBtn_click",
     },
     {
       path: "/impact",
       iconOn: ImpactIconOn,
       iconOff: ImpactIconOff,
       title: t("impactTitle"),
+      event: "impactNavBtn_click",
     },
   ];
 
-  const handleEvent = () => {
-    logEvent("fundNavBtn_click");
+  const handleEvent = (event: string) => {
+    logEvent(event);
   };
 
   return (
@@ -54,7 +57,7 @@ function Navigation(): JSX.Element {
       {routes.map((route) => (
         <NavigationLink
           key={route.path}
-          onClick={handleEvent}
+          onClick={() => handleEvent(route.event)}
           to={{ pathname: route.path, search }}
           icon={isInPath(route.path) ? route.iconOn : route.iconOff}
           title={route.title}

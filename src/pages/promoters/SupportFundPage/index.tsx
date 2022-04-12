@@ -14,6 +14,7 @@ import { logError } from "services/crashReport";
 import UsdcIcon from "assets/icons/usdc-icon.svg";
 import useToast from "hooks/useToast";
 import useNavigation from "hooks/useNavigation";
+import { logEvent } from "services/analytics";
 import * as S from "./styles";
 
 function SupportFundPage(): JSX.Element {
@@ -64,6 +65,10 @@ function SupportFundPage(): JSX.Element {
     SimpleMaskMoney.setMask("#amount", args);
   }, []);
 
+  useEffect(() => {
+    logEvent("fundSupportScreen_view");
+  }, []);
+
   const disableButton = () => amount === "0.00" || loading;
   const finishButtonText = () => {
     if (loading) return "...";
@@ -73,6 +78,7 @@ function SupportFundPage(): JSX.Element {
   };
 
   const handleFinishButtonClick = async () => {
+    logEvent("fundSupportConfirmBtn_click");
     setLoading(true);
     try {
       await approveAmount();
@@ -84,8 +90,14 @@ function SupportFundPage(): JSX.Element {
         type: "success",
         link: `https://mumbai.polygonscan.com/tx/${response.hash}`,
       });
+      logEvent("toastNotification_view", {
+        status: "transactionProcessed",
+      });
       navigateBack();
     } catch (error) {
+      logEvent("toastNotification_view", {
+        status: "transactionFailed",
+      });
       logError(error);
     } finally {
       setLoading(false);

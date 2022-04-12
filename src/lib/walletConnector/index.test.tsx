@@ -118,7 +118,7 @@ describe("#walletConnector", () => {
         });
       });
 
-      xit("calls the log error function with the error", async () => {
+      it("calls the log error function with the error", async () => {
         await checkConnectionRequest();
 
         expectLogErrorToHaveBeenCalled();
@@ -178,7 +178,7 @@ describe("#walletConnector", () => {
         });
       });
 
-      xit("calls the log error function with the error", async () => {
+      it("calls the log error function with the error", async () => {
         await checkConnectionRequest();
 
         expectLogErrorToHaveBeenCalled();

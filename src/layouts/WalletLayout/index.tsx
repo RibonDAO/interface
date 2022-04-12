@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useWalletContext } from "contexts/walletContext";
 import { getChain, onAccountChange, validChain } from "lib/walletConnector";
 import WalletIcon from "assets/icons/wallet-icon.svg";
+import { logEvent } from "services/analytics";
 import * as S from "./styles";
 
 export type Props = {
@@ -39,6 +40,9 @@ function WalletLayout({
   }, []);
 
   const handleWalletButtonClick = () => {
+    logEvent("fundConWalletBtn_click", {
+      from: "walletButton",
+    });
     connectWallet();
   };
 

@@ -14,6 +14,7 @@ import {
 } from "lib/walletConnector";
 import { useTranslation } from "react-i18next";
 import useToast from "hooks/useToast";
+import { logEvent } from "services/analytics";
 
 export interface IWalletContext {
   wallet: string | null;
@@ -49,6 +50,9 @@ function WalletProvider({ children }: Props) {
   const connectWallet = useCallback(async () => {
     const connectWalletResponse = await connectWalletRequest({
       onEthereumNotFound: () => {
+        logEvent("toastNotification_view", {
+          status: "ethereumNotFound",
+        });
         toast({
           type: "error",
           message: t("ethereumNotFoundMessage"),
@@ -56,9 +60,15 @@ function WalletProvider({ children }: Props) {
         });
       },
       onUserRejectedConnection: () => {
+        logEvent("toastNotification_view", {
+          status: "userRejectedConnection",
+        });
         toast({ type: "error", message: t("userRejectedConnectionMessage") });
       },
       onError: () => {
+        logEvent("toastNotification_view", {
+          status: "walletConnectionFailed",
+        });
         toast({ type: "error", message: t("onErrorMessage") });
       },
     });

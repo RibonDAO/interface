@@ -1,4 +1,8 @@
-import { renderComponent } from "config/testUtils";
+import {
+  expectImageToBeInTheDocument,
+  expectTextToBeInTheDocument,
+  renderComponent,
+} from "config/testUtils";
 import { screen } from "@testing-library/react";
 import Header from ".";
 
@@ -7,5 +11,33 @@ describe("Header", () => {
     renderComponent(<Header />);
 
     expect(screen.getByAltText("logo")).toBeInTheDocument();
+  });
+
+  describe("when it has a right component", () => {
+    beforeEach(() => {
+      renderComponent(<Header rightComponent={<div>right</div>} />);
+    });
+
+    it("shows the right component", () => {
+      expectTextToBeInTheDocument("right");
+    });
+  });
+
+  describe("when it has a back button", () => {
+    const mockFn = jest.fn();
+
+    beforeEach(() => {
+      renderComponent(<Header hasBackButton onBackButtonClick={mockFn} />);
+    });
+
+    it("shows the back button", () => {
+      expectImageToBeInTheDocument("back-button");
+    });
+
+    it("calls the mockFn on back button click", () => {
+      screen.getByAltText("back-button").click();
+
+      expect(mockFn).toHaveBeenCalled();
+    });
   });
 });

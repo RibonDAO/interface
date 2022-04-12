@@ -11,19 +11,25 @@ import { Divider } from "components/atomics/Divider/styles";
 import theme from "styles/theme";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useIntegrationId } from "hooks/useIntegrationId";
+import useNavigation from "hooks/useNavigation";
 import ChangeLanguageItem from "./ChangeLanguageItem";
 import LogoutItem from "./LogoutItem";
 import * as S from "./styles";
 
 export type Props = {
   rightComponent?: JSX.Element;
+  hasBackButton?: boolean;
 };
 
-function LayoutHeader({ rightComponent }: Props): JSX.Element {
+function LayoutHeader({
+  rightComponent,
+  hasBackButton = false,
+}: Props): JSX.Element {
   const integrationId = useIntegrationId();
   const [menuVisible, setMenuVisible] = useState(false);
   const { isMobile } = useBreakpoint();
   const { userLastDonation, signedIn } = useCurrentUser();
+  const { navigateBack } = useNavigation();
 
   if (!integrationId) return <div />;
 
@@ -68,6 +74,8 @@ function LayoutHeader({ rightComponent }: Props): JSX.Element {
         {signedIn ? <LogoutItem /> : <div />}
       </ModalBlank>
       <Header
+        hasBackButton={hasBackButton}
+        onBackButtonClick={navigateBack}
         sideLogo={integration?.logo}
         rightComponent={
           <S.ContainerRight>

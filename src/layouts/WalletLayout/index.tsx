@@ -10,11 +10,13 @@ import * as S from "./styles";
 export type Props = {
   children: JSX.Element;
   hideNavigation?: boolean;
+  hasBackButton?: boolean;
 };
 
 function WalletLayout({
   children,
   hideNavigation = false,
+  hasBackButton = false,
 }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "layouts.walletLayout",
@@ -55,6 +57,7 @@ function WalletLayout({
 
       <S.Container>
         <LayoutHeader
+          hasBackButton={hasBackButton}
           rightComponent={
             <S.WalletButton
               text={walletButtonText()}

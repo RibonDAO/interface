@@ -36,9 +36,17 @@ function FundPage(): JSX.Element {
 
   async function fetchContractBalance() {
     try {
-      const balance = await donationTokenContract?.balanceOf(
-        RIBON_CONTRACT_ADDRESS,
-      );
+      console.log(donationTokenContract);
+      let balance;
+      if (donationTokenContract?.methods) {
+        balance = await donationTokenContract?.methods
+          .balanceOf(RIBON_CONTRACT_ADDRESS)
+          .call();
+      } else {
+        balance = await donationTokenContract?.balanceOf(
+          RIBON_CONTRACT_ADDRESS,
+        );
+      }
       const formattedBalance = parseFloat(utils.formatEther(balance)).toFixed(
         2,
       );

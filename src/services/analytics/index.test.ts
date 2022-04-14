@@ -6,6 +6,8 @@ import {
   convertParamsToString,
 } from ".";
 
+jest.unmock("services/analytics");
+
 const mockAnalytics = {
   logEvent: jest.fn(),
   setUserProperties: jest.fn(),

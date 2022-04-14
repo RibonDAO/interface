@@ -1,4 +1,8 @@
-import { expectTextToBeInTheDocument, renderComponent } from "config/testUtils";
+import {
+  expectLogEventToHaveBeenCalledWith,
+  expectTextToBeInTheDocument,
+  renderComponent,
+} from "config/testUtils";
 import FundPage from ".";
 
 describe("FundPage", () => {
@@ -6,5 +10,11 @@ describe("FundPage", () => {
     renderComponent(<FundPage />);
 
     expectTextToBeInTheDocument("Support the Fund");
+  });
+
+  it("logs the fundSupportScreen_view event", () => {
+    renderComponent(<FundPage />);
+
+    expectLogEventToHaveBeenCalledWith("fundSupportScreen_view");
   });
 });

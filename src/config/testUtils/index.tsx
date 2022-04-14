@@ -26,7 +26,11 @@ import {
   ToastContext,
   IToastContext,
 } from "contexts/toastContext";
-import { mockLogErrorFunction, mockNavigationFunction } from "setupTests";
+import {
+  mockLogErrorFunction,
+  mockLogEventFunction,
+  mockNavigationFunction,
+} from "setupTests";
 
 export function renderWithTheme(children: React.ReactNode): RenderResult {
   return render(<ThemeProvider theme={theme}>{children}</ThemeProvider>);
@@ -134,12 +138,22 @@ export function expectLogErrorToHaveBeenCalled(error?: any) {
   return expect(mockLogErrorFunction).toHaveBeenCalled();
 }
 
+export function expectLogEventToHaveBeenCalledWith(
+  event: string,
+  params?: Record<any, any>,
+) {
+  if (params)
+    return expect(mockLogEventFunction).toHaveBeenCalledWith(event, params);
+
+  return expect(mockLogEventFunction).toHaveBeenCalledWith(event);
+}
+
 type expectPageToNavigateToType = {
   state?: Record<any, any>;
 };
 export function expectPageToNavigateTo(
   pathname: string,
-  { state }: expectPageToNavigateToType,
+  { state }: expectPageToNavigateToType = {},
 ) {
   if (!state)
     return expect(mockNavigationFunction).toHaveBeenCalledWith(pathname);

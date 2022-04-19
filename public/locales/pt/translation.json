@@ -84,6 +84,7 @@
       "buttonText": "Confirmar doação",
       "disabledButtonText": "Insira uma quantidade de USDC",
       "networkText": "*Certifique-se de conectar sua carteira à rede da Polygon.",
+      "usdcBalanceText": "Saldo de USDC: {{balance}}",
       "transactionSuccessText": "Transação processada"
     }
   },

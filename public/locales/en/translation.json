@@ -85,6 +85,7 @@
       "buttonText": "Confirm giving",
       "disabledButtonText": "Enter any USDC amount",
       "networkText": "*Make sure your wallet is set up to the Polygon network.",
+      "usdcBalanceText": "USDC balance: {{balance}}",
       "transactionSuccessText": "Transaction successful"
     }
   },

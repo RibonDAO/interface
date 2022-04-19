@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import SimpleMaskMoney from "simple-mask-money";
 import { useContract } from "hooks/useContract";
 import {
@@ -15,11 +15,13 @@ import UsdcIcon from "assets/icons/usdc-icon.svg";
 import useToast from "hooks/useToast";
 import useNavigation from "hooks/useNavigation";
 import { logEvent } from "services/analytics";
+import { formatFromWei } from "lib/web3Helpers/etherFormatters";
 import * as S from "./styles";
 
 function SupportFundPage(): JSX.Element {
   const [amount, setAmount] = useState("");
   const [loading, setLoading] = useState(false);
+  const [userBalance, setUserBalance] = useState("");
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportFundPage",
@@ -60,6 +62,21 @@ function SupportFundPage(): JSX.Element {
       },
     );
   };
+
+  const fetchUsdcUserBalance = useCallback(async () => {
+    try {
+      const balance = await donationTokenContract?.balanceOf(wallet);
+      const formattedBalance = formatFromWei(balance);
+
+      setUserBalance(formattedBalance);
+    } catch (error) {
+      logError(error);
+    }
+  }, [wallet]);
+
+  useEffect(() => {
+    fetchUsdcUserBalance();
+  }, [fetchUsdcUserBalance]);
 
   useEffect(() => {
     SimpleMaskMoney.setMask("#amount", args);
@@ -122,7 +139,7 @@ function SupportFundPage(): JSX.Element {
           <S.UsdcText>USDC</S.UsdcText>
         </S.UsdcContainer>
       </S.InputContainer>
-      <S.Text>{t("networkText")}</S.Text>
+      <S.Text>{t("usdcBalanceText", { balance: userBalance })}</S.Text>
 
       <S.ButtonContainer>
         <S.FinishButton

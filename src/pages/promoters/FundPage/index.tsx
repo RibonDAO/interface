@@ -6,7 +6,6 @@ import {
   DONATION_TOKEN_CONTRACT_ADDRESS,
   RIBON_CONTRACT_ADDRESS,
 } from "utils/contractUtils";
-import { utils } from "ethers";
 import { useWalletContext } from "contexts/walletContext";
 import useNavigation from "hooks/useNavigation";
 import { useContract } from "hooks/useContract";
@@ -14,6 +13,7 @@ import DonationTokenAbi from "utils/abis/DonationToken.json";
 import RibonAbi from "utils/abis/RibonAbi.json";
 import { logError } from "services/crashReport";
 import { logEvent } from "services/analytics";
+import { formatFromWei } from "lib/web3Helpers/etherFormatters";
 import * as S from "./styles";
 
 function FundPage(): JSX.Element {
@@ -39,9 +39,7 @@ function FundPage(): JSX.Element {
       const balance = await donationTokenContract?.balanceOf(
         RIBON_CONTRACT_ADDRESS,
       );
-      const formattedBalance = parseFloat(utils.formatEther(balance)).toFixed(
-        2,
-      );
+      const formattedBalance = formatFromWei(balance);
 
       setDonationPoolBalance(formattedBalance);
     } catch (e) {

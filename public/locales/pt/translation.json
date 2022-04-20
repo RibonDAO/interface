@@ -83,6 +83,7 @@
       "subtitle": "Quanto você quer contribuir?",
       "buttonText": "Confirmar doação",
       "disabledButtonText": "Insira uma quantidade de USDC",
+      "insufficientBalanceText": "Saldo de USDC insuficiente",
       "networkText": "*Certifique-se de conectar sua carteira à rede da Polygon.",
       "usdcBalanceText": "Saldo de USDC: {{balance}}",
       "transactionSuccessText": "Transação processada"

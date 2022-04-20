@@ -16,6 +16,7 @@ import useToast from "hooks/useToast";
 import useNavigation from "hooks/useNavigation";
 import { logEvent } from "services/analytics";
 import { formatFromWei } from "lib/web3Helpers/etherFormatters";
+import { stringToNumber } from "lib/formatters/stringToNumberFormatter";
 import * as S from "./styles";
 
 function SupportFundPage(): JSX.Element {
@@ -86,9 +87,19 @@ function SupportFundPage(): JSX.Element {
     logEvent("fundSupportScreen_view");
   }, []);
 
-  const disableButton = () => amount === "0.00" || loading;
+  const insufficientBalance = () => {
+    const amountNumber = stringToNumber(amount);
+    const userBalanceNumber = stringToNumber(userBalance);
+
+    return amountNumber > userBalanceNumber;
+  };
+
+  const disableButton = () =>
+    amount === "0.00" || insufficientBalance() || loading;
+
   const finishButtonText = () => {
     if (loading) return "...";
+    if (insufficientBalance()) return t("insufficientBalanceText");
     if (disableButton()) return t("disabledButtonText");
 
     return t("buttonText");

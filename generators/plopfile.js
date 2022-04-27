@@ -64,19 +64,18 @@ module.exports = function (plop) {
     // inquirer prompts
     prompts: [
       {
-        type: "input",
-        name: "name",
-        message: "page name?",
+        type: "list",
+        choices: scopes(),
+        name: "scope",
+        message: "scope?",
+        filter(val) {
+          return `${val.toLowerCase()}`
+        },
       },
       {
         type: "input",
-        name: "scope",
-        message: "scope? (empty for no scope)",
-        filter(val) {
-          if(!val) return null;
-
-          return `/${val.toLowerCase()}`
-        },
+        name: "name",
+        message: "page name?",
       },
     ],
 
@@ -84,18 +83,18 @@ module.exports = function (plop) {
     actions: [
       {
         type: "add",
-        path: "../src/pages{{scope}}/{{pascalCase name}}Page/index.tsx",
+        path: "../src/pages/{{scope}}/{{pascalCase name}}Page/index.tsx",
         templateFile: "templates/page.tsx.hbs",
       },
       {
         type: "add",
-        path: "../src/pages{{scope}}/{{pascalCase name}}Page/styles.ts",
+        path: "../src/pages/{{scope}}/{{pascalCase name}}Page/styles.ts",
         templateFile: "templates/styles.ts.hbs",
       },
       {
         type: "add",
-        path: "../src/pages{{scope}}/{{pascalCase name}}Page/index.test.tsx",
-        templateFile: "templates/index.test.tsx.hbs",
+        path: "../src/pages/{{scope}}/{{pascalCase name}}Page/index.test.tsx",
+        templateFile: "templates/pageTest.test.tsx.hbs",
       },
     ],
   });

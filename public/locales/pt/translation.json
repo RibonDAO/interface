@@ -76,7 +76,12 @@
       "title": "Fundo",
       "subtitle": "Ajuda instituições patrocinando tickets de doação",
       "fundBalance": "Balanço do Fundo",
-      "fundSupportButtonText": "Ajudar o fundo"
+      "fundSupportButtonText": "Ajudar o fundo",
+      "modalOnboarding": {
+        "title": "Fundo de doação da Ribon",
+        "subtitle": "O fundo é usado para pagar as doações gratuitas realizadas usando os vales diários",
+        "button": "Ok"
+      }
     },
     "supportFundPage": {
       "title": "Ajude o Fundo",

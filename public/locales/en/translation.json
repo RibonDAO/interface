@@ -77,7 +77,12 @@
       "title": "Fund",
       "subtitle": "Help charities by funding donation tickets",
       "fundBalance": "Fund balance",
-      "fundSupportButtonText": "Support the fund"
+      "fundSupportButtonText": "Support the fund",
+      "modalOnboarding": {
+        "title": "Ribon’s Donation Fund",
+        "subtitle": "The fund is used to pay the free donations made using daily tickets",
+        "button": "Ok"
+      }
     },
     "supportFundPage": {
       "title": "Support the Fund",

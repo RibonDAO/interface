@@ -15,6 +15,7 @@ import { logError } from "services/crashReport";
 import { logEvent } from "services/analytics";
 import { formatFromWei } from "lib/web3Helpers/etherFormatters";
 import * as S from "./styles";
+import ModalOnboarding from "./ModalOnboarding";
 
 function FundPage(): JSX.Element {
   const [donationPoolBalance, setDonationPoolBalance] = useState<string | null>(
@@ -78,6 +79,7 @@ function FundPage(): JSX.Element {
 
   return (
     <S.Container>
+      <ModalOnboarding />
       <S.Title>{t("title")}</S.Title>
       <S.Subtitle>{t("subtitle")}</S.Subtitle>
 

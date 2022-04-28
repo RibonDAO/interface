@@ -31,6 +31,10 @@ import {
   mockLogEventFunction,
   mockNavigationFunction,
 } from "setupTests";
+import LoadingOverlayProvider, {
+  ILoadingOverlayContext,
+  LoadingOverlayContext,
+} from "contexts/loadingOverlayContext";
 
 export function renderWithTheme(children: React.ReactNode): RenderResult {
   return render(<ThemeProvider theme={theme}>{children}</ThemeProvider>);
@@ -77,6 +81,7 @@ export type RenderComponentProps = {
   walletProviderValue?: Partial<IWalletContext>;
   currentUserProviderValue?: Partial<ICurrentUserContext>;
   toastProviderValue?: Partial<IToastContext>;
+  loadingOverlayValue?: Partial<ILoadingOverlayContext>;
   locationState?: Record<any, any>;
 };
 export function renderComponent(
@@ -87,6 +92,7 @@ export function renderComponent(
     currentUserProviderValue = {},
     toastProviderValue = {},
     locationState = {},
+    loadingOverlayValue = {},
   }: RenderComponentProps = {},
 ): RenderWithContextResult {
   const queryClient = new QueryClient();
@@ -111,7 +117,12 @@ export function renderComponent(
                     ToastContextProvider,
                     ToastContext,
                     toastProviderValue,
-                    component,
+                    renderProvider(
+                      LoadingOverlayProvider,
+                      LoadingOverlayContext,
+                      loadingOverlayValue,
+                      component,
+                    ),
                   ),
                 ),
               )}

@@ -92,7 +92,9 @@
       "insufficientBalanceText": "Insufficient USDC balance",
       "networkText": "*Make sure your wallet is set up to the Polygon network.",
       "usdcBalanceText": "USDC balance: {{balance}}",
-      "transactionSuccessText": "Transaction successful"
+      "transactionSuccessText": "Transaction successful",
+      "tokenAmountTransferMessage": "Approving token amount transfer...",
+      "contractTransferMessage": "Transferring to contract..."
     }
   },
   "contexts": {

@@ -91,7 +91,9 @@
       "insufficientBalanceText": "Saldo de USDC insuficiente",
       "networkText": "*Certifique-se de conectar sua carteira à rede da Polygon.",
       "usdcBalanceText": "Saldo de USDC: {{balance}}",
-      "transactionSuccessText": "Transação processada"
+      "transactionSuccessText": "Transação processada",
+      "tokenAmountTransferMessage": "Aprovando quantidade de tokens pra transação...",
+      "contractTransferMessage": "Transferindo pro contrato..."
     }
   },
   "contexts": {

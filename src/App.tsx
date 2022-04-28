@@ -6,6 +6,7 @@ import Toast from "contexts/toastContext/toastComponent";
 import RoutesComponent from "./config/routes";
 import GlobalStyle from "./styles/globalStyle";
 import theme from "./styles/theme";
+import LoadingOverlayProvider from "./contexts/loadingOverlayContext";
 
 function App() {
   const queryClient = new QueryClient();
@@ -13,13 +14,15 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <BrowserRouter>
-          <ToastContextProvider>
-            <RoutesComponent />
-            <Toast />
-          </ToastContextProvider>
-        </BrowserRouter>
+        <LoadingOverlayProvider>
+          <GlobalStyle />
+          <BrowserRouter>
+            <ToastContextProvider>
+              <RoutesComponent />
+              <Toast />
+            </ToastContextProvider>
+          </BrowserRouter>
+        </LoadingOverlayProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );

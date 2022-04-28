@@ -17,6 +17,7 @@ import useNavigation from "hooks/useNavigation";
 import { logEvent } from "services/analytics";
 import { formatFromWei } from "lib/web3Helpers/etherFormatters";
 import { stringToNumber } from "lib/formatters/stringToNumberFormatter";
+import { useLoadingOverlay } from "contexts/loadingOverlayContext";
 import * as S from "./styles";
 
 function SupportFundPage(): JSX.Element {
@@ -38,6 +39,7 @@ function SupportFundPage(): JSX.Element {
   const { wallet } = useWalletContext();
   const toast = useToast();
   const { navigateBack } = useNavigation();
+  const { showLoadingOverlay, hideLoadingOverlay } = useLoadingOverlay();
 
   const args = {
     afterFormat(e: string) {
@@ -54,15 +56,17 @@ function SupportFundPage(): JSX.Element {
     cursor: "end",
   };
 
-  const approveAmount = async () => {
-    await donationTokenContract?.functions.approve(
+  const approveAmount = async () =>
+    donationTokenContract?.functions.approve(
       RIBON_CONTRACT_ADDRESS,
       utils.parseEther(amount),
       {
         from: wallet,
       },
     );
-  };
+
+  const donateToContract = async () =>
+    contract?.functions.addDonationPoolBalance(utils.parseEther(amount));
 
   const fetchUsdcUserBalance = useCallback(async () => {
     try {
@@ -108,11 +112,12 @@ function SupportFundPage(): JSX.Element {
   const handleFinishButtonClick = async () => {
     logEvent("fundSupportConfirmBtn_click");
     setLoading(true);
+    showLoadingOverlay(t("tokenAmountTransferMessage"));
     try {
-      await approveAmount();
-      const response = await contract?.functions.addDonationPoolBalance(
-        utils.parseEther(amount),
-      );
+      const approval = await approveAmount();
+      await approval.wait();
+      showLoadingOverlay(t("contractTransferMessage"));
+      const response = await donateToContract();
       toast({
         message: t("transactionSuccessText"),
         type: "success",
@@ -129,6 +134,7 @@ function SupportFundPage(): JSX.Element {
       logError(error);
     } finally {
       setLoading(false);
+      hideLoadingOverlay();
     }
   };
 

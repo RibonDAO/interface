@@ -13,7 +13,7 @@ export const Container = styled.div`
       max-width: 340px;
       display: flex;
       flex-direction: column;
-
+      justify-content: center;
       align-items: center;
       margin: 0 auto;
     }
@@ -25,7 +25,13 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 28px;
+    padding: 28px 0px;
+  `}
+`;
+
+export const InnerContainer = styled.div`
+  ${() => css`
+    padding: 0px 20px;
   `}
 `;
 

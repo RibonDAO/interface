@@ -19,7 +19,7 @@ export const Title = styled.h1`
 
   ${({ theme }) => css`
     @media (min-width: ${theme.breakpoints.pad}) {
-      font-size: 24px;
+      font-size: 36px;
     }
   `}
 `;

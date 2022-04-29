@@ -2,28 +2,22 @@ import ButtonRound from "components/atomics/buttons/ButtonRound";
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 100%;
-  height: 100vh;
   display: flex;
-  padding: 16px;
   flex-direction: column;
   text-align: left;
   justify-content: flex-start;
+
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     padding: 0;
-    margin-left: 240px;
-    margin-right: 170px;
-    margin: 0 auto;
-    width: 80%;
   }
 `;
 
 export const Title = styled.h1`
-  font-size: 24px;
   color: ${({ theme }) => theme.colors.ribonBlack};
   font-weight: 900;
   line-height: 1.6;
-  margin: 30px 0 0 0;
+  margin: 0;
+
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     font-size: 36px;
   }

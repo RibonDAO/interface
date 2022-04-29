@@ -32,7 +32,8 @@
       "subtitle": "1 day of pet food for rescued animals",
       "button": "Finish",
       "ngoTitle": "About ",
-      "ngoInformation": "Amor em Patas is an organization that aims to rescue abandoned animals, take care of them and seek adoption."
+      "ngoInformation": "Amor em Patas is an organization that aims to rescue abandoned animals, take care of them and seek adoption.",
+      "moreInfoButtonText": "More info"
     },
     "donationInProcess": {
       "animationText": "Donating...",

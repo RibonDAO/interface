@@ -15,7 +15,7 @@ export const BodyContainer = styled.div`
 
 export const Title = styled.h1`
   text-transform: uppercase;
-  margin: 4px 0;
+  margin: 0;
   font-weight: 900;
 
   ${({ theme }) => css`

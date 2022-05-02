@@ -1,28 +1,24 @@
 import styled, { css } from "styled-components";
 
 export const Container = styled.div`
-  ${() => css`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  `}
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const ImageContainer = styled.div`
-  ${() => css`
-    position: relative;
-    margin: 20px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 180px;
-    width: 310px;
-    @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-      width: 350px;
-      height: 200px;
-    }
-  `}
+  position: relative;
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 180px;
+  width: 310px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: 350px;
+    height: 200px;
+  }
 `;
 
 export const LeftImage = styled.img`

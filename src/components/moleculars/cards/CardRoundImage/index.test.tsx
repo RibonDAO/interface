@@ -6,11 +6,8 @@ import CardRoundImage from ".";
 
 describe("CardRoundImage", () => {
   it("should render without error", () => {
-    renderComponent(
-      <CardRoundImage image="" logo="" imageAlt="image" logoAlt="logoAlt" />,
-    );
+    renderComponent(<CardRoundImage image="" logo="" logoAlt="logoAlt" />);
 
-    expectImageToBeInTheDocument("image");
     expectImageToBeInTheDocument("logoAlt");
   });
 });

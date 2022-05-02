@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import CardBlank from "components/moleculars/cards/CardBlank";
 import Button from "components/atomics/Button";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   DONATION_TOKEN_CONTRACT_ADDRESS,
   RIBON_CONTRACT_ADDRESS,
@@ -11,18 +11,14 @@ import useNavigation from "hooks/useNavigation";
 import { useContract } from "hooks/useContract";
 import DonationTokenAbi from "utils/abis/DonationToken.json";
 import RibonAbi from "utils/abis/RibonAbi.json";
-import { logError } from "services/crashReport";
 import { logEvent } from "services/analytics";
-import { formatFromWei } from "lib/web3Helpers/etherFormatters";
+import useContractBalance from "hooks/apiHooks/useContractBalance";
 import * as S from "./styles";
 import GivingsSection from "./GivingsSection";
 import ModalOnboarding from "./ModalOnboarding";
 
 function FundPage(): JSX.Element {
   const coin = "USDC";
-  const [donationPoolBalance, setDonationPoolBalance] = useState<string | null>(
-    null,
-  );
   const { navigateTo } = useNavigation();
 
   const { t } = useTranslation("translation", {
@@ -37,19 +33,10 @@ function FundPage(): JSX.Element {
     address: RIBON_CONTRACT_ADDRESS,
     ABI: RibonAbi.abi,
   });
-
-  async function fetchContractBalance() {
-    try {
-      const balance = await donationTokenContract?.balanceOf(
-        RIBON_CONTRACT_ADDRESS,
-      );
-      const formattedBalance = formatFromWei(balance);
-
-      setDonationPoolBalance(formattedBalance);
-    } catch (e) {
-      logError(e);
-    }
-  }
+  const { contractBalance, refetch: fetchContractBalance } = useContractBalance(
+    donationTokenContract,
+    RIBON_CONTRACT_ADDRESS,
+  );
 
   const handleSupportButtonClick = () => {
     logEvent("fundConWalletBtn_click", {
@@ -65,10 +52,6 @@ function FundPage(): JSX.Element {
 
     connectWallet();
   };
-
-  useEffect(() => {
-    fetchContractBalance();
-  }, []);
 
   useEffect(() => {
     logEvent("fundScreen_view");
@@ -89,7 +72,7 @@ function FundPage(): JSX.Element {
       <S.CardContainer>
         <CardBlank>
           <S.FundText>
-            {donationPoolBalance} <S.FundTextCoin>{coin}</S.FundTextCoin>
+            {contractBalance} <S.FundTextCoin>{coin}</S.FundTextCoin>
           </S.FundText>
           <Button
             text={t("fundSupportButtonText")}

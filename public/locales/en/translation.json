@@ -79,6 +79,13 @@
       "subtitle": "Help charities by funding donation tickets",
       "fundBalance": "Fund balance",
       "fundSupportButtonText": "Support the fund",
+      "givingsSection": {
+        "linkTransactionText": "See transaction",
+        "textLastCard": "Show your givings",
+        "firstGivingButtonText": "Give now",
+        "firstGivingText": "Make your first giving",
+         "subtitleGivings": "Your givings"
+      },
       "modalOnboarding": {
         "title": "Ribon’s Donation Fund",
         "subtitle": "The fund is used to pay the free donations made using daily tickets",
@@ -95,7 +102,10 @@
       "usdcBalanceText": "USDC balance: {{balance}}",
       "transactionSuccessText": "Transaction successful",
       "tokenAmountTransferMessage": "Approving token amount transfer...",
-      "contractTransferMessage": "Transferring to contract..."
+      "contractTransferMessage": "Transferring to contract...",
+      "givingsPage": {
+        "title": "Your Givings"
+      }
     }
   },
   "contexts": {

@@ -15,13 +15,16 @@ import { logError } from "services/crashReport";
 import { logEvent } from "services/analytics";
 import { formatFromWei } from "lib/web3Helpers/etherFormatters";
 import * as S from "./styles";
+import GivingsSection from "./GivingsSection";
 import ModalOnboarding from "./ModalOnboarding";
 
 function FundPage(): JSX.Element {
+  const coin = "USDC";
   const [donationPoolBalance, setDonationPoolBalance] = useState<string | null>(
     null,
   );
   const { navigateTo } = useNavigation();
+
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.fundPage",
   });
@@ -82,12 +85,11 @@ function FundPage(): JSX.Element {
       <ModalOnboarding />
       <S.Title>{t("title")}</S.Title>
       <S.Subtitle>{t("subtitle")}</S.Subtitle>
-
       <S.SectionTitle>{t("fundBalance")}</S.SectionTitle>
       <S.CardContainer>
         <CardBlank>
           <S.FundText>
-            {donationPoolBalance} <S.FundTextCoin>USDC</S.FundTextCoin>
+            {donationPoolBalance} <S.FundTextCoin>{coin}</S.FundTextCoin>
           </S.FundText>
           <Button
             text={t("fundSupportButtonText")}
@@ -95,6 +97,9 @@ function FundPage(): JSX.Element {
           />
         </CardBlank>
       </S.CardContainer>
+      <S.CarouselContainer>
+        <GivingsSection />
+      </S.CarouselContainer>
     </S.Container>
   );
 }

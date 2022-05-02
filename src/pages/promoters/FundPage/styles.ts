@@ -9,6 +9,26 @@ export const CardContainer = styled.div`
     @media (min-width: ${theme.breakpoints.pad}) {
       max-width: 328px;
     }
+    margin-bottom: 30px;
+  `}
+`;
+
+export const CarouselContainer = styled.div`
+  ${({ theme }) => css`
+    @media (min-width: ${theme.breakpoints.pad}) {
+      max-width: 848px;
+    }
+  `}
+`;
+
+export const CardBlank = styled.div`
+  ${() => css`
+    padding: 12px 16px;
+    background: #ffffff;
+    box-shadow: 0px 4px 12px rgba(24, 86, 105, 0.15);
+    border-radius: 16px;
+    height: 123px;
+    width: 206px;
   `}
 `;
 

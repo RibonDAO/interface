@@ -78,6 +78,13 @@
       "subtitle": "Ajuda instituições patrocinando tickets de doação",
       "fundBalance": "Balanço do Fundo",
       "fundSupportButtonText": "Ajudar o fundo",
+      "givingsSection": {
+        "linkTransactionText": "Ver transação",
+        "textLastCard": "Suas contribuições",
+        "firstGivingButtonText": "Contribua agora",
+        "firstGivingText": "Faça sua primeira doação",
+        "subtitleGivings": "Suas contribuições"
+      },
       "modalOnboarding": {
         "title": "Fundo de doação da Ribon",
         "subtitle": "O fundo é usado para pagar as doações gratuitas realizadas usando os vales diários",
@@ -94,7 +101,10 @@
       "usdcBalanceText": "Saldo de USDC: {{balance}}",
       "transactionSuccessText": "Transação processada",
       "tokenAmountTransferMessage": "Aprovando quantidade de tokens pra transação...",
-      "contractTransferMessage": "Transferindo pro contrato..."
+      "contractTransferMessage": "Transferindo pro contrato...",
+      "givingsPage": {
+        "title": "Suas contribuições"
+      }
     }
   },
   "contexts": {

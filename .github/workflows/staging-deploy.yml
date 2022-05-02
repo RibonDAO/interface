@@ -2,7 +2,7 @@
 # https://github.com/firebase/firebase-tools
 
 name: Staging Deploy
-'on':
+"on":
   push:
     branches:
       - main
@@ -17,6 +17,7 @@ env:
   REACT_APP_RIBON_API: ${{ secrets.REACT_APP_RIBON_API }}
   REACT_APP_RIBON_COMPANY_ID: ${{ secrets.REACT_APP_RIBON_COMPANY_ID }}
   REACT_APP_ALCHEMY_URL: ${{ secrets.REACT_APP_ALCHEMY_URL }}
+  REACT_APP_THE_GRAPH_URL: ${{ secrets.REACT_APP_THE_GRAPH_URL }}
 
 jobs:
   build_and_deploy:
@@ -27,7 +28,7 @@ jobs:
       - run: yarn && yarn build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_RIBON_DAPP }}'
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_RIBON_DAPP }}"
           channelId: live
           projectId: ribon-dapp-staging

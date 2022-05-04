@@ -13,11 +13,11 @@ function ProtocolPage(): JSX.Element {
   const { wallet, connectWallet } = useWalletContext();
   const { isValidNetwork, currentNetwork } = useNetwork();
   const contract = useContract({
-    address: "0x1B68da1C6FAfc10eDD0d724bC0c52928764a2c6f",
+    address: "0x7aB7Aaf626D639B0f9EcFdF4A01E51F75E2eB596",
     ABI: RibonAbi.abi,
   });
   const donationToken = useContract({
-    address: "0x3cC080dF7872a93B52C44Bd1EB120681516554e6",
+    address: "0x21A72dc641c8e5f13717a7e087d6D63B4f9A3574",
     ABI: TokenAbi.abi,
   });
 
@@ -36,7 +36,7 @@ function ProtocolPage(): JSX.Element {
   async function addDonationPoolBalance() {
     await donationToken?.approve(
       contract?.address,
-      ethers.utils.parseEther("1"),
+      ethers.utils.parseEther("100"),
       { from: wallet },
     );
     await contract?.addDonationPoolBalance(ethers.utils.parseEther("1"), {

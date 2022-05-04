@@ -6,9 +6,11 @@ import { Web3Provider } from "@ethersproject/providers";
 import { Provider } from "@ethersproject/abstract-provider";
 
 export const RIBON_CONTRACT_ADDRESS =
-  "0xf78e690500Fa6f544F8940e930C52d8d4d7468a4";
+  process.env.REACT_APP_RIBON_CONTRACT_ADDRESS ||
+  "0x7aB7Aaf626D639B0f9EcFdF4A01E51F75E2eB596";
 
 export const DONATION_TOKEN_CONTRACT_ADDRESS =
+  process.env.REACT_APP_DONATION_TOKEN_CONTRACT_ADDRESS ||
   "0x21A72dc641c8e5f13717a7e087d6D63B4f9A3574";
 
 export const ALCHEMY_URL = process.env.REACT_APP_ALCHEMY_URL;

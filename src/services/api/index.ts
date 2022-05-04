@@ -2,7 +2,7 @@ import Axios, { AxiosRequestConfig } from "axios";
 import camelCaseKeys from "camelcase-keys";
 import snakeCaseKeys from "snakecase-keys";
 
-const RIBON_API = "https://api.ribon.io";
+const RIBON_API = "https://ribon-core-api-22j7w.ondigitalocean.app/";
 
 export const baseURL = process.env.REACT_APP_RIBON_API || RIBON_API;
 export const API_SCOPE = "/api/v1";

@@ -8,6 +8,7 @@ import Integrations from "../IntegrationsPage";
 import NonProfits from "../NonProfitsPage";
 import * as S from "../styles";
 import Promoters from "../PromotersPage";
+import UserImpactPage from "../UserImpactPage";
 
 function ProtocolPage(): JSX.Element {
   const { wallet, connectWallet } = useWalletContext();
@@ -23,7 +24,7 @@ function ProtocolPage(): JSX.Element {
 
   async function addNonProfitToWhitelist() {
     await contract?.addNonProfitToWhitelist(
-      "0xF20c382d2A95EB19f9164435aed59E5C59bc1fd9",
+      "0x6E060041D62fDd76cF27c582f62983b864878E8F",
     );
   }
 
@@ -53,8 +54,8 @@ function ProtocolPage(): JSX.Element {
 
   async function donateThroughIntegration() {
     await contract?.donateThroughIntegration(
-      "0xf3b2a5c54aa76970471820bd1bf1e90e64f2cfc5",
-      wallet,
+      "0x6e060041d62fdd76cf27c582f62983b864878e8f",
+      "9777fb9be919ed2900f02c5b7a081c7db4fa4f5351555e555ca134e33e10966c",
       ethers.utils.parseEther("1"),
     );
   }
@@ -73,6 +74,8 @@ function ProtocolPage(): JSX.Element {
       <Integrations />
       <h1>Promoter</h1>
       <Promoters />
+      <h1>UserImpact</h1>
+      <UserImpactPage />
       <button type="button" onClick={connectWallet}>
         Conectar Carteira
       </button>

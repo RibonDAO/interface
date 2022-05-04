@@ -1,9 +1,9 @@
 import { expectTextToBeInTheDocument, renderComponent } from "config/testUtils";
-import DonationInProcesPage from ".";
+import DonationInProcessPage from ".";
 
-describe("DonationInProcesPage", () => {
+describe("DonationInProcessPage", () => {
   it("should render without error", () => {
-    renderComponent(<DonationInProcesPage />);
+    renderComponent(<DonationInProcessPage />);
 
     expectTextToBeInTheDocument("Donating...");
     expectTextToBeInTheDocument(

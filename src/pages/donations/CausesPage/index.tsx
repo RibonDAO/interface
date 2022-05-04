@@ -1,31 +1,75 @@
 import Header from "components/atomics/sections/Header";
 import CardCenterImageButton from "components/moleculars/cards/CardCenterImageButton";
-import ngoFactory from "config/testUtils/factories/ngoFactory";
 import { useCallback, useEffect, useState } from "react";
-import Ngo from "types/entities/Ngo";
-import Heart from "assets/images/heart.svg";
+import Ticket from "assets/images/ticket.svg";
 import ModalIcon from "components/moleculars/modals/ModalIcon";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "services/analytics";
 import useNavigation from "hooks/useNavigation";
+import NonProfit from "types/entities/NonProfit";
+import useNonProfits from "hooks/apiHooks/useNonProfits";
+import Loader from "components/atomics/Loader";
+import Integration from "types/entities/Integration";
+import integrationsApi from "services/api/integrationsApi";
+import useQueryParams from "hooks/useQueryParams";
+import { logError } from "services/crashReport";
+import { useLocation } from "react-router-dom";
+import ModalError from "components/moleculars/modals/ModalError";
 import * as S from "./styles";
 
+type LocationStateType = {
+  failedDonation: boolean;
+};
+
 function CausesPage(): JSX.Element {
-  const [ngos] = useState<Ngo[]>([ngoFactory(), ngoFactory()]);
   const [donationModalVisible, setDonationModalVisible] = useState(true);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
-  const [chosenNgo, setChosenNgo] = useState<Ngo>();
+  const [chosenNonProfit, setChosenNonProfit] = useState<NonProfit>();
+  const [integration, setIntegration] = useState<Integration>();
+  const queryParams = useQueryParams();
+
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
+
+  const { state } = useLocation<LocationStateType>();
+
+  const [warningModalVisible, setWarningModalVisible] = useState(
+    state?.failedDonation,
+  );
+
   const { navigateTo } = useNavigation();
+  const { nonProfits, isLoading } = useNonProfits();
 
   useEffect(() => {
     logEvent("donateIntroDial_view");
   }, []);
 
+  useEffect(() => {
+    async function fetchIntegration() {
+      try {
+        const integrationId = queryParams.get("integration_id");
+        if (!integrationId) return;
+
+        const { data } = await integrationsApi.getIntegration(
+          parseInt(integrationId, 10),
+        );
+
+        setIntegration(data);
+      } catch (e) {
+        logError(e);
+      }
+    }
+
+    fetchIntegration();
+  }, []);
+
   const closeDonationModal = useCallback(() => {
     setDonationModalVisible(false);
+  }, []);
+
+  const closeWarningModal = useCallback(() => {
+    setWarningModalVisible(false);
   }, []);
 
   const closeConfirmModal = useCallback(() => {
@@ -33,28 +77,31 @@ function CausesPage(): JSX.Element {
   }, []);
 
   const donate = useCallback(() => {
-    navigateTo("/donation-in-process");
-    logEvent("donateConfirmDialButton_click", {
-      causeId: chosenNgo?.id,
+    navigateTo({
+      pathname: "/donation-in-process",
+      state: { nonProfit: chosenNonProfit, integration },
     });
-  }, []);
-  const chooseNgo = useCallback((ngo: Ngo) => {
-    setChosenNgo(ngo);
-    setConfirmModalVisible(true);
+    logEvent("donateConfirmDialButton_click", {
+      causeId: chosenNonProfit?.id,
+    });
+  }, [chosenNonProfit]);
+
+  const chooseNonProfit = useCallback((nonProfit: NonProfit) => {
+    setChosenNonProfit(nonProfit);
   }, []);
 
-  function handleButtonClick(ngo: Ngo) {
+  function handleButtonClick(nonProfit: NonProfit) {
     logEvent("donateCardButton_click", {
-      causeId: ngo.id,
+      causeId: nonProfit.id,
     });
-    chooseNgo(ngo);
+    chooseNonProfit(nonProfit);
     setConfirmModalVisible(true);
   }
 
   return (
     <S.Container>
       <ModalIcon
-        icon={Heart}
+        icon={Ticket}
         title={t("donationModalTitle")}
         body={t("donationModalBody")}
         primaryButtonText={t("donationModalButtonText")}
@@ -63,9 +110,9 @@ function CausesPage(): JSX.Element {
         primaryButtonCallback={closeDonationModal}
       />
       <ModalIcon
-        icon={chosenNgo?.image}
+        icon={Ticket}
         title={t("confirmModalTitle")}
-        body={chosenNgo?.impactDescription}
+        body={chosenNonProfit?.impactDescription}
         primaryButtonText={t("confirmModalPrimaryButtonText")}
         primaryButtonCallback={donate}
         secondaryButtonText={t("confirmModalSecondaryButtonText")}
@@ -75,22 +122,35 @@ function CausesPage(): JSX.Element {
         roundIcon
       />
 
-      <Header sideLogo="https://i.imgur.com/kJA77FC.png" />
+      <Header sideLogo={integration?.logo} />
+      <ModalError
+        visible={warningModalVisible}
+        title={t("errorModalTitle")}
+        body={t("errorModalText")}
+        buttonText={t("errorModalButtonText")}
+        onClose={closeWarningModal}
+        warning
+      />
+
       <S.BodyContainer>
         <S.Title>{t("pageTitle")}</S.Title>
         <S.Text>{t("pageSubtitle")}</S.Text>
-        <S.CausesContainer>
-          {ngos.map((ngo, idx) => (
-            <S.CausesCardContainer key={idx.toString()}>
-              <CardCenterImageButton
-                image={ngo.image}
-                title={ngo.impactDescription}
-                buttonText={t("donateText")}
-                onClickButton={() => handleButtonClick(ngo)}
-              />
-            </S.CausesCardContainer>
-          ))}
-        </S.CausesContainer>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <S.CausesContainer>
+            {nonProfits?.map((nonProfit, idx) => (
+              <S.CausesCardContainer key={idx.toString()}>
+                <CardCenterImageButton
+                  image={nonProfit.mainImage}
+                  title={nonProfit.impactDescription}
+                  buttonText={t("donateText")}
+                  onClickButton={() => handleButtonClick(nonProfit)}
+                />
+              </S.CausesCardContainer>
+            ))}
+          </S.CausesContainer>
+        )}
       </S.BodyContainer>
     </S.Container>
   );

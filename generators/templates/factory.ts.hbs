@@ -1,12 +1,8 @@
-import {{pascalCase name}} from "../../../types/{{pascalCase name}}";
+import {{pascalCase name}} from "types/entities/{{pascalCase name}}";
 
-function {{camelCase name}}Factory(
-params: Partial<{{pascalCase name}}> = {
-  },
-  ): {{pascalCase name}} {
-  const defaultValues: {{pascalCase name}} = {
-  };
+function {{camelCase name}}Factory(params: Partial<{{pascalCase name}}> = {}): {{pascalCase name}} {
+  const defaultValues: {{pascalCase name}} = {};
   return Object.assign(defaultValues, params) as {{pascalCase name}};
-  }
+}
 
-  export default {{camelCase name}}Factory;
+export default {{camelCase name}}Factory;

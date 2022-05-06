@@ -201,7 +201,7 @@ function CausesPage(): JSX.Element {
               <S.CausesCardContainer key={idx.toString()}>
                 <CardCenterImageButton
                   image={nonProfit.mainImage}
-                  title={nonProfit.impactDescription}
+                  title={`${nonProfit.impactByTicket} ${nonProfit.impactDescription}`}
                   buttonText={
                     hasDonateToday() ? t("donateBlockedText") : t("donateText")
                   }

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { LOAD_INTEGRATIONS } from "services/graphQL/Queries";
+import { ethers } from "ethers";
 
 interface Integration {
   id: string;
-  balance: boolean;
+  balance: number;
 }
 
 function Integrations(): JSX.Element {
@@ -22,7 +23,7 @@ function Integrations(): JSX.Element {
       {integrations.map((integration) => (
         <div key={integration?.id}>
           <h3>Integration address: {integration?.id}</h3>
-          <h4>Balance: {integration?.balance}</h4>
+          <h4>Balance: {ethers.utils.formatEther(integration?.balance)}</h4>
         </div>
       ))}
     </div>

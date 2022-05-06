@@ -47,8 +47,8 @@ function ProtocolPage(): JSX.Element {
 
   async function updateIntegrationBalance() {
     await contract?.updateIntegrationBalance(
-      wallet,
-      ethers.utils.parseEther("1"),
+      "0x6e060041d62fdd76cf27c582f62983b864878e8f",
+      ethers.utils.parseEther("100000"),
     );
   }
 

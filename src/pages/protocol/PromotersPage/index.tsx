@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { LOAD_PROMOTERS } from "services/graphQL/Queries";
+import { ethers } from "ethers";
 
 interface Promoter {
   id: string;
@@ -22,7 +23,10 @@ function Promoters(): JSX.Element {
       {promoters.map((promoter) => (
         <div key={promoter?.id}>
           <h3>Promoter address: {promoter?.id}</h3>
-          <h4>Promoter total donated: {promoter?.totalDonated}</h4>
+          <h4>
+            Promoter total donated:{" "}
+            {ethers.utils.formatEther(promoter?.totalDonated)}
+          </h4>
         </div>
       ))}
     </div>

@@ -146,7 +146,7 @@ function CausesPage(): JSX.Element {
         <ModalIcon
           icon={Ticket}
           title={t("confirmModalAuthTitle")}
-          body={chosenNonProfit?.impactDescription}
+          body={`${chosenNonProfit?.impactByTicket} ${chosenNonProfit?.impactDescription}`}
           primaryButtonText={t("confirmModalPrimaryButtonText")}
           primaryButtonCallback={() => {
             if (currentUser) donate(currentUser.email);

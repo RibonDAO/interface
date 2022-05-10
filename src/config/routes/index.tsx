@@ -78,11 +78,13 @@ function RoutesComponent(): JSX.Element {
 
       <Route path="/promoters/support-fund" exact>
         <Suspense fallback={<div />}>
-          <WalletProvider>
-            <WalletLayout hideNavigation hasBackButton>
-              <SupportFundPage />
-            </WalletLayout>
-          </WalletProvider>
+          <CurrentUserProvider>
+            <WalletProvider>
+              <WalletLayout hideNavigation hasBackButton>
+                <SupportFundPage />
+              </WalletLayout>
+            </WalletProvider>
+          </CurrentUserProvider>
         </Suspense>
       </Route>
 

@@ -12,6 +12,9 @@ function useDonations() {
       const id = currentUser ? currentUser.id : null;
       return impactApi.getDonationsCount(id);
     },
+    options: {
+      enabled: !!currentUser?.id,
+    },
   });
 
   async function donate(

@@ -11,6 +11,9 @@ function useImpact() {
       const id = currentUser?.id || null;
       return impactApi.getImpact(id);
     },
+    options: {
+      enabled: !!currentUser?.id,
+    },
   });
 
   return {

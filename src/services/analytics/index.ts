@@ -31,7 +31,10 @@ export function logEvent(eventName: string, params?: EventParams): void {
     }
   } catch (error) {
     if (!(error instanceof EventNameTooLongError)) {
-      logError(error, "Error sending event to analytics", { params });
+      logError(error, {
+        customMessage: "Error sending event to analytics",
+        context: { params },
+      });
     }
   }
 }
@@ -42,7 +45,7 @@ export function setUserProperties(
   try {
     firebase.analytics().setUserProperties(properties);
   } catch (error) {
-    logError(error, "Error sending properties to analytics");
+    logError(error, { customMessage: "Error sending properties to analytics" });
   }
 }
 

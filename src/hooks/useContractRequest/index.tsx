@@ -11,7 +11,10 @@ export function useContractRequest<T>({ key, fetchMethod, options }: Props) {
     key,
     async () => {
       const fetchData = await fetchMethod();
-      if (error) logError(error, `An error occurred when fetching ${key}`);
+      if (error)
+        logError(error, {
+          customMessage: `An error occurred when fetching ${key}`,
+        });
 
       return fetchData;
     },

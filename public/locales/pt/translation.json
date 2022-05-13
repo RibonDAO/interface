@@ -39,7 +39,7 @@
       "animationText": "Doando...",
       "impactText": "Os apoiadores da Ribon são os responsáveis pelo pagamento das doações gratuitas"
     },
-    "menu":{
+    "menu": {
       "impactPageTitle": "Impacto",
       "causesPageTitle": "Causas",
       "fundPageTitle": "Fundo"
@@ -83,7 +83,9 @@
         "textLastCard": "Suas contribuições",
         "firstGivingButtonText": "Contribua agora",
         "firstGivingText": "Faça sua primeira doação",
-        "subtitleGivings": "Suas contribuições"
+        "subtitleGivings": "Suas contribuições",
+        "processingText": "Processando transação...",
+        "transactionSuccessText": "Transação processada"
       },
       "modalOnboarding": {
         "title": "Fundo de doação da Ribon",
@@ -99,9 +101,9 @@
       "insufficientBalanceText": "Saldo de USDC insuficiente",
       "networkText": "*Certifique-se de conectar sua carteira à rede da Polygon.",
       "usdcBalanceText": "Saldo de USDC: {{balance}}",
-      "transactionSuccessText": "Transação processada",
       "tokenAmountTransferMessage": "Aprovando quantidade de tokens pra transação...",
       "contractTransferMessage": "Transferindo pro contrato...",
+      "transactionOnBlockchainText": "Sua transação está sendo processada",
       "givingsPage": {
         "title": "Suas contribuições"
       }

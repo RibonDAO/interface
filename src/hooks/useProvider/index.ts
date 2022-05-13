@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { Web3Provider } from "@ethersproject/providers";
+import { logError } from "services/crashReport";
 
 export function useProvider() {
   return useMemo(() => {
@@ -11,7 +12,7 @@ export function useProvider() {
         return provider;
       }
     } catch (e) {
-      console.log(e);
+      logError(e);
     }
 
     return null;

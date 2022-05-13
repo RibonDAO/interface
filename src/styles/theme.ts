@@ -31,7 +31,6 @@ const theme: ThemeType = {
     eaBlue: "#00B5BF",
     phcYellow: "#FFB300",
     sciGreen: "#6DC100",
-    successGreen: "#4BB543",
     ribonWhite: "#FBFBFD",
     phcYellow2: "#FF8F00",
     ribonTransparent: "rgba(255, 255, 255, 0)",

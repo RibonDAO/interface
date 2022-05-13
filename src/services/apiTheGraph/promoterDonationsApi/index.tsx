@@ -23,6 +23,7 @@ export const promoterDonationsApi = {
         user,
         first,
       },
+      fetchPolicy: "no-cache",
     }),
 };
 

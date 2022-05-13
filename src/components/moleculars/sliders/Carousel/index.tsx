@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useKeenSlider } from "keen-slider/react";
 import * as S from "./styles";
 import "keen-slider/keen-slider.min.css";
@@ -15,17 +15,26 @@ function Carousel({
   children,
   mode = "snap",
 }: Props): JSX.Element {
-  const [ref] = useKeenSlider<HTMLDivElement>({
-    slides: {
-      perView: sliderPerView,
-      spacing,
-    },
-    mode,
-  });
+  const [options, setOptions] = useState({});
+  const [slides, setSlides] = useState<JSX.Element[]>([]);
+  const [ref, slider] = useKeenSlider<HTMLDivElement>(options);
+
+  useEffect(() => {
+    setSlides(children.flat());
+    slider.current?.update();
+    setOptions({
+      mode,
+      slides: {
+        perView: sliderPerView,
+        spacing,
+      },
+    });
+  }, [children]);
+
   return (
     <S.Container>
       <div ref={ref} className="keen-slider">
-        {children.map((component, idx) => (
+        {slides.map((component, idx) => (
           <Fragment key={idx.toString()}>{component}</Fragment>
         ))}
       </div>

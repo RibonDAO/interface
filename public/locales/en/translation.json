@@ -40,7 +40,6 @@
       "impactText": "Ribon’s supporters are those responsible for paying for the free donations"
     },
     "menu": {
-      "impactTitle": "Impact",
       "impactPageTitle": "Impact",
       "causesPageTitle": "Causes",
       "fundPageTitle": "Fund"
@@ -98,6 +97,7 @@
     "supportFundPage": {
       "title": "Support the Fund",
       "subtitle": "How much do you want to give?",
+      "subtitleCard": "Choose your giving",
       "buttonText": "Confirm giving",
       "disabledButtonText": "Enter any USDC amount",
       "insufficientBalanceText": "Insufficient USDC balance",
@@ -105,10 +105,13 @@
       "usdcBalanceText": "USDC balance: {{balance}}",
       "tokenAmountTransferMessage": "Approving token amount transfer...",
       "contractTransferMessage": "Transferring to contract...",
+      "card": "Card",
+      "cryptocurrency": "Cryptocurrency",
       "transactionOnBlockchainText": "Your transaction is being processed",
       "givingsPage": {
         "title": "Your Givings"
-      }
+      },
+      "buttonTextCard": "Next"
     }
   },
   "contexts": {

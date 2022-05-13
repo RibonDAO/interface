@@ -43,7 +43,7 @@ function Navigation(): JSX.Element {
       path: "/impact",
       iconOn: ImpactIconOn,
       iconOff: ImpactIconOff,
-      title: t("impactTitle"),
+      title: t("impactPageTitle"),
       event: "impactNavBtn_click",
     },
   ];

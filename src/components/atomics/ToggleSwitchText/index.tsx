@@ -1,12 +1,10 @@
 import { useEffect, useState, useCallback } from "react";
 import * as S from "./styles";
 
-export type onClickType = () => void;
-
 export type Props = {
   leftText: string;
   rightText: string;
-  onClick: onClickType;
+  onClick: () => void;
   isRightSelected?: boolean;
 };
 function ToggleSwitchText({

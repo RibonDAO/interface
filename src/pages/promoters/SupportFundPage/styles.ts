@@ -7,7 +7,7 @@ export const Container = styled.div`
     width: 100%;
 
     @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-      max-width: 378px;
+      max-width: 472px;
       display: flex;
       flex-direction: column;
     }
@@ -18,6 +18,7 @@ export const Title = styled.h1`
   text-transform: uppercase;
   margin: 4px 0;
   font-weight: 900;
+  margin-bottom: 48px;
 
   ${({ theme }) => css`
     @media (min-width: ${theme.breakpoints.pad}) {
@@ -27,7 +28,7 @@ export const Title = styled.h1`
 `;
 
 export const Subtitle = styled.p`
-  margin-top: 20px;
+  margin-top: 32px;
   font-weight: 700;
 
   ${({ theme }) => css`
@@ -81,6 +82,27 @@ export const FinishButton = styled(Button)`
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     height: 56px;
   }
+`;
+
+export const CardValueButton = styled(Button)`
+  ${() => css`
+    border-radius: 66px;
+    height: 30px;
+    max-width: 112px;
+  `}
+`;
+
+export const ValuesContainer = styled.div`
+  ${() => css`
+    @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    }
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: grid;
+    grid-gap: 8px;
+    width: 100%;
+    margin-top: 12px;
+    margin-bottom: 36px;
+  `}
 `;
 
 export const Input = styled.input`

@@ -2,14 +2,16 @@ import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   ${({ theme }) => css`
+    @media (min-width: ${() => theme.breakpoints.pad}) {
+      width: 472px;
+    }
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    width: 472px;
-    height: 32px;
-    left: 236px;
-    top: 234px;
+    max-height: 32px;
+    max-left: 236px;
+    max-top: 234px;
     background: ${theme.colors.ribonWhite};
     border: 1px solid ${theme.colors.ribonBlue};
     border-radius: 40px;
@@ -23,8 +25,9 @@ export const Selected = styled.a`
     justify-content: center;
     align-items: center;
     position: static;
-    width: 236px;
-    height: 30px;
+    min-width: 50%;
+    max-width: 236px;
+    max-height: 30px;
     color: ${theme.colors.ribonWhite};
     font-weight: 700;
     font-size: 16px;
@@ -36,8 +39,9 @@ export const Selected = styled.a`
 
 export const Unselected = styled.a`
   ${({ theme }) => css`
-    width: 236px;
-    height: 32px;
+    max-width: 236px;
+    min-width: 50%;
+    max-height: 32px;
     justify-content: center;
     align-items: center;
     font-weight: 700;

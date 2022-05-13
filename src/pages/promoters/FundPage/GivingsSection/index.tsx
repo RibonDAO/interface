@@ -98,6 +98,11 @@ function GivingsSection(): JSX.Element {
         }
       } catch (e) {
         logError(e);
+        toast({
+          message: t("transactionFailedText"),
+          type: "error",
+          link: `https://mumbai.polygonscan.com/tx/${hash}`,
+        });
       }
     },
     [promoterDonations],

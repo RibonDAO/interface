@@ -86,7 +86,8 @@
         "firstGivingText": "Make your first giving",
         "subtitleGivings": "Your givings",
         "processingText": "Processing transaction...",
-        "transactionSuccessText": "Transaction successful"
+        "transactionSuccessText": "Transaction successful",
+        "transactionFailedText": "Transaction failed"
       },
       "modalOnboarding": {
         "title": "Ribon’s Donation Fund",

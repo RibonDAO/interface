@@ -85,7 +85,8 @@
         "firstGivingText": "Faça sua primeira doação",
         "subtitleGivings": "Suas contribuições",
         "processingText": "Processando transação...",
-        "transactionSuccessText": "Transação processada"
+        "transactionSuccessText": "Transação processada",
+        "transactionFailedText": "Falha ao processar transação"
       },
       "modalOnboarding": {
         "title": "Fundo de doação da Ribon",

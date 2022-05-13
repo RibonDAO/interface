@@ -179,6 +179,10 @@ export function expectPageToNavigateTo(
   });
 }
 
-export function clickOn(text: string) {
-  return fireEvent.click(screen.getByText(text));
+export function clickOn(textOrComponent: string | any) {
+  if (typeof textOrComponent === "string") {
+    return fireEvent.click(screen.getByText(textOrComponent));
+  }
+
+  return fireEvent.click(textOrComponent);
 }

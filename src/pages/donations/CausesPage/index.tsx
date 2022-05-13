@@ -20,6 +20,7 @@ import blockedIcon from "assets/images/il-ticket-gray.svg";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import * as S from "./styles";
 import ConfirmEmail from "./ConfirmEmail";
+import DonationTicketModal from "./DonationTicketModal";
 
 type LocationStateType = {
   failedDonation: boolean;
@@ -41,9 +42,6 @@ function CausesPage(): JSX.Element {
   );
   const [blockedModalVisible, setBlockedModalVisible] = useState(
     state?.blockedDonation,
-  );
-  const [donationModalVisible, setDonationModalVisible] = useState(
-    !state?.blockedDonation,
   );
 
   const { navigateTo } = useNavigation();
@@ -70,10 +68,6 @@ function CausesPage(): JSX.Element {
     }
 
     fetchIntegration();
-  }, []);
-
-  const closeDonationModal = useCallback(() => {
-    setDonationModalVisible(false);
   }, []);
 
   const closeWarningModal = useCallback(() => {
@@ -133,15 +127,7 @@ function CausesPage(): JSX.Element {
 
   return (
     <S.Container>
-      <ModalIcon
-        icon={Ticket}
-        title={t("donationModalTitle")}
-        body={t("donationModalBody")}
-        primaryButtonText={t("donationModalButtonText")}
-        visible={donationModalVisible && !hasDonateToday()}
-        onClose={closeDonationModal}
-        primaryButtonCallback={closeDonationModal}
-      />
+      <DonationTicketModal />
       {signedIn ? (
         <ModalIcon
           icon={Ticket}

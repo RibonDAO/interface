@@ -1,5 +1,10 @@
 import styled, { css } from "styled-components";
 
+export const Container = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
 export const Input = styled.div`
   ${({ theme }) => css`
     box-sizing: border-box;

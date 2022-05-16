@@ -1,12 +1,11 @@
 import { AxiosResponse } from "axios";
 import GivingValue from "types/entities/GivingValue";
+import { Currencies } from "types/enums/Currencies";
 import { apiGet } from "..";
 
 const givingValuesApi = {
-  getGivingValues: (
-    coin: "usd" | "brl",
-  ): Promise<AxiosResponse<GivingValue[]>> =>
-    apiGet(`giving_values?currency=${coin}`),
+  getGivingValues: (coin: Currencies): Promise<AxiosResponse<GivingValue[]>> =>
+    apiGet(`giving_values?currency=${coin.toLowerCase()}`),
 };
 
 export default givingValuesApi;

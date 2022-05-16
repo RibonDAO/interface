@@ -97,7 +97,6 @@
     "supportFundPage": {
       "title": "Ajude o Fundo",
       "subtitle": "Quanto você quer contribuir?",
-      "subtitleCard": "Escolha sua contribuição",
       "buttonText": "Confirmar doação",
       "disabledButtonText": "Insira uma quantidade de USDC",
       "insufficientBalanceText": "Saldo de USDC insuficiente",
@@ -111,7 +110,11 @@
       "givingsPage": {
         "title": "Suas contribuições"
       },
-      "buttonTextCard": "Próximo"
+      "cardSection": {
+        "currency": "Moeda",
+        "subtitleCard": "Escolha sua contribuição",
+        "buttonTextCard": "Próximo"
+      }
     }
   },
   "contexts": {

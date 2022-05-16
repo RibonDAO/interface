@@ -14,6 +14,10 @@ export const Container = styled.div`
   `}
 `;
 
+export const CardSectionContainer = styled.div`
+  margin-top: 24px;
+`;
+
 export const Title = styled.h1`
   text-transform: uppercase;
   margin: 4px 0;
@@ -28,7 +32,7 @@ export const Title = styled.h1`
 `;
 
 export const Subtitle = styled.p`
-  margin-top: 32px;
+  margin-top: 20px;
   font-weight: 700;
 
   ${({ theme }) => css`

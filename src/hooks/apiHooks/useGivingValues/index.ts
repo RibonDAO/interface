@@ -1,8 +1,9 @@
 import { useApi } from "hooks/useApi";
 import givingValuesApi from "services/api/givingValuesApi";
 import GivingValue from "types/entities/GivingValue";
+import { Currencies } from "types/enums/Currencies";
 
-function useGivingValues(coin: "usd" | "brl") {
+function useGivingValues(coin: Currencies) {
   const {
     data: givingValues,
     isLoading,

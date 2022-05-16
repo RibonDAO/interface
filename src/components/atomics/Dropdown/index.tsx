@@ -6,8 +6,8 @@ import * as S from "./styles";
 export type Props = {
   name: string;
   label: string;
-  values: string[];
-  onOptionChanged?: (value: string) => void;
+  values: any[];
+  onOptionChanged?: (value: any) => void;
 };
 
 function Dropdown({
@@ -23,8 +23,14 @@ function Dropdown({
     setOptionsVisible(!optionsVisible);
   };
 
+  const handleOptionClick = (value: string) => {
+    setDropdownValue(value);
+    setOptionsVisible(false);
+    if (onOptionChanged) onOptionChanged(value);
+  };
+
   return (
-    <S.Input onClick={handleInputClick}>
+    <S.Container id="dropdown-container">
       <ModalBlank
         visible={optionsVisible}
         onClose={() => setOptionsVisible(false)}
@@ -34,39 +40,44 @@ function Dropdown({
             display: "flex",
             alignItems: "flex-start",
             justifyContent: "flex-end",
-            width: "calc(100% - 32px)",
+            position: "relative",
           },
           content: {
             paddingTop: 8,
+            paddingBottom: 8,
             position: "absolute",
-            top: "50px",
-            left: "0",
             boxShadow: "0px 4px 12px 0px rgba(24, 86, 105, 0.15)",
+            zIndex: 1,
+            margin: 0,
+            width: "100%",
+            maxWidth: "472px",
           },
         }}
+        parentSelector={() =>
+          document.querySelector("#dropdown-container") || document.body
+        }
       >
         {values.map((value, index) => (
           <S.OptionContainer
-            onClick={() => {
-              setDropdownValue(value);
-              if (onOptionChanged) onOptionChanged(value);
-            }}
+            onClick={() => handleOptionClick(value)}
             key={index.toString(10)}
           >
             <S.OptionText>{value}</S.OptionText>
           </S.OptionContainer>
         ))}
       </ModalBlank>
-      {label && <label htmlFor={name}>{label}</label>}
-      <input
-        type="text"
-        name={name}
-        aria-label={name}
-        value={dropdownValue}
-        readOnly
-      />
-      <img src={ArrowDownIcon} alt="arrow-down" />
-    </S.Input>
+      <S.Input onClick={handleInputClick}>
+        {label && <label htmlFor={name}>{label}</label>}
+        <input
+          type="text"
+          name={name}
+          aria-label={name}
+          value={dropdownValue}
+          readOnly
+        />
+        <img src={ArrowDownIcon} alt="arrow-down" />
+      </S.Input>
+    </S.Container>
   );
 }
 

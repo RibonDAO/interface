@@ -2,7 +2,6 @@ import { useTranslation } from "react-i18next";
 import { useCallback, useEffect, useState } from "react";
 import SimpleMaskMoney from "simple-mask-money";
 import { useContract } from "hooks/useContract";
-import useGivingValues from "hooks/apiHooks/useGivingValues";
 import {
   DONATION_TOKEN_CONTRACT_ADDRESS,
   RIBON_CONTRACT_ADDRESS,
@@ -16,18 +15,17 @@ import { logError } from "services/crashReport";
 import UsdcIcon from "assets/icons/usdc-icon.svg";
 import useToast from "hooks/useToast";
 import useNavigation from "hooks/useNavigation";
-import { useLanguage } from "hooks/useLanguage";
 import { logEvent } from "services/analytics";
 import { formatFromWei } from "lib/web3Helpers/etherFormatters";
 import { stringToNumber } from "lib/formatters/stringToNumberFormatter";
 import { useLoadingOverlay } from "contexts/loadingOverlayContext";
 import * as S from "./styles";
+import CardSection from "./CardSection";
 
 function SupportFundPage(): JSX.Element {
   const [amount, setAmount] = useState("");
   const [loading, setLoading] = useState(false);
   const [userBalance, setUserBalance] = useState("");
-  const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
   const [isCard, setIsCard] = useState(false);
 
   const { t } = useTranslation("translation", {
@@ -45,16 +43,6 @@ function SupportFundPage(): JSX.Element {
   const { navigateTo } = useNavigation();
   const { showLoadingOverlay, hideLoadingOverlay } = useLoadingOverlay();
   const { wallet, connectWallet } = useWalletContext();
-  const { currentLang } = useLanguage();
-
-  function currentCoin() {
-    if (currentLang === "pt-BR") {
-      return "brl";
-    }
-    return "usd";
-  }
-
-  const { givingValues } = useGivingValues(currentCoin());
 
   const args = {
     afterFormat(e: string) {
@@ -191,26 +179,7 @@ function SupportFundPage(): JSX.Element {
       />
 
       {isCard ? (
-        <div>
-          <S.Subtitle>{t("subtitleCard")}</S.Subtitle>
-
-          <S.ValuesContainer>
-            {givingValues?.map((item, index) => (
-              <S.CardValueButton
-                text={item.valueText}
-                onClick={() => {
-                  setSelectedButtonIndex(index);
-                }}
-                outline={index !== selectedButtonIndex}
-                key={item.value}
-              />
-            ))}
-          </S.ValuesContainer>
-
-          <S.ButtonContainer>
-            <S.FinishButton text={t("buttonTextCard")} onClick={() => {}} />
-          </S.ButtonContainer>
-        </div>
+        <CardSection />
       ) : (
         <div>
           <S.Subtitle>{t("subtitle")}</S.Subtitle>

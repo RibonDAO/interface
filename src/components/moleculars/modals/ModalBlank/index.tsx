@@ -8,6 +8,7 @@ export type Props = {
   children?: JSX.Element[] | JSX.Element | null;
   onClose?: () => void;
   customStyles?: Styles;
+  parentSelector?: () => HTMLElement;
 };
 
 function ModalBlank({
@@ -16,6 +17,7 @@ function ModalBlank({
   onClose = () => {},
   contentLabel,
   customStyles,
+  parentSelector,
 }: Props): JSX.Element {
   return (
     <S.BlankModal
@@ -24,6 +26,7 @@ function ModalBlank({
       style={{ ...defaultCustomStyles, ...customStyles }}
       contentLabel={contentLabel}
       ariaHideApp={false}
+      parentSelector={parentSelector}
     >
       {children}
     </S.BlankModal>

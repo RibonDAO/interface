@@ -21,7 +21,6 @@ import useToast from "hooks/useToast";
 import RightArrowBlack from "./assets/right-arrow-black.svg";
 import { ReactComponent as BlueRightArrow } from "./assets/right-arrow-blue.svg";
 import * as S from "./styles";
-import "keen-slider/keen-slider.min.css";
 
 type LocationStateType = {
   id: string;
@@ -143,19 +142,17 @@ function GivingsSection(): JSX.Element {
   function renderProcessingTransaction() {
     if (processingTransaction) {
       return (
-        <div className="keen-slider__slide" key={state.id}>
-          <CardDoubleTextDividerButton
-            key={state.id}
-            firstText={formatDate(state.timestamp).toString()}
-            mainText={formatFromWei(state.amountDonated)}
-            rightComplementText={coin}
-            buttonText={t("linkTransactionText")}
-            rightComponentButton={RightArrowBlack}
-            link={concatLinkHash(state.id)}
-            processingText={t("processingText")}
-            processing={processingTransaction}
-          />
-        </div>
+        <CardDoubleTextDividerButton
+          key={state.id}
+          firstText={formatDate(state.timestamp).toString()}
+          mainText={formatFromWei(state.amountDonated)}
+          rightComplementText={coin}
+          buttonText={t("linkTransactionText")}
+          rightComponentButton={RightArrowBlack}
+          link={concatLinkHash(state.id)}
+          processingText={t("processingText")}
+          processing={processingTransaction}
+        />
       );
     }
     return null;
@@ -163,17 +160,15 @@ function GivingsSection(): JSX.Element {
 
   function renderCardsCarousel() {
     return promoterDonations?.map((item: any) => (
-      <div className="keen-slider__slide" key={item.id}>
-        <CardDoubleTextDividerButton
-          key={item.id}
-          firstText={formatDate(item.timestamp).toString()}
-          mainText={formatFromWei(item.amountDonated)}
-          rightComplementText={coin}
-          buttonText={t("linkTransactionText")}
-          rightComponentButton={RightArrowBlack}
-          link={concatLinkHash(item.id)}
-        />
-      </div>
+      <CardDoubleTextDividerButton
+        key={item.id}
+        firstText={formatDate(item.timestamp).toString()}
+        mainText={formatFromWei(item.amountDonated)}
+        rightComplementText={coin}
+        buttonText={t("linkTransactionText")}
+        rightComponentButton={RightArrowBlack}
+        link={concatLinkHash(item.id)}
+      />
     ));
   }
   return (
@@ -185,16 +180,14 @@ function GivingsSection(): JSX.Element {
             {renderProcessingTransaction()}
             {renderCardsCarousel()}
             {false && (
-              <div className="keen-slider__slide">
-                <S.LastCardCarousel
-                  onClick={() => {
-                    handleShowGivingsButtonClick();
-                  }}
-                >
-                  <BlueRightArrow />
-                  <S.TextLastCard>{t("textLastCard")}</S.TextLastCard>
-                </S.LastCardCarousel>
-              </div>
+              <S.LastCardCarousel
+                onClick={() => {
+                  handleShowGivingsButtonClick();
+                }}
+              >
+                <BlueRightArrow />
+                <S.TextLastCard>{t("textLastCard")}</S.TextLastCard>
+              </S.LastCardCarousel>
             )}
           </Carousel>
         )

@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useKeenSlider } from "keen-slider/react";
 import * as S from "./styles";
 import "keen-slider/keen-slider.min.css";
@@ -34,9 +34,14 @@ function Carousel({
   return (
     <S.Container>
       <div ref={ref} className="keen-slider">
-        {slides.map((component, idx) => (
-          <Fragment key={idx.toString()}>{component}</Fragment>
-        ))}
+        {slides.map(
+          (component, idx) =>
+            component && (
+              <div className="keen-slider__slide" key={idx.toString()}>
+                {component}
+              </div>
+            ),
+        )}
       </div>
     </S.Container>
   );

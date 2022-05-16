@@ -36,6 +36,7 @@ const theme: ThemeType = {
     ribonTransparent: "rgba(255, 255, 255, 0)",
     ribonShadow: "rgba(24, 86, 105, 0.15)",
     modalBackground: "rgba(24, 86, 105, 0.6)",
+    hoverGray: "rgba(238, 244, 246, 1)",
   },
   spacings: {},
   breakpoints: {

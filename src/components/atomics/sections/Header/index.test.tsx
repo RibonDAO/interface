@@ -1,9 +1,9 @@
+import { renderComponent } from "config/testUtils";
+import { screen } from "@testing-library/react";
 import {
   expectImageToBeInTheDocument,
   expectTextToBeInTheDocument,
-  renderComponent,
-} from "config/testUtils";
-import { screen } from "@testing-library/react";
+} from "config/testUtils/expects";
 import Header from ".";
 
 describe("Header", () => {

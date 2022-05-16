@@ -1,4 +1,5 @@
-import { expectLogErrorToHaveBeenCalled } from "config/testUtils";
+import { POLYGON_MUMBAI_TEST_NET_CHAIN_ID } from "config/chains/permittedChains";
+import { expectLogErrorToHaveBeenCalled } from "config/testUtils/expects";
 import {
   checkConnectionRequest,
   connectWalletRequest,
@@ -7,7 +8,6 @@ import {
   USER_REJECTED_CONNECTION_ERROR_CODE,
   validChain,
 } from ".";
-import { POLYGON_MUMBAI_TEST_NET_CHAIN_ID } from "../../config/chains/permittedChains";
 
 describe("#walletConnector", () => {
   describe("#connectWalletRequest", () => {

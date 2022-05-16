@@ -1,5 +1,6 @@
 import React from "react";
-import { expectTextToBeInTheDocument, renderComponent } from "config/testUtils";
+import { renderComponent } from "config/testUtils";
+import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import Divider from ".";
 
 describe("Divider", () => {

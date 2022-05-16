@@ -1,10 +1,9 @@
+import { clickOn, renderComponent } from "config/testUtils";
 import {
-  clickOn,
   expectLogEventToHaveBeenCalledWith,
   expectPageToNavigateTo,
   expectTextToBeInTheDocument,
-  renderComponent,
-} from "config/testUtils";
+} from "config/testUtils/expects";
 import FundPage from ".";
 
 describe("FundPage", () => {

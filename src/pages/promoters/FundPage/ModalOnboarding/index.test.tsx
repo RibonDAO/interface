@@ -1,9 +1,9 @@
+import { renderComponent } from "config/testUtils";
+import { removeLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import {
   expectTextNotToBeInTheDocument,
   expectTextToBeInTheDocument,
-  renderComponent,
-} from "config/testUtils";
-import { removeLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
+} from "config/testUtils/expects";
 import ModalOnboarding, { FUND_MODAL_ONBOARDING_VIEWED_KEY } from ".";
 
 describe("ModalOnboarding", () => {

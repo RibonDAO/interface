@@ -1,8 +1,8 @@
+import { renderComponent } from "config/testUtils";
 import {
   expectImageToBeInTheDocument,
   expectTextToBeInTheDocument,
-  renderComponent,
-} from "config/testUtils";
+} from "config/testUtils/expects";
 import CardTopImage from ".";
 
 describe("CardTopImage", () => {

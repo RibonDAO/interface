@@ -1,9 +1,8 @@
+import { clickOn, renderComponent } from "config/testUtils";
 import {
-  clickOn,
   expectTextNotToBeInTheDocument,
   expectTextToBeInTheDocument,
-  renderComponent,
-} from "config/testUtils";
+} from "config/testUtils/expects";
 import { useLoadingOverlay } from ".";
 
 function LoadingOverlayTestPage() {

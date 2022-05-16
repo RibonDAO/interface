@@ -1,5 +1,6 @@
-import { expectTextToBeInTheDocument, renderComponent } from "config/testUtils";
+import { renderComponent } from "config/testUtils";
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
+import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import DonationDone from ".";
 
 describe("DonationDone", () => {

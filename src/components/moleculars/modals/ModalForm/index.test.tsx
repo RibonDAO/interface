@@ -1,10 +1,9 @@
 import React from "react";
+import { renderComponent, clickOn } from "config/testUtils";
 import {
-  expectTextToBeInTheDocument,
-  renderComponent,
-  clickOn,
   expectTextNotToBeInTheDocument,
-} from "config/testUtils";
+  expectTextToBeInTheDocument,
+} from "config/testUtils/expects";
 import ModalForm from ".";
 
 describe("ModalForm", () => {

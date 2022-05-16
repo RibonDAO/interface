@@ -2,7 +2,7 @@ import { logError } from "services/crashReport";
 import {
   permittedChainIds,
   POLYGON_MUMBAI_TEST_NET_CHAIN_ID,
-} from "../../config/chains/permittedChains";
+} from "config/chains/permittedChains";
 
 export async function checkConnectionRequest(): Promise<string | null> {
   try {

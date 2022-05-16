@@ -1,10 +1,9 @@
+import { renderComponent, waitForPromises } from "config/testUtils";
+import { mockRequest } from "config/testUtils/test-helper";
 import {
   expectPageToNavigateTo,
   expectTextToBeInTheDocument,
-  renderComponent,
-  waitForPromises,
-} from "config/testUtils";
-import { mockRequest } from "config/testUtils/test-helper";
+} from "config/testUtils/expects";
 import DonationInProcessPage from ".";
 
 describe("DonationInProcessPage", () => {

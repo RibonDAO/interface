@@ -1,8 +1,9 @@
 import React from "react";
-import { expectTextToBeInTheDocument, renderComponent } from "config/testUtils";
+import { renderComponent } from "config/testUtils";
 import Header from "components/atomics/sections/Header";
 import { mockRequest } from "config/testUtils/test-helper";
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
+import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import Causes from ".";
 
 jest.mock(

@@ -1,8 +1,5 @@
-import {
-  clickOn,
-  expectTextToBeInTheDocument,
-  renderComponent,
-} from "config/testUtils";
+import { clickOn, renderComponent } from "config/testUtils";
+import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import ButtonRound from ".";
 
 describe("<ButtonRound />", () => {

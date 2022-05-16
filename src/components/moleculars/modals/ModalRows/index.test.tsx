@@ -1,6 +1,7 @@
 import React from "react";
-import { expectTextToBeInTheDocument, renderComponent } from "config/testUtils";
+import { renderComponent } from "config/testUtils";
 import icon from "assets/icons/ribon.svg";
+import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import ModalRows from ".";
 
 describe("ModalRows", () => {

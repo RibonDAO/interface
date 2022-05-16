@@ -1,10 +1,9 @@
+import { clickOn, renderComponent } from "config/testUtils";
+import { DONATION_MODAL_SEEN_AT_KEY } from "lib/localStorage/constants";
 import {
-  clickOn,
   expectTextNotToBeInTheDocument,
   expectTextToBeInTheDocument,
-  renderComponent,
-} from "config/testUtils";
-import { DONATION_MODAL_SEEN_AT_KEY } from "lib/localStorage/constants";
+} from "config/testUtils/expects";
 import DonationTicketModal from ".";
 
 describe("DonationTicketModal", () => {

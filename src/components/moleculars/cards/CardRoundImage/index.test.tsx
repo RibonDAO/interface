@@ -1,7 +1,5 @@
-import {
-  expectImageToBeInTheDocument,
-  renderComponent,
-} from "config/testUtils";
+import { renderComponent } from "config/testUtils";
+import { expectImageToBeInTheDocument } from "config/testUtils/expects";
 import CardRoundImage from ".";
 
 describe("CardRoundImage", () => {

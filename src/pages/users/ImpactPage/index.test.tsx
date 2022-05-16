@@ -1,12 +1,12 @@
-import {
-  expectTextNotToBeInTheDocument,
-  expectTextToBeInTheDocument,
-  renderComponent,
-} from "config/testUtils";
+import { renderComponent } from "config/testUtils";
 import impactFactory from "config/testUtils/factories/impactFactory";
 import { mockRequest } from "config/testUtils/test-helper";
 import userFactory from "config/testUtils/factories/userFactory";
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
+import {
+  expectTextNotToBeInTheDocument,
+  expectTextToBeInTheDocument,
+} from "config/testUtils/expects";
 import Impact from ".";
 
 describe("Impact", () => {

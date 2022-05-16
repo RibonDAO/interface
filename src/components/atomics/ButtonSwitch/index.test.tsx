@@ -1,9 +1,6 @@
-import {
-  expectTextToBeInTheDocument,
-  renderComponent,
-  RenderWithContextResult,
-} from "config/testUtils";
+import { renderComponent, RenderWithContextResult } from "config/testUtils";
 import { fireEvent } from "@testing-library/react";
+import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import ButtonSwitch from ".";
 
 describe("ButtonSwitch", () => {

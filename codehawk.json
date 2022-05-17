@@ -1,3 +1,4 @@
 {
-    "skipDirectories": ["/node_modules", "coverage"]
+    "skipDirectories": ["/node_modules", "coverage"],
+    "excludeFilenames": ["styles.ts"]
 }

@@ -11,19 +11,17 @@ function Toast() {
       {notifications.map((notification: Notification) => {
         const index = notifications.indexOf(notification);
         return (
-          <S.NotificationToast
-            style={{
-              backgroundColor: notifications[index].color,
-            }}
-            key={index}
-          >
-            <S.Message>{notification.message}</S.Message>
-            {notification.link && (
-              <S.Link href={notification.link}>
-                {notification.linkMessage}
-              </S.Link>
-            )}
-          </S.NotificationToast>
+          <S.LinkNotificationToast href={notification.link} target="_blank">
+            <S.NotificationToast
+              style={{
+                backgroundColor: notifications[index].color,
+              }}
+              key={index}
+            >
+              <S.Message>{notification.message}</S.Message>
+              {notification.link && <S.Link>{notification.linkMessage}</S.Link>}
+            </S.NotificationToast>
+          </S.LinkNotificationToast>
         );
       })}
     </S.NotificationContainer>

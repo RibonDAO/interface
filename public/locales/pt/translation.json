@@ -86,7 +86,8 @@
         "subtitleGivings": "Suas contribuições",
         "processingText": "Processando transação...",
         "transactionSuccessText": "Transação processada",
-        "transactionFailedText": "Falha ao processar transação"
+        "transactionFailedText": "Falha ao processar transação",
+        "linkMessageToast": "Saiba mais"
       },
       "modalOnboarding": {
         "title": "Fundo de doação da Ribon",
@@ -114,7 +115,8 @@
         "currency": "Moeda",
         "subtitleCard": "Escolha sua contribuição",
         "buttonTextCard": "Próximo"
-      }
+      },
+      "linkMessageToast": "Saiba mais"
     }
   },
   "contexts": {

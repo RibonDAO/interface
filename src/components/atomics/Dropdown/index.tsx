@@ -7,6 +7,7 @@ export type Props = {
   name: string;
   label: string;
   values: any[];
+  defaultValue?: any;
   onOptionChanged?: (value: any) => void;
 };
 
@@ -15,8 +16,9 @@ function Dropdown({
   label,
   values,
   onOptionChanged,
+  defaultValue,
 }: Props): JSX.Element {
-  const [dropdownValue, setDropdownValue] = useState(values[0]);
+  const [dropdownValue, setDropdownValue] = useState(defaultValue || values[0]);
   const [optionsVisible, setOptionsVisible] = useState(false);
 
   const handleInputClick = () => {

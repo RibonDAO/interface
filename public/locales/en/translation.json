@@ -86,7 +86,8 @@
         "subtitleGivings": "Your givings",
         "processingText": "Processing transaction...",
         "transactionSuccessText": "Transaction successful",
-        "transactionFailedText": "Transaction failed"
+        "transactionFailedText": "Transaction failed",
+        "linkMessageToast": "Learn more"
       },
       "modalOnboarding": {
         "title": "Ribon’s Donation Fund",
@@ -114,7 +115,8 @@
         "currency": "Currency",
         "subtitleCard": "Choose your giving",
         "buttonTextCard": "Next"
-      }
+      },
+      "linkMessageToast": "Learn more"
     }
   },
   "contexts": {

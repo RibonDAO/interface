@@ -93,6 +93,7 @@ function GivingsSection(): JSX.Element {
             message: t("transactionSuccessText"),
             type: "success",
             link: `https://mumbai.polygonscan.com/tx/${hash}`,
+            linkMessage: t("linkMessageToast"),
           });
         }
       } catch (e) {

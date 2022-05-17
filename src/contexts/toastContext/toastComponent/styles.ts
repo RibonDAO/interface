@@ -54,10 +54,13 @@ export const Message = styled.span`
   color: #fff;
 `;
 
-export const Link = styled.a`
+export const Link = styled.span`
   float: right;
-  text-decoration: none;
   color: #fff;
   font-size: 14px;
   font-weight: bold;
+`;
+
+export const LinkNotificationToast = styled.a`
+  text-decoration: none;
 `;

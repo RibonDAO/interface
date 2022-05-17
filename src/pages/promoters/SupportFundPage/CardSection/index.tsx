@@ -31,6 +31,7 @@ function CardSection(): JSX.Element {
         name="currency"
         label={t("currency")}
         values={[Currencies.USD, Currencies.BRL]}
+        defaultValue={currentCoin}
         onOptionChanged={(value) => setCurrentCoin(value)}
       />
       <S.Subtitle>{t("subtitleCard")}</S.Subtitle>

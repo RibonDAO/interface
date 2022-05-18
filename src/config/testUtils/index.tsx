@@ -30,6 +30,10 @@ import LoadingOverlayProvider, {
   ILoadingOverlayContext,
   LoadingOverlayContext,
 } from "contexts/loadingOverlayContext";
+import ModalProvider, {
+  IModalContext,
+  ModalContext,
+} from "contexts/modalContext";
 
 export function renderWithTheme(children: React.ReactNode): RenderResult {
   return render(<ThemeProvider theme={theme}>{children}</ThemeProvider>);
@@ -77,6 +81,7 @@ export type RenderComponentProps = {
   currentUserProviderValue?: Partial<ICurrentUserContext>;
   toastProviderValue?: Partial<IToastContext>;
   loadingOverlayValue?: Partial<ILoadingOverlayContext>;
+  modalProviderValue?: Partial<IModalContext>;
   locationState?: Record<any, any>;
 };
 export function renderComponent(
@@ -88,6 +93,7 @@ export function renderComponent(
     toastProviderValue = {},
     locationState = {},
     loadingOverlayValue = {},
+    modalProviderValue = {},
   }: RenderComponentProps = {},
 ): RenderWithContextResult {
   const queryClient = new QueryClient();
@@ -116,7 +122,12 @@ export function renderComponent(
                       LoadingOverlayProvider,
                       LoadingOverlayContext,
                       loadingOverlayValue,
-                      component,
+                      renderProvider(
+                        ModalProvider,
+                        ModalContext,
+                        modalProviderValue,
+                        component,
+                      ),
                     ),
                   ),
                 ),

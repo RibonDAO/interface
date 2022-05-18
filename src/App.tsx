@@ -7,6 +7,7 @@ import RoutesComponent from "./config/routes";
 import GlobalStyle from "./styles/globalStyle";
 import theme from "./styles/theme";
 import LoadingOverlayProvider from "./contexts/loadingOverlayContext";
+import ModalProvider from "./contexts/modalContext";
 
 function App() {
   const queryClient = new QueryClient();
@@ -15,13 +16,15 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
         <LoadingOverlayProvider>
-          <GlobalStyle />
-          <BrowserRouter>
-            <ToastContextProvider>
-              <RoutesComponent />
-              <Toast />
-            </ToastContextProvider>
-          </BrowserRouter>
+          <ModalProvider>
+            <GlobalStyle />
+            <BrowserRouter>
+              <ToastContextProvider>
+                <RoutesComponent />
+                <Toast />
+              </ToastContextProvider>
+            </BrowserRouter>
+          </ModalProvider>
         </LoadingOverlayProvider>
       </ThemeProvider>
     </QueryClientProvider>

@@ -16,8 +16,8 @@ import { useLocation } from "react-router-dom";
 import ModalError from "components/moleculars/modals/ModalError";
 import useUsers from "hooks/apiHooks/useUsers";
 import { useCurrentUser } from "contexts/currentUserContext";
-import blockedIcon from "assets/images/il-ticket-gray.svg";
 import { useIntegrationId } from "hooks/useIntegrationId";
+import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
 import * as S from "./styles";
 import ConfirmEmail from "./ConfirmEmail";
 import DonationTicketModal from "./DonationTicketModal";
@@ -40,7 +40,7 @@ function CausesPage(): JSX.Element {
   const [warningModalVisible, setWarningModalVisible] = useState(
     state?.failedDonation,
   );
-  const [blockedModalVisible, setBlockedModalVisible] = useState(
+  const { showBlockedDonationModal } = useBlockedDonationModal(
     state?.blockedDonation,
   );
 
@@ -76,10 +76,6 @@ function CausesPage(): JSX.Element {
 
   const closeConfirmModal = useCallback(() => {
     setConfirmModalVisible(false);
-  }, []);
-
-  const closeBlockedModal = useCallback(() => {
-    setBlockedModalVisible(false);
   }, []);
 
   function hasDonateToday() {
@@ -118,7 +114,7 @@ function CausesPage(): JSX.Element {
     chooseNonProfit(nonProfit);
     if (hasDonateToday()) {
       logEvent("donateFinishedDonation_view");
-      setBlockedModalVisible(true);
+      showBlockedDonationModal();
       logEvent("donateBlockedDonation_view");
     } else {
       setConfirmModalVisible(true);
@@ -164,16 +160,6 @@ function CausesPage(): JSX.Element {
         buttonText={t("errorModalButtonText")}
         onClose={closeWarningModal}
         warning
-      />
-
-      <ModalIcon
-        visible={blockedModalVisible}
-        title={t("blockedModalTitle")}
-        body={t("blockedModalText")}
-        primaryButtonText={t("blockedModalButtonText")}
-        primaryButtonCallback={closeBlockedModal}
-        onClose={closeBlockedModal}
-        icon={blockedIcon}
       />
 
       <S.BodyContainer>

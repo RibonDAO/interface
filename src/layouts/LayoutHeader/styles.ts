@@ -46,6 +46,10 @@ export const CounterContainer = styled.div`
     box-sizing: border-box;
     border-radius: 4px;
     margin-left: 8px;
+
+    &:hover {
+      cursor: pointer;
+    }
   `}
 `;
 

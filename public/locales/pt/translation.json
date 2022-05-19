@@ -15,9 +15,10 @@
       "errorModalTitle": "Falha no processo",
       "errorModalText": "Não foi possível concluir esta ação. Por favor verifique sua conexão com a internet e tente novamente.",
       "errorModalButtonText": "Ok",
-      "blockedModalTitle": "Bloqueado",
-      "blockedModalText": "Esta conta já usou seu vale doação diário. Volte amanhã para doar novamente!",
-      "blockedModalButtonText": "Ok",
+      "blockedModalTitle": "Você não tem tickets doação",
+      "blockedModalText": "Contribua para o Tesouro de Doação da Ribon e promova novas doações.",
+      "blockedModalFirstButtonText": "Contribuir agora",
+      "blockedModalSecondButtonText": "Talvez depois",
       "modalForm": {
         "footerStartText": "Ao inserir seu e-mail e se inscrever, você aceita os",
         "footerAnd": "e",

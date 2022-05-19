@@ -15,9 +15,10 @@
       "errorModalTitle": "Process failed",
       "errorModalText": "It was not possible to finish this action. Please, check your internet connection and try again.",
       "errorModalButtonText": "Ok",
-      "blockedModalTitle": "Donation blocked",
-      "blockedModalText": "This account has already used it’s daily donation ticket. Come back tomorrow!",
-      "blockedModalButtonText": "Ok",
+      "blockedModalTitle": "You don't have donation tickets",
+      "blockedModalText": "Make a giving to Ribon's Donation Treasure to promote new donations",
+      "blockedModalFirstButtonText": "Give now",
+      "blockedModalSecondButtonText": "Maybe later",
       "modalForm": {
         "footerStartText": "By signing up you agree to Ribon’s",
         "footerAnd": "and",

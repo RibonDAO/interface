@@ -137,7 +137,9 @@ function GivingsSection(): JSX.Element {
   }
 
   function shouldRenderCarousel() {
-    return promoterDonations?.length !== 0 && wallet;
+    return (
+      promoterDonations?.length && promoterDonations?.length !== 0 && wallet
+    );
   }
 
   function renderProcessingTransaction() {

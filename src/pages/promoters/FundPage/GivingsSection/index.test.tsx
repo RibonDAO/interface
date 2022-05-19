@@ -1,9 +1,12 @@
-import { clickOn, renderComponent } from "config/testUtils";
+import { clickOn, renderComponent, waitForPromises } from "config/testUtils";
 import {
   expectLogEventToHaveBeenCalledWith,
   expectPageToNavigateTo,
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
+import promoterDonationFactory from "config/testUtils/factories/promoterDonationFactory";
+import { mockGraphqlRequest } from "config/testUtils/test-helper";
+import { PROMOTER_DONATIONS_QUERY_NAME } from "services/apiTheGraph/promoterDonationsApi";
 import GivingsSection from ".";
 
 describe("GivingsSection", () => {
@@ -13,16 +16,18 @@ describe("GivingsSection", () => {
     expectTextToBeInTheDocument("Your givings");
   });
 
-  describe.skip("when there is a wallet connected", () => {
-    beforeEach(() => {
-      renderComponent(<GivingsSection />, {
-        walletProviderValue: {
-          wallet: "0xFFFF",
-        },
-      });
-    });
+  describe("when there is a wallet connected", () => {
+    describe("when the promoter has no givings", () => {
+      beforeEach(async () => {
+        renderComponent(<GivingsSection />, {
+          walletProviderValue: {
+            wallet: "0xFFFF",
+          },
+        });
 
-    describe("when the promoter hasn't givings", () => {
+        await waitForPromises();
+      });
+
       it("render give now card", () => {
         expectTextToBeInTheDocument("Give now");
       });
@@ -42,9 +47,8 @@ describe("GivingsSection", () => {
           expectPageToNavigateTo("/promoters/support-fund");
         });
       });
-    });
-    describe("when the promoter hasn't givings", () => {
-      describe("when the show your givings card is clicked", () => {
+
+      describe.skip("when the show your givings card is clicked", () => {
         beforeEach(() => {
           clickOn("Show your givings");
         });
@@ -60,9 +64,36 @@ describe("GivingsSection", () => {
         });
       });
     });
+
+    describe("when the promoter has givings", () => {
+      beforeEach(async () => {
+        const fiftyCentInWei = "500000000000000000";
+        mockGraphqlRequest(PROMOTER_DONATIONS_QUERY_NAME, {
+          promoterDonations: [
+            promoterDonationFactory({
+              amountDonated: fiftyCentInWei,
+            }),
+          ],
+        });
+
+        renderComponent(<GivingsSection />, {
+          walletProviderValue: {
+            wallet: "0xFFFF",
+          },
+        });
+
+        await waitForPromises();
+      });
+
+      it("shows the user givings", async () => {
+        expectTextToBeInTheDocument("See transaction");
+        expectTextToBeInTheDocument("5/18/2022");
+        expectTextToBeInTheDocument("0.50");
+      });
+    });
   });
 
-  describe.skip("when there is no wallet connected", () => {
+  describe("when there is no wallet connected", () => {
     const connectWalletMock = jest.fn();
 
     beforeEach(() => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { renderComponent } from "config/testUtils";
+import { renderComponent, waitForPromises } from "config/testUtils";
 import { screen, fireEvent } from "@testing-library/react";
 import { setLocalStorageItem } from "lib/localStorage";
 import { LANGUAGE_KEY, useLanguage } from ".";
@@ -40,11 +40,18 @@ describe("useLanguage", () => {
 
   describe("#handleSwitchLanguage", () => {
     it("switches the current language", async () => {
+      Object.defineProperty(window, "location", {
+        value: {
+          reload: jest.fn(),
+        },
+      });
       setLocalStorageItem(LANGUAGE_KEY, "en-US");
       renderComponent(<TestPage />);
       expect(screen.getByText("en-US")).toBeInTheDocument();
 
       fireEvent.click(screen.getByText("change language"));
+      await waitForPromises();
+
       expect(screen.getByText("pt-BR")).toBeInTheDocument();
     });
   });

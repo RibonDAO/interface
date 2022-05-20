@@ -28,24 +28,8 @@ describe("GivingsSection", () => {
         await waitForPromises();
       });
 
-      it("render give now card", () => {
-        expectTextToBeInTheDocument("Give now");
-      });
-
-      describe("when the give now button is clicked", () => {
-        beforeEach(() => {
-          clickOn("Give now");
-        });
-
-        it("logs the fundSupportBtn_click event", () => {
-          expectLogEventToHaveBeenCalledWith("fundSupportBtn_click", {
-            from: "giveNow",
-          });
-        });
-
-        it("navigates to the support fund page", () => {
-          expectPageToNavigateTo("/promoters/support-fund");
-        });
+      it("render make a giving card", () => {
+        expectTextToBeInTheDocument("Make a giving and you’ll see it here");
       });
 
       describe.skip("when the show your givings card is clicked", () => {
@@ -104,14 +88,8 @@ describe("GivingsSection", () => {
       });
     });
 
-    describe("when the give now button is clicked", () => {
-      beforeEach(() => {
-        clickOn("Give now");
-      });
-
-      it("calls the connect wallet request", () => {
-        expect(connectWalletMock).toHaveBeenCalled();
-      });
+    it("render make a giving card", () => {
+      expectTextToBeInTheDocument("Make a giving and you’ll see it here");
     });
   });
 });

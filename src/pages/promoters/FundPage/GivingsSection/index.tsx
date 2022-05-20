@@ -2,7 +2,6 @@ import { useTranslation } from "react-i18next";
 import Carousel from "components/moleculars/sliders/Carousel";
 import CardDoubleTextDividerButton from "components/moleculars/cards/CardDoubleTextDividerButton";
 import useBreakpoint from "hooks/useBreakpoint";
-import Button from "components/atomics/Button";
 import { logError } from "services/crashReport";
 import { formatFromWei } from "lib/web3Helpers/etherFormatters";
 import { formatDate } from "lib/web3Helpers/timeStampFormatters";
@@ -18,6 +17,7 @@ import { RIBON_CONTRACT_ADDRESS } from "utils/contractUtils";
 import { BigNumber } from "ethers";
 import RibonAbi from "utils/abis/RibonAbi.json";
 import useToast from "hooks/useToast";
+import TreasureIcon from "./assets/treasure-icon.svg";
 import RightArrowBlack from "./assets/right-arrow-black.svg";
 import { ReactComponent as BlueRightArrow } from "./assets/right-arrow-blue.svg";
 import * as S from "./styles";
@@ -108,18 +108,6 @@ function GivingsSection(): JSX.Element {
     [promoterDonations],
   );
 
-  const handleSupportButtonClick = () => {
-    if (wallet) {
-      logEvent("fundSupportBtn_click", {
-        from: "giveNow",
-      });
-      navigateTo("/promoters/support-fund");
-      return;
-    }
-
-    connectWallet();
-  };
-
   useEffect(() => {
     if (wallet) {
       fetchPromoterDonations(wallet);
@@ -196,11 +184,8 @@ function GivingsSection(): JSX.Element {
         )
       ) : (
         <S.CardBlank>
+          <S.Image src={TreasureIcon} alt="treasure" />
           <S.GivingText>{t("firstGivingText")}</S.GivingText>
-          <Button
-            text={t("firstGivingButtonText")}
-            onClick={handleSupportButtonClick}
-          />
         </S.CardBlank>
       )}
     </S.Container>

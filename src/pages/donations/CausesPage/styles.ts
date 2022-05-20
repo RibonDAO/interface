@@ -25,14 +25,6 @@ export const Title = styled.h1`
   `}
 `;
 
-export const Text = styled.h3`
-  font-weight: 700;
-
-  ${({ theme }) => css`
-    color: ${theme.colors.darkGray};
-  `}
-`;
-
 export const CausesContainer = styled.div`
   ${({ theme }) => css`
     display: grid;

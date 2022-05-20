@@ -2,16 +2,15 @@
   "donations": {
     "causesPage": {
       "donationModalTitle": "You got a donation ticket",
-      "donationModalBody": "Use your daily tickets to make donations to be sponsored by Ribon’s supporters.",
+      "donationModalBody": "Use your free ticket to make a donation",
       "donationModalButtonText": "Continue",
       "confirmModalTitle": "Enter your e-mail to use your ticket",
       "confirmModalAuthTitle": "Confirm your donation",
       "confirmModalPrimaryButtonText": "Confirm",
       "confirmModalSecondaryButtonText": "Cancel",
-      "donateText": "Donate",
+      "donateText": "Use ticket",
       "donateBlockedText": "Blocked",
       "pageTitle": "Causes",
-      "pageSubtitle": "Donate for free for a cause of your choice",
       "errorModalTitle": "Process failed",
       "errorModalText": "It was not possible to finish this action. Please, check your internet connection and try again.",
       "errorModalButtonText": "Ok",

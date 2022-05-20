@@ -43,7 +43,7 @@ export const ContainerText = styled.div`
 export const Text = styled.h3`
   ${({ theme }) => css`
     color: ${theme.colors.ribonBlack};
-    font-weight: 400;
+    font-weight: 700;
     text-align: center;
     margin-bottom: 8px;
   `}

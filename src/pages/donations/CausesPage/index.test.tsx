@@ -33,10 +33,6 @@ describe("Causes", () => {
     expectTextToBeInTheDocument("Causes");
   });
 
-  it("renders the subtitle", () => {
-    expectTextToBeInTheDocument("Donate for free for a cause of your choice");
-  });
-
   it("shows the non profit", () => {
     expectTextToBeInTheDocument(
       `${nonProfit1.impactByTicket} ${nonProfit1.impactDescription}`,

@@ -1,17 +1,16 @@
 {
   "donations": {
     "causesPage": {
-      "donationModalTitle": "Doe de graça!",
-      "donationModalBody": "Use seus tickets diários para fazer doações a serem patrocinadas pelos apoiadores da Ribon.",
+      "donationModalTitle": "Você recebeu um ticket doação",
+      "donationModalBody": "Use seu ticket gratuito para fazer uma doação",
       "donationModalButtonText": "Continuar",
       "confirmModalTitle": "Insira seu e-mail para usar seu vale doação",
       "confirmModalAuthTitle": "Confirmar doação",
       "confirmModalPrimaryButtonText": "Confirmar",
       "confirmModalSecondaryButtonText": "Cancelar",
-      "donateText": "Doar",
+      "donateText": "Usar ticket",
       "donateBlockedText": "Bloqueado",
       "pageTitle": "Causas",
-      "pageSubtitle": "Doe de graça para uma causa de sua escolha",
       "errorModalTitle": "Falha no processo",
       "errorModalText": "Não foi possível concluir esta ação. Por favor verifique sua conexão com a internet e tente novamente.",
       "errorModalButtonText": "Ok",

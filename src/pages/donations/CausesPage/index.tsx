@@ -164,7 +164,6 @@ function CausesPage(): JSX.Element {
 
       <S.BodyContainer>
         <S.Title>{t("pageTitle")}</S.Title>
-        <S.Text>{t("pageSubtitle")}</S.Text>
         {isLoading ? (
           <Loader />
         ) : (

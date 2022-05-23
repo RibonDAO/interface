@@ -10,7 +10,7 @@ describe("FundPage", () => {
   it("should render without error", () => {
     renderComponent(<FundPage />);
 
-    expectTextToBeInTheDocument("Treasure");
+    expectTextToBeInTheDocument("Donation treasure");
   });
 
   it("logs the fundScreen_view event when loaded", () => {
@@ -30,7 +30,7 @@ describe("FundPage", () => {
 
     describe("when the support fund button is clicked", () => {
       beforeEach(() => {
-        clickOn("Support the fund");
+        clickOn("Support the treasure");
       });
 
       it("logs the fundSupportBtn_click event", () => {

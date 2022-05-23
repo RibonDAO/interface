@@ -74,10 +74,9 @@
   },
   "promoters": {
     "fundPage": {
-      "title": "Treasure",
-      "subtitle": "Help charities by funding donation tickets",
-      "fundBalance": "Fund balance",
-      "fundSupportButtonText": "Support the fund",
+      "title": "Donation treasure",
+      "treasureBalance": "Treasure balance",
+      "treasureSupportButtonText": "Support the treasure",
       "givingsSection": {
         "linkTransactionText": "See transaction",
         "textLastCard": "Show your givings",

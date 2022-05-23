@@ -74,10 +74,9 @@
   },
   "promoters": {
     "fundPage": {
-      "title": "Tesouro",
-      "subtitle": "Ajuda instituições patrocinando tickets de doação",
-      "fundBalance": "Balanço do Fundo",
-      "fundSupportButtonText": "Ajudar o fundo",
+      "title": "Tesouro de doação",
+      "treasureBalance": "Saldo do tesouro",
+      "treasureSupportButtonText": "Fazer uma contribuição",
       "givingsSection": {
         "linkTransactionText": "Ver transação",
         "textLastCard": "Suas contribuições",

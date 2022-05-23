@@ -36,6 +36,7 @@ export const Title = styled.h1`
   text-transform: uppercase;
   margin: 4px 0;
   font-weight: 900;
+  margin-bottom: 16px;
 
   ${({ theme }) => css`
     @media (min-width: ${theme.breakpoints.pad}) {
@@ -58,20 +59,6 @@ export const FundTextCoin = styled.span`
     color: ${theme.colors.ribonBlue};
     font-size: 14px;
     font-weight: 400;
-  `}
-`;
-
-export const Subtitle = styled.p`
-  ${({ theme }) => css`
-    font-weight: 700;
-    font-size: 14px;
-    color: ${theme.colors.darkGray};
-    margin-bottom: 28px;
-
-    @media (min-width: ${theme.breakpoints.pad}) {
-      margin: 8px 0 28px 0;
-      font-size: 16px;
-    }
   `}
 `;
 

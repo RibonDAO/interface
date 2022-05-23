@@ -15,7 +15,7 @@ describe("DonationInProcessPage", () => {
 
     expectTextToBeInTheDocument("Donating...");
     expectTextToBeInTheDocument(
-      "Ribon’s supporters are those responsible for paying for the free donations",
+      "This donation is funded by Ribon’s Donation Treasure",
     );
   });
 

@@ -1,5 +1,5 @@
 import ModalIcon from "components/moleculars/modals/ModalIcon";
-import PigIcon from "assets/icons/pig-icon.svg";
+import TreasureIcon from "assets/icons/treasure-icon.svg";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
@@ -24,7 +24,7 @@ function ModalOnboarding(): JSX.Element {
   return (
     <S.Container>
       <ModalIcon
-        icon={PigIcon}
+        icon={TreasureIcon}
         visible={visible}
         title={t("title")}
         body={t("subtitle")}

@@ -15,7 +15,7 @@ describe("ModalOnboarding", () => {
     it("should render without error", () => {
       renderComponent(<ModalOnboarding />);
 
-      expectTextToBeInTheDocument("Ribon’s Donation Fund");
+      expectTextToBeInTheDocument("Ribon’s Donation Treasure");
     });
   });
 
@@ -27,7 +27,7 @@ describe("ModalOnboarding", () => {
     it("should not be visible", () => {
       renderComponent(<ModalOnboarding />);
 
-      expectTextNotToBeInTheDocument("Ribon’s Donation Fund");
+      expectTextNotToBeInTheDocument("Ribon’s Donation Treasure");
     });
   });
 });

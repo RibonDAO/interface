@@ -90,9 +90,9 @@
         "linkMessageToast": "Saiba mais"
       },
       "modalOnboarding": {
-        "title": "Fundo de doação da Ribon",
-        "subtitle": "O fundo é usado para pagar as doações gratuitas realizadas usando os vales diários",
-        "button": "Ok"
+        "title": "Tesouro de Doação da Ribon",
+        "subtitle": "Os tickets gratuitos que você recebe são financiados por este tesouro",
+        "button": "Continuar"
       }
     },
     "supportFundPage": {

@@ -14,7 +14,7 @@ function CardEmptySection({ cardText, btnText }: Props): JSX.Element {
 
   return (
     <S.Container>
-      <EmptyIcon width="50px" height="50px" />
+      <EmptyIcon width="80px" height="80px" />
       <S.Text>{cardText}</S.Text>
       <S.EmptyDonationButton text={btnText} onClick={handleButtonClick} />
     </S.Container>

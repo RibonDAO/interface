@@ -66,7 +66,7 @@
   },
   "impactPage": {
     "title": "Impact",
-    "subtitle": "You used {{ticketsUsed}} tickets",
+    "subtitle": "You used {{ticketsUsed}} donation tickets",
     "impactText": "You donated ",
     "button": "Show more",
     "noImpactText": "Your donation impact summary will be shown here",

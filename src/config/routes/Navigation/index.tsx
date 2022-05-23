@@ -5,8 +5,8 @@ import CausesIconOn from "./assets/causesIconOn.svg";
 import CausesIconOff from "./assets/causesIconOff.svg";
 import ImpactIconOn from "./assets/impactIconOn.svg";
 import ImpactIconOff from "./assets/impactIconOff.svg";
-import FundIconOff from "./assets/fundIconOff.svg";
-import FundIconOn from "./assets/fundIconOn.svg";
+import TreasureIconOff from "./assets/treasureIconOff.svg";
+import TreasureIconOn from "./assets/treasureIconOn.svg";
 import * as S from "./styles";
 import NavigationLink from "./NavigationLink";
 
@@ -34,9 +34,9 @@ function Navigation(): JSX.Element {
     },
     {
       path: "/promoters/fund",
-      iconOn: FundIconOn,
-      iconOff: FundIconOff,
-      title: t("fundPageTitle"),
+      iconOn: TreasureIconOn,
+      iconOff: TreasureIconOff,
+      title: t("treasurePageTitle"),
       event: "fundNavBtn_click",
     },
     {

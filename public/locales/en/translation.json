@@ -42,7 +42,7 @@
     "menu": {
       "impactPageTitle": "Impact",
       "causesPageTitle": "Causes",
-      "fundPageTitle": "Fund"
+      "treasurePageTitle": "Treasure"
     }
   },
   "layouts": {
@@ -74,7 +74,7 @@
   },
   "promoters": {
     "fundPage": {
-      "title": "Fund",
+      "title": "Treasure",
       "subtitle": "Help charities by funding donation tickets",
       "fundBalance": "Fund balance",
       "fundSupportButtonText": "Support the fund",

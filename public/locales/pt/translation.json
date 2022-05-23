@@ -42,7 +42,7 @@
     "menu": {
       "impactPageTitle": "Impacto",
       "causesPageTitle": "Causas",
-      "fundPageTitle": "Fundo"
+      "treasurePageTitle": "Tesouro"
     }
   },
   "layouts": {
@@ -74,7 +74,7 @@
   },
   "promoters": {
     "fundPage": {
-      "title": "Fundo",
+      "title": "Tesouro",
       "subtitle": "Ajuda instituições patrocinando tickets de doação",
       "fundBalance": "Balanço do Fundo",
       "fundSupportButtonText": "Ajudar o fundo",

@@ -10,7 +10,7 @@ describe("FundPage", () => {
   it("should render without error", () => {
     renderComponent(<FundPage />);
 
-    expectTextToBeInTheDocument("Fund");
+    expectTextToBeInTheDocument("Treasure");
   });
 
   it("logs the fundScreen_view event when loaded", () => {

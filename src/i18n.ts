@@ -6,7 +6,7 @@ import { initReactI18next } from "react-i18next";
 i18n
   .use(Backend)
   .use(LanguageDetector)
-  .use(initReactI18next) // bind react-i18next to the instance
+  .use(initReactI18next)
   .init({
     fallbackLng: "en",
     debug: false,
@@ -15,21 +15,8 @@ i18n
     preload: ["en", "pt"],
     cleanCode: true,
     interpolation: {
-      escapeValue: false, // not needed for react!!
+      escapeValue: false,
     },
-
-    // react i18next special options (optional)
-    // override if needed - omit if ok with defaults
-    /*
-        react: {
-          bindI18n: 'languageChanged',
-          bindI18nStore: '',
-          transEmptyNodeValue: '',
-          transSupportBasicHtmlNodes: true,
-          transKeepBasicHtmlNodesFor: ['br', 'strong', 'i'],
-          useSuspense: true,
-        }
-        */
   });
 
 export default i18n;

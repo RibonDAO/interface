@@ -45,9 +45,9 @@ export const Subtitle = styled.p`
 export const Text = styled.p`
   ${({ theme }) => css`
     margin-top: 8px;
-    font-weight: 500;
+    font-weight: ${theme.font.normal};
     font-size: 12px;
-    color: ${theme.colors.darkGray};
+    color: ${theme.colors.ribonBlue};
 
     @media (min-width: ${theme.breakpoints.pad}) {
       font-size: 14px;
@@ -118,6 +118,8 @@ export const Input = styled.input`
     padding: 8px;
     margin-top: 12px;
     margin-bottom: 8px;
+    color: ${theme.colors.darkGray};
+    font-weight: ${theme.font.bold};
   `}
 `;
 

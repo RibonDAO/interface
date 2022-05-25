@@ -12,7 +12,7 @@ describe("SupportFundPage", () => {
   });
 
   it("should render without error", () => {
-    expectTextToBeInTheDocument("Support the Fund");
+    expectTextToBeInTheDocument("Your giving");
   });
 
   it("logs the fundSupportScreen_view event", () => {
@@ -37,7 +37,7 @@ describe("SupportFundPage", () => {
       clickOn("Cryptocurrency");
 
       expectTextToBeInTheDocument("How much do you want to give?");
-      expectTextToBeInTheDocument("Enter any USDC amount");
+      expectTextToBeInTheDocument("Enter a USDC amount");
     });
   });
 });

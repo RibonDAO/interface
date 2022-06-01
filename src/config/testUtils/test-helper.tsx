@@ -66,3 +66,18 @@ export const mockGraphqlRequest = (
     return null;
   });
 };
+
+export const mockEnv = (envVars: Record<any, any>) => {
+  const INITIAL_ENV = process.env;
+
+  beforeEach(() => {
+    process.env = {
+      ...INITIAL_ENV,
+      ...envVars,
+    };
+  });
+
+  afterAll(() => {
+    process.env = INITIAL_ENV;
+  });
+};

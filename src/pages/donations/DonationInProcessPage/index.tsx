@@ -43,11 +43,11 @@ function DonationInProcessPage(): JSX.Element {
       navigateTo({ pathname: "/donation-done", state: { nonProfit } });
       saveLastDonation();
     } catch (e: any) {
-      if (e.response.status === 403) {
-        navigateTo({ pathname: "/", state: { blockedDonation: true } });
-      } else {
-        navigateTo({ pathname: "/", state: { failedDonation: true } });
-      }
+      const state =
+        e.response.status === 403
+          ? { blockedDonation: true }
+          : { failedDonation: true };
+      navigateTo({ pathname: "/", state });
       logError(e);
     }
   }

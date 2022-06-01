@@ -70,4 +70,29 @@ describe("DonationInProcessPage", () => {
       expectPageToNavigateTo("/", { state: { failedDonation: true } });
     });
   });
+
+  describe("when the donation fails with 403", () => {
+    beforeEach(() => {
+      mockRequest("/api/v1/donations", {
+        payload: {},
+        status: 403,
+        method: "POST",
+      });
+    });
+
+    it("goes to the root page with blocked donation", async () => {
+      renderComponent(<DonationInProcessPage />, {
+        currentUserProviderValue: {
+          currentUser: { email: "user@email.com", id: 1 },
+        },
+        locationState: {
+          integration,
+          nonProfit,
+        },
+      });
+      await waitForPromises();
+
+      expectPageToNavigateTo("/", { state: { blockedDonation: true } });
+    });
+  });
 });

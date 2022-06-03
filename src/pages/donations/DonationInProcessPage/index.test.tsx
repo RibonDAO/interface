@@ -10,6 +10,10 @@ describe("DonationInProcessPage", () => {
   const integration = { id: 1 };
   const nonProfit = { id: 1 };
 
+  mockRequest("/api/v1/users/1/donations_count", {
+    payload: { donationsCount: 1 },
+  });
+
   it("should render without error", () => {
     renderComponent(<DonationInProcessPage />);
 

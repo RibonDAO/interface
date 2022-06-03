@@ -137,6 +137,11 @@
       "!src/**/*.stories.{ts,tsx}",
       "!<rootDir>/node_modules/",
       "!<rootDir>/path/to/dir/"
-    ]
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 77
+      }
+    }
   }
 }

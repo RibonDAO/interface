@@ -20,10 +20,10 @@ function DonationDonePage(): JSX.Element {
   const {
     state: { nonProfit },
   } = useLocation<LocationStateType>();
-  const { navigateTo } = useNavigation();
 
+  const { navigateTo } = useNavigation();
   const handleFinishButtonClick = () => {
-    navigateTo("/");
+    navigateTo("/impact");
   };
 
   useEffect(() => {

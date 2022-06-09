@@ -63,7 +63,7 @@ function ModalImage({
       contentLabel={contentLabel}
       ariaHideApp={false}
     >
-      {image && <S.Image src={image} />}
+      {image && <S.Image src={image} alt="modal-image" />}
       <S.Container>
         <S.Title color={titleColor}>{title}</S.Title>
         <S.Body>{body}</S.Body>

@@ -50,16 +50,6 @@ export const Body = styled.h3`
   margin: 8px 0px 20px;
 `;
 
-export const HighlightedText = styled.p`
-  ${({ theme }) => css`
-    margin-top: 16px;
-    font-weight: bold;
-    text-align: center;
-    color: ${theme.colors.ribonBlack};
-    font-size: 16px;
-  `}
-`;
-
 export const RowsModalRow = styled.div`
   display: flex;
   margin-bottom: 28px;

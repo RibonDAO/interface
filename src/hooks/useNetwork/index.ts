@@ -5,7 +5,7 @@ import { useProvider } from "../useProvider";
 const networks = [
   {
     chainId: 0x13881,
-    rpcUrls: ["https://rpc-mumbai.maticvigil.com"],
+    rpcUrls: ["https://rpc-mumbai.matic.today"],
     chainName: "Mumbai Testnet",
   },
 ];

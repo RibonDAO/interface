@@ -7,7 +7,7 @@ import { Provider } from "@ethersproject/abstract-provider";
 
 export const RIBON_CONTRACT_ADDRESS =
   process.env.REACT_APP_RIBON_CONTRACT_ADDRESS ||
-  "0x7aB7Aaf626D639B0f9EcFdF4A01E51F75E2eB596";
+  "0x38D30f5123e774E26D60C02d4B2927b90953E3d5";
 
 export const DONATION_TOKEN_CONTRACT_ADDRESS =
   process.env.REACT_APP_DONATION_TOKEN_CONTRACT_ADDRESS ||

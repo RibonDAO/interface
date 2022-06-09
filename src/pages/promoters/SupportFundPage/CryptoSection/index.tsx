@@ -21,6 +21,9 @@ import { useLoadingOverlay } from "contexts/loadingOverlayContext";
 import * as S from "../styles";
 
 function CryptoSection(): JSX.Element {
+  const cryptoUser =
+    "0x0000000000000000000000000000000000000000000000000000000000000000";
+
   const [amount, setAmount] = useState("");
   const [loading, setLoading] = useState(false);
   const [userBalance, setUserBalance] = useState("");
@@ -66,7 +69,10 @@ function CryptoSection(): JSX.Element {
     );
 
   const donateToContract = async () =>
-    contract?.functions.addDonationPoolBalance(utils.parseEther(amount));
+    contract?.functions.addDonationPoolBalance(
+      utils.parseEther(amount),
+      cryptoUser,
+    );
 
   const fetchUsdcUserBalance = useCallback(async () => {
     try {

@@ -8,6 +8,7 @@ import { defaultCustomStyles } from "../defaultCustomStyles";
 export type Props = {
   visible?: boolean;
   icon?: string | null;
+  altIcon?: string;
   biggerIcon?: boolean;
   roundIcon?: boolean;
   title?: string | null;
@@ -38,6 +39,7 @@ export type Props = {
 function ModalIcon({
   visible = false,
   icon = null,
+  altIcon = "icon",
   biggerIcon = false,
   roundIcon = false,
   title = null,
@@ -61,8 +63,8 @@ function ModalIcon({
   customStyles,
 }: Props): JSX.Element {
   function renderIcon() {
-    if (biggerIcon) return icon && <S.BiggerIcon src={icon} />;
-    if (roundIcon) return icon && <S.RoundIcon src={icon} />;
+    if (biggerIcon) return icon && <S.BiggerIcon src={icon} alt={altIcon} />;
+    if (roundIcon) return icon && <S.RoundIcon src={icon} alt={altIcon} />;
 
     return icon && <S.Icon src={icon} />;
   }

@@ -61,10 +61,12 @@ function ModalIcon({
   customStyles,
 }: Props): JSX.Element {
   function renderIcon() {
-    if (biggerIcon) return icon && <S.BiggerIcon src={icon} />;
-    if (roundIcon) return icon && <S.RoundIcon src={icon} />;
+    if (biggerIcon)
+      return icon && <S.BiggerIcon src={icon} alt="modal-bigger-icon" />;
+    if (roundIcon)
+      return icon && <S.RoundIcon src={icon} alt="modal-icon-rounded" />;
 
-    return icon && <S.Icon src={icon} />;
+    return icon && <S.Icon src={icon} alt="modal-icon" />;
   }
 
   return (

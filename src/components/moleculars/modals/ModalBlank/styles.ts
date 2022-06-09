@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import ReactModal from "react-modal";
 
 export const BlankModal = styled(ReactModal)`
@@ -58,31 +58,10 @@ export const Image = styled.img`
   height: 152px;
 `;
 
-type TitleProps = {
-  color?: string;
-};
-
-export const Title = styled.h2<TitleProps>`
-  ${({ theme, color }) => css`
-    text-align: center;
-    color: ${color || theme.colors.ribonBlack};
-  `}
-`;
-
 export const Body = styled.h3`
   color: #82aabe;
   text-align: center;
   margin: 8px 0px 20px;
-`;
-
-export const HighlightedText = styled.p`
-  ${({ theme }) => css`
-    margin-top: 16px;
-    font-weight: bold;
-    text-align: center;
-    color: ${theme.colors.ribonBlack};
-    font-size: 16px;
-  `}
 `;
 
 export const RowsModalContainer = styled.div`

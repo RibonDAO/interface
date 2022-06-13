@@ -2,10 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useCallback, useEffect, useState } from "react";
 import SimpleMaskMoney from "simple-mask-money";
 import { useContract } from "hooks/useContract";
-import {
-  DONATION_TOKEN_CONTRACT_ADDRESS,
-  RIBON_CONTRACT_ADDRESS,
-} from "utils/contractUtils";
+import { useNetwork } from "hooks/useNetwork";
 import RibonAbi from "utils/abis/RibonAbi.json";
 import DonationTokenAbi from "utils/abis/DonationToken.json";
 import { useWalletContext } from "contexts/walletContext";
@@ -27,16 +24,17 @@ function CryptoSection(): JSX.Element {
   const [amount, setAmount] = useState("");
   const [loading, setLoading] = useState(false);
   const [userBalance, setUserBalance] = useState("");
+  const { currentNetwork } = useNetwork();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportFundPage",
   });
   const contract = useContract({
-    address: RIBON_CONTRACT_ADDRESS,
+    address: currentNetwork.ribonContractAddress,
     ABI: RibonAbi.abi,
   });
   const donationTokenContract = useContract({
-    address: DONATION_TOKEN_CONTRACT_ADDRESS,
+    address: currentNetwork.donationTokenContractAddress,
     ABI: DonationTokenAbi.abi,
   });
   const toast = useToast();
@@ -61,7 +59,7 @@ function CryptoSection(): JSX.Element {
 
   const approveAmount = async () =>
     donationTokenContract?.functions.approve(
-      RIBON_CONTRACT_ADDRESS,
+      currentNetwork.ribonContractAddress,
       utils.parseEther(amount),
       {
         from: wallet,
@@ -130,7 +128,7 @@ function CryptoSection(): JSX.Element {
       toast({
         message: t("transactionOnBlockchainText"),
         type: "success",
-        link: `https://mumbai.polygonscan.com/tx/${id}`,
+        link: `${currentNetwork.blockExplorerUrls}tx/${id}`,
         linkMessage: t("linkMessageToast"),
       });
       logEvent("toastNotification_view", {

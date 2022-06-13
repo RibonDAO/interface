@@ -13,7 +13,7 @@ import { useWalletContext } from "contexts/walletContext";
 import { useLocation } from "react-router-dom";
 import { useProvider } from "hooks/useProvider";
 import { useContract } from "hooks/useContract";
-import { RIBON_CONTRACT_ADDRESS } from "utils/contractUtils";
+import { useNetwork } from "hooks/useNetwork";
 import { BigNumber } from "ethers";
 import RibonAbi from "utils/abis/RibonAbi.json";
 import useToast from "hooks/useToast";
@@ -41,9 +41,10 @@ function GivingsSection(): JSX.Element {
   const { wallet, connectWallet } = useWalletContext();
   const { getPromoterDonations } = usePromoterDonations();
   const { isMobile } = useBreakpoint();
+  const { currentNetwork } = useNetwork();
   const coin = "USDC";
   const contract = useContract({
-    address: RIBON_CONTRACT_ADDRESS,
+    address: currentNetwork.ribonContractAddress,
     ABI: RibonAbi.abi,
   });
   const { state } = useLocation<LocationStateType>();
@@ -92,7 +93,7 @@ function GivingsSection(): JSX.Element {
           toast({
             message: t("transactionSuccessText"),
             type: "success",
-            link: `https://mumbai.polygonscan.com/tx/${hash}`,
+            link: `${currentNetwork.blockExplorerUrls}tx/${hash}`,
             linkMessage: t("linkMessageToast"),
           });
         }
@@ -101,7 +102,7 @@ function GivingsSection(): JSX.Element {
         toast({
           message: t("transactionFailedText"),
           type: "error",
-          link: `https://mumbai.polygonscan.com/tx/${hash}`,
+          link: `${currentNetwork.blockExplorerUrls}tx/${hash}`,
         });
       }
     },
@@ -121,7 +122,7 @@ function GivingsSection(): JSX.Element {
   }, []);
 
   function concatLinkHash(hash: string) {
-    return `https://mumbai.polygonscan.com/tx/${hash}`;
+    return `${currentNetwork.blockExplorerUrls}tx/${hash}`;
   }
 
   function shouldRenderCarousel() {

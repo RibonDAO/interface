@@ -1,4 +1,3 @@
-import { POLYGON_MUMBAI_TEST_NET_CHAIN_ID } from "config/chains/permittedChains";
 import { expectLogErrorToHaveBeenCalled } from "config/testUtils/expects";
 import {
   checkConnectionRequest,
@@ -6,7 +5,6 @@ import {
   getChain,
   onAccountChange,
   USER_REJECTED_CONNECTION_ERROR_CODE,
-  validChain,
 } from ".";
 
 describe("#walletConnector", () => {
@@ -182,24 +180,6 @@ describe("#walletConnector", () => {
         await checkConnectionRequest();
 
         expectLogErrorToHaveBeenCalled();
-      });
-    });
-  });
-
-  describe("#validChain", () => {
-    describe("when the chain is permitted", () => {
-      const VALID_CHAIN_ID = POLYGON_MUMBAI_TEST_NET_CHAIN_ID;
-
-      it("returns true", () => {
-        expect(validChain(VALID_CHAIN_ID)).toBeTruthy();
-      });
-    });
-
-    describe("when the chain is not permitted", () => {
-      const INVALID_CHAIN_ID = "0x000";
-
-      it("returns true", () => {
-        expect(validChain(INVALID_CHAIN_ID)).toBeFalsy();
       });
     });
   });

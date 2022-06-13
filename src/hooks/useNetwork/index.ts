@@ -1,33 +1,45 @@
 import { useCallback, useEffect, useState } from "react";
-import { Network } from "@ethersproject/networks";
+import { networks } from "config/networks";
+import { logError } from "services/crashReport";
 import { useProvider } from "../useProvider";
 
-const networks = [
-  {
-    chainId: 0x13881,
-    rpcUrls: ["https://rpc-mumbai.matic.today"],
-    chainName: "Mumbai Testnet",
-  },
-];
-
 export function useNetwork() {
-  const [currentNetwork, setCurrentNetwork] = useState<Network>();
+  const [currentNetwork, setCurrentNetwork] = useState(networks[0]);
+  const [isValidNetwork, setIsValidNetwork] = useState(false);
   const provider = useProvider();
 
   const getCurrentNetwork = useCallback(async () => {
     try {
-      setCurrentNetwork(await provider?.getNetwork());
+      const providerNetwork = await provider?.getNetwork()
+      if (providerNetwork) {
+        const permittedNetworks = networks.filter((network) => providerNetwork.chainId === network.chainId);
+        if (permittedNetworks.length > 0) {
+          setCurrentNetwork(permittedNetworks[0]);
+          setIsValidNetwork(true);
+        }
+      }
     } catch (e) {
-      console.log(e);
+      logError(e);
     }
   }, [provider]);
 
-  const isValidNetwork = useCallback(() => {
-    if (!currentNetwork) return false;
-
-    const networksChainIds = networks.map((network) => network.chainId);
-    return networksChainIds.includes(Number(currentNetwork.chainId));
-  }, [currentNetwork]);
+  const changeNetwork = () => {
+    const defaultNetwork = networks[0];
+    window.ethereum.request({
+      method: "wallet_addEthereumChain",
+      params: [{
+          chainId: defaultNetwork.chainId,
+          rpcUrls: [defaultNetwork.rpcUrls],
+          chainName: defaultNetwork.chainName,
+          nativeCurrency: {
+              name: defaultNetwork.currencyName,
+              symbol: defaultNetwork.symbolName,
+              decimals: 18
+          },
+          blockExplorerUrls: [defaultNetwork.blockExplorerUrls]
+      }]
+  });
+  }
 
   useEffect(() => {
     getCurrentNetwork();
@@ -39,7 +51,7 @@ export function useNetwork() {
 
   return {
     currentNetwork,
-    getCurrentNetwork,
     isValidNetwork,
+    changeNetwork,
   };
 }

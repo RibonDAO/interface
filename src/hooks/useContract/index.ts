@@ -1,6 +1,7 @@
 import { Contract } from "@ethersproject/contracts";
 import { useMemo } from "react";
-import { ALCHEMY_URL, getContract } from "utils/contractUtils";
+import { getContract } from "utils/contractUtils";
+import { useNetwork } from "hooks/useNetwork";
 import { Web3Provider, JsonRpcProvider } from "@ethersproject/providers";
 import { logError } from "services/crashReport";
 import { useWalletContext } from "contexts/walletContext";
@@ -15,7 +16,7 @@ export function useContract<T extends Contract = Contract>({
   ABI,
 }: Props): T | null {
   const { wallet } = useWalletContext();
-
+  const { currentNetwork } = useNetwork();
   return useMemo(() => {
     if (!address || !ABI) return null;
     try {
@@ -26,7 +27,7 @@ export function useContract<T extends Contract = Contract>({
         return getContract(address, ABI, signer);
       }
 
-      const provider = new JsonRpcProvider(ALCHEMY_URL);
+      const provider = new JsonRpcProvider(currentNetwork.nodeUrl);
 
       return getContract(address, ABI, provider);
     } catch (error) {

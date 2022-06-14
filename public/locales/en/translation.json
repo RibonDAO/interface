@@ -113,7 +113,11 @@
       "cardSection": {
         "currency": "Currency",
         "subtitleCard": "Choose your giving",
-        "buttonTextCard": "Next"
+        "buttonTextCard": "Next",
+        "detailsSubtitle": "Giving details",
+        "netGivingText": "Net giving: {{netGiving}}*",
+        "serviceFeesText": "Service fees: {{serviceFees}}",
+        "cryptoValueText": "*This giving will be converted in cryptocurrency ({{cryptoGivings}})"
       },
       "linkMessageToast": "Learn more"
     }

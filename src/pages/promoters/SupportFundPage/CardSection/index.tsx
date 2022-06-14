@@ -1,10 +1,16 @@
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useGivingValues from "hooks/apiHooks/useGivingValues";
 import { useLanguage } from "hooks/useLanguage";
 import Dropdown from "components/atomics/Dropdown";
+import Divider from "components/atomics/Divider";
+import theme from "styles/theme";
 import { Currencies } from "types/enums/Currencies";
+import { coinByLanguage } from "lib/coinByLanguage";
 import * as S from "../styles";
+import FeesSection from "./FeesSection";
+
+const { lightGray } = theme.colors;
 
 function CardSection(): JSX.Element {
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
@@ -12,14 +18,23 @@ function CardSection(): JSX.Element {
     keyPrefix: "promoters.supportFundPage.cardSection",
   });
   const { currentLang } = useLanguage();
-  function defaultCoin() {
-    if (currentLang === "pt-BR") return Currencies.BRL;
-
-    return Currencies.USD;
-  }
-  const [currentCoin, setCurrentCoin] = useState<Currencies>(defaultCoin());
+  const [currentCoin, setCurrentCoin] = useState<Currencies>(
+    coinByLanguage(currentLang),
+  );
   const { givingValues, refetch: refetchGivingValues } =
     useGivingValues(currentCoin);
+
+  const givingValue = useCallback(() => {
+    if (givingValues) return givingValues[selectedButtonIndex].value;
+
+    return 0;
+  }, [selectedButtonIndex]);
+
+  function givingTotal() {
+    if (!givingValues) return "";
+
+    return givingValues[selectedButtonIndex].valueText;
+  }
 
   useEffect(() => {
     refetchGivingValues();
@@ -48,6 +63,11 @@ function CardSection(): JSX.Element {
           />
         ))}
       </S.ValuesContainer>
+
+      <Divider color={lightGray} />
+      <S.Subtitle>{t("detailsSubtitle")}</S.Subtitle>
+      <S.GivingValue>{givingTotal()}</S.GivingValue>
+      <FeesSection currency={currentCoin} givingValue={givingValue()} />
 
       <S.ButtonContainer>
         <S.FinishButton text={t("buttonTextCard")} onClick={() => {}} />

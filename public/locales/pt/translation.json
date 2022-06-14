@@ -113,7 +113,11 @@
       "cardSection": {
         "currency": "Moeda",
         "subtitleCard": "Escolha sua contribuição",
-        "buttonTextCard": "Próximo"
+        "buttonTextCard": "Próximo",
+        "detailsSubtitle": "Detalhes da contribuição",
+        "netGivingText": "Contribuição líquida: {{netGiving}}*",
+        "serviceFeesText": "Taxas de serviço: {{serviceFees}}",
+        "cryptoValueText": "*A contribuição será convertida em criptomoedas ({{cryptoGivings}})"
       },
       "linkMessageToast": "Saiba mais"
     }

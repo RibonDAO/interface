@@ -157,3 +157,39 @@ export const UsdcText = styled.p`
     font-size: 14px;
   `}
 `;
+
+export const GivingValue = styled.h4`
+  ${({ theme }) => css`
+    color: ${theme.colors.ribonBlack};
+    font-size: 24px;
+    margin-top: 4px;
+    line-height: 38.4px;
+    font-weight: 900;
+  `}
+`;
+
+export const NetGivingValue = styled.p`
+  ${({ theme }) => css`
+    color: ${theme.colors.darkGray};
+    font-size: 14px;
+    line-height: 23.8px;
+  `}
+`;
+
+export const ServiceFeesValue = styled.p`
+  ${({ theme }) => css`
+    color: ${theme.colors.darkGray};
+    font-size: 14px;
+    line-height: 23.8px;
+  `}
+`;
+
+export const CryptoGivingValue = styled.p`
+  ${({ theme }) => css`
+    color: ${theme.colors.darkGray};
+    font-size: 12px;
+    line-height: 19.2px;
+    font-style: italic;
+    margin-bottom: 32px;
+  `}
+`;

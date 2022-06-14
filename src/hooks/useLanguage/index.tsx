@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
+import { Languages } from "types/enums/Languages";
 
 export const LANGUAGE_KEY = "LANGUAGE_KEY";
 
 export function useLanguage() {
   const { i18n } = useTranslation();
-  const [currentLang, setCurrentLang] = useState(
-    getLocalStorageItem(LANGUAGE_KEY) || "pt-BR",
+  const [currentLang, setCurrentLang] = useState<Languages>(
+    (getLocalStorageItem(LANGUAGE_KEY) as Languages) || Languages.PT,
   );
 
   useEffect(() => {
@@ -16,11 +17,11 @@ export function useLanguage() {
   }, [currentLang, i18n]);
 
   function handleSwitchLanguage() {
-    if (currentLang === "en-US") {
-      setCurrentLang("pt-BR");
+    if (currentLang === Languages.EN) {
+      setCurrentLang(Languages.PT);
       window.location.reload();
-    } else if (currentLang === "pt-BR") {
-      setCurrentLang("en-US");
+    } else if (currentLang === Languages.PT) {
+      setCurrentLang(Languages.EN);
       window.location.reload();
     }
   }

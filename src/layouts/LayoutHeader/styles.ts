@@ -19,14 +19,6 @@ export const Settings = styled.img`
   `}
 `;
 
-export const RightContainer = styled.div`
-  ${() => css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  `}
-`;
-
 export const CounterImage = styled.img`
   ${() => css`
     width: 12.5px;

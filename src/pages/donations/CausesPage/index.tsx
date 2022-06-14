@@ -13,8 +13,11 @@ import { useIntegrationId } from "hooks/useIntegrationId";
 import useIntegration from "hooks/apiHooks/useIntegration";
 import { useModal } from "hooks/modalHooks/useModal";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
+import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
+import { DONATION_MODAL_SEEN_AT_KEY } from "lib/localStorage/constants";
+import { today } from "lib/dateTodayFormatter";
+import { useDonationTicketModal } from "hooks/modalHooks/useDonationTicketModal";
 import * as S from "./styles";
-import DonationTicketModal from "./DonationTicketModal";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
 import ConfirmSection from "./ConfirmSection";
@@ -44,13 +47,28 @@ function CausesPage(): JSX.Element {
     state?.failedDonation,
   );
 
+  const hasNotSeenDonationModal = !getLocalStorageItem(
+    DONATION_MODAL_SEEN_AT_KEY,
+  );
+
   const { navigateTo } = useNavigation();
   const { nonProfits, isLoading } = useNonProfits();
   const { findOrCreateUser } = useUsers();
-  const { signedIn, setCurrentUser } = useCurrentUser();
+  const { signedIn, setCurrentUser, userLastDonation } = useCurrentUser();
+  const { showDonationTicketModal } = useDonationTicketModal();
+
+  function hasDonateToday() {
+    return userLastDonation === today();
+  }
 
   useEffect(() => {
     logEvent("donateIntroDial_view");
+    if (hasNotSeenDonationModal) {
+      setLocalStorageItem(DONATION_MODAL_SEEN_AT_KEY, Date.now().toString());
+    }
+    if (!state?.blockedDonation && !hasDonateToday()) {
+      showDonationTicketModal();
+    }
   }, []);
 
   const closeConfirmModal = useCallback(() => {
@@ -80,7 +98,6 @@ function CausesPage(): JSX.Element {
 
   return (
     <S.Container>
-      <DonationTicketModal />
       {chosenNonProfit && (
         <ConfirmSection
           chosenNonProfit={chosenNonProfit}

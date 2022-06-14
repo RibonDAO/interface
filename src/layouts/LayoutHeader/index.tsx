@@ -13,6 +13,7 @@ import useBreakpoint from "hooks/useBreakpoint";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import useNavigation from "hooks/useNavigation";
 import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
+import { useDonationTicketModal } from "hooks/modalHooks/useDonationTicketModal";
 import ChangeLanguageItem from "./ChangeLanguageItem";
 import LogoutItem from "./LogoutItem";
 import * as S from "./styles";
@@ -32,6 +33,7 @@ function LayoutHeader({
   const { userLastDonation, signedIn } = useCurrentUser();
   const { navigateBack } = useNavigation();
   const { showBlockedDonationModal } = useBlockedDonationModal();
+  const { showDonationTicketModal } = useDonationTicketModal();
 
   if (!integrationId) return <div />;
 
@@ -51,6 +53,9 @@ function LayoutHeader({
 
   function handleCounterClick() {
     if (hasDonateToday()) showBlockedDonationModal();
+    else {
+      showDonationTicketModal();
+    }
   }
 
   return (

@@ -33,11 +33,11 @@ describe("SupportFundPage", () => {
       expectTextToBeInTheDocument("Next");
     });
 
-    it("should render cryptocurrency form", () => {
+    it("should render cryptocurrency section", () => {
       clickOn("Cryptocurrency");
 
-      expectTextToBeInTheDocument("How much do you want to give?");
-      expectTextToBeInTheDocument("Enter a USDC amount");
+      expectTextToBeInTheDocument("Connect your wallet");
+      expectTextToBeInTheDocument("Connect wallet");
     });
   });
 });

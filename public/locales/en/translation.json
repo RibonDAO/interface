@@ -107,6 +107,8 @@
       "card": "Card",
       "cryptocurrency": "Cryptocurrency",
       "transactionOnBlockchainText": "Your transaction is being processed",
+      "connectWallet": "Connect your wallet",
+      "connectWalletButton": "Connect wallet",
       "givingsPage": {
         "title": "Your Givings"
       },

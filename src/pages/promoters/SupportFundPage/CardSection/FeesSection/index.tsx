@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Currencies } from "types/enums/Currencies";
 import useCardGivingFees from "hooks/apiHooks/useCardGivingFees";
-import * as S from "../../styles";
+import * as S from "../styles";
 
 type Props = {
   givingValue: number;

@@ -63,10 +63,12 @@ function CausesPage(): JSX.Element {
 
   useEffect(() => {
     logEvent("donateIntroDial_view");
-    if (hasNotSeenDonationModal) {
+    if (
+      !state?.blockedDonation &&
+      !hasDonateToday() &&
+      hasNotSeenDonationModal
+    ) {
       setLocalStorageItem(DONATION_MODAL_SEEN_AT_KEY, Date.now().toString());
-    }
-    if (!state?.blockedDonation && !hasDonateToday()) {
       showDonationTicketModal();
     }
   }, []);

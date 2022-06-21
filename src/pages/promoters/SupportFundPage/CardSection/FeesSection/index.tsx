@@ -6,8 +6,13 @@ import * as S from "../styles";
 type Props = {
   givingValue: number;
   currency: Currencies;
+  givingTotal: string;
 };
-function FeesSection({ givingValue, currency }: Props): JSX.Element {
+function FeesSection({
+  givingValue,
+  currency,
+  givingTotal,
+}: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportFundPage.cardSection",
   });
@@ -19,6 +24,8 @@ function FeesSection({ givingValue, currency }: Props): JSX.Element {
 
   return (
     <>
+      <S.Subtitle>{t("detailsSubtitle")}</S.Subtitle>
+      <S.GivingValue>{givingTotal}</S.GivingValue>
       <S.NetGivingValue>
         {t("netGivingText", {
           netGiving: loadingFees ? "..." : cardGivingFees?.netGiving,

@@ -3,17 +3,19 @@ import { useCallback, useEffect, useState } from "react";
 import useGivingValues from "hooks/apiHooks/useGivingValues";
 import { useLanguage } from "hooks/useLanguage";
 import Dropdown from "components/atomics/Dropdown";
-import Divider from "components/atomics/Divider";
 import theme from "styles/theme";
 import { Currencies } from "types/enums/Currencies";
 import { coinByLanguage } from "lib/coinByLanguage";
-import * as S from "./styles";
+import Divider from "components/atomics/Divider";
+import BillingInformationSection from "./BillingInformationSection";
 import FeesSection from "./FeesSection";
+import * as S from "./styles";
 
 const { lightGray } = theme.colors;
 
 function CardSection(): JSX.Element {
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
+  const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportFundPage.cardSection",
   });
@@ -25,7 +27,7 @@ function CardSection(): JSX.Element {
     useGivingValues(currentCoin);
 
   const givingValue = useCallback(() => {
-    if (givingValues) return givingValues[selectedButtonIndex].value;
+    if (givingValues) return givingValues[selectedButtonIndex]?.value;
 
     return 0;
   }, [selectedButtonIndex]);
@@ -33,7 +35,22 @@ function CardSection(): JSX.Element {
   function givingTotal() {
     if (!givingValues) return "";
 
-    return givingValues[selectedButtonIndex].valueText;
+    return givingValues[selectedButtonIndex]?.valueText;
+  }
+
+  const sections = [
+    <FeesSection
+      currency={currentCoin}
+      givingValue={givingValue()}
+      givingTotal={givingTotal()}
+    />,
+    <BillingInformationSection />,
+  ];
+
+  function handleClickNext() {
+    if (currentSectionIndex <= sections.length - 1) {
+      setCurrentSectionIndex(currentSectionIndex + 1);
+    }
   }
 
   useEffect(() => {
@@ -54,23 +71,26 @@ function CardSection(): JSX.Element {
       <S.ValuesContainer>
         {givingValues?.map((item, index) => (
           <S.CardValueButton
-            text={item.valueText}
+            text={item?.valueText}
             onClick={() => {
               setSelectedButtonIndex(index);
             }}
             outline={index !== selectedButtonIndex}
-            key={item.value}
+            key={item?.value}
           />
         ))}
       </S.ValuesContainer>
 
       <Divider color={lightGray} />
-      <S.Subtitle>{t("detailsSubtitle")}</S.Subtitle>
-      <S.GivingValue>{givingTotal()}</S.GivingValue>
-      <FeesSection currency={currentCoin} givingValue={givingValue()} />
 
+      {sections[currentSectionIndex]}
       <S.ButtonContainer>
-        <S.FinishButton text={t("buttonTextCard")} onClick={() => {}} />
+        <S.FinishButton
+          text={t("buttonTextCard")}
+          onClick={() => {
+            handleClickNext();
+          }}
+        />
       </S.ButtonContainer>
     </S.CardSectionContainer>
   );

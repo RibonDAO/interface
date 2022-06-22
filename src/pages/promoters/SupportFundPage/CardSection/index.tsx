@@ -30,20 +30,22 @@ function CardSection(): JSX.Element {
     if (givingValues) return givingValues[selectedButtonIndex]?.value;
 
     return 0;
-  }, [selectedButtonIndex]);
+  }, [selectedButtonIndex, givingValues, currentCoin]);
 
-  function givingTotal() {
+  const givingTotal = useCallback(() => {
     if (!givingValues) return "";
 
     return givingValues[selectedButtonIndex]?.valueText;
-  }
+  }, [givingValues, selectedButtonIndex, currentCoin]);
 
   const sections = [
-    <FeesSection
-      currency={currentCoin}
-      givingValue={givingValue()}
-      givingTotal={givingTotal()}
-    />,
+    givingValue() > 0 && (
+      <FeesSection
+        currency={currentCoin}
+        givingValue={givingValue()}
+        givingTotal={givingTotal()}
+      />
+    ),
     <BillingInformationSection />,
   ];
 

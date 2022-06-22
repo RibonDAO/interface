@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Currencies } from "types/enums/Currencies";
 import useCardGivingFees from "hooks/apiHooks/useCardGivingFees";
+import { useEffect } from "react";
 import * as S from "../styles";
 
 type Props = {
@@ -17,10 +18,15 @@ function FeesSection({
     keyPrefix: "promoters.supportFundPage.cardSection",
   });
 
-  const { cardGivingFees, isLoading: loadingFees } = useCardGivingFees(
-    givingValue,
-    currency,
-  );
+  const {
+    cardGivingFees,
+    isLoading: loadingFees,
+    refetch,
+  } = useCardGivingFees(givingValue, currency);
+
+  useEffect(() => {
+    refetch();
+  }, [givingValue]);
 
   return (
     <>

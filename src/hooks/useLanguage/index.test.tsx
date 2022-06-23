@@ -30,11 +30,17 @@ describe("useLanguage", () => {
   });
 
   describe("when there is language defined", () => {
-    it("gets the default language from localStorage", async () => {
+    it("gets the english language from localStorage", async () => {
       setLocalStorageItem(LANGUAGE_KEY, "en-US");
       renderComponent(<TestPage />);
 
       expect(screen.getByText("en-US")).toBeInTheDocument();
+    });
+    it("gets the portuguese language from localStorage", async () => {
+      setLocalStorageItem(LANGUAGE_KEY, "pt-BR");
+      renderComponent(<TestPage />);
+
+      expect(screen.getByText("pt-BR")).toBeInTheDocument();
     });
   });
 

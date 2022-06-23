@@ -16,4 +16,32 @@ describe("CardSideImageButton", () => {
 
     expectTextToBeInTheDocument("text");
   });
+
+  it("should render with a description", () => {
+    renderComponent(
+      <CardSideImageButton
+        buttonText="text"
+        onClick={() => {}}
+        icon=""
+        title="title"
+        description="description"
+      />,
+    );
+
+    expectTextToBeInTheDocument("description");
+  });
+
+  it("should render with a counter", () => {
+    renderComponent(
+      <CardSideImageButton
+        buttonText="text"
+        onClick={() => {}}
+        icon=""
+        title="title"
+        counter={549}
+      />,
+    );
+
+    expectTextToBeInTheDocument("549");
+  });
 });

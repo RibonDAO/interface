@@ -1,4 +1,5 @@
 {
     "skipDirectories": ["/node_modules", "/coverage", "/generators"],
-    "excludeFilenames": ["styles.ts"]
+    "excludeFilenames": ["styles.ts"],
+    "cliOutputLimit": 100
 }

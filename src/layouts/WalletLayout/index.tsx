@@ -6,6 +6,7 @@ import { useWalletContext } from "contexts/walletContext";
 import { onAccountChange } from "lib/walletConnector";
 import WalletIcon from "assets/icons/wallet-icon.svg";
 import { logEvent } from "services/analytics";
+import { walletTruncate } from "lib/formatters/walletTruncate";
 import * as S from "./styles";
 
 export type Props = {
@@ -44,10 +45,7 @@ function WalletLayout({
   const walletButtonText = () => {
     if (!wallet) return t("connectWallet");
 
-    return `${wallet.substring(0, 4)}...${wallet.substring(
-      wallet.length - 4,
-      wallet.length,
-    )}`;
+    return walletTruncate(wallet);
   };
 
   return (

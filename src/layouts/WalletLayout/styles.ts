@@ -21,12 +21,6 @@ export const BodyContainer = styled.div`
   `}
 `;
 
-export const Settings = styled.img`
-  ${() => css`
-    cursor: pointer;
-  `}
-`;
-
 export const WalletButton = styled(Button)`
   ${() => css`
     cursor: pointer;

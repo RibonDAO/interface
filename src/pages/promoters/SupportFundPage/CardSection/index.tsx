@@ -1,12 +1,12 @@
 import { useTranslation } from "react-i18next";
 import { useCallback, useEffect, useState } from "react";
-import useGivingValues from "hooks/apiHooks/useGivingValues";
 import { useLanguage } from "hooks/useLanguage";
 import Dropdown from "components/atomics/Dropdown";
 import theme from "styles/theme";
 import { Currencies } from "types/enums/Currencies";
 import { coinByLanguage } from "lib/coinByLanguage";
 import Divider from "components/atomics/Divider";
+import useOffers from "hooks/apiHooks/useOffers";
 import BillingInformationSection from "./BillingInformationSection";
 import FeesSection from "./FeesSection";
 import * as S from "./styles";
@@ -23,20 +23,19 @@ function CardSection(): JSX.Element {
   const [currentCoin, setCurrentCoin] = useState<Currencies>(
     coinByLanguage(currentLang),
   );
-  const { givingValues, refetch: refetchGivingValues } =
-    useGivingValues(currentCoin);
+  const { offers, refetch: refetchOffers } = useOffers(currentCoin, false);
 
   const givingValue = useCallback(() => {
-    if (givingValues) return givingValues[selectedButtonIndex]?.value;
+    if (offers) return offers[selectedButtonIndex]?.priceValue;
 
     return 0;
-  }, [selectedButtonIndex, givingValues, currentCoin]);
+  }, [selectedButtonIndex, offers, currentCoin]);
 
   const givingTotal = useCallback(() => {
-    if (!givingValues) return "";
+    if (!offers) return "";
 
-    return givingValues[selectedButtonIndex]?.valueText;
-  }, [givingValues, selectedButtonIndex, currentCoin]);
+    return offers[selectedButtonIndex]?.price;
+  }, [offers, selectedButtonIndex, currentCoin]);
 
   const sections = [
     givingValue() > 0 && (
@@ -56,7 +55,7 @@ function CardSection(): JSX.Element {
   }
 
   useEffect(() => {
-    refetchGivingValues();
+    refetchOffers();
   }, [currentCoin]);
 
   return (
@@ -71,14 +70,14 @@ function CardSection(): JSX.Element {
       <S.Subtitle>{t("subtitleCard")}</S.Subtitle>
 
       <S.ValuesContainer>
-        {givingValues?.map((item, index) => (
+        {offers?.map((item, index) => (
           <S.CardValueButton
-            text={item?.valueText}
+            text={item?.price}
             onClick={() => {
               setSelectedButtonIndex(index);
             }}
             outline={index !== selectedButtonIndex}
-            key={item?.value}
+            key={item?.id}
           />
         ))}
       </S.ValuesContainer>

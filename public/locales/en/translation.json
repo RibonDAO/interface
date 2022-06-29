@@ -116,6 +116,7 @@
         "currency": "Currency",
         "subtitleCard": "Choose your giving",
         "buttonTextCard": "Next",
+        "buttonSubmit": "Confirm",
         "detailsSubtitle": "Giving details",
         "netGivingText": "Net giving: {{netGiving}}*",
         "serviceFeesText": "Service fees: {{serviceFees}}",
@@ -126,8 +127,17 @@
           "state": "State",
           "city": "City",
           "taxId": "Tax ID"
+        },
+        "paymentInformationSection": {
+          "title": "Payment method",
+          "email": "E-mail",
+          "cardNumber": "Card number",
+          "cardName": "Name on card",
+          "cardDueDate": "Expiration",
+          "cvv": "Card verification code"
         }
       },
+
       "linkMessageToast": "Learn more"
     }
   },
@@ -136,6 +146,13 @@
       "ethereumNotFoundMessage": "Install Metamask to continue",
       "userRejectedConnectionMessage": "Wallet connection rejected",
       "onErrorMessage": "Wallet connection failed"
+    },
+    "cardPaymentInformation": {
+      "onErrorMessage": "Payment failed. Try again.",
+      "loadingMessage": "Payment in progress...",
+      "modalSuccessTitle": "You've added {{value}} USDC to the treasury!",
+      "modalSuccessDescription": "Your donation has been converted into cryptocurrencies to fund more vouchers.",
+      "modalSuccessButton": "Ok"
     }
   }
 }

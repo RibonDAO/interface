@@ -1,11 +1,12 @@
 import { screen } from "@testing-library/react";
-import { renderComponent } from "./config/testUtils";
+import { renderComponent, waitForPromises } from "./config/testUtils";
 
 import App from "./App";
 
 describe("App", () => {
-  it("renders without errors", () => {
+  it("renders without errors", async () => {
     renderComponent(<App />);
+    await waitForPromises();
 
     expect(screen.queryAllByText("Causes")).toHaveLength(2);
   });

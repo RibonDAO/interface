@@ -17,6 +17,10 @@ export function expectImageToBeInTheDocument(alt: string) {
   return expect(screen.getByAltText(alt)).toBeInTheDocument();
 }
 
+export function expectDisplayValueToBeInTheDocument(value: string) {
+  return expect(screen.getByDisplayValue(value)).toBeInTheDocument();
+}
+
 export function expectLogErrorToHaveBeenCalled(error?: any) {
   if (error) return expect(mockLogErrorFunction).toHaveBeenCalledWith(error);
 

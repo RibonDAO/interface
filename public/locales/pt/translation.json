@@ -116,6 +116,7 @@
         "currency": "Moeda",
         "subtitleCard": "Escolha sua contribuição",
         "buttonTextCard": "Próximo",
+        "buttonSubmit": "Confirmar",
         "detailsSubtitle": "Detalhes da contribuição",
         "netGivingText": "Contribuição líquida: {{netGiving}}*",
         "serviceFeesText": "Taxas de serviço: {{serviceFees}}",
@@ -126,8 +127,17 @@
           "state": "Estado",
           "city": "Cidade",
           "taxId": "CPF"
+        },
+        "paymentInformationSection": {
+          "title": "Forma de pagamento",
+          "email": "E-mail",
+          "cardNumber": "Número do cartão",
+          "cardName": "Nome impresso no cartão",
+          "cardDueDate": "Vencimento",
+          "cvv": "Código de segurança"
         }
       },
+
       "linkMessageToast": "Saiba mais"
     }
   },
@@ -136,6 +146,13 @@
       "ethereumNotFoundMessage": "Instale a Metamask para continuar",
       "userRejectedConnectionMessage": "Conexão com a carteira negada",
       "onErrorMessage": "Falha na conexão da carteira"
+    },
+    "cardPaymentInformation": {
+      "onErrorMessage": "Falha no pagamento. Tente novamente.",
+      "loadingMessage": "Confirmando pagamento...",
+      "modalSuccessTitle": "Você incluiu {{value}} USDC ao tesouro!",
+      "modalSuccessDescription": "Sua doação foi convertida em criptomoedas para financiar mais vales.",
+      "modalSuccessButton": "Ok"
     }
   }
 }

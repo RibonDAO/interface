@@ -35,6 +35,11 @@ import ModalProvider, {
   ModalContext,
 } from "contexts/modalContext";
 
+import CardPaymentInformationProvider, {
+  CardPaymentInformationContext,
+  ICardPaymentInformationContext,
+} from "contexts/cardPaymentInformationContext";
+
 export function renderWithTheme(children: React.ReactNode): RenderResult {
   return render(<ThemeProvider theme={theme}>{children}</ThemeProvider>);
 }
@@ -82,6 +87,7 @@ export type RenderComponentProps = {
   toastProviderValue?: Partial<IToastContext>;
   loadingOverlayValue?: Partial<ILoadingOverlayContext>;
   modalProviderValue?: Partial<IModalContext>;
+  cardPaymentProviderValue?: Partial<ICardPaymentInformationContext>;
   locationState?: Record<any, any>;
 };
 export function renderComponent(
@@ -94,6 +100,7 @@ export function renderComponent(
     locationState = {},
     loadingOverlayValue = {},
     modalProviderValue = {},
+    cardPaymentProviderValue = {},
   }: RenderComponentProps = {},
 ): RenderWithContextResult {
   const queryClient = new QueryClient();
@@ -126,7 +133,12 @@ export function renderComponent(
                         ModalProvider,
                         ModalContext,
                         modalProviderValue,
-                        component,
+                        renderProvider(
+                          CardPaymentInformationProvider,
+                          CardPaymentInformationContext,
+                          cardPaymentProviderValue,
+                          component,
+                        ),
                       ),
                     ),
                   ),

@@ -12,6 +12,7 @@ import FundPage from "pages/promoters/FundPage";
 import SupportFundPage from "pages/promoters/SupportFundPage";
 import GivingsPage from "pages/promoters/GivingsPage";
 import WalletLayout from "layouts/WalletLayout";
+import CardPaymentInformationProvider from "contexts/cardPaymentInformationContext";
 import Navigation from "./Navigation";
 
 function RoutesComponent(): JSX.Element {
@@ -81,7 +82,9 @@ function RoutesComponent(): JSX.Element {
           <CurrentUserProvider>
             <WalletProvider>
               <WalletLayout hideNavigation hasBackButton>
-                <SupportFundPage />
+                <CardPaymentInformationProvider>
+                  <SupportFundPage />
+                </CardPaymentInformationProvider>
               </WalletLayout>
             </WalletProvider>
           </CurrentUserProvider>

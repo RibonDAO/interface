@@ -5,10 +5,11 @@ export const networks = [
     donationTokenContractAddress: "0x21A72dc641c8e5f13717a7e087d6D63B4f9A3574",
     chainId: 0x13881,
     rpcUrls: "https://rpc-mumbai.maticvigil.com",
-    nodeUrl: "https://polygon-mumbai.g.alchemy.com/v2/1fEWpdSHuohPveNBGvlozE6qv9P1uAks",
-    symbolName: "https://mumbai.polygonscan.com/",
-    currencyName: "MATIC",
-    blockExplorerUrls: "Matic"
+    nodeUrl:
+      "https://polygon-mumbai.g.alchemy.com/v2/1fEWpdSHuohPveNBGvlozE6qv9P1uAks",
+    symbolName: "MATIC",
+    currencyName: "Matic",
+    blockExplorerUrls: "https://mumbai.polygonscan.com/",
   },
   {
     chainName: "Localhost 8545",
@@ -20,5 +21,5 @@ export const networks = [
     symbolName: "ETH",
     currencyName: "Ether",
     blockExplorerUrls: "http://localhost:8545",
-  }
+  },
 ];

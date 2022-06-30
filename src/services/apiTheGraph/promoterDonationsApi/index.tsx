@@ -1,23 +1,9 @@
-import { gql, ApolloQueryResult } from "@apollo/client";
+import { ApolloQueryResult } from "@apollo/client";
 import { client } from "..";
-
-export const PROMOTER_DONATIONS_QUERY_NAME = "PROMOTER_DONATIONS_QUERY";
-
-export const QUERY_PROMOTER = gql`
-  query ${PROMOTER_DONATIONS_QUERY_NAME}($user: Bytes!, $first: Int) {
-    promoterDonations(
-      where: { user: $user }
-      orderBy: timestamp
-      orderDirection: desc
-      first: $first
-    ) {
-      id
-      user
-      amountDonated
-      timestamp
-    }
-  }
-`;
+import {
+  QUERY_PROMOTER_DONATION_ID,
+  QUERY_ALL_PROMOTERS_DONATIONS,
+} from "../querys/promoterDonation";
 
 export const promoterDonationsApi = {
   fetchPromoterDonations: (
@@ -25,9 +11,20 @@ export const promoterDonationsApi = {
     first: number,
   ): Promise<ApolloQueryResult<any>> =>
     client.query({
-      query: QUERY_PROMOTER,
+      query: QUERY_PROMOTER_DONATION_ID,
       variables: {
         user,
+        first,
+      },
+      fetchPolicy: "no-cache",
+    }),
+
+  fetchAllPromotersDonations: (
+    first: number,
+  ): Promise<ApolloQueryResult<any>> =>
+    client.query({
+      query: QUERY_ALL_PROMOTERS_DONATIONS,
+      variables: {
         first,
       },
       fetchPolicy: "no-cache",

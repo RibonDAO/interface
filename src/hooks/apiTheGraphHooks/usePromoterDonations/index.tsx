@@ -6,7 +6,13 @@ function usePromoterDonations() {
       await promoterDonationsApi.fetchPromoterDonations(user, maxQuantity);
     return promoterDonations;
   }
-  return { getPromoterDonations };
+
+  async function getAllPromotersDonations(maxQuantity: number) {
+    const { data: promoterDonations } =
+      await promoterDonationsApi.fetchAllPromotersDonations(maxQuantity);
+    return promoterDonations;
+  }
+  return { getPromoterDonations, getAllPromotersDonations };
 }
 
 export default usePromoterDonations;

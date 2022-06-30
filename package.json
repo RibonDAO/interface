@@ -136,7 +136,11 @@
       "src/**/*.{ts,tsx}",
       "!src/**/*.stories.{ts,tsx}",
       "!<rootDir>/node_modules/",
-      "!<rootDir>/path/to/dir/"
+      "!<rootDir>/path/to/dir/",
+      "!<rootDir>/src/config/routes/ComponentLoader.tsx",
+      "!<rootDir>/src/i18n.ts",
+      "!<rootDir>/src/reportWebVitals.ts",
+      "!<rootDir>/src/index.tsx"
     ],
     "coverageThreshold": {
       "global": {

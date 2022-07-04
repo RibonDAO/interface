@@ -58,6 +58,7 @@ function InputAutoComplete({
         aria-label={placeholder}
         name={name}
         required={required}
+        autoComplete="off"
       />
       {showSuggestions && input && (
         <S.Container>

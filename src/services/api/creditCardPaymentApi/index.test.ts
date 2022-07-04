@@ -7,7 +7,7 @@ describe("creditCardPaymentApi", () => {
       api.post = jest.fn();
     });
 
-    const paymentInformations = {
+    const paymentInformation = {
       country: "Brazil",
       state: "TO",
       city: "Palmas",
@@ -24,11 +24,11 @@ describe("creditCardPaymentApi", () => {
     };
 
     it("expects to send a get request with the correct info: url, params and headers", () => {
-      creditCardPaymentApi.postCreditCardPayment(paymentInformations);
+      creditCardPaymentApi.postCreditCardPayment(paymentInformation);
 
       expect(api.post).toHaveBeenCalledWith(
         "/api/v1/payments/credit_cards",
-        paymentInformations,
+        paymentInformation,
       );
     });
   });

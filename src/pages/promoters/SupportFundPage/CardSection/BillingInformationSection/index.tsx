@@ -48,7 +48,7 @@ function BillingInformationSection(): JSX.Element {
       <S.Form>
         <InputAutoComplete
           name="country"
-          suggestions={countryList}
+          suggestions={countryList(currentLang)}
           placeholder={t("country")}
           onOptionChanged={(value: string) => setCountry(value)}
           required

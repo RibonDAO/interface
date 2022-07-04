@@ -4,9 +4,9 @@ import { apiPost } from "..";
 
 const creditCardPaymentApi = {
   postCreditCardPayment: (
-    paymentInformations: CreditCardPayment,
+    paymentInformation: CreditCardPayment,
   ): Promise<AxiosResponse<CreditCardPayment>> =>
-    apiPost("payments/credit_cards", paymentInformations),
+    apiPost("payments/credit_cards", paymentInformation),
 };
 
 export default creditCardPaymentApi;

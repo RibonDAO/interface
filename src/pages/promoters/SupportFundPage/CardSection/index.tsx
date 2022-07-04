@@ -47,7 +47,11 @@ function CardSection(): JSX.Element {
     return offers[selectedButtonIndex]?.price;
   }, [offers, selectedButtonIndex, currentCoin]);
 
-  const sections = [<BillingInformationSection />, <PaymentInformation />];
+  const sections = [
+    <div />,
+    <BillingInformationSection />,
+    <PaymentInformation />,
+  ];
 
   function handleClickNext() {
     setButtonDisabled(true);
@@ -66,26 +70,30 @@ function CardSection(): JSX.Element {
 
   return (
     <S.CardSectionContainer>
-      <Dropdown
-        name="currency"
-        label={t("currency")}
-        values={[Currencies.USD, Currencies.BRL]}
-        defaultValue={currentCoin}
-        onOptionChanged={(value) => setCurrentCoin(value)}
-      />
-      <S.Subtitle>{t("subtitleCard")}</S.Subtitle>
-      <S.ValuesContainer>
-        {offers?.map((item, index) => (
-          <S.CardValueButton
-            text={item?.price}
-            onClick={() => {
-              setSelectedButtonIndex(index);
-            }}
-            outline={index !== selectedButtonIndex}
-            key={item?.id}
+      {currentSectionIndex === 0 && (
+        <>
+          <Dropdown
+            name="currency"
+            label={t("currency")}
+            values={[Currencies.USD, Currencies.BRL]}
+            defaultValue={currentCoin}
+            onOptionChanged={(value) => setCurrentCoin(value)}
           />
-        ))}
-      </S.ValuesContainer>
+          <S.Subtitle>{t("subtitleCard")}</S.Subtitle>
+          <S.ValuesContainer>
+            {offers?.map((item, index) => (
+              <S.CardValueButton
+                text={item?.price}
+                onClick={() => {
+                  setSelectedButtonIndex(index);
+                }}
+                outline={index !== selectedButtonIndex}
+                key={item?.id}
+              />
+            ))}
+          </S.ValuesContainer>
+        </>
+      )}
       <Divider color={lightGray} />
 
       {givingValue() > 0 && (

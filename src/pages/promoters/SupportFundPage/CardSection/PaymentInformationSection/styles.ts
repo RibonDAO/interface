@@ -2,6 +2,13 @@ import styled, { css } from "styled-components";
 
 export const PaymentInformationSectionContainer = styled.form`
   margin-top: 24px;
+  height: 256px;
+
+  ${({ theme }) => css`
+    @media (min-width: ${theme.breakpoints.pad}) {
+      height: auto;
+    }
+  `}
 `;
 
 export const Title = styled.h6`

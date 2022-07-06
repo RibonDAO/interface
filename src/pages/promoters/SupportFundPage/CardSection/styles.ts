@@ -30,11 +30,9 @@ export const ValuesContainer = styled.div`
 `;
 
 export const CardValueButton = styled(Button)`
-  ${() => css`
-    border-radius: 66px;
-    height: 30px;
-    max-width: 112px;
-  `}
+  border-radius: 66px;
+  height: 30px;
+  max-width: 112px;
 `;
 
 export const ButtonContainer = styled.div`
@@ -49,6 +47,7 @@ export const ButtonContainer = styled.div`
     align-items: center;
     position: fixed;
     bottom: 0;
+    right: 0;
     left: 0;
 
     @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {

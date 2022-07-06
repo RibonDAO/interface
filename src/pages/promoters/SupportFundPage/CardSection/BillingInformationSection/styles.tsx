@@ -2,6 +2,13 @@ import styled, { css } from "styled-components";
 
 export const BillingInformationSectionContainer = styled.div`
   margin-top: 24px;
+  height: 256px;
+
+  ${({ theme }) => css`
+    @media (min-width: ${theme.breakpoints.pad}) {
+      height: auto;
+    }
+  `}
 `;
 
 export const Title = styled.h6`

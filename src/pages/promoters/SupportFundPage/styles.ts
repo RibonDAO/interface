@@ -2,11 +2,11 @@ import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   ${() => css`
-    height: 100vh;
     width: 100%;
 
     @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
       max-width: 472px;
+      height: 100vh;
       display: flex;
       flex-direction: column;
     }

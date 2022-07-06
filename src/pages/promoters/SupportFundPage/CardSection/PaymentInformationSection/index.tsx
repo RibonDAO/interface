@@ -43,7 +43,7 @@ function PaymentInformation() {
   };
 
   useEffect(() => {
-    if (email && number && name && expirationDate && cvv.length === 3) {
+    if (email && number && name && expirationDate && cvv.length >= 3) {
       setButtonDisabled(false);
     } else {
       setButtonDisabled(true);
@@ -90,7 +90,7 @@ function PaymentInformation() {
         <InputText
           name="cvv"
           placeholder={t("cvv")}
-          maxLength={3}
+          maxLength={4}
           minLength={3}
           value={cvv}
           onChange={(e) => setCvv(e.target.value)}

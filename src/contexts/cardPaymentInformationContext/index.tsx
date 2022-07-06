@@ -118,7 +118,6 @@ function CardPaymentInformationProvider({ children }: Props) {
 
     const expiration = expirationDate.split("/");
 
-    Object.assign(expiration);
     const paymentInformation = {
       email,
       country,

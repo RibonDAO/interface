@@ -44,7 +44,7 @@ export const Text = styled.h3`
   ${({ theme }) => css`
     color: ${theme.colors.ribonBlack};
     font-weight: 700;
-    text-align: center;
+    align-self: flex-start;
     margin-bottom: 8px;
   `}
 `;

@@ -64,10 +64,13 @@ function GivingsSection(): JSX.Element {
   };
 
   const fetchPromoterDonations = useCallback(
-    async (user: string) => {
+    async (promoter: string) => {
       setLoading(true);
       try {
-        const donations = await getPromoterDonations(user, isMobile ? 2 : 3);
+        const donations = await getPromoterDonations(
+          promoter,
+          isMobile ? 2 : 3,
+        );
         setPromoterDonations(donations.promoterDonations);
       } catch (e) {
         logError(e);

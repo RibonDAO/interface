@@ -1,7 +1,7 @@
 export const networks = [
   {
     chainName: "Mumbai Testnet",
-    ribonContractAddress: "0x38D30f5123e774E26D60C02d4B2927b90953E3d5",
+    ribonContractAddress: "0xD3850333819fBdd43784498F67010E5c87a2EAb3",
     donationTokenContractAddress: "0x21A72dc641c8e5f13717a7e087d6D63B4f9A3574",
     chainId: 0x13881,
     rpcUrls: "https://rpc-mumbai.maticvigil.com",

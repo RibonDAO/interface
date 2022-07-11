@@ -7,13 +7,13 @@ import {
 
 export const promoterDonationsApi = {
   fetchPromoterDonations: (
-    user: string,
+    promoter: string,
     first: number,
   ): Promise<ApolloQueryResult<any>> =>
     client.query({
       query: QUERY_PROMOTER_DONATION_ID,
       variables: {
-        user,
+        promoter,
         first,
       },
       fetchPolicy: "no-cache",

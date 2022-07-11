@@ -5,15 +5,14 @@ export const ALL_PROMOTERS_DONATIONS_QUERY_NAME =
   "ALL_PROMOTERS_DONATIONS_QUERY";
 
 export const QUERY_PROMOTER_DONATION_ID = gql`
-  query ${PROMOTER_DONATIONS_ID_QUERY_NAME}($user: Bytes!, $first: Int) {
+  query ${PROMOTER_DONATIONS_ID_QUERY_NAME}($promoter: Bytes!, $first: Int) {
     promoterDonations(
-      where: { user: $user }
+      where: { promoter: $promoter }
       orderBy: timestamp
       orderDirection: desc
       first: $first
     ) {
       id
-      user
       amountDonated
       timestamp
     }
@@ -28,7 +27,6 @@ export const QUERY_ALL_PROMOTERS_DONATIONS = gql`
       first: $first
     ) {
       id
-      user
       amountDonated
       timestamp
     }

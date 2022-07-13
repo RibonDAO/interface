@@ -106,7 +106,7 @@ describe("SliderImage", () => {
 
         clickToSlide(getByTestId("arrow-right"), 0);
         clickToSlide(getByTestId("arrow-right"), 100);
-        clickToSlide(getByTestId("arrow-right"), 200);
+        clickToSlide(getByTestId("arrow-right"), 300);
 
         await waitFor(async () => {
           expect(await findByRole("heading", { level: 5 })).toHaveTextContent(
@@ -119,7 +119,7 @@ describe("SliderImage", () => {
 
         clickToSlide(getByTestId("arrow-right"), 0);
         clickToSlide(getByTestId("arrow-right"), 100);
-        clickToSlide(getByTestId("arrow-left"), 200);
+        clickToSlide(getByTestId("arrow-left"), 300);
 
         await waitFor(async () => {
           expect(await findByRole("heading", { level: 5 })).toHaveTextContent(

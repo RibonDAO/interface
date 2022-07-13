@@ -22,6 +22,7 @@ function Arrow({ disabled, onClick, direction }: Props): JSX.Element {
       fill={setArrowColor}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
+      data-testid="arrow-right"
     >
       <path d="M8.33334 16.59L13.1042 12L8.33334 7.41L9.80209 6L16.0521 12L9.80209 18L8.33334 16.59Z" />
     </S.ArrowRightImage>
@@ -33,6 +34,7 @@ function Arrow({ disabled, onClick, direction }: Props): JSX.Element {
       fill={setArrowColor}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
+      data-testid="arrow-left"
     >
       <path d="M16.6667 7.41L11.8958 12L16.6667 16.59L15.1979 18L8.94791 12L15.1979 6L16.6667 7.41Z" />
     </S.ArrowLeftImage>

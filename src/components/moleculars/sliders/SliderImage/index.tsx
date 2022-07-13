@@ -23,7 +23,7 @@ function DonationImageSlider({ sliderImages }: Props): JSX.Element {
   });
 
   function sliderSize() {
-    return slider.current?.slides.length;
+    return sliderImages.length;
   }
 
   const onPrevPress = useCallback(

@@ -5,8 +5,12 @@ import Arrow from "components/atomics/arrows/Arrow";
 import * as S from "./styles";
 import "keen-slider/keen-slider.min.css";
 
+export type SliderImageObject = {
+  imageUrl: string;
+};
+
 export type Props = {
-  sliderImages: Array<Record<any, string>>;
+  sliderImages: Array<SliderImageObject>;
 };
 
 function DonationImageSlider({ sliderImages }: Props): JSX.Element {

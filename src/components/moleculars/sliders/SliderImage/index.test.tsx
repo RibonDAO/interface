@@ -10,6 +10,12 @@ const setup = ({ sliderImages }: Props) => {
   return component;
 };
 
+const clickToSlide = (element: Element, amountOfTime: number) => {
+  setTimeout(() => {
+    fireEvent.click(element);
+  }, amountOfTime);
+};
+
 describe("SliderImage", () => {
   describe("when render a single image on slider", () => {
     const sliderProps = {
@@ -46,76 +52,78 @@ describe("SliderImage", () => {
       ],
     };
     describe("when current image is the first", () => {
-      it("should display only right arrow to swipe slider", () => {
-        const { getByTestId } = setup(sliderProps);
+      it("should be possible to slide to next image", async () => {
+        const { getByTestId, findByRole } = setup(sliderProps);
 
-        expect(getByTestId("arrow-left")).toHaveStyle(
-          "background-color: rgba(0,0,0,0)",
-        );
-        expect(getByTestId("arrow-right")).toHaveStyle(
-          "background-color: rgba(0,0,0,0.6)",
-        );
-      });
-    });
-    describe("when current image isn't the first or the last", () => {
-      it("should display both right and left arrow to swipe slider", async () => {
-        const { getByTestId, findByTestId, findByRole } = setup(sliderProps);
-
-        fireEvent.click(getByTestId("arrow-right"));
+        clickToSlide(getByTestId("arrow-right"), 0);
 
         await waitFor(async () => {
-          expect(await findByTestId("arrow-left")).toHaveStyle(
-            "background-color: rgba(0,0,0,0.6)",
-          );
-          expect(await findByTestId("arrow-right")).toHaveStyle(
-            "background-color: rgba(0,0,0,0.6)",
-          );
           expect(await findByRole("heading", { level: 5 })).toHaveTextContent(
             `2/${sliderProps.sliderImages.length}`,
           );
         });
       });
-      it("should display correctly slider size on pagination", async () => {
+      it("shouldn't be possible to slide to previous image", async () => {
         const { getByTestId, findByRole } = setup(sliderProps);
 
-        fireEvent.click(getByTestId("arrow-right"));
+        clickToSlide(getByTestId("arrow-left"), 0);
+
+        await waitFor(async () => {
+          expect(await findByRole("heading", { level: 5 })).toHaveTextContent(
+            `1/${sliderProps.sliderImages.length}`,
+          );
+        });
+      });
+    });
+    describe("when current image isn't the first or the last", () => {
+      it("should be possible to slide to next image", async () => {
+        const { getByTestId, findByRole } = setup(sliderProps);
+
+        clickToSlide(getByTestId("arrow-right"), 0);
 
         await waitFor(async () => {
           expect(await findByRole("heading", { level: 5 })).toHaveTextContent(
             `2/${sliderProps.sliderImages.length}`,
+          );
+        });
+      });
+      it("should be possible to slide to previous image", async () => {
+        const { getByTestId, findByRole } = setup(sliderProps);
+
+        clickToSlide(getByTestId("arrow-right"), 0);
+        clickToSlide(getByTestId("arrow-left"), 100);
+
+        await waitFor(async () => {
+          expect(await findByRole("heading", { level: 5 })).toHaveTextContent(
+            `1/${sliderProps.sliderImages.length}`,
           );
         });
       });
     });
     describe("when current image is the last", () => {
-      it("should display only left arrow to swipe slider", async () => {
-        const { getByTestId, findByTestId } = setup(sliderProps);
-
-        fireEvent.click(getByTestId("arrow-right"));
-        setTimeout(() => {
-          fireEvent.click(getByTestId("arrow-right"));
-        }, 100);
-
-        await waitFor(async () => {
-          expect(await findByTestId("arrow-left")).toHaveStyle(
-            "background-color: rgba(0,0,0,0.6)",
-          );
-          expect(await findByTestId("arrow-right")).toHaveStyle(
-            "background-color: rgba(0,0,0,0)",
-          );
-        });
-      });
-      it("should display correctly slider size on pagination", async () => {
+      it("shouldn't be possible to slide to next image", async () => {
         const { getByTestId, findByRole } = setup(sliderProps);
 
-        fireEvent.click(getByTestId("arrow-right"));
-        setTimeout(() => {
-          fireEvent.click(getByTestId("arrow-right"));
-        }, 100);
+        clickToSlide(getByTestId("arrow-right"), 0);
+        clickToSlide(getByTestId("arrow-right"), 100);
+        clickToSlide(getByTestId("arrow-right"), 200);
 
         await waitFor(async () => {
           expect(await findByRole("heading", { level: 5 })).toHaveTextContent(
             `3/${sliderProps.sliderImages.length}`,
+          );
+        });
+      });
+      it("should be possible to slide to previous image", async () => {
+        const { getByTestId, findByRole } = setup(sliderProps);
+
+        clickToSlide(getByTestId("arrow-right"), 0);
+        clickToSlide(getByTestId("arrow-right"), 100);
+        clickToSlide(getByTestId("arrow-left"), 200);
+
+        await waitFor(async () => {
+          expect(await findByRole("heading", { level: 5 })).toHaveTextContent(
+            `2/${sliderProps.sliderImages.length}`,
           );
         });
       });

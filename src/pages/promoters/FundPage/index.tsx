@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import CardBlank from "components/moleculars/cards/CardBlank";
 import Button from "components/atomics/Button";
 import { useEffect } from "react";
-import { useNetwork } from "hooks/useNetwork";
+import { useNetworkContext } from "contexts/networkContext";
 import useNavigation from "hooks/useNavigation";
 import { useContract } from "hooks/useContract";
 import DonationTokenAbi from "utils/abis/DonationToken.json";
@@ -16,7 +16,7 @@ import ModalOnboarding from "./ModalOnboarding";
 function FundPage(): JSX.Element {
   const coin = "USDC";
   const { navigateTo } = useNavigation();
-  const { currentNetwork } = useNetwork();
+  const { currentNetwork } = useNetworkContext();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.fundPage",

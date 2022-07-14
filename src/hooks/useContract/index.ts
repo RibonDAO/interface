@@ -1,7 +1,7 @@
 import { Contract } from "@ethersproject/contracts";
 import { useMemo } from "react";
 import { getContract } from "utils/contractUtils";
-import { useNetwork } from "hooks/useNetwork";
+import { useNetworkContext } from "contexts/networkContext";
 import { Web3Provider, JsonRpcProvider } from "@ethersproject/providers";
 import { logError } from "services/crashReport";
 import { useWalletContext } from "contexts/walletContext";
@@ -16,7 +16,7 @@ export function useContract<T extends Contract = Contract>({
   ABI,
 }: Props): T | null {
   const { wallet } = useWalletContext();
-  const { currentNetwork } = useNetwork();
+  const { currentNetwork } = useNetworkContext();
   return useMemo(() => {
     if (!address || !ABI) return null;
     try {

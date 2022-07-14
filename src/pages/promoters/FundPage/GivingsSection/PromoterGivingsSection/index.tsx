@@ -14,7 +14,7 @@ import { useWalletContext } from "contexts/walletContext";
 import { useLocation } from "react-router-dom";
 import { useProvider } from "hooks/useProvider";
 import { useContract } from "hooks/useContract";
-import { useNetwork } from "hooks/useNetwork";
+import { useNetworkContext } from "contexts/networkContext";
 import { BigNumber } from "ethers";
 import RibonAbi from "utils/abis/RibonAbi.json";
 import useToast from "hooks/useToast";
@@ -44,7 +44,7 @@ function GivingsSection(): JSX.Element {
   const { getPromoterDonations } = usePromoterDonations();
   const { updateTransactionStatus } = useCryptoTransaction();
   const { isMobile } = useBreakpoint();
-  const { currentNetwork } = useNetwork();
+  const { currentNetwork } = useNetworkContext();
   const coin = "USDC";
   const contract = useContract({
     address: currentNetwork.ribonContractAddress,
@@ -124,9 +124,11 @@ function GivingsSection(): JSX.Element {
   }, [wallet]);
 
   useEffect(() => {
-    contract?.on("PoolBalanceIncreased", () => {
-      transactionIsBeingProcessed(state?.id);
-    });
+    if (state?.processing) {
+      contract?.on("PoolBalanceIncreased", () => {
+        transactionIsBeingProcessed(state?.id);
+      });
+    }
   }, []);
 
   function concatLinkHash(hash: string) {

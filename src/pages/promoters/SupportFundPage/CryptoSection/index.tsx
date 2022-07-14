@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useCallback, useEffect, useState } from "react";
 import SimpleMaskMoney from "simple-mask-money";
 import { useContract } from "hooks/useContract";
-import { useNetwork } from "hooks/useNetwork";
+import { useNetworkContext } from "contexts/networkContext";
 import RibonAbi from "utils/abis/RibonAbi.json";
 import DonationTokenAbi from "utils/abis/DonationToken.json";
 import { useWalletContext } from "contexts/walletContext";
@@ -23,7 +23,7 @@ function CryptoSection(): JSX.Element {
   const [amount, setAmount] = useState("");
   const [loading, setLoading] = useState(false);
   const [userBalance, setUserBalance] = useState("");
-  const { currentNetwork } = useNetwork();
+  const { currentNetwork } = useNetworkContext();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportFundPage",

@@ -39,6 +39,10 @@ import CardPaymentInformationProvider, {
   CardPaymentInformationContext,
   ICardPaymentInformationContext,
 } from "contexts/cardPaymentInformationContext";
+import NetworkProvider, {
+  NetworkContext,
+  INetworkContext,
+} from "contexts/networkContext";
 
 export function renderWithTheme(children: React.ReactNode): RenderResult {
   return render(<ThemeProvider theme={theme}>{children}</ThemeProvider>);
@@ -88,6 +92,7 @@ export type RenderComponentProps = {
   loadingOverlayValue?: Partial<ILoadingOverlayContext>;
   modalProviderValue?: Partial<IModalContext>;
   cardPaymentProviderValue?: Partial<ICardPaymentInformationContext>;
+  networkProviderValue?: Partial<INetworkContext>;
   locationState?: Record<any, any>;
 };
 export function renderComponent(
@@ -101,6 +106,7 @@ export function renderComponent(
     loadingOverlayValue = {},
     modalProviderValue = {},
     cardPaymentProviderValue = {},
+    networkProviderValue = {},
   }: RenderComponentProps = {},
 ): RenderWithContextResult {
   const queryClient = new QueryClient();
@@ -137,7 +143,12 @@ export function renderComponent(
                           CardPaymentInformationProvider,
                           CardPaymentInformationContext,
                           cardPaymentProviderValue,
-                          component,
+                          renderProvider(
+                            NetworkProvider,
+                            NetworkContext,
+                            networkProviderValue,
+                            component,
+                          ),
                         ),
                       ),
                     ),

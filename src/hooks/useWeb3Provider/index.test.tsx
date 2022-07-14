@@ -11,7 +11,7 @@ describe("useWeb3Provider", () => {
   describe("when there is the ethereum object", () => {
     beforeEach(() => {
       Object.defineProperty(window, "ethereum", {
-        value: {},
+        value: { on: jest.fn() },
         configurable: true,
         writable: true,
       });

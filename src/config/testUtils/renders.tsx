@@ -32,6 +32,10 @@ import {
   renderHook as renderTestingLibraryHook,
   RenderHookResult,
 } from "@testing-library/react-hooks";
+import NetworkProvider, {
+  INetworkContext,
+  NetworkContext,
+} from "contexts/networkContext";
 
 export interface RenderWithContextResult {
   component: RenderResult;
@@ -71,6 +75,7 @@ export type RenderComponentProps = {
   toastProviderValue?: Partial<IToastContext>;
   loadingOverlayValue?: Partial<ILoadingOverlayContext>;
   modalProviderValue?: Partial<IModalContext>;
+  networkProviderValue?: Partial<INetworkContext>;
   locationState?: Record<any, any>;
 };
 
@@ -84,6 +89,7 @@ function renderAllProviders(
     locationState = {},
     loadingOverlayValue = {},
     modalProviderValue = {},
+    networkProviderValue = {},
   }: RenderComponentProps = {},
 ) {
   const queryClient = new QueryClient();
@@ -116,7 +122,12 @@ function renderAllProviders(
                         ModalProvider,
                         ModalContext,
                         modalProviderValue,
-                        children,
+                        renderProvider(
+                          NetworkProvider,
+                          NetworkContext,
+                          networkProviderValue,
+                          children,
+                        ),
                       ),
                     ),
                   ),

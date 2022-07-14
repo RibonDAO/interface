@@ -14,6 +14,7 @@ import { useIntegrationId } from "hooks/useIntegrationId";
 import useNavigation from "hooks/useNavigation";
 import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
 import { useDonationTicketModal } from "hooks/modalHooks/useDonationTicketModal";
+import { RIBON_COMPANY_ID } from "utils/constants";
 import ChangeLanguageItem from "./ChangeLanguageItem";
 import LogoutItem from "./LogoutItem";
 import * as S from "./styles";
@@ -58,6 +59,12 @@ function LayoutHeader({
     }
   }
 
+  function renderSideLogo() {
+    if (integrationId?.toString() === RIBON_COMPANY_ID) return undefined;
+
+    return integration?.logo;
+  }
+
   return (
     <S.Container>
       <ModalBlank
@@ -87,7 +94,7 @@ function LayoutHeader({
       <Header
         hasBackButton={hasBackButton}
         onBackButtonClick={navigateBack}
-        sideLogo={integration?.logo}
+        sideLogo={renderSideLogo()}
         rightComponent={
           <S.ContainerRight>
             {rightComponent}

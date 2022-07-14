@@ -26,8 +26,12 @@ function Header({
         ) : (
           <>
             <S.Logo src={Logo} alt="logo" />
-            <S.Divider>|</S.Divider>
-            <S.Logo src={sideLogo} alt="side-logo" />
+            {sideLogo && (
+              <>
+                <S.Divider>|</S.Divider>
+                <S.Logo src={sideLogo} alt="side-logo" />{" "}
+              </>
+            )}
           </>
         )}
       </S.LeftContainer>

@@ -19,7 +19,7 @@ function ImpactPage(): JSX.Element {
   const [impactCardsToShow, setImpactCardsToShow] =
     useState<number>(INITIAL_CARDS_COUNT);
 
-  const userHasDonated = ticketsUsed && currentUser;
+  const userHasDonated = !!ticketsUsed && currentUser;
 
   useEffect(() => {
     logEvent("profile_view");
@@ -53,7 +53,7 @@ function ImpactPage(): JSX.Element {
                 text={`${t("impactText")} ${item.impact.toString()} ${
                   item.nonProfit.impactDescription
                 }`}
-                imageUrl={item.nonProfit.backgroundImage}
+                imageUrl={item.nonProfit.logo}
                 imageAlt={item.impact}
               />
             ))}

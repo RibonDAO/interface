@@ -16,9 +16,8 @@ export const Container = styled.div`
 
 export const Image = styled.img`
   display: block;
-  height: 56px;
-  width: 56px;
-  margin-right: 16px;
+  height: 72px;
+  width: 72px;
   object-fit: cover;
   border-radius: 50%;
 `;

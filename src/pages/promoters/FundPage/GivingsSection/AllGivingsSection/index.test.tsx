@@ -29,9 +29,13 @@ describe("AllGivingsSection", () => {
     });
 
     it("shows the global givings", async () => {
-      expectTextToBeInTheDocument("See transaction");
-      expectTextToBeInTheDocument("5/18/2022");
-      expectTextToBeInTheDocument("0.50");
+      const text = "See transaction";
+      const date = new Date("5/18/2022");
+      const amount = "0.50";
+
+      expectTextToBeInTheDocument(text);
+      expectTextToBeInTheDocument(date.toLocaleDateString());
+      expectTextToBeInTheDocument(amount);
     });
   });
 });

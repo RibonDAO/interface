@@ -22,7 +22,11 @@ import useCryptoTransaction from "hooks/apiHooks/useCryptoTransaction";
 import TreasureIcon from "assets/icons/treasure-off-icon.svg";
 import RightArrowBlack from "assets/icons/right-arrow-black.svg";
 import { ReactComponent as BlueRightArrow } from "assets/icons/right-arrow-blue.svg";
+import usePromoterCardGivings from "hooks/apiHooks/usePromoterCardGivings";
+import { useCurrentUser } from "contexts/currentUserContext";
+import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import * as S from "../styles";
+import sortDonationsByDate, { paidDate } from "./lib/sortDonationsByDate";
 
 type LocationStateType = {
   id: string;
@@ -33,6 +37,7 @@ type LocationStateType = {
 
 function GivingsSection(): JSX.Element {
   const [promoterDonations, setPromoterDonations] = useState<any>();
+  const [allPromoterDonations, setAllPromoterDonations] = useState<any>();
   const [loading, setLoading] = useState<boolean>(false);
   const toast = useToast();
   const provider = useProvider();
@@ -42,6 +47,12 @@ function GivingsSection(): JSX.Element {
   });
   const { wallet, connectWallet } = useWalletContext();
   const { getPromoterDonations } = usePromoterDonations();
+  const { currentUser } = useCurrentUser();
+  const { currentCoin } = useCardPaymentInformation();
+  const { promoterCardGivings } = usePromoterCardGivings(
+    currentUser?.email,
+    currentCoin,
+  );
   const { updateTransactionStatus } = useCryptoTransaction();
   const { isMobile } = useBreakpoint();
   const { currentNetwork } = useNetworkContext();
@@ -124,6 +135,20 @@ function GivingsSection(): JSX.Element {
   }, [wallet]);
 
   useEffect(() => {
+    const onlyCrypto = wallet && (!currentUser || !promoterCardGivings);
+    const onlyCard = !wallet && currentUser && promoterCardGivings;
+    const both = !!wallet && !!currentUser && !!promoterCardGivings;
+
+    if (both) {
+      setAllPromoterDonations(promoterCardGivings?.concat(promoterDonations));
+    } else if (onlyCrypto) {
+      setAllPromoterDonations(promoterDonations);
+    } else if (onlyCard) {
+      setAllPromoterDonations(promoterCardGivings);
+    }
+  }, [promoterDonations, promoterCardGivings, wallet, currentUser]);
+
+  useEffect(() => {
     if (state?.processing) {
       contract?.on("PoolBalanceIncreased", () => {
         transactionIsBeingProcessed(state?.id);
@@ -135,11 +160,7 @@ function GivingsSection(): JSX.Element {
     return `${currentNetwork.blockExplorerUrls}tx/${hash}`;
   }
 
-  function shouldRenderCarousel() {
-    return (
-      promoterDonations?.length && promoterDonations?.length !== 0 && wallet
-    );
-  }
+  const shouldRenderCarousel = () => allPromoterDonations?.length;
 
   function renderProcessingTransaction() {
     if (processingTransaction) {
@@ -160,18 +181,31 @@ function GivingsSection(): JSX.Element {
     return null;
   }
 
-  function renderCardsCarouselPromoterGivings() {
-    return promoterDonations?.map((item: any) => (
-      <CardDoubleTextDividerButton
-        key={item.id}
-        firstText={formatDate(item.timestamp).toString()}
-        mainText={formatFromWei(item.amountDonated)}
-        rightComplementText={coin}
-        buttonText={t("linkTransactionText")}
-        rightComponentButton={RightArrowBlack}
-        link={concatLinkHash(item.id)}
-      />
-    ));
+  function renderAllPromoterDonations() {
+    const allDonations = sortDonationsByDate(allPromoterDonations);
+    const isCryptoDonation = (item: any) => !!item.timestamp;
+
+    return allDonations?.map((item: any) =>
+      isCryptoDonation(item) ? (
+        <CardDoubleTextDividerButton
+          key={item.id}
+          firstText={formatDate(item.timestamp).toString()}
+          mainText={formatFromWei(item.amountDonated)}
+          rightComplementText={coin}
+          buttonText={t("linkTransactionText")}
+          rightComponentButton={RightArrowBlack}
+          link={concatLinkHash(item.id)}
+        />
+      ) : (
+        <CardDoubleTextDividerButton
+          key={item.id}
+          firstText={paidDate(item.paidDate)}
+          mainText={item.cryptoAmount}
+          rightComplementText={coin}
+          buttonText={t("cardDonationText")}
+        />
+      ),
+    );
   }
 
   return (
@@ -181,7 +215,7 @@ function GivingsSection(): JSX.Element {
         !loading && (
           <Carousel sliderPerView={isMobile ? 1.8 : 4} spacing={-10}>
             {renderProcessingTransaction()}
-            {renderCardsCarouselPromoterGivings()}
+            {renderAllPromoterDonations()}
             {false && (
               <S.LastCardCarousel
                 onClick={() => {

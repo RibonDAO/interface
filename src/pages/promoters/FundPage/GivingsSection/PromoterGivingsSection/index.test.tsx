@@ -4,9 +4,12 @@ import {
   expectPageToNavigateTo,
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
+import promoterCardGivingFactory from "config/testUtils/factories/promoterCardGivingFactory";
 import promoterDonationFactory from "config/testUtils/factories/promoterDonationFactory";
-import { mockGraphqlRequest } from "config/testUtils/test-helper";
+import userFactory from "config/testUtils/factories/userFactory";
+import { mockGraphqlRequest, mockRequest } from "config/testUtils/test-helper";
 import { PROMOTER_DONATIONS_ID_QUERY_NAME } from "services/apiTheGraph/querys/promoterDonation";
+import { Currencies } from "types/enums/Currencies";
 import PromoterGivingsSection from ".";
 
 describe("PromoterGivingsSection", () => {
@@ -49,7 +52,7 @@ describe("PromoterGivingsSection", () => {
       });
     });
 
-    describe("when the promoter has givings", () => {
+    describe("when the promoter has crypto givings", () => {
       beforeEach(async () => {
         const fiftyCentInWei = "500000000000000000";
         mockGraphqlRequest(PROMOTER_DONATIONS_ID_QUERY_NAME, {
@@ -70,9 +73,11 @@ describe("PromoterGivingsSection", () => {
       });
 
       it("shows the user givings", async () => {
+        const amount = "0.50";
+
         expectTextToBeInTheDocument("See transaction");
         expectTextToBeInTheDocument("5/18/2022");
-        expectTextToBeInTheDocument("0.50");
+        expectTextToBeInTheDocument(amount);
       });
     });
   });
@@ -91,5 +96,49 @@ describe("PromoterGivingsSection", () => {
     it("render make a giving card", () => {
       expectTextToBeInTheDocument("Make a giving and you’ll see it here");
     });
+  });
+});
+
+describe("when the promoter has card givings", () => {
+  const user = userFactory({ id: 1, email: "test@gmail.com" });
+  const currency = Currencies.USD;
+  const promoterCardGivings = [
+    promoterCardGivingFactory({
+      id: 2,
+      crypto_amount: 0.5,
+      paid_date: "2022-01-01 19:31:15 UTC",
+    }),
+    promoterCardGivingFactory({
+      id: 1,
+      crypto_amount: 1.5,
+      paid_date: "2022-02-02 19:31:15 UTC",
+    }),
+  ];
+
+  mockRequest(
+    `/api/v1/givings/user_givings?email=${user.email}&currency=${currency}`,
+    {
+      payload: promoterCardGivings,
+    },
+  );
+
+  beforeEach(async () => {
+    renderComponent(<PromoterGivingsSection />, {
+      currentUserProviderValue: {
+        currentUser: user,
+      },
+      cardPaymentProviderValue: {
+        currentCoin: currency,
+      },
+    });
+
+    await waitForPromises();
+  });
+
+  it("shows promoter card givings", () => {
+    expectTextToBeInTheDocument("01/01/2022");
+    expectTextToBeInTheDocument("0.5");
+    expectTextToBeInTheDocument("02/02/2022");
+    expectTextToBeInTheDocument("1.5");
   });
 });

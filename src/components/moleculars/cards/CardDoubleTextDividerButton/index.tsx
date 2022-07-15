@@ -8,8 +8,8 @@ export type Props = {
   mainText: string;
   rightComplementText: string;
   buttonText: string;
-  rightComponentButton: string;
-  link: string;
+  rightComponentButton?: string;
+  link?: string;
   processing?: boolean;
   processingText?: string;
 };

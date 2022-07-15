@@ -9,29 +9,31 @@ describe("cryptoTransacrionApi", () => {
     });
 
     it("expects to send a get request with the correct info: url, params and headers", () => {
-      cryptoTransactionApi.postTransaction("0xAAAA", '5.00', '0xBBBB');
+      cryptoTransactionApi.postTransaction("0xAAAA", "5.00", "0xBBBB");
 
       expect(api.post).toHaveBeenCalledWith("/api/v1/payments/cryptocurrency", {
         transactionHash: "0xAAAA",
-        amount: '5.00',
-        walletAddress: '0xBBBB'
+        amount: "5.00",
+        walletAddress: "0xBBBB",
       });
     });
   });
 
-  describe("#putTransacrion", () => {
+  describe("#putTransaction", () => {
     beforeEach(() => {
       api.put = jest.fn();
     });
 
     it("expects to send a get request with the correct info: url, params and headers", () => {
-      cryptoTransactionApi.putTransactionStatus("0xAAAA", TransactionStatus.SUCCESS);
+      cryptoTransactionApi.putTransactionStatus(
+        "0xAAAA",
+        TransactionStatus.SUCCESS,
+      );
 
       expect(api.put).toHaveBeenCalledWith("/api/v1/payments/cryptocurrency", {
         transactionHash: "0xAAAA",
-        status: TransactionStatus.SUCCESS
+        status: TransactionStatus.SUCCESS,
       });
     });
   });
 });
-

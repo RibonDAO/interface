@@ -12,15 +12,15 @@
     "@types/node": "^16.7.13",
     "@types/react": "^17.0.20",
     "@types/react-dom": "^17.0.9",
-    "axios": "^0.24.0",
+    "axios": "^0.27.2",
     "camelcase-keys": "^7.0.2",
     "ethers": "^5.5.3",
     "firebase": "8.8.1",
     "graphql": "^16.4.0",
-    "i18next": "^21.6.6",
+    "i18next": "^21.8.14",
     "i18next-browser-languagedetector": "^6.1.4",
     "i18next-http-backend": "^1.3.1",
-    "keen-slider": "^6.6.3",
+    "keen-slider": "^6.7.0",
     "lottie-colorify": "^0.8.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -115,7 +115,7 @@
     "mrm": "4",
     "plop": "^3.0.5",
     "prettier": "^2.5.1",
-    "webpack": "^5.66.0"
+    "webpack": "^5.73.0"
   },
   "lint-staged": {
     "*.ts": [

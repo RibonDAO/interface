@@ -16,5 +16,7 @@ Default.args = {
   sliderImages: [
     { imageUrl: "https://picsum.photos/600/600" },
     { imageUrl: "https://picsum.photos/600/600?random=2" },
+    { imageUrl: "https://picsum.photos/600/600?random=3" },
+    { imageUrl: "https://img-9gag-fun.9cache.com/photo/a81OBv1_460svvp9.webm" },
   ],
 };

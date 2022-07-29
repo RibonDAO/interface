@@ -8,6 +8,7 @@ import Loader from "components/atomics/Loader";
 import { logError } from "services/crashReport";
 import { useLocation } from "react-router-dom";
 import useUsers from "hooks/apiHooks/useUsers";
+import useSources from "hooks/apiHooks/useSources";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import useIntegration from "hooks/apiHooks/useIntegration";
@@ -54,6 +55,7 @@ function CausesPage(): JSX.Element {
   const { navigateTo } = useNavigation();
   const { nonProfits, isLoading } = useNonProfits();
   const { findOrCreateUser } = useUsers();
+  const { createSource } = useSources();
   const { signedIn, setCurrentUser, userLastDonation } = useCurrentUser();
   const { showDonationTicketModal } = useDonationTicketModal();
 
@@ -82,6 +84,10 @@ function CausesPage(): JSX.Element {
       try {
         if (!signedIn) {
           const user = await findOrCreateUser(email);
+          if (integrationId) {
+            createSource(user.id, integrationId);
+          }
+
           setCurrentUser(user);
         }
         navigateTo({

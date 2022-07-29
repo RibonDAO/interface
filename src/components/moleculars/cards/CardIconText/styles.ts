@@ -30,12 +30,9 @@ export const LeftContainer = styled.div`
   ${() => css`
     display: flex;
     align-items: center;
-    width: 67%;
   `}
 `;
 
 export const RightContainer = styled.div`
-  ${() => css`
-    width: 33%;
-  `}
+  ${() => css``}
 `;

@@ -24,8 +24,7 @@ export const BodyContainer = styled.div`
 export const WalletButton = styled(Button)`
   ${() => css`
     cursor: pointer;
-    height: 20px;
-    padding: 5px 12px;
+    padding: 3px 12px;
     font-size: 12px;
   `}
 `;

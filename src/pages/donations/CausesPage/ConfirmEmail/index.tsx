@@ -45,10 +45,6 @@ function ConfirmEmail({
       <div>
         <S.FooterText>
           {t("footerStartText")}{" "}
-          <a href={t("useTermsLink")} target="_blank" rel="noreferrer">
-            {t("useTermsText")}
-          </a>{" "}
-          {t("footerAnd")}{" "}
           <a href={t("privacyPolicyLink")} target="_blank" rel="noreferrer">
             {t("privacyPolicyText")}
           </a>

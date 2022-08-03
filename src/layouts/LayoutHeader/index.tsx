@@ -79,8 +79,8 @@ function LayoutHeader({
           },
           content: {
             border: `1px solid ${theme.colors.lightGray}`,
-            paddingLeft: 8,
-            paddingRight: 8,
+            paddingLeft: 16,
+            paddingRight: 16,
             position: isMobile ? "relative" : "absolute",
             top: isMobile ? "5%" : "8%",
             right: isMobile ? "" : "14%",

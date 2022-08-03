@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 export const Container = styled.div`
   ${({ theme }) => css`
     display: flex;
-    background-color: #fff;
+    background-color: ${theme.colors.ribonWhite};
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -56,11 +56,13 @@ export const TextContainer = styled.div`
 `;
 
 export const RibonsAmountContainer = styled.div`
-  background-color: #fff;
-  width: 60%;
-  border-radius: 20px;
-  position: absolute;
-  bottom: 4px;
+  ${({ theme }) => css`
+    background-color: ${theme.colors.ribonWhite};
+    width: 60%;
+    border-radius: 20px;
+    position: absolute;
+    bottom: 4px;
+  `}
 `;
 
 export const TitleContainer = styled.div`
@@ -109,7 +111,7 @@ export const CounterContainer = styled.span`
   ${({ theme }) => css`
     text-align: center;
     min-width: 16px;
-    color: #fff;
+    color: ${theme.colors.ribonWhite};
     position: absolute;
     background-color: ${theme.colors.phcYellow2};
     right: 0px;

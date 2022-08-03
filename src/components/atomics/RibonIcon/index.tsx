@@ -5,7 +5,7 @@ export type Props = {
   color?: string;
 };
 
-function RibonIcon({ color = "#00CDB4" }: Props): JSX.Element {
+function RibonIcon({ color = "#00DA93" }: Props): JSX.Element {
   return (
     <S.Container color={color}>
       <svg

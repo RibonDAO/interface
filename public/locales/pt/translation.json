@@ -4,12 +4,12 @@
       "donationModalTitle": "Você recebeu um ticket doação",
       "donationModalBody": "Use seu ticket gratuito para fazer uma doação",
       "donationModalButtonText": "Continuar",
-      "confirmModalTitle": "Entre ou registre-se para usar seu ticket doação",
+      "confirmModalTitle": "Insira seu e-mail para usar seu ticket doação",
       "confirmModalAuthTitle": "Confirmar doação",
       "confirmModalPrimaryButtonText": "Confirmar",
       "confirmModalSecondaryButtonText": "Cancelar",
       "donateText": "Usar ticket",
-      "donateBlockedText": "Bloqueado",
+      "donateBlockedText": "Sem tickets",
       "pageTitle": "Causas",
       "errorModalTitle": "Falha no processamento",
       "errorModalText": "A rede está instável e não foi possível registrar sua doação. Tente novamente, por favor.",
@@ -19,11 +19,11 @@
       "blockedModalFirstButtonText": "Contribuir agora",
       "blockedModalSecondButtonText": "Talvez depois",
       "modalForm": {
-        "footerStartText": "Ao inserir seu e-mail e se inscrever, você aceita os",
+        "footerStartText": "Ao inserir seu e-mail e se inscrever, você aceita a nossa",
         "footerAnd": "e",
         "useTermsText": "Termos de Serviço",
         "privacyPolicyText": "Política de Privacidade",
-        "privacyPolicyLink": "https://blog.ribon.io/2017/12/20/politica-de-privacidade/",
+        "privacyPolicyLink": "https://ribon.io/2021/06/01/politica-de-privacidade-e-retencao-de-dados-pessoais/",
         "useTermsLink": "https://blog.ribon.io/2021/07/12/termos-e-condicoes-de-uso-da-ribon/"
       }
     },

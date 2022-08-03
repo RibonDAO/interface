@@ -49,7 +49,7 @@ function NonProfitsList({
     });
     chooseNonProfit(nonProfit);
     if (hasDonateToday()) {
-      logEvent("donateFinishedDonation_view");
+      logEvent("donateBlockedButton_click");
       showBlockedDonationModal();
       logEvent("donateBlockedDonation_view");
     } else {

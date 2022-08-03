@@ -7,7 +7,7 @@ describe("<RibonIcon />", () => {
   it("should render with default color", () => {
     renderComponent(<RibonIcon />);
     expect(screen.getByLabelText(/Ribon Icon/i).parentElement).toHaveStyle(
-      "color: #00CDB4",
+      "color: #00DA93",
     );
   });
 

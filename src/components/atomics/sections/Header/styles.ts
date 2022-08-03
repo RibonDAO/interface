@@ -18,7 +18,6 @@ export const Container = styled.div`
 export const Logo = styled.img`
   ${() => css`
     height: 34px;
-    width: 45px;
     object-fit: contain;
   `}
 `;

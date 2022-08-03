@@ -70,9 +70,11 @@ export const Title = styled.h2<TitleProps>`
 `;
 
 export const Body = styled.h3`
-  color: #82aabe;
-  text-align: center;
-  margin: 8px 0px 20px;
+  ${({ theme }) => css`
+    color: ${theme.colors.darkGray};
+    text-align: center;
+    margin: 8px 0px 20px;
+  `}
 `;
 
 export const RowsModalContainer = styled.div`

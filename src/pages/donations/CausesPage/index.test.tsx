@@ -1,9 +1,11 @@
 import React from "react";
 import { renderComponent } from "config/testUtils";
-import Header from "components/atomics/sections/Header";
 import { mockRequest } from "config/testUtils/test-helper";
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
-import { expectTextToBeInTheDocument } from "config/testUtils/expects";
+import {
+  expectLogEventToHaveBeenCalledWith,
+  expectTextToBeInTheDocument,
+} from "config/testUtils/expects";
 import Causes from ".";
 
 jest.mock(
@@ -39,7 +41,17 @@ describe("Causes", () => {
     );
   });
 
-  xit("renders the header", () => {
-    expect(Header).toHaveBeenCalled();
+  describe("when the page state is donationFailed", () => {
+    beforeEach(() => {
+      renderComponent(<Causes />, {
+        locationState: {
+          failedDonation: true,
+        },
+      });
+    });
+
+    it("logs the donateDonationError_view event", () => {
+      expectLogEventToHaveBeenCalledWith("donateDonationError_view");
+    });
   });
 });

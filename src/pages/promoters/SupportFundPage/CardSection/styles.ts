@@ -33,6 +33,7 @@ export const CardValueButton = styled(Button)`
   border-radius: 66px;
   height: 30px;
   max-width: 112px;
+  font-size: 12px;
 `;
 
 export const ButtonContainer = styled.div`

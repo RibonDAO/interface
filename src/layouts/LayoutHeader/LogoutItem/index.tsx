@@ -8,7 +8,6 @@ import ModalIcon from "components/moleculars/modals/ModalIcon";
 import warningIcon from "assets/icons/warning-icon.svg";
 import successIcon from "assets/icons/success-icon.svg";
 import letterIcon from "assets/icons/letter-icon.svg";
-import Button from "components/atomics/Button";
 import theme from "styles/theme";
 import * as S from "./styles";
 
@@ -47,7 +46,7 @@ function LogoutItem(): JSX.Element {
         text={email}
         icon={letterIcon}
         rightComponent={
-          <Button
+          <S.LogoutButton
             outline
             text={t("logoutButton")}
             onClick={() => setWarningModalVisible(true)}

@@ -1,6 +1,5 @@
 import Button from "components/atomics/Button";
 import styled, { css } from "styled-components";
-import theme from "styles/theme";
 
 export const Container = styled.div`
   ${() => css`
@@ -15,7 +14,7 @@ export const Container = styled.div`
 `;
 
 export const Text = styled.p`
-  ${() => css`
+  ${({ theme }) => css`
     color: ${theme.colors.darkGray};
     font-weight: 700;
     margin-top: 28px;

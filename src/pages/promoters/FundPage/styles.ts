@@ -22,9 +22,9 @@ export const CarouselContainer = styled.div`
 `;
 
 export const CardBlank = styled.div`
-  ${() => css`
+  ${({ theme }) => css`
     padding: 12px 16px;
-    background: #ffffff;
+    background: ${theme.colors.ribonWhite};
     box-shadow: 0px 4px 12px rgba(24, 86, 105, 0.15);
     border-radius: 16px;
     height: 123px;
@@ -90,12 +90,14 @@ export const GivingsCardContainer = styled.div`
 `;
 
 export const GivingsCard = styled.div`
-  padding: 12px 16px;
-  background: #ffffff;
-  box-shadow: 0px 4px 12px rgba(24, 86, 105, 0.15);
-  border-radius: 16px;
-  width: 206px;
-  display: inline-block;
+  ${({ theme }) => css`
+    padding: 12px 16px;
+    background: ${theme.colors.ribonWhite};
+    box-shadow: 0px 4px 12px rgba(24, 86, 105, 0.15);
+    border-radius: 16px;
+    width: 206px;
+    display: inline-block;
+  `}
 `;
 
 export const GivingDate = styled.p`

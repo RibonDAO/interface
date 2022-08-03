@@ -9,25 +9,29 @@ type Props = {
 export const Container = styled.div`
   ${({ theme }) => css`
     display: flex;
+    gap: 8px;
     flex-direction: row;
     justify-content: space-around;
-    position: absolute;
+    padding: 3px 12px;
+    position: fixed;
+    bottom: 0;
     width: 100%;
     align-self: flex-end;
-    background: #fbfbfd;
-    box-shadow: 0px 4px 12px rgba(24, 86, 105, 0.15);
+    background: ${theme.colors.ribonWhite};
+    box-shadow: 0px -2px 4px rgba(24, 86, 105, 0.15);
+    z-index: 2;
 
     @media (min-width: ${theme.breakpoints.pad}) {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 50px 50px 0px 50px;
-      width: 80px;
-      position: static;
+      padding: 56px 0px;
+      max-width: 80px;
+      position: fixed;
       align-self: flex-start;
       justify-content: flex-start;
       min-height: 100vh;
-      background: #fbfbfd;
+      background: ${theme.colors.ribonWhite}
       box-shadow: 0px 4px 12px rgba(24, 86, 105, 0.15);
     }
   `}
@@ -38,16 +42,21 @@ export const Title = styled.p`
     color: ${enabled ? theme.colors.ribonBlack : theme.colors.darkGray};
     text-decoration: none;
     font-size: 12px;
+    line-height: 16px;
   `}
 `;
 
 export const StyledLink = styled(Link)`
-  ${() => css`
+  ${({ theme }) => css`
     text-decoration: none;
     display: flex;
+    justify-content: space-between;
+    gap: 2px;
     flex-direction: column;
-    padding: 10px;
-    margin-bottom: 12px;
+    padding: 8px 0px;
+    @media (min-width: ${theme.breakpoints.pad}) {
+      gap: 6px;
+    }
   `}
 `;
 

@@ -4,12 +4,12 @@
       "donationModalTitle": "You got a donation ticket",
       "donationModalBody": "Use your free ticket to make a donation",
       "donationModalButtonText": "Continue",
-      "confirmModalTitle": "Log in or sign up to use your donation ticket",
+      "confirmModalTitle": "Enter your e-mail to use your donation ticket",
       "confirmModalAuthTitle": "Confirm your donation",
       "confirmModalPrimaryButtonText": "Confirm",
       "confirmModalSecondaryButtonText": "Cancel",
       "donateText": "Use ticket",
-      "donateBlockedText": "Blocked",
+      "donateBlockedText": "No tickets",
       "pageTitle": "Causes",
       "errorModalTitle": "Processing failed",
       "errorModalText": "The network is unstable and it was not possible to process your donation. Try again shortly.",
@@ -19,11 +19,11 @@
       "blockedModalFirstButtonText": "Give now",
       "blockedModalSecondButtonText": "Maybe later",
       "modalForm": {
-        "footerStartText": "By signing up you agree to Ribon’s",
+        "footerStartText": "By signing up you agree to Ribon's",
         "footerAnd": "and",
         "useTermsText": "Terms of Service",
         "privacyPolicyText": "Privacy Policy",
-        "privacyPolicyLink": "https://blog.ribon.io/2021/09/16/privacy-and-retention-of-personal-data-policy/",
+        "privacyPolicyLink": "https://ribon.io/2022/06/10/privacy-and-personal-data-retention-policy/",
         "useTermsLink": "https://blog.ribon.io/2021/07/12/termos-e-condicoes-de-uso-da-ribon/"
       }
     },

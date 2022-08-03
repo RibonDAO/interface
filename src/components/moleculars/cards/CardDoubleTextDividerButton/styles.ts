@@ -5,10 +5,10 @@ type Props = {
 };
 
 export const Container = styled.div`
-  ${() => css`
+  ${({ theme }) => css`
     max-width: 206px;
     padding: 12px 16px;
-    background: #ffffff;
+    background: ${theme.colors.ribonWhite};
     box-shadow: 0px 4px 12px rgba(24, 86, 105, 0.15);
     border-radius: 16px;
     height: 123px;

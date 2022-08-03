@@ -7,6 +7,7 @@ import Divider from "components/atomics/Divider";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import useOffers from "hooks/apiHooks/useOffers";
 import { logEvent } from "services/analytics";
+import { removeInsignificantZeros } from "utils/currency";
 import BillingInformationSection from "./BillingInformationSection";
 import FeesSection from "./FeesSection";
 import * as S from "./styles";
@@ -84,8 +85,11 @@ function CardSection(): JSX.Element {
             <S.ValuesContainer>
               {offers?.map((item, index) => (
                 <S.CardValueButton
-                  text={item?.price}
+                  text={removeInsignificantZeros(item?.price)}
                   onClick={() => {
+                    logEvent("fundSupportAmountBtn_click", {
+                      option: item?.id,
+                    });
                     setSelectedButtonIndex(index);
                   }}
                   outline={index !== selectedButtonIndex}

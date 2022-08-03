@@ -3,6 +3,7 @@ import CardIconText from "components/moleculars/cards/CardIconText";
 import ButtonSwitch from "components/atomics/ButtonSwitch";
 import { useLanguage } from "hooks/useLanguage";
 import { useTranslation } from "react-i18next";
+import { logEvent } from "services/analytics";
 import * as S from "./styles";
 
 function ChangeLanguageItem(): JSX.Element {
@@ -12,6 +13,7 @@ function ChangeLanguageItem(): JSX.Element {
   });
 
   function handleSwitch() {
+    logEvent("configLanguageButton_click");
     handleSwitchLanguage();
   }
 

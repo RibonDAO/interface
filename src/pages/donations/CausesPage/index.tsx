@@ -87,11 +87,11 @@ function CausesPage(): JSX.Element {
     async (email: string) => {
       try {
         if (!signedIn) {
+          logEvent("authDonationDialButton_click");
           const user = await findOrCreateUser(email);
           if (integrationId) {
             createSource(user.id, integrationId);
           }
-
           setCurrentUser(user);
         }
         navigateTo({

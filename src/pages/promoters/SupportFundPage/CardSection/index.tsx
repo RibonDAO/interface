@@ -87,6 +87,9 @@ function CardSection(): JSX.Element {
                 <S.CardValueButton
                   text={removeInsignificantZeros(item?.price)}
                   onClick={() => {
+                    logEvent("fundSupportAmountBtn_click", {
+                      option: item?.id,
+                    });
                     setSelectedButtonIndex(index);
                   }}
                   outline={index !== selectedButtonIndex}

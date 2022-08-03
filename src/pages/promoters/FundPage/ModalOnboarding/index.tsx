@@ -3,6 +3,7 @@ import TreasureIcon from "assets/icons/treasure-icon.svg";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
+import { logEvent } from "services/analytics";
 import * as S from "./styles";
 
 export const FUND_MODAL_ONBOARDING_VIEWED_KEY =
@@ -14,6 +15,7 @@ function ModalOnboarding(): JSX.Element {
   );
 
   useEffect(() => {
+    logEvent("fundOnboardingMdl_view");
     setLocalStorageItem(FUND_MODAL_ONBOARDING_VIEWED_KEY, "true");
   }, []);
 

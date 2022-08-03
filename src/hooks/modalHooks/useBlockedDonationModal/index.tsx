@@ -3,6 +3,7 @@ import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import useNavigation from "hooks/useNavigation";
 import blockedIcon from "assets/images/il-ticket-gray.svg";
 import { useEffect } from "react";
+import { logEvent } from "services/analytics";
 import { useModal } from "../useModal";
 
 export function useBlockedDonationModal(initialState?: boolean) {
@@ -18,6 +19,7 @@ export function useBlockedDonationModal(initialState?: boolean) {
       body: t("blockedModalText"),
       primaryButtonText: t("blockedModalFirstButtonText"),
       primaryButtonCallback: () => {
+        logEvent("fundExternalCtaBtn_click");
         hide();
         navigateTo("/promoters/fund");
       },

@@ -54,6 +54,7 @@ function NonProfitsList({
       logEvent("donateBlockedDonation_view");
     } else {
       setConfirmModalVisible(true);
+      logEvent("authDonationDial_view");
     }
   }
 

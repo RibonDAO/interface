@@ -6,6 +6,7 @@ import { useLanguage } from "hooks/useLanguage";
 import { mask } from "lib/maskForTaxId";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import InputText from "components/atomics/inputs/InputText";
+import { logEvent } from "services/analytics";
 import { countryList } from "./countryList";
 import * as S from "./styles";
 
@@ -40,6 +41,10 @@ function BillingInformationSection(): JSX.Element {
       setButtonDisabled(true);
     }
   }, [country, state, city, taxId]);
+
+  useEffect(() => {
+    logEvent("fundSupportBillingInfo_view");
+  });
 
   return (
     <S.BillingInformationSectionContainer>

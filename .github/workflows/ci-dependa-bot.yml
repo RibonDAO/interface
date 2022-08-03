@@ -1,10 +1,7 @@
 name: Dependabot Continuous Integration
 
 on:
-  workflow_run:
-    workflows: [Dependabot PR Check]
-    types:
-      - completed
+  pull_request_target
 env:
   REACT_APP_FIREBASE_API_KEY: ${{ secrets.REACT_APP_FIREBASE_API_KEY }}
   REACT_APP_FIREBASE_AUTH_DOMAIN: ${{ secrets.REACT_APP_FIREBASE_AUTH_DOMAIN }}
@@ -24,7 +21,7 @@ jobs:
   test-and-preview:
     environment: staging
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       - uses: actions/checkout@v2
         with:

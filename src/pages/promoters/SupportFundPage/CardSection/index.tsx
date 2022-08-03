@@ -7,7 +7,7 @@ import Divider from "components/atomics/Divider";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import useOffers from "hooks/apiHooks/useOffers";
 import { logEvent } from "services/analytics";
-import { removeInsignificantZeros } from "utils/currency";
+import { removeInsignificantZeros } from "lib/formatters/currencyFormatter";
 import BillingInformationSection from "./BillingInformationSection";
 import FeesSection from "./FeesSection";
 import * as S from "./styles";

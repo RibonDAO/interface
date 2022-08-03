@@ -1,3 +1,4 @@
+import { stringToLocaleDateString } from "lib/formatters/dateFormatter";
 import React, {
   createContext,
   Dispatch,
@@ -42,17 +43,21 @@ function CurrentUserProvider({ children }: Props) {
     getUserFromLocalStorage(),
   );
 
-  function getUserLastDonationFromLocalStorage() {
+  function getUserLastDonation() {
     const lastDonation = localStorage.getItem(
       `${CURRENT_USER_LAST_DONATION_KEY}_${currentUser?.id}`,
     );
-    if (!lastDonation || lastDonation === "undefined") return undefined;
+    if (!lastDonation || lastDonation === "undefined") {
+      if (currentUser?.lastDonationAt)
+        return stringToLocaleDateString(currentUser.lastDonationAt);
+      else return undefined;
+    }
 
     return JSON.parse(lastDonation);
   }
 
   const [userLastDonation, setUserLastDonation] = useState<string | "">(
-    getUserLastDonationFromLocalStorage(),
+    getUserLastDonation(),
   );
   const [signedIn, setSignedIn] = useState(false);
 
@@ -70,6 +75,8 @@ function CurrentUserProvider({ children }: Props) {
   }
 
   function setUserLastDonationInLocalStorage() {
+    if (!currentUser?.id) return;
+
     localStorage.setItem(
       `${CURRENT_USER_LAST_DONATION_KEY}_${currentUser?.id}`,
       JSON.stringify(userLastDonation),

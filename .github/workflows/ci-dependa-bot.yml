@@ -2,7 +2,7 @@ name: Dependabot Continuous Integration
 
 on:
   workflow_run:
-    workflows: [ "Dependabot PR Check" ]
+    workflows: [Dependabot PR Check]
     types:
       - completed
 env:

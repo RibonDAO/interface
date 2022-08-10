@@ -1,6 +1,6 @@
 import { GrowthBook } from "@growthbook/growthbook-react";
 import firebase from "firebase/app";
-import { setUserProperties } from "services/analytics";
+import { setUserId } from "services/analytics";
 
 // Create a GrowthBook instance
 export const growthbook = new GrowthBook({
@@ -18,7 +18,7 @@ export const growthbookSetAttributes = async () => {
   const installationId = await firebase.app().installations().getId();
   // eslint-disable-next-line no-console
   console.log(installationId);
-  setUserProperties({ anonymous_id: installationId });
+  setUserId(installationId);
   growthbook.setAttributes({
     id: installationId,
     company: "ribon",

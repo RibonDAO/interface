@@ -122,10 +122,10 @@ function CausesPage(): JSX.Element {
       )}
 
       <S.BodyContainer>
-        <IfFeatureEnabled feature="teste-1">
-          <p>Feature test!</p>
-        </IfFeatureEnabled>
         <S.Title>{t("pageTitle")}</S.Title>
+        <IfFeatureEnabled feature="teste-1">
+          <p>.</p>
+        </IfFeatureEnabled>
         {isLoading ? (
           <Loader />
         ) : (

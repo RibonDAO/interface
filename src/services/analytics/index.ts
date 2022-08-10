@@ -49,7 +49,7 @@ export function setUserProperties(
   }
 }
 
-export function setUserId(userId: number): void {
+export function setUserId(userId: number | string): void {
   const preparedUserId = userId.toString();
   firebase.analytics().setUserId(preparedUserId);
 }

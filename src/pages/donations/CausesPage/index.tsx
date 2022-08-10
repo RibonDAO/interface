@@ -18,6 +18,7 @@ import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import { DONATION_MODAL_SEEN_AT_KEY } from "lib/localStorage/constants";
 import { today } from "lib/dateTodayFormatter";
 import { useDonationTicketModal } from "hooks/modalHooks/useDonationTicketModal";
+import { IfFeatureEnabled } from "@growthbook/growthbook-react";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
@@ -121,6 +122,9 @@ function CausesPage(): JSX.Element {
       )}
 
       <S.BodyContainer>
+        <IfFeatureEnabled feature="teste-1">
+          <p>Feature test!</p>
+        </IfFeatureEnabled>
         <S.Title>{t("pageTitle")}</S.Title>
         {isLoading ? (
           <Loader />

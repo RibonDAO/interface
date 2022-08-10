@@ -1,13 +1,12 @@
 import { GrowthBook } from "@growthbook/growthbook-react";
 import firebase from "firebase/app";
-import { setUserId } from "services/analytics";
+import { logEvent, setUserId } from "services/analytics";
 
 // Create a GrowthBook instance
 export const growthbook = new GrowthBook({
   // Callback when a user is put into an A/B experiment
   trackingCallback: (experiment, result) => {
-    // eslint-disable-next-line no-console
-    console.log("Experiment Viewed", {
+    logEvent("viewed_experiment", {
       experimentId: experiment.key,
       variationId: result.variationId,
     });

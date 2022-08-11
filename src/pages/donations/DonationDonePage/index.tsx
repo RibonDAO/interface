@@ -1,12 +1,11 @@
 import CardRoundDoubleImage from "components/moleculars/cards/CardRoundDoubleImage";
-import CardSideSquareImageButton from "components/moleculars/cards/CardSideSquareImageButton";
 import useNavigation from "hooks/useNavigation";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { logEvent } from "services/analytics";
-import theme from "styles/theme";
 import NonProfit from "types/entities/NonProfit";
+import heartsBackground from "assets/animations/hearts-background.json";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -22,47 +21,35 @@ function DonationDonePage(): JSX.Element {
   } = useLocation<LocationStateType>();
 
   const { navigateTo } = useNavigation();
-  const handleFinishButtonClick = () => {
-    navigateTo("/impact");
-  };
 
   useEffect(() => {
     logEvent("donateFinishedDonation_view", { selected: nonProfit?.id });
+    setTimeout(() => {
+      navigateTo("/");
+    }, 5000);
   }, []);
 
   return (
     <S.Container>
+      <S.HeartAnimation
+        animationData={heartsBackground}
+        width={window.innerWidth}
+        height={window.innerHeight}
+        style={{
+          opacity: 0.2,
+          position: "absolute",
+        }}
+      />
       <S.Wrapper>
         <CardRoundDoubleImage
           leftImage={nonProfit?.mainImage}
           rightImage={nonProfit?.logo}
         />
         <S.Title>{t("title")}</S.Title>
-        <S.Subtitle>{`${nonProfit?.impactByTicket} ${nonProfit?.impactDescription}`}</S.Subtitle>
-
-        <S.InnerContainer>
-          <S.HrDivider color={theme.colors.lightGray} width="100%" />
-
-          <CardSideSquareImageButton
-            title={`${t("ngoTitle")} ${nonProfit?.name}`}
-            text={nonProfit?.description}
-            image={nonProfit?.backgroundImage}
-            buttonText={t("moreInfoButtonText")}
-            onButtonClick={() => {
-              window.open(nonProfit?.link, "_blank");
-            }}
-          />
-        </S.InnerContainer>
+        <S.Subtitle>{`${t("youDonatedText")} ${nonProfit?.impactByTicket} ${
+          nonProfit?.impactDescription
+        }`}</S.Subtitle>
       </S.Wrapper>
-
-      <S.ButtonContainer>
-        <S.FinishButton
-          text={t("button")}
-          onClick={() => {
-            handleFinishButtonClick();
-          }}
-        />
-      </S.ButtonContainer>
     </S.Container>
   );
 }

@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import Button from "components/atomics/Button";
 import Divider from "components/atomics/Divider";
+import LottieAnimation from "components/atomics/LottieAnimation";
 
 export const Container = styled.div`
   ${() => css`
@@ -51,11 +52,12 @@ export const Title = styled.h5`
 
 export const Subtitle = styled.h6`
   ${() => css`
-    color: ${({ theme }) => theme.colors.ribonBlue};
+    color: ${({ theme }) => theme.colors.darkGray};
     margin-top: 4px;
     margin-bottom: 24px;
     font-size: 16px;
     line-height: 160%;
+    text-align: center;
 
     @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
       font-size: 20px;
@@ -92,3 +94,5 @@ export const FinishButton = styled(Button)`
     height: 56px;
   }
 `;
+
+export const HeartAnimation = styled(LottieAnimation)``;

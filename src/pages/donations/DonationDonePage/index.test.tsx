@@ -7,7 +7,7 @@ describe("DonationDone", () => {
   it("should render without error", () => {
     renderComponent(<DonationDone />);
 
-    expectTextToBeInTheDocument("Thank you for your donation!");
+    expectTextToBeInTheDocument("Thank you for the donation!");
   });
 
   it("shows the impact of the donation", () => {
@@ -20,6 +20,6 @@ describe("DonationDone", () => {
       },
     });
 
-    expectTextToBeInTheDocument("2 days of impact");
+    expectTextToBeInTheDocument("You donated 2 days of impact");
   });
 });

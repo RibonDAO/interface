@@ -2,8 +2,7 @@
   "donations": {
     "causesPage": {
       "donationModalTitle": "Você recebeu um ticket doação",
-      "donationModalBody": "Use seu ticket gratuito para fazer uma doação",
-      "donationModalButtonText": "Continuar",
+      "donationModalButtonText": "Receber ticket",
       "confirmModalTitle": "Insira seu e-mail para usar seu ticket doação",
       "confirmModalAuthTitle": "Confirmar doação",
       "confirmModalPrimaryButtonText": "Confirmar",

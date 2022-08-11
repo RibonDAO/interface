@@ -66,6 +66,7 @@ export const Title = styled.h2<TitleProps>`
   ${({ theme, color }) => css`
     text-align: center;
     color: ${color || theme.colors.ribonBlack};
+    margin-bottom: 16px;
   `}
 `;
 
@@ -73,7 +74,7 @@ export const Body = styled.h3`
   ${({ theme }) => css`
     color: ${theme.colors.darkGray};
     text-align: center;
-    margin: 8px 0px 20px;
+    margin: 0px 0px 20px;
   `}
 `;
 

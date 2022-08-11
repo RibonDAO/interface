@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useEffect } from "react";
 import Ticket from "assets/images/ticket.svg";
+import { logEvent } from "services/analytics";
 import { useModal } from "../useModal";
 
 export function useDonationTicketModal(initialState?: boolean) {
@@ -13,7 +14,6 @@ export function useDonationTicketModal(initialState?: boolean) {
     type: MODAL_TYPES.MODAL_ICON,
     props: {
       title: t("donationModalTitle"),
-      body: t("donationModalBody"),
       primaryButtonText: t("donationModalButtonText"),
       primaryButtonCallback: () => {
         hide();
@@ -25,6 +25,7 @@ export function useDonationTicketModal(initialState?: boolean) {
 
   const showDonationTicketModal = () => {
     show();
+    logEvent("dailyTicketDial_view");
   };
 
   const hideDonationTicketModal = () => {

@@ -8,6 +8,7 @@ export type Props = {
   title: string;
   onClick: () => void;
 };
+
 function NavigationLink({
   to,
   icon,

@@ -8,6 +8,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
+import { setUserId } from "services/analytics";
 import User from "types/entities/User";
 
 export interface ICurrentUserContext {
@@ -83,10 +84,17 @@ function CurrentUserProvider({ children }: Props) {
     );
   }
 
+  function setUserIdInAnalytics() {
+    if (currentUser?.id) {
+      setUserId(currentUser?.id);
+    }
+  }
+
   useEffect(() => {
     setSignedIn(!!currentUser);
     setUserInLocalStorage();
     setUserLastDonationInLocalStorage();
+    setUserIdInAnalytics();
   }, [currentUser, userLastDonation]);
 
   const currentUserObject: ICurrentUserContext = useMemo(

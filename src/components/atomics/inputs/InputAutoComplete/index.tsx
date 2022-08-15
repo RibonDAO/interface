@@ -49,7 +49,7 @@ function InputAutoComplete({
 
   return (
     <>
-      <S.Input
+      <S.InputAutoComplete
         id={name}
         onChange={onChange}
         onClick={onClick}

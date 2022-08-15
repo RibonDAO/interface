@@ -2,31 +2,30 @@ import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   position: relative;
-  width: 100%;
+  display: inline-block;
 `;
 
 export const Input = styled.div`
   ${({ theme }) => css`
-    box-sizing: border-box;
-    border-radius: 5px;
-    width: 100%;
-    max-width: 472px;
     height: 40px;
+    width: 100%;
     margin-bottom: 12px;
-    display: inline-block;
-    color: ${theme.colors.ribonBlack};
     border: 1px solid ${theme.colors.ribonBlue};
     position: relative;
+    display: inline-block;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: ${theme.colors.ribonBlack};
 
     label {
-      position: relative;
-      top: -9px;
-      left: 10px;
-      font-size: 14px;
-      text-align: center;
       padding: 0 2px;
       display: inline;
-      background-color: ${theme.colors.bgGray};
+      position: relative;
+      left: 10px;
+      top: -9px;
+      font-size: 14px;
+      text-align: center;
+      background-color: ${theme.colors.ribonWhite};
       color: ${theme.colors.ribonBlue};
 
       @media (min-width: ${theme.breakpoints.desktop}) {
@@ -35,18 +34,18 @@ export const Input = styled.div`
     }
 
     input {
+      width: 100%;
       padding: 0 10px;
-      color: ${theme.colors.ribonBlack};
       border: none;
       position: relative;
       top: -5px;
-      box-sizing: border-box;
-      border-radius: 5px;
-      font-family: Lato;
-      font-weight: bold;
-      font-size: 16px;
       line-height: 20px;
-      width: 100%;
+      font-size: 16px;
+      font-weight: bold;
+      box-sizing: border-box;
+      font-family: Lato;
+      border-radius: 5px;
+      color: ${theme.colors.ribonBlack};
 
       @media (min-width: ${theme.breakpoints.desktop}) {
         top: -8px;

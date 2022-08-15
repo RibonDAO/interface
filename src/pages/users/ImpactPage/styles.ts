@@ -1,4 +1,4 @@
-import ButtonRound from "components/atomics/buttons/ButtonRound";
+import Button from "components/atomics/buttons/Button";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -50,7 +50,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Button = styled(ButtonRound)`
+export const CardButton = styled(Button)`
   width: 100px;
   align-self: center;
   margin: 16px 0;

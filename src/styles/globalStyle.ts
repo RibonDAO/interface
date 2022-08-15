@@ -28,7 +28,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     #root {
-      display: flex;
+      display: block;
     }
 
     #launcher {

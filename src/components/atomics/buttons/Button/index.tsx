@@ -21,6 +21,7 @@ export type Props = {
   outline?: boolean;
   disabled?: boolean;
   round?: boolean;
+  size?: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export default function Button({
@@ -39,6 +40,7 @@ export default function Button({
   outline = false,
   disabled = false,
   round = false,
+  size = "medium",
 
   ...props
 }: Props): JSX.Element {
@@ -81,6 +83,7 @@ export default function Button({
       leftIcon={leftIcon}
       disabled={disabled}
       borderRadius={borderRadius()}
+      size={size}
       {...props}
     >
       {leftIcon && <img id="left-icon" src={leftIcon} alt={altLeftIconText} />}

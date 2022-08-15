@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import Button from "components/atomics/Button";
+import Button from "components/atomics/buttons/Button";
 
 export const Container = styled.div`
   ${({ theme }) => css`

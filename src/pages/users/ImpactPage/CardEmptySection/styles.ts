@@ -1,4 +1,4 @@
-import Button from "components/atomics/Button";
+import Button from "components/atomics/buttons/Button";
 import styled, { css } from "styled-components";
 
 export const Container = styled.div`

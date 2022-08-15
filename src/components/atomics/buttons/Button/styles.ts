@@ -8,6 +8,7 @@ type Props = {
   leftIcon?: string;
   disabled?: boolean;
   borderRadius?: string;
+  size?: string;
 };
 
 export const Container = styled.button`
@@ -17,22 +18,42 @@ export const Container = styled.button`
     borderColor,
     backgroundColor,
     borderRadius,
+    size,
   }: Props) => css`
-    position: relative;
-    border: 1px solid black;
-    border-radius: ${borderRadius || "8px"};
     width: 100%;
-    padding: 10px 5px;
-    font-size: 16px;
-    max-height: 40px;
-    font-weight: bold;
+    border: 1px solid #000000;
+    border-radius: ${borderRadius || "8px"};
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    position: relative;
+    line-height: 1;
+    font-weight: 700;
     background-color: ${backgroundColor};
     border-color: ${borderColor || backgroundColor};
     color: ${textColor};
     opacity: ${disabled ? 0.5 : 1};
+
+    ${() =>
+      size === "large" &&
+      css`
+        font-size: 20px;
+        padding: 12px 16px;
+      `}
+
+    ${() =>
+      size === "medium" &&
+      css`
+        font-size: 16px;
+        padding: 11px 16px;
+      `}
+
+    ${() =>
+      size === "small" &&
+      css`
+        font-size: 12px;
+        padding: 4px 16px;
+      `}
 
     media :hover {
       cursor: pointer;

@@ -1,6 +1,6 @@
 import globeIcon from "assets/icons/globe-icon.svg";
 import CardIconText from "components/moleculars/cards/CardIconText";
-import ButtonSwitch from "components/atomics/ButtonSwitch";
+import ButtonSwitch from "components/atomics/buttons/ButtonSwitch";
 import { useLanguage } from "hooks/useLanguage";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "services/analytics";

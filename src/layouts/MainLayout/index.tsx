@@ -10,10 +10,10 @@ function MainLayout({ children, hideHeader = false }: Props): JSX.Element {
   return (
     <>
       <Navigation />
-      <S.Container>
+      <S.MainContainer>
         {!hideHeader && <LayoutHeader />}
-        <S.BodyContainer>{children}</S.BodyContainer>
-      </S.Container>
+        <S.MainBodyContainer>{children}</S.MainBodyContainer>
+      </S.MainContainer>
     </>
   );
 }

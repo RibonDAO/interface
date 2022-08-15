@@ -7,7 +7,7 @@ describe("useUsers", () => {
   const testUserId = 1;
   const testIntegrationId = 2;
 
-  const data = { testUserId: testUserId, testIntegrationId: testIntegrationId };
+  const data = { testUserId, testIntegrationId };
 
   beforeEach(() => {
     const { result } = renderHook(() => useSources());

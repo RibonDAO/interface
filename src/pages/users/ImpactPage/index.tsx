@@ -59,7 +59,7 @@ function ImpactPage(): JSX.Element {
             ))}
           </S.Wrapper>
           {shouldShowButton() && (
-            <S.Button text={t("button")} onClick={handleClick} />
+            <S.CardButton text={t("button")} onClick={handleClick} />
           )}
         </S.CardsButtonContainer>
       ) : (

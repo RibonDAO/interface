@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import Button from "components/atomics/Button";
+import Button from "components/atomics/buttons/Button";
 import Divider from "components/atomics/Divider";
 import LottieAnimation from "components/atomics/LottieAnimation";
 

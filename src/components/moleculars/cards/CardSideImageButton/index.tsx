@@ -1,6 +1,6 @@
 import React from "react";
 import theme from "styles/theme";
-import Button from "components/atomics/Button";
+import Button from "components/atomics/buttons/Button";
 import RibonsSparkleNumber from "components/atomics/RibonsSparkleNumber";
 import checkIcon from "assets/icons/check-icon.svg";
 import * as S from "./styles";

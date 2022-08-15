@@ -1,7 +1,7 @@
 import React, { FormEventHandler, useEffect } from "react";
 import ReactModal from "react-modal";
 import theme from "styles/theme";
-import Button, { onClickType } from "components/atomics/Button";
+import Button, { onClickType } from "components/atomics/buttons/Button";
 import { useForm } from "hooks/useForm";
 import * as S from "./styles";
 import { defaultCustomStyles } from "../defaultCustomStyles";

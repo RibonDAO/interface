@@ -5,6 +5,12 @@ import Button, { Props } from ".";
 export default {
   title: "Button",
   component: Button,
+  argTypes: {
+    size: {
+      options: ["large", "medium", "small"],
+      control: { type: "radio" },
+    },
+  },
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = function (args: Props) {

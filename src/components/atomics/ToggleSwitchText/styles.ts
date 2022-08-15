@@ -5,51 +5,33 @@ export const Container = styled.div`
     @media (min-width: ${() => theme.breakpoints.pad}) {
       width: 472px;
     }
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    max-height: 32px;
-    max-left: 236px;
-    max-top: 234px;
-    background: ${theme.colors.ribonWhite};
     border: 1px solid ${theme.colors.ribonBlue};
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    background: ${theme.colors.ribonWhite};
     border-radius: 40px;
+    box-sizing: border-box;
+    cursor: pointer;
+    text-align: center;
   `}
 `;
 
 export const Selected = styled.a`
   ${({ theme }) => css`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: static;
     min-width: 50%;
-    max-width: 236px;
-    max-height: 30px;
-    color: ${theme.colors.ribonWhite};
     font-weight: 700;
     font-size: 16px;
-    line-height: 160%;
+    line-height: 1.6;
     background: ${theme.colors.ribonBlue};
+    color: ${theme.colors.ribonWhite};
     border-radius: 16px;
   `}
 `;
 
-export const Unselected = styled.a`
+export const Unselected = styled(Selected)`
   ${({ theme }) => css`
-    max-width: 236px;
-    min-width: 50%;
-    max-height: 32px;
-    justify-content: center;
-    align-items: center;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 160%;
-    display: flex;
-    align-items: center;
-    text-align: center;
+    background: ${theme.colors.ribonWhite};
     color: ${theme.colors.ribonBlue};
   `}
 `;

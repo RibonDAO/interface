@@ -1,4 +1,4 @@
-import Button, { onClickType } from "components/atomics/Button";
+import Button, { onClickType } from "components/atomics/buttons/Button";
 import LottieAnimation from "components/atomics/LottieAnimation";
 import theme from "styles/theme";
 import { defaultCustomStyles } from "../defaultCustomStyles";

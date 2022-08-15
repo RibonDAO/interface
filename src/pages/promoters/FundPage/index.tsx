@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import CardBlank from "components/moleculars/cards/CardBlank";
-import Button from "components/atomics/Button";
+import Button from "components/atomics/buttons/Button";
 import { useEffect } from "react";
 import { useNetworkContext } from "contexts/networkContext";
 import useNavigation from "hooks/useNavigation";

@@ -62,6 +62,7 @@ function WalletLayout({
               outline
               round
               rightIcon={WalletIcon}
+              size="small"
             />
           }
         />

@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import GlobeIcon from "assets/icons/globe-icon.svg";
-import Button from "components/atomics/Button";
+import Button from "components/atomics/buttons/Button";
 import CardIconText, { Props } from ".";
 
 export default {

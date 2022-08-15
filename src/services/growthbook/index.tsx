@@ -8,7 +8,7 @@ export const growthbook = new GrowthBook({
   trackingCallback: (experiment, result) => {
     logEvent("viewed_experiment", {
       experimentId: experiment.key,
-      variationId: result.variationId.toString(),
+      variationId: result.variationId,
     });
   },
 });

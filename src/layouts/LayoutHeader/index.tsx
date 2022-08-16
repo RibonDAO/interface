@@ -6,6 +6,9 @@ import { today } from "lib/dateTodayFormatter";
 import cogIcon from "assets/icons/cog-icon.svg";
 import ticketOn from "assets/icons/ticket-icon-on.svg";
 import ticketOff from "assets/icons/ticket-icon-off.svg";
+import Ticket from "assets/images/ticket.svg";
+import { useTranslation } from "react-i18next";
+import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useState } from "react";
 import { Divider } from "components/atomics/Divider/styles";
 import theme from "styles/theme";
@@ -13,9 +16,9 @@ import useBreakpoint from "hooks/useBreakpoint";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import useNavigation from "hooks/useNavigation";
 import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
-import { useDonationTicketModal } from "hooks/modalHooks/useDonationTicketModal";
 import { RIBON_COMPANY_ID } from "utils/constants";
 import { logEvent } from "services/analytics";
+import { useModal } from "hooks/modalHooks/useModal";
 import ChangeLanguageItem from "./ChangeLanguageItem";
 import LogoutItem from "./LogoutItem";
 import * as S from "./styles";
@@ -35,7 +38,23 @@ function LayoutHeader({
   const { userLastDonation, signedIn } = useCurrentUser();
   const { navigateBack } = useNavigation();
   const { showBlockedDonationModal } = useBlockedDonationModal();
-  const { showDonationTicketModal } = useDonationTicketModal();
+
+  const { t } = useTranslation("translation", {
+    keyPrefix: "donations.causesPage",
+  });
+
+  const { show, hide } = useModal({
+    type: MODAL_TYPES.MODAL_ICON,
+    props: {
+      title: t("donationModalTitle"),
+      primaryButtonText: t("donationModalButtonText"),
+      primaryButtonCallback: () => {
+        hide();
+      },
+      onClose: () => hide,
+      icon: Ticket,
+    },
+  });
 
   if (!integrationId) return <div />;
 
@@ -57,7 +76,7 @@ function LayoutHeader({
   function handleCounterClick() {
     if (hasDonateToday()) showBlockedDonationModal();
     else {
-      showDonationTicketModal();
+      show();
     }
   }
 

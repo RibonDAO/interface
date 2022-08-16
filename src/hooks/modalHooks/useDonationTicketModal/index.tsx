@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useAnimationReceiveTicketModal } from "hooks/modalHooks/useAnimationReceiveTicketModal";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useEffect } from "react";
 import Ticket from "assets/images/ticket.svg";
@@ -10,15 +11,17 @@ export function useDonationTicketModal(initialState?: boolean) {
     keyPrefix: "donations.causesPage",
   });
 
+  const { showAnimationReceiveTicketModal } = useAnimationReceiveTicketModal();
+
   const { show, hide } = useModal({
     type: MODAL_TYPES.MODAL_ICON,
     props: {
       title: t("donationModalTitle"),
       primaryButtonText: t("donationModalButtonText"),
       primaryButtonCallback: () => {
-        hide();
+        showAnimationReceiveTicketModal();
       },
-      onClose: () => hide(),
+      onClose: () => showAnimationReceiveTicketModal(),
       icon: Ticket,
     },
   });
@@ -30,6 +33,7 @@ export function useDonationTicketModal(initialState?: boolean) {
 
   const hideDonationTicketModal = () => {
     hide();
+    showAnimationReceiveTicketModal();
   };
 
   useEffect(() => {

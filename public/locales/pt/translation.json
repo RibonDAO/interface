@@ -1,7 +1,7 @@
 {
   "donations": {
     "causesPage": {
-      "donationModalTitle": "Você recebeu um ticket doação",
+      "donationModalTitle": "Você ganhou um ticket doação",
       "donationModalButtonText": "Receber ticket",
       "confirmModalTitle": "Insira seu e-mail para usar seu ticket doação",
       "confirmModalAuthTitle": "Confirmar doação",
@@ -17,6 +17,9 @@
       "blockedModalText": "Contribua para o Tesouro de Doação da Ribon e promova novas doações.",
       "blockedModalFirstButtonText": "Contribuir agora",
       "blockedModalSecondButtonText": "Talvez depois",
+      "receiveTicketAnimationModalTitle": "Recebendo ticket...",
+      "receiveTicketAnimationModalOrigin": "Apoiadores",
+      "receiveTicketAnimationModalDestiny": "Você",
       "modalForm": {
         "footerStartText": "Ao inserir seu e-mail e se inscrever, você aceita a nossa",
         "footerAnd": "e",
@@ -50,6 +53,8 @@
       "changeLanguageItem": {
         "changeLanguageText": "Alterar idioma"
       },
+      "donationModalTitle": "Você ganhou um ticket doação",
+      "donationModalButtonText": "Receber ticket",
       "logoutItem": {
         "logoutButton": "Sair",
         "logoutModalTitle": "Quer mesmo sair desta conta?",

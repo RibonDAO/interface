@@ -38,7 +38,7 @@ export const DividerContainer = styled.span`
 
 export const AnimationText = styled.h2`
   ${({ theme }) => css`
-    margin: 8px 0;
+    margin: 8px 0 8px 8px;
     color: ${theme.colors.ribonBlue};
     display: flex;
     flex-direction: column;

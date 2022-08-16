@@ -4,7 +4,6 @@ import { logEvent } from "services/analytics";
 import useNavigation from "hooks/useNavigation";
 import NonProfit from "types/entities/NonProfit";
 import useNonProfits from "hooks/apiHooks/useNonProfits";
-import Loader from "components/atomics/Loader";
 import { logError } from "services/crashReport";
 import { useLocation } from "react-router-dom";
 import useUsers from "hooks/apiHooks/useUsers";
@@ -19,6 +18,7 @@ import { DONATION_MODAL_SEEN_AT_KEY } from "lib/localStorage/constants";
 import { today } from "lib/dateTodayFormatter";
 import { useDonationTicketModal } from "hooks/modalHooks/useDonationTicketModal";
 import { IfFeatureEnabled } from "@growthbook/growthbook-react";
+import Spinner from "components/atomics/Spinner";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
@@ -141,7 +141,7 @@ function CausesPage(): JSX.Element {
           <p>.</p>
         </IfFeatureEnabled>
         {isLoading ? (
-          <Loader />
+          <Spinner size="26" />
         ) : (
           <S.CausesContainer>
             {nonProfits && (

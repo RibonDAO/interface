@@ -1,5 +1,5 @@
 import React from "react";
-import Loader from "components/atomics/Loader";
+import Spinner from "components/atomics/Spinner";
 import * as S from "./styles";
 import ModalBlank from "../ModalBlank";
 
@@ -12,7 +12,7 @@ function LoadingOverlay({ text, visible = false }: Props): JSX.Element {
     <S.Container>
       <ModalBlank visible={visible}>
         <S.CenterDiv>
-          <Loader />
+          <Spinner />
           {text && <S.Message>{text}</S.Message>}
         </S.CenterDiv>
       </ModalBlank>

@@ -1,4 +1,3 @@
-import Loader from "components/atomics/Loader";
 import Divider from "components/atomics/Divider";
 import CardRoundImage from "components/moleculars/cards/CardRoundImage";
 import { useTranslation } from "react-i18next";
@@ -13,6 +12,7 @@ import useDonations from "hooks/apiHooks/useDonations";
 import { logError } from "services/crashReport";
 import Integration from "types/entities/Integration";
 import { useCurrentUser } from "contexts/currentUserContext";
+import Spinner from "components/atomics/Spinner";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -65,7 +65,7 @@ function DonationInProcessPage(): JSX.Element {
       />
       <S.AnimationContainer>
         <S.LoaderContainer>
-          <Loader width={30} height={30} />
+          <Spinner size="20" />
           <S.AnimationText>{t("animationText")}</S.AnimationText>
         </S.LoaderContainer>
         <S.DividerContainer>

@@ -1,7 +1,7 @@
 import React from "react";
 import Divider from "components/atomics/Divider";
 import theme from "styles/theme";
-import Loader from "components/atomics/Loader";
+import Spinner from "components/atomics/Spinner";
 import * as S from "./styles";
 
 const { colors } = theme;
@@ -29,7 +29,7 @@ function CardFullImage({
       </S.ImageContainer>
       <S.TextContainer>
         <S.TitleContainer>
-          {loading && <Loader color={ribonWhite} width={25} height={25} />}
+          {loading && <Spinner strokeColor={ribonWhite} size="20" />}
           {title && <S.Title>{title}</S.Title>}
         </S.TitleContainer>
         <Divider color={ribonWhite} width="80px" />

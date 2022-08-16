@@ -4,11 +4,15 @@ import * as S from "./styles";
 
 export type Props = {
   strokeColor?: string;
+  size?: string;
 };
-function Spinner({ strokeColor = theme.colors.ribonBlue }: Props): JSX.Element {
+function Spinner({
+  strokeColor = theme.colors.ribonBlue,
+  size = "18",
+}: Props): JSX.Element {
   return (
-    <S.Container>
-      <SpinnerSvg stroke={strokeColor} />
+    <S.Container data-testid="spinner">
+      <SpinnerSvg stroke={strokeColor} width={size} height={size} />
     </S.Container>
   );
 }

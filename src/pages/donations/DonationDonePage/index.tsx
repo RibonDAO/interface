@@ -23,12 +23,8 @@ function DonationDonePage(): JSX.Element {
   const { navigateTo } = useNavigation();
 
   useEffect(() => {
-    const installationId = localStorage.getItem("installationId");
-    // eslint-disable-next-line no-console
-    console.log(installationId);
     logEvent("donateFinishedDonation_view", {
       selected: nonProfit?.id,
-      anonymousId: installationId ?? "",
     });
     setTimeout(() => {
       navigateTo("/");

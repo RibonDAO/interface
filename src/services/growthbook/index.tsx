@@ -1,6 +1,6 @@
 import { GrowthBook } from "@growthbook/growthbook-react";
-import firebase from "firebase/app";
 import { logEvent } from "services/analytics";
+import firebase from "firebase/app";
 
 // Create a GrowthBook instance
 export const growthbook = new GrowthBook({

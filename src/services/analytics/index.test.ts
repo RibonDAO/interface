@@ -44,7 +44,9 @@ describe("logEvent", () => {
   describe("without params", () => {
     it("sends an event to firebase", () => {
       logEvent(eventName);
-      expect(mockAnalytics.logEvent).toHaveBeenCalledWith(eventName, undefined);
+      expect(mockAnalytics.logEvent).toHaveBeenCalledWith(eventName, {
+        anonymousId: "",
+      });
     });
   });
 

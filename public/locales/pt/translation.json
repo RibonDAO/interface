@@ -122,6 +122,7 @@
       "cardSection": {
         "currency": "Moeda",
         "subtitleCard": "Escolha sua contribuição",
+        "simulateSectionTitle": "Simule um resultado possível",
         "buttonTextCard": "Próximo",
         "buttonSubmit": "Confirmar",
         "detailsSubtitle": "Detalhes da contribuição",
@@ -142,6 +143,10 @@
           "cardName": "Nome impresso no cartão",
           "cardDueDate": "Vencimento",
           "cvv": "Código de segurança"
+        },
+        "impactSimulationSection": {
+          "label": "Selecione uma ONG",
+          "payUpToText": "podem pagar até"
         }
       },
 

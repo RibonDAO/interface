@@ -122,6 +122,7 @@
       "cardSection": {
         "currency": "Currency",
         "subtitleCard": "Choose your giving",
+        "simulateSectionTitle": "Simulate a possible result",
         "buttonTextCard": "Next",
         "buttonSubmit": "Confirm",
         "detailsSubtitle": "Giving details",
@@ -142,6 +143,10 @@
           "cardName": "Name on card",
           "cardDueDate": "Expiration",
           "cvv": "Card verification code"
+        },
+        "impactSimulationSection": {
+          "label": "Select a NGO",
+          "payUpToText": "can pay up to"
         }
       },
 

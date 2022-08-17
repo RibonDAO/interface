@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+
 import Button from "components/atomics/buttons/Button";
 
 export const CardSectionContainer = styled.div`
@@ -103,5 +104,45 @@ export const CryptoGivingValue = styled.p`
     line-height: 19.2px;
     font-style: italic;
     margin-bottom: 32px;
+  `}
+`;
+
+export const CardImpact = styled.div`
+  ${() => css`
+    display: flex;
+    align-items: center;
+    width: 100%;
+  `}
+`;
+
+export const ImpactSectionContainer = styled.div`
+  ${() => css``}
+`;
+
+export const ImpactSimulatorContainer = styled.div`
+  ${() =>
+    css`
+      margin-bottom: 14px;
+    `}
+`;
+
+export const CardImpactImage = styled.img`
+  ${() => css`
+    height: 48px;
+    width: 48px;
+    object-fit: cover;
+    border-radius: 50px;
+    margin-right: 14px;
+  `}
+`;
+
+export const CardImpactText = styled.h3`
+  ${({ theme }) => css`
+    color: ${theme.colors.ribonBlack};
+
+    span {
+      color: ${theme.colors.ribonBlue};
+      font-size: 16px;
+    }
   `}
 `;

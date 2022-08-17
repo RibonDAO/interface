@@ -1,17 +1,15 @@
 import { useTranslation } from "react-i18next";
 import { useCallback, useEffect, useState } from "react";
-import Dropdown from "components/atomics/Dropdown";
 import theme from "styles/theme";
-import { Currencies } from "types/enums/Currencies";
 import Divider from "components/atomics/Divider";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import useOffers from "hooks/apiHooks/useOffers";
 import { logEvent } from "services/analytics";
-import { removeInsignificantZeros } from "lib/formatters/currencyFormatter";
 import BillingInformationSection from "./BillingInformationSection";
 import FeesSection from "./FeesSection";
 import * as S from "./styles";
 import PaymentInformation from "./PaymentInformationSection";
+import ImpactInformationSection from "./ImpactInformationSection";
 
 const { lightGray } = theme.colors;
 
@@ -24,10 +22,8 @@ function CardSection(): JSX.Element {
 
   const {
     currentCoin,
-    setCurrentCoin,
     handleSubmit,
     selectedButtonIndex,
-    setSelectedButtonIndex,
     buttonDisabled,
     setButtonDisabled,
     setCryptoGiving,
@@ -49,7 +45,7 @@ function CardSection(): JSX.Element {
   }, [offers, selectedButtonIndex, currentCoin]);
 
   const sections = [
-    <div />,
+    <ImpactInformationSection />,
     <BillingInformationSection />,
     <PaymentInformation />,
   ];
@@ -72,46 +68,17 @@ function CardSection(): JSX.Element {
   return (
     <>
       <S.CardSectionContainer>
-        {currentSectionIndex === 0 && (
+        {givingValue() > 0 && currentSectionIndex > 0 && (
           <>
-            <Dropdown
-              name="currency"
-              label={t("currency")}
-              values={[Currencies.USD, Currencies.BRL]}
-              defaultValue={currentCoin}
-              onOptionChanged={(value) => setCurrentCoin(value)}
+            <FeesSection
+              currency={currentCoin}
+              givingValue={givingValue()}
+              givingTotal={givingTotal()}
+              setCryptoGiving={setCryptoGiving}
             />
-            <S.Subtitle>{t("subtitleCard")}</S.Subtitle>
-            <S.ValuesContainer>
-              {offers?.map((item, index) => (
-                <S.CardValueButton
-                  text={removeInsignificantZeros(item?.price)}
-                  onClick={() => {
-                    logEvent("fundSupportAmountBtn_click", {
-                      option: item?.id,
-                    });
-                    setSelectedButtonIndex(index);
-                  }}
-                  outline={index !== selectedButtonIndex}
-                  key={item?.id}
-                />
-              ))}
-            </S.ValuesContainer>
+            <Divider color={lightGray} />
           </>
         )}
-        <Divider color={lightGray} />
-
-        {givingValue() > 0 && (
-          <FeesSection
-            currency={currentCoin}
-            givingValue={givingValue()}
-            givingTotal={givingTotal()}
-            setCryptoGiving={setCryptoGiving}
-          />
-        )}
-
-        <Divider color={lightGray} />
-
         {sections[currentSectionIndex]}
       </S.CardSectionContainer>
       <S.ButtonContainer>

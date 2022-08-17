@@ -9,6 +9,8 @@ export type Props = {
   values: any[];
   defaultValue?: any;
   onOptionChanged?: (value: any) => void;
+  valueText?: (value: any) => string;
+  containerId?: string;
 };
 
 function Dropdown({
@@ -17,7 +19,15 @@ function Dropdown({
   values,
   onOptionChanged,
   defaultValue,
+  valueText,
+  containerId = "dropdown-container",
 }: Props): JSX.Element {
+  const valueToText = (value: any) => {
+    if (valueText && value) return valueText(value);
+
+    return value;
+  };
+
   const [dropdownValue, setDropdownValue] = useState(defaultValue || values[0]);
   const [optionsVisible, setOptionsVisible] = useState(false);
 
@@ -32,7 +42,7 @@ function Dropdown({
   };
 
   return (
-    <S.Container id="dropdown-container">
+    <S.Container id={containerId}>
       <ModalBlank
         visible={optionsVisible}
         onClose={() => setOptionsVisible(false)}
@@ -56,7 +66,7 @@ function Dropdown({
           },
         }}
         parentSelector={() =>
-          document.querySelector("#dropdown-container") || document.body
+          document.querySelector(`#${containerId}`) || document.body
         }
       >
         {values.map((value, index) => (
@@ -64,7 +74,7 @@ function Dropdown({
             onClick={() => handleOptionClick(value)}
             key={index.toString(10)}
           >
-            <S.OptionText>{value}</S.OptionText>
+            <S.OptionText>{valueToText(value)}</S.OptionText>
           </S.OptionContainer>
         ))}
       </ModalBlank>
@@ -74,7 +84,7 @@ function Dropdown({
           type="text"
           name={name}
           aria-label={name}
-          value={dropdownValue}
+          value={valueToText(dropdownValue)}
           readOnly
         />
         <img src={ArrowDownIcon} alt="arrow-down" />

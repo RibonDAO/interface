@@ -20,6 +20,9 @@ export function expectImageToBeInTheDocument(alt: string) {
 export function expectDisplayValueToBeInTheDocument(value: string) {
   return expect(screen.getByDisplayValue(value)).toBeInTheDocument();
 }
+export function expectInputToHaveValue(label: string, value: any) {
+  return expect(screen.getByLabelText(label)).toHaveValue(value);
+}
 
 export function expectLogErrorToHaveBeenCalled(error?: any) {
   if (error) return expect(mockLogErrorFunction).toHaveBeenCalledWith(error);

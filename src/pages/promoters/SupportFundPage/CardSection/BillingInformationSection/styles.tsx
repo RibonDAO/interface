@@ -15,7 +15,7 @@ export const Title = styled.h6`
   ${({ theme }) => css`
     margin: 20px 0;
     font-weight: 700;
-    color: ${theme.colors.ribonBlack};
+    color: ${theme.colors.black};
     font-size: 18px;
     line-height: 25.6px;
   `}

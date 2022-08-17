@@ -17,16 +17,16 @@ function CardSideSquareImageButton({
 }: Props): JSX.Element {
   return (
     <S.Container>
-      <S.LeftContainer>
+      <S.InsideContainer>
         <S.ImageContainer>
           <CardSquareImage image={image} />
         </S.ImageContainer>
         <S.SideButton text={buttonText} onClick={onButtonClick} />
-      </S.LeftContainer>
-      <S.RightContainer>
+      </S.InsideContainer>
+      <S.InsideContainer>
         <S.Title>{title}</S.Title>
         <S.Text>{text}</S.Text>
-      </S.RightContainer>
+      </S.InsideContainer>
     </S.Container>
   );
 }

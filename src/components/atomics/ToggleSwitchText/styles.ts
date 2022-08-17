@@ -1,37 +1,32 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
-  ${({ theme }) => css`
-    @media (min-width: ${() => theme.breakpoints.pad}) {
-      width: 472px;
-    }
-    border: 1px solid ${theme.colors.ribonBlue};
-    display: flex;
-    align-items: flex-start;
-    flex-direction: row;
-    background: ${theme.colors.ribonWhite};
-    border-radius: 40px;
-    box-sizing: border-box;
-    cursor: pointer;
-    text-align: center;
-  `}
+  border: 1px solid ${({ theme }) => theme.colors.ribonBlue};
+  border-radius: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  box-sizing: border-box;
+  text-align: center;
+  background: ${({ theme }) => theme.colors.white};
+  cursor: pointer;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: 472px;
+  }
 `;
 
 export const Selected = styled.a`
-  ${({ theme }) => css`
-    min-width: 50%;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 1.6;
-    background: ${theme.colors.ribonBlue};
-    color: ${theme.colors.ribonWhite};
-    border-radius: 16px;
-  `}
+  min-width: 50%;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.6;
+  background: ${({ theme }) => theme.colors.ribonBlue};
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const Unselected = styled(Selected)`
-  ${({ theme }) => css`
-    background: ${theme.colors.ribonWhite};
-    color: ${theme.colors.ribonBlue};
-  `}
+  background: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.ribonBlue};
 `;

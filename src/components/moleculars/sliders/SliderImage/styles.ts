@@ -1,13 +1,13 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 type NgoImageProps = {
   image: string;
 };
 
 export const Container = styled.div`
-  position: relative;
   width: 344px;
   height: 209px;
+  position: relative;
 `;
 
 export const NavigationWrapper = styled.div`
@@ -19,54 +19,49 @@ export const SlideImageContainer = styled.div`
 `;
 
 export const SlideImage = styled.div`
-  background-image: url(${(props: NgoImageProps) => props.image});
-  width: calc(100vw - 16px);
-  height: calc(100vw - 16px);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  height: calc(100vh - 16px);
+  max-height: 209px;
   padding: 8px;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
-  max-height: 209px;
+  background-image: url(${(props: NgoImageProps) => props.image});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 
-  ${({ theme }) => css`
-    @media (min-width: ${theme.breakpoints.pad}) {
-      border-right: 1px solid white;
-      max-width: 344px;
-    }
-  `}
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    max-width: 344px;
+    border-right: 1px solid white;
+  }
 `;
 
 export const SlideVideo = styled.video`
-  ${({ theme }) => css`
-    min-width: 100%;
-    height: calc(100vw - 16px);
-    object-fit: cover;
-    max-height: 209px;
+  min-width: 100%;
+  height: calc(100vh - 16px);
+  max-height: 209px;
+  object-fit: cover;
 
-    @media (min-width: ${theme.breakpoints.pad}) {
-      border-right: 1px solid white;
-      max-width: 344px;
-    }
-  `}
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    max-width: 344px;
+    border-right: 1px solid white;
+  }
 `;
 
 export const PaginationContainer = styled.div`
-  padding: 4px 8px;
-  z-index: 1;
   width: 36px;
   height: 27px;
-  opacity: 0.7;
+  padding: 4px 8px;
   border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.8);
   position: absolute;
   bottom: 14px;
   left: 50%;
+  z-index: 1;
+  background-color: ${({ theme }) => theme.colors.black};
+  opacity: 0.7;
   transform: translateX(-50%);
 `;
 
 export const PaginationNumber = styled.h5`
-  color: white;
   text-align: center;
+  color: white;
 `;

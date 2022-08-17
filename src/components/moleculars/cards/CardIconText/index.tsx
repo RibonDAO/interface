@@ -8,11 +8,13 @@ export type Props = {
 function CardIconText({ text, icon, rightComponent }: Props): JSX.Element {
   return (
     <S.Container>
-      <S.LeftContainer>
+      <S.InsideContainer>
         <S.Icon alt="left-icon" src={icon} />
         <S.Text>{text}</S.Text>
-      </S.LeftContainer>
-      {rightComponent && <S.RightContainer>{rightComponent}</S.RightContainer>}
+      </S.InsideContainer>
+      {rightComponent && (
+        <S.InsideContainer>{rightComponent}</S.InsideContainer>
+      )}
     </S.Container>
   );
 }

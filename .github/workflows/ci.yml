@@ -15,6 +15,9 @@ jobs:
       - name: Run lint
         run: |
           yarn lint
+      - name: Run css lint
+        run: |
+          yarn lint:css
       - name: Run tests and check coverage
         env:
           REACT_APP_FIREBASE_API_KEY: ${{ secrets.REACT_APP_FIREBASE_API_KEY }}

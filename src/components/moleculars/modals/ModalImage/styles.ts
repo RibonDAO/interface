@@ -1,24 +1,5 @@
-import styled, { css } from "styled-components";
-import ReactModal from "react-modal";
-
-export const BlankModal = styled(ReactModal)`
-  background-color: #ffffff;
-  width: 100%;
-  border-radius: 16px;
-  margin: 16px;
-  max-width: 360px;
-`;
-
-export const Modal = styled(BlankModal)`
-  button,
-  a {
-    margin-bottom: 8px;
-
-    &:last-child {
-      margin: 0;
-    }
-  }
-`;
+import styled from "styled-components";
+import { Modal } from "../ModalBlank/styles";
 
 export const ModalWithImage = styled(Modal)`
   overflow: hidden;
@@ -38,21 +19,17 @@ type TitleProps = {
 };
 
 export const Title = styled.h2<TitleProps>`
-  ${({ theme, color }) => css`
-    text-align: center;
-    color: ${color || theme.colors.ribonBlack};
-  `}
+  text-align: center;
+  color: ${({ theme, color }) => color || theme.colors.black};
 `;
 
 export const Body = styled.h3`
-  ${({ theme }) => css`
-    color: ${theme.colors.darkGray};
-    text-align: center;
-    margin: 8px 0px 20px;
-  `}
+  margin: 8px 0 20px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 export const RowsModalRow = styled.div`
-  display: flex;
   margin-bottom: 28px;
+  display: flex;
 `;

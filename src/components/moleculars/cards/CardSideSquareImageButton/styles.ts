@@ -1,47 +1,35 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import Button from "components/atomics/buttons/Button";
 
 export const Container = styled.div`
-  ${({ theme }) => css`
   height: 100%;
-  display: flex;
   margin-top: 24px;
-  @media (min-width: ${theme.breakpoints.pad}) {
-  `}
+  display: flex;
 `;
 
 export const Title = styled.h3`
-  ${({ theme }) => css`
-    color: ${theme.colors.ribonBlack};
-  `}
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 export const Text = styled.h4`
-  ${({ theme }) => css`
-    font-weight: 400;
-    line-height: 24px;
-    margin-top: 4px;
-    color: ${theme.colors.darkGray};
-  `}
+  margin-top: 4px;
+  font-weight: 400;
+  line-height: 24px;
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
-export const RightContainer = styled.div`
-  ${() => css``}
-`;
-export const LeftContainer = styled.div`
-  ${() => css`
-    margin-right: 14px;
-  `}
+export const InsideContainer = styled.div`
+  margin-right: 14px;
 `;
 
 export const ImageContainer = styled.div`
-  height: 96px;
   width: 96px;
+  height: 96px;
   margin-bottom: 8px;
 `;
 
 export const SideButton = styled(Button)`
+  height: 28px;
   border-radius: 16px;
   font-size: 12px;
-  height: 28px;
 `;

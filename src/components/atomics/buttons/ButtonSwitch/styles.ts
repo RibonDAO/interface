@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
@@ -18,9 +18,7 @@ export const ContainerSwitch = styled.div`
 `;
 
 export const Text = styled.p`
-  ${({ color }) => css`
-    font-size: 14px;
-    font-weight: 400;
-    color: ${color};
-  `}
+  font-weight: 400;
+  font-size: 14px;
+  color: ${({ color }) => color};
 `;

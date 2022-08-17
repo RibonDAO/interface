@@ -1,89 +1,85 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
+  width: 100%;
   position: relative;
   display: inline-block;
-  width: 100%;
 `;
 
 export const Input = styled.div`
-  ${({ theme }) => css`
-    height: 40px;
-    width: 100%;
-    margin-bottom: 12px;
-    border: 1px solid ${theme.colors.ribonBlue};
+  width: 100%;
+  height: 40px;
+  margin-bottom: 12px;
+  border: 1px solid ${({ theme }) => theme.colors.ribonBlue};
+  border-radius: 5px;
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  color: ${({ theme }) => theme.colors.black};
+
+  label {
+    padding: 0 2px;
     position: relative;
-    display: inline-block;
+    top: -9px;
+    left: 10px;
+    display: inline;
+    font-size: 14px;
+    text-align: center;
+    background-color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.ribonBlue};
+
+    @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+      top: -8px;
+    }
+  }
+
+  input {
+    width: 100%;
+    padding: 0 10px;
+    border: none;
     border-radius: 5px;
+    position: relative;
+    top: -5px;
     box-sizing: border-box;
-    color: ${theme.colors.ribonBlack};
-
-    label {
-      padding: 0 2px;
-      display: inline;
-      position: relative;
-      left: 10px;
-      top: -9px;
-      font-size: 14px;
-      text-align: center;
-      background-color: ${theme.colors.ribonWhite};
-      color: ${theme.colors.ribonBlue};
-
-      @media (min-width: ${theme.breakpoints.desktop}) {
-        top: -8px;
-      }
-    }
-
-    input {
-      width: 100%;
-      padding: 0 10px;
-      border: none;
-      position: relative;
-      top: -5px;
-      line-height: 20px;
-      font-size: 16px;
-      font-weight: bold;
-      box-sizing: border-box;
-      font-family: Lato;
-      border-radius: 5px;
-      color: ${theme.colors.ribonBlack};
-
-      @media (min-width: ${theme.breakpoints.desktop}) {
-        top: -8px;
-      }
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
-
-    img {
-      position: absolute;
-      height: 24px;
-      right: 15px;
-      top: 8px;
-      align-self: center;
-      justify-self: center;
-    }
+    font-weight: 700;
+    font-size: 16px;
+    font-family: ${({ theme }) => theme.font.family};
+    line-height: 20px;
+    color: ${({ theme }) => theme.colors.black};
 
     &:hover {
       cursor: pointer;
     }
-  `}
+
+    @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+      top: -8px;
+    }
+  }
+
+  img {
+    height: 24px;
+    position: absolute;
+    top: 8px;
+    right: 15px;
+    align-self: center;
+    justify-self: center;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const OptionContainer = styled.div`
-  ${({ theme }) => css`
-    padding: 8px 16px;
+  padding: 8px 16px;
 
-    &:hover {
-      background-color: ${theme.colors.hoverGray};
-      cursor: pointer;
-    }
-  `}
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.hoverGray};
+    cursor: pointer;
+  }
 `;
 
 export const OptionText = styled.h4`
-  font-weight: bold;
-  line-height: 22px;
+  font-weight: 700;
+  line-height: 1.6;
 `;

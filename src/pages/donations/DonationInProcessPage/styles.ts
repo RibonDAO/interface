@@ -48,7 +48,7 @@ export const AnimationText = styled.h2`
 
 export const ImpactText = styled.h3`
   ${({ theme }) => css`
-    color: ${theme.colors.ribonBlack};
+    color: ${theme.colors.black};
     text-align: center;
   `}
 `;

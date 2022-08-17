@@ -47,13 +47,13 @@ export default function Button({
   function activeTextColor() {
     if (outline && !textColor) return theme.colors.ribonBlue;
     if (softDisabled) return theme.colors.darkGray;
-    if (!textColor) return theme.colors.ribonWhite;
+    if (!textColor) return theme.colors.white;
 
     return textColor;
   }
 
   function activeBackgroundColor() {
-    if (outline || softDisabled) return theme.colors.ribonWhite;
+    if (outline || softDisabled) return theme.colors.white;
     if (disabled) return theme.colors.darkGray;
 
     return backgroundColor;

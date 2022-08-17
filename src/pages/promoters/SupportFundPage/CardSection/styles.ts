@@ -1,5 +1,4 @@
-import styled, { css } from "styled-components";
-
+import styled from "styled-components";
 import Button from "components/atomics/buttons/Button";
 
 export const CardSectionContainer = styled.div`
@@ -10,59 +9,51 @@ export const Subtitle = styled.p`
   margin-top: 20px;
   font-weight: 700;
 
-  ${({ theme }) => css`
-    @media (min-width: ${theme.breakpoints.pad}) {
-      font-size: 18px;
-    }
-  `}
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    font-size: 18px;
+  }
 `;
 
 export const ValuesContainer = styled.div`
-  ${() => css`
-    @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    }
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    display: grid;
-    grid-gap: 8px;
-    width: 100%;
-    margin-top: 12px;
-    margin-bottom: 36px;
-  `}
+  width: 100%;
+  margin-top: 12px;
+  margin-bottom: 36px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 8px;
 `;
 
 export const CardValueButton = styled(Button)`
-  border-radius: 66px;
-  height: 30px;
   max-width: 112px;
+  height: 30px;
+  border-radius: 66px;
   font-size: 12px;
 `;
 
 export const ButtonContainer = styled.div`
-  ${() => css`
-    box-shadow: 0px -4px 4px rgba(24, 86, 105, 0.15);
-    height: 80px;
-    background-color: white;
-    width: 100%;
-    padding: 12px 16px;
-    align-self: end;
-    display: flex;
-    align-items: center;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0;
+  width: 100%;
+  height: 80px;
+  padding: 12px 16px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  align-self: end;
+  background-color: white;
+  box-shadow: 0 -4px 4px ${({ theme }) => theme.colors.lightShadow};
 
-    @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-      box-shadow: none;
-      padding: 0;
-      position: static;
-      height: 60px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    height: 60px;
+    padding: 0;
+    position: static;
+    box-shadow: none;
 
-      button {
-        height: 40px;
-      }
+    button {
+      height: 40px;
     }
-  `}
+  }
 `;
 
 export const FinishButton = styled(Button)`
@@ -72,77 +63,58 @@ export const FinishButton = styled(Button)`
 `;
 
 export const GivingValue = styled.h4`
-  ${({ theme }) => css`
-    color: ${theme.colors.ribonBlack};
-    font-size: 24px;
-    margin-top: 4px;
-    line-height: 38.4px;
-    font-weight: 900;
-  `}
+  margin-top: 4px;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 38.4px;
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 export const NetGivingValue = styled.p`
-  ${({ theme }) => css`
-    color: ${theme.colors.darkGray};
-    font-size: 14px;
-    line-height: 23.8px;
-  `}
+  font-size: 14px;
+  line-height: 23.8px;
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 export const ServiceFeesValue = styled.p`
-  ${({ theme }) => css`
-    color: ${theme.colors.darkGray};
-    font-size: 14px;
-    line-height: 23.8px;
-  `}
+  font-size: 14px;
+  line-height: 23.8px;
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 export const CryptoGivingValue = styled.p`
-  ${({ theme }) => css`
-    color: ${theme.colors.darkGray};
-    font-size: 12px;
-    line-height: 19.2px;
-    font-style: italic;
-    margin-bottom: 32px;
-  `}
+  margin-bottom: 32px;
+  font-style: italic;
+  font-size: 12px;
+  line-height: 19.2px;
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 export const CardImpact = styled.div`
-  ${() => css`
-    display: flex;
-    align-items: center;
-    width: 100%;
-  `}
+  width: 100%;
+  display: flex;
+  align-items: center;
 `;
 
-export const ImpactSectionContainer = styled.div`
-  ${() => css``}
-`;
+export const ImpactSectionContainer = styled.div``;
 
 export const ImpactSimulatorContainer = styled.div`
-  ${() =>
-    css`
-      margin-bottom: 14px;
-    `}
+  margin-bottom: 14px;
 `;
 
 export const CardImpactImage = styled.img`
-  ${() => css`
-    height: 48px;
-    width: 48px;
-    object-fit: cover;
-    border-radius: 50px;
-    margin-right: 14px;
-  `}
+  width: 48px;
+  height: 48px;
+  margin-right: 14px;
+  border-radius: 50px;
+  object-fit: cover;
 `;
 
 export const CardImpactText = styled.h3`
-  ${({ theme }) => css`
-    color: ${theme.colors.ribonBlack};
+  color: ${({ theme }) => theme.colors.ribonBlack};
 
-    span {
-      color: ${theme.colors.ribonBlue};
-      font-size: 16px;
-    }
-  `}
+  span {
+    font-size: 16px;
+    color: ${({ theme }) => theme.colors.ribonBlue};
+  }
 `;

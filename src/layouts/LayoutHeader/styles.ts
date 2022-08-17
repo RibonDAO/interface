@@ -33,7 +33,7 @@ export const CounterContainer = styled.div`
     align-items: center;
     padding: 7px;
     margin-right: 5px;
-    background: ${theme.colors.ribonWhite};
+    background: ${theme.colors.white};
     border: 1px solid ${theme.colors.lightGray};
     box-sizing: border-box;
     border-radius: 4px;

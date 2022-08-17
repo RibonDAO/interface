@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -8,13 +8,14 @@ export const Container = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  position: relative;
+  width: 310px;
+  height: 180px;
   margin: 20px 0;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 180px;
-  width: 310px;
+
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 350px;
     height: 200px;
@@ -22,37 +23,33 @@ export const ImageContainer = styled.div`
 `;
 
 export const LeftImage = styled.img`
-  ${({ theme }) => css`
-    object-fit: cover;
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    left: 0;
-    border-radius: 50%;
-    border: solid 5px ${theme.colors.ribonWhite};
-    filter: drop-shadow(0px 20px 40px ${theme.colors.ribonShadow});
+  width: 180px;
+  height: 180px;
+  border: solid 5px ${({ theme }) => theme.colors.white};
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  object-fit: cover;
+  filter: drop-shadow(0 20px 40px ${({ theme }) => theme.colors.lightShadow});
 
-    @media (min-width: ${theme.breakpoints.pad}) {
-      width: 200px;
-      height: 200px;
-    }
-  `}
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: 200px;
+    height: 200px;
+  }
 `;
 
 export const RightImage = styled.img`
-  ${({ theme }) => css`
-    object-fit: cover;
-    z-index: 1;
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    right: 0;
-    border-radius: 50%;
-    filter: drop-shadow(0px 20px 40px ${theme.colors.ribonShadow});
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  object-fit: cover;
+  filter: drop-shadow(0 20px 40px ${({ theme }) => theme.colors.lightShadow});
 
-    @media (min-width: ${theme.breakpoints.pad}) {
-      width: 200px;
-      height: 200px;
-    }
-  `}
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: 200px;
+    height: 200px;
+  }
 `;

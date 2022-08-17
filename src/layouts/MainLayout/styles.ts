@@ -13,9 +13,8 @@ export const MainContainer = styled.div`
 `;
 
 export const MainBodyContainer = styled.div`
-  padding: 24px 16px 16px 16px;
   margin-bottom: 64px;
-
+  padding: 24px 16px 16px;
   ${({ theme }) => css`
     @media (min-width: ${theme.breakpoints.pad}) {
       padding: 0;

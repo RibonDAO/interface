@@ -60,7 +60,7 @@ export const IconDescription = styled.p`
 
 export const Text = styled.p`
   ${({ theme }) => css`
-    color: ${theme.colors.ribonBlack};
+    color: ${theme.colors.black};
     font-weight: ${theme.font.bold};
     font-size: 14px;
     text-align: center;

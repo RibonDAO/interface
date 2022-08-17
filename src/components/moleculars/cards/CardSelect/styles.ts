@@ -3,16 +3,16 @@ import styled, { css } from "styled-components";
 export const Container = styled.div`
   ${({ theme }) => css`
     display: flex;
-    background-color: ${theme.colors.ribonWhite};
+    background-color: ${theme.colors.white};
     flex-direction: column;
     align-items: center;
     padding: 20px 14px 14px 14px;
-    border: 1px solid ${theme.colors.ribonWhite};
+    border: 1px solid ${theme.colors.white};
     box-sizing: border-box;
     border-radius: 16px;
     width: 100%;
     height: 100%;
-    box-shadow: 0px 4px 12px 0px ${theme.colors.ribonShadow};
+    box-shadow: 0px 4px 12px 0px ${theme.colors.lightShadow};
     max-width: 472px;
   `}
 `;

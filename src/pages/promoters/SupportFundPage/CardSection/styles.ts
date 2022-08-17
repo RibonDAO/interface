@@ -111,7 +111,7 @@ export const CardImpactImage = styled.img`
 `;
 
 export const CardImpactText = styled.h3`
-  color: ${({ theme }) => theme.colors.ribonBlack};
+  color: ${({ theme }) => theme.colors.black};
 
   span {
     font-size: 16px;

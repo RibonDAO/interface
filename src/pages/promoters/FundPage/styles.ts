@@ -76,7 +76,7 @@ export const GivingsCard = styled.div`
   border-radius: 16px;
   display: inline-block;
   background: ${({ theme }) => theme.colors.white};
-  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.ribonWShadow};
+  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
 `;
 
 export const GivingDate = styled.p`

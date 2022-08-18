@@ -14,6 +14,9 @@ import GivingsPage from "pages/promoters/GivingsPage";
 import WalletLayout from "layouts/WalletLayout";
 import CardPaymentInformationProvider from "contexts/cardPaymentInformationContext";
 import NetworkProvider from "contexts/networkContext";
+
+import { onboardingFeature } from "config/abTest/features";
+import CausesPageTest from "pages/abTest/CausesPage";
 import Navigation from "./Navigation";
 
 function RoutesComponent(): JSX.Element {
@@ -24,7 +27,7 @@ function RoutesComponent(): JSX.Element {
           <WalletProvider>
             <CurrentUserProvider>
               <MainLayout>
-                <CausesPage />
+                {onboardingFeature() ? <CausesPage /> : <CausesPageTest />}
               </MainLayout>
             </CurrentUserProvider>
           </WalletProvider>

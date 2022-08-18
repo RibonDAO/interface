@@ -7,6 +7,7 @@ import NonProfit from "types/entities/NonProfit";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
 import { useLocation } from "react-router-dom";
+import { onboardingFeature } from "config/abTest/features";
 import * as S from "../styles";
 
 type LocationStateType = {
@@ -58,6 +59,13 @@ function NonProfitsList({
     }
   }
 
+  const buttonDonateText = () => {
+    if (hasDonateToday()) {
+      return t("donateBlockedButtonText");
+    }
+    return onboardingFeature() ? t("donateText") : t("donateSecondaryText");
+  };
+
   return (
     <>
       {nonProfits.map((nonProfit, idx) => (
@@ -65,9 +73,7 @@ function NonProfitsList({
           <CardCenterImageButton
             image={nonProfit.mainImage}
             title={`${nonProfit.impactByTicket} ${nonProfit.impactDescription}`}
-            buttonText={
-              hasDonateToday() ? t("donateBlockedText") : t("donateText")
-            }
+            buttonText={buttonDonateText()}
             onClickButton={() => handleButtonClick(nonProfit)}
             softDisabled={hasDonateToday()}
           />

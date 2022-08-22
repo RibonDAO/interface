@@ -3,7 +3,7 @@ import Integration from "types/entities/Integration";
 import { apiGet } from "..";
 
 const integrationsApi = {
-  getIntegration: (id: number): Promise<AxiosResponse<Integration>> =>
+  getIntegration: (id: number | string): Promise<AxiosResponse<Integration>> =>
     apiGet(`integrations/${id}`),
 };
 

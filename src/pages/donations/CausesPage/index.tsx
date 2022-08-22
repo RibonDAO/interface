@@ -104,8 +104,8 @@ function CausesPage(): JSX.Element {
         if (!signedIn) {
           logEvent("authDonationDialButton_click");
           const user = await findOrCreateUser(email);
-          if (integrationId) {
-            createSource(user.id, integrationId);
+          if (integration) {
+            createSource(user.id, integration.id);
           }
           setCurrentUser(user);
         }

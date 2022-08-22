@@ -29,3 +29,10 @@ export function validatePicture(pictureUrl: string, defaultIcon: string) {
 
   return pictureUrl;
 }
+
+export function isValidUuid(uuid: string) {
+  const pattern =
+    /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
+
+  return pattern.test(uuid);
+}

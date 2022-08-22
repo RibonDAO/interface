@@ -15,5 +15,5 @@ export const Default = Template.bind({});
 export const Black = Template.bind({});
 
 Black.args = {
-  color: theme.colors.ribonBlack,
+  color: theme.colors.black,
 };

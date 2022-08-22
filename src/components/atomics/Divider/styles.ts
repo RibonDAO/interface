@@ -1,40 +1,35 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
-  ${() => css`
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 8px 0;
-  `}
+  width: 100%;
+  margin: 8px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 type DividerProps = {
   width?: string;
 };
 export const Divider = styled.div<DividerProps>`
-  ${({ width, color }) => css`
-    width: ${width};
+  width: ${({ width }) => width};
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: ${({ color }) => color};
 
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: ${color};
+  &::before,
+  &::after {
+    border-bottom: 2px solid ${({ color }) => color};
+    content: "";
+    flex: 1;
+  }
 
-    &::before,
-    &::after {
-      content: "";
-      flex: 1;
-      border-bottom: 2px solid ${color};
-    }
+  &:not(:empty)::before {
+    margin-right: 0.25em;
+  }
 
-    &:not(:empty)::before {
-      margin-right: 0.25em;
-    }
-
-    &:not(:empty)::after {
-      margin-left: 0.25em;
-    }
-  `}
+  &:not(:empty)::after {
+    margin-left: 0.25em;
+  }
 `;

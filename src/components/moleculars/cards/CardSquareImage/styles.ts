@@ -1,23 +1,21 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    align-items: stretch;
-    flex-wrap: wrap;
-    width: 100%;
-    height: 100%;
-    border-radius: 16px;
-    box-sizing: border-box;
-    background-color: ${theme.colors.ribonWhite};
-    cursor: pointer;
-    box-shadow: 8px 8px 20px -2px rgba(192, 192, 192, 0.75);
-  `}
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  box-sizing: border-box;
+  background-color: ${({ theme }) => theme.colors.white};
+  box-shadow: 8px 8px 20px -2px ${({ theme }) => theme.colors.darkShadow};
+  cursor: pointer;
 `;
 
 export const Image = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
   border-radius: 16px;
+  object-fit: cover;
 `;

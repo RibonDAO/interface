@@ -1,40 +1,30 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
-  ${() => css`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 82px;
-    width: 100%;
-    box-shadow: 0px 4px 12px rgba(24, 86, 105, 0.1);
-    border-radius: 16px;
-    padding: 16px;
-  `}
+  width: 100%;
+  height: 82px;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
 `;
 
 export const Title = styled.h3`
-  ${({ theme }) => css`
-    font-weight: bold;
-    color: ${theme.colors.ribonBlack};
-  `}
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 export const Subtitle = styled.p`
-  ${({ theme }) => css`
-    font-size: 14px;
-    color: ${theme.colors.darkGray};
-  `}
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 export const LeftContainer = styled.div`
-  ${() => css`
-    width: 67%;
-  `}
+  width: 67%;
 `;
 
 export const RightContainer = styled.div`
-  ${() => css`
-    width: 33%;
-  `}
+  width: 33%;
 `;

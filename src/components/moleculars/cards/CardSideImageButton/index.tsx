@@ -6,7 +6,7 @@ import checkIcon from "assets/icons/check-icon.svg";
 import * as S from "./styles";
 
 const { colors } = theme;
-const { ribonBlue, ribonWhite } = colors;
+const { ribonBlue, white } = colors;
 
 export type Props = {
   backgroundColor?: string;
@@ -38,7 +38,7 @@ function CardSideImageButton({
       <Button
         text={buttonText || ""}
         textColor={isCollected ? ribonBlue : buttonTextColor}
-        backgroundColor={isCollected ? ribonWhite : buttonBackgroundColor}
+        backgroundColor={isCollected ? white : buttonBackgroundColor}
         borderColor={ribonBlue}
         leftIcon={isCollected ? checkIcon : undefined}
         onClick={() => {}}

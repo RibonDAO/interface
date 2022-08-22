@@ -6,7 +6,7 @@ export const Container = styled.div`
 
 export const TextLastCard = styled.p`
   ${({ theme }) => css`
-    color: ${theme.colors.ribonBlack};
+    color: ${theme.colors.black};
     font-size: 16px;
     font-weight: 700;
   `}
@@ -20,7 +20,7 @@ export const LastCardCarousel = styled.a`
     align-items: center;
     width: 206px;
     padding: 12px 16px;
-    background: ${theme.colors.ribonWhite};
+    background: ${theme.colors.white};
     box-shadow: 0px 4px 12px rgba(24, 86, 105, 0.15);
     border-radius: 16px;
     height: 123px;
@@ -46,7 +46,7 @@ export const CardBlank = styled.div`
     justify-content: center;
     align-items: center;
     padding: 18px 29px 12px 29px;
-    background: ${theme.colors.ribonWhite};
+    background: ${theme.colors.white};
     box-shadow: 0px 4px 12px rgba(24, 86, 105, 0.15);
     border-radius: 16px;
     gap: 10px;
@@ -63,7 +63,7 @@ export const Image = styled.img`
 export const SectionTitle = styled.p`
   ${({ theme }) => css`
     font-weight: 700;
-    color: ${theme.colors.ribonBlack};
+    color: ${theme.colors.black};
     margin-top: 28px;
   `}
 `;

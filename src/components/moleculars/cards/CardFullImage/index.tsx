@@ -5,7 +5,7 @@ import Spinner from "components/atomics/Spinner";
 import * as S from "./styles";
 
 const { colors } = theme;
-const { ribonWhite } = colors;
+const { white } = colors;
 
 export type Props = {
   title?: string;
@@ -29,10 +29,10 @@ function CardFullImage({
       </S.ImageContainer>
       <S.TextContainer>
         <S.TitleContainer>
-          {loading && <Spinner strokeColor={ribonWhite} size="20" />}
+          {loading && <Spinner strokeColor={white} size="20" />}
           {title && <S.Title>{title}</S.Title>}
         </S.TitleContainer>
-        <Divider color={ribonWhite} width="80px" />
+        <Divider color={white} width="80px" />
         {subtitle && <S.Subtitle>{subtitle}</S.Subtitle>}
       </S.TextContainer>
     </S.Container>

@@ -1,33 +1,29 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 160px;
-    padding: 16px;
-    background-color: ${theme.colors.ribonWhite};
-    box-shadow: 0px 4px 12px rgba(24, 86, 105, 0.15);
-    border-radius: 16px;
-    margin-bottom: 16px;
-  `}
+  width: 160px;
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: ${({ theme }) => theme.colors.white};
+  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
 `;
 
 export const Image = styled.img`
-  display: block;
-  height: 72px;
   width: 72px;
-  object-fit: cover;
+  height: 72px;
   border-radius: 50%;
+  display: block;
+  object-fit: cover;
 `;
 
 export const Text = styled.p`
-  ${({ theme }) => css`
-    margin-top: 16px;
-    font-size: 14px;
-    color: ${theme.colors.ribonBlack};
-    font-weight: ${theme.font.normal};
-    text-align: center;
-  `}
+  margin-top: 16px;
+  font-weight: ${({ theme }) => theme.font.normal};
+  font-size: 14px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.black};
 `;

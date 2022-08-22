@@ -69,7 +69,7 @@ function DonationInProcessPage(): JSX.Element {
           <S.AnimationText>{t("animationText")}</S.AnimationText>
         </S.LoaderContainer>
         <S.DividerContainer>
-          <Divider color={theme.colors.ribonBlack} width="48px" />
+          <Divider color={theme.colors.black} width="48px" />
         </S.DividerContainer>
         <S.ImpactText>{t("impactText")}</S.ImpactText>
       </S.AnimationContainer>

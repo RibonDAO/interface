@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -8,13 +8,11 @@ export const Container = styled.div`
 `;
 
 export const RibonsAmount = styled.p`
-  ${({ theme }) => css`
-    font-size: 14px;
-    line-height: 17px;
-    font-weight: bold;
-    margin-right: 2px;
-    color: ${theme.colors.ribonBlue};
-  `}
+  margin-right: 2px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: ${({ theme }) => theme.colors.ribonBlue};
 `;
 
 export const Sparkle = styled.img`

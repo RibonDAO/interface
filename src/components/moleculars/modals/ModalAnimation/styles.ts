@@ -2,12 +2,12 @@ import styled, { css } from "styled-components";
 import ReactModal from "react-modal";
 
 export const BlankModal = styled(ReactModal)`
-  background-color: #fff;
   width: 100%;
-  border-radius: 16px;
-  margin: 16px;
   max-width: 360px;
+  margin: 16px;
   padding: 16px;
+  border-radius: 16px;
+  background-color: #fff;
 `;
 
 export const Modal = styled(BlankModal)`
@@ -60,7 +60,7 @@ export const IconDescription = styled.p`
 
 export const Text = styled.p`
   ${({ theme }) => css`
-    color: ${theme.colors.ribonBlack};
+    color: ${theme.colors.black};
     font-weight: ${theme.font.bold};
     font-size: 14px;
     text-align: center;

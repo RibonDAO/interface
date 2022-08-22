@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useKeenSlider } from "keen-slider/react";
-import * as S from "./styles";
 import "keen-slider/keen-slider.min.css";
 
 export type Props = {
@@ -32,7 +31,7 @@ function Carousel({
   }, [children]);
 
   return (
-    <S.Container>
+    <div>
       <div ref={ref} className="keen-slider">
         {slides.map(
           (component, idx) =>
@@ -43,7 +42,7 @@ function Carousel({
             ),
         )}
       </div>
-    </S.Container>
+    </div>
   );
 }
 

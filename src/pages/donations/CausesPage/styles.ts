@@ -4,7 +4,6 @@ export const Container = styled.div``;
 
 export const BodyContainer = styled.div`
   width: 100%;
-
   ${({ theme }) => css`
     @media (min-width: ${theme.breakpoints.pad}) {
       display: flex;
@@ -14,10 +13,9 @@ export const BodyContainer = styled.div`
 `;
 
 export const Title = styled.h1`
-  text-transform: uppercase;
   margin: 0;
   font-weight: 900;
-
+  text-transform: uppercase;
   ${({ theme }) => css`
     @media (min-width: ${theme.breakpoints.pad}) {
       font-size: 36px;

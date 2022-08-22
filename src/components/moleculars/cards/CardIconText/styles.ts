@@ -1,38 +1,26 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
-  ${() => css`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 58px;
-    width: 100%;
-  `}
+  width: 100%;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const Icon = styled.img`
-  ${() => css`
-    margin-right: 10px;
-    width: 24px;
-    height: 24px;
-    object-fit: cover;
-  `}
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  object-fit: cover;
 `;
 
 export const Text = styled.p`
-  ${({ theme }) => css`
-    font-size: 14px;
-    color: ${theme.colors.ribonBlack};
-  `}
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.black};
 `;
 
-export const LeftContainer = styled.div`
-  ${() => css`
-    display: flex;
-    align-items: center;
-  `}
-`;
-
-export const RightContainer = styled.div`
-  ${() => css``}
+export const InsideContainer = styled.div`
+  display: flex;
+  align-items: center;
 `;

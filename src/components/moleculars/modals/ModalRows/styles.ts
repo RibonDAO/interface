@@ -1,61 +1,23 @@
-import styled, { css } from "styled-components";
-import ReactModal from "react-modal";
-
-export const BlankModal = styled(ReactModal)`
-  background-color: #ffffff;
-  width: 100%;
-  border-radius: 16px;
-  margin: 16px;
-  max-width: 360px;
-`;
-
-export const Modal = styled(BlankModal)`
-  button,
-  a {
-    margin-bottom: 8px;
-
-    &:last-child {
-      margin: 0;
-    }
-  }
-`;
+import styled from "styled-components";
+import { Modal } from "../ModalBlank/styles";
 
 export const ModalWithIcon = styled(Modal)`
   padding: 16px;
 `;
 
-export const ModalWithImage = styled(Modal)`
-  overflow: hidden;
-`;
-
-export const Container = styled.div`
-  padding: 16px;
-`;
-
 export const Icon = styled.img`
-  display: block;
-  width: 96px;
   height: 96px;
-  margin: -64px auto 8px auto;
-`;
-
-export const BiggerIcon = styled.img`
+  margin: -64px auto 8px;
   display: block;
-  margin: -64px auto 16px auto;
 `;
 
 export const Animation = styled.div`
+  width: 50%;
+  height: 50%;
+  margin: -100px auto 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50%;
-  height: 50%;
-  margin: -100px auto 5px auto;
-`;
-
-export const Image = styled.img`
-  width: 100%;
-  height: 152px;
 `;
 
 type TitleProps = {
@@ -63,18 +25,14 @@ type TitleProps = {
 };
 
 export const Title = styled.h2<TitleProps>`
-  ${({ theme, color }) => css`
-    text-align: center;
-    color: ${color || theme.colors.ribonBlack};
-  `}
+  text-align: center;
+  color: ${({ theme, color }) => color || theme.colors.black};
 `;
 
 export const Body = styled.h3`
-  ${({ theme }) => css`
-    color: ${theme.colors.darkGray};
-    text-align: center;
-    margin: 8px 0px 20px;
-  `}
+  margin: 8px 0 20px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 export const RowsModalContainer = styled.div`
@@ -82,15 +40,15 @@ export const RowsModalContainer = styled.div`
 `;
 
 export const RowsModalSection = styled.div`
-  display: flex;
-  flex-direction: column;
   margin-top: 50px;
   padding: 0;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const RowsModalRow = styled.div`
-  display: flex;
   margin-bottom: 28px;
+  display: flex;
 `;
 
 export const RowsModalIcon = styled.img`

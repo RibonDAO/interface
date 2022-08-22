@@ -1,131 +1,109 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import Button from "components/atomics/buttons/Button";
 
 export const Subtitle = styled.p`
   margin-top: 20px;
   font-weight: 700;
 
-  ${({ theme }) => css`
-    @media (min-width: ${theme.breakpoints.pad}) {
-      font-size: 18px;
-    }
-  `}
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    font-size: 18px;
+  }
 `;
 
 export const Label = styled.p`
   margin-top: 24px;
+  margin-bottom: 12px;
   font-weight: 700;
   font-size: 16px;
-  margin-bottom: 12px;
 `;
 
 export const InputContainer = styled.div`
-  ${() => css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    }
-  `}
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const ConnectContainer = styled.div`
-  ${() => css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  `}
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Image = styled.img`
-  ${({ theme }) => css`
-    width: 92px;
-    height: 92px;
-    margin-top: 100px;
-    @media (min-width: ${theme.breakpoints.pad}) {
-      margin-top: 50px;
-    }
-  `}
+  width: 92px;
+  height: 92px;
+  margin-top: 100px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    margin-top: 50px;
+  }
 `;
 
 export const Input = styled.input`
-  ${({ theme }) => css`
-    height: 39px;
-    width: 100%;
-    border-radius: 8px;
-    border: 1px solid ${theme.colors.ribonBlue};
-    padding: 8px;
-    margin-top: 12px;
-    margin-bottom: 8px;
-    color: ${theme.colors.darkGray};
-    font-weight: ${theme.font.bold};
-  `}
+  width: 100%;
+  height: 39px;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  padding: 8px;
+  border: 1px solid ${({ theme }) => theme.colors.ribonBlue};
+  border-radius: 8px;
+  font-weight: ${({ theme }) => theme.font.bold};
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 export const UsdcIcon = styled.img`
-  ${() => css`
-    height: 24px;
-    width: 24px;
-  `}
+  width: 24px;
+  height: 24px;
 `;
 
 export const UsdcContainer = styled.div`
-  ${() => css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 8px;
-  `}
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const UsdcText = styled.p`
-  ${({ theme }) => css`
-    margin-left: 4px;
-    color: ${theme.colors.ribonBlack};
-    font-size: 14px;
-  `}
+  margin-left: 4px;
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 export const Text = styled.p`
-  ${({ theme }) => css`
-    margin-top: 8px;
-    font-weight: ${theme.font.normal};
-    font-size: 12px;
-    color: ${theme.colors.ribonBlue};
+  margin-top: 8px;
+  font-weight: ${({ theme }) => theme.font.normal};
+  font-size: 12px;
+  color: ${({ theme }) => theme.colors.ribonBlue};
 
-    @media (min-width: ${theme.breakpoints.pad}) {
-      font-size: 14px;
-    }
-  `}
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    font-size: 14px;
+  }
 `;
 
 export const ButtonContainer = styled.div`
-  ${() => css`
-    box-shadow: 0px -4px 4px rgba(24, 86, 105, 0.15);
-    height: 80px;
-    background-color: white;
-    width: 100%;
-    padding: 12px 16px;
-    align-self: end;
-    display: flex;
-    align-items: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
+  width: 100%;
+  height: 80px;
+  padding: 12px 16px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  align-self: end;
+  background-color: white;
+  box-shadow: 0 -4px 4px ${({ theme }) => theme.colors.lightShadow};
 
-    @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-      box-shadow: none;
-      padding: 0;
-      position: static;
-      height: 60px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    height: 60px;
+    padding: 0;
+    position: static;
+    box-shadow: none;
 
-      button {
-        height: 40px;
-      }
+    button {
+      height: 40px;
     }
-  `}
+  }
 `;
 
 export const FinishButton = styled(Button)`
@@ -135,8 +113,6 @@ export const FinishButton = styled(Button)`
 `;
 
 export const ConnectButton = styled(Button)`
-  ${() => css`
-    width: 160px;
-    padding: 7px 16px;
-  `}
+  width: 160px;
+  padding: 7px 16px;
 `;

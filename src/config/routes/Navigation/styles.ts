@@ -17,7 +17,7 @@ export const Container = styled.div`
     bottom: 0;
     width: 100%;
     align-self: flex-end;
-    background: ${theme.colors.ribonWhite};
+    background: ${theme.colors.white};
     box-shadow: 0px -2px 4px rgba(24, 86, 105, 0.15);
     z-index: 2;
 
@@ -31,7 +31,7 @@ export const Container = styled.div`
       align-self: flex-start;
       justify-content: flex-start;
       min-height: 100vh;
-      background: ${theme.colors.ribonWhite}
+      background: ${theme.colors.white}
       box-shadow: 0px 4px 12px rgba(24, 86, 105, 0.15);
     }
   `}
@@ -39,7 +39,7 @@ export const Container = styled.div`
 
 export const Title = styled.p`
   ${({ theme, enabled }: Props) => css`
-    color: ${enabled ? theme.colors.ribonBlack : theme.colors.darkGray};
+    color: ${enabled ? theme.colors.black : theme.colors.darkGray};
     text-decoration: none;
     font-size: 12px;
     line-height: 16px;

@@ -1,50 +1,40 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    background-color: ${theme.colors.ribonWhite};
-    flex-direction: column;
-    align-items: center;
-    padding: 4px;
-    border: 1px solid ${theme.colors.ribonWhite};
-    box-sizing: border-box;
-    border-radius: 16px;
-    width: 100%;
-    height: 100%;
-    box-shadow: 0px 4px 12px 0px ${theme.colors.ribonShadow};
-  `}
+  padding: 4px;
+  border: 1px solid ${({ theme }) => theme.colors.white};
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: ${({ theme }) => theme.colors.white};
+  box-shadow: 0 4px 12px 0 ${({ theme }) => theme.colors.lightShadow};
 `;
 
 export const Image = styled.img`
-  ${({ theme }) => css`
-    width: 100%;
-    height: 194px;
-    border-radius: 16px;
-    object-fit: cover;
+  width: 100%;
+  height: 194px;
+  border-radius: 16px;
+  object-fit: cover;
 
-    @media (min-width: ${theme.breakpoints.pad}) {
-      height: auto;
-    }
-  `}
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    height: auto;
+  }
 `;
 
 export const ContainerText = styled.div`
-  ${() => css`
-    padding: 8px 12px 12px 12px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  `}
+  width: 100%;
+  padding: 8px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Text = styled.h3`
-  ${({ theme }) => css`
-    color: ${theme.colors.ribonBlack};
-    font-weight: 700;
-    align-self: flex-start;
-    margin-bottom: 8px;
-  `}
+  margin-bottom: 8px;
+  align-self: flex-start;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.black};
 `;

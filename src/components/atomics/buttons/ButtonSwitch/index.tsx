@@ -4,7 +4,7 @@ import theme from "styles/theme";
 import * as S from "./styles";
 
 const { colors } = theme;
-const { ribonBlue, ribonWhite, darkGray } = colors;
+const { ribonBlue, white, darkGray } = colors;
 
 export type Props = {
   leftText: string;
@@ -37,8 +37,8 @@ function ButtonSwitch({
           checked={checked}
           offColor={ribonBlue}
           onColor={ribonBlue}
-          onHandleColor={ribonWhite}
-          offHandleColor={ribonWhite}
+          onHandleColor={white}
+          offHandleColor={white}
           handleDiameter={15}
           checkedIcon={false}
           uncheckedIcon={false}

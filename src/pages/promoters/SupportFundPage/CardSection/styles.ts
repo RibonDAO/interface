@@ -16,7 +16,8 @@ export const Subtitle = styled.p`
 
 export const ValuesContainer = styled.div`
   width: 100%;
-  margin-block: 12px;
+  margin-top: 12px;
+  margin-bottom: 12px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 8px;

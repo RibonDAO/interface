@@ -1,66 +1,58 @@
-import styled, { css } from "styled-components";
-
-type Props = {
-  processing?: boolean;
-};
+import styled from "styled-components";
 
 export const Container = styled.div`
-  ${({ theme }) => css`
-    height: 123px;
-    margin: 8px;
-    max-width: 206px;
-    padding: 12px 16px;
-    border-radius: 16px;
-    background: ${theme.colors.white};
-    box-shadow: 0px 4px 12px rgba(24, 86, 105, 0.15);
-  `}
+  max-width: 206px;
+  height: 123px;
+  margin: 8px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: ${({ theme }) => theme.colors.white};
+  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
 `;
 
 export const FirstText = styled.p`
-  ${({ theme }) => css`
-    font-style: italic;
-    font-size: 12px;
-    color: ${theme.colors.darkGray};
-  `}
+  font-style: italic;
+  font-size: 12px;
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
-export const MainContent = styled.p`
-  ${({ theme }) => css`
-    color: ${({ processing }: Props) =>
-      processing ? theme.colors.darkGray : theme.colors.ribonBlue};
-    font-size: 24px;
-    font-weight: 900;
-  `}
+export const MainContent = styled.p<{
+  processing?: boolean;
+}>`
+  font-weight: 900;
+  font-size: 24px;
+  color: ${(props) =>
+    props.processing
+      ? props.theme.colors.darkGray
+      : props.theme.colors.ribonBlue};
 `;
 
-export const RightMainContent = styled.span`
-  ${({ theme }) => css`
-    color: ${({ processing }: Props) =>
-      processing ? theme.colors.darkGray : theme.colors.ribonBlue};
-    font-size: 14px;
-    font-weight: 400;
-  `}
+export const RightMainContent = styled.span<{
+  processing?: boolean;
+}>`
+  font-weight: 400;
+  font-size: 14px;
+  color: ${(props) =>
+    props.processing
+      ? props.theme.colors.darkGray
+      : props.theme.colors.ribonBlue};
 `;
 
 export const LinkSection = styled.a`
-  ${({ theme }) => css`
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    text-decoration: none;
-    color: ${theme.colors.black};
-  `}
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 export const SpinnerSection = styled.a`
-  ${({ theme }) => css`
-    margin-top: 10px;
-    display: flex;
-    font-size: 12px;
-    gap: 10px;
-    text-decoration: none;
-    color: ${theme.colors.ribonBlue};
-  `}
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  font-size: 12px;
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.ribonBlue};
 `;
 
 export const Image = styled.img``;

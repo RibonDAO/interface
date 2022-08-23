@@ -1,4 +1,4 @@
-import Axios, { AxiosRequestConfig } from "axios";
+import Axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import camelCaseKeys from "camelcase-keys";
 import snakeCaseKeys from "snakecase-keys";
 import { normalizedLanguage } from "lib/currentLanguage";
@@ -63,6 +63,10 @@ export function apiDelete(url: string, config?: AxiosRequestConfig) {
   if (config) return api.delete(`${API_SCOPE}/${url}`, config);
 
   return api.delete(`${API_SCOPE}/${url}`);
+}
+
+export function emptyRequest(): Promise<AxiosResponse<any, any>> {
+  return {} as Promise<AxiosResponse>;
 }
 
 export default api;

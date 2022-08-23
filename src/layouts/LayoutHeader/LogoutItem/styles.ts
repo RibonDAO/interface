@@ -1,15 +1,11 @@
 import Button from "components/atomics/buttons/Button";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-export const Container = styled.div`
-  ${() => css``}
-`;
+export const Container = styled.div``;
 
 export const LogoutButton = styled(Button)`
-  ${({ theme }) => css`
-    background: ${theme.colors.white};
-    padding: 4px 12px;
-    line-height: 16px;
-    min-width: 76px;
-  `}
+  min-width: 76px;
+  padding: 4px 12px;
+  line-height: 16px;
+  background: ${({ theme }) => theme.colors.white};
 `;

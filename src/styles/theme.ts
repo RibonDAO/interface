@@ -34,6 +34,16 @@ const theme: ThemeType = {
     darkShadow: "rgba(192, 192, 192, 0.75)",
     modalBackground: "rgba(40, 36, 28, 0.6)",
   },
+  zindex: {
+    base: 0,
+    above: 1,
+    below: -1,
+    dropdown: 2,
+    navbar: 3,
+    modal: 4,
+    toast: 5,
+    loading: 6,
+  },
   spacings: {},
   breakpoints: {
     mobile: "0px",

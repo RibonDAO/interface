@@ -1,54 +1,42 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
-  ${() => css`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    max-width: 360px;
-    height: 100vh;
-    margin: 0 auto;
-  `}
+  max-width: 360px;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const AnimationContainer = styled.div`
-  ${() => css`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  `}
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const LoaderContainer = styled.div`
-  ${() => css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 40px;
-  `}
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const DividerContainer = styled.span`
-  ${() => css`
-    margin: 20px 156px;
-    text-align: center;
-  `}
+  margin: 20px 156px;
+  text-align: center;
 `;
 
 export const AnimationText = styled.h2`
-  ${({ theme }) => css`
-    margin: 8px 0 8px 8px;
-    color: ${theme.colors.ribonBlue};
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  `}
+  margin: 8px 0 8px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: ${({ theme }) => theme.colors.ribonBlue};
 `;
 
 export const ImpactText = styled.h3`
-  ${({ theme }) => css`
-    color: ${theme.colors.black};
-    text-align: center;
-  `}
+  text-align: center;
+  color: ${({ theme }) => theme.colors.black};
 `;

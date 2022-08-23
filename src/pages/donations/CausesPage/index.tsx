@@ -19,6 +19,7 @@ import { today } from "lib/dateTodayFormatter";
 import { useDonationTicketModal } from "hooks/modalHooks/useDonationTicketModal";
 import { IfFeatureEnabled } from "@growthbook/growthbook-react";
 import Spinner from "components/atomics/Spinner";
+import useCanDonate from "hooks/apiHooks/useCanDonate";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
@@ -57,12 +58,9 @@ function CausesPage(): JSX.Element {
   const { nonProfits, isLoading } = useNonProfits();
   const { findOrCreateUser } = useUsers();
   const { createSource } = useSources();
-  const { signedIn, setCurrentUser, userLastDonation } = useCurrentUser();
+  const { signedIn, setCurrentUser } = useCurrentUser();
   const { showDonationTicketModal } = useDonationTicketModal();
-
-  function hasDonateToday() {
-    return userLastDonation === today();
-  }
+  const { canDonate } = useCanDonate(integrationId);
 
   function hasReceivedTicketToday() {
     const donationModalSeenAtKey = getLocalStorageItem(
@@ -76,7 +74,7 @@ function CausesPage(): JSX.Element {
     return false;
   }
 
-  const hasAvailableDonation = !state?.blockedDonation && !hasDonateToday();
+  const hasAvailableDonation = !state?.blockedDonation && canDonate;
 
   useEffect(() => {
     logEvent("donateIntroDial_view");
@@ -149,6 +147,7 @@ function CausesPage(): JSX.Element {
                 nonProfits={nonProfits}
                 setChosenNonProfit={setChosenNonProfit}
                 setConfirmModalVisible={setConfirmModalVisible}
+                canDonate={canDonate}
               />
             )}
           </S.CausesContainer>

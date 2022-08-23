@@ -28,7 +28,7 @@ export const LogoContainer = styled.div`
   height: 80px;
   margin-top: -46px;
   border-radius: 50%;
-  z-index: 0;
+  z-index: ${({ theme }) => theme.zindex.base};
   display: flex;
   justify-content: center;
 `;

@@ -1,43 +1,39 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div``;
 
 export const BodyContainer = styled.div`
   width: 100%;
-  ${({ theme }) => css`
-    @media (min-width: ${theme.breakpoints.pad}) {
-      display: flex;
-      flex-direction: column;
-    }
-  `}
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const Title = styled.h1`
   margin: 0;
   font-weight: 900;
   text-transform: uppercase;
-  ${({ theme }) => css`
-    @media (min-width: ${theme.breakpoints.pad}) {
-      font-size: 36px;
-    }
-  `}
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    font-size: 36px;
+  }
 `;
 
 export const CausesContainer = styled.div`
-  ${({ theme }) => css`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-top: 20px;
-    column-gap: 8px;
-    row-gap: 8px;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 8px;
+  column-gap: 8px;
 
-    @media (min-width: ${theme.breakpoints.pad}) {
-      margin-top: 56px;
-      width: 70%;
-      row-gap: 16px;
-      column-gap: 12px;
-    }
-  `}
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: 70%;
+    margin-top: 56px;
+    row-gap: 16px;
+    column-gap: 12px;
+  }
 `;
 
 export const CausesCardContainer = styled.div`
@@ -48,15 +44,13 @@ export const CausesCardContainer = styled.div`
 `;
 
 export const FooterText = styled.h5`
-  ${({ theme }) => css`
-    line-height: 19px;
-    color: ${theme.colors.darkGray};
-    text-align: center;
-    font-weight: 400;
+  font-weight: 400;
+  line-height: 19px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.darkGray};
 
-    a {
-      color: ${theme.colors.ribonBlue};
-      text-decoration: none;
-    }
-  `}
+  a {
+    text-decoration: none;
+    color: ${({ theme }) => theme.colors.ribonBlue};
+  }
 `;

@@ -5,7 +5,7 @@ export const Container = styled.div`
   width: 100%;
   max-width: 300px;
   border-radius: 5px;
-  z-index: 999;
+  z-index: ${({ theme }) => theme.zindex.dropdown};
   box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
 `;
 

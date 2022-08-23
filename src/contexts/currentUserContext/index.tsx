@@ -1,4 +1,3 @@
-import { stringToLocaleDateString } from "lib/formatters/dateFormatter";
 import React, {
   createContext,
   Dispatch,
@@ -13,9 +12,7 @@ import User from "types/entities/User";
 
 export interface ICurrentUserContext {
   currentUser: User | undefined;
-  userLastDonation: string | undefined;
   setCurrentUser: Dispatch<SetStateAction<User | undefined>>;
-  setUserLastDonation: Dispatch<SetStateAction<string>>;
   updateCurrentUser: (data: Partial<User>) => void;
   logoutCurrentUser: () => void;
   signedIn: boolean;
@@ -30,7 +27,6 @@ export const CurrentUserContext = createContext<ICurrentUserContext>(
 );
 
 export const CURRENT_USER_KEY = "CURRENT_USER_KEY";
-export const CURRENT_USER_LAST_DONATION_KEY = "CURRENT_USER_LAST_DONATION_KEY";
 
 function CurrentUserProvider({ children }: Props) {
   function getUserFromLocalStorage() {
@@ -44,22 +40,6 @@ function CurrentUserProvider({ children }: Props) {
     getUserFromLocalStorage(),
   );
 
-  function getUserLastDonation() {
-    const lastDonation = localStorage.getItem(
-      `${CURRENT_USER_LAST_DONATION_KEY}_${currentUser?.id}`,
-    );
-    if (!lastDonation || lastDonation === "undefined") {
-      if (currentUser?.lastDonationAt)
-        return stringToLocaleDateString(currentUser.lastDonationAt);
-      else return undefined;
-    }
-
-    return JSON.parse(lastDonation);
-  }
-
-  const [userLastDonation, setUserLastDonation] = useState<string | "">(
-    getUserLastDonation(),
-  );
   const [signedIn, setSignedIn] = useState(false);
 
   function updateCurrentUser(data: Partial<User>) {
@@ -75,15 +55,6 @@ function CurrentUserProvider({ children }: Props) {
     localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(currentUser));
   }
 
-  function setUserLastDonationInLocalStorage() {
-    if (!currentUser?.id) return;
-
-    localStorage.setItem(
-      `${CURRENT_USER_LAST_DONATION_KEY}_${currentUser?.id}`,
-      JSON.stringify(userLastDonation),
-    );
-  }
-
   function setUserIdInAnalytics() {
     if (currentUser?.id) {
       setUserId(currentUser?.id);
@@ -93,21 +64,18 @@ function CurrentUserProvider({ children }: Props) {
   useEffect(() => {
     setSignedIn(!!currentUser);
     setUserInLocalStorage();
-    setUserLastDonationInLocalStorage();
     setUserIdInAnalytics();
-  }, [currentUser, userLastDonation]);
+  }, [currentUser]);
 
   const currentUserObject: ICurrentUserContext = useMemo(
     () => ({
       currentUser,
-      userLastDonation,
       setCurrentUser,
-      setUserLastDonation,
       updateCurrentUser,
       signedIn,
       logoutCurrentUser,
     }),
-    [currentUser, userLastDonation, signedIn],
+    [currentUser, signedIn],
   );
 
   return (

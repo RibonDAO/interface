@@ -41,15 +41,19 @@ In order to run the project from a local environment we need `node>=16`, `npm>=8
 ## 🖥️ Local development
 
 To clone the repo:
+
 ```shell
 git clone git@github.com:ribonapp/app.git
 ```
+
 To install the application:
 
 ```shell
 yarn install
 ```
+
 Copy the .env.example to a .env file
+
 ```shell
 cp .env.example .env
 ```
@@ -76,10 +80,16 @@ yarn testCoverage
 
 ### 🎨 Code linting
 
-To check the code and styles quality, use the following command:
+To check the code quality, use the following command:
 
 ```shell
 yarn lint
+```
+
+To check the styles quality, use the following command:
+
+```shell
+yarn lint:css
 ```
 
 ### 🚀 Production deployment
@@ -104,15 +114,14 @@ yarn storybook
 
 In local development the data comes from the [development API](https://github.com/RibonDAO/core-api) (hosted on AWS). There are still two another environments:
 
- - Staging: [https://ribon-dapp-staging.web.app/?integration_id=1](https://ribon-dapp-staging.web.app/?integration_id=1)
- - Production: [https://dapp.ribon.io/?integration_id=1](https://dapp.ribon.io/?integration_id=1)
+- Staging: [https://ribon-dapp-staging.web.app/?integration_id=1](https://ribon-dapp-staging.web.app/?integration_id=1)
+- Production: [https://dapp.ribon.io/?integration_id=1](https://dapp.ribon.io/?integration_id=1)
 
 The staging environment is a production replica, but with a different database. Every time a PR is merged into _main_ this environment is updated with the new code
 
 The production environment is the environment that users are in. Every new merge in main updates this environment
 
 Both environments are hosted on firebase.
-
 
 ## 🤝 Contributing
 

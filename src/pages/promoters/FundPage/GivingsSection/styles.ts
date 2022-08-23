@@ -1,69 +1,55 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-export const Container = styled.div`
-  ${() => css``}
-`;
+export const Container = styled.div``;
 
 export const TextLastCard = styled.p`
-  ${({ theme }) => css`
-    color: ${theme.colors.black};
-    font-size: 16px;
-    font-weight: 700;
-  `}
+  font-weight: 700;
+  font-size: 16px;
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 export const LastCardCarousel = styled.a`
-  ${({ theme }) => css`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 206px;
-    padding: 12px 16px;
-    background: ${theme.colors.white};
-    box-shadow: 0px 4px 12px rgba(24, 86, 105, 0.15);
-    border-radius: 16px;
-    height: 123px;
-    margin: 8px;
-    text-decoration: none;
-  `}
+  width: 206px;
+  height: 123px;
+  margin: 8px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background: ${({ theme }) => theme.colors.white};
+  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
 `;
 
 export const GivingText = styled.span`
-  ${({ theme }) => css`
-    font-weight: 700;
-    color: ${theme.colors.darkGray};
-    font-size: 14px;
-    text-align: center;
-    line-height: 22px;
-  `}
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 export const CardBlank = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 18px 29px 12px 29px;
-    background: ${theme.colors.white};
-    box-shadow: 0px 4px 12px rgba(24, 86, 105, 0.15);
-    border-radius: 16px;
-    gap: 10px;
-    max-width: 206px;
-  `}
+  max-width: 206px;
+  padding: 18px 29px 12px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  background: ${({ theme }) => theme.colors.white};
+  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
 `;
 
 export const Image = styled.img`
-  ${() => css`
-    height: 40px;
-  `}
+  height: 40px;
 `;
 
 export const SectionTitle = styled.p`
-  ${({ theme }) => css`
-    font-weight: 700;
-    color: ${theme.colors.black};
-    margin-top: 28px;
-  `}
+  margin-top: 28px;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.black};
 `;

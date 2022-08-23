@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-type Props = {
+export const Container = styled.button<{
   textColor?: string;
   backgroundColor?: string;
   borderColor?: string;
@@ -9,70 +9,56 @@ type Props = {
   disabled?: boolean;
   borderRadius?: string;
   size?: string;
-};
+}>`
+  width: 100%;
+  border: 1px solid #000;
+  border-color: ${(props) => props.borderColor || props.backgroundColor};
+  border-radius: ${(props) => props.borderRadius || "8px"};
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  line-height: 1;
+  background-color: ${(props) => props.backgroundColor};
+  color: ${(props) => props.textColor};
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
+  cursor: pointer;
 
-export const Container = styled.button`
-  ${({
-    disabled,
-    textColor,
-    borderColor,
-    backgroundColor,
-    borderRadius,
-    size,
-  }: Props) => css`
-    width: 100%;
-    border: 1px solid #000000;
-    border-radius: ${borderRadius || "8px"};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    line-height: 1;
-    font-weight: 700;
-    background-color: ${backgroundColor};
-    border-color: ${borderColor || backgroundColor};
-    color: ${textColor};
-    opacity: ${disabled ? 0.5 : 1};
+  ${(props) =>
+    props.size === "large" &&
+    css`
+      font-size: 20px;
+      padding: 12px 16px;
+    `}
 
-    ${() =>
-      size === "large" &&
-      css`
-        font-size: 20px;
-        padding: 12px 16px;
-      `}
+  ${(props) =>
+    props.size === "medium" &&
+    css`
+      font-size: 16px;
+      padding: 11px 16px;
+    `}
 
-    ${() =>
-      size === "medium" &&
-      css`
-        font-size: 16px;
-        padding: 11px 16px;
-      `}
+  ${(props) =>
+    props.size === "small" &&
+    css`
+      font-size: 12px;
+      padding: 4px 16px;
+    `}
+      
+  #left-icon {
+    margin-right: 4px;
+  }
 
-    ${() =>
-      size === "small" &&
-      css`
-        font-size: 12px;
-        padding: 4px 16px;
-      `}
+  #right-icon {
+    margin-left: 4px;
+  }
 
-    media :hover {
-      cursor: pointer;
+  svg {
+    margin-left: 2px;
+
+    path {
+      fill: ${(props) => props.ribonsColor};
     }
-
-    #left-icon {
-      margin-right: 4px;
-    }
-
-    #right-icon {
-      margin-left: 4px;
-    }
-
-    svg {
-      margin-left: 2px;
-
-      path {
-        fill: ${(props: Props) => props.ribonsColor};
-      }
-    }
-  `}
+  }
 `;

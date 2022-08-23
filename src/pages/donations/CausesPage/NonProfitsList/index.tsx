@@ -1,10 +1,8 @@
 import CardCenterImageButton from "components/moleculars/cards/CardCenterImageButton";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { today } from "lib/dateTodayFormatter";
 import { logEvent } from "services/analytics";
 import NonProfit from "types/entities/NonProfit";
-import { useCurrentUser } from "contexts/currentUserContext";
 import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
 import { useLocation } from "react-router-dom";
 import * as S from "../styles";
@@ -17,12 +15,14 @@ type Props = {
   nonProfits: NonProfit[];
   setChosenNonProfit: (nonProfit: NonProfit) => void;
   setConfirmModalVisible: (visible: boolean) => void;
+  canDonate: boolean;
 };
 
 function NonProfitsList({
   nonProfits,
   setChosenNonProfit,
   setConfirmModalVisible,
+  canDonate,
 }: Props): JSX.Element {
   const { state } = useLocation<LocationStateType>();
 
@@ -33,12 +33,6 @@ function NonProfitsList({
     state?.blockedDonation,
   );
 
-  const { userLastDonation } = useCurrentUser();
-
-  function hasDonateToday() {
-    return userLastDonation === today();
-  }
-
   const chooseNonProfit = useCallback((nonProfit: NonProfit) => {
     setChosenNonProfit(nonProfit);
   }, []);
@@ -48,13 +42,13 @@ function NonProfitsList({
       causeId: nonProfit.id,
     });
     chooseNonProfit(nonProfit);
-    if (hasDonateToday()) {
+    if (canDonate) {
+      setConfirmModalVisible(true);
+      logEvent("authDonationDial_view");
+    } else {
       logEvent("donateBlockedButton_click");
       showBlockedDonationModal();
       logEvent("donateBlockedDonation_view");
-    } else {
-      setConfirmModalVisible(true);
-      logEvent("authDonationDial_view");
     }
   }
 
@@ -65,11 +59,9 @@ function NonProfitsList({
           <CardCenterImageButton
             image={nonProfit.mainImage}
             title={`${nonProfit.impactByTicket} ${nonProfit.impactDescription}`}
-            buttonText={
-              hasDonateToday() ? t("donateBlockedText") : t("donateText")
-            }
+            buttonText={canDonate ? t("donateText") : t("donateBlockedText")}
             onClickButton={() => handleButtonClick(nonProfit)}
-            softDisabled={hasDonateToday()}
+            softDisabled={!canDonate}
           />
         </S.CausesCardContainer>
       ))}

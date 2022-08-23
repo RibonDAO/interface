@@ -1,56 +1,44 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-export const Container = styled.div`
-  ${() => css``}
-`;
+export const Container = styled.div``;
 
 export const ContainerRight = styled.div`
-  ${() => css`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  `}
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Settings = styled.img`
-  ${() => css`
-    cursor: pointer;
-  `}
+  cursor: pointer;
 `;
 
 export const CounterImage = styled.img`
-  ${() => css`
-    width: 12.5px;
-  `}
+  width: 12.5px;
 `;
 
 export const CounterContainer = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 7px;
-    margin-right: 5px;
-    background: ${theme.colors.white};
-    border: 1px solid ${theme.colors.lightGray};
-    box-sizing: border-box;
-    border-radius: 4px;
-    margin-left: 8px;
+  margin-right: 5px;
+  margin-left: 8px;
+  padding: 7px;
+  border: 1px solid ${({ theme }) => theme.colors.lightGray};
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background: ${({ theme }) => theme.colors.white};
 
-    &:hover {
-      cursor: pointer;
-    }
-  `}
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const TicketsAmount = styled.p`
-  ${({ color }) => css`
-    font-size: 14px;
-    line-height: 10px;
-    font-weight: bold;
-    margin-right: 2px;
-    color: ${color};
-  `}
+  margin-right: 2px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 10px;
+  color: ${({ color }) => color};
 `;

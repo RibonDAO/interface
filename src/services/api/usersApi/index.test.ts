@@ -29,4 +29,18 @@ describe("usersApi", () => {
       });
     });
   });
+
+  describe("#postCanDonate", () => {
+    beforeEach(() => {
+      api.post = jest.fn();
+    });
+
+    it("expects to send a get request with the correct info: url, params and headers", () => {
+      usersApi.postCanDonate(1);
+
+      expect(api.post).toHaveBeenCalledWith("/api/v1/users/can_donate", {
+        integrationId: 1,
+      });
+    });
+  });
 });

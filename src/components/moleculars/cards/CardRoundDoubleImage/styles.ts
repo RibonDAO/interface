@@ -44,7 +44,7 @@ export const RightImage = styled.img`
   border-radius: 50%;
   position: absolute;
   right: 0;
-  z-index: 1;
+  z-index: ${({ theme }) => theme.zindex.above};
   object-fit: cover;
   filter: drop-shadow(0 20px 40px ${({ theme }) => theme.colors.lightShadow});
 

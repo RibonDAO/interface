@@ -2,7 +2,6 @@ import ModalBlank from "components/moleculars/modals/ModalBlank";
 import Header from "components/atomics/sections/Header";
 import useIntegration from "hooks/apiHooks/useIntegration";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { today } from "lib/dateTodayFormatter";
 import cogIcon from "assets/icons/cog-icon.svg";
 import ticketOn from "assets/icons/ticket-icon-on.svg";
 import ticketOff from "assets/icons/ticket-icon-off.svg";
@@ -22,6 +21,7 @@ import { useModal } from "hooks/modalHooks/useModal";
 import ChangeLanguageItem from "./ChangeLanguageItem";
 import LogoutItem from "./LogoutItem";
 import * as S from "./styles";
+import useCanDonate from "../../hooks/apiHooks/useCanDonate";
 
 export type Props = {
   rightComponent?: JSX.Element;
@@ -35,9 +35,10 @@ function LayoutHeader({
   const integrationId = useIntegrationId();
   const [menuVisible, setMenuVisible] = useState(false);
   const { isMobile } = useBreakpoint();
-  const { userLastDonation, signedIn } = useCurrentUser();
+  const { signedIn } = useCurrentUser();
   const { navigateBack } = useNavigation();
   const { showBlockedDonationModal } = useBlockedDonationModal();
+  const { canDonate } = useCanDonate(integrationId);
 
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
@@ -69,14 +70,10 @@ function LayoutHeader({
     setMenuVisible(false);
   }
 
-  function hasDonateToday() {
-    return userLastDonation === today();
-  }
-
   function handleCounterClick() {
-    if (hasDonateToday()) showBlockedDonationModal();
+    if (canDonate) show();
     else {
-      show();
+      showBlockedDonationModal();
     }
   }
 
@@ -122,14 +119,12 @@ function LayoutHeader({
             <S.CounterContainer onClick={() => handleCounterClick()}>
               <S.TicketsAmount
                 color={
-                  hasDonateToday()
-                    ? theme.colors.darkGray
-                    : theme.colors.ribonBlue
+                  canDonate ? theme.colors.ribonBlue : theme.colors.darkGray
                 }
               >
-                {hasDonateToday() ? 0 : 1}
+                {canDonate ? 1 : 0}
               </S.TicketsAmount>
-              <S.CounterImage src={hasDonateToday() ? ticketOff : ticketOn} />
+              <S.CounterImage src={canDonate ? ticketOn : ticketOff} />
             </S.CounterContainer>
             <S.Settings onClick={() => openMenu()} src={cogIcon} />
           </S.ContainerRight>

@@ -1,7 +1,6 @@
 import Divider from "components/atomics/Divider";
 import CardRoundImage from "components/moleculars/cards/CardRoundImage";
 import { useTranslation } from "react-i18next";
-import { today } from "lib/dateTodayFormatter";
 import useNavigation from "hooks/useNavigation";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
@@ -29,11 +28,7 @@ function DonationInProcessPage(): JSX.Element {
     state: { nonProfit, integration },
   } = useLocation<LocationStateType>();
   const { donate } = useDonations();
-  const { currentUser, setUserLastDonation } = useCurrentUser();
-
-  function saveLastDonation() {
-    setUserLastDonation(today());
-  }
+  const { currentUser } = useCurrentUser();
 
   async function handleDonation() {
     if (!currentUser) return;
@@ -41,7 +36,6 @@ function DonationInProcessPage(): JSX.Element {
     try {
       await donate(integration?.id, nonProfit.id, currentUser.email);
       navigateTo({ pathname: "/donation-done", state: { nonProfit } });
-      saveLastDonation();
     } catch (e: any) {
       const state =
         e.response.status === 403

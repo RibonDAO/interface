@@ -1,18 +1,16 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    background-color: ${theme.colors.white};
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 14px 14px 14px;
-    border: 1px solid ${theme.colors.white};
-    box-sizing: border-box;
-    border-radius: 16px;
-    width: 100%;
-    height: 100%;
-    box-shadow: 0px 4px 12px 0px ${theme.colors.lightShadow};
-    max-width: 472px;
-  `}
+  width: 100%;
+  max-width: 472px;
+  height: 100%;
+  padding: 20px 14px 14px;
+  border: 1px solid ${({ theme }) => theme.colors.white};
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: ${({ theme }) => theme.colors.white};
+  box-shadow: 0 4px 12px 0 ${({ theme }) => theme.colors.lightShadow};
 `;

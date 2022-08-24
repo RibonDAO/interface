@@ -164,6 +164,9 @@
       "modalSuccessTitle": "Você incluiu {{value}} USDC ao tesouro!",
       "modalSuccessDescription": "Sua doação foi convertida em criptomoedas para financiar mais vales.",
       "modalSuccessButton": "Ok"
+    },
+    "networkContext": {
+      "invalidNetworkMessage": "Conecte-se a uma rede válida"
     }
   }
 }

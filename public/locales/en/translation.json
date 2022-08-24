@@ -164,6 +164,9 @@
       "modalSuccessTitle": "You've added {{value}} USDC to the treasury!",
       "modalSuccessDescription": "Your donation has been converted into cryptocurrencies to fund more vouchers.",
       "modalSuccessButton": "Ok"
+    },
+    "networkContext": {
+      "invalidNetworkMessage": "Connect to a valid network"
     }
   }
 }

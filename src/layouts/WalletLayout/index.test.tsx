@@ -39,6 +39,9 @@ describe("WalletLayout", () => {
           walletProviderValue: {
             wallet: "0x6E060041D62fDd76cF27c582f62983b864878E8F",
           },
+          networkProviderValue: {
+            isValidNetwork: true,
+          },
         },
       );
     });

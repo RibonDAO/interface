@@ -28,6 +28,7 @@ const theme: ThemeType = {
     bgGray: "#F2F2F0",
     hoverGray: "#F2F2F0",
     white: "#FFFFFF",
+    red: "#FF6B6F",
     phcYellow2: "#FF8F00",
     ribonTransparent: "rgba(255, 255, 255, 0)",
     lightShadow: "rgba(24, 86, 105, 0.15)",

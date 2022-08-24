@@ -1,15 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "services/analytics";
-import useNavigation from "hooks/useNavigation";
+
 import NonProfit from "types/entities/NonProfit";
 import useNonProfits from "hooks/apiHooks/useNonProfits";
-import { logError } from "services/crashReport";
+
 import { useLocation } from "react-router-dom";
 import useUsers from "hooks/apiHooks/useUsers";
 import useSources from "hooks/apiHooks/useSources";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationId } from "hooks/useIntegrationId";
+
 import useIntegration from "hooks/apiHooks/useIntegration";
 import { useModal } from "hooks/modalHooks/useModal";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
@@ -19,6 +20,7 @@ import { today } from "lib/dateTodayFormatter";
 import { useDonationTicketModal } from "hooks/modalHooks/useDonationTicketModal";
 import Spinner from "components/atomics/Spinner";
 import useCanDonate from "hooks/apiHooks/useCanDonate";
+import { logError } from "services/crashReport";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
@@ -26,6 +28,8 @@ import ConfirmSection from "./ConfirmSection";
 
 function CausesPage(): JSX.Element {
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
+  const [donationInProcessModalVisible, setDonationInProcessModalVisible] =
+    useState(false);
   const [chosenNonProfit, setChosenNonProfit] = useState<NonProfit>();
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
@@ -53,7 +57,6 @@ function CausesPage(): JSX.Element {
     DONATION_MODAL_SEEN_AT_KEY,
   );
 
-  const { navigateTo } = useNavigation();
   const { nonProfits, isLoading } = useNonProfits();
   const { findOrCreateUser } = useUsers();
   const { createSource } = useSources();
@@ -95,7 +98,7 @@ function CausesPage(): JSX.Element {
     setConfirmModalVisible(false);
   }, []);
 
-  const donate = useCallback(
+  const donateTicket = useCallback(
     async (email: string) => {
       try {
         if (!signedIn) {
@@ -106,10 +109,6 @@ function CausesPage(): JSX.Element {
           }
           setCurrentUser(user);
         }
-        navigateTo({
-          pathname: "/donation-in-process",
-          state: { nonProfit: chosenNonProfit, integration },
-        });
       } catch (e) {
         logError(e);
       }
@@ -122,11 +121,14 @@ function CausesPage(): JSX.Element {
 
   return (
     <S.Container>
-      {chosenNonProfit && (
+      {chosenNonProfit && integration && (
         <ConfirmSection
           chosenNonProfit={chosenNonProfit}
-          donate={donate}
+          donateTicket={donateTicket}
+          integration={integration}
+          setDonationInProcessModalVisible={setDonationInProcessModalVisible}
           confirmModalVisible={confirmModalVisible}
+          donationInProcessModalVisible={donationInProcessModalVisible}
           setConfirmModalVisible={setConfirmModalVisible}
           closeConfirmModal={closeConfirmModal}
         />

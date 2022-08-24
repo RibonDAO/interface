@@ -20,6 +20,9 @@
       "receiveTicketAnimationModalTitle": "Recebendo ticket...",
       "receiveTicketAnimationModalOrigin": "Apoiadores",
       "receiveTicketAnimationModalDestiny": "Você",
+      "donateAnimationModalTitle":"Realizando doação... ",
+      "donateAnimationModalOrigin": "Você",
+      "donateAnimationModalDestiny": "Projeto",
       "modalForm": {
         "footerStartText": "Ao inserir seu e-mail e se inscrever, você aceita a nossa",
         "footerAnd": "e",
@@ -37,10 +40,6 @@
       "ngoInformation": "Amor em Patas é uma organização que tem como objetivo resgatar animais abandonados, cuidar deles e buscar adoção.",
       "moreInfoButtonText": "Mais informações",
       "youDonatedText": "Você doou"
-    },
-    "donationInProcess": {
-      "animationText": "Doando...",
-      "impactText": "Essa doação é financiada pelo Tesouro de Doação da Ribon"
     },
     "menu": {
       "impactPageTitle": "Impacto",

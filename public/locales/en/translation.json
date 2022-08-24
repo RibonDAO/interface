@@ -20,6 +20,9 @@
       "receiveTicketAnimationModalTitle": "Receiving Ticket...",
       "receiveTicketAnimationModalOrigin": "Supportes",
       "receiveTicketAnimationModalDestiny": "You",
+      "donateAnimationModalTitle":"Making donation...",
+      "donateAnimationModalOrigin": "You",
+      "donateAnimationModalDestiny": "Project",
       "modalForm": {
         "footerStartText": "By signing up you agree to Ribon's",
         "footerAnd": "and",
@@ -37,10 +40,6 @@
       "ngoInformation": "Amor em Patas is an organization that aims to rescue abandoned animals, take care of them and seek adoption.",
       "moreInfoButtonText": "More info",
       "youDonatedText": "You donated"
-    },
-    "donationInProcess": {
-      "animationText": "Donating...",
-      "impactText": "This donation is funded by Ribon’s Donation Treasure"
     },
     "menu": {
       "impactPageTitle": "Impact",

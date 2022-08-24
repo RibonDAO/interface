@@ -78,7 +78,7 @@
     "noImpactButton": "Donate now"
   },
   "promoters": {
-    "fundPage": {
+    "treasurePage": {
       "title": "Donation treasure",
       "treasureBalance": "Treasure balance",
       "treasureSupportButtonText": "Support the treasure",
@@ -101,7 +101,7 @@
         "button": "Ok"
       }
     },
-    "supportFundPage": {
+    "supportTreasurePage": {
       "title": "Your giving",
       "subtitle": "How much do you want to give?",
       "buttonText": "Confirm giving",

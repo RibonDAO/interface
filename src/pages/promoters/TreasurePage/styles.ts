@@ -36,14 +36,14 @@ export const Title = styled.h1`
   }
 `;
 
-export const FundText = styled.p`
+export const TreasureText = styled.p`
   margin-bottom: 8px;
   font-weight: 900;
   font-size: 36px;
   color: ${({ theme }) => theme.colors.ribonBlue};
 `;
 
-export const FundTextCoin = styled.span`
+export const TreasureTextCoin = styled.span`
   font-weight: 400;
   font-size: 14px;
   color: ${({ theme }) => theme.colors.ribonBlue};

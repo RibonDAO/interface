@@ -40,10 +40,13 @@ describe("PromoterGivingsSection", () => {
           clickOn("Show your givings");
         });
 
-        it("logs the fundShowGivingsListBtn_click event", () => {
-          expectLogEventToHaveBeenCalledWith("fundShowGivingsListBtn_click", {
-            from: "yourGivingsCarousel",
-          });
+        it("logs the treasureShowGivingsListBtn_click event", () => {
+          expectLogEventToHaveBeenCalledWith(
+            "treasureShowGivingsListBtn_click",
+            {
+              from: "yourGivingsCarousel",
+            },
+          );
         });
 
         it("navigates to the you givings page", () => {

@@ -4,12 +4,12 @@ import {
   expectTextNotToBeInTheDocument,
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
-import ModalOnboarding, { FUND_MODAL_ONBOARDING_VIEWED_KEY } from ".";
+import ModalOnboarding, { TREASURE_MODAL_ONBOARDING_VIEWED_KEY } from ".";
 
 describe("ModalOnboarding", () => {
-  describe("when there is no fund modal onboarding viewed key", () => {
+  describe("when there is no treasure modal onboarding viewed key", () => {
     beforeEach(() => {
-      removeLocalStorageItem(FUND_MODAL_ONBOARDING_VIEWED_KEY);
+      removeLocalStorageItem(TREASURE_MODAL_ONBOARDING_VIEWED_KEY);
     });
 
     it("should render without error", () => {
@@ -19,9 +19,9 @@ describe("ModalOnboarding", () => {
     });
   });
 
-  describe("when there is a fund modal onboarding viewed key", () => {
+  describe("when there is a treasure modal onboarding viewed key", () => {
     beforeEach(() => {
-      setLocalStorageItem(FUND_MODAL_ONBOARDING_VIEWED_KEY, "true");
+      setLocalStorageItem(TREASURE_MODAL_ONBOARDING_VIEWED_KEY, "true");
     });
 
     it("should not be visible", () => {

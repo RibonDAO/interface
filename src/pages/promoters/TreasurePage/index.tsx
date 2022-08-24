@@ -13,13 +13,13 @@ import * as S from "./styles";
 import GivingsSection from "./GivingsSection";
 import ModalOnboarding from "./ModalOnboarding";
 
-function FundPage(): JSX.Element {
+function TreasurePage(): JSX.Element {
   const coin = "USDC";
   const { navigateTo } = useNavigation();
   const { currentNetwork } = useNetworkContext();
 
   const { t } = useTranslation("translation", {
-    keyPrefix: "promoters.fundPage",
+    keyPrefix: "promoters.treasurePage",
   });
   const donationTokenContract = useContract({
     address: currentNetwork.donationTokenContractAddress,
@@ -36,14 +36,14 @@ function FundPage(): JSX.Element {
   );
 
   const handleSupportButtonClick = () => {
-    logEvent("fundSupportBtn_click", {
-      from: "fundBalance",
+    logEvent("treasureSupportBtn_click", {
+      from: "treasureBalance",
     });
-    navigateTo("/promoters/support-fund");
+    navigateTo("/promoters/support-treasure");
   };
 
   useEffect(() => {
-    logEvent("fundScreen_view");
+    logEvent("treasureScreen_view");
   }, []);
 
   useEffect(() => {
@@ -59,9 +59,9 @@ function FundPage(): JSX.Element {
       <S.SectionTitle>{t("treasureBalance")}</S.SectionTitle>
       <S.CardContainer>
         <CardBlank>
-          <S.FundText>
-            {contractBalance} <S.FundTextCoin>{coin}</S.FundTextCoin>
-          </S.FundText>
+          <S.TreasureText>
+            {contractBalance} <S.TreasureTextCoin>{coin}</S.TreasureTextCoin>
+          </S.TreasureText>
           <Button
             text={t("treasureSupportButtonText")}
             onClick={handleSupportButtonClick}
@@ -75,4 +75,4 @@ function FundPage(): JSX.Element {
   );
 }
 
-export default FundPage;
+export default TreasurePage;

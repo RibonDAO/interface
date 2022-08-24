@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import { logEvent } from "services/analytics";
 import NonProfit from "types/entities/NonProfit";
 import heartsBackground from "assets/animations/hearts-background.json";
+import { setLocalStorageItem } from "lib/localStorage";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -26,6 +27,7 @@ function DonationDonePage(): JSX.Element {
     logEvent("donateFinishedDonation_view", {
       selected: nonProfit?.id,
     });
+    setLocalStorageItem("HAS_DONATED", "true");
     setTimeout(() => {
       navigateTo("/");
     }, 5000);

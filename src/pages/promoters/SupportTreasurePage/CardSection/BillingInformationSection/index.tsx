@@ -13,7 +13,7 @@ import * as S from "./styles";
 function BillingInformationSection(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix:
-      "promoters.supportFundPage.cardSection.billingInformationSection",
+      "promoters.supportTreasurePage.cardSection.billingInformationSection",
   });
   const { currentLang } = useLanguage();
   const maxLengthByLanguage = currentLang === Languages.PT ? 14 : 11;
@@ -43,7 +43,7 @@ function BillingInformationSection(): JSX.Element {
   }, [country, state, city, taxId]);
 
   useEffect(() => {
-    logEvent("fundSupportBillingInfo_view");
+    logEvent("treasureSupportBillingInfo_view");
   });
 
   return (

@@ -36,7 +36,7 @@ function WalletLayout({
   }, []);
 
   const handleWalletButtonClick = () => {
-    logEvent("fundConWalletBtn_click", {
+    logEvent("treasureConWalletBtn_click", {
       from: "walletButton",
     });
     connectWallet();

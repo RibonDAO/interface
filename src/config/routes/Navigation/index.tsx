@@ -33,11 +33,11 @@ function Navigation(): JSX.Element {
       event: "homeNavBtn_click",
     },
     {
-      path: "/promoters/fund",
+      path: "/promoters/treasure",
       iconOn: TreasureIconOn,
       iconOff: TreasureIconOff,
       title: t("treasurePageTitle"),
-      event: "fundNavBtn_click",
+      event: "treasureNavBtn_click",
     },
     {
       path: "/impact",

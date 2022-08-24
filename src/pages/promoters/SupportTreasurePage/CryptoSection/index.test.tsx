@@ -31,8 +31,8 @@ describe("CryptoSection", () => {
       expectTextToBeInTheDocument("Connect wallet");
     });
 
-    it("logs the fundSupportWalletRequest_view event", () => {
-      expectLogEventToHaveBeenCalledWith("fundSupportWalletRequest_view");
+    it("logs the treasureSupportWalletRequest_view event", () => {
+      expectLogEventToHaveBeenCalledWith("treasureSupportWalletRequest_view");
     });
   });
 });

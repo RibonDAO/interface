@@ -6,21 +6,21 @@ import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import { logEvent } from "services/analytics";
 import * as S from "./styles";
 
-export const FUND_MODAL_ONBOARDING_VIEWED_KEY =
-  "FUND_MODAL_ONBOARDING_VIEWED_KEY";
+export const TREASURE_MODAL_ONBOARDING_VIEWED_KEY =
+  "TREASURE_MODAL_ONBOARDING_VIEWED_KEY";
 
 function ModalOnboarding(): JSX.Element {
   const [visible, setVisible] = useState(
-    getLocalStorageItem(FUND_MODAL_ONBOARDING_VIEWED_KEY) !== "true",
+    getLocalStorageItem(TREASURE_MODAL_ONBOARDING_VIEWED_KEY) !== "true",
   );
 
   useEffect(() => {
-    logEvent("fundOnboardingMdl_view");
-    setLocalStorageItem(FUND_MODAL_ONBOARDING_VIEWED_KEY, "true");
+    logEvent("treasureOnboardingMdl_view");
+    setLocalStorageItem(TREASURE_MODAL_ONBOARDING_VIEWED_KEY, "true");
   }, []);
 
   const { t } = useTranslation("translation", {
-    keyPrefix: "promoters.fundPage.modalOnboarding",
+    keyPrefix: "promoters.treasurePage.modalOnboarding",
   });
 
   return (

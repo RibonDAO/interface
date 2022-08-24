@@ -18,7 +18,7 @@ function FeesSection({
   setCryptoGiving,
 }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
-    keyPrefix: "promoters.supportFundPage.cardSection",
+    keyPrefix: "promoters.supportTreasurePage.cardSection",
   });
 
   const {

@@ -26,7 +26,7 @@ function CryptoSection(): JSX.Element {
   const { currentNetwork } = useNetworkContext();
 
   const { t } = useTranslation("translation", {
-    keyPrefix: "promoters.supportFundPage",
+    keyPrefix: "promoters.supportTreasurePage",
   });
   const contract = useContract({
     address: currentNetwork.ribonContractAddress,
@@ -109,7 +109,7 @@ function CryptoSection(): JSX.Element {
   };
 
   const handleFinishButtonClick = async () => {
-    logEvent("fundSupportConfirmBtn_click");
+    logEvent("treasureSupportConfirmBtn_click");
     setLoading(true);
     showLoadingOverlay(t("tokenAmountTransferMessage"));
     try {
@@ -134,7 +134,7 @@ function CryptoSection(): JSX.Element {
       });
 
       navigateTo({
-        pathname: "/promoters/fund",
+        pathname: "/promoters/treasure",
         state: {
           id,
           timestamp,
@@ -154,14 +154,14 @@ function CryptoSection(): JSX.Element {
   };
 
   const handleConnectWalletButtonClick = () => {
-    logEvent("fundConWalletBtn_click", {
+    logEvent("treasureConWalletBtn_click", {
       from: "supportPageButton",
     });
     connectWallet();
   };
 
   function renderConnectWallet() {
-    logEvent("fundSupportWalletRequest_view");
+    logEvent("treasureSupportWalletRequest_view");
     return (
       <S.ConnectContainer>
         <S.Image src={WalletIcon} alt="walletIcon" />

@@ -19,9 +19,9 @@ export function useBlockedDonationModal(initialState?: boolean) {
       body: t("blockedModalText"),
       primaryButtonText: t("blockedModalFirstButtonText"),
       primaryButtonCallback: () => {
-        logEvent("fundExternalCtaBtn_click");
+        logEvent("treasureExternalCtaBtn_click");
         hide();
-        navigateTo("/promoters/fund");
+        navigateTo("/promoters/treasure");
       },
       secondaryButtonCallback: () => hide(),
       secondaryButtonText: t("blockedModalSecondButtonText"),

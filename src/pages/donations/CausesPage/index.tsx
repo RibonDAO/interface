@@ -17,7 +17,6 @@ import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import { DONATION_MODAL_SEEN_AT_KEY } from "lib/localStorage/constants";
 import { today } from "lib/dateTodayFormatter";
 import { useDonationTicketModal } from "hooks/modalHooks/useDonationTicketModal";
-import { IfFeatureEnabled } from "@growthbook/growthbook-react";
 import Spinner from "components/atomics/Spinner";
 import useCanDonate from "hooks/apiHooks/useCanDonate";
 import * as S from "./styles";
@@ -135,9 +134,6 @@ function CausesPage(): JSX.Element {
 
       <S.BodyContainer>
         <S.Title>{t("pageTitle")}</S.Title>
-        <IfFeatureEnabled feature="teste-1">
-          <p>.</p>
-        </IfFeatureEnabled>
         {isLoading ? (
           <Spinner size="26" />
         ) : (

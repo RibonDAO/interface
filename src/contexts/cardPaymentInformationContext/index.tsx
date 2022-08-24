@@ -102,18 +102,18 @@ function CardPaymentInformationProvider({ children }: Props) {
       icon: successIcon,
       primaryButtonText: t("modalSuccessButton"),
       onClose: () => {
-        navigateTo("/promoters/fund");
+        navigateTo("/promoters/treasure");
         hide();
       },
       primaryButtonCallback: () => {
-        navigateTo("/promoters/fund");
+        navigateTo("/promoters/treasure");
         hide();
       },
     },
   });
 
   const handleSubmit = async () => {
-    logEvent("fundSupportConfirmBtn_click");
+    logEvent("treasureSupportConfirmBtn_click");
     showLoadingOverlay(t("loadingMessage"));
 
     const expiration = expirationDate.split("/");
@@ -138,7 +138,7 @@ function CardPaymentInformationProvider({ children }: Props) {
 
       show();
 
-      logEvent("fundGivingConfirmMdl_view");
+      logEvent("treasureGivingConfirmMdl_view");
     } catch (error) {
       logError(error);
       toast({

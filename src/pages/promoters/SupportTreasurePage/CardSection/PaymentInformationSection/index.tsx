@@ -11,7 +11,7 @@ import * as S from "./styles";
 function PaymentInformation() {
   const { t } = useTranslation("translation", {
     keyPrefix:
-      "promoters.supportFundPage.cardSection.paymentInformationSection",
+      "promoters.supportTreasurePage.cardSection.paymentInformationSection",
   });
 
   const {
@@ -31,7 +31,7 @@ function PaymentInformation() {
   const { currentUser } = useCurrentUser();
 
   useEffect(() => {
-    logEvent("fundSupportPayment_view");
+    logEvent("treasureSupportPayment_view");
   }, []);
 
   const maskExpiration = (e: React.ChangeEvent<HTMLInputElement>) => {

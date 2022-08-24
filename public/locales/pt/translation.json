@@ -78,7 +78,7 @@
     "noImpactButton": "Doar agora"
   },
   "promoters": {
-    "fundPage": {
+    "treasurePage": {
       "title": "Tesouro de doação",
       "treasureBalance": "Saldo do tesouro",
       "treasureSupportButtonText": "Fazer uma contribuição",
@@ -101,7 +101,7 @@
         "button": "Continuar"
       }
     },
-    "supportFundPage": {
+    "supportTreasurePage": {
       "title": "Sua contribuição",
       "subtitle": "Com quanto você quer contribuir?",
       "buttonText": "Confirmar doação",

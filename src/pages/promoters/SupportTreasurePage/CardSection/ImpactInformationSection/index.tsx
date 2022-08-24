@@ -17,7 +17,7 @@ function ImpactInformationSection(): JSX.Element {
   const [selectedNonProfit, setSelectedNonProfit] = useState<NonProfit>();
 
   const { t } = useTranslation("translation", {
-    keyPrefix: "promoters.supportFundPage.cardSection",
+    keyPrefix: "promoters.supportTreasurePage.cardSection",
   });
   const { nonProfits } = useNonProfits();
 
@@ -43,7 +43,7 @@ function ImpactInformationSection(): JSX.Element {
   };
 
   const handleOfferClick = (offer: Offer, index: number) => {
-    logEvent("fundSupportAmountBtn_click", {
+    logEvent("treasureSupportAmountBtn_click", {
       option: offer?.id,
     });
     setSelectedButtonIndex(index);

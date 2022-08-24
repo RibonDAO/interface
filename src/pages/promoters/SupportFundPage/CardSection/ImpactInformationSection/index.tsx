@@ -88,6 +88,7 @@ function ImpactInformationSection(): JSX.Element {
           name: "currency",
           onOptionChanged: onCurrencyChanged,
           valueText: currencyText,
+          defaultValue: currentCoin,
           containerId: "currencies-dropdown",
         }}
       >

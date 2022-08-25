@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import { useCallback, useEffect, useState } from "react";
-import Dropdown from "components/atomics/Dropdown";
 import { Currencies } from "types/enums/Currencies";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import useOffers from "hooks/apiHooks/useOffers";
@@ -38,9 +37,17 @@ function ImpactInformationSection(): JSX.Element {
     refetchOffers();
   }, [currentCoin]);
 
-  const onOptionChanged = (nonProfit: NonProfit) => {
+  const onNonProfitChanged = (nonProfit: NonProfit) => {
     setSelectedNonProfit(nonProfit);
   };
+
+  const nonProfitText = (value: NonProfit) => value.name;
+
+  const onCurrencyChanged = (currency: Currencies) => {
+    setCurrentCoin(currency);
+  };
+
+  const currencyText = (value: Currencies) => value;
 
   const handleOfferClick = (offer: Offer, index: number) => {
     logEvent("treasureSupportAmountBtn_click", {
@@ -49,7 +56,6 @@ function ImpactInformationSection(): JSX.Element {
     setSelectedButtonIndex(index);
   };
 
-  const valueText = (value: NonProfit) => value.name;
   const currentOffer = useCallback(() => {
     if (!offers) return null;
 
@@ -74,24 +80,30 @@ function ImpactInformationSection(): JSX.Element {
 
   return (
     <S.ImpactSectionContainer>
-      <Dropdown
-        name="currency"
-        label={t("currency")}
-        values={[Currencies.USD, Currencies.BRL]}
-        defaultValue={currentCoin}
-        onOptionChanged={(value) => setCurrentCoin(value)}
-      />
       <S.Subtitle>{t("subtitleCard")}</S.Subtitle>
-      <S.ValuesContainer>
-        {offers?.map((item, index) => (
-          <S.CardValueButton
-            text={removeInsignificantZeros(item?.price)}
-            onClick={() => handleOfferClick(item, index)}
-            outline={index !== selectedButtonIndex}
-            key={item?.id}
-          />
-        ))}
-      </S.ValuesContainer>
+      <CardSelect
+        dropdownProps={{
+          values: [Currencies.USD, Currencies.BRL],
+          label: t("currency"),
+          name: "currency",
+          onOptionChanged: onCurrencyChanged,
+          valueText: currencyText,
+          defaultValue: currentCoin,
+          containerId: "currencies-dropdown",
+        }}
+      >
+        <S.ValuesContainer>
+          {offers?.map((item, index) => (
+            <S.CardValueButton
+              text={removeInsignificantZeros(item?.price)}
+              onClick={() => handleOfferClick(item, index)}
+              outline={index !== selectedButtonIndex}
+              key={item?.id}
+            />
+          ))}
+        </S.ValuesContainer>
+      </CardSelect>
+
       <S.Subtitle>{t("simulateSectionTitle")}</S.Subtitle>
       {nonProfits && (
         <S.ImpactSimulatorContainer>
@@ -100,8 +112,8 @@ function ImpactInformationSection(): JSX.Element {
               values: nonProfits,
               label: t("impactSimulationSection.label"),
               name: "nonProfits",
-              onOptionChanged,
-              valueText,
+              onOptionChanged: onNonProfitChanged,
+              valueText: nonProfitText,
               containerId: "non-profits-dropdown",
             }}
           >

@@ -101,7 +101,7 @@
       }
     },
     "supportTreasurePage": {
-      "title": "Sua contribuição",
+      "title": "Gere mais impacto",
       "subtitle": "Com quanto você quer contribuir?",
       "buttonText": "Confirmar doação",
       "disabledButtonText": "Insira uma quantidade de USDC",
@@ -122,7 +122,7 @@
         "currency": "Moeda",
         "subtitleCard": "Escolha sua contribuição",
         "simulateSectionTitle": "Simule um resultado possível",
-        "buttonTextCard": "Próximo",
+        "buttonTextCard": "Ir para pagamento",
         "buttonSubmit": "Confirmar",
         "detailsSubtitle": "Detalhes da contribuição",
         "netGivingText": "Contribuição líquida: {{netGiving}}*",

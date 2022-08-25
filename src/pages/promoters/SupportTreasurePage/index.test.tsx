@@ -12,7 +12,7 @@ describe("SupportTreasurePage", () => {
   });
 
   it("should render without error", () => {
-    expectTextToBeInTheDocument("Your giving");
+    expectTextToBeInTheDocument("Make a bigger impact");
   });
 
   it("logs the treasureSupportScreen_view event", () => {
@@ -30,7 +30,7 @@ describe("SupportTreasurePage", () => {
 
     it("should render card form", () => {
       expectTextToBeInTheDocument("Choose your giving");
-      expectTextToBeInTheDocument("Next");
+      expectTextToBeInTheDocument("Proceed to checkout");
     });
 
     it("should render cryptocurrency section", () => {

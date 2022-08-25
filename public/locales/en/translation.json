@@ -101,7 +101,7 @@
       }
     },
     "supportTreasurePage": {
-      "title": "Your giving",
+      "title": "Make a bigger impact",
       "subtitle": "How much do you want to give?",
       "buttonText": "Confirm giving",
       "disabledButtonText": "Enter a USDC amount",
@@ -122,7 +122,7 @@
         "currency": "Currency",
         "subtitleCard": "Choose your giving",
         "simulateSectionTitle": "Simulate a possible result",
-        "buttonTextCard": "Next",
+        "buttonTextCard": "Proceed to checkout",
         "buttonSubmit": "Confirm",
         "detailsSubtitle": "Giving details",
         "netGivingText": "Net giving: {{netGiving}}*",

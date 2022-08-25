@@ -25,7 +25,7 @@ describe("CardSection", () => {
     renderComponent(<CardSection />);
     await waitForPromises();
 
-    clickOn("Next");
+    clickOn("Proceed to checkout");
 
     expectTextToBeInTheDocument("Billing information");
   });

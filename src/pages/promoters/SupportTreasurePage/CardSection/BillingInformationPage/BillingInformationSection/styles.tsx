@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const BillingInformationSectionContainer = styled.div`
-  margin-top: 24px;
+  margin-top: 18px;
   height: 256px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
@@ -10,7 +10,7 @@ export const BillingInformationSectionContainer = styled.div`
 `;
 
 export const Title = styled.h6`
-  margin: 20px 0;
+  margin-bottom: 18px;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.darkGray};
   font-size: 18px;

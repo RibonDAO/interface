@@ -9,6 +9,8 @@ import ImpactPage from "pages/users/ImpactPage";
 import MainLayout from "layouts/MainLayout";
 import TreasurePage from "pages/promoters/TreasurePage";
 import SupportTreasurePage from "pages/promoters/SupportTreasurePage";
+import BillingInformationPage from "pages/promoters/SupportTreasurePage/CardSection/BillingInformationPage";
+import PaymentInformationPage from "pages/promoters/SupportTreasurePage/CardSection/PaymentInformationPage";
 import GivingsPage from "pages/promoters/GivingsPage";
 import WalletLayout from "layouts/WalletLayout";
 import CardPaymentInformationProvider from "contexts/cardPaymentInformationContext";
@@ -83,6 +85,34 @@ function RoutesComponent(): JSX.Element {
                 </WalletLayout>
               </WalletProvider>
             </NetworkProvider>
+          </CurrentUserProvider>
+        </Suspense>
+      </Route>
+
+      <Route path="/promoters/support-treasure/billing-information" exact>
+        <Suspense fallback={<div />}>
+          <CurrentUserProvider>
+            <WalletProvider>
+              <WalletLayout hasBackButton>
+                <CardPaymentInformationProvider>
+                  <BillingInformationPage />
+                </CardPaymentInformationProvider>
+              </WalletLayout>
+            </WalletProvider>
+          </CurrentUserProvider>
+        </Suspense>
+      </Route>
+
+      <Route path="/promoters/support-treasure/payment-information" exact>
+        <Suspense fallback={<div />}>
+          <CurrentUserProvider>
+            <WalletProvider>
+              <WalletLayout hasBackButton>
+                <CardPaymentInformationProvider>
+                  <PaymentInformationPage />
+                </CardPaymentInformationProvider>
+              </WalletLayout>
+            </WalletProvider>
           </CurrentUserProvider>
         </Suspense>
       </Route>

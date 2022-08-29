@@ -1,4 +1,4 @@
-import { clickOn, renderComponent, waitForPromises } from "config/testUtils";
+import { clickOn, renderComponent } from "config/testUtils";
 import {
   expectDisplayValueToBeInTheDocument,
   expectTextToBeInTheDocument,
@@ -19,14 +19,5 @@ describe("CardSection", () => {
     clickOn("BRL");
 
     expectDisplayValueToBeInTheDocument("BRL");
-  });
-
-  it("should change the current section", async () => {
-    renderComponent(<CardSection />);
-    await waitForPromises();
-
-    clickOn("Proceed to checkout");
-
-    expectTextToBeInTheDocument("Billing information");
   });
 });

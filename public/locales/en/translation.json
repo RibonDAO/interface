@@ -122,26 +122,34 @@
         "currency": "Currency",
         "subtitleCard": "Choose your giving",
         "simulateSectionTitle": "Simulate a possible result",
-        "buttonTextCard": "Proceed to checkout",
+        "buttonTextCard": "Proceed to Checkout",
         "buttonSubmit": "Confirm",
         "detailsSubtitle": "Giving details",
         "netGivingText": "Net giving: {{netGiving}}*",
         "serviceFeesText": "Service fees: {{serviceFees}}",
         "cryptoValueText": "*This giving will be converted in cryptocurrency ({{cryptoGivings}})",
-        "billingInformationSection": {
-          "title": "Billing information",
-          "country": "Country",
-          "state": "State",
-          "city": "City",
-          "taxId": "Tax ID"
+        "billingInformationPage": {
+          "title": "Your Giving",
+          "buttonTextCard": "Continue",
+          "billingInformationSection": {
+            "title": "Billing Information",
+            "country": "Country",
+            "state": "State",
+            "city": "City",
+            "taxId": "Tax ID"
+          }
         },
-        "paymentInformationSection": {
-          "title": "Payment method",
-          "email": "E-mail",
-          "cardNumber": "Card number",
-          "cardName": "Name on card",
-          "cardDueDate": "Expiration",
-          "cvv": "Card verification code"
+        "paymentInformationPage": {
+          "title": "Your Giving",
+          "buttonTextCard": "Continue",
+          "paymentInformationSection": {
+            "title": "Payment method",
+            "email": "E-mail",
+            "cardNumber": "Card number",
+            "cardName": "Name on card",
+            "cardDueDate": "Expiration",
+            "cvv": "Card verification code"
+          }
         },
         "impactSimulationSection": {
           "label": "Select a NGO",

@@ -30,7 +30,7 @@ describe("SupportTreasurePage", () => {
 
     it("should render card form", () => {
       expectTextToBeInTheDocument("Choose your giving");
-      expectTextToBeInTheDocument("Proceed to checkout");
+      expectTextToBeInTheDocument("Proceed to Checkout");
     });
 
     it("should render cryptocurrency section", () => {

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const PaymentInformationSectionContainer = styled.form`
   height: 256px;
-  margin-top: 24px;
+  margin-top: 18px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     height: auto;
@@ -10,7 +10,7 @@ export const PaymentInformationSectionContainer = styled.form`
 `;
 
 export const Title = styled.h6`
-  margin: 20px 0;
+  margin-bottom: 20px;
   font-weight: 700;
   font-size: 18px;
   line-height: 25.6px;

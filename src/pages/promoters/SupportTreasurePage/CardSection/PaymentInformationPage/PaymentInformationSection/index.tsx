@@ -8,10 +8,10 @@ import { useTranslation } from "react-i18next";
 import { logEvent } from "services/analytics";
 import * as S from "./styles";
 
-function PaymentInformation() {
+function PaymentInformationSection() {
   const { t } = useTranslation("translation", {
     keyPrefix:
-      "promoters.supportTreasurePage.cardSection.paymentInformationSection",
+      "promoters.supportTreasurePage.cardSection.paymentInformationPage.paymentInformationSection",
   });
 
   const {
@@ -101,4 +101,4 @@ function PaymentInformation() {
   );
 }
 
-export default PaymentInformation;
+export default PaymentInformationSection;

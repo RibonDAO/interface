@@ -11,7 +11,7 @@ describe("BillingInformationSection", () => {
   it("should render without error", () => {
     renderComponent(<BillingInformationSection />);
 
-    expectTextToBeInTheDocument("Billing information");
+    expectTextToBeInTheDocument("Billing Information");
   });
 
   it("should fill billing information form", () => {

@@ -128,20 +128,28 @@
         "netGivingText": "Contribuição líquida: {{netGiving}}*",
         "serviceFeesText": "Taxas de serviço: {{serviceFees}}",
         "cryptoValueText": "*A contribuição será convertida em criptomoedas ({{cryptoGivings}})",
-        "billingInformationSection": {
-          "title": "Informações de cobrança",
-          "country": "País",
-          "state": "Estado",
-          "city": "Cidade",
-          "taxId": "CPF"
+        "billingInformationPage": {
+          "title": "Sua contribuição",
+          "buttonTextCard": "Continuar",
+          "billingInformationSection": {
+            "title": "Informações de cobrança",
+            "country": "País",
+            "state": "Estado",
+            "city": "Cidade",
+            "taxId": "CPF"
+          }
         },
-        "paymentInformationSection": {
-          "title": "Forma de pagamento",
-          "email": "E-mail",
-          "cardNumber": "Número do cartão",
-          "cardName": "Nome impresso no cartão",
-          "cardDueDate": "Vencimento",
-          "cvv": "Código de segurança"
+        "paymentInformationPage": {
+          "title":"Sua contribuição",
+          "buttonTextCard": "Continuar",
+          "paymentInformationSection": {
+            "title": "Forma de pagamento",
+            "email": "E-mail",
+            "cardNumber": "Número do cartão",
+            "cardName": "Nome impresso no cartão",
+            "cardDueDate": "Vencimento",
+            "cvv": "Código de segurança"
+          }
         },
         "impactSimulationSection": {
           "label": "Selecione uma ONG",

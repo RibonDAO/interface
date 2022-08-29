@@ -1,16 +1,67 @@
 import styled from "styled-components";
 import Button from "components/atomics/buttons/Button";
 
+export const Container = styled.div`
+  width: 100%;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    max-width: 472px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
+export const Title = styled.h1`
+  margin: 4px 0;
+  margin-bottom: 8px;
+  font-weight: 900;
+  text-transform: uppercase;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    font-size: 36px;
+  }
+`;
+
+export const BillingInformationSectionContainer = styled.div`
+  height: 256px;
+  margin-top: 24px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    height: auto;
+  }
+`;
+
+export const BillingTitle = styled.h6`
+  margin: 20px 0;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25.6px;
+  color: ${({ theme }) => theme.colors.black};
+`;
+
+export const Form = styled.form`
+  & :nth-child(2) {
+    margin-right: 4px;
+  }
+`;
+
+export const HalfInput = styled.input`
+  width: calc(50% - 4px);
+  margin-bottom: 12px;
+  padding: 8px 16px;
+  border: 1px solid ${({ theme }) => theme.colors.ribonBlue};
+  border-radius: 8px;
+  display: inline-block;
+`;
+
 export const CardSectionContainer = styled.div`
   margin-top: 24px;
 `;
 
 export const Subtitle = styled.p`
+  margin-top: 20px;
   font-weight: 700;
-
-  &:nth-child(3) {
-    margin-top: 18px;
-  }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     font-size: 18px;
@@ -20,7 +71,7 @@ export const Subtitle = styled.p`
 export const ValuesContainer = styled.div`
   width: 100%;
   margin-top: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 36px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 8px;
@@ -41,6 +92,7 @@ export const ButtonContainer = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: 99;
   display: flex;
   align-items: center;
   align-self: end;
@@ -70,19 +122,19 @@ export const GivingValue = styled.h4`
   font-weight: 900;
   font-size: 24px;
   line-height: 38.4px;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 export const NetGivingValue = styled.p`
   font-size: 14px;
   line-height: 23.8px;
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 export const ServiceFeesValue = styled.p`
   font-size: 14px;
   line-height: 23.8px;
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 export const CryptoGivingValue = styled.p`
@@ -90,7 +142,7 @@ export const CryptoGivingValue = styled.p`
   font-style: italic;
   font-size: 12px;
   line-height: 19.2px;
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 export const CardImpact = styled.div`
@@ -114,10 +166,10 @@ export const CardImpactImage = styled.img`
 `;
 
 export const CardImpactText = styled.h3`
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.black};
 
   span {
     font-size: 16px;
-    color: ${({ theme }) => theme.colors.mediumGreen};
+    color: ${({ theme }) => theme.colors.ribonBlue};
   }
 `;

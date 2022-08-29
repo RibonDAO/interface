@@ -5,7 +5,7 @@ import animationData from "./assets/loader.json";
 import * as S from "./styles";
 
 const { colors } = theme;
-const { ribonBlue } = colors;
+const { mediumGreen } = colors;
 
 export type Props = {
   color?: string;
@@ -14,7 +14,7 @@ export type Props = {
 };
 
 function Loader({
-  color = ribonBlue,
+  color = mediumGreen,
   width = 40,
   height = 40,
 }: Props): JSX.Element {

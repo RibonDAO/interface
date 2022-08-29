@@ -14,7 +14,7 @@ export const Title = styled.h6`
   font-weight: 700;
   font-size: 18px;
   line-height: 25.6px;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 export const Half = styled.div`

@@ -4,7 +4,7 @@ import theme from "styles/theme";
 import * as S from "./styles";
 
 const { colors } = theme;
-const { ribonBlue, white, darkGray } = colors;
+const { mediumGreen, white, mediumGray } = colors;
 
 export type Props = {
   leftText: string;
@@ -28,15 +28,15 @@ function ButtonSwitch({
   return (
     <S.Container>
       <S.BoxIcon>
-        <S.Text color={checked ? darkGray : ribonBlue}>{leftText}</S.Text>
+        <S.Text color={checked ? mediumGray : mediumGreen}>{leftText}</S.Text>
       </S.BoxIcon>
       <S.ContainerSwitch>
         <Switch
           id="switch"
           onChange={handleChange}
           checked={checked}
-          offColor={ribonBlue}
-          onColor={ribonBlue}
+          offColor={mediumGreen}
+          onColor={mediumGreen}
           onHandleColor={white}
           offHandleColor={white}
           handleDiameter={15}
@@ -47,7 +47,7 @@ function ButtonSwitch({
         />
       </S.ContainerSwitch>
       <S.BoxIcon>
-        <S.Text color={checked ? ribonBlue : darkGray}>{rightText}</S.Text>
+        <S.Text color={checked ? mediumGreen : mediumGray}>{rightText}</S.Text>
       </S.BoxIcon>
     </S.Container>
   );

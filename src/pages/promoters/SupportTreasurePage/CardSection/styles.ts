@@ -67,19 +67,19 @@ export const GivingValue = styled.h4`
   font-weight: 900;
   font-size: 24px;
   line-height: 38.4px;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 export const NetGivingValue = styled.p`
   font-size: 14px;
   line-height: 23.8px;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
 export const ServiceFeesValue = styled.p`
   font-size: 14px;
   line-height: 23.8px;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
 export const CryptoGivingValue = styled.p`
@@ -87,7 +87,7 @@ export const CryptoGivingValue = styled.p`
   font-style: italic;
   font-size: 12px;
   line-height: 19.2px;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
 export const CardImpact = styled.div`
@@ -111,10 +111,10 @@ export const CardImpactImage = styled.img`
 `;
 
 export const CardImpactText = styled.h3`
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.darkGray};
 
   span {
     font-size: 16px;
-    color: ${({ theme }) => theme.colors.ribonBlue};
+    color: ${({ theme }) => theme.colors.mediumGreen};
   }
 `;

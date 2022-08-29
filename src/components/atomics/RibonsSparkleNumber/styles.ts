@@ -12,7 +12,7 @@ export const RibonsAmount = styled.p`
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
-  color: ${({ theme }) => theme.colors.ribonBlue};
+  color: ${({ theme }) => theme.colors.mediumGreen};
 `;
 
 export const Sparkle = styled.img`

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  border: 1px solid ${({ theme }) => theme.colors.ribonBlue};
+  border: 1px solid ${({ theme }) => theme.colors.mediumGreen};
   border-radius: 40px;
   display: flex;
   flex-direction: row;
@@ -22,11 +22,11 @@ export const Selected = styled.a`
   font-weight: 700;
   font-size: 16px;
   line-height: 1.6;
-  background: ${({ theme }) => theme.colors.ribonBlue};
+  background: ${({ theme }) => theme.colors.mediumGreen};
   color: ${({ theme }) => theme.colors.white};
 `;
 
 export const Unselected = styled(Selected)`
   background: ${({ theme }) => theme.colors.white};
-  color: ${({ theme }) => theme.colors.ribonBlue};
+  color: ${({ theme }) => theme.colors.mediumGreen};
 `;

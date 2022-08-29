@@ -40,19 +40,19 @@ export const TreasureText = styled.p`
   margin-bottom: 8px;
   font-weight: 900;
   font-size: 36px;
-  color: ${({ theme }) => theme.colors.ribonBlue};
+  color: ${({ theme }) => theme.colors.mediumGreen};
 `;
 
 export const TreasureTextCoin = styled.span`
   font-weight: 400;
   font-size: 14px;
-  color: ${({ theme }) => theme.colors.ribonBlue};
+  color: ${({ theme }) => theme.colors.mediumGreen};
 `;
 
 export const SectionTitle = styled.p`
   margin-bottom: 8px;
   font-weight: 700;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.darkGray};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     margin: 8px 0;
@@ -81,28 +81,28 @@ export const GivingsCard = styled.div`
 
 export const GivingDate = styled.p`
   font-size: 12px;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
 export const GivingText = styled.p`
   margin-bottom: 8px;
   font-weight: 900;
   font-size: 36px;
-  color: ${({ theme }) => theme.colors.ribonBlue};
+  color: ${({ theme }) => theme.colors.mediumGreen};
 `;
 
 export const ProcessingGivingText = styled(GivingText)`
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
 export const GivingTextCoin = styled.span`
   font-weight: 400;
   font-size: 14px;
-  color: ${({ theme }) => theme.colors.ribonBlue};
+  color: ${({ theme }) => theme.colors.mediumGreen};
 `;
 
 export const ProcessingGivingTextCoin = styled(GivingTextCoin)`
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
 export const StatusContainer = styled.div`
@@ -116,11 +116,11 @@ export const StatusContainer = styled.div`
 export const ProcessingText = styled.span`
   font-weight: 400;
   font-size: 12px;
-  color: ${({ theme }) => theme.colors.ribonBlue};
+  color: ${({ theme }) => theme.colors.mediumGreen};
 `;
 
 export const TransactionLink = styled.a`
   font-weight: 400;
   font-size: 12px;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.darkGray};
 `;

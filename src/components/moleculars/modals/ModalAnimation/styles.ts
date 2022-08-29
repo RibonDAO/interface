@@ -52,7 +52,7 @@ export const Text = styled.p`
   font-weight: ${({ theme }) => theme.font.bold};
   font-size: 14px;
   text-align: center;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 export const ProgressBar = styled.div`

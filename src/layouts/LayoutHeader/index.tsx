@@ -119,7 +119,7 @@ function LayoutHeader({
             <S.CounterContainer onClick={() => handleCounterClick()}>
               <S.TicketsAmount
                 color={
-                  canDonate ? theme.colors.ribonBlue : theme.colors.darkGray
+                  canDonate ? theme.colors.mediumGreen : theme.colors.mediumGray
                 }
               >
                 {canDonate ? 1 : 0}

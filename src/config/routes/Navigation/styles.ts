@@ -39,7 +39,7 @@ export const Title = styled.p`
   line-height: 16px;
   text-decoration: none;
   color: ${({ theme, enabled }: Props) =>
-    enabled ? theme.colors.black : theme.colors.darkGray};
+    enabled ? theme.colors.darkGray : theme.colors.mediumGray};
 `;
 
 export const StyledLink = styled(Link)`

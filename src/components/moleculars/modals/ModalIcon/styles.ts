@@ -27,13 +27,13 @@ type TitleProps = {
 export const Title = styled.h2<TitleProps>`
   margin-bottom: 16px;
   text-align: center;
-  color: ${({ theme, color }) => color || theme.colors.black};
+  color: ${({ theme, color }) => color || theme.colors.darkGray};
 `;
 
 export const Body = styled.h3`
   margin: 0 0 20px;
   text-align: center;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
 export const HighlightedText = styled.p`
@@ -41,7 +41,7 @@ export const HighlightedText = styled.p`
   font-weight: 700;
   font-size: 16px;
   text-align: center;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 export const RowsModalRow = styled.div`

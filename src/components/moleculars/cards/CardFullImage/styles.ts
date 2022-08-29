@@ -22,7 +22,7 @@ export const ImageContainer = styled.div`
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: ${({ theme }) => theme.colors.ribonBlue};
+  background: ${({ theme }) => theme.colors.mediumGreen};
 `;
 
 export const TextContainer = styled.div`

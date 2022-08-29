@@ -35,7 +35,7 @@ export const Title = styled.h5`
   font-weight: 700;
   font-size: 20px;
   line-height: 160%;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.darkGray};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     font-size: 24px;
@@ -48,7 +48,7 @@ export const Subtitle = styled.h6`
   font-size: 16px;
   line-height: 160%;
   text-align: center;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.mediumGray};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     font-size: 20px;

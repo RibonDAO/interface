@@ -38,11 +38,11 @@ function ModalImage({
   primaryButtonText = null,
   primaryButtonLeftIcon = undefined,
   primaryButtonTextColor = "white",
-  primaryButtonColor = theme.colors.ribonBlue,
+  primaryButtonColor = theme.colors.mediumGreen,
   primaryButtonBorderColor,
   secondaryButtonText = null,
   secondaryButtonLeftIcon = undefined,
-  secondaryButtonTextColor = theme.colors.darkGray,
+  secondaryButtonTextColor = theme.colors.mediumGray,
   secondaryButtonBorderColor,
   secondaryButtonColor = "white",
   // TODO: discuss with de team to modify linter's rules

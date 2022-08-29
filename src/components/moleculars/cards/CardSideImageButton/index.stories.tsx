@@ -8,8 +8,8 @@ export default {
   component: CardSideImageButton,
   parameters: {
     backgrounds: {
-      default: "ribonBlue",
-      values: [{ name: "ribonBlue", value: theme.colors.ribonBlue }],
+      default: "mediumGreen",
+      values: [{ name: "mediumGreen", value: theme.colors.mediumGreen }],
     },
   },
 } as ComponentMeta<typeof CardSideImageButton>;

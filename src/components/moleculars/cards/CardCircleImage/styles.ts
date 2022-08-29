@@ -28,5 +28,5 @@ export const Title = styled.h3`
 `;
 
 export const Subtitle = styled.h5`
-  color: ${({ theme }) => theme.colors.ribonBlue};
+  color: ${({ theme }) => theme.colors.mediumGreen};
 `;

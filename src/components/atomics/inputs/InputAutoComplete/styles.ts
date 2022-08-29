@@ -17,7 +17,7 @@ export const OptionContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.hoverGray};
+    background-color: ${({ theme }) => theme.colors.xLightGray};
     cursor: pointer;
   }
 `;

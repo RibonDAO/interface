@@ -13,7 +13,7 @@ export const Container = styled.div`
 export const FirstText = styled.p`
   font-style: italic;
   font-size: 12px;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
 export const MainContent = styled.p<{
@@ -23,8 +23,8 @@ export const MainContent = styled.p<{
   font-size: 24px;
   color: ${(props) =>
     props.processing
-      ? props.theme.colors.darkGray
-      : props.theme.colors.ribonBlue};
+      ? props.theme.colors.mediumGray
+      : props.theme.colors.mediumGreen};
 `;
 
 export const RightMainContent = styled.span<{
@@ -34,8 +34,8 @@ export const RightMainContent = styled.span<{
   font-size: 14px;
   color: ${(props) =>
     props.processing
-      ? props.theme.colors.darkGray
-      : props.theme.colors.ribonBlue};
+      ? props.theme.colors.mediumGray
+      : props.theme.colors.mediumGreen};
 `;
 
 export const LinkSection = styled.a`
@@ -43,7 +43,7 @@ export const LinkSection = styled.a`
   justify-content: space-between;
   font-size: 12px;
   text-decoration: none;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 export const SpinnerSection = styled.a`
@@ -52,7 +52,7 @@ export const SpinnerSection = styled.a`
   gap: 10px;
   font-size: 12px;
   text-decoration: none;
-  color: ${({ theme }) => theme.colors.ribonBlue};
+  color: ${({ theme }) => theme.colors.mediumGreen};
 `;
 
 export const Image = styled.img``;

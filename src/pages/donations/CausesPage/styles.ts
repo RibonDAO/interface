@@ -47,10 +47,10 @@ export const FooterText = styled.h5`
   font-weight: 400;
   line-height: 19px;
   text-align: center;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.mediumGray};
 
   a {
     text-decoration: none;
-    color: ${({ theme }) => theme.colors.ribonBlue};
+    color: ${({ theme }) => theme.colors.mediumGreen};
   }
 `;

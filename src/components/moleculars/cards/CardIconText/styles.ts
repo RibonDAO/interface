@@ -17,7 +17,7 @@ export const Icon = styled.img`
 
 export const Text = styled.p`
   font-size: 14px;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 export const InsideContainer = styled.div`

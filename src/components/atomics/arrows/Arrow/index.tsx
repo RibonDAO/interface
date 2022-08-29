@@ -2,7 +2,7 @@ import theme from "styles/theme";
 import * as S from "./styles";
 
 const { colors } = theme;
-const { white, ribonTransparent } = colors;
+const { white, transparent } = colors;
 
 export type Props = {
   disabled: boolean;
@@ -12,7 +12,7 @@ export type Props = {
 };
 
 function Arrow({ disabled, onClick, direction }: Props): JSX.Element {
-  const setArrowColor = disabled ? ribonTransparent : white;
+  const setArrowColor = disabled ? transparent : white;
 
   return direction === "right" ? (
     <S.ArrowRightImage

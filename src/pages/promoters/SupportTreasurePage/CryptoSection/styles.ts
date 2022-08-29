@@ -46,10 +46,10 @@ export const Input = styled.input`
   margin-top: 12px;
   margin-bottom: 8px;
   padding: 8px;
-  border: 1px solid ${({ theme }) => theme.colors.ribonBlue};
+  border: 1px solid ${({ theme }) => theme.colors.mediumGreen};
   border-radius: 8px;
   font-weight: ${({ theme }) => theme.font.bold};
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
 export const UsdcIcon = styled.img`
@@ -67,14 +67,14 @@ export const UsdcContainer = styled.div`
 export const UsdcText = styled.p`
   margin-left: 4px;
   font-size: 14px;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 export const Text = styled.p`
   margin-top: 8px;
   font-weight: ${({ theme }) => theme.font.normal};
   font-size: 12px;
-  color: ${({ theme }) => theme.colors.ribonBlue};
+  color: ${({ theme }) => theme.colors.mediumGreen};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     font-size: 14px;

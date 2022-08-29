@@ -15,7 +15,7 @@ export const Text = styled.p`
   margin-top: 28px;
   font-weight: 700;
   text-align: center;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
 export const EmptyDonationButton = styled(Button)`

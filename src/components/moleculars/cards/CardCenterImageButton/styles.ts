@@ -36,5 +36,5 @@ export const Text = styled.h3`
   margin-bottom: 8px;
   align-self: flex-start;
   font-weight: 700;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.darkGray};
 `;

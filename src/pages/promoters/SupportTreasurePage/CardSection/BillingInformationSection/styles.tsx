@@ -12,7 +12,7 @@ export const BillingInformationSectionContainer = styled.div`
 export const Title = styled.h6`
   margin: 20px 0;
   font-weight: 700;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.darkGray};
   font-size: 18px;
   line-height: 25.6px;
 `;
@@ -27,7 +27,7 @@ export const HalfInput = styled.input`
   display: inline-block;
   width: calc(50% - 4px);
   margin-bottom: 12px;
-  border: 1px solid ${({ theme }) => theme.colors.ribonBlue};
+  border: 1px solid ${({ theme }) => theme.colors.mediumGreen};
   border-radius: 8px;
   padding: 8px 16px 8px 16px;
 `;

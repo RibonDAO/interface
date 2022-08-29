@@ -8,14 +8,14 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h3`
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 export const Text = styled.h4`
   margin-top: 4px;
   font-weight: 400;
   line-height: 24px;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
 export const InsideContainer = styled.div`

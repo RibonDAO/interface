@@ -72,7 +72,7 @@ export const Title = styled.h3`
   font-size: 16px;
   line-height: 1.4;
   text-align: center;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 export const DescriptionContainer = styled.div`
@@ -83,7 +83,7 @@ export const DescriptionContainer = styled.div`
 export const Description = styled.h4`
   line-height: 160%;
   text-align: center;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
 export const ImageSection = styled.div`
@@ -107,6 +107,6 @@ export const CounterContainer = styled.span`
   top: 8px;
   right: 0;
   text-align: center;
-  background-color: ${({ theme }) => theme.colors.phcYellow2};
+  background-color: ${({ theme }) => theme.colors.mediumYellow};
   color: ${({ theme }) => theme.colors.white};
 `;

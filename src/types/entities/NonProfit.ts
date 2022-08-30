@@ -3,8 +3,6 @@ export default interface NonProfit {
   name: string;
   walletAddress: string;
   impactDescription: string;
-  description: string;
-  link: string;
   backgroundImage: string;
   coverImage: string;
   mainImage: string;

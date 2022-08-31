@@ -12,10 +12,13 @@ import UsdcIcon from "assets/icons/usdc-icon.svg";
 import useToast from "hooks/useToast";
 import useNavigation from "hooks/useNavigation";
 import { logEvent } from "services/analytics";
-import { formatFromWei } from "lib/web3Helpers/etherFormatters";
 import { stringToNumber } from "lib/formatters/stringToNumberFormatter";
 import { useLoadingOverlay } from "contexts/loadingOverlayContext";
 import useCryptoTransaction from "hooks/apiHooks/useCryptoTransaction";
+import {
+  formatFromDecimals,
+  formatToDecimals,
+} from "lib/web3Helpers/etherFormatters";
 import WalletIcon from "./assets/wallet-icon.svg";
 import * as S from "./styles";
 
@@ -24,6 +27,7 @@ function CryptoSection(): JSX.Element {
   const [loading, setLoading] = useState(false);
   const [userBalance, setUserBalance] = useState("");
   const { currentNetwork } = useNetworkContext();
+  const [tokenDecimals, setTokenDecimals] = useState(6);
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportTreasurePage",
@@ -57,24 +61,36 @@ function CryptoSection(): JSX.Element {
     cursor: "end",
   };
 
+  useEffect(() => {
+    async function fetchDecimals() {
+      const decimals = await donationTokenContract?.decimals();
+      setTokenDecimals(decimals);
+    }
+
+    fetchDecimals();
+  }, []);
+
   const approveAmount = async () =>
     donationTokenContract?.functions.approve(
       currentNetwork.ribonContractAddress,
-      utils.parseEther(amount),
+      formatToDecimals(amount, tokenDecimals).toString(),
       {
         from: wallet,
       },
     );
 
   const donateToContract = async () =>
-    contract?.functions.addDonationPoolBalance(utils.parseEther(amount));
+    contract?.functions.addPoolBalance(
+      currentNetwork.defaultPoolAddress, // TODO get pool address dynamically
+      formatToDecimals(amount, tokenDecimals).toString(),
+    );
 
   const fetchUsdcUserBalance = useCallback(async () => {
     try {
       const balance = await donationTokenContract?.balanceOf(wallet);
-      const formattedBalance = formatFromWei(balance);
+      const formattedBalance = formatFromDecimals(balance, tokenDecimals);
 
-      setUserBalance(formattedBalance);
+      setUserBalance(formattedBalance.toString());
     } catch (error) {
       logError(error);
     }

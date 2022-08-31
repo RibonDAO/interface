@@ -30,9 +30,13 @@ function TreasurePage(): JSX.Element {
     ABI: RibonAbi.abi,
   });
 
-  const { contractBalance, refetch: fetchContractBalance } = useContractBalance(
+  const {
+    contractBalance,
+    isLoading: isLoadingBalance,
+    refetch: fetchContractBalance,
+  } = useContractBalance(
     donationTokenContract,
-    currentNetwork.ribonContractAddress,
+    currentNetwork.defaultPoolAddress,
   );
 
   const handleSupportButtonClick = () => {
@@ -60,7 +64,8 @@ function TreasurePage(): JSX.Element {
       <S.CardContainer>
         <CardBlank>
           <S.TreasureText>
-            {contractBalance} <S.TreasureTextCoin>{coin}</S.TreasureTextCoin>
+            {isLoadingBalance ? "..." : contractBalance}{" "}
+            <S.TreasureTextCoin>{coin}</S.TreasureTextCoin>
           </S.TreasureText>
           <Button
             text={t("treasureSupportButtonText")}

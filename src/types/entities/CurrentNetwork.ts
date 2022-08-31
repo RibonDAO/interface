@@ -8,4 +8,5 @@ export default interface CurrentNetwork {
   symbolName: string;
   currencyName: string;
   blockExplorerUrls: string;
+  defaultPoolAddress: string;
 }

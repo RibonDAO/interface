@@ -1,20 +1,30 @@
 import { useContractRequest } from "hooks/useContractRequest";
 import { Contract } from "@ethersproject/contracts";
-import { formatFromWei } from "lib/web3Helpers/etherFormatters";
+import { formatFromDecimals } from "lib/web3Helpers/etherFormatters";
+import { useCallback, useEffect, useState } from "react";
 
 function useContractBalance(contract: Contract | null, address: string) {
+  const [contractBalance, setContractBalance] = useState(0);
+
   const { data, isLoading, refetch } = useContractRequest<number>({
     key: "contractBalance",
     fetchMethod: () => contract?.balanceOf(address),
   });
 
-  function formattedBalance() {
-    if (data) return formatFromWei(data);
+  const setFormattedBalance = useCallback(async () => {
+    if (data) {
+      const decimals = await contract?.decimals();
+      setContractBalance(formatFromDecimals(data, decimals));
+    }
 
     return null;
-  }
+  }, [data]);
 
-  return { contractBalance: formattedBalance(), isLoading, refetch };
+  useEffect(() => {
+    setFormattedBalance();
+  }, [setFormattedBalance]);
+
+  return { contractBalance, isLoading, refetch };
 }
 
 export default useContractBalance;

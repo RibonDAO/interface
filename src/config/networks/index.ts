@@ -1,5 +1,18 @@
 export const networks = [
   {
+    chainName: "Polygon",
+    ribonContractAddress: "0x411DF13350D6aB065Fc2d1Fd026b6d7f4133e9Df",
+    donationTokenContractAddress: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+    chainId: 137,
+    rpcUrls: "https://rpc.ankr.com/polygon",
+    nodeUrl:
+      "https://polygon-mainnet.g.alchemy.com/v2/AQ0VSr7KiK3U6h9zXJsKV5PRA52iRVJQ",
+    symbolName: "MATIC",
+    currencyName: "Matic",
+    blockExplorerUrls: "https://polygonscan.com/",
+    defaultPoolAddress: "0x841cad54aaeAdFc9191fb14EB09232af8E20be0F",
+  },
+  {
     chainName: "Mumbai Testnet",
     ribonContractAddress: "0xD3850333819fBdd43784498F67010E5c87a2EAb3",
     donationTokenContractAddress: "0x21A72dc641c8e5f13717a7e087d6D63B4f9A3574",
@@ -10,6 +23,7 @@ export const networks = [
     symbolName: "MATIC",
     currencyName: "Matic",
     blockExplorerUrls: "https://mumbai.polygonscan.com/",
+    defaultPoolAddress: "",
   },
   {
     chainName: "Localhost 8545",
@@ -21,5 +35,6 @@ export const networks = [
     symbolName: "ETH",
     currencyName: "Ether",
     blockExplorerUrls: "http://localhost:8545",
+    defaultPoolAddress: "",
   },
 ];

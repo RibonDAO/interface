@@ -39,18 +39,19 @@ describe("useNetwork", () => {
       symbolName: "MATIC",
       currencyName: "Matic",
       blockExplorerUrls: "https://mumbai.polygonscan.com/",
+      defaultPoolAddress: "",
     };
 
     beforeEach(async () => {
       const { hook } = renderHook(() => useNetworkContext());
-      current = hook.result.current;
       await waitForPromises();
+      current = hook.result.current;
     });
 
     it("renders the modal when show is called", async () => {
-      current.getCurrentNetwork();
+      await current.getCurrentNetwork();
       const { currentNetwork } = current;
-      await waitForPromises();
+
       expect(currentNetwork).toEqual(payload);
     });
   });

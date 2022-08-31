@@ -23,7 +23,9 @@ export const growthbookSetAttributes = async () => {
 };
 
 export const growthbookSetFeatures = () => {
-  fetch("https://cdn.growthbook.io/api/features/key_prod_a04c5731fa615e46")
+  fetch(
+    "https://growthbook.ribon.io:444/api/features/key_prod_2161769c509d739b",
+  )
     .then((res) => res.json())
     .then((parsed) => {
       growthbook.setFeatures(parsed.features);

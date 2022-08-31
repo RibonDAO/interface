@@ -20,6 +20,8 @@ function App() {
   const queryClient = new QueryClient();
 
   useEffect(() => {
+    if (process.env.NODE_ENV === "test") return;
+
     growthbookSetFeatures();
     // eslint-disable-next-line no-console
     growthbookSetAttributes().catch(console.error);

@@ -8,15 +8,6 @@ import {
 } from "config/testUtils/expects";
 import Causes from ".";
 
-jest.mock(
-  "components/atomics/sections/Header",
-  () =>
-    function () {
-      return null;
-    },
-);
-// const spy = jest.spyOn(Header, "Header");
-
 describe("Causes", () => {
   const nonProfit1 = nonProfitFactory({
     id: 1,
@@ -25,6 +16,11 @@ describe("Causes", () => {
   });
   mockRequest("/api/v1/non_profits", {
     payload: [nonProfit1],
+  });
+
+  mockRequest("/api/v1/users/can_donate", {
+    payload: { canDonate: true },
+    method: "POST",
   });
 
   beforeEach(() => {

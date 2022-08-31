@@ -17,7 +17,7 @@
     "camelcase-keys": "^7.0.2",
     "ethers": "^5.6.9",
     "firebase": "8.8.1",
-    "graphql": "^16.5.0",
+    "graphql": "^16.6.0",
     "i18next": "^21.8.14",
     "i18next-browser-languagedetector": "^6.1.5",
     "i18next-http-backend": "^1.4.1",

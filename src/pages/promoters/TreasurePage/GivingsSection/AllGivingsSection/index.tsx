@@ -3,7 +3,7 @@ import Carousel from "components/moleculars/sliders/Carousel";
 import CardDoubleTextDividerButton from "components/moleculars/cards/CardDoubleTextDividerButton";
 import useBreakpoint from "hooks/useBreakpoint";
 import { logError } from "services/crashReport";
-import { formatFromWei } from "lib/web3Helpers/etherFormatters";
+import { formatFromDecimals } from "lib/web3Helpers/etherFormatters";
 import { formatDate } from "lib/web3Helpers/timeStampFormatters";
 import { useEffect, useState, useCallback } from "react";
 import { logEvent } from "services/analytics";
@@ -60,7 +60,7 @@ function GivingsSection(): JSX.Element {
       <CardDoubleTextDividerButton
         key={item.id}
         firstText={formatDate(item.timestamp).toString()}
-        mainText={formatFromWei(item.amountDonated)}
+        mainText={formatFromDecimals(item.amountDonated).toFixed(2)}
         rightComplementText={coin}
         buttonText={t("linkTransactionText")}
         rightComponentButton={RightArrowBlack}

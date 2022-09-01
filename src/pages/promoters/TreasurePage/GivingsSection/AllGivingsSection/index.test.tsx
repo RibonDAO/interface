@@ -1,6 +1,7 @@
 import { renderComponent, waitForPromises } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import promoterDonationFactory from "config/testUtils/factories/promoterDonationFactory";
+import { formatToDecimals } from "lib/web3Helpers/etherFormatters";
 import { mockGraphqlRequest } from "config/testUtils/test-helper";
 import { ALL_PROMOTERS_DONATIONS_QUERY_NAME } from "services/apiTheGraph/querys/promoterDonation";
 import AllGivingsSection from ".";
@@ -14,11 +15,11 @@ describe("AllGivingsSection", () => {
 
   describe("when the treasure has givings", () => {
     beforeEach(async () => {
-      const fiftyCentInWei = "500000000000000000";
+      const fiftyCentInDecimals = formatToDecimals(0.5).toFixed(2);
       mockGraphqlRequest(ALL_PROMOTERS_DONATIONS_QUERY_NAME, {
         promoterDonations: [
           promoterDonationFactory({
-            amountDonated: fiftyCentInWei,
+            amountDonated: fiftyCentInDecimals,
           }),
         ],
       });

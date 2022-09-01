@@ -7,6 +7,7 @@ import {
 import promoterCardGivingFactory from "config/testUtils/factories/promoterCardGivingFactory";
 import promoterDonationFactory from "config/testUtils/factories/promoterDonationFactory";
 import userFactory from "config/testUtils/factories/userFactory";
+import { formatToDecimals } from "lib/web3Helpers/etherFormatters";
 import { mockGraphqlRequest, mockRequest } from "config/testUtils/test-helper";
 import { PROMOTER_DONATIONS_ID_QUERY_NAME } from "services/apiTheGraph/querys/promoterDonation";
 import { Currencies } from "types/enums/Currencies";
@@ -57,11 +58,11 @@ describe("PromoterGivingsSection", () => {
 
     describe("when the promoter has crypto givings", () => {
       beforeEach(async () => {
-        const fiftyCentInWei = "500000000000000000";
+        const fiftyCentInDecimals = formatToDecimals(0.5).toFixed(2);
         mockGraphqlRequest(PROMOTER_DONATIONS_ID_QUERY_NAME, {
           promoterDonations: [
             promoterDonationFactory({
-              amountDonated: fiftyCentInWei,
+              amountDonated: fiftyCentInDecimals,
             }),
           ],
         });

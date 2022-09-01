@@ -4,7 +4,10 @@ import CardDoubleTextDividerButton from "components/moleculars/cards/CardDoubleT
 import useBreakpoint from "hooks/useBreakpoint";
 import { TransactionStatus } from "types/enums/TransactionStatus";
 import { logError } from "services/crashReport";
-import { formatFromWei } from "lib/web3Helpers/etherFormatters";
+import {
+  formatFromDecimals,
+  formatFromWei,
+} from "lib/web3Helpers/etherFormatters";
 import { formatDate } from "lib/web3Helpers/timeStampFormatters";
 import { useEffect, useState, useCallback } from "react";
 import { logEvent } from "services/analytics";
@@ -33,6 +36,7 @@ type LocationStateType = {
   timestamp: number;
   amountDonated: BigNumber;
   processing: boolean;
+  processed: boolean;
 };
 
 function GivingsSection(): JSX.Element {
@@ -102,6 +106,7 @@ function GivingsSection(): JSX.Element {
         const receipt = await provider?.getTransactionReceipt(hash);
         if (receipt) {
           setProcessingTransaction(false);
+          state.processed = true;
           updateTransactionStatus(state.id, TransactionStatus.SUCCESS);
           setPromoterDonations((prevState: any) => [
             { ...state, processing: false },
@@ -184,13 +189,16 @@ function GivingsSection(): JSX.Element {
   function renderAllPromoterDonations() {
     const allDonations = sortDonationsByDate(allPromoterDonations);
     const isCryptoDonation = (item: any) => !!item.timestamp;
-
     return allDonations?.map((item: any) =>
       isCryptoDonation(item) ? (
         <CardDoubleTextDividerButton
           key={item.id}
           firstText={formatDate(item.timestamp).toString()}
-          mainText={formatFromWei(item.amountDonated)}
+          mainText={
+            item.processed
+              ? formatFromWei(item.amountDonated)
+              : formatFromDecimals(item.amountDonated).toFixed(2)
+          }
           rightComplementText={coin}
           buttonText={t("linkTransactionText")}
           rightComponentButton={RightArrowBlack}

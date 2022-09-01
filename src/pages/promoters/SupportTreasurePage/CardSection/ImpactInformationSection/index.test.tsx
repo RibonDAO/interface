@@ -2,6 +2,7 @@ import { clickOn, renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import offerFactory from "config/testUtils/factories/offerFactory";
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
+import { act } from "@testing-library/react";
 import ImpactInformationSection from ".";
 
 const mockNonProfit = nonProfitFactory({
@@ -40,9 +41,11 @@ describe("ImpactInformationSection", () => {
 
   describe("when an offer is clicked", () => {
     it("sets the simulation to its price", () => {
-      renderComponent(<ImpactInformationSection />);
-      clickOn("$15");
+      act(() => {
+        renderComponent(<ImpactInformationSection />);
+      });
 
+      clickOn("$15");
       expectTextToBeInTheDocument("$15,00 can pay up to");
     });
   });

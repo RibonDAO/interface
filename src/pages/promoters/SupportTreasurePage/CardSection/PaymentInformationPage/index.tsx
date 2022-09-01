@@ -1,48 +1,47 @@
 import Divider from "components/atomics/Divider";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
-import useOffers from "hooks/apiHooks/useOffers";
-import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import theme from "styles/theme";
 import { logEvent } from "services/analytics";
+import Offer from "types/entities/Offer";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import PaymentInformationSection from "./PaymentInformationSection";
 import FeesSection from "../FeesSection";
 import * as S from "./styles";
+
+type LocationState = {
+  currentOffer: Offer;
+};
 
 function PaymentInformationPage(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix:
       "promoters.supportTreasurePage.cardSection.paymentInformationPage",
   });
-
   const { lightGray } = theme.colors;
-
   const {
     currentCoin,
-    selectedButtonIndex,
     buttonDisabled,
     setCryptoGiving,
     handleSubmit,
+    setOfferId,
   } = useCardPaymentInformation();
+  const {
+    state: { currentOffer },
+  } = useLocation<LocationState>();
 
-  const { offers } = useOffers(currentCoin, false);
-
-  const givingValue = useCallback(() => {
-    if (offers) return offers[selectedButtonIndex]?.priceValue;
-
-    return 0;
-  }, [selectedButtonIndex, offers, currentCoin]);
-
-  const givingTotal = useCallback(() => {
-    if (!offers) return "";
-
-    return offers[selectedButtonIndex]?.price;
-  }, [offers, selectedButtonIndex, currentCoin]);
+  useEffect(() => {
+    setOfferId(currentOffer.id);
+  }, [currentOffer]);
 
   function handleClickNext() {
     logEvent("treasureSupportNextStepBtn_click", { from: "billingInfo" });
     handleSubmit();
   }
+
+  const givingValue = () => currentOffer.priceValue;
+  const givingTotal = () => currentOffer.price;
 
   return (
     <S.Container>

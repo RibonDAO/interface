@@ -31,7 +31,6 @@ export interface ICardPaymentInformationContext {
   setName: (value: SetStateAction<string>) => void;
   setExpirationDate: (value: SetStateAction<string>) => void;
   setCvv: (value: SetStateAction<string>) => void;
-  setSelectedButtonIndex: (value: SetStateAction<number>) => void;
   setButtonDisabled: (value: SetStateAction<boolean>) => void;
   setCryptoGiving: (value: SetStateAction<string>) => void;
   setOfferId: (value: SetStateAction<number>) => void;
@@ -46,7 +45,6 @@ export interface ICardPaymentInformationContext {
   name: string;
   expirationDate: string;
   cvv: string;
-  selectedButtonIndex: number;
   cryptoGiving: string;
   offerId: number;
   handleSubmit: () => void;
@@ -64,8 +62,6 @@ export const CardPaymentInformationContext =
 function CardPaymentInformationProvider({ children }: Props) {
   const { currentUser } = useCurrentUser();
   const { currentLang } = useLanguage();
-
-  const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
 
   const [currentCoin, setCurrentCoin] = useState<Currencies>(
     coinByLanguage(currentLang),
@@ -133,6 +129,7 @@ function CardPaymentInformationProvider({ children }: Props) {
         cvv,
       },
     };
+
     try {
       await creditCardPaymentApi.postCreditCardPayment(paymentInformation);
 
@@ -177,8 +174,6 @@ function CardPaymentInformationProvider({ children }: Props) {
       expirationDate,
       setCvv,
       cvv,
-      selectedButtonIndex,
-      setSelectedButtonIndex,
       buttonDisabled,
       setButtonDisabled,
       setCryptoGiving,
@@ -198,7 +193,6 @@ function CardPaymentInformationProvider({ children }: Props) {
       name,
       expirationDate,
       cvv,
-      selectedButtonIndex,
       buttonDisabled,
     ],
   );

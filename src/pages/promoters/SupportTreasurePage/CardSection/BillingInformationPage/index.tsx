@@ -1,14 +1,19 @@
 import Divider from "components/atomics/Divider";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
-import useOffers from "hooks/apiHooks/useOffers";
-import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import theme from "styles/theme";
 import { logEvent } from "services/analytics";
 import useNavigation from "hooks/useNavigation";
+import { useLocation } from "react-router-dom";
+import Offer from "types/entities/Offer";
+import { useEffect } from "react";
 import BillingInformationSection from "./BillingInformationSection";
 import FeesSection from "../FeesSection";
 import * as S from "./styles";
+
+type LocationState = {
+  currentOffer: Offer;
+};
 
 function BillingInformationPage(): JSX.Element {
   const { t } = useTranslation("translation", {
@@ -17,27 +22,28 @@ function BillingInformationPage(): JSX.Element {
   });
   const { lightGray } = theme.colors;
   const { navigateTo } = useNavigation();
+  const {
+    state: { currentOffer },
+  } = useLocation<LocationState>();
 
-  const { currentCoin, selectedButtonIndex, buttonDisabled, setCryptoGiving } =
+  const { currentCoin, buttonDisabled, setCryptoGiving, setOfferId } =
     useCardPaymentInformation();
 
-  const { offers } = useOffers(currentCoin, false);
+  useEffect(() => {
+    setOfferId(currentOffer.id);
+  }, [currentOffer]);
 
-  const givingValue = useCallback(() => {
-    if (offers) return offers[selectedButtonIndex]?.priceValue;
-
-    return 0;
-  }, [selectedButtonIndex, offers, currentCoin]);
-
-  const givingTotal = useCallback(() => {
-    if (!offers) return "";
-
-    return offers[selectedButtonIndex]?.price;
-  }, [offers, selectedButtonIndex, currentCoin]);
+  const givingValue = () => currentOffer.priceValue;
+  const givingTotal = () => currentOffer.price;
 
   function handleClickNext() {
     logEvent("treasureSupportNextStepBtn_click", { from: "billingInfo" });
-    navigateTo("/promoters/support-treasure/payment-information");
+    navigateTo({
+      pathname: "/promoters/support-treasure/payment-information",
+      state: {
+        currentOffer,
+      },
+    });
   }
 
   return (

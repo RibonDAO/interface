@@ -14,7 +14,7 @@ function useOffers(currency: Currencies, subscription = false) {
   });
 
   return {
-    offers,
+    offers: offers || [],
     isLoading,
     refetch,
   };

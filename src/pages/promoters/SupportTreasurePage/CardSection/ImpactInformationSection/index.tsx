@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Currencies } from "types/enums/Currencies";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import useOffers from "hooks/apiHooks/useOffers";
@@ -9,33 +9,35 @@ import CardSelect from "components/moleculars/cards/CardSelect";
 import useNonProfits from "hooks/apiHooks/useNonProfits";
 import NonProfit from "types/entities/NonProfit";
 import useNonProfitImpact from "hooks/apiHooks/useNonProfitImpact";
+import Offer from "types/entities/Offer";
+import useNavigation from "hooks/useNavigation";
 import * as S from "../styles";
-import Offer from "../../../../../types/entities/Offer";
 
 function ImpactInformationSection(): JSX.Element {
   const [selectedNonProfit, setSelectedNonProfit] = useState<NonProfit>();
+  const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
 
+  const { currentCoin, setCurrentCoin, buttonDisabled, setButtonDisabled } =
+    useCardPaymentInformation();
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportTreasurePage.cardSection",
   });
   const { nonProfits } = useNonProfits();
+  const { offers, refetch: refetchOffers } = useOffers(currentCoin, false);
+  const [currentOffer, setCurrentOffer] = useState<Offer>();
+  const { navigateTo } = useNavigation();
 
   useEffect(() => {
     if (nonProfits) setSelectedNonProfit(nonProfits[0]);
   }, [nonProfits]);
 
-  const {
-    currentCoin,
-    setCurrentCoin,
-    selectedButtonIndex,
-    setSelectedButtonIndex,
-  } = useCardPaymentInformation();
-
-  const { offers, refetch: refetchOffers } = useOffers(currentCoin, false);
-
   useEffect(() => {
     refetchOffers();
   }, [currentCoin]);
+
+  useEffect(() => {
+    setCurrentOffer(offers[0]);
+  }, [JSON.stringify(offers)]);
 
   const onNonProfitChanged = (nonProfit: NonProfit) => {
     setSelectedNonProfit(nonProfit);
@@ -53,19 +55,14 @@ function ImpactInformationSection(): JSX.Element {
     logEvent("treasureSupportAmountBtn_click", {
       option: offer?.id,
     });
+    setCurrentOffer(offer);
     setSelectedButtonIndex(index);
   };
-
-  const currentOffer = useCallback(() => {
-    if (!offers) return null;
-
-    return offers[selectedButtonIndex];
-  }, [offers, selectedButtonIndex]);
 
   const { nonProfitImpact, refetch: refetchNonProfitImpact } =
     useNonProfitImpact(
       selectedNonProfit?.id,
-      currentOffer()?.priceValue,
+      currentOffer?.priceValue,
       currentCoin,
     );
 
@@ -74,9 +71,20 @@ function ImpactInformationSection(): JSX.Element {
   }, [currentOffer]);
 
   const impactText = () =>
-    `${currentOffer()?.price} ${t("impactSimulationSection.payUpToText")} `;
+    `${currentOffer?.price} ${t("impactSimulationSection.payUpToText")} `;
 
   const impactNumber = () => nonProfitImpact?.roundedImpact || "";
+
+  function handleClickNext() {
+    setButtonDisabled(true);
+    logEvent("treasureSupportNextStepBtn_click");
+    navigateTo({
+      pathname: "/promoters/support-treasure/billing-information",
+      state: {
+        currentOffer,
+      },
+    });
+  }
 
   return (
     <S.ImpactSectionContainer>
@@ -129,6 +137,15 @@ function ImpactInformationSection(): JSX.Element {
           </CardSelect>
         </S.ImpactSimulatorContainer>
       )}
+      <S.ButtonContainer>
+        <S.FinishButton
+          text={t("buttonTextCard")}
+          onClick={() => {
+            handleClickNext();
+          }}
+          disabled={buttonDisabled}
+        />
+      </S.ButtonContainer>
     </S.ImpactSectionContainer>
   );
 }

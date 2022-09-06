@@ -9,7 +9,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.5",
     "@testing-library/user-event": "^13.2.1",
-    "@types/jest": "^28.1.6",
+    "@types/jest": "^29.0.0",
     "@types/node": "^18.7.6",
     "@types/react": "^17.0.20",
     "@types/react-dom": "^17.0.9",
@@ -35,7 +35,7 @@
     "simple-mask-money": "^3.0.1",
     "snakecase-keys": "^5.1.2",
     "styled-components": "^5.3.5",
-    "typescript": "^4.4.2",
+    "typescript": "^4.8.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -115,7 +115,7 @@
     "jest-styled-components": "^7.0.8",
     "lint-staged": "^13.0.3",
     "mrm": "4",
-    "plop": "^3.0.5",
+    "plop": "^3.1.1",
     "postcss-scss": "^4.0.2",
     "stylelint": "^14.10.0",
     "stylelint-config-prettier": "^9.0.3",

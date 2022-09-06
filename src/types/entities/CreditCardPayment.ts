@@ -4,6 +4,7 @@ export default interface CreditCardPayment {
   city: string;
   taxId: string;
   offerId: number;
+  integrationId: string | number;
   email: string;
   card: {
     number: string;

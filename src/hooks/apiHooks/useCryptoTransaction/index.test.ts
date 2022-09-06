@@ -9,6 +9,7 @@ describe("useCryptoTransaction", () => {
   const testHash = "0xAAAA";
   const testAmount = "5.00";
   const testWallet = "0xBBBB";
+  const testIntegrationId = 1;
 
   const transactionData = [testHash, testAmount, testWallet];
 
@@ -25,7 +26,12 @@ describe("useCryptoTransaction", () => {
     });
 
     it("calls postTransaction with correct params", () => {
-      hook.createTransaction(testHash, testAmount, testWallet);
+      hook.createTransaction(
+        testHash,
+        testAmount,
+        testWallet,
+        testIntegrationId,
+      );
 
       expect(cryptoTransactionApi.postTransaction).toHaveBeenCalledWith(
         ...transactionData,

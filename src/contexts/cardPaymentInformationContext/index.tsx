@@ -19,6 +19,7 @@ import { logError } from "services/crashReport";
 import { Currencies } from "types/enums/Currencies";
 import creditCardPaymentApi from "services/api/creditCardPaymentApi";
 import successIcon from "assets/icons/success-icon.svg";
+import { useIntegrationId } from "hooks/useIntegrationId";
 
 export interface ICardPaymentInformationContext {
   setCurrentCoin: (value: SetStateAction<Currencies>) => void;
@@ -70,6 +71,8 @@ function CardPaymentInformationProvider({ children }: Props) {
   const [currentCoin, setCurrentCoin] = useState<Currencies>(
     coinByLanguage(currentLang),
   );
+
+  const integrationId = useIntegrationId();
 
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
@@ -124,7 +127,8 @@ function CardPaymentInformationProvider({ children }: Props) {
       state,
       city,
       taxId,
-      offerId,
+      offerId: 1,
+      integrationId: integrationId ?? 0,
       card: {
         number: number.replace(/\D/g, ""),
         name,

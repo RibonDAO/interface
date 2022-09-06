@@ -24,7 +24,7 @@ describe("WalletLayout", () => {
       </WalletLayout>,
     );
 
-    expectTextToBeInTheDocument("Treasure");
+    expectTextToBeInTheDocument("Giving");
     expectTextToBeInTheDocument("Causes");
     expectTextToBeInTheDocument("Impact");
   });
@@ -87,7 +87,7 @@ describe("WalletLayout", () => {
         </WalletLayout>,
       );
 
-      expectTextNotToBeInTheDocument("Treasure");
+      expectTextNotToBeInTheDocument("Giving");
       expectTextNotToBeInTheDocument("Causes");
       expectTextNotToBeInTheDocument("Impact");
     });

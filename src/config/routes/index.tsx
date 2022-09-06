@@ -64,7 +64,7 @@ function RoutesComponent(): JSX.Element {
           <CurrentUserProvider>
             <NetworkProvider>
               <WalletProvider>
-                <WalletLayout>
+                <WalletLayout hasBackButton hideNavigation hideWallet>
                   <TreasurePage />
                 </WalletLayout>
               </WalletProvider>
@@ -78,7 +78,7 @@ function RoutesComponent(): JSX.Element {
           <CurrentUserProvider>
             <NetworkProvider>
               <WalletProvider>
-                <WalletLayout hideNavigation hasBackButton>
+                <WalletLayout>
                   <CardPaymentInformationProvider>
                     <SupportTreasurePage />
                   </CardPaymentInformationProvider>

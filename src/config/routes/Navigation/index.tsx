@@ -5,8 +5,8 @@ import CausesIconOn from "./assets/causesIconOn.svg";
 import CausesIconOff from "./assets/causesIconOff.svg";
 import ImpactIconOn from "./assets/impactIconOn.svg";
 import ImpactIconOff from "./assets/impactIconOff.svg";
-import TreasureIconOff from "./assets/treasureIconOff.svg";
-import TreasureIconOn from "./assets/treasureIconOn.svg";
+import GivingIconOn from "./assets/givingIconOn.svg";
+import GivingIconOff from "./assets/givingIconOff.svg";
 import * as S from "./styles";
 import NavigationLink from "./NavigationLink";
 
@@ -33,11 +33,11 @@ function Navigation(): JSX.Element {
       event: "homeNavBtn_click",
     },
     {
-      path: "/promoters/treasure",
-      iconOn: TreasureIconOn,
-      iconOff: TreasureIconOff,
-      title: t("treasurePageTitle"),
-      event: "treasureNavBtn_click",
+      path: "/promoters/support-treasure",
+      iconOn: GivingIconOn,
+      iconOff: GivingIconOff,
+      title: t("givingPageTitle"),
+      event: "givingNavBtn_click",
     },
     {
       path: "/impact",

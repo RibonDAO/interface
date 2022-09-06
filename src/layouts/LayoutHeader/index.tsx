@@ -26,11 +26,13 @@ import useCanDonate from "../../hooks/apiHooks/useCanDonate";
 export type Props = {
   rightComponent?: JSX.Element;
   hasBackButton?: boolean;
+  hideWallet?: boolean;
 };
 
 function LayoutHeader({
   rightComponent,
   hasBackButton = false,
+  hideWallet = false,
 }: Props): JSX.Element {
   const integrationId = useIntegrationId();
   const [menuVisible, setMenuVisible] = useState(false);
@@ -116,17 +118,24 @@ function LayoutHeader({
         rightComponent={
           <S.ContainerRight>
             {rightComponent}
-            <S.CounterContainer onClick={() => handleCounterClick()}>
-              <S.TicketsAmount
-                color={
-                  canDonate ? theme.colors.mediumGreen : theme.colors.mediumGray
-                }
-              >
-                {canDonate ? 1 : 0}
-              </S.TicketsAmount>
-              <S.CounterImage src={canDonate ? ticketOn : ticketOff} />
-            </S.CounterContainer>
-            <S.Settings onClick={() => openMenu()} src={cogIcon} />
+            {!hideWallet && (
+              <S.ContainerButtons>
+                <S.CounterContainer onClick={() => handleCounterClick()}>
+                  <S.TicketsAmount
+                    color={
+                      canDonate
+                        ? theme.colors.mediumGreen
+                        : theme.colors.mediumGray
+                    }
+                  >
+                    {canDonate ? 1 : 0}
+                  </S.TicketsAmount>
+                  <S.CounterImage src={canDonate ? ticketOn : ticketOff} />
+                </S.CounterContainer>
+
+                <S.Settings onClick={() => openMenu()} src={cogIcon} />
+              </S.ContainerButtons>
+            )}
           </S.ContainerRight>
         }
       />

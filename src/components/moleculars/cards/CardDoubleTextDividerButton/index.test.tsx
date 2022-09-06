@@ -11,7 +11,9 @@ describe("CardDoubleTextDividerButton", () => {
         rightComplementText="USDC"
         buttonText="see transaction"
         rightComponentButton="test"
-        link=""
+        link="/"
+        processingText="processing"
+        processing
       />,
     );
     expectTextToBeInTheDocument("22/02/2022");

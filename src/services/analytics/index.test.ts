@@ -14,19 +14,6 @@ const mockAnalytics = {
   setUserId: jest.fn(),
 };
 
-jest.mock("hooks/useIntegrationId", () => ({
-  useIntegrationId: () => 1,
-}));
-
-jest.mock("hooks/apiHooks/useIntegration", () => ({
-  __esModule: true,
-  default: () => ({
-    integration: {
-      name: "IntegrationName",
-    },
-  }),
-}));
-
 jest.mock("firebase/app", () => ({
   analytics: () => mockAnalytics,
 }));
@@ -60,7 +47,7 @@ describe("logEvent", () => {
       logEvent(eventName);
       expect(mockAnalytics.logEvent).toHaveBeenCalledWith(eventName, {
         anonymousId: "",
-        integrationName: "IntegrationName",
+        integrationName: "",
       });
     });
   });

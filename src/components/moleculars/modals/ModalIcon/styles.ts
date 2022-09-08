@@ -36,10 +36,8 @@ export const Body = styled.h3`
   color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
-export const HighlightedText = styled.p`
+export const HighlightedText = styled.h4`
   margin-top: 16px;
-  font-weight: 700;
-  font-size: 16px;
   text-align: center;
   color: ${({ theme }) => theme.colors.darkGray};
 `;

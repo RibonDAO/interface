@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { BoldLink } from "components/atomics/typography/Links/styles";
 
 export const Container = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.mediumGreen};
@@ -16,12 +17,9 @@ export const Container = styled.div`
   }
 `;
 
-export const Selected = styled.a`
+export const Selected = styled(BoldLink)`
   min-width: 50%;
   border-radius: 16px;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 1.6;
   background: ${({ theme }) => theme.colors.mediumGreen};
   color: ${({ theme }) => theme.colors.white};
 `;

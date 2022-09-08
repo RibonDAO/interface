@@ -66,11 +66,8 @@ export const TitleContainer = styled.div`
   flex-direction: row;
 `;
 
-export const Title = styled.h3`
+export const Title = styled.h4`
   margin-bottom: 4px;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 1.4;
   text-align: center;
   color: ${({ theme }) => theme.colors.darkGray};
 `;
@@ -80,8 +77,7 @@ export const DescriptionContainer = styled.div`
   flex-direction: row;
 `;
 
-export const Description = styled.h4`
-  line-height: 160%;
+export const Description = styled.h5`
   text-align: center;
   color: ${({ theme }) => theme.colors.mediumGray};
 `;

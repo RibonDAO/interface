@@ -1,10 +1,10 @@
+import { BoldP } from "components/atomics/typography/BoldText/styles";
+import { BoldSpan } from "components/atomics/typography/Spans/styles";
 import styled from "styled-components";
 
 export const Container = styled.div``;
 
-export const TextLastCard = styled.p`
-  font-weight: 700;
-  font-size: 16px;
+export const TextLastCard = styled.h4`
   color: ${({ theme }) => theme.colors.darkGray};
 `;
 
@@ -23,9 +23,7 @@ export const LastCardCarousel = styled.a`
   box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
 `;
 
-export const GivingText = styled.span`
-  font-weight: 700;
-  font-size: 14px;
+export const GivingText = styled(BoldSpan)`
   line-height: 22px;
   text-align: center;
   color: ${({ theme }) => theme.colors.mediumGray};
@@ -48,8 +46,7 @@ export const Image = styled.img`
   height: 40px;
 `;
 
-export const SectionTitle = styled.p`
+export const SectionTitle = styled(BoldP)`
   margin-top: 28px;
-  font-weight: 700;
   color: ${({ theme }) => theme.colors.darkGray};
 `;

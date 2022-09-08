@@ -1,3 +1,4 @@
+import { HighlightedTextH1 } from "components/atomics/typography/HighlightedText/styles";
 import styled from "styled-components";
 
 export const Container = styled.div``;
@@ -11,14 +12,8 @@ export const BodyContainer = styled.div`
   }
 `;
 
-export const Title = styled.h1`
+export const Title = styled(HighlightedTextH1)`
   margin: 0;
-  font-weight: 900;
-  text-transform: uppercase;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    font-size: 36px;
-  }
 `;
 
 export const CausesContainer = styled.div`
@@ -43,9 +38,7 @@ export const CausesCardContainer = styled.div`
   justify-content: center;
 `;
 
-export const FooterText = styled.h5`
-  font-weight: 400;
-  line-height: 19px;
+export const FooterText = styled.p`
   text-align: center;
   color: ${({ theme }) => theme.colors.mediumGray};
 

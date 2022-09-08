@@ -46,7 +46,6 @@ export const RoundLogo = styled.img`
 
 export const Title = styled.h3`
   margin-left: 3px;
-  line-height: 25px;
   text-align: center;
 `;
 
@@ -57,7 +56,6 @@ export const TitleContainer = styled.div`
 `;
 
 export const Subtitle = styled.h3`
-  line-height: 25px;
   text-align: center;
   color: ${({ theme }) => theme.colors.white};
 `;

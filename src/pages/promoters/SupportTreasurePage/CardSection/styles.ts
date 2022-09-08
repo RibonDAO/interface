@@ -1,19 +1,16 @@
 import styled from "styled-components";
 import Button from "components/atomics/buttons/Button";
+import { AuxiliarText } from "components/atomics/typography/AuxiliarText/styles";
+import { BoldP } from "components/atomics/typography/BoldText/styles";
+import { AuxiliarButton } from "components/atomics/typography/AuxiliarButtonText/styles";
 
 export const CardSectionContainer = styled.div`
   margin-top: 24px;
 `;
 
-export const Subtitle = styled.p`
-  font-weight: 700;
-
+export const Subtitle = styled(BoldP)`
   &:nth-child(3) {
     margin-top: 18px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    font-size: 18px;
   }
 `;
 
@@ -26,11 +23,10 @@ export const ValuesContainer = styled.div`
   grid-gap: 8px;
 `;
 
-export const CardValueButton = styled(Button)`
+export const CardValueButton = styled(AuxiliarButton)`
   max-width: 112px;
   height: 30px;
   border-radius: 66px;
-  font-size: 12px;
 `;
 
 export const ButtonContainer = styled.div`
@@ -65,30 +61,22 @@ export const FinishButton = styled(Button)`
   }
 `;
 
-export const GivingValue = styled.h4`
+export const GivingValue = styled.h2`
   margin-top: 4px;
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 38.4px;
   color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 export const NetGivingValue = styled.p`
-  font-size: 14px;
-  line-height: 23.8px;
   color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
 export const ServiceFeesValue = styled.p`
-  font-size: 14px;
-  line-height: 23.8px;
   color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
-export const CryptoGivingValue = styled.p`
+export const CryptoGivingValue = styled(AuxiliarText)`
   margin-bottom: 32px;
   font-style: italic;
-  font-size: 12px;
   line-height: 19.2px;
   color: ${({ theme }) => theme.colors.mediumGray};
 `;
@@ -117,7 +105,6 @@ export const CardImpactText = styled.h3`
   color: ${({ theme }) => theme.colors.darkGray};
 
   span {
-    font-size: 16px;
     color: ${({ theme }) => theme.colors.mediumGreen};
   }
 `;

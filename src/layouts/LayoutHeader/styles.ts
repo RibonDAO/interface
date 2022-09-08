@@ -1,3 +1,4 @@
+import { BoldP } from "components/atomics/typography/BoldText/styles";
 import styled from "styled-components";
 
 export const ContainerButtons = styled.div`
@@ -40,10 +41,7 @@ export const CounterContainer = styled.div`
   }
 `;
 
-export const TicketsAmount = styled.p`
+export const TicketsAmount = styled(BoldP)`
   margin-right: 2px;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 10px;
   color: ${({ color }) => color};
 `;

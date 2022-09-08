@@ -39,7 +39,7 @@ function ImpactPage(): JSX.Element {
 
   return (
     <S.Container>
-      <S.Title>{t("title").toUpperCase()}</S.Title>
+      <S.Title>{t("title")}</S.Title>
       {userHasDonated && (
         <S.Subtitle>{t("subtitle", { ticketsUsed })}</S.Subtitle>
       )}

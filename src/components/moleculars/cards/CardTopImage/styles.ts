@@ -22,8 +22,6 @@ export const Image = styled.img`
 
 export const Text = styled.p`
   margin-top: 16px;
-  font-weight: ${({ theme }) => theme.font.normal};
-  font-size: 14px;
   text-align: center;
   color: ${({ theme }) => theme.colors.darkGray};
 `;

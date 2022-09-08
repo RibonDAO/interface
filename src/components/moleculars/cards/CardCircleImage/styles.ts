@@ -24,7 +24,6 @@ export const Image = styled.img`
 
 export const Title = styled.h3`
   margin: 0;
-  line-height: 25px;
 `;
 
 export const Subtitle = styled.h5`

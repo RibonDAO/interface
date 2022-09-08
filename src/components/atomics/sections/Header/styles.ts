@@ -20,7 +20,6 @@ export const Logo = styled.img`
 
 export const Divider = styled.span`
   margin: 0 8px;
-  font-weight: 600;
   color: ${({ theme }) => theme.colors.lightGray};
 `;
 

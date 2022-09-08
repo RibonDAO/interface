@@ -58,5 +58,4 @@ export const RowsModalIcon = styled.img`
 export const RowsModalText = styled.h4`
   display: flex;
   align-items: center;
-  line-height: 23px;
 `;

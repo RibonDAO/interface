@@ -9,11 +9,8 @@ export const PaymentInformationSectionContainer = styled.form`
   }
 `;
 
-export const Title = styled.h6`
+export const Title = styled.h3`
   margin-bottom: 20px;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 25.6px;
   color: ${({ theme }) => theme.colors.darkGray};
 `;
 

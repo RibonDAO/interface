@@ -69,7 +69,7 @@ function InputAutoComplete({
                   onClick={() => handleOptionClick(value)}
                   key={value}
                 >
-                  <S.OptionText>{value}</S.OptionText>
+                  <h5>{value}</h5>
                 </S.OptionContainer>
               ),
           )}

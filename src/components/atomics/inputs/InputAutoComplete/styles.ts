@@ -21,8 +21,3 @@ export const OptionContainer = styled.div`
     cursor: pointer;
   }
 `;
-
-export const OptionText = styled.h4`
-  font-weight: 700;
-  line-height: 1.6;
-`;

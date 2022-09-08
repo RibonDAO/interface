@@ -14,7 +14,7 @@ describe("Impact", () => {
     it("should render title", () => {
       renderComponent(<Impact />);
 
-      expectTextToBeInTheDocument("IMPACT");
+      expectTextToBeInTheDocument("Impact");
     });
 
     it("should render cardEmptySection", () => {

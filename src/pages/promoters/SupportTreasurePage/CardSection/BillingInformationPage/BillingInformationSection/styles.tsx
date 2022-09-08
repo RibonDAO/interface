@@ -9,12 +9,9 @@ export const BillingInformationSectionContainer = styled.div`
   }
 `;
 
-export const Title = styled.h6`
+export const Title = styled.h3`
   margin-bottom: 18px;
-  font-weight: 700;
   color: ${({ theme }) => theme.colors.darkGray};
-  font-size: 18px;
-  line-height: 25.6px;
 `;
 
 export const Form = styled.form`

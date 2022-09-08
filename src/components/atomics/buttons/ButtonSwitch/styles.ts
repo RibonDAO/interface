@@ -18,7 +18,5 @@ export const ContainerSwitch = styled.div`
 `;
 
 export const Text = styled.p`
-  font-weight: 400;
-  font-size: 14px;
   color: ${({ color }) => color};
 `;

@@ -18,8 +18,6 @@ export const Container = styled.button<{
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  line-height: 1;
   background-color: ${(props) => props.backgroundColor};
   color: ${(props) => props.textColor};
   opacity: ${(props) => (props.disabled ? 0.5 : 1)};

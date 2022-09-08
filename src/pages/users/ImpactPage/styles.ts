@@ -1,4 +1,5 @@
 import Button from "components/atomics/buttons/Button";
+import { HighlightedTextH1 } from "components/atomics/typography/HighlightedText/styles";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -12,24 +13,13 @@ export const Container = styled.div`
   }
 `;
 
-export const Title = styled.h1`
+export const Title = styled(HighlightedTextH1)`
   margin: 0;
-  font-weight: 900;
-  line-height: 1.6;
   color: ${({ theme }) => theme.colors.darkGray};
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    font-size: 36px;
-  }
 `;
 
-export const Subtitle = styled.h2`
-  font-size: 14px;
+export const Subtitle = styled.h5`
   color: ${({ theme }) => theme.colors.mediumGray};
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    font-size: 16px;
-  }
 `;
 
 export const CardsButtonContainer = styled.div`

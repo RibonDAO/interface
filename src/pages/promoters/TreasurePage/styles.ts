@@ -1,3 +1,7 @@
+import { AuxiliarText } from "components/atomics/typography/AuxiliarText/styles";
+import { BoldP } from "components/atomics/typography/BoldText/styles";
+import { HighlightedTextH1 } from "components/atomics/typography/HighlightedText/styles";
+import { Span } from "components/atomics/typography/Spans/styles";
 import styled from "styled-components";
 
 export const Container = styled.div``;
@@ -25,33 +29,22 @@ export const CardBlank = styled.div`
   box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
 `;
 
-export const Title = styled.h1`
-  margin: 4px 0;
+export const Title = styled(HighlightedTextH1)`
+  margin: 0;
   margin-bottom: 16px;
-  font-weight: 900;
-  text-transform: uppercase;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    font-size: 36px;
-  }
 `;
 
-export const TreasureText = styled.p`
+export const TreasureText = styled.h1`
   margin-bottom: 8px;
-  font-weight: 900;
-  font-size: 36px;
   color: ${({ theme }) => theme.colors.mediumGreen};
 `;
 
-export const TreasureTextCoin = styled.span`
-  font-weight: 400;
-  font-size: 14px;
+export const TreasureTextCoin = styled(Span)`
   color: ${({ theme }) => theme.colors.mediumGreen};
 `;
 
-export const SectionTitle = styled.p`
+export const SectionTitle = styled(BoldP)`
   margin-bottom: 8px;
-  font-weight: 700;
   color: ${({ theme }) => theme.colors.darkGray};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
@@ -79,15 +72,12 @@ export const GivingsCard = styled.div`
   box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
 `;
 
-export const GivingDate = styled.p`
-  font-size: 12px;
+export const GivingDate = styled(AuxiliarText)`
   color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
-export const GivingText = styled.p`
+export const GivingText = styled.h1`
   margin-bottom: 8px;
-  font-weight: 900;
-  font-size: 36px;
   color: ${({ theme }) => theme.colors.mediumGreen};
 `;
 
@@ -95,9 +85,7 @@ export const ProcessingGivingText = styled(GivingText)`
   color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
-export const GivingTextCoin = styled.span`
-  font-weight: 400;
-  font-size: 14px;
+export const GivingTextCoin = styled(Span)`
   color: ${({ theme }) => theme.colors.mediumGreen};
 `;
 
@@ -114,13 +102,9 @@ export const StatusContainer = styled.div`
 `;
 
 export const ProcessingText = styled.span`
-  font-weight: 400;
-  font-size: 12px;
   color: ${({ theme }) => theme.colors.mediumGreen};
 `;
 
 export const TransactionLink = styled.a`
-  font-weight: 400;
-  font-size: 12px;
   color: ${({ theme }) => theme.colors.darkGray};
 `;

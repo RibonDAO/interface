@@ -1,4 +1,5 @@
 import Button from "components/atomics/buttons/Button";
+import { BoldP } from "components/atomics/typography/BoldText/styles";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -11,9 +12,8 @@ export const Container = styled.div`
   justify-self: center;
 `;
 
-export const Text = styled.p`
+export const Text = styled(BoldP)`
   margin-top: 28px;
-  font-weight: 700;
   text-align: center;
   color: ${({ theme }) => theme.colors.mediumGray};
 `;

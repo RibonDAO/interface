@@ -1,4 +1,3 @@
-import { BoldP } from "components/atomics/typography/BoldText/styles";
 import { BoldSpan } from "components/atomics/typography/Spans/styles";
 import styled from "styled-components";
 
@@ -46,7 +45,7 @@ export const Image = styled.img`
   height: 40px;
 `;
 
-export const SectionTitle = styled(BoldP)`
+export const SectionTitle = styled.h4`
   margin-top: 28px;
   color: ${({ theme }) => theme.colors.darkGray};
 `;

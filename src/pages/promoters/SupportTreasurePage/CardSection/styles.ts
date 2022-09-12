@@ -1,14 +1,13 @@
 import styled from "styled-components";
 import Button from "components/atomics/buttons/Button";
 import { AuxiliarText } from "components/atomics/typography/AuxiliarText/styles";
-import { BoldP } from "components/atomics/typography/BoldText/styles";
 import { AuxiliarButton } from "components/atomics/typography/AuxiliarButtonText/styles";
 
 export const CardSectionContainer = styled.div`
   margin-top: 24px;
 `;
 
-export const Subtitle = styled(BoldP)`
+export const Subtitle = styled.h4`
   &:nth-child(3) {
     margin-top: 18px;
   }
@@ -101,7 +100,7 @@ export const CardImpactImage = styled.img`
   object-fit: cover;
 `;
 
-export const CardImpactText = styled.h3`
+export const CardImpactText = styled.h4`
   color: ${({ theme }) => theme.colors.darkGray};
 
   span {

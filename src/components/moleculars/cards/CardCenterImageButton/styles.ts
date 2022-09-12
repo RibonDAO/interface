@@ -32,7 +32,7 @@ export const ContainerText = styled.div`
   justify-content: center;
 `;
 
-export const Text = styled.h3`
+export const Text = styled.h5`
   margin-bottom: 8px;
   align-self: flex-start;
   color: ${({ theme }) => theme.colors.darkGray};

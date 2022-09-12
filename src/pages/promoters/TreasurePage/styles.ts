@@ -1,5 +1,4 @@
 import { AuxiliarText } from "components/atomics/typography/AuxiliarText/styles";
-import { BoldP } from "components/atomics/typography/BoldText/styles";
 import { HighlightedTextH1 } from "components/atomics/typography/HighlightedText/styles";
 import { Span } from "components/atomics/typography/Spans/styles";
 import styled from "styled-components";
@@ -43,7 +42,7 @@ export const TreasureTextCoin = styled(Span)`
   color: ${({ theme }) => theme.colors.mediumGreen};
 `;
 
-export const SectionTitle = styled(BoldP)`
+export const SectionTitle = styled.h4`
   margin-bottom: 8px;
   color: ${({ theme }) => theme.colors.darkGray};
 

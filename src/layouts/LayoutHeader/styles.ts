@@ -1,4 +1,4 @@
-import { BoldP } from "components/atomics/typography/BoldText/styles";
+import { AuxiliarButtonText } from "components/atomics/typography/AuxiliarButtonText/styles";
 import styled from "styled-components";
 
 export const ContainerButtons = styled.div`
@@ -41,7 +41,7 @@ export const CounterContainer = styled.div`
   }
 `;
 
-export const TicketsAmount = styled(BoldP)`
+export const TicketsAmount = styled(AuxiliarButtonText)`
   margin-right: 2px;
   color: ${({ color }) => color};
 `;

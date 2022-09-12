@@ -64,7 +64,10 @@ function CurrentUserProvider({ children }: Props) {
   useEffect(() => {
     setSignedIn(!!currentUser);
     setUserInLocalStorage();
-    setUserIdInAnalytics();
+
+    if (process.env.NODE_ENV !== "development") {
+      setUserIdInAnalytics();
+    }
   }, [currentUser]);
 
   const currentUserObject: ICurrentUserContext = useMemo(

@@ -2,7 +2,8 @@ import firebase from "firebase/app";
 import "firebase/analytics";
 import * as Sentry from "@sentry/react";
 
-export function initializeFirebase(): firebase.app.App {
+export function initializeFirebase(): any {
+  if (process.env.NODE_ENV === "development") return;
   const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -13,7 +14,7 @@ export function initializeFirebase(): firebase.app.App {
     measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
   };
 
-  return firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
 }
 
 export function initializeSentry(): void {

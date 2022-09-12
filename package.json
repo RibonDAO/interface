@@ -6,7 +6,7 @@
     "@apollo/client": "^3.6.9",
     "@growthbook/growthbook-react": "^0.9.1",
     "@sentry/react": "^6.16.1",
-    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^12.1.5",
     "@testing-library/user-event": "^13.2.1",
     "@types/jest": "^29.0.0",
@@ -35,7 +35,7 @@
     "simple-mask-money": "^3.0.1",
     "snakecase-keys": "^5.1.2",
     "styled-components": "^5.3.5",
-    "typescript": "^4.8.2",
+    "typescript": "^4.8.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

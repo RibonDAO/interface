@@ -55,5 +55,5 @@ export const StyledLink = styled(Link)`
 `;
 
 export const Icon = styled.img`
-  height: 24px;
+  height: 30px;
 `;

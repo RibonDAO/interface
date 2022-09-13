@@ -125,7 +125,7 @@ function CardPaymentInformationProvider({ children }: Props) {
         number: number.replace(/\D/g, ""),
         name,
         expirationMonth: expiration[0],
-        expirationYear: expiration[1],
+        expirationYear: expiration[1].slice(-2),
         cvv,
       },
     };

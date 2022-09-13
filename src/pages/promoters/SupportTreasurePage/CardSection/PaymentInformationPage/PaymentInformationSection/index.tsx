@@ -82,9 +82,11 @@ function PaymentInformationSection() {
       <S.Half>
         <InputText
           name="expirationDate"
+          autofill="cc-exp"
           value={expirationDate}
           placeholder={t("cardDueDate")}
           onChange={maskExpiration}
+          maxLength={7}
           required
         />
         <InputText

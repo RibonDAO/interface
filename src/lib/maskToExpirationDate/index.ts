@@ -1,7 +1,9 @@
-export const maskToExpirationDate = (date: string) =>
-  date
-    .replace(/[^0-9]/g, "")
-    .replace(/^([2-9])$/g, "0$1")
-    .replace(/^(1{1})([3-9]{1})$/g, "0$1/$2")
-    .replace(/^0{1,}/g, "0")
-    .replace(/^([0-1]{1}[0-9]{1})([0-9]{1,2}).*/g, "$1/$2");
+export const maskToExpirationDate = (date: string) => {
+  const v = date.replace(/\D/g, "").slice(0, 10);
+  if (v.length >= 5) {
+    return `${v.slice(0, 2)}/${v.slice(2, 6)}`;
+  } else if (v.length >= 3) {
+    return `${v.slice(0, 2)}/${v.slice(2)}`;
+  }
+  return v;
+};

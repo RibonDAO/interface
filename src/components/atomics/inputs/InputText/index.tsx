@@ -10,6 +10,7 @@ export type Props = {
   minLength?: number;
   required?: boolean;
   disabled?: boolean;
+  autofill?: string;
   onChange?: (value: any) => void;
 };
 
@@ -23,6 +24,7 @@ function InputText({
   maxLength,
   minLength,
   disabled,
+  autofill,
 }: Props): JSX.Element {
   return (
     <S.Container>
@@ -37,6 +39,7 @@ function InputText({
         minLength={minLength}
         onChange={onChange}
         disabled={disabled}
+        autoComplete={autofill}
       />
     </S.Container>
   );

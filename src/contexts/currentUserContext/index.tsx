@@ -27,6 +27,7 @@ export const CurrentUserContext = createContext<ICurrentUserContext>(
 );
 
 export const CURRENT_USER_KEY = "CURRENT_USER_KEY";
+export const SHOW_MENU = "SHOW_MENU";
 
 function CurrentUserProvider({ children }: Props) {
   function getUserFromLocalStorage() {
@@ -49,6 +50,7 @@ function CurrentUserProvider({ children }: Props) {
   function logoutCurrentUser() {
     setCurrentUser(undefined);
     localStorage.removeItem(CURRENT_USER_KEY);
+    localStorage.removeItem(SHOW_MENU);
   }
 
   function setUserInLocalStorage() {

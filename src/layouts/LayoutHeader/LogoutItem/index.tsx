@@ -32,6 +32,7 @@ function LogoutItem(): JSX.Element {
     logoutCurrentUser();
     navigateTo("/");
     setSuccessLogoutModalVisible(false);
+    window.location.reload();
   }
 
   useEffect(() => {

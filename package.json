@@ -36,7 +36,7 @@
     "snakecase-keys": "^5.1.2",
     "styled-components": "^5.3.5",
     "typescript": "^4.8.3",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^3.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -84,7 +84,7 @@
     "@commitlint/config-conventional": "^16.0.0",
     "@storybook/addon-actions": "^6.5.10",
     "@storybook/addon-essentials": "^6.5.10",
-    "@storybook/addon-links": "^6.5.10",
+    "@storybook/addon-links": "^6.5.11",
     "@storybook/addon-viewport": "^6.5.10",
     "@storybook/builder-webpack5": "^6.5.10",
     "@storybook/manager-webpack5": "^6.5.10",
@@ -100,7 +100,7 @@
     "@typescript-eslint/parser": "^5.33.0",
     "axios-mock-adapter": "^1.21.2",
     "babel-eslint": "^10.1.0",
-    "codehawk-cli": "^8.3.1",
+    "codehawk-cli": "^10.0.1",
     "eslint": "^8.22.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",

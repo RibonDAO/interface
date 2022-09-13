@@ -39,7 +39,7 @@ describe("useNetwork", () => {
       symbolName: "MATIC",
       currencyName: "Matic",
       blockExplorerUrls: "https://mumbai.polygonscan.com/",
-      defaultPoolAddress: "",
+      defaultPoolAddress: "0xD3850333819fBdd43784498F67010E5c87a2EAb3",
     };
 
     beforeEach(async () => {

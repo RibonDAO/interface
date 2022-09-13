@@ -68,7 +68,7 @@ function CryptoSection(): JSX.Element {
     }
 
     fetchDecimals();
-  }, []);
+  }, [donationTokenContract]);
 
   const approveAmount = async () =>
     donationTokenContract?.functions.approve(
@@ -94,7 +94,7 @@ function CryptoSection(): JSX.Element {
     } catch (error) {
       logError(error);
     }
-  }, [wallet]);
+  }, [wallet, tokenDecimals]);
 
   useEffect(() => {
     fetchUsdcUserBalance();

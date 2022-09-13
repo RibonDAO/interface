@@ -23,7 +23,7 @@ export const networks = [
     symbolName: "MATIC",
     currencyName: "Matic",
     blockExplorerUrls: "https://mumbai.polygonscan.com/",
-    defaultPoolAddress: "",
+    defaultPoolAddress: "0xD3850333819fBdd43784498F67010E5c87a2EAb3",
   },
   {
     chainName: "Localhost 8545",
@@ -35,6 +35,6 @@ export const networks = [
     symbolName: "ETH",
     currencyName: "Ether",
     blockExplorerUrls: "http://localhost:8545",
-    defaultPoolAddress: "",
+    defaultPoolAddress: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
   },
 ];

@@ -64,7 +64,7 @@ function NetworkProvider({ children }: Props) {
 
   useEffect(() => {
     getCurrentNetwork();
-  }, [getCurrentNetwork, currentNetwork]);
+  }, [getCurrentNetwork]);
 
   useEffect(() => {
     window.ethereum?.on("chainChanged", getCurrentNetwork);

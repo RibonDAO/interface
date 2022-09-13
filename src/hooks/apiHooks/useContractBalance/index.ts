@@ -7,7 +7,7 @@ function useContractBalance(contract: Contract | null, address: string) {
   const [contractBalance, setContractBalance] = useState(0);
 
   const { data, isLoading, refetch } = useContractRequest<number>({
-    key: "contractBalance",
+    key: `contractBalance${address}`,
     fetchMethod: () => contract?.balanceOf(address),
   });
 
@@ -16,8 +16,6 @@ function useContractBalance(contract: Contract | null, address: string) {
       const decimals = await contract?.decimals();
       setContractBalance(formatFromDecimals(data, decimals));
     }
-
-    return null;
   }, [data]);
 
   useEffect(() => {

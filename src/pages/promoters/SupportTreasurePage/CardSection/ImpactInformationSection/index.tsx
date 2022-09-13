@@ -11,6 +11,8 @@ import NonProfit from "types/entities/NonProfit";
 import useNonProfitImpact from "hooks/apiHooks/useNonProfitImpact";
 import Offer from "types/entities/Offer";
 import useNavigation from "hooks/useNavigation";
+import questionIcon from "assets/icons/question-icon.svg";
+import { useSimulateInfoModal } from "hooks/modalHooks/useSimulateInfoModal";
 import * as S from "../styles";
 
 function ImpactInformationSection(): JSX.Element {
@@ -26,6 +28,7 @@ function ImpactInformationSection(): JSX.Element {
   const { offers, refetch: refetchOffers } = useOffers(currentCoin, false);
   const [currentOffer, setCurrentOffer] = useState<Offer>();
   const { navigateTo } = useNavigation();
+  const { showSimulateInfoModal } = useSimulateInfoModal();
 
   useEffect(() => {
     if (nonProfits) setSelectedNonProfit(nonProfits[0]);
@@ -86,6 +89,10 @@ function ImpactInformationSection(): JSX.Element {
     });
   }
 
+  function handleQuestionMarkClick() {
+    showSimulateInfoModal();
+  }
+
   return (
     <S.ImpactSectionContainer>
       <S.Subtitle>{t("subtitleCard")}</S.Subtitle>
@@ -112,7 +119,14 @@ function ImpactInformationSection(): JSX.Element {
         </S.ValuesContainer>
       </CardSelect>
 
-      <S.Subtitle>{t("simulateSectionTitle")}</S.Subtitle>
+      <S.SubtitleContainer>
+        <S.Subtitle>{t("simulateSectionTitle")}</S.Subtitle>
+        <S.QuestionIcon
+          src={questionIcon}
+          onClick={() => handleQuestionMarkClick()}
+          alt="question-mark-icon"
+        />
+      </S.SubtitleContainer>
       {nonProfits && (
         <S.ImpactSimulatorContainer>
           <CardSelect

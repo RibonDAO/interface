@@ -9,7 +9,11 @@ export default {
 const Template: ComponentStory<typeof CardCenterImageButton> = function (
   args: Props,
 ) {
-  return <CardCenterImageButton {...args} />;
+  return (
+    <div style={{ height: 200, width: 300 }}>
+      <CardCenterImageButton {...args} />
+    </div>
+  );
 };
 
 export const Default = Template.bind({});

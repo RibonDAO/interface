@@ -2,7 +2,7 @@ import { clickOn, renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import offerFactory from "config/testUtils/factories/offerFactory";
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
-import { act } from "@testing-library/react";
+import { act, screen } from "@testing-library/react";
 import ImpactInformationSection from ".";
 
 const mockNonProfit = nonProfitFactory({
@@ -47,6 +47,16 @@ describe("ImpactInformationSection", () => {
 
       clickOn("$15");
       expectTextToBeInTheDocument("$15,00 can pay up to");
+    });
+  });
+
+  describe("when the simulate info button is clicked", () => {
+    it("shows the simulate info modal", () => {
+      renderComponent(<ImpactInformationSection />);
+      const simulateInfoButton = screen.getByAltText("question-mark-icon");
+      clickOn(simulateInfoButton);
+
+      expectTextToBeInTheDocument("This is a possible result");
     });
   });
 });

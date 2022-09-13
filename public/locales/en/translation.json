@@ -154,6 +154,11 @@
         "impactSimulationSection": {
           "label": "Select a NGO",
           "payUpToText": "can pay up to"
+        },
+        "simulateInfoModal": {
+          "title": "This is a possible result",
+          "body": "This contribution will finance tickets to more people to donate to different causes.",
+          "primaryButtonText": "Ok"
         }
       },
 

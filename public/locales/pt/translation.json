@@ -154,6 +154,11 @@
         "impactSimulationSection": {
           "label": "Selecione uma ONG",
           "payUpToText": "podem pagar até"
+        },
+        "simulateInfoModal": {
+          "title": "Este é um resultado possível",
+          "body": "A contribuição vai gerar tickets para mais pessoas doarem para diversas causas.",
+          "primaryButtonText": "Entendi"
         }
       },
 

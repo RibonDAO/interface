@@ -81,7 +81,7 @@ export const ButtonContainer = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 99;
+  z-index: ${({ theme }) => theme.zindex.navbar};
   display: flex;
   align-items: center;
   align-self: end;

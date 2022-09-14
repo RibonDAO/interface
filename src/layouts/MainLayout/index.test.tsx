@@ -23,8 +23,9 @@ describe("MainLayout", () => {
     expectTextToBeInTheDocument("test");
   });
 
-  it("show navigation when user is logged", () => {
+  it("show navigation when user is logged and made a donation", () => {
     setLocalStorageItem(SHOW_MENU, "true");
+    setLocalStorageItem("HAS_DONATED", "true");
     renderComponent(
       <MainLayout>
         <div>test</div>

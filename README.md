@@ -3,9 +3,10 @@ The main structure of this README was taken from:
 https://github.com/open-sauced/open-sauced#readme
 -->
 
+
 <div align="center">
   <br>
-  <img alt="Ribon Logo" src="https://ribon.io/wp-content/uploads/2021/03/cropped-Ribon-logo-verde.png" width="300px">
+  <img alt="Ribon Logo" src="https://user-images.githubusercontent.com/24739860/190657474-1cb9457a-144e-4376-967c-e26d0c0b802c.png" width="300px">
   <h1>Ribon DApp</h1>
   <strong>The decentralized giving protocol on the Web 3.0</strong>
 </div>
@@ -127,7 +128,7 @@ Both environments are hosted on firebase.
 
 We encourage you to contribute! Please check out the [Contributing guide](https://ribondao.github.io/docs/) for guidelines about how to proceed.
 
-## 🍕 Community
+## 💝 Community
 
 Got Questions? Join the conversation in our [Discord](https://discord.gg/DBcwmDrkpy).  
 Find RibonDAO updates in our [Twitter](https://www.twitter.com/RibonDAO).

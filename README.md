@@ -67,7 +67,7 @@ yarn start
 ## With Dockerfile
 
 - clone this repository: `git clone git@github.com:RibonDAO/interface.git`
-- copy the .docker-compose.yml.example to a .docker-compose.yml file `cp .docker-compose.yml.example .docker-compose.yml`
+- copy the .docker-compose.yml.sample to a .docker-compose.yml file `cp .docker-compose.yml.example .docker-compose.yml`
 - run docker-compose up
 
 Your project will be running on http://localhost:3000/

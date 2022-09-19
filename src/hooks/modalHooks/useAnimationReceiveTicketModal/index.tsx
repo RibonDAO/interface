@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import Ticket from "assets/icons/ticket.svg";
 import SupportersIcon from "assets/icons/supporters.svg";
 import UserIcon from "assets/icons/user.svg";
+import { logEvent } from "services/analytics";
 import { useModal } from "../useModal";
 
 export function useAnimationReceiveTicketModal(initialState?: boolean) {
@@ -26,6 +27,7 @@ export function useAnimationReceiveTicketModal(initialState?: boolean) {
   const showAnimationReceiveTicketModal = () => {
     show();
     setTimeout(() => {
+      logEvent("dailyTicketDial_view");
       hide();
     }, 3000);
   };

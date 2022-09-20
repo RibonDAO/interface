@@ -150,8 +150,9 @@ function CryptoSection(): JSX.Element {
       });
 
       navigateTo({
-        pathname: "/promoters/treasure",
+        pathname: "/donation-done",
         state: {
+          hasButton: true,
           id,
           timestamp,
           amountDonated: utils.parseEther(amount),

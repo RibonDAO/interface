@@ -4,13 +4,21 @@ import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { logEvent } from "services/analytics";
+import UserIcon from "assets/icons/user-background-icon.svg";
+import Logo from "assets/icons/logo-background-icon.svg";
 import NonProfit from "types/entities/NonProfit";
 import heartsBackground from "assets/animations/hearts-background.json";
 import { setLocalStorageItem } from "lib/localStorage";
+import { BigNumber } from "ethers";
 import * as S from "./styles";
 
 type LocationStateType = {
-  nonProfit: NonProfit;
+  nonProfit?: NonProfit;
+  hasButton?: boolean;
+  id?: string;
+  timestamp?: number;
+  amountDonated?: BigNumber;
+  processing?: boolean;
 };
 
 function DonationDonePage(): JSX.Element {
@@ -18,20 +26,35 @@ function DonationDonePage(): JSX.Element {
     keyPrefix: "donations.donationDonePage",
   });
   const {
-    state: { nonProfit },
+    state: { nonProfit, hasButton, id, timestamp, amountDonated, processing },
   } = useLocation<LocationStateType>();
 
   const { navigateTo } = useNavigation();
 
   useEffect(() => {
-    logEvent("donateFinishedDonation_view", {
-      selected: nonProfit?.id,
-    });
-    setLocalStorageItem("HAS_DONATED", "true");
-    setTimeout(() => {
-      navigateTo("/");
-    }, 5000);
+    if (nonProfit) {
+      logEvent("donateFinishedDonation_view", {
+        selected: nonProfit?.id,
+      });
+      setLocalStorageItem("HAS_DONATED", "true");
+      setTimeout(() => {
+        navigateTo("/");
+      }, 5000);
+    }
   }, []);
+
+  const handleConfirmButton = () => {
+    if (amountDonated)
+      navigateTo({
+        pathname: "/promoters/treasure",
+        state: {
+          id,
+          timestamp,
+          amountDonated,
+          processing,
+        },
+      });
+  };
 
   return (
     <S.Container>
@@ -46,14 +69,22 @@ function DonationDonePage(): JSX.Element {
       />
       <S.Wrapper>
         <CardRoundDoubleImage
-          leftImage={nonProfit?.mainImage}
-          rightImage={nonProfit?.logo}
+          leftImage={hasButton ? UserIcon : nonProfit?.mainImage}
+          rightImage={hasButton ? Logo : nonProfit?.logo}
         />
         <S.Title>{t("title")}</S.Title>
         <S.Subtitle>{`${t("youDonatedText")} ${nonProfit?.impactByTicket} ${
           nonProfit?.impactDescription
         }`}</S.Subtitle>
       </S.Wrapper>
+      {hasButton && (
+        <S.ButtonContainer>
+          <S.FinishButton
+            text={t("confirmButtonText")}
+            onClick={handleConfirmButton}
+          />
+        </S.ButtonContainer>
+      )}
     </S.Container>
   );
 }

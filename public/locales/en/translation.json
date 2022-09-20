@@ -39,7 +39,8 @@
       "ngoTitle": "About ",
       "ngoInformation": "Amor em Patas is an organization that aims to rescue abandoned animals, take care of them and seek adoption.",
       "moreInfoButtonText": "More info",
-      "youDonatedText": "You donated"
+      "youDonatedText": "You donated",
+      "confirmButtonText": "Ok"
     },
     "menu": {
       "impactPageTitle": "Impact",

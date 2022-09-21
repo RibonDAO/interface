@@ -38,7 +38,7 @@ export const Input = styled.div`
     border: none;
     border-radius: 5px;
     position: relative;
-    top: -5px;
+    top: -12px;
     box-sizing: border-box;
     font-family: ${({ theme }) => theme.font.family};
     line-height: 20px;
@@ -46,10 +46,6 @@ export const Input = styled.div`
 
     &:hover {
       cursor: pointer;
-    }
-
-    @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-      top: -8px;
     }
   }
 

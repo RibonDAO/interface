@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+    app:
+        container_name: interface
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        volumes:
+            - ./src:/app/src
+            - ./package.json:/app/package.json
+            - ./yarn.lock:/app/yarn.lock
+            - ./tsconfig.json:/app/tsconfig.json
+            - ./public:/app/public
+        ports:
+            - '3000:3000'
+        environment:
+            - NODE_ENV=development
+            - REACT_APP_RIBON_API=http://0.0.0.0:8080

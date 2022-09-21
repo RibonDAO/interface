@@ -43,7 +43,7 @@ In order to run the project from a local environment we need `node>=16`, `npm>=8
 To clone the repo:
 
 ```shell
-git clone git@github.com:ribonapp/app.git
+git clone git@github.com:RibonDAO/interface.git
 ```
 
 To install the application:
@@ -63,6 +63,14 @@ To start a local copy of the app on port `3000`:
 ```shell
 yarn start
 ```
+
+## With Dockerfile
+
+- clone this repository: `git clone git@github.com:RibonDAO/interface.git`
+- copy the .docker-compose.yml.sample to a .docker-compose.yml file `cp .docker-compose.yml.example .docker-compose.yml`
+- run docker-compose up
+
+Your project will be running on http://localhost:3000/
 
 ### 🧪 Test
 

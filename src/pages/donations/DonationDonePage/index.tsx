@@ -40,6 +40,8 @@ function DonationDonePage(): JSX.Element {
       setTimeout(() => {
         navigateTo("/");
       }, 5000);
+    } else if (hasButton) {
+      logEvent("fundGivingSuccessScreen_View");
     }
   }, []);
 

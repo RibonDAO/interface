@@ -40,7 +40,9 @@
       "ngoInformation": "Amor em Patas é uma organização que tem como objetivo resgatar animais abandonados, cuidar deles e buscar adoção.",
       "moreInfoButtonText": "Mais informações",
       "youDonatedText": "Você doou",
-      "confirmButtonText": "Entendi"
+      "confirmButtonText": "Entendi",
+      "donationSuccessfullTitle": "Contribuição realizada",
+      "donationSuccessfullSubtitle": "Ela será usada para pagar diversas doações realizadas no aplicativo."
     },
     "menu": {
       "impactPageTitle": "Impacto",

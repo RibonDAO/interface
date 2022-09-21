@@ -43,17 +43,12 @@ function DonationDonePage(): JSX.Element {
     }
   }, []);
 
-  const handleConfirmButton = () => {
-    if (amountDonated)
-      navigateTo({
-        pathname: "/promoters/treasure",
-        state: {
-          id,
-          timestamp,
-          amountDonated,
-          processing,
-        },
-      });
+  const handleConfirmation = () => {
+    const newState = { id, timestamp, amountDonated, processing };
+    navigateTo({
+      pathname: "/promoters/treasure",
+      state: newState,
+    });
   };
 
   return (
@@ -72,16 +67,22 @@ function DonationDonePage(): JSX.Element {
           leftImage={hasButton ? UserIcon : nonProfit?.mainImage}
           rightImage={hasButton ? Logo : nonProfit?.logo}
         />
-        <S.Title>{t("title")}</S.Title>
-        <S.Subtitle>{`${t("youDonatedText")} ${nonProfit?.impactByTicket} ${
-          nonProfit?.impactDescription
-        }`}</S.Subtitle>
+        <S.Title>
+          {hasButton ? t("donationSuccessfullTitle") : t("title")}
+        </S.Title>
+        <S.Subtitle>
+          {hasButton
+            ? t("donationSuccessfullSubtitle")
+            : `${t("youDonatedText")} ${nonProfit?.impactByTicket} ${
+                nonProfit?.impactDescription
+              }`}
+        </S.Subtitle>
       </S.Wrapper>
       {hasButton && (
         <S.ButtonContainer>
           <S.FinishButton
             text={t("confirmButtonText")}
-            onClick={handleConfirmButton}
+            onClick={handleConfirmation}
           />
         </S.ButtonContainer>
       )}

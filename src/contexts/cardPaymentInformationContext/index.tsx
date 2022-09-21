@@ -1,7 +1,5 @@
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useLoadingOverlay } from "contexts/loadingOverlayContext";
-import { MODAL_TYPES } from "contexts/modalContext/helpers";
-import { useModal } from "hooks/modalHooks/useModal";
 import useNavigation from "hooks/useNavigation";
 import useToast from "hooks/useToast";
 import { useLanguage } from "hooks/useLanguage";
@@ -18,7 +16,6 @@ import { logEvent } from "services/analytics";
 import { logError } from "services/crashReport";
 import { Currencies } from "types/enums/Currencies";
 import creditCardPaymentApi from "services/api/creditCardPaymentApi";
-import successIcon from "assets/icons/success-icon.svg";
 
 export interface ICardPaymentInformationContext {
   setCurrentCoin: (value: SetStateAction<Currencies>) => void;
@@ -90,23 +87,14 @@ function CardPaymentInformationProvider({ children }: Props) {
 
   const toast = useToast();
 
-  const { show, hide } = useModal({
-    type: MODAL_TYPES.MODAL_ICON,
-    props: {
-      title: t("modalSuccessTitle").replace("{{value}}", cryptoGiving),
-      body: t("modalSuccessDescription"),
-      icon: successIcon,
-      primaryButtonText: t("modalSuccessButton"),
-      onClose: () => {
-        navigateTo("/promoters/treasure");
-        hide();
+  const handleConfirmation = () => {
+    navigateTo({
+      pathname: "/donation-done",
+      state: {
+        hasButton: true,
       },
-      primaryButtonCallback: () => {
-        navigateTo("/promoters/treasure");
-        hide();
-      },
-    },
-  });
+    });
+  };
 
   const handleSubmit = async () => {
     logEvent("treasureSupportConfirmBtn_click");
@@ -132,8 +120,7 @@ function CardPaymentInformationProvider({ children }: Props) {
 
     try {
       await creditCardPaymentApi.postCreditCardPayment(paymentInformation);
-
-      show();
+      handleConfirmation();
 
       logEvent("treasureGivingConfirmMdl_view");
     } catch (error) {

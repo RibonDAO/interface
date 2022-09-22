@@ -26,7 +26,7 @@ function useIntegration(integrationId: number | string | null | undefined) {
   });
 
   if (error) {
-    localStorage.setItem("integrationName", "false");
+    localStorage.setItem("integrationName", "error");
   }
 
   if (integration) {

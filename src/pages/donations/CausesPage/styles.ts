@@ -20,10 +20,11 @@ export const CausesContainer = styled.div`
   margin-top: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-column-gap: 14px;
+  grid-gap: 14px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    grid-template-columns: 0.3fr 500px 10000px;
+    max-width: 910px;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-column-gap: 24px;
   }
 `;

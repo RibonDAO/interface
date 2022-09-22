@@ -1,37 +1,33 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
-  ${({ theme }) => css`
-    background-color: ${theme.colors.white};
-    border: 1px solid ${theme.colors.white};
-    box-sizing: border-box;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px ${theme.colors.lightShadow};
-    width: 100%;
+  width: 100%;
+  border: 1px solid ${({ theme }) => theme.colors.white};
+  border-radius: 12px;
+  box-sizing: border-box;
+  background-color: ${({ theme }) => theme.colors.white};
+  box-shadow: 0 8px 24px ${({ theme }) => theme.colors.lightShadow};
 
-    @media (min-width: ${theme.breakpoints.pad}) {
-      width: 286px;
-      border-right: 1px solid white;
-    }
-  `}
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: 286px;
+    border-right: 1px solid white;
+  }
 `;
 
 export const ImageSection = styled.div`
-  ${({ theme }) => css`
-    width: 100%;
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    align-items: flex-end;
-    object-fit: cover;
-    height: 200px;
-    cursor: pointer;
+  width: 100%;
+  height: 200px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  object-fit: cover;
+  cursor: pointer;
 
-    @media (min-width: ${theme.breakpoints.pad}) {
-      height: 267px;
-      border-right: 1px solid white;
-    }
-  `}
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    height: 267px;
+    border-right: 1px solid white;
+  }
 `;
 
 export const Image = styled.img`
@@ -76,25 +72,21 @@ export const ContentSection = styled.div`
 `;
 
 export const Info = styled.p`
-  ${({ theme }) => css`
-    color: ${theme.colors.mediumGray};
-    text-align: center;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.mediumGray};
 
-    &:not(:first-child) {
-      margin-left: 4px;
-    }
-  `}
+  &:not(:first-child) {
+    margin-left: 4px;
+  }
 `;
 
 export const Bullet = styled.h6`
-  ${({ theme }) => css`
-    color: ${theme.colors.darkGray};
-    text-align: center;
-    margin-left: 4px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-  `}
+  margin-left: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 export const InfoContainer = styled.div`

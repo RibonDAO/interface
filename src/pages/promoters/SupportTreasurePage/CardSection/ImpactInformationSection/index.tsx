@@ -13,9 +13,15 @@ import Offer from "types/entities/Offer";
 import useNavigation from "hooks/useNavigation";
 import questionIcon from "assets/icons/question-icon.svg";
 import { useSimulateInfoModal } from "hooks/modalHooks/useSimulateInfoModal";
+import { useLocation } from "react-router-dom";
 import * as S from "../styles";
 
+type LocationStateType = {
+  nonProfit: NonProfit;
+};
+
 function ImpactInformationSection(): JSX.Element {
+  const { state } = useLocation<LocationStateType>();
   const [selectedNonProfit, setSelectedNonProfit] = useState<NonProfit>();
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
 
@@ -31,8 +37,9 @@ function ImpactInformationSection(): JSX.Element {
   const { showSimulateInfoModal } = useSimulateInfoModal();
 
   useEffect(() => {
-    if (nonProfits) setSelectedNonProfit(nonProfits[0]);
-  }, [nonProfits]);
+    if (state?.nonProfit) setSelectedNonProfit(state.nonProfit);
+    else if (nonProfits) setSelectedNonProfit(nonProfits[0]);
+  }, [nonProfits, state]);
 
   useEffect(() => {
     refetchOffers();
@@ -131,6 +138,7 @@ function ImpactInformationSection(): JSX.Element {
         <S.ImpactSimulatorContainer>
           <CardSelect
             dropdownProps={{
+              defaultValue: selectedNonProfit,
               values: nonProfits,
               label: t("impactSimulationSection.label"),
               name: "nonProfits",

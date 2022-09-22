@@ -24,7 +24,7 @@ export const CausesContainer = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     grid-template-columns: 0.3fr 500px 10000px;
-    grid-column-gap: 14px;
+    grid-column-gap: 24px;
   }
 `;
 

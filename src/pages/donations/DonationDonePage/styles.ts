@@ -49,8 +49,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   align-self: end;
-  background-color: white;
-  box-shadow: 0 -4px 4px ${({ theme }) => theme.colors.lightShadow};
+  background-color: ${({ theme }) => theme.colors.white};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     max-width: 340px;
@@ -65,9 +64,7 @@ export const HrDivider = styled(Divider)`
 `;
 
 export const FinishButton = styled(Button)`
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    height: 56px;
-  }
+  height: 50px;
 `;
 
 export const HeartAnimation = styled(LottieAnimation)``;

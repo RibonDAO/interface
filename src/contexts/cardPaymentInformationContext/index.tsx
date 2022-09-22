@@ -90,6 +90,15 @@ function CardPaymentInformationProvider({ children }: Props) {
 
   const toast = useToast();
 
+  const handleConfirmation = () => {
+    navigateTo({
+      pathname: "/donation-done",
+      state: {
+        hasButton: true,
+      },
+    });
+  };
+
   const { show, hide } = useModal({
     type: MODAL_TYPES.MODAL_ICON,
     props: {
@@ -98,11 +107,11 @@ function CardPaymentInformationProvider({ children }: Props) {
       icon: successIcon,
       primaryButtonText: t("modalSuccessButton"),
       onClose: () => {
-        navigateTo("/promoters/treasure");
+        handleConfirmation();
         hide();
       },
       primaryButtonCallback: () => {
-        navigateTo("/promoters/treasure");
+        handleConfirmation();
         hide();
       },
     },
@@ -132,7 +141,6 @@ function CardPaymentInformationProvider({ children }: Props) {
 
     try {
       await creditCardPaymentApi.postCreditCardPayment(paymentInformation);
-
       show();
 
       logEvent("treasureGivingConfirmMdl_view");

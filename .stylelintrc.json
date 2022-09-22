@@ -17,6 +17,7 @@
     }],
     "color-hex-case": "lower",
     "color-no-invalid-hex": true,
+    "color-function-notation": false,
     "font-weight-notation": "numeric",
     "shorthand-property-no-redundant-values": true,
     "value-keyword-case": ["lower", { "ignoreKeywords": ["dummyValue"] }],

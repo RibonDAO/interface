@@ -20,23 +20,16 @@ export const CausesContainer = styled.div`
   margin-top: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  row-gap: 8px;
-  column-gap: 8px;
+  grid-gap: 14px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    width: 70%;
-    margin-top: 56px;
-    row-gap: 16px;
-    column-gap: 12px;
+    max-width: 910px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 24px;
   }
 `;
 
-export const CausesCardContainer = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+export const CausesCardContainer = styled.div``;
 
 export const FooterText = styled.p`
   text-align: center;

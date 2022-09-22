@@ -62,6 +62,7 @@ function NonProfitsList({
             buttonText={canDonate ? t("donateText") : t("donateBlockedText")}
             onClickButton={() => handleButtonClick(nonProfit)}
             softDisabled={!canDonate}
+            infoTextLeft={nonProfit.name}
           />
         </S.CausesCardContainer>
       ))}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import ArrowDownIcon from "assets/icons/arrow-down-icon.svg";
 import ModalBlank from "components/moleculars/modals/ModalBlank";
 import * as S from "./styles";
@@ -28,7 +28,7 @@ function Dropdown({
     return value;
   };
 
-  const [dropdownValue, setDropdownValue] = useState(defaultValue || values[0]);
+  const [dropdownValue, setDropdownValue] = useState(values[0]);
   const [optionsVisible, setOptionsVisible] = useState(false);
 
   const handleInputClick = () => {
@@ -40,6 +40,14 @@ function Dropdown({
     setOptionsVisible(false);
     if (onOptionChanged) onOptionChanged(value);
   };
+
+  const updateDropdownValue = useCallback(() => {
+    if (defaultValue) setDropdownValue(defaultValue);
+  }, [defaultValue]);
+
+  useEffect(() => {
+    updateDropdownValue();
+  }, [updateDropdownValue]);
 
   return (
     <S.Container id={containerId}>

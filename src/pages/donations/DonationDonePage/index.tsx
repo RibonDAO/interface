@@ -38,7 +38,12 @@ function DonationDonePage(): JSX.Element {
       });
       setLocalStorageItem("HAS_DONATED", "true");
       setTimeout(() => {
-        navigateTo("/");
+        navigateTo({
+          pathname: "/promoters/support-treasure",
+          state: {
+            nonProfit,
+          },
+        });
       }, 5000);
     } else if (hasButton) {
       logEvent("fundGivingSuccessScreen_View");

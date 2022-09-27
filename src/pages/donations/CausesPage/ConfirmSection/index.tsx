@@ -4,7 +4,8 @@ import { useTranslation } from "react-i18next";
 import useDonations from "hooks/apiHooks/useDonations";
 import { useCurrentUser, SHOW_MENU } from "contexts/currentUserContext";
 import { logError } from "services/crashReport";
-import { setLocalStorageItem } from "lib/localStorage";
+import { setLocalStorageItem, removeLocalStorageItem } from "lib/localStorage";
+import { NEW_VOUCHER_RECEIVED_AT_KEY } from "lib/localStorage/constants";
 import useNavigation from "hooks/useNavigation";
 import NonProfit from "types/entities/NonProfit";
 import Integration from "types/entities/Integration";
@@ -45,6 +46,7 @@ function ConfirmSection({
     if (integration && chosenNonProfit) {
       try {
         await donate(integration?.id, chosenNonProfit.id, email);
+        removeLocalStorageItem(NEW_VOUCHER_RECEIVED_AT_KEY);
         navigateTo({
           pathname: "/donation-done",
           state: { nonProfit: chosenNonProfit },

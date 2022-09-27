@@ -7,6 +7,8 @@ import ticketOn from "assets/icons/ticket-icon-on.svg";
 import ticketOff from "assets/icons/ticket-icon-off.svg";
 import Ticket from "assets/images/ticket.svg";
 import { useTranslation } from "react-i18next";
+import { getLocalStorageItem } from "lib/localStorage";
+import { NEW_VOUCHER_RECEIVED_AT_KEY } from "lib/localStorage/constants";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useState } from "react";
 import { Divider } from "components/atomics/Divider/styles";
@@ -41,10 +43,15 @@ function LayoutHeader({
   const { navigateBack } = useNavigation();
   const { showBlockedDonationModal } = useBlockedDonationModal();
   const { canDonate } = useCanDonate(integrationId);
+  const hasAnAvaialbleVoucher = getLocalStorageItem(
+    NEW_VOUCHER_RECEIVED_AT_KEY,
+  );
 
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
+
+  const canDonateAndHasVoucher = canDonate && hasAnAvaialbleVoucher;
 
   const { show, hide } = useModal({
     type: MODAL_TYPES.MODAL_ICON,
@@ -123,14 +130,14 @@ function LayoutHeader({
                 <S.CounterContainer onClick={() => handleCounterClick()}>
                   <S.TicketsAmount
                     color={
-                      canDonate
+                      canDonateAndHasVoucher
                         ? theme.colors.mediumGreen
                         : theme.colors.mediumGray
                     }
                   >
-                    {canDonate ? 1 : 0}
+                    {canDonateAndHasVoucher ? 1 : 0}
                   </S.TicketsAmount>
-                  <S.CounterImage src={canDonate ? ticketOn : ticketOff} />
+                  <S.CounterImage src={canDonateAndHasVoucher ? ticketOn : ticketOff} />
                 </S.CounterContainer>
 
                 <S.Settings onClick={() => openMenu()} src={cogIcon} />

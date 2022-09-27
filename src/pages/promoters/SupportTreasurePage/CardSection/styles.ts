@@ -36,12 +36,13 @@ export const ButtonContainer = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: 9999;
   display: flex;
   align-items: center;
   align-self: end;
   background-color: white;
   box-shadow: 0 -4px 4px ${({ theme }) => theme.colors.lightShadow};
-  z-index: 9999;
+
   
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {

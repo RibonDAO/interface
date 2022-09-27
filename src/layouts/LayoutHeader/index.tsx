@@ -80,7 +80,7 @@ function LayoutHeader({
   }
 
   function handleCounterClick() {
-    if (canDonate) show();
+    if (canDonateAndHasVoucher) show();
     else {
       showBlockedDonationModal();
     }

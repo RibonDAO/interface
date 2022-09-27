@@ -1,6 +1,8 @@
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { setLocalStorageItem } from "lib/localStorage";
+import { NEW_VOUCHER_RECEIVED_AT_KEY } from "lib/localStorage/constants";
 import Ticket from "assets/icons/ticket.svg";
 import SupportersIcon from "assets/icons/supporters.svg";
 import UserIcon from "assets/icons/user.svg";
@@ -28,6 +30,7 @@ export function useAnimationReceiveTicketModal(initialState?: boolean) {
     show();
     setTimeout(() => {
       logEvent("dailyTicketDial_view");
+      setLocalStorageItem(NEW_VOUCHER_RECEIVED_AT_KEY, Date.now().toString());
       hide();
     }, 3000);
   };

@@ -19,10 +19,6 @@ export function convertParamsToString(params: EventParams): EventParams {
 export class EventNameTooLongError extends Error {}
 
 export function logEvent(eventName: string, params?: EventParams): void {
-  // eslint-disable-next-line no-console
-  console.log(eventName);
-  // eslint-disable-next-line no-console
-  console.log(params);
   try {
     if (eventName.length > 32) {
       throw new EventNameTooLongError();
@@ -35,9 +31,7 @@ export function logEvent(eventName: string, params?: EventParams): void {
         localStorage.getItem("integrationName") ?? "false";
       convertedParams.hasDonated =
         localStorage.getItem("HAS_DONATED") ?? "false";
-      // firebase.analytics().logEvent(eventName, convertedParams);
-      // eslint-disable-next-line no-console
-      console.log(convertedParams);
+      firebase.analytics().logEvent(eventName, convertedParams);
     }
   } catch (error) {
     if (!(error instanceof EventNameTooLongError)) {

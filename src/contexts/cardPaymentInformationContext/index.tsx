@@ -132,7 +132,6 @@ function CardPaymentInformationProvider({ children }: Props) {
   const showAnimationCreditCardPaymentModal = () => {
     showAnimationModal();
     setTimeout(() => {
-      logEvent("dailyTicketDial_view");
       closeAnimationModal();
     }, 3000);
   };

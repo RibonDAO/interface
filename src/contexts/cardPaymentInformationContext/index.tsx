@@ -129,9 +129,17 @@ function CardPaymentInformationProvider({ children }: Props) {
     },
   });
 
+  const showAnimationCreditCardPaymentModal = () => {
+    showAnimationModal();
+    setTimeout(() => {
+      logEvent("dailyTicketDial_view");
+      closeAnimationModal();
+    }, 3000);
+  };
+
   const handleSubmit = async () => {
     logEvent("treasureSupportConfirmBtn_click");
-    showAnimationModal();
+    showAnimationCreditCardPaymentModal();
 
     const expiration = expirationDate.split("/");
 
@@ -157,6 +165,7 @@ function CardPaymentInformationProvider({ children }: Props) {
 
       logEvent("treasureGivingConfirmMdl_view");
     } catch (error) {
+      closeAnimationModal();
       logError(error);
       toast({
         message: t("onErrorMessage"),
@@ -166,9 +175,6 @@ function CardPaymentInformationProvider({ children }: Props) {
       logEvent("toastNotification_view", {
         status: "transactionFailed",
       });
-    } finally {
-      closeAnimationModal();
-      show();
     }
   };
 

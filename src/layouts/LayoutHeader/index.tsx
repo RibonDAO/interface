@@ -137,7 +137,9 @@ function LayoutHeader({
                   >
                     {canDonateAndHasVoucher ? 1 : 0}
                   </S.TicketsAmount>
-                  <S.CounterImage src={canDonateAndHasVoucher ? ticketOn : ticketOff} />
+                  <S.CounterImage
+                    src={canDonateAndHasVoucher ? ticketOn : ticketOff}
+                  />
                 </S.CounterContainer>
 
                 <S.Settings onClick={() => openMenu()} src={cogIcon} />

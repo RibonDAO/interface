@@ -8,6 +8,7 @@ export type Props = {
   children: JSX.Element[];
   mode?: "free" | "free-snap" | "snap";
 };
+
 function Carousel({
   sliderPerView = 2,
   spacing = 15,

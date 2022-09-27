@@ -19,10 +19,12 @@ export function convertParamsToString(params: EventParams): EventParams {
 export class EventNameTooLongError extends Error {}
 
 export function logEvent(eventName: string, params?: EventParams): void {
+  console.log(eventName);
+  console.log(params);
   try {
     if (eventName.length > 32) {
       throw new EventNameTooLongError();
-    } else if (process.env.NODE_ENV === "production") {
+    } else {
       const convertedParams = params ? convertParamsToString(params) : {};
 
       convertedParams.anonymousId =
@@ -31,7 +33,8 @@ export function logEvent(eventName: string, params?: EventParams): void {
         localStorage.getItem("integrationName") ?? "false";
       convertedParams.hasDonated =
         localStorage.getItem("HAS_DONATED") ?? "false";
-      firebase.analytics().logEvent(eventName, convertedParams);
+      // firebase.analytics().logEvent(eventName, convertedParams);
+      console.log(convertedParams);
     }
   } catch (error) {
     if (!(error instanceof EventNameTooLongError)) {

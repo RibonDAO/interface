@@ -4,20 +4,28 @@ import Button from "components/atomics/buttons/Button";
 import { useEffect } from "react";
 import { useNetworkContext } from "contexts/networkContext";
 import useNavigation from "hooks/useNavigation";
+import { useLocation } from "react-router-dom";
 import { useContract } from "hooks/useContract";
 import DonationTokenAbi from "utils/abis/DonationToken.json";
 import RibonAbi from "utils/abis/RibonAbi.json";
 import { logEvent } from "services/analytics";
 import useContractBalance from "hooks/apiHooks/useContractBalance";
+import { setLocalStorageItem } from "lib/localStorage";
 import * as S from "./styles";
 import GivingsSection from "./GivingsSection";
 import ModalOnboarding from "./ModalOnboarding";
+
+type LocationStateType = {
+  from?: string;
+};
 
 function TreasurePage(): JSX.Element {
   const coin = "USDC";
   const { navigateTo } = useNavigation();
   const { currentNetwork } = useNetworkContext();
-
+  const {
+    state: { from },
+  } = useLocation<LocationStateType>();
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.treasurePage",
   });
@@ -48,6 +56,12 @@ function TreasurePage(): JSX.Element {
 
   useEffect(() => {
     logEvent("treasureScreen_view");
+  }, []);
+
+  useEffect(() => {
+    if (from?.includes("/donation-done")) {
+      setLocalStorageItem("KEY_FROM_DONATION_DONE", "true");
+    }
   }, []);
 
   useEffect(() => {

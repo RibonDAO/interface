@@ -8,7 +8,7 @@ import UserIcon from "assets/icons/user-background-icon.svg";
 import Logo from "assets/icons/logo-background-icon.svg";
 import NonProfit from "types/entities/NonProfit";
 import heartsBackground from "assets/animations/hearts-background.json";
-import { setLocalStorageItem } from "lib/localStorage";
+import { removeLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import { BigNumber } from "ethers";
 import * as S from "./styles";
 
@@ -51,13 +51,26 @@ function DonationDonePage(): JSX.Element {
   }, []);
 
   const handleConfirmation = () => {
-    const newState = { id, timestamp, amountDonated, processing };
+    const newState = {
+      id,
+      timestamp,
+      amountDonated,
+      processing,
+      from: "/donation-done",
+    };
     navigateTo({
       pathname: "/promoters/treasure",
       state: newState,
     });
   };
 
+  useEffect(() => {
+    console.log(localStorage.getItem("KEY_FROM_DONATION_DONE"));
+    if (localStorage.getItem("KEY_FROM_DONATION_DONE")) {
+      removeLocalStorageItem("KEY_FROM_DONATION_DONE");
+      navigateTo("/promoters/support-treasure");
+    }
+  }, []);
   return (
     <S.Container>
       <S.HeartAnimation

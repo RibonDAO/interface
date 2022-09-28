@@ -66,7 +66,6 @@ function DonationDonePage(): JSX.Element {
   };
 
   useEffect(() => {
-    console.log(localStorage.getItem(COMES_FROM_DONATION_DONE));
     if (localStorage.getItem(COMES_FROM_DONATION_DONE)) {
       removeLocalStorageItem(COMES_FROM_DONATION_DONE);
       navigateTo("/promoters/support-treasure");

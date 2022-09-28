@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useNetworkContext } from "contexts/networkContext";
 import useNavigation from "hooks/useNavigation";
 import { useLocation } from "react-router-dom";
+import { COMES_FROM_DONATION_DONE } from "lib/localStorage/constants";
 import { useContract } from "hooks/useContract";
 import DonationTokenAbi from "utils/abis/DonationToken.json";
 import RibonAbi from "utils/abis/RibonAbi.json";
@@ -60,7 +61,7 @@ function TreasurePage(): JSX.Element {
 
   useEffect(() => {
     if (from?.includes("/donation-done")) {
-      setLocalStorageItem("KEY_FROM_DONATION_DONE", "true");
+      setLocalStorageItem(COMES_FROM_DONATION_DONE, "true");
     }
   }, []);
 

@@ -7,8 +7,7 @@ import ticketOn from "assets/icons/ticket-icon-on.svg";
 import ticketOff from "assets/icons/ticket-icon-off.svg";
 import Ticket from "assets/images/ticket.svg";
 import { useTranslation } from "react-i18next";
-import { getLocalStorageItem } from "lib/localStorage";
-import { NEW_VOUCHER_RECEIVED_AT_KEY } from "lib/localStorage/constants";
+import useVoucher from "hooks/useVoucher";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useState } from "react";
 import { Divider } from "components/atomics/Divider/styles";
@@ -43,15 +42,13 @@ function LayoutHeader({
   const { navigateBack } = useNavigation();
   const { showBlockedDonationModal } = useBlockedDonationModal();
   const { canDonate } = useCanDonate(integrationId);
-  const hasAnAvaialbleVoucher = getLocalStorageItem(
-    NEW_VOUCHER_RECEIVED_AT_KEY,
-  );
+  const { isVoucherAvailable } = useVoucher();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
 
-  const canDonateAndHasVoucher = canDonate && hasAnAvaialbleVoucher;
+  const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
 
   const { show, hide } = useModal({
     type: MODAL_TYPES.MODAL_ICON,

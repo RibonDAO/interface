@@ -5,6 +5,7 @@ import { logEvent } from "services/analytics";
 import NonProfit from "types/entities/NonProfit";
 import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
 import { useLocation } from "react-router-dom";
+import useVoucher from "hooks/useVoucher";
 import * as S from "../styles";
 
 type LocationStateType = {
@@ -37,6 +38,10 @@ function NonProfitsList({
     setChosenNonProfit(nonProfit);
   }, []);
 
+  const { isVoucherAvailable } = useVoucher();
+
+  const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
+
   function handleButtonClick(nonProfit: NonProfit) {
     logEvent("donateCardButton_click", {
       causeId: nonProfit.id,
@@ -59,9 +64,9 @@ function NonProfitsList({
           <CardCenterImageButton
             image={nonProfit.mainImage}
             title={`${nonProfit.impactByTicket} ${nonProfit.impactDescription}`}
-            buttonText={canDonate ? t("donateText") : t("donateBlockedText")}
+            buttonText={canDonateAndHasVoucher ? t("donateText") : t("donateBlockedText")}
             onClickButton={() => handleButtonClick(nonProfit)}
-            softDisabled={!canDonate}
+            softDisabled={!canDonateAndHasVoucher}
             infoTextLeft={nonProfit.name}
           />
         </S.CausesCardContainer>

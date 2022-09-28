@@ -179,7 +179,10 @@
       "loadingMessage": "Confirmando pagamento...",
       "modalSuccessTitle": "Você incluiu {{value}} USDC ao tesouro!",
       "modalSuccessDescription": "Sua doação foi convertida em criptomoedas para financiar mais vales.",
-      "modalSuccessButton": "Ok"
+      "modalSuccessButton": "Ok",
+      "modalAnimationFrom": "Você",
+      "modalAnimationTo": "Ribon",
+      "modalAnimationTitle": "Realizando contribuição..."
     },
     "networkContext": {
       "invalidNetworkMessage": "Conecte-se a uma rede válida"

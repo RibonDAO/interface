@@ -19,7 +19,11 @@ export default function useNavigation() {
           state: { from: history.location.pathname },
         });
       } else {
-        const { pathname, search, state = {} } = navigationProps;
+        const {
+          pathname,
+          search,
+          state = { from: history.location.pathname },
+        } = navigationProps;
         history.push({
           pathname,
           state,

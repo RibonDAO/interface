@@ -7,7 +7,7 @@ import { logEvent } from "services/analytics";
 import UserIcon from "assets/icons/user-background-icon.svg";
 import Logo from "assets/icons/logo-background-icon.svg";
 import NonProfit from "types/entities/NonProfit";
-import { COMES_FROM_DONATION_DONE } from "lib/localStorage/constants";
+import { COMES_FROM_TREASURE } from "lib/localStorage/constants";
 import heartsBackground from "assets/animations/hearts-background.json";
 import { removeLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import { BigNumber } from "ethers";
@@ -66,8 +66,8 @@ function DonationDonePage(): JSX.Element {
   };
 
   useEffect(() => {
-    if (localStorage.getItem(COMES_FROM_DONATION_DONE)) {
-      removeLocalStorageItem(COMES_FROM_DONATION_DONE);
+    if (localStorage.getItem(COMES_FROM_TREASURE)) {
+      removeLocalStorageItem(COMES_FROM_TREASURE);
       navigateTo("/promoters/support-treasure");
     }
   }, []);

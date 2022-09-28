@@ -64,7 +64,9 @@ function NonProfitsList({
           <CardCenterImageButton
             image={nonProfit.mainImage}
             title={`${nonProfit.impactByTicket} ${nonProfit.impactDescription}`}
-            buttonText={canDonateAndHasVoucher ? t("donateText") : t("donateBlockedText")}
+            buttonText={
+              canDonateAndHasVoucher ? t("donateText") : t("donateBlockedText")
+            }
             onClickButton={() => handleButtonClick(nonProfit)}
             softDisabled={!canDonateAndHasVoucher}
             infoTextLeft={nonProfit.name}

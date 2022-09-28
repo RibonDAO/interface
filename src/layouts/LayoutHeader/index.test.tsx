@@ -1,5 +1,7 @@
 import { clickOn, renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
+import { setLocalStorageItem } from "lib/localStorage";
+import { HAS_AN_AVAILABLE_VOUCHER } from "lib/localStorage/constants";
 import React from "react";
 import { mockRequest } from "config/testUtils/test-helper";
 import LayoutHeader from ".";
@@ -15,6 +17,7 @@ describe("LayoutHeader", () => {
   });
 
   it("should donation ticket modal when click in ticket button", () => {
+    setLocalStorageItem(HAS_AN_AVAILABLE_VOUCHER, "123");
     renderComponent(<LayoutHeader />);
 
     clickOn("1");

@@ -1,5 +1,4 @@
 import { useCurrentUser } from "contexts/currentUserContext";
-import { useLoadingOverlay } from "contexts/loadingOverlayContext";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useModal } from "hooks/modalHooks/useModal";
 import useNavigation from "hooks/useNavigation";
@@ -19,6 +18,9 @@ import { logError } from "services/crashReport";
 import { Currencies } from "types/enums/Currencies";
 import creditCardPaymentApi from "services/api/creditCardPaymentApi";
 import successIcon from "assets/icons/success-icon.svg";
+import GivingIcon from "assets/icons/giving-icon.svg";
+import Logo from "assets/icons/logo-background-icon.svg";
+import UserIcon from "assets/icons/user.svg";
 
 export interface ICardPaymentInformationContext {
   setCurrentCoin: (value: SetStateAction<Currencies>) => void;
@@ -80,8 +82,6 @@ function CardPaymentInformationProvider({ children }: Props) {
   const [cryptoGiving, setCryptoGiving] = useState("");
   const [offerId, setOfferId] = useState(0);
 
-  const { showLoadingOverlay, hideLoadingOverlay } = useLoadingOverlay();
-
   const { t } = useTranslation("translation", {
     keyPrefix: "contexts.cardPaymentInformation",
   });
@@ -117,9 +117,28 @@ function CardPaymentInformationProvider({ children }: Props) {
     },
   });
 
+  const { show: showAnimationModal, hide: closeAnimationModal } = useModal({
+    type: MODAL_TYPES.MODAL_ANIMATION,
+    props: {
+      text: t("modalAnimationTitle"),
+      iconOrigin: UserIcon,
+      textOrigin: t("modalAnimationFrom"),
+      iconDestiny: Logo,
+      textDestiny: t("modalAnimationTo"),
+      icon: GivingIcon,
+    },
+  });
+
+  const showAnimationCreditCardPaymentModal = () => {
+    showAnimationModal();
+    setTimeout(() => {
+      closeAnimationModal();
+    }, 3000);
+  };
+
   const handleSubmit = async () => {
     logEvent("treasureSupportConfirmBtn_click");
-    showLoadingOverlay(t("loadingMessage"));
+    showAnimationCreditCardPaymentModal();
 
     const expiration = expirationDate.split("/");
 
@@ -145,6 +164,7 @@ function CardPaymentInformationProvider({ children }: Props) {
 
       logEvent("treasureGivingConfirmMdl_view");
     } catch (error) {
+      closeAnimationModal();
       logError(error);
       toast({
         message: t("onErrorMessage"),
@@ -154,8 +174,6 @@ function CardPaymentInformationProvider({ children }: Props) {
       logEvent("toastNotification_view", {
         status: "transactionFailed",
       });
-    } finally {
-      hideLoadingOverlay();
     }
   };
 

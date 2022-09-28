@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useCurrentUser } from "contexts/currentUserContext";
 import useNavigation from "hooks/useNavigation";
+import { setLocalStorageItem } from "lib/localStorage";
+import { NEW_VOUCHER_RECEIVED_AT_KEY } from "lib/localStorage/constants";
 
 import CardIconText from "components/moleculars/cards/CardIconText";
 import ModalIcon from "components/moleculars/modals/ModalIcon";
@@ -28,8 +30,13 @@ function LogoutItem(): JSX.Element {
     setWarningModalVisible(false);
   }
 
+  function makeVoucherAvailable() {
+    setLocalStorageItem(NEW_VOUCHER_RECEIVED_AT_KEY, Date.now().toString());
+  }
+
   function handleLogout() {
     logoutCurrentUser();
+    makeVoucherAvailable();
     navigateTo("/");
     setSuccessLogoutModalVisible(false);
     window.location.reload();

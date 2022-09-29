@@ -19,7 +19,6 @@ export const Title = styled(HighlightedTextH1)`
 export const CausesContainer = styled.div`
   margin-top: 20px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
   grid-gap: 14px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {

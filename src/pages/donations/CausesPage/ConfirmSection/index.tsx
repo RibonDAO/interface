@@ -5,6 +5,7 @@ import useDonations from "hooks/apiHooks/useDonations";
 import { useCurrentUser, SHOW_MENU } from "contexts/currentUserContext";
 import { logError } from "services/crashReport";
 import { setLocalStorageItem } from "lib/localStorage";
+import useVoucher from "hooks/useVoucher";
 import useNavigation from "hooks/useNavigation";
 import NonProfit from "types/entities/NonProfit";
 import Integration from "types/entities/Integration";
@@ -39,12 +40,14 @@ function ConfirmSection({
   const { donate } = useDonations();
   const { navigateTo } = useNavigation();
   const { signedIn } = useCurrentUser();
+  const { destroyVoucher } = useVoucher();
 
   async function handleDonate(email: string) {
     setDonationInProcessModalVisible(false);
     if (integration && chosenNonProfit) {
       try {
         await donate(integration?.id, chosenNonProfit.id, email);
+        destroyVoucher();
         navigateTo({
           pathname: "/donation-done",
           state: { nonProfit: chosenNonProfit },

@@ -90,6 +90,7 @@ export const Bullet = styled.h6`
 `;
 
 export const InfoContainer = styled.div`
+  width: 100%;
   margin-bottom: 16px;
   display: flex;
 `;

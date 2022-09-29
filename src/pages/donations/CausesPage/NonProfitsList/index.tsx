@@ -70,7 +70,7 @@ function NonProfitsList({
             onClickButton={() => handleButtonClick(nonProfit)}
             softDisabled={!canDonateAndHasVoucher}
             infoTextLeft={nonProfit.name}
-            infoTextRight={nonProfit.cause.name}
+            infoTextRight={nonProfit.cause?.name}
           />
         </S.CausesCardContainer>
       ))}

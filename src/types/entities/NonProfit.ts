@@ -1,3 +1,5 @@
+import Cause from "./Cause";
+
 export default interface NonProfit {
   id: number;
   name: string;
@@ -10,4 +12,5 @@ export default interface NonProfit {
   impactByTicket: number;
   createdAt?: string;
   updatedAt?: string;
+  cause: Cause;
 }

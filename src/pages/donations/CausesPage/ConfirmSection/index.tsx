@@ -10,6 +10,7 @@ import useNavigation from "hooks/useNavigation";
 import NonProfit from "types/entities/NonProfit";
 import Integration from "types/entities/Integration";
 import { logEvent } from "services/analytics";
+import extractUrlValue from "lib/extractUrlValue";
 import ConfirmEmail from "../ConfirmEmail";
 import ConfirmDonationModal from "../ConfirmDonationModal";
 
@@ -41,12 +42,22 @@ function ConfirmSection({
   const { navigateTo } = useNavigation();
   const { signedIn } = useCurrentUser();
   const { destroyVoucher } = useVoucher();
+  const { history } = useNavigation();
+
+  function getExternalIdFromLocationSearch() {
+    return extractUrlValue("external_id", history.location.search);
+  }
 
   async function handleDonate(email: string) {
     setDonationInProcessModalVisible(false);
     if (integration && chosenNonProfit) {
       try {
-        await donate(integration?.id, chosenNonProfit.id, email);
+        await donate(
+          integration?.id,
+          chosenNonProfit.id,
+          email,
+          getExternalIdFromLocationSearch(),
+        );
         destroyVoucher();
         navigateTo({
           pathname: "/donation-done",

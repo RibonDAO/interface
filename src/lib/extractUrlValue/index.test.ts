@@ -18,6 +18,6 @@ describe("extractUrlValue", () => {
   it("expects to return null", () => {
     const url = "https://localhost:300/auth";
     const key = "redirect_to";
-    expect(extractUrlValue(key, url)).toBeNull();
+    expect(extractUrlValue(key, url)).toBeUndefined();
   });
 });

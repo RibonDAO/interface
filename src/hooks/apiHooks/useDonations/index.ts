@@ -21,7 +21,19 @@ function useDonations() {
     integrationId: number,
     nonProfitId: number,
     email: string,
+    externalId?: string,
   ) {
+    if (externalId) {
+      await donationsApi.postVoucherDonation(
+        integrationId,
+        nonProfitId,
+        email,
+        externalId,
+      );
+
+      return;
+    }
+
     await donationsApi.postDonation(integrationId, nonProfitId, email);
   }
 

@@ -6,11 +6,13 @@ function useCryptoTransaction() {
     transactionHash: string,
     amount: string,
     walletAddress: string,
+    integrationId: string | number,
   ) {
     const { data: transaction } = await cryptoTransactionApi.postTransaction(
       transactionHash,
       amount,
       walletAddress,
+      integrationId,
     );
 
     return transaction;

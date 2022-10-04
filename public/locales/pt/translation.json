@@ -55,8 +55,9 @@
       "changeLanguageItem": {
         "changeLanguageText": "Alterar idioma"
       },
-      "donationModalTitle": "Você ganhou um ticket doação",
-      "donationModalButtonText": "Receber ticket",
+      "donationModalTitle": "Legal! Você tem 1 vale para doar :)",
+      "donationModalBody": "Você pode destiná-lo para qualquer projeto",
+      "donationModalButtonText": "Vamos lá!",
       "logoutItem": {
         "logoutButton": "Sair",
         "logoutModalTitle": "Quer mesmo sair desta conta?",

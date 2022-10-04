@@ -21,6 +21,7 @@ import successIcon from "assets/icons/success-icon.svg";
 import GivingIcon from "assets/icons/giving-icon.svg";
 import Logo from "assets/icons/logo-background-icon.svg";
 import UserIcon from "assets/icons/user.svg";
+import { useIntegrationId } from "hooks/useIntegrationId";
 
 export interface ICardPaymentInformationContext {
   setCurrentCoin: (value: SetStateAction<Currencies>) => void;
@@ -68,6 +69,8 @@ function CardPaymentInformationProvider({ children }: Props) {
   const [currentCoin, setCurrentCoin] = useState<Currencies>(
     coinByLanguage(currentLang),
   );
+
+  const integrationId = useIntegrationId();
 
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
@@ -149,6 +152,7 @@ function CardPaymentInformationProvider({ children }: Props) {
       city,
       taxId,
       offerId,
+      integrationId: integrationId ?? 1,
       card: {
         number: number.replace(/\D/g, ""),
         name,

@@ -56,7 +56,7 @@
         "changeLanguageText": "Change language"
       },
       "donationModalTitle": "Great! You got 1 ticket to donate :)",
-      "donationModalBody": "You can assign the ticket to any project ",
+      "donationModalBody": "You can assign the ticket to any project",
       "donationModalButtonText": "Let’s go!",
       "logoutItem": {
         "logoutButton": "Sign Out",

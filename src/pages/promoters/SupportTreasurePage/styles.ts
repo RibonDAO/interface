@@ -1,5 +1,5 @@
-import { HighlightedTextH1 } from "components/atomics/typography/HighlightedText/styles";
 import styled from "styled-components";
+import { stylizedHeadingLarge } from "styles/typography/stylized";
 
 export const Container = styled.div`
   width: 100%;
@@ -12,7 +12,8 @@ export const Container = styled.div`
   }
 `;
 
-export const Title = styled(HighlightedTextH1)`
+export const Title = styled.h1`
+  ${stylizedHeadingLarge}
   margin: 4px 0;
   margin-bottom: 48px;
 `;

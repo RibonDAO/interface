@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { AuxiliarText } from "components/atomics/typography/AuxiliarText/styles";
+import { defaultParagraphSmall } from "styles/typography/default";
 
 type Props = {
   theme: any;
@@ -35,7 +35,8 @@ export const Container = styled.div`
   }
 `;
 
-export const Title = styled(AuxiliarText)`
+export const Title = styled.p`
+  ${defaultParagraphSmall}
   text-decoration: none;
   color: ${({ theme, enabled }: Props) =>
     enabled ? theme.colors.darkGray : theme.colors.mediumGray};

@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
-  border: 1px solid ${({ theme }) => theme.colors.white};
+  border: 1px solid ${({ theme }) => theme.colors.neutral10};
   border-radius: 12px;
   box-sizing: border-box;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.neutral10};
   box-shadow: 0 8px 24px ${({ theme }) => theme.colors.lightShadow};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
@@ -73,7 +73,7 @@ export const ContentSection = styled.div`
 
 export const Info = styled.p`
   text-align: center;
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.gray30};
 
   &:not(:first-child) {
     margin-left: 4px;
@@ -86,7 +86,7 @@ export const Bullet = styled.h6`
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const InfoContainer = styled.div`

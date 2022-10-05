@@ -32,14 +32,14 @@ export const InnerContainer = styled.div`
 
 export const Title = styled.h3`
   margin-top: 20px;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const Subtitle = styled.h4`
   margin-top: 4px;
   margin-bottom: 24px;
   text-align: center;
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const ButtonContainer = styled.div`
@@ -49,7 +49,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   align-self: end;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.neutral10};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     max-width: 340px;

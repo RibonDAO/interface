@@ -30,8 +30,8 @@ export const NotificationToast = styled.div`
   right: 12px;
   bottom: 12px;
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.white};
-  color: ${({ theme }) => theme.colors.darkGray};
+  background: ${({ theme }) => theme.colors.neutral10};
+  color: ${({ theme }) => theme.colors.gray40};
   box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
   opacity: 0.9;
   pointer-events: auto;
@@ -52,12 +52,12 @@ export const Message = styled(Span)`
   text-align: left;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.neutral10};
 `;
 
 export const Link = styled(BoldSpan)`
   float: right;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.neutral10};
 `;
 
 export const LinkNotificationToast = styled.a`

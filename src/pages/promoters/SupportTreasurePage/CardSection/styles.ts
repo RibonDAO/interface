@@ -63,22 +63,22 @@ export const FinishButton = styled(Button)`
 
 export const GivingValue = styled.h2`
   margin-top: 4px;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const NetGivingValue = styled.p`
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const ServiceFeesValue = styled.p`
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const CryptoGivingValue = styled(AuxiliarText)`
   margin-bottom: 32px;
   font-style: italic;
   line-height: 19.2px;
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const CardImpact = styled.div`
@@ -108,10 +108,10 @@ export const CardImpactImage = styled.img`
 `;
 
 export const CardImpactText = styled.h4`
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.gray40};
 
   span {
-    color: ${({ theme }) => theme.colors.mediumGreen};
+    color: ${({ theme }) => theme.colors.green30};
   }
 `;
 

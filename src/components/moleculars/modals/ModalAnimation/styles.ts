@@ -52,7 +52,7 @@ export const IconDescription = styled(BoldAuxiliarText)`
 
 export const Text = styled(BoldP)`
   text-align: center;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const ProgressBar = styled.div`

@@ -14,10 +14,10 @@ export const InputAutoComplete = styled(Input)``;
 export const OptionContainer = styled.div`
   width: 100%;
   padding: 8px 16px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.neutral10};
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.xLightGray};
+    background-color: ${({ theme }) => theme.colors.gray10};
     cursor: pointer;
   }
 `;

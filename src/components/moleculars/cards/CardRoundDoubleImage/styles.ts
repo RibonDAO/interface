@@ -25,7 +25,7 @@ export const ImageContainer = styled.div`
 export const LeftImage = styled.img`
   width: 180px;
   height: 180px;
-  border: solid 5px ${({ theme }) => theme.colors.white};
+  border: solid 5px ${({ theme }) => theme.colors.neutral10};
   border-radius: 50%;
   position: absolute;
   left: 0;

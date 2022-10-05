@@ -9,7 +9,7 @@ export default {
   parameters: {
     backgrounds: {
       default: "mediumGreen",
-      values: [{ name: "mediumGreen", value: theme.colors.mediumGreen }],
+      values: [{ name: "mediumGreen", value: theme.colors.green30 }],
     },
   },
 } as ComponentMeta<typeof CardSideImageButton>;

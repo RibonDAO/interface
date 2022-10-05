@@ -16,7 +16,7 @@ export const Icon = styled.img`
 `;
 
 export const Text = styled.p`
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const InsideContainer = styled.div`

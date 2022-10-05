@@ -10,7 +10,7 @@ export const Container = styled.div`
 
 export const RibonsAmount = styled(BoldP)`
   margin-right: 2px;
-  color: ${({ theme }) => theme.colors.mediumGreen};
+  color: ${({ theme }) => theme.colors.green30};
 `;
 
 export const Sparkle = styled.img`

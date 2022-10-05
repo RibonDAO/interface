@@ -18,7 +18,7 @@ export const Container = styled.div`
   gap: 8px;
   align-self: flex-end;
   justify-content: space-around;
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.neutral10};
   box-shadow: 0 -2px 4px ${({ theme }) => theme.colors.lightShadow};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
@@ -30,7 +30,7 @@ export const Container = styled.div`
     align-items: center;
     align-self: flex-start;
     justify-content: flex-start;
-    background: ${({ theme }) => theme.colors.white};
+    background: ${({ theme }) => theme.colors.neutral10};
     box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
   }
 `;
@@ -38,7 +38,7 @@ export const Container = styled.div`
 export const Title = styled(AuxiliarText)`
   text-decoration: none;
   color: ${({ theme, enabled }: Props) =>
-    enabled ? theme.colors.darkGray : theme.colors.mediumGray};
+    enabled ? theme.colors.gray40 : theme.colors.gray30};
 `;
 
 export const StyledLink = styled(Link)`

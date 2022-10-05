@@ -22,7 +22,7 @@ export const ImageContainer = styled.div`
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: ${({ theme }) => theme.colors.mediumGreen};
+  background: ${({ theme }) => theme.colors.green30};
 `;
 
 export const TextContainer = styled.div`
@@ -57,5 +57,5 @@ export const TitleContainer = styled.div`
 
 export const Subtitle = styled.h3`
   text-align: center;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.neutral10};
 `;

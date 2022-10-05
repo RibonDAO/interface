@@ -5,12 +5,12 @@ export const Container = styled.div`
   max-width: 472px;
   height: 100%;
   padding: 20px 14px 14px;
-  border: 1px solid ${({ theme }) => theme.colors.white};
+  border: 1px solid ${({ theme }) => theme.colors.neutral10};
   border-radius: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.neutral10};
   box-shadow: 0 4px 12px 0 ${({ theme }) => theme.colors.lightShadow};
 `;

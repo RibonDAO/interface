@@ -20,9 +20,9 @@ export const Treasure = styled.img`
 
 export const TreasureButton = styled.button`
   margin-left: 6%;
-  border: 1px solid ${({ theme }) => theme.colors.mediumGreen};
+  border: 1px solid ${({ theme }) => theme.colors.green30};
   border-radius: 50%;
   display: flex;
   justify-content: center;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.neutral10};
 `;

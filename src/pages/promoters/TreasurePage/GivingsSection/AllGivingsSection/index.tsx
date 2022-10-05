@@ -13,7 +13,9 @@ import { useWalletContext } from "contexts/walletContext";
 import RightArrowBlack from "assets/icons/right-arrow-black.svg";
 import { ReactComponent as BlueRightArrow } from "assets/icons/right-arrow-blue.svg";
 import { useNetworkContext } from "contexts/networkContext";
+import { ApolloClient, ApolloLink, InMemoryCache } from "@apollo/client";
 import * as S from "../styles";
+import { client } from "../../../../../services/apiTheGraph";
 
 function GivingsSection(): JSX.Element {
   const [allDonations, setAllDonations] = useState<any>();
@@ -50,6 +52,23 @@ function GivingsSection(): JSX.Element {
   useEffect(() => {
     fetchAllDonations();
   }, []);
+
+  useEffect(() => {
+    console.log(currentNetwork.chainId === 137);
+    const newClient = new ApolloClient({
+      uri:
+        currentNetwork.chainId === 137
+          ? "https://api.thegraph.com/subgraphs/name/ribondao/subgraphribon"
+          : "https://api.thegraph.com/subgraphs/name/ribondao/ribonsubgraph",
+      cache: new InMemoryCache(),
+    });
+    client.setLink(ApolloLink.from([newClient.link]));
+    fetchAllDonations();
+  }, [currentNetwork.chainId]);
+
+  useEffect(() => {
+    console.log(client.link);
+  }, [client]);
 
   function concatLinkHash(hash: string) {
     return `${currentNetwork.blockExplorerUrls}tx/${hash}`;

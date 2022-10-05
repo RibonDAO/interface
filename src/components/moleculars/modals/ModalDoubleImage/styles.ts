@@ -25,7 +25,7 @@ type TitleProps = {
 };
 
 export const Title = styled.h2<TitleProps>`
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   text-align: center;
   color: ${({ theme, color }) => color || theme.colors.darkGray};
 `;
@@ -48,7 +48,7 @@ export const RowsModalRow = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  width: 160px;
+  width: 170px;
   height: 100px;
   margin: -64px auto 8px;
   position: relative;
@@ -64,6 +64,7 @@ export const LeftImage = styled.img`
   border-radius: 50%;
   position: absolute;
   left: 0;
+  z-index: ${({ theme }) => theme.zindex.above};
   object-fit: cover;
   filter: drop-shadow(0 20px 40px ${({ theme }) => theme.colors.lightShadow});
 `;
@@ -75,7 +76,6 @@ export const RightImage = styled.img`
   border-radius: 50%;
   position: absolute;
   right: 0;
-  z-index: ${({ theme }) => theme.zindex.above};
   object-fit: cover;
   filter: drop-shadow(0 20px 40px ${({ theme }) => theme.colors.lightShadow});
 `;

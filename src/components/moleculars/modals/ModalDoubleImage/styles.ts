@@ -50,11 +50,10 @@ export const RowsModalRow = styled.div`
 export const ImageContainer = styled.div`
   width: 160px;
   height: 100px;
+  margin: -64px auto 8px;
   position: relative;
   align-items: center;
   justify-content: center;
-  margin-inline: auto;
-  margin: -64px auto 8px;
   display: block;
 `;
 
@@ -72,8 +71,8 @@ export const LeftImage = styled.img`
 export const RightImage = styled.img`
   width: 90px;
   height: 90px;
-  border-radius: 50%;
   border: solid 2px ${({ theme }) => theme.colors.darkShadow};
+  border-radius: 50%;
   position: absolute;
   right: 0;
   z-index: ${({ theme }) => theme.zindex.above};

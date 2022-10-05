@@ -55,8 +55,9 @@
       "changeLanguageItem": {
         "changeLanguageText": "Alterar idioma"
       },
-      "donationModalTitle": "Você ganhou um ticket doação",
-      "donationModalButtonText": "Receber ticket",
+      "donationModalTitle": "Legal! Você tem 1 vale para doar :)",
+      "donationModalBody": "Você pode destiná-lo para qualquer projeto",
+      "donationModalButtonText": "Vamos lá!",
       "logoutItem": {
         "logoutButton": "Sair",
         "logoutModalTitle": "Quer mesmo sair desta conta?",
@@ -179,7 +180,10 @@
       "loadingMessage": "Confirmando pagamento...",
       "modalSuccessTitle": "Você incluiu {{value}} USDC ao tesouro!",
       "modalSuccessDescription": "Sua doação foi convertida em criptomoedas para financiar mais vales.",
-      "modalSuccessButton": "Ok"
+      "modalSuccessButton": "Ok",
+      "modalAnimationFrom": "Você",
+      "modalAnimationTo": "Ribon",
+      "modalAnimationTitle": "Realizando contribuição..."
     },
     "networkContext": {
       "invalidNetworkMessage": "Conecte-se a uma rede válida"

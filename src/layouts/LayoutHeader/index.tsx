@@ -7,6 +7,7 @@ import ticketOn from "assets/icons/ticket-icon-on.svg";
 import ticketOff from "assets/icons/ticket-icon-off.svg";
 import Ticket from "assets/images/ticket.svg";
 import { useTranslation } from "react-i18next";
+import useVoucher from "hooks/useVoucher";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useState } from "react";
 import { Divider } from "components/atomics/Divider/styles";
@@ -41,15 +42,19 @@ function LayoutHeader({
   const { navigateBack } = useNavigation();
   const { showBlockedDonationModal } = useBlockedDonationModal();
   const { canDonate } = useCanDonate(integrationId);
+  const { isVoucherAvailable } = useVoucher();
 
   const { t } = useTranslation("translation", {
-    keyPrefix: "donations.causesPage",
+    keyPrefix: "layouts.layoutHeader",
   });
+
+  const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
 
   const { show, hide } = useModal({
     type: MODAL_TYPES.MODAL_ICON,
     props: {
       title: t("donationModalTitle"),
+      body: t("donationModalBody"),
       primaryButtonText: t("donationModalButtonText"),
       primaryButtonCallback: () => {
         hide();
@@ -73,7 +78,7 @@ function LayoutHeader({
   }
 
   function handleCounterClick() {
-    if (canDonate) show();
+    if (canDonateAndHasVoucher) show();
     else {
       showBlockedDonationModal();
     }
@@ -123,14 +128,16 @@ function LayoutHeader({
                 <S.CounterContainer onClick={() => handleCounterClick()}>
                   <S.TicketsAmount
                     color={
-                      canDonate
+                      canDonateAndHasVoucher
                         ? theme.colors.mediumGreen
                         : theme.colors.mediumGray
                     }
                   >
-                    {canDonate ? 1 : 0}
+                    {canDonateAndHasVoucher ? 1 : 0}
                   </S.TicketsAmount>
-                  <S.CounterImage src={canDonate ? ticketOn : ticketOff} />
+                  <S.CounterImage
+                    src={canDonateAndHasVoucher ? ticketOn : ticketOff}
+                  />
                 </S.CounterContainer>
 
                 <S.Settings onClick={() => openMenu()} src={cogIcon} />

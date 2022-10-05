@@ -55,8 +55,9 @@
       "changeLanguageItem": {
         "changeLanguageText": "Change language"
       },
-      "donationModalTitle": "You got a donation ticket",
-      "donationModalButtonText": "Receive ticket",
+      "donationModalTitle": "Great! You got 1 ticket to donate :)",
+      "donationModalBody": "You can assign the ticket to any project",
+      "donationModalButtonText": "Let’s go!",
       "logoutItem": {
         "logoutButton": "Sign Out",
         "logoutModalTitle": "Do you really want to sign out?",
@@ -179,7 +180,10 @@
       "loadingMessage": "Payment in progress...",
       "modalSuccessTitle": "You've added {{value}} USDC to the treasury!",
       "modalSuccessDescription": "Your donation has been converted into cryptocurrencies to fund more vouchers.",
-      "modalSuccessButton": "Ok"
+      "modalSuccessButton": "Ok",
+      "modalAnimationFrom": "You",
+      "modalAnimationTo": "Ribon",
+      "modalAnimationTitle": "Processing giving..."
     },
     "networkContext": {
       "invalidNetworkMessage": "Connect to a valid network"

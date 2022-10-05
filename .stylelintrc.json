@@ -36,7 +36,6 @@
     "unit-allowed-list": ["em", "rem", "%", "px", "s", "deg", "vh", "ms", "fr"],
     "order/order": [
       [
-        "custom-properties",
         "declarations",
         "rules",
         "at-rules",

@@ -17,13 +17,6 @@ export const Container = styled.button<{
   ${(props) =>
     props.size === "large" &&
     css`
-      font-size: 20px;
-      padding: 12px 16px;
-    `}
-
-  ${(props) =>
-    props.size === "medium" &&
-    css`
       ${defaultButtonTextLarge}
       padding: 11px 16px;
     `}

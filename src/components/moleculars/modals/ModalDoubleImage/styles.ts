@@ -52,9 +52,9 @@ export const ImageContainer = styled.div`
   height: 100px;
   margin: -64px auto 8px;
   position: relative;
+  display: block;
   align-items: center;
   justify-content: center;
-  display: block;
 `;
 
 export const LeftImage = styled.img`

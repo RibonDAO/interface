@@ -6,9 +6,6 @@ import { logError } from "services/crashReport";
 import { formatFromDecimals } from "lib/web3Helpers/etherFormatters";
 import { formatDate } from "lib/web3Helpers/timeStampFormatters";
 import { useEffect, useState, useCallback } from "react";
-import { useContract } from "hooks/useContract";
-import RibonAbi from "utils/abis/RibonAbi.json";
-import DonationTokenAbi from "utils/abis/DonationToken.json";
 import { logEvent } from "services/analytics";
 import useNavigation from "hooks/useNavigation";
 import usePromoterDonations from "hooks/apiTheGraphHooks/usePromoterDonations";
@@ -16,7 +13,9 @@ import { useWalletContext } from "contexts/walletContext";
 import RightArrowBlack from "assets/icons/right-arrow-black.svg";
 import { ReactComponent as BlueRightArrow } from "assets/icons/right-arrow-blue.svg";
 import { useNetworkContext } from "contexts/networkContext";
+import useTokenDecimals from "hooks/useTokenDecimals";
 import * as S from "../styles";
+
 
 function GivingsSection(): JSX.Element {
   const [allDonations, setAllDonations] = useState<any>();
@@ -28,17 +27,8 @@ function GivingsSection(): JSX.Element {
   const { getAllPromotersDonations } = usePromoterDonations();
   const { isMobile } = useBreakpoint();
   const { currentNetwork } = useNetworkContext();
-  const [tokenDecimals, setTokenDecimals] = useState(6);
+  const { tokenDecimals } = useTokenDecimals();
   const coin = "USDC";
-
-  const contract = useContract({
-    address: currentNetwork.ribonContractAddress,
-    ABI: RibonAbi.abi,
-  });
-  const donationTokenContract = useContract({
-    address: currentNetwork.donationTokenContractAddress,
-    ABI: DonationTokenAbi.abi,
-  });
 
   const handleShowGivingsButtonClick = () => {
     logEvent("treasureShowGivingsListBtn_click", {
@@ -63,14 +53,6 @@ function GivingsSection(): JSX.Element {
   useEffect(() => {
     fetchAllDonations();
   }, []);
-
-  useEffect(() => {
-    async function fetchDecimals() {
-      const decimals = await donationTokenContract?.decimals();
-      setTokenDecimals(decimals);
-    }
-    fetchDecimals();
-  }, [contract]);
 
   function concatLinkHash(hash: string) {
     return `${currentNetwork.blockExplorerUrls}tx/${hash}`;

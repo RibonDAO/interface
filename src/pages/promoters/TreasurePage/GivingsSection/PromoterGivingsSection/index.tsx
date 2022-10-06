@@ -20,17 +20,18 @@ import { useContract } from "hooks/useContract";
 import { useNetworkContext } from "contexts/networkContext";
 import { BigNumber } from "ethers";
 import RibonAbi from "utils/abis/RibonAbi.json";
-import DonationTokenAbi from "utils/abis/DonationToken.json";
 import useToast from "hooks/useToast";
 import useCryptoTransaction from "hooks/apiHooks/useCryptoTransaction";
 import TreasureIcon from "assets/icons/treasure-off-icon.svg";
 import RightArrowBlack from "assets/icons/right-arrow-black.svg";
 import { ReactComponent as BlueRightArrow } from "assets/icons/right-arrow-blue.svg";
 import usePromoterCardGivings from "hooks/apiHooks/usePromoterCardGivings";
+import useTokenDecimals from "hooks/useTokenDecimals";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import * as S from "../styles";
 import sortDonationsByDate, { paidDate } from "./lib/sortDonationsByDate";
+
 
 type LocationStateType = {
   id: string;
@@ -63,17 +64,13 @@ function GivingsSection(): JSX.Element {
   const { currentNetwork } = useNetworkContext();
   const coin = "USDC";
   const { state } = useLocation<LocationStateType>();
-  const [tokenDecimals, setTokenDecimals] = useState(6);
+  const { tokenDecimals } = useTokenDecimals();
   const [processingTransaction, setProcessingTransaction] = useState<boolean>(
     state?.processing,
   );
   const contract = useContract({
     address: currentNetwork.ribonContractAddress,
     ABI: RibonAbi.abi,
-  });
-  const donationTokenContract = useContract({
-    address: currentNetwork.donationTokenContractAddress,
-    ABI: DonationTokenAbi.abi,
   });
 
   const handleShowGivingsButtonClick = () => {
@@ -144,14 +141,6 @@ function GivingsSection(): JSX.Element {
       fetchPromoterDonations(wallet);
     }
   }, [wallet]);
-
-  useEffect(() => {
-    async function fetchDecimals() {
-      const decimals = await donationTokenContract?.decimals();
-      setTokenDecimals(decimals);
-    }
-    fetchDecimals();
-  }, [contract]);
 
   useEffect(() => {
     const onlyCrypto = wallet && (!currentUser || !promoterCardGivings);

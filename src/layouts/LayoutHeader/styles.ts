@@ -1,5 +1,5 @@
-import { AuxiliarButtonText } from "components/atomics/typography/AuxiliarButtonText/styles";
 import styled from "styled-components";
+import { defaultButtonTextSmall } from "styles/typography/default";
 
 export const ContainerButtons = styled.div`
   display: flex;
@@ -41,7 +41,8 @@ export const CounterContainer = styled.div`
   }
 `;
 
-export const TicketsAmount = styled(AuxiliarButtonText)`
+export const TicketsAmount = styled.p`
+  ${defaultButtonTextSmall}
   margin-right: 2px;
   color: ${({ color }) => color};
 `;

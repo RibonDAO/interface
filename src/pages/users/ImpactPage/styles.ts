@@ -1,6 +1,6 @@
 import Button from "components/atomics/buttons/Button";
-import { HighlightedTextH1 } from "components/atomics/typography/HighlightedText/styles";
 import styled from "styled-components";
+import { stylizedHeadingLarge } from "styles/typography/stylized";
 
 export const Container = styled.div`
   display: flex;
@@ -13,7 +13,8 @@ export const Container = styled.div`
   }
 `;
 
-export const Title = styled(HighlightedTextH1)`
+export const Title = styled.h1`
+  ${stylizedHeadingLarge}
   margin: 0;
   color: ${({ theme }) => theme.colors.darkGray};
 `;

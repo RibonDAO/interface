@@ -1,6 +1,5 @@
-import { AuxiliarText } from "components/atomics/typography/AuxiliarText/styles";
-import { Span } from "components/atomics/typography/Spans/styles";
 import styled from "styled-components";
+import { defaultParagraphSmall } from "styles/typography/default";
 
 export const Container = styled.div`
   max-width: 206px;
@@ -12,7 +11,8 @@ export const Container = styled.div`
   box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
 `;
 
-export const FirstText = styled(AuxiliarText)`
+export const FirstText = styled.p`
+  ${defaultParagraphSmall}
   font-style: italic;
   color: ${({ theme }) => theme.colors.mediumGray};
 `;
@@ -26,7 +26,7 @@ export const MainContent = styled.h2<{
       : props.theme.colors.mediumGreen};
 `;
 
-export const RightMainContent = styled(Span)<{
+export const RightMainContent = styled.span<{
   processing?: boolean;
 }>`
   color: ${(props) =>

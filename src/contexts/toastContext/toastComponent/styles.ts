@@ -1,5 +1,5 @@
-import { BoldSpan, Span } from "components/atomics/typography/Spans/styles";
 import styled from "styled-components";
+import { defaultSubtitleMedium } from "styles/typography/default";
 
 export const NotificationContainer = styled.div`
   position: fixed;
@@ -45,7 +45,7 @@ export const NotificationToast = styled.div`
   }
 `;
 
-export const Message = styled(Span)`
+export const Message = styled.span`
   margin: 0;
   margin-left: -1px;
   overflow: hidden;
@@ -55,7 +55,8 @@ export const Message = styled(Span)`
   color: ${({ theme }) => theme.colors.white};
 `;
 
-export const Link = styled(BoldSpan)`
+export const Link = styled.span`
+  ${defaultSubtitleMedium}
   float: right;
   color: ${({ theme }) => theme.colors.white};
 `;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BoldLink } from "components/atomics/typography/Links/styles";
+import { defaultButtonTextLarge } from "styles/typography/default";
 
 export const Container = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.mediumGreen};
@@ -17,7 +17,8 @@ export const Container = styled.div`
   }
 `;
 
-export const Selected = styled(BoldLink)`
+export const Selected = styled.a`
+  ${defaultButtonTextLarge}
   min-width: 50%;
   border-radius: 16px;
   background: ${({ theme }) => theme.colors.mediumGreen};

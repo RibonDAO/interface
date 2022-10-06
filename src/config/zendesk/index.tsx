@@ -8,7 +8,7 @@ import { useCurrentUser } from "contexts/currentUserContext";
 function Zendesk(): JSX.Element {
   const zendeskSettings = {
     color: {
-      theme: theme.colors.orange,
+      theme: theme.colors.orange20,
     },
   };
   const { currentUser } = useCurrentUser();
@@ -20,7 +20,7 @@ function Zendesk(): JSX.Element {
       email: currentUser?.email,
     });
     ZendeskAPI("webWidget", "prefill", {
-      email: { value: currentUser?.email },
+      email: { value: "teste", readOnly: false },
     });
     ZendeskAPI("webWidget", "chat:addTags", [
       `currentUser_id:${currentUser?.id}`,

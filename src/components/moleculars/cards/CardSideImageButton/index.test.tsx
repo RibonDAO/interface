@@ -109,7 +109,7 @@ describe("CardSideImageButton", () => {
       );
 
       expect(screen.getByText("text")).toHaveStyle(
-        `color: ${theme.colors.mediumGreen};`,
+        `color: ${theme.colors.green30};`,
       );
     });
 
@@ -125,7 +125,7 @@ describe("CardSideImageButton", () => {
       );
 
       expect(screen.getByText("text")).toHaveStyle(
-        `background-color: ${theme.colors.white};`,
+        `background-color: ${theme.colors.neutral10};`,
       );
     });
   });
@@ -156,7 +156,7 @@ describe("CardSideImageButton", () => {
       );
 
       expect(screen.getByText("text")).toHaveStyle(
-        `color: ${theme.colors.mediumGreen};`,
+        `color: ${theme.colors.green30};`,
       );
     });
 
@@ -172,7 +172,7 @@ describe("CardSideImageButton", () => {
       );
 
       expect(screen.getByText("text")).toHaveStyle(
-        `background-color: ${theme.colors.white};`,
+        `background-color: ${theme.colors.neutral10};`,
       );
     });
   });

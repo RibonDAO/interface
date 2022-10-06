@@ -10,12 +10,12 @@ export const Input = styled.div`
   width: 100%;
   height: 40px;
   margin-bottom: 12px;
-  border: 1px solid ${({ theme }) => theme.colors.mediumGreen};
+  border: 1px solid ${({ theme }) => theme.colors.green30};
   border-radius: 5px;
   position: relative;
   display: inline-block;
   box-sizing: border-box;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.gray40};
 
   label {
     padding: 0 2px;
@@ -24,8 +24,8 @@ export const Input = styled.div`
     left: 10px;
     display: inline;
     text-align: center;
-    background-color: ${({ theme }) => theme.colors.white};
-    color: ${({ theme }) => theme.colors.mediumGreen};
+    background-color: ${({ theme }) => theme.colors.neutral10};
+    color: ${({ theme }) => theme.colors.green30};
 
     @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
       top: -8px;
@@ -42,7 +42,7 @@ export const Input = styled.div`
     box-sizing: border-box;
     font-family: ${({ theme }) => theme.font.family};
     line-height: 20px;
-    color: ${({ theme }) => theme.colors.darkGray};
+    color: ${({ theme }) => theme.colors.gray40};
 
     &:hover {
       cursor: pointer;
@@ -67,7 +67,7 @@ export const OptionContainer = styled.div`
   padding: 8px 16px;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.xLightGray};
+    background-color: ${({ theme }) => theme.colors.gray10};
     cursor: pointer;
   }
 `;

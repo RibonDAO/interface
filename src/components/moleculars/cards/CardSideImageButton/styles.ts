@@ -5,14 +5,14 @@ export const Container = styled.div`
   max-width: 312px;
   height: 104px;
   padding: 15px 16px;
-  border: 1px solid ${({ theme }) => theme.colors.white};
+  border: 1px solid ${({ theme }) => theme.colors.neutral10};
   border-radius: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.neutral10};
   cursor: pointer;
 
   &:hover {
@@ -58,7 +58,7 @@ export const RibonsAmountContainer = styled.div`
   border-radius: 20px;
   position: absolute;
   bottom: 4px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.neutral10};
 `;
 
 export const TitleContainer = styled.div`
@@ -69,7 +69,7 @@ export const TitleContainer = styled.div`
 export const Title = styled.h4`
   margin-bottom: 4px;
   text-align: center;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const DescriptionContainer = styled.div`
@@ -79,7 +79,7 @@ export const DescriptionContainer = styled.div`
 
 export const Description = styled.h5`
   text-align: center;
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const ImageSection = styled.div`
@@ -103,6 +103,6 @@ export const CounterContainer = styled.span`
   top: 8px;
   right: 0;
   text-align: center;
-  background-color: ${({ theme }) => theme.colors.mediumYellow};
-  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.orange30};
+  color: ${({ theme }) => theme.colors.neutral10};
 `;

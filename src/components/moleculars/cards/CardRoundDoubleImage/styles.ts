@@ -25,12 +25,12 @@ export const ImageContainer = styled.div`
 export const LeftImage = styled.img`
   width: 180px;
   height: 180px;
-  border: solid 5px ${({ theme }) => theme.colors.white};
+  border: solid 5px ${({ theme }) => theme.colors.neutral10};
   border-radius: 50%;
   position: absolute;
   left: 0;
   object-fit: cover;
-  filter: drop-shadow(0 20px 40px ${({ theme }) => theme.colors.lightShadow});
+  filter: drop-shadow(0 20px 40px ${({ theme }) => theme.colors.defaultShadow});
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 200px;
@@ -46,7 +46,7 @@ export const RightImage = styled.img`
   right: 0;
   z-index: ${({ theme }) => theme.zindex.above};
   object-fit: cover;
-  filter: drop-shadow(0 20px 40px ${({ theme }) => theme.colors.lightShadow});
+  filter: drop-shadow(0 20px 40px ${({ theme }) => theme.colors.defaultShadow});
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 200px;

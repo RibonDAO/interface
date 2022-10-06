@@ -33,10 +33,10 @@ export const CausesCardContainer = styled.div``;
 
 export const FooterText = styled.p`
   text-align: center;
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.gray30};
 
   a {
     text-decoration: none;
-    color: ${({ theme }) => theme.colors.mediumGreen};
+    color: ${({ theme }) => theme.colors.green30};
   }
 `;

@@ -104,7 +104,7 @@ function LayoutHeader({
             justifyContent: "flex-end",
           },
           content: {
-            border: `1px solid ${theme.colors.lightGray}`,
+            border: `1px solid ${theme.colors.gray20}`,
             paddingLeft: 16,
             paddingRight: 16,
             position: isMobile ? "relative" : "absolute",
@@ -114,9 +114,9 @@ function LayoutHeader({
         }}
       >
         <ChangeLanguageItem />
-        <Divider color={theme.colors.lightGray} />
+        <Divider color={theme.colors.gray20} />
         <UserSupportItem />
-        <Divider color={theme.colors.lightGray} />
+        <Divider color={theme.colors.gray20} />
         {signedIn ? <LogoutItem /> : <div />}
       </ModalBlank>
       <Header
@@ -132,8 +132,8 @@ function LayoutHeader({
                   <S.TicketsAmount
                     color={
                       canDonateAndHasVoucher
-                        ? theme.colors.mediumGreen
-                        : theme.colors.mediumGray
+                        ? theme.colors.green30
+                        : theme.colors.gray30
                     }
                   >
                     {canDonateAndHasVoucher ? 1 : 0}

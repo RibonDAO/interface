@@ -19,7 +19,7 @@ function PaymentInformationPage(): JSX.Element {
     keyPrefix:
       "promoters.supportTreasurePage.cardSection.paymentInformationPage",
   });
-  const { lightGray } = theme.colors;
+  const { gray20 } = theme.colors;
   const {
     currentCoin,
     buttonDisabled,
@@ -52,7 +52,7 @@ function PaymentInformationPage(): JSX.Element {
         givingTotal={givingTotal()}
         setCryptoGiving={setCryptoGiving}
       />
-      <Divider color={lightGray} />
+      <Divider color={gray20} />
 
       <PaymentInformationSection />
 

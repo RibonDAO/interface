@@ -10,23 +10,23 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  background-color: ${({ theme }) => theme.colors.mediumOrange};
+  background-color: ${({ theme }) => theme.colors.orange20};
   background-image: url(${cardBackground});
-  box-shadow: 0 4px 12px 0 ${({ theme }) => theme.colors.lightShadow};
+  box-shadow: 0 4px 12px 0 ${({ theme }) => theme.colors.defaultShadow};
 `;
 
 export const SupportButton = styled(Button)`
-  color: ${({ theme }) => theme.colors.orange};
-  background-color: ${({ theme }) => theme.colors.white};
-  border: 1px solid ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.orange40};
+  background-color: ${({ theme }) => theme.colors.neutral10};
+  border: 1px solid ${({ theme }) => theme.colors.neutral10};
 `;
 
 export const Title = styled.h2`
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.neutral10};
 `;
 
 export const Description = styled.h5`
-  color: ${({ theme }) => theme.colors.orange};
+  color: ${({ theme }) => theme.colors.orange40};
   margin-bottom: 12px;
 `;
 

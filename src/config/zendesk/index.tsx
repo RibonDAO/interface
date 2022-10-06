@@ -9,25 +9,31 @@ function Zendesk(): JSX.Element {
   const zendeskSettings = {
     color: {
       theme: theme.colors.orange20,
+      button: theme.colors.orange20,
+      launcherText: theme.colors.neutral10,
+    },
+    position: {
+      horizontal: "right",
+    },
+    launcher: {
+      badge: {
+        label: {
+          "en-US": "Need Help",
+          "pt-BR": "Precisa de ajuda",
+        },
+      },
     },
   };
   const { currentUser } = useCurrentUser();
-  const [currentLang] = useState(getLocalStorageItem(LANGUAGE_KEY) || "pt-BR");
+  const [currentLang] = useState(getLocalStorageItem(LANGUAGE_KEY));
 
   const loadZendeskApi = () => {
-    ZendeskAPI("webWidget", "identify", {
-      id: currentUser?.id,
-      email: currentUser?.email,
-    });
     ZendeskAPI("webWidget", "prefill", {
-      email: { value: "teste", readOnly: false },
+      email: { value: currentUser?.email, readOnly: false },
     });
     ZendeskAPI("webWidget", "chat:addTags", [
       `currentUser_id:${currentUser?.id}`,
     ]);
-    ZendeskAPI("webWidget", "position", {
-      horizontal: "right",
-    });
     ZendeskAPI("webWidget", "show");
     ZendeskAPI("webWidget", "setLocale", currentLang);
   };

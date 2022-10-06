@@ -116,8 +116,15 @@ function LayoutHeader({
         <ChangeLanguageItem />
         <Divider color={theme.colors.gray20} />
         <UserSupportItem />
-        <Divider color={theme.colors.gray20} />
-        {signedIn ? <LogoutItem /> : <div />}
+
+        {signedIn ? (
+          <div>
+            <Divider color={theme.colors.gray20} />
+            <LogoutItem />
+          </div>
+        ) : (
+          <div />
+        )}
       </ModalBlank>
       <Header
         hasBackButton={hasBackButton}

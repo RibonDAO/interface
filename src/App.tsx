@@ -11,6 +11,7 @@ import {
   growthbookSetFeatures,
 } from "services/growthbook";
 import Zendesk from "config/zendesk";
+import CurrentUserProvider from "contexts/currentUserContext";
 import RoutesComponent from "./config/routes";
 import GlobalStyle from "./styles/globalStyle";
 import theme from "./styles/theme";
@@ -37,8 +38,10 @@ function App() {
               <GlobalStyle />
               <BrowserRouter>
                 <ToastContextProvider>
-                  <RoutesComponent />
-                  <Zendesk />
+                  <CurrentUserProvider>
+                    <RoutesComponent />
+                    <Zendesk />
+                  </CurrentUserProvider>
                   <Toast />
                 </ToastContextProvider>
               </BrowserRouter>

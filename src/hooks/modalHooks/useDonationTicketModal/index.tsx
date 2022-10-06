@@ -40,10 +40,13 @@ export function useDonationTicketModal(
     icon: Ticket,
   };
 
-  const isNotRibonIntegration = integration?.id !== parseInt(RIBON_COMPANY_ID, 10);
+  const isNotRibonIntegration =
+    integration?.id !== parseInt(RIBON_COMPANY_ID, 10);
 
   const { show, hide } = useModal({
-    type: isNotRibonIntegration ? MODAL_TYPES.MODAL_DOUBLE_IMAGE : MODAL_TYPES.MODAL_ICON,
+    type: isNotRibonIntegration
+      ? MODAL_TYPES.MODAL_DOUBLE_IMAGE
+      : MODAL_TYPES.MODAL_ICON,
     props: isNotRibonIntegration ? modalDoubleImageProps : modalIconProps,
   });
 

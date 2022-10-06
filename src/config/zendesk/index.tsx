@@ -8,39 +8,38 @@ import { useCurrentUser } from "contexts/currentUserContext";
 function Zendesk(): JSX.Element {
   const zendeskSettings = {
     color: {
-      theme: theme.colors.ribonBlue,
-    },
-    chat: {
-      connectOnPageLoad: false,
+      theme: theme.colors.orange,
     },
   };
   const { currentUser } = useCurrentUser();
   const [currentLang] = useState(getLocalStorageItem(LANGUAGE_KEY) || "pt-BR");
 
   const loadZendeskApi = () => {
-    console.log("load?");
     ZendeskAPI("webWidget", "identify", {
       id: currentUser?.id,
       email: currentUser?.email,
     });
+    ZendeskAPI("webWidget", "prefill", {
+      email: { value: currentUser?.email },
+    });
     ZendeskAPI("webWidget", "chat:addTags", [
       `currentUser_id:${currentUser?.id}`,
     ]);
+    ZendeskAPI("webWidget", "position", {
+      horizontal: "right",
+    });
     ZendeskAPI("webWidget", "show");
     ZendeskAPI("webWidget", "setLocale", currentLang);
   };
 
-  if (currentUser?.id) {
-    return (
-      <ZendeskApp
-        defer
-        zendeskKey="efe9ba42-3eee-48a3-aa79-b573e297fef4"
-        {...zendeskSettings}
-        onLoaded={loadZendeskApi}
-      />
-    );
-  }
-  return <div />;
+  return (
+    <ZendeskApp
+      defer
+      zendeskKey="efe9ba42-3eee-48a3-aa79-b573e297fef4"
+      {...zendeskSettings}
+      onLoaded={loadZendeskApi}
+    />
+  );
 }
 
 export default Zendesk;

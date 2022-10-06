@@ -1,6 +1,12 @@
 import React from "react";
-import { renderComponent } from "config/testUtils";
-import { expectTextToBeInTheDocument } from "config/testUtils/expects";
+import { clickOn, renderComponent } from "config/testUtils";
+import {
+  expectImageToBeInTheDocument,
+  expectImageNotToBeInTheDocument,
+  expectTextToBeInTheDocument,
+} from "config/testUtils/expects";
+import { screen } from "@testing-library/react";
+import theme from "styles/theme";
 import CardSideImageButton from "./index";
 
 describe("CardSideImageButton", () => {
@@ -43,5 +49,131 @@ describe("CardSideImageButton", () => {
     );
 
     expectTextToBeInTheDocument("549");
+  });
+
+  it("should display ribons amount", () => {
+    renderComponent(
+      <CardSideImageButton
+        onClick={() => {}}
+        icon=""
+        title="title"
+        ribons={100}
+      />,
+    );
+
+    expectTextToBeInTheDocument("100");
+  });
+
+  describe("when has collected state", () => {
+    it("renders display button icon", () => {
+      renderComponent(
+        <CardSideImageButton
+          onClick={() => {}}
+          icon=""
+          title="title"
+          buttonText="text"
+          isCollected
+        />,
+      );
+
+      expectImageToBeInTheDocument("left icon");
+    });
+
+    it("should call function when click in primary button", () => {
+      const handleClick = jest.fn();
+
+      renderComponent(
+        <CardSideImageButton
+          onClick={handleClick}
+          icon=""
+          title="title"
+          buttonText="text"
+          isCollected
+        />,
+      );
+
+      clickOn("text");
+
+      expect(handleClick).toHaveBeenCalled();
+    });
+
+    it("renders correct text color", () => {
+      renderComponent(
+        <CardSideImageButton
+          onClick={() => {}}
+          icon=""
+          title="title"
+          buttonText="text"
+          isCollected
+        />,
+      );
+
+      expect(screen.getByText("text")).toHaveStyle(
+        `color: ${theme.colors.mediumGreen};`,
+      );
+    });
+
+    it("renders correct background color", () => {
+      renderComponent(
+        <CardSideImageButton
+          onClick={() => {}}
+          icon=""
+          title="title"
+          buttonText="text"
+          isCollected
+        />,
+      );
+
+      expect(screen.getByText("text")).toHaveStyle(
+        `background-color: ${theme.colors.white};`,
+      );
+    });
+  });
+
+  describe("when has not collected state", () => {
+    it("should not render display button icon", () => {
+      renderComponent(
+        <CardSideImageButton
+          onClick={() => {}}
+          icon=""
+          title="title"
+          buttonText="text"
+        />,
+      );
+
+      expectImageNotToBeInTheDocument("left icon");
+    });
+
+    it("renders correct text color", () => {
+      renderComponent(
+        <CardSideImageButton
+          onClick={() => {}}
+          icon=""
+          title="title"
+          buttonText="text"
+          isCollected
+        />,
+      );
+
+      expect(screen.getByText("text")).toHaveStyle(
+        `color: ${theme.colors.mediumGreen};`,
+      );
+    });
+
+    it("renders correct background color", () => {
+      renderComponent(
+        <CardSideImageButton
+          onClick={() => {}}
+          icon=""
+          title="title"
+          buttonText="text"
+          isCollected
+        />,
+      );
+
+      expect(screen.getByText("text")).toHaveStyle(
+        `background-color: ${theme.colors.white};`,
+      );
+    });
   });
 });

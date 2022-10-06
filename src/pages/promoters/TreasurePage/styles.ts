@@ -1,7 +1,6 @@
-import { AuxiliarText } from "components/atomics/typography/AuxiliarText/styles";
-import { HighlightedTextH1 } from "components/atomics/typography/HighlightedText/styles";
-import { Span } from "components/atomics/typography/Spans/styles";
 import styled from "styled-components";
+import { defaultParagraphSmall } from "styles/typography/default";
+import { stylizedHeadingLarge } from "styles/typography/stylized";
 
 export const Container = styled.div``;
 
@@ -28,7 +27,8 @@ export const CardBlank = styled.div`
   box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
 `;
 
-export const Title = styled(HighlightedTextH1)`
+export const Title = styled.h1`
+  ${stylizedHeadingLarge}
   margin: 0;
   margin-bottom: 16px;
 `;
@@ -38,7 +38,7 @@ export const TreasureText = styled.h1`
   color: ${({ theme }) => theme.colors.mediumGreen};
 `;
 
-export const TreasureTextCoin = styled(Span)`
+export const TreasureTextCoin = styled.span`
   color: ${({ theme }) => theme.colors.mediumGreen};
 `;
 
@@ -71,7 +71,8 @@ export const GivingsCard = styled.div`
   box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
 `;
 
-export const GivingDate = styled(AuxiliarText)`
+export const GivingDate = styled.p`
+  ${defaultParagraphSmall}
   color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
@@ -84,7 +85,7 @@ export const ProcessingGivingText = styled(GivingText)`
   color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
-export const GivingTextCoin = styled(Span)`
+export const GivingTextCoin = styled.span`
   color: ${({ theme }) => theme.colors.mediumGreen};
 `;
 

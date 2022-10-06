@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import Button from "components/atomics/buttons/Button";
-import { HighlightedTextH1 } from "components/atomics/typography/HighlightedText/styles";
-import { AuxiliarText } from "components/atomics/typography/AuxiliarText/styles";
-import { BoldP } from "components/atomics/typography/BoldText/styles";
-import { AuxiliarButton } from "components/atomics/typography/AuxiliarButtonText/styles";
+import {
+  defaultButtonTextSmall,
+  defaultParagraphSmall,
+  defaultSubtitleMedium,
+} from "styles/typography/default";
+import { stylizedHeadingLarge } from "styles/typography/stylized";
 
 export const Container = styled.div`
   width: 100%;
@@ -16,7 +18,8 @@ export const Container = styled.div`
   }
 `;
 
-export const Title = styled(HighlightedTextH1)`
+export const Title = styled.h1`
+  ${stylizedHeadingLarge}
   margin: 4px 0;
   margin-bottom: 8px;
 `;
@@ -54,7 +57,8 @@ export const CardSectionContainer = styled.div`
   margin-top: 24px;
 `;
 
-export const Subtitle = styled(BoldP)`
+export const Subtitle = styled.p`
+  ${defaultSubtitleMedium}
   margin-top: 20px;
 `;
 
@@ -67,7 +71,8 @@ export const ValuesContainer = styled.div`
   grid-gap: 8px;
 `;
 
-export const CardValueButton = styled(AuxiliarButton)`
+export const CardValueButton = styled(Button)`
+  ${defaultButtonTextSmall}
   max-width: 112px;
   height: 30px;
   border-radius: 66px;
@@ -119,10 +124,10 @@ export const ServiceFeesValue = styled.p`
   color: ${({ theme }) => theme.colors.darkGray};
 `;
 
-export const CryptoGivingValue = styled(AuxiliarText)`
+export const CryptoGivingValue = styled.p`
+  ${defaultParagraphSmall}
   margin-bottom: 32px;
   font-style: italic;
-  line-height: 19.2px;
   color: ${({ theme }) => theme.colors.darkGray};
 `;
 

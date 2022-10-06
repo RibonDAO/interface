@@ -43,7 +43,7 @@ describe("ModalAnimation", () => {
     it("renders icon description", () => {
       expect(screen.getByText("textOrigin")).toHaveStyle(
         `color: #82aabe;
-        font-weight: ${theme.font.bold};
+        font-weight: ${theme.font.medium};
         padding-top: 4px;
         text-align: center;`,
       );

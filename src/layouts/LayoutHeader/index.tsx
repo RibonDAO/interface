@@ -46,7 +46,7 @@ function LayoutHeader({
   const { isVoucherAvailable } = useVoucher();
 
   const { t } = useTranslation("translation", {
-    keyPrefix: "donations.causesPage",
+    keyPrefix: "layouts.layoutHeader",
   });
 
   const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
@@ -55,6 +55,7 @@ function LayoutHeader({
     type: MODAL_TYPES.MODAL_ICON,
     props: {
       title: t("donationModalTitle"),
+      body: t("donationModalBody"),
       primaryButtonText: t("donationModalButtonText"),
       primaryButtonCallback: () => {
         hide();

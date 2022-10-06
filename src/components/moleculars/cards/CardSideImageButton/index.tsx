@@ -35,14 +35,16 @@ function CardSideImageButton({
 }: Props): JSX.Element {
   function renderCollectedButton() {
     return (
-      <Button
-        text={buttonText || ""}
-        textColor={isCollected ? mediumGreen : buttonTextColor}
-        backgroundColor={isCollected ? white : buttonBackgroundColor}
-        borderColor={mediumGreen}
-        leftIcon={isCollected ? checkIcon : undefined}
-        onClick={() => {}}
-      />
+      buttonText && (
+        <Button
+          text={buttonText}
+          textColor={isCollected ? mediumGreen : buttonTextColor}
+          backgroundColor={isCollected ? white : buttonBackgroundColor}
+          borderColor={mediumGreen}
+          leftIcon={isCollected ? checkIcon : undefined}
+          onClick={() => {}}
+        />
+      )
     );
   }
 
@@ -69,7 +71,7 @@ function CardSideImageButton({
                 <S.Description>{description}</S.Description>
               </S.DescriptionContainer>
             )}
-            {buttonText && renderCollectedButton()}
+            {renderCollectedButton()}
           </S.TextContainer>
         </S.Content>
       </S.CardSection>

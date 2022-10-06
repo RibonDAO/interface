@@ -29,7 +29,8 @@
         "useTermsText": "Terms of Service",
         "privacyPolicyText": "Privacy Policy",
         "privacyPolicyLink": "https://ribon.io/2022/06/10/privacy-and-personal-data-retention-policy/",
-        "useTermsLink": "https://blog.ribon.io/2021/07/12/termos-e-condicoes-de-uso-da-ribon/"
+        "useTermsLink": "https://blog.ribon.io/2021/07/12/termos-e-condicoes-de-uso-da-ribon/",
+        "accessUserSupport": "Access user support"
       }
     },
     "donationDonePage": {
@@ -58,8 +59,9 @@
       "userSupportItem": {
         "userSupportText": "User Support"
       },
-      "donationModalTitle": "You got a donation ticket",
-      "donationModalButtonText": "Receive ticket",
+      "donationModalTitle": "Great! You got 1 ticket to donate :)",
+      "donationModalBody": "You can assign the ticket to any project",
+      "donationModalButtonText": "Let’s go!",
       "logoutItem": {
         "logoutButton": "Sign Out",
         "logoutModalTitle": "Do you really want to sign out?",

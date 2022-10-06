@@ -4,6 +4,7 @@ import CardIconText from "components/moleculars/cards/CardIconText";
 import { useTranslation } from "react-i18next";
 import ArrowRight from "assets/icons/arrow-right-blue-icon.svg";
 import { logEvent } from "services/analytics";
+import { ZendeskOpenChat } from "config/zendesk/features";
 import * as S from "./styles";
 
 function UserSupportItem(): JSX.Element {
@@ -13,6 +14,7 @@ function UserSupportItem(): JSX.Element {
 
   const handleClick = () => {
     logEvent("UserSupportBtn_Click");
+    ZendeskOpenChat();
   };
 
   return (

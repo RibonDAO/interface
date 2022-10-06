@@ -25,7 +25,16 @@ export const Title = styled.h2`
   color: ${({ theme }) => theme.colors.white};
 `;
 
-export const Description = styled.p`
+export const Description = styled.h5`
   color: ${({ theme }) => theme.colors.orange};
   margin-bottom: 12px;
+`;
+
+export const IconText = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const Icon = styled.img`
+  margin-right: 8px;
 `;

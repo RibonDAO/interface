@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
     body,
     #root {
       min-height: 100vh;
-      background: ${theme.colors.white};
+      background: ${theme.colors.neutral10};
     }
 
     body {

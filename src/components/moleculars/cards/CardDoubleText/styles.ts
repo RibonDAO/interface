@@ -8,15 +8,15 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
+  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};
 `;
 
 export const Title = styled.h3`
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const Subtitle = styled.p`
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const LeftContainer = styled.div`

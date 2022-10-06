@@ -15,7 +15,7 @@ export type Props = {
 };
 
 const { colors } = theme;
-const { lightGray } = colors;
+const { gray20 } = colors;
 
 function CardDoubleTextDividerButton({
   firstText,
@@ -36,7 +36,7 @@ function CardDoubleTextDividerButton({
           {rightComplementText}
         </S.RightMainContent>
       </S.MainContent>
-      <Divider color={lightGray} />
+      <Divider color={gray20} />
       {processing ? (
         <S.SpinnerSection href={link}>
           <Spinner />

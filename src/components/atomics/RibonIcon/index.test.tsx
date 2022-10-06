@@ -11,10 +11,10 @@ describe("<RibonIcon />", () => {
     );
   });
 
-  it("should render with mediumRed color when color is passed ", () => {
-    renderComponent(<RibonIcon color="mediumRed" />);
+  it("should render with red30 color when color is passed ", () => {
+    renderComponent(<RibonIcon color="red30" />);
     expect(screen.getByLabelText(/Ribon Icon/i).parentElement).toHaveStyle(
-      "color: mediumRed",
+      "color: red30",
     );
   });
 });

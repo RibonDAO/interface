@@ -8,5 +8,5 @@ export const LogoutButton = styled(Button)`
   ${defaultButtonTextSmall}
   min-width: 76px;
   padding: 4px 12px;
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.neutral10};
 `;

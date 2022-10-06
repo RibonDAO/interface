@@ -31,7 +31,7 @@ export const SlideImage = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     max-width: 344px;
-    border-right: 1px solid white;
+    border-right: 1px solid ${({ theme }) => theme.colors.neutral10};
   }
 `;
 
@@ -43,7 +43,7 @@ export const SlideVideo = styled.video`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     max-width: 344px;
-    border-right: 1px solid white;
+    border-right: 1px solid ${({ theme }) => theme.colors.neutral10};
   }
 `;
 
@@ -56,12 +56,12 @@ export const PaginationContainer = styled.div`
   bottom: 14px;
   left: 50%;
   z-index: ${({ theme }) => theme.zindex.above};
-  background-color: ${({ theme }) => theme.colors.darkGray};
+  background-color: ${({ theme }) => theme.colors.gray40};
   opacity: 0.7;
   transform: translateX(-50%);
 `;
 
 export const PaginationNumber = styled.h5`
   text-align: center;
-  color: white;
+  color: ${({ theme }) => theme.colors.neutral10};
 `;

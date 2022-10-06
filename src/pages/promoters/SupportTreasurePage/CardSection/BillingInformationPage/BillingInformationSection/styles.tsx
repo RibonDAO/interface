@@ -11,7 +11,7 @@ export const BillingInformationSectionContainer = styled.div`
 
 export const Title = styled.h3`
   margin-bottom: 18px;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const Form = styled.form`
@@ -24,7 +24,7 @@ export const HalfInput = styled.input`
   display: inline-block;
   width: calc(50% - 4px);
   margin-bottom: 12px;
-  border: 1px solid ${({ theme }) => theme.colors.mediumGreen};
+  border: 1px solid ${({ theme }) => theme.colors.green30};
   border-radius: 8px;
   padding: 8px 16px 8px 16px;
 `;

@@ -16,11 +16,11 @@ export const Container = styled.div`
 export const Title = styled.h1`
   ${stylizedHeadingLarge}
   margin: 0;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const Subtitle = styled.h5`
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const CardsButtonContainer = styled.div`

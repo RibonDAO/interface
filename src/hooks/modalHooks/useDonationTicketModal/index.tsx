@@ -7,7 +7,10 @@ import Integration from "types/entities/Integration";
 import RibonIcon from "assets/icons/logo-background-icon.svg";
 import { useModal } from "../useModal";
 
-export function useDonationTicketModal(initialState?: boolean, integration?: Integration) {
+export function useDonationTicketModal(
+  initialState?: boolean,
+  integration?: Integration,
+) {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
@@ -24,7 +27,7 @@ export function useDonationTicketModal(initialState?: boolean, integration?: Int
     onClose: () => showAnimationReceiveTicketModal(),
     leftImage: integration?.logo,
     rightImage: RibonIcon,
-  }
+  };
 
   const modalIconProps = {
     title: t("donationModalTitle"),
@@ -34,7 +37,7 @@ export function useDonationTicketModal(initialState?: boolean, integration?: Int
     },
     onClose: () => showAnimationReceiveTicketModal(),
     icon: Ticket,
-  }
+  };
 
   const { show, hide } = useModal({
     type: integration ? MODAL_TYPES.MODAL_DOUBLE_IMAGE : MODAL_TYPES.MODAL_ICON,

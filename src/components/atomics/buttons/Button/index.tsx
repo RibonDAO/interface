@@ -40,7 +40,7 @@ export default function Button({
   outline = false,
   disabled = false,
   round = false,
-  size = "medium",
+  size = "large",
 
   ...props
 }: Props): JSX.Element {

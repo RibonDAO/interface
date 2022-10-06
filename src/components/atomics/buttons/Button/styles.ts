@@ -1,4 +1,8 @@
 import styled, { css } from "styled-components";
+import {
+  defaultButtonTextLarge,
+  defaultButtonTextSmall,
+} from "styles/typography/default";
 
 export const Container = styled.button<{
   textColor?: string;
@@ -10,6 +14,20 @@ export const Container = styled.button<{
   borderRadius?: string;
   size?: string;
 }>`
+  ${(props) =>
+    props.size === "large" &&
+    css`
+      ${defaultButtonTextLarge}
+      padding: 11px 16px;
+    `}
+
+  ${(props) =>
+    props.size === "small" &&
+    css`
+      ${defaultButtonTextSmall}
+      padding: 4px 16px;
+    `}
+    
   width: 100%;
   border: 1px solid #000;
   border-color: ${(props) => props.borderColor || props.backgroundColor};
@@ -23,27 +41,6 @@ export const Container = styled.button<{
   opacity: ${(props) => (props.disabled ? 0.5 : 1)};
   cursor: pointer;
 
-  ${(props) =>
-    props.size === "large" &&
-    css`
-      font-size: 20px;
-      padding: 12px 16px;
-    `}
-
-  ${(props) =>
-    props.size === "medium" &&
-    css`
-      font-size: 16px;
-      padding: 11px 16px;
-    `}
-
-  ${(props) =>
-    props.size === "small" &&
-    css`
-      font-size: 12px;
-      padding: 4px 16px;
-    `}
-      
   #left-icon {
     margin-right: 4px;
   }

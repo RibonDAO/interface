@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BoldP } from "../typography/BoldText/styles";
+import { defaultSubtitleMedium } from "styles/typography/default";
 
 export const Container = styled.div`
   display: flex;
@@ -8,7 +8,8 @@ export const Container = styled.div`
   justify-content: center;
 `;
 
-export const RibonsAmount = styled(BoldP)`
+export const RibonsAmount = styled.p`
+  ${defaultSubtitleMedium}
   margin-right: 2px;
   color: ${({ theme }) => theme.colors.green30};
 `;

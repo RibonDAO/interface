@@ -10,8 +10,8 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  background-color: ${({ theme }) => theme.colors.white};
-  box-shadow: 8px 8px 20px -2px ${({ theme }) => theme.colors.darkShadow};
+  background-color: ${({ theme }) => theme.colors.neutral10};
+  box-shadow: 8px 8px 20px -2px ${({ theme }) => theme.colors.defaultShadow};
   cursor: pointer;
 `;
 
@@ -27,5 +27,5 @@ export const Title = styled.h3`
 `;
 
 export const Subtitle = styled.h5`
-  color: ${({ theme }) => theme.colors.mediumGreen};
+  color: ${({ theme }) => theme.colors.green30};
 `;

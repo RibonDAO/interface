@@ -45,9 +45,9 @@ export const Input = styled.input`
   margin-top: 12px;
   margin-bottom: 8px;
   padding: 8px;
-  border: 1px solid ${({ theme }) => theme.colors.mediumGreen};
+  border: 1px solid ${({ theme }) => theme.colors.green30};
   border-radius: 8px;
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const UsdcIcon = styled.img`
@@ -64,13 +64,13 @@ export const UsdcContainer = styled.div`
 
 export const UsdcText = styled.p`
   margin-left: 4px;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const Text = styled.p`
   ${defaultParagraphSmall}
   margin-top: 8px;
-  color: ${({ theme }) => theme.colors.mediumGreen};
+  color: ${({ theme }) => theme.colors.green30};
 `;
 
 export const ButtonContainer = styled.div`
@@ -83,8 +83,8 @@ export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   align-self: end;
-  background-color: white;
-  box-shadow: 0 -4px 4px ${({ theme }) => theme.colors.lightShadow};
+  background-color: ${({ theme }) => theme.colors.neutral10};
+  box-shadow: 0 -4px 4px ${({ theme }) => theme.colors.defaultShadow};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     height: 60px;

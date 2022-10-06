@@ -9,12 +9,12 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h3`
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const Text = styled.p`
   margin-top: 4px;
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const InsideContainer = styled.div`

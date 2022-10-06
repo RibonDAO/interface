@@ -27,14 +27,14 @@ export const CounterContainer = styled.div`
   margin-right: 5px;
   margin-left: 8px;
   padding: 7px;
-  border: 1px solid ${({ theme }) => theme.colors.lightGray};
+  border: 1px solid ${({ theme }) => theme.colors.gray20};
   border-radius: 4px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.neutral10};
 
   &:hover {
     cursor: pointer;

@@ -51,14 +51,14 @@ describe("<Button />", () => {
     it("renders outline button", () => {
       renderComponent(<Button text="button" onClick={() => {}} outline />);
       expect(screen.getByText("button")).toHaveStyle(
-        `color: ${theme.colors.mediumGreen};`,
+        `color: ${theme.colors.green30};`,
       );
     });
 
     it("renders softDisabled button", () => {
       renderComponent(<Button text="button" onClick={() => {}} softDisabled />);
       expect(screen.getByText("button")).toHaveStyle(
-        `color: ${theme.colors.mediumGray};`,
+        `color: ${theme.colors.gray30};`,
       );
     });
 

@@ -3,7 +3,7 @@ import theme from "styles/theme";
 
 export const defaultCustomStyles: Styles = {
   overlay: {
-    backgroundColor: theme.colors.modalBackground,
+    backgroundColor: theme.colors.backgroundOverlay,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",

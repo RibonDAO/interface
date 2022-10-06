@@ -9,10 +9,10 @@ export const Input = styled.input`
   width: 100%;
   margin-bottom: 12px;
   padding: 8px 16px;
-  border: 1px solid ${({ theme }) => theme.colors.mediumGreen};
+  border: 1px solid ${({ theme }) => theme.colors.green30};
   border-radius: 8px;
 
   &:disabled {
-    border: 1px solid ${({ theme }) => theme.colors.mediumGray};
+    border: 1px solid ${({ theme }) => theme.colors.gray30};
   }
 `;

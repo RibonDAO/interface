@@ -4,6 +4,7 @@ import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useEffect } from "react";
 import Ticket from "assets/images/ticket.svg";
 import Integration from "types/entities/Integration";
+import { RIBON_COMPANY_ID } from "utils/constants";
 import RibonIcon from "assets/icons/logo-background-icon.svg";
 import { useModal } from "../useModal";
 
@@ -39,9 +40,11 @@ export function useDonationTicketModal(
     icon: Ticket,
   };
 
+  const isNotRibonIntegration = integration?.id !== parseInt(RIBON_COMPANY_ID, 10);
+
   const { show, hide } = useModal({
-    type: integration ? MODAL_TYPES.MODAL_DOUBLE_IMAGE : MODAL_TYPES.MODAL_ICON,
-    props: integration ? modalDoubleImageProps : modalIconProps,
+    type: isNotRibonIntegration ? MODAL_TYPES.MODAL_DOUBLE_IMAGE : MODAL_TYPES.MODAL_ICON,
+    props: isNotRibonIntegration ? modalDoubleImageProps : modalIconProps,
   });
 
   const showDonationTicketModal = () => {

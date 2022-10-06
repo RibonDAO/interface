@@ -1,7 +1,8 @@
 import styled, { css } from "styled-components";
 import {
-  defaultButtonTextLarge,
-  defaultButtonTextSmall,
+  defaultComponentTextLarge,
+  defaultComponentTextMedium,
+  defaultComponentTextSmall,
 } from "styles/typography/default";
 
 export const Container = styled.button<{
@@ -17,15 +18,23 @@ export const Container = styled.button<{
   ${(props) =>
     props.size === "large" &&
     css`
-      ${defaultButtonTextLarge}
-      padding: 11px 16px;
+      ${defaultComponentTextLarge}
+      padding: 12px 16px;
     `}
 
   ${(props) =>
+    props.size === "medium" &&
+    css`
+      ${defaultComponentTextMedium}
+      padding: 12px 16px;
+    `}
+    
+  
+  ${(props) =>
     props.size === "small" &&
     css`
-      ${defaultButtonTextSmall}
-      padding: 4px 16px;
+      ${defaultComponentTextSmall}
+      padding: 6px 16px;
     `}
     
   width: 100%;

@@ -1,6 +1,6 @@
 import Button from "components/atomics/buttons/Button";
 import styled from "styled-components";
-import { defaultButtonTextSmall } from "styles/typography/default";
+import { defaultComponentTextSmall } from "styles/typography/default";
 
 export const Container = styled.div`
   height: 100%;
@@ -28,7 +28,8 @@ export const ImageContainer = styled.div`
 `;
 
 export const SideButton = styled(Button)`
-  ${defaultButtonTextSmall}
+  ${defaultComponentTextSmall}
   height: 28px;
+  padding: 6px 14px;
   border-radius: 16px;
 `;

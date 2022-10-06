@@ -14,7 +14,6 @@ const theme: ThemeType = {
   grid: {},
   border: {},
   font: {
-    family: "Lato",
     light: 300,
     normal: 400,
     medium: 500,

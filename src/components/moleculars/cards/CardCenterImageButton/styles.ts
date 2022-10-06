@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { defaultSubtitleLarge } from "styles/typography/default";
+import { defaultComponentTextLarge } from "styles/typography/default";
 
 export const Container = styled.div`
   width: 100%;
@@ -53,13 +53,12 @@ export const DarkStroke = styled.div`
 `;
 
 export const ImageDescription = styled.h4`
-  ${defaultSubtitleLarge}
+  ${defaultComponentTextLarge}
   padding: 14px;
   position: absolute;
   bottom: 0;
   left: 0;
   z-index: 2;
-  line-height: 19px;
   color: white;
 `;
 

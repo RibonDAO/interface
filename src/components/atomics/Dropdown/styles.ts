@@ -40,7 +40,6 @@ export const Input = styled.div`
     position: relative;
     top: -12px;
     box-sizing: border-box;
-    font-family: ${({ theme }) => theme.font.family};
     line-height: 20px;
     color: ${({ theme }) => theme.colors.darkGray};
 

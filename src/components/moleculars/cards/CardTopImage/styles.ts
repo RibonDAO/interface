@@ -22,6 +22,7 @@ export const Image = styled.img`
 
 export const Text = styled.p`
   margin-top: 16px;
+  line-height: 24px;
   text-align: center;
   color: ${({ theme }) => theme.colors.darkGray};
 `;

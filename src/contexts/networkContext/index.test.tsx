@@ -40,7 +40,8 @@ describe("useNetwork", () => {
       currencyName: "Matic",
       blockExplorerUrls: "https://mumbai.polygonscan.com/",
       defaultPoolAddress: "0xA932851982118bd5Fa99E16B144afE4622eb2A49",
-       subgraphUrl: "https://api.thegraph.com/subgraphs/name/ribondao/ribonsubgraph",
+      subgraphUrl:
+        "https://api.thegraph.com/subgraphs/name/ribondao/ribonsubgraph",
     };
 
     beforeEach(async () => {

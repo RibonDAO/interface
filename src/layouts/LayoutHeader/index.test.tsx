@@ -21,6 +21,7 @@ describe("LayoutHeader", () => {
     renderComponent(<LayoutHeader />);
 
     clickOn("1");
-    expectTextToBeInTheDocument("You got a donation ticket");
+    expectTextToBeInTheDocument("Great! You got 1 ticket to donate :)");
+    expectTextToBeInTheDocument("You can assign the ticket to any project");
   });
 });

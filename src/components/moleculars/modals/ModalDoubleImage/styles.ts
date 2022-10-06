@@ -60,22 +60,22 @@ export const ImageContainer = styled.div`
 export const LeftImage = styled.img`
   width: 90px;
   height: 90px;
-  border: solid 2px ${({ theme }) => theme.colors.darkShadow};
+  border: solid 2px ${({ theme }) => theme.colors.defaultShadow};
   border-radius: 50%;
   position: absolute;
   left: 0;
   z-index: ${({ theme }) => theme.zindex.above};
   object-fit: cover;
-  filter: drop-shadow(0 20px 40px ${({ theme }) => theme.colors.darkShadow});
+  filter: drop-shadow(0 20px 40px ${({ theme }) => theme.colors.defaultShadow});
 `;
 
 export const RightImage = styled.img`
   width: 90px;
   height: 90px;
-  border: solid 2px ${({ theme }) => theme.colors.darkShadow};
+  border: solid 2px ${({ theme }) => theme.colors.defaultShadow};
   border-radius: 50%;
   position: absolute;
   right: 0;
   object-fit: cover;
-  filter: drop-shadow(0 20px 40px ${({ theme }) => theme.colors.darkShadow});
+  filter: drop-shadow(0 20px 40px ${({ theme }) => theme.colors.defaultShadow});
 `;

@@ -19,7 +19,6 @@ function useContractBalance() {
     }
     fetchDecimals();
   }, []);
-  
 
   return { tokenDecimals };
 }

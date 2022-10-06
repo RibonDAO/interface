@@ -1,5 +1,5 @@
-import { BoldSpan, Span } from "components/atomics/typography/Spans/styles";
 import styled from "styled-components";
+import { defaultSubtitleMedium } from "styles/typography/default";
 
 export const NotificationContainer = styled.div`
   position: fixed;
@@ -30,34 +30,35 @@ export const NotificationToast = styled.div`
   right: 12px;
   bottom: 12px;
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.white};
-  color: ${({ theme }) => theme.colors.darkGray};
-  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
+  background: ${({ theme }) => theme.colors.neutral10};
+  color: ${({ theme }) => theme.colors.gray40};
+  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};
   opacity: 0.9;
   pointer-events: auto;
   transition: 0.3s ease;
   animation: toast-in-right 0.7s;
 
   &:hover {
-    box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
+    box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};
     opacity: 1;
     cursor: pointer;
   }
 `;
 
-export const Message = styled(Span)`
+export const Message = styled.span`
   margin: 0;
   margin-left: -1px;
   overflow: hidden;
   text-align: left;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.neutral10};
 `;
 
-export const Link = styled(BoldSpan)`
+export const Link = styled.span`
+  ${defaultSubtitleMedium}
   float: right;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.neutral10};
 `;
 
 export const LinkNotificationToast = styled.a`

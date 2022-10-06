@@ -55,8 +55,9 @@
       "changeLanguageItem": {
         "changeLanguageText": "Change language"
       },
-      "donationModalTitle": "You got a donation ticket",
-      "donationModalButtonText": "Receive ticket",
+      "donationModalTitle": "Great! You got 1 ticket to donate :)",
+      "donationModalBody": "You can assign the ticket to any project",
+      "donationModalButtonText": "Let’s go!",
       "logoutItem": {
         "logoutButton": "Sign Out",
         "logoutModalTitle": "Do you really want to sign out?",

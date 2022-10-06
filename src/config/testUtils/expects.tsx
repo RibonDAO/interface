@@ -17,6 +17,10 @@ export function expectImageToBeInTheDocument(alt: string) {
   return expect(screen.getByAltText(alt)).toBeInTheDocument();
 }
 
+export function expectImageNotToBeInTheDocument(alt: string) {
+  return expect(screen.queryByAltText(alt)).not.toBeInTheDocument();
+}
+
 export function expectDisplayValueToBeInTheDocument(value: string) {
   return expect(screen.getByDisplayValue(value)).toBeInTheDocument();
 }

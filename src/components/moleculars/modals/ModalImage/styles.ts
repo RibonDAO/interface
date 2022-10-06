@@ -20,13 +20,13 @@ type TitleProps = {
 
 export const Title = styled.h2<TitleProps>`
   text-align: center;
-  color: ${({ theme, color }) => color || theme.colors.darkGray};
+  color: ${({ theme, color }) => color || theme.colors.gray40};
 `;
 
 export const Body = styled.h3`
   margin: 8px 0 20px;
   text-align: center;
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const RowsModalRow = styled.div`

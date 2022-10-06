@@ -1,5 +1,6 @@
+import Button from "components/atomics/buttons/Button";
 import styled from "styled-components";
-import { AuxiliarButton } from "components/atomics/typography/AuxiliarButtonText/styles";
+import { defaultButtonTextSmall } from "styles/typography/default";
 
 export const Container = styled.div`
   height: 100%;
@@ -8,12 +9,12 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h3`
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const Text = styled.p`
   margin-top: 4px;
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const InsideContainer = styled.div`
@@ -26,7 +27,8 @@ export const ImageContainer = styled.div`
   margin-bottom: 8px;
 `;
 
-export const SideButton = styled(AuxiliarButton)`
+export const SideButton = styled(Button)`
+  ${defaultButtonTextSmall}
   height: 28px;
   border-radius: 16px;
 `;

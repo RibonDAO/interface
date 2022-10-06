@@ -1,15 +1,27 @@
 import { AxiosResponse } from "axios";
+import Donation from "types/entities/Donation";
 import { apiPost } from "..";
 
 const donationsApi = {
-  // FIXME: CHANGE THIS "ANY" RETURN TYPE ON AXIOS_RESPONSE!
-  // For example: if you're getting a list of feeds you can have a AxiosResponse<Feed[]>
   postDonation: (
     integrationId: number,
     nonProfitId: number,
     email: string,
-  ): Promise<AxiosResponse<any>> =>
+  ): Promise<AxiosResponse<Donation>> =>
     apiPost("donations", { integrationId, nonProfitId, email }),
+
+  postVoucherDonation: (
+    integrationId: number,
+    nonProfitId: number,
+    email: string,
+    externalId: string,
+  ): Promise<AxiosResponse<Donation>> =>
+    apiPost("vouchers/donations", {
+      integrationId,
+      nonProfitId,
+      email,
+      externalId,
+    }),
 };
 
 export default donationsApi;

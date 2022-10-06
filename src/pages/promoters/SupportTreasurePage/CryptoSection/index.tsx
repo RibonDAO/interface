@@ -19,6 +19,7 @@ import {
   formatFromDecimals,
   formatToDecimals,
 } from "lib/web3Helpers/etherFormatters";
+import { useIntegrationId } from "hooks/useIntegrationId";
 import WalletIcon from "./assets/wallet-icon.svg";
 import * as S from "./styles";
 
@@ -28,6 +29,8 @@ function CryptoSection(): JSX.Element {
   const [userBalance, setUserBalance] = useState("");
   const { currentNetwork } = useNetworkContext();
   const [tokenDecimals, setTokenDecimals] = useState(18);
+
+  const integrationId = useIntegrationId();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportTreasurePage",
@@ -137,7 +140,7 @@ function CryptoSection(): JSX.Element {
       const id = response.hash;
       const timestamp = Math.floor(new Date().getTime() / 1000);
 
-      createTransaction(id, amount, wallet ?? "");
+      createTransaction(id, amount, wallet ?? "", integrationId ?? 1);
 
       toast({
         message: t("transactionOnBlockchainText"),

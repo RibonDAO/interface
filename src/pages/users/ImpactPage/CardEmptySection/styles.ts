@@ -1,6 +1,6 @@
 import Button from "components/atomics/buttons/Button";
-import { BoldP } from "components/atomics/typography/BoldText/styles";
 import styled from "styled-components";
+import { defaultSubtitleMedium } from "styles/typography/default";
 
 export const Container = styled.div`
   width: 70%;
@@ -12,10 +12,11 @@ export const Container = styled.div`
   justify-self: center;
 `;
 
-export const Text = styled(BoldP)`
+export const Text = styled.p`
+  ${defaultSubtitleMedium}
   margin-top: 28px;
   text-align: center;
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const EmptyDonationButton = styled(Button)`

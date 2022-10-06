@@ -27,11 +27,11 @@ export type Props = {
 export default function Button({
   text,
   textColor,
-  backgroundColor = theme.colors.mediumGreen,
+  backgroundColor = theme.colors.green30,
   softDisabled = false,
   borderColor = "",
   ribons = false,
-  ribonsColor = theme.colors.mediumGreen,
+  ribonsColor = theme.colors.green30,
   leftIcon,
   rightIcon,
   onClick,
@@ -40,29 +40,29 @@ export default function Button({
   outline = false,
   disabled = false,
   round = false,
-  size = "medium",
+  size = "large",
 
   ...props
 }: Props): JSX.Element {
   function activeTextColor() {
-    if (outline && !textColor) return theme.colors.mediumGreen;
-    if (softDisabled) return theme.colors.mediumGray;
-    if (!textColor) return theme.colors.white;
+    if (outline && !textColor) return theme.colors.green30;
+    if (softDisabled) return theme.colors.gray30;
+    if (!textColor) return theme.colors.neutral10;
 
     return textColor;
   }
 
   function activeBackgroundColor() {
-    if (outline || softDisabled) return theme.colors.white;
-    if (disabled) return theme.colors.mediumGray;
+    if (outline || softDisabled) return theme.colors.neutral10;
+    if (disabled) return theme.colors.gray30;
 
     return backgroundColor;
   }
 
   function activeBorderColor() {
-    if (outline && !borderColor) return theme.colors.mediumGreen;
-    if (disabled && !borderColor) return theme.colors.mediumGray;
-    if (softDisabled) return theme.colors.lightGray;
+    if (outline && !borderColor) return theme.colors.green30;
+    if (disabled && !borderColor) return theme.colors.gray30;
+    if (softDisabled) return theme.colors.gray20;
 
     return borderColor;
   }

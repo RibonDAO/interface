@@ -14,6 +14,7 @@ describe("creditCardPaymentApi", () => {
       taxId: "000.000.000-00",
       offerId: 1,
       email: "usertest@ribon.io",
+      integrationId: 1,
       card: {
         number: "0000000000000000",
         name: "User Test",

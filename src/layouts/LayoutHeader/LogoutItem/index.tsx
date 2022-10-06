@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useCurrentUser } from "contexts/currentUserContext";
 import useNavigation from "hooks/useNavigation";
+import useVoucher from "hooks/useVoucher";
 
 import CardIconText from "components/moleculars/cards/CardIconText";
 import ModalIcon from "components/moleculars/modals/ModalIcon";
@@ -22,6 +23,7 @@ function LogoutItem(): JSX.Element {
   const [successLogoutModalVisible, setSuccessLogoutModalVisible] =
     useState(false);
   const { navigateTo } = useNavigation();
+  const { createVoucher } = useVoucher();
 
   function handleConfirmation() {
     setSuccessLogoutModalVisible(true);
@@ -30,6 +32,7 @@ function LogoutItem(): JSX.Element {
 
   function handleLogout() {
     logoutCurrentUser();
+    createVoucher();
     navigateTo("/");
     setSuccessLogoutModalVisible(false);
     window.location.reload();
@@ -51,8 +54,8 @@ function LogoutItem(): JSX.Element {
             outline
             text={t("logoutButton")}
             onClick={() => setWarningModalVisible(true)}
-            textColor={theme.colors.mediumRed}
-            borderColor={theme.colors.mediumRed}
+            textColor={theme.colors.red30}
+            borderColor={theme.colors.red30}
             round
           />
         }

@@ -19,7 +19,7 @@ export const LastCardCarousel = styled.a`
   justify-content: center;
   text-decoration: none;
   background: ${({ theme }) => theme.colors.neutral10};
-  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
+  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};
 `;
 
 export const GivingText = styled(BoldSpan)`
@@ -38,7 +38,7 @@ export const CardBlank = styled.div`
   align-items: center;
   justify-content: center;
   background: ${({ theme }) => theme.colors.neutral10};
-  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
+  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};
 `;
 
 export const Image = styled.img`

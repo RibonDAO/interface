@@ -6,7 +6,7 @@ export const Container = styled.div`
   border-radius: 12px;
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.colors.neutral10};
-  box-shadow: 0 8px 24px ${({ theme }) => theme.colors.lightShadow};
+  box-shadow: 0 8px 24px ${({ theme }) => theme.colors.defaultShadow};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 286px;

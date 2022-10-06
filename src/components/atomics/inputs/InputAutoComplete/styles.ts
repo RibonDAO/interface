@@ -6,7 +6,7 @@ export const Container = styled.div`
   max-width: 300px;
   border-radius: 5px;
   z-index: ${({ theme }) => theme.zindex.dropdown};
-  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
+  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};
 `;
 
 export const InputAutoComplete = styled(Input)``;

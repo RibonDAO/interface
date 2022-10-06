@@ -22,10 +22,6 @@ const theme: ThemeType = {
     sizes: {},
   },
   colors: {
-    transparent: "rgba(255, 255, 255, 0)",
-    lightShadow: "rgba(24, 86, 105, 0.15)",
-    darkShadow: "rgba(192, 192, 192, 0.75)",
-    modalBackground: "rgba(40, 36, 28, 0.6)",
     neutral10: "#FFFFFF",
     red10: "#FDEBFF",
     red20: "#F2A9C3",
@@ -47,6 +43,8 @@ const theme: ThemeType = {
     gray20: "#D4CEC3",
     gray30: "#867F70",
     gray40: "#28241C",
+    defaultShadow: "rgba(40, 36, 28, 0.15)",
+    backgroundOverlay: "rgba(40, 36, 28, 0.60)",
   },
   zindex: {
     base: 0,

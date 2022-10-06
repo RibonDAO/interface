@@ -8,7 +8,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
+  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};
 `;
 
 export const Title = styled.h3`

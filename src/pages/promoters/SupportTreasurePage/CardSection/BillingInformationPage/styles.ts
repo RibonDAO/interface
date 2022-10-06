@@ -86,7 +86,7 @@ export const ButtonContainer = styled.div`
   align-items: center;
   align-self: end;
   background-color: white;
-  box-shadow: 0 -4px 4px ${({ theme }) => theme.colors.lightShadow};
+  box-shadow: 0 -4px 4px ${({ theme }) => theme.colors.defaultShadow};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     height: 60px;

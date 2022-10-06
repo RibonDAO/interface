@@ -12,5 +12,5 @@ export const Container = styled.div`
   align-items: center;
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.colors.neutral10};
-  box-shadow: 0 4px 12px 0 ${({ theme }) => theme.colors.lightShadow};
+  box-shadow: 0 4px 12px 0 ${({ theme }) => theme.colors.defaultShadow};
 `;

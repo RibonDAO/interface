@@ -32,14 +32,14 @@ export const NotificationToast = styled.div`
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral10};
   color: ${({ theme }) => theme.colors.gray40};
-  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
+  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};
   opacity: 0.9;
   pointer-events: auto;
   transition: 0.3s ease;
   animation: toast-in-right 0.7s;
 
   &:hover {
-    box-shadow: 0 4px 12px ${({ theme }) => theme.colors.lightShadow};
+    box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};
     opacity: 1;
     cursor: pointer;
   }

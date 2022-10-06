@@ -6,6 +6,9 @@ import { logError } from "services/crashReport";
 import { formatFromDecimals } from "lib/web3Helpers/etherFormatters";
 import { formatDate } from "lib/web3Helpers/timeStampFormatters";
 import { useEffect, useState, useCallback } from "react";
+import { useContract } from "hooks/useContract";
+import RibonAbi from "utils/abis/RibonAbi.json";
+import DonationTokenAbi from "utils/abis/DonationToken.json";
 import { logEvent } from "services/analytics";
 import useNavigation from "hooks/useNavigation";
 import usePromoterDonations from "hooks/apiTheGraphHooks/usePromoterDonations";
@@ -14,6 +17,7 @@ import RightArrowBlack from "assets/icons/right-arrow-black.svg";
 import { ReactComponent as BlueRightArrow } from "assets/icons/right-arrow-blue.svg";
 import { useNetworkContext } from "contexts/networkContext";
 import * as S from "../styles";
+
 
 function GivingsSection(): JSX.Element {
   const [allDonations, setAllDonations] = useState<any>();
@@ -25,7 +29,17 @@ function GivingsSection(): JSX.Element {
   const { getAllPromotersDonations } = usePromoterDonations();
   const { isMobile } = useBreakpoint();
   const { currentNetwork } = useNetworkContext();
+  const [tokenDecimals, setTokenDecimals] = useState(6);
   const coin = "USDC";
+
+  const contract = useContract({
+    address: currentNetwork.ribonContractAddress,
+    ABI: RibonAbi.abi,
+  });
+  const donationTokenContract = useContract({
+    address: currentNetwork.donationTokenContractAddress,
+    ABI: DonationTokenAbi.abi,
+  });
 
   const handleShowGivingsButtonClick = () => {
     logEvent("treasureShowGivingsListBtn_click", {
@@ -49,7 +63,16 @@ function GivingsSection(): JSX.Element {
 
   useEffect(() => {
     fetchAllDonations();
+    
   }, []);
+
+  useEffect(() => {
+    async function fetchDecimals() {
+      const decimals = await donationTokenContract?.decimals();
+      setTokenDecimals(decimals);
+    }
+    fetchDecimals();
+  }, [contract]);
 
   function concatLinkHash(hash: string) {
     return `${currentNetwork.blockExplorerUrls}tx/${hash}`;
@@ -60,7 +83,7 @@ function GivingsSection(): JSX.Element {
       <CardDoubleTextDividerButton
         key={item.id}
         firstText={formatDate(item.timestamp).toString()}
-        mainText={formatFromDecimals(item.amountDonated).toFixed(2)}
+        mainText={formatFromDecimals(item.amountDonated, tokenDecimals).toFixed(2)}
         rightComplementText={coin}
         buttonText={t("linkTransactionText")}
         rightComponentButton={RightArrowBlack}

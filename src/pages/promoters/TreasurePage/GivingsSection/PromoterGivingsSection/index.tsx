@@ -20,6 +20,7 @@ import { useContract } from "hooks/useContract";
 import { useNetworkContext } from "contexts/networkContext";
 import { BigNumber } from "ethers";
 import RibonAbi from "utils/abis/RibonAbi.json";
+import DonationTokenAbi from "utils/abis/DonationToken.json";
 import useToast from "hooks/useToast";
 import useCryptoTransaction from "hooks/apiHooks/useCryptoTransaction";
 import TreasureIcon from "assets/icons/treasure-off-icon.svg";
@@ -61,14 +62,19 @@ function GivingsSection(): JSX.Element {
   const { isMobile } = useBreakpoint();
   const { currentNetwork } = useNetworkContext();
   const coin = "USDC";
+  const { state } = useLocation<LocationStateType>();
+  const [tokenDecimals, setTokenDecimals] = useState(6);
+  const [processingTransaction, setProcessingTransaction] = useState<boolean>(
+    state?.processing,
+  );
   const contract = useContract({
     address: currentNetwork.ribonContractAddress,
     ABI: RibonAbi.abi,
   });
-  const { state } = useLocation<LocationStateType>();
-  const [processingTransaction, setProcessingTransaction] = useState<boolean>(
-    state?.processing,
-  );
+  const donationTokenContract = useContract({
+    address: currentNetwork.donationTokenContractAddress,
+    ABI: DonationTokenAbi.abi,
+  });
 
   const handleShowGivingsButtonClick = () => {
     logEvent("treasureShowGivingsListBtn_click", {
@@ -140,6 +146,15 @@ function GivingsSection(): JSX.Element {
   }, [wallet]);
 
   useEffect(() => {
+    async function fetchDecimals() {
+      const decimals = await donationTokenContract?.decimals();
+      setTokenDecimals(decimals);
+    }
+
+    fetchDecimals();
+  }, [contract]);
+
+  useEffect(() => {
     const onlyCrypto = wallet && (!currentUser || !promoterCardGivings);
     const onlyCard = !wallet && currentUser && promoterCardGivings;
     const both = !!wallet && !!currentUser && !!promoterCardGivings;
@@ -190,6 +205,7 @@ function GivingsSection(): JSX.Element {
     const allDonations = sortDonationsByDate(allPromoterDonations);
     const isCryptoDonation = (item: any) => !!item.timestamp;
     return allDonations?.map((item: any) =>
+    
       isCryptoDonation(item) ? (
         <CardDoubleTextDividerButton
           key={item.id}
@@ -197,7 +213,7 @@ function GivingsSection(): JSX.Element {
           mainText={
             item.processed
               ? formatFromWei(item.amountDonated)
-              : formatFromDecimals(item.amountDonated).toFixed(2)
+              : formatFromDecimals(item.amountDonated, tokenDecimals).toFixed(2)
           }
           rightComplementText={coin}
           buttonText={t("linkTransactionText")}

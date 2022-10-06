@@ -4,3 +4,5 @@ export const TOKEN_KEY = "TOKEN_KEY";
 
 export const DONATION_MODAL_SEEN_AT_KEY = "DONATION_MODAL_SEEN_AT_KEY";
 export const COMES_FROM_TREASURE = "COMES_FROM_TREASURE";
+export const SUBGRAPH_URL = "SUBGRAPH_URL";
+export const CHAIN_ID = "CHAIN_ID";

@@ -27,7 +27,7 @@ function CryptoSection(): JSX.Element {
   const [loading, setLoading] = useState(false);
   const [userBalance, setUserBalance] = useState("");
   const { currentNetwork } = useNetworkContext();
-  const [tokenDecimals, setTokenDecimals] = useState(6);
+  const [tokenDecimals, setTokenDecimals] = useState(18);
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportTreasurePage",

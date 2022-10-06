@@ -12,6 +12,8 @@ import { useProvider } from "hooks/useProvider";
 import CurrentNetwork from "types/entities/CurrentNetwork";
 import useToast from "hooks/useToast";
 import { useTranslation } from "react-i18next";
+import { SUBGRAPH_URL, CHAIN_ID } from "lib/localStorage/constants";
+import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 
 export interface INetworkContext {
   isValidNetwork: boolean;
@@ -28,7 +30,11 @@ export const NetworkContext = createContext<INetworkContext>(
 );
 
 function NetworkProvider({ children }: Props) {
-  const [currentNetwork, setCurrentNetwork] = useState(networks[0]);
+  function setInitialNetwork(){
+   return networks.find((network) => network.chainId.toString() === getLocalStorageItem(CHAIN_ID)) || networks[0]
+  }
+  
+  const [currentNetwork, setCurrentNetwork] = useState(setInitialNetwork());
   const [isValidNetwork, setIsValidNetwork] = useState(false);
   const provider = useProvider();
 
@@ -48,6 +54,7 @@ function NetworkProvider({ children }: Props) {
         );
         if (permittedNetworks.length > 0) {
           setCurrentNetwork(permittedNetworks[0]);
+          
           setIsValidNetwork(true);
         } else {
           setIsValidNetwork(false);
@@ -64,11 +71,21 @@ function NetworkProvider({ children }: Props) {
 
   useEffect(() => {
     getCurrentNetwork();
+    
   }, [getCurrentNetwork]);
 
   useEffect(() => {
     window.ethereum?.on("chainChanged", getCurrentNetwork);
-  }, []);
+  }, [currentNetwork]);
+
+  useEffect(() => {
+    const chainChanged = currentNetwork.subgraphUrl !== getLocalStorageItem(SUBGRAPH_URL);
+    setLocalStorageItem(SUBGRAPH_URL, currentNetwork.subgraphUrl);
+    setLocalStorageItem(CHAIN_ID, currentNetwork.chainId.toString());
+    if(chainChanged){
+      window.location.reload();
+    }
+  }, [currentNetwork.chainId]);
 
   const networkObject: INetworkContext = useMemo(
     () => ({

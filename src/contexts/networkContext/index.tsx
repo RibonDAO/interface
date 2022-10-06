@@ -54,7 +54,6 @@ function NetworkProvider({ children }: Props) {
         );
         if (permittedNetworks.length > 0) {
           setCurrentNetwork(permittedNetworks[0]);
-          
           setIsValidNetwork(true);
         } else {
           setIsValidNetwork(false);
@@ -71,7 +70,6 @@ function NetworkProvider({ children }: Props) {
 
   useEffect(() => {
     getCurrentNetwork();
-    
   }, [getCurrentNetwork]);
 
   useEffect(() => {

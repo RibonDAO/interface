@@ -18,7 +18,6 @@ import { ReactComponent as BlueRightArrow } from "assets/icons/right-arrow-blue.
 import { useNetworkContext } from "contexts/networkContext";
 import * as S from "../styles";
 
-
 function GivingsSection(): JSX.Element {
   const [allDonations, setAllDonations] = useState<any>();
   const { navigateTo } = useNavigation();
@@ -63,7 +62,6 @@ function GivingsSection(): JSX.Element {
 
   useEffect(() => {
     fetchAllDonations();
-    
   }, []);
 
   useEffect(() => {

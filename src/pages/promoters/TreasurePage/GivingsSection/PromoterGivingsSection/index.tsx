@@ -150,7 +150,6 @@ function GivingsSection(): JSX.Element {
       const decimals = await donationTokenContract?.decimals();
       setTokenDecimals(decimals);
     }
-
     fetchDecimals();
   }, [contract]);
 
@@ -205,7 +204,6 @@ function GivingsSection(): JSX.Element {
     const allDonations = sortDonationsByDate(allPromoterDonations);
     const isCryptoDonation = (item: any) => !!item.timestamp;
     return allDonations?.map((item: any) =>
-    
       isCryptoDonation(item) ? (
         <CardDoubleTextDividerButton
           key={item.id}

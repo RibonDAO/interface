@@ -1,6 +1,6 @@
 import { useContractRequest } from "hooks/useContractRequest";
 import { Contract } from "@ethersproject/contracts";
-import { formatFromDecimals} from "lib/web3Helpers/etherFormatters";
+import { formatFromDecimals } from "lib/web3Helpers/etherFormatters";
 import { useCallback, useEffect, useState } from "react";
 
 function useContractBalance(contract: Contract | null, address: string) {

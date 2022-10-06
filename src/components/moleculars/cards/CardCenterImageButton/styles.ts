@@ -1,16 +1,17 @@
 import styled from "styled-components";
+import { defaultSubtitleLarge } from "styles/typography/default";
 
 export const Container = styled.div`
   width: 100%;
-  border: 1px solid ${({ theme }) => theme.colors.white};
+  border: 1px solid ${({ theme }) => theme.colors.neutral10};
   border-radius: 12px;
   box-sizing: border-box;
-  background-color: ${({ theme }) => theme.colors.white};
-  box-shadow: 0 8px 24px ${({ theme }) => theme.colors.lightShadow};
+  background-color: ${({ theme }) => theme.colors.neutral10};
+  box-shadow: 0 8px 24px ${({ theme }) => theme.colors.defaultShadow};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 286px;
-    border-right: 1px solid white;
+    border-right: 1px solid ${({ theme }) => theme.colors.neutral10};
   }
 `;
 
@@ -26,7 +27,7 @@ export const ImageSection = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     height: 267px;
-    border-right: 1px solid white;
+    border-right: 1px solid ${({ theme }) => theme.colors.neutral10};
   }
 `;
 
@@ -52,14 +53,14 @@ export const DarkStroke = styled.div`
 `;
 
 export const ImageDescription = styled.h4`
+  ${defaultSubtitleLarge}
   padding: 14px;
   position: absolute;
   bottom: 0;
   left: 0;
   z-index: 2;
-  font-weight: ${({ theme }) => theme.font.semibold};
   line-height: 19px;
-  color: white;
+  color: ${({ theme }) => theme.colors.neutral10};
 `;
 
 export const ContentSection = styled.div`
@@ -73,7 +74,7 @@ export const ContentSection = styled.div`
 
 export const Info = styled.p`
   text-align: center;
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.gray30};
 
   &:not(:first-child) {
     margin-left: 4px;
@@ -86,7 +87,7 @@ export const Bullet = styled.h6`
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const InfoContainer = styled.div`

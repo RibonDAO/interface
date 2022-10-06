@@ -37,14 +37,14 @@ function ModalImage({
   body = null,
   primaryButtonText = null,
   primaryButtonLeftIcon = undefined,
-  primaryButtonTextColor = "white",
-  primaryButtonColor = theme.colors.mediumGreen,
+  primaryButtonTextColor = theme.colors.neutral10,
+  primaryButtonColor = theme.colors.green30,
   primaryButtonBorderColor,
   secondaryButtonText = null,
   secondaryButtonLeftIcon = undefined,
-  secondaryButtonTextColor = theme.colors.mediumGray,
+  secondaryButtonTextColor = theme.colors.gray30,
   secondaryButtonBorderColor,
-  secondaryButtonColor = "white",
+  secondaryButtonColor = theme.colors.neutral10,
   // TODO: discuss with de team to modify linter's rules
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   primaryButtonCallback = () => {},

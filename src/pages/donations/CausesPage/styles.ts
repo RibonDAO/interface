@@ -1,5 +1,5 @@
-import { HighlightedTextH1 } from "components/atomics/typography/HighlightedText/styles";
 import styled from "styled-components";
+import { stylizedHeadingLarge } from "styles/typography/stylized";
 
 export const Container = styled.div``;
 
@@ -12,7 +12,8 @@ export const BodyContainer = styled.div`
   }
 `;
 
-export const Title = styled(HighlightedTextH1)`
+export const Title = styled.h1`
+  ${stylizedHeadingLarge}
   margin: 0;
 `;
 
@@ -32,10 +33,10 @@ export const CausesCardContainer = styled.div``;
 
 export const FooterText = styled.p`
   text-align: center;
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.gray30};
 
   a {
     text-decoration: none;
-    color: ${({ theme }) => theme.colors.mediumGreen};
+    color: ${({ theme }) => theme.colors.green30};
   }
 `;

@@ -17,7 +17,7 @@
     }],
     "color-hex-case": "lower",
     "color-no-invalid-hex": true,
-    "color-function-notation": false,
+    "color-function-notation": null,
     "font-weight-notation": "numeric",
     "shorthand-property-no-redundant-values": true,
     "value-keyword-case": ["lower", { "ignoreKeywords": ["dummyValue"] }],
@@ -262,6 +262,7 @@
         "orientation",
         "fill",
         "stroke",
+        "stroke-dasharray",
         "transition",
         "transition-delay",
         "transition-timing-function",
@@ -280,7 +281,7 @@
         "animation-fill-mode"
       ],
       {
-        "unspecified": "bottom",
+        "unspecified": "top",
         "severity": "error"
       }
     ]

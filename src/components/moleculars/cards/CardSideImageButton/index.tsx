@@ -6,7 +6,7 @@ import checkIcon from "assets/icons/check-icon.svg";
 import * as S from "./styles";
 
 const { colors } = theme;
-const { mediumGreen, white } = colors;
+const { green30, neutral10 } = colors;
 
 export type Props = {
   backgroundColor?: string;
@@ -25,8 +25,8 @@ function CardSideImageButton({
   icon,
   ribons,
   title,
-  buttonTextColor = "white",
-  buttonBackgroundColor = mediumGreen,
+  buttonTextColor = neutral10,
+  buttonBackgroundColor = green30,
   buttonText,
   description,
   onClick,
@@ -35,14 +35,16 @@ function CardSideImageButton({
 }: Props): JSX.Element {
   function renderCollectedButton() {
     return (
-      <Button
-        text={buttonText || ""}
-        textColor={isCollected ? mediumGreen : buttonTextColor}
-        backgroundColor={isCollected ? white : buttonBackgroundColor}
-        borderColor={mediumGreen}
-        leftIcon={isCollected ? checkIcon : undefined}
-        onClick={() => {}}
-      />
+      buttonText && (
+        <Button
+          text={buttonText}
+          textColor={isCollected ? green30 : buttonTextColor}
+          backgroundColor={isCollected ? neutral10 : buttonBackgroundColor}
+          borderColor={green30}
+          leftIcon={isCollected ? checkIcon : undefined}
+          onClick={() => {}}
+        />
+      )
     );
   }
 
@@ -69,7 +71,7 @@ function CardSideImageButton({
                 <S.Description>{description}</S.Description>
               </S.DescriptionContainer>
             )}
-            {buttonText && renderCollectedButton()}
+            {renderCollectedButton()}
           </S.TextContainer>
         </S.Content>
       </S.CardSection>

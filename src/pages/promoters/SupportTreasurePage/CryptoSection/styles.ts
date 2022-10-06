@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import Button from "components/atomics/buttons/Button";
-import { AuxiliarText } from "components/atomics/typography/AuxiliarText/styles";
 import {
-  BoldInput,
-  BoldP,
-} from "components/atomics/typography/BoldText/styles";
+  defaultParagraphSmall,
+  defaultSubtitleMedium,
+} from "styles/typography/default";
 
 export const Subtitle = styled.h3`
   margin-top: 20px;
 `;
 
-export const Label = styled(BoldP)`
+export const Label = styled.p`
+  ${defaultSubtitleMedium}
   margin-top: 24px;
   margin-bottom: 12px;
 `;
@@ -38,15 +38,16 @@ export const Image = styled.img`
   }
 `;
 
-export const Input = styled(BoldInput)`
+export const Input = styled.input`
+  ${defaultSubtitleMedium}
   width: 100%;
   height: 39px;
   margin-top: 12px;
   margin-bottom: 8px;
   padding: 8px;
-  border: 1px solid ${({ theme }) => theme.colors.mediumGreen};
+  border: 1px solid ${({ theme }) => theme.colors.green30};
   border-radius: 8px;
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const UsdcIcon = styled.img`
@@ -63,12 +64,13 @@ export const UsdcContainer = styled.div`
 
 export const UsdcText = styled.p`
   margin-left: 4px;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.gray40};
 `;
 
-export const Text = styled(AuxiliarText)`
+export const Text = styled.p`
+  ${defaultParagraphSmall}
   margin-top: 8px;
-  color: ${({ theme }) => theme.colors.mediumGreen};
+  color: ${({ theme }) => theme.colors.green30};
 `;
 
 export const ButtonContainer = styled.div`
@@ -81,8 +83,8 @@ export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   align-self: end;
-  background-color: white;
-  box-shadow: 0 -4px 4px ${({ theme }) => theme.colors.lightShadow};
+  background-color: ${({ theme }) => theme.colors.neutral10};
+  box-shadow: 0 -4px 4px ${({ theme }) => theme.colors.defaultShadow};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     height: 60px;

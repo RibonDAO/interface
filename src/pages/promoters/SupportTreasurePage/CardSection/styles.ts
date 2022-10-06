@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import Button from "components/atomics/buttons/Button";
-import { AuxiliarText } from "components/atomics/typography/AuxiliarText/styles";
-import { AuxiliarButton } from "components/atomics/typography/AuxiliarButtonText/styles";
+import {
+  defaultButtonTextSmall,
+  defaultParagraphSmall,
+} from "styles/typography/default";
 
 export const CardSectionContainer = styled.div`
   margin-top: 24px;
@@ -22,7 +24,8 @@ export const ValuesContainer = styled.div`
   grid-gap: 8px;
 `;
 
-export const CardValueButton = styled(AuxiliarButton)`
+export const CardValueButton = styled(Button)`
+  ${defaultButtonTextSmall}
   max-width: 112px;
   height: 30px;
   border-radius: 66px;
@@ -40,8 +43,8 @@ export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   align-self: end;
-  background-color: white;
-  box-shadow: 0 -4px 4px ${({ theme }) => theme.colors.lightShadow};
+  background-color: ${({ theme }) => theme.colors.neutral10};
+  box-shadow: 0 -4px 4px ${({ theme }) => theme.colors.defaultShadow};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     height: 60px;
@@ -63,22 +66,23 @@ export const FinishButton = styled(Button)`
 
 export const GivingValue = styled.h2`
   margin-top: 4px;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const NetGivingValue = styled.p`
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const ServiceFeesValue = styled.p`
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.gray30};
 `;
 
-export const CryptoGivingValue = styled(AuxiliarText)`
+export const CryptoGivingValue = styled.p`
+  ${defaultParagraphSmall}
   margin-bottom: 32px;
   font-style: italic;
   line-height: 19.2px;
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const CardImpact = styled.div`
@@ -108,10 +112,10 @@ export const CardImpactImage = styled.img`
 `;
 
 export const CardImpactText = styled.h4`
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.gray40};
 
   span {
-    color: ${({ theme }) => theme.colors.mediumGreen};
+    color: ${({ theme }) => theme.colors.green30};
   }
 `;
 

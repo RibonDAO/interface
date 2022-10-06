@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import ReactModal from "react-modal";
 import {
-  BoldAuxiliarText,
-  BoldP,
-} from "components/atomics/typography/BoldText/styles";
+  defaultSubtitleMedium,
+  defaultSubtitleSmall,
+} from "styles/typography/default";
 
 export const BlankModal = styled(ReactModal)`
   width: 100%;
@@ -44,15 +44,17 @@ export const Icon = styled.img`
   padding: 20%;
 `;
 
-export const IconDescription = styled(BoldAuxiliarText)`
+export const IconDescription = styled.p`
+  ${defaultSubtitleSmall}
   padding-top: 4px;
   text-align: center;
   color: #82aabe;
 `;
 
-export const Text = styled(BoldP)`
+export const Text = styled.p`
+  ${defaultSubtitleMedium}
   text-align: center;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const ProgressBar = styled.div`

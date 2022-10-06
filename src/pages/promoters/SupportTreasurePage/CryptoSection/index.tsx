@@ -24,7 +24,6 @@ import { useIntegrationId } from "hooks/useIntegrationId";
 import WalletIcon from "./assets/wallet-icon.svg";
 import * as S from "./styles";
 
-
 function CryptoSection(): JSX.Element {
   const [amount, setAmount] = useState("");
   const [loading, setLoading] = useState(false);

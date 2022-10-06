@@ -16,7 +16,6 @@ import { useNetworkContext } from "contexts/networkContext";
 import useTokenDecimals from "hooks/useTokenDecimals";
 import * as S from "../styles";
 
-
 function GivingsSection(): JSX.Element {
   const [allDonations, setAllDonations] = useState<any>();
   const { navigateTo } = useNavigation();

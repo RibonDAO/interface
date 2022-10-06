@@ -32,7 +32,6 @@ import { useCardPaymentInformation } from "contexts/cardPaymentInformationContex
 import * as S from "../styles";
 import sortDonationsByDate, { paidDate } from "./lib/sortDonationsByDate";
 
-
 type LocationStateType = {
   id: string;
   timestamp: number;

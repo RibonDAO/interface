@@ -81,7 +81,9 @@ function GivingsSection(): JSX.Element {
       <CardDoubleTextDividerButton
         key={item.id}
         firstText={formatDate(item.timestamp).toString()}
-        mainText={formatFromDecimals(item.amountDonated, tokenDecimals).toFixed(2)}
+        mainText={formatFromDecimals(item.amountDonated, tokenDecimals).toFixed(
+          2,
+        )}
         rightComplementText={coin}
         buttonText={t("linkTransactionText")}
         rightComponentButton={RightArrowBlack}

@@ -30,10 +30,15 @@ export const NetworkContext = createContext<INetworkContext>(
 );
 
 function NetworkProvider({ children }: Props) {
-  function setInitialNetwork(){
-   return networks.find((network) => network.chainId.toString() === getLocalStorageItem(CHAIN_ID)) || networks[0]
+  function setInitialNetwork() {
+    return (
+      networks.find(
+        (network) =>
+          network.chainId.toString() === getLocalStorageItem(CHAIN_ID),
+      ) || networks[0]
+    );
   }
-  
+
   const [currentNetwork, setCurrentNetwork] = useState(setInitialNetwork());
   const [isValidNetwork, setIsValidNetwork] = useState(false);
   const provider = useProvider();
@@ -77,10 +82,11 @@ function NetworkProvider({ children }: Props) {
   }, [currentNetwork]);
 
   useEffect(() => {
-    const chainChanged = currentNetwork.subgraphUrl !== getLocalStorageItem(SUBGRAPH_URL);
+    const chainChanged =
+      currentNetwork.subgraphUrl !== getLocalStorageItem(SUBGRAPH_URL);
     setLocalStorageItem(SUBGRAPH_URL, currentNetwork.subgraphUrl);
     setLocalStorageItem(CHAIN_ID, currentNetwork.chainId.toString());
-    if(chainChanged){
+    if (chainChanged) {
       window.location.reload();
     }
   }, [currentNetwork.chainId]);

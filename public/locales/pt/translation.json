@@ -20,7 +20,7 @@
       "receiveTicketAnimationModalTitle": "Recebendo ticket...",
       "receiveTicketAnimationModalOrigin": "Apoiadores",
       "receiveTicketAnimationModalDestiny": "Você",
-      "donateAnimationModalTitle":"Realizando doação... ",
+      "donateAnimationModalTitle": "Realizando doação... ",
       "donateAnimationModalOrigin": "Você",
       "donateAnimationModalDestiny": "Projeto",
       "modalForm": {
@@ -54,6 +54,9 @@
     "layoutHeader": {
       "changeLanguageItem": {
         "changeLanguageText": "Alterar idioma"
+      },
+      "userSupportItem": {
+        "userSupportText": "Suporte ao usuário"
       },
       "donationModalTitle": "Você ganhou um ticket doação",
       "donationModalButtonText": "Receber ticket",
@@ -143,7 +146,7 @@
           }
         },
         "paymentInformationPage": {
-          "title":"Sua contribuição",
+          "title": "Sua contribuição",
           "buttonTextCard": "Continuar",
           "paymentInformationSection": {
             "title": "Forma de pagamento",
@@ -162,6 +165,11 @@
           "title": "Este é um resultado possível",
           "body": "A contribuição vai gerar tickets para mais pessoas doarem para diversas causas.",
           "primaryButtonText": "Entendi"
+        },
+        "userSupportCard": {
+          "title": "Suporte ao usuário",
+          "description": "Dúvidas, ideias, estornos. Estamos aqui!",
+          "primaryButtonText": "Acesse o suporte"
         }
       },
 

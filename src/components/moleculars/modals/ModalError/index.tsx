@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "components/atomics/buttons/Button";
 import ReactModal from "react-modal";
+import { logEvent } from "services/analytics";
 import * as S from "./styles";
 import errorIcon from "./assets/alert.svg";
 import warningIcon from "./assets/warning-icon.svg";
@@ -28,6 +29,10 @@ function ModalError({
   buttonText,
   warning,
 }: Props): JSX.Element {
+  const handleClick = () => {
+    logEvent("UserSupportBtn_Click");
+  };
+
   return (
     <S.ModalWithIcon
       isOpen={visible}
@@ -40,6 +45,7 @@ function ModalError({
       <S.Title color={titleColor}>{title}</S.Title>
       <S.Body>{body}</S.Body>
       {buttonText && <Button text={buttonText} onClick={onClose} />}
+      <S.SupportButton text="" onClick={handleClick} />
     </S.ModalWithIcon>
   );
 }

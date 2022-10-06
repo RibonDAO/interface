@@ -10,6 +10,7 @@ import {
   growthbookSetAttributes,
   growthbookSetFeatures,
 } from "services/growthbook";
+import Zendesk from "config/zendesk";
 import RoutesComponent from "./config/routes";
 import GlobalStyle from "./styles/globalStyle";
 import theme from "./styles/theme";
@@ -37,6 +38,7 @@ function App() {
               <BrowserRouter>
                 <ToastContextProvider>
                   <RoutesComponent />
+                  <Zendesk />
                   <Toast />
                 </ToastContextProvider>
               </BrowserRouter>

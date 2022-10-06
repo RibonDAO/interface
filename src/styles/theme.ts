@@ -34,6 +34,8 @@ const theme: ThemeType = {
     lightShadow: "rgba(24, 86, 105, 0.15)",
     darkShadow: "rgba(192, 192, 192, 0.75)",
     modalBackground: "rgba(40, 36, 28, 0.6)",
+    orange: "#AF5333",
+    mediumOrange: "#FF9661",
   },
   zindex: {
     base: 0,

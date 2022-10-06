@@ -21,6 +21,7 @@ import { useDonationTicketModal } from "hooks/modalHooks/useDonationTicketModal"
 import Spinner from "components/atomics/Spinner";
 import useCanDonate from "hooks/apiHooks/useCanDonate";
 import { logError } from "services/crashReport";
+import { ZendeskAPI } from "react-zendesk";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
@@ -79,6 +80,7 @@ function CausesPage(): JSX.Element {
   const hasAvailableDonation = !state?.blockedDonation && canDonate;
 
   useEffect(() => {
+    ZendeskAPI("webWidget", "open");
     if (
       !hasReceivedTicketToday() ||
       (hasAvailableDonation && hasNotSeenDonationModal)

@@ -20,7 +20,7 @@
       "receiveTicketAnimationModalTitle": "Receiving Ticket...",
       "receiveTicketAnimationModalOrigin": "Supportes",
       "receiveTicketAnimationModalDestiny": "You",
-      "donateAnimationModalTitle":"Making donation...",
+      "donateAnimationModalTitle": "Making donation...",
       "donateAnimationModalOrigin": "You",
       "donateAnimationModalDestiny": "Project",
       "modalForm": {
@@ -54,6 +54,9 @@
     "layoutHeader": {
       "changeLanguageItem": {
         "changeLanguageText": "Change language"
+      },
+      "userSupportItem": {
+        "userSupportText": "User Support"
       },
       "donationModalTitle": "You got a donation ticket",
       "donationModalButtonText": "Receive ticket",
@@ -162,6 +165,11 @@
           "title": "This is a possible result",
           "body": "This contribution will finance tickets to more people to donate to different causes.",
           "primaryButtonText": "Ok"
+        },
+        "userSupportCard": {
+          "title": "User Support",
+          "description": "Questions, ideias, refunds. We’re here!",
+          "primaryButtonText": "Access user support"
         }
       },
 

@@ -27,19 +27,19 @@ type TitleProps = {
 export const Title = styled.h3<TitleProps>`
   margin-bottom: 8px;
   text-align: center;
-  color: ${({ theme, color }) => color || theme.colors.darkGray};
+  color: ${({ theme, color }) => color || theme.colors.gray40};
 `;
 
 export const Body = styled.h4`
   margin: 0 0 20px;
   text-align: center;
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const HighlightedText = styled.h4`
   margin-top: 16px;
   text-align: center;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const RowsModalRow = styled.div`
@@ -60,13 +60,13 @@ export const ImageContainer = styled.div`
 export const LeftImage = styled.img`
   width: 90px;
   height: 90px;
-  border: solid 2px ${({ theme }) => theme.colors.darkShadow};
+  border: solid 2px ${({ theme }) => theme.colors.defaultShadow};
   border-radius: 50%;
   position: absolute;
   left: 0;
   z-index: ${({ theme }) => theme.zindex.above};
   object-fit: cover;
-  filter: drop-shadow(0 20px 40px ${({ theme }) => theme.colors.lightShadow});
+  filter: drop-shadow(0 20px 40px ${({ theme }) => theme.colors.defaultShadow});
 `;
 
 export const RightImage = styled.img`
@@ -77,5 +77,5 @@ export const RightImage = styled.img`
   position: absolute;
   right: 0;
   object-fit: cover;
-  filter: drop-shadow(0 20px 40px ${({ theme }) => theme.colors.lightShadow});
+  filter: drop-shadow(0 20px 40px ${({ theme }) => theme.colors.defaultShadow});
 `;

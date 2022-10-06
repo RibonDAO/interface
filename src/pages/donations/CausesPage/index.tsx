@@ -61,7 +61,7 @@ function CausesPage(): JSX.Element {
   const { findOrCreateUser } = useUsers();
   const { createSource } = useSources();
   const { signedIn, setCurrentUser } = useCurrentUser();
-  const { showDonationTicketModal } = useDonationTicketModal();
+  const { showDonationTicketModal } = useDonationTicketModal(undefined, integration);
   const { canDonate } = useCanDonate(integrationId);
 
   function hasReceivedTicketToday() {
@@ -73,7 +73,7 @@ function CausesPage(): JSX.Element {
       const dateUserSawModal = new Date(parseInt(donationModalSeenAtKey, 10));
       return dateUserSawModal.toLocaleDateString() === today();
     }
-    return false;
+    return false; 
   }
 
   const hasAvailableDonation = !state?.blockedDonation && canDonate;
@@ -83,10 +83,12 @@ function CausesPage(): JSX.Element {
       !hasReceivedTicketToday() ||
       (hasAvailableDonation && hasNotSeenDonationModal)
     ) {
-      setLocalStorageItem(DONATION_MODAL_SEEN_AT_KEY, Date.now().toString());
-      showDonationTicketModal();
+      if(integration) {
+        setLocalStorageItem(DONATION_MODAL_SEEN_AT_KEY, Date.now().toString());
+        showDonationTicketModal();
+      }
     }
-  }, []);
+  }, [integration]);
 
   useEffect(() => {
     if (localStorage.getItem("integrationName") !== "undefined") {

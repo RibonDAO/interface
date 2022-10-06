@@ -10,7 +10,7 @@ export const Container = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 286px;
-    border-right: 1px solid white;
+    border-right: 1px solid ${({ theme }) => theme.colors.neutral10};
   }
 `;
 
@@ -26,7 +26,7 @@ export const ImageSection = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     height: 267px;
-    border-right: 1px solid white;
+    border-right: 1px solid ${({ theme }) => theme.colors.neutral10};
   }
 `;
 
@@ -59,7 +59,7 @@ export const ImageDescription = styled.h4`
   z-index: 2;
   font-weight: ${({ theme }) => theme.font.semibold};
   line-height: 19px;
-  color: white;
+  color: ${({ theme }) => theme.colors.neutral10};
 `;
 
 export const ContentSection = styled.div`

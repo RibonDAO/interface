@@ -20,7 +20,7 @@ function BillingInformationPage(): JSX.Element {
     keyPrefix:
       "promoters.supportTreasurePage.cardSection.billingInformationPage",
   });
-  const { lightGray } = theme.colors;
+  const { gray20 } = theme.colors;
   const { navigateTo } = useNavigation();
   const {
     state: { currentOffer },
@@ -55,7 +55,7 @@ function BillingInformationPage(): JSX.Element {
         givingTotal={givingTotal()}
         setCryptoGiving={setCryptoGiving}
       />
-      <Divider color={lightGray} />
+      <Divider color={gray20} />
 
       <BillingInformationSection />
 

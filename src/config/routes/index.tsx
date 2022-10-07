@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
 import WalletProvider from "contexts/walletContext";
 import CausesPage from "pages/donations/CausesPage";

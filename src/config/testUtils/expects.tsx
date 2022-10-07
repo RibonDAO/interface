@@ -40,6 +40,14 @@ export function expectLogEventToHaveBeenCalledWith(
   return expect(mockLogEventFunction).toHaveBeenCalledWith(event);
 }
 
+export function expectLogEventToHaveBeenCalledWithTimes(
+  times: number,
+  eventName: string,
+) {
+  expect(mockLogEventFunction).toHaveBeenCalledWith(eventName);
+  expect(mockLogEventFunction).toHaveBeenCalledTimes(times);
+}
+
 type expectPageToNavigateToType = {
   state?: Record<any, any>;
 };

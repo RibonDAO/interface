@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import "jest-canvas-mock";
-import { initializeFirebase } from "./services";
+import { initializeFirebase } from "services/firebase";
 
 export const mockNavigationFunction = jest.fn();
 export const mockLogErrorFunction = jest.fn();

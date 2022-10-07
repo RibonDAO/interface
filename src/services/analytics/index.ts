@@ -22,7 +22,7 @@ export function logEvent(eventName: string, params?: EventParams): void {
   try {
     if (eventName.length > 32) {
       throw new EventNameTooLongError();
-    } else {
+    } else if (process.env.NODE_ENV === "production") {
       const convertedParams = params ? convertParamsToString(params) : {};
 
       convertedParams.anonymousId =

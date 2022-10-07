@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { initializeFirebase } from "services/firebase";
+import { initializeSentry } from "services/sentry";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./i18n";
-import { initializeFirebase, initializeSentry } from "./services";
 
 declare global {
   interface Window {

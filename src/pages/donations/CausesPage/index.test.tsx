@@ -1,4 +1,3 @@
-import React from "react";
 import { renderComponent } from "config/testUtils";
 import { mockRequest } from "config/testUtils/test-helper";
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";

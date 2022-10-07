@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Modal } from "../ModalBlank/styles";
 
-export const ModalWithIcon = styled(Modal)`
+export const ModalWithDoubleImage = styled(Modal)`
   padding: 16px;
 `;
 

@@ -26,6 +26,7 @@ import TreasureIcon from "assets/icons/treasure-off-icon.svg";
 import RightArrowBlack from "assets/icons/right-arrow-black.svg";
 import { ReactComponent as BlueRightArrow } from "assets/icons/right-arrow-blue.svg";
 import usePromoterCardGivings from "hooks/apiHooks/usePromoterCardGivings";
+import useTokenDecimals from "hooks/useTokenDecimals";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import * as S from "../styles";
@@ -61,14 +62,15 @@ function GivingsSection(): JSX.Element {
   const { isMobile } = useBreakpoint();
   const { currentNetwork } = useNetworkContext();
   const coin = "USDC";
+  const { state } = useLocation<LocationStateType>();
+  const { tokenDecimals } = useTokenDecimals();
+  const [processingTransaction, setProcessingTransaction] = useState<boolean>(
+    state?.processing,
+  );
   const contract = useContract({
     address: currentNetwork.ribonContractAddress,
     ABI: RibonAbi.abi,
   });
-  const { state } = useLocation<LocationStateType>();
-  const [processingTransaction, setProcessingTransaction] = useState<boolean>(
-    state?.processing,
-  );
 
   const handleShowGivingsButtonClick = () => {
     logEvent("treasureShowGivingsListBtn_click", {
@@ -197,7 +199,7 @@ function GivingsSection(): JSX.Element {
           mainText={
             item.processed
               ? formatFromWei(item.amountDonated)
-              : formatFromDecimals(item.amountDonated).toFixed(2)
+              : formatFromDecimals(item.amountDonated, tokenDecimals).toFixed(2)
           }
           rightComplementText={coin}
           buttonText={t("linkTransactionText")}

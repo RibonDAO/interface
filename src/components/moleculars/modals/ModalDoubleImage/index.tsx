@@ -76,7 +76,7 @@ function ModalDoubleImage({
   }
 
   return (
-    <S.ModalWithIcon
+    <S.ModalWithDoubleImage
       isOpen={visible}
       onRequestClose={onClose}
       style={customStyles || defaultCustomStyles}
@@ -113,7 +113,7 @@ function ModalDoubleImage({
           borderColor={secondaryButtonBorderColor}
         />
       )}
-    </S.ModalWithIcon>
+    </S.ModalWithDoubleImage>
   );
 }
 

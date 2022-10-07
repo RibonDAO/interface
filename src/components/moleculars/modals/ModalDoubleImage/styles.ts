@@ -65,7 +65,8 @@ export const LeftImage = styled.img`
   position: absolute;
   left: 0;
   z-index: ${({ theme }) => theme.zindex.above};
-  object-fit: cover;
+  background: ${({ theme }) => theme.colors.neutral10};
+  object-fit: contain;
   filter: drop-shadow(0 20px 40px ${({ theme }) => theme.colors.defaultShadow});
 `;
 

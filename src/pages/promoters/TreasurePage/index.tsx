@@ -79,7 +79,7 @@ function TreasurePage(): JSX.Element {
       <S.CardContainer>
         <CardBlank>
           <S.TreasureText>
-            {isLoadingBalance ? "..." : contractBalance}{" "}
+            {isLoadingBalance ? "..." : contractBalance.toFixed(2)}{" "}
             <S.TreasureTextCoin>{coin}</S.TreasureTextCoin>
           </S.TreasureText>
           <Button

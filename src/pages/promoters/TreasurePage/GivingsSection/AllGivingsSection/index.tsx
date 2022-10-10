@@ -13,6 +13,7 @@ import { useWalletContext } from "contexts/walletContext";
 import RightArrowBlack from "assets/icons/right-arrow-black.svg";
 import { ReactComponent as BlueRightArrow } from "assets/icons/right-arrow-blue.svg";
 import { useNetworkContext } from "contexts/networkContext";
+import useTokenDecimals from "hooks/useTokenDecimals";
 import * as S from "../styles";
 
 function GivingsSection(): JSX.Element {
@@ -25,6 +26,7 @@ function GivingsSection(): JSX.Element {
   const { getAllPromotersDonations } = usePromoterDonations();
   const { isMobile } = useBreakpoint();
   const { currentNetwork } = useNetworkContext();
+  const { tokenDecimals } = useTokenDecimals();
   const coin = "USDC";
 
   const handleShowGivingsButtonClick = () => {
@@ -60,7 +62,9 @@ function GivingsSection(): JSX.Element {
       <CardDoubleTextDividerButton
         key={item.id}
         firstText={formatDate(item.timestamp).toString()}
-        mainText={formatFromDecimals(item.amountDonated).toFixed(2)}
+        mainText={formatFromDecimals(item.amountDonated, tokenDecimals).toFixed(
+          2,
+        )}
         rightComplementText={coin}
         buttonText={t("linkTransactionText")}
         rightComponentButton={RightArrowBlack}

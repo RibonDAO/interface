@@ -7,12 +7,13 @@ export const Container = styled.div`
   padding: 20px 14px 14px;
   border-radius: 16px;
   display: flex;
+  background-size: cover;
   flex-direction: column;
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.colors.orange20};
+
   background-image: url(${cardBackground});
   box-shadow: 0 4px 12px 0 ${({ theme }) => theme.colors.defaultShadow};
-  background-size: cover;
 `;
 
 export const SupportButton = styled(Button)`

@@ -38,7 +38,7 @@ export const RowsModalRow = styled.div`
 `;
 
 export const SupportButton = styled(Button)`
-  color: ${({ theme, color }) => color || theme.colors.green30};
-  background-color: ${({ theme }) => theme.colors.neutral10};
   border: 1px solid ${({ theme }) => theme.colors.green30};
+  background-color: ${({ theme }) => theme.colors.neutral10};
+  color: ${({ theme, color }) => color || theme.colors.green30};
 `;

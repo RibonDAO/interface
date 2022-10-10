@@ -20,8 +20,8 @@ export const Slider = styled.div`
   overflow-x: hidden;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    grid-auto-columns: auto;
-    grid-column-gap: 24px;
+    grid-auto-columns: max-content;
+    grid-gap: 24px;
   }
 `;
 

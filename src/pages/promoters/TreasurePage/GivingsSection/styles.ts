@@ -1,5 +1,8 @@
 import styled from "styled-components";
-import { defaultSubtitleMedium } from "styles/typography/default";
+import {
+  defaultSubtitleMedium,
+  defaultTitleSmall,
+} from "styles/typography/default";
 
 export const Container = styled.div``;
 
@@ -45,7 +48,8 @@ export const Image = styled.img`
   height: 40px;
 `;
 
-export const SectionTitle = styled.h4`
+export const SectionTitle = styled.h2`
+  ${defaultTitleSmall}
   margin-top: 28px;
   color: ${({ theme }) => theme.colors.darkGray};
 `;

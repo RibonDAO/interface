@@ -3,13 +3,16 @@ import Button from "components/atomics/buttons/Button";
 import {
   defaultComponentTextSmall,
   defaultParagraphSmall,
+  defaultTitleSmall,
 } from "styles/typography/default";
 
 export const CardSectionContainer = styled.div`
   margin-top: 24px;
 `;
 
-export const Subtitle = styled.h4`
+export const Subtitle = styled.h2`
+  ${defaultTitleSmall}
+
   &:nth-child(3) {
     margin-top: 18px;
   }

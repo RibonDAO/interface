@@ -1,5 +1,9 @@
 import styled from "styled-components";
-import { defaultParagraphSmall } from "styles/typography/default";
+import {
+  defaultHeadingLarge,
+  defaultParagraphSmall,
+  defaultTitleSmall,
+} from "styles/typography/default";
 import { stylizedHeadingLarge } from "styles/typography/stylized";
 
 export const Container = styled.div``;
@@ -33,7 +37,8 @@ export const Title = styled.h1`
   margin-bottom: 16px;
 `;
 
-export const TreasureText = styled.h1`
+export const TreasureText = styled.h3`
+  ${defaultHeadingLarge}
   margin-bottom: 8px;
   color: ${({ theme }) => theme.colors.mediumGreen};
 `;
@@ -42,7 +47,8 @@ export const TreasureTextCoin = styled.span`
   color: ${({ theme }) => theme.colors.mediumGreen};
 `;
 
-export const SectionTitle = styled.h4`
+export const SectionTitle = styled.h2`
+  ${defaultTitleSmall}
   margin-bottom: 8px;
   color: ${({ theme }) => theme.colors.darkGray};
 
@@ -76,21 +82,8 @@ export const GivingDate = styled.p`
   color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
-export const GivingText = styled.h1`
-  margin-bottom: 8px;
-  color: ${({ theme }) => theme.colors.mediumGreen};
-`;
-
-export const ProcessingGivingText = styled(GivingText)`
-  color: ${({ theme }) => theme.colors.mediumGray};
-`;
-
 export const GivingTextCoin = styled.span`
   color: ${({ theme }) => theme.colors.mediumGreen};
-`;
-
-export const ProcessingGivingTextCoin = styled(GivingTextCoin)`
-  color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
 export const StatusContainer = styled.div`

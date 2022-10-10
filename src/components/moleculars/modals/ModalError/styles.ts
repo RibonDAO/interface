@@ -15,22 +15,17 @@ type TitleProps = {
   color?: string;
 };
 
-export const Title = styled.h2<TitleProps>`
+export const Title = styled.h3<TitleProps>`
   text-align: center;
   color: ${({ theme, color }) => color || theme.colors.darkGray};
 `;
 
-export const Body = styled.h3`
+export const Body = styled.h4`
   margin: 8px 0 20px;
   text-align: center;
   color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
-export const HighlightedText = styled.h4`
-  margin-top: 16px;
-  text-align: center;
-  color: ${({ theme }) => theme.colors.darkGray};
-`;
 export const RowsModalRow = styled.div`
   margin-bottom: 28px;
   display: flex;

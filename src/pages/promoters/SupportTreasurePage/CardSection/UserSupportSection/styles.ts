@@ -3,7 +3,6 @@ import styled from "styled-components";
 import cardBackground from "assets/images/card-background.svg";
 
 export const Container = styled.div`
-  width: 100%;
   max-width: 472px;
   padding: 20px 14px 14px;
   border-radius: 16px;
@@ -13,6 +12,7 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.orange20};
   background-image: url(${cardBackground});
   box-shadow: 0 4px 12px 0 ${({ theme }) => theme.colors.defaultShadow};
+  background-size: cover;
 `;
 
 export const SupportButton = styled(Button)`

@@ -17,19 +17,15 @@ export const Title = styled.h1`
   margin: 0;
 `;
 
-export const CausesContainer = styled.div`
-  margin-top: 20px;
-  display: grid;
-  grid-gap: 14px;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    max-width: 910px;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 24px;
-  }
-`;
+export const CausesContainer = styled.div``;
 
 export const CausesCardContainer = styled.div``;
+
+export const NonProfitsListContainer = styled.div`
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    max-width: 900px;
+  }
+`;
 
 export const FooterText = styled.p`
   text-align: center;

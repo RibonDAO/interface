@@ -17,6 +17,7 @@ function Zendesk(): JSX.Element {
   };
   const { currentUser } = useCurrentUser();
   const [currentLang] = useState(getLocalStorageItem(LANGUAGE_KEY));
+  const ZENDESK_KEY = process.env.REACT_APP_ZENDESK_KEY ?? "";
 
   const loadZendeskApi = () => {
     ZendeskAPI("webWidget", "identify", {
@@ -36,7 +37,7 @@ function Zendesk(): JSX.Element {
   return (
     <ZendeskApp
       defer
-      zendeskKey="efe9ba42-3eee-48a3-aa79-b573e297fef4"
+      zendeskKey={ZENDESK_KEY}
       {...zendeskSettings}
       onLoaded={loadZendeskApi}
     />

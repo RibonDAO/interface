@@ -22,6 +22,7 @@ export const InputContainer = styled.div`
 `;
 
 export const ConnectContainer = styled.div`
+  margin-bottom: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;

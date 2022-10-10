@@ -23,6 +23,7 @@ import {
 import { useIntegrationId } from "hooks/useIntegrationId";
 import WalletIcon from "./assets/wallet-icon.svg";
 import * as S from "./styles";
+import UserSupportSection from "../CardSection/UserSupportSection";
 
 function CryptoSection(): JSX.Element {
   const [amount, setAmount] = useState("");
@@ -218,7 +219,10 @@ function CryptoSection(): JSX.Element {
   }
 
   return (
-    <div>{wallet ? renderFormCryptocurrency() : renderConnectWallet()}</div>
+    <div>
+      {wallet ? renderFormCryptocurrency() : renderConnectWallet()}
+      <UserSupportSection />
+    </div>
   );
 }
 

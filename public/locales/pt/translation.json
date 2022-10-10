@@ -23,7 +23,7 @@
       "receiveTicketAnimationModalTitle": "Recebendo ticket...",
       "receiveTicketAnimationModalOrigin": "Apoiadores",
       "receiveTicketAnimationModalDestiny": "Você",
-      "donateAnimationModalTitle":"Realizando doação... ",
+      "donateAnimationModalTitle": "Realizando doação... ",
       "donateAnimationModalOrigin": "Você",
       "donateAnimationModalDestiny": "Projeto",
       "modalForm": {
@@ -32,7 +32,8 @@
         "useTermsText": "Termos de Serviço",
         "privacyPolicyText": "Política de Privacidade",
         "privacyPolicyLink": "https://ribon.io/2021/06/01/politica-de-privacidade-e-retencao-de-dados-pessoais/",
-        "useTermsLink": "https://blog.ribon.io/2021/07/12/termos-e-condicoes-de-uso-da-ribon/"
+        "useTermsLink": "https://blog.ribon.io/2021/07/12/termos-e-condicoes-de-uso-da-ribon/",
+        "accessUserSupport": "Acessar o suporte ao usuário"
       }
     },
     "donationDonePage": {
@@ -57,6 +58,9 @@
     "layoutHeader": {
       "changeLanguageItem": {
         "changeLanguageText": "Alterar idioma"
+      },
+      "userSupportItem": {
+        "userSupportText": "Suporte ao usuário"
       },
       "donationModalTitle": "Legal! Você tem 1 vale para doar :)",
       "donationModalBody": "Você pode destiná-lo para qualquer projeto",
@@ -147,7 +151,7 @@
           }
         },
         "paymentInformationPage": {
-          "title":"Sua contribuição",
+          "title": "Sua contribuição",
           "buttonTextCard": "Continuar",
           "paymentInformationSection": {
             "title": "Forma de pagamento",
@@ -166,6 +170,11 @@
           "title": "Este é um resultado possível",
           "body": "A contribuição vai gerar tickets para mais pessoas doarem para diversas causas.",
           "primaryButtonText": "Entendi"
+        },
+        "userSupportCard": {
+          "title": "Suporte ao usuário",
+          "description": "Dúvidas, ideias, estornos. Estamos aqui!",
+          "primaryButtonText": "Acesse o suporte"
         }
       },
 

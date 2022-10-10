@@ -94,10 +94,10 @@ function CausesPage(): JSX.Element {
   }, [integration]);
 
   useEffect(() => {
-    if (localStorage.getItem("integrationName") !== "undefined") {
+    if (integration) {
       logEvent("donateIntroDial_view");
     }
-  }, [integrationId]);
+  }, [integration]);
 
   useEffect(() => {
     if (state?.failedDonation) logEvent("donateDonationError_view");

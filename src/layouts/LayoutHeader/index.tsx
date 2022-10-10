@@ -23,6 +23,7 @@ import ChangeLanguageItem from "./ChangeLanguageItem";
 import LogoutItem from "./LogoutItem";
 import * as S from "./styles";
 import useCanDonate from "../../hooks/apiHooks/useCanDonate";
+import UserSupportItem from "./UserSupportItem";
 
 export type Props = {
   rightComponent?: JSX.Element;
@@ -114,7 +115,16 @@ function LayoutHeader({
       >
         <ChangeLanguageItem />
         <Divider color={theme.colors.gray20} />
-        {signedIn ? <LogoutItem /> : <div />}
+        <UserSupportItem />
+
+        {signedIn ? (
+          <div>
+            <Divider color={theme.colors.gray20} />
+            <LogoutItem />
+          </div>
+        ) : (
+          <div />
+        )}
       </ModalBlank>
       <Header
         hasBackButton={hasBackButton}

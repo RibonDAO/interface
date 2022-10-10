@@ -1,3 +1,4 @@
+import Button from "components/atomics/buttons/Button";
 import styled from "styled-components";
 import { Modal } from "../ModalBlank/styles";
 
@@ -34,4 +35,10 @@ export const HighlightedText = styled.h4`
 export const RowsModalRow = styled.div`
   margin-bottom: 28px;
   display: flex;
+`;
+
+export const SupportButton = styled(Button)`
+  border: 1px solid ${({ theme }) => theme.colors.green30};
+  background-color: ${({ theme }) => theme.colors.neutral10};
+  color: ${({ theme, color }) => color || theme.colors.green30};
 `;

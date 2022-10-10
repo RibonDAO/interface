@@ -2,7 +2,6 @@ import React, { Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
 import WalletProvider from "contexts/walletContext";
 import CausesPage from "pages/donations/CausesPage";
-import CurrentUserProvider from "contexts/currentUserContext";
 import ConfirmEmailPage from "pages/donations/ConfirmEmailPage";
 import DonationDonePage from "pages/donations/DonationDonePage";
 import ImpactPage from "pages/users/ImpactPage";
@@ -23,109 +22,91 @@ function RoutesComponent(): JSX.Element {
       <Route path="/" exact>
         <Suspense fallback={<div />}>
           <WalletProvider>
-            <CurrentUserProvider>
-              <MainLayout>
-                <CausesPage />
-              </MainLayout>
-            </CurrentUserProvider>
+            <MainLayout>
+              <CausesPage />
+            </MainLayout>
           </WalletProvider>
         </Suspense>
       </Route>
 
       <Route path="/confirm-email" exact>
         <Suspense fallback={<div />}>
-          <CurrentUserProvider>
-            <Navigation />
-            <ConfirmEmailPage />
-          </CurrentUserProvider>
+          <Navigation />
+          <ConfirmEmailPage />
         </Suspense>
       </Route>
 
       <Route path="/donation-done" exact>
         <Suspense fallback={<div />}>
-          <CurrentUserProvider>
-            <DonationDonePage />
-          </CurrentUserProvider>
+          <DonationDonePage />
         </Suspense>
       </Route>
 
       <Route path="/impact" exact>
         <Suspense fallback={<div />}>
-          <CurrentUserProvider>
-            <MainLayout>
-              <ImpactPage />
-            </MainLayout>
-          </CurrentUserProvider>
+          <MainLayout>
+            <ImpactPage />
+          </MainLayout>
         </Suspense>
       </Route>
 
       <Route path="/promoters/treasure" exact>
         <Suspense fallback={<div />}>
-          <CurrentUserProvider>
-            <NetworkProvider>
-              <WalletProvider>
-                <WalletLayout hasBackButton hideNavigation hideWallet>
-                  <TreasurePage />
-                </WalletLayout>
-              </WalletProvider>
-            </NetworkProvider>
-          </CurrentUserProvider>
+          <NetworkProvider>
+            <WalletProvider>
+              <WalletLayout hasBackButton hideNavigation hideWallet>
+                <TreasurePage />
+              </WalletLayout>
+            </WalletProvider>
+          </NetworkProvider>
         </Suspense>
       </Route>
 
       <Route path="/promoters/support-treasure" exact>
         <Suspense fallback={<div />}>
-          <CurrentUserProvider>
-            <NetworkProvider>
-              <WalletProvider>
-                <WalletLayout>
-                  <CardPaymentInformationProvider>
-                    <SupportTreasurePage />
-                  </CardPaymentInformationProvider>
-                </WalletLayout>
-              </WalletProvider>
-            </NetworkProvider>
-          </CurrentUserProvider>
+          <NetworkProvider>
+            <WalletProvider>
+              <WalletLayout>
+                <CardPaymentInformationProvider>
+                  <SupportTreasurePage />
+                </CardPaymentInformationProvider>
+              </WalletLayout>
+            </WalletProvider>
+          </NetworkProvider>
         </Suspense>
       </Route>
 
       <Route path="/promoters/support-treasure/billing-information" exact>
         <Suspense fallback={<div />}>
-          <CurrentUserProvider>
-            <WalletProvider>
-              <WalletLayout hasBackButton>
-                <CardPaymentInformationProvider>
-                  <BillingInformationPage />
-                </CardPaymentInformationProvider>
-              </WalletLayout>
-            </WalletProvider>
-          </CurrentUserProvider>
+          <WalletProvider>
+            <WalletLayout hasBackButton>
+              <CardPaymentInformationProvider>
+                <BillingInformationPage />
+              </CardPaymentInformationProvider>
+            </WalletLayout>
+          </WalletProvider>
         </Suspense>
       </Route>
 
       <Route path="/promoters/support-treasure/payment-information" exact>
         <Suspense fallback={<div />}>
-          <CurrentUserProvider>
-            <WalletProvider>
-              <WalletLayout hasBackButton>
-                <CardPaymentInformationProvider>
-                  <PaymentInformationPage />
-                </CardPaymentInformationProvider>
-              </WalletLayout>
-            </WalletProvider>
-          </CurrentUserProvider>
+          <WalletProvider>
+            <WalletLayout hasBackButton>
+              <CardPaymentInformationProvider>
+                <PaymentInformationPage />
+              </CardPaymentInformationProvider>
+            </WalletLayout>
+          </WalletProvider>
         </Suspense>
       </Route>
 
       <Route path="/promoters/show-givings" exact>
         <Suspense fallback={<div />}>
-          <CurrentUserProvider>
-            <WalletProvider>
-              <WalletLayout hasBackButton>
-                <GivingsPage />
-              </WalletLayout>
-            </WalletProvider>
-          </CurrentUserProvider>
+          <WalletProvider>
+            <WalletLayout hasBackButton>
+              <GivingsPage />
+            </WalletLayout>
+          </WalletProvider>
         </Suspense>
       </Route>
 

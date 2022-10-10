@@ -3,7 +3,7 @@ import { ReactComponent as LeftIcon } from "assets/icons/arrow-left-green.svg";
 import { ReactComponent as RightIcon } from "assets/icons/arrow-right-green.svg";
 import * as S from "./styles";
 
-type Props = {
+export type Props = {
   children: React.ReactNode;
   scrollOffset: number;
 };

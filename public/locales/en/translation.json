@@ -3,6 +3,9 @@
     "causesPage": {
       "donationModalTitle": "You got a donation ticket",
       "donationModalButtonText": "Receive ticket",
+      "donationWithIntegrationModalTitle": "Donate together to change lives!",
+      "donationWithIntegrationModalSubtitle": "You got a donation ticket :)",
+      "donationWithIntegrationModalButtonText": "Receive ticket",
       "confirmModalTitle": "Enter your e-mail to use your donation ticket",
       "confirmModalAuthTitle": "Confirm your donation",
       "confirmModalPrimaryButtonText": "Confirm",
@@ -20,7 +23,7 @@
       "receiveTicketAnimationModalTitle": "Receiving Ticket...",
       "receiveTicketAnimationModalOrigin": "Supportes",
       "receiveTicketAnimationModalDestiny": "You",
-      "donateAnimationModalTitle":"Making donation...",
+      "donateAnimationModalTitle": "Making donation...",
       "donateAnimationModalOrigin": "You",
       "donateAnimationModalDestiny": "Project",
       "modalForm": {
@@ -29,7 +32,8 @@
         "useTermsText": "Terms of Service",
         "privacyPolicyText": "Privacy Policy",
         "privacyPolicyLink": "https://ribon.io/2022/06/10/privacy-and-personal-data-retention-policy/",
-        "useTermsLink": "https://blog.ribon.io/2021/07/12/termos-e-condicoes-de-uso-da-ribon/"
+        "useTermsLink": "https://blog.ribon.io/2021/07/12/termos-e-condicoes-de-uso-da-ribon/",
+        "accessUserSupport": "Access user support"
       }
     },
     "donationDonePage": {
@@ -55,8 +59,12 @@
       "changeLanguageItem": {
         "changeLanguageText": "Change language"
       },
-      "donationModalTitle": "You got a donation ticket",
-      "donationModalButtonText": "Receive ticket",
+      "userSupportItem": {
+        "userSupportText": "User Support"
+      },
+      "donationModalTitle": "Great! You got 1 ticket to donate :)",
+      "donationModalBody": "You can assign the ticket to any project",
+      "donationModalButtonText": "Let’s go!",
       "logoutItem": {
         "logoutButton": "Sign Out",
         "logoutModalTitle": "Do you really want to sign out?",
@@ -162,6 +170,11 @@
           "title": "This is a possible result",
           "body": "This contribution will finance tickets to more people to donate to different causes.",
           "primaryButtonText": "Ok"
+        },
+        "userSupportCard": {
+          "title": "User Support",
+          "description": "Questions, ideias, refunds. We’re here!",
+          "primaryButtonText": "Access user support"
         }
       },
 

@@ -18,7 +18,7 @@ type TitleProps = {
 export const Title = styled.h3<TitleProps>`
   margin-bottom: 8px;
   text-align: center;
-  color: ${({ theme, color }) => color || theme.colors.darkGray};
+  color: ${({ theme, color }) => color || theme.colors.gray40};
 `;
 
 export const FormContainer = styled.div`
@@ -29,7 +29,7 @@ export const Input = styled.input`
   height: 39px;
   margin-bottom: 8px;
   padding: 8px;
-  border: 1px solid ${({ theme }) => theme.colors.mediumGreen};
+  border: 1px solid ${({ theme }) => theme.colors.green30};
   border-radius: 8px;
 `;
 

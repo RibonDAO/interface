@@ -14,6 +14,7 @@ import useNavigation from "hooks/useNavigation";
 import { logEvent } from "services/analytics";
 import { stringToNumber } from "lib/formatters/stringToNumberFormatter";
 import { useLoadingOverlay } from "contexts/loadingOverlayContext";
+import useTokenDecimals from "hooks/useTokenDecimals";
 import useCryptoTransaction from "hooks/apiHooks/useCryptoTransaction";
 import {
   formatFromDecimals,
@@ -22,13 +23,14 @@ import {
 import { useIntegrationId } from "hooks/useIntegrationId";
 import WalletIcon from "./assets/wallet-icon.svg";
 import * as S from "./styles";
+import UserSupportSection from "../CardSection/UserSupportSection";
 
 function CryptoSection(): JSX.Element {
   const [amount, setAmount] = useState("");
   const [loading, setLoading] = useState(false);
   const [userBalance, setUserBalance] = useState("");
   const { currentNetwork } = useNetworkContext();
-  const [tokenDecimals, setTokenDecimals] = useState(6);
+  const { tokenDecimals } = useTokenDecimals();
 
   const integrationId = useIntegrationId();
 
@@ -63,15 +65,6 @@ function CryptoSection(): JSX.Element {
     thousandsSeparator: ",",
     cursor: "end",
   };
-
-  useEffect(() => {
-    async function fetchDecimals() {
-      const decimals = await donationTokenContract?.decimals();
-      setTokenDecimals(decimals);
-    }
-
-    fetchDecimals();
-  }, [donationTokenContract]);
 
   const approveAmount = async () =>
     donationTokenContract?.functions.approve(
@@ -226,7 +219,10 @@ function CryptoSection(): JSX.Element {
   }
 
   return (
-    <div>{wallet ? renderFormCryptocurrency() : renderConnectWallet()}</div>
+    <div>
+      {wallet ? renderFormCryptocurrency() : renderConnectWallet()}
+      <UserSupportSection />
+    </div>
   );
 }
 

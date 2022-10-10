@@ -19,6 +19,9 @@ import ModalRows, {
 import ModalAnimation, {
   Props as ModalAnimationProps,
 } from "components/moleculars/modals/ModalAnimation";
+import ModalDoubleImage, {
+  Props as ModalDoubleImageProps,
+} from "components/moleculars/modals/ModalDoubleImage";
 
 /* eslint-disable no-shadow, no-unused-vars */
 export enum MODAL_TYPES {
@@ -29,6 +32,7 @@ export enum MODAL_TYPES {
   MODAL_IMAGE = "MODAL_IMAGE",
   MODAL_ROWS = "MODAL_ROWS",
   MODAL_ANIMATION = "MODAL_ANIMATION",
+  MODAL_DOUBLE_IMAGE = "MODAL_DOUBLE_IMAGE",
 }
 /* eslint-enable no-shadow, no-unused-vars */
 
@@ -40,6 +44,7 @@ export const MODAL_COMPONENTS: any = {
   [MODAL_TYPES.MODAL_IMAGE]: ModalImage,
   [MODAL_TYPES.MODAL_ROWS]: ModalRows,
   [MODAL_TYPES.MODAL_ANIMATION]: ModalAnimation,
+  [MODAL_TYPES.MODAL_DOUBLE_IMAGE]: ModalDoubleImage,
 };
 export type ShowModalProps =
   | {
@@ -69,4 +74,8 @@ export type ShowModalProps =
   | {
       type: MODAL_TYPES.MODAL_ANIMATION;
       props: ModalAnimationProps;
+    }
+  | {
+      type: MODAL_TYPES.MODAL_DOUBLE_IMAGE;
+      props: ModalDoubleImageProps;
     };

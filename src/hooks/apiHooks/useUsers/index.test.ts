@@ -11,7 +11,7 @@ describe("useUsers", () => {
     const { result } = renderHook(() => useUsers());
     hook = result.current;
   });
-  
+
   describe("#findUser", () => {
     beforeEach(() => {
       usersApi.postSearchUser = jest.fn(() => ({ data } as any));
@@ -51,13 +51,13 @@ describe("useUsers", () => {
       beforeEach(() => {
         usersApi.postSearchUser = jest.fn(() => ({ data } as any));
       });
-  
+
       it("calls the usersApi searchUser with correct params", () => {
         hook.findOrCreateUser(testEmail);
-  
+
         expect(usersApi.postSearchUser).toHaveBeenCalledWith(testEmail);
       });
-  
+
       it("returns the data fetched from the api", async () => {
         const findResultResult = await hook.findOrCreateUser(testEmail);
         expect(findResultResult).toEqual(data);
@@ -65,16 +65,18 @@ describe("useUsers", () => {
     });
 
     describe("when user don't exists on the database", () => {
-      const createdUser = { name: "newly created user" }
+      const createdUser = { name: "newly created user" };
 
       beforeEach(() => {
-        usersApi.postSearchUser = jest.fn(() => { throw new Error() });
+        usersApi.postSearchUser = jest.fn(() => {
+          throw new Error();
+        });
         usersApi.postCreateUser = jest.fn(() => ({ data: createdUser } as any));
       });
-  
+
       it("calls the usersApi searchUser with correct params and throws an error", () => {
         hook.findOrCreateUser(testEmail);
-  
+
         expect(usersApi.postSearchUser).toHaveBeenCalledWith(testEmail);
         expect(usersApi.postSearchUser).toThrow();
       });
@@ -84,7 +86,6 @@ describe("useUsers", () => {
 
         expect(usersApi.postCreateUser).toHaveBeenCalledWith(testEmail);
       });
-
 
       it("creates an user and returns the data", async () => {
         const findResultResult = await hook.findOrCreateUser(testEmail);

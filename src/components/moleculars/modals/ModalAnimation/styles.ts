@@ -54,7 +54,7 @@ export const IconDescription = styled.p`
 export const Text = styled.p`
   ${defaultSubtitleMedium}
   text-align: center;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const ProgressBar = styled.div`

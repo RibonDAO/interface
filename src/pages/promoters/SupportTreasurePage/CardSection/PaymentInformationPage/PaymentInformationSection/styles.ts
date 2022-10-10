@@ -11,7 +11,7 @@ export const PaymentInformationSectionContainer = styled.form`
 
 export const Title = styled.h3`
   margin-bottom: 20px;
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const Half = styled.div`

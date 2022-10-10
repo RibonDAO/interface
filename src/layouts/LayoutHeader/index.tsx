@@ -23,6 +23,7 @@ import ChangeLanguageItem from "./ChangeLanguageItem";
 import LogoutItem from "./LogoutItem";
 import * as S from "./styles";
 import useCanDonate from "../../hooks/apiHooks/useCanDonate";
+import UserSupportItem from "./UserSupportItem";
 
 export type Props = {
   rightComponent?: JSX.Element;
@@ -45,7 +46,7 @@ function LayoutHeader({
   const { isVoucherAvailable } = useVoucher();
 
   const { t } = useTranslation("translation", {
-    keyPrefix: "donations.causesPage",
+    keyPrefix: "layouts.layoutHeader",
   });
 
   const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
@@ -54,6 +55,7 @@ function LayoutHeader({
     type: MODAL_TYPES.MODAL_ICON,
     props: {
       title: t("donationModalTitle"),
+      body: t("donationModalBody"),
       primaryButtonText: t("donationModalButtonText"),
       primaryButtonCallback: () => {
         hide();
@@ -102,7 +104,7 @@ function LayoutHeader({
             justifyContent: "flex-end",
           },
           content: {
-            border: `1px solid ${theme.colors.lightGray}`,
+            border: `1px solid ${theme.colors.gray20}`,
             paddingLeft: 16,
             paddingRight: 16,
             position: isMobile ? "relative" : "absolute",
@@ -112,8 +114,17 @@ function LayoutHeader({
         }}
       >
         <ChangeLanguageItem />
-        <Divider color={theme.colors.lightGray} />
-        {signedIn ? <LogoutItem /> : <div />}
+        <Divider color={theme.colors.gray20} />
+        <UserSupportItem />
+
+        {signedIn ? (
+          <div>
+            <Divider color={theme.colors.gray20} />
+            <LogoutItem />
+          </div>
+        ) : (
+          <div />
+        )}
       </ModalBlank>
       <Header
         hasBackButton={hasBackButton}
@@ -128,8 +139,8 @@ function LayoutHeader({
                   <S.TicketsAmount
                     color={
                       canDonateAndHasVoucher
-                        ? theme.colors.mediumGreen
-                        : theme.colors.mediumGray
+                        ? theme.colors.green30
+                        : theme.colors.gray30
                     }
                   >
                     {canDonateAndHasVoucher ? 1 : 0}

@@ -7,7 +7,7 @@ export type Props = {
   size?: string;
 };
 function Spinner({
-  strokeColor = theme.colors.mediumGreen,
+  strokeColor = theme.colors.green30,
   size = "18",
 }: Props): JSX.Element {
   return (

@@ -9,4 +9,5 @@ export default interface CurrentNetwork {
   currencyName: string;
   blockExplorerUrls: string;
   defaultPoolAddress: string;
+  subgraphUrl: string;
 }

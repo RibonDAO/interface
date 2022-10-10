@@ -16,7 +16,7 @@ export const Text = styled.p`
   ${defaultSubtitleMedium}
   margin-top: 28px;
   text-align: center;
-  color: ${({ theme }) => theme.colors.mediumGray};
+  color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const EmptyDonationButton = styled(Button)`

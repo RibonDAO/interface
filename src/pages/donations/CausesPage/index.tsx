@@ -95,6 +95,7 @@ function CausesPage(): JSX.Element {
 
   useEffect(() => {
     if (integration) {
+      // eslint-disable-next-line no-console
       console.log(integration);
       logEvent("donateIntroDial_view", { integration: integration.name });
     }

@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "services/analytics";
 import NonProfit from "types/entities/NonProfit";
+import SliderCards from "components/moleculars/sliders/SliderCards";
 import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
 import { useLocation } from "react-router-dom";
 import useVoucher from "hooks/useVoucher";
@@ -58,23 +59,27 @@ function NonProfitsList({
   }
 
   return (
-    <>
-      {nonProfits.map((nonProfit, idx) => (
-        <S.CausesCardContainer key={idx.toString()}>
-          <CardCenterImageButton
-            image={nonProfit.mainImage}
-            title={`${nonProfit.impactByTicket} ${nonProfit.impactDescription}`}
-            buttonText={
-              canDonateAndHasVoucher ? t("donateText") : t("donateBlockedText")
-            }
-            onClickButton={() => handleButtonClick(nonProfit)}
-            softDisabled={!canDonateAndHasVoucher}
-            infoTextLeft={nonProfit.name}
-            infoTextRight={nonProfit.cause?.name}
-          />
-        </S.CausesCardContainer>
-      ))}
-    </>
+    <S.NonProfitsListContainer>
+      <SliderCards scrollOffset={400}>
+        {nonProfits.map((nonProfit, idx) => (
+          <S.CausesCardContainer key={idx.toString()}>
+            <CardCenterImageButton
+              image={nonProfit.mainImage}
+              title={`${nonProfit.impactByTicket} ${nonProfit.impactDescription}`}
+              buttonText={
+                canDonateAndHasVoucher
+                  ? t("donateText")
+                  : t("donateBlockedText")
+              }
+              onClickButton={() => handleButtonClick(nonProfit)}
+              softDisabled={!canDonateAndHasVoucher}
+              infoTextLeft={nonProfit.name}
+              infoTextRight={nonProfit.cause?.name}
+            />
+          </S.CausesCardContainer>
+        ))}
+      </SliderCards>
+    </S.NonProfitsListContainer>
   );
 }
 

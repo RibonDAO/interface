@@ -52,6 +52,7 @@ const theme: ThemeType = {
     below: -1,
     dropdown: 2,
     navbar: 3,
+    navigator: 3,
     modal: 4,
     toast: 5,
     loading: 6,

@@ -7,7 +7,7 @@ export default {
   component: Button,
   argTypes: {
     size: {
-      options: ["large", "small"],
+      options: ["large", "medium", "small"],
       control: { type: "radio" },
     },
   },

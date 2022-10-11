@@ -15,7 +15,7 @@ type TitleProps = {
   color?: string;
 };
 
-export const Title = styled.h2<TitleProps>`
+export const Title = styled.h3<TitleProps>`
   margin-bottom: 8px;
   text-align: center;
   color: ${({ theme, color }) => color || theme.colors.gray40};

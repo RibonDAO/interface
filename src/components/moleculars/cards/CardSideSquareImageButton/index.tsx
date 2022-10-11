@@ -21,7 +21,7 @@ function CardSideSquareImageButton({
         <S.ImageContainer>
           <CardSquareImage image={image} />
         </S.ImageContainer>
-        <S.SideButton text={buttonText} onClick={onButtonClick} />
+        <S.SideButton text={buttonText} onClick={onButtonClick} size="small" />
       </S.InsideContainer>
       <S.InsideContainer>
         <S.Title>{title}</S.Title>

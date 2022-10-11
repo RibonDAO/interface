@@ -1,5 +1,8 @@
 import styled from "styled-components";
-import { defaultParagraphSmall } from "styles/typography/default";
+import {
+  defaultParagraphSmall,
+  defaultTitleLarge,
+} from "styles/typography/default";
 
 export const Container = styled.div`
   max-width: 206px;
@@ -17,9 +20,10 @@ export const FirstText = styled.p`
   color: ${({ theme }) => theme.colors.gray30};
 `;
 
-export const MainContent = styled.h2<{
+export const MainContent = styled.h3<{
   processing?: boolean;
 }>`
+  ${defaultTitleLarge}
   color: ${(props) =>
     props.processing ? props.theme.colors.gray30 : props.theme.colors.green30};
 `;

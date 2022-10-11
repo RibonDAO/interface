@@ -13,7 +13,6 @@ funcionando da forma como deveria, modificar props para ver como ele se comporta
 Se o story do seu componente estiver quebrado, pode ser um sinal de que ele tem lógica, e não apenas props e estados.
 
 _Exemplos_: botões, formulários, cards, ...
- 
 
 # E se eu precisar de um componente que só vai ser usado em uma página/tela?
 

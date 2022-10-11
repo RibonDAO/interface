@@ -11,7 +11,8 @@ export const networks = [
     currencyName: "Matic",
     blockExplorerUrls: "https://polygonscan.com/",
     defaultPoolAddress: "0x841cad54aaeAdFc9191fb14EB09232af8E20be0F",
-    subgraphUrl: "https://api.thegraph.com/subgraphs/name/ribondao/subgraphribon",
+    subgraphUrl:
+      "https://api.thegraph.com/subgraphs/name/ribondao/subgraphribon",
   },
   {
     chainName: "Mumbai Testnet",
@@ -25,7 +26,8 @@ export const networks = [
     currencyName: "Matic",
     blockExplorerUrls: "https://mumbai.polygonscan.com/",
     defaultPoolAddress: "0xA932851982118bd5Fa99E16B144afE4622eb2A49",
-    subgraphUrl: "https://api.thegraph.com/subgraphs/name/ribondao/ribonsubgraph",
+    subgraphUrl:
+      "https://api.thegraph.com/subgraphs/name/ribondao/ribonsubgraph",
   },
   {
     chainName: "Localhost 8545",

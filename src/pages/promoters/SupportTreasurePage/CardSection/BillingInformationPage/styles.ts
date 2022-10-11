@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Button from "components/atomics/buttons/Button";
 import {
-  defaultButtonTextSmall,
+  defaultComponentTextSmall,
   defaultParagraphSmall,
   defaultSubtitleMedium,
 } from "styles/typography/default";
@@ -72,7 +72,7 @@ export const ValuesContainer = styled.div`
 `;
 
 export const CardValueButton = styled(Button)`
-  ${defaultButtonTextSmall}
+  ${defaultComponentTextSmall}
   max-width: 112px;
   height: 30px;
   border-radius: 66px;

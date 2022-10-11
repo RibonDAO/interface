@@ -95,7 +95,8 @@ function CausesPage(): JSX.Element {
 
   useEffect(() => {
     if (integration) {
-      logEvent("donateIntroDial_view");
+      console.log(integration);
+      logEvent("donateIntroDial_view", { integration: integration.name });
     }
   }, [integration]);
 

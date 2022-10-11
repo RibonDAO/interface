@@ -24,13 +24,13 @@ type TitleProps = {
   color?: string;
 };
 
-export const Title = styled.h2<TitleProps>`
+export const Title = styled.h3<TitleProps>`
   margin-bottom: 16px;
   text-align: center;
   color: ${({ theme, color }) => color || theme.colors.gray40};
 `;
 
-export const Body = styled.h3`
+export const Body = styled.h4`
   margin: 0 0 20px;
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};

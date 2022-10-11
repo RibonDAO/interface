@@ -3,8 +3,8 @@ import GambarinoRegularTtf from "../../assets/fonts/Gambarino-Regular.ttf";
 import GambarinoRegularWoff from "../../assets/fonts/Gambarino-Regular.woff";
 import GambarinoRegularWoff2 from "../../assets/fonts/Gambarino-Regular.woff2";
 import {
-  defaultButtonTextLarge,
-  defaultButtonTextSmall,
+  defaultComponentTextLarge,
+  defaultComponentTextSmall,
   defaultHeadingLarge,
   defaultParagraphMedium,
   defaultParagraphSmall,
@@ -69,7 +69,7 @@ export const typography = css`
     }
 
     h6 {
-      ${defaultButtonTextSmall}
+      ${defaultComponentTextSmall}
     }
 
     p {
@@ -81,7 +81,7 @@ export const typography = css`
     }
 
     button {
-      ${defaultButtonTextLarge}
+      ${defaultComponentTextLarge}
     }
 
     label {

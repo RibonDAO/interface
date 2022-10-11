@@ -23,10 +23,6 @@ const GlobalStyle = createGlobalStyle`
       background: ${theme.colors.neutral10};
     }
 
-    body {
-      font-family: ${theme.font};
-    }
-
     #root {
       display: block;
     }

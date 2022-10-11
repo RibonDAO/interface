@@ -20,7 +20,7 @@ import ModalAnimation, {
   Props as ModalAnimationProps,
 } from "components/moleculars/modals/ModalAnimation";
 import ModalDoubleImage, {
-  Props as ModalDoubleImageProps
+  Props as ModalDoubleImageProps,
 } from "components/moleculars/modals/ModalDoubleImage";
 
 /* eslint-disable no-shadow, no-unused-vars */

@@ -1,15 +1,18 @@
 import styled from "styled-components";
 import Button from "components/atomics/buttons/Button";
 import {
-  defaultButtonTextSmall,
+  defaultComponentTextSmall,
   defaultParagraphSmall,
+  defaultTitleSmall,
 } from "styles/typography/default";
 
 export const CardSectionContainer = styled.div`
   margin-top: 24px;
 `;
 
-export const Subtitle = styled.h4`
+export const Subtitle = styled.h2`
+  ${defaultTitleSmall}
+
   &:nth-child(3) {
     margin-top: 18px;
   }
@@ -25,7 +28,7 @@ export const ValuesContainer = styled.div`
 `;
 
 export const CardValueButton = styled(Button)`
-  ${defaultButtonTextSmall}
+  ${defaultComponentTextSmall}
   max-width: 112px;
   height: 30px;
   border-radius: 66px;

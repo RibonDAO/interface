@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { defaultButtonTextSmall } from "styles/typography/default";
+import { defaultComponentTextSmall } from "styles/typography/default";
 
 export const ContainerButtons = styled.div`
   display: flex;
@@ -42,7 +42,7 @@ export const CounterContainer = styled.div`
 `;
 
 export const TicketsAmount = styled.p`
-  ${defaultButtonTextSmall}
+  ${defaultComponentTextSmall}
   margin-right: 2px;
   color: ${({ color }) => color};
 `;

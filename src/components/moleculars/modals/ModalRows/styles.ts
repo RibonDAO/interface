@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { defaultTitleLarge } from "styles/typography/default";
 import { Modal } from "../ModalBlank/styles";
 
 export const ModalWithIcon = styled(Modal)`
@@ -24,7 +25,8 @@ type TitleProps = {
   color?: string;
 };
 
-export const Title = styled.h2<TitleProps>`
+export const Title = styled.h3<TitleProps>`
+  ${defaultTitleLarge}
   text-align: center;
   color: ${({ theme, color }) => color || theme.colors.gray40};
 `;

@@ -117,18 +117,24 @@ export const defaultParagraphSmall = css`
   line-height: 24px;
 `;
 
-const defaultButtonText = css`
+const defaultComponentText = css`
   font-weight: 600;
   ${inter}
 `;
-export const defaultButtonTextLarge = css`
-  ${defaultButtonText}
+export const defaultComponentTextLarge = css`
+  ${defaultComponentText}
   font-size: 16px;
   line-height: 24px;
 `;
 
-export const defaultButtonTextSmall = css`
-  ${defaultButtonText}
+export const defaultComponentTextMedium = css`
+  ${defaultComponentText}
+  font-size: 14px;
+  line-height: 24px;
+`;
+
+export const defaultComponentTextSmall = css`
+  ${defaultComponentText}
   font-size: 12px;
   line-height: 16px;
 `;

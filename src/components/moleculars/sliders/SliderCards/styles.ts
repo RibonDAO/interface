@@ -32,7 +32,7 @@ export const Slider = styled.div`
 `;
 
 export const LeftSide = styled.div<NavigationProps>`
-  width: 100px;
+  width: 0;
   height: 100%;
   position: absolute;
   z-index: ${({ theme }) => theme.zindex.navigator};
@@ -52,6 +52,7 @@ export const LeftSide = styled.div<NavigationProps>`
   transition: visibility 0.1s linear, opacity 0.1s linear;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: 100px;
     margin-left: -20px;
     opacity: ${({ visible }) => (visible ? "1" : "0")};
     visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
@@ -59,7 +60,7 @@ export const LeftSide = styled.div<NavigationProps>`
 `;
 
 export const RightSide = styled.div<NavigationProps>`
-  width: 100px;
+  width: 0;
   height: 100%;
   position: absolute;
   top: 0;
@@ -80,6 +81,7 @@ export const RightSide = styled.div<NavigationProps>`
   transition: visibility 0.1s linear, opacity 0.1s linear;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: 100px;
     margin-right: -20px;
     opacity: ${({ visible }) => (visible ? "1" : "0")};
     visibility: ${({ visible }) => (visible ? "visible" : "hidden")};

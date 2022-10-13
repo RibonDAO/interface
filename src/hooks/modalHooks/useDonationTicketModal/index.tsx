@@ -2,7 +2,6 @@ import { useTranslation } from "react-i18next";
 import { useAnimationReceiveTicketModal } from "hooks/modalHooks/useAnimationReceiveTicketModal";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useEffect } from "react";
-import Ticket from "assets/images/ticket.svg";
 import Integration from "types/entities/Integration";
 import { RIBON_COMPANY_ID } from "utils/constants";
 import RibonIcon from "assets/icons/logo-background-icon.svg";
@@ -18,6 +17,8 @@ export function useDonationTicketModal(
 
   const { showAnimationReceiveTicketModal } = useAnimationReceiveTicketModal();
 
+  const isRibonIntegration = integration?.id === parseInt(RIBON_COMPANY_ID, 10);
+
   const modalDoubleImageProps = {
     title: t("donationWithIntegrationModalTitle"),
     body: t("donationWithIntegrationModalSubtitle"),
@@ -26,28 +27,13 @@ export function useDonationTicketModal(
       showAnimationReceiveTicketModal();
     },
     onClose: () => showAnimationReceiveTicketModal(),
-    leftImage: integration?.logo,
+    leftImage: !isRibonIntegration ? integration?.logo : null,
     rightImage: RibonIcon,
   };
 
-  const modalIconProps = {
-    title: t("donationModalTitle"),
-    primaryButtonText: t("donationModalButtonText"),
-    primaryButtonCallback: () => {
-      showAnimationReceiveTicketModal();
-    },
-    onClose: () => showAnimationReceiveTicketModal(),
-    icon: Ticket,
-  };
-
-  const isNotRibonIntegration =
-    integration?.id !== parseInt(RIBON_COMPANY_ID, 10);
-
   const { show, hide } = useModal({
-    type: isNotRibonIntegration
-      ? MODAL_TYPES.MODAL_DOUBLE_IMAGE
-      : MODAL_TYPES.MODAL_ICON,
-    props: isNotRibonIntegration ? modalDoubleImageProps : modalIconProps,
+    type: MODAL_TYPES.MODAL_DOUBLE_IMAGE,
+    props: modalDoubleImageProps,
   });
 
   const showDonationTicketModal = () => {

@@ -24,6 +24,10 @@ type TitleProps = {
   color?: string;
 };
 
+type DoubleImageProps = {
+  hasAdjacent?: boolean;
+};
+
 export const Title = styled.h3<TitleProps>`
   margin-bottom: 8px;
   text-align: center;
@@ -55,14 +59,15 @@ export const ImageContainer = styled.div`
   display: block;
   align-items: center;
   justify-content: center;
+  text-align: center;
 `;
 
-export const LeftImage = styled.img`
+export const LeftImage = styled.img<DoubleImageProps>`
   width: 90px;
   height: 90px;
   border: solid 2px ${({ theme }) => theme.colors.defaultShadow};
   border-radius: 50%;
-  position: absolute;
+  position: ${({ hasAdjacent }) => (hasAdjacent ? "absolute" : "relative")};
   left: 0;
   z-index: ${({ theme }) => theme.zindex.above};
   object-fit: contain;
@@ -70,12 +75,12 @@ export const LeftImage = styled.img`
   filter: drop-shadow(0 20px 40px ${({ theme }) => theme.colors.defaultShadow});
 `;
 
-export const RightImage = styled.img`
+export const RightImage = styled.img<DoubleImageProps>`
   width: 90px;
   height: 90px;
   border: solid 2px ${({ theme }) => theme.colors.defaultShadow};
   border-radius: 50%;
-  position: absolute;
+  position: ${({ hasAdjacent }) => (hasAdjacent ? "absolute" : "relative")};
   right: 0;
   object-fit: cover;
   filter: drop-shadow(0 20px 40px ${({ theme }) => theme.colors.defaultShadow});

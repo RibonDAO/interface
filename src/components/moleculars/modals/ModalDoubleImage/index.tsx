@@ -63,16 +63,26 @@ function ModalDoubleImage({
   customStyles,
 }: Props): JSX.Element {
   function renderDoubleImage() {
-    if (leftImage && rightImage) {
-      return (
-        <S.ImageContainer>
-          <S.LeftImage src={leftImage} alt={leftImageAlt} />
-          <S.RightImage src={rightImage} alt={rightImageAlt} />
-        </S.ImageContainer>
-      );
-    }
+    const hasDoubleImage = Boolean(leftImage && rightImage);
 
-    return null;
+    return (
+      <S.ImageContainer>
+        {leftImage && (
+          <S.LeftImage
+            src={leftImage}
+            alt={leftImageAlt}
+            hasAdjacent={hasDoubleImage}
+          />
+        )}
+        {rightImage && (
+          <S.RightImage
+            src={rightImage}
+            alt={rightImageAlt}
+            hasAdjacent={hasDoubleImage}
+          />
+        )}
+      </S.ImageContainer>
+    );
   }
 
   return (

@@ -8,6 +8,7 @@ export type Props = {
   title?: string;
   buttonText: string;
   onClickButton: () => void;
+  onClickImage?: () => void;
   softDisabled?: boolean;
   disabled?: boolean;
   infoTextLeft?: string;
@@ -18,6 +19,7 @@ function CardCenterImageButton({
   title,
   buttonText,
   onClickButton,
+  onClickImage,
   disabled,
   softDisabled,
   infoTextLeft,
@@ -25,7 +27,7 @@ function CardCenterImageButton({
 }: Props): JSX.Element {
   return (
     <S.Container>
-      <S.ImageSection onClick={onClickButton}>
+      <S.ImageSection onClick={onClickImage}>
         <S.Image src={image} alt="image" />
         <S.ImageDescription>{title}</S.ImageDescription>
 

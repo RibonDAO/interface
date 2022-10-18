@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
 import Story from "types/entities/Story";
+import NonProfit from "types/entities/NonProfit";
 import securityIcon from "assets/icons/security-mark-icon.svg";
 import getDominantColor from "lib/getDominantColor";
 import * as S from "./styles";
 
 export type Props = {
   story: Story;
+  nonProfit: NonProfit;
 };
 
-function StoryNonProfit({ story }: Props): JSX.Element {
+function StoryNonProfit({ story, nonProfit }: Props): JSX.Element {
   const [dominantColor, setDominantColor] = useState<string>("transparent");
 
   useEffect(() => {
-    getDominantColor(story.nonProfit.logo).then((color) => {
+    getDominantColor(nonProfit.logo).then((color) => {
       setDominantColor(color);
     });
   }, []);
@@ -25,13 +27,13 @@ function StoryNonProfit({ story }: Props): JSX.Element {
           <S.Description>{story.description}</S.Description>
         </S.TopFooterRow>
         <S.BottomFooterRow>
-          <S.AvatarImage src={story.nonProfit.logo} />
+          <S.AvatarImage src={nonProfit.logo} />
           <S.NonProfitInfo>
             <S.Info>
-              {story.nonProfit.name}
+              {nonProfit.name}
               <S.Icon src={securityIcon} />
             </S.Info>
-            <S.SmallInfo>{story.nonProfit.cause.name}</S.SmallInfo>
+            <S.SmallInfo>{nonProfit.cause.name}</S.SmallInfo>
           </S.NonProfitInfo>
         </S.BottomFooterRow>
       </S.Content>

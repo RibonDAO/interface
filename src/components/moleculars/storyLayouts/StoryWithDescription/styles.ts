@@ -12,9 +12,14 @@ export const Container = styled.div<ContainerProps>`
   background-repeat: no-repeat;
 `;
 
-export const Content = styled.div`
+export type ContentProps = {
+  hasProfileData: boolean;
+};
+
+export const Content = styled.div<ContentProps>`
   width: 100%;
   padding: 20px;
+  padding-bottom: ${({ hasProfileData }) => (hasProfileData ? "70px" : "20px")};
   position: absolute;
   bottom: 0;
   display: flex;
@@ -28,47 +33,15 @@ export const Content = styled.div`
   color: ${({ theme }) => theme.colors.neutral10};
 `;
 
-export type TopFooterRowProps = {
-  color: string;
-};
-
-export const TopFooterRow = styled.div<TopFooterRowProps>`
+export const DescriptionWrapper = styled.div`
   width: 100%;
   margin-top: 60px;
   margin-bottom: 30px;
   padding-bottom: 5px;
   padding-left: 15px;
-  border-left: solid 3px ${({ color }) => color};
+  border-left: solid 3px ${({ theme }) => theme.colors.neutral10};
   display: flex;
   flex-direction: column;
-`;
-
-export const BottomFooterRow = styled.div`
-  height: 50px;
-  display: flex;
-`;
-
-export const AvatarImage = styled.img`
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: inline-block;
-`;
-
-export const NonProfitInfo = styled.div`
-  margin-left: 10px;
-  display: inline-block;
-`;
-
-export const Info = styled.p`
-  font-weight: ${({ theme }) => theme.font.semibold};
-`;
-
-export const SmallInfo = styled.small``;
-
-export const Icon = styled.img`
-  margin-bottom: -2px;
-  margin-left: 4px;
 `;
 
 export const Title = styled.h3``;

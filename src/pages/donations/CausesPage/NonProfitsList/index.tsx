@@ -7,12 +7,17 @@ import SliderCards from "components/moleculars/sliders/SliderCards";
 import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
 import { useLocation } from "react-router-dom";
 import useVoucher from "hooks/useVoucher";
+import useStories from "hooks/apiHooks/useStories";
+import useNavigation from "hooks/useNavigation";
+import useToast from "hooks/useToast";
+import { useLoadingOverlay } from "contexts/loadingOverlayContext";
 import * as S from "../styles";
 
 type LocationStateType = {
   failedDonation: boolean;
   blockedDonation: boolean;
 };
+
 type Props = {
   nonProfits: NonProfit[];
   setChosenNonProfit: (nonProfit: NonProfit) => void;
@@ -34,6 +39,10 @@ function NonProfitsList({
   const { showBlockedDonationModal } = useBlockedDonationModal(
     state?.blockedDonation,
   );
+
+  const { showLoadingOverlay, hideLoadingOverlay } = useLoadingOverlay();
+
+  const toast = useToast();
 
   const chooseNonProfit = useCallback((nonProfit: NonProfit) => {
     setChosenNonProfit(nonProfit);
@@ -57,6 +66,32 @@ function NonProfitsList({
       logEvent("donateBlockedDonation_view");
     }
   }
+  const { fetchNonProfitStories } = useStories();
+
+  const { navigateTo } = useNavigation();
+
+  const handleImageClick = async (nonProfit: NonProfit) => {
+    showLoadingOverlay(t("stories.loading"));
+    const stories = await fetchNonProfitStories(nonProfit.id);
+
+    if (stories.length > 0) {
+      hideLoadingOverlay();
+      navigateTo({
+        pathname: "/stories",
+        state: {
+          stories,
+          nonProfit,
+        },
+      });
+    } else {
+      hideLoadingOverlay();
+
+      toast({
+        message: t("stories.empty"),
+        type: "error",
+      });
+    }
+  };
 
   return (
     <S.NonProfitsListContainer>
@@ -72,6 +107,7 @@ function NonProfitsList({
                   : t("donateBlockedText")
               }
               onClickButton={() => handleButtonClick(nonProfit)}
+              onClickImage={() => handleImageClick(nonProfit)}
               softDisabled={!canDonateAndHasVoucher}
               infoTextLeft={nonProfit.name}
               infoTextRight={nonProfit.cause?.name}

@@ -26,6 +26,10 @@
       "donateAnimationModalTitle": "Making donation...",
       "donateAnimationModalOrigin": "You",
       "donateAnimationModalDestiny": "Project",
+      "stories": {
+        "loading": "Loading stories...",
+        "empty": "No stories available."
+      },
       "modalForm": {
         "footerStartText": "By signing up you agree to Ribon's",
         "footerAnd": "and",

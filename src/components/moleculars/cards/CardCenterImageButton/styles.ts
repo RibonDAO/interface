@@ -31,6 +31,16 @@ export const ImageSection = styled.div`
   }
 `;
 
+export const ExpandIcon = styled.img`
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: ${({ theme }) => theme.zindex.above};
+  cursor: pointer;
+`;
+
 export const Image = styled.img`
   width: 100%;
   height: 100%;

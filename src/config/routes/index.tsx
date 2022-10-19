@@ -7,6 +7,7 @@ import DonationDonePage from "pages/donations/DonationDonePage";
 import ImpactPage from "pages/users/ImpactPage";
 import MainLayout from "layouts/MainLayout";
 import TreasurePage from "pages/promoters/TreasurePage";
+import StoriesPage from "pages/donations/StoriesPage";
 import SupportTreasurePage from "pages/promoters/SupportTreasurePage";
 import BillingInformationPage from "pages/promoters/SupportTreasurePage/CardSection/BillingInformationPage";
 import PaymentInformationPage from "pages/promoters/SupportTreasurePage/CardSection/PaymentInformationPage";
@@ -26,6 +27,12 @@ function RoutesComponent(): JSX.Element {
               <CausesPage />
             </MainLayout>
           </WalletProvider>
+        </Suspense>
+      </Route>
+
+      <Route path="/stories" exact>
+        <Suspense fallback={<div />}>
+          <StoriesPage />
         </Suspense>
       </Route>
 

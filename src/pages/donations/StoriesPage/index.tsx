@@ -1,5 +1,5 @@
 import StoryNonProfit from "components/moleculars/storyLayouts/StoryNonProfit";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useLocation } from "react-router";
 import NonProfit from "types/entities/NonProfit";
 import Story from "types/entities/Story";
@@ -26,6 +26,10 @@ function StoriesPage(): JSX.Element {
       [],
     ),
   }));
+
+  useEffect(() => {
+    if (!stories.length) navigateBack();
+  }, []);
 
   return (
     <S.Container>

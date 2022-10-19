@@ -5,6 +5,7 @@ import NonProfit from "types/entities/NonProfit";
 import Story from "types/entities/Story";
 import Stories from "react-insta-stories";
 import useNavigation from "hooks/useNavigation";
+import closeIcon from "assets/icons/close-icon.svg";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -28,14 +29,17 @@ function StoriesPage(): JSX.Element {
 
   return (
     <S.Container>
-      <Stories
-        loop
-        keyboardNavigation
-        stories={renderedStories}
-        defaultInterval={3000}
-        onAllStoriesEnd={() => navigateBack()}
-        storyContainerStyles={{ borderRadius: 8, overflow: "hidden" }}
-      />
+      <S.StoriesWrapper>
+        <Stories
+          loop
+          keyboardNavigation
+          stories={renderedStories}
+          defaultInterval={10000}
+          onAllStoriesEnd={() => navigateBack()}
+          storyContainerStyles={{ borderRadius: 8, overflow: "hidden" }}
+        />
+        <S.CloseButton onClick={() => navigateBack()} src={closeIcon} />
+      </S.StoriesWrapper>
     </S.Container>
   );
 }

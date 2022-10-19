@@ -1,11 +1,9 @@
-import StoryNonProfit from "components/moleculars/storyLayouts/StoryNonProfit";
-import { useCallback, useEffect } from "react";
+import CardStories from "components/moleculars/cards/CardStories";
+import { useEffect } from "react";
 import { useLocation } from "react-router";
 import NonProfit from "types/entities/NonProfit";
 import Story from "types/entities/Story";
-import Stories from "react-insta-stories";
 import useNavigation from "hooks/useNavigation";
-import closeIcon from "assets/icons/close-icon.svg";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -18,14 +16,13 @@ function StoriesPage(): JSX.Element {
     state: { nonProfit, stories },
   } = useLocation<LocationStateType>();
 
-  const { navigateBack } = useNavigation();
+  const profileData = {
+    name: nonProfit.name,
+    subtitle: nonProfit.cause.name,
+    logo: nonProfit.logo,
+  };
 
-  const renderedStories = stories.map((story) => ({
-    content: useCallback(
-      () => <StoryNonProfit story={story} nonProfit={nonProfit} />,
-      [],
-    ),
-  }));
+  const { navigateBack } = useNavigation();
 
   useEffect(() => {
     if (!stories.length) navigateBack();
@@ -33,19 +30,11 @@ function StoriesPage(): JSX.Element {
 
   return (
     <S.Container>
-      <S.StoriesWrapper>
-        <Stories
-          loop
-          keyboardNavigation
-          stories={renderedStories}
-          defaultInterval={10000}
-          width="100%"
-          height="100%"
-          onAllStoriesEnd={() => navigateBack()}
-          storyContainerStyles={{ borderRadius: 8, overflow: "hidden" }}
-        />
-        <S.CloseButton onClick={() => navigateBack()} src={closeIcon} />
-      </S.StoriesWrapper>
+      <CardStories
+        stories={stories}
+        navigateBack={navigateBack}
+        profileData={profileData}
+      />
     </S.Container>
   );
 }

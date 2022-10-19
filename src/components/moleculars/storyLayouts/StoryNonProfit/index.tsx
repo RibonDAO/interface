@@ -11,7 +11,7 @@ export type Props = {
 };
 
 function StoryNonProfit({ story, nonProfit }: Props): JSX.Element {
-  const [dominantColor, setDominantColor] = useState<string>("transparent");
+  const [dominantColor, setDominantColor] = useState<string>("white");
 
   useEffect(() => {
     getDominantColor(nonProfit.logo).then((color) => {

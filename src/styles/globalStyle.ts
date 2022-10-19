@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
     html,
     body,
     #root {
-      min-height: 100vh;
+      min-height: ${window.innerHeight}px;
       background: ${theme.colors.neutral10};
     }
 

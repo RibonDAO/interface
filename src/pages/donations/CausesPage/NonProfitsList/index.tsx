@@ -7,12 +7,15 @@ import SliderCards from "components/moleculars/sliders/SliderCards";
 import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
 import { useLocation } from "react-router-dom";
 import useVoucher from "hooks/useVoucher";
+import useStories from "hooks/apiHooks/useStories";
+import useNavigation from "hooks/useNavigation";
 import * as S from "../styles";
 
 type LocationStateType = {
   failedDonation: boolean;
   blockedDonation: boolean;
 };
+
 type Props = {
   nonProfits: NonProfit[];
   setChosenNonProfit: (nonProfit: NonProfit) => void;
@@ -57,6 +60,23 @@ function NonProfitsList({
       logEvent("donateBlockedDonation_view");
     }
   }
+  const { fetchNonProfitStories } = useStories();
+
+  const { navigateTo } = useNavigation();
+
+  const handleImageClick = async (nonProfit: NonProfit) => {
+    const stories = await fetchNonProfitStories(nonProfit.id);
+
+    if (stories.length > 0) {
+      navigateTo({
+        pathname: "/stories",
+        state: {
+          stories,
+          nonProfit,
+        },
+      });
+    }
+  };
 
   return (
     <S.NonProfitsListContainer>
@@ -72,6 +92,7 @@ function NonProfitsList({
                   : t("donateBlockedText")
               }
               onClickButton={() => handleButtonClick(nonProfit)}
+              onClickImage={() => handleImageClick(nonProfit)}
               softDisabled={!canDonateAndHasVoucher}
               infoTextLeft={nonProfit.name}
               infoTextRight={nonProfit.cause?.name}

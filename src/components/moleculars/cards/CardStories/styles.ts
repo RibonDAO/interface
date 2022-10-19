@@ -28,6 +28,7 @@ export const ProfileDataWrapper = styled.div`
   left: 20px;
   z-index: ${({ theme }) => theme.zindex.above};
   display: flex;
+  align-items: center;
 `;
 
 export const AvatarImage = styled.img`

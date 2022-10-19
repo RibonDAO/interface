@@ -9,6 +9,8 @@ import { useLocation } from "react-router-dom";
 import useVoucher from "hooks/useVoucher";
 import useStories from "hooks/apiHooks/useStories";
 import useNavigation from "hooks/useNavigation";
+import useToast from "hooks/useToast";
+import { useLoadingOverlay } from "contexts/loadingOverlayContext";
 import * as S from "../styles";
 
 type LocationStateType = {
@@ -38,6 +40,10 @@ function NonProfitsList({
     state?.blockedDonation,
   );
 
+  const { showLoadingOverlay, hideLoadingOverlay } = useLoadingOverlay();
+
+  const toast = useToast();
+
   const chooseNonProfit = useCallback((nonProfit: NonProfit) => {
     setChosenNonProfit(nonProfit);
   }, []);
@@ -65,15 +71,24 @@ function NonProfitsList({
   const { navigateTo } = useNavigation();
 
   const handleImageClick = async (nonProfit: NonProfit) => {
+    showLoadingOverlay(t("stories.loading"));
     const stories = await fetchNonProfitStories(nonProfit.id);
 
     if (stories.length > 0) {
+      hideLoadingOverlay();
       navigateTo({
         pathname: "/stories",
         state: {
           stories,
           nonProfit,
         },
+      });
+    } else {
+      hideLoadingOverlay();
+
+      toast({
+        message: t("stories.empty"),
+        type: "error",
       });
     }
   };

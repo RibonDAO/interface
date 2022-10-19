@@ -26,6 +26,10 @@
       "donateAnimationModalTitle": "Realizando doação... ",
       "donateAnimationModalOrigin": "Você",
       "donateAnimationModalDestiny": "Projeto",
+      "stories": {
+        "loading": "Carregando stories...",
+        "empty": "Não há stories disponíveis."
+      },
       "modalForm": {
         "footerStartText": "Ao inserir seu e-mail e se inscrever, você aceita a nossa",
         "footerAnd": "e",

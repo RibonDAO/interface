@@ -4,8 +4,8 @@ import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import storyFactory from "config/testUtils/factories/storyFactory";
 import StoriesPage from ".";
 
-describe("DonationDone", () => {
-  it("shows the impact of the donation", () => {
+describe("StoriesPage", () => {
+  it("render without errors", () => {
     renderComponent(<StoriesPage />, {
       locationState: {
         nonProfit: nonProfitFactory({

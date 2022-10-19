@@ -10,7 +10,14 @@ export const Container = styled.div`
 `;
 
 export const StoriesWrapper = styled.div`
+  width: 100%;
+  height: 100%;
   position: relative;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    max-width: 480px;
+    max-height: 720px;
+  }
 `;
 
 export const CloseButton = styled.img`

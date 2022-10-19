@@ -35,6 +35,8 @@ function StoriesPage(): JSX.Element {
           keyboardNavigation
           stories={renderedStories}
           defaultInterval={10000}
+          width="100%"
+          height="100%"
           onAllStoriesEnd={() => navigateBack()}
           storyContainerStyles={{ borderRadius: 8, overflow: "hidden" }}
         />

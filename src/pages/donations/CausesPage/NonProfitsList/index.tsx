@@ -81,6 +81,7 @@ function NonProfitsList({
         state: {
           stories,
           nonProfit,
+          canDonateAndHasVoucher,
         },
       });
     } else {

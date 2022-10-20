@@ -10,6 +10,7 @@ import { logEvent } from "services/analytics";
 import useUsers from "hooks/apiHooks/useUsers";
 import useSources from "hooks/apiHooks/useSources";
 import { useCurrentUser } from "contexts/currentUserContext";
+import { useTranslation } from "react-i18next";
 import { logError } from "services/crashReport";
 import * as S from "./styles";
 import ConfirmSection from "../CausesPage/ConfirmSection";
@@ -21,6 +22,10 @@ type LocationStateType = {
 };
 
 function StoriesPage(): JSX.Element {
+  const { t } = useTranslation("translation", {
+    keyPrefix: "donations.storiesPage",
+  });
+
   const {
     state: { canDonateAndHasVoucher, nonProfit, stories },
   } = useLocation<LocationStateType>();
@@ -98,7 +103,7 @@ function StoriesPage(): JSX.Element {
         navigateBack={navigateBack}
         profileData={profileData}
         ctaData={{
-          text: "Doar vale",
+          text: t("ctaText"),
           onClick: onClickButton,
           visible: canDonateAndHasVoucher,
         }}

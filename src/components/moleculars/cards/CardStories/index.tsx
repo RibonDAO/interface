@@ -13,6 +13,11 @@ export type Props = {
     subtitle: string;
     logo: string;
   };
+  ctaData?: {
+    text: string;
+    onClick: () => void;
+    visible: boolean;
+  };
   navigateBack: () => void;
 };
 
@@ -20,6 +25,7 @@ function CardStories({
   stories,
   navigateBack,
   profileData,
+  ctaData,
 }: Props): JSX.Element {
   const hasProfileData = Boolean(profileData);
 
@@ -55,6 +61,11 @@ function CardStories({
             <S.SmallInfo>{profileData.subtitle}</S.SmallInfo>
           </S.ProfileInfo>
         </S.ProfileDataWrapper>
+      )}
+      {ctaData && ctaData.visible && (
+        <S.CtaWrapper>
+          <S.CtaButton onClick={ctaData.onClick}>{ctaData.text}</S.CtaButton>
+        </S.CtaWrapper>
       )}
       <S.CloseButton onClick={() => navigateBack()} src={closeIcon} />
     </S.Container>

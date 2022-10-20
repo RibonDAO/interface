@@ -17,7 +17,7 @@ export const CloseButton = styled.img`
   position: absolute;
   top: 20px;
   right: 20px;
-  z-index: 999;
+  z-index: ${({ theme }) => theme.zindex.navigator};
   cursor: pointer;
 `;
 
@@ -55,4 +55,21 @@ export const SmallInfo = styled.small``;
 export const Icon = styled.img`
   margin-bottom: -2px;
   margin-left: 4px;
+`;
+
+export const CtaWrapper = styled.div`
+  position: absolute;
+  right: 20px;
+  bottom: 30px;
+  z-index: ${({ theme }) => theme.zindex.navigator};
+`;
+
+export const CtaButton = styled.button`
+  padding-inline: 10px;
+  border: none;
+  border-radius: 16px;
+  font-weight: ${({ theme }) => theme.font.semibold};
+  background-color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => theme.colors.neutral10};
+  cursor: pointer;
 `;

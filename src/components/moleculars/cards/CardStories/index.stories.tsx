@@ -38,5 +38,11 @@ Default.args = {
     logo: "https://picsum.photos/200/300",
     subtitle: "Saúde",
   },
-  navigateBack: () => {},
+  ctaData: {
+    text: "Doar vale",
+    onClick: () => {},
+    visible: true,
+  },
+  onAllStoriesEnd: () => {},
+  onCloseButtonClick: () => {},
 };

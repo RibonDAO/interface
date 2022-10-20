@@ -40,6 +40,9 @@
         "accessUserSupport": "Access user support"
       }
     },
+    "storiesPage": {
+      "ctaText": "Donate ticket"
+    },
     "donationDonePage": {
       "title": "Thank you for the donation!",
       "subtitle": "1 day of pet food for rescued animals",

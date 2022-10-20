@@ -68,7 +68,7 @@ export const ImageDescription = styled.h4`
   position: absolute;
   bottom: 0;
   left: 0;
-  z-index: 2;
+  z-index: ${({ theme }) => theme.zindex.above};
   color: ${({ theme }) => theme.colors.neutral10};
 `;
 

@@ -60,15 +60,15 @@ export const Icon = styled.img`
 export const CtaWrapper = styled.div`
   position: absolute;
   right: 20px;
-  bottom: 30px;
+  bottom: 35px;
   z-index: ${({ theme }) => theme.zindex.navigator};
 `;
 
 export const CtaButton = styled.button`
   padding-inline: 10px;
+  padding-block: auto;
   border: none;
   border-radius: 16px;
-  font-weight: ${({ theme }) => theme.font.semibold};
   background-color: ${({ theme }) => theme.colors.green30};
   color: ${({ theme }) => theme.colors.neutral10};
   cursor: pointer;

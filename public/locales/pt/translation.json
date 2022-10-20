@@ -40,6 +40,9 @@
         "accessUserSupport": "Acessar o suporte ao usuário"
       }
     },
+    "storiesPage": {
+      "ctaText": "Doar vale"
+    },
     "donationDonePage": {
       "title": "Obrigada pela doação!",
       "subtitle": "1 dia de ração para animais resgatados",

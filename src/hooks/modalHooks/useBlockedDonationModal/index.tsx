@@ -1,30 +1,32 @@
 import { useTranslation } from "react-i18next";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
-import useNavigation from "hooks/useNavigation";
 import blockedIcon from "assets/icons/ticket-off.svg";
 import { useEffect } from "react";
-import { logEvent } from "services/analytics";
+import TicketWithTextAndImage from "components/atomics/TicketWithTextAndImage";
 import { useModal } from "../useModal";
 
 export function useBlockedDonationModal(initialState?: boolean) {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
-  const { navigateTo } = useNavigation();
 
   const { show, hide } = useModal({
     type: MODAL_TYPES.MODAL_ROWS,
     props: {
       title: t("blockedModalTitle"),
       body: t("blockedModalText"),
-      primaryButtonText: t("blockedModalFirstButtonText"),
-      primaryButtonCallback: () => {
-        logEvent("treasureExternalCtaBtn_click");
-        hide();
-        navigateTo("/promoters/treasure");
-      },
-      secondaryButtonCallback: () => hide(),
-      secondaryButtonText: t("blockedModalSecondButtonText"),
+      children: [
+        <TicketWithTextAndImage
+          title="Realize outra compra"
+          subtitle="Volte amanhã para receber mais 1 vale"
+          image="https://cdn.worldvectorlogo.com/logos/renner-1.svg"
+        />,
+        <TicketWithTextAndImage
+          title="Realize outra compra"
+          subtitle="Volte amanhã para receber mais 1 vale"
+          image="https://cdn.worldvectorlogo.com/logos/renner-1.svg"
+        />,
+      ],
       onClose: () => hide(),
       icon: blockedIcon,
     },

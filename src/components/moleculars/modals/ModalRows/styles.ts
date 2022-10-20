@@ -1,5 +1,8 @@
 import styled from "styled-components";
-import { defaultTitleLarge } from "styles/typography/default";
+import {
+  defaultSubtitleLarge,
+  defaultSubtitleSmall,
+} from "styles/typography/default";
 import { Modal } from "../ModalBlank/styles";
 
 export const ModalWithIcon = styled(Modal)`
@@ -35,13 +38,15 @@ type TitleProps = {
 };
 
 export const Title = styled.h3<TitleProps>`
-  ${defaultTitleLarge}
+  ${defaultSubtitleLarge}
+  margin-top: -16px;
   text-align: center;
   color: ${({ theme, color }) => color || theme.colors.gray40};
 `;
 
 export const Body = styled.h3`
-  margin: 8px 0 0;
+  ${defaultSubtitleSmall}
+  margin: 8px 0 14px;
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
 `;

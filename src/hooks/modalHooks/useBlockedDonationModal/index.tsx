@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import useNavigation from "hooks/useNavigation";
-import blockedIcon from "assets/images/il-ticket-gray.svg";
+import blockedIcon from "assets/icons/ticket-off.svg";
 import { useEffect } from "react";
 import { logEvent } from "services/analytics";
 import { useModal } from "../useModal";
@@ -13,7 +13,7 @@ export function useBlockedDonationModal(initialState?: boolean) {
   const { navigateTo } = useNavigation();
 
   const { show, hide } = useModal({
-    type: MODAL_TYPES.MODAL_ICON,
+    type: MODAL_TYPES.MODAL_ROWS,
     props: {
       title: t("blockedModalTitle"),
       body: t("blockedModalText"),

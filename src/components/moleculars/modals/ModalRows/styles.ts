@@ -12,6 +12,15 @@ export const Icon = styled.img`
   display: block;
 `;
 
+export const BiggerIcon = styled(Icon)`
+  height: 100px;
+`;
+
+export const RoundIcon = styled(Icon)`
+  border-radius: 70px;
+  object-fit: cover;
+`;
+
 export const Animation = styled.div`
   width: 50%;
   height: 50%;
@@ -32,7 +41,7 @@ export const Title = styled.h3<TitleProps>`
 `;
 
 export const Body = styled.h3`
-  margin: 8px 0 20px;
+  margin: 8px 0 0;
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
 `;
@@ -42,7 +51,6 @@ export const RowsModalContainer = styled.div`
 `;
 
 export const RowsModalSection = styled.div`
-  margin-top: 50px;
   padding: 0;
   display: flex;
   flex-direction: column;

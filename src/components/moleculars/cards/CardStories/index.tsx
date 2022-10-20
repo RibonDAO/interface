@@ -18,14 +18,16 @@ export type Props = {
     onClick: () => void;
     visible: boolean;
   };
-  navigateBack: () => void;
+  onAllStoriesEnd: () => void;
+  onCloseButtonClick: () => void;
 };
 
 function CardStories({
   stories,
-  navigateBack,
   profileData,
   ctaData,
+  onAllStoriesEnd,
+  onCloseButtonClick,
 }: Props): JSX.Element {
   const hasProfileData = Boolean(profileData);
 
@@ -41,13 +43,12 @@ function CardStories({
   return (
     <S.Container>
       <Stories
-        loop
         keyboardNavigation
         stories={renderedStories}
-        defaultInterval={10000}
+        defaultInterval={15000}
         width="100%"
         height="100%"
-        onAllStoriesEnd={() => navigateBack()}
+        onAllStoriesEnd={onAllStoriesEnd}
         storyContainerStyles={{ borderRadius: 8, overflow: "hidden" }}
       />
       {profileData && (
@@ -64,10 +65,14 @@ function CardStories({
       )}
       {ctaData && ctaData.visible && (
         <S.CtaWrapper>
-          <S.CtaButton onClick={ctaData.onClick}>{ctaData.text}</S.CtaButton>
+          <S.CtaButton
+            size="small"
+            onClick={ctaData.onClick}
+            text={ctaData.text}
+          />
         </S.CtaWrapper>
       )}
-      <S.CloseButton onClick={() => navigateBack()} src={closeIcon} />
+      <S.CloseButton onClick={() => onCloseButtonClick()} src={closeIcon} />
     </S.Container>
   );
 }

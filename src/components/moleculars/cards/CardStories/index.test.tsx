@@ -18,7 +18,8 @@ describe("CardStories", () => {
       <CardStories
         stories={stories}
         profileData={profileData}
-        navigateBack={() => {}}
+        onAllStoriesEnd={() => {}}
+        onCloseButtonClick={() => {}}
       />,
     );
     expect(screen.getByText("Dara")).toBeInTheDocument();

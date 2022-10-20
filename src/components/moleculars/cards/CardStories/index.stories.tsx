@@ -43,5 +43,6 @@ Default.args = {
     onClick: () => {},
     visible: true,
   },
-  navigateBack: () => {},
+  onAllStoriesEnd: () => {},
+  onCloseButtonClick: () => {},
 };

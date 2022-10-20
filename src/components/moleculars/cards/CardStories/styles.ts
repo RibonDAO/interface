@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import Button from "components/atomics/buttons/Button";
+import { defaultComponentTextMedium } from "styles/typography/default";
 
 export const Container = styled.div`
   width: 100%;
@@ -60,16 +62,11 @@ export const Icon = styled.img`
 export const CtaWrapper = styled.div`
   position: absolute;
   right: 20px;
-  bottom: 35px;
+  bottom: 27px;
   z-index: ${({ theme }) => theme.zindex.navigator};
 `;
 
-export const CtaButton = styled.button`
-  padding-inline: 10px;
-  padding-block: auto;
-  border: none;
-  border-radius: 16px;
-  background-color: ${({ theme }) => theme.colors.green30};
-  color: ${({ theme }) => theme.colors.neutral10};
-  cursor: pointer;
+export const CtaButton = styled(Button)`
+  ${defaultComponentTextMedium}
+  border-radius: 20px;
 `;

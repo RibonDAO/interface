@@ -100,7 +100,8 @@ function StoriesPage(): JSX.Element {
 
       <CardStories
         stories={stories}
-        navigateBack={navigateBack}
+        onAllStoriesEnd={navigateBack}
+        onCloseButtonClick={navigateBack}
         profileData={profileData}
         ctaData={{
           text: t("ctaText"),

@@ -34,13 +34,17 @@ export const CardValueButton = styled(Button)`
   border-radius: 66px;
 `;
 
-export const ButtonContainer = styled.div`
+export type ButtonContainerProps = {
+  topButton?: boolean;
+};
+
+export const ButtonContainer = styled.div<ButtonContainerProps>`
   width: 100%;
   height: 80px;
   padding: 12px 16px;
   position: fixed;
   right: 0;
-  bottom: 0;
+  bottom: ${({ topButton }) => (topButton ? "70px" : "0")};
   left: 0;
   z-index: ${({ theme }) => theme.zindex.navigator};
   display: flex;
@@ -118,7 +122,14 @@ export const CardImpactText = styled.h4`
   color: ${({ theme }) => theme.colors.gray40};
 
   span {
+    display: inline-block;
     color: ${({ theme }) => theme.colors.green30};
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    span {
+      display: inline;
+    }
   }
 `;
 

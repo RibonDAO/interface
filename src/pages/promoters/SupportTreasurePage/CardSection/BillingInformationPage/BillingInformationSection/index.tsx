@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import InputAutoComplete from "components/atomics/inputs/InputAutoComplete";
-import { Languages } from "types/enums/Languages";
 import { useLanguage } from "hooks/useLanguage";
-import { mask } from "lib/maskForTaxId";
+import { maskForTaxId } from "lib/maskForTaxId";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import InputText from "components/atomics/inputs/InputText";
 import { logEvent } from "services/analytics";
@@ -16,7 +15,6 @@ function BillingInformationSection(): JSX.Element {
       "promoters.supportTreasurePage.cardSection.billingInformationPage.billingInformationSection",
   });
   const { currentLang } = useLanguage();
-  const maxLengthByLanguage = currentLang === Languages.PT ? 14 : 11;
   const {
     country,
     setCountry,
@@ -29,13 +27,19 @@ function BillingInformationSection(): JSX.Element {
     setButtonDisabled,
   } = useCardPaymentInformation();
 
+  function isInTheUs() {
+    return country === t("usaName");
+  }
+
+  const maxTaxIdLength = isInTheUs() ? 11 : 14;
+
   const handleChangeMask = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    setTaxId(mask(value, currentLang));
+    setTaxId(maskForTaxId(value, isInTheUs()));
   };
 
   useEffect(() => {
-    if (country && state && city && taxId.length === maxLengthByLanguage) {
+    if (country && state && city && taxId.length === maxTaxIdLength) {
       setButtonDisabled(false);
     } else {
       setButtonDisabled(true);
@@ -77,7 +81,7 @@ function BillingInformationSection(): JSX.Element {
           placeholder={t("taxId")}
           value={taxId}
           onChange={handleChangeMask}
-          maxLength={maxLengthByLanguage}
+          maxLength={maxTaxIdLength}
           required
         />
       </S.Form>

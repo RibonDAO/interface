@@ -151,7 +151,8 @@
             "country": "Country",
             "state": "State",
             "city": "City",
-            "taxId": "Tax ID"
+            "taxId": "Tax ID",
+            "usaName": "United States of America (USA)"
           }
         },
         "paymentInformationPage": {

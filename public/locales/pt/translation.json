@@ -151,7 +151,8 @@
             "country": "País",
             "state": "Estado",
             "city": "Cidade",
-            "taxId": "CPF"
+            "taxId": "CPF",
+            "usaName": "Estados Unidos da América (EUA)"
           }
         },
         "paymentInformationPage": {

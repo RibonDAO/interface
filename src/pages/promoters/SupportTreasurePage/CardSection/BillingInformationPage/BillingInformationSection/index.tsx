@@ -35,7 +35,6 @@ function BillingInformationSection(): JSX.Element {
 
   const handleChangeMask = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    console.log(isInBrazil(), country);
     setTaxId(maskForTaxId(value, isInBrazil()));
   };
 

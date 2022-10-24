@@ -152,7 +152,7 @@
             "state": "State",
             "city": "City",
             "taxId": "Tax ID",
-            "usaName": "United States of America (USA)"
+            "brazilName": "Brazil"
           }
         },
         "paymentInformationPage": {

@@ -27,15 +27,16 @@ function BillingInformationSection(): JSX.Element {
     setButtonDisabled,
   } = useCardPaymentInformation();
 
-  function isInTheUs() {
-    return country === t("usaName");
+  function isInBrazil() {
+    return country === t("brazilName");
   }
 
-  const maxTaxIdLength = isInTheUs() ? 11 : 14;
+  const maxTaxIdLength = isInBrazil() ? 14 : 11;
 
   const handleChangeMask = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    setTaxId(maskForTaxId(value, isInTheUs()));
+    console.log(isInBrazil(), country);
+    setTaxId(maskForTaxId(value, isInBrazil()));
   };
 
   useEffect(() => {

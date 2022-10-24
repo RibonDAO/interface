@@ -4,8 +4,14 @@ import SupportWithCommunityPage from ".";
 
 describe("SupportWithCommunityPage", () => {
   it("should render without error", () => {
-    renderComponent(<SupportWithCommunityPage />);
+    renderComponent(<SupportWithCommunityPage />, {
+      locationState: {
+        donationAmount: "R$ 20,00",
+      },
+    });
 
-    expectTextToBeInTheDocument("SupportWithCommunityPage");
+    expectTextToBeInTheDocument(
+      "How does the community increases your R$ 20,00 donation?",
+    );
   });
 });

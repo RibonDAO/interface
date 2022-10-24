@@ -29,8 +29,11 @@ function SupportTreasurePage(): JSX.Element {
   };
 
   return (
+    <div>
+    <S.Button outline>📚 Education</S.Button>
     <S.Container>
       <S.Title>{t("title")}</S.Title>
+     
       <ToggleSwitchText
         leftText={t("card")}
         rightText={t("cryptocurrency")}
@@ -39,6 +42,7 @@ function SupportTreasurePage(): JSX.Element {
 
       {isCard ? <CardSection /> : <CryptoSection />}
     </S.Container>
+    </div>
   );
 }
 

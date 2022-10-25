@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import useBreakpoint from "hooks/useBreakpoint";
 import Carousel from "components/moleculars/sliders/Carousel";
+import { logEvent } from "services/analytics";
 import useCauses from "hooks/apiHooks/useCauses";
 import Cause from "types/entities/Cause";
 import IntersectBackground from "assets/images/intersect-background.svg"
@@ -23,10 +24,17 @@ function SupportTreasurePage(): JSX.Element {
   }, []);
 
   useEffect(() => {
+    logEvent("treasureSupportScreen_view");
+  }, []);
+
+  useEffect(() => {
     setCurrentCause(causes[0]);
   }, [JSON.stringify(causes)]);
 
   const handleCauseClick = (cause: Cause, index: number) => {
+    logEvent("treasureCauseSelection_click", {
+      id: cause?.id,
+    });
     setCurrentCause(cause);
     setSelectedButtonIndex(index);
   };

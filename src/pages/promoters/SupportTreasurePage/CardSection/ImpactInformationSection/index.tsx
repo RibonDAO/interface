@@ -159,7 +159,7 @@ function ImpactInformationSection(): JSX.Element {
           </CardSelect>
         </S.ImpactSimulatorContainer>
       )}
-      <S.ButtonContainer>
+      <S.ButtonContainer topButton>
         <S.FinishButton
           text={t("buttonTextCard")}
           onClick={() => {

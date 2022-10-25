@@ -20,16 +20,12 @@ export const Input = styled.div`
   label {
     padding: 0 2px;
     position: relative;
-    top: -9px;
+    top: -15px;
     left: 10px;
     display: inline;
     text-align: center;
     background-color: ${({ theme }) => theme.colors.neutral10};
     color: ${({ theme }) => theme.colors.green30};
-
-    @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-      top: -8px;
-    }
   }
 
   input {
@@ -38,7 +34,7 @@ export const Input = styled.div`
     border: none;
     border-radius: 5px;
     position: relative;
-    top: -12px;
+    top: -18px;
     box-sizing: border-box;
     line-height: 20px;
     color: ${({ theme }) => theme.colors.gray40};
@@ -59,6 +55,12 @@ export const Input = styled.div`
 
   &:hover {
     cursor: pointer;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    label {
+      top: -15px;
+    }
   }
 `;
 

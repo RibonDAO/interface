@@ -154,7 +154,8 @@
             "country": "Country",
             "state": "State",
             "city": "City",
-            "taxId": "Tax ID"
+            "taxId": "Tax ID",
+            "brazilName": "Brazil"
           }
         },
         "paymentInformationPage": {

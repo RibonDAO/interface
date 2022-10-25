@@ -154,7 +154,8 @@
             "country": "País",
             "state": "Estado",
             "city": "Cidade",
-            "taxId": "CPF"
+            "taxId": "CPF",
+            "brazilName": "Brasil"
           }
         },
         "paymentInformationPage": {

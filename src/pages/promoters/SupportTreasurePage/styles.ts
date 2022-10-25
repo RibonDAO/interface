@@ -17,16 +17,3 @@ export const Title = styled.h1`
   margin: 4px 0;
   margin-bottom: 48px;
 `;
-
-export const Button = styled.button<{
-  outline?: boolean;
-}>`
-  padding: 4px 8px;
-  width: auto;
-  color: ${({ theme }) => theme.colors.gray30};
-  border: 1px solid ${(props) =>
-    props.outline ? props.theme.colors.gray30 : props.theme.colors.orange20};
-  border-radius: 4px;
-  background-color: ${(props) =>
-    props.outline ? props.theme.colors.neutral10 : props.theme.colors.orange20};
-`;

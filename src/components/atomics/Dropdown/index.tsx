@@ -5,7 +5,7 @@ import * as S from "./styles";
 
 export type Props = {
   name: string;
-  label: string;
+  label?: string;
   values: any[];
   defaultValue?: any;
   onOptionChanged?: (value: any) => void;
@@ -86,7 +86,7 @@ function Dropdown({
           </S.OptionContainer>
         ))}
       </ModalBlank>
-      <S.Input onClick={handleInputClick}>
+      <S.Input onClick={handleInputClick} hasLabel={Boolean(label)}>
         {label && <label htmlFor={name}>{label}</label>}
         <input
           type="text"

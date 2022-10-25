@@ -8,8 +8,8 @@ export const Container = styled.div`
 
 export const BackgroundImage = styled.img`
   position: absolute;
-  bottom: -200px;
   right: 0;
+  bottom: -200px;
 `;
 
 export const MainContainer = styled.div`
@@ -32,14 +32,14 @@ export const Title = styled.h1`
 export const Button = styled.button<{
   outline?: boolean;
 }>`
-  padding: 4px 8px;
   width: 100%;
-  color: ${({ theme }) => theme.colors.gray30};
+  padding: 4px 8px;
   border: 1px solid ${(props) =>
     props.outline ? props.theme.colors.gray30 : props.theme.colors.orange20};
   border-radius: 4px;
   background-color: ${(props) =>
     props.outline ? props.theme.colors.neutral10 : props.theme.colors.orange20};
+  color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const ContainerCarousel = styled.div`

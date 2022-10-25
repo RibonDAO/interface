@@ -86,7 +86,7 @@ function Dropdown({
           </S.OptionContainer>
         ))}
       </ModalBlank>
-      <S.Input onClick={handleInputClick} hasLabel={Boolean(label)}>
+      <S.Input onClick={handleInputClick}>
         {label && <label htmlFor={name}>{label}</label>}
         <input
           type="text"

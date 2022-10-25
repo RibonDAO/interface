@@ -6,11 +6,7 @@ export const Container = styled.div`
   display: inline-block;
 `;
 
-export type InputProps = {
-  hasLabel?: boolean;
-};
-
-export const Input = styled.div<InputProps>`
+export const Input = styled.div`
   width: 100%;
   height: 50px;
   margin-bottom: 12px;

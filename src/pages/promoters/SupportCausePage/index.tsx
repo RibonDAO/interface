@@ -5,7 +5,7 @@ import Carousel from "components/moleculars/sliders/Carousel";
 import { logEvent } from "services/analytics";
 import useCauses from "hooks/apiHooks/useCauses";
 import Cause from "types/entities/Cause";
-import IntersectBackground from "assets/images/intersect-background.svg"
+import IntersectBackground from "assets/images/intersect-background.svg";
 import * as S from "./styles";
 
 function SupportTreasurePage(): JSX.Element {
@@ -44,7 +44,10 @@ function SupportTreasurePage(): JSX.Element {
       <S.Button
         outline={index !== selectedButtonIndex}
         onClick={() => handleCauseClick(item, index)}
-        key={item?.id}>{item.name}</S.Button>
+        key={item?.id}
+      >
+        {item.name}
+      </S.Button>
     ));
   }
 
@@ -53,7 +56,12 @@ function SupportTreasurePage(): JSX.Element {
       <S.MainContainer>
         <S.Title>{t("title")}</S.Title>
         <S.ContainerCarousel>
-          <Carousel sliderPerView={isMobile ? 2 : 2.8} mode="snap" loop spacing={8}>
+          <Carousel
+            sliderPerView={isMobile ? 2 : 2.8}
+            mode="snap"
+            loop
+            spacing={8}
+          >
             {renderCausesButtons()}
           </Carousel>
         </S.ContainerCarousel>

@@ -4,6 +4,7 @@ import useBreakpoint from "hooks/useBreakpoint";
 import Carousel from "components/moleculars/sliders/Carousel";
 import useCauses from "hooks/apiHooks/useCauses";
 import Cause from "types/entities/Cause";
+import IntersectBackground from "assets/images/intersect-background.svg"
 import * as S from "./styles";
 
 function SupportTreasurePage(): JSX.Element {
@@ -40,16 +41,17 @@ function SupportTreasurePage(): JSX.Element {
   }
 
   return (
-    <div>
-      <S.Container>
+    <S.Container>
+      <S.MainContainer>
         <S.Title>{t("title")}</S.Title>
         <S.ContainerCarousel>
           <Carousel sliderPerView={isMobile ? 2 : 2.8} mode="snap" loop spacing={8}>
             {renderCausesButtons()}
           </Carousel>
         </S.ContainerCarousel>
-      </S.Container>
-    </div>
+      </S.MainContainer>
+      <S.BackgroundImage src={IntersectBackground} />
+    </S.Container>
   );
 }
 

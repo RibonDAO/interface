@@ -1,7 +1,18 @@
 import styled from "styled-components";
 import { stylizedHeadingLarge } from "styles/typography/stylized";
 
+
 export const Container = styled.div`
+  width: 100%;
+`;
+
+export const BackgroundImage = styled.img`
+  position: absolute;
+  bottom: -200px;
+  right: 0;
+`;
+
+export const MainContainer = styled.div`
   width: 100%;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
@@ -19,16 +30,16 @@ export const Title = styled.h1`
 `;
 
 export const Button = styled.button<{
-    outline?: boolean;
+  outline?: boolean;
 }>`
   padding: 4px 8px;
   width: 100%;
   color: ${({ theme }) => theme.colors.gray30};
   border: 1px solid ${(props) =>
-        props.outline ? props.theme.colors.gray30 : props.theme.colors.orange20};
+    props.outline ? props.theme.colors.gray30 : props.theme.colors.orange20};
   border-radius: 4px;
   background-color: ${(props) =>
-        props.outline ? props.theme.colors.neutral10 : props.theme.colors.orange20};
+    props.outline ? props.theme.colors.neutral10 : props.theme.colors.orange20};
 `;
 
 export const ContainerCarousel = styled.div`

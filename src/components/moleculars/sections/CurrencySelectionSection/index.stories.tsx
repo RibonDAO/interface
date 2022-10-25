@@ -23,5 +23,5 @@ Default.args = {
   amount: 100,
   currentCoin: Currencies.USD,
   onCurrencyChanged: () => {},
-  currencyOptions: [Currencies.USD, Currencies.BRL, Currencies.USDT],
+  currencyOptions: [Currencies.USD, Currencies.BRL],
 };

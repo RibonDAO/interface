@@ -12,7 +12,7 @@ describe("CurrencySelectionSection", () => {
         amount={100}
         currentCoin={Currencies.USD}
         onCurrencyChanged={mockFn}
-        currencyOptions={[Currencies.USD, Currencies.BRL, Currencies.USDT]}
+        currencyOptions={[Currencies.USD, Currencies.BRL]}
       />,
     );
   });

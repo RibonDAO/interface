@@ -13,6 +13,7 @@ export type InputProps = {
 export const Input = styled.div<InputProps>`
   width: 100%;
   height: 50px;
+  margin-bottom: 12px;
   padding: 0 10px;
   border: 1px solid ${({ theme }) => theme.colors.green30};
   border-radius: 4px;

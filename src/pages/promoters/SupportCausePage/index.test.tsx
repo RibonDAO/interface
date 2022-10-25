@@ -13,7 +13,7 @@ jest.mock("hooks/apiHooks/useCauses", () => ({
   __esModule: true,
   default: () => ({
     causes: [mockCause, mockCause2],
-    refetch: () => { },
+    refetch: () => {},
   }),
 }));
 

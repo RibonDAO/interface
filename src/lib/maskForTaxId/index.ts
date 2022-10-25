@@ -1,9 +1,7 @@
-import { Languages } from "types/enums/Languages";
-
-export const mask = (originalString: string, language: string) => {
+export const maskForTaxId = (originalString: string, brazilFormat = false) => {
   let newString = originalString.replace(/\D/g, "");
 
-  if (language === Languages.PT) {
+  if (brazilFormat) {
     newString = newString.replace(/(\d{3})(\d)/, "$1.$2");
     newString = newString.replace(/(\d{3})(\d)/, "$1.$2");
     newString = newString.replace(/(\d{3})(\d{1,2})$/, "$1-$2");

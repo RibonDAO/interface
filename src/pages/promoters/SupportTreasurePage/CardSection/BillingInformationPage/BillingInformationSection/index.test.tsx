@@ -15,7 +15,11 @@ describe("BillingInformationSection", () => {
   });
 
   it("should fill billing information form", () => {
-    renderComponent(<BillingInformationSection />);
+    renderComponent(<BillingInformationSection />, {
+      cardPaymentProviderValue: {
+        country: "Brazil",
+      },
+    });
 
     userEvent.type(screen.getByPlaceholderText("Country"), "Brazil");
     userEvent.type(screen.getByPlaceholderText("City"), "São Paulo");

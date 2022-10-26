@@ -214,6 +214,8 @@ function CryptoSection(): JSX.Element {
             disabled={disableButton()}
           />
         </S.ButtonContainer>
+
+        <S.ExtraText>{t("extraText")}</S.ExtraText>
       </div>
     );
   }

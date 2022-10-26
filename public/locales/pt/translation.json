@@ -142,6 +142,7 @@
         "simulateSectionTitle": "Simule um resultado possível",
         "buttonTextCard": "Ir para pagamento",
         "buttonSubmit": "Confirmar",
+        "extraText": "*Contribuições em criptomoeda não são estornáveis.",
         "detailsSubtitle": "Detalhes da contribuição",
         "netGivingText": "Contribuição líquida: {{netGiving}}*",
         "serviceFeesText": "Taxas de serviço: {{serviceFees}}",

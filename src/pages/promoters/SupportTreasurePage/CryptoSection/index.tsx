@@ -215,9 +215,7 @@ function CryptoSection(): JSX.Element {
           />
         </S.ButtonContainer>
 
-        <S.ExtraText>
-          *Contribuições em criptomoeda não são estornáveis.
-        </S.ExtraText>
+        <S.ExtraText>{t("extraText")}</S.ExtraText>
       </div>
     );
   }

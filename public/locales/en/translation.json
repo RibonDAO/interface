@@ -142,6 +142,7 @@
         "simulateSectionTitle": "Simulate a possible result",
         "buttonTextCard": "Proceed to Checkout",
         "buttonSubmit": "Confirm",
+        "extraText": "*Contributions in crypto are not refundable.",
         "detailsSubtitle": "Giving details",
         "netGivingText": "Net giving: {{netGiving}}*",
         "serviceFeesText": "Service fees: {{serviceFees}}",

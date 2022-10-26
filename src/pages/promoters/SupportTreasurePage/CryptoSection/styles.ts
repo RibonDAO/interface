@@ -107,7 +107,7 @@ export const FinishButton = styled(Button)`
 
 export const ConnectButton = styled(Button)`
   width: 160px;
-  padding: 7px 16px;
+  padding: 8px 16px;
 `;
 
 export const ExtraText = styled.h6`

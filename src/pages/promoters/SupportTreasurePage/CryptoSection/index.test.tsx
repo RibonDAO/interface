@@ -17,7 +17,7 @@ describe("CryptoSection", () => {
     });
 
     it("should render without error", () => {
-      expectTextToBeInTheDocument("How much do you want to give?");
+      expectTextToBeInTheDocument("How much do you want to give?*");
     });
   });
 

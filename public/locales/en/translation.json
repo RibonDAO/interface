@@ -120,7 +120,7 @@
     },
     "supportTreasurePage": {
       "title": "Make a bigger impact",
-      "subtitle": "How much do you want to give?",
+      "subtitle": "How much do you want to give?*",
       "buttonText": "Confirm giving",
       "disabledButtonText": "Enter a USDC amount",
       "insufficientBalanceText": "Insufficient USDC balance",
@@ -142,6 +142,7 @@
         "simulateSectionTitle": "Simulate a possible result",
         "buttonTextCard": "Proceed to Checkout",
         "buttonSubmit": "Confirm",
+        "extraText": "*Contributions in crypto are not refundable.",
         "detailsSubtitle": "Giving details",
         "netGivingText": "Net giving: {{netGiving}}*",
         "serviceFeesText": "Service fees: {{serviceFees}}",

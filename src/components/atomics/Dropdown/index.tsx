@@ -5,7 +5,7 @@ import * as S from "./styles";
 
 export type Props = {
   name: string;
-  label: string;
+  label?: string;
   values: any[];
   defaultValue?: any;
   onOptionChanged?: (value: any) => void;

@@ -8,18 +8,19 @@ export const Container = styled.div`
 
 export const Input = styled.div`
   width: 100%;
-  height: 40px;
+  height: 50px;
   margin-bottom: 12px;
+  padding: 0 10px;
   border: 1px solid ${({ theme }) => theme.colors.green30};
-  border-radius: 5px;
-  position: relative;
-  display: inline-block;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
   box-sizing: border-box;
   color: ${({ theme }) => theme.colors.gray40};
 
   label {
     padding: 0 2px;
-    position: relative;
+    position: absolute;
     top: -15px;
     left: 10px;
     display: inline;
@@ -30,13 +31,11 @@ export const Input = styled.div`
 
   input {
     width: 100%;
-    padding: 0 10px;
     border: none;
-    border-radius: 5px;
-    position: relative;
-    top: -18px;
+    border-radius: 4px;
     box-sizing: border-box;
     line-height: 20px;
+    background: transparent;
     color: ${({ theme }) => theme.colors.gray40};
 
     &:hover {
@@ -45,12 +44,7 @@ export const Input = styled.div`
   }
 
   img {
-    height: 24px;
-    position: absolute;
-    top: 8px;
-    right: 15px;
-    align-self: center;
-    justify-self: center;
+    width: 24px;
   }
 
   &:hover {

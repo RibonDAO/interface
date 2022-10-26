@@ -109,3 +109,9 @@ export const ConnectButton = styled(Button)`
   width: 160px;
   padding: 7px 16px;
 `;
+
+export const ExtraText = styled.h6`
+  margin-bottom: 20px;
+  color: ${({ theme }) => theme.colors.gray30};
+  font-weight: ${({ theme }) => theme.font.light};
+`;

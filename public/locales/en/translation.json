@@ -120,7 +120,7 @@
     },
     "supportTreasurePage": {
       "title": "Make a bigger impact",
-      "subtitle": "How much do you want to give?",
+      "subtitle": "How much do you want to give?*",
       "buttonText": "Confirm giving",
       "disabledButtonText": "Enter a USDC amount",
       "insufficientBalanceText": "Insufficient USDC balance",

@@ -214,6 +214,10 @@ function CryptoSection(): JSX.Element {
             disabled={disableButton()}
           />
         </S.ButtonContainer>
+
+        <S.ExtraText>
+          *Contribuições em criptomoeda não são estornáveis.
+        </S.ExtraText>
       </div>
     );
   }

@@ -15,6 +15,7 @@ import GivingsPage from "pages/promoters/GivingsPage";
 import WalletLayout from "layouts/WalletLayout";
 import CardPaymentInformationProvider from "contexts/cardPaymentInformationContext";
 import NetworkProvider from "contexts/networkContext";
+import CommunityAddPage from "pages/promoters/SupportWithCommunityPage/CommunityAddPage";
 import Navigation from "./Navigation";
 
 function RoutesComponent(): JSX.Element {
@@ -121,6 +122,12 @@ function RoutesComponent(): JSX.Element {
         <MainLayout>
           <div />
         </MainLayout>
+      </Route>
+
+      <Route path="/promoters/community-add" exact>
+        <Suspense fallback={<div />}>
+          <CommunityAddPage />
+        </Suspense>
       </Route>
     </Switch>
   );

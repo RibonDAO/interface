@@ -6,6 +6,7 @@ import { logEvent } from "services/analytics";
 import useCauses from "hooks/apiHooks/useCauses";
 import Cause from "types/entities/Cause";
 import IntersectBackground from "assets/images/intersect-background.svg";
+import useNavigation from "hooks/useNavigation";
 import * as S from "./styles";
 import UserSupportSection from "../SupportTreasurePage/CardSection/UserSupportSection";
 import SupportImage from "./assets/support-image.png";
@@ -14,16 +15,13 @@ function SupportTreasurePage(): JSX.Element {
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
   const { isMobile } = useBreakpoint();
   const [, setCurrentCause] = useState<Cause>();
+  const { navigateTo } = useNavigation();
 
-  const { causes, refetch: refetchCauses } = useCauses();
+  const { causes } = useCauses();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportCausePage",
   });
-
-  useEffect(() => {
-    refetchCauses();
-  }, []);
 
   useEffect(() => {
     logEvent("treasureSupportScreen_view");
@@ -53,6 +51,19 @@ function SupportTreasurePage(): JSX.Element {
     ));
   }
 
+  const handleDonateClick = () => {
+    logEvent("treasureComCicleBtn_click");
+  };
+
+  const handleCommunityAddClick = () => {
+    navigateTo({
+      pathname: "/promoters/community-add",
+      state: {
+        donationAmount: "R$ 10",
+      },
+    });
+  };
+
   return (
     <S.Container>
       <S.MainContainer>
@@ -79,14 +90,14 @@ function SupportTreasurePage(): JSX.Element {
                 <S.CommunityAddValue>+ R$ 2</S.CommunityAddValue>
                 <S.CommunityAddButton
                   text={t("communityAddButtonText")}
-                  onClick={() => {}}
+                  onClick={handleCommunityAddClick}
                   outline
                 />
               </S.CommunityAddContainer>
             </S.GivingContainer>
             <S.DonateButton
               text={t("donateButtonText", { value: "R$ 10" })}
-              onClick={() => {}}
+              onClick={handleDonateClick}
             />
           </S.DonateContainer>
           <UserSupportSection />

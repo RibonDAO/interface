@@ -8,6 +8,7 @@ import ButtonComponent from "components/atomics/buttons/Button";
 
 export const Container = styled.div`
   width: 100%;
+  margin-bottom: 24px;
 `;
 
 export const ContentContainer = styled.div`
@@ -59,6 +60,7 @@ export const CommunityAddValue = styled.p`
 `;
 
 export const CommunityAddButton = styled(ButtonComponent)`
+  margin-top: 8px;
   padding: 4px;
   border-color: ${({ theme }) => theme.colors.orange40};
   font-size: 12px;
@@ -73,9 +75,13 @@ export const DonateButton = styled(ButtonComponent)`
 `;
 
 export const BackgroundImage = styled.img`
-  position: absolute;
-  right: 0;
-  bottom: -200px;
+  display: none;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    position: absolute;
+    right: 0;
+    bottom: -200px;
+  }
 `;
 
 export const MainContainer = styled.div`

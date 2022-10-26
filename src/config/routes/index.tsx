@@ -16,7 +16,7 @@ import GivingsPage from "pages/promoters/GivingsPage";
 import WalletLayout from "layouts/WalletLayout";
 import CardPaymentInformationProvider from "contexts/cardPaymentInformationContext";
 import NetworkProvider from "contexts/networkContext";
-import CommunityAddPage from "pages/promoters/SupportWithCommunityPage/CommunityAddPage";
+import CommunityAddPage from "pages/promoters/SupportCausePage/CommunityAddPage";
 import Navigation from "./Navigation";
 
 function RoutesComponent(): JSX.Element {

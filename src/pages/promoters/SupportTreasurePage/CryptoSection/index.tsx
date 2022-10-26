@@ -219,10 +219,10 @@ function CryptoSection(): JSX.Element {
   }
 
   return (
-    <div>
+    <S.Container>
       {wallet ? renderFormCryptocurrency() : renderConnectWallet()}
       <UserSupportSection />
-    </div>
+    </S.Container>
   );
 }
 

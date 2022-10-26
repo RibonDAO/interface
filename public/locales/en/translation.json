@@ -119,7 +119,10 @@
       }
     },
     "supportCausePage": {
-      "title": "Donate with a community"
+      "title": "Donate with a community",
+      "communityAddText": "The Community will add",
+      "communityAddButtonText": "How the community does it?",
+      "donateButtonText": "Donate {{value}}"
     },
     "supportTreasurePage": {
       "title": "Make a bigger impact",

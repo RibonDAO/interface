@@ -4,6 +4,7 @@ import Divider from "components/atomics/Divider";
 import LottieAnimation from "components/atomics/LottieAnimation";
 
 export const Container = styled.div`
+  padding-inline: 16px;
   width: 100%;
   height: 100vh;
   display: grid;

@@ -157,7 +157,8 @@
             "country": "Country",
             "state": "State",
             "city": "City",
-            "taxId": "Tax ID"
+            "taxId": "Tax ID",
+            "brazilName": "Brazil"
           }
         },
         "paymentInformationPage": {
@@ -188,6 +189,12 @@
         }
       },
       "linkMessageToast": "Learn more"
+    },
+    "supportWithCommunityPage": {
+      "communityAddPage": {
+        "title": "How does the community increases your {{value}} donation?",
+        "button": "Donate {{value}}"
+      }
     }
   },
   "contexts": {

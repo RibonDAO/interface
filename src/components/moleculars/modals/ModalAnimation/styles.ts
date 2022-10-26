@@ -63,18 +63,26 @@ export const ProgressBar = styled.div`
   border-radius: 16px;
 `;
 
-export const ProgressImg = styled.img`
+export type ProgressImgProps = {
+  loaded: boolean;
+};
+
+export const ProgressImg = styled.img<ProgressImgProps>`
   position: absolute;
   bottom: 51%;
-  animation: go 3s linear;
+  animation: ${({ loaded }) => (loaded ? "go 3s linear" : "none")};
 
   @keyframes go {
     from {
       transform: translateX(0);
+
+      --webkit-transform: translateX(0);
     }
 
     to {
       transform: translateX(250%);
+
+      --webkit-transform: translateX(250%);
     }
   }
 `;

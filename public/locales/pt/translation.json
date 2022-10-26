@@ -157,7 +157,8 @@
             "country": "País",
             "state": "Estado",
             "city": "Cidade",
-            "taxId": "CPF"
+            "taxId": "CPF",
+            "brazilName": "Brasil"
           }
         },
         "paymentInformationPage": {
@@ -188,6 +189,12 @@
         }
       },
       "linkMessageToast": "Saiba mais"
+    },
+    "supportWithCommunityPage": {
+      "communityAddPage": {
+        "title": "Como a comunidade aumenta a sua doação de {{value}}?",
+        "button": "Doar {{value}}"
+      }
     }
   },
   "contexts": {

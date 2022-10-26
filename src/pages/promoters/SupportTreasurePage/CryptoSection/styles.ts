@@ -112,6 +112,6 @@ export const ConnectButton = styled(Button)`
 
 export const ExtraText = styled.h6`
   margin-bottom: 20px;
-  color: ${({ theme }) => theme.colors.gray30};
   font-weight: ${({ theme }) => theme.font.light};
+  color: ${({ theme }) => theme.colors.gray30};
 `;

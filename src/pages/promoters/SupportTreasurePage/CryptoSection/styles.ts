@@ -5,6 +5,10 @@ import {
   defaultSubtitleMedium,
 } from "styles/typography/default";
 
+export const Container = styled.div`
+  padding-bottom: 50px;
+`;
+
 export const Subtitle = styled.h3`
   margin-top: 20px;
 `;

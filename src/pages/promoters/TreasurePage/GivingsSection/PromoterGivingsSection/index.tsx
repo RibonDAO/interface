@@ -212,7 +212,10 @@ function GivingsSection(): JSX.Element {
           firstText={paidDate(item.paidDate)}
           mainText={item.cryptoAmount}
           rightComplementText={coin}
-          buttonText={t("cardDonationText")}
+          buttonText={
+            item.status === "refunded" ? t("refunded") : t("cardDonationText")
+          }
+          refunded={item.status === "refunded"}
         />
       ),
     );

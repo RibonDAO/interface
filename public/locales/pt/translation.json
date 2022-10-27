@@ -110,7 +110,8 @@
         "transactionSuccessText": "Transação processada",
         "transactionFailedText": "Falha ao processar transação",
         "linkMessageToast": "Saiba mais",
-        "cardDonationText": "Contribuição por cartão"
+        "cardDonationText": "Contribuição por cartão",
+        "refunded": "Estornada"
       },
       "modalOnboarding": {
         "title": "Tesouro de Doação da Ribon",

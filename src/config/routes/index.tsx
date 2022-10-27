@@ -9,6 +9,7 @@ import MainLayout from "layouts/MainLayout";
 import TreasurePage from "pages/promoters/TreasurePage";
 import StoriesPage from "pages/donations/StoriesPage";
 import SupportTreasurePage from "pages/promoters/SupportTreasurePage";
+import SupportCausePage from "pages/promoters/SupportCausePage";
 import BillingInformationPage from "pages/promoters/SupportTreasurePage/CardSection/BillingInformationPage";
 import PaymentInformationPage from "pages/promoters/SupportTreasurePage/CardSection/PaymentInformationPage";
 import GivingsPage from "pages/promoters/GivingsPage";
@@ -77,6 +78,20 @@ function RoutesComponent(): JSX.Element {
               <WalletLayout>
                 <CardPaymentInformationProvider>
                   <SupportTreasurePage />
+                </CardPaymentInformationProvider>
+              </WalletLayout>
+            </WalletProvider>
+          </NetworkProvider>
+        </Suspense>
+      </Route>
+
+      <Route path="/promoters/support-cause" exact>
+        <Suspense fallback={<div />}>
+          <NetworkProvider>
+            <WalletProvider>
+              <WalletLayout>
+                <CardPaymentInformationProvider>
+                  <SupportCausePage />
                 </CardPaymentInformationProvider>
               </WalletLayout>
             </WalletProvider>

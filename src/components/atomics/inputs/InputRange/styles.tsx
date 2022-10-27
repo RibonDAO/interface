@@ -3,9 +3,10 @@ import styled, { css } from "styled-components";
 const thumb = css`
   width: 20px;
   height: 20px;
-  margin: -6px 0 0;
+  margin: -7px 0 0;
   border-radius: 50%;
   background: ${({ theme }) => theme.colors.green30};
+  box-shadow: none;
   cursor: pointer;
   border: 0 !important;
 `;
@@ -18,7 +19,7 @@ export type TrackProps = {
 
 const track = css<TrackProps>`
   width: 100%;
-  height: 8px;
+  height: 6px;
   cursor: pointer;
   background: ${({ value, min, max, theme }) => {
     const mainColor = theme.colors.green30;

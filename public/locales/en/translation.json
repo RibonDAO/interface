@@ -110,7 +110,8 @@
         "transactionSuccessText": "Transaction successful",
         "transactionFailedText": "Transaction failed",
         "linkMessageToast": "Learn more",
-        "cardDonationText": "Given by card"
+        "cardDonationText": "Given by card",
+        "refunded": "Refunded"
       },
       "modalOnboarding": {
         "title": "Ribon’s Donation Treasure",

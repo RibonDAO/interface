@@ -8,6 +8,7 @@ import {
 
 export const CardSectionContainer = styled.div`
   margin-top: 24px;
+  margin-bottom: 120px;
 `;
 
 export const Subtitle = styled.h2`

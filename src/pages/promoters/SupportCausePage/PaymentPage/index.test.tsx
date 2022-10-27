@@ -6,15 +6,15 @@ import PaymentPage from ".";
 
 describe("PaymentPage", () => {
   it("should render without error", () => {
+    const offer = offerFactory();
+
     renderComponent(<PaymentPage />, {
       locationState: {
-        offer: offerFactory(),
+        offer,
         cause: causeFactory(),
       },
     });
 
-    expectTextToBeInTheDocument(
-      "How does the community increases your R$ 20,00 donation?",
-    );
+    expectTextToBeInTheDocument(offer.price);
   });
 });

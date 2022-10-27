@@ -197,6 +197,10 @@
       "communityAddPage": {
         "title": "How does the community increases your {{value}} donation?",
         "button": "Donate {{value}}"
+      },
+      "paymentPage": {
+        "title": "Your donation to",
+        "button": "Continue"
       }
     }
   },

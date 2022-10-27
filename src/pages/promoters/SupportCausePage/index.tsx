@@ -9,7 +9,10 @@ import IntersectBackground from "assets/images/intersect-background.svg";
 import useNavigation from "hooks/useNavigation";
 import Offer from "types/entities/Offer";
 import offerFactory from "config/testUtils/factories/offerFactory";
-import { formatPrice } from "lib/formatters/currencyFormatter";
+import {
+  formatPrice,
+  removeInsignificantZeros,
+} from "lib/formatters/currencyFormatter";
 import * as S from "./styles";
 import UserSupportSection from "../SupportTreasurePage/CardSection/UserSupportSection";
 import SupportImage from "./assets/support-image.png";
@@ -17,9 +20,9 @@ import SupportImage from "./assets/support-image.png";
 function SupportTreasurePage(): JSX.Element {
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
   const { isMobile } = useBreakpoint();
-  const [, setCurrentCause] = useState<Cause>();
+  const [currentCause, setCurrentCause] = useState<Cause>();
   const { navigateTo } = useNavigation();
-  const [selectedOffer] = useState<Offer>(offerFactory());
+  const [currentOffer] = useState<Offer>(offerFactory());
 
   const { causes } = useCauses();
 
@@ -57,20 +60,32 @@ function SupportTreasurePage(): JSX.Element {
 
   const handleDonateClick = () => {
     logEvent("treasureComCicleBtn_click");
-    console.log(selectedOffer);
+    navigateTo({
+      pathname: "/promoters/support-cause/payment",
+      state: {
+        offer: currentOffer,
+        cause: currentCause,
+      },
+    });
   };
 
   const handleCommunityAddClick = () => {
     navigateTo({
       pathname: "/promoters/community-add",
       state: {
-        donationAmount: selectedOffer.price,
+        donationAmount: currentOffer.price,
       },
     });
   };
 
-  const communityAddText = () =>
-    `+ ${formatPrice(selectedOffer.priceValue * 0.6, selectedOffer.currency)}`;
+  const communityAddText = () => {
+    const PERCENTAGE_OF_INCREASE = 0.6;
+
+    return `+ ${formatPrice(
+      currentOffer.priceValue * PERCENTAGE_OF_INCREASE,
+      currentOffer.currency,
+    )}`;
+  };
 
   return (
     <S.Container>
@@ -104,7 +119,9 @@ function SupportTreasurePage(): JSX.Element {
               </S.CommunityAddContainer>
             </S.GivingContainer>
             <S.DonateButton
-              text={t("donateButtonText", { value: "R$ 10" })}
+              text={t("donateButtonText", {
+                value: removeInsignificantZeros(currentOffer.price),
+              })}
               onClick={handleDonateClick}
             />
           </S.DonateContainer>

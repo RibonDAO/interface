@@ -7,6 +7,9 @@ import useCauses from "hooks/apiHooks/useCauses";
 import Cause from "types/entities/Cause";
 import IntersectBackground from "assets/images/intersect-background.svg";
 import useNavigation from "hooks/useNavigation";
+import Offer from "types/entities/Offer";
+import offerFactory from "config/testUtils/factories/offerFactory";
+import { formatPrice } from "lib/formatters/currencyFormatter";
 import * as S from "./styles";
 import UserSupportSection from "../SupportTreasurePage/CardSection/UserSupportSection";
 import SupportImage from "./assets/support-image.png";
@@ -16,6 +19,7 @@ function SupportTreasurePage(): JSX.Element {
   const { isMobile } = useBreakpoint();
   const [, setCurrentCause] = useState<Cause>();
   const { navigateTo } = useNavigation();
+  const [selectedOffer] = useState<Offer>(offerFactory());
 
   const { causes } = useCauses();
 
@@ -53,16 +57,20 @@ function SupportTreasurePage(): JSX.Element {
 
   const handleDonateClick = () => {
     logEvent("treasureComCicleBtn_click");
+    console.log(selectedOffer);
   };
 
   const handleCommunityAddClick = () => {
     navigateTo({
       pathname: "/promoters/community-add",
       state: {
-        donationAmount: "R$ 10",
+        donationAmount: selectedOffer.price,
       },
     });
   };
+
+  const communityAddText = () =>
+    `+ ${formatPrice(selectedOffer.priceValue * 0.6, selectedOffer.currency)}`;
 
   return (
     <S.Container>
@@ -87,7 +95,7 @@ function SupportTreasurePage(): JSX.Element {
               </S.ContributionContainer>
               <S.CommunityAddContainer>
                 <S.CommunityAddText>{t("communityAddText")}</S.CommunityAddText>
-                <S.CommunityAddValue>+ R$ 2</S.CommunityAddValue>
+                <S.CommunityAddValue>{communityAddText()}</S.CommunityAddValue>
                 <S.CommunityAddButton
                   text={t("communityAddButtonText")}
                   onClick={handleCommunityAddClick}

@@ -118,6 +118,9 @@
         "button": "Continuar"
       }
     },
+    "supportCausePage": {
+      "title": "Doe com a comunidade"
+    },
     "supportTreasurePage": {
       "title": "Gere mais impacto",
       "subtitle": "Com quanto você quer contribuir?*",
@@ -186,7 +189,6 @@
           "primaryButtonText": "Acesse o suporte"
         }
       },
-
       "linkMessageToast": "Saiba mais"
     },
     "supportWithCommunityPage": {

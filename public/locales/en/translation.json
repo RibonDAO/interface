@@ -118,6 +118,9 @@
         "button": "Ok"
       }
     },
+    "supportCausePage": {
+      "title": "Donate with a community"
+    },
     "supportTreasurePage": {
       "title": "Make a bigger impact",
       "subtitle": "How much do you want to give?*",
@@ -186,7 +189,6 @@
           "primaryButtonText": "Access user support"
         }
       },
-
       "linkMessageToast": "Learn more"
     },
     "supportWithCommunityPage": {

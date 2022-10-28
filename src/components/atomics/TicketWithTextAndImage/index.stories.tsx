@@ -19,5 +19,5 @@ Default.args = {
   title: "TicketWithTextAndImage",
   subtitle: "Subtitle",
   image: logo,
-  link: "https://github.com/RibonDAO/interface"
+  link: "https://github.com/RibonDAO/interface",
 };

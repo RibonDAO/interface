@@ -16,6 +16,7 @@ export const Container = styled.div`
   &::after {
     content: "";
     position: absolute;
+    z-index:1;
   }
 
   &::before {
@@ -27,12 +28,11 @@ export const Container = styled.div`
 
   &::after {
     height: 18%;
-    border-radius: 50%;
+    border-radius: 50% 0 0 50%;
     top: 43%;
-    right: -3%;
+    right: 0%;
     left: 97%;
-    background: linear-gradient(to right, #D9D9D9,  #FFFFFF);
-    box-shadow: 20px 20px 40px 20px rgba(24, 86, 105, 10%);
+    background: linear-gradient(to right, #D9D9D9 70%,  #FFFFFF);
   }
 `;
 

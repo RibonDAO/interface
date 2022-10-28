@@ -41,7 +41,8 @@ function LayoutHeader({
   const { isMobile } = useBreakpoint();
   const { signedIn } = useCurrentUser();
   const { navigateBack } = useNavigation();
-  const { showBlockedDonationModal } = useBlockedDonationModal();
+  const { integration } = useIntegration(integrationId);
+  const { showBlockedDonationModal } = useBlockedDonationModal(undefined, integration);
   const { canDonate } = useCanDonate(integrationId);
   const { isVoucherAvailable } = useVoucher();
 
@@ -67,7 +68,7 @@ function LayoutHeader({
 
   if (!integrationId) return <div />;
 
-  const { integration } = useIntegration(integrationId);
+
 
   function openMenu() {
     logEvent("configButton_click");

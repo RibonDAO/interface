@@ -1,32 +1,45 @@
 import { useTranslation } from "react-i18next";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import blockedIcon from "assets/icons/ticket-off.svg";
+import giftIcon from "assets/icons/gift-ribon.svg";
 import { useEffect } from "react";
+import Integration from "types/entities/Integration";
 import TicketWithTextAndImage from "components/atomics/TicketWithTextAndImage";
+import { RIBON_COMPANY_ID } from "utils/constants";
 import { useModal } from "../useModal";
 
-export function useBlockedDonationModal(initialState?: boolean) {
+export function useBlockedDonationModal(initialState?: boolean,
+  integration?: Integration) {
   const { t } = useTranslation("translation", {
-    keyPrefix: "donations.causesPage",
+    keyPrefix: "donations.causesPage.blockedModal",
   });
+  const isRibonIntegration = integration?.id === parseInt(RIBON_COMPANY_ID, 10);
+
+  function renderTickets() {
+    return isRibonIntegration ?
+      [<TicketWithTextAndImage
+        title={t("ribonTitle")}
+        subtitle={t("ribonText")}
+        image={giftIcon}
+      />] : [<TicketWithTextAndImage
+        title={integration?.integrationTask.description}
+        subtitle={integration?.integrationTask.link}
+        image={integration?.logo}
+        link={integration?.integrationTask.linkAddress}
+      />,
+      <TicketWithTextAndImage
+        title={t("ribonTitle")}
+        subtitle={t("ribonText")}
+        image={giftIcon}
+      />]
+  }
 
   const { show, hide } = useModal({
     type: MODAL_TYPES.MODAL_ROWS,
     props: {
-      title: t("blockedModalTitle"),
-      body: t("blockedModalText"),
-      children: [
-        <TicketWithTextAndImage
-          title="Realize outra compra"
-          subtitle="Volte amanhã para receber mais 1 vale"
-          image="https://cdn.worldvectorlogo.com/logos/renner-1.svg"
-        />,
-        <TicketWithTextAndImage
-          title="Realize outra compra"
-          subtitle="Volte amanhã para receber mais 1 vale"
-          image="https://cdn.worldvectorlogo.com/logos/renner-1.svg"
-        />,
-      ],
+      title: t("title"),
+      body: t("text"),
+      children: renderTickets(),
       onClose: () => hide(),
       icon: blockedIcon,
     },

@@ -4,17 +4,19 @@ export type Props = {
   title?: string;
   subtitle?: string;
   image?: string;
+  link?: string;
 };
 function TicketWithTextAndImage({
   title,
   subtitle,
   image,
+  link,
 }: Props): JSX.Element {
   return (
     <S.Container>
       <S.LeftContainer>
         <S.Title>{title}</S.Title>
-        <S.Subtitle>{subtitle}</S.Subtitle>
+        <S.Link href={link}>{subtitle}</S.Link>
       </S.LeftContainer>
       <S.RightContainer>
         <S.Image src={image} />

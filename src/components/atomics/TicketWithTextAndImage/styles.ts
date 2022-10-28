@@ -10,12 +10,12 @@ export const Container = styled.div`
   position: relative;
   display: flex;
   box-shadow: 20px 20px 40px 20px rgba(24, 86, 105, 10%);
+  border-radius: 2px;
 
   &::before,
   &::after {
     content: "";
     position: absolute;
-    z-index: 1;
   }
 
   &::before {
@@ -26,20 +26,13 @@ export const Container = styled.div`
   }
 
   &::after {
-    height: 18px;
-    border-radius: 40%;
-    top: 35%;
+    height: 18%;
+    border-radius: 50%;
+    top: 43%;
     right: -3%;
-    left: 95%;
-    background: linear-gradient(
-      90deg,
-      rgba(24, 86, 105, 25%) 0%,
-      rgba(130, 170, 190, 45%) 55%,
-      rgba(130, 170, 190, 25%) 65%,
-      rgba(130, 170, 190, 0%) 80%,
-      rgba(130, 170, 190, 0%) 90%
-    );
-    box-shadow: 0 20px 40px rgba(24, 86, 105, 15%);
+    left: 97%;
+    background: linear-gradient(to right, #D9D9D9,  #FFFFFF);
+    box-shadow: 20px 20px 40px 20px rgba(24, 86, 105, 10%);
   }
 `;
 
@@ -57,7 +50,7 @@ export const Title = styled.h3`
   ${defaultSubtitleSmall}
 `;
 
-export const Subtitle = styled.p`
+export const Link = styled.a`
   ${defaultParagraphSmall}
   color: ${({ theme }) => theme.colors.green30};
 `;

@@ -22,6 +22,10 @@
       "donateAnimationModalTitle": "Making donation...",
       "donateAnimationModalOrigin": "You",
       "donateAnimationModalDestiny": "Project",
+      "stories": {
+        "loading": "Loading stories...",
+        "empty": "No stories available."
+      },
       "modalForm": {
         "footerStartText": "By signing up you agree to Ribon's",
         "footerAnd": "and",
@@ -37,6 +41,9 @@
         "ribonTitle": "Ribon gift",
         "ribonText": "Come back tomorrow to receive 1 more voucher"
       }
+    },
+    "storiesPage": {
+      "ctaText": "Donate ticket"
     },
     "donationDonePage": {
       "title": "Thank you for the donation!",
@@ -105,7 +112,8 @@
         "transactionSuccessText": "Transaction successful",
         "transactionFailedText": "Transaction failed",
         "linkMessageToast": "Learn more",
-        "cardDonationText": "Given by card"
+        "cardDonationText": "Given by card",
+        "refunded": "Refunded"
       },
       "modalOnboarding": {
         "title": "Ribon’s Donation Treasure",
@@ -113,9 +121,12 @@
         "button": "Ok"
       }
     },
+    "supportCausePage": {
+      "title": "Donate with a community"
+    },
     "supportTreasurePage": {
       "title": "Make a bigger impact",
-      "subtitle": "How much do you want to give?",
+      "subtitle": "How much do you want to give?*",
       "buttonText": "Confirm giving",
       "disabledButtonText": "Enter a USDC amount",
       "insufficientBalanceText": "Insufficient USDC balance",
@@ -137,6 +148,7 @@
         "simulateSectionTitle": "Simulate a possible result",
         "buttonTextCard": "Proceed to Checkout",
         "buttonSubmit": "Confirm",
+        "extraText": "*Contributions in crypto are not refundable.",
         "detailsSubtitle": "Giving details",
         "netGivingText": "Net giving: {{netGiving}}*",
         "serviceFeesText": "Service fees: {{serviceFees}}",
@@ -149,7 +161,8 @@
             "country": "Country",
             "state": "State",
             "city": "City",
-            "taxId": "Tax ID"
+            "taxId": "Tax ID",
+            "brazilName": "Brazil"
           }
         },
         "paymentInformationPage": {
@@ -179,8 +192,13 @@
           "primaryButtonText": "Access user support"
         }
       },
-
       "linkMessageToast": "Learn more"
+    },
+    "supportWithCommunityPage": {
+      "communityAddPage": {
+        "title": "How does the community increases your {{value}} donation?",
+        "button": "Donate {{value}}"
+      }
     }
   },
   "contexts": {

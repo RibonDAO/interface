@@ -3,16 +3,18 @@ import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 
 export type Props = {
-  sliderPerView?: number;
+  sliderPerView?: number | "auto";
   spacing?: number;
   children: JSX.Element[];
   mode?: "free" | "free-snap" | "snap";
+  loop?: boolean;
 };
 function Carousel({
   sliderPerView = 2,
   spacing = 15,
   children,
   mode = "snap",
+  loop = false,
 }: Props): JSX.Element {
   const [options, setOptions] = useState({});
   const [slides, setSlides] = useState<JSX.Element[]>([]);
@@ -23,6 +25,7 @@ function Carousel({
     slider.current?.update();
     setOptions({
       mode,
+      loop,
       slides: {
         perView: sliderPerView,
         spacing,

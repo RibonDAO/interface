@@ -5,6 +5,10 @@ import {
   defaultSubtitleMedium,
 } from "styles/typography/default";
 
+export const Container = styled.div`
+  padding-bottom: 50px;
+`;
+
 export const Subtitle = styled.h3`
   margin-top: 20px;
 `;
@@ -107,5 +111,11 @@ export const FinishButton = styled(Button)`
 
 export const ConnectButton = styled(Button)`
   width: 160px;
-  padding: 7px 16px;
+  padding: 8px 16px;
+`;
+
+export const ExtraText = styled.h6`
+  margin-bottom: 20px;
+  font-weight: ${({ theme }) => theme.font.light};
+  color: ${({ theme }) => theme.colors.gray30};
 `;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactModal from "react-modal";
 import { defaultCustomStyles } from "../defaultCustomStyles";
 import * as S from "./styles";
@@ -25,6 +25,8 @@ function ModalAnimation({
   iconDestiny,
   icon,
 }: Props): JSX.Element {
+  const [iconLoaded, setIconLoaded] = useState(false);
+
   return (
     <S.BlankModal
       isOpen={visible}
@@ -41,7 +43,12 @@ function ModalAnimation({
         </S.AnimationContent>
         <S.AnimationContent>
           <S.ProgressBar>
-            <S.ProgressImg src={icon} alt="icon" />
+            <S.ProgressImg
+              src={icon}
+              alt="icon"
+              onLoad={() => setIconLoaded(true)}
+              loaded={iconLoaded}
+            />
           </S.ProgressBar>
         </S.AnimationContent>
         <S.AnimationContent>

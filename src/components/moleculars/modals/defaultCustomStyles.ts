@@ -7,7 +7,7 @@ export const defaultCustomStyles: Styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    zIndex: 3,
+    zIndex: 1000,
   },
   content: {
     border: "",

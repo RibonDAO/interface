@@ -22,6 +22,10 @@
       "donateAnimationModalTitle": "Realizando doação... ",
       "donateAnimationModalOrigin": "Você",
       "donateAnimationModalDestiny": "Projeto",
+      "stories": {
+        "loading": "Carregando stories...",
+        "empty": "Não há stories disponíveis."
+      },
       "modalForm": {
         "footerStartText": "Ao inserir seu e-mail e se inscrever, você aceita a nossa",
         "footerAnd": "e",
@@ -37,6 +41,9 @@
         "ribonTitle": "Presente Ribon",
         "ribonText": "Volte amanhã para receber mais 1 vale"
       }
+    },
+    "storiesPage": {
+      "ctaText": "Doar vale"
     },
     "donationDonePage": {
       "title": "Obrigada pela doação!",
@@ -105,7 +112,8 @@
         "transactionSuccessText": "Transação processada",
         "transactionFailedText": "Falha ao processar transação",
         "linkMessageToast": "Saiba mais",
-        "cardDonationText": "Contribuição por cartão"
+        "cardDonationText": "Contribuição por cartão",
+        "refunded": "Estornada"
       },
       "modalOnboarding": {
         "title": "Tesouro de Doação da Ribon",
@@ -113,9 +121,12 @@
         "button": "Continuar"
       }
     },
+    "supportCausePage": {
+      "title": "Doe com a comunidade"
+    },
     "supportTreasurePage": {
       "title": "Gere mais impacto",
-      "subtitle": "Com quanto você quer contribuir?",
+      "subtitle": "Com quanto você quer contribuir?*",
       "buttonText": "Confirmar doação",
       "disabledButtonText": "Insira uma quantidade de USDC",
       "insufficientBalanceText": "Saldo de USDC insuficiente",
@@ -137,6 +148,7 @@
         "simulateSectionTitle": "Simule um resultado possível",
         "buttonTextCard": "Ir para pagamento",
         "buttonSubmit": "Confirmar",
+        "extraText": "*Contribuições em criptomoeda não são estornáveis.",
         "detailsSubtitle": "Detalhes da contribuição",
         "netGivingText": "Contribuição líquida: {{netGiving}}*",
         "serviceFeesText": "Taxas de serviço: {{serviceFees}}",
@@ -149,7 +161,8 @@
             "country": "País",
             "state": "Estado",
             "city": "Cidade",
-            "taxId": "CPF"
+            "taxId": "CPF",
+            "brazilName": "Brasil"
           }
         },
         "paymentInformationPage": {
@@ -179,8 +192,13 @@
           "primaryButtonText": "Acesse o suporte"
         }
       },
-
       "linkMessageToast": "Saiba mais"
+    },
+    "supportWithCommunityPage": {
+      "communityAddPage": {
+        "title": "Como a comunidade aumenta a sua doação de {{value}}?",
+        "button": "Doar {{value}}"
+      }
     }
   },
   "contexts": {

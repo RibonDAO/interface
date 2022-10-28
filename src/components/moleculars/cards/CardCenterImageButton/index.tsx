@@ -1,6 +1,7 @@
 import Button from "components/atomics/buttons/Button";
 import React from "react";
 import securityIcon from "assets/icons/security-mark-icon.svg";
+import expandIcon from "assets/icons/expand-icon.svg";
 import * as S from "./styles";
 
 export type Props = {
@@ -8,6 +9,7 @@ export type Props = {
   title?: string;
   buttonText: string;
   onClickButton: () => void;
+  onClickImage?: () => void;
   softDisabled?: boolean;
   disabled?: boolean;
   infoTextLeft?: string;
@@ -18,6 +20,7 @@ function CardCenterImageButton({
   title,
   buttonText,
   onClickButton,
+  onClickImage,
   disabled,
   softDisabled,
   infoTextLeft,
@@ -25,7 +28,8 @@ function CardCenterImageButton({
 }: Props): JSX.Element {
   return (
     <S.Container>
-      <S.ImageSection onClick={onClickButton}>
+      <S.ImageSection onClick={onClickImage}>
+        <S.ExpandIcon src={expandIcon} />
         <S.Image src={image} alt="image" />
         <S.ImageDescription>{title}</S.ImageDescription>
 

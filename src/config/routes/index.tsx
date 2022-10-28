@@ -7,13 +7,16 @@ import DonationDonePage from "pages/donations/DonationDonePage";
 import ImpactPage from "pages/users/ImpactPage";
 import MainLayout from "layouts/MainLayout";
 import TreasurePage from "pages/promoters/TreasurePage";
+import StoriesPage from "pages/donations/StoriesPage";
 import SupportTreasurePage from "pages/promoters/SupportTreasurePage";
+import SupportCausePage from "pages/promoters/SupportCausePage";
 import BillingInformationPage from "pages/promoters/SupportTreasurePage/CardSection/BillingInformationPage";
 import PaymentInformationPage from "pages/promoters/SupportTreasurePage/CardSection/PaymentInformationPage";
 import GivingsPage from "pages/promoters/GivingsPage";
 import WalletLayout from "layouts/WalletLayout";
 import CardPaymentInformationProvider from "contexts/cardPaymentInformationContext";
 import NetworkProvider from "contexts/networkContext";
+import CommunityAddPage from "pages/promoters/SupportWithCommunityPage/CommunityAddPage";
 import Navigation from "./Navigation";
 
 function RoutesComponent(): JSX.Element {
@@ -26,6 +29,12 @@ function RoutesComponent(): JSX.Element {
               <CausesPage />
             </MainLayout>
           </WalletProvider>
+        </Suspense>
+      </Route>
+
+      <Route path="/stories" exact>
+        <Suspense fallback={<div />}>
+          <StoriesPage />
         </Suspense>
       </Route>
 
@@ -76,6 +85,20 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
+      <Route path="/promoters/support-cause" exact>
+        <Suspense fallback={<div />}>
+          <NetworkProvider>
+            <WalletProvider>
+              <WalletLayout>
+                <CardPaymentInformationProvider>
+                  <SupportCausePage />
+                </CardPaymentInformationProvider>
+              </WalletLayout>
+            </WalletProvider>
+          </NetworkProvider>
+        </Suspense>
+      </Route>
+
       <Route path="/promoters/support-treasure/billing-information" exact>
         <Suspense fallback={<div />}>
           <WalletProvider>
@@ -114,6 +137,12 @@ function RoutesComponent(): JSX.Element {
         <MainLayout>
           <div />
         </MainLayout>
+      </Route>
+
+      <Route path="/promoters/community-add" exact>
+        <Suspense fallback={<div />}>
+          <CommunityAddPage />
+        </Suspense>
       </Route>
     </Switch>
   );

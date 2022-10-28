@@ -104,6 +104,7 @@ function LayoutHeader({
             display: "flex",
             alignItems: "flex-start",
             justifyContent: "flex-end",
+            zIndex: `${theme.zindex.modal}`,
           },
           content: {
             border: `1px solid ${theme.colors.gray20}`,

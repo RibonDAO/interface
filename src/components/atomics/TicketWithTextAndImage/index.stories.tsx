@@ -1,4 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import logo from "assets/icons/logo.svg";
 import TicketWithTextAndImage, { Props } from ".";
 
 export default {
@@ -17,4 +18,6 @@ export const Default = Template.bind({});
 Default.args = {
   title: "TicketWithTextAndImage",
   subtitle: "Subtitle",
+  image: logo,
+  link: "https://github.com/RibonDAO/interface"
 };

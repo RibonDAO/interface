@@ -9,8 +9,8 @@ export const Container = styled.div`
   margin-bottom: 12px;
   position: relative;
   display: flex;
-  box-shadow: 20px 20px 40px 20px rgba(24, 86, 105, 10%);
   border-radius: 2px;
+  box-shadow: 20px 20px 40px 20px rgba(24, 86, 105, 10%);
 
   &::before,
   &::after {
@@ -26,15 +26,15 @@ export const Container = styled.div`
   }
 
   &::after {
+    width: 4%;
+    height: 20%;
+    border-radius: 50% 0 0 50%;
     position: absolute;
-  top: 50%;
-  right: -2%;
-  transform: translate(-50%, -50%);
-  height: 20%;
-  width: 4%;
-  border-radius: 50% 0 0 50%;
-  background: ${({ theme }) => theme.colors.gray10};
-  box-shadow: 0px 3px 0px 0px #d9d9d9;
+    top: 50%;
+    right: -2%;
+    background: ${({ theme }) => theme.colors.gray10};
+    box-shadow: 0px 3px 0px 0px #d9d9d9;
+    transform: translate(-50%, -50%);
   }
 `;
 

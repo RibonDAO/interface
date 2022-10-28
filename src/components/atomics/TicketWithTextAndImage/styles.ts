@@ -7,11 +7,10 @@ import {
 export const Container = styled.div`
   min-height: 64px;
   margin-bottom: 12px;
-  position: relative;
   border-radius: 2px;
-  box-shadow: 20px 20px 40px 20px rgba(24, 86, 105, 10%);
+  position: relative;
   display: flex;
-  
+  box-shadow: 20px 20px 40px 20px rgba(24, 86, 105, 10%);
 
   &::before,
   &::after {

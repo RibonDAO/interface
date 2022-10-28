@@ -35,7 +35,8 @@ function NonProfitsList({
     keyPrefix: "donations.causesPage",
   });
   const { showBlockedDonationModal } = useBlockedDonationModal(
-    state?.blockedDonation, integration
+    state?.blockedDonation,
+    integration,
   );
 
   const chooseNonProfit = useCallback((nonProfit: NonProfit) => {

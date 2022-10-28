@@ -8,30 +8,37 @@ import TicketWithTextAndImage from "components/atomics/TicketWithTextAndImage";
 import { RIBON_COMPANY_ID } from "utils/constants";
 import { useModal } from "../useModal";
 
-export function useBlockedDonationModal(initialState?: boolean,
-  integration?: Integration) {
+export function useBlockedDonationModal(
+  initialState?: boolean,
+  integration?: Integration,
+) {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage.blockedModal",
   });
   const isRibonIntegration = integration?.id === parseInt(RIBON_COMPANY_ID, 10);
 
   function renderTickets() {
-    return isRibonIntegration ?
-      [<TicketWithTextAndImage
-        title={t("ribonTitle")}
-        subtitle={t("ribonText")}
-        image={giftIcon}
-      />] : [<TicketWithTextAndImage
-        title={integration?.integrationTask.description}
-        subtitle={integration?.integrationTask.link}
-        image={integration?.logo}
-        link={integration?.integrationTask.linkAddress}
-      />,
-      <TicketWithTextAndImage
-        title={t("ribonTitle")}
-        subtitle={t("ribonText")}
-        image={giftIcon}
-      />]
+    return isRibonIntegration
+      ? [
+          <TicketWithTextAndImage
+            title={t("ribonTitle")}
+            subtitle={t("ribonText")}
+            image={giftIcon}
+          />,
+        ]
+      : [
+          <TicketWithTextAndImage
+            title={integration?.integrationTask.description}
+            subtitle={integration?.integrationTask.link}
+            image={integration?.logo}
+            link={integration?.integrationTask.linkAddress}
+          />,
+          <TicketWithTextAndImage
+            title={t("ribonTitle")}
+            subtitle={t("ribonText")}
+            image={giftIcon}
+          />,
+        ];
   }
 
   const { show, hide } = useModal({

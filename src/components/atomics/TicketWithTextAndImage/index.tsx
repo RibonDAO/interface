@@ -19,7 +19,7 @@ function TicketWithTextAndImage({
         <S.Link href={link}>{subtitle}</S.Link>
       </S.LeftContainer>
       <S.RightContainer>
-        <S.Image src={image} />
+        <S.Image src={image} alt="logo" />
       </S.RightContainer>
     </S.Container>
   );

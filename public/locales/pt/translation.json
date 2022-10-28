@@ -110,7 +110,8 @@
         "transactionSuccessText": "Transação processada",
         "transactionFailedText": "Falha ao processar transação",
         "linkMessageToast": "Saiba mais",
-        "cardDonationText": "Contribuição por cartão"
+        "cardDonationText": "Contribuição por cartão",
+        "refunded": "Estornada"
       },
       "modalOnboarding": {
         "title": "Tesouro de Doação da Ribon",
@@ -126,7 +127,7 @@
     },
     "supportTreasurePage": {
       "title": "Gere mais impacto",
-      "subtitle": "Com quanto você quer contribuir?",
+      "subtitle": "Com quanto você quer contribuir?*",
       "buttonText": "Confirmar doação",
       "disabledButtonText": "Insira uma quantidade de USDC",
       "insufficientBalanceText": "Saldo de USDC insuficiente",
@@ -148,6 +149,7 @@
         "simulateSectionTitle": "Simule um resultado possível",
         "buttonTextCard": "Ir para pagamento",
         "buttonSubmit": "Confirmar",
+        "extraText": "*Contribuições em criptomoeda não são estornáveis.",
         "detailsSubtitle": "Detalhes da contribuição",
         "netGivingText": "Contribuição líquida: {{netGiving}}*",
         "serviceFeesText": "Taxas de serviço: {{serviceFees}}",

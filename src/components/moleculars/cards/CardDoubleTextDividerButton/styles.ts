@@ -22,24 +22,39 @@ export const FirstText = styled.p`
 
 export const MainContent = styled.h3<{
   processing?: boolean;
+  refunded?: boolean;
 }>`
   ${defaultTitleLarge}
   color: ${(props) =>
-    props.processing ? props.theme.colors.gray30 : props.theme.colors.green30};
+    // eslint-disable-next-line no-nested-ternary
+    props.processing
+      ? props.theme.colors.gray30
+      : props.refunded
+      ? props.theme.colors.gray20
+      : props.theme.colors.green30};
 `;
 
 export const RightMainContent = styled.span<{
   processing?: boolean;
+  refunded?: boolean;
 }>`
   color: ${(props) =>
-    props.processing ? props.theme.colors.gray30 : props.theme.colors.green30};
+    // eslint-disable-next-line no-nested-ternary
+    props.processing
+      ? props.theme.colors.gray30
+      : props.refunded
+      ? props.theme.colors.gray20
+      : props.theme.colors.green30};
 `;
 
-export const LinkSection = styled.a`
+export const LinkSection = styled.a<{
+  refunded?: boolean;
+}>`
   display: flex;
   justify-content: space-between;
   text-decoration: none;
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${(props) =>
+    props.refunded ? props.theme.colors.gray20 : props.theme.colors.gray40};
 `;
 
 export const SpinnerSection = styled.a`

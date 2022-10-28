@@ -8,9 +8,10 @@ export const Container = styled.div`
   min-height: 64px;
   margin-bottom: 12px;
   position: relative;
-  display: flex;
   border-radius: 2px;
   box-shadow: 20px 20px 40px 20px rgba(24, 86, 105, 10%);
+  display: flex;
+  
 
   &::before,
   &::after {
@@ -33,7 +34,7 @@ export const Container = styled.div`
     top: 50%;
     right: -2%;
     background: ${({ theme }) => theme.colors.gray10};
-    box-shadow: 0px 3px 0px 0px #d9d9d9;
+    box-shadow: 0 3px 0 0 #d9d9d9;
     transform: translate(-50%, -50%);
   }
 `;

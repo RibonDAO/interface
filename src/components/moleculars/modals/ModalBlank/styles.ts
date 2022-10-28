@@ -6,7 +6,7 @@ export const BlankModal = styled(ReactModal)`
   max-width: 360px;
   margin: 16px;
   border-radius: 16px;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.colors.neutral10};
 `;
 
 export const Modal = styled(BlankModal)`

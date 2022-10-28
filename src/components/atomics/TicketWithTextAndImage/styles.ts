@@ -16,7 +16,6 @@ export const Container = styled.div`
   &::after {
     content: "";
     position: absolute;
-    z-index:1;
   }
 
   &::before {
@@ -27,12 +26,15 @@ export const Container = styled.div`
   }
 
   &::after {
-    height: 18%;
-    border-radius: 50% 0 0 50%;
-    top: 43%;
-    right: 0%;
-    left: 97%;
-    background: linear-gradient(to right, #D9D9D9 70%,  #FFFFFF);
+    position: absolute;
+  top: 50%;
+  right: -2%;
+  transform: translate(-50%, -50%);
+  height: 20%;
+  width: 4%;
+  border-radius: 50% 0 0 50%;
+  background: ${({ theme }) => theme.colors.gray10};
+  box-shadow: 0px 3px 0px 0px #d9d9d9;
   }
 `;
 

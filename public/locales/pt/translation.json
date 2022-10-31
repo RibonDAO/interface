@@ -16,10 +16,6 @@
       "errorModalTitle": "Falha no processamento",
       "errorModalText": "A rede está instável e não foi possível registrar sua doação. Tente novamente, por favor.",
       "errorModalButtonText": "Ok",
-      "blockedModalTitle": "Você não tem tickets doação",
-      "blockedModalText": "Contribua para o Tesouro de Doação da Ribon e promova novas doações.",
-      "blockedModalFirstButtonText": "Contribuir agora",
-      "blockedModalSecondButtonText": "Talvez depois",
       "receiveTicketAnimationModalTitle": "Recebendo ticket...",
       "receiveTicketAnimationModalOrigin": "Apoiadores",
       "receiveTicketAnimationModalDestiny": "Você",
@@ -38,6 +34,12 @@
         "privacyPolicyLink": "https://ribon.io/2021/06/01/politica-de-privacidade-e-retencao-de-dados-pessoais/",
         "useTermsLink": "https://blog.ribon.io/2021/07/12/termos-e-condicoes-de-uso-da-ribon/",
         "accessUserSupport": "Acessar o suporte ao usuário"
+      },
+      "blockedModal": {
+        "title": "Você não tem mais vales :(",
+        "text": "Gostaria de receber mais?",
+        "ribonTitle": "Presente Ribon",
+        "ribonText": "Volte amanhã para receber mais 1 vale"
       }
     },
     "storiesPage": {

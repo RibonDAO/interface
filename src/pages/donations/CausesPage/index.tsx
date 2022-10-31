@@ -155,6 +155,7 @@ function CausesPage(): JSX.Element {
                 setChosenNonProfit={setChosenNonProfit}
                 setConfirmModalVisible={setConfirmModalVisible}
                 canDonate={canDonate}
+                integration={integration}
               />
             )}
           </S.CausesContainer>

@@ -12,8 +12,13 @@ type RowProps = {
 
 export type Props = {
   visible?: boolean;
+  icon?: string | null;
+  biggerIcon?: boolean;
+  roundIcon?: boolean;
+  altIcon?: string;
   rowsContent?: Record<any, any> | null;
   title?: string | null;
+  body?: string | null;
   titleColor?: string;
   primaryButtonText?: string | null;
   primaryButtonLeftIcon?: string | undefined;
@@ -37,8 +42,14 @@ export type Props = {
 
 function ModalRows({
   visible = false,
+  icon = null,
+  biggerIcon = false,
+  roundIcon = false,
+  altIcon = "icon",
   rowsContent = null,
+  children = null,
   title = null,
+  body = null,
   titleColor,
   primaryButtonText = null,
   primaryButtonLeftIcon = undefined,
@@ -56,6 +67,12 @@ function ModalRows({
   contentLabel,
   animationData,
 }: Props): JSX.Element {
+  function renderIcon() {
+    if (biggerIcon) return icon && <S.BiggerIcon src={icon} alt={altIcon} />;
+    if (roundIcon) return icon && <S.RoundIcon src={icon} alt={altIcon} />;
+
+    return icon && <S.Icon src={icon} />;
+  }
   return (
     <S.ModalWithIcon
       isOpen={visible}
@@ -64,6 +81,7 @@ function ModalRows({
       contentLabel={contentLabel}
       ariaHideApp={false}
     >
+      {renderIcon()}
       {animationData && (
         <S.Animation>
           <LottieAnimation
@@ -75,6 +93,7 @@ function ModalRows({
       )}
       <S.RowsModalContainer>
         <S.Title color={titleColor}>{title}</S.Title>
+        {body && <S.Body>{body}</S.Body>}
         <S.RowsModalSection>
           {rowsContent &&
             rowsContent.map((row: RowProps) => (
@@ -83,6 +102,7 @@ function ModalRows({
                 <S.RowsModalText>{row.text}</S.RowsModalText>
               </S.RowsModalRow>
             ))}
+          {children}
         </S.RowsModalSection>
         {primaryButtonText && (
           <Button

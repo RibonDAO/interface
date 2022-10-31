@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import icon from "assets/images/newspaper.svg";
+import Loader from "components/atomics/Loader";
 import ModalRows, { Props } from ".";
 
 export default {
@@ -15,7 +16,9 @@ export const Default = Template.bind({});
 
 Default.args = {
   title: "ModalRows",
+  body: "Subtitle",
   visible: true,
+  icon,
   primaryButtonText: "Primary",
   secondaryButtonText: "Secondary",
   rowsContent: [
@@ -25,4 +28,5 @@ Default.args = {
       text: "dunaaa",
     },
   ],
+  children: [<Loader />],
 };

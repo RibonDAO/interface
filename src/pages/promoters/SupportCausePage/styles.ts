@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { stylizedHeadingLarge } from "styles/typography/stylized";
 
 export const Container = styled.div`
-  width: 100%;
 `;
 
 export const BackgroundImage = styled.img`

@@ -16,13 +16,14 @@ import {
 import * as S from "./styles";
 import UserSupportSection from "../SupportTreasurePage/CardSection/UserSupportSection";
 import SupportImage from "./assets/support-image.png";
+import SelectOfferSection from "./SelectOfferSection";
 
-function SupportTreasurePage(): JSX.Element {
+function SupportCausePage(): JSX.Element {
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
   const { isMobile } = useBreakpoint();
   const [currentCause, setCurrentCause] = useState<Cause>();
   const { navigateTo } = useNavigation();
-  const [currentOffer] = useState<Offer>(offerFactory());
+  const [currentOffer, setCurrentOffer] = useState<Offer>(offerFactory());
 
   const { causes } = useCauses();
 
@@ -87,6 +88,10 @@ function SupportTreasurePage(): JSX.Element {
     )}`;
   };
 
+  const handleOfferChange = (offer: Offer) => {
+    setCurrentOffer(offer);
+  };
+
   return (
     <S.Container>
       <S.MainContainer>
@@ -106,7 +111,10 @@ function SupportTreasurePage(): JSX.Element {
           <S.DonateContainer>
             <S.GivingContainer>
               <S.ContributionContainer>
-                <div />
+                <SelectOfferSection
+                  cause={currentCause}
+                  onOfferChange={handleOfferChange}
+                />
               </S.ContributionContainer>
               <S.CommunityAddContainer>
                 <S.CommunityAddText>{t("communityAddText")}</S.CommunityAddText>
@@ -133,4 +141,4 @@ function SupportTreasurePage(): JSX.Element {
   );
 }
 
-export default SupportTreasurePage;
+export default SupportCausePage;

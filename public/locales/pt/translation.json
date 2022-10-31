@@ -125,7 +125,10 @@
       "title": "Doe com a comunidade",
       "communityAddText": "A Comunidade adicionará",
       "communityAddButtonText": "Como a comunidade faz isso?",
-      "donateButtonText": "Doar {{value}}"
+      "donateButtonText": "Doar {{value}}",
+      "selectOfferSection": {
+        "causeText": "Você doará para {{cause}}"
+      }
     },
     "supportTreasurePage": {
       "title": "Gere mais impacto",

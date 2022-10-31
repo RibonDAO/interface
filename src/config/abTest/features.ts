@@ -1,4 +1,3 @@
-import { useFeature } from "@growthbook/growthbook-react";
-
-export const menuOnFirstDonationFeature = () =>
-  useFeature("menu-on-first-donation").on;
+export const nameOfFeature = () => {
+  // useFeature("name-of-feature").on;
+};

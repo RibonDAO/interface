@@ -20,25 +20,25 @@ export function useBlockedDonationModal(
   function renderTickets() {
     return isRibonIntegration || !integration?.integrationTask
       ? [
-        <TicketWithTextAndImage
-          title={t("ribonTitle")}
-          subtitle={t("ribonText")}
-          image={giftIcon}
-        />,
-      ]
+          <TicketWithTextAndImage
+            title={t("ribonTitle")}
+            subtitle={t("ribonText")}
+            image={giftIcon}
+          />,
+        ]
       : [
-        <TicketWithTextAndImage
-          title={integration?.integrationTask.description}
-          subtitle={integration?.integrationTask.link}
-          image={integration?.logo}
-          link={integration?.integrationTask.linkAddress}
-        />,
-        <TicketWithTextAndImage
-          title={t("ribonTitle")}
-          subtitle={t("ribonText")}
-          image={giftIcon}
-        />,
-      ];
+          <TicketWithTextAndImage
+            title={integration?.integrationTask.description}
+            subtitle={integration?.integrationTask.link}
+            image={integration?.logo}
+            link={integration?.integrationTask.linkAddress}
+          />,
+          <TicketWithTextAndImage
+            title={t("ribonTitle")}
+            subtitle={t("ribonText")}
+            image={giftIcon}
+          />,
+        ];
   }
 
   const { show, hide } = useModal({

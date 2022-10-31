@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { stylizedHeadingLarge } from "styles/typography/stylized";
 
 export const Container = styled.div`
+  width: 100%;
 `;
 
 export const BackgroundImage = styled.img`
@@ -36,7 +37,6 @@ export const Button = styled.button<{
 export const CausesContainer = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   gap: 8px;
 `;

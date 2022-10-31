@@ -127,7 +127,7 @@
       "communityAddButtonText": "Como a comunidade faz isso?",
       "donateButtonText": "Doar {{value}}",
       "selectOfferSection": {
-        "causeText": "Você doará para {{cause}}"
+        "causeText": "Você doará para"
       }
     },
     "supportTreasurePage": {

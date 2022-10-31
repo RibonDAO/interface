@@ -5,7 +5,12 @@ import { useCardPaymentInformation } from "contexts/cardPaymentInformationContex
 import Offer from "types/entities/Offer";
 import { useTranslation } from "react-i18next";
 import Cause from "types/entities/Cause";
+import { Currencies } from "types/enums/Currencies";
+import theme from "styles/theme";
+import { formatPrice } from "lib/formatters/currencyFormatter";
 import * as S from "./styles";
+
+const { orange30, orange40 } = theme.colors;
 
 type Props = {
   cause: Cause | undefined;
@@ -15,7 +20,7 @@ function SelectOfferPage({ cause, onOfferChange }: Props): JSX.Element {
   const [maxRange, setMaxRange] = useState(0);
   const [currentOfferIndex, setCurrentOfferIndex] = useState(0);
   const [currentOffer, setCurrentOffer] = useState<Offer>();
-  const { currentCoin } = useCardPaymentInformation();
+  const { currentCoin, setCurrentCoin } = useCardPaymentInformation();
   const { offers, refetch: refetchOffers } = useOffers(currentCoin, false);
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportCausePage.selectOfferSection",
@@ -28,6 +33,7 @@ function SelectOfferPage({ cause, onOfferChange }: Props): JSX.Element {
   useEffect(() => {
     setMaxRange(offers.length - 1);
     setCurrentOffer(offers[0]);
+    setCurrentOfferIndex(0);
   }, [offers]);
 
   useEffect(() => {
@@ -38,12 +44,37 @@ function SelectOfferPage({ cause, onOfferChange }: Props): JSX.Element {
     setCurrentOffer(offers[currentOfferIndex]);
   }, [currentOfferIndex]);
 
+  const onCurrencyChanged = (currency: Currencies) => {
+    setCurrentCoin(currency);
+  };
+
   return (
     <S.Container>
-      <S.CauseText>{t("causeText", { cause: cause?.name })} </S.CauseText>
+      <S.CauseText>
+        {t("causeText")}{" "}
+        <S.CauseTextHighlight>{cause?.name}</S.CauseTextHighlight>
+      </S.CauseText>
       <S.ValueContainer>
-        <S.ValueText>{currentOffer?.priceValue}</S.ValueText>
-        <S.CurrencyText>{currentCoin}</S.CurrencyText>
+        <S.ValueText>
+          {currentOffer &&
+            formatPrice(currentOffer.priceValue, currentOffer.currency)}
+        </S.ValueText>
+        <S.CurrencySelectorContainer>
+          <S.CurrencySelector
+            values={[Currencies.BRL, Currencies.USD]}
+            name="currency"
+            onOptionChanged={onCurrencyChanged}
+            defaultValue={currentCoin}
+            containerId="currencies-dropdown"
+            customInputStyles={{
+              borderColor: orange40,
+              height: 40,
+              marginBottom: 0,
+              color: orange40,
+              width: 80,
+            }}
+          />
+        </S.CurrencySelectorContainer>
       </S.ValueContainer>
       <InputRange
         value={currentOfferIndex}
@@ -52,6 +83,7 @@ function SelectOfferPage({ cause, onOfferChange }: Props): JSX.Element {
         onChange={(event) => {
           setCurrentOfferIndex(event.target.value);
         }}
+        color={orange30}
       />
     </S.Container>
   );

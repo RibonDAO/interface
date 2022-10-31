@@ -1,11 +1,14 @@
 import styled, { css } from "styled-components";
 
-const thumb = css`
+export type ThumbProps = {
+  color?: string;
+};
+const thumb = css<ThumbProps>`
   width: 20px;
   height: 20px;
   margin: -7px 0 0;
   border-radius: 50%;
-  background: ${({ theme }) => theme.colors.green30};
+  background: ${({ color }) => color};
   box-shadow: none;
   cursor: pointer;
   border: 0 !important;
@@ -15,14 +18,15 @@ export type TrackProps = {
   value: number;
   min: number;
   max: number;
+  color?: string;
 };
 
 const track = css<TrackProps>`
   width: 100%;
   height: 6px;
   cursor: pointer;
-  background: ${({ value, min, max, theme }) => {
-    const mainColor = theme.colors.green30;
+  background: ${({ value, min, max, theme, color }) => {
+    const mainColor = color;
     const secondaryColor = theme.colors.gray20;
 
     const percent =
@@ -41,7 +45,6 @@ export const Container = styled.div`
 export const Input = styled.input`
   width: 100%;
   margin-bottom: 12px;
-  width: 100%;
   position: absolute;
   top: 2px;
   height: 0;

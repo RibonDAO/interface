@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { CSSProperties, useCallback, useEffect, useState } from "react";
 import ArrowDownIcon from "assets/icons/arrow-down-icon.svg";
 import ModalBlank from "components/moleculars/modals/ModalBlank";
 import * as S from "./styles";
@@ -10,6 +10,7 @@ export type Props = {
   defaultValue?: any;
   onOptionChanged?: (value: any) => void;
   valueText?: (value: any) => string;
+  customInputStyles?: CSSProperties;
   containerId?: string;
 };
 
@@ -21,6 +22,7 @@ function Dropdown({
   defaultValue,
   valueText,
   containerId = "dropdown-container",
+  customInputStyles = {},
 }: Props): JSX.Element {
   const valueToText = (value: any) => {
     if (valueText && value) return valueText(value);
@@ -86,7 +88,7 @@ function Dropdown({
           </S.OptionContainer>
         ))}
       </ModalBlank>
-      <S.Input onClick={handleInputClick}>
+      <S.Input onClick={handleInputClick} style={customInputStyles}>
         {label && <label htmlFor={name}>{label}</label>}
         <input
           type="text"
@@ -94,6 +96,7 @@ function Dropdown({
           aria-label={name}
           value={valueToText(dropdownValue)}
           readOnly
+          style={{ color: customInputStyles.color }}
         />
         <img src={ArrowDownIcon} alt="arrow-down" />
       </S.Input>

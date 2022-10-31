@@ -26,19 +26,27 @@ export const DonateContainer = styled.div`
 
 export const GivingContainer = styled.div`
   margin-bottom: 24px;
+  padding: 0 34px;
   display: grid;
   align-items: center;
   justify-content: center;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    padding: 0;
     grid-template-columns: 1fr 1fr;
   }
 `;
 
-export const ContributionContainer = styled.div``;
+export const ContributionContainer = styled.div`
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    max-width: 100%;
+    margin-right: 30px;
+    margin-bottom: 24px;
+  }
+`;
 
 export const CommunityAddContainer = styled.div`
-  max-width: 192px;
+  margin-top: 34px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,6 +54,8 @@ export const CommunityAddContainer = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     max-width: 100%;
+    margin-top: 0;
+    margin-left: 30px;
   }
 `;
 
@@ -63,7 +73,7 @@ export const CommunityAddButton = styled(ButtonComponent)`
   margin-top: 8px;
   padding: 4px;
   border-color: ${({ theme }) => theme.colors.orange40};
-  font-size: 12px;
+  font-size: 11px;
   color: ${({ theme }) => theme.colors.orange40};
 `;
 
@@ -99,6 +109,7 @@ export const Title = styled.h1`
   ${stylizedHeadingLarge};
   margin: 4px 0;
   margin-bottom: 24px;
+  color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const Button = styled.button<{

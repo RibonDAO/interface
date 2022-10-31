@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "services/analytics";
 import NonProfit from "types/entities/NonProfit";
+import Integration from "types/entities/Integration";
 import SliderCards from "components/moleculars/sliders/SliderCards";
 import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
 import { useLocation } from "react-router-dom";
@@ -20,6 +21,7 @@ type LocationStateType = {
 
 type Props = {
   nonProfits: NonProfit[];
+  integration: Integration | undefined;
   setChosenNonProfit: (nonProfit: NonProfit) => void;
   setConfirmModalVisible: (visible: boolean) => void;
   canDonate: boolean;
@@ -30,6 +32,7 @@ function NonProfitsList({
   setChosenNonProfit,
   setConfirmModalVisible,
   canDonate,
+  integration,
 }: Props): JSX.Element {
   const { state } = useLocation<LocationStateType>();
 
@@ -38,6 +41,7 @@ function NonProfitsList({
   });
   const { showBlockedDonationModal } = useBlockedDonationModal(
     state?.blockedDonation,
+    integration,
   );
 
   const { showLoadingOverlay, hideLoadingOverlay } = useLoadingOverlay();

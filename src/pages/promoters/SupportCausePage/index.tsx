@@ -50,10 +50,57 @@ function SupportTreasurePage(): JSX.Element {
 
   return (
     <S.Container>
-      <S.MainContainer>
-        <S.Title>{t("title")}</S.Title>
-        <S.CausesContainer>{renderCausesButtons()}</S.CausesContainer>
-      </S.MainContainer>
+      <S.Title>{t("title")}</S.Title>
+      <S.CausesContainer>
+        {renderCausesButtons()}
+        <S.Button
+          outline
+          onClick={() => { }}
+          key={3}
+        >
+          Sustentability 🍃
+        </S.Button>
+
+        <S.Button
+          outline
+          onClick={() => { }}
+          key={3}
+        >
+          oi 🍃
+        </S.Button>
+
+        <S.Button
+          outline
+          onClick={() => { }}
+          key={3}
+        >
+          Sustentability 🍃
+        </S.Button>
+
+        <S.Button
+          outline
+          onClick={() => { }}
+          key={3}
+        >
+          Sustentability 🍃
+        </S.Button>
+
+        <S.Button
+          outline
+          onClick={() => { }}
+          key={3}
+        >
+          Sustentability 🍃
+        </S.Button>
+
+        <S.Button
+          outline
+          onClick={() => { }}
+          key={3}
+        >
+          Sustentability 🍃
+        </S.Button>
+      </S.CausesContainer>
       <S.BackgroundImage src={IntersectBackground} />
     </S.Container>
   );

@@ -35,9 +35,9 @@ export const Button = styled.button<{
   padding: 4px 8px;
   border: 1px solid
     ${(props) =>
-      props.outline
-        ? props.theme.colors.orange20
-        : props.theme.colors.orange40};
+    props.outline
+      ? props.theme.colors.orange20
+      : props.theme.colors.orange40};
   border-radius: 4px;
   background-color: ${(props) =>
     props.outline ? props.theme.colors.neutral10 : props.theme.colors.orange40};
@@ -49,6 +49,6 @@ export const CausesContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  gap: 8px;
   flex-wrap: wrap;
+  gap: 8px;
 `;

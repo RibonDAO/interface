@@ -1,3 +1,6 @@
+import IntegrationTask from "./IntegrationTask";
+
+
 export default interface Integration {
   id: number;
   name: string;
@@ -6,4 +9,5 @@ export default interface Integration {
   logo: string;
   created_at?: string;
   updated_at?: string;
+  integrationTask: IntegrationTask;
 }

@@ -53,51 +53,27 @@ function SupportTreasurePage(): JSX.Element {
       <S.Title>{t("title")}</S.Title>
       <S.CausesContainer>
         {renderCausesButtons()}
-        <S.Button
-          outline
-          onClick={() => { }}
-          key={3}
-        >
+        <S.Button outline onClick={() => {}} key={3}>
           Sustentability 🍃
         </S.Button>
 
-        <S.Button
-          outline
-          onClick={() => { }}
-          key={3}
-        >
+        <S.Button outline onClick={() => {}} key={3}>
           oi 🍃
         </S.Button>
 
-        <S.Button
-          outline
-          onClick={() => { }}
-          key={3}
-        >
+        <S.Button outline onClick={() => {}} key={3}>
           Sustentability 🍃
         </S.Button>
 
-        <S.Button
-          outline
-          onClick={() => { }}
-          key={3}
-        >
+        <S.Button outline onClick={() => {}} key={3}>
           Sustentability 🍃
         </S.Button>
 
-        <S.Button
-          outline
-          onClick={() => { }}
-          key={3}
-        >
+        <S.Button outline onClick={() => {}} key={3}>
           Sustentability 🍃
         </S.Button>
 
-        <S.Button
-          outline
-          onClick={() => { }}
-          key={3}
-        >
+        <S.Button outline onClick={() => {}} key={3}>
           Sustentability 🍃
         </S.Button>
       </S.CausesContainer>

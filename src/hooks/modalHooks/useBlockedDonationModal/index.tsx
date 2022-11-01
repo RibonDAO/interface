@@ -18,7 +18,7 @@ export function useBlockedDonationModal(
   const isRibonIntegration = integration?.id === parseInt(RIBON_COMPANY_ID, 10);
 
   function renderTickets() {
-    return isRibonIntegration
+    return isRibonIntegration || !integration?.integrationTask
       ? [
           <TicketWithTextAndImage
             title={t("ribonTitle")}

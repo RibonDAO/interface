@@ -3,7 +3,10 @@ import {
   stylizedHeadingLarge,
   stylizedTitleLarge,
 } from "styles/typography/stylized";
-import { defaultParagraphSmall } from "styles/typography/default";
+import {
+  defaultParagraphSmall,
+  defaultComponentTextSmall,
+} from "styles/typography/default";
 import ButtonComponent from "components/atomics/buttons/Button";
 
 export const Container = styled.div`
@@ -95,10 +98,14 @@ export const BackgroundImage = styled.img`
 `;
 
 export const Title = styled.h1`
-  ${stylizedHeadingLarge};
+  ${stylizedTitleLarge};
   margin: 4px 0;
   margin-bottom: 24px;
   color: ${({ theme }) => theme.colors.gray40};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    ${stylizedHeadingLarge};
+  }
 `;
 
 export const Button = styled.button<{
@@ -117,6 +124,10 @@ export const Button = styled.button<{
     props.outline ? props.theme.colors.neutral10 : props.theme.colors.orange40};
   color: ${(props) =>
     props.outline ? props.theme.colors.orange40 : props.theme.colors.neutral10};
+`;
+
+export const ButtonText = styled.p`
+  ${defaultComponentTextSmall};
 `;
 
 export const CausesContainer = styled.div`

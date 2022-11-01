@@ -51,7 +51,7 @@ function SupportCausePage(): JSX.Element {
         onClick={() => handleCauseClick(item, index)}
         key={item?.id}
       >
-        {item.name}
+        <S.ButtonText>{item.name}</S.ButtonText>
       </S.Button>
     ));
   }

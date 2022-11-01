@@ -1,11 +1,5 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  width: 100%;
-  position: relative;
-  display: inline-block;
-`;
-
 export const Input = styled.div`
   width: 100%;
   height: 50px;
@@ -34,6 +28,7 @@ export const Input = styled.div`
     border: none;
     border-radius: 4px;
     box-sizing: border-box;
+    font-weight: 600;
     line-height: 20px;
     background: transparent;
     color: ${({ theme }) => theme.colors.gray40};
@@ -56,6 +51,12 @@ export const Input = styled.div`
       top: -15px;
     }
   }
+`;
+
+export const Container = styled.div`
+  width: 100%;
+  position: relative;
+  display: inline-block;
 `;
 
 export const OptionContainer = styled.div`

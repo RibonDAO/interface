@@ -1,4 +1,5 @@
 import React from "react";
+import theme from "styles/theme";
 import * as S from "./styles";
 
 export type Props = {
@@ -8,6 +9,7 @@ export type Props = {
   step?: number;
   disabled?: boolean;
   onChange?: (value: any) => void;
+  color?: string;
 };
 
 function InputRange({
@@ -17,6 +19,7 @@ function InputRange({
   step = 1,
   onChange,
   disabled = false,
+  color = theme.colors.green30,
 }: Props): JSX.Element {
   return (
     <S.Container>
@@ -28,6 +31,7 @@ function InputRange({
         step={step}
         onChange={onChange}
         disabled={disabled}
+        color={color}
       />
     </S.Container>
   );

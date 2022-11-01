@@ -1,7 +1,5 @@
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
-import useBreakpoint from "hooks/useBreakpoint";
-import Carousel from "components/moleculars/sliders/Carousel";
 import { logEvent } from "services/analytics";
 import useCauses from "hooks/apiHooks/useCauses";
 import Cause from "types/entities/Cause";
@@ -10,7 +8,6 @@ import * as S from "./styles";
 
 function SupportTreasurePage(): JSX.Element {
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
-  const { isMobile } = useBreakpoint();
   const [, setCurrentCause] = useState<Cause>();
 
   const { causes, refetch: refetchCauses } = useCauses();
@@ -53,19 +50,8 @@ function SupportTreasurePage(): JSX.Element {
 
   return (
     <S.Container>
-      <S.MainContainer>
-        <S.Title>{t("title")}</S.Title>
-        <S.ContainerCarousel>
-          <Carousel
-            sliderPerView={isMobile ? 2 : 2.8}
-            mode="snap"
-            loop
-            spacing={8}
-          >
-            {renderCausesButtons()}
-          </Carousel>
-        </S.ContainerCarousel>
-      </S.MainContainer>
+      <S.Title>{t("title")}</S.Title>
+      <S.CausesContainer>{renderCausesButtons()}</S.CausesContainer>
       <S.BackgroundImage src={IntersectBackground} />
     </S.Container>
   );

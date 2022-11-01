@@ -11,6 +11,7 @@ import {
   SetStateAction,
   useState,
   useMemo,
+  useEffect,
 } from "react";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "services/analytics";
@@ -22,6 +23,7 @@ import GivingIcon from "assets/icons/giving-icon.svg";
 import Logo from "assets/icons/logo-background-icon.svg";
 import UserIcon from "assets/icons/user.svg";
 import { useIntegrationId } from "hooks/useIntegrationId";
+import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 
 export interface ICardPaymentInformationContext {
   setCurrentCoin: (value: SetStateAction<Currencies>) => void;
@@ -62,13 +64,21 @@ export const CardPaymentInformationContext =
     {} as ICardPaymentInformationContext,
   );
 
+export const CURRENT_COIN_KEY = "CURRENT_COIN_KEY";
+
 function CardPaymentInformationProvider({ children }: Props) {
   const { currentUser } = useCurrentUser();
   const { currentLang } = useLanguage();
 
-  const [currentCoin, setCurrentCoin] = useState<Currencies>(
-    coinByLanguage(currentLang),
-  );
+  const defaultCoin = () =>
+    (getLocalStorageItem(CURRENT_COIN_KEY) as Currencies) ||
+    coinByLanguage(currentLang);
+
+  const [currentCoin, setCurrentCoin] = useState<Currencies>(defaultCoin());
+
+  useEffect(() => {
+    setLocalStorageItem(CURRENT_COIN_KEY, currentCoin);
+  }, [currentCoin]);
 
   const integrationId = useIntegrationId();
 

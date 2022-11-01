@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { defaultComponentTextMedium } from "styles/typography/default";
 
 export const Input = styled.div`
   width: 100%;
@@ -24,11 +25,11 @@ export const Input = styled.div`
   }
 
   input {
+    ${defaultComponentTextMedium};
     width: 100%;
     border: none;
     border-radius: 4px;
     box-sizing: border-box;
-    font-weight: 600;
     line-height: 20px;
     background: transparent;
     color: ${({ theme }) => theme.colors.gray40};

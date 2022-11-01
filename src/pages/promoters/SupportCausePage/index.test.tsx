@@ -40,4 +40,10 @@ describe("SupportCausePage", () => {
       });
     });
   });
+
+  describe("community add section", () => {
+    it("renders the community add section", () => {
+      expectTextToBeInTheDocument("The Community will add");
+    });
+  });
 });

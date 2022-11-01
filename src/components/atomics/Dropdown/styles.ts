@@ -1,10 +1,5 @@
 import styled from "styled-components";
-
-export const Container = styled.div`
-  width: 100%;
-  position: relative;
-  display: inline-block;
-`;
+import { defaultComponentTextMedium } from "styles/typography/default";
 
 export const Input = styled.div`
   width: 100%;
@@ -30,6 +25,7 @@ export const Input = styled.div`
   }
 
   input {
+    ${defaultComponentTextMedium};
     width: 100%;
     border: none;
     border-radius: 4px;
@@ -56,6 +52,12 @@ export const Input = styled.div`
       top: -15px;
     }
   }
+`;
+
+export const Container = styled.div`
+  width: 100%;
+  position: relative;
+  display: inline-block;
 `;
 
 export const OptionContainer = styled.div`

@@ -142,7 +142,9 @@ function RoutesComponent(): JSX.Element {
 
       <Route path="/promoters/community-add" exact>
         <Suspense fallback={<div />}>
-          <CommunityAddPage />
+          <CardPaymentInformationProvider>
+            <CommunityAddPage />
+          </CardPaymentInformationProvider>
         </Suspense>
       </Route>
 

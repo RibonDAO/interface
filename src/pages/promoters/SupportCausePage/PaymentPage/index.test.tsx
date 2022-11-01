@@ -7,14 +7,16 @@ import PaymentPage from ".";
 describe("PaymentPage", () => {
   it("should render without error", () => {
     const offer = offerFactory();
+    const cause = causeFactory();
 
     renderComponent(<PaymentPage />, {
       locationState: {
         offer,
-        cause: causeFactory(),
+        cause,
       },
     });
 
     expectTextToBeInTheDocument(offer.price);
+    expectTextToBeInTheDocument(cause.name);
   });
 });

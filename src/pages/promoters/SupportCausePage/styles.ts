@@ -94,17 +94,6 @@ export const BackgroundImage = styled.img`
   }
 `;
 
-export const MainContainer = styled.div`
-  width: 100%;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    max-width: 472px;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-`;
-
 export const Title = styled.h1`
   ${stylizedHeadingLarge};
   margin: 4px 0;
@@ -115,22 +104,29 @@ export const Title = styled.h1`
 export const Button = styled.button<{
   outline?: boolean;
 }>`
-  width: 100%;
+  width: auto;
+  margin-right: 8px;
   padding: 4px 8px;
   border: 1px solid
     ${(props) =>
-      props.outline ? props.theme.colors.gray30 : props.theme.colors.orange20};
+      props.outline
+        ? props.theme.colors.orange20
+        : props.theme.colors.orange40};
   border-radius: 4px;
   background-color: ${(props) =>
-    props.outline ? props.theme.colors.neutral10 : props.theme.colors.orange20};
-  color: ${({ theme }) => theme.colors.gray30};
+    props.outline ? props.theme.colors.neutral10 : props.theme.colors.orange40};
+  color: ${(props) =>
+    props.outline ? props.theme.colors.orange40 : props.theme.colors.neutral10};
 `;
 
-export const ContainerCarousel = styled.div`
+export const CausesContainer = styled.div`
   width: 100%;
 `;
 
 export const SupportImage = styled.img`
   width: 100%;
   margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 `;

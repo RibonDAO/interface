@@ -8,6 +8,7 @@ import Cause from "types/entities/Cause";
 import { Currencies } from "types/enums/Currencies";
 import theme from "styles/theme";
 import { formatPrice } from "lib/formatters/currencyFormatter";
+import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import * as S from "./styles";
 
 const { orange30, orange40 } = theme.colors;
@@ -16,9 +17,22 @@ type Props = {
   cause: Cause | undefined;
   onOfferChange: (offer: Offer) => void;
 };
+
+const CURRENT_OFFER_INDEX_KEY = "CURRENT_OFFER_INDEX_KEY";
+
 function SelectOfferPage({ cause, onOfferChange }: Props): JSX.Element {
   const [maxRange, setMaxRange] = useState(0);
-  const [currentOfferIndex, setCurrentOfferIndex] = useState(0);
+
+  const defaultCurrentOfferIndex = () => {
+    const localstorageIndex = getLocalStorageItem(CURRENT_OFFER_INDEX_KEY);
+    if (localstorageIndex) return Number(localstorageIndex);
+
+    return 0;
+  };
+
+  const [currentOfferIndex, setCurrentOfferIndex] = useState(
+    defaultCurrentOfferIndex(),
+  );
   const [currentOffer, setCurrentOffer] = useState<Offer>();
   const { currentCoin, setCurrentCoin } = useCardPaymentInformation();
   const { offers, refetch: refetchOffers } = useOffers(currentCoin, false);
@@ -32,8 +46,7 @@ function SelectOfferPage({ cause, onOfferChange }: Props): JSX.Element {
 
   useEffect(() => {
     setMaxRange(offers.length - 1);
-    setCurrentOffer(offers[0]);
-    setCurrentOfferIndex(0);
+    setCurrentOffer(offers[currentOfferIndex]);
   }, [offers]);
 
   useEffect(() => {
@@ -42,10 +55,12 @@ function SelectOfferPage({ cause, onOfferChange }: Props): JSX.Element {
 
   useEffect(() => {
     setCurrentOffer(offers[currentOfferIndex]);
+    setLocalStorageItem(CURRENT_OFFER_INDEX_KEY, currentOfferIndex.toString());
   }, [currentOfferIndex]);
 
   const onCurrencyChanged = (currency: Currencies) => {
     setCurrentCoin(currency);
+    setCurrentOfferIndex(0);
   };
 
   return (

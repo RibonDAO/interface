@@ -63,7 +63,11 @@ export const BackArrowButton = styled.img`
   cursor: pointer;
 `;
 
-export const DonateButton = styled(Button)``;
+export const DonateButton = styled(Button)`
+  border-color: ${({ theme }) => theme.colors.orange20};
+  background-color: ${({ theme }) => theme.colors.orange20};
+  color: ${({ theme }) => theme.colors.orange40};
+`;
 
 export const SupportImage = styled.img`
   width: 100%;

@@ -54,7 +54,6 @@ function UserInfoSection(): JSX.Element {
           suggestions={countryList(currentLang)}
           placeholder={t("country")}
           onOptionChanged={(value: string) => setCountry(value)}
-          initialValue={country}
           required
         />
         <S.HalfInputContainer>

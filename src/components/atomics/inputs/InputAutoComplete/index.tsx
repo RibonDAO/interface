@@ -7,7 +7,6 @@ export type Props = {
   placeholder: string;
   onOptionChanged?: (value: any) => void;
   required?: boolean;
-  initialValue?: string;
 };
 
 function InputAutoComplete({
@@ -16,11 +15,10 @@ function InputAutoComplete({
   placeholder,
   onOptionChanged,
   required,
-  initialValue = "",
 }: Props): JSX.Element {
   const [filteredSuggestions, setFilteredSuggestions] = useState(suggestions);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [input, setInput] = useState(initialValue);
+  const [input, setInput] = useState("");
 
   const maxInputsShowing = 4;
 

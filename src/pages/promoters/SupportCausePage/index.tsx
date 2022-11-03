@@ -21,7 +21,7 @@ function SupportCausePage(): JSX.Element {
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
   const { navigateTo } = useNavigation();
   const [currentOffer, setCurrentOffer] = useState<Offer>(offerFactory());
-  const { cause, setCause } = useCardPaymentInformation();
+  const { cause, setCause, setOfferId } = useCardPaymentInformation();
 
   const { causes } = useCauses();
 
@@ -88,6 +88,7 @@ function SupportCausePage(): JSX.Element {
 
   const handleOfferChange = (offer: Offer) => {
     setCurrentOffer(offer);
+    setOfferId(offer.id);
   };
 
   return (

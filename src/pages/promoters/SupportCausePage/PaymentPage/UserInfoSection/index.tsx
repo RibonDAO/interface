@@ -9,7 +9,7 @@ import { logEvent } from "services/analytics";
 import { countryList } from "utils/countryList";
 import * as S from "./styles";
 
-function BillingInformationSection(): JSX.Element {
+function UserInfoSection(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix:
       "promoters.supportTreasurePage.cardSection.billingInformationPage.billingInformationSection",
@@ -89,4 +89,4 @@ function BillingInformationSection(): JSX.Element {
   );
 }
 
-export default BillingInformationSection;
+export default UserInfoSection;

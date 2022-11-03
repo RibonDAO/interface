@@ -153,7 +153,9 @@ function RoutesComponent(): JSX.Element {
           <NetworkProvider>
             <WalletProvider>
               <WalletLayout>
-                <PaymentPage />
+                <CardPaymentInformationProvider>
+                  <PaymentPage />
+                </CardPaymentInformationProvider>
               </WalletLayout>
             </WalletProvider>
           </NetworkProvider>

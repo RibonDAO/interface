@@ -49,6 +49,4 @@ export const BackArrowButton = styled.img`
   cursor: pointer;
 `;
 
-export const DonateButton = styled(Button)`
-  margin-top: 64px;
-`;
+export const DonateButton = styled(Button)``;

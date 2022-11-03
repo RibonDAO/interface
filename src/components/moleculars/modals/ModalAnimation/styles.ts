@@ -19,7 +19,7 @@ export const DiamondBackground = css<{ bg?: string }>`
   transform: translate(-50%, -50%) rotate(45deg);
 `;
 
-export const StrippedBackground = css`
+export const StripedBackground = css`
   background-image: linear-gradient(
     90deg,
     ${({ theme }) => theme.colors.gray10} 35.71%,
@@ -116,7 +116,7 @@ export const ProgressBar = styled.div`
   align-items: center;
 
   ::after {
-    ${StrippedBackground};
+    ${StripedBackground};
     width: 150px;
     height: 4px;
     content: "";

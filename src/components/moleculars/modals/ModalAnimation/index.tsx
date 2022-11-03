@@ -39,7 +39,7 @@ function ModalAnimation({
       <S.Diamond bg={image} mainColor={color} />
     ) : (
       <S.Diamond mainColor={color}>
-        <S.Icon src={image} />
+        <S.Icon src={image} alt="icon" />
       </S.Diamond>
     );
 

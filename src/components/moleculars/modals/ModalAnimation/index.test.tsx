@@ -35,7 +35,7 @@ describe("ModalAnimation", () => {
     });
 
     it("renders icon", () => {
-      expect(screen.getByAltText("iconOrigin")).toHaveStyle(
+      expect(screen.getAllByAltText("icon")[0]).toHaveStyle(
         `padding: 20%;
         width: 100%;`,
       );
@@ -44,7 +44,7 @@ describe("ModalAnimation", () => {
       expect(screen.getByText("textOrigin")).toHaveStyle(
         `color: #82aabe;
         font-weight: ${theme.font.medium};
-        padding-top: 4px;
+        padding-top: 8px;
         text-align: center;`,
       );
     });

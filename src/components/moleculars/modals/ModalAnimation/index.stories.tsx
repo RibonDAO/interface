@@ -2,6 +2,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Ticket from "assets/icons/ticket.svg";
 import SupportersIcon from "assets/icons/supporters.svg";
 import UserIcon from "assets/icons/user.svg";
+import theme from "styles/theme";
 import ModalAnimation, { Props } from ".";
 
 export default {
@@ -20,13 +21,37 @@ const Template: ComponentStory<typeof ModalAnimation> = function (args: Props) {
 };
 
 export const Default = Template.bind({});
+export const WithFullSizeDiamond = Template.bind({});
+export const WithDifferentColor = Template.bind({});
 
 Default.args = {
   text: "ModalAnimation...",
-  textOrigin: "Supportes",
+  textOrigin: "Supporters",
   textDestiny: "User",
   iconOrigin: SupportersIcon,
   iconDestiny: UserIcon,
   icon: Ticket,
   visible: true,
+};
+
+WithFullSizeDiamond.args = {
+  text: "ModalAnimation...",
+  textOrigin: "Supporters",
+  textDestiny: "User",
+  iconOrigin: SupportersIcon,
+  iconDestiny: "https://picsum.photos/500/500",
+  icon: Ticket,
+  visible: true,
+  isIconDestinyFullSize: true,
+};
+
+WithDifferentColor.args = {
+  text: "ModalAnimation...",
+  textOrigin: "Supporters",
+  textDestiny: "User",
+  iconOrigin: SupportersIcon,
+  iconDestiny: UserIcon,
+  icon: Ticket,
+  visible: true,
+  color: theme.colors.orange30,
 };

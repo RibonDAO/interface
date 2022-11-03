@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReactModal from "react-modal";
+import theme from "styles/theme";
 import { defaultCustomStyles } from "../defaultCustomStyles";
 import * as S from "./styles";
 
@@ -13,6 +14,9 @@ export type Props = {
   iconDestiny?: string;
   customStyles?: ReactModal.Styles;
   icon?: string;
+  isIconDestinyFullSize?: boolean;
+  isIconOriginFullSize?: boolean;
+  color?: string;
 };
 function ModalAnimation({
   visible = false,
@@ -24,8 +28,20 @@ function ModalAnimation({
   iconOrigin,
   iconDestiny,
   icon,
+  isIconDestinyFullSize = false,
+  isIconOriginFullSize = false,
+  color = theme.colors.green30,
 }: Props): JSX.Element {
   const [iconLoaded, setIconLoaded] = useState(false);
+
+  const renderDiamond = (isFullSize: boolean, image: string) =>
+    isFullSize ? (
+      <S.Diamond bg={image} mainColor={color} />
+    ) : (
+      <S.Diamond mainColor={color}>
+        <S.Icon src={image} />
+      </S.Diamond>
+    );
 
   return (
     <S.BlankModal
@@ -36,9 +52,7 @@ function ModalAnimation({
     >
       <S.AnimationContainer>
         <S.AnimationContent>
-          <S.Circle>
-            <S.Icon src={iconOrigin} alt="iconOrigin" />
-          </S.Circle>
+          {iconOrigin && renderDiamond(isIconOriginFullSize, iconOrigin)}
           <S.IconDescription>{textOrigin}</S.IconDescription>
         </S.AnimationContent>
         <S.AnimationContent>
@@ -52,13 +66,11 @@ function ModalAnimation({
           </S.ProgressBar>
         </S.AnimationContent>
         <S.AnimationContent>
-          <S.Circle>
-            <S.Icon src={iconDestiny} alt="iconDestiny" />
-          </S.Circle>
+          {iconDestiny && renderDiamond(isIconDestinyFullSize, iconDestiny)}
           <S.IconDescription>{textDestiny}</S.IconDescription>
         </S.AnimationContent>
       </S.AnimationContainer>
-      <S.Text>{text}</S.Text>
+      <S.Text color={color}>{text}</S.Text>
     </S.BlankModal>
   );
 }

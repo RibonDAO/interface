@@ -1,10 +1,8 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import InputAutoComplete from "components/atomics/inputs/InputAutoComplete";
 import { useLanguage } from "hooks/useLanguage";
 import { maskForTaxId } from "lib/maskForTaxId";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
-import InputText from "components/atomics/inputs/InputText";
 import { logEvent } from "services/analytics";
 import { countryList } from "utils/countryList";
 import * as S from "./styles";
@@ -39,11 +37,9 @@ function UserInfoSection(): JSX.Element {
   };
 
   useEffect(() => {
-    if (country && state && city && taxId.length === maxTaxIdLength) {
-      setButtonDisabled(false);
-    } else {
-      setButtonDisabled(true);
-    }
+    setButtonDisabled(
+      !(country && state && city && taxId.length === maxTaxIdLength),
+    );
   }, [country, state, city, taxId]);
 
   useEffect(() => {
@@ -52,31 +48,31 @@ function UserInfoSection(): JSX.Element {
 
   return (
     <S.BillingInformationSectionContainer>
-      <S.Title>{t("title")}</S.Title>
-
       <S.Form>
-        <InputAutoComplete
+        <S.CountryInput
           name="country"
           suggestions={countryList(currentLang)}
           placeholder={t("country")}
           onOptionChanged={(value: string) => setCountry(value)}
           required
         />
-        <S.HalfInput
-          name={city}
-          placeholder={t("city")}
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          required
-        />
-        <S.HalfInput
-          name={state}
-          placeholder={t("state")}
-          value={state}
-          onChange={(e) => setState(e.target.value)}
-          required
-        />
-        <InputText
+        <S.HalfInputContainer>
+          <S.HalfInput
+            name={city}
+            placeholder={t("city")}
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            required
+          />
+          <S.HalfInput
+            name={state}
+            placeholder={t("state")}
+            value={state}
+            onChange={(e) => setState(e.target.value)}
+            required
+          />
+        </S.HalfInputContainer>
+        <S.TaxIdInput
           name={taxId}
           placeholder={t("taxId")}
           value={taxId}

@@ -7,9 +7,11 @@ import Cause from "types/entities/Cause";
 import useCardGivingFees from "hooks/apiHooks/useCardGivingFees";
 import { Currencies } from "types/enums/Currencies";
 import { useState } from "react";
+import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import * as S from "./styles";
 import UserInfoSection from "./UserInfoSection";
 import CardInfoSection from "./CardInfoSection";
+import SupportImage from "../assets/support-image.png";
 
 type LocationState = {
   offer: Offer;
@@ -18,15 +20,18 @@ type LocationState = {
 
 function PaymentPage(): JSX.Element {
   const { navigateBack } = useNavigation();
-  const { state } = useLocation<LocationState>();
+  const {
+    state: { offer, cause },
+  } = useLocation<LocationState>();
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportWithCommunityPage.paymentPage",
   });
   const [currentSection, setCurrentSection] = useState<"user" | "card">("user");
   const { cardGivingFees } = useCardGivingFees(
-    state.offer.priceValue,
-    state.offer.currency.toUpperCase() as Currencies,
+    offer.priceValue,
+    offer.currency.toUpperCase() as Currencies,
   );
+  const { buttonDisabled } = useCardPaymentInformation();
 
   const renderCurrentSection = () => {
     if (currentSection === "user") return <UserInfoSection />;
@@ -52,16 +57,31 @@ function PaymentPage(): JSX.Element {
 
   return (
     <S.Container>
+      <S.BackArrowButton src={ArrowLeft} onClick={handleBackButtonClick} />
       <S.MainContainer>
-        <S.BackArrowButton src={ArrowLeft} onClick={handleBackButtonClick} />
-        <S.Title>
-          {t("title")} <S.TitleHighlight>{state.cause.name}</S.TitleHighlight>
-        </S.Title>
-        <S.DonationValueText>{state.offer.price}</S.DonationValueText>
-        {cardGivingFees && <p>{cardGivingFees.netGiving}</p>}
-        {cardGivingFees && <p>{cardGivingFees.serviceFees}</p>}
-        {renderCurrentSection()}
-        <S.DonateButton text={t("button")} onClick={handleContinueClick} />
+        <S.SupportImage src={SupportImage} alt="support-cause-img" />
+        <S.ContentContainer>
+          <S.Title>
+            {t("title")} <S.TitleHighlight>{cause.name}</S.TitleHighlight>
+          </S.Title>
+          <S.DonationValueText>{offer.price}</S.DonationValueText>
+          {cardGivingFees && (
+            <S.FeeText>
+              {t("netDonationText")} {cardGivingFees.netGiving}
+            </S.FeeText>
+          )}
+          {cardGivingFees && (
+            <S.FeeText>
+              {t("serviceFeesText")} {cardGivingFees.serviceFees}
+            </S.FeeText>
+          )}
+          {renderCurrentSection()}
+        </S.ContentContainer>
+        <S.DonateButton
+          text={t("button")}
+          onClick={handleContinueClick}
+          disabled={buttonDisabled}
+        />
       </S.MainContainer>
     </S.Container>
   );

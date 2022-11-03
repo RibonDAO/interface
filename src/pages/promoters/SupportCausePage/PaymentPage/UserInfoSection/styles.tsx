@@ -1,7 +1,9 @@
 import styled from "styled-components";
+import InputAutoComplete from "components/atomics/inputs/InputAutoComplete";
+import InputText from "components/atomics/inputs/InputText";
 
 export const BillingInformationSectionContainer = styled.div`
-  margin-top: 18px;
+  margin-top: 16px;
   height: 256px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
@@ -15,16 +17,36 @@ export const Title = styled.h3`
 `;
 
 export const Form = styled.form`
+  input {
+    border: 1px solid ${({ theme }) => theme.colors.orange40};
+    color: ${({ theme }) => theme.colors.orange20};
+    font-weight: 600;
+    height: 48px;
+    ::-webkit-input-placeholder {
+      color: ${({ theme }) => theme.colors.gray20};
+    }
+  }
+
   & :nth-child(2) {
     margin-right: 4px;
   }
 `;
 
-export const HalfInput = styled.input`
-  display: inline-block;
-  width: calc(50% - 4px);
-  margin-bottom: 12px;
-  border: 1px solid ${({ theme }) => theme.colors.green30};
-  border-radius: 8px;
-  padding: 8px 16px 8px 16px;
+export const HalfInputContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 8px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 `;
+
+export const HalfInput = styled(InputText)``;
+
+export const CountryInput = styled(InputAutoComplete)`
+  input {
+    border: 1px solid ${({ theme }) => theme.colors.orange40};
+  }
+`;
+
+export const TaxIdInput = styled(InputText)``;

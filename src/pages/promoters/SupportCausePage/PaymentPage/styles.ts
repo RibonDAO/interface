@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { stylizedHeadingLarge } from "styles/typography/stylized";
 import {
   defaultParagraphLarge,
+  defaultParagraphSmall,
   defaultSubtitleLarge,
 } from "styles/typography/default";
 import Button from "components/atomics/buttons/Button";
@@ -18,6 +19,13 @@ export const MainContainer = styled.div`
 `;
 
 export const Container = styled.div``;
+
+export const ContentContainer = styled.div`
+  margin-bottom: 24px;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 16px 32px -2px ${({ theme }) => theme.colors.defaultShadow10};
+`;
 
 export const DonationValueText = styled.h1`
   ${stylizedHeadingLarge};
@@ -36,6 +44,12 @@ export const TitleHighlight = styled.span`
   color: ${({ theme }) => theme.colors.orange30};
 `;
 
+export const FeeText = styled.p`
+  ${defaultParagraphSmall};
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray30};
+`;
+
 export const Image = styled.img`
   width: 100%;
   height: 100%;
@@ -50,3 +64,11 @@ export const BackArrowButton = styled.img`
 `;
 
 export const DonateButton = styled(Button)``;
+
+export const SupportImage = styled.img`
+  width: 100%;
+  margin-bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+`;

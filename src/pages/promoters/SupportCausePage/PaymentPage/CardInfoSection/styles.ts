@@ -28,5 +28,9 @@ export const Form = styled.form`
     border: 1px solid ${({ theme }) => theme.colors.orange40};
     font-weight: 600;
     color: ${({ theme }) => theme.colors.orange20};
+
+    ::placeholder {
+      color: ${({ theme }) => theme.colors.gray20};
+    }
   }
 `;

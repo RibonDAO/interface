@@ -24,6 +24,7 @@ import Logo from "assets/icons/logo-background-icon.svg";
 import UserIcon from "assets/icons/user.svg";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
+import Cause from "types/entities/Cause";
 
 export interface ICardPaymentInformationContext {
   setCurrentCoin: (value: SetStateAction<Currencies>) => void;
@@ -53,6 +54,8 @@ export interface ICardPaymentInformationContext {
   cryptoGiving: string;
   offerId: number;
   handleSubmit: () => void;
+  cause: Cause | undefined;
+  setCause: (value: SetStateAction<Cause | undefined>) => void;
 }
 
 export type Props = {
@@ -94,6 +97,7 @@ function CardPaymentInformationProvider({ children }: Props) {
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [cryptoGiving, setCryptoGiving] = useState("");
   const [offerId, setOfferId] = useState(0);
+  const [cause, setCause] = useState<Cause>();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "contexts.cardPaymentInformation",
@@ -170,6 +174,7 @@ function CardPaymentInformationProvider({ children }: Props) {
         expirationYear: expiration[1].slice(-2),
         cvv,
       },
+      causeId: cause?.id,
     };
 
     try {
@@ -220,6 +225,8 @@ function CardPaymentInformationProvider({ children }: Props) {
       cryptoGiving,
       setOfferId,
       offerId,
+      cause,
+      setCause,
     }),
     [
       currentCoin,
@@ -234,6 +241,7 @@ function CardPaymentInformationProvider({ children }: Props) {
       expirationDate,
       cvv,
       buttonDisabled,
+      cause,
     ],
   );
 

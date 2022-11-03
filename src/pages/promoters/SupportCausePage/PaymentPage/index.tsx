@@ -31,7 +31,7 @@ function PaymentPage(): JSX.Element {
     offer.priceValue,
     offer.currency.toUpperCase() as Currencies,
   );
-  const { buttonDisabled } = useCardPaymentInformation();
+  const { buttonDisabled, handleSubmit } = useCardPaymentInformation();
 
   const renderCurrentSection = () => {
     if (currentSection === "user") return <UserInfoSection />;
@@ -43,7 +43,7 @@ function PaymentPage(): JSX.Element {
     if (currentSection === "user") {
       setCurrentSection("card");
     } else if (currentSection === "card") {
-      console.log("send contribution");
+      handleSubmit();
     }
   };
 

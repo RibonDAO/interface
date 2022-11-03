@@ -22,7 +22,8 @@ export const Form = styled.form`
     color: ${({ theme }) => theme.colors.orange20};
     font-weight: 600;
     height: 48px;
-    ::-webkit-input-placeholder {
+
+    ::placeholder {
       color: ${({ theme }) => theme.colors.gray20};
     }
   }

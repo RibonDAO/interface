@@ -6,7 +6,7 @@ import Offer from "types/entities/Offer";
 import Cause from "types/entities/Cause";
 import useCardGivingFees from "hooks/apiHooks/useCardGivingFees";
 import { Currencies } from "types/enums/Currencies";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import * as S from "./styles";
 import UserInfoSection from "./UserInfoSection";
@@ -31,7 +31,12 @@ function PaymentPage(): JSX.Element {
     offer.priceValue,
     offer.currency.toUpperCase() as Currencies,
   );
-  const { buttonDisabled, handleSubmit } = useCardPaymentInformation();
+  const { buttonDisabled, handleSubmit, setCause } =
+    useCardPaymentInformation();
+
+  useEffect(() => {
+    setCause(cause);
+  }, [cause]);
 
   const renderCurrentSection = () => {
     if (currentSection === "user") return <UserInfoSection />;

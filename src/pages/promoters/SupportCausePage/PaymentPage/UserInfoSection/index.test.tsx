@@ -1,19 +1,10 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderComponent } from "config/testUtils";
-import {
-  expectDisplayValueToBeInTheDocument,
-  expectTextToBeInTheDocument,
-} from "config/testUtils/expects";
+import { expectDisplayValueToBeInTheDocument } from "config/testUtils/expects";
 import UserInfoSection from ".";
 
 describe("UserInfoSection", () => {
-  it("should render without error", () => {
-    renderComponent(<UserInfoSection />);
-
-    expectTextToBeInTheDocument("Billing Information");
-  });
-
   it("should fill billing information form", () => {
     renderComponent(<UserInfoSection />, {
       cardPaymentProviderValue: {

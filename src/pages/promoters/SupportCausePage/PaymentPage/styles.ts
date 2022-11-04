@@ -63,6 +63,20 @@ export const BackArrowButton = styled.img`
   cursor: pointer;
 `;
 
+export const DonateButtonContainer = styled.div`
+  width: 100%;
+  padding: 16px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: ${({ theme }) => theme.colors.neutral10};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    position: relative;
+    background-color: transparent;
+  }
+`;
+
 export const DonateButton = styled(Button)`
   border-color: ${({ theme }) => theme.colors.orange20};
   background-color: ${({ theme }) => theme.colors.orange20};

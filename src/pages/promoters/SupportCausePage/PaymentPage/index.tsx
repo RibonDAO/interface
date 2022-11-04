@@ -82,11 +82,13 @@ function PaymentPage(): JSX.Element {
           )}
           {renderCurrentSection()}
         </S.ContentContainer>
-        <S.DonateButton
-          text={t("button")}
-          onClick={handleContinueClick}
-          disabled={buttonDisabled}
-        />
+        <S.DonateButtonContainer>
+          <S.DonateButton
+            text={t("button")}
+            onClick={handleContinueClick}
+            disabled={buttonDisabled}
+          />
+        </S.DonateButtonContainer>
       </S.MainContainer>
     </S.Container>
   );

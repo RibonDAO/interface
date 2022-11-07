@@ -207,7 +207,9 @@
       },
       "paymentPage": {
         "title": "Your donation to",
-        "button": "Continue"
+        "button": "Continue",
+        "netDonationText": "Net donation:",
+        "serviceFeesText": "Service fees:"
       }
     }
   },

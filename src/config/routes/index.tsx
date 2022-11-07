@@ -152,8 +152,10 @@ function RoutesComponent(): JSX.Element {
         <Suspense fallback={<div />}>
           <NetworkProvider>
             <WalletProvider>
-              <WalletLayout>
-                <PaymentPage />
+              <WalletLayout hideNavigation>
+                <CardPaymentInformationProvider>
+                  <PaymentPage />
+                </CardPaymentInformationProvider>
               </WalletLayout>
             </WalletProvider>
           </NetworkProvider>

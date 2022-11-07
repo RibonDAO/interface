@@ -4,6 +4,7 @@ import WalletProvider from "contexts/walletContext";
 import CausesPage from "pages/donations/CausesPage";
 import ConfirmEmailPage from "pages/donations/ConfirmEmailPage";
 import DonationDonePage from "pages/donations/DonationDonePage";
+import DonationDoneCausePage from "pages/donations/DonationDoneCausePage";
 import ImpactPage from "pages/users/ImpactPage";
 import MainLayout from "layouts/MainLayout";
 import TreasurePage from "pages/promoters/TreasurePage";
@@ -49,6 +50,12 @@ function RoutesComponent(): JSX.Element {
       <Route path="/donation-done" exact>
         <Suspense fallback={<div />}>
           <DonationDonePage />
+        </Suspense>
+      </Route>
+
+      <Route path="/donation-done-cause" exact>
+        <Suspense fallback={<div />}>
+          <DonationDoneCausePage />
         </Suspense>
       </Route>
 

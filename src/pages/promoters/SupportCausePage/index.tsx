@@ -11,6 +11,7 @@ import {
   formatPrice,
   removeInsignificantZeros,
 } from "lib/formatters/currencyFormatter";
+import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import * as S from "./styles";
 import UserSupportSection from "../SupportTreasurePage/CardSection/UserSupportSection";
 import SupportImage from "./assets/support-image.png";
@@ -18,9 +19,9 @@ import SelectOfferSection from "./SelectOfferSection";
 
 function SupportCausePage(): JSX.Element {
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
-  const [currentCause, setCurrentCause] = useState<Cause>();
   const { navigateTo } = useNavigation();
   const [currentOffer, setCurrentOffer] = useState<Offer>(offerFactory());
+  const { cause, setCause, setOfferId } = useCardPaymentInformation();
 
   const { causes } = useCauses();
 
@@ -33,14 +34,14 @@ function SupportCausePage(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    setCurrentCause(causes[0]);
+    setCause(causes[0]);
   }, [JSON.stringify(causes)]);
 
-  const handleCauseClick = (cause: Cause, index: number) => {
+  const handleCauseClick = (causeClicked: Cause, index: number) => {
     logEvent("treasureCauseSelection_click", {
-      id: cause?.id,
+      id: causeClicked?.id,
     });
-    setCurrentCause(cause);
+    setCause(causeClicked);
     setSelectedButtonIndex(index);
   };
 
@@ -62,7 +63,7 @@ function SupportCausePage(): JSX.Element {
       pathname: "/promoters/support-cause/payment",
       state: {
         offer: currentOffer,
-        cause: currentCause,
+        cause,
       },
     });
   };
@@ -87,6 +88,7 @@ function SupportCausePage(): JSX.Element {
 
   const handleOfferChange = (offer: Offer) => {
     setCurrentOffer(offer);
+    setOfferId(offer.id);
   };
 
   return (
@@ -99,7 +101,7 @@ function SupportCausePage(): JSX.Element {
           <S.GivingContainer>
             <S.ContributionContainer>
               <SelectOfferSection
-                cause={currentCause}
+                cause={cause}
                 onOfferChange={handleOfferChange}
               />
             </S.ContributionContainer>

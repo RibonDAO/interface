@@ -2,6 +2,7 @@ import { screen } from "@testing-library/react";
 import {
   mockLogErrorFunction,
   mockLogEventFunction,
+  mockNavigateBackFunction,
   mockNavigationFunction,
 } from "../../setupTests";
 
@@ -59,4 +60,8 @@ export function expectPageToNavigateTo(
     pathname,
     state,
   });
+}
+
+export function expectPageToNavigateBack() {
+  return expect(mockNavigateBackFunction).toHaveBeenCalled();
 }

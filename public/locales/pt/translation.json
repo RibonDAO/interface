@@ -207,7 +207,9 @@
       },
       "paymentPage": {
         "title": "Sua doação para",
-        "button": "Continuar"
+        "button": "Continuar",
+        "netDonationText": "Doação líquida:",
+        "serviceFeesText": "Taxas de serviço:"
       }
     }
   },

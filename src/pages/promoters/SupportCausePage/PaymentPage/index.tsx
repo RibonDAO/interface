@@ -38,22 +38,25 @@ function PaymentPage(): JSX.Element {
     setCause(cause);
   }, [cause]);
 
+  const isUserSection = () => currentSection === "user";
+  const isCardSection = () => currentSection === "card";
+
   const renderCurrentSection = () => {
-    if (currentSection === "user") return <UserInfoSection />;
+    if (isUserSection()) return <UserInfoSection />;
 
     return <CardInfoSection />;
   };
 
   const handleContinueClick = () => {
-    if (currentSection === "user") {
+    if (isUserSection()) {
       setCurrentSection("card");
-    } else if (currentSection === "card") {
+    } else if (isCardSection()) {
       handleSubmit();
     }
   };
 
   const handleBackButtonClick = () => {
-    if (currentSection === "card") {
+    if (isCardSection()) {
       setCurrentSection("user");
     } else {
       navigateBack();

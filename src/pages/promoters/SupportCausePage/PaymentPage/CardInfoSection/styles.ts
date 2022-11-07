@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const PaymentInformationSectionContainer = styled.form`
+export const PaymentInformationSectionContainer = styled.div`
   height: 256px;
   margin-top: 18px;
 

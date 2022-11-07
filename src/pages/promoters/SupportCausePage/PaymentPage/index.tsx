@@ -65,7 +65,11 @@ function PaymentPage(): JSX.Element {
 
   return (
     <S.Container>
-      <S.BackArrowButton src={ArrowLeft} onClick={handleBackButtonClick} />
+      <S.BackArrowButton
+        src={ArrowLeft}
+        onClick={handleBackButtonClick}
+        alt="back-arrow-button"
+      />
       <S.MainContainer>
         <S.SupportImage src={SupportImage} alt="support-cause-img" />
         <S.ContentContainer>

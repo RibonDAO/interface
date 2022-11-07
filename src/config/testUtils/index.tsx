@@ -43,6 +43,7 @@ import NetworkProvider, {
   NetworkContext,
   INetworkContext,
 } from "contexts/networkContext";
+import userEvent from "@testing-library/user-event";
 
 export function renderWithTheme(children: React.ReactNode): RenderResult {
   return render(<ThemeProvider theme={theme}>{children}</ThemeProvider>);
@@ -170,4 +171,8 @@ export function clickOn(textOrComponent: string | any) {
   }
 
   return fireEvent.click(textOrComponent);
+}
+
+export function fillByPlaceholder(placeholder: string, value: string) {
+  userEvent.type(screen.getByPlaceholderText(placeholder), value);
 }

@@ -13,7 +13,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: nowrap;
+  overflow-x: hidden;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     justify-content: center;
@@ -21,7 +21,11 @@ export const Container = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  /* transform: scale(1.4); */
+  transform: scale(1.3);
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    transform: scale(1.4);
+    margin-bottom: 40px;
+  }
 `;
 
 export const Image = styled.img`

@@ -2,8 +2,8 @@ import styled, { css } from "styled-components";
 
 export const DefaultIcon = css`
   position: absolute;
-  top: 47%;
-  left: 47%;
+  top: 46%;
+  left: 46%;
   width: 28px;
   height: 28px;
 `;
@@ -120,8 +120,8 @@ export const Animation = css`
 
 export const Container = styled.div`
   ${Animation}
-  width: 400px;
-  height: 400px;
+  width: 330px;
+  height: 330px;
   border-radius: 10px;
   margin-left: auto;
   margin-right: auto;
@@ -135,13 +135,13 @@ export const Icon = styled.img<{ animationName?: string }>`
 `;
 
 export const Diamond = styled.div<{ backgroundImage: string }>`
-  width: 130px;
-  height: 130px;
+  width: 140px;
+  height: 140px;
   background: red;
   position: absolute;
   z-index: 1;
-  top: 34%;
-  left: 34%;
+  top: 28.7%;
+  left: 29%;
   transform: rotate(-45deg);
   overflow: hidden;
   border-radius: 10px;

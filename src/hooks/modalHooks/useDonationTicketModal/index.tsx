@@ -19,8 +19,14 @@ export function useDonationTicketModal(
 
   const isRibonIntegration = integration?.id === parseInt(RIBON_COMPANY_ID, 10);
 
+  const modalTitle = isRibonIntegration
+    ? t("donationWithRibonModalTitle")
+    : t("donationWithIntegrationModalTitle", {
+        integrationName: integration?.name,
+      });
+
   const modalDoubleImageProps = {
-    title: t("donationWithIntegrationModalTitle"),
+    title: modalTitle,
     body: t("donationWithIntegrationModalSubtitle"),
     primaryButtonText: t("donationWithIntegrationModalButtonText"),
     primaryButtonCallback: () => {

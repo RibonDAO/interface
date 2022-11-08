@@ -78,6 +78,7 @@ export const RightSide = styled.div<NavigationProps>`
     rgba(0, 212, 255, 0%) 100%
   );
   opacity: 0;
+  visibility: hidden;
   transition: visibility 0.1s linear, opacity 0.1s linear;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {

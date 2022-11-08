@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ReactComponent as LeftIcon } from "assets/icons/arrow-left-green.svg";
 import { ReactComponent as RightIcon } from "assets/icons/arrow-right-green.svg";
 import * as S from "./styles";
@@ -10,6 +10,8 @@ export type Props = {
 
 function SliderCards({ children, scrollOffset }: Props): JSX.Element {
   const [sliderPosition, setSliderPosition] = useState(0);
+  const [scrollInTheBeginning, setScrollInTheBeginning] = useState(true);
+  const [scrollInTheEnd, setScrollInTheEnd] = useState(false);
 
   const sliderRef = useRef<HTMLDivElement>(null);
 
@@ -21,8 +23,12 @@ function SliderCards({ children, scrollOffset }: Props): JSX.Element {
     return 0;
   };
 
-  const isScrollInTheBeginning = sliderPosition === 0;
-  const isScrollInTheEnd = sliderPosition === endOfScolling();
+  useEffect(() => {
+    if (sliderRef.current) {
+      setScrollInTheBeginning(sliderRef.current.scrollLeft === 0);
+      setScrollInTheEnd(sliderRef.current.scrollLeft === endOfScolling());
+    }
+  }, [sliderPosition]);
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     setSliderPosition(e.currentTarget.scrollLeft);
@@ -36,7 +42,7 @@ function SliderCards({ children, scrollOffset }: Props): JSX.Element {
 
   return (
     <S.SlideCardsContainer>
-      <S.LeftSide visible={!isScrollInTheBeginning}>
+      <S.LeftSide visible={!scrollInTheBeginning}>
         <S.RoundButton onClick={() => handleScrollWithClick(-scrollOffset)}>
           <LeftIcon />
         </S.RoundButton>
@@ -46,7 +52,7 @@ function SliderCards({ children, scrollOffset }: Props): JSX.Element {
         {children}
       </S.Slider>
 
-      <S.RightSide visible={!isScrollInTheEnd}>
+      <S.RightSide visible={!scrollInTheEnd}>
         <S.RoundButton onClick={() => handleScrollWithClick(scrollOffset)}>
           <RightIcon />
         </S.RoundButton>

@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import Ticket from "assets/icons/ticket.svg";
+import Ticket from "assets/icons/ticket-rounded-icon.svg";
 import SupportersIcon from "assets/icons/supporters.svg";
 import UserIcon from "assets/icons/user.svg";
 import theme from "styles/theme";

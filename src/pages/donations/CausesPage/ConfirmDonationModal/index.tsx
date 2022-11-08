@@ -1,6 +1,6 @@
 import { useCallback } from "react";
-import UserIcon from "assets/icons/user.svg";
-import Ticket from "assets/icons/ticket.svg";
+import UserIcon from "assets/icons/user-mono-icon.svg";
+import Ticket from "assets/icons/ticket-rounded-icon.svg";
 import ModalIcon from "components/moleculars/modals/ModalIcon";
 import ModalAnimation from "components/moleculars/modals/ModalAnimation";
 import { useTranslation } from "react-i18next";
@@ -40,6 +40,7 @@ function ConfirmDonationModal({
       textDestiny={t("donateAnimationModalDestiny")}
       icon={Ticket}
       visible={donationInProcessModalVisible}
+      isIconDestinyFullSize
     />
   ) : (
     <ModalIcon

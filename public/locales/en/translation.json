@@ -128,7 +128,8 @@
       "donateButtonText": "Donate {{value}}",
       "selectOfferSection": {
         "causeText": "You'll donate to"
-      }
+      },
+      "connectWalletButtonText": "Connect wallet"
     },
     "supportTreasurePage": {
       "title": "Make a bigger impact",

@@ -6,6 +6,7 @@ import Cause from "types/entities/Cause";
 import IntersectBackground from "assets/images/intersect-background.svg";
 import useNavigation from "hooks/useNavigation";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
+import { useWalletContext } from "contexts/walletContext";
 import * as S from "../styles";
 import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
 import SupportImage from "../assets/support-image.png";
@@ -16,6 +17,7 @@ function SupportCausePage(): JSX.Element {
   const { navigateTo } = useNavigation();
   const { cause, setCause } = useCardPaymentInformation();
   const [cryptoValue, setCryptoValue] = useState(0);
+  const { connectWallet, wallet } = useWalletContext();
 
   const { causes } = useCauses();
 
@@ -52,6 +54,12 @@ function SupportCausePage(): JSX.Element {
   }
 
   const handleDonateClick = () => {
+    if (wallet) {
+      console.log(wallet, cryptoValue);
+      return;
+    }
+
+    connectWallet();
     logEvent("treasureComCicleBtn_click");
   };
 
@@ -70,7 +78,11 @@ function SupportCausePage(): JSX.Element {
     return `+ ${cryptoValue * PERCENTAGE_OF_INCREASE} USDC`;
   };
 
-  const donateButtonText = () => t("cryptoDonateButtonText");
+  const donateButtonText = () => {
+    if (wallet) return t("donateButtonText", { value: `${cryptoValue} USDC` });
+
+    return t("connectWalletButtonText");
+  };
 
   return (
     <S.Container>

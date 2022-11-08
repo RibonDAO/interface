@@ -3,17 +3,9 @@ import CardPage from "./CardPage";
 import CryptoPage from "./CryptoPage";
 
 function SupportCausePage(): JSX.Element {
-  const [currentSection] = useState<"card" | "crypto">("card");
+  const [currentSection] = useState<"card" | "crypto">("crypto");
 
-  function renderCurrentSection() {
-    if (currentSection === "card") {
-      return <CardPage />;
-    }
-
-    return <CryptoPage />;
-  }
-
-  return renderCurrentSection();
+  return currentSection === "card" ? <CardPage /> : <CryptoPage />;
 }
 
 export default SupportCausePage;

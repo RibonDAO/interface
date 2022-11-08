@@ -2,7 +2,7 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderComponent } from "config/testUtils";
 import { expectDisplayValueToBeInTheDocument } from "config/testUtils/expects";
-import UserInfoSection from "./index";
+import UserInfoSection from ".";
 
 describe("UserInfoSection", () => {
   it("should fill billing information form", () => {

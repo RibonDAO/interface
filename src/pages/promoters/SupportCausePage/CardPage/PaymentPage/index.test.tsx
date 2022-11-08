@@ -6,7 +6,7 @@ import {
 import offerFactory from "config/testUtils/factories/offerFactory";
 import causeFactory from "config/testUtils/factories/causeFactory";
 import { screen } from "@testing-library/react";
-import PaymentPage from "./index";
+import PaymentPage from ".";
 
 describe("PaymentPage", () => {
   const offer = offerFactory();

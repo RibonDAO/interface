@@ -3,7 +3,7 @@ import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import causeFactory from "config/testUtils/factories/causeFactory";
 import offerFactory from "config/testUtils/factories/offerFactory";
 import { formatPrice } from "lib/formatters/currencyFormatter";
-import OfferSelectionSection from "./index";
+import OfferSelectionSection from ".";
 
 const mockOffer = offerFactory();
 jest.mock("hooks/apiHooks/useOffers", () => ({

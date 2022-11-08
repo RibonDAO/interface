@@ -2,7 +2,7 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderComponent } from "config/testUtils";
 import { expectDisplayValueToBeInTheDocument } from "config/testUtils/expects";
-import PaymentInformation from ".";
+import PaymentInformation from "./index";
 
 describe("CardInfoSection", () => {
   it("should fill payment methods form", () => {

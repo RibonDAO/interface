@@ -13,6 +13,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: nowrap;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     justify-content: center;
@@ -20,18 +21,7 @@ export const Container = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  width: 200px;
-  height: 200px;
-  margin-bottom: 4em;
-  border-radius: 25px;
-  display: flex;
-  justify-content: flex-start;
-  overflow: hidden;
-  transform: rotate(45deg);
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
-    margin-top: 8em;
-  }
+  /* transform: scale(1.4); */
 `;
 
 export const Image = styled.img`
@@ -39,6 +29,14 @@ export const Image = styled.img`
   align-self: center;
   object-fit: contain;
   transform: rotate(-45deg) scale(1.36);
+  position: relative;
+`;
+
+export const Icon = styled.img`
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 20px;
 `;
 
 export const DonationValue = styled.h1`

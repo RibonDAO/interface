@@ -154,3 +154,10 @@ export const UserBalanceTextHighlight = styled.span`
   ${defaultSubtitleMedium};
   color: ${({ theme }) => theme.colors.orange30};
 `;
+
+export const RefundText = styled.p`
+  ${defaultParagraphSmall};
+  margin-top: 4px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray30};
+`;

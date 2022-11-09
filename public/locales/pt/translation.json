@@ -130,7 +130,8 @@
         "causeText": "Você doará para"
       },
       "connectWalletButtonText": "Conectar carteira",
-      "userBalanceText": "Seu saldo: "
+      "userBalanceText": "Seu saldo: ",
+      "refundText": "*Pagamentos em criptomoeda não são estornáveis"
     },
     "supportTreasurePage": {
       "title": "Gere mais impacto",

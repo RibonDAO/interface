@@ -130,7 +130,8 @@
         "causeText": "You'll donate to"
       },
       "connectWalletButtonText": "Connect wallet",
-      "userBalanceText": "Your balance: "
+      "userBalanceText": "Your balance: ",
+      "refundText": "*Cryptocurrency payments are non-refundable"
     },
     "supportTreasurePage": {
       "title": "Make a bigger impact",

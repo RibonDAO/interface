@@ -117,17 +117,20 @@ function CryptoPage(): JSX.Element {
               />
             </S.CommunityAddContainer>
           </S.GivingContainer>
-          <S.UserBalanceText>
-            {t("userBalanceText")}
-            <S.UserBalanceTextHighlight>
-              {userBalance} {tokenSymbol}
-            </S.UserBalanceTextHighlight>
-          </S.UserBalanceText>
+          {wallet && (
+            <S.UserBalanceText>
+              {t("userBalanceText")}
+              <S.UserBalanceTextHighlight>
+                {userBalance} {tokenSymbol}
+              </S.UserBalanceTextHighlight>
+            </S.UserBalanceText>
+          )}
           <S.DonateButton
             text={donateButtonText()}
             onClick={handleDonateClick}
             disabled={disableButton()}
           />
+          <S.RefundText>{t("refundText")}</S.RefundText>
         </S.DonateContainer>
         <UserSupportSection />
       </S.ContentContainer>

@@ -55,7 +55,6 @@ function SupportCausePage(): JSX.Element {
 
   const handleDonateClick = () => {
     if (wallet) {
-      console.log(wallet, cryptoValue);
       return;
     }
 

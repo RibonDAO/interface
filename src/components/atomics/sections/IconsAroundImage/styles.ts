@@ -1,162 +1,76 @@
-import styled, { css } from "styled-components";
-
-export const DefaultIcon = css`
-  position: absolute;
-  top: 46%;
-  left: 46%;
-  width: 28px;
-  height: 28px;
-`;
-
-export const Animation = css`
-  @keyframes outer_orbit_1 {
-    0% {
-      transform: rotate(0deg) translateX(50px) rotate(0deg);
-    }
-    50% {
-      transform: rotate(180deg) translateX(150px) rotate(-180deg);
-    }
-    100% {
-      transform: rotate(360deg) translateX(50px) rotate(-360deg);
-    }
-  }
-
-  @keyframes outer_orbit_2 {
-    0% {
-      transform: rotate(40deg) translateX(50px) rotate(-40deg);
-    }
-    50% {
-      transform: rotate(220deg) translateX(150px) rotate(-220deg);
-    }
-    100% {
-      transform: rotate(400deg) translateX(50px) rotate(-400deg);
-    }
-  }
-
-  @keyframes outer_orbit_3 {
-    0% {
-      transform: rotate(80deg) translateX(50px) rotate(-80deg);
-    }
-    50% {
-      transform: rotate(260deg) translateX(150px) rotate(-260deg);
-    }
-    100% {
-      transform: rotate(440deg) translateX(50px) rotate(-440deg);
-    }
-  }
-
-  @keyframes outer_orbit_4 {
-    0% {
-      transform: rotate(120deg) translateX(50px) rotate(-120deg);
-    }
-    50% {
-      transform: rotate(300deg) translateX(150px) rotate(-300deg);
-    }
-    100% {
-      transform: rotate(480deg) translateX(50px) rotate(-480deg);
-    }
-  }
-
-  @keyframes outer_orbit_5 {
-    0% {
-      transform: rotate(160deg) translateX(50px) rotate(-160deg);
-    }
-    50% {
-      transform: rotate(340deg) translateX(150px) rotate(-340deg);
-    }
-    100% {
-      transform: rotate(520deg) translateX(50px) rotate(-520deg);
-    }
-  }
-
-  @keyframes outer_orbit_6 {
-    0% {
-      transform: rotate(200deg) translateX(50px) rotate(-200deg);
-    }
-    50% {
-      transform: rotate(380deg) translateX(150px) rotate(-380deg);
-    }
-    100% {
-      transform: rotate(560deg) translateX(50px) rotate(-560deg);
-    }
-  }
-
-  @keyframes outer_orbit_7 {
-    0% {
-      transform: rotate(240deg) translateX(50px) rotate(-240deg);
-    }
-    50% {
-      transform: rotate(420deg) translateX(150px) rotate(-420deg);
-    }
-    100% {
-      transform: rotate(600deg) translateX(50px) rotate(-600deg);
-    }
-  }
-
-  @keyframes outer_orbit_8 {
-    0% {
-      transform: rotate(280deg) translateX(50px) rotate(-280deg);
-    }
-    50% {
-      transform: rotate(460deg) translateX(150px) rotate(-460deg);
-    }
-    100% {
-      transform: rotate(640deg) translateX(50px) rotate(-640deg);
-    }
-  }
-
-  @keyframes outer_orbit_9 {
-    0% {
-      transform: rotate(320deg) translateX(50px) rotate(-320deg);
-    }
-    50% {
-      transform: rotate(500deg) translateX(150px) rotate(-500deg);
-    }
-    100% {
-      transform: rotate(680deg) translateX(50px) rotate(-680deg);
-    }
-  }
-`;
+import styled from "styled-components";
 
 export const Container = styled.div`
-  ${Animation}
   width: 330px;
   height: 330px;
-  border-radius: 10px;
-  margin-left: auto;
   margin-right: auto;
+  margin-left: auto;
+  border-radius: 10px;
   position: relative;
 `;
 
-export const Icon = styled.img<{ animationName?: string }>`
-  ${DefaultIcon}
-  animation: ${({ animationName }) =>
-    animationName} 4s cubic-bezier(.1,.83,1,.3) infinite;
+export const Icon = styled.img<{ position: number; isStatic: boolean }>`
+  ${({ position, isStatic }) => {
+    const angle = (base: number, mult: number) => base + 40 * mult;
+    const animationName = `outer_orbit_${position}`;
+
+    const minAngle = angle(0, position);
+    const midAngle = angle(170, position); // it's not a typo
+    const maxAngle = angle(360, position);
+
+    if (isStatic) {
+      return `
+        transform: rotate(${midAngle}deg) translateX(105px) rotate(-${midAngle}deg);
+      `;
+    }
+
+    return `
+      animation: ${animationName} 4s cubic-bezier(0.1, 0.83, 1, 0.3) infinite;
+
+      @keyframes ${animationName} {
+        0% {
+          transform: rotate(${minAngle}deg) translateX(70px) rotate(-${minAngle}deg);
+        }
+        50% {
+          transform: rotate(${midAngle}deg) translateX(130px) rotate(-${midAngle}deg);
+        }
+        100% {
+          transform: rotate(${maxAngle}deg) translateX(70px) rotate(-${maxAngle}deg);
+        }
+      }
+    `;
+  }}
+
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  top: 46%;
+  left: 46%;
 `;
 
 export const Diamond = styled.div<{ backgroundImage: string }>`
   width: 140px;
   height: 140px;
-  background: red;
+  border-radius: 10px;
   position: absolute;
-  z-index: 1;
   top: 28.7%;
   left: 29%;
-  transform: rotate(-45deg);
+  z-index: 1;
   overflow: hidden;
-  border-radius: 10px;
+  background: transparent;
+  transform: rotate(-45deg);
 
   ::before {
-    content: "";
-    position: absolute;
-    z-index: -0;
     width: 141%;
     height: 141%;
-    left: 50%;
+    content: "";
+    position: absolute;
     top: 50%;
+    left: 50%;
+    z-index: -0;
     background-image: url(${({ backgroundImage }) => backgroundImage});
-    background-repeat: no-repeat;
     background-size: cover;
+    background-repeat: no-repeat;
     transform: translate(-50%, -50%) rotate(45deg);
   }
 `;

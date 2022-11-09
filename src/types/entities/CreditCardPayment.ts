@@ -13,4 +13,5 @@ export default interface CreditCardPayment {
     expirationMonth: string;
     cvv: string;
   };
+  causeId?: number;
 }

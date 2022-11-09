@@ -2,9 +2,9 @@ import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import useVoucher from "hooks/useVoucher";
-import Ticket from "assets/icons/ticket.svg";
-import SupportersIcon from "assets/icons/supporters.svg";
-import UserIcon from "assets/icons/user.svg";
+import Ticket from "assets/icons/ticket-rounded-icon.svg";
+import SupportersIcon from "assets/icons/community-icon.svg";
+import UserIcon from "assets/icons/user-mono-icon.svg";
 import { logEvent } from "services/analytics";
 import { useModal } from "../useModal";
 

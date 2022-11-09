@@ -15,7 +15,7 @@ export const Icon = styled.img<{ position: number; isStatic: boolean }>`
     const animationName = `outer_orbit_${position}`;
 
     const minAngle = angle(0, position);
-    const midAngle = angle(170, position); // it's not a typo
+    const midAngle = angle(170, position);
     const maxAngle = angle(360, position);
 
     if (isStatic) {

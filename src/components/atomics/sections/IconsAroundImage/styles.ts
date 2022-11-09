@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+const ICONS_COUNT = 9;
+
 export const Container = styled.div`
   width: 330px;
   height: 330px;
@@ -11,7 +13,9 @@ export const Container = styled.div`
 
 export const Icon = styled.img<{ position: number; isStatic: boolean }>`
   ${({ position, isStatic }) => {
-    const angle = (base: number, mult: number) => base + 40 * mult;
+    const angle = (base: number, mult: number) =>
+      base + (360 / ICONS_COUNT) * mult;
+
     const animationName = `outer_orbit_${position}`;
 
     const minAngle = angle(0, position);

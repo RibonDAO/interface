@@ -22,5 +22,5 @@ Default.args = {
 
 StaticIcons.args = {
   imageSrc: "https://picsum.photos/200",
-  staticIcons: true,
+  isStatic: true,
 };

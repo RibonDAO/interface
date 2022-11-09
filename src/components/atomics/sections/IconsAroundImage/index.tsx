@@ -10,29 +10,21 @@ import * as S from "./styles";
 
 export type Props = {
   imageSrc: string;
-  staticIcons?: boolean;
+  isStatic?: boolean;
 };
 
-function IconsAroundImage({ imageSrc, staticIcons = false }: Props) {
+function IconsAroundImage({ imageSrc, isStatic = false }: Props) {
   return (
     <S.Container>
-      <S.Icon position={0} src={VolunteerActivismPink} isStatic={staticIcons} />
-      <S.Icon position={1} src={FlareGreen} isStatic={staticIcons} />
-      <S.Icon
-        position={2}
-        src={VolunteerActivismYellow}
-        isStatic={staticIcons}
-      />
-      <S.Icon position={3} src={SparklesPink} isStatic={staticIcons} />
-      <S.Icon
-        position={4}
-        src={VolunteerActivismGreen}
-        isStatic={staticIcons}
-      />
-      <S.Icon position={5} src={SparklesYellow} isStatic={staticIcons} />
-      <S.Icon position={6} src={VolunteerActivismPink} isStatic={staticIcons} />
-      <S.Icon position={7} src={SparklesGreen} isStatic={staticIcons} />
-      <S.Icon position={8} src={FlareYellow} isStatic={staticIcons} />
+      <S.Icon position={0} isStatic={isStatic} src={VolunteerActivismPink} />
+      <S.Icon position={1} isStatic={isStatic} src={FlareGreen} />
+      <S.Icon position={2} isStatic={isStatic} src={VolunteerActivismYellow} />
+      <S.Icon position={3} isStatic={isStatic} src={SparklesPink} />
+      <S.Icon position={4} isStatic={isStatic} src={VolunteerActivismGreen} />
+      <S.Icon position={5} isStatic={isStatic} src={SparklesYellow} />
+      <S.Icon position={6} isStatic={isStatic} src={VolunteerActivismPink} />
+      <S.Icon position={7} isStatic={isStatic} src={SparklesGreen} />
+      <S.Icon position={8} isStatic={isStatic} src={FlareYellow} />
       <S.Diamond backgroundImage={imageSrc} />
     </S.Container>
   );

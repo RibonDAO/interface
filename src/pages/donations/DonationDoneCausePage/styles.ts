@@ -8,7 +8,7 @@ import { stylizedHeadingLarge } from "styles/typography/stylized";
 
 export const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: ${window.innerHeight}px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,18 +22,19 @@ export const Container = styled.div`
 
 export const ImageContainer = styled.div`
   transform: scale(1.3);
+
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    transform: scale(1.4);
     margin-bottom: 40px;
+    transform: scale(1.4);
   }
 `;
 
 export const Image = styled.img`
   max-width: 100%;
+  position: relative;
   align-self: center;
   object-fit: contain;
   transform: rotate(-45deg) scale(1.36);
-  position: relative;
 `;
 
 export const Icon = styled.img`

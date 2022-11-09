@@ -18,6 +18,7 @@ import CardPaymentInformationProvider from "contexts/cardPaymentInformationConte
 import NetworkProvider from "contexts/networkContext";
 import CommunityAddPage from "pages/promoters/SupportCausePage/CommunityAddPage";
 import PaymentPage from "pages/promoters/SupportCausePage/CardPage/PaymentPage";
+import CryptoPaymentProvider from "contexts/cryptoPaymentContext";
 import Navigation from "./Navigation";
 
 function RoutesComponent(): JSX.Element {
@@ -92,7 +93,9 @@ function RoutesComponent(): JSX.Element {
             <WalletProvider>
               <WalletLayout>
                 <CardPaymentInformationProvider>
-                  <SupportCausePage />
+                  <CryptoPaymentProvider>
+                    <SupportCausePage />
+                  </CryptoPaymentProvider>
                 </CardPaymentInformationProvider>
               </WalletLayout>
             </WalletProvider>

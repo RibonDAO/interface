@@ -6,6 +6,7 @@ import {
 import {
   defaultParagraphSmall,
   defaultComponentTextSmall,
+  defaultSubtitleMedium,
 } from "styles/typography/default";
 import ButtonComponent from "components/atomics/buttons/Button";
 
@@ -140,4 +141,16 @@ export const SupportImage = styled.img`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+`;
+
+export const UserBalanceText = styled.p`
+  ${defaultSubtitleMedium};
+  margin-bottom: 4px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray30};
+`;
+
+export const UserBalanceTextHighlight = styled.span`
+  ${defaultSubtitleMedium};
+  color: ${({ theme }) => theme.colors.orange30};
 `;

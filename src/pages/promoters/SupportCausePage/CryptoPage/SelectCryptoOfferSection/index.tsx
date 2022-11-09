@@ -3,6 +3,7 @@ import InputRange from "components/atomics/inputs/InputRange";
 import { useTranslation } from "react-i18next";
 import Cause from "types/entities/Cause";
 import theme from "styles/theme";
+import { useCryptoPayment } from "contexts/cryptoPaymentContext";
 import * as S from "./styles";
 
 const { orange30, orange40 } = theme.colors;
@@ -19,6 +20,7 @@ function SelectCryptoOfferSection({
 }: Props): JSX.Element {
   const [maxRange] = useState(values.length - 1);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { tokenSymbol } = useCryptoPayment();
 
   const currentValue = useCallback(() => values[currentIndex], [currentIndex]);
 
@@ -40,10 +42,10 @@ function SelectCryptoOfferSection({
         <S.ValueText>{currentValue()}</S.ValueText>
         <S.CurrencySelectorContainer>
           <S.CurrencySelector
-            values={["USDC"]}
+            values={[tokenSymbol]}
             name="currency"
             onOptionChanged={() => {}}
-            defaultValue="USDC"
+            defaultValue={tokenSymbol}
             containerId="currencies-dropdown"
             customInputStyles={{
               borderColor: orange40,

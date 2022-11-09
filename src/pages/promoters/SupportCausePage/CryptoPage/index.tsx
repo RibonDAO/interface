@@ -7,17 +7,25 @@ import IntersectBackground from "assets/images/intersect-background.svg";
 import useNavigation from "hooks/useNavigation";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import { useWalletContext } from "contexts/walletContext";
+import { useCryptoPayment } from "contexts/cryptoPaymentContext";
 import * as S from "../styles";
 import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
 import SupportImage from "../assets/support-image.png";
 import SelectCryptoOfferSection from "./SelectCryptoOfferSection";
 
-function SupportCausePage(): JSX.Element {
+function CryptoPage(): JSX.Element {
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
   const { navigateTo } = useNavigation();
   const { cause, setCause } = useCardPaymentInformation();
-  const [cryptoValue, setCryptoValue] = useState(0);
   const { connectWallet, wallet } = useWalletContext();
+  const {
+    amount,
+    setAmount,
+    disableButton,
+    handleDonationToContract,
+    userBalance,
+    tokenSymbol,
+  } = useCryptoPayment();
 
   const { causes } = useCauses();
 
@@ -55,7 +63,8 @@ function SupportCausePage(): JSX.Element {
 
   const handleDonateClick = () => {
     if (wallet) {
-      console.log(wallet, cryptoValue);
+      console.log(wallet, amount);
+      console.log(handleDonationToContract);
       return;
     }
 
@@ -67,7 +76,7 @@ function SupportCausePage(): JSX.Element {
     navigateTo({
       pathname: "/promoters/community-add",
       state: {
-        donationAmount: `${cryptoValue} USDC`,
+        donationAmount: `${amount} ${tokenSymbol}`,
       },
     });
   };
@@ -75,11 +84,12 @@ function SupportCausePage(): JSX.Element {
   const communityAddText = () => {
     const PERCENTAGE_OF_INCREASE = 0.6;
 
-    return `+ ${cryptoValue * PERCENTAGE_OF_INCREASE} USDC`;
+    return `+ ${Number(amount) * PERCENTAGE_OF_INCREASE} ${tokenSymbol}`;
   };
 
   const donateButtonText = () => {
-    if (wallet) return t("donateButtonText", { value: `${cryptoValue} USDC` });
+    if (wallet)
+      return t("donateButtonText", { value: `${amount} ${tokenSymbol}` });
 
     return t("connectWalletButtonText");
   };
@@ -95,7 +105,7 @@ function SupportCausePage(): JSX.Element {
             <S.ContributionContainer>
               <SelectCryptoOfferSection
                 cause={cause}
-                onValueChange={(value: number) => setCryptoValue(value)}
+                onValueChange={(value: number) => setAmount(value.toString())}
               />
             </S.ContributionContainer>
             <S.CommunityAddContainer>
@@ -108,9 +118,16 @@ function SupportCausePage(): JSX.Element {
               />
             </S.CommunityAddContainer>
           </S.GivingContainer>
+          <S.UserBalanceText>
+            {t("userBalanceText")}
+            <S.UserBalanceTextHighlight>
+              {userBalance} {tokenSymbol}
+            </S.UserBalanceTextHighlight>
+          </S.UserBalanceText>
           <S.DonateButton
             text={donateButtonText()}
             onClick={handleDonateClick}
+            disabled={disableButton()}
           />
         </S.DonateContainer>
         <UserSupportSection />
@@ -121,4 +138,4 @@ function SupportCausePage(): JSX.Element {
   );
 }
 
-export default SupportCausePage;
+export default CryptoPage;

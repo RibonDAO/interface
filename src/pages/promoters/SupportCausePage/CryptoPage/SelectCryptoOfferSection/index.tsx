@@ -13,14 +13,15 @@ type Props = {
   onValueChange: (value: number) => void;
 };
 
-const values = [5, 10, 15, 20, 25, 50, 70, 100];
 function SelectCryptoOfferSection({
   cause,
   onValueChange,
 }: Props): JSX.Element {
+  const values = [5, 10, 15, 20, 25, 50, 70, 100];
+
   const [maxRange] = useState(values.length - 1);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const { tokenSymbol } = useCryptoPayment();
+  const { tokenSymbol, amount, setAmount } = useCryptoPayment();
 
   const currentValue = useCallback(() => values[currentIndex], [currentIndex]);
 
@@ -39,7 +40,13 @@ function SelectCryptoOfferSection({
         <S.CauseTextHighlight>{cause?.name}</S.CauseTextHighlight>
       </S.CauseText>
       <S.ValueContainer>
-        <S.ValueText>{currentValue()}</S.ValueText>
+        <S.ValueInputContainer>
+          <S.ValueInput
+            value={amount}
+            name="value-input"
+            onChange={(event) => setAmount(event.target.value)}
+          />
+        </S.ValueInputContainer>
         <S.CurrencySelectorContainer>
           <S.CurrencySelector
             values={[tokenSymbol]}

@@ -1,16 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "services/analytics";
-
 import NonProfit from "types/entities/NonProfit";
 import useNonProfits from "hooks/apiHooks/useNonProfits";
-
 import { useLocation } from "react-router-dom";
 import useUsers from "hooks/apiHooks/useUsers";
 import useSources from "hooks/apiHooks/useSources";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationId } from "hooks/useIntegrationId";
-import { isFirtsAccess } from "lib/onboardingFirstAccess"
+import { isFirtsAccess } from "lib/onboardingFirstAccess";
 import useIntegration from "hooks/apiHooks/useIntegration";
 import { useModal } from "hooks/modalHooks/useModal";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
@@ -136,22 +134,28 @@ function CausesPage(): JSX.Element {
   );
 
   function renderCausesButtons() {
-    return causes?.map((item, index) => (
-      <S.Button
-        outline={index !== selectedButtonIndex}
-        onClick={() => handleCauseClick(index)}
-        key={item?.id}
-      >
-        <S.ButtonText>{item.name}</S.ButtonText>
-      </S.Button>
-    ));
+    return causes?.map(
+      (item, index) =>
+        item.active && (
+          <S.Button
+            outline={index !== selectedButtonIndex}
+            onClick={() => handleCauseClick(index)}
+            key={item?.id}
+          >
+            <S.ButtonText>{item.name}</S.ButtonText>
+          </S.Button>
+        ),
+    );
   }
 
   function renderNonProfitsContainer() {
     if (nonProfits && causes[selectedButtonIndex]) {
-      const nonProfitsFiltered = isFirtsAccess() ? nonProfits : nonProfits.filter(
-        (nonProfit) => nonProfit.cause.id === causes[selectedButtonIndex].id,
-      );
+      const nonProfitsFiltered = isFirtsAccess()
+        ? nonProfits
+        : nonProfits.filter(
+            (nonProfit) =>
+              nonProfit.cause.id === causes[selectedButtonIndex].id,
+          );
       return (
         <S.NonProfitsContainer>
           {nonProfitsFiltered && (
@@ -165,12 +169,8 @@ function CausesPage(): JSX.Element {
           )}
         </S.NonProfitsContainer>
       );
-    }
-    else return (<div />);
+    } else return <div />;
   }
-
-
-
 
   return (
     <S.Container>
@@ -189,10 +189,10 @@ function CausesPage(): JSX.Element {
 
       <S.BodyContainer>
         <S.Title>{t("pageTitle")}</S.Title>
-        {!isFirtsAccess() && (<S.FilterCauses>{renderCausesButtons()}</S.FilterCauses>)}
-        {isLoading ? (
-          <Spinner size="26" />
-        ) : renderNonProfitsContainer()}
+        {!isFirtsAccess() && (
+          <S.FilterCauses>{renderCausesButtons()}</S.FilterCauses>
+        )}
+        {isLoading ? <Spinner size="26" /> : renderNonProfitsContainer()}
       </S.BodyContainer>
     </S.Container>
   );

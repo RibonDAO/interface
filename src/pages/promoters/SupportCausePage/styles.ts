@@ -112,6 +112,7 @@ export const Button = styled.button<{
   outline?: boolean;
 }>`
   width: auto;
+  height: 32px;
   margin-right: 8px;
   padding: 4px 8px;
   border: 1px solid

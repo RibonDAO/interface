@@ -8,6 +8,9 @@ import useNavigation from "hooks/useNavigation";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import { useWalletContext } from "contexts/walletContext";
 import { useCryptoPayment } from "contexts/cryptoPaymentContext";
+import { BigNumber } from "ethers";
+import { useNetworkContext } from "contexts/networkContext";
+import useToast from "hooks/useToast";
 import * as S from "../styles";
 import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
 import SupportImage from "../assets/support-image.png";
@@ -26,15 +29,19 @@ function CryptoPage(): JSX.Element {
     userBalance,
     tokenSymbol,
   } = useCryptoPayment();
-
+  const { currentNetwork } = useNetworkContext();
   const { causes } = useCauses();
+  const toast = useToast();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportCausePage",
   });
+  const { t: treasureTranslation } = useTranslation("translation", {
+    keyPrefix: "promoters.supportTreasurePage",
+  });
 
   useEffect(() => {
-    logEvent("treasureSupportScreen_view");
+    logEvent("causeSupportScreen_view");
   }, []);
 
   useEffect(() => {
@@ -42,7 +49,7 @@ function CryptoPage(): JSX.Element {
   }, [JSON.stringify(causes)]);
 
   const handleCauseClick = (causeClicked: Cause, index: number) => {
-    logEvent("treasureCauseSelection_click", {
+    logEvent("supportCauseSelection_click", {
       id: causeClicked?.id,
     });
     setCause(causeClicked);
@@ -61,9 +68,36 @@ function CryptoPage(): JSX.Element {
     ));
   }
 
+  const onDonationToContractSuccess = (
+    hash: string,
+    timestamp: number,
+    amountDonated: BigNumber,
+  ) => {
+    toast({
+      message: treasureTranslation("transactionOnBlockchainText"),
+      type: "success",
+      link: `${currentNetwork.blockExplorerUrls}tx/${hash}`,
+      linkMessage: treasureTranslation("linkMessageToast"),
+    });
+    logEvent("toastNotification_view", {
+      status: "transactionProcessed",
+    });
+
+    navigateTo({
+      pathname: "/donation-done",
+      state: {
+        hasButton: true,
+        id: hash,
+        timestamp,
+        amountDonated,
+        processing: true,
+      },
+    });
+  };
+
   const handleDonateClick = async () => {
     if (wallet) {
-      await handleDonationToContract();
+      await handleDonationToContract(onDonationToContractSuccess);
       return;
     }
 

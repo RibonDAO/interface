@@ -12,8 +12,6 @@ import { useTranslation } from "react-i18next";
 import { useContract } from "hooks/useContract";
 import RibonAbi from "utils/abis/RibonAbi.json";
 import DonationTokenAbi from "utils/abis/DonationToken.json";
-import useToast from "hooks/useToast";
-import useNavigation from "hooks/useNavigation";
 import useCryptoTransaction from "hooks/apiHooks/useCryptoTransaction";
 import {
   formatFromDecimals,
@@ -22,13 +20,21 @@ import {
 import { logError } from "services/crashReport";
 import { stringToNumber } from "lib/formatters/stringToNumberFormatter";
 import { logEvent } from "services/analytics";
-import { utils } from "ethers";
+import { BigNumber, utils } from "ethers";
 import { useWalletContext } from "../walletContext";
 import { useLoadingOverlay } from "../loadingOverlayContext";
 import { useNetworkContext } from "../networkContext";
 
+export type onDonationToContractSuccessProps = (
+  hash: string,
+  timestamp: number,
+  amountDonated: BigNumber,
+) => void;
+
 export interface ICryptoPaymentContext {
-  handleDonationToContract: () => Promise<void>;
+  handleDonationToContract: (
+    onSuccess?: onDonationToContractSuccessProps,
+  ) => Promise<void>;
   disableButton: () => boolean;
   amount: string;
   setAmount: (amount: string) => void;
@@ -71,8 +77,6 @@ function CryptoPaymentProvider({ children }: Props) {
     address: currentNetwork.donationTokenContractAddress,
     ABI: DonationTokenAbi.abi,
   });
-  const toast = useToast();
-  const { navigateTo } = useNavigation();
   const { showLoadingOverlay, hideLoadingOverlay } = useLoadingOverlay();
   const { wallet } = useWalletContext();
   const { createTransaction } = useCryptoTransaction();
@@ -117,8 +121,9 @@ function CryptoPaymentProvider({ children }: Props) {
   const disableButton = () =>
     amount === "0.00" || insufficientBalance() || loading;
 
-  const handleDonationToContract = async () => {
-    logEvent("treasureSupportConfirmBtn_click");
+  const handleDonationToContract = async (
+    onSuccess?: onDonationToContractSuccessProps,
+  ) => {
     setLoading(true);
     showLoadingOverlay(t("tokenAmountTransferMessage"));
     try {
@@ -127,31 +132,12 @@ function CryptoPaymentProvider({ children }: Props) {
       showLoadingOverlay(t("contractTransferMessage"));
       const response = await donateToContract();
 
-      const id = response.hash;
+      const { hash } = response;
       const timestamp = Math.floor(new Date().getTime() / 1000);
 
-      createTransaction(id, amount, wallet ?? "", integrationId ?? 1);
+      createTransaction(hash, amount, wallet ?? "", integrationId ?? 1);
 
-      toast({
-        message: t("transactionOnBlockchainText"),
-        type: "success",
-        link: `${currentNetwork.blockExplorerUrls}tx/${id}`,
-        linkMessage: t("linkMessageToast"),
-      });
-      logEvent("toastNotification_view", {
-        status: "transactionProcessed",
-      });
-
-      navigateTo({
-        pathname: "/donation-done",
-        state: {
-          hasButton: true,
-          id,
-          timestamp,
-          amountDonated: utils.parseEther(amount),
-          processing: true,
-        },
-      });
+      if (onSuccess) onSuccess(hash, timestamp, utils.parseEther(amount));
     } catch (error) {
       logEvent("toastNotification_view", {
         status: "transactionFailed",

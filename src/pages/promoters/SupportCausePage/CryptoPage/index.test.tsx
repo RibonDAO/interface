@@ -28,14 +28,14 @@ describe("SupportCausePage", () => {
   });
 
   it("logs the treasureSupportScreen_view event", () => {
-    expectLogEventToHaveBeenCalledWith("treasureSupportScreen_view");
+    expectLogEventToHaveBeenCalledWith("causeSupportScreen_view");
   });
 
   describe("when the button option is clicked", () => {
     it("logs the treasureCauseSelection_click event", () => {
       clickOn("💊 Health");
 
-      expectLogEventToHaveBeenCalledWith("treasureCauseSelection_click", {
+      expectLogEventToHaveBeenCalledWith("supportCauseSelection_click", {
         id: 2,
       });
     });

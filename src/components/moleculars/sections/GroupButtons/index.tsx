@@ -32,7 +32,7 @@ function GroupButtons({
     if (onChange) onChange(element, index);
   };
 
-  function renderCausesButtons() {
+  function renderGroupButtons() {
     return elements?.map((element, index) => (
       <S.Button
         outline={index !== selectedButtonIndex}
@@ -50,7 +50,7 @@ function GroupButtons({
     ));
   }
 
-  return <S.Container>{renderCausesButtons()}</S.Container>;
+  return <S.Container>{renderGroupButtons()}</S.Container>;
 }
 
 export default GroupButtons;

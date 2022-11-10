@@ -25,7 +25,7 @@ describe("WalletLayout", () => {
     );
 
     expectTextToBeInTheDocument("Giving");
-    expectTextToBeInTheDocument("Causes");
+    expectTextToBeInTheDocument("Tickets");
     expectTextToBeInTheDocument("Impact");
   });
 

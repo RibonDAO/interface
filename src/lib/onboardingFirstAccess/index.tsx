@@ -1,6 +1,6 @@
 import { getLocalStorageItem } from "lib/localStorage";
 
-export function isFirtsAccess(signedIn: boolean) {
+export function isFirstAccess(signedIn: boolean) {
   if (
     (signedIn &&
       getLocalStorageItem("SHOW_MENU") === "true" &&

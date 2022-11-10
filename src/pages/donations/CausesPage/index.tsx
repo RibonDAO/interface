@@ -8,7 +8,7 @@ import useUsers from "hooks/apiHooks/useUsers";
 import useSources from "hooks/apiHooks/useSources";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationId } from "hooks/useIntegrationId";
-import { isFirtsAccess } from "lib/onboardingFirstAccess";
+import { isFirstAccess } from "lib/onboardingFirstAccess";
 import useIntegration from "hooks/apiHooks/useIntegration";
 import { useModal } from "hooks/modalHooks/useModal";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
@@ -19,9 +19,7 @@ import { useDonationTicketModal } from "hooks/modalHooks/useDonationTicketModal"
 import Spinner from "components/atomics/Spinner";
 import useCanDonate from "hooks/apiHooks/useCanDonate";
 import { logError } from "services/crashReport";
-import useCauses from "hooks/apiHooks/useCauses";
-import Cause from "types/entities/Cause";
-import usePools from "hooks/apiTheGraphHooks/usePools";
+import { useActiveCauses } from "hooks/useActiveCauses";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
@@ -33,7 +31,6 @@ function CausesPage(): JSX.Element {
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
   const [donationInProcessModalVisible, setDonationInProcessModalVisible] =
     useState(false);
-  const [causesActives, setCausesActives] = useState<Cause[]>([]);
   const [chosenNonProfit, setChosenNonProfit] = useState<NonProfit>();
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
@@ -70,8 +67,7 @@ function CausesPage(): JSX.Element {
     integration,
   );
   const { canDonate } = useCanDonate(integrationId);
-  const { causes } = useCauses();
-  const { getPool } = usePools();
+  const { activeCauses } = useActiveCauses();
 
   function hasReceivedTicketToday() {
     const donationModalSeenAtKey = getLocalStorageItem(
@@ -86,32 +82,6 @@ function CausesPage(): JSX.Element {
   }
 
   const hasAvailableDonation = !state?.blockedDonation && canDonate;
-
-  const fetchCause = useCallback(async () => {
-    const causesApi = causes.filter((cause) => cause.active && cause.pools);
-
-    try {
-      causesApi.map(async (cause) => {
-        const apiPool = await getPool(
-          cause?.pools[0]?.address.toLowerCase() ?? "",
-        );
-        if (apiPool?.pools) {
-          if (apiPool.pools[0]?.balance > 0) {
-            setCausesActives((prevCausesActives) => [
-              ...prevCausesActives,
-              cause,
-            ]);
-          }
-        }
-      });
-    } catch (e) {
-      logError(e);
-    }
-  }, [causes]);
-
-  useEffect(() => {
-    fetchCause();
-  }, [causes]);
 
   useEffect(() => {
     if (
@@ -161,11 +131,11 @@ function CausesPage(): JSX.Element {
   );
 
   const nonProfitsFilter = () => {
-    const nonProfitsFiltered = isFirtsAccess(signedIn)
+    const nonProfitsFiltered = isFirstAccess(signedIn)
       ? nonProfits
       : nonProfits?.filter(
           (nonProfit) =>
-            nonProfit?.cause?.id === causesActives[selectedButtonIndex]?.id,
+            nonProfit?.cause?.id === activeCauses[selectedButtonIndex]?.id,
         );
     return nonProfitsFiltered || [];
   };
@@ -191,9 +161,9 @@ function CausesPage(): JSX.Element {
 
       <S.BodyContainer>
         <S.Title>{t("pageTitle")}</S.Title>
-        {!isFirtsAccess(signedIn) && (
+        {!isFirstAccess(signedIn) && (
           <GroupButtons
-            elements={causesActives}
+            elements={activeCauses}
             onChange={handleCauseChanged}
             nameExtractor={(cause) => cause.name}
           />
@@ -203,15 +173,13 @@ function CausesPage(): JSX.Element {
         ) : (
           nonProfits && (
             <S.NonProfitsContainer>
-              {nonProfitsFilter() && (
-                <NonProfitsList
-                  nonProfits={nonProfitsFilter()}
-                  setChosenNonProfit={setChosenNonProfit}
-                  setConfirmModalVisible={setConfirmModalVisible}
-                  canDonate={canDonate}
-                  integration={integration}
-                />
-              )}
+              <NonProfitsList
+                nonProfits={nonProfitsFilter()}
+                setChosenNonProfit={setChosenNonProfit}
+                setConfirmModalVisible={setConfirmModalVisible}
+                canDonate={canDonate}
+                integration={integration}
+              />
             </S.NonProfitsContainer>
           )
         )}

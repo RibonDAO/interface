@@ -1,6 +1,6 @@
 import LayoutHeader from "layouts/LayoutHeader";
 import Navigation from "config/routes/Navigation";
-import { isFirtsAccess } from "lib/onboardingFirstAccess";
+import { isFirstAccess } from "lib/onboardingFirstAccess";
 import { useCurrentUser } from "contexts/currentUserContext";
 import * as S from "./styles";
 
@@ -13,7 +13,7 @@ function MainLayout({ children, hideHeader = false }: Props): JSX.Element {
 
   return (
     <>
-      {!isFirtsAccess(signedIn) && <Navigation />}
+      {!isFirstAccess(signedIn) && <Navigation />}
       <S.MainContainer>
         {!hideHeader && <LayoutHeader />}
         <S.MainBodyContainer>{children}</S.MainBodyContainer>

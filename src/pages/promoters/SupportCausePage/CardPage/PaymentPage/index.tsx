@@ -11,7 +11,7 @@ import { useCardPaymentInformation } from "contexts/cardPaymentInformationContex
 import * as S from "./styles";
 import UserInfoSection from "./UserInfoSection";
 import CardInfoSection from "./CardInfoSection";
-import SupportImage from "../assets/support-image.png";
+import SupportImage from "../../assets/support-image.png";
 
 type LocationState = {
   offer: Offer;

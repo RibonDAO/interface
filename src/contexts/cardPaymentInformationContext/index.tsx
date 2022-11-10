@@ -109,9 +109,11 @@ function CardPaymentInformationProvider({ children }: Props) {
 
   const handleConfirmation = () => {
     navigateTo({
-      pathname: "/donation-done",
+      pathname: "/donation-done-cause",
       state: {
         hasButton: true,
+        offerId,
+        causeId: cause?.id,
       },
     });
   };

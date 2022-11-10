@@ -131,7 +131,9 @@
       "selectOfferSection": {
         "causeText": "You'll donate to"
       },
-      "connectWalletButtonText": "Connect wallet"
+      "connectWalletButtonText": "Connect wallet",
+      "userBalanceText": "Your balance: ",
+      "refundText": "*Cryptocurrency payments are non-refundable"
     },
     "supportTreasurePage": {
       "title": "Make a bigger impact",

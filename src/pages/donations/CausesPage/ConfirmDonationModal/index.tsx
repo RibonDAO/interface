@@ -40,6 +40,7 @@ function ConfirmDonationModal({
       textDestiny={t("donateAnimationModalDestiny")}
       icon={Ticket}
       visible={donationInProcessModalVisible}
+      isIconDestinyFullSize
     />
   ) : (
     <ModalIcon

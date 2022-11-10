@@ -48,6 +48,10 @@ const theme: ThemeType = {
     defaultShadow05: "rgba(40, 36, 28, 0.05)",
     backgroundOverlay: "rgba(40, 36, 28, 0.60)",
   },
+  filters: {
+    filterOrange40:
+      "invert(58%) sepia(6%) saturate(5888%) hue-rotate(326deg) brightness(69%) contrast(100%)",
+  },
   zindex: {
     base: 0,
     above: 1,

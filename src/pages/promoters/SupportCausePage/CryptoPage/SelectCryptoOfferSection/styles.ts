@@ -54,6 +54,7 @@ export const CurrencySelectorContainer = styled.div`
 
   img {
     width: 14px;
+    filter: ${({ theme }) => theme.filters.filterOrange40};
   }
 `;
 

@@ -1,9 +1,16 @@
-import { clickOn, renderComponent, waitForPromises } from "config/testUtils";
+import {
+  clickOn,
+  fillByPlaceholder,
+  renderComponent,
+  waitForPromises,
+} from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import { useCryptoPayment } from ".";
 
 const mockApprove = () => ({ wait: () => {} });
-const mockAddPoolBalance = () => ({ hash: "0x000" });
+const mockTransactionHash = "0x000";
+const mockAddPoolBalance = () => ({ hash: mockTransactionHash });
+const mockOnSuccess = jest.fn();
 const mockContract = {
   functions: {
     addPoolBalance: mockAddPoolBalance,
@@ -29,14 +36,31 @@ jest.mock("hooks/useTokenDecimals", () => ({
 }));
 
 function CryptoPaymentTestPage() {
-  const { userBalance, handleDonationToContract, tokenSymbol } =
-    useCryptoPayment();
+  const {
+    userBalance,
+    handleDonationToContract,
+    tokenSymbol,
+    amount,
+    setAmount,
+  } = useCryptoPayment();
   return (
     <div>
       CryptoPayment
-      <button type="button" onClick={() => handleDonationToContract()}>
+      <button
+        type="button"
+        onClick={() => handleDonationToContract(mockOnSuccess)}
+      >
         donate
       </button>
+      <input
+        type="text"
+        name="amount-input"
+        placeholder="amount"
+        value={amount}
+        onChange={(event) => {
+          setAmount(event.target.value);
+        }}
+      />
       <p>{userBalance}</p>
       <p>{tokenSymbol}</p>
     </div>
@@ -100,6 +124,14 @@ describe("useCryptoPayment", () => {
         amount.toString(),
       );
       addPoolBalanceSpy.mockRestore();
+    });
+
+    it("calls the onSuccess function", async () => {
+      fillByPlaceholder("amount", "10");
+      clickOn("donate");
+      await waitForPromises();
+
+      expect(mockOnSuccess).toHaveBeenCalled();
     });
   });
 });

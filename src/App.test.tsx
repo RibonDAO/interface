@@ -8,6 +8,8 @@ describe("App", () => {
     renderComponent(<App />);
     await waitForPromises();
 
-    expect(screen.queryAllByText("Causes").length).toBeGreaterThan(0);
+    expect(screen.queryAllByText("Donate to a project").length).toBeGreaterThan(
+      0,
+    );
   });
 });

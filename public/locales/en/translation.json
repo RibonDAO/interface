@@ -209,7 +209,7 @@
     },
     "supportWithCommunityPage": {
       "communityAddPage": {
-        "title": "How does the community increases your {{value}} donation?",
+        "title": "How does the community increase your {{value}} donation?",
         "button": "Donate {{value}}"
       },
       "paymentPage": {

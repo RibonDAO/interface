@@ -12,4 +12,8 @@ const Template: ComponentStory<typeof GroupButtons> = function (args: Props) {
 
 export const Default = Template.bind({});
 
-Default.args = {};
+Default.args = {
+  nameExtractor: (element: any) => element,
+  elements: ["Element 1", "Element 2", "Element 3"],
+  onChange: () => {},
+};

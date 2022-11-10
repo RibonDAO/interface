@@ -105,7 +105,9 @@ function NonProfitsList({
           <S.CausesCardContainer key={idx.toString()}>
             <CardCenterImageButton
               image={nonProfit.mainImage}
-              title={`${nonProfit.impactByTicket} ${nonProfit.impactDescription}`}
+              title={`${t("impactPrefix")} ${nonProfit.impactByTicket} ${
+                nonProfit.impactDescription
+              }`}
               buttonText={
                 canDonateAndHasVoucher
                   ? t("donateText")

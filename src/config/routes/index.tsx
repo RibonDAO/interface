@@ -18,7 +18,7 @@ import WalletLayout from "layouts/WalletLayout";
 import CardPaymentInformationProvider from "contexts/cardPaymentInformationContext";
 import NetworkProvider from "contexts/networkContext";
 import CommunityAddPage from "pages/promoters/SupportCausePage/CommunityAddPage";
-import PaymentPage from "pages/promoters/SupportCausePage/PaymentPage";
+import PaymentPage from "pages/promoters/SupportCausePage/CardPage/PaymentPage";
 import Navigation from "./Navigation";
 
 function RoutesComponent(): JSX.Element {

@@ -5,6 +5,7 @@ function causeFactory(params: Partial<Cause> = {}): Cause {
     id: 1,
     name: "🐵 Animal",
     active: true,
+    pools: [],
   };
   return Object.assign(defaultValues, params) as Cause;
 }

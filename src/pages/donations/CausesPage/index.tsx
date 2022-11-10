@@ -20,6 +20,9 @@ import Spinner from "components/atomics/Spinner";
 import useCanDonate from "hooks/apiHooks/useCanDonate";
 import { logError } from "services/crashReport";
 import useCauses from "hooks/apiHooks/useCauses";
+import Cause from "types/entities/Cause";
+import usePools from "hooks/apiTheGraphHooks/usePools";
+import GroupButtons from "components/moleculars/sections/GroupButtons";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
@@ -30,6 +33,7 @@ function CausesPage(): JSX.Element {
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
   const [donationInProcessModalVisible, setDonationInProcessModalVisible] =
     useState(false);
+  const [causesActives, setCausesActives] = useState<Cause[]>([]);
   const [chosenNonProfit, setChosenNonProfit] = useState<NonProfit>();
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
@@ -67,6 +71,7 @@ function CausesPage(): JSX.Element {
   );
   const { canDonate } = useCanDonate(integrationId);
   const { causes } = useCauses();
+  const { getPool } = usePools();
 
   function hasReceivedTicketToday() {
     const donationModalSeenAtKey = getLocalStorageItem(
@@ -81,6 +86,25 @@ function CausesPage(): JSX.Element {
   }
 
   const hasAvailableDonation = !state?.blockedDonation && canDonate;
+
+  const fetchCause = useCallback(async () => {
+    const causesApi = causes.filter((cause) => cause.active && cause.pools);
+
+    try {
+      causesApi.map(async (cause) => {
+        const apiPool = await getPool(cause?.pools[0].address.toLowerCase() ?? "");
+        if (apiPool.pools) {
+          setCausesActives(prevCausesActives => [...prevCausesActives, cause]);
+        }
+      });
+    } catch (e) {
+      logError(e);
+    }
+  }, [causes]);
+
+  useEffect(() => {
+    fetchCause();
+  }, [causes]);
 
   useEffect(() => {
     if (
@@ -108,10 +132,6 @@ function CausesPage(): JSX.Element {
     setConfirmModalVisible(false);
   }, []);
 
-  const handleCauseClick = (index: number) => {
-    setSelectedButtonIndex(index);
-  };
-
   const donateTicket = useCallback(
     async (email: string) => {
       try {
@@ -133,44 +153,18 @@ function CausesPage(): JSX.Element {
     [chosenNonProfit],
   );
 
-  function renderCausesButtons() {
-    return causes?.map(
-      (item, index) =>
-        item.active && (
-          <S.Button
-            outline={index !== selectedButtonIndex}
-            onClick={() => handleCauseClick(index)}
-            key={item?.id}
-          >
-            <S.ButtonText>{item.name}</S.ButtonText>
-          </S.Button>
-        ),
-    );
-  }
-
-  function renderNonProfitsContainer() {
-    if (nonProfits && causes[selectedButtonIndex]) {
-      const nonProfitsFiltered = isFirtsAccess()
-        ? nonProfits
-        : nonProfits.filter(
-            (nonProfit) =>
-              nonProfit.cause.id === causes[selectedButtonIndex].id,
-          );
-      return (
-        <S.NonProfitsContainer>
-          {nonProfitsFiltered && (
-            <NonProfitsList
-              nonProfits={nonProfitsFiltered}
-              setChosenNonProfit={setChosenNonProfit}
-              setConfirmModalVisible={setConfirmModalVisible}
-              canDonate={canDonate}
-              integration={integration}
-            />
-          )}
-        </S.NonProfitsContainer>
+  const nonProfitsFilter = () => {
+    const nonProfitsFiltered = isFirtsAccess(signedIn)
+      ? nonProfits
+      : nonProfits?.filter(
+        (nonProfit) => nonProfit?.cause?.id === causesActives[selectedButtonIndex]?.id,
       );
-    } else return <div />;
-  }
+    return nonProfitsFiltered || [];
+  };
+
+  const handleCauseChanged = (_element: any, index: number) => {
+    setSelectedButtonIndex(index);
+  };
 
   return (
     <S.Container>
@@ -189,10 +183,22 @@ function CausesPage(): JSX.Element {
 
       <S.BodyContainer>
         <S.Title>{t("pageTitle")}</S.Title>
-        {!isFirtsAccess() && (
-          <S.FilterCauses>{renderCausesButtons()}</S.FilterCauses>
+        {!isFirtsAccess(signedIn) && (
+          <div>
+            <GroupButtons elements={causesActives} onChange={handleCauseChanged} nameExtractor={(cause) => cause.name} />
+          </div>
         )}
-        {isLoading ? <Spinner size="26" /> : renderNonProfitsContainer()}
+        {isLoading ? <Spinner size="26" /> : nonProfits && (<S.NonProfitsContainer>
+          {nonProfitsFilter() && (
+            <NonProfitsList
+              nonProfits={nonProfitsFilter()}
+              setChosenNonProfit={setChosenNonProfit}
+              setConfirmModalVisible={setConfirmModalVisible}
+              canDonate={canDonate}
+              integration={integration}
+            />
+          )}
+        </S.NonProfitsContainer>)}
       </S.BodyContainer>
     </S.Container>
   );

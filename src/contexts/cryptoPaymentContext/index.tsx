@@ -92,7 +92,7 @@ function CryptoPaymentProvider({ children }: Props) {
 
   const donateToContract = async () =>
     contract?.functions.addPoolBalance(
-      currentPool, // TODO get pool address dynamically
+      currentPool,
       formatToDecimals(amount, tokenDecimals).toString(),
     );
 

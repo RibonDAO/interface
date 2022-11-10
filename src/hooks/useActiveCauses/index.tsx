@@ -7,13 +7,9 @@ export function useActiveCauses() {
 
   const { causes } = useCauses();
 
-  function fetchCauses() {
+  useEffect(() => {
     const causesApi = causes.filter((cause) => cause.active);
     setActiveCauses(causesApi);
-  }
-
-  useEffect(() => {
-    fetchCauses();
   }, [causes]);
 
   return {

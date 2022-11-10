@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { logEvent } from "services/analytics";
 import useCauses from "hooks/apiHooks/useCauses";
 import Cause from "types/entities/Cause";
@@ -7,6 +7,10 @@ import IntersectBackground from "assets/images/intersect-background.svg";
 import useNavigation from "hooks/useNavigation";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import { useWalletContext } from "contexts/walletContext";
+import { useCryptoPayment } from "contexts/cryptoPaymentContext";
+import { BigNumber } from "ethers";
+import { useNetworkContext } from "contexts/networkContext";
+import useToast from "hooks/useToast";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import theme from "styles/theme";
 import * as S from "../styles";
@@ -14,20 +18,31 @@ import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSuppor
 import SupportImage from "../assets/support-image.png";
 import SelectCryptoOfferSection from "./SelectCryptoOfferSection";
 
-function SupportCausePage(): JSX.Element {
+function CryptoPage(): JSX.Element {
   const { navigateTo } = useNavigation();
   const { cause, setCause } = useCardPaymentInformation();
-  const [cryptoValue, setCryptoValue] = useState(0);
   const { connectWallet, wallet } = useWalletContext();
-
+  const {
+    amount,
+    setAmount,
+    disableButton,
+    handleDonationToContract,
+    userBalance,
+    tokenSymbol,
+  } = useCryptoPayment();
+  const { currentNetwork } = useNetworkContext();
   const { causes } = useCauses();
+  const toast = useToast();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportCausePage",
   });
+  const { t: treasureTranslation } = useTranslation("translation", {
+    keyPrefix: "promoters.supportTreasurePage",
+  });
 
   useEffect(() => {
-    logEvent("treasureSupportScreen_view");
+    logEvent("causeSupportScreen_view");
   }, []);
 
   useEffect(() => {
@@ -35,14 +50,42 @@ function SupportCausePage(): JSX.Element {
   }, [JSON.stringify(causes)]);
 
   const handleCauseClick = (causeClicked: Cause) => {
-    logEvent("treasureCauseSelection_click", {
+    logEvent("supportCauseSelection_click", {
       id: causeClicked?.id,
     });
     setCause(causeClicked);
   };
 
-  const handleDonateClick = () => {
+  const onDonationToContractSuccess = (
+    hash: string,
+    timestamp: number,
+    amountDonated: BigNumber,
+  ) => {
+    toast({
+      message: treasureTranslation("transactionOnBlockchainText"),
+      type: "success",
+      link: `${currentNetwork.blockExplorerUrls}tx/${hash}`,
+      linkMessage: treasureTranslation("linkMessageToast"),
+    });
+    logEvent("toastNotification_view", {
+      status: "transactionProcessed",
+    });
+
+    navigateTo({
+      pathname: "/donation-done",
+      state: {
+        hasButton: true,
+        id: hash,
+        timestamp,
+        amountDonated,
+        processing: true,
+      },
+    });
+  };
+
+  const handleDonateClick = async () => {
     if (wallet) {
+      await handleDonationToContract(onDonationToContractSuccess);
       return;
     }
 
@@ -54,7 +97,7 @@ function SupportCausePage(): JSX.Element {
     navigateTo({
       pathname: "/promoters/community-add",
       state: {
-        donationAmount: `${cryptoValue} USDC`,
+        donationAmount: `${amount} ${tokenSymbol}`,
       },
     });
   };
@@ -62,11 +105,12 @@ function SupportCausePage(): JSX.Element {
   const communityAddText = () => {
     const PERCENTAGE_OF_INCREASE = 0.6;
 
-    return `+ ${cryptoValue * PERCENTAGE_OF_INCREASE} USDC`;
+    return `+ ${Number(amount) * PERCENTAGE_OF_INCREASE} ${tokenSymbol}`;
   };
 
   const donateButtonText = () => {
-    if (wallet) return t("donateButtonText", { value: `${cryptoValue} USDC` });
+    if (wallet)
+      return t("donateButtonText", { value: `${amount} ${tokenSymbol}` });
 
     return t("connectWalletButtonText");
   };
@@ -90,7 +134,7 @@ function SupportCausePage(): JSX.Element {
             <S.ContributionContainer>
               <SelectCryptoOfferSection
                 cause={cause}
-                onValueChange={(value: number) => setCryptoValue(value)}
+                onValueChange={(value: number) => setAmount(value.toString())}
               />
             </S.ContributionContainer>
             <S.CommunityAddContainer>
@@ -103,10 +147,20 @@ function SupportCausePage(): JSX.Element {
               />
             </S.CommunityAddContainer>
           </S.GivingContainer>
+          {wallet && (
+            <S.UserBalanceText>
+              {t("userBalanceText")}
+              <S.UserBalanceTextHighlight>
+                {userBalance} {tokenSymbol}
+              </S.UserBalanceTextHighlight>
+            </S.UserBalanceText>
+          )}
           <S.DonateButton
             text={donateButtonText()}
             onClick={handleDonateClick}
+            disabled={disableButton()}
           />
+          <S.RefundText>{t("refundText")}</S.RefundText>
         </S.DonateContainer>
         <UserSupportSection />
       </S.ContentContainer>
@@ -116,4 +170,4 @@ function SupportCausePage(): JSX.Element {
   );
 }
 
-export default SupportCausePage;
+export default CryptoPage;

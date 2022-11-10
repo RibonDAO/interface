@@ -5,6 +5,7 @@ import {
 } from "styles/typography/stylized";
 import {
   defaultParagraphSmall,
+  defaultSubtitleMedium,
 } from "styles/typography/default";
 import ButtonComponent from "components/atomics/buttons/Button";
 
@@ -80,7 +81,7 @@ export const CommunityAddButton = styled(ButtonComponent)`
 `;
 
 export const DonateButton = styled(ButtonComponent)`
-  border-color: ${({ theme }) => theme.colors.orange40};
+  border-color: ${({ theme }) => theme.colors.orange20};
   font-weight: 600;
   background-color: ${({ theme }) => theme.colors.orange20};
   color: ${({ theme }) => theme.colors.orange40};
@@ -113,4 +114,23 @@ export const SupportImage = styled.img`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+`;
+
+export const UserBalanceText = styled.p`
+  ${defaultSubtitleMedium};
+  margin-bottom: 4px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray30};
+`;
+
+export const UserBalanceTextHighlight = styled.span`
+  ${defaultSubtitleMedium};
+  color: ${({ theme }) => theme.colors.orange30};
+`;
+
+export const RefundText = styled.p`
+  ${defaultParagraphSmall};
+  margin-top: 4px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray30};
 `;

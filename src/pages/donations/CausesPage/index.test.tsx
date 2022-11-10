@@ -48,12 +48,12 @@ describe("Causes", () => {
   });
 
   it("renders the title", () => {
-    expectTextToBeInTheDocument("Causes");
+    expectTextToBeInTheDocument("Donate to a project");
   });
 
   it("shows the non profit", () => {
     expectTextToBeInTheDocument(
-      `${nonProfit1.impactByTicket} ${nonProfit1.impactDescription}`,
+      `Donate ${nonProfit1.impactByTicket} ${nonProfit1.impactDescription}`,
     );
   });
 

@@ -12,8 +12,15 @@ function useCauses() {
     fetchMethod: () => causesApi.getCauses(),
   });
 
+  async function showCause(causeId: number) {
+    const { data: cause } = await causesApi.showCause(causeId);
+
+    return cause;
+  }
+
   return {
     causes: causes || [],
+    showCause,
     isLoading,
     refetch,
   };

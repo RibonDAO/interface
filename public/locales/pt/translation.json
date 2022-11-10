@@ -58,6 +58,11 @@
       "donationSuccessfullTitle": "Contribuição realizada",
       "donationSuccessfullSubtitle": "Ela será usada para pagar diversas doações realizadas no aplicativo."
     },
+    "donationDoneCausePage": {
+      "title": "Parabéns!",
+      "titleSecondLine": "Você doou para",
+      "button": "Terminar"
+    },
     "menu": {
       "impactPageTitle": "Impacto",
       "causesPageTitle": "Causas",

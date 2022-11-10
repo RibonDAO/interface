@@ -58,6 +58,11 @@
       "donationSuccessfullTitle": "Giving successful",
       "donationSuccessfullSubtitle": "It will be used to pay for various donations made in the app."
     },
+    "donationDoneCausePage": {
+      "title": "Congratulations!",
+      "titleSecondLine": "You have donated to",
+      "button": "Finish"
+    },
     "menu": {
       "impactPageTitle": "Impact",
       "causesPageTitle": "Causes",

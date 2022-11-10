@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useCauses from "hooks/apiHooks/useCauses";
 import Cause from "types/entities/Cause";
 
@@ -7,18 +7,17 @@ export function useActiveCauses() {
 
   const { causes } = useCauses();
 
-  const fetchCause = useCallback(async () => {
+  function fetchCauses() {
     const causesApi = causes.filter((cause) => cause.active);
     setActiveCauses(causesApi);
-  }, [causes]);
+  }
 
   useEffect(() => {
-    fetchCause();
+    fetchCauses();
   }, [causes]);
 
   return {
     activeCauses,
-    fetchCause,
   };
 }
 

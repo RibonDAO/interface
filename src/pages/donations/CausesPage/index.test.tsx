@@ -3,12 +3,12 @@ import { renderComponent, waitForPromises } from "config/testUtils";
 import { mockRequest } from "config/testUtils/test-helper";
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
 import causeFactory from "config/testUtils/factories/causeFactory";
-
 import {
   expectLogEventToHaveBeenCalledWith,
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
-import Causes from ".";
+import useActiveCauses from "hooks/useActiveCauses";
+import CausesPage from ".";
 
 const mockCause = causeFactory();
 
@@ -19,6 +19,8 @@ jest.mock("hooks/apiHooks/useCauses", () => ({
     refetch: () => {},
   }),
 }));
+
+jest.mock("hooks/useActiveCauses");
 
 describe("Causes", () => {
   const nonProfit1 = nonProfitFactory({
@@ -43,7 +45,8 @@ describe("Causes", () => {
   });
 
   beforeEach(async () => {
-    renderComponent(<Causes />);
+    (useActiveCauses as jest.Mock).mockReturnValue([mockCause]);
+    renderComponent(<CausesPage />);
     await waitForPromises();
   });
 
@@ -59,7 +62,7 @@ describe("Causes", () => {
 
   describe("when the page state is donationFailed", () => {
     beforeEach(() => {
-      renderComponent(<Causes />, {
+      renderComponent(<CausesPage />, {
         locationState: {
           failedDonation: true,
         },

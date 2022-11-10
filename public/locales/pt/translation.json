@@ -129,7 +129,8 @@
       "donateButtonText": "Doar {{value}}",
       "selectOfferSection": {
         "causeText": "Você doará para"
-      }
+      },
+      "connectWalletButtonText": "Conectar carteira"
     },
     "supportTreasurePage": {
       "title": "Gere mais impacto",

@@ -92,9 +92,16 @@ function CausesPage(): JSX.Element {
 
     try {
       causesApi.map(async (cause) => {
-        const apiPool = await getPool(cause?.pools[0].address.toLowerCase() ?? "");
-        if (apiPool.pools) {
-          setCausesActives(prevCausesActives => [...prevCausesActives, cause]);
+        const apiPool = await getPool(
+          cause?.pools[0]?.address.toLowerCase() ?? "",
+        );
+        if (apiPool?.pools) {
+          if (apiPool.pools[0]?.balance > 0) {
+            setCausesActives((prevCausesActives) => [
+              ...prevCausesActives,
+              cause,
+            ]);
+          }
         }
       });
     } catch (e) {
@@ -157,8 +164,9 @@ function CausesPage(): JSX.Element {
     const nonProfitsFiltered = isFirtsAccess(signedIn)
       ? nonProfits
       : nonProfits?.filter(
-        (nonProfit) => nonProfit?.cause?.id === causesActives[selectedButtonIndex]?.id,
-      );
+          (nonProfit) =>
+            nonProfit?.cause?.id === causesActives[selectedButtonIndex]?.id,
+        );
     return nonProfitsFiltered || [];
   };
 
@@ -184,21 +192,29 @@ function CausesPage(): JSX.Element {
       <S.BodyContainer>
         <S.Title>{t("pageTitle")}</S.Title>
         {!isFirtsAccess(signedIn) && (
-          <div>
-            <GroupButtons elements={causesActives} onChange={handleCauseChanged} nameExtractor={(cause) => cause.name} />
-          </div>
+          <GroupButtons
+            elements={causesActives}
+            onChange={handleCauseChanged}
+            nameExtractor={(cause) => cause.name}
+          />
         )}
-        {isLoading ? <Spinner size="26" /> : nonProfits && (<S.NonProfitsContainer>
-          {nonProfitsFilter() && (
-            <NonProfitsList
-              nonProfits={nonProfitsFilter()}
-              setChosenNonProfit={setChosenNonProfit}
-              setConfirmModalVisible={setConfirmModalVisible}
-              canDonate={canDonate}
-              integration={integration}
-            />
-          )}
-        </S.NonProfitsContainer>)}
+        {isLoading ? (
+          <Spinner size="26" />
+        ) : (
+          nonProfits && (
+            <S.NonProfitsContainer>
+              {nonProfitsFilter() && (
+                <NonProfitsList
+                  nonProfits={nonProfitsFilter()}
+                  setChosenNonProfit={setChosenNonProfit}
+                  setConfirmModalVisible={setConfirmModalVisible}
+                  canDonate={canDonate}
+                  integration={integration}
+                />
+              )}
+            </S.NonProfitsContainer>
+          )
+        )}
       </S.BodyContainer>
     </S.Container>
   );

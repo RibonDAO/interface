@@ -12,5 +12,4 @@ const Template: ComponentStory<typeof GroupButtons> = function (args: Props) {
 
 export const Default = Template.bind({});
 
-Default.args = {
-};
+Default.args = {};

@@ -16,7 +16,7 @@ jest.mock("hooks/apiHooks/useCauses", () => ({
   __esModule: true,
   default: () => ({
     causes: [mockCause],
-    refetch: () => { },
+    refetch: () => {},
   }),
 }));
 
@@ -29,7 +29,7 @@ describe("Causes", () => {
       id: 1,
       name: "🐵 Animal",
       active: true,
-      pools: []
+      pools: [],
     },
   });
 

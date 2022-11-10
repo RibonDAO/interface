@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { defaultParagraphSmall } from "styles/typography/default";
 import { stylizedTitleLarge } from "styles/typography/stylized";
 import Dropdown from "components/atomics/Dropdown";
+import InputText from "components/atomics/inputs/InputText";
 
 export const Container = styled.div`
   display: flex;
@@ -22,6 +23,20 @@ export const ValueText = styled.p`
   color: ${({ theme }) => theme.colors.orange20};
 `;
 
+export const ValueInputContainer = styled.div`
+  margin-right: 8px;
+
+  input {
+    height: 40px;
+    margin-bottom: 0;
+    border: 1px solid ${({ theme }) => theme.colors.orange40};
+    border-radius: 4px;
+    color: ${({ theme }) => theme.colors.orange40};
+  }
+`;
+
+export const ValueInput = styled(InputText)``;
+
 export const CauseText = styled.p`
   ${defaultParagraphSmall};
   margin-bottom: 4px;
@@ -36,6 +51,11 @@ export const CauseTextHighlight = styled.span`
 
 export const CurrencySelectorContainer = styled.div`
   width: 80px;
+
+  img {
+    width: 14px;
+    filter: ${({ theme }) => theme.filters.filterOrange40};
+  }
 `;
 
 export const CurrencySelector = styled(Dropdown)`

@@ -11,7 +11,11 @@ function Toast() {
       {notifications.map((notification: Notification) => {
         const index = notifications.indexOf(notification);
         return (
-          <S.LinkNotificationToast href={notification.link} target="_blank">
+          <S.LinkNotificationToast
+            href={notification.link}
+            target="_blank"
+            key={index}
+          >
             <S.NotificationToast
               style={{
                 backgroundColor: notifications[index].color,

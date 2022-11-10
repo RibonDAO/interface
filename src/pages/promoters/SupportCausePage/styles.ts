@@ -82,7 +82,7 @@ export const CommunityAddButton = styled(ButtonComponent)`
 `;
 
 export const DonateButton = styled(ButtonComponent)`
-  border-color: ${({ theme }) => theme.colors.orange40};
+  border-color: ${({ theme }) => theme.colors.orange20};
   font-weight: 600;
   background-color: ${({ theme }) => theme.colors.orange20};
   color: ${({ theme }) => theme.colors.orange40};

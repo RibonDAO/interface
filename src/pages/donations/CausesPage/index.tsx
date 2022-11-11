@@ -19,7 +19,7 @@ import { useDonationTicketModal } from "hooks/modalHooks/useDonationTicketModal"
 import Spinner from "components/atomics/Spinner";
 import useCanDonate from "hooks/apiHooks/useCanDonate";
 import { logError } from "services/crashReport";
-import { useActiveCauses } from "hooks/useActiveCauses";
+import useCauses from "hooks/apiHooks/useCauses";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
@@ -35,6 +35,7 @@ function CausesPage(): JSX.Element {
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
 
+  const { causes } = useCauses();
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
@@ -67,7 +68,6 @@ function CausesPage(): JSX.Element {
     integration,
   );
   const { canDonate } = useCanDonate(integrationId);
-  const { activeCauses } = useActiveCauses();
 
   function hasReceivedTicketToday() {
     const donationModalSeenAtKey = getLocalStorageItem(
@@ -130,12 +130,17 @@ function CausesPage(): JSX.Element {
     [chosenNonProfit],
   );
 
+  const causesFilter = () => {
+    const causesApi = causes.filter((cause) => cause.active);
+    return causesApi || [];
+  };
+
   const nonProfitsFilter = () => {
     const nonProfitsFiltered = isFirstAccess(signedIn)
       ? nonProfits
       : nonProfits?.filter(
           (nonProfit) =>
-            nonProfit?.cause?.id === activeCauses[selectedButtonIndex]?.id,
+            nonProfit?.cause?.id === causesFilter()[selectedButtonIndex]?.id,
         );
     return nonProfitsFiltered || [];
   };
@@ -161,9 +166,9 @@ function CausesPage(): JSX.Element {
 
       <S.BodyContainer>
         <S.Title>{t("pageTitle")}</S.Title>
-        {!isFirstAccess(signedIn) && (
+        {!isFirstAccess(signedIn) && causes && (
           <GroupButtons
-            elements={activeCauses}
+            elements={causesFilter()}
             onChange={handleCauseChanged}
             nameExtractor={(cause) => cause.name}
           />

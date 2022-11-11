@@ -1,5 +1,5 @@
 import React from "react";
-import { renderComponent, waitForPromises } from "config/testUtils";
+import { renderComponent } from "config/testUtils";
 import { mockRequest } from "config/testUtils/test-helper";
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
 import {
@@ -38,13 +38,11 @@ describe("Causes", () => {
     renderComponent(<Causes />);
   });
 
-  it("renders the title", async () => {
-    await waitForPromises();
+  it("renders the title", () => {
     expectTextToBeInTheDocument("Donate to a project");
   });
 
-  it("shows the non profit", async () => {
-    await waitForPromises();
+  it("shows the non profit", () => {
     expectTextToBeInTheDocument(
       `Donate ${nonProfit1.impactByTicket} ${nonProfit1.impactDescription}`,
     );
@@ -59,8 +57,7 @@ describe("Causes", () => {
       });
     });
 
-    it("logs the donateDonationError_view event", async () => {
-      await waitForPromises();
+    it("logs the donateDonationError_view event", () => {
       expectLogEventToHaveBeenCalledWith("donateDonationError_view");
     });
   });

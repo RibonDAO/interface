@@ -166,7 +166,7 @@ function CausesPage(): JSX.Element {
 
       <S.BodyContainer>
         <S.Title>{t("pageTitle")}</S.Title>
-        {!isFirstAccess(signedIn) && causes && (
+        {!isFirstAccess(signedIn) && (
           <GroupButtons
             elements={causesFilter()}
             onChange={handleCauseChanged}

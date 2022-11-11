@@ -17,7 +17,7 @@ export const Title = styled.h1`
   margin: 0;
 `;
 
-export const CausesContainer = styled.div``;
+export const NonProfitsContainer = styled.div``;
 
 export const CausesCardContainer = styled.div``;
 

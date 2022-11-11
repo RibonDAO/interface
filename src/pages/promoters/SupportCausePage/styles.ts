@@ -5,7 +5,6 @@ import {
 } from "styles/typography/stylized";
 import {
   defaultParagraphSmall,
-  defaultComponentTextSmall,
   defaultSubtitleMedium,
 } from "styles/typography/default";
 import ButtonComponent from "components/atomics/buttons/Button";
@@ -107,32 +106,6 @@ export const Title = styled.h1`
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     ${stylizedHeadingLarge};
   }
-`;
-
-export const Button = styled.button<{
-  outline?: boolean;
-}>`
-  width: auto;
-  margin-right: 8px;
-  padding: 4px 8px;
-  border: 1px solid
-    ${(props) =>
-      props.outline
-        ? props.theme.colors.orange20
-        : props.theme.colors.orange40};
-  border-radius: 4px;
-  background-color: ${(props) =>
-    props.outline ? props.theme.colors.neutral10 : props.theme.colors.orange40};
-  color: ${(props) =>
-    props.outline ? props.theme.colors.orange40 : props.theme.colors.neutral10};
-`;
-
-export const ButtonText = styled.p`
-  ${defaultComponentTextSmall};
-`;
-
-export const CausesContainer = styled.div`
-  width: 100%;
 `;
 
 export const SupportImage = styled.img`

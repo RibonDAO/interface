@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { logEvent } from "services/analytics";
 import useCauses from "hooks/apiHooks/useCauses";
 import Cause from "types/entities/Cause";
@@ -11,13 +11,14 @@ import { useCryptoPayment } from "contexts/cryptoPaymentContext";
 import { BigNumber } from "ethers";
 import { useNetworkContext } from "contexts/networkContext";
 import useToast from "hooks/useToast";
+import GroupButtons from "components/moleculars/sections/GroupButtons";
+import theme from "styles/theme";
 import * as S from "../styles";
 import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
 import SupportImage from "../assets/support-image.png";
 import SelectCryptoOfferSection from "./SelectCryptoOfferSection";
 
 function CryptoPage(): JSX.Element {
-  const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
   const { navigateTo } = useNavigation();
   const { cause, setCause } = useCardPaymentInformation();
   const { connectWallet, wallet } = useWalletContext();
@@ -48,25 +49,12 @@ function CryptoPage(): JSX.Element {
     setCause(causes[0]);
   }, [JSON.stringify(causes)]);
 
-  const handleCauseClick = (causeClicked: Cause, index: number) => {
+  const handleCauseClick = (causeClicked: Cause) => {
     logEvent("supportCauseSelection_click", {
       id: causeClicked?.id,
     });
     setCause(causeClicked);
-    setSelectedButtonIndex(index);
   };
-
-  function renderCausesButtons() {
-    return causes?.map((item, index) => (
-      <S.Button
-        outline={index !== selectedButtonIndex}
-        onClick={() => handleCauseClick(item, index)}
-        key={item?.id}
-      >
-        <S.ButtonText>{item.name}</S.ButtonText>
-      </S.Button>
-    ));
-  }
 
   const onDonationToContractSuccess = (
     hash: string,
@@ -130,7 +118,15 @@ function CryptoPage(): JSX.Element {
   return (
     <S.Container>
       <S.Title>{t("title")}</S.Title>
-      <S.CausesContainer>{renderCausesButtons()}</S.CausesContainer>
+      <GroupButtons
+        elements={causes}
+        onChange={handleCauseClick}
+        nameExtractor={(element) => element.name}
+        backgroundColor={theme.colors.orange40}
+        textColorOutline={theme.colors.orange40}
+        borderColor={theme.colors.orange40}
+        borderColorOutline={theme.colors.orange20}
+      />
       <S.ContentContainer>
         <S.SupportImage src={SupportImage} />
         <S.DonateContainer>

@@ -1,16 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "services/analytics";
-
 import NonProfit from "types/entities/NonProfit";
 import useNonProfits from "hooks/apiHooks/useNonProfits";
-
 import { useLocation } from "react-router-dom";
 import useUsers from "hooks/apiHooks/useUsers";
 import useSources from "hooks/apiHooks/useSources";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationId } from "hooks/useIntegrationId";
-
+import { isFirstAccess } from "lib/onboardingFirstAccess";
 import useIntegration from "hooks/apiHooks/useIntegration";
 import { useModal } from "hooks/modalHooks/useModal";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
@@ -21,6 +19,8 @@ import { useDonationTicketModal } from "hooks/modalHooks/useDonationTicketModal"
 import Spinner from "components/atomics/Spinner";
 import useCanDonate from "hooks/apiHooks/useCanDonate";
 import { logError } from "services/crashReport";
+import useCauses from "hooks/apiHooks/useCauses";
+import GroupButtons from "components/moleculars/sections/GroupButtons";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
@@ -28,12 +28,14 @@ import ConfirmSection from "./ConfirmSection";
 
 function CausesPage(): JSX.Element {
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
+  const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
   const [donationInProcessModalVisible, setDonationInProcessModalVisible] =
     useState(false);
   const [chosenNonProfit, setChosenNonProfit] = useState<NonProfit>();
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
 
+  const { causes } = useCauses();
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
@@ -128,6 +130,25 @@ function CausesPage(): JSX.Element {
     [chosenNonProfit],
   );
 
+  const causesFilter = () => {
+    const causesApi = causes.filter((cause) => cause.active);
+    return causesApi || [];
+  };
+
+  const nonProfitsFilter = () => {
+    const nonProfitsFiltered = isFirstAccess(signedIn)
+      ? nonProfits
+      : nonProfits?.filter(
+          (nonProfit) =>
+            nonProfit?.cause?.id === causesFilter()[selectedButtonIndex]?.id,
+        );
+    return nonProfitsFiltered || [];
+  };
+
+  const handleCauseChanged = (_element: any, index: number) => {
+    setSelectedButtonIndex(index);
+  };
+
   return (
     <S.Container>
       {chosenNonProfit && integration && (
@@ -145,20 +166,27 @@ function CausesPage(): JSX.Element {
 
       <S.BodyContainer>
         <S.Title>{t("pageTitle")}</S.Title>
+        {!isFirstAccess(signedIn) && (
+          <GroupButtons
+            elements={causesFilter()}
+            onChange={handleCauseChanged}
+            nameExtractor={(cause) => cause.name}
+          />
+        )}
         {isLoading ? (
           <Spinner size="26" />
         ) : (
-          <S.CausesContainer>
-            {nonProfits && (
+          nonProfits && (
+            <S.NonProfitsContainer>
               <NonProfitsList
-                nonProfits={nonProfits}
+                nonProfits={nonProfitsFilter()}
                 setChosenNonProfit={setChosenNonProfit}
                 setConfirmModalVisible={setConfirmModalVisible}
                 canDonate={canDonate}
                 integration={integration}
               />
-            )}
-          </S.CausesContainer>
+            </S.NonProfitsContainer>
+          )
         )}
       </S.BodyContainer>
     </S.Container>

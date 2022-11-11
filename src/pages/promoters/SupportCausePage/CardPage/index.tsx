@@ -12,13 +12,14 @@ import {
   removeInsignificantZeros,
 } from "lib/formatters/currencyFormatter";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
+import GroupButtons from "components/moleculars/sections/GroupButtons";
+import theme from "styles/theme";
 import * as S from "../styles";
 import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
 import SupportImage from "../assets/support-image.png";
 import SelectOfferSection from "./SelectOfferSection";
 
 function SupportCausePage(): JSX.Element {
-  const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
   const { navigateTo } = useNavigation();
   const [currentOffer, setCurrentOffer] = useState<Offer>(offerFactory());
   const { cause, setCause, setOfferId } = useCardPaymentInformation();
@@ -37,25 +38,12 @@ function SupportCausePage(): JSX.Element {
     setCause(causes[0]);
   }, [JSON.stringify(causes)]);
 
-  const handleCauseClick = (causeClicked: Cause, index: number) => {
+  const handleCauseClick = (causeClicked: Cause) => {
     logEvent("treasureCauseSelection_click", {
       id: causeClicked?.id,
     });
     setCause(causeClicked);
-    setSelectedButtonIndex(index);
   };
-
-  function renderCausesButtons() {
-    return causes?.map((item, index) => (
-      <S.Button
-        outline={index !== selectedButtonIndex}
-        onClick={() => handleCauseClick(item, index)}
-        key={item?.id}
-      >
-        <S.ButtonText>{item.name}</S.ButtonText>
-      </S.Button>
-    ));
-  }
 
   const handleDonateClick = () => {
     logEvent("treasureComCicleBtn_click");
@@ -94,7 +82,15 @@ function SupportCausePage(): JSX.Element {
   return (
     <S.Container>
       <S.Title>{t("title")}</S.Title>
-      <S.CausesContainer>{renderCausesButtons()}</S.CausesContainer>
+      <GroupButtons
+        elements={causes}
+        onChange={handleCauseClick}
+        nameExtractor={(element) => element.name}
+        backgroundColor={theme.colors.orange40}
+        textColorOutline={theme.colors.orange40}
+        borderColor={theme.colors.orange40}
+        borderColorOutline={theme.colors.orange20}
+      />
       <S.ContentContainer>
         <S.SupportImage src={SupportImage} />
         <S.DonateContainer>

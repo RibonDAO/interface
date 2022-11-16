@@ -7,8 +7,9 @@ import { useTranslation } from "react-i18next";
 import { Currencies } from "types/enums/Currencies";
 import theme from "styles/theme";
 import { formatPrice } from "lib/formatters/currencyFormatter";
-import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
+import { setLocalStorageItem } from "lib/localStorage";
 import NonProfit from "types/entities/NonProfit";
+import useNonProfitImpact from "hooks/apiHooks/useNonProfitImpact";
 import * as S from "./styles";
 
 const { orange30, orange40 } = theme.colors;
@@ -23,22 +24,20 @@ const CURRENT_OFFER_INDEX_KEY = "CURRENT_OFFER_INDEX_KEY";
 function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
   const [maxRange, setMaxRange] = useState(0);
 
-  const defaultCurrentOfferIndex = () => {
-    const localstorageIndex = getLocalStorageItem(CURRENT_OFFER_INDEX_KEY);
-    if (localstorageIndex) return Number(localstorageIndex);
-
-    return 0;
-  };
-
-  const [currentOfferIndex, setCurrentOfferIndex] = useState(
-    defaultCurrentOfferIndex(),
-  );
+  const [currentOfferIndex, setCurrentOfferIndex] = useState(0);
   const [currentOffer, setCurrentOffer] = useState<Offer>();
   const { currentCoin, setCurrentCoin } = useCardPaymentInformation();
   const { offers, refetch: refetchOffers } = useOffers(currentCoin, false);
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportNonProfitPage.selectOfferSection",
   });
+
+  const { nonProfitImpact, refetch: refetchNonProfitImpact } =
+    useNonProfitImpact(nonProfit?.id, currentOffer?.priceValue, currentCoin);
+
+  useEffect(() => {
+    refetchNonProfitImpact();
+  }, [currentOffer]);
 
   useEffect(() => {
     refetchOffers();
@@ -68,10 +67,11 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
 
   return (
     <S.Container>
+      <S.Title>{nonProfit?.name}</S.Title>
       <S.CauseText>
         {currentPrice()} {t("fundText")}{" "}
         <S.CauseTextHighlight>
-          {nonProfit?.impactDescription}
+          {`${nonProfitImpact?.roundedImpact} ${nonProfit?.impactDescription}`}
         </S.CauseTextHighlight>
       </S.CauseText>
       <S.ValueContainer>

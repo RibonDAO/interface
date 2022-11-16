@@ -15,7 +15,7 @@ export const Container = styled.div`
 `;
 
 export const ContentContainer = styled.div`
-  max-width: 296px;
+  width: 296px;
   margin-top: 24px;
   border-radius: 8px;
 `;
@@ -93,7 +93,8 @@ export const Title = styled.h1`
 export const SupportImage = styled.img`
   width: 100%;
   height: 136px;
-  margin-bottom: 24px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;

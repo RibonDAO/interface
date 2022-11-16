@@ -7,14 +7,14 @@ import IntersectBackground from "assets/images/intersect-background.svg";
 import useNavigation from "hooks/useNavigation";
 import Offer from "types/entities/Offer";
 import offerFactory from "config/testUtils/factories/offerFactory";
-import { removeInsignificantZeros } from "lib/formatters/currencyFormatter";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import theme from "styles/theme";
 import useNonProfits from "hooks/apiHooks/useNonProfits";
+import SliderCards from "components/moleculars/sliders/SliderCards";
 import * as S from "../styles";
 import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
-import SelectOfferSection from "./SelectOfferSection";
+import NonProfitCard from "./NonProfitCard";
 
 function CardPage(): JSX.Element {
   const { navigateTo } = useNavigation();
@@ -62,7 +62,7 @@ function CardPage(): JSX.Element {
   };
 
   const filteredNonProfits = useCallback(
-    () => nonProfits || [],
+    () => nonProfits?.concat(nonProfits) || [],
     [cause, nonProfits],
   );
 
@@ -78,27 +78,15 @@ function CardPage(): JSX.Element {
         borderColor={theme.colors.orange40}
         borderColorOutline={theme.colors.orange20}
       />
-      {filteredNonProfits().map((np) => (
-        <S.ContentContainer>
-          <S.SupportImage src={np.mainImage} />
-          <S.DonateContainer>
-            <S.GivingContainer>
-              <S.ContributionContainer>
-                <SelectOfferSection
-                  nonProfit={np}
-                  onOfferChange={handleOfferChange}
-                />
-              </S.ContributionContainer>
-            </S.GivingContainer>
-            <S.DonateButton
-              text={t("donateButtonText", {
-                value: removeInsignificantZeros(currentOffer.price),
-              })}
-              onClick={handleDonateClick}
-            />
-          </S.DonateContainer>
-        </S.ContentContainer>
-      ))}
+      <SliderCards scrollOffset={400}>
+        {filteredNonProfits().map((np) => (
+          <NonProfitCard
+            nonProfit={np}
+            handleOfferChange={handleOfferChange}
+            handleDonate={handleDonateClick}
+          />
+        ))}
+      </SliderCards>
 
       <UserSupportSection />
       <S.BackgroundImage src={IntersectBackground} />

@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, Fragment } from "react";
 import { logEvent } from "services/analytics";
 import useCauses from "hooks/apiHooks/useCauses";
 import Cause from "types/entities/Cause";
@@ -80,11 +80,13 @@ function CardPage(): JSX.Element {
       />
       <SliderCards scrollOffset={400}>
         {filteredNonProfits().map((np) => (
-          <NonProfitCard
-            nonProfit={np}
-            handleOfferChange={handleOfferChange}
-            handleDonate={handleDonateClick}
-          />
+          <Fragment key={np.id}>
+            <NonProfitCard
+              nonProfit={np}
+              handleOfferChange={handleOfferChange}
+              handleDonate={handleDonateClick}
+            />
+          </Fragment>
         ))}
       </SliderCards>
 

@@ -36,7 +36,7 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
     useNonProfitImpact(nonProfit?.id, currentOffer?.priceValue, currentCoin);
 
   useEffect(() => {
-    refetchNonProfitImpact();
+    if (currentOffer) refetchNonProfitImpact();
   }, [currentOffer]);
 
   useEffect(() => {

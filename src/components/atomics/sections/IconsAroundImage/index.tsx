@@ -15,7 +15,7 @@ export type Props = {
 
 function IconsAroundImage({ imageSrc = "", isStatic = false }: Props) {
   return (
-    <S.Container>
+    <S.Container data-testid="animations-container">
       <S.Icon position={0} isStatic={isStatic} src={VolunteerActivismPink} />
       <S.Icon position={1} isStatic={isStatic} src={FlareGreen} />
       <S.Icon position={2} isStatic={isStatic} src={VolunteerActivismYellow} />

@@ -9,11 +9,11 @@ import VolunteerActivismGreen from "assets/icons/volunteer-activism-green.svg";
 import * as S from "./styles";
 
 export type Props = {
-  imageSrc: string;
+  imageSrc?: string | undefined;
   isStatic?: boolean;
 };
 
-function IconsAroundImage({ imageSrc, isStatic = false }: Props) {
+function IconsAroundImage({ imageSrc = "", isStatic = false }: Props) {
   return (
     <S.Container>
       <S.Icon position={0} isStatic={isStatic} src={VolunteerActivismPink} />

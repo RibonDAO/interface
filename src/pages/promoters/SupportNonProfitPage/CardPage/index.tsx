@@ -62,7 +62,7 @@ function CardPage(): JSX.Element {
   };
 
   const filteredNonProfits = useCallback(
-    () => nonProfits?.concat(nonProfits) || [],
+    () => nonProfits?.filter((np) => np.cause.id === cause?.id) || [],
     [cause, nonProfits],
   );
 

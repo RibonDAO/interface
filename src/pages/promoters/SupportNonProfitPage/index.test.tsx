@@ -24,26 +24,20 @@ describe("SupportCausePage", () => {
   });
 
   it("should render without error", () => {
-    expectTextToBeInTheDocument("Donate with a community");
+    expectTextToBeInTheDocument("Make a direct donation");
   });
 
-  it("logs the treasureSupportScreen_view event", () => {
-    expectLogEventToHaveBeenCalledWith("treasureSupportScreen_view");
+  it("logs the nonProfitSupportScreen_view event", () => {
+    expectLogEventToHaveBeenCalledWith("nonProfitSupportScreen_view");
   });
 
   describe("when the button option is clicked", () => {
-    it("logs the treasureCauseSelection_click event", () => {
+    it("logs the nonProfitCauseSelection_click event", () => {
       clickOn("💊 Health");
 
-      expectLogEventToHaveBeenCalledWith("treasureCauseSelection_click", {
+      expectLogEventToHaveBeenCalledWith("nonProfitCauseSelection_click", {
         id: 2,
       });
-    });
-  });
-
-  describe("community add section", () => {
-    it("renders the community add section", () => {
-      expectTextToBeInTheDocument("The Community will add");
     });
   });
 });

@@ -48,7 +48,7 @@ function SupportCausePage(): JSX.Element {
   const handleDonateClick = () => {
     logEvent("treasureComCicleBtn_click");
     navigateTo({
-      pathname: "/promoters/support-cause/payment",
+      pathname: "/promoters/payment",
       state: {
         offer: currentOffer,
         cause,

@@ -79,7 +79,10 @@ function PaymentPage(): JSX.Element {
         alt="back-arrow-button"
       />
       <S.MainContainer>
-        <S.SupportImage src={SupportImage} alt="support-cause-img" />
+        <S.SupportImage
+          src={nonProfit?.mainImage || SupportImage}
+          alt="support-cause-img"
+        />
         <S.ContentContainer>
           <S.Title>
             {t("title")} <S.TitleHighlight>{highlightText()}</S.TitleHighlight>

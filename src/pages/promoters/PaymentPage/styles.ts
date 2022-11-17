@@ -6,6 +6,7 @@ import {
   defaultSubtitleLarge,
 } from "styles/typography/default";
 import Button from "components/atomics/buttons/Button";
+import WaveCut from "assets/images/wave-cut.svg";
 
 export const MainContainer = styled.div`
   width: 100%;
@@ -84,9 +85,14 @@ export const DonateButton = styled(Button)`
 `;
 
 export const SupportImage = styled.img`
+  mask-image: url(${WaveCut});
+  mask-size: 100% 100%;
   width: 100%;
-  margin-bottom: 16px;
+  height: 136px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  object-fit: cover;
 `;

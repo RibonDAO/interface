@@ -41,7 +41,6 @@ export const Title = styled.h1`
 
 export const TitleHighlight = styled.span`
   ${defaultSubtitleLarge};
-  font-weight: 600;
   color: ${({ theme }) => theme.colors.orange30};
 `;
 

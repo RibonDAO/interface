@@ -20,6 +20,7 @@ import CommunityAddPage from "pages/promoters/SupportCausePage/CommunityAddPage"
 import PaymentPage from "pages/promoters/SupportCausePage/CardPage/PaymentPage";
 import CryptoPaymentProvider from "contexts/cryptoPaymentContext";
 import SupportNonProfitPage from "pages/promoters/SupportNonProfitPage";
+import PromotersPaymentPage from "pages/promoters/PaymentPage";
 import Navigation from "./Navigation";
 
 function RoutesComponent(): JSX.Element {
@@ -175,6 +176,20 @@ function RoutesComponent(): JSX.Element {
                   <CryptoPaymentProvider>
                     <SupportNonProfitPage />
                   </CryptoPaymentProvider>
+                </CardPaymentInformationProvider>
+              </WalletLayout>
+            </WalletProvider>
+          </NetworkProvider>
+        </Suspense>
+      </Route>
+
+      <Route path="/promoters/payment" exact>
+        <Suspense fallback={<div />}>
+          <NetworkProvider>
+            <WalletProvider>
+              <WalletLayout hideNavigation>
+                <CardPaymentInformationProvider>
+                  <PromotersPaymentPage />
                 </CardPaymentInformationProvider>
               </WalletLayout>
             </WalletProvider>

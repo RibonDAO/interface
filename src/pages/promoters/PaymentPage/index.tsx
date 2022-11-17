@@ -9,10 +9,10 @@ import { Currencies } from "types/enums/Currencies";
 import { useEffect, useState } from "react";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import NonProfit from "types/entities/NonProfit";
+import SupportImage from "assets/images/support-image.png";
 import * as S from "./styles";
 import UserInfoSection from "./UserInfoSection";
 import CardInfoSection from "./CardInfoSection";
-import SupportImage from "../../../assets/images/support-image.png";
 
 type LocationState = {
   offer: Offer;

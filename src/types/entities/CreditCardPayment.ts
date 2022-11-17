@@ -14,4 +14,5 @@ export default interface CreditCardPayment {
     cvv: string;
   };
   causeId?: number;
+  nonProfitId?: number;
 }

@@ -11,9 +11,10 @@
       "confirmModalAuthTitle": "Confirmar doação",
       "confirmModalPrimaryButtonText": "Confirmar",
       "confirmModalSecondaryButtonText": "Cancelar",
-      "donateText": "Usar ticket",
+      "donateText": "Doar ticket",
       "donateBlockedText": "Sem tickets",
-      "pageTitle": "Causas",
+      "impactPrefix": "Doe",
+      "pageTitle": "Doe para um projeto",
       "errorModalTitle": "Falha no processamento",
       "errorModalText": "A rede está instável e não foi possível registrar sua doação. Tente novamente, por favor.",
       "errorModalButtonText": "Ok",
@@ -65,7 +66,7 @@
     },
     "menu": {
       "impactPageTitle": "Impacto",
-      "causesPageTitle": "Causas",
+      "causesPageTitle": "Tickets",
       "givingPageTitle": "Contribuir"
     }
   },
@@ -135,7 +136,16 @@
       "selectOfferSection": {
         "causeText": "Você doará para"
       },
-      "connectWalletButtonText": "Conectar carteira"
+      "connectWalletButtonText": "Conectar carteira",
+      "userBalanceText": "Seu saldo: ",
+      "refundText": "*Pagamentos em criptomoeda não são estornáveis"
+    },
+    "supportNonProfitPage": {
+      "title": "Faça uma doação direta",
+      "donateButtonText": "Doar {{value}}",
+      "selectOfferSection": {
+        "fundText": "geram"
+      }
     },
     "supportTreasurePage": {
       "title": "Gere mais impacto",

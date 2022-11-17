@@ -62,9 +62,7 @@ function DonationDoneCausePage(): JSX.Element {
 
       <S.FinishButton
         text={t("button")}
-        onClick={() => {
-          console.log("disparou");
-        }}
+        onClick={() => {}}
         backgroundColor={orange20}
       />
     </S.Container>

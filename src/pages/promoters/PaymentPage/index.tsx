@@ -12,7 +12,7 @@ import NonProfit from "types/entities/NonProfit";
 import * as S from "./styles";
 import UserInfoSection from "./UserInfoSection";
 import CardInfoSection from "./CardInfoSection";
-import SupportImage from "../SupportCausePage/assets/support-image.png";
+import SupportImage from "../../../assets/images/support-image.png";
 
 type LocationState = {
   offer: Offer;

@@ -14,9 +14,9 @@ import {
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import theme from "styles/theme";
+import SupportImage from "assets/images/support-image.png";
 import * as S from "../styles";
 import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
-import SupportImage from "../assets/support-image.png";
 import SelectOfferSection from "./SelectOfferSection";
 
 function SupportCausePage(): JSX.Element {

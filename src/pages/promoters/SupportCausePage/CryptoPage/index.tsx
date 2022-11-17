@@ -13,9 +13,9 @@ import { useNetworkContext } from "contexts/networkContext";
 import useToast from "hooks/useToast";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import theme from "styles/theme";
+import SupportImage from "assets/images/support-image.png";
 import * as S from "../styles";
 import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
-import SupportImage from "../assets/support-image.png";
 import SelectCryptoOfferSection from "./SelectCryptoOfferSection";
 
 function CryptoPage(): JSX.Element {

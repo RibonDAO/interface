@@ -113,8 +113,7 @@ function CardPaymentInformationProvider({ children }: Props) {
 
   const handleConfirmation = () => {
     navigateTo({
-      // TODO: add conditional route to donation done or cause
-      pathname: "/donation-done-cause",
+      pathname: "/donation-done",
       state: {
         hasButton: true,
         offerId,

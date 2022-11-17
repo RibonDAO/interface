@@ -16,4 +16,17 @@ describe("offersApi", () => {
       );
     });
   });
+
+  describe("#getOffer", () => {
+    const offerId = 1;
+    beforeEach(() => {
+      api.get = jest.fn();
+    });
+
+    it("expects to send a get request with the correct info: url, params and headers", () => {
+      offersApi.getOffer(offerId);
+
+      expect(api.get).toHaveBeenCalledWith("/api/v1/givings/offers/1");
+    });
+  });
 });

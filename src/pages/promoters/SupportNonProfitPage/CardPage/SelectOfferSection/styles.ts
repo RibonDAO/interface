@@ -1,5 +1,8 @@
 import styled from "styled-components";
-import { defaultParagraphSmall } from "styles/typography/default";
+import {
+  defaultComponentTextMedium,
+  defaultParagraphSmall,
+} from "styles/typography/default";
 import { stylizedTitleLarge } from "styles/typography/stylized";
 import Dropdown from "components/atomics/Dropdown";
 
@@ -45,4 +48,11 @@ export const CurrencySelectorContainer = styled.div`
 
 export const CurrencySelector = styled(Dropdown)`
   border: 1px solid ${({ theme }) => theme.colors.orange40};
+`;
+
+export const Title = styled.p`
+  ${defaultComponentTextMedium};
+  margin-bottom: 12px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.red40};
 `;

@@ -21,6 +21,7 @@ import useCanDonate from "hooks/apiHooks/useCanDonate";
 import { logError } from "services/crashReport";
 import useCauses from "hooks/apiHooks/useCauses";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
+import useVoucher from "hooks/useVoucher";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
@@ -68,6 +69,11 @@ function CausesPage(): JSX.Element {
     integration,
   );
   const { canDonate } = useCanDonate(integrationId);
+  const { createVoucher } = useVoucher();
+
+  useEffect(() => {
+    if (canDonate) createVoucher();
+  }, [canDonate]);
 
   function hasReceivedTicketToday() {
     const donationModalSeenAtKey = getLocalStorageItem(

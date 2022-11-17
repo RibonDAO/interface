@@ -33,7 +33,7 @@ function Navigation(): JSX.Element {
       event: "homeNavBtn_click",
     },
     {
-      path: "/promoters/support-treasure",
+      path: "/promoters/support-cause",
       iconOn: GivingIconOn,
       iconOff: GivingIconOff,
       title: t("givingPageTitle"),

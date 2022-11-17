@@ -54,8 +54,8 @@ function DonationDoneCausePage(): JSX.Element {
       </S.ImageContainer>
 
       <S.DonationValue>{offer?.price}</S.DonationValue>
+      <S.PostDonationText>{t("title")}</S.PostDonationText>
       <S.PostDonationText>
-        {t("title")} <br />
         {t("titleSecondLine")}
         <S.CauseName> {cause?.name} </S.CauseName>
       </S.PostDonationText>

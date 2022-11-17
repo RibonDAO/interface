@@ -6,6 +6,6 @@ describe("DonationDoneCausePage", () => {
   it("should render without error", () => {
     renderComponent(<DonationDoneCausePage />);
 
-    expectTextToBeInTheDocument("Finish");
+    expectTextToBeInTheDocument("You have donated to");
   });
 });

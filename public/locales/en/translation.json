@@ -135,6 +135,13 @@
       "userBalanceText": "Your balance: ",
       "refundText": "*Cryptocurrency payments are non-refundable"
     },
+    "supportNonProfitPage": {
+      "title": "Make a direct donation",
+      "donateButtonText": "Donate {{value}}",
+      "selectOfferSection": {
+        "fundText": "fund"
+      }
+    },
     "supportTreasurePage": {
       "title": "Make a bigger impact",
       "subtitle": "How much do you want to give?*",

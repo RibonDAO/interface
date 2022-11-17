@@ -25,6 +25,7 @@ import UserIcon from "assets/icons/user.svg";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import Cause from "types/entities/Cause";
+import NonProfit from "types/entities/NonProfit";
 
 export interface ICardPaymentInformationContext {
   setCurrentCoin: (value: SetStateAction<Currencies>) => void;
@@ -56,6 +57,8 @@ export interface ICardPaymentInformationContext {
   handleSubmit: () => void;
   cause: Cause | undefined;
   setCause: (value: SetStateAction<Cause | undefined>) => void;
+  nonProfit: NonProfit | undefined;
+  setNonProfit: (value: SetStateAction<NonProfit | undefined>) => void;
 }
 
 export type Props = {
@@ -98,6 +101,7 @@ function CardPaymentInformationProvider({ children }: Props) {
   const [cryptoGiving, setCryptoGiving] = useState("");
   const [offerId, setOfferId] = useState(0);
   const [cause, setCause] = useState<Cause>();
+  const [nonProfit, setNonProfit] = useState<NonProfit>();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "contexts.cardPaymentInformation",
@@ -175,6 +179,7 @@ function CardPaymentInformationProvider({ children }: Props) {
         cvv,
       },
       causeId: cause?.id,
+      nonProfitId: nonProfit?.id,
     };
 
     try {
@@ -227,6 +232,8 @@ function CardPaymentInformationProvider({ children }: Props) {
       offerId,
       cause,
       setCause,
+      nonProfit,
+      setNonProfit,
     }),
     [
       currentCoin,
@@ -242,6 +249,7 @@ function CardPaymentInformationProvider({ children }: Props) {
       cvv,
       buttonDisabled,
       cause,
+      nonProfit,
     ],
   );
 

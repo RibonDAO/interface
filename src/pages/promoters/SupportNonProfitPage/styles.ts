@@ -8,6 +8,7 @@ import {
   defaultSubtitleMedium,
 } from "styles/typography/default";
 import ButtonComponent from "components/atomics/buttons/Button";
+import WaveCut from "assets/images/wave-cut.svg";
 
 export const Container = styled.div`
   width: 100%;
@@ -91,6 +92,9 @@ export const Title = styled.h1`
 `;
 
 export const SupportImage = styled.img`
+  mask-image: url(${WaveCut});
+  mask-mode: revert;
+  mask-repeat: no-repeat;
   width: 100%;
   height: 136px;
   border-top-left-radius: 4px;

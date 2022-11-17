@@ -39,6 +39,11 @@ export const CauseTextHighlight = styled.span`
 
 export const CurrencySelectorContainer = styled.div`
   width: 80px;
+
+  img {
+    width: 14px;
+    filter: ${({ theme }) => theme.filters.filterOrange40};
+  }
 `;
 
 export const CurrencySelector = styled(Dropdown)`

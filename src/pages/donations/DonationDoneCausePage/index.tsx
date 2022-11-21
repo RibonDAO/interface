@@ -1,6 +1,8 @@
 import IconsAroundImage from "components/atomics/sections/IconsAroundImage";
 import useCauses from "hooks/apiHooks/useCauses";
 import useOffers from "hooks/apiHooks/useOffers";
+import useNavigation from "hooks/useNavigation";
+import { setLocalStorageItem } from "lib/localStorage";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
@@ -12,6 +14,7 @@ import { Currencies } from "types/enums/Currencies";
 import * as S from "./styles";
 
 function DonationDoneCausePage(): JSX.Element {
+  const { navigateTo } = useNavigation();
   const { orange20 } = theme.colors;
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.donationDoneCausePage",
@@ -45,6 +48,13 @@ function DonationDoneCausePage(): JSX.Element {
 
   useEffect(() => {
     donationInfos(causeId, offerId);
+
+    setLocalStorageItem("HAS_DONATED", "true");
+    setTimeout(() => {
+      navigateTo({
+        pathname: "/promoters/support-treasure",
+      });
+    }, 5000);
   }, []);
 
   return (

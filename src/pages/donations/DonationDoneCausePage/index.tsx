@@ -46,14 +46,18 @@ function DonationDoneCausePage(): JSX.Element {
     [],
   );
 
+  function navigate() {
+    navigateTo({
+      pathname: "/promoters/support-treasure",
+    });
+  }
+
   useEffect(() => {
     donationInfos(causeId, offerId);
 
     setLocalStorageItem("HAS_DONATED", "true");
     setTimeout(() => {
-      navigateTo({
-        pathname: "/promoters/support-treasure",
-      });
+      navigate();
     }, 5000);
   }, []);
 
@@ -73,9 +77,7 @@ function DonationDoneCausePage(): JSX.Element {
       <S.FinishButton
         text={t("button")}
         onClick={() => {
-          navigateTo({
-            pathname: "/promoters/support-treasure",
-          });
+          navigate();
         }}
         backgroundColor={orange20}
       />

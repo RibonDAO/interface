@@ -148,6 +148,7 @@
       "prettier --check"
     ],
     "styles.ts": [
+      "stylelint --fix",
       "stylelint"
     ]
   },

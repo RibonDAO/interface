@@ -15,6 +15,7 @@ export const Subtitle = styled.h3`
 
 export const Label = styled.p`
   ${defaultSubtitleMedium}
+
   margin-top: 24px;
   margin-bottom: 12px;
 `;
@@ -45,6 +46,7 @@ export const Image = styled.img`
 
 export const Input = styled.input`
   ${defaultSubtitleMedium}
+
   width: 100%;
   height: 39px;
   margin-top: 12px;
@@ -74,6 +76,7 @@ export const UsdcText = styled.p`
 
 export const Text = styled.p`
   ${defaultParagraphSmall}
+
   margin-top: 8px;
   color: ${({ theme }) => theme.colors.green30};
 `;

@@ -39,6 +39,7 @@ type TitleProps = {
 
 export const Title = styled.h3<TitleProps>`
   ${defaultSubtitleLarge}
+
   margin-top: -16px;
   text-align: center;
   color: ${({ theme, color }) => color || theme.colors.gray40};
@@ -46,6 +47,7 @@ export const Title = styled.h3<TitleProps>`
 
 export const Body = styled.h3`
   ${defaultSubtitleSmall}
+
   margin: 8px 0 14px;
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};

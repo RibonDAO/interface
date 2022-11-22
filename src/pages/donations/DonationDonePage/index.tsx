@@ -40,7 +40,7 @@ function DonationDonePage(): JSX.Element {
       setLocalStorageItem("HAS_DONATED", "true");
       setTimeout(() => {
         navigateTo({
-          pathname: "/promoters/support-treasure",
+          pathname: "/promoters/support-cause",
           state: {
             nonProfit,
           },

@@ -27,6 +27,7 @@ export const LastCardCarousel = styled.a`
 
 export const GivingText = styled.span`
   ${defaultSubtitleMedium}
+
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
 `;
@@ -50,6 +51,7 @@ export const Image = styled.img`
 
 export const SectionTitle = styled.h2`
   ${defaultTitleSmall}
+
   margin-top: 28px;
   color: ${({ theme }) => theme.colors.gray40};
 `;

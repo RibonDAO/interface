@@ -12,6 +12,7 @@ import GroupButtons from "components/moleculars/sections/GroupButtons";
 import theme from "styles/theme";
 import useNonProfits from "hooks/apiHooks/useNonProfits";
 import SliderCards from "components/moleculars/sliders/SliderCards";
+import NonProfit from "types/entities/NonProfit";
 import * as S from "../styles";
 import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
 import NonProfitCard from "./NonProfitCard";
@@ -19,8 +20,7 @@ import NonProfitCard from "./NonProfitCard";
 function CardPage(): JSX.Element {
   const { navigateTo } = useNavigation();
   const [currentOffer, setCurrentOffer] = useState<Offer>(offerFactory());
-  const { cause, setCause, setOfferId, nonProfit } =
-    useCardPaymentInformation();
+  const { cause, setCause, setOfferId } = useCardPaymentInformation();
   const { nonProfits } = useNonProfits();
 
   const { causes } = useCauses();
@@ -44,10 +44,10 @@ function CardPage(): JSX.Element {
     setCause(causeClicked);
   };
 
-  const handleDonateClick = () => {
+  const handleDonateClick = (nonProfit: NonProfit) => {
     logEvent("nonProfitComCicleBtn_click");
     navigateTo({
-      pathname: "/promoters/support-cause/payment",
+      pathname: "/promoters/payment",
       state: {
         offer: currentOffer,
         cause,
@@ -62,7 +62,8 @@ function CardPage(): JSX.Element {
   };
 
   const filteredNonProfits = useCallback(
-    () => nonProfits?.filter((np) => np.cause.id === cause?.id) || [],
+    () =>
+      nonProfits?.filter((nonProfit) => nonProfit.cause.id === cause?.id) || [],
     [cause, nonProfits],
   );
 
@@ -79,12 +80,12 @@ function CardPage(): JSX.Element {
         borderColorOutline={theme.colors.orange20}
       />
       <SliderCards scrollOffset={400}>
-        {filteredNonProfits().map((np) => (
-          <Fragment key={np.id}>
+        {filteredNonProfits().map((nonProfit) => (
+          <Fragment key={nonProfit.id}>
             <NonProfitCard
-              nonProfit={np}
+              nonProfit={nonProfit}
               handleOfferChange={handleOfferChange}
-              handleDonate={handleDonateClick}
+              handleDonate={() => handleDonateClick(nonProfit)}
             />
           </Fragment>
         ))}

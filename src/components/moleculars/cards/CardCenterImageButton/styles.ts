@@ -64,6 +64,7 @@ export const DarkStroke = styled.div`
 
 export const ImageDescription = styled.h4`
   ${defaultComponentTextLarge}
+
   padding: 14px;
   position: absolute;
   bottom: 0;

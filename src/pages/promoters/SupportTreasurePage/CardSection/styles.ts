@@ -30,6 +30,7 @@ export const ValuesContainer = styled.div`
 
 export const CardValueButton = styled(Button)`
   ${defaultComponentTextSmall}
+
   max-width: 112px;
   height: 30px;
   border-radius: 66px;
@@ -87,6 +88,7 @@ export const ServiceFeesValue = styled.p`
 
 export const CryptoGivingValue = styled.p`
   ${defaultParagraphSmall}
+
   margin-bottom: 32px;
   font-style: italic;
   line-height: 19.2px;

@@ -24,7 +24,7 @@ export const Button = styled.button<{
 `;
 
 export const ButtonText = styled.p`
-  ${defaultComponentTextSmall};
+  ${defaultComponentTextSmall}
 `;
 
 export const Container = styled.div`

@@ -10,6 +10,7 @@ export const Container = styled.div`
 
 export const RibonsAmount = styled.p`
   ${defaultSubtitleMedium}
+
   margin-right: 2px;
   color: ${({ theme }) => theme.colors.green30};
 `;

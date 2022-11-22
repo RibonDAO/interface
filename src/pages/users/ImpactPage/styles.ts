@@ -15,6 +15,7 @@ export const Container = styled.div`
 
 export const Title = styled.h1`
   ${stylizedHeadingLarge}
+
   margin: 0;
   color: ${({ theme }) => theme.colors.gray40};
 `;

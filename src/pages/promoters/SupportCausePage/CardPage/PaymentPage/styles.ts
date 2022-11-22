@@ -28,24 +28,28 @@ export const ContentContainer = styled.div`
 `;
 
 export const DonationValueText = styled.h1`
-  ${stylizedHeadingLarge};
+  ${stylizedHeadingLarge}
+
   text-align: center;
   color: ${({ theme }) => theme.colors.orange20};
 `;
 
 export const Title = styled.h1`
-  ${defaultParagraphLarge};
+  ${defaultParagraphLarge}
+
   text-align: center;
 `;
 
 export const TitleHighlight = styled.span`
-  ${defaultSubtitleLarge};
+  ${defaultSubtitleLarge}
+
   font-weight: 600;
   color: ${({ theme }) => theme.colors.orange30};
 `;
 
 export const FeeText = styled.p`
-  ${defaultParagraphSmall};
+  ${defaultParagraphSmall}
+
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
 `;

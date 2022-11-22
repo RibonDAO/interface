@@ -20,20 +20,23 @@ export const ValueContainer = styled.div`
 `;
 
 export const ValueText = styled.p`
-  ${stylizedTitleLarge};
+  ${stylizedTitleLarge}
+
   margin-right: 8px;
   color: ${({ theme }) => theme.colors.orange20};
 `;
 
 export const CauseText = styled.p`
-  ${defaultParagraphSmall};
+  ${defaultParagraphSmall}
+
   margin-bottom: 4px;
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const CauseTextHighlight = styled.span`
-  ${defaultParagraphSmall};
+  ${defaultParagraphSmall}
+
   color: ${({ theme }) => theme.colors.orange30};
 `;
 
@@ -51,7 +54,8 @@ export const CurrencySelector = styled(Dropdown)`
 `;
 
 export const Title = styled.p`
-  ${defaultComponentTextMedium};
+  ${defaultComponentTextMedium}
+
   margin-bottom: 12px;
   text-align: center;
   color: ${({ theme }) => theme.colors.red40};

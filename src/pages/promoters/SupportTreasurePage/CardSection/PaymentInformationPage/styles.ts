@@ -20,6 +20,7 @@ export const Container = styled.div`
 
 export const Title = styled.h1`
   ${stylizedHeadingLarge}
+
   margin: 4px 0;
   margin-bottom: 8px;
 `;
@@ -59,6 +60,7 @@ export const CardSectionContainer = styled.div`
 
 export const Subtitle = styled.p`
   ${defaultSubtitleMedium}
+
   margin-top: 20px;
 `;
 
@@ -73,6 +75,7 @@ export const ValuesContainer = styled.div`
 
 export const CardValueButton = styled(Button)`
   ${defaultComponentTextSmall}
+
   max-width: 112px;
   height: 30px;
   border-radius: 66px;
@@ -126,6 +129,7 @@ export const ServiceFeesValue = styled.p`
 
 export const CryptoGivingValue = styled.p`
   ${defaultParagraphSmall}
+
   margin-bottom: 32px;
   font-style: italic;
   line-height: 19.2px;

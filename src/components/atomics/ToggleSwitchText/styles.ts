@@ -19,6 +19,7 @@ export const Container = styled.div`
 
 export const Selected = styled.a`
   ${defaultComponentTextLarge}
+
   min-width: 50%;
   border-radius: 16px;
   background: ${({ theme }) => theme.colors.green30};

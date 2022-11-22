@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { defaultComponentTextSmall } from "styles/typography/default";
 
-
 export const Button = styled.button<{
   outline?: boolean;
   backgroundColor?: string;
@@ -16,10 +15,7 @@ export const Button = styled.button<{
   margin-right: 8px;
   padding: 4px 8px;
   border: 1px solid
-    ${(props) =>
-    props.outline
-      ? props.borderColorOutline
-      : props.borderColor};
+    ${(props) => (props.outline ? props.borderColorOutline : props.borderColor)};
   border-radius: 4px;
   background-color: ${(props) =>
     props.outline ? props.backgroundColorOutline : props.backgroundColor};
@@ -28,7 +24,7 @@ export const Button = styled.button<{
 `;
 
 export const ButtonText = styled.p`
-  ${defaultComponentTextSmall};
+  ${defaultComponentTextSmall}
 `;
 
 export const Container = styled.div`

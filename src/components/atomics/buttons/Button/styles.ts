@@ -19,6 +19,7 @@ export const Container = styled.button<{
     props.size === "large" &&
     css`
       ${defaultComponentTextLarge}
+
       padding: 12px 16px;
     `}
 
@@ -26,6 +27,7 @@ export const Container = styled.button<{
     props.size === "medium" &&
     css`
       ${defaultComponentTextMedium}
+
       padding: 12px 16px;
     `}
     
@@ -34,6 +36,7 @@ export const Container = styled.button<{
     props.size === "small" &&
     css`
       ${defaultComponentTextSmall}
+
       padding: 6px 16px;
     `}
     

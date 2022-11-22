@@ -54,6 +54,7 @@ export const Title = styled.h3`
 
 export const Link = styled.a`
   ${defaultParagraphSmall}
+
   color: ${({ theme }) => theme.colors.green30};
 `;
 

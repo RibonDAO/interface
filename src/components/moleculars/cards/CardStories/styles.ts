@@ -68,5 +68,6 @@ export const CtaWrapper = styled.div`
 
 export const CtaButton = styled(Button)`
   ${defaultComponentTextMedium}
+
   border-radius: 20px;
 `;

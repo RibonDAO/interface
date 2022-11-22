@@ -33,12 +33,14 @@ export const CardBlank = styled.div`
 
 export const Title = styled.h1`
   ${stylizedHeadingLarge}
+
   margin: 0;
   margin-bottom: 16px;
 `;
 
 export const TreasureText = styled.h3`
   ${defaultHeadingLarge}
+
   margin-bottom: 8px;
   color: ${({ theme }) => theme.colors.green30};
 `;
@@ -49,6 +51,7 @@ export const TreasureTextCoin = styled.span`
 
 export const SectionTitle = styled.h2`
   ${defaultTitleSmall}
+
   margin-bottom: 8px;
   color: ${({ theme }) => theme.colors.gray40};
 
@@ -79,6 +82,7 @@ export const GivingsCard = styled.div`
 
 export const GivingDate = styled.p`
   ${defaultParagraphSmall}
+
   color: ${({ theme }) => theme.colors.gray30};
 `;
 

@@ -114,24 +114,24 @@ function CardPaymentInformationProvider({ children }: Props) {
 
   const toast = useToast();
 
-  const handleConfirmationNonProfit = () => {
-    navigateTo({
-      pathname: "/donation-done",
-      state: {
-        hasButton: true,
-      },
-    });
-  };
-
-  const handleConfirmationCause = () => {
-    navigateTo({
-      pathname: "/donation-done-cause",
-      state: {
-        hasButton: true,
-        offerId,
-        causeId: cause?.id,
-      },
-    });
+  const handleConfirmation = () => {
+    if (flow === "cause") {
+      navigateTo({
+        pathname: "/donation-done-cause",
+        state: {
+          hasButton: true,
+          offerId,
+          causeId: cause?.id,
+        },
+      });
+    } else {
+      navigateTo({
+        pathname: "/donation-done",
+        state: {
+          hasButton: true,
+        },
+      });
+    }
   };
 
   const { show, hide } = useModal({
@@ -142,20 +142,12 @@ function CardPaymentInformationProvider({ children }: Props) {
       icon: successIcon,
       primaryButtonText: t("modalSuccessButton"),
       onClose: () => {
-        if (flow === "nonProfit") {
-          handleConfirmationNonProfit();
-        } else {
-          handleConfirmationCause();
-        }
+        handleConfirmation();
 
         hide();
       },
       primaryButtonCallback: () => {
-        if (flow === "nonProfit") {
-          handleConfirmationNonProfit();
-        } else {
-          handleConfirmationCause();
-        }
+        handleConfirmation();
         hide();
       },
     },

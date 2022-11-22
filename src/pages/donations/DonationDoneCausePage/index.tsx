@@ -72,7 +72,11 @@ function DonationDoneCausePage(): JSX.Element {
 
       <S.FinishButton
         text={t("button")}
-        onClick={() => {}}
+        onClick={() => {
+          navigateTo({
+            pathname: "/promoters/support-treasure",
+          });
+        }}
         backgroundColor={orange20}
       />
     </S.Container>

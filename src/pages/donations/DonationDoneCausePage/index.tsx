@@ -48,7 +48,7 @@ function DonationDoneCausePage(): JSX.Element {
 
   function navigate() {
     navigateTo({
-      pathname: "/promoters/support-treasure",
+      pathname: "/promoters/support-cause",
     });
   }
 

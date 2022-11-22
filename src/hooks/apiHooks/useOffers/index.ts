@@ -13,8 +13,15 @@ function useOffers(currency: Currencies, subscription = false) {
     fetchMethod: () => offersApi.getOffers(currency, subscription),
   });
 
+  async function getOffer(offerId: number) {
+    const { data: offer } = await offersApi.getOffer(offerId);
+
+    return offer;
+  }
+
   return {
     offers: offers || [],
+    getOffer,
     isLoading,
     refetch,
   };

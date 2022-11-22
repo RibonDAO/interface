@@ -11,7 +11,7 @@ describe("SupportWithCommunityPage", () => {
     });
 
     expectTextToBeInTheDocument(
-      "How does the community increases your R$ 20,00 donation?",
+      "How does the community increase your R$ 20,00 donation?",
     );
   });
 });

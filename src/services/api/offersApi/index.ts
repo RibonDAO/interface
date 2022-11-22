@@ -11,6 +11,8 @@ const offersApi = {
     apiGet(
       `givings/offers?currency=${currency.toLowerCase()}&subscription=${subscription}`,
     ),
+  getOffer: (id: number): Promise<AxiosResponse<Offer>> =>
+    apiGet(`givings/offers/${id}`),
 };
 
 export default offersApi;

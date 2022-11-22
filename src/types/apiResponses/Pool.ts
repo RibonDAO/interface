@@ -1,4 +1,4 @@
 export default interface Pool {
-    id: string;
-    balance: string;
+  id: string;
+  balance: string;
 }

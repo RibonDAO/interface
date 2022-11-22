@@ -46,17 +46,20 @@ export const Icon = styled.img`
 
 export const DonationValue = styled.h1`
   ${stylizedHeadingLarge}
+
   color: ${({ theme }) => theme.colors.orange20};
 `;
 
 export const PostDonationText = styled.p`
   ${defaultParagraphMedium}
+
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const CauseName = styled.span`
   ${defaultSubtitleMedium}
+
   color: ${({ theme }) => theme.colors.orange30};
 `;
 

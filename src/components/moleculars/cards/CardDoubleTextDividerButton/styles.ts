@@ -16,6 +16,7 @@ export const Container = styled.div`
 
 export const FirstText = styled.p`
   ${defaultParagraphSmall}
+
   font-style: italic;
   color: ${({ theme }) => theme.colors.gray30};
 `;
@@ -25,6 +26,7 @@ export const MainContent = styled.h3<{
   refunded?: boolean;
 }>`
   ${defaultTitleLarge}
+
   color: ${(props) =>
     // eslint-disable-next-line no-nested-ternary
     props.processing

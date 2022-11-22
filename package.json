@@ -49,6 +49,7 @@
     "generate": "yarn plop --plopfile ./generators/plopfile.js",
     "lint": "eslint src/**/*.ts src/**/*.tsx && prettier --check src/**/*.ts src/**/*.tsx",
     "lint:css": "stylelint src/**/styles.ts",
+    "lint:css:fix": "stylelint --fix src/**/styles.ts",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "codehawk": "codehawk src"
@@ -93,6 +94,7 @@
     "@storybook/node-logger": "^6.5.10",
     "@storybook/preset-create-react-app": "^4.1.2",
     "@storybook/react": "^6.5.10",
+    "@stylelint/postcss-css-in-js": "~0.37.2",
     "@testing-library/react-hooks": "^8.0.1",
     "@types/react-modal": "^3.13.1",
     "@types/react-router": "^5.1.5",
@@ -118,16 +120,18 @@
     "lint-staged": "^13.0.3",
     "mrm": "4",
     "plop": "^3.1.1",
+    "postcss": "~8.4.6",
+    "postcss-jsx": "^0.36.4",
     "postcss-scss": "^4.0.2",
+    "postcss-syntax": "^0.36.2",
     "prettier": "^2.7.1",
-    "stylelint": "^14.10.0",
+    "stylelint": "^14.15.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-recommended": "^9.0.0",
     "stylelint-config-standard-scss": "^3.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-custom-processor-loader": "^0.6.0",
     "stylelint-order": "^5.0.0",
-    "stylelint-processor-styled-components": "^1.10.0",
     "webpack": "^5.74.0"
   },
   "lint-staged": {
@@ -144,6 +148,7 @@
       "prettier --check"
     ],
     "styles.ts": [
+      "stylelint --fix",
       "stylelint"
     ]
   },

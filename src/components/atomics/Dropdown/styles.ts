@@ -25,7 +25,8 @@ export const Input = styled.div`
   }
 
   input {
-    ${defaultComponentTextMedium};
+    ${defaultComponentTextMedium}
+
     width: 100%;
     border: none;
     border-radius: 4px;

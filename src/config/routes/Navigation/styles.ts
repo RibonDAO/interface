@@ -37,6 +37,7 @@ export const Container = styled.div`
 
 export const Title = styled.p`
   ${defaultParagraphSmall}
+
   text-decoration: none;
   color: ${({ theme, enabled }: Props) =>
     enabled ? theme.colors.gray40 : theme.colors.gray30};

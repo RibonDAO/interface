@@ -1,10 +1,6 @@
 {
-  "processors": ["stylelint-processor-styled-components"],
-  "extends": [
-    "stylelint-config-standard-scss",
-    "stylelint-config-styled-components",
-    "stylelint-config-prettier"],
-  "customSyntax": "postcss-scss",
+  "extends": ["stylelint-config-recommended", "stylelint-config-styled-components"],
+  "customSyntax": "@stylelint/postcss-css-in-js",
   "plugins": [
     "stylelint-order"
   ],
@@ -15,12 +11,13 @@
       "except": ["first-nested"],
       "ignore": ["after-comment", "after-declaration"]
     }],
-    "color-hex-case": "lower",
+    "function-no-unknown": [true, {"ignoreFunctions": ["${", "`url"]}],
     "color-no-invalid-hex": true,
     "color-function-notation": null,
+    "font-family-name-quotes": null,
+    "font-family-no-missing-generic-family-keyword": null,
     "font-weight-notation": "numeric",
     "shorthand-property-no-redundant-values": true,
-    "value-keyword-case": ["lower", { "ignoreKeywords": ["dummyValue"] }],
     "at-rule-no-unknown": [
       true,
       {

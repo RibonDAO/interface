@@ -14,6 +14,7 @@ export const Container = styled.div`
 
 export const Text = styled.p`
   ${defaultSubtitleMedium}
+
   margin-top: 28px;
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};

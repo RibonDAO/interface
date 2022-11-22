@@ -74,7 +74,7 @@ export const Diamond = styled.div<DiamondProps>`
   transform-origin: center;
 
   ::before {
-    ${({ bg }) => bg && DiamondBackground};
+    ${({ bg }) => bg && DiamondBackground}
   }
 
   * {
@@ -97,6 +97,7 @@ export const Icon = styled.img`
 
 export const IconDescription = styled.p`
   ${defaultSubtitleSmall}
+
   padding-top: 8px;
   text-align: center;
   color: #82aabe;
@@ -104,6 +105,7 @@ export const IconDescription = styled.p`
 
 export const Text = styled.p<{ color: string }>`
   ${defaultSubtitleMedium}
+
   text-align: center;
   color: ${({ color }) => color};
 `;
@@ -116,7 +118,8 @@ export const ProgressBar = styled.div`
   align-items: center;
 
   ::after {
-    ${StripedBackground};
+    ${StripedBackground}
+
     width: 150px;
     height: 4px;
     content: "";

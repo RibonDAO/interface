@@ -8,7 +8,7 @@ export const Container = styled.div`
   width: 100%;
   height: 100vh;
   display: grid;
-  grid-gap: 0; // grid-template-rows: [line-2] 80px;
+  grid-gap: 0;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     max-width: 340px;

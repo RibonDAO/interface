@@ -29,6 +29,7 @@ export const ImageContainer = styled.div`
 
 export const SideButton = styled(Button)`
   ${defaultComponentTextSmall}
+
   height: 28px;
   padding: 6px 14px;
   border-radius: 16px;

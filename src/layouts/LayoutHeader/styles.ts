@@ -43,6 +43,7 @@ export const CounterContainer = styled.div`
 
 export const TicketsAmount = styled.p`
   ${defaultComponentTextSmall}
+
   margin-right: 2px;
   color: ${({ color }) => color};
 `;

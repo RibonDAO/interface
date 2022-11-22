@@ -49,7 +49,7 @@
     "generate": "yarn plop --plopfile ./generators/plopfile.js",
     "lint": "eslint src/**/*.ts src/**/*.tsx && prettier --check src/**/*.ts src/**/*.tsx",
     "lint:css": "stylelint src/**/styles.ts",
-    "lint:css:fix": "stylelint --fix src/**/styles.ts && prettier --check src/**/*.ts",
+    "lint:css:fix": "stylelint --fix src/**/styles.ts",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "codehawk": "codehawk src"

@@ -41,6 +41,7 @@ export interface ICardPaymentInformationContext {
   setButtonDisabled: (value: SetStateAction<boolean>) => void;
   setCryptoGiving: (value: SetStateAction<string>) => void;
   setOfferId: (value: SetStateAction<number>) => void;
+  setFlow: (value: SetStateAction<"cause" | "nonProfit">) => void;
   buttonDisabled: boolean;
   currentCoin: Currencies;
   country: string;
@@ -54,6 +55,7 @@ export interface ICardPaymentInformationContext {
   cvv: string;
   cryptoGiving: string;
   offerId: number;
+  flow: "cause" | "nonProfit";
   handleSubmit: () => void;
   cause: Cause | undefined;
   setCause: (value: SetStateAction<Cause | undefined>) => void;
@@ -102,6 +104,7 @@ function CardPaymentInformationProvider({ children }: Props) {
   const [offerId, setOfferId] = useState(0);
   const [cause, setCause] = useState<Cause>();
   const [nonProfit, setNonProfit] = useState<NonProfit>();
+  const [flow, setFlow] = useState<"nonProfit" | "cause">("nonProfit");
 
   const { t } = useTranslation("translation", {
     keyPrefix: "contexts.cardPaymentInformation",
@@ -112,12 +115,23 @@ function CardPaymentInformationProvider({ children }: Props) {
   const toast = useToast();
 
   const handleConfirmation = () => {
-    navigateTo({
-      pathname: "/donation-done",
-      state: {
-        hasButton: true,
-      },
-    });
+    if (flow === "cause") {
+      navigateTo({
+        pathname: "/donation-done-cause",
+        state: {
+          hasButton: true,
+          offerId,
+          causeId: cause?.id,
+        },
+      });
+    } else {
+      navigateTo({
+        pathname: "/donation-done",
+        state: {
+          hasButton: true,
+        },
+      });
+    }
   };
 
   const { show, hide } = useModal({
@@ -129,6 +143,7 @@ function CardPaymentInformationProvider({ children }: Props) {
       primaryButtonText: t("modalSuccessButton"),
       onClose: () => {
         handleConfirmation();
+
         hide();
       },
       primaryButtonCallback: () => {
@@ -234,6 +249,8 @@ function CardPaymentInformationProvider({ children }: Props) {
       setCause,
       nonProfit,
       setNonProfit,
+      flow,
+      setFlow,
     }),
     [
       currentCoin,
@@ -250,6 +267,7 @@ function CardPaymentInformationProvider({ children }: Props) {
       buttonDisabled,
       cause,
       nonProfit,
+      flow,
     ],
   );
 

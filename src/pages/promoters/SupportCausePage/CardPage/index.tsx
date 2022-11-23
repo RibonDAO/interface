@@ -22,7 +22,7 @@ import SelectOfferSection from "./SelectOfferSection";
 function SupportCausePage(): JSX.Element {
   const { navigateTo } = useNavigation();
   const [currentOffer, setCurrentOffer] = useState<Offer>(offerFactory());
-  const { cause, setCause, setOfferId } = useCardPaymentInformation();
+  const { cause, setCause, setOfferId, setFlow } = useCardPaymentInformation();
 
   const { causes } = useCauses();
 
@@ -46,6 +46,7 @@ function SupportCausePage(): JSX.Element {
   };
 
   const handleDonateClick = () => {
+    setFlow("cause");
     logEvent("treasureComCicleBtn_click");
     navigateTo({
       pathname: "/promoters/support-cause/payment",

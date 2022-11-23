@@ -1,4 +1,5 @@
 import { LocationDescriptor } from "history";
+import { useState } from "react";
 import * as S from "../styles";
 
 export type Props = {
@@ -7,6 +8,10 @@ export type Props = {
   enabled?: boolean;
   title: string;
   onClick: () => void;
+  menuOptions?: {
+    path: LocationDescriptor;
+    title: string;
+  }[];
 };
 
 function NavigationLink({
@@ -15,11 +20,30 @@ function NavigationLink({
   title,
   enabled = false,
   onClick,
+  menuOptions,
 }: Props): JSX.Element {
+  const [menuVisible, setMenuVisible] = useState(false);
+
   return (
-    <S.StyledLink to={to} onClick={onClick}>
+    <S.StyledLink
+      onMouseEnter={() => setMenuVisible(true)}
+      to={to}
+      onClick={onClick}
+    >
       <S.Icon src={icon} />
       <S.Title enabled={enabled}>{title}</S.Title>
+      {menuOptions && (
+        <S.Menu
+          visible={menuVisible}
+          onMouseLeave={() => setMenuVisible(false)}
+        >
+          {menuOptions.map((option) => (
+            <S.MenuItem to={option.path} onClick={onClick}>
+              {option.title}
+            </S.MenuItem>
+          ))}
+        </S.Menu>
+      )}
     </S.StyledLink>
   );
 }

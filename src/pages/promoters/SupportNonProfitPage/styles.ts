@@ -21,6 +21,15 @@ export const ContentContainer = styled.div`
   border-radius: 8px;
 `;
 
+export const NonProfitsListContainer = styled.div`
+  margin-inline: -17px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    margin-inline: 0;
+    max-width: 900px;
+  }
+`;
+
 export const DonateContainer = styled.div`
   margin-bottom: 24px;
   padding: 16px;

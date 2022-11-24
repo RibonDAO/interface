@@ -20,7 +20,15 @@ function Navigation(): JSX.Element {
   const location = useLocation();
   const { search } = location;
 
-  function isInPath(path: string) {
+  function isInPath(route: any): boolean {
+    const { menuOptions, path } = route;
+
+    if (menuOptions) {
+      return menuOptions.some((menuOption: any) =>
+        [menuOption.path].includes(location.pathname),
+      );
+    }
+
     return [path].includes(location.pathname);
   }
 
@@ -38,6 +46,18 @@ function Navigation(): JSX.Element {
       iconOff: GivingIconOff,
       title: t("givingPageTitle"),
       event: "givingNavBtn_click",
+      menuOptions: [
+        {
+          path: "/promoters/support-cause",
+          title: t("communityMenuItem"),
+          event: "communityMenuBtn_click",
+        },
+        {
+          path: "/promoters/support-non-profit",
+          title: t("directDonationMenuItem"),
+          event: "directDonationMenuBtn_click",
+        },
+      ],
     },
     {
       path: "/impact",
@@ -59,9 +79,13 @@ function Navigation(): JSX.Element {
           key={route.path}
           onClick={() => handleEvent(route.event)}
           to={{ pathname: route.path, search }}
-          icon={isInPath(route.path) ? route.iconOn : route.iconOff}
+          icon={isInPath(route) ? route.iconOn : route.iconOff}
           title={route.title}
-          enabled={isInPath(route.path)}
+          enabled={isInPath(route)}
+          menuOptions={route?.menuOptions?.map((option) => ({
+            ...option,
+            onClick: () => handleEvent(option.event),
+          }))}
         />
       ))}
     </S.Container>

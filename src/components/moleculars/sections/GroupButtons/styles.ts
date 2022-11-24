@@ -13,6 +13,7 @@ export const Button = styled.button<{
   width: auto;
   height: 32px;
   margin-right: 8px;
+  margin-bottom: 8px;
   padding: 4px 8px;
   border: 1px solid
     ${(props) => (props.outline ? props.borderColorOutline : props.borderColor)};

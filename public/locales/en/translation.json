@@ -66,7 +66,9 @@
     "menu": {
       "impactPageTitle": "Impact",
       "causesPageTitle": "Tickets",
-      "givingPageTitle": "Giving"
+      "givingPageTitle": "Giving",
+      "communityMenuItem": "Community",
+      "directDonationMenuItem": "Direct donation"
     }
   },
   "layouts": {

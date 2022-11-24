@@ -11,7 +11,7 @@ import ButtonComponent from "components/atomics/buttons/Button";
 
 export const Container = styled.div`
   width: 100%;
-  margin-bottom: 24px;
+  margin-bottom: 100px;
 `;
 
 export const ContentContainer = styled.div`

@@ -1,4 +1,8 @@
 import { LocationDescriptor } from "history";
+import useBreakpoint from "hooks/useBreakpoint";
+import { useState } from "react";
+import FloatingSideMenu from "../NavigationMenus/FloatingSideMenu";
+import AccordionMenu from "../NavigationMenus/AccordionMenu";
 import * as S from "../styles";
 
 export type Props = {
@@ -7,6 +11,10 @@ export type Props = {
   enabled?: boolean;
   title: string;
   onClick: () => void;
+  menuOptions?: {
+    path: LocationDescriptor;
+    title: string;
+  }[];
 };
 
 function NavigationLink({
@@ -15,12 +23,45 @@ function NavigationLink({
   title,
   enabled = false,
   onClick,
+  menuOptions,
 }: Props): JSX.Element {
+  const [menuVisible, setMenuVisible] = useState(false);
+
+  const { isMobile } = useBreakpoint();
+
+  const renderFloatingSideMenu = () => {
+    if (menuOptions && !isMobile) {
+      return (
+        <FloatingSideMenu
+          visible={menuVisible}
+          onMouseLeave={() => setMenuVisible(false)}
+          menuOptions={menuOptions}
+        />
+      );
+    }
+    return null;
+  };
+
+  const renderSwipingMenu = () => {
+    if (menuOptions && isMobile) {
+      return <AccordionMenu menuOptions={menuOptions} />;
+    }
+    return null;
+  };
+
   return (
-    <S.StyledLink to={to} onClick={onClick}>
-      <S.Icon src={icon} />
-      <S.Title enabled={enabled}>{title}</S.Title>
-    </S.StyledLink>
+    <>
+      <S.StyledLink
+        onMouseEnter={() => setMenuVisible(true)}
+        to={to}
+        onClick={onClick}
+      >
+        <S.Icon src={icon} />
+        <S.Title enabled={enabled}>{title}</S.Title>
+        {renderFloatingSideMenu()}
+      </S.StyledLink>
+      {renderSwipingMenu()}
+    </>
   );
 }
 

@@ -13,6 +13,8 @@ export const Container = styled.div<{ visible: boolean }>`
 export const MenuSwiper = styled.div<{ pressed: boolean }>`
   width: 100%;
   height: 40px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
   display: flex;
   flex-direction: row;
   align-items: center;

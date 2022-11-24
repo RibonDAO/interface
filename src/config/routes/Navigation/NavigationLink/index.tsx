@@ -44,12 +44,7 @@ function NavigationLink({
 
   const renderSwipingMenu = () => {
     if (menuOptions && isMobile) {
-      return (
-        <AccordionMenu
-          onMouseLeave={() => setMenuVisible(false)}
-          menuOptions={menuOptions}
-        />
-      );
+      return <AccordionMenu menuOptions={menuOptions} />;
     }
     return null;
   };

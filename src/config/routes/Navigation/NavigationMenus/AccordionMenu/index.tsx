@@ -6,14 +6,13 @@ import { useScrollPosition } from "hooks/useScrollPosition";
 import * as S from "./styles";
 
 export type Props = {
-  onMouseLeave: () => void;
   menuOptions: {
     path: LocationDescriptor;
     title: string;
   }[];
 };
 
-function AccordionMenu({ onMouseLeave, menuOptions }: Props): JSX.Element {
+function AccordionMenu({ menuOptions }: Props): JSX.Element {
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(true);
   const [firstScroll, setFirstScroll] = useState(true);
@@ -61,7 +60,7 @@ function AccordionMenu({ onMouseLeave, menuOptions }: Props): JSX.Element {
       <S.MenuSwiper pressed={swiperPressed} onClick={handleSwiperClick}>
         <S.Icon src={SwipeUpIcon} />
       </S.MenuSwiper>
-      <S.Menu collapsed={collapsed} onMouseLeave={onMouseLeave}>
+      <S.Menu collapsed={collapsed}>
         {menuOptions.map((option, index) => (
           <S.MenuItem
             active={isButtonActive(option.path)}

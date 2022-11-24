@@ -1,60 +1,66 @@
 import IconsAroundImage from "components/atomics/sections/IconsAroundImage";
-import useCauses from "hooks/apiHooks/useCauses";
 import useOffers from "hooks/apiHooks/useOffers";
+import VolunteerActivismPink from "assets/icons/volunteer-activism-pink.svg";
+import VolunteerActivismYellow from "assets/icons/volunteer-activism-yellow.svg";
+import VolunteerActivismGreen from "assets/icons/volunteer-activism-green.svg";
+import ConfirmationNumberPink from "assets/icons/confirmation-number-pink.svg";
+import ConfirmationNumberYellow from "assets/icons/confirmation-number-yellow.svg";
+import ConfirmationNumberGreen from "assets/icons/confirmation-number-green.svg";
 import useNavigation from "hooks/useNavigation";
 import { setLocalStorageItem } from "lib/localStorage";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { logError } from "services/crashReport";
-import theme from "styles/theme";
 import Cause from "types/entities/Cause";
+import NonProfit from "types/entities/NonProfit";
 import Offer from "types/entities/Offer";
 import { Currencies } from "types/enums/Currencies";
 import * as S from "./styles";
 
 function DonationDoneCausePage(): JSX.Element {
   const { navigateTo } = useNavigation();
-  const { orange20 } = theme.colors;
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.donationDoneCausePage",
   });
   type LocationState = {
-    offerId: number;
-    causeId: number;
+    offerId?: number;
+    cause: Cause;
+    hasButton?: boolean;
+    nonProfit?: NonProfit;
   };
   const currency = Currencies.USD;
   const {
-    state: { offerId, causeId },
+    state: { nonProfit, offerId, cause, hasButton },
   } = useLocation<LocationState>();
-  const { getCause } = useCauses();
   const { getOffer } = useOffers(currency);
-  const [cause, setCause] = useState<Cause>();
   const [offer, setOffer] = useState<Offer>();
 
   const donationInfos = useCallback(
-    async (idCause: number, idOffer: number) => {
+    async (idOffer: number) => {
       try {
-        const name = await getCause(idCause);
-        const price = await getOffer(idOffer);
-        setCause(name);
-        setOffer(price);
+        if (idOffer !== 0) {
+          const price = await getOffer(idOffer);
+          setOffer(price);
+        }
       } catch (e) {
         logError(e);
       }
     },
-    [],
+    [offerId],
   );
 
   function navigate() {
     navigateTo({
       pathname: "/promoters/support-cause",
+      state: { causeDonated: cause },
     });
   }
 
   useEffect(() => {
-    donationInfos(causeId, offerId);
-
+    if (offerId) {
+      donationInfos(offerId);
+    }
     setLocalStorageItem("HAS_DONATED", "true");
     setTimeout(() => {
       navigate();
@@ -64,23 +70,39 @@ function DonationDoneCausePage(): JSX.Element {
   return (
     <S.Container>
       <S.ImageContainer>
-        <IconsAroundImage imageSrc={cause?.mainImage} />
+        <IconsAroundImage
+          imageSrc={cause?.mainImage}
+          iconAnimationYellow={
+            hasButton ? VolunteerActivismYellow : ConfirmationNumberYellow
+          }
+          iconAnimationPink={
+            hasButton ? VolunteerActivismPink : ConfirmationNumberPink
+          }
+          iconAnimationGreen={
+            hasButton ? VolunteerActivismGreen : ConfirmationNumberGreen
+          }
+        />
       </S.ImageContainer>
-
-      <S.DonationValue>{offer?.price}</S.DonationValue>
-      <S.PostDonationText>{t("title")}</S.PostDonationText>
+      <S.DonationValue>{hasButton ? offer?.price : t("title")}</S.DonationValue>
+      {hasButton && <S.PostDonationText>{t("title")}</S.PostDonationText>}
       <S.PostDonationText>
-        {t("titleSecondLine")}
-        <S.CauseName> {cause?.name} </S.CauseName>
+        {hasButton ? t("titleSecondLine") : t("youDonatedText")}
+        <S.CauseName isGreen={!!nonProfit}>
+          {" "}
+          {hasButton
+            ? cause?.name
+            : `${nonProfit?.impactByTicket} ${nonProfit?.impactDescription}`}{" "}
+        </S.CauseName>
       </S.PostDonationText>
 
-      <S.FinishButton
-        text={t("button")}
-        onClick={() => {
-          navigate();
-        }}
-        backgroundColor={orange20}
-      />
+      {hasButton && (
+        <S.FinishButton
+          text={t("button")}
+          onClick={() => {
+            navigate();
+          }}
+        />
+      )}
     </S.Container>
   );
 }

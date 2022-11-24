@@ -59,6 +59,8 @@ export const MenuItem = styled(Link)<{ active: boolean }>`
   }
 `;
 
-export const Icon = styled.img`
+export const Icon = styled.img<{ reversed?: boolean }>`
   height: 10px;
+  transform: ${({ reversed }) =>
+    reversed ? "rotate(180deg)" : "rotate(0deg)"};
 `;

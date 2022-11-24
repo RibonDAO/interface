@@ -58,7 +58,7 @@ function AccordionMenu({ menuOptions }: Props): JSX.Element {
   return (
     <S.Container visible={showMenu()}>
       <S.MenuSwiper pressed={swiperPressed} onClick={handleSwiperClick}>
-        <S.Icon src={SwipeUpIcon} />
+        <S.Icon src={SwipeUpIcon} reversed={collapsed} />
       </S.MenuSwiper>
       <S.Menu collapsed={collapsed}>
         {menuOptions.map((option, index) => (

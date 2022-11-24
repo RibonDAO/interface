@@ -84,17 +84,19 @@ function CardPage(): JSX.Element {
         borderColor={theme.colors.red40}
         borderColorOutline={theme.colors.red20}
       />
-      <SliderCards scrollOffset={400} color={theme.colors.red30}>
-        {filteredNonProfits().map((nonProfit) => (
-          <Fragment key={nonProfit.id}>
-            <NonProfitCard
-              nonProfit={nonProfit}
-              handleOfferChange={handleOfferChange}
-              handleDonate={() => handleDonateClick(nonProfit)}
-            />
-          </Fragment>
-        ))}
-      </SliderCards>
+      <S.NonProfitsListContainer>
+        <SliderCards scrollOffset={400} color={theme.colors.red30}>
+          {filteredNonProfits().map((nonProfit) => (
+            <Fragment key={nonProfit.id}>
+              <NonProfitCard
+                nonProfit={nonProfit}
+                handleOfferChange={handleOfferChange}
+                handleDonate={() => handleDonateClick(nonProfit)}
+              />
+            </Fragment>
+          ))}
+        </SliderCards>
+      </S.NonProfitsListContainer>
 
       <UserSupportSection />
       <S.BackgroundImage src={IntersectBackground} />

@@ -14,10 +14,15 @@ import {
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import theme from "styles/theme";
+import { useLocation } from "react-router-dom";
 import * as S from "../styles";
 import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
 import SupportImage from "../assets/support-image.png";
 import SelectOfferSection from "./SelectOfferSection";
+
+type LocationStateType = {
+  causeDonated?: Cause;
+};
 
 function SupportCausePage(): JSX.Element {
   const { navigateTo } = useNavigation();
@@ -25,6 +30,7 @@ function SupportCausePage(): JSX.Element {
   const { cause, setCause, setOfferId, setFlow } = useCardPaymentInformation();
 
   const { causes } = useCauses();
+  const { state } = useLocation<LocationStateType>();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportCausePage",
@@ -35,8 +41,8 @@ function SupportCausePage(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    setCause(causes[0]);
-  }, [JSON.stringify(causes)]);
+    setCause(state?.causeDonated || causes[0]);
+  }, []);
 
   const handleCauseClick = (causeClicked: Cause) => {
     logEvent("treasureCauseSelection_click", {
@@ -80,12 +86,18 @@ function SupportCausePage(): JSX.Element {
     setOfferId(offer.id);
   };
 
+  const preSelectedIndex = () =>
+    state?.causeDonated
+      ? causes.findIndex((c) => c.id === state?.causeDonated?.id)
+      : 0;
+
   return (
     <S.Container>
       <S.Title>{t("title")}</S.Title>
       <GroupButtons
         elements={causes}
         onChange={handleCauseClick}
+        indexSelected={preSelectedIndex()}
         nameExtractor={(element) => element.name}
         backgroundColor={theme.colors.orange40}
         textColorOutline={theme.colors.orange40}

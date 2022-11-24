@@ -57,11 +57,15 @@ const theme: ThemeType = {
     above: 1,
     below: -1,
     dropdown: 2,
-    navbar: 3,
-    navigator: 999,
-    modal: 1000,
-    toast: 1001,
-    loading: 1002,
+    navigator: 3,
+    navbar: 4,
+    modal: 5,
+    toast: 6,
+    loading: 7,
+
+    stories: {
+      base: 999,
+    },
   },
   spacings: {},
   breakpoints: {

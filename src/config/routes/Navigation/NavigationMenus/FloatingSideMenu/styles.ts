@@ -24,8 +24,7 @@ export const Menu = styled.div<{ visible: boolean }>`
 `;
 
 export const MenuItem = styled(Link)`
-  padding-inline: 10px;
-  padding: 8px 0;
+  padding: 8px 16px;
   display: flex;
   flex-direction: column;
   font-weight: ${({ theme }) => theme.font.semibold};

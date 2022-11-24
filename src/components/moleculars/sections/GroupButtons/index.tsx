@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import theme from "styles/theme";
 import * as S from "./styles";
 
@@ -6,6 +6,7 @@ export type Props = {
   elements: any[];
   onChange?: (element: any, index: number) => void;
   nameExtractor: (element: any) => string;
+  indexSelected?: number;
   backgroundColor?: string;
   backgroundColorOutline?: string;
   textColor?: string;
@@ -18,6 +19,7 @@ function GroupButtons({
   elements,
   onChange,
   nameExtractor,
+  indexSelected,
   backgroundColor = theme.colors.green40,
   backgroundColorOutline = theme.colors.neutral10,
   textColor = theme.colors.neutral10,
@@ -31,6 +33,12 @@ function GroupButtons({
     setSelectedButtonIndex(index);
     if (onChange) onChange(element, index);
   };
+
+  useEffect(() => {
+    if (indexSelected !== undefined) {
+      handleElementClick(indexSelected, elements[indexSelected]);
+    }
+  }, [indexSelected]);
 
   function renderGroupButtons() {
     return elements?.map((element, index) => (

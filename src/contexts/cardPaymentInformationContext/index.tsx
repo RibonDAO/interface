@@ -121,7 +121,7 @@ function CardPaymentInformationProvider({ children }: Props) {
         state: {
           hasButton: true,
           offerId,
-          causeId: cause?.id,
+          cause,
         },
       });
     } else {

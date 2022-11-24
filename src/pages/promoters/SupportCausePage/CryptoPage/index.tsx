@@ -5,6 +5,7 @@ import useCauses from "hooks/apiHooks/useCauses";
 import Cause from "types/entities/Cause";
 import IntersectBackground from "assets/images/intersect-background.svg";
 import useNavigation from "hooks/useNavigation";
+import { useLocation } from "react-router-dom";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import { useWalletContext } from "contexts/walletContext";
 import { useCryptoPayment } from "contexts/cryptoPaymentContext";
@@ -17,6 +18,10 @@ import * as S from "../styles";
 import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
 import SupportImage from "../assets/support-image.png";
 import SelectCryptoOfferSection from "./SelectCryptoOfferSection";
+
+type LocationStateType = {
+  causeDonated?: Cause;
+};
 
 function CryptoPage(): JSX.Element {
   const { navigateTo } = useNavigation();
@@ -34,6 +39,8 @@ function CryptoPage(): JSX.Element {
   const { causes } = useCauses();
   const toast = useToast();
 
+  const { state } = useLocation<LocationStateType>();
+
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportCausePage",
   });
@@ -46,8 +53,8 @@ function CryptoPage(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    setCause(causes[0]);
-  }, [JSON.stringify(causes)]);
+    setCause(state?.causeDonated || causes[0]);
+  }, []);
 
   const handleCauseClick = (causeClicked: Cause) => {
     logEvent("supportCauseSelection_click", {
@@ -115,12 +122,18 @@ function CryptoPage(): JSX.Element {
     return t("connectWalletButtonText");
   };
 
+  const preSelectedIndex = () =>
+    state?.causeDonated
+      ? causes.findIndex((c) => c.id === state?.causeDonated?.id)
+      : 0;
+
   return (
     <S.Container>
       <S.Title>{t("title")}</S.Title>
       <GroupButtons
         elements={causes}
         onChange={handleCauseClick}
+        indexSelected={preSelectedIndex()}
         nameExtractor={(element) => element.name}
         backgroundColor={theme.colors.orange40}
         textColorOutline={theme.colors.orange40}

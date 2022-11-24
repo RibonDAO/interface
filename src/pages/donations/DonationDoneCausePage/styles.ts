@@ -57,16 +57,20 @@ export const PostDonationText = styled.p`
   color: ${({ theme }) => theme.colors.gray30};
 `;
 
-export const CauseName = styled.span`
+export const CauseName = styled.span<{
+  isGreen?: boolean;
+}>`
   ${defaultSubtitleMedium}
 
-  color: ${({ theme }) => theme.colors.orange30};
+  color: ${(props) => (props.isGreen ? ({ theme }) => theme.colors.green30 : ({ theme }) => theme.colors.gray30)};
 `;
 
 export const FinishButton = styled(Button)`
   max-width: 20.5em;
   margin-top: 3em;
   margin-bottom: 1em;
+  border: 0px;
   display: block;
   justify-self: end;
+  background-color: ${({ theme }) => theme.colors.orange20};
 `;

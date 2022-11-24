@@ -1,5 +1,8 @@
 import { LocationDescriptor } from "history";
+import useBreakpoint from "hooks/useBreakpoint";
 import { useState } from "react";
+import FloatingSideMenu from "../NavigationMenus/FloatingSideMenu";
+import AccordionMenu from "../NavigationMenus/AccordionMenu";
 import * as S from "../styles";
 
 export type Props = {
@@ -24,27 +27,46 @@ function NavigationLink({
 }: Props): JSX.Element {
   const [menuVisible, setMenuVisible] = useState(false);
 
-  return (
-    <S.StyledLink
-      onMouseEnter={() => setMenuVisible(true)}
-      to={to}
-      onClick={onClick}
-    >
-      <S.Icon src={icon} />
-      <S.Title enabled={enabled}>{title}</S.Title>
-      {menuOptions && (
-        <S.Menu
+  const { isMobile } = useBreakpoint();
+
+  const renderFloatingSideMenu = () => {
+    if (menuOptions && !isMobile) {
+      return (
+        <FloatingSideMenu
           visible={menuVisible}
           onMouseLeave={() => setMenuVisible(false)}
-        >
-          {menuOptions.map((option) => (
-            <S.MenuItem to={option.path} onClick={onClick}>
-              {option.title}
-            </S.MenuItem>
-          ))}
-        </S.Menu>
-      )}
-    </S.StyledLink>
+          menuOptions={menuOptions}
+        />
+      );
+    }
+    return null;
+  };
+
+  const renderSwipingMenu = () => {
+    if (menuOptions && isMobile) {
+      return (
+        <AccordionMenu
+          onMouseLeave={() => setMenuVisible(false)}
+          menuOptions={menuOptions}
+        />
+      );
+    }
+    return null;
+  };
+
+  return (
+    <>
+      <S.StyledLink
+        onMouseEnter={() => setMenuVisible(true)}
+        to={to}
+        onClick={onClick}
+      >
+        <S.Icon src={icon} />
+        <S.Title enabled={enabled}>{title}</S.Title>
+        {renderFloatingSideMenu()}
+      </S.StyledLink>
+      {renderSwipingMenu()}
+    </>
   );
 }
 

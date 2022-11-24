@@ -26,7 +26,7 @@ export const ContentContainer = styled.div`
 `;
 
 export const NonProfitsListContainer = styled.div`
-  margin-inline: -17px;
+  margin-inline: -16px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     margin-inline: 0;

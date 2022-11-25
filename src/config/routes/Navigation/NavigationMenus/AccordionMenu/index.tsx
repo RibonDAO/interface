@@ -63,7 +63,7 @@ function AccordionMenu({ menuOptions }: Props): JSX.Element {
       <S.Menu collapsed={collapsed}>
         {menuOptions.map((option, index) => (
           <S.MenuItem
-            active={isButtonActive(option.path)}
+            $active={isButtonActive(option.path)}
             key={index.toString(10)}
             to={option.path}
           >

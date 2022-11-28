@@ -58,6 +58,7 @@ function SupportCausePage(): JSX.Element {
       pathname: "/promoters/payment",
       state: {
         offer: currentOffer,
+        flow: "cause",
         cause,
       },
     });

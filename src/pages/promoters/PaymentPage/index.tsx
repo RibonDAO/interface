@@ -8,6 +8,7 @@ import useCardGivingFees from "hooks/apiHooks/useCardGivingFees";
 import { Currencies } from "types/enums/Currencies";
 import { useEffect, useState } from "react";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
+import getThemeByFlow from "lib/themeByFlow";
 import NonProfit from "types/entities/NonProfit";
 import * as S from "./styles";
 import UserInfoSection from "./UserInfoSection";
@@ -18,12 +19,13 @@ type LocationState = {
   offer: Offer;
   cause: Cause;
   nonProfit?: NonProfit;
+  flow: "cause" | "nonProfit";
 };
 
 function PaymentPage(): JSX.Element {
   const { navigateBack } = useNavigation();
   const {
-    state: { offer, cause, nonProfit },
+    state: { offer, cause, nonProfit, flow },
   } = useLocation<LocationState>();
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportWithCommunityPage.paymentPage",
@@ -35,6 +37,8 @@ function PaymentPage(): JSX.Element {
   );
   const { buttonDisabled, handleSubmit, setCause, setNonProfit } =
     useCardPaymentInformation();
+
+  const colorTheme = getThemeByFlow(flow);
 
   useEffect(() => {
     setCause(cause);
@@ -85,9 +89,14 @@ function PaymentPage(): JSX.Element {
         />
         <S.ContentContainer>
           <S.Title>
-            {t("title")} <S.TitleHighlight>{highlightText()}</S.TitleHighlight>
+            {t("title")}{" "}
+            <S.TitleHighlight color={colorTheme.shade30}>
+              {highlightText()}
+            </S.TitleHighlight>
           </S.Title>
-          <S.DonationValueText>{offer.price}</S.DonationValueText>
+          <S.DonationValueText color={colorTheme.shade20}>
+            {offer.price}
+          </S.DonationValueText>
           {cardGivingFees && (
             <S.FeeText>
               {t("netDonationText")} {cardGivingFees.netGiving}
@@ -105,6 +114,7 @@ function PaymentPage(): JSX.Element {
             text={t("button")}
             onClick={handleContinueClick}
             disabled={buttonDisabled}
+            colorTheme={colorTheme}
           />
         </S.DonateButtonContainer>
       </S.MainContainer>

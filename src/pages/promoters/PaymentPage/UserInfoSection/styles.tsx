@@ -2,12 +2,22 @@ import styled from "styled-components";
 import InputAutoComplete from "components/atomics/inputs/InputAutoComplete";
 import InputText from "components/atomics/inputs/InputText";
 
-export const BillingInformationSectionContainer = styled.div`
+export const BillingInformationSectionContainer = styled.div<{
+  colorTheme?: any;
+}>`
   margin-top: 16px;
   height: 256px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     height: auto;
+  }
+
+  * > input {
+    border: 1px solid
+      ${({ theme, colorTheme }) =>
+        colorTheme ? colorTheme.shade40 : theme.colors.orange40} !important;
+    color: ${({ theme, colorTheme }) =>
+      colorTheme ? colorTheme.shade20 : theme.colors.orange20} !important;
   }
 `;
 

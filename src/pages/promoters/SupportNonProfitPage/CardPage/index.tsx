@@ -55,6 +55,7 @@ function CardPage(): JSX.Element {
       pathname: "/promoters/payment",
       state: {
         offer: currentOffer,
+        flow: "nonProfit",
         cause,
         nonProfit,
       },

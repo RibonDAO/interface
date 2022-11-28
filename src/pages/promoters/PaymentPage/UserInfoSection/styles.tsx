@@ -3,7 +3,7 @@ import InputAutoComplete from "components/atomics/inputs/InputAutoComplete";
 import InputText from "components/atomics/inputs/InputText";
 
 export const BillingInformationSectionContainer = styled.div<{
-  colorTheme?: any;
+  colorTheme: any;
 }>`
   margin-top: 16px;
   height: 256px;
@@ -13,11 +13,8 @@ export const BillingInformationSectionContainer = styled.div<{
   }
 
   * > input {
-    border: 1px solid
-      ${({ theme, colorTheme }) =>
-        colorTheme ? colorTheme.shade40 : theme.colors.orange40} !important;
-    color: ${({ theme, colorTheme }) =>
-      colorTheme ? colorTheme.shade20 : theme.colors.orange20} !important;
+    border: 1px solid ${({ colorTheme }) => colorTheme.shade40} !important;
+    color: ${({ colorTheme }) => colorTheme.shade20} !important;
   }
 `;
 

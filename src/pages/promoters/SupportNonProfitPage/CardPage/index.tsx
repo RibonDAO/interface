@@ -20,7 +20,7 @@ import NonProfitCard from "./NonProfitCard";
 function CardPage(): JSX.Element {
   const { navigateTo } = useNavigation();
   const [currentOffer, setCurrentOffer] = useState<Offer>(offerFactory());
-  const { cause, setCause, setOfferId } = useCardPaymentInformation();
+  const { cause, setCause, setOfferId, setFlow } = useCardPaymentInformation();
   const { nonProfits } = useNonProfits();
 
   const { causes } = useCauses();
@@ -50,6 +50,7 @@ function CardPage(): JSX.Element {
   };
 
   const handleDonateClick = (nonProfit: NonProfit) => {
+    setFlow("nonProfit");
     logEvent("nonProfitComCicleBtn_click");
     navigateTo({
       pathname: "/promoters/payment",

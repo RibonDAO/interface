@@ -17,7 +17,7 @@ import SupportImage from "../SupportCausePage/assets/support-image.png";
 type LocationState = {
   offer: Offer;
   cause: Cause;
-  nonProfit: NonProfit;
+  nonProfit?: NonProfit;
 };
 
 function PaymentPage(): JSX.Element {

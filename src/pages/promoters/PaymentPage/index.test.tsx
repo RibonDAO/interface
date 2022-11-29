@@ -18,6 +18,7 @@ describe("PaymentPage", () => {
       locationState: {
         offer,
         cause,
+        flow: "cause",
       },
       cardPaymentProviderValue: {
         country: "Brazil",

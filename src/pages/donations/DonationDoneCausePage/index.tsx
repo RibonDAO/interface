@@ -29,7 +29,7 @@ function DonationDoneCausePage(): JSX.Element {
     cause: Cause;
     hasButton?: boolean;
     nonProfit?: NonProfit;
-    flow: "cause" | "nonProfit";
+    flow?: "cause" | "nonProfit";
   };
   const currency = Currencies.USD;
   const {
@@ -69,7 +69,7 @@ function DonationDoneCausePage(): JSX.Element {
     }, 5000);
   }, []);
 
-  const colorTheme = getThemeByFlow(flow);
+  const colorTheme = getThemeByFlow(flow || "cause");
 
   return (
     <S.Container>

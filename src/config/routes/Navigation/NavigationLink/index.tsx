@@ -51,15 +51,17 @@ function NavigationLink({
 
   return (
     <>
-      <S.StyledLink
-        onMouseEnter={() => setMenuVisible(true)}
-        to={to}
-        onClick={onClick}
-      >
-        <S.Icon src={icon} />
-        <S.Title enabled={enabled}>{title}</S.Title>
+      <S.StyledLinkContainer>
+        <S.StyledLink
+          onMouseEnter={() => setMenuVisible(true)}
+          to={to}
+          onClick={onClick}
+        >
+          <S.Icon src={icon} />
+          <S.Title enabled={enabled}>{title}</S.Title>
+        </S.StyledLink>
         {renderFloatingSideMenu()}
-      </S.StyledLink>
+      </S.StyledLinkContainer>
       {renderSwipingMenu()}
     </>
   );

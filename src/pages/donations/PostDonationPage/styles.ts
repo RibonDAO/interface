@@ -42,7 +42,7 @@ export const SquaredIcon = styled.div`
   background-position: bottom right, top left;
   background-size: 50%;
   background-repeat: no-repeat;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px ${({ theme }) => theme.colors.defaultShadow};
 `;
 
 export const InnerIcon = styled.img`
@@ -66,7 +66,7 @@ export const Card = styled.div<{ image?: string }>`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px ${({ theme }) => theme.colors.defaultShadow};
   cursor: pointer;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
@@ -148,8 +148,9 @@ export const BoostedDonation = styled.div`
   left: 16px;
   display: flex;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.orange20};
+  background-color: ${({ theme }) => theme.colors.orange10};
   color: ${({ theme }) => theme.colors.orange40};
+  box-shadow: 0 4px 8px ${({ theme }) => theme.colors.defaultShadow};
 `;
 
 export const Rocket = styled.img`

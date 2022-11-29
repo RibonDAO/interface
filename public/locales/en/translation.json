@@ -47,6 +47,12 @@
     "storiesPage": {
       "ctaText": "Donate ticket"
     },
+    "postDonationPage": {
+      "title": "If you wish, you can do more",
+      "donateAsCommunity": "Donate as a community to",
+      "donateDirectly": "Donate directly to",
+      "donateLater": "Donate later"
+    },
     "donationDonePage": {
       "title": "Thank you for the donation!",
       "button": "Check impact",

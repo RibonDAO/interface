@@ -16,6 +16,7 @@ import Cause from "types/entities/Cause";
 import NonProfit from "types/entities/NonProfit";
 import Offer from "types/entities/Offer";
 import { Currencies } from "types/enums/Currencies";
+import getThemeByFlow from "lib/themeByFlow";
 import * as S from "./styles";
 
 function DonationDoneCausePage(): JSX.Element {
@@ -28,10 +29,11 @@ function DonationDoneCausePage(): JSX.Element {
     cause: Cause;
     hasButton?: boolean;
     nonProfit?: NonProfit;
+    flow: "cause" | "nonProfit";
   };
   const currency = Currencies.USD;
   const {
-    state: { nonProfit, offerId, cause, hasButton },
+    state: { nonProfit, offerId, cause, hasButton, flow },
   } = useLocation<LocationState>();
   const { getOffer } = useOffers(currency);
   const [offer, setOffer] = useState<Offer>();
@@ -67,11 +69,13 @@ function DonationDoneCausePage(): JSX.Element {
     }, 5000);
   }, []);
 
+  const colorTheme = getThemeByFlow(flow);
+
   return (
     <S.Container>
       <S.ImageContainer>
         <IconsAroundImage
-          imageSrc={cause?.mainImage}
+          imageSrc={cause?.mainImage || nonProfit?.mainImage}
           iconAnimationYellow={
             hasButton ? VolunteerActivismYellow : ConfirmationNumberYellow
           }
@@ -83,7 +87,9 @@ function DonationDoneCausePage(): JSX.Element {
           }
         />
       </S.ImageContainer>
-      <S.DonationValue>{hasButton ? offer?.price : t("title")}</S.DonationValue>
+      <S.DonationValue color={colorTheme.shade20}>
+        {hasButton ? offer?.price : t("title")}
+      </S.DonationValue>
       {hasButton && <S.PostDonationText>{t("title")}</S.PostDonationText>}
       <S.PostDonationText>
         {hasButton ? t("titleSecondLine") : t("youDonatedText")}
@@ -101,6 +107,7 @@ function DonationDoneCausePage(): JSX.Element {
           onClick={() => {
             navigate();
           }}
+          background={colorTheme.shade20}
         />
       )}
     </S.Container>

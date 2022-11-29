@@ -63,6 +63,12 @@
       "youDonatedText": "Você doou",
       "button": "Terminar"
     },
+    "postDonationPage": {
+      "title": "Se quiser, você pode fazer mais",
+      "donateAsCommunity": "Doar em comunidade para",
+      "donateDirectly": "Doar diretamente para",
+      "donateLater": "Doar depois"
+    },
     "menu": {
       "impactPageTitle": "Impacto",
       "causesPageTitle": "Tickets",

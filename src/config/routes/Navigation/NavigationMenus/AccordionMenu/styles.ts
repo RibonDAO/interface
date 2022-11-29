@@ -38,7 +38,7 @@ export const Menu = styled.div<{ collapsed: boolean }>`
   transition: height 0.15s;
 `;
 
-export const MenuItem = styled(Link)<{ active: boolean }>`
+export const MenuItem = styled(Link)<{ $active: boolean }>`
   margin-block: 10px;
   padding-block: auto;
   width: 47%;
@@ -48,10 +48,10 @@ export const MenuItem = styled(Link)<{ active: boolean }>`
   font-weight: ${({ theme }) => theme.font.semibold};
   text-align: center;
   text-decoration: none;
-  background: ${({ theme, active }) =>
-    active ? theme.colors.gray30 : theme.colors.gray10};
-  color: ${({ theme, active }) =>
-    active ? theme.colors.neutral10 : theme.colors.gray30};
+  background: ${({ theme, $active }) =>
+    $active ? theme.colors.gray30 : theme.colors.gray10};
+  color: ${({ theme, $active }) =>
+    $active ? theme.colors.neutral10 : theme.colors.gray30};
 
   :hover {
     background-color: ${({ theme }) => theme.colors.gray30};

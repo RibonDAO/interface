@@ -54,8 +54,8 @@ function DonationDoneCausePage(): JSX.Element {
 
   function navigate() {
     navigateTo({
-      pathname: "/promoters/support-cause",
-      state: { causeDonated: cause },
+      pathname: "/post-donation",
+      state: { nonProfit, cause },
     });
   }
 

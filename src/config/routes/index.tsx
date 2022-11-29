@@ -14,6 +14,7 @@ import SupportCausePage from "pages/promoters/SupportCausePage";
 import BillingInformationPage from "pages/promoters/SupportTreasurePage/CardSection/BillingInformationPage";
 import PaymentInformationPage from "pages/promoters/SupportTreasurePage/CardSection/PaymentInformationPage";
 import GivingsPage from "pages/promoters/GivingsPage";
+import PostDonationPage from "pages/donations/PostDonationPage";
 import WalletLayout from "layouts/WalletLayout";
 import CardPaymentInformationProvider from "contexts/cardPaymentInformationContext";
 import NetworkProvider from "contexts/networkContext";
@@ -58,6 +59,12 @@ function RoutesComponent(): JSX.Element {
       <Route path="/donation-done-cause" exact>
         <Suspense fallback={<div />}>
           <DonationDoneCausePage />
+        </Suspense>
+      </Route>
+
+      <Route path="/post-donation" exact>
+        <Suspense fallback={<div />}>
+          <PostDonationPage />
         </Suspense>
       </Route>
 

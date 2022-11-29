@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import NonProfit from "types/entities/NonProfit";
 import useNavigation from "hooks/useNavigation";
 import VolunteerActivismGreen from "assets/icons/volunteer-activism-green.svg";
+import Rocket from "assets/icons/rocket.svg";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -60,16 +61,24 @@ function PostDonationPage(): JSX.Element {
             onClick={handleDonateWithCommunityClick}
           >
             <S.DarkOverlay />
-            <S.Text>{t("donateAsCommunity")}</S.Text>
-            <S.CardMainText>{nonProfit.cause.name}</S.CardMainText>
+            <S.BoostedDonation>
+              <S.Rocket src={Rocket} />
+              {t("boostedDonation")}
+            </S.BoostedDonation>
+            <S.BottomContainer>
+              <S.Text>{t("donateAsCommunity")}</S.Text>
+              <S.CardMainText>{nonProfit.cause.name}</S.CardMainText>
+            </S.BottomContainer>
           </S.Card>
           <S.Card
             image={nonProfit.mainImage}
             onClick={handleDonateDirectlyClick}
           >
             <S.DarkOverlay />
-            <S.Text>{t("donateDirectly")}</S.Text>
-            <S.CardMainText>{nonProfit.name}</S.CardMainText>
+            <S.BottomContainer>
+              <S.Text>{t("donateDirectly")}</S.Text>
+              <S.CardMainText>{nonProfit.name}</S.CardMainText>
+            </S.BottomContainer>
           </S.Card>
         </>
       )}

@@ -51,7 +51,8 @@
       "title": "If you wish, you can do more",
       "donateAsCommunity": "Donate as a community to",
       "donateDirectly": "Donate directly to",
-      "donateLater": "Donate later"
+      "donateLater": "Donate later",
+      "boostedDonation": "Boosted donation"
     },
     "donationDonePage": {
       "title": "Thank you for the donation!",

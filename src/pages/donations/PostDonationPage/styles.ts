@@ -23,6 +23,7 @@ export const Container = styled.div`
   justify-content: flex-start;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    margin-block: 96px;
     max-width: 600px;
     margin: 0 auto;
     justify-content: center;
@@ -136,3 +137,25 @@ export const ButtonContainer = styled.div`
     background-color: transparent;
   }
 `;
+
+export const BoostedDonation = styled.div`
+  padding-inline: 8px;
+  width: auto;
+  height: 24px;
+  border-radius: 4px;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  background-color: ${({ theme }) => theme.colors.orange20};
+  color: ${({ theme }) => theme.colors.orange40};
+`;
+
+export const Rocket = styled.img`
+  margin-inline-end: 4px;
+  width: 16px;
+  height: 16px;
+`;
+
+export const BottomContainer = styled.div``;

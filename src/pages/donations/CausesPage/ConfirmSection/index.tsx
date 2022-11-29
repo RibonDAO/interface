@@ -61,7 +61,11 @@ function ConfirmSection({
         destroyVoucher();
         navigateTo({
           pathname: "/donation-done-cause",
-          state: { cause: chosenNonProfit.cause, nonProfit: chosenNonProfit },
+          state: {
+            cause: chosenNonProfit.cause,
+            nonProfit: chosenNonProfit,
+            flow: "cause",
+          },
         });
       } catch (e: any) {
         const newState =

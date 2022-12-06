@@ -3,6 +3,7 @@ import { useCardPaymentInformation } from "contexts/cardPaymentInformationContex
 import { useCurrentUser } from "contexts/currentUserContext";
 import { maskToCreditCard } from "lib/maskToCreditCard";
 import { maskToExpirationDate } from "lib/maskToExpirationDate";
+import getThemeByFlow from "lib/themeByFlow";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "services/analytics";
@@ -26,6 +27,7 @@ function CardInfoSection() {
     cvv,
     setCvv,
     setButtonDisabled,
+    flow,
   } = useCardPaymentInformation();
 
   const { currentUser } = useCurrentUser();
@@ -42,6 +44,8 @@ function CardInfoSection() {
     setNumber(maskToCreditCard(e.target.value));
   };
 
+  const colorTheme = getThemeByFlow(flow);
+
   useEffect(() => {
     setButtonDisabled(
       !(email && number && name && expirationDate && cvv.length >= 3),
@@ -49,7 +53,7 @@ function CardInfoSection() {
   }, [email, number, name, expirationDate, cvv]);
 
   return (
-    <S.PaymentInformationSectionContainer>
+    <S.PaymentInformationSectionContainer colorTheme={colorTheme}>
       <S.Form>
         <InputText
           name="email"

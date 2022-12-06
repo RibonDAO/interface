@@ -64,10 +64,12 @@ function ConfirmSection({
           state: { cause: chosenNonProfit.cause, nonProfit: chosenNonProfit },
         });
       } catch (e: any) {
-        const newState =
-          e.response.status === 403
-            ? { blockedDonation: true }
-            : { failedDonation: true };
+        const failedKey =
+          e.response.status === 403 ? "blockedDonation" : "failedDonation";
+        const newState = {
+          [failedKey]: true,
+          message: e.response.data?.formatted_message,
+        };
         navigateTo({ pathname: "/", state: newState });
         window.location.reload();
         logError(e);

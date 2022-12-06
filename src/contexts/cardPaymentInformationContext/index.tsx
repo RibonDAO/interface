@@ -115,23 +115,15 @@ function CardPaymentInformationProvider({ children }: Props) {
   const toast = useToast();
 
   const handleConfirmation = () => {
-    if (flow === "cause") {
-      navigateTo({
-        pathname: "/donation-done-cause",
-        state: {
-          hasButton: true,
-          offerId,
-          cause,
-        },
-      });
-    } else {
-      navigateTo({
-        pathname: "/donation-done",
-        state: {
-          hasButton: true,
-        },
-      });
-    }
+    navigateTo({
+      pathname: "/donation-done-cause",
+      state: {
+        hasButton: true,
+        offerId,
+        cause,
+        flow,
+      },
+    });
   };
 
   const { show, hide } = useModal({

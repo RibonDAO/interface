@@ -47,7 +47,7 @@ function CausesPage(): JSX.Element {
       type: MODAL_TYPES.MODAL_ERROR,
       props: {
         title: t("errorModalTitle"),
-        body: t("errorModalText"),
+        body: state?.message || t("errorModalText"),
         buttonText: t("errorModalButtonText"),
         onClose: () => closeWarningModal(),
         warning: true,

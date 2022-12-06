@@ -47,6 +47,13 @@
     "storiesPage": {
       "ctaText": "Doar vale"
     },
+    "postDonationPage": {
+      "title": "Se quiser, você pode fazer mais",
+      "donateAsCommunity": "Doar em comunidade para",
+      "donateDirectly": "Doar diretamente para",
+      "donateLater": "Doar depois",
+      "boostedDonation": "Doação impulsionada"
+    },
     "donationDonePage": {
       "title": "Obrigada pela doação!",
       "button": "Ver impacto",

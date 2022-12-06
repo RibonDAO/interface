@@ -30,9 +30,8 @@ function UserInfoSection(): JSX.Element {
   function isBrazil(countryName: string) {
     return countryName === t("brazilName");
   }
-  
-  const colorTheme = getThemeByFlow(flow);
 
+  const colorTheme = getThemeByFlow(flow);
   const [brazilFormatForTaxId, setBrazilFormatForTaxId] = useState(true);
 
   const maxTaxIdLength = () => (brazilFormatForTaxId ? 14 : 11);

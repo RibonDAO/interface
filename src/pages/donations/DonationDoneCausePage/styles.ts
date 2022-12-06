@@ -44,10 +44,10 @@ export const Icon = styled.img`
   top: 20px;
 `;
 
-export const DonationValue = styled.h1`
+export const DonationValue = styled.h1<{ color: string }>`
   ${stylizedHeadingLarge}
 
-  color: ${({ theme }) => theme.colors.orange20};
+  color: ${({ color }) => color};
 `;
 
 export const PostDonationText = styled.p`
@@ -62,15 +62,18 @@ export const CauseName = styled.span<{
 }>`
   ${defaultSubtitleMedium}
 
-  color: ${(props) => (props.isGreen ? ({ theme }) => theme.colors.green30 : ({ theme }) => theme.colors.gray30)};
+  color: ${(props) =>
+    props.isGreen
+      ? ({ theme }) => theme.colors.green30
+      : ({ theme }) => theme.colors.gray30};
 `;
 
-export const FinishButton = styled(Button)`
+export const FinishButton = styled(Button)<{ background: string }>`
   max-width: 20.5em;
   margin-top: 3em;
   margin-bottom: 1em;
   border: 0px;
   display: block;
   justify-self: end;
-  background-color: ${({ theme }) => theme.colors.orange20};
+  background-color: ${({ background }) => background};
 `;

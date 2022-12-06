@@ -55,9 +55,10 @@ function SupportCausePage(): JSX.Element {
     setFlow("cause");
     logEvent("treasureComCicleBtn_click");
     navigateTo({
-      pathname: "/promoters/support-cause/payment",
+      pathname: "/promoters/payment",
       state: {
         offer: currentOffer,
+        flow: "cause",
         cause,
       },
     });

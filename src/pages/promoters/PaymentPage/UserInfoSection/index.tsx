@@ -5,6 +5,7 @@ import { maskForTaxId } from "lib/maskForTaxId";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import { logEvent } from "services/analytics";
 import { countryList } from "utils/countryList";
+import getThemeByFlow from "lib/themeByFlow";
 import * as S from "./styles";
 
 function UserInfoSection(): JSX.Element {
@@ -23,11 +24,14 @@ function UserInfoSection(): JSX.Element {
     taxId,
     setTaxId,
     setButtonDisabled,
+    flow,
   } = useCardPaymentInformation();
 
   function isBrazil(countryName: string) {
     return countryName === t("brazilName");
   }
+  
+  const colorTheme = getThemeByFlow(flow);
 
   const [brazilFormatForTaxId, setBrazilFormatForTaxId] = useState(true);
 
@@ -49,7 +53,7 @@ function UserInfoSection(): JSX.Element {
   });
 
   return (
-    <S.BillingInformationSectionContainer>
+    <S.BillingInformationSectionContainer colorTheme={colorTheme}>
       <S.Form>
         <S.CountryInput
           name="country"

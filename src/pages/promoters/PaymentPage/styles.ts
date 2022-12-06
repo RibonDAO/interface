@@ -28,11 +28,11 @@ export const ContentContainer = styled.div`
   box-shadow: 0 16px 32px -2px ${({ theme }) => theme.colors.defaultShadow10};
 `;
 
-export const DonationValueText = styled.h1`
+export const DonationValueText = styled.h1<{ color: string }>`
   ${stylizedHeadingLarge}
 
   text-align: center;
-  color: ${({ theme }) => theme.colors.orange20};
+  color: ${({ color }) => color};
 `;
 
 export const Title = styled.h1`
@@ -41,10 +41,10 @@ export const Title = styled.h1`
   text-align: center;
 `;
 
-export const TitleHighlight = styled.span`
+export const TitleHighlight = styled.span<{ color: string }>`
   ${defaultSubtitleLarge}
 
-  color: ${({ theme }) => theme.colors.orange30};
+  color: ${({ color }) => color};
 `;
 
 export const FeeText = styled.p`
@@ -81,10 +81,12 @@ export const DonateButtonContainer = styled.div`
   }
 `;
 
-export const DonateButton = styled(Button)`
-  border-color: ${({ theme }) => theme.colors.orange20};
-  background-color: ${({ theme }) => theme.colors.orange20};
-  color: ${({ theme }) => theme.colors.orange40};
+export const DonateButton = styled(Button)<{
+  colorTheme: any;
+}>`
+  border-color: ${({ colorTheme }) => colorTheme.shade20};
+  background-color: ${({ colorTheme }) => colorTheme.shade20};
+  color: ${({ colorTheme }) => colorTheme.shade40};
 `;
 
 export const SupportImage = styled.img`

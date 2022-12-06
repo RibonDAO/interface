@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "hooks/useLanguage";
 import { maskForTaxId } from "lib/maskForTaxId";
@@ -25,20 +25,22 @@ function UserInfoSection(): JSX.Element {
     setButtonDisabled,
   } = useCardPaymentInformation();
 
-  function isInBrazil() {
-    return country === t("brazilName");
+  function isBrazil(countryName: string) {
+    return countryName === t("brazilName");
   }
 
-  const maxTaxIdLength = isInBrazil() ? 14 : 11;
+  const [brazilFormatForTaxId, setBrazilFormatForTaxId] = useState(true);
+
+  const maxTaxIdLength = () => (brazilFormatForTaxId ? 14 : 11);
 
   const handleChangeMask = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    setTaxId(maskForTaxId(value, isInBrazil()));
+    setTaxId(maskForTaxId(value, brazilFormatForTaxId));
   };
 
   useEffect(() => {
     setButtonDisabled(
-      !(country && state && city && taxId.length === maxTaxIdLength),
+      !(country && state && city && taxId.length === maxTaxIdLength()),
     );
   }, [country, state, city, taxId]);
 
@@ -53,7 +55,10 @@ function UserInfoSection(): JSX.Element {
           name="country"
           suggestions={countryList(currentLang)}
           placeholder={t("country")}
-          onOptionChanged={(value: string) => setCountry(value)}
+          onOptionChanged={(value: string) => {
+            setCountry(value);
+            setBrazilFormatForTaxId(isBrazil(value));
+          }}
           required
         />
         <S.HalfInputContainer>
@@ -77,7 +82,7 @@ function UserInfoSection(): JSX.Element {
           placeholder={t("taxId")}
           value={taxId}
           onChange={handleChangeMask}
-          maxLength={maxTaxIdLength}
+          maxLength={maxTaxIdLength()}
           required
         />
       </S.Form>

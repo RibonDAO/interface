@@ -41,6 +41,11 @@ function UserInfoSection(): JSX.Element {
     setTaxId(maskForTaxId(value, brazilFormatForTaxId));
   };
 
+  const handleCountryChange = (value: string) => {
+    setCountry(value);
+    setBrazilFormatForTaxId(isBrazil(value));
+  };
+
   useEffect(() => {
     setButtonDisabled(
       !(country && state && city && taxId.length === maxTaxIdLength()),
@@ -58,10 +63,7 @@ function UserInfoSection(): JSX.Element {
           name="country"
           suggestions={countryList(currentLang)}
           placeholder={t("country")}
-          onOptionChanged={(value: string) => {
-            setCountry(value);
-            setBrazilFormatForTaxId(isBrazil(value));
-          }}
+          onOptionChanged={handleCountryChange}
           required
         />
         <S.HalfInputContainer>

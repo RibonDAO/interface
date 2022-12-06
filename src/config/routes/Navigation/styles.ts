@@ -37,13 +37,19 @@ export const Container = styled.div`
 
 export const Title = styled.p`
   ${defaultParagraphSmall}
+
   text-decoration: none;
   color: ${({ theme, enabled }: Props) =>
     enabled ? theme.colors.gray40 : theme.colors.gray30};
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLinkContainer = styled.div`
   padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const StyledLink = styled(Link)`
   display: flex;
   flex-direction: column;
   gap: 2px;

@@ -26,6 +26,7 @@ export const Container = styled.div`
 
 export const Title = styled.h1`
   ${stylizedTitleLarge}
+
   text-align: center;
 `;
 

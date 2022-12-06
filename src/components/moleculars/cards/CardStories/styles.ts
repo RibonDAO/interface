@@ -19,7 +19,7 @@ export const CloseButton = styled.img`
   position: absolute;
   top: 20px;
   right: 20px;
-  z-index: ${({ theme }) => theme.zindex.navigator};
+  z-index: ${({ theme }) => theme.zindex.stories.base};
   cursor: pointer;
 `;
 
@@ -63,10 +63,11 @@ export const CtaWrapper = styled.div`
   position: absolute;
   right: 20px;
   bottom: 27px;
-  z-index: ${({ theme }) => theme.zindex.navigator};
+  z-index: ${({ theme }) => theme.zindex.stories.base};
 `;
 
 export const CtaButton = styled(Button)`
   ${defaultComponentTextMedium}
+
   border-radius: 20px;
 `;

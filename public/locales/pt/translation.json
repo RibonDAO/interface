@@ -47,22 +47,35 @@
     "storiesPage": {
       "ctaText": "Doar vale"
     },
+    "postDonationPage": {
+      "title": "Se quiser, você pode fazer mais",
+      "donateAsCommunity": "Doar em comunidade para",
+      "donateDirectly": "Doar diretamente para",
+      "donateLater": "Doar depois",
+      "boostedDonation": "Doação impulsionada"
+    },
     "donationDonePage": {
       "title": "Obrigada pela doação!",
-      "subtitle": "1 dia de ração para animais resgatados",
       "button": "Ver impacto",
       "ngoTitle": "Sobre ",
-      "ngoInformation": "Amor em Patas é uma organização que tem como objetivo resgatar animais abandonados, cuidar deles e buscar adoção.",
       "moreInfoButtonText": "Mais informações",
       "youDonatedText": "Você doou",
       "confirmButtonText": "Entendi",
       "donationSuccessfullTitle": "Contribuição realizada",
       "donationSuccessfullSubtitle": "Ela será usada para pagar diversas doações realizadas no aplicativo."
     },
+    "donationDoneCausePage": {
+      "title": "Parabéns!",
+      "titleSecondLine": "Você doou para",
+      "youDonatedText": "Você doou",
+      "button": "Terminar"
+    },
     "menu": {
       "impactPageTitle": "Impacto",
       "causesPageTitle": "Tickets",
-      "givingPageTitle": "Contribuir"
+      "givingPageTitle": "Contribuir",
+      "communityMenuItem": "Comunidade",
+      "directDonationMenuItem": "Doação direta"
     }
   },
   "layouts": {

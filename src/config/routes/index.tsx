@@ -4,6 +4,7 @@ import WalletProvider from "contexts/walletContext";
 import CausesPage from "pages/donations/CausesPage";
 import ConfirmEmailPage from "pages/donations/ConfirmEmailPage";
 import DonationDonePage from "pages/donations/DonationDonePage";
+import DonationDoneCausePage from "pages/donations/DonationDoneCausePage";
 import ImpactPage from "pages/users/ImpactPage";
 import MainLayout from "layouts/MainLayout";
 import TreasurePage from "pages/promoters/TreasurePage";
@@ -17,6 +18,7 @@ import WalletLayout from "layouts/WalletLayout";
 import CardPaymentInformationProvider from "contexts/cardPaymentInformationContext";
 import NetworkProvider from "contexts/networkContext";
 import CommunityAddPage from "pages/promoters/SupportCausePage/CommunityAddPage";
+import PostDonationPage from "pages/donations/PostDonationPage";
 import CryptoPaymentProvider from "contexts/cryptoPaymentContext";
 import SupportNonProfitPage from "pages/promoters/SupportNonProfitPage";
 import PromotersPaymentPage from "pages/promoters/PaymentPage";
@@ -51,6 +53,18 @@ function RoutesComponent(): JSX.Element {
       <Route path="/donation-done" exact>
         <Suspense fallback={<div />}>
           <DonationDonePage />
+        </Suspense>
+      </Route>
+
+      <Route path="/donation-done-cause" exact>
+        <Suspense fallback={<div />}>
+          <DonationDoneCausePage />
+        </Suspense>
+      </Route>
+
+      <Route path="/post-donation" exact>
+        <Suspense fallback={<div />}>
+          <PostDonationPage />
         </Suspense>
       </Route>
 

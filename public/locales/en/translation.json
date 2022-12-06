@@ -47,22 +47,35 @@
     "storiesPage": {
       "ctaText": "Donate ticket"
     },
+    "postDonationPage": {
+      "title": "If you wish, you can do more",
+      "donateAsCommunity": "Donate as a community to",
+      "donateDirectly": "Donate directly to",
+      "donateLater": "Donate later",
+      "boostedDonation": "Boosted donation"
+    },
     "donationDonePage": {
       "title": "Thank you for the donation!",
-      "subtitle": "1 day of pet food for rescued animals",
       "button": "Check impact",
       "ngoTitle": "About ",
-      "ngoInformation": "Amor em Patas is an organization that aims to rescue abandoned animals, take care of them and seek adoption.",
       "moreInfoButtonText": "More info",
       "youDonatedText": "You donated",
       "confirmButtonText": "Ok",
       "donationSuccessfullTitle": "Giving successful",
       "donationSuccessfullSubtitle": "It will be used to pay for various donations made in the app."
     },
+    "donationDoneCausePage": {
+      "title": "Congratulations!",
+      "titleSecondLine": "You have donated to",
+      "youDonatedText": "You donated",
+      "button": "Finish"
+    },
     "menu": {
       "impactPageTitle": "Impact",
       "causesPageTitle": "Tickets",
-      "givingPageTitle": "Giving"
+      "givingPageTitle": "Giving",
+      "communityMenuItem": "Community",
+      "directDonationMenuItem": "Direct donation"
     }
   },
   "layouts": {
@@ -214,7 +227,7 @@
     },
     "supportWithCommunityPage": {
       "communityAddPage": {
-        "title": "How does the community increases your {{value}} donation?",
+        "title": "How does the community increase your {{value}} donation?",
         "button": "Donate {{value}}"
       },
       "paymentPage": {

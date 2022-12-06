@@ -88,15 +88,3 @@ export const RightSide = styled.div<NavigationProps>`
     visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
   }
 `;
-
-export const RoundButton = styled.button`
-  width: 40px;
-  height: 40px;
-  border: solid 2px ${({ theme }) => theme.colors.green20};
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: ${({ theme }) => theme.colors.neutral10};
-`;

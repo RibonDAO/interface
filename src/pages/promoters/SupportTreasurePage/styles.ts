@@ -14,6 +14,7 @@ export const Container = styled.div`
 
 export const Title = styled.h1`
   ${stylizedHeadingLarge}
+
   margin: 4px 0;
   margin-bottom: 48px;
 `;

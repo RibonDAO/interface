@@ -12,7 +12,7 @@ import NonProfit from "types/entities/NonProfit";
 import useNonProfitImpact from "hooks/apiHooks/useNonProfitImpact";
 import * as S from "./styles";
 
-const { orange30, orange40 } = theme.colors;
+const { red30, red40 } = theme.colors;
 
 type Props = {
   nonProfit: NonProfit | undefined;
@@ -82,12 +82,12 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
             name="currency"
             onOptionChanged={onCurrencyChanged}
             defaultValue={currentCoin}
-            containerId="currencies-dropdown"
+            containerId={`currency-selector-${nonProfit?.id}`}
             customInputStyles={{
-              borderColor: orange40,
+              borderColor: red40,
               height: 40,
               marginBottom: 0,
-              color: orange40,
+              color: red40,
               width: 80,
             }}
           />
@@ -100,7 +100,7 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
         onChange={(event) => {
           setCurrentOfferIndex(event.target.value);
         }}
-        color={orange30}
+        color={red30}
       />
     </S.Container>
   );

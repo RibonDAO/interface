@@ -60,8 +60,8 @@ function ConfirmSection({
         );
         destroyVoucher();
         navigateTo({
-          pathname: "/donation-done",
-          state: { nonProfit: chosenNonProfit },
+          pathname: "/donation-done-cause",
+          state: { cause: chosenNonProfit.cause, nonProfit: chosenNonProfit },
         });
       } catch (e: any) {
         const newState =

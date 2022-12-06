@@ -57,6 +57,7 @@ export const Message = styled.span`
 
 export const Link = styled.span`
   ${defaultSubtitleMedium}
+
   float: right;
   color: ${({ theme }) => theme.colors.neutral10};
 `;

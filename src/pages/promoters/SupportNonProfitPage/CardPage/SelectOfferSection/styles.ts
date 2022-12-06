@@ -20,21 +20,25 @@ export const ValueContainer = styled.div`
 `;
 
 export const ValueText = styled.p`
-  ${stylizedTitleLarge};
+  ${stylizedTitleLarge}
+
   margin-right: 8px;
-  color: ${({ theme }) => theme.colors.orange20};
+  color: ${({ theme }) => theme.colors.red20};
 `;
 
 export const CauseText = styled.p`
-  ${defaultParagraphSmall};
+  ${defaultParagraphSmall}
+
+  height: 5.3rem;
   margin-bottom: 4px;
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const CauseTextHighlight = styled.span`
-  ${defaultParagraphSmall};
-  color: ${({ theme }) => theme.colors.orange30};
+  ${defaultParagraphSmall}
+
+  color: ${({ theme }) => theme.colors.red30};
 `;
 
 export const CurrencySelectorContainer = styled.div`
@@ -42,16 +46,17 @@ export const CurrencySelectorContainer = styled.div`
 
   img {
     width: 14px;
-    filter: ${({ theme }) => theme.filters.filterOrange40};
+    filter: ${({ theme }) => theme.filters.filterred40};
   }
 `;
 
 export const CurrencySelector = styled(Dropdown)`
-  border: 1px solid ${({ theme }) => theme.colors.orange40};
+  border: 1px solid ${({ theme }) => theme.colors.red40};
 `;
 
 export const Title = styled.p`
-  ${defaultComponentTextMedium};
+  ${defaultComponentTextMedium}
+
   margin-bottom: 12px;
   text-align: center;
   color: ${({ theme }) => theme.colors.red40};

@@ -11,7 +11,7 @@ import ButtonComponent from "components/atomics/buttons/Button";
 
 export const Container = styled.div`
   width: 100%;
-  margin-bottom: 24px;
+  margin-bottom: 100px;
 `;
 
 export const ContentContainer = styled.div`
@@ -63,12 +63,14 @@ export const CommunityAddContainer = styled.div`
 `;
 
 export const CommunityAddText = styled.p`
-  ${defaultParagraphSmall};
+  ${defaultParagraphSmall}
+
   color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const CommunityAddValue = styled.p`
-  ${stylizedTitleLarge};
+  ${stylizedTitleLarge}
+
   color: ${({ theme }) => theme.colors.orange20};
 `;
 
@@ -98,13 +100,14 @@ export const BackgroundImage = styled.img`
 `;
 
 export const Title = styled.h1`
-  ${stylizedTitleLarge};
+  ${stylizedTitleLarge}
+
   margin: 4px 0;
   margin-bottom: 24px;
   color: ${({ theme }) => theme.colors.gray40};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    ${stylizedHeadingLarge};
+    ${stylizedHeadingLarge}
   }
 `;
 
@@ -117,19 +120,22 @@ export const SupportImage = styled.img`
 `;
 
 export const UserBalanceText = styled.p`
-  ${defaultSubtitleMedium};
+  ${defaultSubtitleMedium}
+
   margin-bottom: 4px;
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const UserBalanceTextHighlight = styled.span`
-  ${defaultSubtitleMedium};
+  ${defaultSubtitleMedium}
+
   color: ${({ theme }) => theme.colors.orange30};
 `;
 
 export const RefundText = styled.p`
-  ${defaultParagraphSmall};
+  ${defaultParagraphSmall}
+
   margin-top: 4px;
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};

@@ -17,6 +17,7 @@ import GivingsPage from "pages/promoters/GivingsPage";
 import WalletLayout from "layouts/WalletLayout";
 import CardPaymentInformationProvider from "contexts/cardPaymentInformationContext";
 import NetworkProvider from "contexts/networkContext";
+import CausesProvider from "contexts/causesContext";
 import CommunityAddPage from "pages/promoters/SupportCausePage/CommunityAddPage";
 import PaymentPage from "pages/promoters/SupportCausePage/CardPage/PaymentPage";
 import CryptoPaymentProvider from "contexts/cryptoPaymentContext";
@@ -30,9 +31,11 @@ function RoutesComponent(): JSX.Element {
       <Route path="/" exact>
         <Suspense fallback={<div />}>
           <WalletProvider>
-            <MainLayout>
-              <CausesPage />
-            </MainLayout>
+            <CausesProvider>
+              <MainLayout>
+                <CausesPage />
+              </MainLayout>
+            </CausesProvider>
           </WalletProvider>
         </Suspense>
       </Route>

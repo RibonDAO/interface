@@ -19,9 +19,9 @@ import { useDonationTicketModal } from "hooks/modalHooks/useDonationTicketModal"
 import Spinner from "components/atomics/Spinner";
 import useCanDonate from "hooks/apiHooks/useCanDonate";
 import { logError } from "services/crashReport";
-import useCauses from "hooks/apiHooks/useCauses";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import useVoucher from "hooks/useVoucher";
+import { useCausesContext } from "contexts/causesContext";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
@@ -29,14 +29,14 @@ import ConfirmSection from "./ConfirmSection";
 
 function CausesPage(): JSX.Element {
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
-  const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
   const [donationInProcessModalVisible, setDonationInProcessModalVisible] =
     useState(false);
+  const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
   const [chosenNonProfit, setChosenNonProfit] = useState<NonProfit>();
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
 
-  const { causes } = useCauses();
+  const { causes } = useCausesContext();
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });

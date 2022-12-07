@@ -2,6 +2,7 @@ import { GrowthBook } from "@growthbook/growthbook-react";
 import { logEvent } from "services/analytics";
 import firebase from "firebase/app";
 import { RIBON_GROWTHBOOK_URL } from "utils/constants";
+import { logError } from "services/crashReport";
 
 // Create a GrowthBook instance
 export const growthbook = new GrowthBook({
@@ -27,9 +28,13 @@ export const growthbookSetAttributes = async () => {
 };
 
 export const growthbookSetFeatures = () => {
-  fetch(RIBON_GROWTHBOOK_URL)
-    .then((res) => res.json())
-    .then((parsed) => {
-      growthbook.setFeatures(parsed.features);
-    });
+  try {
+    fetch(RIBON_GROWTHBOOK_URL)
+      .then((res) => res.json())
+      .then((parsed) => {
+        growthbook.setFeatures(parsed.features);
+      });
+  } catch (e) {
+    logError(e);
+  }
 };

@@ -26,17 +26,22 @@ import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
 import ConfirmSection from "./ConfirmSection";
+import ChooseCauseModal from "./ChooseCauseModal";
 
 function CausesPage(): JSX.Element {
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
   const [donationInProcessModalVisible, setDonationInProcessModalVisible] =
     useState(false);
-  const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
   const [chosenNonProfit, setChosenNonProfit] = useState<NonProfit>();
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
 
-  const { causes } = useCausesContext();
+  const {
+    activeCauses,
+    chooseCauseModalVisible,
+    selectedCauseIndex,
+    setSelectedCauseIndex,
+  } = useCausesContext();
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
@@ -136,27 +141,23 @@ function CausesPage(): JSX.Element {
     [chosenNonProfit],
   );
 
-  const causesFilter = () => {
-    const causesApi = causes.filter((cause) => cause.active);
-    return causesApi || [];
-  };
-
   const nonProfitsFilter = () => {
     const nonProfitsFiltered = isFirstAccess(signedIn)
       ? nonProfits
       : nonProfits?.filter(
           (nonProfit) =>
-            nonProfit?.cause?.id === causesFilter()[selectedButtonIndex]?.id,
+            nonProfit?.cause?.id === activeCauses[selectedCauseIndex]?.id,
         );
     return nonProfitsFiltered || [];
   };
 
   const handleCauseChanged = (_element: any, index: number) => {
-    setSelectedButtonIndex(index);
+    setSelectedCauseIndex(index);
   };
 
   return (
     <S.Container>
+      <ChooseCauseModal visible={chooseCauseModalVisible} />
       {chosenNonProfit && integration && (
         <ConfirmSection
           chosenNonProfit={chosenNonProfit}
@@ -174,7 +175,7 @@ function CausesPage(): JSX.Element {
         <S.Title>{t("pageTitle")}</S.Title>
         {!isFirstAccess(signedIn) && (
           <GroupButtons
-            elements={causesFilter()}
+            elements={activeCauses}
             onChange={handleCauseChanged}
             nameExtractor={(cause) => cause.name}
           />

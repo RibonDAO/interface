@@ -7,9 +7,11 @@ export interface ICausesContext {
   activeCauses: Cause[];
   chosenCause: Cause | undefined;
   chooseCauseModalVisible: boolean;
+  setChooseCauseModalVisible: (visible: boolean) => void;
   selectedCauseIndex: number;
   setSelectedCauseIndex: (index: number) => void;
-  setChooseCauseModalVisible: (visible: boolean) => void;
+  causeIdSelectedByModal: number;
+  setCauseIdSelectedByModal: (id: number) => void;
   refetch: () => void;
 }
 
@@ -18,15 +20,20 @@ export const CausesContext = createContext<ICausesContext>(
 );
 
 function CausesProvider({ children }: any) {
+  const causeWasNotSelectedByModal = -1;
   const { causes, refetch } = useCauses();
   const [activeCauses, setActiveCauses] = useState<Cause[]>([]);
   const [chooseCauseModalVisible, setChooseCauseModalVisible] = useState(false);
   const [selectedCauseIndex, setSelectedCauseIndex] = useState(0);
+  const [causeIdSelectedByModal, setCauseIdSelectedByModal] = useState(
+    causeWasNotSelectedByModal,
+  );
 
   const causesFilter = () => causes.filter((cause) => cause.active);
 
   useEffect(() => {
     setActiveCauses(causesFilter());
+    setCauseIdSelectedByModal(activeCauses[0]?.id);
   }, [causes]);
 
   const causesObject: ICausesContext = useMemo(
@@ -39,8 +46,16 @@ function CausesProvider({ children }: any) {
       activeCauses,
       selectedCauseIndex,
       setSelectedCauseIndex,
+      causeIdSelectedByModal,
+      setCauseIdSelectedByModal,
     }),
-    [causes, chooseCauseModalVisible, activeCauses, selectedCauseIndex],
+    [
+      causes,
+      chooseCauseModalVisible,
+      activeCauses,
+      selectedCauseIndex,
+      causeIdSelectedByModal,
+    ],
   );
 
   return (

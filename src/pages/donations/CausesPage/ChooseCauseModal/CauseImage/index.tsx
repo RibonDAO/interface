@@ -1,22 +1,20 @@
-import useNavigation from "hooks/useNavigation";
+import { useCausesContext } from "contexts/causesContext";
 import Intersection from "./assets/intersect.svg";
 import * as S from "./styles";
 
 type Props = {
+  id: number;
   name: string;
   coverImage?: string;
 };
 
-function CauseImage({ name, coverImage }: Props) {
-  const { navigateTo } = useNavigation();
+function CauseImage({ name, coverImage, id }: Props) {
+  const { setCauseIdSelectedByModal, setChooseCauseModalVisible } =
+    useCausesContext();
 
   const handleClick = () => {
-    navigateTo({
-      pathname: "/",
-      state: {
-        chosenCause: name,
-      },
-    });
+    setCauseIdSelectedByModal(id);
+    setChooseCauseModalVisible(false);
   };
 
   return (

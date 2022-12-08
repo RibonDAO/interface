@@ -39,8 +39,9 @@ function CausesPage(): JSX.Element {
   const {
     activeCauses,
     chooseCauseModalVisible,
-    selectedCauseIndex,
     setSelectedCauseIndex,
+    causeIdSelectedByModal,
+    setCauseIdSelectedByModal,
   } = useCausesContext();
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
@@ -116,6 +117,11 @@ function CausesPage(): JSX.Element {
     if (state?.failedDonation) logEvent("donateDonationError_view");
   }, []);
 
+  useEffect(() => {
+    if (causeIdSelectedByModal !== -1)
+      setSelectedCauseIndex(causeIdSelectedByModal);
+  }, [causeIdSelectedByModal]);
+
   const closeConfirmModal = useCallback(() => {
     setConfirmModalVisible(false);
   }, []);
@@ -142,17 +148,17 @@ function CausesPage(): JSX.Element {
   );
 
   const nonProfitsFilter = () => {
-    const nonProfitsFiltered = isFirstAccess(signedIn)
-      ? nonProfits
-      : nonProfits?.filter(
-          (nonProfit) =>
-            nonProfit?.cause?.id === activeCauses[selectedCauseIndex]?.id,
-        );
+    const nonProfitsFiltered = nonProfits?.filter(
+      (nonProfit) => nonProfit?.cause?.id === causeIdSelectedByModal,
+    );
+    if (nonProfitsFiltered?.length === 0) {
+      return nonProfits || [];
+    }
     return nonProfitsFiltered || [];
   };
 
-  const handleCauseChanged = (_element: any, index: number) => {
-    setSelectedCauseIndex(index);
+  const handleCauseChanged = (cause: any) => {
+    setCauseIdSelectedByModal(cause.id);
   };
 
   return (

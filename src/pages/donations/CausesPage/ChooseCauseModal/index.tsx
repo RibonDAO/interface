@@ -20,7 +20,8 @@ export function ChooseCauseModal({ visible }: Props): JSX.Element {
     () =>
       activeCauses.map((cause: Cause) => (
         <CauseImage
-          key={cause.name}
+          key={cause.id}
+          id={cause.id}
           name={cause.name}
           coverImage={cause.coverImage}
         />

@@ -14,6 +14,7 @@ export type Props = {
   disabled?: boolean;
   infoTextLeft?: string;
   infoTextRight?: string;
+  fullWidth?: boolean;
 };
 function CardCenterImageButton({
   image,
@@ -25,9 +26,10 @@ function CardCenterImageButton({
   softDisabled,
   infoTextLeft,
   infoTextRight,
+  fullWidth = false,
 }: Props): JSX.Element {
   return (
-    <S.Container>
+    <S.Container fullWidth={fullWidth}>
       <S.ImageSection onClick={onClickImage}>
         <S.ExpandIcon src={expandIcon} />
         <S.Image src={image} alt="image" />

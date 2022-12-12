@@ -40,8 +40,8 @@ function CausesPage(): JSX.Element {
     activeCauses,
     chooseCauseModalVisible,
     setSelectedCauseIndex,
-    causeIdSelectedByModal,
-    setCauseIdSelectedByModal,
+    currentCauseId,
+    setCurrentCauseId,
   } = useCausesContext();
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
@@ -118,9 +118,10 @@ function CausesPage(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    if (causeIdSelectedByModal !== -1)
-      setSelectedCauseIndex(causeIdSelectedByModal);
-  }, [causeIdSelectedByModal]);
+    if (currentCauseId !== -1) {
+      setSelectedCauseIndex(currentCauseId);
+    }
+  }, [currentCauseId]);
 
   const closeConfirmModal = useCallback(() => {
     setConfirmModalVisible(false);
@@ -149,7 +150,7 @@ function CausesPage(): JSX.Element {
 
   const nonProfitsFilter = () => {
     const nonProfitsFiltered = nonProfits?.filter(
-      (nonProfit) => nonProfit?.cause?.id === causeIdSelectedByModal,
+      (nonProfit) => nonProfit?.cause?.id === currentCauseId,
     );
     if (nonProfitsFiltered?.length === 0) {
       return nonProfits || [];
@@ -158,7 +159,7 @@ function CausesPage(): JSX.Element {
   };
 
   const handleCauseChanged = (cause: any) => {
-    setCauseIdSelectedByModal(cause.id);
+    setCurrentCauseId(cause.id);
   };
 
   return (

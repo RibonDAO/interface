@@ -9,11 +9,10 @@ type Props = {
 };
 
 function CauseImage({ name, coverImage, id }: Props) {
-  const { setCauseIdSelectedByModal, setChooseCauseModalVisible } =
-    useCausesContext();
+  const { setCurrentCauseId, setChooseCauseModalVisible } = useCausesContext();
 
   const handleClick = () => {
-    setCauseIdSelectedByModal(id);
+    setCurrentCauseId(id);
     setChooseCauseModalVisible(false);
   };
 

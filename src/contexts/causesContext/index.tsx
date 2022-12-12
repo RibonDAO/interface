@@ -1,5 +1,12 @@
 import useCauses from "hooks/apiHooks/useCauses";
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import {
+  createContext,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import Cause from "types/entities/Cause";
 
 export interface ICausesContext {
@@ -7,11 +14,11 @@ export interface ICausesContext {
   activeCauses: Cause[];
   chosenCause: Cause | undefined;
   chooseCauseModalVisible: boolean;
-  setChooseCauseModalVisible: (visible: boolean) => void;
+  setChooseCauseModalVisible: (visible: SetStateAction<boolean>) => void;
   selectedCauseIndex: number;
-  setSelectedCauseIndex: (index: number) => void;
-  causeIdSelectedByModal: number;
-  setCauseIdSelectedByModal: (id: number) => void;
+  setSelectedCauseIndex: (index: SetStateAction<number>) => void;
+  currentCauseId: number;
+  setCurrentCauseId: (id: SetStateAction<number>) => void;
   refetch: () => void;
 }
 
@@ -25,7 +32,7 @@ function CausesProvider({ children }: any) {
   const [activeCauses, setActiveCauses] = useState<Cause[]>([]);
   const [chooseCauseModalVisible, setChooseCauseModalVisible] = useState(false);
   const [selectedCauseIndex, setSelectedCauseIndex] = useState(0);
-  const [causeIdSelectedByModal, setCauseIdSelectedByModal] = useState(
+  const [currentCauseId, setCurrentCauseId] = useState(
     causeWasNotSelectedByModal,
   );
 
@@ -33,7 +40,7 @@ function CausesProvider({ children }: any) {
 
   useEffect(() => {
     setActiveCauses(causesFilter());
-    setCauseIdSelectedByModal(activeCauses[0]?.id);
+    setCurrentCauseId(activeCauses[0]?.id);
   }, [causes]);
 
   const causesObject: ICausesContext = useMemo(
@@ -46,15 +53,15 @@ function CausesProvider({ children }: any) {
       activeCauses,
       selectedCauseIndex,
       setSelectedCauseIndex,
-      causeIdSelectedByModal,
-      setCauseIdSelectedByModal,
+      currentCauseId,
+      setCurrentCauseId,
     }),
     [
       causes,
       chooseCauseModalVisible,
       activeCauses,
       selectedCauseIndex,
-      causeIdSelectedByModal,
+      currentCauseId,
     ],
   );
 

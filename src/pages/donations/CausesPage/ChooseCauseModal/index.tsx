@@ -18,7 +18,7 @@ export function ChooseCauseModal({ visible }: Props): JSX.Element {
 
   const causesList = useCallback(
     () =>
-      activeCauses.map((cause: Cause) => (
+      activeCauses?.map((cause: Cause) => (
         <CauseImage
           key={cause.id}
           id={cause.id}

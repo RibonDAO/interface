@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
 export const NavigationWrapper = styled.div`
-  position: relative;
   max-width: 900px;
+  position: relative;
 `;
 
 export const LeftSide = styled.div`
   width: 100px;
   height: 100%;
   position: absolute;
-  z-index: ${({ theme }) => theme.zindex.navigator};
   top: 0;
   left: 0;
+  z-index: ${({ theme }) => theme.zindex.navigator};
   display: flex;
   align-items: center;
   justify-content: flex-start;

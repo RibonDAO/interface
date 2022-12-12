@@ -4,7 +4,7 @@ import * as S from "./styles";
 
 export type Props = {
   elements: any[];
-  onChange?: (element: any, index: number) => void;
+  onChange?: (element: any, index: number, event?: any) => void;
   nameExtractor: (element: any) => string;
   indexSelected?: number;
   backgroundColor?: string;
@@ -29,9 +29,9 @@ function GroupButtons({
 }: Props): JSX.Element {
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
 
-  const handleElementClick = (index: number, element: any) => {
+  const handleElementClick = (index: number, element: any, event?: any) => {
     setSelectedButtonIndex(index);
-    if (onChange) onChange(element, index);
+    if (onChange) onChange(element, index, event);
   };
 
   useEffect(() => {
@@ -44,7 +44,7 @@ function GroupButtons({
     return elements?.map((element, index) => (
       <S.Button
         outline={index !== selectedButtonIndex}
-        onClick={() => handleElementClick(index, element)}
+        onClick={(e) => handleElementClick(index, element, e)}
         key={index.toString()}
         backgroundColor={backgroundColor}
         backgroundColorOutline={backgroundColorOutline}

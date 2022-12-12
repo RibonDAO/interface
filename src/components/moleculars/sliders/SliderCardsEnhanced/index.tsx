@@ -9,7 +9,7 @@ export type Props = {
   loop?: boolean;
   currentSlide: number;
   onCurrentSlideChange: (slide: number) => void;
-  children?: React.ReactNode;
+  children: JSX.Element[];
   saveStateIdentifier?: string;
 };
 
@@ -59,7 +59,6 @@ export default function SliderCardsEnhanced({
       perView: getSlidesPerView(),
       spacing: 0,
     },
-    selector: ".card-slider__slide",
     animationEnded(s) {
       if (mounted.current) onCurrentSlideChange(s.track.details.rel);
     },
@@ -92,7 +91,14 @@ export default function SliderCardsEnhanced({
   return (
     <S.NavigationWrapper>
       <div ref={sliderRef} className="keen-slider">
-        {children}
+        {children.flat().map(
+          (component: any, idx: number) =>
+            component && (
+              <div className="keen-slider__slide" key={idx.toString()}>
+                {component}
+              </div>
+            ),
+        )}
       </div>
       {loaded && instanceRef.current && (
         <>

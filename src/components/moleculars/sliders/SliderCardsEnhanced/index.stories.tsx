@@ -16,42 +16,34 @@ const Template: ComponentStory<typeof SliderCardsEnhanced> = function (
 export const Default = Template.bind({});
 
 const children = [
-  <div className="card-slider__slide" key="1">
-    <CardCenterImageButton
-      key="1"
-      image="https://picsum.photos/600/600?random=1"
-      title="title"
-      onClickButton={() => {}}
-      buttonText="button"
-    />
-  </div>,
-  <div className="card-slider__slide" key="2">
-    <CardCenterImageButton
-      key="1"
-      image="https://picsum.photos/600/600?random=2"
-      title="title"
-      onClickButton={() => {}}
-      buttonText="button"
-    />
-  </div>,
-  <div className="card-slider__slide" key="3">
-    <CardCenterImageButton
-      key="1"
-      image="https://picsum.photos/600/600?random=3"
-      title="title"
-      onClickButton={() => {}}
-      buttonText="button"
-    />
-  </div>,
-  <div className="card-slider__slide" key="4">
-    <CardCenterImageButton
-      key="1"
-      image="https://picsum.photos/600/600?random=4"
-      title="title"
-      onClickButton={() => {}}
-      buttonText="button"
-    />
-  </div>,
+  <CardCenterImageButton
+    key="1"
+    image="https://picsum.photos/600/600?random=1"
+    title="title"
+    onClickButton={() => {}}
+    buttonText="button"
+  />,
+  <CardCenterImageButton
+    key="1"
+    image="https://picsum.photos/600/600?random=2"
+    title="title"
+    onClickButton={() => {}}
+    buttonText="button"
+  />,
+  <CardCenterImageButton
+    key="1"
+    image="https://picsum.photos/600/600?random=3"
+    title="title"
+    onClickButton={() => {}}
+    buttonText="button"
+  />,
+  <CardCenterImageButton
+    key="1"
+    image="https://picsum.photos/600/600?random=4"
+    title="title"
+    onClickButton={() => {}}
+    buttonText="button"
+  />,
 ];
 
 Default.args = {

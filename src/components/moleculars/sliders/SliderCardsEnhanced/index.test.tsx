@@ -8,9 +8,9 @@ describe("SliderCards", () => {
   it("should render without error", () => {
     renderComponent(
       <SliderCardsEnhanced currentSlide={1} onCurrentSlideChange={mockFn}>
-        <div className="card-slider__slide">1</div>
-        <div className="card-slider__slide">2</div>
-        <div className="card-slider__slide">3</div>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
       </SliderCardsEnhanced>,
     );
 
@@ -20,9 +20,9 @@ describe("SliderCards", () => {
   it("should render with loop", () => {
     renderComponent(
       <SliderCardsEnhanced currentSlide={1} onCurrentSlideChange={mockFn} loop>
-        <div className="card-slider__slide">1</div>
-        <div className="card-slider__slide">2</div>
-        <div className="card-slider__slide">3</div>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
       </SliderCardsEnhanced>,
     );
 
@@ -36,9 +36,9 @@ describe("SliderCards", () => {
         onCurrentSlideChange={mockFn}
         saveStateIdentifier="test"
       >
-        <div className="card-slider__slide">1</div>
-        <div className="card-slider__slide">2</div>
-        <div className="card-slider__slide">3</div>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
       </SliderCardsEnhanced>,
     );
 
@@ -53,9 +53,9 @@ describe("SliderCards", () => {
         saveStateIdentifier="test"
         loop
       >
-        <div className="card-slider__slide">1</div>
-        <div className="card-slider__slide">2</div>
-        <div className="card-slider__slide">3</div>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
       </SliderCardsEnhanced>,
     );
 
@@ -70,9 +70,9 @@ describe("SliderCards", () => {
         saveStateIdentifier="test"
         loop
       >
-        <div className="card-slider__slide">1</div>
-        <div className="card-slider__slide">2</div>
-        <div className="card-slider__slide">3</div>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
       </SliderCardsEnhanced>,
     );
 

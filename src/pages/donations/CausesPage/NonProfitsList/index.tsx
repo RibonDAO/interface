@@ -111,27 +111,25 @@ function NonProfitsList({
         loop
       >
         {nonProfits.map((nonProfit: any, idx: number) => (
-          <div className="card-slider__slide" key={idx.toString()}>
-            <S.CardWrapper>
-              <CardCenterImageButton
-                image={nonProfit.mainImage || nonProfit.cause?.mainImage}
-                title={`${t("impactPrefix")} ${nonProfit.impactByTicket} ${
-                  nonProfit.impactDescription
-                }`}
-                buttonText={
-                  canDonateAndHasVoucher
-                    ? t("donateText")
-                    : t("donateBlockedText")
-                }
-                onClickButton={() => handleButtonClick(nonProfit)}
-                onClickImage={() => handleImageClick(nonProfit)}
-                softDisabled={!canDonateAndHasVoucher}
-                infoTextLeft={nonProfit.name}
-                infoTextRight={nonProfit.cause?.name}
-                fullWidth
-              />
-            </S.CardWrapper>
-          </div>
+          <S.CardWrapper key={idx.toString()}>
+            <CardCenterImageButton
+              image={nonProfit.mainImage || nonProfit.cause?.mainImage}
+              title={`${t("impactPrefix")} ${nonProfit.impactByTicket} ${
+                nonProfit.impactDescription
+              }`}
+              buttonText={
+                canDonateAndHasVoucher
+                  ? t("donateText")
+                  : t("donateBlockedText")
+              }
+              onClickButton={() => handleButtonClick(nonProfit)}
+              onClickImage={() => handleImageClick(nonProfit)}
+              softDisabled={!canDonateAndHasVoucher}
+              infoTextLeft={nonProfit.name}
+              infoTextRight={nonProfit.cause?.name}
+              fullWidth
+            />
+          </S.CardWrapper>
         ))}
       </SliderCardsEnhanced>
     </S.NonProfitsListContainer>

@@ -30,6 +30,7 @@ import ConfirmSection from "./ConfirmSection";
 function CausesPage(): JSX.Element {
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
+  const [currentNonProfitIndex, setCurrentNonProfitIndex] = useState(0);
   const [donationInProcessModalVisible, setDonationInProcessModalVisible] =
     useState(false);
   const [chosenNonProfit, setChosenNonProfit] = useState<NonProfit>();
@@ -142,18 +143,40 @@ function CausesPage(): JSX.Element {
   };
 
   const nonProfitsFilter = () => {
-    const nonProfitsFiltered = isFirstAccess(signedIn)
-      ? nonProfits
-      : nonProfits?.filter(
-          (nonProfit) =>
-            nonProfit?.cause?.id === causesFilter()[selectedButtonIndex]?.id,
-        );
-    return nonProfitsFiltered || [];
+    const nonProfitsApi = nonProfits?.filter(
+      (nonProfit) => nonProfit.cause?.active,
+    );
+    return nonProfitsApi || [];
   };
 
-  const handleCauseChanged = (_element: any, index: number) => {
+  const handleCauseChanged = (_element: any, index: number, event: any) => {
     setSelectedButtonIndex(index);
+
+    if (_element && event?.type === "click") {
+      const causeId = _element?.id;
+
+      if (nonProfits && causeId) {
+        const nonProfitIndex = nonProfits.findIndex(
+          (nonProfit) => nonProfit?.cause?.id === causeId,
+        );
+        setCurrentNonProfitIndex(nonProfitIndex);
+      }
+    }
   };
+
+  useEffect(() => {
+    if (nonProfits && nonProfits[currentNonProfitIndex]) {
+      const currentNonProfit = nonProfits[currentNonProfitIndex];
+      const currentCause = causesFilter()[selectedButtonIndex];
+
+      if (currentNonProfit?.cause.id !== currentCause?.id) {
+        const newCauseIndex = causesFilter().findIndex(
+          (cause) => cause.id === currentNonProfit.cause.id,
+        );
+        setSelectedButtonIndex(newCauseIndex);
+      }
+    }
+  }, [currentNonProfitIndex]);
 
   return (
     <S.Container>
@@ -175,6 +198,7 @@ function CausesPage(): JSX.Element {
         {!isFirstAccess(signedIn) && (
           <GroupButtons
             elements={causesFilter()}
+            indexSelected={selectedButtonIndex}
             onChange={handleCauseChanged}
             nameExtractor={(cause) => cause.name}
           />
@@ -190,6 +214,8 @@ function CausesPage(): JSX.Element {
                 setConfirmModalVisible={setConfirmModalVisible}
                 canDonate={canDonate}
                 integration={integration}
+                currentNonProfit={currentNonProfitIndex}
+                onCurrentNonProfitChange={setCurrentNonProfitIndex}
               />
             </S.NonProfitsContainer>
           )

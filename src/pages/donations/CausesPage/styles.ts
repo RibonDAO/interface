@@ -18,7 +18,9 @@ export const Title = styled.h1`
   margin: 0;
 `;
 
-export const NonProfitsContainer = styled.div``;
+export const NonProfitsContainer = styled.div`
+  margin-top: 20px;
+`;
 
 export const CausesCardContainer = styled.div``;
 
@@ -38,5 +40,14 @@ export const FooterText = styled.p`
   a {
     text-decoration: none;
     color: ${({ theme }) => theme.colors.green30};
+  }
+`;
+
+export const CardWrapper = styled.div`
+  margin-bottom: 32px;
+  margin-left: 16px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    margin-inline: 8px;
   }
 `;

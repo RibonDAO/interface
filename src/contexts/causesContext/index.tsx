@@ -26,7 +26,7 @@ export const CausesContext = createContext<ICausesContext>(
 
 function CausesProvider({ children }: any) {
   const causeWasNotSelectedByModal = -1;
-  const { causes, refetch } = useCauses();
+  const { causes, refetch, isLoading } = useCauses();
   const [activeCauses, setActiveCauses] = useState<Cause[]>([]);
   const [chooseCauseModalVisible, setChooseCauseModalVisible] = useState(false);
   const [currentCauseId, setCurrentCauseId] = useState(
@@ -36,9 +36,11 @@ function CausesProvider({ children }: any) {
   const causesFilter = () => causes.filter((cause) => cause.active);
 
   useEffect(() => {
-    setActiveCauses(causesFilter());
-    setCurrentCauseId(activeCauses[0]?.id);
-  }, [causes]);
+    if (!isLoading) {
+      setActiveCauses(causesFilter());
+      setCurrentCauseId(activeCauses[0]?.id);
+    }
+  }, [causes, isLoading]);
 
   const causesObject: ICausesContext = useMemo(
     () => ({

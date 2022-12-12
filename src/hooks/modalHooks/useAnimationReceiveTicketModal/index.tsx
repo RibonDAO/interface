@@ -33,10 +33,6 @@ export function useAnimationReceiveTicketModal(initialState?: boolean) {
   const hideAnimationReceiveTicketModal = () => {
     hide();
     setChooseCauseModalVisible(true);
-
-    setTimeout(() => {
-      setChooseCauseModalVisible(false);
-    }, 3000);
   };
 
   const showAnimationReceiveTicketModal = () => {

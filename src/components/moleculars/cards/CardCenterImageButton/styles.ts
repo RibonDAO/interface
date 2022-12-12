@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { defaultComponentTextLarge } from "styles/typography/default";
 
-export const Container = styled.div`
+export const Container = styled.div<{ fullWidth: boolean }>`
   width: 100%;
   border: 1px solid ${({ theme }) => theme.colors.neutral10};
   border-radius: 12px;
@@ -10,7 +10,7 @@ export const Container = styled.div`
   box-shadow: 0 8px 24px ${({ theme }) => theme.colors.defaultShadow};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    width: 286px;
+    width: ${({ fullWidth }) => (fullWidth ? "100%" : "286px")};
     border-right: 1px solid ${({ theme }) => theme.colors.neutral10};
   }
 `;

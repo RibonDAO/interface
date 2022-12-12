@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { logEvent } from "services/analytics";
 import NonProfit from "types/entities/NonProfit";
 import Integration from "types/entities/Integration";
-import SliderCards from "components/moleculars/sliders/SliderCards";
+import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
 import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
 import { useLocation } from "react-router-dom";
 import useVoucher from "hooks/useVoucher";
@@ -25,6 +25,8 @@ type Props = {
   setChosenNonProfit: (nonProfit: NonProfit) => void;
   setConfirmModalVisible: (visible: boolean) => void;
   canDonate: boolean;
+  currentNonProfit: number;
+  onCurrentNonProfitChange: (index: number) => void;
 };
 
 function NonProfitsList({
@@ -33,6 +35,8 @@ function NonProfitsList({
   setConfirmModalVisible,
   canDonate,
   integration,
+  currentNonProfit,
+  onCurrentNonProfitChange,
 }: Props): JSX.Element {
   const { state } = useLocation<LocationStateType>();
 
@@ -100,11 +104,16 @@ function NonProfitsList({
 
   return (
     <S.NonProfitsListContainer>
-      <SliderCards scrollOffset={400}>
-        {nonProfits.map((nonProfit, idx) => (
-          <S.CausesCardContainer key={idx.toString()}>
+      <SliderCardsEnhanced
+        currentSlide={currentNonProfit}
+        onCurrentSlideChange={onCurrentNonProfitChange}
+        saveStateIdentifier="nonProfitsList"
+        loop
+      >
+        {nonProfits.map((nonProfit: any, idx: number) => (
+          <S.CardWrapper key={idx.toString()}>
             <CardCenterImageButton
-              image={nonProfit.mainImage}
+              image={nonProfit.mainImage || nonProfit.cause?.mainImage}
               title={`${t("impactPrefix")} ${nonProfit.impactByTicket} ${
                 nonProfit.impactDescription
               }`}
@@ -118,10 +127,11 @@ function NonProfitsList({
               softDisabled={!canDonateAndHasVoucher}
               infoTextLeft={nonProfit.name}
               infoTextRight={nonProfit.cause?.name}
+              fullWidth
             />
-          </S.CausesCardContainer>
+          </S.CardWrapper>
         ))}
-      </SliderCards>
+      </SliderCardsEnhanced>
     </S.NonProfitsListContainer>
   );
 }

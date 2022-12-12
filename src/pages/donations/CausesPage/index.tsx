@@ -152,6 +152,7 @@ function CausesPage(): JSX.Element {
 
   const handleCauseChanged = (_element: any, index: number, event: any) => {
     setSelectedButtonIndex(index);
+    if (activeCauses) setCurrentCauseId(activeCauses[index]?.id);
 
     if (_element && event?.type === "click") {
       const causeId = _element?.id;
@@ -168,16 +169,26 @@ function CausesPage(): JSX.Element {
   useEffect(() => {
     if (nonProfits && nonProfits[currentNonProfitIndex]) {
       const currentNonProfit = nonProfits[currentNonProfitIndex];
-      const currentCause = causesFilter()[selectedButtonIndex];
+      const currentCause = activeCauses[selectedButtonIndex];
 
       if (currentNonProfit?.cause.id !== currentCause?.id) {
-        const newCauseIndex = causesFilter().findIndex(
+        const newCauseIndex = activeCauses.findIndex(
           (cause) => cause.id === currentNonProfit.cause.id,
         );
         setSelectedButtonIndex(newCauseIndex);
       }
     }
   }, [currentNonProfitIndex]);
+
+  useEffect(() => {
+    if (nonProfits && currentCauseId) {
+      const nonProfitIndex = nonProfits.findIndex(
+        (nonProfit) => nonProfit?.cause?.id === currentCauseId,
+      );
+      if (currentCauseId !== nonProfits[currentNonProfitIndex]?.cause?.id)
+        setCurrentNonProfitIndex(nonProfitIndex);
+    }
+  }, [currentCauseId]);
 
   return (
     <S.Container>

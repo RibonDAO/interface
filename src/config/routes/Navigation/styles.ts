@@ -43,8 +43,13 @@ export const Title = styled.p`
     enabled ? theme.colors.gray40 : theme.colors.gray30};
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLinkContainer = styled.div`
   padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const StyledLink = styled(Link)`
   display: flex;
   flex-direction: column;
   gap: 2px;

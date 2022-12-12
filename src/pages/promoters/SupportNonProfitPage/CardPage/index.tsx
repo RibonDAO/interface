@@ -20,7 +20,7 @@ import NonProfitCard from "./NonProfitCard";
 function CardPage(): JSX.Element {
   const { navigateTo } = useNavigation();
   const [currentOffer, setCurrentOffer] = useState<Offer>(offerFactory());
-  const { cause, setCause, setOfferId } = useCardPaymentInformation();
+  const { cause, setCause, setOfferId, setFlow } = useCardPaymentInformation();
   const { nonProfits } = useNonProfits();
 
   const { causes } = useCauses();
@@ -33,8 +33,13 @@ function CardPage(): JSX.Element {
     logEvent("nonProfitSupportScreen_view");
   }, []);
 
+  const causesFilter = () => {
+    const causesApi = causes.filter((currentCause) => currentCause.active);
+    return causesApi || [];
+  };
+
   useEffect(() => {
-    setCause(causes[0]);
+    setCause(causesFilter()[0]);
   }, [JSON.stringify(causes)]);
 
   const handleCauseClick = (causeClicked: Cause) => {
@@ -45,11 +50,13 @@ function CardPage(): JSX.Element {
   };
 
   const handleDonateClick = (nonProfit: NonProfit) => {
+    setFlow("nonProfit");
     logEvent("nonProfitComCicleBtn_click");
     navigateTo({
       pathname: "/promoters/payment",
       state: {
         offer: currentOffer,
+        flow: "nonProfit",
         cause,
         nonProfit,
       },
@@ -71,25 +78,27 @@ function CardPage(): JSX.Element {
     <S.Container>
       <S.Title>{t("title")}</S.Title>
       <GroupButtons
-        elements={causes}
+        elements={causesFilter()}
         onChange={handleCauseClick}
         nameExtractor={(element) => element.name}
-        backgroundColor={theme.colors.orange40}
-        textColorOutline={theme.colors.orange40}
-        borderColor={theme.colors.orange40}
-        borderColorOutline={theme.colors.orange20}
+        backgroundColor={theme.colors.red40}
+        textColorOutline={theme.colors.red40}
+        borderColor={theme.colors.red40}
+        borderColorOutline={theme.colors.red20}
       />
-      <SliderCards scrollOffset={400}>
-        {filteredNonProfits().map((nonProfit) => (
-          <Fragment key={nonProfit.id}>
-            <NonProfitCard
-              nonProfit={nonProfit}
-              handleOfferChange={handleOfferChange}
-              handleDonate={() => handleDonateClick(nonProfit)}
-            />
-          </Fragment>
-        ))}
-      </SliderCards>
+      <S.NonProfitsListContainer>
+        <SliderCards scrollOffset={400} color={theme.colors.red30}>
+          {filteredNonProfits().map((nonProfit) => (
+            <Fragment key={nonProfit.id}>
+              <NonProfitCard
+                nonProfit={nonProfit}
+                handleOfferChange={handleOfferChange}
+                handleDonate={() => handleDonateClick(nonProfit)}
+              />
+            </Fragment>
+          ))}
+        </SliderCards>
+      </S.NonProfitsListContainer>
 
       <UserSupportSection />
       <S.BackgroundImage src={IntersectBackground} />

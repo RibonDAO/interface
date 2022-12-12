@@ -1,8 +1,15 @@
 import styled from "styled-components";
 
-export const PaymentInformationSectionContainer = styled.div`
+export const PaymentInformationSectionContainer = styled.div<{
+  colorTheme: any;
+}>`
   height: 256px;
   margin-top: 18px;
+
+  * > input {
+    border: 1px solid ${({ colorTheme }) => colorTheme.shade40} !important;
+    color: ${({ colorTheme }) => colorTheme.shade20} !important;
+  }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     height: auto;

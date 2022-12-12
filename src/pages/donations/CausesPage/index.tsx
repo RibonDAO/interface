@@ -30,6 +30,8 @@ import ChooseCauseModal from "./ChooseCauseModal";
 
 function CausesPage(): JSX.Element {
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
+  const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
+  const [currentNonProfitIndex, setCurrentNonProfitIndex] = useState(0);
   const [donationInProcessModalVisible, setDonationInProcessModalVisible] =
     useState(false);
   const [chosenNonProfit, setChosenNonProfit] = useState<NonProfit>();
@@ -52,7 +54,7 @@ function CausesPage(): JSX.Element {
       type: MODAL_TYPES.MODAL_ERROR,
       props: {
         title: t("errorModalTitle"),
-        body: t("errorModalText"),
+        body: state?.message || t("errorModalText"),
         buttonText: t("errorModalButtonText"),
         onClose: () => closeWarningModal(),
         warning: true,
@@ -142,18 +144,40 @@ function CausesPage(): JSX.Element {
   );
 
   const nonProfitsFilter = () => {
-    const nonProfitsFiltered = nonProfits?.filter(
-      (nonProfit) => nonProfit?.cause?.id === currentCauseId,
+    const nonProfitsApi = nonProfits?.filter(
+      (nonProfit) => nonProfit.cause?.active,
     );
-    if (nonProfitsFiltered?.length === 0) {
-      return nonProfits || [];
-    }
-    return nonProfitsFiltered || [];
+    return nonProfitsApi || [];
   };
 
-  const handleCauseChanged = (cause: any) => {
-    setCurrentCauseId(cause.id);
+  const handleCauseChanged = (_element: any, index: number, event: any) => {
+    setSelectedButtonIndex(index);
+
+    if (_element && event?.type === "click") {
+      const causeId = _element?.id;
+
+      if (nonProfits && causeId) {
+        const nonProfitIndex = nonProfits.findIndex(
+          (nonProfit) => nonProfit?.cause?.id === causeId,
+        );
+        setCurrentNonProfitIndex(nonProfitIndex);
+      }
+    }
   };
+
+  useEffect(() => {
+    if (nonProfits && nonProfits[currentNonProfitIndex]) {
+      const currentNonProfit = nonProfits[currentNonProfitIndex];
+      const currentCause = causesFilter()[selectedButtonIndex];
+
+      if (currentNonProfit?.cause.id !== currentCause?.id) {
+        const newCauseIndex = causesFilter().findIndex(
+          (cause) => cause.id === currentNonProfit.cause.id,
+        );
+        setSelectedButtonIndex(newCauseIndex);
+      }
+    }
+  }, [currentNonProfitIndex]);
 
   return (
     <S.Container>
@@ -176,6 +200,7 @@ function CausesPage(): JSX.Element {
         {!isFirstAccess(signedIn) && (
           <GroupButtons
             elements={activeCauses}
+            indexSelected={selectedButtonIndex}
             onChange={handleCauseChanged}
             nameExtractor={(cause) => cause.name}
           />
@@ -191,6 +216,8 @@ function CausesPage(): JSX.Element {
                 setConfirmModalVisible={setConfirmModalVisible}
                 canDonate={canDonate}
                 integration={integration}
+                currentNonProfit={currentNonProfitIndex}
+                onCurrentNonProfitChange={setCurrentNonProfitIndex}
               />
             </S.NonProfitsContainer>
           )

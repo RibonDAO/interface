@@ -53,12 +53,12 @@ export const Icon = styled.img<{ position: number; isStatic: boolean }>`
 `;
 
 export const Diamond = styled.div<{ backgroundImage: string }>`
-  width: 140px;
-  height: 140px;
+  width: 38%;
+  height: 38%;
   border-radius: 10px;
   position: absolute;
-  top: 28.7%;
-  left: 29%;
+  top: 31%;
+  left: 31%;
   z-index: 1;
   overflow: hidden;
   background: transparent;

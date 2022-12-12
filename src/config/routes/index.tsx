@@ -19,10 +19,10 @@ import CardPaymentInformationProvider from "contexts/cardPaymentInformationConte
 import NetworkProvider from "contexts/networkContext";
 import CausesProvider from "contexts/causesContext";
 import CommunityAddPage from "pages/promoters/SupportCausePage/CommunityAddPage";
-import PaymentPage from "pages/promoters/SupportCausePage/CardPage/PaymentPage";
+import PostDonationPage from "pages/donations/PostDonationPage";
 import CryptoPaymentProvider from "contexts/cryptoPaymentContext";
 import SupportNonProfitPage from "pages/promoters/SupportNonProfitPage";
-import PromotersPaymentPage from "pages/promoters/PaymentPage";
+import PaymentPage from "pages/promoters/PaymentPage";
 import Navigation from "./Navigation";
 
 function RoutesComponent(): JSX.Element {
@@ -62,6 +62,12 @@ function RoutesComponent(): JSX.Element {
       <Route path="/donation-done-cause" exact>
         <Suspense fallback={<div />}>
           <DonationDoneCausePage />
+        </Suspense>
+      </Route>
+
+      <Route path="/post-donation" exact>
+        <Suspense fallback={<div />}>
+          <PostDonationPage />
         </Suspense>
       </Route>
 
@@ -163,20 +169,6 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
-      <Route path="/promoters/support-cause/payment" exact>
-        <Suspense fallback={<div />}>
-          <NetworkProvider>
-            <WalletProvider>
-              <WalletLayout hideNavigation>
-                <CardPaymentInformationProvider>
-                  <PaymentPage />
-                </CardPaymentInformationProvider>
-              </WalletLayout>
-            </WalletProvider>
-          </NetworkProvider>
-        </Suspense>
-      </Route>
-
       <Route path="/promoters/support-non-profit" exact>
         <Suspense fallback={<div />}>
           <NetworkProvider>
@@ -199,7 +191,7 @@ function RoutesComponent(): JSX.Element {
             <WalletProvider>
               <WalletLayout hideNavigation>
                 <CardPaymentInformationProvider>
-                  <PromotersPaymentPage />
+                  <PaymentPage />
                 </CardPaymentInformationProvider>
               </WalletLayout>
             </WalletProvider>

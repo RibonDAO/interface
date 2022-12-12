@@ -60,14 +60,20 @@ function ConfirmSection({
         );
         destroyVoucher();
         navigateTo({
-          pathname: "/donation-done",
-          state: { nonProfit: chosenNonProfit },
+          pathname: "/donation-done-cause",
+          state: {
+            cause: chosenNonProfit.cause,
+            nonProfit: chosenNonProfit,
+            flow: "cause",
+          },
         });
       } catch (e: any) {
-        const newState =
-          e.response.status === 403
-            ? { blockedDonation: true }
-            : { failedDonation: true };
+        const failedKey =
+          e.response.status === 403 ? "blockedDonation" : "failedDonation";
+        const newState = {
+          [failedKey]: true,
+          message: e.response.data?.formatted_message,
+        };
         navigateTo({ pathname: "/", state: newState });
         window.location.reload();
         logError(e);

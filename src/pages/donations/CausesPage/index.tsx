@@ -39,7 +39,6 @@ function CausesPage(): JSX.Element {
   const {
     activeCauses,
     chooseCauseModalVisible,
-    setSelectedCauseIndex,
     currentCauseId,
     setCurrentCauseId,
   } = useCausesContext();
@@ -117,11 +116,11 @@ function CausesPage(): JSX.Element {
     if (state?.failedDonation) logEvent("donateDonationError_view");
   }, []);
 
-  useEffect(() => {
-    if (currentCauseId !== -1) {
-      setSelectedCauseIndex(currentCauseId);
-    }
-  }, [currentCauseId]);
+  // useEffect(() => {
+  //   if (currentCauseId !== -1) {
+  //     seetSelectedCauseIndex(currentCauseId);
+  //   }
+  // }, [currentCauseId]);
 
   const closeConfirmModal = useCallback(() => {
     setConfirmModalVisible(false);

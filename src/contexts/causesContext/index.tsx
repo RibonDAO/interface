@@ -15,8 +15,6 @@ export interface ICausesContext {
   chosenCause: Cause | undefined;
   chooseCauseModalVisible: boolean;
   setChooseCauseModalVisible: (visible: SetStateAction<boolean>) => void;
-  selectedCauseIndex: number;
-  setSelectedCauseIndex: (index: SetStateAction<number>) => void;
   currentCauseId: number;
   setCurrentCauseId: (id: SetStateAction<number>) => void;
   refetch: () => void;
@@ -31,7 +29,6 @@ function CausesProvider({ children }: any) {
   const { causes, refetch } = useCauses();
   const [activeCauses, setActiveCauses] = useState<Cause[]>([]);
   const [chooseCauseModalVisible, setChooseCauseModalVisible] = useState(false);
-  const [selectedCauseIndex, setSelectedCauseIndex] = useState(0);
   const [currentCauseId, setCurrentCauseId] = useState(
     causeWasNotSelectedByModal,
   );
@@ -51,18 +48,10 @@ function CausesProvider({ children }: any) {
       chooseCauseModalVisible,
       setChooseCauseModalVisible,
       activeCauses,
-      selectedCauseIndex,
-      setSelectedCauseIndex,
       currentCauseId,
       setCurrentCauseId,
     }),
-    [
-      causes,
-      chooseCauseModalVisible,
-      activeCauses,
-      selectedCauseIndex,
-      currentCauseId,
-    ],
+    [causes, chooseCauseModalVisible, activeCauses, currentCauseId],
   );
 
   return (

@@ -1,8 +1,6 @@
 import styled from "styled-components";
-import {
-  defaultSubtitleLarge,
-  defaultSubtitleSmall,
-} from "styles/typography/default";
+import { defaultSubtitleSmall } from "styles/typography/default";
+import { stylizedTitleLarge } from "styles/typography/stylized";
 import { Modal } from "../ModalBlank/styles";
 
 export const ModalWithIcon = styled(Modal)`
@@ -38,7 +36,7 @@ type TitleProps = {
 };
 
 export const Title = styled.h3<TitleProps>`
-  ${defaultSubtitleLarge}
+  ${stylizedTitleLarge}
 
   margin-top: -16px;
   text-align: center;
@@ -61,6 +59,7 @@ export const RowsModalSection = styled.div`
   padding: 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 export const RowsModalRow = styled.div`

@@ -138,3 +138,8 @@ export const defaultComponentTextSmall = css`
   font-size: 12px;
   line-height: 16px;
 `;
+
+export const boldParagraphMedium = css`
+  ${defaultParagraphMedium}
+  font-weight: 600;
+`;

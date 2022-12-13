@@ -6,6 +6,7 @@ import Ticket from "assets/icons/ticket-rounded-icon.svg";
 import SupportersIcon from "assets/icons/community-icon.svg";
 import UserIcon from "assets/icons/user-mono-icon.svg";
 import { logEvent } from "services/analytics";
+import { useCausesContext } from "contexts/causesContext";
 import { useModal } from "../useModal";
 
 export function useAnimationReceiveTicketModal(initialState?: boolean) {
@@ -14,6 +15,8 @@ export function useAnimationReceiveTicketModal(initialState?: boolean) {
   });
 
   const { createVoucher } = useVoucher();
+  const { chooseCauseModalVisible, setChooseCauseModalVisible } =
+    useCausesContext();
 
   const { show, hide } = useModal({
     type: MODAL_TYPES.MODAL_ANIMATION,
@@ -27,18 +30,23 @@ export function useAnimationReceiveTicketModal(initialState?: boolean) {
     },
   });
 
+  const hideAnimationReceiveTicketModal = () => {
+    hide();
+    setChooseCauseModalVisible(true);
+  };
+
   const showAnimationReceiveTicketModal = () => {
     show();
     setTimeout(() => {
       logEvent("dailyTicketDial_view");
       createVoucher();
-      hide();
+      hideAnimationReceiveTicketModal();
     }, 3000);
   };
 
   useEffect(() => {
     if (initialState) showAnimationReceiveTicketModal();
-  }, []);
+  }, [chooseCauseModalVisible]);
 
   return { showAnimationReceiveTicketModal };
 }

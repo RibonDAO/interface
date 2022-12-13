@@ -170,11 +170,11 @@ function CausesPage(): JSX.Element {
   };
 
   useEffect(() => {
-    if (!isLoading) {
+    if (nonProfits) {
       const currentCause = nonProfitsFilter()[currentNonProfitIndex]?.cause;
       if (currentCause) setCurrentCauseId(currentCause.id);
     }
-  }, [isLoading, currentNonProfitIndex]);
+  }, [nonProfits, currentNonProfitIndex]);
 
   useEffect(() => {
     if (currentCauseId >= 0 && activeCauses) {

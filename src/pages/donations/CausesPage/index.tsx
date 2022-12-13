@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "services/analytics";
 import NonProfit from "types/entities/NonProfit";
@@ -66,6 +66,8 @@ function CausesPage(): JSX.Element {
   const hasNotSeenDonationModal = !getLocalStorageItem(
     DONATION_MODAL_SEEN_AT_KEY,
   );
+
+  const hasSeenChooseCauseModal = useRef(false);
 
   const { nonProfits, isLoading } = useNonProfits();
   const { findOrCreateUser } = useUsers();
@@ -150,45 +152,47 @@ function CausesPage(): JSX.Element {
     return nonProfitsApi || [];
   };
 
+  const jumpFirstNonProfitByCauseId = (id: number) => {
+    const nonProfitIndex = nonProfitsFilter().findIndex(
+      (nonProfit) => nonProfit?.cause?.id === id,
+    );
+    setCurrentNonProfitIndex(nonProfitIndex);
+  };
+
   const handleCauseChanged = (_element: any, index: number, event: any) => {
-    setSelectedButtonIndex(index);
     if (activeCauses) setCurrentCauseId(activeCauses[index]?.id);
 
     if (_element && event?.type === "click") {
       const causeId = _element?.id;
 
-      if (nonProfits && causeId) {
-        const nonProfitIndex = nonProfits.findIndex(
-          (nonProfit) => nonProfit?.cause?.id === causeId,
-        );
-        setCurrentNonProfitIndex(nonProfitIndex);
-      }
+      if (nonProfits && causeId) jumpFirstNonProfitByCauseId(Number(causeId));
     }
   };
 
   useEffect(() => {
-    if (nonProfits && nonProfits[currentNonProfitIndex]) {
-      const currentNonProfit = nonProfits[currentNonProfitIndex];
-      const currentCause = activeCauses[selectedButtonIndex];
-
-      if (currentNonProfit?.cause.id !== currentCause?.id) {
-        const newCauseIndex = activeCauses.findIndex(
-          (cause) => cause.id === currentNonProfit.cause.id,
-        );
-        setSelectedButtonIndex(newCauseIndex);
-      }
-    }
+    const currentCause = nonProfitsFilter()[currentNonProfitIndex]?.cause;
+    if (currentCause) setCurrentCauseId(currentCause.id);
   }, [currentNonProfitIndex]);
 
   useEffect(() => {
-    if (nonProfits && currentCauseId) {
-      const nonProfitIndex = nonProfits.findIndex(
-        (nonProfit) => nonProfit?.cause?.id === currentCauseId,
+    if (currentCauseId >= 0 && activeCauses) {
+      const causeIndex = activeCauses.findIndex(
+        (cause) => cause.id === currentCauseId,
       );
-      if (currentCauseId !== nonProfits[currentNonProfitIndex]?.cause?.id)
-        setCurrentNonProfitIndex(nonProfitIndex);
+      setSelectedButtonIndex(causeIndex);
     }
-  }, [currentCauseId]);
+  }, [currentCauseId, activeCauses]);
+
+  useEffect(() => {
+    if (chooseCauseModalVisible && !hasSeenChooseCauseModal.current) {
+      hasSeenChooseCauseModal.current = true;
+    } else if (!chooseCauseModalVisible && hasSeenChooseCauseModal.current) {
+      hasSeenChooseCauseModal.current = false;
+
+      if (isFirstAccess(signedIn) && nonProfits)
+        jumpFirstNonProfitByCauseId(Number(currentCauseId));
+    }
+  }, [chooseCauseModalVisible]);
 
   return (
     <S.Container>

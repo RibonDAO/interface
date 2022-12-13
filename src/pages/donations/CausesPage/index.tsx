@@ -152,18 +152,20 @@ function CausesPage(): JSX.Element {
     return nonProfitsApi || [];
   };
 
+  const jumpFirstNonProfitByCauseId = (id: number) => {
+    const nonProfitIndex = nonProfitsFilter().findIndex(
+      (nonProfit) => nonProfit?.cause?.id === id,
+    );
+    setCurrentNonProfitIndex(nonProfitIndex);
+  };
+
   const handleCauseChanged = (_element: any, index: number, event: any) => {
     if (activeCauses) setCurrentCauseId(activeCauses[index]?.id);
 
     if (_element && event?.type === "click") {
       const causeId = _element?.id;
 
-      if (nonProfits && causeId) {
-        const nonProfitIndex = nonProfits.findIndex(
-          (nonProfit) => nonProfit?.cause?.id === causeId,
-        );
-        setCurrentNonProfitIndex(nonProfitIndex);
-      }
+      if (nonProfits && causeId) jumpFirstNonProfitByCauseId(Number(causeId));
     }
   };
 
@@ -189,13 +191,8 @@ function CausesPage(): JSX.Element {
     } else if (!chooseCauseModalVisible && hasSeenChooseCauseModal.current) {
       hasSeenChooseCauseModal.current = false;
 
-      if (isFirstAccess(signedIn) && nonProfits) {
-        const nonProfitIndex = nonProfitsFilter().findIndex(
-          (nonProfit) => nonProfit?.cause?.id === currentCauseId,
-        );
-
-        setCurrentNonProfitIndex(nonProfitIndex);
-      }
+      if (isFirstAccess(signedIn) && nonProfits)
+        jumpFirstNonProfitByCauseId(Number(currentCauseId));
     }
   }, [chooseCauseModalVisible]);
 

@@ -4,8 +4,9 @@ import CardCroppedImage from ".";
 
 describe("CardCroppedImage", () => {
   it("should render without error", () => {
-    renderComponent(<CardCroppedImage />);
+    renderComponent(<CardCroppedImage mainText="test-main" secondaryText="test-secondary" />);
 
-    expectTextToBeInTheDocument("CardCroppedImage");
+    expectTextToBeInTheDocument("test-main");
+    expectTextToBeInTheDocument("test-secondary");
   });
 });

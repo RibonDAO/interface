@@ -160,11 +160,8 @@ function CausesPage(): JSX.Element {
   };
 
   const handleCauseChanged = (_element: any, index: number, event: any) => {
-    if (activeCauses) setCurrentCauseId(activeCauses[index]?.id);
-
     if (_element && event?.type === "click") {
       const causeId = _element?.id;
-
       if (nonProfits && causeId) jumpFirstNonProfitByCauseId(Number(causeId));
     }
   };
@@ -189,7 +186,10 @@ function CausesPage(): JSX.Element {
           (cause) => cause.id === currentCause.id,
         );
 
-        if (currentCauseIndex >= 0) setSelectedButtonIndex(currentCauseIndex);
+        if (currentCauseIndex >= 0) {
+          setSelectedButtonIndex(currentCauseIndex);
+          setCurrentCauseId(currentCause.id);
+        }
       }
     }
   }, [currentNonProfitIndex, isLoading, activeCauses]);

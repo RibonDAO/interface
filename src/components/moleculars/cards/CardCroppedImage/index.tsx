@@ -6,7 +6,11 @@ export type Props = {
   image?: string;
 };
 
-function CardCroppedImage({ mainText, secondaryText, image }: Props): JSX.Element {
+function CardCroppedImage({
+  mainText,
+  secondaryText,
+  image,
+}: Props): JSX.Element {
   return (
     <S.Container>
       <S.SupportImage src={image} />

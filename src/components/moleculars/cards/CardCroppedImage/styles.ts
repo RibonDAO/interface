@@ -5,8 +5,8 @@ import { defaultSubtitleMedium } from "styles/typography/default";
 export const Container = styled.div`
   border-radius: 16px;
   background: ${({ theme }) => theme.colors.neutral10};
-  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};
   display: flex;
+  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -32,5 +32,6 @@ export const MainText = styled.h1`
 
 export const SubText = styled.h2`
   ${defaultSubtitleMedium}
+  
   color: ${({ theme }) => theme.colors.gray30};
 `;

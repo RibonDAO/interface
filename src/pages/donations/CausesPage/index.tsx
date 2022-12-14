@@ -156,7 +156,7 @@ function CausesPage(): JSX.Element {
     const nonProfitIndex = nonProfitsFilter().findIndex(
       (nonProfit) => nonProfit?.cause?.id === id,
     );
-    setCurrentNonProfitIndex(nonProfitIndex);
+    if (nonProfitIndex >= 0) setCurrentNonProfitIndex(nonProfitIndex);
   };
 
   const handleCauseChanged = (_element: any, index: number, event: any) => {
@@ -170,18 +170,18 @@ function CausesPage(): JSX.Element {
   };
 
   useEffect(() => {
-    if (activeCauses && !isLoading) {
+    if (activeCauses && !isLoading && currentNonProfitIndex >= 0) {
       const currentCause = nonProfitsFilter()[currentNonProfitIndex]?.cause;
       if (currentCause) setCurrentCauseId(currentCause.id);
     }
   }, [activeCauses, isLoading, currentNonProfitIndex]);
 
   useEffect(() => {
-    if (currentCauseId >= 0 && activeCauses) {
+    if (currentCauseId >= 0 && activeCauses && activeCauses.length > 0) {
       const causeIndex = activeCauses.findIndex(
         (cause) => cause.id === currentCauseId,
       );
-      setSelectedButtonIndex(causeIndex);
+      if (causeIndex >= 0) setSelectedButtonIndex(causeIndex);
     }
   }, [currentCauseId, activeCauses]);
 

@@ -74,7 +74,7 @@ function SupportCausePage(): JSX.Element {
   };
 
   const communityAddText = () => {
-    const PERCENTAGE_OF_INCREASE = 0.6;
+    const PERCENTAGE_OF_INCREASE = 0.2;
 
     return `+ ${formatPrice(
       currentOffer.priceValue * PERCENTAGE_OF_INCREASE,

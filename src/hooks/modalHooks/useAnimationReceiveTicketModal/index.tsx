@@ -7,6 +7,8 @@ import SupportersIcon from "assets/icons/community-icon.svg";
 import UserIcon from "assets/icons/user-mono-icon.svg";
 import { logEvent } from "services/analytics";
 import { useCausesContext } from "contexts/causesContext";
+import { useCurrentUser } from "contexts/currentUserContext";
+import { isFirstAccess } from "lib/onboardingFirstAccess";
 import { useModal } from "../useModal";
 
 export function useAnimationReceiveTicketModal(initialState?: boolean) {
@@ -15,6 +17,7 @@ export function useAnimationReceiveTicketModal(initialState?: boolean) {
   });
 
   const { createVoucher } = useVoucher();
+  const { signedIn } = useCurrentUser();
   const { chooseCauseModalVisible, setChooseCauseModalVisible } =
     useCausesContext();
 
@@ -32,7 +35,7 @@ export function useAnimationReceiveTicketModal(initialState?: boolean) {
 
   const hideAnimationReceiveTicketModal = () => {
     hide();
-    setChooseCauseModalVisible(true);
+    if (isFirstAccess(signedIn)) setChooseCauseModalVisible(true);
   };
 
   const showAnimationReceiveTicketModal = () => {

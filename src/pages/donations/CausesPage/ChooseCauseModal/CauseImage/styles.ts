@@ -10,6 +10,8 @@ export const Container = styled.div`
   &:first-child {
     margin-top: 16px;
   }
+
+  cursor: pointer;
 `;
 
 export const ImageContainer = styled.img`

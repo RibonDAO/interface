@@ -13,9 +13,14 @@ import theme from "styles/theme";
 import useNonProfits from "hooks/apiHooks/useNonProfits";
 import SliderCards from "components/moleculars/sliders/SliderCards";
 import NonProfit from "types/entities/NonProfit";
+import { useLocation } from "react-router-dom";
 import * as S from "../styles";
 import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
 import NonProfitCard from "./NonProfitCard";
+
+type LocationStateType = {
+  causeDonated?: Cause;
+};
 
 function CardPage(): JSX.Element {
   const { navigateTo } = useNavigation();
@@ -24,6 +29,7 @@ function CardPage(): JSX.Element {
   const { nonProfits } = useNonProfits();
 
   const { causes } = useCauses();
+  const { state } = useLocation<LocationStateType>();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportNonProfitPage",
@@ -33,14 +39,14 @@ function CardPage(): JSX.Element {
     logEvent("nonProfitSupportScreen_view");
   }, []);
 
+  useEffect(() => {
+    setCause(state?.causeDonated || causes[0]);
+  }, []);
+
   const causesFilter = () => {
     const causesApi = causes.filter((currentCause) => currentCause.active);
     return causesApi || [];
   };
-
-  useEffect(() => {
-    setCause(causesFilter()[0]);
-  }, [JSON.stringify(causes)]);
 
   const handleCauseClick = (causeClicked: Cause) => {
     logEvent("nonProfitCauseSelection_click", {
@@ -74,12 +80,18 @@ function CardPage(): JSX.Element {
     [cause, nonProfits],
   );
 
+  const preSelectedIndex = () =>
+    state?.causeDonated
+      ? causesFilter().findIndex((c) => c.id === state?.causeDonated?.id)
+      : 0;
+
   return (
     <S.Container>
       <S.Title>{t("title")}</S.Title>
       <GroupButtons
         elements={causesFilter()}
         onChange={handleCauseClick}
+        indexSelected={preSelectedIndex()}
         nameExtractor={(element) => element.name}
         backgroundColor={theme.colors.red40}
         textColorOutline={theme.colors.red40}

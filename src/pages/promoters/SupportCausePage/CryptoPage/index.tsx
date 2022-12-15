@@ -90,6 +90,11 @@ function CryptoPage(): JSX.Element {
     });
   };
 
+  const causesFilter = () => {
+    const causesApi = causes.filter((currentCause) => currentCause.active);
+    return causesApi || [];
+  };
+
   const handleDonateClick = async () => {
     if (wallet) {
       await handleDonationToContract(onDonationToContractSuccess);
@@ -124,14 +129,14 @@ function CryptoPage(): JSX.Element {
 
   const preSelectedIndex = () =>
     state?.causeDonated
-      ? causes.findIndex((c) => c.id === state?.causeDonated?.id)
+      ? causesFilter().findIndex((c) => c.id === state?.causeDonated?.id)
       : 0;
 
   return (
     <S.Container>
       <S.Title>{t("title")}</S.Title>
       <GroupButtons
-        elements={causes}
+        elements={causesFilter()}
         onChange={handleCauseClick}
         indexSelected={preSelectedIndex()}
         nameExtractor={(element) => element.name}

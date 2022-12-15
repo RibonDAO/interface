@@ -44,6 +44,11 @@ function SupportCausePage(): JSX.Element {
     setCause(state?.causeDonated || causes[0]);
   }, []);
 
+  const causesFilter = () => {
+    const causesApi = causes.filter((currentCause) => currentCause.active);
+    return causesApi || [];
+  };
+
   const handleCauseClick = (causeClicked: Cause) => {
     logEvent("treasureCauseSelection_click", {
       id: causeClicked?.id,
@@ -89,14 +94,14 @@ function SupportCausePage(): JSX.Element {
 
   const preSelectedIndex = () =>
     state?.causeDonated
-      ? causes.findIndex((c) => c.id === state?.causeDonated?.id)
+      ? causesFilter().findIndex((c) => c.id === state?.causeDonated?.id)
       : 0;
 
   return (
     <S.Container>
       <S.Title>{t("title")}</S.Title>
       <GroupButtons
-        elements={causes}
+        elements={causesFilter()}
         onChange={handleCauseClick}
         indexSelected={preSelectedIndex()}
         nameExtractor={(element) => element.name}

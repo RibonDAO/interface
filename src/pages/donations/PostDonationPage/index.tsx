@@ -33,12 +33,18 @@ function PostDonationPage(): JSX.Element {
   const handleDonateWithCommunityClick = () => {
     navigateTo({
       pathname: "/promoters/support-cause",
+      state: {
+        causeDonated: nonProfit.cause,
+      },
     });
   };
 
   const handleDonateDirectlyClick = () => {
     navigateTo({
       pathname: "/promoters/support-non-profit",
+      state: {
+        causeDonated: nonProfit.cause,
+      },
     });
   };
 

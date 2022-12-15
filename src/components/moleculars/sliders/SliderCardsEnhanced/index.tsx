@@ -15,6 +15,8 @@ export type Props = {
 
 const SAVE_STATE_PREFIX = "slider-cards-enhanced";
 
+const MINIMUM_SLIDES_TO_LOOP = 5;
+
 export default function SliderCardsEnhanced({
   loop = false,
   currentSlide,
@@ -88,17 +90,33 @@ export default function SliderCardsEnhanced({
     [],
   );
 
+  const renderSlides = () => {
+    let elements = children;
+
+    while (elements.length < MINIMUM_SLIDES_TO_LOOP) {
+      elements = [...elements, ...children];
+    }
+
+    const slides = elements.flat().map(
+      (component: any, idx: number) =>
+        component && (
+          <div className="keen-slider__slide" key={idx.toString()}>
+            {component}
+          </div>
+        ),
+    );
+
+    return slides;
+  };
+
   return (
     <S.NavigationWrapper>
-      <div ref={sliderRef} className="keen-slider">
-        {children.flat().map(
-          (component: any, idx: number) =>
-            component && (
-              <div className="keen-slider__slide" key={idx.toString()}>
-                {component}
-              </div>
-            ),
-        )}
+      <div
+        ref={sliderRef}
+        className="keen-slider"
+        onDrag={(e) => e.preventDefault()}
+      >
+        {renderSlides()}
       </div>
       {loaded && instanceRef.current && (
         <>

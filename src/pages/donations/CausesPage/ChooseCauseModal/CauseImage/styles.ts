@@ -7,11 +7,11 @@ export const Container = styled.div`
   overflow: hidden;
   box-shadow: 0px 2px 8px rgba(40, 36, 28, 0.25);
 
+  cursor: pointer;
+
   &:first-child {
     margin-top: 16px;
   }
-
-  cursor: pointer;
 `;
 
 export const ImageContainer = styled.img`

@@ -16,15 +16,43 @@ describe("Causes", () => {
     active: true,
   });
 
-  const nonProfit1 = nonProfitFactory({
-    id: 1,
-    impactDescription: "days of impact",
-    impactByTicket: 2,
-    cause: cause1,
-  });
+  const nonProfits = [
+    nonProfitFactory({
+      id: 1,
+      impactDescription: "days of impact",
+      impactByTicket: 2,
+      cause: cause1,
+    }),
+    nonProfitFactory({
+      id: 2,
+      impactDescription: "days of impact",
+      impactByTicket: 3,
+      cause: cause1,
+    }),
+    nonProfitFactory({
+      id: 3,
+      impactDescription: "days of impact",
+      impactByTicket: 4,
+      cause: cause1,
+    }),
+    nonProfitFactory({
+      id: 4,
+      impactDescription: "days of impact",
+      impactByTicket: 5,
+      cause: cause1,
+    }),
+    nonProfitFactory({
+      id: 5,
+      impactDescription: "days of impact",
+      impactByTicket: 6,
+      cause: cause1,
+    }),
+  ];
+
   mockRequest("/api/v1/non_profits", {
-    payload: [nonProfit1],
+    payload: nonProfits,
   });
+
   mockRequest("/api/v1/causes", {
     payload: [cause1],
   });
@@ -43,9 +71,11 @@ describe("Causes", () => {
   });
 
   it("shows the non profit", () => {
-    expectTextToBeInTheDocument(
-      `Donate ${nonProfit1.impactByTicket} ${nonProfit1.impactDescription}`,
-    );
+    nonProfits.forEach((nonProfit) => {
+      expectTextToBeInTheDocument(
+        `Donate ${nonProfit.impactByTicket} ${nonProfit.impactDescription}`,
+      );
+    });
   });
 
   describe("when the page state is donationFailed", () => {

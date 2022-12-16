@@ -15,9 +15,9 @@ import { useCardPaymentInformation } from "contexts/cardPaymentInformationContex
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import theme from "styles/theme";
 import { useLocation } from "react-router-dom";
+import Intersection from "assets/images/intersection-image.svg";
 import * as S from "../styles";
 import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
-import SupportImage from "../assets/support-image.png";
 import SelectOfferSection from "./SelectOfferSection";
 
 type LocationStateType = {
@@ -40,14 +40,14 @@ function SupportCausePage(): JSX.Element {
     logEvent("treasureSupportScreen_view");
   }, []);
 
-  useEffect(() => {
-    setCause(state?.causeDonated || causes[0]);
-  }, []);
-
   const causesFilter = () => {
     const causesApi = causes.filter((currentCause) => currentCause.active);
     return causesApi || [];
   };
+
+  useEffect(() => {
+    setCause(state?.causeDonated || causesFilter()[0]);
+  }, []);
 
   const handleCauseClick = (causeClicked: Cause) => {
     logEvent("treasureCauseSelection_click", {
@@ -111,7 +111,9 @@ function SupportCausePage(): JSX.Element {
         borderColorOutline={theme.colors.orange20}
       />
       <S.ContentContainer>
-        <S.SupportImage src={SupportImage} />
+        <S.SupportImage src={cause?.coverImage} />
+        <S.Intersection src={Intersection} />
+
         <S.DonateContainer>
           <S.GivingContainer>
             <S.ContributionContainer>

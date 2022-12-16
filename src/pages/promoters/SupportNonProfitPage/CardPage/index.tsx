@@ -39,14 +39,14 @@ function CardPage(): JSX.Element {
     logEvent("nonProfitSupportScreen_view");
   }, []);
 
-  useEffect(() => {
-    setCause(state?.causeDonated || causes[0]);
-  }, []);
-
   const causesFilter = () => {
     const causesApi = causes.filter((currentCause) => currentCause.active);
     return causesApi || [];
   };
+
+  useEffect(() => {
+    setCause(state?.causeDonated || causesFilter()[0]);
+  }, [causes]);
 
   const handleCauseClick = (causeClicked: Cause) => {
     logEvent("nonProfitCauseSelection_click", {

@@ -9,7 +9,7 @@ import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
 import SupportCausePage from ".";
 
 const mockCause = causeFactory();
-const mockCause2 = causeFactory({ name: "💊 Health", id: 2 });
+const mockCause2 = causeFactory({ name: "💊 Health", id: 2, active: true });
 const mockNonProfit = nonProfitFactory({ cause: mockCause });
 const mockNonProfit2 = nonProfitFactory({
   cause: mockCause2,
@@ -61,9 +61,9 @@ describe("SupportCausePage", () => {
     });
 
     it("shows the non profits for that cause", () => {
-      clickOn(mockCause2.name);
+      clickOn(mockCause.name);
 
-      expectTextToBeInTheDocument(mockNonProfit2.name);
+      expectTextToBeInTheDocument(mockNonProfit.name);
     });
   });
 });

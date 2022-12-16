@@ -113,10 +113,20 @@ export const Title = styled.h1`
 
 export const SupportImage = styled.img`
   width: 100%;
-  margin-bottom: 24px;
+
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+`;
+
+export const Intersection = styled.img`
+  position: absolute;
+  z-index: 1;
+  transform: translate(0px, -100%);
 `;
 
 export const UserBalanceText = styled.p`

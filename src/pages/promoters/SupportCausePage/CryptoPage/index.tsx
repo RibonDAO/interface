@@ -36,7 +36,7 @@ function CryptoPage(): JSX.Element {
     tokenSymbol,
   } = useCryptoPayment();
   const { currentNetwork } = useNetworkContext();
-  const { causes } = useCauses();
+  const { causes, isLoading } = useCauses();
   const toast = useToast();
 
   const { state } = useLocation<LocationStateType>();
@@ -52,9 +52,16 @@ function CryptoPage(): JSX.Element {
     logEvent("causeSupportScreen_view");
   }, []);
 
+  const causesFilter = () => {
+    const causesApi = causes.filter((currentCause) => currentCause.active);
+    return causesApi || [];
+  };
+
   useEffect(() => {
-    setCause(state?.causeDonated || causes[0]);
-  }, []);
+    if (!isLoading) {
+      setCause(state?.causeDonated || causesFilter()[0]);
+    }
+  }, [isLoading]);
 
   const handleCauseClick = (causeClicked: Cause) => {
     logEvent("supportCauseSelection_click", {
@@ -88,11 +95,6 @@ function CryptoPage(): JSX.Element {
         processing: true,
       },
     });
-  };
-
-  const causesFilter = () => {
-    const causesApi = causes.filter((currentCause) => currentCause.active);
-    return causesApi || [];
   };
 
   const handleDonateClick = async () => {

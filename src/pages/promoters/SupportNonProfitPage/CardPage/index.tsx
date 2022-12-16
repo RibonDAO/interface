@@ -28,25 +28,27 @@ function CardPage(): JSX.Element {
   const { cause, setCause, setOfferId, setFlow } = useCardPaymentInformation();
   const { nonProfits } = useNonProfits();
 
-  const { causes } = useCauses();
+  const { causes, isLoading } = useCauses();
   const { state } = useLocation<LocationStateType>();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportNonProfitPage",
   });
 
+  const causesFilter = () => {
+    const causesApi = causes.filter((currentCause) => currentCause.active);
+    return causesApi || [];
+  };
+
   useEffect(() => {
     logEvent("nonProfitSupportScreen_view");
   }, []);
 
   useEffect(() => {
-    setCause(state?.causeDonated || causes[0]);
-  }, []);
-
-  const causesFilter = () => {
-    const causesApi = causes.filter((currentCause) => currentCause.active);
-    return causesApi || [];
-  };
+    if (!isLoading) {
+      setCause(state?.causeDonated || causesFilter()[0]);
+    }
+  }, [isLoading]);
 
   const handleCauseClick = (causeClicked: Cause) => {
     logEvent("nonProfitCauseSelection_click", {

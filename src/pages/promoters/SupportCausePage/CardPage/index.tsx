@@ -16,6 +16,7 @@ import GroupButtons from "components/moleculars/sections/GroupButtons";
 import theme from "styles/theme";
 import { useLocation } from "react-router-dom";
 import Intersection from "assets/images/intersection-image.svg";
+import SupportImage from "../assets/support-image.png";
 import * as S from "../styles";
 import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
 import SelectOfferSection from "./SelectOfferSection";
@@ -47,7 +48,7 @@ function SupportCausePage(): JSX.Element {
 
   useEffect(() => {
     setCause(state?.causeDonated || causesFilter()[0]);
-  }, []);
+  }, [causes]);
 
   const handleCauseClick = (causeClicked: Cause) => {
     logEvent("treasureCauseSelection_click", {
@@ -111,7 +112,7 @@ function SupportCausePage(): JSX.Element {
         borderColorOutline={theme.colors.orange20}
       />
       <S.ContentContainer>
-        <S.SupportImage src={cause?.coverImage} />
+        <S.SupportImage src={cause?.coverImage || SupportImage} />
         <S.Intersection src={Intersection} />
 
         <S.DonateContainer>

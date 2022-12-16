@@ -14,9 +14,10 @@ import { useNetworkContext } from "contexts/networkContext";
 import useToast from "hooks/useToast";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import theme from "styles/theme";
+import Intersection from "assets/images/intersection-image.svg";
+import SupportImage from "../assets/support-image.png";
 import * as S from "../styles";
 import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
-import SupportImage from "../assets/support-image.png";
 import SelectCryptoOfferSection from "./SelectCryptoOfferSection";
 
 type LocationStateType = {
@@ -52,9 +53,14 @@ function CryptoPage(): JSX.Element {
     logEvent("causeSupportScreen_view");
   }, []);
 
+  const causesFilter = () => {
+    const causesApi = causes.filter((currentCause) => currentCause.active);
+    return causesApi || [];
+  };
+
   useEffect(() => {
-    setCause(state?.causeDonated || causes[0]);
-  }, []);
+    setCause(state?.causeDonated || causesFilter()[0]);
+  }, [causes]);
 
   const handleCauseClick = (causeClicked: Cause) => {
     logEvent("supportCauseSelection_click", {
@@ -88,11 +94,6 @@ function CryptoPage(): JSX.Element {
         processing: true,
       },
     });
-  };
-
-  const causesFilter = () => {
-    const causesApi = causes.filter((currentCause) => currentCause.active);
-    return causesApi || [];
   };
 
   const handleDonateClick = async () => {
@@ -146,7 +147,8 @@ function CryptoPage(): JSX.Element {
         borderColorOutline={theme.colors.orange20}
       />
       <S.ContentContainer>
-        <S.SupportImage src={SupportImage} />
+        <S.SupportImage src={cause?.coverImage || SupportImage} />
+        <S.Intersection src={Intersection} />
         <S.DonateContainer>
           <S.GivingContainer>
             <S.ContributionContainer>

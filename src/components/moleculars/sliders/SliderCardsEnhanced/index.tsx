@@ -11,6 +11,7 @@ export type Props = {
   onCurrentSlideChange: (slide: number) => void;
   children: JSX.Element[];
   saveStateIdentifier?: string;
+  slideWidthOnDesktop?: number;
 };
 
 const SAVE_STATE_PREFIX = "slider-cards-enhanced";
@@ -23,16 +24,26 @@ export default function SliderCardsEnhanced({
   onCurrentSlideChange,
   children,
   saveStateIdentifier,
+  slideWidthOnDesktop = 287,
 }: Props) {
   const [loaded, setLoaded] = useState(false);
-  const { isPad, isMobile } = useBreakpoint();
+  const { isMobile } = useBreakpoint();
   const mounted = useRef(true);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  const calculateSlidesPerViewOnDesktop = () => {
+    if (wrapperRef.current) {
+      const wrapperWidth = wrapperRef.current.offsetWidth;
+      return wrapperWidth / slideWidthOnDesktop;
+    }
+
+    return 2.2;
+  };
 
   const getSlidesPerView = () => {
     if (isMobile) return 1.2;
-    if (isPad) return 2.2;
 
-    return 3;
+    return calculateSlidesPerViewOnDesktop();
   };
 
   const saveState = (s: KeenSliderInstance) => {
@@ -110,7 +121,7 @@ export default function SliderCardsEnhanced({
   };
 
   return (
-    <S.NavigationWrapper>
+    <S.NavigationWrapper ref={wrapperRef}>
       <div
         ref={sliderRef}
         className="keen-slider"

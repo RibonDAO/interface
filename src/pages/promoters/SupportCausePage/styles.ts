@@ -18,6 +18,8 @@ export const ContentContainer = styled.div`
   max-width: 472px;
   margin-top: 24px;
   border-radius: 8px;
+  overflow-x: hidden;
+  position: relative;
 `;
 
 export const DonateContainer = styled.div`

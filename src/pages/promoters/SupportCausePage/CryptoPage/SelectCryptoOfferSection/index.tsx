@@ -4,6 +4,9 @@ import { useTranslation } from "react-i18next";
 import Cause from "types/entities/Cause";
 import theme from "styles/theme";
 import { useCryptoPayment } from "contexts/cryptoPaymentContext";
+import { Currencies } from "types/enums/Currencies";
+import { useLocationSearch } from "hooks/useLocationSearch";
+import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import * as S from "./styles";
 
 const { orange30, orange40 } = theme.colors;
@@ -22,6 +25,8 @@ function SelectCryptoOfferSection({
   const [maxRange] = useState(values.length - 1);
   const [currentIndex, setCurrentIndex] = useState(0);
   const { tokenSymbol, amount, setAmount } = useCryptoPayment();
+  const { updateLocationSearch } = useLocationSearch();
+  const { setCurrentCoin } = useCardPaymentInformation();
 
   const currentValue = useCallback(() => values[currentIndex], [currentIndex]);
 
@@ -32,6 +37,13 @@ function SelectCryptoOfferSection({
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportCausePage.selectOfferSection",
   });
+
+  const onCurrencyChanged = (currency: Currencies) => {
+    if (currency !== tokenSymbol) {
+      setCurrentCoin(currency);
+      updateLocationSearch("payment_method", "card");
+    }
+  };
 
   return (
     <S.Container>
@@ -49,9 +61,9 @@ function SelectCryptoOfferSection({
         </S.ValueInputContainer>
         <S.CurrencySelectorContainer>
           <S.CurrencySelector
-            values={[tokenSymbol]}
+            values={[Currencies.BRL, Currencies.USD, tokenSymbol]}
             name="currency"
-            onOptionChanged={() => {}}
+            onOptionChanged={onCurrencyChanged}
             defaultValue={tokenSymbol}
             containerId="currencies-dropdown"
             customInputStyles={{

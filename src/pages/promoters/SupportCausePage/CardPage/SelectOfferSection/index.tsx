@@ -9,6 +9,7 @@ import { Currencies } from "types/enums/Currencies";
 import theme from "styles/theme";
 import { formatPrice } from "lib/formatters/currencyFormatter";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
+import { useLocationSearch } from "hooks/useLocationSearch";
 import * as S from "./styles";
 
 const { orange30, orange40 } = theme.colors;
@@ -22,6 +23,7 @@ const CURRENT_OFFER_INDEX_KEY = "CURRENT_OFFER_INDEX_KEY";
 
 function SelectOfferPage({ cause, onOfferChange }: Props): JSX.Element {
   const [maxRange, setMaxRange] = useState(0);
+  const { updateLocationSearch } = useLocationSearch();
 
   const defaultCurrentOfferIndex = () => {
     const localstorageIndex = getLocalStorageItem(CURRENT_OFFER_INDEX_KEY);
@@ -59,8 +61,12 @@ function SelectOfferPage({ cause, onOfferChange }: Props): JSX.Element {
   }, [currentOfferIndex]);
 
   const onCurrencyChanged = (currency: Currencies) => {
-    setCurrentCoin(currency);
-    setCurrentOfferIndex(0);
+    if (currency === Currencies.USDC) {
+      updateLocationSearch("payment_method", "crypto");
+    } else {
+      setCurrentCoin(currency);
+      setCurrentOfferIndex(0);
+    }
   };
 
   return (
@@ -76,7 +82,7 @@ function SelectOfferPage({ cause, onOfferChange }: Props): JSX.Element {
         </S.ValueText>
         <S.CurrencySelectorContainer>
           <S.CurrencySelector
-            values={[Currencies.BRL, Currencies.USD]}
+            values={[Currencies.BRL, Currencies.USD, Currencies.USDC]}
             name="currency"
             onOptionChanged={onCurrencyChanged}
             defaultValue={currentCoin}

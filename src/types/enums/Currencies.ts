@@ -4,4 +4,6 @@ export enum Currencies {
   USD = "USD",
   // eslint-disable-next-line no-unused-vars
   BRL = "BRL",
+  // eslint-disable-next-line no-unused-vars
+  USDC = "USDC",
 }

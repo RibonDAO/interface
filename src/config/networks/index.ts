@@ -1,7 +1,7 @@
 export const networks = [
   {
     chainName: "Polygon",
-    ribonContractAddress: "0x411DF13350D6aB065Fc2d1Fd026b6d7f4133e9Df",
+    ribonContractAddress: "0x4Ef236DA69ac23a9246cd1d8866264f1A95601C0",
     donationTokenContractAddress: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
     chainId: 137,
     rpcUrls: "https://rpc.ankr.com/polygon",
@@ -10,13 +10,13 @@ export const networks = [
     symbolName: "MATIC",
     currencyName: "Matic",
     blockExplorerUrls: "https://polygonscan.com/",
-    defaultPoolAddress: "0x841cad54aaeAdFc9191fb14EB09232af8E20be0F",
+    defaultPoolAddress: "0x1E7aF4A35E33E8CfA97e12237509623a8037632C",
     subgraphUrl:
       "https://api.thegraph.com/subgraphs/name/ribondao/subgraphribon",
   },
   {
     chainName: "Mumbai Testnet",
-    ribonContractAddress: "0xedb6c84d8e604e6d60ce607e92fd37f1a6774f7e",
+    ribonContractAddress: "0x348eA4886c5F0926d7A6Ad6C5CF6dFA4F88CA9Bf",
     donationTokenContractAddress: "0xfe4F5145f6e09952a5ba9e956ED0C25e3Fa4c7F1",
     chainId: 0x13881,
     rpcUrls: "https://rpc-mumbai.maticvigil.com",
@@ -25,7 +25,7 @@ export const networks = [
     symbolName: "MATIC",
     currencyName: "Matic",
     blockExplorerUrls: "https://mumbai.polygonscan.com/",
-    defaultPoolAddress: "0xA932851982118bd5Fa99E16B144afE4622eb2A49",
+    defaultPoolAddress: "0xDE5dD6864A8aE4e5D93E24e24Fee9D42320753B6",
     subgraphUrl:
       "https://api.thegraph.com/subgraphs/name/ribondao/ribonsubgraph",
   },

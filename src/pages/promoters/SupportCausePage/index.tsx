@@ -9,7 +9,6 @@ function SupportCausePage(): JSX.Element {
   const [currentSection, setCurrentSection] = useState(paymentMethod);
 
   useEffect(() => {
-    console.log(paymentMethod);
     setCurrentSection(paymentMethod);
   }, [paymentMethod]);
 

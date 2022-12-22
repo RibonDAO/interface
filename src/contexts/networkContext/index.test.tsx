@@ -29,7 +29,7 @@ describe("useNetwork", () => {
   describe("getCurrentNetwork", () => {
     const payload = {
       chainName: "Mumbai Testnet",
-      ribonContractAddress: "0xedb6c84d8e604e6d60ce607e92fd37f1a6774f7e",
+      ribonContractAddress: "0x348eA4886c5F0926d7A6Ad6C5CF6dFA4F88CA9Bf",
       donationTokenContractAddress:
         "0xfe4F5145f6e09952a5ba9e956ED0C25e3Fa4c7F1",
       chainId: 0x13881,
@@ -39,7 +39,7 @@ describe("useNetwork", () => {
       symbolName: "MATIC",
       currencyName: "Matic",
       blockExplorerUrls: "https://mumbai.polygonscan.com/",
-      defaultPoolAddress: "0xA932851982118bd5Fa99E16B144afE4622eb2A49",
+      defaultPoolAddress: "0xDE5dD6864A8aE4e5D93E24e24Fee9D42320753B6",
       subgraphUrl:
         "https://api.thegraph.com/subgraphs/name/ribondao/ribonsubgraph",
     };

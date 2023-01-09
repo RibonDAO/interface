@@ -85,12 +85,13 @@ function CryptoPage(): JSX.Element {
     });
 
     navigateTo({
-      pathname: "/donation-done",
+      pathname: "/donation-done-cause",
       state: {
         hasButton: true,
         id: hash,
         timestamp,
         amountDonated,
+        cause,
         processing: true,
       },
     });

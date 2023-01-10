@@ -9,9 +9,6 @@ import { useLocation } from "react-router-dom";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import { useWalletContext } from "contexts/walletContext";
 import { useCryptoPayment } from "contexts/cryptoPaymentContext";
-import { BigNumber } from "ethers";
-import { useNetworkContext } from "contexts/networkContext";
-import useToast from "hooks/useToast";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import theme from "styles/theme";
 import Intersection from "assets/images/intersection-image.svg";
@@ -26,7 +23,7 @@ type LocationStateType = {
 
 function CryptoPage(): JSX.Element {
   const { navigateTo } = useNavigation();
-  const { cause, setCause } = useCardPaymentInformation();
+  const { cause, setCause, nonProfit } = useCardPaymentInformation();
   const { connectWallet, wallet } = useWalletContext();
   const {
     amount,
@@ -36,17 +33,13 @@ function CryptoPage(): JSX.Element {
     userBalance,
     tokenSymbol,
   } = useCryptoPayment();
-  const { currentNetwork } = useNetworkContext();
+
   const { causes } = useCauses();
-  const toast = useToast();
 
   const { state } = useLocation<LocationStateType>();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportCausePage",
-  });
-  const { t: treasureTranslation } = useTranslation("translation", {
-    keyPrefix: "promoters.supportTreasurePage",
   });
 
   useEffect(() => {
@@ -69,29 +62,18 @@ function CryptoPage(): JSX.Element {
     setCause(causeClicked);
   };
 
-  const onDonationToContractSuccess = (
-    hash: string,
-    timestamp: number,
-    amountDonated: BigNumber,
-  ) => {
-    toast({
-      message: treasureTranslation("transactionOnBlockchainText"),
-      type: "success",
-      link: `${currentNetwork.blockExplorerUrls}tx/${hash}`,
-      linkMessage: treasureTranslation("linkMessageToast"),
-    });
+  const onDonationToContractSuccess = () => {
     logEvent("toastNotification_view", {
       status: "transactionProcessed",
     });
 
     navigateTo({
-      pathname: "/donation-done",
+      pathname: "/donation-done-cause",
       state: {
         hasButton: true,
-        id: hash,
-        timestamp,
-        amountDonated,
-        processing: true,
+        cause,
+        nonProfit,
+        flow: "cause",
       },
     });
   };

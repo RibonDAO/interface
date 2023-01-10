@@ -39,7 +39,7 @@ Default.args = {
     subtitle: "Saúde",
   },
   ctaData: {
-    text: "Doar vale",
+    text: "Doar ticket",
     onClick: () => {},
     visible: true,
   },

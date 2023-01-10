@@ -100,7 +100,9 @@ function CryptoPage(): JSX.Element {
   const communityAddText = () => {
     const PERCENTAGE_OF_INCREASE = 0.2;
 
-    return `+ ${Number(amount) * PERCENTAGE_OF_INCREASE} ${tokenSymbol}`;
+    return `+ ${(Number(amount) * PERCENTAGE_OF_INCREASE).toFixed(
+      2,
+    )} ${tokenSymbol}`;
   };
 
   const donateButtonText = () => {

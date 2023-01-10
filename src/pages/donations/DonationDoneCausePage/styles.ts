@@ -63,9 +63,7 @@ export const CauseName = styled.span<{
   ${defaultSubtitleMedium}
 
   color: ${(props) =>
-    props.isGreen
-      ? ({ theme }) => theme.colors.green30
-      : ({ theme }) => theme.colors.gray30};
+    props.isGreen ? ({ theme }) => theme.colors.green30 : ({ color }) => color};
 `;
 
 export const FinishButton = styled(Button)<{ background: string }>`

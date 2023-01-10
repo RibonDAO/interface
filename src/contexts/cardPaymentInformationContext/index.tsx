@@ -121,6 +121,7 @@ function CardPaymentInformationProvider({ children }: Props) {
         hasButton: true,
         offerId,
         cause,
+        nonProfit,
         flow,
       },
     });

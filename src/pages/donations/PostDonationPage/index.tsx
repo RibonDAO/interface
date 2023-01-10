@@ -63,7 +63,7 @@ function PostDonationPage(): JSX.Element {
       {nonProfit && (
         <>
           <S.Card
-            image={nonProfit.cause?.mainImage}
+            image={nonProfit.cause?.coverImage}
             onClick={handleDonateWithCommunityClick}
           >
             <S.DarkOverlay />

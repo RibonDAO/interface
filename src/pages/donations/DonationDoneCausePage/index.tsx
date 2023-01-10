@@ -54,10 +54,24 @@ function DonationDoneCausePage(): JSX.Element {
   );
 
   function navigate() {
-    navigateTo({
-      pathname: "/post-donation",
-      state: { nonProfit, cause },
-    });
+    if (flow === "cause" && hasButton) {
+      navigateTo({
+        pathname: "/promoters/support-cause",
+        state: { nonProfit, cause },
+      });
+    }
+    if (flow === "nonProfit") {
+      navigateTo({
+        pathname: "/promoters/support-non-profit",
+        state: { nonProfit, cause },
+      });
+    }
+    if (!hasButton) {
+      navigateTo({
+        pathname: "/post-donation",
+        state: { nonProfit, cause },
+      });
+    }
   }
 
   useEffect(() => {
@@ -79,7 +93,9 @@ function DonationDoneCausePage(): JSX.Element {
     <S.Container>
       <S.ImageContainer>
         <IconsAroundImage
-          imageSrc={cause?.mainImage || nonProfit?.mainImage}
+          imageSrc={
+            flow === "cause" ? cause?.mainImage : nonProfit?.backgroundImage
+          }
           iconAnimationYellow={
             hasButton ? VolunteerActivismYellow : ConfirmationNumberYellow
           }
@@ -97,9 +113,12 @@ function DonationDoneCausePage(): JSX.Element {
       {hasButton && <S.PostDonationText>{t("title")}</S.PostDonationText>}
       <S.PostDonationText>
         {hasButton ? t("titleSecondLine") : t("youDonatedText")}
-        <S.CauseName isGreen={!!nonProfit}>
+        <S.CauseName
+          isGreen={!!nonProfit && !hasButton}
+          color={colorTheme.shade20}
+        >
           {" "}
-          {hasButton
+          {flow === "cause" && hasButton
             ? cause?.name
             : `${nonProfit?.impactByTicket} ${nonProfit?.impactDescription}`}{" "}
         </S.CauseName>

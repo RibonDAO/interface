@@ -39,10 +39,10 @@
         "accessUserSupport": "Access user support"
       },
       "blockedModal": {
-        "title": "You have no more vouchers :(",
+        "title": "You have no more tickets :(",
         "text": "Would you like to receive more?",
         "ribonTitle": "Ribon gift",
-        "ribonText": "Come back tomorrow to receive 1 more voucher"
+        "ribonText": "Come back tomorrow to receive 1 more tickets"
       }
     },
     "storiesPage": {
@@ -87,7 +87,7 @@
       "userSupportItem": {
         "userSupportText": "User Support"
       },
-      "donationModalTitle": "Great! You got 1 ticket to donate :)",
+      "donationModalTitle": "Great! You got 1 ticket to donate",
       "donationModalBody": "You can assign the ticket to any project",
       "donationModalButtonText": "Let’s go!",
       "logoutItem": {
@@ -249,7 +249,7 @@
       "onErrorMessage": "Payment failed. Try again.",
       "loadingMessage": "Payment in progress...",
       "modalSuccessTitle": "You've added {{value}} USDC to the treasury!",
-      "modalSuccessDescription": "Your donation has been converted into cryptocurrencies to fund more vouchers.",
+      "modalSuccessDescription": "Your donation has been converted into cryptocurrencies to fund more tickets.",
       "modalSuccessButton": "Ok",
       "modalAnimationFrom": "You",
       "modalAnimationTo": "Ribon",

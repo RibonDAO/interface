@@ -5,6 +5,7 @@ import {
 } from "styles/typography/default";
 
 export const Container = styled.div`
+  width: 100%;
   min-height: 64px;
   margin-bottom: 12px;
   border-radius: 2px;

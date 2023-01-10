@@ -101,7 +101,7 @@ function CardPaymentInformationProvider({ children }: Props) {
   const [cvv, setCvv] = useState("");
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [cryptoGiving, setCryptoGiving] = useState("");
-  const [offerId, setOfferId] = useState(1);
+  const [offerId, setOfferId] = useState(0);
   const [cause, setCause] = useState<Cause>();
   const [nonProfit, setNonProfit] = useState<NonProfit>();
   const [flow, setFlow] = useState<"nonProfit" | "cause">("nonProfit");

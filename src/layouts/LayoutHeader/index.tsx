@@ -40,7 +40,7 @@ function LayoutHeader({
   const [menuVisible, setMenuVisible] = useState(false);
   const { isMobile } = useBreakpoint();
   const { signedIn } = useCurrentUser();
-  const { navigateBack } = useNavigation();
+  const { navigateBack, history, navigateTo } = useNavigation();
   const { integration } = useIntegration(integrationId);
   const { showBlockedDonationModal } = useBlockedDonationModal(
     undefined,
@@ -62,9 +62,14 @@ function LayoutHeader({
       body: t("donationModalBody"),
       primaryButtonText: t("donationModalButtonText"),
       primaryButtonCallback: () => {
-        hide();
+        if (history.location.pathname === "/") {
+          hide();
+        } else {
+          navigateTo("/");
+          hide();
+        }
       },
-      onClose: () => hide,
+      onClose: () => hide(),
       icon: Ticket,
     },
   });

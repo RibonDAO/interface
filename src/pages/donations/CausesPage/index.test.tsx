@@ -70,6 +70,10 @@ describe("Causes", () => {
     expectTextToBeInTheDocument("Donate to a project");
   });
 
+  it("renders the customer support card", () => {
+    expectTextToBeInTheDocument("User Support");
+  });
+
   it("shows the non profit", () => {
     nonProfits.forEach((nonProfit) => {
       expectTextToBeInTheDocument(

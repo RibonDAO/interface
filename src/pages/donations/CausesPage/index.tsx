@@ -22,6 +22,7 @@ import { logError } from "services/crashReport";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import useVoucher from "hooks/useVoucher";
 import { useCausesContext } from "contexts/causesContext";
+import UserSupportSection from "pages/promoters/SupportTreasurePage/CardSection/UserSupportSection";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
@@ -237,6 +238,7 @@ function CausesPage(): JSX.Element {
             </S.NonProfitsContainer>
           )
         )}
+        <UserSupportSection/>
       </S.BodyContainer>
     </S.Container>
   );

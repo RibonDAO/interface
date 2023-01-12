@@ -238,7 +238,7 @@ function CausesPage(): JSX.Element {
             </S.NonProfitsContainer>
           )
         )}
-        <UserSupportSection/>
+        <UserSupportSection />
       </S.BodyContainer>
     </S.Container>
   );

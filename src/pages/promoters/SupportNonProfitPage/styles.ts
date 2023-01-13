@@ -30,7 +30,7 @@ export const NonProfitsListContainer = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     margin-inline: 0;
-    max-width: 900px;
+    width: 100%;
   }
 `;
 

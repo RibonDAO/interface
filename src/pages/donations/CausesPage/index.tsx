@@ -39,12 +39,8 @@ function CausesPage(): JSX.Element {
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
 
-  const {
-    activeCauses,
-    chooseCauseModalVisible,
-    currentCauseId,
-    setCurrentCauseId,
-  } = useCausesContext();
+  const { activeCauses, chooseCauseModalVisible, currentCauseId } =
+    useCausesContext();
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
@@ -147,10 +143,20 @@ function CausesPage(): JSX.Element {
   );
 
   const nonProfitsFilter = () => {
-    const nonProfitsApi = nonProfits?.filter(
-      (nonProfit) => nonProfit.cause?.active,
-    );
-    return nonProfitsApi || [];
+    if (currentCauseId >= 1 && currentCauseId !== undefined) {
+      return (
+        nonProfits?.filter(
+          (nonProfit) =>
+            nonProfit.cause?.active && nonProfit.cause?.id === currentCauseId,
+        ) || []
+      );
+    } else {
+      return (
+        nonProfits?.filter(
+          (nonProfit) => nonProfit.cause?.active && nonProfit.cause?.id,
+        ) || []
+      );
+    }
   };
 
   const jumpFirstNonProfitByCauseId = (id: number) => {
@@ -189,7 +195,6 @@ function CausesPage(): JSX.Element {
 
         if (currentCauseIndex >= 0) {
           setSelectedButtonIndex(currentCauseIndex);
-          setCurrentCauseId(currentCause.id);
         }
       }
     }

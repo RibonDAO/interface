@@ -36,7 +36,7 @@ description of the Ribon protocol, which is built on Matic/Polygon, a layer 2 in
 
 In order to run the project from a local environment we need `node>=16`, `npm>=8` installed on our development machines. We also recommend `yarn>=1.22` to manage dependencies but is optional. The following steps are using the yarn CLI.
 
-**NOTE:** You may will need the .env file with some environment variables. You can get it by accessing our [Discord Server](https://discord.gg/DBcwmDrkpy) and requesting it on the #Development channel
+**NOTE:** You may need the .env file with some environment variables. You can get it by accessing our [Discord Server](https://discord.gg/DBcwmDrkpy) and requesting it on the #Development channel
 
 ## 🖥️ Local development
 
@@ -127,7 +127,7 @@ yarn storybook
 
 ### 💾 Back-End environments
 
-In local development the data comes from the [development API](https://github.com/RibonDAO/core-api) (hosted on AWS). There are still two another environments:
+In local development the data comes from the [development API](https://github.com/RibonDAO/core-api) (hosted on AWS). There are still two other environments:
 
 - Staging: [https://ribon-dapp-staging.web.app/?integration_id=1](https://ribon-dapp-staging.web.app/?integration_id=1)
 - Production: [https://dapp.ribon.io/?integration_id=1](https://dapp.ribon.io/?integration_id=1)
@@ -145,4 +145,4 @@ We encourage you to contribute! Please check out the [Contributing guide](https:
 ## 🍕 Community
 
 Got Questions? Join the conversation in our [Discord](https://discord.gg/DBcwmDrkpy).  
-Find RibonDAO updates in our [Twitter](https://www.twitter.com/RibonDAO).
+Find RibonDAO updates on our [Twitter](https://www.twitter.com/RibonDAO).

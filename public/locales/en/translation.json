@@ -42,7 +42,7 @@
         "title": "You have no more tickets :(",
         "text": "Would you like to receive more?",
         "ribonTitle": "Ribon gift",
-        "ribonText": "Come back tomorrow to receive 1 more tickets"
+        "ribonText": "Come back tomorrow to receive 1 more ticket"
       }
     },
     "storiesPage": {
@@ -220,7 +220,7 @@
         },
         "userSupportCard": {
           "title": "User Support",
-          "description": "Questions, ideias, refunds. We’re here!",
+          "description": "Questions, ideas, refunds. We’re here!",
           "primaryButtonText": "Access user support"
         }
       },

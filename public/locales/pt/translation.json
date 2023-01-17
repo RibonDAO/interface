@@ -243,7 +243,8 @@
     "walletContext": {
       "ethereumNotFoundMessage": "Instale a Metamask para continuar",
       "userRejectedConnectionMessage": "Conexão com a carteira negada",
-      "onErrorMessage": "Falha na conexão da carteira"
+      "onErrorMessage": "Falha na conexão da carteira",
+      "invalidNetworkMessage": "Conecte-se a uma rede válida"
     },
     "cardPaymentInformation": {
       "onErrorMessage": "Falha no pagamento. Tente novamente.",
@@ -254,9 +255,6 @@
       "modalAnimationFrom": "Você",
       "modalAnimationTo": "Ribon",
       "modalAnimationTitle": "Realizando contribuição..."
-    },
-    "networkContext": {
-      "invalidNetworkMessage": "Conecte-se a uma rede válida"
     }
   }
 }

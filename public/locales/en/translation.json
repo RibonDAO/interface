@@ -243,7 +243,8 @@
     "walletContext": {
       "ethereumNotFoundMessage": "Install Metamask to continue",
       "userRejectedConnectionMessage": "Wallet connection rejected",
-      "onErrorMessage": "Wallet connection failed"
+      "onErrorMessage": "Wallet connection failed",
+      "invalidNetworkMessage": "Connect to a valid network"
     },
     "cardPaymentInformation": {
       "onErrorMessage": "Payment failed. Try again.",
@@ -254,9 +255,6 @@
       "modalAnimationFrom": "You",
       "modalAnimationTo": "Ribon",
       "modalAnimationTitle": "Processing giving..."
-    },
-    "networkContext": {
-      "invalidNetworkMessage": "Connect to a valid network"
     }
   }
 }

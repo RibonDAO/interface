@@ -8,7 +8,6 @@ import { onAccountChange } from "lib/walletConnector";
 import WalletIcon from "assets/icons/wallet-icon.svg";
 import { logEvent } from "services/analytics";
 import { walletTruncate } from "lib/formatters/walletTruncate";
-import { useNetworkContext } from "contexts/networkContext";
 import useNavigation from "hooks/useNavigation";
 import * as S from "./styles";
 
@@ -32,7 +31,7 @@ function WalletLayout({
     useWalletContext();
 
   const { navigateTo } = useNavigation();
-  const { isValidNetwork } = useNetworkContext();
+
   const handleAccountChange = (accounts: string[]) => {
     setWallet(accounts[0]);
   };
@@ -55,7 +54,7 @@ function WalletLayout({
   };
 
   const walletButtonText = () => {
-    if (!wallet || !isValidNetwork) return t("connectWallet");
+    if (!wallet) return t("connectWallet");
 
     return walletTruncate(wallet);
   };

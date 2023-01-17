@@ -15,11 +15,14 @@ import {
 import { useTranslation } from "react-i18next";
 import useToast from "hooks/useToast";
 import { logEvent } from "services/analytics";
+import { utils } from "ethers";
+import { networks } from "config/networks";
 
 export interface IWalletContext {
   wallet: string | null;
   checkIfWalletIsConnected: () => void;
   connectWallet: () => void;
+  changeNetwork: () => void;
   setWallet: Dispatch<SetStateAction<string | null>>;
 }
 
@@ -47,6 +50,58 @@ function WalletProvider({ children }: Props) {
     checkIfWalletIsConnected();
   }, [checkIfWalletIsConnected]);
 
+  const addNetwork = useCallback(async () => {
+    try {
+      await window.ethereum.request({
+        method: "wallet_addEthereumChain",
+        params: [
+          {
+            chainName: networks[0].chainName,
+            chainId: utils.hexValue(networks[0].chainId),
+            nativeCurrency: {
+              name: networks[0].currencyName,
+              decimals: 18,
+              symbol: networks[0].symbolName,
+            },
+            rpcUrls: [networks[0].rpcUrls],
+          },
+        ],
+      });
+    } catch (err: any) {
+      if (err.code === 4001) {
+        toast({
+          type: "error",
+          message: t("invalidNetworkMessage"),
+        });
+      }
+    }
+  }, []);
+
+  const changeNetwork = useCallback(async () => {
+    const permittedNetworks = networks.filter(
+      (network) =>
+        window.ethereum.networkVersion === network.chainId.toString(),
+    );
+    if (permittedNetworks.length === 0) {
+      try {
+        await window.ethereum.request({
+          method: "wallet_switchEthereumChain",
+          params: [{ chainId: utils.hexValue(networks[0].chainId) }],
+        });
+      } catch (err: any) {
+        if (err.code === 4902) {
+          await addNetwork();
+        }
+        if (err.code === 4001) {
+          toast({
+            type: "error",
+            message: t("invalidNetworkMessage"),
+          });
+        }
+      }
+    }
+  }, []);
+
   const connectWallet = useCallback(async () => {
     const connectWalletResponse = await connectWalletRequest({
       onEthereumNotFound: () => {
@@ -73,6 +128,7 @@ function WalletProvider({ children }: Props) {
       },
     });
     setWallet(connectWalletResponse);
+    await changeNetwork();
   }, []);
 
   const walletObject: IWalletContext = useMemo(
@@ -80,9 +136,10 @@ function WalletProvider({ children }: Props) {
       wallet,
       checkIfWalletIsConnected,
       connectWallet,
+      changeNetwork,
       setWallet,
     }),
-    [wallet, checkIfWalletIsConnected, connectWallet],
+    [wallet, checkIfWalletIsConnected, connectWallet, changeNetwork],
   );
 
   return (

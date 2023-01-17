@@ -10,8 +10,6 @@ import { networks } from "config/networks";
 import { logError } from "services/crashReport";
 import { useProvider } from "hooks/useProvider";
 import CurrentNetwork from "types/entities/CurrentNetwork";
-import useToast from "hooks/useToast";
-import { useTranslation } from "react-i18next";
 import { SUBGRAPH_URL, CHAIN_ID } from "lib/localStorage/constants";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 
@@ -43,12 +41,6 @@ function NetworkProvider({ children }: Props) {
   const [isValidNetwork, setIsValidNetwork] = useState(false);
   const provider = useProvider();
 
-  const toast = useToast();
-
-  const { t } = useTranslation("translation", {
-    keyPrefix: "contexts.networkContext",
-  });
-
   const getCurrentNetwork = useCallback(async () => {
     try {
       const providerNetwork = await provider?.getNetwork();
@@ -62,10 +54,6 @@ function NetworkProvider({ children }: Props) {
           setIsValidNetwork(true);
         } else {
           setIsValidNetwork(false);
-          toast({
-            type: "error",
-            message: t("invalidNetworkMessage"),
-          });
         }
       }
     } catch (e) {

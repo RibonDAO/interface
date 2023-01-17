@@ -1,10 +1,10 @@
 export const networks = [
   {
-    chainName: "Polygon",
+    chainName: "Polygon Mainnet",
     ribonContractAddress: "0x4Ef236DA69ac23a9246cd1d8866264f1A95601C0",
     donationTokenContractAddress: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
     chainId: 137,
-    rpcUrls: "https://rpc.ankr.com/polygon",
+    rpcUrls: "https://polygon-rpc.com/",
     nodeUrl:
       "https://polygon-mainnet.g.alchemy.com/v2/AQ0VSr7KiK3U6h9zXJsKV5PRA52iRVJQ",
     symbolName: "MATIC",

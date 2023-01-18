@@ -28,6 +28,7 @@ function CryptoPage(): JSX.Element {
   const {
     amount,
     setAmount,
+    setCurrentPool,
     disableButton,
     handleDonationToContract,
     userBalance,
@@ -54,6 +55,12 @@ function CryptoPage(): JSX.Element {
   useEffect(() => {
     setCause(state?.causeDonated || causesFilter()[0]);
   }, [causes]);
+
+  useEffect(() => {
+    if (cause && cause.pools.length > 0) {
+      setCurrentPool(cause?.pools[cause.pools.length - 1].address);
+    }
+  }, [cause]);
 
   const handleCauseClick = (causeClicked: Cause) => {
     logEvent("supportCauseSelection_click", {

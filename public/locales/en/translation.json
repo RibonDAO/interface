@@ -239,6 +239,17 @@
       }
     }
   },
+  "impactNormalizer": {
+    "year": "year",
+    "month": "month",
+    "day": "day",
+    "years": "years",
+    "months": "months",
+    "days": "days",
+    "for": "for",
+    "and": "and",
+    "of": "of"
+  },
   "contexts": {
     "walletContext": {
       "ethereumNotFoundMessage": "Install Metamask to continue",

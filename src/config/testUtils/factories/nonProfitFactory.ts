@@ -1,5 +1,6 @@
 import NonProfit from "types/entities/NonProfit";
 import Cause from "types/entities/Cause";
+import NonProfitImpact from "types/entities/NonProfitImpact";
 
 function nonProfitFactory(params: Partial<NonProfit> = {}): NonProfit {
   const defaultValues: NonProfit = {
@@ -14,6 +15,17 @@ function nonProfitFactory(params: Partial<NonProfit> = {}): NonProfit {
     backgroundImage: "",
     coverImage: "",
     mainImage: "",
+    nonProfitImpacts: [
+      {
+        id: 1,
+        startDate: "2022-02-15 16:15:23 UTC",
+        endDate: "2022-02-15 18:15:23 UTC",
+        impactDescription: "kg of food, kgs of food",
+        donorRecipient: "person,people",
+        usdCentsToOneImpactUnit: "1",
+        measurementUnit: "quantity_without_decimals",
+      } as NonProfitImpact,
+    ],
     cause: {} as Cause,
   };
   return Object.assign(defaultValues, params) as NonProfit;

@@ -1,4 +1,5 @@
 import Cause from "./Cause";
+import NonProfitImpact from "./NonProfitImpact";
 
 export default interface NonProfit {
   id: number;
@@ -12,5 +13,6 @@ export default interface NonProfit {
   impactByTicket: number;
   createdAt?: string;
   updatedAt?: string;
+  nonProfitImpacts?: NonProfitImpact[];
   cause: Cause;
 }

@@ -14,6 +14,7 @@ import useNonProfits from "hooks/apiHooks/useNonProfits";
 import SliderCards from "components/moleculars/sliders/SliderCards";
 import NonProfit from "types/entities/NonProfit";
 import { useLocation } from "react-router-dom";
+import Tooltip from "components/moleculars/Tooltip";
 import * as S from "../styles";
 import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
 import NonProfitCard from "./NonProfitCard";
@@ -87,7 +88,16 @@ function CardPage(): JSX.Element {
 
   return (
     <S.Container>
-      <S.Title>{t("title")}</S.Title>
+      <S.TitleContainer>
+        <S.Title>{t("title")}</S.Title>
+        <Tooltip
+          text={t("tooltipImpactText")}
+          symbol="?"
+          textRight={t("tooltipImpact")}
+          place="top"
+        />
+      </S.TitleContainer>
+
       <GroupButtons
         elements={causesFilter()}
         onChange={handleCauseClick}

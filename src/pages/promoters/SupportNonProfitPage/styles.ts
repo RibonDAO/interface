@@ -99,6 +99,7 @@ export const Title = styled.h1`
   ${stylizedTitleLarge}
 
   margin: 4px 0;
+  margin-right: 5%;
   margin-bottom: 24px;
   color: ${({ theme }) => theme.colors.gray40};
 
@@ -141,4 +142,10 @@ export const RefundText = styled.p`
   margin-top: 4px;
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
+`;
+
+export const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;

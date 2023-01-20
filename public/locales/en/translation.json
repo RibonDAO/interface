@@ -154,7 +154,9 @@
       "donateButtonText": "Donate {{value}}",
       "selectOfferSection": {
         "fundText": "fund"
-      }
+      },
+      "tooltipImpact": "How we calculate the impact?",
+      "tooltipImpactText": "The calculations are based on the minimum value needed for the project achieve good results. Ribon’s causes are part of the social moviment “Effective Altruism”, which aim to generate big impact at low cost."
     },
     "supportTreasurePage": {
       "title": "Make a bigger impact",

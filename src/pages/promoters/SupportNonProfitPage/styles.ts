@@ -149,3 +149,9 @@ export const TitleContainer = styled.div`
   flex-direction: row;
   align-items: center;
 `;
+
+export const TooltipSection = styled.div`
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+`;

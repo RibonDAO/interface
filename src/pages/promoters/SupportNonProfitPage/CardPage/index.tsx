@@ -15,6 +15,7 @@ import SliderCards from "components/moleculars/sliders/SliderCards";
 import NonProfit from "types/entities/NonProfit";
 import { useLocation } from "react-router-dom";
 import Tooltip from "components/moleculars/Tooltip";
+import useBreakpoint from "hooks/useBreakpoint";
 import * as S from "../styles";
 import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
 import NonProfitCard from "./NonProfitCard";
@@ -31,6 +32,7 @@ function CardPage(): JSX.Element {
 
   const { causes } = useCauses();
   const { state } = useLocation<LocationStateType>();
+  const { isMobile } = useBreakpoint();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportNonProfitPage",
@@ -90,12 +92,14 @@ function CardPage(): JSX.Element {
     <S.Container>
       <S.TitleContainer>
         <S.Title>{t("title")}</S.Title>
-        <Tooltip
-          text={t("tooltipImpactText")}
-          symbol="?"
-          textRight={t("tooltipImpact")}
-          place="top"
-        />
+        {!isMobile && (
+          <Tooltip
+            text={t("tooltipImpactText")}
+            symbol="?"
+            textRight={t("tooltipImpact")}
+            place="top"
+          />
+        )}
       </S.TitleContainer>
 
       <GroupButtons
@@ -121,7 +125,16 @@ function CardPage(): JSX.Element {
           ))}
         </SliderCards>
       </S.NonProfitsListContainer>
-
+      {isMobile && (
+        <S.TooltipSection>
+          <Tooltip
+            text={t("tooltipImpactText")}
+            symbol="?"
+            textRight={t("tooltipImpact")}
+            place="bottom"
+          />
+        </S.TooltipSection>
+      )}
       <UserSupportSection />
       <S.BackgroundImage src={IntersectBackground} />
     </S.Container>

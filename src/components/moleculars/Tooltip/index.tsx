@@ -32,6 +32,7 @@ function Tooltip({
         anchorId="tooltip"
         content={text}
         place={place}
+        positionStrategy="fixed"
         events={isClick ? ["click"] : ["hover"]}
       />
     </S.Container>

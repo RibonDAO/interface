@@ -7,7 +7,6 @@ import {
 } from "styles/typography/default";
 
 export const Container = styled.div`
-  padding-bottom: 1%;
   display: flex;
   align-items: left;
 `;
@@ -44,11 +43,18 @@ export const Text = styled.p`
 export const TooltipBox = styled(Tooltip)`
   ${defaultParagraphSmall}
 
-  max-width: 25%;
-  margin-left: 4.5%;
+  max-width: 92%;
+  margin-right: 16px;
+  z-index: 1;
   background: ${({ theme }) => theme.colors.neutral10};
   color: ${({ theme }) => theme.colors.gray40};
-  box-shadow: 0px 2px 8px 0px rgba(40, 36, 28, 0.25);
+  box-shadow: 2px 2px 8px 2px rgba(40, 36, 28, 0.25);
+  opacity: 1;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    max-width: 372px;
+    margin-left: 4.5%;
+  }
 `;
 
 export const IconCircle = styled.div`

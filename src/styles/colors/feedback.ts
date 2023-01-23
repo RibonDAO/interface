@@ -42,4 +42,17 @@ export const feedbackColors: ThemeType = {
     colorFeedbackError800: "#B11002",
     colorFeedbackError900: "#9E0D00",
   },
+  informational: {
+    colorFeedbackInformational25: "#FAFAF9",
+    colorFeedbackInformational50: "#F1F1EF",
+    colorFeedbackInformational100: "#E5E2DC",
+    colorFeedbackInformational200: "#BFBCB5",
+    colorFeedbackInformational300: "#969188",
+    colorFeedbackInformational400: "#7B756B",
+    colorFeedbackInformational500: "#5E584F",
+    colorFeedbackInformational600: "#44413B",
+    colorFeedbackInformational700: "#302D27",
+    colorFeedbackInformational800: "#221E16",
+    colorFeedbackInformational900: "#221E16",
+  }
 };

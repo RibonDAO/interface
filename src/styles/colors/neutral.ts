@@ -5,7 +5,7 @@ interface ThemeType {
 export const neutralColors: ThemeType = {
   colorNeutral25: "#FAFAF9",
   colorNeutral50: "#F1F1EF",
-  colorNeutral100: "##E5E2DC",
+  colorNeutral100: "#E5E2DC",
   colorNeutral300: "#BFBCB5",
   colorNeutral400: "#969188",
   colorNeutral500: "#7B756B",

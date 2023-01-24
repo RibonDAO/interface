@@ -45,9 +45,11 @@ export const Wrapper = styled.div`
 `;
 
 export const CardButton = styled(Button)`
-  width: 100px;
+  width: 135px;
   margin: 16px 0;
-  align-self: center;
+  border: 1px solid ${({ theme }) => theme.colors.green30};
+  background-color: ${({ theme }) => theme.colors.neutral10};
+  color: ${({ theme }) => theme.colors.green30};
 `;
 
 export const EmptySectionContainer = styled.div`

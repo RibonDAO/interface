@@ -2,6 +2,7 @@ import CardEmptySection from "pages/users/ImpactPage/CardEmptySection";
 import CardTopImage from "components/moleculars/cards/CardTopImage";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useEffect, useState } from "react";
+import { impactNormalizer } from "@ribon.io/shared/lib";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "services/analytics";
 import useDonations from "hooks/apiHooks/useDonations";
@@ -13,6 +14,10 @@ function ImpactPage(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "impactPage",
   });
+  const { t: normalizerTranslation } = useTranslation("translation", {
+    keyPrefix: "impactNormalizer",
+  });
+
   const { currentUser } = useCurrentUser();
   const { donationsCount: ticketsUsed } = useDonations();
   const { userImpact } = useImpact();
@@ -37,6 +42,27 @@ function ImpactPage(): JSX.Element {
     userImpact.length > impactCardsToShow;
   const hasImpact = () => impactCards().length > 0;
 
+  const title = (item: any) => {
+    const { nonProfit, impact } = item;
+    const impacts = nonProfit?.nonProfitImpacts || [];
+    const nonProfitsImpactsLength = impacts.length;
+    const roundedImpact = impact;
+
+    if (nonProfit && roundedImpact && impacts && nonProfitsImpactsLength) {
+      const lastImpact = impacts[nonProfitsImpactsLength - 1];
+      if (lastImpact.donorRecipient) {
+        return `${impactNormalizer(
+          nonProfit,
+          roundedImpact,
+          normalizerTranslation,
+        )}`;
+      }
+    }
+    return `${t("impactText")} ${item.impact.toString()} ${
+      item.nonProfit.impactDescription
+    }`;
+  };
+
   return (
     <S.Container>
       <S.Title>{t("title")}</S.Title>
@@ -50,9 +76,7 @@ function ImpactPage(): JSX.Element {
             {impactCards().map((item) => (
               <CardTopImage
                 key={item.nonProfit.id}
-                text={`${t("impactText")} ${item.impact.toString()} ${
-                  item.nonProfit.impactDescription
-                }`}
+                text={title(item)}
                 imageUrl={item.nonProfit.logo}
                 imageAlt={item.impact}
               />

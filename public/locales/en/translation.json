@@ -258,5 +258,16 @@
       "modalAnimationTo": "Ribon",
       "modalAnimationTitle": "Processing giving..."
     }
+  },
+  "impactNormalizer": {
+    "year": "year",
+    "years": "years",
+    "month": "month",
+    "months": "months",
+    "day": "day",
+    "days": "days",
+    "for": "for",
+    "and": "and",
+    "of": "of"
   }
 }

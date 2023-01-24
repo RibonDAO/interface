@@ -2,7 +2,7 @@ interface ThemeType {
   [key: string]: any;
 }
 
-export const feedbackColors: ThemeType = {
+const feedbackColors: ThemeType = {
   success: {
     colorFeedbackSuccess25: "#F6FEF9",
     colorFeedbackSuccess50: "#E5FBED",
@@ -56,3 +56,5 @@ export const feedbackColors: ThemeType = {
     colorFeedbackInformational900: "#221E16",
   }
 };
+
+export default feedbackColors;

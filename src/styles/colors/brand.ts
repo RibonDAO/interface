@@ -2,7 +2,7 @@ interface ThemeType {
   [key: string]: any;
 }
 
-export const brandColors: ThemeType = {
+const brandColors: ThemeType = {
   primary: {
     colorBrandPrimary25: "#F6FEF9",
     colorBrandPrimary50: "#E5FBED",
@@ -56,3 +56,5 @@ export const brandColors: ThemeType = {
     colorBrandQuaternary900: "#613E00",
   },
 };  
+
+export default brandColors;

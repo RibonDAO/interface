@@ -1,4 +1,4 @@
-import brandColors from "styles/colors/brand"
+import brandColors from "styles/colors/brand";
 import feedbackColors from "./colors/feedback";
 import neutralColors from "./colors/neutral";
 
@@ -53,7 +53,7 @@ const theme: ThemeType = {
     backgroundOverlay: "rgba(40, 36, 28, 0.60)",
     brand: brandColors,
     neutral: neutralColors,
-    feedback: feedbackColors
+    feedback: feedbackColors,
   },
   filters: {
     filterOrange40:

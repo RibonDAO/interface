@@ -97,6 +97,10 @@ function CausesPage(): JSX.Element {
   const hasAvailableDonation = !state?.blockedDonation && canDonate;
 
   useEffect(() => {
+    track("Cause Page View");
+  }, [])
+
+  useEffect(() => {
     track("Button Clicked");
     if (
       !hasReceivedTicketToday() ||

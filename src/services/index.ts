@@ -1,4 +1,4 @@
-import { init }  from "@amplitude/analytics-browser";
+import { init } from "@amplitude/analytics-browser";
 import firebase from "firebase/app";
 import "firebase/analytics";
 

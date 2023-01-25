@@ -203,7 +203,6 @@ function CardPaymentInformationProvider({ children }: Props) {
         .setQuantity(3);
 
       revenue(event);
-
     } catch (error) {
       closeAnimationModal();
       logError(error);

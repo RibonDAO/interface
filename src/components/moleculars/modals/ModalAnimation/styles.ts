@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 import ReactModal from "react-modal";
 import {
-  defaultSubtitleMedium,
-  defaultSubtitleSmall,
+  defaultBodySmSemibold,
+  defaultBodyXsMedium,
 } from "styles/typography/default";
 
 export const DiamondBackground = css<{ bg?: string }>`
@@ -96,7 +96,7 @@ export const Icon = styled.img`
 `;
 
 export const IconDescription = styled.p`
-  ${defaultSubtitleSmall}
+  ${defaultBodyXsMedium}
 
   padding-top: 8px;
   text-align: center;
@@ -104,7 +104,7 @@ export const IconDescription = styled.p`
 `;
 
 export const Text = styled.p<{ color: string }>`
-  ${defaultSubtitleMedium}
+  ${defaultBodySmSemibold}
 
   text-align: center;
   color: ${({ color }) => color};

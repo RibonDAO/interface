@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { defaultParagraphSmall } from "styles/typography/default";
-import { stylizedTitleLarge } from "styles/typography/stylized";
+import { defaultBodyXsRegular } from "styles/typography/default";
+import { stylizedDisplayXs } from "styles/typography/stylized";
 import Dropdown from "components/atomics/Dropdown";
 
 export const Container = styled.div`
@@ -17,14 +17,14 @@ export const ValueContainer = styled.div`
 `;
 
 export const ValueText = styled.p`
-  ${stylizedTitleLarge}
+  ${stylizedDisplayXs}
 
   margin-right: 8px;
   color: ${({ theme }) => theme.colors.orange20};
 `;
 
 export const CauseText = styled.p`
-  ${defaultParagraphSmall}
+  ${defaultBodyXsRegular}
 
   margin-bottom: 4px;
   text-align: center;
@@ -32,7 +32,7 @@ export const CauseText = styled.p`
 `;
 
 export const CauseTextHighlight = styled.span`
-  ${defaultParagraphSmall}
+  ${defaultBodyXsRegular}
 
   color: ${({ theme }) => theme.colors.orange30};
 `;

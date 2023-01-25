@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { stylizedHeadingLarge } from "styles/typography/stylized";
+import { stylizedDisplayLg } from "styles/typography/stylized";
 
 export const Container = styled.div`
   width: 100%;
@@ -13,7 +13,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  ${stylizedHeadingLarge}
+  ${stylizedDisplayLg}
 
   margin: 4px 0;
   margin-bottom: 48px;

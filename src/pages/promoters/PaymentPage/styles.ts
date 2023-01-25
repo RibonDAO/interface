@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { stylizedHeadingLarge } from "styles/typography/stylized";
+import { stylizedDisplayLg } from "styles/typography/stylized";
 import {
-  defaultParagraphLarge,
-  defaultParagraphSmall,
-  defaultSubtitleLarge,
+  defaultBodyMdRegular,
+  defaultBodyXsRegular,
+  defaultBodyMdSemibold,
 } from "styles/typography/default";
 import Button from "components/atomics/buttons/Button";
 import WaveCut from "assets/images/wave-cut.svg";
@@ -29,26 +29,26 @@ export const ContentContainer = styled.div`
 `;
 
 export const DonationValueText = styled.h1<{ color: string }>`
-  ${stylizedHeadingLarge}
+  ${stylizedDisplayLg}
 
   text-align: center;
   color: ${({ color }) => color};
 `;
 
 export const Title = styled.h1`
-  ${defaultParagraphLarge}
+  ${defaultBodyMdRegular}
 
   text-align: center;
 `;
 
 export const TitleHighlight = styled.span<{ color: string }>`
-  ${defaultSubtitleLarge}
+  ${defaultBodyMdSemibold}
 
   color: ${({ color }) => color};
 `;
 
 export const FeeText = styled.p`
-  ${defaultParagraphSmall}
+  ${defaultBodyXsRegular}
 
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};

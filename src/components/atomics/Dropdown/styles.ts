@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { defaultComponentTextMedium } from "styles/typography/default";
+import { defaultBodySmSemibold } from "styles/typography/default";
 
 export const Input = styled.div`
   width: 100%;
@@ -25,7 +25,7 @@ export const Input = styled.div`
   }
 
   input {
-    ${defaultComponentTextMedium}
+    ${defaultBodySmSemibold}
 
     width: 100%;
     border: none;

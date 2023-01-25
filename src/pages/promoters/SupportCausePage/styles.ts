@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import {
-  stylizedHeadingLarge,
-  stylizedTitleLarge,
+  stylizedDisplayLg,
+  stylizedDisplayXs,
 } from "styles/typography/stylized";
 import {
-  defaultParagraphSmall,
-  defaultSubtitleMedium,
+  defaultBodyXsRegular,
+  defaultBodySmSemibold,
 } from "styles/typography/default";
 import ButtonComponent from "components/atomics/buttons/Button";
 
@@ -65,13 +65,13 @@ export const CommunityAddContainer = styled.div`
 `;
 
 export const CommunityAddText = styled.p`
-  ${defaultParagraphSmall}
+  ${defaultBodyXsRegular}
 
   color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const CommunityAddValue = styled.p`
-  ${stylizedTitleLarge}
+  ${stylizedDisplayXs}
 
   color: ${({ theme }) => theme.colors.orange20};
 `;
@@ -102,14 +102,14 @@ export const BackgroundImage = styled.img`
 `;
 
 export const Title = styled.h1`
-  ${stylizedTitleLarge}
+  ${stylizedDisplayXs}
 
   margin: 4px 0;
   margin-bottom: 24px;
   color: ${({ theme }) => theme.colors.gray40};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    ${stylizedHeadingLarge}
+    ${stylizedDisplayLg}
   }
 `;
 
@@ -132,7 +132,7 @@ export const Intersection = styled.img`
 `;
 
 export const UserBalanceText = styled.p`
-  ${defaultSubtitleMedium}
+  ${defaultBodySmSemibold}
 
   margin-bottom: 4px;
   text-align: center;
@@ -140,13 +140,13 @@ export const UserBalanceText = styled.p`
 `;
 
 export const UserBalanceTextHighlight = styled.span`
-  ${defaultSubtitleMedium}
+  ${defaultBodySmSemibold}
 
   color: ${({ theme }) => theme.colors.orange30};
 `;
 
 export const RefundText = styled.p`
-  ${defaultParagraphSmall}
+  ${defaultBodyXsRegular}
 
   margin-top: 4px;
   text-align: center;

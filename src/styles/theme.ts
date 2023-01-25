@@ -1,3 +1,7 @@
+import brandColors from "styles/colors/brand";
+import feedbackColors from "./colors/feedback";
+import neutralColors from "./colors/neutral";
+
 export interface Breakpoint {
   mobile: string;
   mobileMedium: string;
@@ -23,30 +27,33 @@ const theme: ThemeType = {
   },
   colors: {
     neutral10: "#FFFFFF",
-    red10: "#FDEBFF",
-    red20: "#F2A9C3",
+    red10: "#FFE7FB",
+    red20: "#FBB7CF",
     red30: "#FF6B6F",
-    red40: "#912547",
-    green10: "#D1FFDB",
-    green20: "#8CE0BE",
+    red40: "#9A233B",
+    green10: "#C5F7D5",
+    green20: "#6DDFA6",
     green30: "#00DA93",
     green40: "#025B37",
-    orange10: "#FFD5BF",
-    orange20: "#FF9661",
+    orange10: "#FFCAA5",
+    orange20: "#FFA86D",
     orange30: "#FA7203",
-    orange40: "#AF5333",
-    yellow10: "#F0E8C2",
-    yellow20: "#FFEB7A",
+    orange40: "#A83B00",
+    yellow10: "#FFF6CC",
+    yellow20: "#FFEC9E",
     yellow30: "#FFCE00",
-    yellow40: "#775B33",
-    gray10: "#F2F2F0",
-    gray20: "#D4CEC3",
-    gray30: "#867F70",
-    gray40: "#28241C",
+    yellow40: "#754B00",
+    gray10: "#F1F1EF",
+    gray20: "#D2CEC6",
+    gray30: "#736D64",
+    gray40: "#302D27",
     defaultShadow: "rgba(40, 36, 28, 0.15)",
     defaultShadow10: "rgba(40, 36, 28, 0.1)",
     defaultShadow05: "rgba(40, 36, 28, 0.05)",
     backgroundOverlay: "rgba(40, 36, 28, 0.60)",
+    brand: brandColors,
+    neutral: neutralColors,
+    feedback: feedbackColors,
   },
   filters: {
     filterOrange40:

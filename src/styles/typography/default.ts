@@ -5,141 +5,165 @@ const inter = css`
   font-family: "Inter", sans-serif;
 `;
 
-const defaultDisplay = css`
-  font-weight: 700;
-  ${inter}
-`;
-
-export const defaultDisplayLarge = css`
-  ${defaultDisplay}
-  font-size: 56px;
-  line-height: 88px;
-`;
-
-export const defaultDisplayMedium = css`
-  ${defaultDisplay}
-  font-size: 48px;
-  line-height: 88px;
-`;
-
-export const defaultDisplaySmall = css`
-  ${defaultDisplay}
-  font-size: 40px;
-  line-height: 68px;
-`;
-
+/* Heading */
 const defaultHeading = css`
   font-weight: 700;
   ${inter}
 `;
-export const defaultHeadingLarge = css`
+
+export const defaultHeadingXl = css`
+  ${defaultHeading}
+  font-size: 40px;
+  line-height: 52px;
+`;
+
+export const defaultHeadingLg = css`
   ${defaultHeading}
   font-size: 36px;
-  line-height: 60px;
-`;
-
-export const defaultHeadingMedium = css`
-  ${defaultHeading}
-  font-size: 32px;
-  line-height: 56px;
-`;
-
-export const defaultHeadingSmall = css`
-  ${defaultHeading}
-  font-size: 28px;
   line-height: 48px;
 `;
 
-const defaultTitle = css`
-  font-weight: 700;
-  ${inter}
+export const defaultHeadingMd = css`
+  ${defaultHeading}
+  font-size: 32px;
+  line-height: 44px;
 `;
-export const defaultTitleLarge = css`
-  ${defaultTitle}
-  font-size: 24px;
+
+export const defaultHeadingSm = css`
+  ${defaultHeading}
+  font-size: 28px;
   line-height: 40px;
 `;
 
-export const defaultTitleMedium = css`
-  ${defaultTitle}
-  font-size: 20px;
+export const defaultHeadingXs = css`
+  ${defaultHeading}
+  font-size: 24px;
   line-height: 36px;
 `;
 
-export const defaultTitleSmall = css`
-  ${defaultTitle}
-  font-size: 16px;
-  line-height: 32px;
-`;
-
-const defaultSubtitle = css`
-  font-weight: 600;
-  ${inter}
-`;
-export const defaultSubtitleLarge = css`
-  ${defaultSubtitle}
-  font-size: 16px;
-  line-height: 32px;
-`;
-
-export const defaultSubtitleMedium = css`
-  ${defaultSubtitle}
-  font-size: 14px;
+export const defaultHeadingXxs = css`
+  ${defaultHeading}
+  font-size: 20px;
   line-height: 28px;
 `;
 
-export const defaultSubtitleSmall = css`
-  ${defaultSubtitle}
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 24px;
-`;
-
-const defaultParagraph = css`
+/* Body */
+const defaultBodyRegular = css`
   font-weight: 400;
   ${inter}
 `;
-export const defaultParagraphLarge = css`
-  ${defaultParagraph}
-  font-size: 16px;
-  line-height: 32px;
+
+const defaultBodyMedium = css`
+  font-weight: 500;
+  ${inter}
 `;
 
-export const defaultParagraphMedium = css`
-  ${defaultParagraph}
-  font-size: 14px;
-  line-height: 28px;
-`;
-
-export const defaultParagraphSmall = css`
-  ${defaultParagraph}
-  font-size: 12px;
-  line-height: 24px;
-`;
-
-const defaultComponentText = css`
+const defaultBodySemibold = css`
   font-weight: 600;
   ${inter}
 `;
-export const defaultComponentTextLarge = css`
-  ${defaultComponentText}
+
+const defaultBodyBold = css`
+  font-weight: 700;
+  ${inter}
+`;
+
+const defaultBodyLg = css`
+  font-size: 18px;
+  line-height: 28px;
+`;
+
+const defaultBodyMd = css`
   font-size: 16px;
   line-height: 24px;
 `;
 
-export const defaultComponentTextMedium = css`
-  ${defaultComponentText}
+const defaultBodySm = css`
   font-size: 14px;
   line-height: 24px;
 `;
 
-export const defaultComponentTextSmall = css`
-  ${defaultComponentText}
+const defaultBodyXs = css`
   font-size: 12px;
-  line-height: 16px;
+  line-height: 20px;
 `;
 
-export const boldParagraphMedium = css`
-  ${defaultParagraphMedium}
-  font-weight: 600;
+export const defaultBodyLgRegular = css`
+  ${defaultBodyRegular}
+  ${defaultBodyLg}
+`;
+
+export const defaultBodyMdRegular = css`
+  ${defaultBodyRegular}
+  ${defaultBodyMd}
+`;
+
+export const defaultBodySmRegular = css`
+  ${defaultBodyRegular}
+  ${defaultBodySm}
+`;
+
+export const defaultBodyXsRegular = css`
+  ${defaultBodyRegular}
+  ${defaultBodyXs}
+`;
+
+export const defaultBodyLgMedium = css`
+  ${defaultBodyMedium}
+  ${defaultBodyLg}
+`;
+
+export const defaultBodyMdMedium = css`
+  ${defaultBodyMedium}
+  ${defaultBodyMd}
+`;
+
+export const defaultBodySmMedium = css`
+  ${defaultBodyMedium}
+  ${defaultBodySm}
+`;
+
+export const defaultBodyXsMedium = css`
+  ${defaultBodyMedium}
+  ${defaultBodyXs}
+`;
+
+export const defaultBodyLgSemibold = css`
+  ${defaultBodySemibold}
+  ${defaultBodyLg}
+`;
+
+export const defaultBodyMdSemibold = css`
+  ${defaultBodySemibold}
+  ${defaultBodyMd}
+`;
+
+export const defaultBodySmSemibold = css`
+  ${defaultBodySemibold}
+  ${defaultBodySm}
+`;
+
+export const defaultBodyXsSemibold = css`
+  ${defaultBodySemibold}
+  ${defaultBodyXs}
+`;
+
+export const defaultBodyLgBold = css`
+  ${defaultBodyBold}
+  ${defaultBodyLg}
+`;
+
+export const defaultBodyMdBold = css`
+  ${defaultBodyBold}
+  ${defaultBodyMd}
+`;
+
+export const defaultBodySmBold = css`
+  ${defaultBodyBold}
+  ${defaultBodySm}
+`;
+
+export const defaultBodyXsBold = css`
+  ${defaultBodyBold}
+  ${defaultBodyXs}
 `;

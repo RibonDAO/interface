@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { stylizedHeadingLarge } from "styles/typography/stylized";
+import { stylizedDisplayLg } from "styles/typography/stylized";
 
 export const Container = styled.div``;
 
@@ -13,9 +13,9 @@ export const BodyContainer = styled.div`
 `;
 
 export const Title = styled.h1`
-  ${stylizedHeadingLarge}
+  ${stylizedDisplayLg}
 
-  margin: 0;
+  margin: 12px 0;
 `;
 
 export const NonProfitsContainer = styled.div`

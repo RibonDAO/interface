@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { stylizedTitleLarge } from "styles/typography/stylized";
+import { stylizedDisplayXs } from "styles/typography/stylized";
 import Button from "components/atomics/buttons/Button";
 
 export const DesktopContainer = styled.div`
@@ -25,7 +25,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  ${stylizedTitleLarge}
+  ${stylizedDisplayXs}
 
   text-align: center;
 `;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { defaultSubtitleMedium } from "styles/typography/default";
+import { defaultBodySmSemibold } from "styles/typography/default";
 
 export const NotificationContainer = styled.div`
   position: fixed;
@@ -56,7 +56,7 @@ export const Message = styled.span`
 `;
 
 export const Link = styled.span`
-  ${defaultSubtitleMedium}
+  ${defaultBodySmSemibold}
 
   float: right;
   color: ${({ theme }) => theme.colors.neutral10};

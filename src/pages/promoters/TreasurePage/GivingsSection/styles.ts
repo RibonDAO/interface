@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {
-  defaultSubtitleMedium,
-  defaultTitleSmall,
+  defaultBodySmSemibold,
+  defaultBodyMdBold,
 } from "styles/typography/default";
 
 export const Container = styled.div``;
@@ -26,7 +26,7 @@ export const LastCardCarousel = styled.a`
 `;
 
 export const GivingText = styled.span`
-  ${defaultSubtitleMedium}
+  ${defaultBodySmSemibold}
 
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
@@ -50,7 +50,7 @@ export const Image = styled.img`
 `;
 
 export const SectionTitle = styled.h2`
-  ${defaultTitleSmall}
+  ${defaultBodyMdBold}
 
   margin-top: 28px;
   color: ${({ theme }) => theme.colors.gray40};

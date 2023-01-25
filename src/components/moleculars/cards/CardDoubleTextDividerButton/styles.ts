@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {
-  defaultParagraphSmall,
-  defaultTitleLarge,
+  defaultBodyXsRegular,
+  defaultHeadingXs,
 } from "styles/typography/default";
 
 export const Container = styled.div`
@@ -15,7 +15,7 @@ export const Container = styled.div`
 `;
 
 export const FirstText = styled.p`
-  ${defaultParagraphSmall}
+  ${defaultBodyXsRegular}
 
   font-style: italic;
   color: ${({ theme }) => theme.colors.gray30};
@@ -25,7 +25,7 @@ export const MainContent = styled.h3<{
   processing?: boolean;
   refunded?: boolean;
 }>`
-  ${defaultTitleLarge}
+  ${defaultHeadingXs}
 
   color: ${(props) =>
     // eslint-disable-next-line no-nested-ternary

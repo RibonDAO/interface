@@ -13,7 +13,6 @@ import {
   useMemo,
   useEffect,
 } from "react";
-import { revenue, Revenue } from "@amplitude/analytics-browser";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "services/analytics";
 import { logError } from "services/crashReport";
@@ -196,13 +195,6 @@ function CardPaymentInformationProvider({ children }: Props) {
       show();
 
       logEvent("treasureGivingConfirmMdl_view");
-
-      const event = new Revenue()
-        .setProductId("com.company.productId")
-        .setPrice(3.99)
-        .setQuantity(3);
-
-      revenue(event);
     } catch (error) {
       closeAnimationModal();
       logError(error);

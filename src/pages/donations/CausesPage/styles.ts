@@ -14,6 +14,7 @@ export const BodyContainer = styled.div`
 
 export const Title = styled.h1`
   ${stylizedDisplayLg}
+
   margin: 12px 0;
 `;
 

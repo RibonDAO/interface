@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {
-  defaultSubtitleSmall,
-  defaultTitleSmall,
+  defaultBodyMdBold,
+  defaultBodyXsMedium,
 } from "styles/typography/default";
 
 export const Container = styled.div`
@@ -27,7 +27,7 @@ export const Image = styled.img`
 `;
 
 export const Text = styled.p`
-  ${defaultSubtitleSmall}
+  ${defaultBodyXsMedium}
 
   margin-top: 8px;
   font-weight: 400;
@@ -35,8 +35,7 @@ export const Text = styled.p`
 `;
 
 export const Value = styled.span`
-  ${defaultTitleSmall}
-
+  ${defaultBodyMdBold}
   margin-top: 8px;
   color: ${({ theme }) => theme.colors.green40};
 `;

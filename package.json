@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@amplitude/analytics-browser": "^1.6.8",
     "@apollo/client": "^3.6.9",
     "@growthbook/growthbook-react": "^0.9.1",
     "@sentry/react": "^6.16.1",

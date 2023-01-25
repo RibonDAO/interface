@@ -23,6 +23,7 @@ import GroupButtons from "components/moleculars/sections/GroupButtons";
 import useVoucher from "hooks/useVoucher";
 import { useCausesContext } from "contexts/causesContext";
 import UserSupportSection from "pages/promoters/SupportTreasurePage/CardSection/UserSupportSection";
+import { track } from "@amplitude/analytics-browser";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
@@ -96,6 +97,7 @@ function CausesPage(): JSX.Element {
   const hasAvailableDonation = !state?.blockedDonation && canDonate;
 
   useEffect(() => {
+    track("Button Clicked");
     if (
       !hasReceivedTicketToday() ||
       (hasAvailableDonation && hasNotSeenDonationModal)

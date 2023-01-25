@@ -1,5 +1,7 @@
+import { init }  from "@amplitude/analytics-browser";
 import firebase from "firebase/app";
 import "firebase/analytics";
+
 import * as Sentry from "@sentry/react";
 
 export function initializeFirebase(): any {
@@ -24,4 +26,12 @@ export function initializeSentry(): void {
   const release = `ribon-interface@${process.env.npm_package_version}`;
 
   Sentry.init({ dsn, release });
+}
+
+export function initializeAmplitude(): any {
+  const key = process.env.REACT_APP_AMPLITUDE_API_KEY;
+  // if (!key || process.env.NODE_ENV === "development") return;
+  if (!key) return;
+
+  init(key);
 }

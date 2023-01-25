@@ -36,6 +36,7 @@ export const Text = styled.p`
 
 export const Value = styled.span`
   ${defaultBodyMdBold}
+
   margin-top: 8px;
   color: ${({ theme }) => theme.colors.green40};
 `;

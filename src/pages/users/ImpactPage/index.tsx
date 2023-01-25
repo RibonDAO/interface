@@ -42,13 +42,13 @@ function ImpactPage(): JSX.Element {
     userImpact.length > impactCardsToShow;
   const hasImpact = () => impactCards().length > 0;
 
-  const title = (item: any) => {
+  const textImpact = (item: any) => {
     const { nonProfit, impact } = item;
     const impacts = nonProfit?.nonProfitImpacts || [];
     const nonProfitsImpactsLength = impacts.length;
     const roundedImpact = impact;
 
-    if (nonProfit && roundedImpact && impacts && nonProfitsImpactsLength) {
+    if (roundedImpact && impacts && nonProfitsImpactsLength) {
       const lastImpact = impacts[nonProfitsImpactsLength - 1];
       if (lastImpact.donorRecipient) {
         return `${impactNormalizer(
@@ -73,14 +73,18 @@ function ImpactPage(): JSX.Element {
       {hasImpact() ? (
         <S.CardsButtonContainer>
           <S.Wrapper>
-            {impactCards().map((item) => (
-              <CardTopImage
-                key={item.nonProfit.id}
-                text={title(item)}
-                imageUrl={item.nonProfit.logo}
-                imageAlt={item.impact}
-              />
-            ))}
+            {impactCards().map(
+              (item) =>
+                item.impact.toString() !== "0" && (
+                  <CardTopImage
+                    key={item.nonProfit.id}
+                    title={item.nonProfit.name}
+                    text={textImpact(item)}
+                    imageUrl={item.nonProfit.logo}
+                    imageAlt={item.impact}
+                  />
+                ),
+            )}
           </S.Wrapper>
           {shouldShowButton() && (
             <S.CardButton text={t("button")} onClick={handleClick} />

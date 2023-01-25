@@ -33,15 +33,12 @@ export const CardsButtonContainer = styled.div`
 `;
 
 export const Wrapper = styled.div`
+  width: 100%;
+  min-height: 216px;
   margin-top: 28px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  justify-content: space-evenly;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    justify-content: flex-start;
-  }
 `;
 
 export const CardButton = styled(Button)`

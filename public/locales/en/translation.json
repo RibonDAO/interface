@@ -110,7 +110,11 @@
     "impactText": "You donated ",
     "button": "Show more",
     "noImpactText": "Your donation impact summary will be shown here",
-    "noImpactButton": "Donate now"
+    "noImpactButton": "Donate now",
+    "donatedTickets": "Donated tickets",
+    "donatedMoney": "Donated money",
+    "supportedNgos": "Supported NGOs",
+    "supporterCauses": "Supporter causes"
   },
   "promoters": {
     "treasurePage": {

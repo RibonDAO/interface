@@ -28,6 +28,7 @@ export const Image = styled.img`
 
 export const Text = styled.p`
   ${defaultSubtitleSmall}
+
   margin-top: 8px;
   font-weight: 400;
   color: ${({ theme }) => theme.colors.gray30};
@@ -35,6 +36,7 @@ export const Text = styled.p`
 
 export const Value = styled.span`
   ${defaultTitleSmall}
+
   margin-top: 8px;
   color: ${({ theme }) => theme.colors.green40};
 `;

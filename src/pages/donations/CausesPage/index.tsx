@@ -101,7 +101,6 @@ function CausesPage(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    track("Button Clicked");
     if (
       !hasReceivedTicketToday() ||
       (hasAvailableDonation && hasNotSeenDonationModal)

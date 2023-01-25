@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { boldParagraphMedium } from "styles/typography/default";
+import { defaultBodySmBold } from "styles/typography/default";
 
 export const Container = styled.div`
   margin-bottom: 16px;
@@ -26,7 +26,7 @@ export const ImageContainer = styled.img`
 `;
 
 export const CauseName = styled.span`
-  ${boldParagraphMedium}
+  ${defaultBodySmBold}
 
   position: absolute;
   z-index: 2;

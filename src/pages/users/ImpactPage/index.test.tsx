@@ -24,7 +24,7 @@ describe("Impact", () => {
       });
     });
 
-    it("should render the first 2 cards", () => {
+    it("should render the impacts cards", () => {
       expectTextToBeInTheDocument(impacts.totalTickets.toString());
       expectTextToBeInTheDocument("Donated tickets");
 

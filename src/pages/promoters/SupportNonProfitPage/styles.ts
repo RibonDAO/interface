@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import {
-  stylizedHeadingLarge,
-  stylizedTitleLarge,
+  stylizedDisplayLg,
+  stylizedDisplayXs,
 } from "styles/typography/stylized";
 import {
-  defaultParagraphSmall,
-  defaultSubtitleMedium,
+  defaultBodyXsRegular,
+  defaultBodySmSemibold,
 } from "styles/typography/default";
 import ButtonComponent from "components/atomics/buttons/Button";
 import WaveCut from "assets/images/wave-cut.svg";
@@ -59,13 +59,13 @@ export const ContributionContainer = styled.div`
 `;
 
 export const CommunityAddText = styled.p`
-  ${defaultParagraphSmall}
+  ${defaultBodyXsRegular}
 
   color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const CommunityAddValue = styled.p`
-  ${stylizedTitleLarge}
+  ${stylizedDisplayXs}
 
   color: ${({ theme }) => theme.colors.red20};
 `;
@@ -96,14 +96,15 @@ export const BackgroundImage = styled.img`
 `;
 
 export const Title = styled.h1`
-  ${stylizedTitleLarge}
+  ${stylizedDisplayXs}
 
   margin: 4px 0;
+  margin-right: 5%;
   margin-bottom: 24px;
   color: ${({ theme }) => theme.colors.gray40};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    ${stylizedHeadingLarge}
+    ${stylizedDisplayLg}
   }
 `;
 
@@ -122,7 +123,7 @@ export const SupportImage = styled.img`
 `;
 
 export const UserBalanceText = styled.p`
-  ${defaultSubtitleMedium}
+  ${defaultBodySmSemibold}
 
   margin-bottom: 4px;
   text-align: center;
@@ -130,15 +131,27 @@ export const UserBalanceText = styled.p`
 `;
 
 export const UserBalanceTextHighlight = styled.span`
-  ${defaultSubtitleMedium}
+  ${defaultBodySmSemibold}
 
   color: ${({ theme }) => theme.colors.red30};
 `;
 
 export const RefundText = styled.p`
-  ${defaultParagraphSmall}
+  ${defaultBodyXsRegular}
 
   margin-top: 4px;
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
+`;
+
+export const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const TooltipSection = styled.div`
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
 `;

@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 import {
-  defaultComponentTextLarge,
-  defaultComponentTextMedium,
-  defaultComponentTextSmall,
+  defaultBodyMdSemibold,
+  defaultBodySmSemibold,
+  defaultBodyXsSemibold,
 } from "styles/typography/default";
 
 export const Container = styled.button<{
@@ -18,7 +18,7 @@ export const Container = styled.button<{
   ${(props) =>
     props.size === "large" &&
     css`
-      ${defaultComponentTextLarge}
+      ${defaultBodyMdSemibold}
 
       padding: 12px 16px;
     `}
@@ -26,7 +26,7 @@ export const Container = styled.button<{
   ${(props) =>
     props.size === "medium" &&
     css`
-      ${defaultComponentTextMedium}
+      ${defaultBodySmSemibold}
 
       padding: 12px 16px;
     `}
@@ -35,7 +35,7 @@ export const Container = styled.button<{
   ${(props) =>
     props.size === "small" &&
     css`
-      ${defaultComponentTextSmall}
+      ${defaultBodyXsSemibold}
 
       padding: 6px 16px;
     `}

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import {
-  defaultComponentTextMedium,
-  defaultParagraphSmall,
+  defaultBodySmSemibold,
+  defaultBodyXsRegular,
 } from "styles/typography/default";
-import { stylizedTitleLarge } from "styles/typography/stylized";
+import { stylizedDisplayXs } from "styles/typography/stylized";
 import Dropdown from "components/atomics/Dropdown";
 
 export const Container = styled.div`
@@ -20,14 +20,14 @@ export const ValueContainer = styled.div`
 `;
 
 export const ValueText = styled.p`
-  ${stylizedTitleLarge}
+  ${stylizedDisplayXs}
 
   margin-right: 8px;
   color: ${({ theme }) => theme.colors.red20};
 `;
 
 export const CauseText = styled.p`
-  ${defaultParagraphSmall}
+  ${defaultBodyXsRegular}
 
   height: 5.3rem;
   margin-bottom: 4px;
@@ -36,7 +36,7 @@ export const CauseText = styled.p`
 `;
 
 export const CauseTextHighlight = styled.span`
-  ${defaultParagraphSmall}
+  ${defaultBodyXsRegular}
 
   color: ${({ theme }) => theme.colors.red30};
 `;
@@ -55,7 +55,7 @@ export const CurrencySelector = styled(Dropdown)`
 `;
 
 export const Title = styled.p`
-  ${defaultComponentTextMedium}
+  ${defaultBodySmSemibold}
 
   margin-bottom: 12px;
   text-align: center;

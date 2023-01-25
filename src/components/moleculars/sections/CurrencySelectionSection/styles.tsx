@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { stylizedHeadingMedium } from "styles/typography/stylized";
+import { stylizedDisplayMd } from "styles/typography/stylized";
 
 export const Container = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ export const Container = styled.div`
 `;
 
 export const Amount = styled.h3`
-  ${stylizedHeadingMedium}
+  ${stylizedDisplayMd}
   color: ${({ theme }) => theme.colors.green30};
   font-weight: ${({ theme }) => theme.font.light};
 `;

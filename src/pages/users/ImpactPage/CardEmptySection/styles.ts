@@ -1,6 +1,6 @@
 import Button from "components/atomics/buttons/Button";
 import styled from "styled-components";
-import { defaultSubtitleMedium } from "styles/typography/default";
+import { defaultBodySmSemibold } from "styles/typography/default";
 
 export const Container = styled.div`
   width: 70%;
@@ -13,7 +13,7 @@ export const Container = styled.div`
 `;
 
 export const Text = styled.p`
-  ${defaultSubtitleMedium}
+  ${defaultBodySmSemibold}
 
   margin-top: 28px;
   text-align: center;

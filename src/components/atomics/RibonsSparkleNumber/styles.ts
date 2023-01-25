@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { defaultSubtitleMedium } from "styles/typography/default";
+import { defaultBodySmSemibold } from "styles/typography/default";
 
 export const Container = styled.div`
   display: flex;
@@ -9,7 +9,7 @@ export const Container = styled.div`
 `;
 
 export const RibonsAmount = styled.p`
-  ${defaultSubtitleMedium}
+  ${defaultBodySmSemibold}
 
   margin-right: 2px;
   color: ${({ theme }) => theme.colors.green30};

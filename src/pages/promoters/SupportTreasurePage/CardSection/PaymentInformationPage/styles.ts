@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import Button from "components/atomics/buttons/Button";
 import {
-  defaultComponentTextSmall,
-  defaultParagraphSmall,
-  defaultSubtitleMedium,
+  defaultBodyXsSemibold,
+  defaultBodyXsRegular,
+  defaultBodySmSemibold,
 } from "styles/typography/default";
-import { stylizedHeadingLarge } from "styles/typography/stylized";
+import { stylizedDisplayLg } from "styles/typography/stylized";
 
 export const Container = styled.div`
   width: 100%;
@@ -19,7 +19,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  ${stylizedHeadingLarge}
+  ${stylizedDisplayLg}
 
   margin: 4px 0;
   margin-bottom: 8px;
@@ -59,7 +59,7 @@ export const CardSectionContainer = styled.div`
 `;
 
 export const Subtitle = styled.p`
-  ${defaultSubtitleMedium}
+  ${defaultBodySmSemibold}
 
   margin-top: 20px;
 `;
@@ -74,7 +74,7 @@ export const ValuesContainer = styled.div`
 `;
 
 export const CardValueButton = styled(Button)`
-  ${defaultComponentTextSmall}
+  ${defaultBodyXsSemibold}
 
   max-width: 112px;
   height: 30px;
@@ -128,7 +128,7 @@ export const ServiceFeesValue = styled.p`
 `;
 
 export const CryptoGivingValue = styled.p`
-  ${defaultParagraphSmall}
+  ${defaultBodyXsRegular}
 
   margin-bottom: 32px;
   font-style: italic;

@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import {
-  stylizedHeadingMedium,
-  stylizedHeadingSmall,
+  stylizedDisplayMd,
+  stylizedDisplaySm,
 } from "styles/typography/stylized";
 
 import {
-  defaultTitleLarge,
-  defaultParagraphMedium,
+  defaultHeadingXs,
+  defaultBodySmRegular,
 } from "styles/typography/default";
 import YellowShape from "assets/images/yellow-shape.svg";
 import PinkShape from "assets/images/pink-shape.svg";
@@ -86,7 +86,7 @@ export const DarkOverlay = styled.div`
 `;
 
 export const Title = styled.h1`
-  ${stylizedHeadingSmall}
+  ${stylizedDisplaySm}
 
   margin-top: 24px;
   margin-bottom: 8px;
@@ -94,12 +94,12 @@ export const Title = styled.h1`
   color: ${({ theme }) => theme.colors.gray40};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    ${stylizedHeadingMedium}
+    ${stylizedDisplayMd}
   }
 `;
 
 export const Text = styled.p`
-  ${defaultParagraphMedium}
+  ${defaultBodySmRegular}
 
   margin-block: 0;
   margin-left: 16px;
@@ -107,7 +107,7 @@ export const Text = styled.p`
 `;
 
 export const CardMainText = styled.h2`
-  ${defaultTitleLarge}
+  ${defaultHeadingXs}
 
   margin-top: -4px;
   margin-bottom: 8px;

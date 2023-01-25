@@ -1,6 +1,6 @@
 import Button from "components/atomics/buttons/Button";
 import styled from "styled-components";
-import { stylizedHeadingLarge } from "styles/typography/stylized";
+import { stylizedDisplayLg } from "styles/typography/stylized";
 
 export const Container = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  ${stylizedHeadingLarge}
+  ${stylizedDisplayLg}
 
   margin: 0;
   color: ${({ theme }) => theme.colors.gray40};

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {
-  defaultParagraphSmall,
-  defaultSubtitleSmall,
+  defaultBodyXsRegular,
+  defaultBodyXsMedium,
 } from "styles/typography/default";
 
 export const Container = styled.div`
@@ -50,11 +50,11 @@ export const LeftContainer = styled.div`
 `;
 
 export const Title = styled.h3`
-  ${defaultSubtitleSmall}
+  ${defaultBodyXsMedium}
 `;
 
 export const Link = styled.a`
-  ${defaultParagraphSmall}
+  ${defaultBodyXsRegular}
 
   color: ${({ theme }) => theme.colors.green30};
 `;

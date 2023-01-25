@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import {
-  defaultHeadingLarge,
-  defaultParagraphSmall,
-  defaultTitleSmall,
+  defaultHeadingLg,
+  defaultBodyXsRegular,
+  defaultBodyMdBold,
 } from "styles/typography/default";
-import { stylizedHeadingLarge } from "styles/typography/stylized";
+import { stylizedDisplayLg } from "styles/typography/stylized";
 
 export const Container = styled.div``;
 
@@ -32,14 +32,14 @@ export const CardBlank = styled.div`
 `;
 
 export const Title = styled.h1`
-  ${stylizedHeadingLarge}
+  ${stylizedDisplayLg}
 
   margin: 0;
   margin-bottom: 16px;
 `;
 
 export const TreasureText = styled.h3`
-  ${defaultHeadingLarge}
+  ${defaultHeadingLg}
 
   margin-bottom: 8px;
   color: ${({ theme }) => theme.colors.green30};
@@ -50,7 +50,7 @@ export const TreasureTextCoin = styled.span`
 `;
 
 export const SectionTitle = styled.h2`
-  ${defaultTitleSmall}
+  ${defaultBodyMdBold}
 
   margin-bottom: 8px;
   color: ${({ theme }) => theme.colors.gray40};
@@ -81,7 +81,7 @@ export const GivingsCard = styled.div`
 `;
 
 export const GivingDate = styled.p`
-  ${defaultParagraphSmall}
+  ${defaultBodyXsRegular}
 
   color: ${({ theme }) => theme.colors.gray30};
 `;

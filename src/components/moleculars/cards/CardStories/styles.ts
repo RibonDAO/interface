@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Button from "components/atomics/buttons/Button";
-import { defaultComponentTextMedium } from "styles/typography/default";
+import { defaultBodySmSemibold } from "styles/typography/default";
 
 export const Container = styled.div`
   width: 100%;
@@ -67,7 +67,7 @@ export const CtaWrapper = styled.div`
 `;
 
 export const CtaButton = styled(Button)`
-  ${defaultComponentTextMedium}
+  ${defaultBodySmSemibold}
 
   border-radius: 20px;
 `;

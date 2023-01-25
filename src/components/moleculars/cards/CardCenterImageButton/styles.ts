@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { defaultComponentTextLarge } from "styles/typography/default";
+import { defaultBodyMdSemibold } from "styles/typography/default";
 
 export const Container = styled.div<{ fullWidth: boolean }>`
   width: 100%;
@@ -63,7 +63,7 @@ export const DarkStroke = styled.div`
 `;
 
 export const ImageDescription = styled.h4`
-  ${defaultComponentTextLarge}
+  ${defaultBodyMdSemibold}
 
   padding: 14px;
   position: absolute;

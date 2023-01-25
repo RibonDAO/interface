@@ -98,7 +98,7 @@ function CausesPage(): JSX.Element {
 
   useEffect(() => {
     track("Cause Page View");
-  }, [])
+  }, []);
 
   useEffect(() => {
     track("Button Clicked");

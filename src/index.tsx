@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./i18n";
-import { initializeFirebase, initializeSentry } from "./services";
+import { initializeAmplitude, initializeFirebase, initializeSentry } from "./services";
 
 declare global {
   interface Window {
@@ -13,6 +13,7 @@ declare global {
 
 initializeFirebase();
 initializeSentry();
+initializeAmplitude();
 
 ReactDOM.render(
   <React.StrictMode>

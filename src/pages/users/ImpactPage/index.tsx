@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { logEvent } from "services/analytics";
 
 import useUserStatistics from "hooks/apiHooks/useStatistics";
-import { formatPrice } from "lib/formatters/currencyFormatter";
+import { formatPriceWithZeros } from "lib/formatters/currencyFormatter";
 import { useLanguage } from "hooks/useLanguage";
 import { coinByLanguage } from "lib/coinByLanguage";
 import TicketIcon from "./assets/ticket-icon.svg";
@@ -39,11 +39,12 @@ function ImpactPage(): JSX.Element {
           <CardTopImage
             text={t("donatedMoney")}
             icon={MoneyIcon}
-            value={formatPrice(
+            value={formatPriceWithZeros(
               currentLang === "pt-BR"
                 ? userStatistics?.totalDonated?.brl ?? 0
                 : userStatistics?.totalDonated?.usd ?? 0,
               coinByLanguage(currentLang),
+              currentLang,
             )}
           />
           <CardTopImage

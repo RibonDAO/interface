@@ -13,3 +13,15 @@ export function formatPrice(price: number, currency: string) {
   const formattedPrice = formatter.format(price);
   return removeInsignificantZeros(formattedPrice);
 }
+
+export function formatPriceWithZeros(
+  price: number,
+  currency: string,
+  locale: string,
+) {
+  const formatter = new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency,
+  });
+  return formatter.format(price);
+}

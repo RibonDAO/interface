@@ -33,7 +33,7 @@ export const CardsButtonContainer = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  margin-top: 28px;
+  margin-top: 16px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;

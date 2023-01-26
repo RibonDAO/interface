@@ -28,9 +28,17 @@ describe("Impact", () => {
   });
 
   const user = userFactory({ id: 1 });
+  const impact = [impactFactory({ nonProfit: nonProfitFactory({ id: 1 }) })];
   const impacts = [
     impactFactory({ nonProfit: nonProfitFactory({ id: 1 }) }),
     impactFactory({ nonProfit: nonProfitFactory({ id: 2 }) }),
+    impactFactory({ nonProfit: nonProfitFactory({ id: 3 }) }),
+    impactFactory({ nonProfit: nonProfitFactory({ id: 4 }) }),
+    impactFactory({ nonProfit: nonProfitFactory({ id: 5 }) }),
+    impactFactory({ nonProfit: nonProfitFactory({ id: 6 }) }),
+    impactFactory({ nonProfit: nonProfitFactory({ id: 7 }) }),
+    impactFactory({ nonProfit: nonProfitFactory({ id: 8 }) }),
+    impactFactory({ nonProfit: nonProfitFactory({ id: 9 }) }),
   ];
 
   describe("when there are more cards to show", () => {
@@ -61,7 +69,7 @@ describe("Impact", () => {
         },
       });
       mockRequest(`api/v1/users/${user.id}/impacts`, {
-        payload: impacts,
+        payload: impact,
       });
     });
 

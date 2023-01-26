@@ -115,7 +115,7 @@ function DonationDoneCausePage(): JSX.Element {
       }
     }
 
-    return nonProfit?.name;
+    return `${nonProfit?.impactByTicket} ${nonProfit?.impactDescription}`;
   };
 
   const bottomText = () => {

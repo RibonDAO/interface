@@ -10,7 +10,7 @@ import useImpact from "hooks/apiHooks/useImpact";
 import * as S from "./styles";
 
 function ImpactPage(): JSX.Element {
-  const INITIAL_CARDS_COUNT = 2;
+  const INITIAL_CARDS_COUNT = 8;
   const { t } = useTranslation("translation", {
     keyPrefix: "impactPage",
   });

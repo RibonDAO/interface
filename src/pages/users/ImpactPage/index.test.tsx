@@ -5,7 +5,6 @@ import userFactory from "config/testUtils/factories/userFactory";
 
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import { UserStatistics } from "types/entities/userStatistics";
-import { formatPrice } from "lib/formatters/currencyFormatter";
 import Impact from ".";
 
 describe("Impact", () => {
@@ -24,11 +23,11 @@ describe("Impact", () => {
       });
     });
 
-    it("should render the impacts cards", () => {
+    it("should render the imp", () => {
       expectTextToBeInTheDocument(impacts.totalTickets.toString());
       expectTextToBeInTheDocument("Donated tickets");
 
-      expectTextToBeInTheDocument(formatPrice(impacts.totalDonated.brl, "BRL"));
+      expectTextToBeInTheDocument("R$ 15,00");
       expectTextToBeInTheDocument("Donated money");
 
       expectTextToBeInTheDocument(impacts.totalNonProfits.toString());

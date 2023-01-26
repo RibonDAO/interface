@@ -5,8 +5,8 @@ import userFactory from "config/testUtils/factories/userFactory";
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
 
 import {
-  expectTextToBeInTheDocument,
   expectTextNotToBeInTheDocument,
+  expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
 import { UserStatistics } from "types/entities/userStatistics";
 import userStatisticsFactory from "config/testUtils/factories/userStatisticsFactory";
@@ -51,18 +51,12 @@ describe("Impact Page", () => {
         renderComponent(<Impact />);
 
         expectTextToBeInTheDocument("Impact");
+        expectTextNotToBeInTheDocument("You donated 1 Impact description");
       });
     });
 
     const user = userFactory({ id: 1 });
-    const impacts = [
-      impactFactory({ nonProfit: nonProfitFactory({ id: 1 }) }),
-      impactFactory({ nonProfit: nonProfitFactory({ id: 2 }) }),
-      impactFactory({ nonProfit: nonProfitFactory({ id: 3 }) }),
-      impactFactory({ nonProfit: nonProfitFactory({ id: 4 }) }),
-      impactFactory({ nonProfit: nonProfitFactory({ id: 5 }) }),
-      impactFactory({ nonProfit: nonProfitFactory({ id: 6 }) }),
-    ];
+    const impact = [impactFactory({ nonProfit: nonProfitFactory({ id: 1 }) })];
 
     describe("when there are  cards to show", () => {
       beforeEach(() => {
@@ -72,15 +66,12 @@ describe("Impact Page", () => {
           },
         });
         mockRequest(`api/v1/users/${user.id}/impacts`, {
-          payload: [
-            ...impacts,
-            impactFactory({ nonProfit: nonProfitFactory({ id: 3 }) }),
-          ],
+          payload: [...impact],
         });
       });
 
-      it("shows the show more button", () => {
-        expectTextNotToBeInTheDocument("Show more");
+      it("shows the impact cards", () => {
+        expectTextToBeInTheDocument("You donated 1 Impact description");
       });
     });
   });

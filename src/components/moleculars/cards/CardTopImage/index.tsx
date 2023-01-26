@@ -3,7 +3,7 @@ import * as S from "./styles";
 export type Props = {
   imageUrl?: string;
   imageAlt?: string;
-  text?: string;
+  text?: string | JSX.Element;
   title?: string;
 };
 function CardTopImage({ imageUrl, imageAlt, text, title }: Props): JSX.Element {

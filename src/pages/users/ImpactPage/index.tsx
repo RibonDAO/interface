@@ -1,7 +1,7 @@
 import CardEmptySection from "pages/users/ImpactPage/CardEmptySection";
 import CardTopImage from "components/moleculars/cards/CardTopImage";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { impactNormalizer } from "@ribon.io/shared/lib";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "services/analytics";
@@ -42,6 +42,7 @@ function ImpactPage(): JSX.Element {
     userImpact.length > impactCardsToShow;
   const hasImpact = () => impactCards().length > 0;
 
+  // TODO: Remove this fallback when all nonProfits are using the new impact
   const textImpact = (item: any) => {
     const { nonProfit, impact } = item;
     const impacts = nonProfit?.nonProfitImpacts || [];
@@ -51,11 +52,21 @@ function ImpactPage(): JSX.Element {
     if (roundedImpact && impacts && nonProfitsImpactsLength) {
       const lastImpact = impacts[nonProfitsImpactsLength - 1];
       if (lastImpact.donorRecipient) {
-        return `${impactNormalizer(
+        const normalizedImpact = impactNormalizer(
           nonProfit,
           roundedImpact,
           normalizerTranslation,
-        )}`;
+        );
+
+        return (
+          <>
+            {normalizedImpact.map((slice, index) => (
+              <Fragment key={index.toString()}>
+                {index % 2 === 0 ? <b>{slice}</b> : slice}{" "}
+              </Fragment>
+            ))}
+          </>
+        );
       }
     }
     return `${t("impactText")} ${item.impact.toString()} ${

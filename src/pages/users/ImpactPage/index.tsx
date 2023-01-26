@@ -43,7 +43,7 @@ function ImpactPage(): JSX.Element {
   const hasImpact = () => impactCards().length > 0;
 
   // TODO: Remove this fallback when all nonProfits are using the new impact
-  const textImpact = (item: any) => {
+  const formattedImpactText = (item: any) => {
     const { nonProfit, impact } = item;
     const impacts = nonProfit?.nonProfitImpacts || [];
     const nonProfitsImpactsLength = impacts.length;
@@ -90,7 +90,7 @@ function ImpactPage(): JSX.Element {
                   <CardTopImage
                     key={item.nonProfit.id}
                     title={item.nonProfit.name}
-                    text={textImpact(item)}
+                    text={formattedImpactText(item)}
                     imageUrl={item.nonProfit.logo}
                     imageAlt={item.impact}
                   />

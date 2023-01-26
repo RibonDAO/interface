@@ -1,6 +1,6 @@
 import Button from "components/atomics/buttons/Button";
 import styled from "styled-components";
-import { stylizedHeadingLarge } from "styles/typography/stylized";
+import { stylizedDisplayLg } from "styles/typography/stylized";
 
 export const Container = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  ${stylizedHeadingLarge}
+  ${stylizedDisplayLg}
 
   margin: 0;
   color: ${({ theme }) => theme.colors.gray40};
@@ -33,6 +33,13 @@ export const CardsButtonContainer = styled.div`
 `;
 
 export const Wrapper = styled.div`
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+`;
+
+export const CardsContainer = styled.div`
   width: 100%;
   min-height: 216px;
   margin-top: 28px;

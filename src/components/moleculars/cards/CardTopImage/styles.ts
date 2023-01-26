@@ -1,41 +1,42 @@
 import styled from "styled-components";
-import { defaultParagraphSmall } from "styles/typography/default";
+import {
+  defaultBodyMdBold,
+  defaultBodyXsMedium,
+} from "styles/typography/default";
 
 export const Container = styled.div`
-  width: 100%;
-  min-width: 230px;
-  min-height: 216px;
+  width: 160px;
+  margin-bottom: 8px;
   padding: 16px;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  align-items: left;
   background-color: ${({ theme }) => theme.colors.neutral10};
   box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    max-width: 230px;
+    width: 230px;
   }
 `;
 
 export const Image = styled.img`
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
+  width: 24px;
+  height: 24px;
   display: block;
   object-fit: cover;
 `;
 
-export const Title = styled.p`
-  ${defaultParagraphSmall}
+export const Text = styled.p`
+  ${defaultBodyXsMedium}
 
-  color: ${({ theme }) => theme.colors.green40};
+  margin-top: 8px;
+  font-weight: 400;
+  color: ${({ theme }) => theme.colors.gray30};
 `;
 
-export const Text = styled.p`
-  ${defaultParagraphSmall}
+export const Value = styled.span`
+  ${defaultBodyMdBold}
 
-  text-align: left;
-  color: ${({ theme }) => theme.colors.gray30};
+  margin-top: 8px;
+  color: ${({ theme }) => theme.colors.green40};
 `;

@@ -1,16 +1,15 @@
 import * as S from "./styles";
 
 export type Props = {
-  imageUrl?: string;
-  imageAlt?: string;
-  text?: string | JSX.Element;
-  title?: string;
+  icon?: string;
+  value?: string | number;
+  text?: string;
 };
-function CardTopImage({ imageUrl, imageAlt, text, title }: Props): JSX.Element {
+function CardTopImage({ icon, value, text }: Props): JSX.Element {
   return (
     <S.Container>
-      <S.Image src={imageUrl} alt={imageAlt} />
-      <S.Title>{title}</S.Title>
+      <S.Image src={icon} alt={text} />
+      <S.Value>{value}</S.Value>
       <S.Text>{text}</S.Text>
     </S.Container>
   );

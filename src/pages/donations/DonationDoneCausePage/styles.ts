@@ -1,10 +1,10 @@
 import Button from "components/atomics/buttons/Button";
 import styled from "styled-components";
 import {
-  defaultParagraphMedium,
-  defaultSubtitleMedium,
+  defaultBodySmRegular,
+  defaultBodySmSemibold,
 } from "styles/typography/default";
-import { stylizedHeadingLarge } from "styles/typography/stylized";
+import { stylizedDisplayLg } from "styles/typography/stylized";
 
 export const Container = styled.div`
   width: 100%;
@@ -45,13 +45,13 @@ export const Icon = styled.img`
 `;
 
 export const DonationValue = styled.h1<{ color: string }>`
-  ${stylizedHeadingLarge}
+  ${stylizedDisplayLg}
 
   color: ${({ color }) => color};
 `;
 
 export const PostDonationText = styled.p`
-  ${defaultParagraphMedium}
+  ${defaultBodySmRegular}
 
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
@@ -60,7 +60,7 @@ export const PostDonationText = styled.p`
 export const CauseName = styled.span<{
   isGreen?: boolean;
 }>`
-  ${defaultSubtitleMedium}
+  ${defaultBodySmSemibold}
 
   color: ${(props) =>
     props.isGreen ? ({ theme }) => theme.colors.green30 : ({ color }) => color};

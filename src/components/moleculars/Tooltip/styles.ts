@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import {
-  defaultComponentTextMedium,
-  defaultParagraphSmall,
+  defaultBodySmSemibold,
+  defaultBodyXsRegular,
 } from "styles/typography/default";
 
 export const Container = styled.div`
@@ -24,14 +24,14 @@ export const LeftContainer = styled.div`
 `;
 
 export const RightContainer = styled.div`
-  ${defaultComponentTextMedium}
+  ${defaultBodySmSemibold}
 
   padding: 4px;
   color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const Symbol = styled.p`
-  ${defaultComponentTextMedium}
+  ${defaultBodySmSemibold}
 
   color: ${({ theme }) => theme.colors.gray30};
 `;
@@ -41,7 +41,7 @@ export const Text = styled.p`
 `;
 
 export const TooltipBox = styled(Tooltip)`
-  ${defaultParagraphSmall}
+  ${defaultBodyXsRegular}
 
   max-width: 92%;
   margin-right: 16px;

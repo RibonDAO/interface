@@ -60,7 +60,7 @@ function DonationDonePage(): JSX.Element {
       from: "/donation-done",
     };
     navigateTo({
-      pathname: "/promoters/treasure",
+      pathname: "/",
       state: newState,
     });
   };

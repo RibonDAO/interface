@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { defaultComponentTextSmall } from "styles/typography/default";
+import { defaultBodyXsSemibold } from "styles/typography/default";
 
 export const Button = styled.button<{
   outline?: boolean;
@@ -25,7 +25,7 @@ export const Button = styled.button<{
 `;
 
 export const ButtonText = styled.p`
-  ${defaultComponentTextSmall}
+  ${defaultBodyXsSemibold}
 `;
 
 export const Container = styled.div`

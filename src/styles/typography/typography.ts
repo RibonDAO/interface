@@ -3,15 +3,15 @@ import GambarinoRegularTtf from "../../assets/fonts/Gambarino-Regular.ttf";
 import GambarinoRegularWoff from "../../assets/fonts/Gambarino-Regular.woff";
 import GambarinoRegularWoff2 from "../../assets/fonts/Gambarino-Regular.woff2";
 import {
-  defaultComponentTextLarge,
-  defaultComponentTextSmall,
-  defaultHeadingLarge,
-  defaultParagraphMedium,
-  defaultParagraphSmall,
-  defaultSubtitleMedium,
-  defaultTitleLarge,
-  defaultTitleMedium,
-  defaultTitleSmall,
+  defaultBodyMdSemibold,
+  defaultBodyXsSemibold,
+  defaultHeadingLg,
+  defaultBodySmRegular,
+  defaultBodyXsRegular,
+  defaultBodySmSemibold,
+  defaultHeadingXs,
+  defaultHeadingXxs,
+  defaultBodyMdBold,
 } from "./default";
 
 export const typography = css`
@@ -45,55 +45,55 @@ export const typography = css`
     }
 
     h1 {
-      ${defaultHeadingLarge}
+      ${defaultHeadingLg}
     }
 
     h2 {
-      ${defaultTitleLarge}
+      ${defaultHeadingXs}
     }
 
     h3 {
-      ${defaultTitleMedium}
+      ${defaultHeadingXxs}
 
       span {
-        ${defaultTitleSmall}
+        ${defaultBodyMdBold}
       }
     }
 
     h4 {
-      ${defaultTitleSmall}
+      ${defaultBodyMdBold}
     }
 
     h5 {
-      ${defaultSubtitleMedium}
+      ${defaultBodySmSemibold}
     }
 
     h6 {
-      ${defaultComponentTextSmall}
+      ${defaultBodyXsSemibold}
     }
 
     p {
-      ${defaultParagraphMedium}
+      ${defaultBodySmRegular}
     }
 
     span {
-      ${defaultParagraphMedium}
+      ${defaultBodySmRegular}
     }
 
     button {
-      ${defaultComponentTextLarge}
+      ${defaultBodyMdSemibold}
     }
 
     label {
-      ${defaultParagraphMedium}
+      ${defaultBodySmRegular}
     }
 
     input {
-      ${defaultParagraphMedium}
+      ${defaultBodySmRegular}
     }
 
     a {
-      ${defaultParagraphSmall}
+      ${defaultBodyXsRegular}
     }
   }
 `;

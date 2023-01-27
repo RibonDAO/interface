@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { initializeFirebase } from "services/analytics/firebase";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./i18n";
 import {
   initializeAmplitude,
-  initializeFirebase,
   initializeSentry,
 } from "./services";
 

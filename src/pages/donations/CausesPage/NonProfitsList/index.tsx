@@ -1,7 +1,7 @@
 import CardCenterImageButton from "components/moleculars/cards/CardCenterImageButton";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { logEvent } from "services/analytics";
+import { logEvent } from "services/analytics/firebase";
 import NonProfit from "types/entities/NonProfit";
 import Integration from "types/entities/Integration";
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";

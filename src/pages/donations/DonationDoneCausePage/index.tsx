@@ -18,7 +18,7 @@ import Offer from "types/entities/Offer";
 import { Currencies } from "types/enums/Currencies";
 import getThemeByFlow from "lib/themeByFlow";
 import * as S from "./styles";
-import { logEvent } from "../../../services/analytics";
+import { logEvent } from "../../../services/analytics/firebase";
 
 function DonationDoneCausePage(): JSX.Element {
   const { navigateTo } = useNavigation();

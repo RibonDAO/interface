@@ -3,7 +3,7 @@ import CardTopImage from "components/moleculars/cards/CardTopImage";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { logEvent } from "services/analytics";
+import { logEvent } from "services/analytics/firebase";
 import useDonations from "hooks/apiHooks/useDonations";
 import useImpact from "hooks/apiHooks/useImpact";
 import * as S from "./styles";

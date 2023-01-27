@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { initializeFirebase } from "services/analytics/firebase";
+import { initializeSentry } from "services/analytics/sentry";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./i18n";
 import {
   initializeAmplitude,
-  initializeSentry,
 } from "./services";
 
 declare global {

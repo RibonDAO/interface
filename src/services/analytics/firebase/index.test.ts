@@ -6,7 +6,7 @@ import {
   convertParamsToString,
 } from ".";
 
-jest.unmock("services/analytics");
+jest.unmock("services/analytics/firebase");
 
 const mockAnalytics = {
   logEvent: jest.fn(),

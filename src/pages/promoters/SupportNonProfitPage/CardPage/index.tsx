@@ -29,6 +29,7 @@ function CardPage(): JSX.Element {
   const [currentOffer, setCurrentOffer] = useState<Offer>(offerFactory());
   const { cause, setCause, setOfferId, setFlow } = useCardPaymentInformation();
   const { nonProfits } = useNonProfits();
+  const { tertiary } = theme.colors.brand;
 
   const { causes } = useCauses();
   const { state } = useLocation<LocationStateType>();
@@ -50,7 +51,7 @@ function CardPage(): JSX.Element {
   useEffect(() => {
     setCause(state?.causeDonated || causesFilter()[0]);
   }, [causes]);
-
+  
   const handleCauseClick = (causeClicked: Cause) => {
     logEvent("nonProfitCauseSelection_click", {
       id: causeClicked?.id,
@@ -110,7 +111,7 @@ function CardPage(): JSX.Element {
         backgroundColor={theme.colors.red40}
         textColorOutline={theme.colors.red40}
         borderColor={theme.colors.red40}
-        borderColorOutline={theme.colors.red20}
+        borderColorOutline={tertiary.colorBrandTertiary200}
       />
       <S.NonProfitsListContainer>
         <SliderCards scrollOffset={400} color={theme.colors.red30}>

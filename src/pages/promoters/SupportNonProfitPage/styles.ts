@@ -9,6 +9,7 @@ import {
 } from "styles/typography/default";
 import ButtonComponent from "components/atomics/buttons/Button";
 import WaveCut from "assets/images/wave-cut.svg";
+import { getTertiary } from "styles/colors/utils";
 
 export const Container = styled.div`
   width: 100%;
@@ -67,7 +68,7 @@ export const CommunityAddText = styled.p`
 export const CommunityAddValue = styled.p`
   ${stylizedDisplayXs}
 
-  color: ${({ theme }) => theme.colors.red20};
+  color: ${({ theme }) => theme.colors.brand.tertiary.colorBrandTertiary200};
 `;
 
 export const CommunityAddButton = styled(ButtonComponent)`
@@ -79,9 +80,9 @@ export const CommunityAddButton = styled(ButtonComponent)`
 `;
 
 export const DonateButton = styled(ButtonComponent)`
-  border-color: ${({ theme }) => theme.colors.red20};
+  border-color: ${({ theme }) => getTertiary(theme).colorBrandTertiary200};
   font-weight: 600;
-  background-color: ${({ theme }) => theme.colors.red20};
+  background-color: ${({ theme }) => getTertiary(theme).colorBrandTertiary200};
   color: ${({ theme }) => theme.colors.red40};
 `;
 

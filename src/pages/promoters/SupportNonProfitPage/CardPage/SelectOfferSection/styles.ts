@@ -5,6 +5,7 @@ import {
 } from "styles/typography/default";
 import { stylizedDisplayXs } from "styles/typography/stylized";
 import Dropdown from "components/atomics/Dropdown";
+import { getTertiary } from "styles/colors/utils";
 
 export const Container = styled.div`
   display: flex;
@@ -23,7 +24,7 @@ export const ValueText = styled.p`
   ${stylizedDisplayXs}
 
   margin-right: 8px;
-  color: ${({ theme }) => theme.colors.red20};
+  color: ${({ theme }) => getTertiary(theme).colorBrandTertiary200};
 `;
 
 export const CauseText = styled.p`

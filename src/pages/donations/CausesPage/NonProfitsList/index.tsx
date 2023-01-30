@@ -12,7 +12,7 @@ import useStories from "hooks/apiHooks/useStories";
 import useNavigation from "hooks/useNavigation";
 import useToast from "hooks/useToast";
 import { useLoadingOverlay } from "contexts/loadingOverlayContext";
-import { impactNormalizer } from "@ribon.io/shared/lib";
+import useFormattedImpactText from "hooks/useFormattedImpactText";
 import * as S from "../styles";
 
 type LocationStateType = {
@@ -45,10 +45,6 @@ function NonProfitsList({
     keyPrefix: "donations.causesPage",
   });
 
-  const { t: normalizerTranslation } = useTranslation("translation", {
-    keyPrefix: "impactNormalizer",
-  });
-
   const { showBlockedDonationModal } = useBlockedDonationModal(
     state?.blockedDonation,
     integration,
@@ -62,6 +58,7 @@ function NonProfitsList({
     setChosenNonProfit(nonProfit);
   }, []);
 
+  const { formattedImpactText } = useFormattedImpactText();
   const { isVoucherAvailable } = useVoucher();
 
   const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
@@ -108,32 +105,6 @@ function NonProfitsList({
     }
   };
 
-  // TODO: Remove this fallback when all nonProfits are using the new impact
-  const formattedImpactText = (nonProfit: NonProfit) => {
-    if (!nonProfit) return "";
-
-    const impacts = nonProfit?.nonProfitImpacts || [];
-    const nonProfitsImpactsLength = impacts.length;
-    const roundedImpact = nonProfit?.impactByTicket;
-
-    if (roundedImpact && impacts && nonProfitsImpactsLength) {
-      const lastImpact = impacts[nonProfitsImpactsLength - 1];
-      if (lastImpact.donorRecipient) {
-        const normalizedImpact = impactNormalizer(
-          nonProfit,
-          roundedImpact,
-          normalizerTranslation,
-        );
-
-        return normalizedImpact.join(" ");
-      }
-    }
-
-    return `${t("impactPrefix")} ${nonProfit.impactByTicket} ${
-      nonProfit.impactDescription
-    }`;
-  };
-
   return (
     <S.NonProfitsListContainer>
       <SliderCardsEnhanced
@@ -146,7 +117,14 @@ function NonProfitsList({
           <S.CardWrapper key={idx.toString()}>
             <CardCenterImageButton
               image={nonProfit.mainImage || nonProfit.cause?.mainImage}
-              title={formattedImpactText(nonProfit)}
+              title={formattedImpactText(
+                nonProfit,
+                undefined,
+                false,
+                false,
+                undefined,
+                t("impactPrefix"),
+              )}
               buttonText={
                 canDonateAndHasVoucher
                   ? t("donateText")

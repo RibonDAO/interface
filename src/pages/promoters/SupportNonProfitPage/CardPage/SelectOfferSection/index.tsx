@@ -1,6 +1,7 @@
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import InputRange from "components/atomics/inputs/InputRange";
 import useOffers from "hooks/apiHooks/useOffers";
+import useFormattedImpactText from "hooks/useFormattedImpactText";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import Offer from "types/entities/Offer";
 import { useTranslation } from "react-i18next";
@@ -10,7 +11,6 @@ import { formatPrice } from "lib/formatters/currencyFormatter";
 import { setLocalStorageItem } from "lib/localStorage";
 import NonProfit from "types/entities/NonProfit";
 import useNonProfitImpact from "hooks/apiHooks/useNonProfitImpact";
-import { impactNormalizer } from "@ribon.io/shared/lib";
 import * as S from "./styles";
 
 const { red30, red40 } = theme.colors;
@@ -34,9 +34,7 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
     keyPrefix: "promoters.supportNonProfitPage.selectOfferSection",
   });
 
-  const { t: normalizerTranslation } = useTranslation("translation", {
-    keyPrefix: "impactNormalizer",
-  });
+  const { formattedImpactText } = useFormattedImpactText();
 
   const { nonProfitImpact, refetch: refetchNonProfitImpact } =
     useNonProfitImpact(nonProfit?.id, currentOffer?.priceValue, currentCoin);
@@ -71,43 +69,20 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
   const currentPrice = () =>
     currentOffer && formatPrice(currentOffer.priceValue, currentOffer.currency);
 
-  // TODO: Remove this fallback when all nonProfits are using the new impact
-  const formattedImpactText = () => {
-    if (!nonProfit || !nonProfitImpact) return "";
-
-    const impacts = nonProfit?.nonProfitImpacts || [];
-    const nonProfitsImpactsLength = impacts.length;
-    const roundedImpact = nonProfitImpact?.roundedImpact;
-
-    if (roundedImpact && impacts && nonProfitsImpactsLength) {
-      const lastImpact = impacts[nonProfitsImpactsLength - 1];
-      if (lastImpact.donorRecipient) {
-        const normalizedImpact = impactNormalizer(
-          nonProfit,
-          roundedImpact,
-          normalizerTranslation,
-        );
-
-        return (
-          <>
-            {normalizedImpact.map((slice, index) => (
-              <Fragment key={index.toString()}>
-                {index % 2 === 0 ? <b>{slice}</b> : slice}{" "}
-              </Fragment>
-            ))}
-          </>
-        );
-      }
-    }
-    return `${nonProfitImpact?.roundedImpact} ${nonProfit?.impactDescription}`;
-  };
-
   return (
     <S.Container>
       <S.Title>{nonProfit?.name}</S.Title>
       <S.CauseText>
         {currentPrice()} {t("fundText")}{" "}
-        <S.CauseTextHighlight>{formattedImpactText()}</S.CauseTextHighlight>
+        <S.CauseTextHighlight>
+          {formattedImpactText(
+            nonProfit,
+            undefined,
+            true,
+            true,
+            nonProfitImpact,
+          )}
+        </S.CauseTextHighlight>
       </S.CauseText>
       <S.ValueContainer>
         <S.ValueText>{currentPrice()}</S.ValueText>

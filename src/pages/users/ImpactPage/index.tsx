@@ -1,8 +1,8 @@
 import CardTopImage from "components/moleculars/cards/CardTopImage";
-import { Fragment, useEffect } from "react";
-import { impactNormalizer } from "@ribon.io/shared/lib";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "services/analytics";
+import useFormattedImpactText from "hooks/useFormattedImpactText";
 
 import useUserStatistics from "hooks/apiHooks/useStatistics";
 import { formatPriceWithZeros } from "lib/formatters/currencyFormatter";
@@ -20,13 +20,12 @@ function ImpactPage(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "impactPage",
   });
-  const { t: normalizerTranslation } = useTranslation("translation", {
-    keyPrefix: "impactNormalizer",
-  });
+
   const { userImpact } = useImpact();
 
   const { userStatistics } = useUserStatistics();
   const { currentLang } = useLanguage();
+  const { formattedImpactText } = useFormattedImpactText();
 
   useEffect(() => {
     logEvent("profile_view");
@@ -34,38 +33,6 @@ function ImpactPage(): JSX.Element {
 
   const impactCards = () => userImpact || [];
   const hasImpact = () => impactCards().length > 0;
-
-  // TODO: Remove this fallback when all nonProfits are using the new impact
-  const formattedImpactText = (item: any) => {
-    const { nonProfit, impact } = item;
-    const impacts = nonProfit?.nonProfitImpacts || [];
-    const nonProfitsImpactsLength = impacts.length;
-    const roundedImpact = impact;
-
-    if (roundedImpact && impacts && nonProfitsImpactsLength) {
-      const lastImpact = impacts[nonProfitsImpactsLength - 1];
-      if (lastImpact.donorRecipient) {
-        const normalizedImpact = impactNormalizer(
-          nonProfit,
-          roundedImpact,
-          normalizerTranslation,
-        );
-
-        return (
-          <>
-            {normalizedImpact.map((slice, index) => (
-              <Fragment key={index.toString()}>
-                {index % 2 === 0 ? <b>{slice}</b> : slice}{" "}
-              </Fragment>
-            ))}
-          </>
-        );
-      }
-    }
-    return `${t("impactText")} ${item.impact.toString()} ${
-      item.nonProfit.impactDescription
-    }`;
-  };
 
   return (
     <S.Container>
@@ -108,7 +75,16 @@ function ImpactPage(): JSX.Element {
                 <CardTopImageText
                   key={item.nonProfit.id}
                   title={item.nonProfit.name}
-                  text={formattedImpactText(item)}
+                  text={
+                    formattedImpactText(
+                      item.nonProfit,
+                      item.impact,
+                      false,
+                      true,
+                      undefined,
+                      t("impactText"),
+                    ) || ""
+                  }
                   imageUrl={item.nonProfit.logo}
                   imageAlt={item.impact}
                 />

@@ -6,7 +6,7 @@ import ModalAnimation from "components/moleculars/modals/ModalAnimation";
 import { useTranslation } from "react-i18next";
 import NonProfit from "types/entities/NonProfit";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { impactNormalizer } from "@ribon.io/shared/lib";
+import useFormattedImpactText from "hooks/useFormattedImpactText";
 
 type Props = {
   donate: (email: string) => void;
@@ -26,39 +26,12 @@ function ConfirmDonationModal({
     keyPrefix: "donations.causesPage",
   });
 
-  const { t: normalizerTranslation } = useTranslation("translation", {
-    keyPrefix: "impactNormalizer",
-  });
-
   const { currentUser } = useCurrentUser();
+  const { formattedImpactText } = useFormattedImpactText();
 
   const closeConfirmModal = useCallback(() => {
     setConfirmModalVisible(false);
   }, []);
-
-  // TODO: Remove this fallback when all nonProfits are using the new impact
-  const formattedImpactText = (nonProfit: NonProfit) => {
-    if (!nonProfit) return "";
-
-    const impacts = nonProfit?.nonProfitImpacts || [];
-    const nonProfitsImpactsLength = impacts.length;
-    const roundedImpact = nonProfit?.impactByTicket;
-
-    if (roundedImpact && impacts && nonProfitsImpactsLength) {
-      const lastImpact = impacts[nonProfitsImpactsLength - 1];
-      if (lastImpact.donorRecipient) {
-        const normalizedImpact = impactNormalizer(
-          nonProfit,
-          roundedImpact,
-          normalizerTranslation,
-        );
-
-        return normalizedImpact.join(" ");
-      }
-    }
-
-    return `${chosenNonProfit?.impactByTicket} ${chosenNonProfit?.impactDescription}`;
-  };
 
   return donationInProcessModalVisible ? (
     <ModalAnimation

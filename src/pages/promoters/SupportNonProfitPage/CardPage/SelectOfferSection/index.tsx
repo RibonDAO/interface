@@ -13,7 +13,8 @@ import NonProfit from "types/entities/NonProfit";
 import useNonProfitImpact from "hooks/apiHooks/useNonProfitImpact";
 import * as S from "./styles";
 
-const { red30, red40 } = theme.colors;
+const { red40 } = theme.colors;
+const { tertiary } = theme.colors.brand;
 
 type Props = {
   nonProfit: NonProfit | undefined;
@@ -110,7 +111,7 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
         onChange={(event) => {
           setCurrentOfferIndex(event.target.value);
         }}
-        color={red30}
+        color={tertiary.colorBrandTertiary400}
       />
     </S.Container>
   );

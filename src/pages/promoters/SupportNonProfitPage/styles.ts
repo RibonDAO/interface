@@ -134,7 +134,7 @@ export const UserBalanceText = styled.p`
 export const UserBalanceTextHighlight = styled.span`
   ${defaultBodySmSemibold}
 
-  color: ${({ theme }) => theme.colors.red30};
+  color: ${({ theme }) => getTertiary(theme).colorBrandTertiary400};
 `;
 
 export const RefundText = styled.p`

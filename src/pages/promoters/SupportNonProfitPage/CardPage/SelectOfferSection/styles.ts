@@ -39,7 +39,7 @@ export const CauseText = styled.p`
 export const CauseTextHighlight = styled.span`
   ${defaultBodyXsRegular}
 
-  color: ${({ theme }) => theme.colors.red30};
+  color: ${({ theme }) => getTertiary(theme).colorBrandTertiary400};
 `;
 
 export const CurrencySelectorContainer = styled.div`

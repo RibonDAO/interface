@@ -114,7 +114,7 @@ function CardPage(): JSX.Element {
         borderColorOutline={tertiary.colorBrandTertiary200}
       />
       <S.NonProfitsListContainer>
-        <SliderCards scrollOffset={400} color={theme.colors.red30}>
+        <SliderCards scrollOffset={400} color={tertiary.color}>
           {filteredNonProfits().map((nonProfit) => (
             <Fragment key={nonProfit.id}>
               <NonProfitCard

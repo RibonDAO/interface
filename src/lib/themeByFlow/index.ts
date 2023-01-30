@@ -12,7 +12,7 @@ const pageThemes: any = {
   nonProfit: {
     shade10: tertiary.colorBrandTertiary50,
     shade20: tertiary.colorBrandTertiary200,
-    shade30: theme.colors.red30,
+    shade30: tertiary.colorBrandTertiary400,
     shade40: theme.colors.red40,
   },
 };

@@ -6,6 +6,7 @@ import ModalAnimation from "components/moleculars/modals/ModalAnimation";
 import { useTranslation } from "react-i18next";
 import NonProfit from "types/entities/NonProfit";
 import { useCurrentUser } from "contexts/currentUserContext";
+import useFormattedImpactText from "hooks/useFormattedImpactText";
 
 type Props = {
   donate: (email: string) => void;
@@ -26,6 +27,7 @@ function ConfirmDonationModal({
   });
 
   const { currentUser } = useCurrentUser();
+  const { formattedImpactText } = useFormattedImpactText();
 
   const closeConfirmModal = useCallback(() => {
     setConfirmModalVisible(false);
@@ -46,7 +48,7 @@ function ConfirmDonationModal({
     <ModalIcon
       icon={Ticket}
       title={t("confirmModalAuthTitle")}
-      body={`${chosenNonProfit?.impactByTicket} ${chosenNonProfit?.impactDescription}`}
+      body={formattedImpactText(chosenNonProfit)}
       primaryButtonText={t("confirmModalPrimaryButtonText")}
       primaryButtonCallback={() => {
         if (currentUser) donate(currentUser.email);

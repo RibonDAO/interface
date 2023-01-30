@@ -17,14 +17,11 @@ import NonProfit from "types/entities/NonProfit";
 import Offer from "types/entities/Offer";
 import { Currencies } from "types/enums/Currencies";
 import getThemeByFlow from "lib/themeByFlow";
+import useFormattedImpactText from "hooks/useFormattedImpactText";
 import * as S from "./styles";
 import { logEvent } from "../../../services/analytics";
 
 function DonationDoneCausePage(): JSX.Element {
-  const { navigateTo } = useNavigation();
-  const { t } = useTranslation("translation", {
-    keyPrefix: "donations.donationDoneCausePage",
-  });
   type LocationState = {
     offerId?: number;
     cause: Cause;
@@ -32,6 +29,13 @@ function DonationDoneCausePage(): JSX.Element {
     nonProfit?: NonProfit;
     flow?: "cause" | "nonProfit";
   };
+
+  const { navigateTo } = useNavigation();
+  const { t } = useTranslation("translation", {
+    keyPrefix: "donations.donationDoneCausePage",
+  });
+  const { formattedImpactText } = useFormattedImpactText();
+
   const currency = Currencies.USD;
   const {
     state: { nonProfit, offerId, cause, hasButton, flow },
@@ -89,6 +93,13 @@ function DonationDoneCausePage(): JSX.Element {
 
   const colorTheme = getThemeByFlow(flow || "cause");
 
+  const bottomText = () => {
+    if (flow === "cause" && hasButton) return cause?.name;
+    if (flow === "nonProfit" && hasButton) return nonProfit?.name;
+
+    return formattedImpactText(nonProfit);
+  };
+
   return (
     <S.Container>
       <S.ImageContainer>
@@ -118,9 +129,7 @@ function DonationDoneCausePage(): JSX.Element {
           color={colorTheme.shade20}
         >
           {" "}
-          {flow === "cause" && hasButton
-            ? cause?.name
-            : `${nonProfit?.impactByTicket} ${nonProfit?.impactDescription}`}{" "}
+          {bottomText()}{" "}
         </S.CauseName>
       </S.PostDonationText>
 

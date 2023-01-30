@@ -114,7 +114,12 @@
     "donatedTickets": "Donated tickets",
     "donatedMoney": "Donated money",
     "supportedNgos": "Supported NGOs",
-    "supporterCauses": "Supporter causes"
+    "supporterCauses": "Supporter causes",
+    "impactMenu": {
+      "ticketDonations": "Ticket donations",
+      "communityDonations": "Community donations",
+      "directDonations": "Direct donations"
+    }
   },
   "promoters": {
     "treasurePage": {

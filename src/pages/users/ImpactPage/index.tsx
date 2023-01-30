@@ -14,6 +14,7 @@ import MoneyIcon from "./assets/money-icon.svg";
 import NgoIcon from "./assets/ngo-icon.svg";
 import CausesIcon from "./assets/causes-icon.svg";
 import * as S from "./styles";
+import Menu from "./Menu";
 
 function ImpactPage(): JSX.Element {
   const { t } = useTranslation("translation", {
@@ -93,6 +94,7 @@ function ImpactPage(): JSX.Element {
           )}
         </S.CardsContainer>
       )}
+      <Menu />
     </S.Container>
   );
 }

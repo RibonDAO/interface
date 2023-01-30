@@ -37,6 +37,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  justify-content: space-evenly;
 `;
 
 export const CardsContainer = styled.div`

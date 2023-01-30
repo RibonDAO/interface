@@ -9,7 +9,6 @@ import { formatPriceWithZeros } from "lib/formatters/currencyFormatter";
 import { useLanguage } from "hooks/useLanguage";
 import { coinByLanguage } from "lib/coinByLanguage";
 import useImpact from "hooks/apiHooks/useImpact";
-import CardTopImageText from "components/moleculars/cards/CardTopImageText";
 import TicketIcon from "./assets/ticket-icon.svg";
 import MoneyIcon from "./assets/money-icon.svg";
 import NgoIcon from "./assets/ngo-icon.svg";
@@ -42,12 +41,14 @@ function ImpactPage(): JSX.Element {
           <CardTopImage
             text={t("donatedTickets")}
             icon={TicketIcon}
-            value={userStatistics?.totalTickets ?? 0}
+            title={userStatistics?.totalTickets ?? 0}
+            size="small"
           />
           <CardTopImage
             text={t("donatedMoney")}
             icon={MoneyIcon}
-            value={formatPriceWithZeros(
+            size="small"
+            title={formatPriceWithZeros(
               currentLang === "pt-BR"
                 ? userStatistics?.totalDonated?.brl ?? 0
                 : userStatistics?.totalDonated?.usd ?? 0,
@@ -58,12 +59,14 @@ function ImpactPage(): JSX.Element {
           <CardTopImage
             text={t("supportedNgos")}
             icon={NgoIcon}
-            value={userStatistics?.totalNonProfits ?? 0}
+            title={userStatistics?.totalNonProfits ?? 0}
+            size="small"
           />
           <CardTopImage
             text={t("supporterCauses")}
             icon={CausesIcon}
-            value={userStatistics?.totalCauses ?? 0}
+            title={userStatistics?.totalCauses ?? 0}
+            size="small"
           />
         </S.Wrapper>
       </S.CardsButtonContainer>
@@ -72,7 +75,7 @@ function ImpactPage(): JSX.Element {
           {impactCards().map(
             (item: any) =>
               item.impact.toString() !== "0" && (
-                <CardTopImageText
+                <CardTopImage
                   key={item.nonProfit.id}
                   title={item.nonProfit.name}
                   text={
@@ -85,8 +88,8 @@ function ImpactPage(): JSX.Element {
                       t("impactText"),
                     ) || ""
                   }
-                  imageUrl={item.nonProfit.logo}
-                  imageAlt={item.impact}
+                  icon={item.nonProfit.logo}
+                  size="large"
                 />
               ),
           )}

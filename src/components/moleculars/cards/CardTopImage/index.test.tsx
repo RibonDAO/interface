@@ -4,7 +4,7 @@ import CardTopImage from ".";
 
 describe("CardTopImage", () => {
   it("should render without error", () => {
-    renderComponent(<CardTopImage icon="" value={0} text="texto" />);
+    renderComponent(<CardTopImage icon="" title={0} text="texto" />);
 
     expectTextToBeInTheDocument("texto");
   });

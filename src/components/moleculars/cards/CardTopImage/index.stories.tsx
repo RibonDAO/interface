@@ -14,6 +14,6 @@ export const Default = Template.bind({});
 
 Default.args = {
   icon: "https://picsum.photos/id/237/200/300",
-  value: 0,
+  title: 0,
   text: "donated money",
 };

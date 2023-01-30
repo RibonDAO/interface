@@ -13,7 +13,7 @@ export type Props = {
   roundIcon?: boolean;
   title?: string | null;
   titleColor?: string;
-  body?: string | null;
+  body?: string | JSX.Element | null;
   primaryButtonText?: string | null;
   primaryButtonLeftIcon?: string | undefined;
   primaryButtonLink?: string;

@@ -25,19 +25,13 @@ export const Subtitle = styled.h5`
 `;
 
 export const CardsButtonContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-self: flex-start;
-  justify-content: center;
-`;
-
-export const Wrapper = styled.div`
   margin-top: 16px;
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   gap: 8px;
-  justify-content: space-evenly;
+  align-items: center;
+  align-self: flex-start;
 `;
 
 export const CardsContainer = styled.div`

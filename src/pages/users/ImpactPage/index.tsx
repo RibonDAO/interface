@@ -37,38 +37,36 @@ function ImpactPage(): JSX.Element {
     <S.Container>
       <S.Title>{t("title")}</S.Title>
       <S.CardsButtonContainer>
-        <S.Wrapper>
-          <CardTopImage
-            text={t("donatedTickets")}
-            icon={TicketIcon}
-            title={userStatistics?.totalTickets ?? 0}
-            size="small"
-          />
-          <CardTopImage
-            text={t("donatedMoney")}
-            icon={MoneyIcon}
-            size="small"
-            title={formatPriceWithZeros(
-              currentLang === "pt-BR"
-                ? userStatistics?.totalDonated?.brl ?? 0
-                : userStatistics?.totalDonated?.usd ?? 0,
-              coinByLanguage(currentLang),
-              currentLang,
-            )}
-          />
-          <CardTopImage
-            text={t("supportedNgos")}
-            icon={NgoIcon}
-            title={userStatistics?.totalNonProfits ?? 0}
-            size="small"
-          />
-          <CardTopImage
-            text={t("supporterCauses")}
-            icon={CausesIcon}
-            title={userStatistics?.totalCauses ?? 0}
-            size="small"
-          />
-        </S.Wrapper>
+        <CardTopImage
+          text={t("donatedTickets")}
+          icon={TicketIcon}
+          title={userStatistics?.totalTickets ?? 0}
+          size="small"
+        />
+        <CardTopImage
+          text={t("donatedMoney")}
+          icon={MoneyIcon}
+          size="small"
+          title={formatPriceWithZeros(
+            currentLang === "pt-BR"
+              ? userStatistics?.totalDonated?.brl ?? 0
+              : userStatistics?.totalDonated?.usd ?? 0,
+            coinByLanguage(currentLang),
+            currentLang,
+          )}
+        />
+        <CardTopImage
+          text={t("supportedNgos")}
+          icon={NgoIcon}
+          title={userStatistics?.totalNonProfits ?? 0}
+          size="small"
+        />
+        <CardTopImage
+          text={t("supporterCauses")}
+          icon={CausesIcon}
+          title={userStatistics?.totalCauses ?? 0}
+          size="small"
+        />
       </S.CardsButtonContainer>
       {hasImpact() && (
         <S.CardsContainer>

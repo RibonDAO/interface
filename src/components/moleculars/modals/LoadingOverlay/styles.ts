@@ -15,7 +15,7 @@ export const Container = styled.div`
 `;
 
 export const CenterDiv = styled.div`
-  padding: 16px 8px;
+  padding: ${({ theme }) => theme.spacing(16, 8)};
   display: flex;
   flex-direction: row;
   align-items: center;

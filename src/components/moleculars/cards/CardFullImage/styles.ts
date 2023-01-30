@@ -7,7 +7,7 @@ type ContainerProps = {
 export const Container = styled.div<ContainerProps>`
   width: 100%;
   height: 100vh;
-  padding: 40px 0;
+  padding: ${({ theme }) => theme.spacing(40, 0)};
   display: flex;
   flex-direction: column;
   align-items: center;

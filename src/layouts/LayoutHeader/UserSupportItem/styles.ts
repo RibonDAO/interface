@@ -5,7 +5,7 @@ export const Container = styled.div``;
 
 export const UserSupportButton = styled(Button)`
   min-width: 76px;
-  padding: 4px 12px;
+  padding: ${({ theme }) => theme.spacing(4, 12)};
   background: ${({ theme }) => theme.colors.white};
 `;
 

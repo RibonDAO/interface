@@ -65,7 +65,7 @@ export const DarkStroke = styled.div`
 export const ImageDescription = styled.h4`
   ${defaultBodyMdSemibold}
 
-  padding: 14px;
+  padding: ${({ theme }) => theme.spacing(16)};
   position: absolute;
   bottom: 0;
   left: 0;
@@ -75,7 +75,7 @@ export const ImageDescription = styled.h4`
 
 export const ContentSection = styled.div`
   width: 100%;
-  padding: 12px;
+  padding: ${({ theme }) => theme.spacing(12)};
   display: flex;
   flex-direction: column;
   align-items: flex-start;

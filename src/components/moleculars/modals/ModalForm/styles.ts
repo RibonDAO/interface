@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Modal } from "../ModalBlank/styles";
 
 export const ModalWithIcon = styled(Modal)`
-  padding: 16px;
+  padding: ${({ theme }) => theme.spacing(16)};
 `;
 
 export const Icon = styled.img`
@@ -22,13 +22,13 @@ export const Title = styled.h3<TitleProps>`
 `;
 
 export const FormContainer = styled.div`
-  padding: 8px 0;
+  padding: ${({ theme }) => theme.spacing(8, 0)};
 `;
 export const Input = styled.input`
   width: 100%;
   height: 39px;
   margin-bottom: 8px;
-  padding: 8px;
+  padding: ${({ theme }) => theme.spacing(8)};
   border: 1px solid ${({ theme }) => theme.colors.green30};
   border-radius: 8px;
 `;

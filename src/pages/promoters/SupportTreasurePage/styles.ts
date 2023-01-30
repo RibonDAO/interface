@@ -15,6 +15,6 @@ export const Container = styled.div`
 export const Title = styled.h1`
   ${stylizedDisplayLg}
 
-  margin: 4px 0;
+  margin: ${({ theme }) => theme.spacing(4, 0)};
   margin-bottom: 48px;
 `;

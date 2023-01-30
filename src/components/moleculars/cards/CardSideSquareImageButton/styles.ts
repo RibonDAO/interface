@@ -31,6 +31,6 @@ export const SideButton = styled(Button)`
   ${defaultBodyXsSemibold}
 
   height: 28px;
-  padding: 6px 14px;
+  padding: ${({ theme }) => theme.spacing(8, 16)};
   border-radius: 16px;
 `;

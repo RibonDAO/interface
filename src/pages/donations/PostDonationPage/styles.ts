@@ -125,14 +125,14 @@ export const OutlineButton = styled(Button)`
 
 export const ButtonContainer = styled.div`
   width: 100%;
-  padding: 16px;
+  padding: ${({ theme }) => theme.spacing(16)};
   position: fixed;
   bottom: 0;
   left: 0;
   background-color: ${({ theme }) => theme.colors.neutral10};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    padding: 0px;
+    padding: ${({ theme }) => theme.spacing(0)};
     position: relative;
     background-color: transparent;
   }

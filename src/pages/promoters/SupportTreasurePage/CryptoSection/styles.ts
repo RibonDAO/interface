@@ -51,7 +51,7 @@ export const Input = styled.input`
   height: 39px;
   margin-top: 12px;
   margin-bottom: 8px;
-  padding: 8px;
+  padding: ${({ theme }) => theme.spacing(8)};
   border: 1px solid ${({ theme }) => theme.colors.green30};
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.gray30};
@@ -84,7 +84,7 @@ export const Text = styled.p`
 export const ButtonContainer = styled.div`
   width: 100%;
   height: 80px;
-  padding: 12px 16px;
+  padding: ${({ theme }) => theme.spacing(12, 16)};
   position: fixed;
   bottom: 0;
   left: 0;
@@ -96,7 +96,7 @@ export const ButtonContainer = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     height: 60px;
-    padding: 0;
+    padding: ${({ theme }) => theme.spacing(0)};
     position: static;
     box-shadow: none;
 
@@ -114,7 +114,7 @@ export const FinishButton = styled(Button)`
 
 export const ConnectButton = styled(Button)`
   width: 160px;
-  padding: 8px 16px;
+  padding: ${({ theme }) => theme.spacing(8, 16)};
 `;
 
 export const ExtraText = styled.h6`

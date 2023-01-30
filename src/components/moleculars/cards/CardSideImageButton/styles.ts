@@ -4,7 +4,7 @@ export const Container = styled.div`
   width: 100%;
   max-width: 312px;
   height: 104px;
-  padding: 15px 16px;
+  padding: ${({ theme }) => theme.spacing(16)};
   border: 1px solid ${({ theme }) => theme.colors.neutral10};
   border-radius: 16px;
   display: flex;
@@ -97,7 +97,7 @@ export const Image = styled.img`
 
 export const CounterContainer = styled.span`
   min-width: 16px;
-  padding: 2px;
+  padding: ${({ theme }) => theme.spacing(4)};
   border-radius: 100%;
   position: absolute;
   top: 8px;

@@ -21,7 +21,7 @@ export const Container = styled.div`
 export const Title = styled.h1`
   ${stylizedDisplayLg}
 
-  margin: 4px 0;
+  margin: ${({ theme }) => theme.spacing(4, 0)};
   margin-bottom: 8px;
 `;
 
@@ -35,7 +35,7 @@ export const BillingInformationSectionContainer = styled.div`
 `;
 
 export const BillingTitle = styled.h3`
-  margin: 20px 0;
+  margin: ${({ theme }) => theme.spacing(20, 0)};
   color: ${({ theme }) => theme.colors.black};
 `;
 
@@ -48,7 +48,7 @@ export const Form = styled.form`
 export const HalfInput = styled.input`
   width: calc(50% - 4px);
   margin-bottom: 12px;
-  padding: 8px 16px;
+  padding: ${({ theme }) => theme.spacing(8, 16)};
   border: 1px solid ${({ theme }) => theme.colors.ribonBlue};
   border-radius: 8px;
   display: inline-block;
@@ -84,7 +84,7 @@ export const CardValueButton = styled(Button)`
 export const ButtonContainer = styled.div`
   width: 100%;
   height: 80px;
-  padding: 12px 16px;
+  padding: ${({ theme }) => theme.spacing(12, 16)};
   position: fixed;
   right: 0;
   bottom: 0;
@@ -98,7 +98,7 @@ export const ButtonContainer = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     height: 60px;
-    padding: 0;
+    padding: ${({ theme }) => theme.spacing(0)};
     position: static;
     box-shadow: none;
 

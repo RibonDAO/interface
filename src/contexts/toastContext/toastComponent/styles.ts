@@ -22,9 +22,9 @@ export const NotificationContainer = styled.div`
 
 export const NotificationToast = styled.div`
   width: 336px;
-  margin: 0 0 6px;
+  margin: ${({ theme }) => theme.spacing(0, 0, 8)};
   margin-bottom: 15px;
-  padding: 20px;
+  padding: ${({ theme }) => theme.spacing(20)};
   border-radius: 8px;
   position: relative;
   right: 12px;
@@ -46,7 +46,7 @@ export const NotificationToast = styled.div`
 `;
 
 export const Message = styled.span`
-  margin: 0;
+  margin: ${({ theme }) => theme.spacing(0)};
   margin-left: -1px;
   overflow: hidden;
   text-align: left;

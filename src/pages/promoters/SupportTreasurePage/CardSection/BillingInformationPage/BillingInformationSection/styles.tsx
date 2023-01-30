@@ -23,8 +23,8 @@ export const Form = styled.form`
 export const HalfInput = styled.input`
   display: inline-block;
   width: calc(50% - 4px);
-  margin-bottom: 12px;
+  margin-bottom: ${({ theme }) => theme.spacing(12)};
   border: 1px solid ${({ theme }) => theme.colors.green30};
   border-radius: 8px;
-  padding: 8px 16px 8px 16px;
+  padding: ${({ theme }) => theme.spacing(8, 16, 8, 16)};
 `;

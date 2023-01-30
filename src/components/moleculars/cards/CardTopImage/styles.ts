@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 160px;
-  margin-bottom: 16px;
-  padding: 16px;
+  margin-bottom: ${({ theme }) => theme.spacing(16)};
+  padding: ${({ theme }) => theme.spacing(16)};
   border-radius: 16px;
   display: flex;
   flex-direction: column;

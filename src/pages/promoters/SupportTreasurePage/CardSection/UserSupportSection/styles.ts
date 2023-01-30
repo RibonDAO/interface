@@ -4,7 +4,7 @@ import cardBackground from "assets/images/card-background.svg";
 
 export const Container = styled.div`
   max-width: 472px;
-  padding: 20px 14px 14px;
+  padding: ${({ theme }) => theme.spacing(20, 16, 16)};
   border-radius: 16px;
   display: flex;
   flex-direction: column;
@@ -35,5 +35,5 @@ export const IconText = styled.div`
 `;
 
 export const Icon = styled.img`
-  margin-right: 8px;
+  margin-right: ${({ theme }) => theme.spacing(8)};
 `;

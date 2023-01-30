@@ -37,7 +37,7 @@ export const BlankModal = styled(ReactModal)`
   padding-inline: 24px;
   width: 100%;
   max-width: 360px;
-  margin: 16px;
+  margin: ${({ theme }) => theme.spacing(16)};
   padding-top: 24px;
   padding-bottom: 16px;
   border-radius: 8px;
@@ -50,7 +50,7 @@ export const Modal = styled(BlankModal)`
     margin-bottom: 8px;
 
     &:last-child {
-      margin: 0;
+      margin: ${({ theme }) => theme.spacing(0)};
     }
   }
 `;

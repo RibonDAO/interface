@@ -25,7 +25,7 @@ export const CarouselContainer = styled.div`
 export const CardBlank = styled.div`
   width: 206px;
   height: 123px;
-  padding: 12px 16px;
+  padding: ${({ theme }) => theme.spacing(12, 16)};
   border-radius: 16px;
   background: ${({ theme }) => theme.colors.neutral10};
   box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};
@@ -56,7 +56,7 @@ export const SectionTitle = styled.h2`
   color: ${({ theme }) => theme.colors.gray40};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    margin: 8px 0;
+    margin: ${({ theme }) => theme.spacing(8, 0)};
   }
 `;
 
@@ -73,7 +73,7 @@ export const GivingsCardContainer = styled.div`
 
 export const GivingsCard = styled.div`
   width: 206px;
-  padding: 12px 16px;
+  padding: ${({ theme }) => theme.spacing(12, 16)};
   border-radius: 16px;
   display: inline-block;
   background: ${({ theme }) => theme.colors.neutral10};

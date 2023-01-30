@@ -5,7 +5,7 @@ import Button from "components/atomics/buttons/Button";
 export const DesktopContainer = styled.div`
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     min-height: 100vh;
-    padding: 32px;
+    padding: ${({ theme }) => theme.spacing(32)};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -14,7 +14,7 @@ export const DesktopContainer = styled.div`
 `;
 
 export const Container = styled.div`
-  padding: 16px;
+  padding: ${({ theme }) => theme.spacing(16)};
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.neutral10};
 

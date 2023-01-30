@@ -18,7 +18,7 @@ export const TooltipContainer = styled.div`
 `;
 
 export const LeftContainer = styled.div`
-  padding: 4px;
+  padding: ${({ theme }) => theme.spacing(4)};
   border-radius: 4px;
   background-color: ${({ theme }) => theme.colors.gray10};
 `;
@@ -26,7 +26,7 @@ export const LeftContainer = styled.div`
 export const RightContainer = styled.div`
   ${defaultBodySmSemibold}
 
-  padding: 4px;
+  padding: ${({ theme }) => theme.spacing(4)};
   color: ${({ theme }) => theme.colors.gray40};
 `;
 

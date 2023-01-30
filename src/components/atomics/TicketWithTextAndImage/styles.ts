@@ -41,7 +41,7 @@ export const Container = styled.div`
 
 export const LeftContainer = styled.div`
   width: 70%;
-  padding: 16px;
+  padding: ${({ theme }) => theme.spacing(16)};
   border-right: 1px dashed rgba(130, 170, 190, 60%);
   display: flex;
   flex-direction: column;
@@ -61,7 +61,7 @@ export const Link = styled.a`
 
 export const RightContainer = styled.div`
   width: 30%;
-  padding: 4px;
+  padding: ${({ theme }) => theme.spacing(4)};
   display: flex;
   align-items: center;
   justify-content: center;

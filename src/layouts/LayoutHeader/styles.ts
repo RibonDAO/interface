@@ -24,9 +24,9 @@ export const CounterImage = styled.img`
 `;
 
 export const CounterContainer = styled.div`
-  margin-right: 5px;
-  margin-left: 8px;
-  padding: 7px;
+  margin-right: ${({ theme }) => theme.spacing(4)};
+  margin-left: ${({ theme }) => theme.spacing(8)};
+  padding: ${({ theme }) => theme.spacing(8)};
   border: 1px solid ${({ theme }) => theme.colors.gray20};
   border-radius: 4px;
   display: flex;

@@ -15,7 +15,7 @@ export const BodyContainer = styled.div`
 export const Title = styled.h1`
   ${stylizedDisplayLg}
 
-  margin: 12px 0;
+  margin: ${({ theme }) => theme.spacing(12, 0)};
 `;
 
 export const NonProfitsContainer = styled.div`

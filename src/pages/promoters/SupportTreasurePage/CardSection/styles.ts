@@ -43,7 +43,7 @@ export type ButtonContainerProps = {
 export const ButtonContainer = styled.div<ButtonContainerProps>`
   width: 100%;
   height: 80px;
-  padding: 12px 16px;
+  padding: ${({ theme }) => theme.spacing(12, 16)};
   position: fixed;
   right: 0;
   bottom: ${({ topButton }) => (topButton ? "70px" : "0")};
@@ -57,7 +57,7 @@ export const ButtonContainer = styled.div<ButtonContainerProps>`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     height: 60px;
-    padding: 0;
+    padding: ${({ theme }) => theme.spacing(0)};
     position: static;
     box-shadow: none;
 

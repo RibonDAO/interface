@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Modal } from "../ModalBlank/styles";
 
 export const ModalWithDoubleImage = styled(Modal)`
-  padding: 16px;
+  padding: ${({ theme }) => theme.spacing(16)};
 `;
 
 export const Icon = styled.img`
@@ -35,7 +35,7 @@ export const Title = styled.h3<TitleProps>`
 `;
 
 export const Body = styled.h4`
-  margin: 0 0 20px;
+  margin: ${({ theme }) => theme.spacing(0, 0, 20)};
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
 `;

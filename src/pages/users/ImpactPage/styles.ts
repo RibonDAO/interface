@@ -9,14 +9,14 @@ export const Container = styled.div`
   text-align: left;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    padding: 0;
+    padding: ${({ theme }) => theme.spacing(0)};
   }
 `;
 
 export const Title = styled.h1`
   ${stylizedDisplayLg}
 
-  margin: 0;
+  margin: ${({ theme }) => theme.spacing(0)};
   color: ${({ theme }) => theme.colors.gray40};
 `;
 
@@ -46,7 +46,7 @@ export const Wrapper = styled.div`
 
 export const CardButton = styled(Button)`
   width: 100px;
-  margin: 16px 0;
+  margin: ${({ theme }) => theme.spacing(16, 0)};
   align-self: center;
 `;
 

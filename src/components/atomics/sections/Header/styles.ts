@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   height: 56px;
-  margin: 0 16px;
+  margin: ${({ theme }) => theme.spacing(0, 16)};
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     height: 128px;
-    margin-left: 0;
+    margin-left: ${({ theme }) => theme.spacing(0)};
   }
 `;
 
@@ -19,7 +19,7 @@ export const Logo = styled.img`
 `;
 
 export const Divider = styled.span`
-  margin: 0 8px;
+  margin: ${({ theme }) => theme.spacing(0, 8)};
   color: ${({ theme }) => theme.colors.gray20};
 `;
 

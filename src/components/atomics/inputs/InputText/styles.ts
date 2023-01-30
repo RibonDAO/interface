@@ -8,7 +8,7 @@ export const Container = styled.div`
 export const Input = styled.input`
   width: 100%;
   margin-bottom: 12px;
-  padding: 8px 16px;
+  padding: ${({ theme }) => theme.spacing(8, 16)};
   border: 1px solid ${({ theme }) => theme.colors.green30};
   border-radius: 8px;
 

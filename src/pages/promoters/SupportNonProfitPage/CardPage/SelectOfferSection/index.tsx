@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import InputRange from "components/atomics/inputs/InputRange";
 import useOffers from "hooks/apiHooks/useOffers";
+import useFormattedImpactText from "hooks/useFormattedImpactText";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import Offer from "types/entities/Offer";
 import { useTranslation } from "react-i18next";
@@ -28,9 +29,12 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
   const [currentOffer, setCurrentOffer] = useState<Offer>();
   const { currentCoin, setCurrentCoin } = useCardPaymentInformation();
   const { offers, refetch: refetchOffers } = useOffers(currentCoin, false);
+
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportNonProfitPage.selectOfferSection",
   });
+
+  const { formattedImpactText } = useFormattedImpactText();
 
   const { nonProfitImpact, refetch: refetchNonProfitImpact } =
     useNonProfitImpact(nonProfit?.id, currentOffer?.priceValue, currentCoin);
@@ -71,7 +75,13 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
       <S.CauseText>
         {currentPrice()} {t("fundText")}{" "}
         <S.CauseTextHighlight>
-          {`${nonProfitImpact?.roundedImpact} ${nonProfit?.impactDescription}`}
+          {formattedImpactText(
+            nonProfit,
+            undefined,
+            true,
+            true,
+            nonProfitImpact,
+          )}
         </S.CauseTextHighlight>
       </S.CauseText>
       <S.ValueContainer>

@@ -12,6 +12,7 @@ import useStories from "hooks/apiHooks/useStories";
 import useNavigation from "hooks/useNavigation";
 import useToast from "hooks/useToast";
 import { useLoadingOverlay } from "contexts/loadingOverlayContext";
+import useFormattedImpactText from "hooks/useFormattedImpactText";
 import * as S from "../styles";
 
 type LocationStateType = {
@@ -43,6 +44,7 @@ function NonProfitsList({
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
+
   const { showBlockedDonationModal } = useBlockedDonationModal(
     state?.blockedDonation,
     integration,
@@ -56,6 +58,7 @@ function NonProfitsList({
     setChosenNonProfit(nonProfit);
   }, []);
 
+  const { formattedImpactText } = useFormattedImpactText();
   const { isVoucherAvailable } = useVoucher();
 
   const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
@@ -114,9 +117,14 @@ function NonProfitsList({
           <S.CardWrapper key={idx.toString()}>
             <CardCenterImageButton
               image={nonProfit.mainImage || nonProfit.cause?.mainImage}
-              title={`${t("impactPrefix")} ${nonProfit.impactByTicket} ${
-                nonProfit.impactDescription
-              }`}
+              title={formattedImpactText(
+                nonProfit,
+                undefined,
+                false,
+                false,
+                undefined,
+                t("impactPrefix"),
+              )}
               buttonText={
                 canDonateAndHasVoucher
                   ? t("donateText")

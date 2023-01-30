@@ -1,7 +1,8 @@
 import Cause from "./Cause";
+import { NonProfitImpact } from "./NonProfitImpact";
 
 export default interface NonProfit {
-  id: number;
+  id: any;
   name: string;
   walletAddress: string;
   impactDescription: string;
@@ -13,4 +14,5 @@ export default interface NonProfit {
   createdAt?: string;
   updatedAt?: string;
   cause: Cause;
+  nonProfitImpacts?: NonProfitImpact[];
 }

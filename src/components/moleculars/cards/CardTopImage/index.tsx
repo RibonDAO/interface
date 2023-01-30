@@ -2,15 +2,18 @@ import * as S from "./styles";
 
 export type Props = {
   icon?: string;
-  value?: string | number;
-  text?: string;
+  title?: string | number;
+  text?: string | JSX.Element;
+  titleColor?: string;
+  textColor?: string;
+  size?: "small" | "large";
 };
-function CardTopImage({ icon, value, text }: Props): JSX.Element {
+function CardTopImage({ icon, title, text, size }: Props): JSX.Element {
   return (
-    <S.Container>
-      <S.Image src={icon} alt={text} />
-      <S.Value>{value}</S.Value>
-      <S.Text>{text}</S.Text>
+    <S.Container size={size}>
+      <S.Image src={icon} size={size} />
+      <S.Title size={size}>{title}</S.Title>
+      <S.Text size={size}>{text}</S.Text>
     </S.Container>
   );
 }

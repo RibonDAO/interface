@@ -25,29 +25,30 @@ export const Subtitle = styled.h5`
 `;
 
 export const CardsButtonContainer = styled.div`
+  margin-top: 16px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
   align-items: center;
   align-self: flex-start;
-  justify-content: center;
 `;
 
-export const Wrapper = styled.div`
-  margin-top: 16px;
+export const CardsContainer = styled.div`
+  width: 100%;
+  min-height: 216px;
+  margin-top: 28px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  justify-content: space-evenly;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    justify-content: flex-start;
-  }
 `;
 
 export const CardButton = styled(Button)`
-  width: 100px;
+  width: 135px;
   margin: 16px 0;
-  align-self: center;
+  border: 1px solid ${({ theme }) => theme.colors.green30};
+  background-color: ${({ theme }) => theme.colors.neutral10};
+  color: ${({ theme }) => theme.colors.green30};
 `;
 
 export const EmptySectionContainer = styled.div`

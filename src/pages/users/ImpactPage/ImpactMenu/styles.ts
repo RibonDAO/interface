@@ -7,12 +7,16 @@ import {
 import Button from "components/atomics/buttons/Button";
 
 export const Menu = styled.div`
-  display: flex;
-  flex-direction: row;
-  overflow-y: auto;
-  flex-wrap: nowrap;
   width: 100%;
   margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-y: hidden;
+
+  ::-webkit-scrollbar {
+    width: 0;
+  }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     flex-wrap: normal;
@@ -20,13 +24,14 @@ export const Menu = styled.div`
 `;
 
 export const Container = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
-  width: 100%;
 `;
 
 export const MenuItem = styled.div<{ active: boolean }>`
   ${defaultBodyMdMedium}
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,12 +65,14 @@ export const EmptyImage = styled.img`
 
 export const EmptyTitle = styled.p`
   ${defaultBodyMdBold}
+
   width: 100%;
   color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const EmptyText = styled.span`
   ${defaultBodyMdRegular}
+
   max-width: 392px;
   color: ${({ theme }) => theme.colors.gray30};
 `;

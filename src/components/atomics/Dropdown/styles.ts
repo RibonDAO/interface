@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { getPrimary } from "styles/colors/utils";
 import { defaultBodySmSemibold } from "styles/typography/default";
 
 export const Input = styled.div`
@@ -6,7 +7,7 @@ export const Input = styled.div`
   height: 50px;
   margin-bottom: 12px;
   padding: 0 10px;
-  border: 1px solid ${({ theme }) => theme.colors.green30};
+  border: 1px solid ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
   border-radius: 4px;
   display: flex;
   justify-content: space-between;
@@ -21,7 +22,7 @@ export const Input = styled.div`
     display: inline;
     text-align: center;
     background-color: ${({ theme }) => theme.colors.neutral10};
-    color: ${({ theme }) => theme.colors.green30};
+    color: ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
   }
 
   input {

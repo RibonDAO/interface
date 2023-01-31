@@ -1,6 +1,7 @@
 import Button from "components/atomics/buttons/Button";
 import styled from "styled-components";
 import { stylizedDisplayLg } from "styles/typography/stylized";
+import { getPrimary } from "styles/colors/utils";
 
 export const Container = styled.div`
   display: flex;
@@ -46,9 +47,9 @@ export const CardsContainer = styled.div`
 export const CardButton = styled(Button)`
   width: 135px;
   margin: 16px 0;
-  border: 1px solid ${({ theme }) => theme.colors.green30};
+  border: 1px solid ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
   background-color: ${({ theme }) => theme.colors.neutral10};
-  color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
 `;
 
 export const EmptySectionContainer = styled.div`

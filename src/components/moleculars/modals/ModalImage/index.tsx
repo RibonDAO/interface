@@ -29,6 +29,9 @@ export type Props = {
   onClose?: () => void;
   customStyles?: ReactModal.Styles;
 };
+
+const { primary } = theme.colors.brand
+
 function ModalImage({
   visible = false,
   image = null,
@@ -38,7 +41,7 @@ function ModalImage({
   primaryButtonText = null,
   primaryButtonLeftIcon = undefined,
   primaryButtonTextColor = theme.colors.neutral10,
-  primaryButtonColor = theme.colors.green30,
+  primaryButtonColor = primary.colorBrandPrimary300,
   primaryButtonBorderColor,
   secondaryButtonText = null,
   secondaryButtonLeftIcon = undefined,

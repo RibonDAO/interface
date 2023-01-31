@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { stylizedDisplayMd } from "styles/typography/stylized";
+import { getPrimary } from "styles/colors/utils";
 
 export const Container = styled.div`
   display: flex;
@@ -9,7 +10,7 @@ export const Container = styled.div`
 
 export const Amount = styled.h3`
   ${stylizedDisplayMd}
-  color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
   font-weight: ${({ theme }) => theme.font.light};
 `;
 

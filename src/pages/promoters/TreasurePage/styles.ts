@@ -5,6 +5,7 @@ import {
   defaultBodyMdBold,
 } from "styles/typography/default";
 import { stylizedDisplayLg } from "styles/typography/stylized";
+import { getPrimary } from "styles/colors/utils";
 
 export const Container = styled.div``;
 
@@ -42,11 +43,11 @@ export const TreasureText = styled.h3`
   ${defaultHeadingLg}
 
   margin-bottom: 8px;
-  color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
 `;
 
 export const TreasureTextCoin = styled.span`
-  color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
 `;
 
 export const SectionTitle = styled.h2`
@@ -87,7 +88,7 @@ export const GivingDate = styled.p`
 `;
 
 export const GivingTextCoin = styled.span`
-  color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
 `;
 
 export const StatusContainer = styled.div`
@@ -99,7 +100,7 @@ export const StatusContainer = styled.div`
 `;
 
 export const ProcessingText = styled.span`
-  color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
 `;
 
 export const TransactionLink = styled.a`

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Modal } from "../ModalBlank/styles";
+import { getPrimary } from "styles/colors/utils";
 
 export const ModalWithIcon = styled(Modal)`
   padding: 16px;
@@ -29,7 +30,7 @@ export const Input = styled.input`
   height: 39px;
   margin-bottom: 8px;
   padding: 8px;
-  border: 1px solid ${({ theme }) => theme.colors.green30};
+  border: 1px solid ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
   border-radius: 8px;
 `;
 

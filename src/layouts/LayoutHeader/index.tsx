@@ -31,6 +31,8 @@ export type Props = {
   hideWallet?: boolean;
 };
 
+const { primary } = theme.colors.brand
+
 function LayoutHeader({
   rightComponent,
   hasBackButton = false,
@@ -147,7 +149,7 @@ function LayoutHeader({
                   <S.TicketsAmount
                     color={
                       canDonateAndHasVoucher
-                        ? theme.colors.green30
+                        ? primary.colorBrandPrimary300
                         : theme.colors.gray30
                     }
                   >

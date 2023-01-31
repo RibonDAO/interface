@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { getPrimary } from "styles/colors/utils";
 import { defaultBodySmSemibold } from "styles/typography/default";
 
 export const Container = styled.div`
@@ -12,7 +13,7 @@ export const RibonsAmount = styled.p`
   ${defaultBodySmSemibold}
 
   margin-right: 2px;
-  color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
 `;
 
 export const Sparkle = styled.img`

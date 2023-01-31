@@ -7,6 +7,8 @@ export default {
   component: Spinner,
 } as ComponentMeta<typeof Spinner>;
 
+const { primary } = theme.colors.brand;
+
 const Template: ComponentStory<typeof Spinner> = function (args: Props) {
   return <Spinner {...args} />;
 };
@@ -14,5 +16,5 @@ const Template: ComponentStory<typeof Spinner> = function (args: Props) {
 export const Default = Template.bind({});
 
 Default.args = {
-  strokeColor: theme.colors.green30,
+  strokeColor: primary.colorBrandPrimary300,
 };

@@ -1,5 +1,6 @@
 import Button from "components/atomics/buttons/Button";
 import styled from "styled-components";
+import { getPrimary } from "styles/colors/utils";
 import { Modal } from "../ModalBlank/styles";
 
 export const ModalWithIcon = styled(Modal)`
@@ -33,7 +34,7 @@ export const RowsModalRow = styled.div`
 `;
 
 export const SupportButton = styled(Button)`
-  border: 1px solid ${({ theme }) => theme.colors.green30};
+  border: 1px solid ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
   background-color: ${({ theme }) => theme.colors.neutral10};
-  color: ${({ theme, color }) => color || theme.colors.green30};
+  color: ${({ theme, color }) => color || getPrimary(theme).colorBrandPrimary300};
 `;

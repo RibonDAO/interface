@@ -5,6 +5,7 @@ import {
   defaultBodyXsRegular,
   defaultBodyMdBold,
 } from "styles/typography/default";
+import { getPrimary } from "styles/colors/utils";
 
 export const CardSectionContainer = styled.div`
   margin-top: 24px;
@@ -126,7 +127,7 @@ export const CardImpactText = styled.h4`
 
   span {
     display: inline-block;
-    color: ${({ theme }) => theme.colors.green30};
+    color: ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {

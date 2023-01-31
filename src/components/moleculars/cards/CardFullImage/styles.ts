@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { getPrimary } from "styles/colors/utils";
 
 type ContainerProps = {
   backgroundImage: string;
@@ -22,7 +23,7 @@ export const ImageContainer = styled.div`
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: ${({ theme }) => theme.colors.green30};
+  background: ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
 `;
 
 export const TextContainer = styled.div`

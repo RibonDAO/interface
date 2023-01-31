@@ -18,6 +18,9 @@ export type Props = {
   isIconOriginFullSize?: boolean;
   color?: string;
 };
+
+const { primary } = theme.colors.brand
+
 function ModalAnimation({
   visible = false,
   text,
@@ -30,7 +33,7 @@ function ModalAnimation({
   icon,
   isIconDestinyFullSize = false,
   isIconOriginFullSize = false,
-  color = theme.colors.green30,
+  color = primary.colorBrandPrimary300,
 }: Props): JSX.Element {
   const [iconLoaded, setIconLoaded] = useState(false);
 

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { getPrimary } from "styles/colors/utils";
 import {
   defaultBodyXsRegular,
   defaultBodyXsMedium,
@@ -56,7 +57,7 @@ export const Title = styled.h3`
 export const Link = styled.a`
   ${defaultBodyXsRegular}
 
-  color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
 `;
 
 export const RightContainer = styled.div`

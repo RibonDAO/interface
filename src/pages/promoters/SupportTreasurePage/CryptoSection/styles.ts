@@ -4,6 +4,7 @@ import {
   defaultBodyXsRegular,
   defaultBodySmSemibold,
 } from "styles/typography/default";
+import { getPrimary } from "styles/colors/utils";
 
 export const Container = styled.div`
   padding-bottom: 50px;
@@ -52,7 +53,7 @@ export const Input = styled.input`
   margin-top: 12px;
   margin-bottom: 8px;
   padding: 8px;
-  border: 1px solid ${({ theme }) => theme.colors.green30};
+  border: 1px solid ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.gray30};
 `;
@@ -78,7 +79,7 @@ export const Text = styled.p`
   ${defaultBodyXsRegular}
 
   margin-top: 8px;
-  color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
 `;
 
 export const ButtonContainer = styled.div`

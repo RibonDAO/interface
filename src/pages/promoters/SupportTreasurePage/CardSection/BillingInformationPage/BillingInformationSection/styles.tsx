@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { getPrimary } from "styles/colors/utils";
 
 export const BillingInformationSectionContainer = styled.div`
   margin-top: 18px;
@@ -24,7 +25,7 @@ export const HalfInput = styled.input`
   display: inline-block;
   width: calc(50% - 4px);
   margin-bottom: 12px;
-  border: 1px solid ${({ theme }) => theme.colors.green30};
+  border: 1px solid ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
   border-radius: 8px;
   padding: 8px 16px 8px 16px;
 `;

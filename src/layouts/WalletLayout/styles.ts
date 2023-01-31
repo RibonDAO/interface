@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Button from "components/atomics/buttons/Button";
 import { MainBodyContainer, MainContainer } from "layouts/MainLayout/styles";
+import { getPrimary } from "styles/colors/utils";
 
 export const Container = styled(MainContainer)``;
 
@@ -20,7 +21,7 @@ export const Treasure = styled.img`
 
 export const TreasureButton = styled.button`
   margin-left: 6%;
-  border: 1px solid ${({ theme }) => theme.colors.green30};
+  border: 1px solid ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
   border-radius: 50%;
   display: flex;
   justify-content: center;

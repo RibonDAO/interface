@@ -15,6 +15,8 @@ export type Props = {
   borderColorOutline?: string;
 };
 
+const { primary } = theme.colors.brand
+
 function GroupButtons({
   elements,
   onChange,
@@ -25,7 +27,7 @@ function GroupButtons({
   textColor = theme.colors.neutral10,
   textColorOutline = theme.colors.green40,
   borderColor = theme.colors.green40,
-  borderColorOutline = theme.colors.green30,
+  borderColorOutline = primary.colorBrandPrimary300,
 }: Props): JSX.Element {
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
 

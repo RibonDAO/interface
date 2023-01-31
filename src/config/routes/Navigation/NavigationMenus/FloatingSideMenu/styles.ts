@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { getPrimary } from "styles/colors/utils";
 
 export const Menu = styled.div<{ visible: boolean }>`
   padding-block: 10px;
@@ -31,7 +32,7 @@ export const MenuItem = styled(Link)`
   color: ${({ theme }) => theme.colors.gray30};
 
   :hover {
-    background-color: ${({ theme }) => theme.colors.green30};
+    background-color: ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
     color: ${({ theme }) => theme.colors.neutral10};
     box-shadow: inset 7px 0 9px -7px ${({ theme }) => theme.colors.defaultShadow};
   }

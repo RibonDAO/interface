@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { getPrimary } from "styles/colors/utils";
 
 export const Container = styled.div`
   min-width: 240px;
@@ -27,5 +28,5 @@ export const Title = styled.h3`
 `;
 
 export const Subtitle = styled.h5`
-  color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
 `;

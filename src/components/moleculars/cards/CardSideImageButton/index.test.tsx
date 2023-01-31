@@ -9,6 +9,8 @@ import { screen } from "@testing-library/react";
 import theme from "styles/theme";
 import CardSideImageButton from "./index";
 
+const { primary } = theme.colors.brand;
+
 describe("CardSideImageButton", () => {
   it("should render without error", () => {
     renderComponent(
@@ -109,7 +111,7 @@ describe("CardSideImageButton", () => {
       );
 
       expect(screen.getByText("text")).toHaveStyle(
-        `color: ${theme.colors.green30};`,
+        `color: ${primary.colorBrandPrimary300};`,
       );
     });
 
@@ -156,7 +158,7 @@ describe("CardSideImageButton", () => {
       );
 
       expect(screen.getByText("text")).toHaveStyle(
-        `color: ${theme.colors.green30};`,
+        `color: ${primary.colorBrandPrimary300};`,
       );
     });
 

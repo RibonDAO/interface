@@ -22,7 +22,11 @@ function App() {
   const queryClient = new QueryClient();
 
   useEffect(() => {
-    if (process.env.NODE_ENV === "development") return;
+    if (
+      process.env.NODE_ENV === "development" ||
+      process.env.NODE_ENV === "test"
+    )
+      return;
 
     growthbookSetFeatures();
     // eslint-disable-next-line no-console

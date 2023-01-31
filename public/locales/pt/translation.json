@@ -114,7 +114,10 @@
     "donatedTickets": "Tickets doados",
     "donatedMoney": "Dinheiro doado",
     "supportedNgos": "ONGs apoiadas",
-    "supporterCauses": "Causas apoiadas"
+    "supporterCauses": "Causas apoiadas",
+    "emptyTitle": "Suas doações de tickets aparecerão aqui.",
+    "emptyText": "Você ainda não fez doações gratuitas com tickets, que tal fazer a primeira?",
+    "emptyButton": "Doar usando tickets"
   },
   "promoters": {
     "treasurePage": {

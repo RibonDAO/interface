@@ -114,7 +114,10 @@
     "donatedTickets": "Donated tickets",
     "donatedMoney": "Donated money",
     "supportedNgos": "Supported NGOs",
-    "supporterCauses": "Supporter causes"
+    "supporterCauses": "Supporter causes",
+    "emptyTitle": "Your ticket donations will appear here.",
+    "emptyText": "You have not made free donations using tickets yet, why not try your first one?",
+    "emptyButton": "Donate using tickets"
   },
   "promoters": {
     "treasurePage": {

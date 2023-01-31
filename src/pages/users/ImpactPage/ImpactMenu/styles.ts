@@ -32,21 +32,21 @@ export const Container = styled.div`
 export const MenuItem = styled.div<{ active: boolean }>`
   ${defaultBodyMdMedium}
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 8px 0px 0px;
   width: 100%;
   min-width: 200px;
   height: 44px;
-  color: ${({ theme, active }) =>
-    active ? theme.colors.green40 : theme.colors.gray30};
-  cursor: pointer;
-
+  padding: 8px 0px 0px;
   border-bottom: ${({ theme, active }) =>
     active
       ? `3px solid ${theme.colors.green30}`
       : `1px solid ${theme.colors.gray20}`};
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  color: ${({ theme, active }) =>
+    active ? theme.colors.green40 : theme.colors.gray30};
+  cursor: pointer;
 `;
 export const EmptySectionContainer = styled.div`
   width: 100%;

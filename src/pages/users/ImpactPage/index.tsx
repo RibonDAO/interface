@@ -3,12 +3,13 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "services/analytics";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
-
 import useUserStatistics from "hooks/apiHooks/useStatistics";
 import { formatPriceWithZeros } from "lib/formatters/currencyFormatter";
 import { useLanguage } from "hooks/useLanguage";
 import { coinByLanguage } from "lib/coinByLanguage";
 import useImpact from "hooks/apiHooks/useImpact";
+import impactIllustration from "assets/images/impact-illustration.svg";
+import useNavigation from "hooks/useNavigation";
 import TicketIcon from "./assets/ticket-icon.svg";
 import MoneyIcon from "./assets/money-icon.svg";
 import NgoIcon from "./assets/ngo-icon.svg";
@@ -21,7 +22,7 @@ function ImpactPage(): JSX.Element {
   });
 
   const { userImpact } = useImpact();
-
+  const { navigateTo } = useNavigation();
   const { userStatistics } = useUserStatistics();
   const { currentLang } = useLanguage();
   const { formattedImpactText } = useFormattedImpactText();
@@ -30,8 +31,29 @@ function ImpactPage(): JSX.Element {
     logEvent("profile_view");
   }, []);
 
-  const impactCards = () => userImpact || [];
-  const hasImpact = () => impactCards().length > 0;
+  const impactCards = userImpact || [];
+  const impactItems = impactCards.filter(
+    (item) => item.impact.toString() !== "0",
+  );
+  const hasImpact = impactItems.length > 0;
+
+  const handleEmptyButtonClick = () => {
+    navigateTo("/");
+  };
+
+  function renderEmptyImpact() {
+    return (
+      <S.EmptySectionContainer>
+        <S.EmptyImage src={impactIllustration} />
+        <S.EmptyTitle>{t("emptyTitle")}</S.EmptyTitle>
+        <S.EmptyText>{t("emptyText")}</S.EmptyText>
+        <S.EmptyButton
+          text={t("emptyButton")}
+          onClick={handleEmptyButtonClick}
+        />
+      </S.EmptySectionContainer>
+    );
+  }
 
   return (
     <S.Container>
@@ -68,30 +90,29 @@ function ImpactPage(): JSX.Element {
           size="small"
         />
       </S.CardsButtonContainer>
-      {hasImpact() && (
+      {hasImpact ? (
         <S.CardsContainer>
-          {impactCards().map(
-            (item: any) =>
-              item.impact.toString() !== "0" && (
-                <CardTopImage
-                  key={item.nonProfit.id}
-                  title={item.nonProfit.name}
-                  text={
-                    formattedImpactText(
-                      item.nonProfit,
-                      item.impact,
-                      false,
-                      true,
-                      undefined,
-                      t("impactText"),
-                    ) || ""
-                  }
-                  icon={item.nonProfit.logo}
-                  size="large"
-                />
-              ),
-          )}
+          {impactItems.map((item: any) => (
+            <CardTopImage
+              key={item.nonProfit.id}
+              title={item.nonProfit.name}
+              text={
+                formattedImpactText(
+                  item.nonProfit,
+                  item.impact,
+                  false,
+                  true,
+                  undefined,
+                  t("impactText"),
+                ) || ""
+              }
+              icon={item.nonProfit.logo}
+              size="large"
+            />
+          ))}
         </S.CardsContainer>
+      ) : (
+        renderEmptyImpact()
       )}
     </S.Container>
   );

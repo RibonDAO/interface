@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import CommunitySection from "../CommunitySection";
+import DirectSection from "../DirectSection";
 import * as S from "./styles";
 
-function Menu() {
+function ImpactMenu() {
   const [currentTab, setCurrentTab] = useState("ticket");
   const { t } = useTranslation("translation", {
     keyPrefix: "impactPage.impactMenu",
@@ -17,9 +19,9 @@ function Menu() {
       case "ticket":
         return "ticket";
       case "community":
-        return "community";
+        return <CommunitySection />;
       case "direct":
-        return "direct";
+        return <DirectSection />;
       default:
         return "ticket";
     }
@@ -51,4 +53,4 @@ function Menu() {
     </S.Container>
   );
 }
-export default Menu;
+export default ImpactMenu;

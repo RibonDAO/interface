@@ -26,7 +26,8 @@ export const MenuItem = styled.div<{ active: boolean }>`
     active ? theme.colors.green40 : theme.colors.gray30};
   cursor: pointer;
 
-  border-bottom: 1px solid
-    ${({ theme, active }) =>
-      active ? theme.colors.green30 : theme.colors.gray20};
+  border-bottom: ${({ theme, active }) =>
+    active
+      ? `3px solid ${theme.colors.green30}`
+      : `1px solid ${theme.colors.gray20}`};
 `;

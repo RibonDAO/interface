@@ -116,9 +116,19 @@
     "supportedNgos": "ONGs apoiadas",
     "supporterCauses": "Causas apoiadas",
     "impactMenu": {
-      "ticketDonations": "Ticket donations",
-      "communityDonations": "Community donations",
-      "directDonations": "Direct donations"
+      "ticketDonations": "Doações em ticket",
+      "communityDonations": "Doações em comunidade",
+      "directDonations": "Doações diretas"
+    },
+    "directSection": {
+      "emptyTitle": "Suas doações diretas aparecerão aqui.",
+      "emptyText": "Você ainda não fez doações diretas, que tal fazer a sua primeira?",
+      "emptyButton": "Doar diretamente"
+    },
+    "communitySection": {
+      "emptyTitle": "Suas doações em comunidade aparecerão aqui.",
+      "emptyText": "Você ainda não fez doações em comunidade ainda, que tal fazer a sua primeira?",
+      "emptyButton": "Doar em comunidade"
     }
   },
   "promoters": {

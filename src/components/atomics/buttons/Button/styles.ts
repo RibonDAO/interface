@@ -20,7 +20,7 @@ export const Container = styled.button<{
     css`
       ${defaultBodyMdSemibold}
 
-      padding: 12px 16px;
+      padding: ${({ theme }) => theme.spacing(12, 16)};
     `}
 
   ${(props) =>
@@ -28,7 +28,7 @@ export const Container = styled.button<{
     css`
       ${defaultBodySmSemibold}
 
-      padding: 12px 16px;
+      padding: ${({ theme }) => theme.spacing(12, 16)};
     `}
     
   
@@ -37,7 +37,7 @@ export const Container = styled.button<{
     css`
       ${defaultBodyXsSemibold}
 
-      padding: 6px 16px;
+      padding: ${({ theme }) => theme.spacing(8, 16)};
     `}
     
   width: 100%;
@@ -54,15 +54,15 @@ export const Container = styled.button<{
   cursor: pointer;
 
   #left-icon {
-    margin-right: 4px;
+    margin-right: ${({ theme }) => theme.spacing(4)};
   }
 
   #right-icon {
-    margin-left: 4px;
+    margin-left: ${({ theme }) => theme.spacing(4)};
   }
 
   svg {
-    margin-left: 2px;
+    margin-left: ${({ theme }) => theme.spacing(4)};
 
     path {
       fill: ${(props) => props.ribonsColor};

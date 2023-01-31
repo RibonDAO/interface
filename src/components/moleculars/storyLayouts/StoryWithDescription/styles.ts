@@ -18,7 +18,7 @@ export type ContentProps = {
 
 export const Content = styled.div<ContentProps>`
   width: 100%;
-  padding: 20px;
+  padding: ${({ theme }) => theme.spacing(20)};
   padding-bottom: ${({ hasProfileData }) => (hasProfileData ? "70px" : "20px")};
   position: absolute;
   bottom: 0;
@@ -35,10 +35,10 @@ export const Content = styled.div<ContentProps>`
 
 export const DescriptionWrapper = styled.div`
   width: 100%;
-  margin-top: 60px;
-  margin-bottom: 30px;
-  padding-bottom: 5px;
-  padding-left: 15px;
+  margin-top: ${({ theme }) => theme.spacing(64)};
+  margin-bottom: ${({ theme }) => theme.spacing(32)};
+  padding-bottom: ${({ theme }) => theme.spacing(4)};
+  padding-left: ${({ theme }) => theme.spacing(16)};
   border-left: solid 3px ${({ theme }) => theme.colors.neutral10};
   display: flex;
   flex-direction: column;

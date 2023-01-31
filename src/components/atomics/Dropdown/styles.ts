@@ -4,8 +4,8 @@ import { defaultBodySmSemibold } from "styles/typography/default";
 export const Input = styled.div`
   width: 100%;
   height: 50px;
-  margin-bottom: 12px;
-  padding: 0 10px;
+  margin-bottom: ${({ theme }) => theme.spacing(12)};
+  padding: ${({ theme }) => theme.spacing(0, 12)};
   border: 1px solid ${({ theme }) => theme.colors.green30};
   border-radius: 4px;
   display: flex;
@@ -14,7 +14,7 @@ export const Input = styled.div`
   color: ${({ theme }) => theme.colors.gray40};
 
   label {
-    padding: 0 2px;
+    padding: ${({ theme }) => theme.spacing(0, 4)};
     position: absolute;
     top: -15px;
     left: 10px;
@@ -62,7 +62,7 @@ export const Container = styled.div`
 `;
 
 export const OptionContainer = styled.div`
-  padding: 8px 16px;
+  padding: ${({ theme }) => theme.spacing(8, 16)};
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.gray10};

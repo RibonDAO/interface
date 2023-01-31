@@ -10,7 +10,7 @@ export const Container = styled.div`
 export const ImageContainer = styled.div`
   width: 310px;
   height: 180px;
-  margin: 20px 0;
+  margin: ${({ theme }) => theme.spacing(20, 0)};
   position: relative;
   display: flex;
   align-items: center;

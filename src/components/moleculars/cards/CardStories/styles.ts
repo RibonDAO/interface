@@ -41,7 +41,7 @@ export const AvatarImage = styled.img`
 `;
 
 export const ProfileInfo = styled.div`
-  margin-left: 10px;
+  margin-left: ${({ theme }) => theme.spacing(12)};
   display: flex;
   flex-direction: column;
 
@@ -56,7 +56,7 @@ export const SmallInfo = styled.small``;
 
 export const Icon = styled.img`
   margin-bottom: -2px;
-  margin-left: 4px;
+  margin-left: ${({ theme }) => theme.spacing(4)};
 `;
 
 export const CtaWrapper = styled.div`

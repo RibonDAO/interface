@@ -4,7 +4,6 @@ import ReactModal from "react-modal";
 export const BlankModal = styled(ReactModal)`
   width: 100%;
   max-width: 360px;
-  margin: 16px;
   border-radius: 16px;
   background-color: #fff;
 `;
@@ -12,10 +11,10 @@ export const BlankModal = styled(ReactModal)`
 export const Modal = styled(BlankModal)`
   button,
   a {
-    margin-bottom: 8px;
+    margin-bottom: ${({ theme }) => theme.spacing(8)};
 
     &:last-child {
-      margin: 0;
+      margin: ${({ theme }) => theme.spacing(0)};
     }
   }
 `;

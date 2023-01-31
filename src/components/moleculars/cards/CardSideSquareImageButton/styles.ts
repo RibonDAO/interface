@@ -18,7 +18,7 @@ export const Text = styled.p`
 `;
 
 export const InsideContainer = styled.div`
-  margin-right: 14px;
+  margin-right: ${({ theme }) => theme.spacing(16)};
 `;
 
 export const ImageContainer = styled.div`

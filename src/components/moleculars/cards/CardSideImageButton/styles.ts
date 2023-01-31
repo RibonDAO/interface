@@ -4,7 +4,7 @@ export const Container = styled.div`
   width: 100%;
   max-width: 312px;
   height: 104px;
-  padding: 15px 16px;
+  padding: ${({ theme }) => theme.spacing(16)};
   border: 1px solid ${({ theme }) => theme.colors.neutral10};
   border-radius: 16px;
   display: flex;
@@ -41,14 +41,14 @@ export const Content = styled.div`
 export const TextContainer = styled.div`
   width: 100%;
   height: 100%;
-  margin-left: 4px;
+  margin-left: ${({ theme }) => theme.spacing(4)};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
   #left-icon {
-    margin-right: 2px;
+    margin-right: ${({ theme }) => theme.spacing(4)};
     position: static;
   }
 `;
@@ -67,7 +67,7 @@ export const TitleContainer = styled.div`
 `;
 
 export const Title = styled.h4`
-  margin-bottom: 4px;
+  margin-bottom: ${({ theme }) => theme.spacing(4)};
   text-align: center;
   color: ${({ theme }) => theme.colors.gray40};
 `;
@@ -97,7 +97,7 @@ export const Image = styled.img`
 
 export const CounterContainer = styled.span`
   min-width: 16px;
-  padding: 2px;
+  padding: ${({ theme }) => theme.spacing(4)};
   border-radius: 100%;
   position: absolute;
   top: 8px;

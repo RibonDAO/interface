@@ -65,7 +65,7 @@ export const DarkStroke = styled.div`
 export const ImageDescription = styled.h4`
   ${defaultBodyMdSemibold}
 
-  padding: 14px;
+  padding: ${({ theme }) => theme.spacing(16)};
   position: absolute;
   bottom: 0;
   left: 0;
@@ -75,7 +75,7 @@ export const ImageDescription = styled.h4`
 
 export const ContentSection = styled.div`
   width: 100%;
-  padding: 12px;
+  padding: ${({ theme }) => theme.spacing(12)};
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -87,12 +87,12 @@ export const Info = styled.p`
   color: ${({ theme }) => theme.colors.gray30};
 
   &:not(:first-child) {
-    margin-left: 4px;
+    margin-left: ${({ theme }) => theme.spacing(4)};
   }
 `;
 
 export const Bullet = styled.h6`
-  margin-left: 4px;
+  margin-left: ${({ theme }) => theme.spacing(4)};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,7 +102,7 @@ export const Bullet = styled.h6`
 
 export const InfoContainer = styled.div`
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: ${({ theme }) => theme.spacing(16)};
   display: flex;
 `;
 
@@ -113,5 +113,5 @@ export const ButtonContainer = styled.div`
 `;
 
 export const Icon = styled.img`
-  margin-left: 4px;
+  margin-left: ${({ theme }) => theme.spacing(4)};
 `;

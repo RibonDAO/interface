@@ -12,7 +12,7 @@ const normalize = css`
   }
 
   body {
-    margin: 0;
+    margin: ${({ theme }) => theme.spacing(0)};
   }
 
   main {
@@ -84,7 +84,7 @@ const normalize = css`
     font-family: inherit; /* 1 */
     font-size: 100%; /* 1 */
     line-height: 1.15; /* 1 */
-    margin: 0; /* 2 */
+    margin: ${({ theme }) => theme.spacing(0)}; /* 2 */
   }
 
   button,
@@ -111,7 +111,7 @@ const normalize = css`
   [type="reset"]::-moz-focus-inner,
   [type="submit"]::-moz-focus-inner {
     border-style: none;
-    padding: 0;
+    padding: ${({ theme }) => theme.spacing(0)};
   }
 
   button:-moz-focusring,
@@ -122,7 +122,7 @@ const normalize = css`
   }
 
   fieldset {
-    padding: 0.35em 0.75em 0.625em;
+    padding: ${({ theme }) => theme.spacing(4, 12, 12)};
   }
 
   legend {
@@ -130,7 +130,7 @@ const normalize = css`
     color: inherit; /* 2 */
     display: table; /* 1 */
     max-width: 100%; /* 1 */
-    padding: 0; /* 3 */
+    padding: ${({ theme }) => theme.spacing(0)}; /* 3 */
     white-space: normal; /* 1 */
   }
 
@@ -145,7 +145,7 @@ const normalize = css`
   [type="checkbox"],
   [type="radio"] {
     box-sizing: border-box; /* 1 */
-    padding: 0; /* 2 */
+    padding: ${({ theme }) => theme.spacing(0)}; /* 2 */
   }
 
   [type="number"]::-webkit-inner-spin-button,

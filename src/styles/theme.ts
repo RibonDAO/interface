@@ -14,6 +14,15 @@ interface ThemeType {
   [key: string]: any;
 }
 
+const getSpacing = (space: number): string => {
+  const spacings = [0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 112];
+
+  if (!spacings.includes(space)) {
+    return "0px";
+  }
+  return `${space}px`;
+};
+
 const theme: ThemeType = {
   grid: {},
   border: {},
@@ -74,7 +83,13 @@ const theme: ThemeType = {
       base: 999,
     },
   },
-  spacings: {},
+  spacing: (top: number, right?: number, bottom?: number, left?: number) =>
+    `${
+      getSpacing(top) +
+      (typeof right === "number" ? ` ${getSpacing(right)}` : "") +
+      (typeof bottom === "number" ? ` ${getSpacing(bottom)}` : "") +
+      (typeof left === "number" ? ` ${getSpacing(left)}` : "")
+    }`,
   breakpoints: {
     mobile: "0px",
     mobileMedium: "374px",

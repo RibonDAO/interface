@@ -21,24 +21,24 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  padding: 28px 0;
+  padding: ${({ theme }) => theme.spacing(32, 0)};
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
 export const InnerContainer = styled.div`
-  padding: 0 20px;
+  padding: ${({ theme }) => theme.spacing(0, 20)};
 `;
 
 export const Title = styled.h3`
-  margin-top: 20px;
+  margin-top: ${({ theme }) => theme.spacing(20)};
   color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const Subtitle = styled.h4`
-  margin-top: 4px;
-  margin-bottom: 24px;
+  margin-top: ${({ theme }) => theme.spacing(4)};
+  margin-bottom: ${({ theme }) => theme.spacing(24)};
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
 `;
@@ -46,7 +46,7 @@ export const Subtitle = styled.h4`
 export const ButtonContainer = styled.div`
   width: 100%;
   height: 80px;
-  padding: 12px 16px;
+  padding: ${({ theme }) => theme.spacing(12, 16)};
   display: flex;
   align-items: center;
   align-self: end;
@@ -54,14 +54,14 @@ export const ButtonContainer = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     max-width: 340px;
-    padding: 0;
+    padding: ${({ theme }) => theme.spacing(0)};
     box-shadow: none;
   }
 `;
 
 export const HrDivider = styled(Divider)`
   width: 50px;
-  padding: 0 100px;
+  padding: ${({ theme }) => theme.spacing(0, 112)};
 `;
 
 export const FinishButton = styled(Button)`

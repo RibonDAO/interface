@@ -15,12 +15,12 @@ export const Container = styled.div`
 export const Text = styled.p`
   ${defaultBodySmSemibold}
 
-  margin-top: 28px;
+  margin-top: ${({ theme }) => theme.spacing(32)};
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const EmptyDonationButton = styled(Button)`
   width: 200px;
-  margin-top: 14px;
+  margin-top: ${({ theme }) => theme.spacing(16)};
 `;

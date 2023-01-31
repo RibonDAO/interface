@@ -44,7 +44,7 @@ export const Container = styled.div`
 
 export const Input = styled.input`
   width: 100%;
-  margin-bottom: 12px;
+  margin-bottom: ${({ theme }) => theme.spacing(12)};
   position: absolute;
   top: 2px;
   height: 0;

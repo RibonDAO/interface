@@ -22,8 +22,8 @@ export const MainContainer = styled.div`
 export const Container = styled.div``;
 
 export const ContentContainer = styled.div`
-  margin-bottom: 24px;
-  padding: 24px;
+  margin-bottom: ${({ theme }) => theme.spacing(24)};
+  padding: ${({ theme }) => theme.spacing(24)};
   border-radius: 8px;
   box-shadow: 0 16px 32px -2px ${({ theme }) => theme.colors.defaultShadow10};
 `;
@@ -57,19 +57,19 @@ export const FeeText = styled.p`
 export const Image = styled.img`
   width: 100%;
   height: 100%;
-  margin-top: 64px;
+  margin-top: ${({ theme }) => theme.spacing(64)};
 `;
 
 export const BackArrowButton = styled.img`
   width: 24px;
   height: 24px;
-  margin-bottom: 20px;
+  margin-bottom: ${({ theme }) => theme.spacing(20)};
   cursor: pointer;
 `;
 
 export const DonateButtonContainer = styled.div`
   width: 100%;
-  padding: 16px;
+  padding: ${({ theme }) => theme.spacing(16)};
   position: fixed;
   bottom: 0;
   left: 0;

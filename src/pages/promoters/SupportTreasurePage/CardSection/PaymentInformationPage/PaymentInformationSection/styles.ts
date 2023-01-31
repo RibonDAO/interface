@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const PaymentInformationSectionContainer = styled.form`
   height: 256px;
-  margin-top: 18px;
+  margin-top: ${({ theme }) => theme.spacing(20)};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     height: auto;
@@ -10,7 +10,7 @@ export const PaymentInformationSectionContainer = styled.form`
 `;
 
 export const Title = styled.h3`
-  margin-bottom: 20px;
+  margin-bottom: ${({ theme }) => theme.spacing(20)};
   color: ${({ theme }) => theme.colors.gray40};
 `;
 
@@ -18,6 +18,6 @@ export const Half = styled.div`
   display: flex;
 
   div:first-of-type {
-    margin-right: 8px;
+    margin-right: ${({ theme }) => theme.spacing(8)};
   }
 `;

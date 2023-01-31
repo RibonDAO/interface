@@ -11,10 +11,6 @@ function ImpactMenu() {
     keyPrefix: "impactPage.impactMenu",
   });
 
-  const handleChangedTab = (tab: string) => {
-    setCurrentTab(tab);
-  };
-
   const renderSection = () => {
     switch (currentTab) {
       case "ticket":
@@ -33,19 +29,19 @@ function ImpactMenu() {
       <S.Menu>
         <S.MenuItem
           active={currentTab === "ticket"}
-          onClick={() => handleChangedTab("ticket")}
+          onClick={() => setCurrentTab("ticket")}
         >
           {t("ticketDonations")}
         </S.MenuItem>
         <S.MenuItem
           active={currentTab === "community"}
-          onClick={() => handleChangedTab("community")}
+          onClick={() => setCurrentTab("community")}
         >
           {t("communityDonations")}
         </S.MenuItem>
         <S.MenuItem
           active={currentTab === "direct"}
-          onClick={() => handleChangedTab("direct")}
+          onClick={() => setCurrentTab("direct")}
         >
           {t("directDonations")}
         </S.MenuItem>

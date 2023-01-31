@@ -24,7 +24,7 @@ export type Props = {
   size?: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-const { primary } = theme.colors.brand
+const { primary } = theme.colors.brand;
 
 export default function Button({
   text,

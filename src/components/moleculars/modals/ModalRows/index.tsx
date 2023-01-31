@@ -40,7 +40,7 @@ export type Props = {
   animationData?: Record<any, any>;
 };
 
-const { primary } = theme.colors.brand
+const { primary } = theme.colors.brand;
 
 function ModalRows({
   visible = false,

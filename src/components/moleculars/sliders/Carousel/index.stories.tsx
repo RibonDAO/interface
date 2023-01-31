@@ -5,7 +5,7 @@ import theme from "styles/theme";
 import CardCircleImage from "components/moleculars/cards/CardCircleImage";
 import Carousel, { Props } from ".";
 
-const { primary } = theme.colors.brand
+const { primary } = theme.colors.brand;
 
 export default {
   title: "Carousel",
@@ -13,7 +13,9 @@ export default {
   parameters: {
     backgrounds: {
       default: "colorBrandPrimary300",
-      values: [{ name: "colorBrandPrimary300", value: primary.colorBrandPrimary300 }],
+      values: [
+        { name: "colorBrandPrimary300", value: primary.colorBrandPrimary300 },
+      ],
     },
   },
 } as ComponentMeta<typeof Carousel>;

@@ -31,7 +31,7 @@ export type Props = {
   hideWallet?: boolean;
 };
 
-const { primary } = theme.colors.brand
+const { primary } = theme.colors.brand;
 
 function LayoutHeader({
   rightComponent,

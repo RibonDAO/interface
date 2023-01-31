@@ -3,7 +3,7 @@ import CardImage from "assets/images/newspaper.svg";
 import theme from "styles/theme";
 import CardSideImageButton, { Props } from "./index";
 
-const { primary } = theme.colors.brand
+const { primary } = theme.colors.brand;
 
 export default {
   title: "CardSideImageButton",
@@ -11,7 +11,9 @@ export default {
   parameters: {
     backgrounds: {
       default: "colorBrandPrimary300",
-      values: [{ name: "colorBrandPrimary300", value: primary.colorBrandPrimary300 }],
+      values: [
+        { name: "colorBrandPrimary300", value: primary.colorBrandPrimary300 },
+      ],
     },
   },
 } as ComponentMeta<typeof CardSideImageButton>;

@@ -44,7 +44,7 @@ export type Props = {
   onValuesChange?: (values: Record<any, any>) => void;
 };
 
-const { primary } = theme.colors.brand
+const { primary } = theme.colors.brand;
 
 function ModalForm({
   visible = false,

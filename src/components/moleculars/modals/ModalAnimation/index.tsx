@@ -19,7 +19,7 @@ export type Props = {
   color?: string;
 };
 
-const { primary } = theme.colors.brand
+const { primary } = theme.colors.brand;
 
 function ModalAnimation({
   visible = false,

@@ -7,7 +7,7 @@ export type Props = {
   direction?: "top" | "bottom" | "left" | "right";
 };
 
-const { primary } = theme.colors.brand
+const { primary } = theme.colors.brand;
 
 function RoundedArrow({
   color = primary.colorBrandPrimary300,

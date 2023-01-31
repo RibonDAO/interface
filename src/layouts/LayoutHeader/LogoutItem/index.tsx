@@ -16,7 +16,7 @@ function LogoutItem(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "layouts.layoutHeader.logoutItem",
   });
-  const { tertiary } = theme.colors.brand
+  const { tertiary } = theme.colors.brand;
 
   const { logoutCurrentUser, currentUser } = useCurrentUser();
   const [email, setEmail] = useState("");

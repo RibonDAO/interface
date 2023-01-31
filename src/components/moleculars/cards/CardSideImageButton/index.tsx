@@ -6,7 +6,7 @@ import checkIcon from "assets/icons/check-icon.svg";
 import * as S from "./styles";
 
 const { neutral10 } = theme.colors;
-const { primary } = theme.colors.brand
+const { primary } = theme.colors.brand;
 
 export type Props = {
   backgroundColor?: string;
@@ -39,7 +39,9 @@ function CardSideImageButton({
       buttonText && (
         <Button
           text={buttonText}
-          textColor={isCollected ? primary.colorBrandPrimary300 : buttonTextColor}
+          textColor={
+            isCollected ? primary.colorBrandPrimary300 : buttonTextColor
+          }
           backgroundColor={isCollected ? neutral10 : buttonBackgroundColor}
           borderColor={primary.colorBrandPrimary300}
           leftIcon={isCollected ? checkIcon : undefined}

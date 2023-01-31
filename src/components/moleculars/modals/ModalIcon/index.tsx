@@ -36,7 +36,7 @@ export type Props = {
   customStyles?: ReactModal.Styles;
 };
 
-const { primary } = theme.colors.brand
+const { primary } = theme.colors.brand;
 
 function ModalIcon({
   visible = false,

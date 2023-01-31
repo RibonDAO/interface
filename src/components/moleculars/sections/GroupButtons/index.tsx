@@ -15,7 +15,7 @@ export type Props = {
   borderColorOutline?: string;
 };
 
-const { primary } = theme.colors.brand
+const { primary } = theme.colors.brand;
 
 function GroupButtons({
   elements,

@@ -13,7 +13,6 @@ import MoneyIcon from "./assets/money-icon.svg";
 import NgoIcon from "./assets/ngo-icon.svg";
 import CausesIcon from "./assets/causes-icon.svg";
 import * as S from "./styles";
-import TicketSection from "./ImpactMenu/TicketSection";
 import ImpactMenu from "./ImpactMenu";
 
 function ImpactPage(): JSX.Element {

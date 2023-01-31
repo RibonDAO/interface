@@ -52,7 +52,7 @@ export const CurrencySelectorContainer = styled.div`
 `;
 
 export const CurrencySelector = styled(Dropdown)`
-  border: 1px solid ${({ theme }) => theme.colors.red40};
+  border: 1px solid ${({ theme }) => getTertiary(theme).colorBrandTertiary800};
 `;
 
 export const Title = styled.p`
@@ -60,5 +60,5 @@ export const Title = styled.p`
 
   margin-bottom: 12px;
   text-align: center;
-  color: ${({ theme }) => theme.colors.red40};
+  color: ${({ theme }) => getTertiary(theme).colorBrandTertiary800};
 `;

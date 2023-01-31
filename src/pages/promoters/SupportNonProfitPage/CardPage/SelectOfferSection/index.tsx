@@ -13,7 +13,6 @@ import NonProfit from "types/entities/NonProfit";
 import useNonProfitImpact from "hooks/apiHooks/useNonProfitImpact";
 import * as S from "./styles";
 
-const { red40 } = theme.colors;
 const { tertiary } = theme.colors.brand;
 
 type Props = {
@@ -95,10 +94,10 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
             defaultValue={currentCoin}
             containerId={`currency-selector-${nonProfit?.id}`}
             customInputStyles={{
-              borderColor: red40,
+              borderColor: tertiary.colorBrandTertiary800,
               height: 40,
               marginBottom: 0,
-              color: red40,
+              color: tertiary.colorBrandTertiary800,
               width: 80,
             }}
           />

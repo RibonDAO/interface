@@ -108,9 +108,9 @@ function CardPage(): JSX.Element {
         onChange={handleCauseClick}
         indexSelected={preSelectedIndex()}
         nameExtractor={(element) => element.name}
-        backgroundColor={theme.colors.red40}
-        textColorOutline={theme.colors.red40}
-        borderColor={theme.colors.red40}
+        backgroundColor={tertiary.colorBrandTertiary800}
+        textColorOutline={tertiary.colorBrandTertiary800}
+        borderColor={tertiary.colorBrandTertiary800}
         borderColorOutline={tertiary.colorBrandTertiary200}
       />
       <S.NonProfitsListContainer>

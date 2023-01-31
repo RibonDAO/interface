@@ -68,22 +68,22 @@ export const CommunityAddText = styled.p`
 export const CommunityAddValue = styled.p`
   ${stylizedDisplayXs}
 
-  color: ${({ theme }) => theme.colors.brand.tertiary.colorBrandTertiary200};
+  color: ${({ theme }) => getTertiary(theme).colorBrandTertiary200};
 `;
 
 export const CommunityAddButton = styled(ButtonComponent)`
   margin-top: 8px;
   padding: 4px;
-  border-color: ${({ theme }) => theme.colors.red40};
+  border-color: ${({ theme }) => getTertiary(theme).colorBrandTertiary800};
   font-size: 11px;
-  color: ${({ theme }) => theme.colors.red40};
+  color: ${({ theme }) => getTertiary(theme).colorBrandTertiary800};
 `;
 
 export const DonateButton = styled(ButtonComponent)`
   border-color: ${({ theme }) => getTertiary(theme).colorBrandTertiary200};
   font-weight: 600;
   background-color: ${({ theme }) => getTertiary(theme).colorBrandTertiary200};
-  color: ${({ theme }) => theme.colors.red40};
+  color: ${({ theme }) => getTertiary(theme).colorBrandTertiary800};
 `;
 
 export const BackgroundImage = styled.img`

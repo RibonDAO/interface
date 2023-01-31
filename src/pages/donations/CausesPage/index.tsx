@@ -39,8 +39,12 @@ function CausesPage(): JSX.Element {
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
 
-  const { activeCauses, chooseCauseModalVisible, currentCauseId } =
-    useCausesContext();
+  const {
+    activeCauses,
+    chooseCauseModalVisible,
+    currentCauseId,
+    setCurrentCauseId,
+  } = useCausesContext();
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
@@ -142,6 +146,14 @@ function CausesPage(): JSX.Element {
     [chosenNonProfit],
   );
 
+  useEffect(() => {
+    if (chooseCauseModalVisible && !hasSeenChooseCauseModal.current) {
+      hasSeenChooseCauseModal.current = true;
+    } else if (!chooseCauseModalVisible && hasSeenChooseCauseModal.current) {
+      hasSeenChooseCauseModal.current = false;
+    }
+  }, [chooseCauseModalVisible]);
+
   const nonProfitsFilter = () => {
     if (currentCauseId >= 1 && currentCauseId !== undefined) {
       return (
@@ -150,55 +162,20 @@ function CausesPage(): JSX.Element {
             nonProfit.cause?.active && nonProfit.cause?.id === currentCauseId,
         ) || []
       );
-    } else {
-      return (
-        nonProfits?.filter(
-          (nonProfit) => nonProfit.cause?.active && nonProfit.cause?.id,
-        ) || []
-      );
     }
-  };
 
-  const jumpFirstNonProfitByCauseId = (id: number) => {
-    const nonProfitIndex = nonProfitsFilter().findIndex(
-      (nonProfit) => nonProfit?.cause?.id === id,
-    );
-    if (nonProfitIndex >= 0) setCurrentNonProfitIndex(nonProfitIndex);
+    return nonProfits || [];
   };
 
   const handleCauseChanged = (_element: any, index: number, event: any) => {
     if (_element && event?.type === "click") {
       const causeId = _element?.id;
-      if (nonProfits && causeId) jumpFirstNonProfitByCauseId(Number(causeId));
-    }
-  };
-
-  useEffect(() => {
-    if (chooseCauseModalVisible && !hasSeenChooseCauseModal.current) {
-      hasSeenChooseCauseModal.current = true;
-    } else if (!chooseCauseModalVisible && hasSeenChooseCauseModal.current) {
-      hasSeenChooseCauseModal.current = false;
-
-      if (isFirstAccess(signedIn) && nonProfits)
-        jumpFirstNonProfitByCauseId(Number(currentCauseId));
-    }
-  }, [chooseCauseModalVisible]);
-
-  useEffect(() => {
-    if (currentNonProfitIndex >= 0 && !isLoading) {
-      const currentCause = nonProfitsFilter()[currentNonProfitIndex]?.cause;
-
-      if (currentCause && activeCauses) {
-        const currentCauseIndex = activeCauses.findIndex(
-          (cause) => cause.id === currentCause.id,
-        );
-
-        if (currentCauseIndex >= 0) {
-          setSelectedButtonIndex(currentCauseIndex);
-        }
+      if (nonProfits && causeId !== undefined) {
+        setCurrentCauseId(Number(causeId));
+        setSelectedButtonIndex(index);
       }
     }
-  }, [currentNonProfitIndex, isLoading, activeCauses]);
+  };
 
   const causesWithAllFilter = [
     {

@@ -7,4 +7,8 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   background: ${({ theme }) => theme.colors.gray40};
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: ${({ theme }) => theme.zindex.modal};
 `;

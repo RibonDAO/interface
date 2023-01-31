@@ -86,9 +86,9 @@ const theme: ThemeType = {
   spacing: (top: number, right?: number, bottom?: number, left?: number) =>
     `${
       getSpacing(top) +
-      (right ? ` ${getSpacing(right)}` : "") +
-      (bottom ? ` ${getSpacing(bottom)}` : "") +
-      (left ? ` ${getSpacing(left)}` : "")
+      (typeof right === "number" ? ` ${getSpacing(right)}` : "") +
+      (typeof bottom === "number" ? ` ${getSpacing(bottom)}` : "") +
+      (typeof left === "number" ? ` ${getSpacing(left)}` : "")
     }`,
   breakpoints: {
     mobile: "0px",

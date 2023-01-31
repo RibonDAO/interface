@@ -23,7 +23,7 @@ export const NotificationContainer = styled.div`
 export const NotificationToast = styled.div`
   width: 336px;
   margin: ${({ theme }) => theme.spacing(0, 0, 8)};
-  margin-bottom: 15px;
+  margin-bottom: ${({ theme }) => theme.spacing(16)};
   padding: ${({ theme }) => theme.spacing(20)};
   border-radius: 8px;
   position: relative;

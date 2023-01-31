@@ -9,7 +9,7 @@ import { stylizedDisplayLg } from "styles/typography/stylized";
 export const Container = styled.div``;
 
 export const CardContainer = styled.div`
-  margin-bottom: 30px;
+  margin-bottom: ${({ theme }) => theme.spacing(32)};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     max-width: 328px;
@@ -35,13 +35,13 @@ export const Title = styled.h1`
   ${stylizedDisplayLg}
 
   margin: 0;
-  margin-bottom: 16px;
+  margin-bottom: ${({ theme }) => theme.spacing(16)};
 `;
 
 export const TreasureText = styled.h3`
   ${defaultHeadingLg}
 
-  margin-bottom: 8px;
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
   color: ${({ theme }) => theme.colors.green30};
 `;
 
@@ -52,7 +52,7 @@ export const TreasureTextCoin = styled.span`
 export const SectionTitle = styled.h2`
   ${defaultBodyMdBold}
 
-  margin-bottom: 8px;
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
   color: ${({ theme }) => theme.colors.gray40};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
@@ -62,7 +62,7 @@ export const SectionTitle = styled.h2`
 
 export const GivingsContainer = styled.div`
   width: 100%;
-  margin-top: 28px;
+  margin-top: ${({ theme }) => theme.spacing(32)};
 `;
 
 export const GivingsCardContainer = styled.div`
@@ -92,7 +92,7 @@ export const GivingTextCoin = styled.span`
 
 export const StatusContainer = styled.div`
   width: 100%;
-  margin-top: 10px;
+  margin-top: ${({ theme }) => theme.spacing(12)};
   display: flex;
   gap: 6px;
   align-items: center;

@@ -25,7 +25,7 @@ export const Title = styled.h2`
 `;
 
 export const Description = styled.h5`
-  margin-bottom: 12px;
+  margin-bottom: ${({ theme }) => theme.spacing(12)};
   color: ${({ theme }) => theme.colors.orange40};
 `;
 

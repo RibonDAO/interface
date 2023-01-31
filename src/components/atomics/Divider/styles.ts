@@ -26,10 +26,10 @@ export const Divider = styled.div<DividerProps>`
   }
 
   &:not(:empty)::before {
-    margin-right: 0.25em;
+    margin-right: ${({ theme }) => theme.spacing(4)};
   }
 
   &:not(:empty)::after {
-    margin-left: 0.25em;
+    margin-left: ${({ theme }) => theme.spacing(4)};
   }
 `;

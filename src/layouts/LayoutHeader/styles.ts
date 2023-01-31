@@ -44,6 +44,6 @@ export const CounterContainer = styled.div`
 export const TicketsAmount = styled.p`
   ${defaultBodyXsSemibold}
 
-  margin-right: 2px;
+  margin-right: ${({ theme }) => theme.spacing(4)};
   color: ${({ color }) => color};
 `;

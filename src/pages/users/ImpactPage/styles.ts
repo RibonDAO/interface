@@ -30,7 +30,7 @@ export const Subtitle = styled.h5`
 `;
 
 export const CardsButtonContainer = styled.div`
-  margin-top: 16px;
+  margin-top: ${({ theme }) => theme.spacing(16)};
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -42,7 +42,7 @@ export const CardsButtonContainer = styled.div`
 export const CardsContainer = styled.div`
   width: 100%;
   min-height: 216px;
-  margin-top: 28px;
+  margin-top: ${({ theme }) => theme.spacing(32)};
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -50,7 +50,7 @@ export const CardsContainer = styled.div`
 
 export const CardButton = styled(Button)`
   width: 135px;
-  margin: 16px 0;
+  margin: ${({ theme }) => theme.spacing(16, 0)};
   border: 1px solid ${({ theme }) => theme.colors.green30};
   background-color: ${({ theme }) => theme.colors.neutral10};
   color: ${({ theme }) => theme.colors.green30};
@@ -58,7 +58,7 @@ export const CardButton = styled(Button)`
 
 export const EmptySectionContainer = styled.div`
   width: 100%;
-  margin-top: 40px;
+  margin-top: ${({ theme }) => theme.spacing(40)};
   display: flex;
   flex-direction: column;
   gap: 16px;

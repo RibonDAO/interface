@@ -52,7 +52,7 @@ export const Body = styled.h3`
 `;
 
 export const RowsModalContainer = styled.div`
-  padding-top: 16px;
+  padding-top: ${({ theme }) => theme.spacing(16)};
 `;
 
 export const RowsModalSection = styled.div`
@@ -63,7 +63,7 @@ export const RowsModalSection = styled.div`
 `;
 
 export const RowsModalRow = styled.div`
-  margin-bottom: 28px;
+  margin-bottom: ${({ theme }) => theme.spacing(32)};
   display: flex;
 `;
 

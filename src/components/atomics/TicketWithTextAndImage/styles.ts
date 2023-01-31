@@ -7,7 +7,7 @@ import {
 export const Container = styled.div`
   width: 100%;
   min-height: 64px;
-  margin-bottom: 12px;
+  margin-bottom: ${({ theme }) => theme.spacing(12)};
   border-radius: 2px;
   position: relative;
   display: flex;
@@ -70,7 +70,7 @@ export const RightContainer = styled.div`
 export const Image = styled.img`
   width: 57px;
   height: 57px;
-  margin-right: 18px;
-  margin-left: 4px;
+  margin-right: ${({ theme }) => theme.spacing(20)};
+  margin-left: ${({ theme }) => theme.spacing(4)};
   object-fit: contain;
 `;

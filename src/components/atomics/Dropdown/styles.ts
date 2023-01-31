@@ -4,7 +4,7 @@ import { defaultBodySmSemibold } from "styles/typography/default";
 export const Input = styled.div`
   width: 100%;
   height: 50px;
-  margin-bottom: 12px;
+  margin-bottom: ${({ theme }) => theme.spacing(12)};
   padding: ${({ theme }) => theme.spacing(0, 12)};
   border: 1px solid ${({ theme }) => theme.colors.green30};
   border-radius: 4px;

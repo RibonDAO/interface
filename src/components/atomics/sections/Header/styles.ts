@@ -30,7 +30,7 @@ export const InsideContainer = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     height: 128px;
-    margin-left: 0;
+    margin-left: ${({ theme }) => theme.spacing(0)};
     justify-content: center;
   }
 `;

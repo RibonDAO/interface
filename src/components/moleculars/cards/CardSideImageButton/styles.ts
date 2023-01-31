@@ -41,14 +41,14 @@ export const Content = styled.div`
 export const TextContainer = styled.div`
   width: 100%;
   height: 100%;
-  margin-left: 4px;
+  margin-left: ${({ theme }) => theme.spacing(4)};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
   #left-icon {
-    margin-right: 2px;
+    margin-right: ${({ theme }) => theme.spacing(4)};
     position: static;
   }
 `;
@@ -67,7 +67,7 @@ export const TitleContainer = styled.div`
 `;
 
 export const Title = styled.h4`
-  margin-bottom: 4px;
+  margin-bottom: ${({ theme }) => theme.spacing(4)};
   text-align: center;
   color: ${({ theme }) => theme.colors.gray40};
 `;

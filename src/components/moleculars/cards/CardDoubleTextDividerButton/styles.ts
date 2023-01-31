@@ -60,7 +60,7 @@ export const LinkSection = styled.a<{
 `;
 
 export const SpinnerSection = styled.a`
-  margin-top: 10px;
+  margin-top: ${({ theme }) => theme.spacing(12)};
   display: flex;
   gap: 10px;
   text-decoration: none;

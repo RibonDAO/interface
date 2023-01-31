@@ -23,6 +23,6 @@ export const CenterDiv = styled.div`
 `;
 
 export const Message = styled.h3`
-  margin-left: 8px;
+  margin-left: ${({ theme }) => theme.spacing(8)};
   color: ${({ theme }) => theme.colors.gray40};
 `;

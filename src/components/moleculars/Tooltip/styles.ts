@@ -44,7 +44,7 @@ export const TooltipBox = styled(Tooltip)`
   ${defaultBodyXsRegular}
 
   max-width: 92%;
-  margin-right: 16px;
+  margin-right: ${({ theme }) => theme.spacing(16)};
   z-index: 1;
   background: ${({ theme }) => theme.colors.neutral10};
   color: ${({ theme }) => theme.colors.gray40};

@@ -29,7 +29,7 @@ type DoubleImageProps = {
 };
 
 export const Title = styled.h3<TitleProps>`
-  margin-bottom: 8px;
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
   text-align: center;
   color: ${({ theme, color }) => color || theme.colors.gray40};
 `;
@@ -41,13 +41,13 @@ export const Body = styled.h4`
 `;
 
 export const HighlightedText = styled.h4`
-  margin-top: 16px;
+  margin-top: ${({ theme }) => theme.spacing(16)};
   text-align: center;
   color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const RowsModalRow = styled.div`
-  margin-bottom: 28px;
+  margin-bottom: ${({ theme }) => theme.spacing(32)};
   display: flex;
 `;
 

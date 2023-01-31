@@ -12,7 +12,7 @@ import WaveCut from "assets/images/wave-cut.svg";
 
 export const Container = styled.div`
   width: 100%;
-  margin-bottom: 100px;
+  margin-bottom: ${({ theme }) => theme.spacing(112)};
 `;
 
 export const ContentContainer = styled.div`

@@ -13,10 +13,10 @@ import PinkShape from "assets/images/pink-shape.svg";
 import Button from "components/atomics/buttons/Button";
 
 export const Container = styled.div`
-  padding-inline: 16px;
+  padding-inline: ${({ theme }) => theme.spacing(16)};
   width: 100%;
   height: 100vh;
-  margin-top: 96px;
+  margin-top: ${({ theme }) => theme.spacing(112)};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -88,8 +88,8 @@ export const DarkOverlay = styled.div`
 export const Title = styled.h1`
   ${stylizedDisplaySm}
 
-  margin-top: 24px;
-  margin-bottom: 8px;
+  margin-top: ${({ theme }) => theme.spacing(24)};
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
   text-align: center;
   color: ${({ theme }) => theme.colors.gray40};
 
@@ -102,7 +102,7 @@ export const Text = styled.p`
   ${defaultBodySmRegular}
 
   margin-block: 0;
-  margin-left: 16px;
+  margin-left: ${({ theme }) => theme.spacing(16)};
   color: ${({ theme }) => theme.colors.neutral10};
 `;
 
@@ -110,14 +110,14 @@ export const CardMainText = styled.h2`
   ${defaultHeadingXs}
 
   margin-top: -4px;
-  margin-bottom: 8px;
-  margin-left: 16px;
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
+  margin-left: ${({ theme }) => theme.spacing(16)};
   color: ${({ theme }) => theme.colors.neutral10};
 `;
 
 export const OutlineButton = styled(Button)`
   width: 100%;
-  margin-top: 24px;
+  margin-top: ${({ theme }) => theme.spacing(24)};
   border: solid 1px ${({ theme }) => theme.colors.green30};
   background-color: ${({ theme }) => theme.colors.neutral10};
   color: ${({ theme }) => theme.colors.green30};

@@ -7,22 +7,22 @@ import {
 } from "styles/typography/default";
 
 export const CardSectionContainer = styled.div`
-  margin-top: 24px;
-  margin-bottom: 120px;
+  margin-top: ${({ theme }) => theme.spacing(24)};
+  margin-bottom: ${({ theme }) => theme.spacing(112)};
 `;
 
 export const Subtitle = styled.h2`
   ${defaultBodyMdBold}
 
   &:nth-child(3) {
-    margin-top: 18px;
+    margin-top: ${({ theme }) => theme.spacing(20)};
   }
 `;
 
 export const ValuesContainer = styled.div`
   width: 100%;
-  margin-top: 12px;
-  margin-bottom: 12px;
+  margin-top: ${({ theme }) => theme.spacing(12)};
+  margin-bottom: ${({ theme }) => theme.spacing(12)};
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 8px;
@@ -74,7 +74,7 @@ export const FinishButton = styled(Button)`
 `;
 
 export const GivingValue = styled.h2`
-  margin-top: 4px;
+  margin-top: ${({ theme }) => theme.spacing(4)};
   color: ${({ theme }) => theme.colors.gray40};
 `;
 
@@ -89,7 +89,7 @@ export const ServiceFeesValue = styled.p`
 export const CryptoGivingValue = styled.p`
   ${defaultBodyXsRegular}
 
-  margin-bottom: 32px;
+  margin-bottom: ${({ theme }) => theme.spacing(32)};
   font-style: italic;
   line-height: 19.2px;
   color: ${({ theme }) => theme.colors.gray30};
@@ -104,19 +104,19 @@ export const CardImpact = styled.div`
 export const ImpactSectionContainer = styled.div``;
 
 export const SubtitleContainer = styled.div`
-  margin-top: 18px;
+  margin-top: ${({ theme }) => theme.spacing(20)};
   display: flex;
   align-items: center;
 `;
 
 export const ImpactSimulatorContainer = styled.div`
-  margin-bottom: 14px;
+  margin-bottom: ${({ theme }) => theme.spacing(16)};
 `;
 
 export const CardImpactImage = styled.img`
   width: 48px;
   height: 48px;
-  margin-right: 14px;
+  margin-right: ${({ theme }) => theme.spacing(16)};
   border-radius: 50px;
   object-fit: cover;
 `;
@@ -139,6 +139,6 @@ export const CardImpactText = styled.h4`
 export const QuestionIcon = styled.img`
   width: 17px;
   height: 17px;
-  margin-left: 4px;
+  margin-left: ${({ theme }) => theme.spacing(4)};
   cursor: pointer;
 `;

@@ -58,11 +58,11 @@ export const Container = styled.button<{
   }
 
   #right-icon {
-    margin-left: 4px;
+    margin-left: ${({ theme }) => theme.spacing(4)};
   }
 
   svg {
-    margin-left: 2px;
+    margin-left: ${({ theme }) => theme.spacing(4)};
 
     path {
       fill: ${(props) => props.ribonsColor};

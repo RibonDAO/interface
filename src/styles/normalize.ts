@@ -122,7 +122,7 @@ const normalize = css`
   }
 
   fieldset {
-    padding: 0.35em 0.75em 0.625em;
+    padding: ${({ theme }) => theme.spacing(4, 12, 12)};
   }
 
   legend {

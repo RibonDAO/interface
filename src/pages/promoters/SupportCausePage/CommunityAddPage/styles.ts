@@ -33,16 +33,16 @@ export const Title = styled.h1`
 export const Image = styled.img`
   width: 100%;
   height: 100%;
-  margin-top: 64px;
+  margin-top: ${({ theme }) => theme.spacing(64)};
 `;
 
 export const BackArrowButton = styled.img`
   width: 24px;
   height: 24px;
-  margin-bottom: 20px;
+  margin-bottom: ${({ theme }) => theme.spacing(20)};
   cursor: pointer;
 `;
 
 export const DonateButton = styled(Button)`
-  margin-top: 64px;
+  margin-top: ${({ theme }) => theme.spacing(64)};
 `;

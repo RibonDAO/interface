@@ -45,7 +45,7 @@ export const RoundLogo = styled.img`
 `;
 
 export const Title = styled.h3`
-  margin-left: 3px;
+  margin-left: ${({ theme }) => theme.spacing(4)};
   text-align: center;
 `;
 

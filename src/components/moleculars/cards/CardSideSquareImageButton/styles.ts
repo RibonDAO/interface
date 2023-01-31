@@ -4,7 +4,7 @@ import { defaultBodyXsSemibold } from "styles/typography/default";
 
 export const Container = styled.div`
   height: 100%;
-  margin-top: 24px;
+  margin-top: ${({ theme }) => theme.spacing(24)};
   display: flex;
 `;
 
@@ -13,7 +13,7 @@ export const Title = styled.h3`
 `;
 
 export const Text = styled.p`
-  margin-top: 4px;
+  margin-top: ${({ theme }) => theme.spacing(4)};
   color: ${({ theme }) => theme.colors.gray30};
 `;
 
@@ -24,7 +24,7 @@ export const InsideContainer = styled.div`
 export const ImageContainer = styled.div`
   width: 96px;
   height: 96px;
-  margin-bottom: 8px;
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
 `;
 
 export const SideButton = styled(Button)`

@@ -8,7 +8,7 @@ import Button from "components/atomics/buttons/Button";
 
 export const Menu = styled.div`
   width: 100%;
-  margin-top: 40px;
+  margin-top: ${({ theme }) => theme.spacing(40)};
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -35,7 +35,7 @@ export const MenuItem = styled.div<{ active: boolean }>`
   width: 100%;
   min-width: 200px;
   height: 44px;
-  padding: 8px 0px 0px;
+  padding: ${({ theme }) => theme.spacing(8, 0, 0)};
   border-bottom: ${({ theme, active }) =>
     active
       ? `3px solid ${theme.colors.green30}`
@@ -50,7 +50,7 @@ export const MenuItem = styled.div<{ active: boolean }>`
 `;
 export const EmptySectionContainer = styled.div`
   width: 100%;
-  margin-top: 40px;
+  margin-top: ${({ theme }) => theme.spacing(40)};
   display: flex;
   flex-direction: column;
   gap: 16px;

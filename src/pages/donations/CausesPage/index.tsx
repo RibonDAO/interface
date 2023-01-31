@@ -32,7 +32,6 @@ import ChooseCauseModal from "./ChooseCauseModal";
 function CausesPage(): JSX.Element {
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
-  const [currentNonProfitIndex, setCurrentNonProfitIndex] = useState(0);
   const [donationInProcessModalVisible, setDonationInProcessModalVisible] =
     useState(false);
   const [chosenNonProfit, setChosenNonProfit] = useState<NonProfit>();
@@ -222,8 +221,6 @@ function CausesPage(): JSX.Element {
                 setConfirmModalVisible={setConfirmModalVisible}
                 canDonate={canDonate}
                 integration={integration}
-                currentNonProfit={currentNonProfitIndex}
-                onCurrentNonProfitChange={setCurrentNonProfitIndex}
               />
             </S.NonProfitsContainer>
           )

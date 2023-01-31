@@ -4,7 +4,7 @@ export const Container = styled.div`
   width: 100%;
   max-width: 472px;
   height: 100%;
-  padding: 20px 14px 14px;
+  padding: ${({ theme }) => theme.spacing(20, 16, 16)};
   border: 1px solid ${({ theme }) => theme.colors.neutral10};
   border-radius: 16px;
   display: flex;

@@ -12,9 +12,9 @@ export const Button = styled.button<{
 }>`
   width: auto;
   height: 32px;
-  margin-right: 8px;
-  margin-bottom: 8px;
-  padding: 4px 8px;
+  margin-right: ${({ theme }) => theme.spacing(8)};
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
+  padding: ${({ theme }) => theme.spacing(4, 8)};
   border: 1px solid
     ${(props) => (props.outline ? props.borderColorOutline : props.borderColor)};
   border-radius: 4px;

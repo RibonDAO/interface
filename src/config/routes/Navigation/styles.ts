@@ -9,7 +9,7 @@ type Props = {
 
 export const Container = styled.div`
   width: 100%;
-  padding: 3px 12px;
+  padding: ${({ theme }) => theme.spacing(4, 12)};
   position: fixed;
   bottom: 0;
   z-index: ${({ theme }) => theme.zindex.navbar};
@@ -24,7 +24,7 @@ export const Container = styled.div`
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     max-width: 80px;
     min-height: 100vh;
-    padding: 56px 0;
+    padding: ${({ theme }) => theme.spacing(64, 0)};
     position: fixed;
     flex-direction: column;
     align-items: center;
@@ -44,7 +44,7 @@ export const Title = styled.p`
 `;
 
 export const StyledLinkContainer = styled.div`
-  padding: 8px 0;
+  padding: ${({ theme }) => theme.spacing(8, 0)};
   display: flex;
   flex-direction: column;
 `;

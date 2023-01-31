@@ -9,7 +9,7 @@ export const Container = styled.div`
 `;
 
 export const ValueContainer = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: ${({ theme }) => theme.spacing(20)};
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -19,14 +19,14 @@ export const ValueContainer = styled.div`
 export const ValueText = styled.p`
   ${stylizedDisplayXs}
 
-  margin-right: 8px;
+  margin-right: ${({ theme }) => theme.spacing(8)};
   color: ${({ theme }) => theme.colors.orange20};
 `;
 
 export const CauseText = styled.p`
   ${defaultBodyXsRegular}
 
-  margin-bottom: 4px;
+  margin-bottom: ${({ theme }) => theme.spacing(4)};
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
 `;

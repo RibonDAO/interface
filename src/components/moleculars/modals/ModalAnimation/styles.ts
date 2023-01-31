@@ -37,9 +37,9 @@ export const BlankModal = styled(ReactModal)`
   padding-inline: 24px;
   width: 100%;
   max-width: 360px;
-  margin: 16px;
-  padding-top: 24px;
-  padding-bottom: 16px;
+  margin: ${({ theme }) => theme.spacing(16)};
+  padding-top: ${({ theme }) => theme.spacing(24)};
+  padding-bottom: ${({ theme }) => theme.spacing(16)};
   border-radius: 8px;
   background-color: #fff;
 `;
@@ -47,10 +47,10 @@ export const BlankModal = styled(ReactModal)`
 export const Modal = styled(BlankModal)`
   button,
   a {
-    margin-bottom: 8px;
+    margin-bottom: ${({ theme }) => theme.spacing(8)};
 
     &:last-child {
-      margin: 0;
+      margin: ${({ theme }) => theme.spacing(0)};
     }
   }
 `;
@@ -98,7 +98,7 @@ export const Icon = styled.img`
 export const IconDescription = styled.p`
   ${defaultBodyXsMedium}
 
-  padding-top: 8px;
+  padding-top: ${({ theme }) => theme.spacing(8)};
   text-align: center;
   color: #82aabe;
 `;

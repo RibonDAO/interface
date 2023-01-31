@@ -5,7 +5,7 @@ import InputText from "components/atomics/inputs/InputText";
 export const BillingInformationSectionContainer = styled.div<{
   colorTheme: any;
 }>`
-  margin-top: 16px;
+  margin-top: ${({ theme }) => theme.spacing(16)};
   height: 256px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
@@ -19,7 +19,7 @@ export const BillingInformationSectionContainer = styled.div<{
 `;
 
 export const Title = styled.h3`
-  margin-bottom: 18px;
+  margin-bottom: ${({ theme }) => theme.spacing(20)};
   color: ${({ theme }) => theme.colors.gray40};
 `;
 
@@ -36,7 +36,7 @@ export const Form = styled.form`
   }
 
   & :nth-child(2) {
-    margin-right: 4px;
+    margin-right: ${({ theme }) => theme.spacing(4)};
   }
 `;
 

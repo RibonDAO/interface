@@ -11,7 +11,7 @@ export const Container = styled.div`
 export const Icon = styled.img`
   width: 24px;
   height: 24px;
-  margin-right: 10px;
+  margin-right: ${({ theme }) => theme.spacing(12)};
   object-fit: cover;
 `;
 

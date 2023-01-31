@@ -37,6 +37,11 @@ export const CardsButtonContainer = styled.div`
   gap: 8px;
   align-items: center;
   align-self: flex-start;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    flex-wrap: nowrap;
+    align-self: normal;
+  }
 `;
 
 export const CardsContainer = styled.div`

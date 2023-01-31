@@ -1,5 +1,10 @@
 import Button from "components/atomics/buttons/Button";
 import styled from "styled-components";
+
+import {
+  defaultBodyMdRegular,
+  defaultBodyMdBold,
+} from "styles/typography/default";
 import { stylizedDisplayLg } from "styles/typography/stylized";
 
 export const Container = styled.div`
@@ -32,6 +37,11 @@ export const CardsButtonContainer = styled.div`
   gap: 8px;
   align-items: center;
   align-self: flex-start;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    flex-wrap: nowrap;
+    align-self: normal;
+  }
 `;
 
 export const CardsContainer = styled.div`
@@ -53,14 +63,34 @@ export const CardButton = styled(Button)`
 
 export const EmptySectionContainer = styled.div`
   width: 100%;
-  height: calc(100% - 200px);
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
+  gap: 16px;
   align-items: center;
-  align-self: flex-start;
-  justify-content: center;
+  align-self: center;
+  text-align: center;
+`;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    height: calc(100% - 400px);
-  }
+export const EmptyImage = styled.img`
+  max-width: 300px;
+`;
+
+export const EmptyTitle = styled.p`
+  ${defaultBodyMdBold}
+
+  width: 100%;
+  color: ${({ theme }) => theme.colors.gray40};
+`;
+
+export const EmptyText = styled.span`
+  ${defaultBodyMdRegular}
+
+  max-width: 392px;
+  color: ${({ theme }) => theme.colors.gray30};
+`;
+
+export const EmptyButton = styled(Button)`
+  width: 196px;
+  color: ${({ theme }) => theme.colors.green40};
 `;

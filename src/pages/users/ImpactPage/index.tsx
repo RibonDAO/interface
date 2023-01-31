@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "services/analytics";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
-
 import useUserStatistics from "hooks/apiHooks/useStatistics";
 import { formatPriceWithZeros } from "lib/formatters/currencyFormatter";
 import { useLanguage } from "hooks/useLanguage";
@@ -22,7 +21,6 @@ function ImpactPage(): JSX.Element {
   });
 
   const { userImpact } = useImpact();
-
   const { userStatistics } = useUserStatistics();
   const { currentLang } = useLanguage();
   const { formattedImpactText } = useFormattedImpactText();
@@ -31,8 +29,11 @@ function ImpactPage(): JSX.Element {
     logEvent("profile_view");
   }, []);
 
-  const impactCards = () => userImpact || [];
-  const hasImpact = () => impactCards().length > 0;
+  const impactCards = userImpact || [];
+  const impactItems = impactCards.filter(
+    (item) => item.impact.toString() !== "0",
+  );
+  const hasImpact = impactItems.length > 0;
 
   return (
     <S.Container>
@@ -69,32 +70,30 @@ function ImpactPage(): JSX.Element {
           size="small"
         />
       </S.CardsButtonContainer>
-      {hasImpact() && (
+      {hasImpact ? (
         <S.CardsContainer>
-          {impactCards().map(
-            (item: any) =>
-              item.impact.toString() !== "0" && (
-                <CardTopImage
-                  key={item.nonProfit.id}
-                  title={item.nonProfit.name}
-                  text={
-                    formattedImpactText(
-                      item.nonProfit,
-                      item.impact,
-                      false,
-                      true,
-                      undefined,
-                      t("impactText"),
-                    ) || ""
-                  }
-                  icon={item.nonProfit.logo}
-                  size="large"
-                />
-              ),
-          )}
+          {impactItems.map((item: any) => (
+            <CardTopImage
+              key={item.nonProfit.id}
+              title={item.nonProfit.name}
+              text={
+                formattedImpactText(
+                  item.nonProfit,
+                  item.impact,
+                  false,
+                  true,
+                  undefined,
+                  t("impactText"),
+                ) || ""
+              }
+              icon={item.nonProfit.logo}
+              size="large"
+            />
+          ))}
         </S.CardsContainer>
+      ) : (
+        <ImpactMenu />
       )}
-      <ImpactMenu />
     </S.Container>
   );
 }

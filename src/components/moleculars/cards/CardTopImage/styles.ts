@@ -20,7 +20,6 @@ export const Container = styled.div<{
     props.size === "large" &&
     css`
       width: 100%;
-      min-width: 230px;
     `}
 
   margin-bottom: 8px;
@@ -32,7 +31,7 @@ export const Container = styled.div<{
   box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    width: 230px;
+    width: 100%;
   }
 `;
 

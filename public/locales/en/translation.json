@@ -120,6 +120,11 @@
       "communityDonations": "Community donations",
       "directDonations": "Direct donations"
     },
+    "ticketSection": {
+      "emptyTitle": "Your ticket donations will appear here.",
+      "emptyText": "You have not made free donations using tickets yet, why not try your first one?",
+      "emptyButton": "Donate using tickets"
+    },
     "directSection": {
       "emptyTitle": "Your direct donations will appear here.",
       "emptyText": "You have not made direct donations yet, why not try your first one?",

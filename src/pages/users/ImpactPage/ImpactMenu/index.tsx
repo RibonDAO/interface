@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import CommunitySection from "../CommunitySection";
-import DirectSection from "../DirectSection";
+import CommunitySection from "./CommunitySection";
+import DirectSection from "./DirectSection";
+import TicketSection from "./TicketSection";
 import * as S from "./styles";
 
 function ImpactMenu() {
@@ -17,13 +18,13 @@ function ImpactMenu() {
   const renderSection = () => {
     switch (currentTab) {
       case "ticket":
-        return "ticket";
+        return <TicketSection />;
       case "community":
         return <CommunitySection />;
       case "direct":
         return <DirectSection />;
       default:
-        return "ticket";
+        return <TicketSection />;
     }
   };
 

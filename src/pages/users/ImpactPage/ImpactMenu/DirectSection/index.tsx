@@ -1,15 +1,15 @@
 import useNavigation from "hooks/useNavigation";
 import { useTranslation } from "react-i18next";
-import directIllustration from "../assets/direct-illustration.svg";
-import * as S from "./styles";
+import directIllustration from "../../assets/direct-illustration.svg";
+import * as S from "../styles";
 
-function CommunitySection() {
+function DirectSection() {
   const { navigateTo } = useNavigation();
   const { t } = useTranslation("translation", {
-    keyPrefix: "impactPage.communitySection",
+    keyPrefix: "impactPage.directSection",
   });
   const handleEmptyButtonClick = () => {
-    navigateTo("/promoters/support-cause");
+    navigateTo("/promoters/support-non-profit");
   };
   return (
     <S.EmptySectionContainer>
@@ -21,4 +21,4 @@ function CommunitySection() {
   );
 }
 
-export default CommunitySection;
+export default DirectSection;

@@ -200,6 +200,14 @@ function CausesPage(): JSX.Element {
     }
   }, [currentNonProfitIndex, isLoading, activeCauses]);
 
+  const causesWithAllFilter = [
+    {
+      id: 0,
+      name: t("allCauses"),
+    },
+    ...activeCauses,
+  ];
+
   return (
     <S.Container>
       <ChooseCauseModal visible={chooseCauseModalVisible} />
@@ -220,7 +228,7 @@ function CausesPage(): JSX.Element {
         <S.Title>{t("pageTitle")}</S.Title>
         {!isFirstAccess(signedIn) && (
           <GroupButtons
-            elements={activeCauses}
+            elements={causesWithAllFilter}
             indexSelected={selectedButtonIndex}
             onChange={handleCauseChanged}
             nameExtractor={(cause) => cause.name}

@@ -90,7 +90,7 @@ function NonProfitsList({
         nonProfit={currentNonProfitWithStories}
         visible={storiesSectionVisible}
         setVisible={setStoriesSectionVisible}
-        canDonateAndHasVoucher
+        canDonateAndHasVoucher={Boolean(canDonateAndHasVoucher)}
       />
       <SliderCardsEnhanced
         currentSlide={currentNonProfit}

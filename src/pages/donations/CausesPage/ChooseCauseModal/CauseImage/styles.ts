@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { defaultBodySmBold } from "styles/typography/default";
 
 export const Container = styled.div`
-  margin-bottom: 16px;
+  margin-bottom: ${({ theme }) => theme.spacing(16)};
   border-radius: 4px;
   overflow: hidden;
   box-shadow: 0px 2px 8px rgba(40, 36, 28, 0.25);
@@ -10,7 +10,7 @@ export const Container = styled.div`
   cursor: pointer;
 
   &:first-child {
-    margin-top: 16px;
+    margin-top: ${({ theme }) => theme.spacing(16)};
   }
 `;
 

@@ -11,33 +11,33 @@ import ButtonComponent from "components/atomics/buttons/Button";
 
 export const Container = styled.div`
   width: 100%;
-  margin-bottom: 100px;
+  margin-bottom: ${({ theme }) => theme.spacing(112)};
 `;
 
 export const ContentContainer = styled.div`
   max-width: 472px;
-  margin-top: 24px;
+  margin-top: ${({ theme }) => theme.spacing(24)};
   border-radius: 8px;
   position: relative;
   overflow-x: hidden;
 `;
 
 export const DonateContainer = styled.div`
-  margin-bottom: 24px;
-  padding: 24px;
+  margin-bottom: ${({ theme }) => theme.spacing(24)};
+  padding: ${({ theme }) => theme.spacing(24)};
   border-radius: 8px;
   box-shadow: 0 16px 32px -2px ${({ theme }) => theme.colors.defaultShadow10};
 `;
 
 export const GivingContainer = styled.div`
-  margin-bottom: 24px;
-  padding: 0 34px;
+  margin-bottom: ${({ theme }) => theme.spacing(24)};
+  padding: ${({ theme }) => theme.spacing(0, 32)};
   display: grid;
   align-items: center;
   justify-content: center;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    padding: 0;
+    padding: ${({ theme }) => theme.spacing(0)};
     grid-template-columns: 1fr 1fr;
   }
 `;
@@ -45,13 +45,13 @@ export const GivingContainer = styled.div`
 export const ContributionContainer = styled.div`
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     max-width: 100%;
-    margin-right: 30px;
-    margin-bottom: 24px;
+    margin-right: ${({ theme }) => theme.spacing(32)};
+    margin-bottom: ${({ theme }) => theme.spacing(24)};
   }
 `;
 
 export const CommunityAddContainer = styled.div`
-  margin-top: 34px;
+  margin-top: ${({ theme }) => theme.spacing(32)};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,8 +59,8 @@ export const CommunityAddContainer = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     max-width: 100%;
-    margin-top: 0;
-    margin-left: 30px;
+    margin-top: ${({ theme }) => theme.spacing(0)};
+    margin-left: ${({ theme }) => theme.spacing(32)};
   }
 `;
 
@@ -77,8 +77,8 @@ export const CommunityAddValue = styled.p`
 `;
 
 export const CommunityAddButton = styled(ButtonComponent)`
-  margin-top: 8px;
-  padding: 4px;
+  margin-top: ${({ theme }) => theme.spacing(8)};
+  padding: ${({ theme }) => theme.spacing(4)};
   border-color: ${({ theme }) => theme.colors.orange40};
   font-size: 11px;
   color: ${({ theme }) => theme.colors.orange40};
@@ -104,8 +104,8 @@ export const BackgroundImage = styled.img`
 export const Title = styled.h1`
   ${stylizedDisplayXs}
 
-  margin: 4px 0;
-  margin-bottom: 24px;
+  margin: ${({ theme }) => theme.spacing(4, 0)};
+  margin-bottom: ${({ theme }) => theme.spacing(24)};
   color: ${({ theme }) => theme.colors.gray40};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
@@ -134,7 +134,7 @@ export const Intersection = styled.img`
 export const UserBalanceText = styled.p`
   ${defaultBodySmSemibold}
 
-  margin-bottom: 4px;
+  margin-bottom: ${({ theme }) => theme.spacing(4)};
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
 `;
@@ -148,7 +148,7 @@ export const UserBalanceTextHighlight = styled.span`
 export const RefundText = styled.p`
   ${defaultBodyXsRegular}
 
-  margin-top: 4px;
+  margin-top: ${({ theme }) => theme.spacing(4)};
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
 `;

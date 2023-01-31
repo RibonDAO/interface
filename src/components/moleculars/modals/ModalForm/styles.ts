@@ -3,7 +3,7 @@ import { Modal } from "../ModalBlank/styles";
 import { getPrimary } from "styles/colors/utils";
 
 export const ModalWithIcon = styled(Modal)`
-  padding: 16px;
+  padding: ${({ theme }) => theme.spacing(16)};
 `;
 
 export const Icon = styled.img`
@@ -17,19 +17,19 @@ type TitleProps = {
 };
 
 export const Title = styled.h3<TitleProps>`
-  margin-bottom: 8px;
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
   text-align: center;
   color: ${({ theme, color }) => color || theme.colors.gray40};
 `;
 
 export const FormContainer = styled.div`
-  padding: 8px 0;
+  padding: ${({ theme }) => theme.spacing(8, 0)};
 `;
 export const Input = styled.input`
   width: 100%;
   height: 39px;
-  margin-bottom: 8px;
-  padding: 8px;
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
+  padding: ${({ theme }) => theme.spacing(8)};
   border: 1px solid ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
   border-radius: 8px;
 `;

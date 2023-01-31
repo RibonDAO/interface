@@ -12,7 +12,7 @@ export const Container = styled.div`
 export const RibonsAmount = styled.p`
   ${defaultBodySmSemibold}
 
-  margin-right: 2px;
+  margin-right: ${({ theme }) => theme.spacing(4)};
   color: ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
 `;
 

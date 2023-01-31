@@ -16,11 +16,11 @@ export const BodyContainer = styled.div`
 export const Title = styled.h1`
   ${stylizedDisplayLg}
 
-  margin: 12px 0;
+  margin: ${({ theme }) => theme.spacing(12, 0)};
 `;
 
 export const NonProfitsContainer = styled.div`
-  margin-top: 20px;
+  margin-top: ${({ theme }) => theme.spacing(20)};
 `;
 
 export const CausesCardContainer = styled.div``;
@@ -45,8 +45,8 @@ export const FooterText = styled.p`
 `;
 
 export const CardWrapper = styled.div`
-  margin-bottom: 32px;
-  margin-left: 16px;
+  margin-bottom: ${({ theme }) => theme.spacing(32)};
+  margin-left: ${({ theme }) => theme.spacing(16)};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     margin-inline: 8px;

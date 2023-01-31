@@ -13,12 +13,12 @@ import { getTertiary } from "styles/colors/utils";
 
 export const Container = styled.div`
   width: 100%;
-  margin-bottom: 100px;
+  margin-bottom: ${({ theme }) => theme.spacing(112)};
 `;
 
 export const ContentContainer = styled.div`
   width: 100%;
-  margin-top: 24px;
+  margin-top: ${({ theme }) => theme.spacing(24)};
   border-radius: 8px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
@@ -36,26 +36,26 @@ export const NonProfitsListContainer = styled.div`
 `;
 
 export const DonateContainer = styled.div`
-  margin-bottom: 24px;
-  padding: 16px;
+  margin-bottom: ${({ theme }) => theme.spacing(24)};
+  padding: ${({ theme }) => theme.spacing(16)};
   border-radius: 8px;
   box-shadow: 0 16px 32px -2px ${({ theme }) => theme.colors.defaultShadow10};
 `;
 
 export const GivingContainer = styled.div`
-  margin-bottom: 24px;
-  padding: 0 34px;
+  margin-bottom: ${({ theme }) => theme.spacing(24)};
+  padding: ${({ theme }) => theme.spacing(0, 32)};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    padding: 0;
+    padding: ${({ theme }) => theme.spacing(0)};
   }
 `;
 
 export const ContributionContainer = styled.div`
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     max-width: 100%;
-    margin-bottom: 34px;
-    padding: 0 18px;
+    margin-bottom: ${({ theme }) => theme.spacing(32)};
+    padding: ${({ theme }) => theme.spacing(0, 16)};
   }
 `;
 
@@ -72,8 +72,8 @@ export const CommunityAddValue = styled.p`
 `;
 
 export const CommunityAddButton = styled(ButtonComponent)`
-  margin-top: 8px;
-  padding: 4px;
+  margin-top: ${({ theme }) => theme.spacing(8)};
+  padding: ${({ theme }) => theme.spacing(4)};
   border-color: ${({ theme }) => getTertiary(theme).colorBrandTertiary800};
   font-size: 11px;
   color: ${({ theme }) => getTertiary(theme).colorBrandTertiary800};
@@ -99,9 +99,9 @@ export const BackgroundImage = styled.img`
 export const Title = styled.h1`
   ${stylizedDisplayXs}
 
-  margin: 4px 0;
+  margin: ${({ theme }) => theme.spacing(4, 0)};
   margin-right: 5%;
-  margin-bottom: 24px;
+  margin-bottom: ${({ theme }) => theme.spacing(24)};
   color: ${({ theme }) => theme.colors.gray40};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
@@ -126,7 +126,7 @@ export const SupportImage = styled.img`
 export const UserBalanceText = styled.p`
   ${defaultBodySmSemibold}
 
-  margin-bottom: 4px;
+  margin-bottom: ${({ theme }) => theme.spacing(4)};
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
 `;
@@ -140,7 +140,7 @@ export const UserBalanceTextHighlight = styled.span`
 export const RefundText = styled.p`
   ${defaultBodyXsRegular}
 
-  margin-top: 4px;
+  margin-top: ${({ theme }) => theme.spacing(4)};
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
 `;
@@ -152,7 +152,7 @@ export const TitleContainer = styled.div`
 `;
 
 export const TooltipSection = styled.div`
-  margin-bottom: 30px;
+  margin-bottom: ${({ theme }) => theme.spacing(32)};
   display: flex;
   justify-content: center;
 `;

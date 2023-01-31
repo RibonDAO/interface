@@ -25,7 +25,7 @@ export const ImageContainer = styled.div`
   transform: scale(1.3);
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    margin-bottom: 40px;
+    margin-bottom: ${({ theme }) => theme.spacing(40)};
     transform: scale(1.4);
   }
 `;
@@ -71,8 +71,8 @@ export const CauseName = styled.span<{
 
 export const FinishButton = styled(Button)<{ background: string }>`
   max-width: 20.5em;
-  margin-top: 3em;
-  margin-bottom: 1em;
+  margin-top: ${({ theme }) => theme.spacing(3)};
+  margin-bottom: ${({ theme }) => theme.spacing(16)};
   border: 0px;
   display: block;
   justify-self: end;

@@ -12,11 +12,11 @@ export const RightContainer = styled.div`
 `;
 
 export const WalletButton = styled(Button)`
-  padding: 3px 12px;
+  padding: ${({ theme }) => theme.spacing(4, 12)};
 `;
 
 export const Treasure = styled.img`
-  padding: 3px;
+  padding: ${({ theme }) => theme.spacing(4)};
 `;
 
 export const TreasureButton = styled.button`

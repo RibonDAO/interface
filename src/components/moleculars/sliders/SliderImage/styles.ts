@@ -21,7 +21,7 @@ export const SlideImageContainer = styled.div`
 export const SlideImage = styled.div`
   height: calc(100vh - 16px);
   max-height: 209px;
-  padding: 8px;
+  padding: ${({ theme }) => theme.spacing(8)};
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   background-image: url(${(props: NgoImageProps) => props.image});
@@ -50,7 +50,7 @@ export const SlideVideo = styled.video`
 export const PaginationContainer = styled.div`
   width: 36px;
   height: 27px;
-  padding: 4px 8px;
+  padding: ${({ theme }) => theme.spacing(4, 8)};
   border-radius: 50%;
   position: absolute;
   bottom: 14px;

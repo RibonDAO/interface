@@ -10,7 +10,7 @@ export const Container = styled.div`
 `;
 
 export const ValueContainer = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: ${({ theme }) => theme.spacing(20)};
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -20,16 +20,16 @@ export const ValueContainer = styled.div`
 export const ValueText = styled.p`
   ${stylizedDisplayXs}
 
-  margin-right: 8px;
+  margin-right: ${({ theme }) => theme.spacing(8)};
   color: ${({ theme }) => theme.colors.orange20};
 `;
 
 export const ValueInputContainer = styled.div`
-  margin-right: 8px;
+  margin-right: ${({ theme }) => theme.spacing(8)};
 
   input {
     height: 40px;
-    margin-bottom: 0;
+    margin-bottom: ${({ theme }) => theme.spacing(0)};
     border: 1px solid ${({ theme }) => theme.colors.orange40};
     border-radius: 4px;
     color: ${({ theme }) => theme.colors.orange40};
@@ -41,7 +41,7 @@ export const ValueInput = styled(InputText)``;
 export const CauseText = styled.p`
   ${defaultBodyXsRegular}
 
-  margin-bottom: 4px;
+  margin-bottom: ${({ theme }) => theme.spacing(4)};
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
 `;

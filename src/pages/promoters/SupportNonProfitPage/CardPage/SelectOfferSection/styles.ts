@@ -13,7 +13,7 @@ export const Container = styled.div`
 `;
 
 export const ValueContainer = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: ${({ theme }) => theme.spacing(20)};
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -23,7 +23,7 @@ export const ValueContainer = styled.div`
 export const ValueText = styled.p`
   ${stylizedDisplayXs}
 
-  margin-right: 8px;
+  margin-right: ${({ theme }) => theme.spacing(8)};
   color: ${({ theme }) => getTertiary(theme).colorBrandTertiary200};
 `;
 
@@ -31,7 +31,7 @@ export const CauseText = styled.p`
   ${defaultBodyXsRegular}
 
   height: 5.3rem;
-  margin-bottom: 4px;
+  margin-bottom: ${({ theme }) => theme.spacing(4)};
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
 `;
@@ -58,7 +58,7 @@ export const CurrencySelector = styled(Dropdown)`
 export const Title = styled.p`
   ${defaultBodySmSemibold}
 
-  margin-bottom: 12px;
+  margin-bottom: ${({ theme }) => theme.spacing(12)};
   text-align: center;
   color: ${({ theme }) => getTertiary(theme).colorBrandTertiary800};
 `;

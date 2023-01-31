@@ -8,7 +8,7 @@ import {
 export const Container = styled.div`
   width: 100%;
   min-height: 64px;
-  margin-bottom: 12px;
+  margin-bottom: ${({ theme }) => theme.spacing(12)};
   border-radius: 2px;
   position: relative;
   display: flex;
@@ -42,7 +42,7 @@ export const Container = styled.div`
 
 export const LeftContainer = styled.div`
   width: 70%;
-  padding: 16px;
+  padding: ${({ theme }) => theme.spacing(16)};
   border-right: 1px dashed rgba(130, 170, 190, 60%);
   display: flex;
   flex-direction: column;
@@ -62,7 +62,7 @@ export const Link = styled.a`
 
 export const RightContainer = styled.div`
   width: 30%;
-  padding: 4px;
+  padding: ${({ theme }) => theme.spacing(4)};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,7 +71,7 @@ export const RightContainer = styled.div`
 export const Image = styled.img`
   width: 57px;
   height: 57px;
-  margin-right: 18px;
-  margin-left: 4px;
+  margin-right: ${({ theme }) => theme.spacing(20)};
+  margin-left: ${({ theme }) => theme.spacing(4)};
   object-fit: contain;
 `;

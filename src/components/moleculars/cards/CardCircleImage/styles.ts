@@ -4,7 +4,7 @@ import { getPrimary } from "styles/colors/utils";
 export const Container = styled.div`
   min-width: 240px;
   min-height: 140px;
-  padding: 14px;
+  padding: ${({ theme }) => theme.spacing(16)};
   border-radius: 16px;
   display: flex;
   flex-direction: column;
@@ -18,13 +18,13 @@ export const Container = styled.div`
 
 export const Image = styled.img`
   height: 130px;
-  margin-bottom: 8px;
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
   border-radius: 200px;
   object-fit: cover;
 `;
 
 export const Title = styled.h3`
-  margin: 0;
+  margin: ${({ theme }) => theme.spacing(0)};
 `;
 
 export const Subtitle = styled.h5`

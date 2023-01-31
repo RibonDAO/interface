@@ -8,8 +8,8 @@ import { getPrimary } from "styles/colors/utils";
 export const Container = styled.div`
   max-width: 206px;
   height: 123px;
-  margin: 8px;
-  padding: 12px 16px;
+  margin: ${({ theme }) => theme.spacing(8)};
+  padding: ${({ theme }) => theme.spacing(12, 16)};
   border-radius: 16px;
   background: ${({ theme }) => theme.colors.neutral10};
   box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};
@@ -61,7 +61,7 @@ export const LinkSection = styled.a<{
 `;
 
 export const SpinnerSection = styled.a`
-  margin-top: 10px;
+  margin-top: ${({ theme }) => theme.spacing(12)};
   display: flex;
   gap: 10px;
   text-decoration: none;

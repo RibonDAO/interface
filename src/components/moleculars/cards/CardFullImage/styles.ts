@@ -8,7 +8,7 @@ type ContainerProps = {
 export const Container = styled.div<ContainerProps>`
   width: 100%;
   height: 100vh;
-  padding: 40px 0;
+  padding: ${({ theme }) => theme.spacing(40, 0)};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,7 +46,7 @@ export const RoundLogo = styled.img`
 `;
 
 export const Title = styled.h3`
-  margin-left: 3px;
+  margin-left: ${({ theme }) => theme.spacing(4)};
   text-align: center;
 `;
 

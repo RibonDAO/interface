@@ -18,7 +18,10 @@ export function convertParamsToString(params: EventParams): EventParams {
 
 export class EventNameTooLongError extends Error {}
 
-export function logEvent(eventName: string, params?: EventParams): void {
+export function logFirebaseEvent(
+  eventName: string,
+  params?: EventParams,
+): void {
   try {
     if (eventName.length > 32) {
       throw new EventNameTooLongError();

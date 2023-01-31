@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import ToggleSwitchText from "components/atomics/ToggleSwitchText";
 import { logError } from "services/crashReport";
-import { logEvent } from "services/analytics";
+import { logEvent } from "lib/events";
 import * as S from "./styles";
 import CardSection from "./CardSection";
 import CryptoSection from "./CryptoSection";

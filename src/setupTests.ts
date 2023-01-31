@@ -21,7 +21,7 @@ function setupMocks() {
     __esModule: true,
     logError: mockLogErrorFunction,
   }));
-  jest.mock("services/analytics", () => ({
+  jest.mock("lib/events", () => ({
     __esModule: true,
     logEvent: mockLogEventFunction,
   }));

@@ -1,12 +1,10 @@
 import * as CrashReport from "services/crashReport";
 import {
-  logEvent,
+  logFirebaseEvent,
   setUserProperties,
   setUserId,
   convertParamsToString,
 } from ".";
-
-jest.unmock("services/analytics");
 
 const mockAnalytics = {
   logEvent: jest.fn(),
@@ -20,7 +18,7 @@ jest.mock("firebase/app", () => ({
 
 jest.spyOn(CrashReport, "logError");
 
-describe("logEvent", () => {
+describe("logFirebaseEvent", () => {
   const eventName = "teste";
 
   beforeEach(() => {
@@ -33,7 +31,7 @@ describe("logEvent", () => {
   describe("with params", () => {
     const eventParams = { param: "teste" };
     it("sends an event to firebase", async () => {
-      logEvent(eventName, eventParams);
+      logFirebaseEvent(eventName, eventParams);
 
       expect(mockAnalytics.logEvent).toHaveBeenCalledWith(
         eventName,
@@ -44,7 +42,7 @@ describe("logEvent", () => {
 
   describe("without params", () => {
     it("sends an event to firebase", () => {
-      logEvent(eventName);
+      logFirebaseEvent(eventName);
       expect(mockAnalytics.logEvent).toHaveBeenCalledWith(eventName, {
         anonymousId: "false",
         integrationName: "false",
@@ -61,7 +59,7 @@ describe("logEvent", () => {
     });
 
     it("calls logError", () => {
-      logEvent(eventName);
+      logFirebaseEvent(eventName);
       expect(CrashReport.logError).toHaveBeenCalled();
     });
   });

@@ -1,7 +1,7 @@
 import CardTopImage from "components/moleculars/cards/CardTopImage";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { logEvent } from "services/analytics";
+import { logEvent } from "lib/events";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import useUserStatistics from "hooks/apiHooks/useStatistics";
 import { formatPriceWithZeros } from "lib/formatters/currencyFormatter";

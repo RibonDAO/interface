@@ -3,7 +3,7 @@ import TreasureIcon from "assets/icons/treasure-icon.svg";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
-import { logEvent } from "services/analytics";
+import { logEvent } from "lib/events";
 import * as S from "./styles";
 
 export const TREASURE_MODAL_ONBOARDING_VIEWED_KEY =

@@ -9,7 +9,7 @@ import useVoucher from "hooks/useVoucher";
 import useNavigation from "hooks/useNavigation";
 import NonProfit from "types/entities/NonProfit";
 import Integration from "types/entities/Integration";
-import { logEvent } from "services/analytics";
+import { logEvent } from "lib/events";
 import extractUrlValue from "lib/extractUrlValue";
 import ConfirmEmail from "../ConfirmEmail";
 import ConfirmDonationModal from "../ConfirmDonationModal";

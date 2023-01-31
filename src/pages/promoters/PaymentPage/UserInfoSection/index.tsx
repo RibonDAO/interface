@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useLanguage } from "hooks/useLanguage";
 import { maskForTaxId } from "lib/maskForTaxId";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
-import { logEvent } from "services/analytics";
+import { logEvent } from "lib/events";
 import { countryList } from "utils/countryList";
 import getThemeByFlow from "lib/themeByFlow";
 import * as S from "./styles";

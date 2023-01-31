@@ -3,7 +3,7 @@ import useNavigation from "hooks/useNavigation";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { logEvent } from "services/analytics";
+import { logEvent } from "lib/events";
 import UserIcon from "assets/icons/user-background-icon.svg";
 import Logo from "assets/icons/logo-background-icon.svg";
 import NonProfit from "types/entities/NonProfit";

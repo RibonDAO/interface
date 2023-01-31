@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { logEvent } from "services/analytics";
+import { logEvent } from "lib/events";
 import NonProfit from "types/entities/NonProfit";
 import useNonProfits from "hooks/apiHooks/useNonProfits";
 import { useLocation } from "react-router-dom";

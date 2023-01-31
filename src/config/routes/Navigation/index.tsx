@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
-import { logEvent } from "services/analytics";
+import { logEvent } from "lib/events";
 import CausesIconOn from "./assets/causesIconOn.svg";
 import CausesIconOff from "./assets/causesIconOff.svg";
 import ImpactIconOn from "./assets/impactIconOn.svg";

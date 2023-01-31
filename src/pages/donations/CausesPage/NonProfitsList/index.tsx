@@ -1,5 +1,5 @@
 import CardCenterImageButton from "components/moleculars/cards/CardCenterImageButton";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "services/analytics";
 import NonProfit from "types/entities/NonProfit";
@@ -8,12 +8,9 @@ import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanc
 import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
 import { useLocation } from "react-router-dom";
 import useVoucher from "hooks/useVoucher";
-import useStories from "hooks/apiHooks/useStories";
-import useNavigation from "hooks/useNavigation";
-import useToast from "hooks/useToast";
-import { useLoadingOverlay } from "contexts/loadingOverlayContext";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import * as S from "../styles";
+import StoriesSection from "../StoriesSection";
 
 type LocationStateType = {
   failedDonation: boolean;
@@ -50,10 +47,6 @@ function NonProfitsList({
     integration,
   );
 
-  const { showLoadingOverlay, hideLoadingOverlay } = useLoadingOverlay();
-
-  const toast = useToast();
-
   const chooseNonProfit = useCallback((nonProfit: NonProfit) => {
     setChosenNonProfit(nonProfit);
   }, []);
@@ -77,36 +70,28 @@ function NonProfitsList({
       logEvent("donateBlockedDonation_view");
     }
   }
-  const { fetchNonProfitStories } = useStories();
 
-  const { navigateTo } = useNavigation();
+  const [currentNonProfitWithStories, setCurrentNonProfitWithStories] =
+    useState(nonProfits[0]);
+  const [storiesSectionVisible, setStoriesSectionVisible] = useState(false);
 
-  const handleImageClick = async (nonProfit: NonProfit) => {
-    showLoadingOverlay(t("stories.loading"));
-    const stories = await fetchNonProfitStories(nonProfit.id);
+  const handleImageClick = (nonProfit: NonProfit) => {
+    const stories = nonProfit.stories || [];
 
     if (stories.length > 0) {
-      hideLoadingOverlay();
-      navigateTo({
-        pathname: "/stories",
-        state: {
-          stories,
-          nonProfit,
-          canDonateAndHasVoucher,
-        },
-      });
-    } else {
-      hideLoadingOverlay();
-
-      toast({
-        message: t("stories.empty"),
-        type: "error",
-      });
+      setCurrentNonProfitWithStories(nonProfit);
+      setStoriesSectionVisible(true);
     }
   };
 
   return (
     <S.NonProfitsListContainer>
+      <StoriesSection
+        nonProfit={currentNonProfitWithStories}
+        visible={storiesSectionVisible}
+        setVisible={setStoriesSectionVisible}
+        canDonateAndHasVoucher
+      />
       <SliderCardsEnhanced
         currentSlide={currentNonProfit}
         onCurrentSlideChange={onCurrentNonProfitChange}

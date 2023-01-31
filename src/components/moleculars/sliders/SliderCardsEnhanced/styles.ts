@@ -5,14 +5,14 @@ export const NavigationWrapper = styled.div`
   position: relative;
 `;
 
-export const LeftSide = styled.div`
+export const LeftSide = styled.div<{ visible: boolean }>`
   width: 100px;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
   z-index: ${({ theme }) => theme.zindex.navigator};
-  display: flex;
+  display: ${({ visible }) => (visible ? "flex" : "none")};
   align-items: center;
   justify-content: flex-start;
   background: linear-gradient(
@@ -29,14 +29,14 @@ export const LeftSide = styled.div`
   }
 `;
 
-export const RightSide = styled.div`
+export const RightSide = styled.div<{ visible: boolean }>`
   width: 100px;
   height: 100%;
   position: absolute;
   top: 0;
   right: 0;
   z-index: ${({ theme }) => theme.zindex.navigator};
-  display: flex;
+  display: ${({ visible }) => (visible ? "flex" : "none")};
   align-items: center;
   justify-content: flex-end;
   background: rgb(255, 255, 255);

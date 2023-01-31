@@ -1,5 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { KeenSliderInstance, useKeenSlider } from "keen-slider/react";
+import {
+  KeenSliderInstance,
+  KeenSliderPlugin,
+  useKeenSlider,
+} from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import RoundedArrow from "components/atomics/arrows/RoundedArrow";
 import useBreakpoint from "hooks/useBreakpoint";
@@ -15,8 +19,6 @@ export type Props = {
 };
 
 const SAVE_STATE_PREFIX = "slider-cards-enhanced";
-
-const MINIMUM_SLIDES_TO_LOOP = 5;
 
 export default function SliderCardsEnhanced({
   loop = false,
@@ -38,6 +40,20 @@ export default function SliderCardsEnhanced({
     }
 
     return 2.2;
+  };
+
+  const MutationPlugin: KeenSliderPlugin = (slider) => {
+    const observer = new MutationObserver((mutations) =>
+      mutations.forEach(() => slider.update()),
+    );
+    const config = { childList: true };
+
+    slider.on("created", () => {
+      observer.observe(slider.container, config);
+    });
+    slider.on("destroyed", () => {
+      observer.disconnect();
+    });
   };
 
   const getSlidesPerView = () => {
@@ -64,25 +80,25 @@ export default function SliderCardsEnhanced({
     }
   };
 
-  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
-    initial: 0,
-    loop,
-    mode: "free-snap",
-    slides: {
-      perView: getSlidesPerView(),
-      spacing: 0,
+  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
+    {
+      initial: 0,
+      loop,
+      mode: "free",
+      slides: {
+        perView: getSlidesPerView(),
+        spacing: 0,
+      },
+      created() {
+        setLoaded(true);
+        loadState();
+      },
+      destroyed(s) {
+        saveState(s);
+      },
     },
-    animationEnded(s) {
-      if (mounted.current) onCurrentSlideChange(s.track.details.rel);
-    },
-    created() {
-      setLoaded(true);
-      loadState();
-    },
-    destroyed(s) {
-      saveState(s);
-    },
-  });
+    [MutationPlugin],
+  );
 
   useEffect(() => {
     if (instanceRef.current) {
@@ -90,6 +106,8 @@ export default function SliderCardsEnhanced({
         instanceRef.current.moveToIdx(currentSlide, undefined, {
           duration: 0,
         });
+
+        console.log("moving to index", currentSlide);
       }
     }
   }, [currentSlide]);
@@ -102,16 +120,10 @@ export default function SliderCardsEnhanced({
   );
 
   const renderSlides = () => {
-    let elements = children;
-
-    while (elements.length < MINIMUM_SLIDES_TO_LOOP) {
-      elements = [...elements, ...children];
-    }
-
-    const slides = elements.flat().map(
-      (component: any, idx: number) =>
+    const slides = children.flat().map(
+      (component: any) =>
         component && (
-          <div className="keen-slider__slide" key={idx.toString()}>
+          <div className="keen-slider__slide" key={component.key}>
             {component}
           </div>
         ),
@@ -131,7 +143,7 @@ export default function SliderCardsEnhanced({
       </div>
       {loaded && instanceRef.current && (
         <>
-          <S.RightSide>
+          <S.RightSide visible={loop}>
             <RoundedArrow
               direction="right"
               onClick={(e: any) =>
@@ -139,7 +151,7 @@ export default function SliderCardsEnhanced({
               }
             />
           </S.RightSide>
-          <S.LeftSide>
+          <S.LeftSide visible={loop}>
             <RoundedArrow
               direction="left"
               onClick={(e: any) =>

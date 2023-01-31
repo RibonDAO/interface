@@ -39,8 +39,12 @@ function CausesPage(): JSX.Element {
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
 
-  const { activeCauses, chooseCauseModalVisible, currentCauseId } =
-    useCausesContext();
+  const {
+    activeCauses,
+    chooseCauseModalVisible,
+    currentCauseId,
+    setCurrentCauseId,
+  } = useCausesContext();
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
@@ -150,26 +154,18 @@ function CausesPage(): JSX.Element {
             nonProfit.cause?.active && nonProfit.cause?.id === currentCauseId,
         ) || []
       );
-    } else {
-      return (
-        nonProfits?.filter(
-          (nonProfit) => nonProfit.cause?.active && nonProfit.cause?.id,
-        ) || []
-      );
     }
-  };
 
-  const jumpFirstNonProfitByCauseId = (id: number) => {
-    const nonProfitIndex = nonProfitsFilter().findIndex(
-      (nonProfit) => nonProfit?.cause?.id === id,
-    );
-    if (nonProfitIndex >= 0) setCurrentNonProfitIndex(nonProfitIndex);
+    return nonProfits?.filter((nonProfit) => nonProfit.cause?.active) || [];
   };
 
   const handleCauseChanged = (_element: any, index: number, event: any) => {
     if (_element && event?.type === "click") {
       const causeId = _element?.id;
-      if (nonProfits && causeId) jumpFirstNonProfitByCauseId(Number(causeId));
+      if (causeId !== undefined) {
+        setCurrentCauseId(Number(causeId));
+        setSelectedButtonIndex(index);
+      }
     }
   };
 
@@ -180,25 +176,22 @@ function CausesPage(): JSX.Element {
       hasSeenChooseCauseModal.current = false;
 
       if (isFirstAccess(signedIn) && nonProfits)
-        jumpFirstNonProfitByCauseId(Number(currentCauseId));
+        setCurrentCauseId(Number(currentCauseId));
     }
   }, [chooseCauseModalVisible]);
 
-  useEffect(() => {
-    if (currentNonProfitIndex >= 0 && !isLoading) {
-      const currentCause = nonProfitsFilter()[currentNonProfitIndex]?.cause;
-
-      if (currentCause && activeCauses) {
-        const currentCauseIndex = activeCauses.findIndex(
-          (cause) => cause.id === currentCause.id,
-        );
-
-        if (currentCauseIndex >= 0) {
-          setSelectedButtonIndex(currentCauseIndex);
-        }
-      }
+  const activeCausesWithAllCauses = () => {
+    if (activeCauses) {
+      return [
+        {
+          id: 0,
+          name: t("allCauses"),
+        },
+        ...activeCauses,
+      ];
     }
-  }, [currentNonProfitIndex, isLoading, activeCauses]);
+    return [];
+  };
 
   return (
     <S.Container>
@@ -220,7 +213,7 @@ function CausesPage(): JSX.Element {
         <S.Title>{t("pageTitle")}</S.Title>
         {!isFirstAccess(signedIn) && (
           <GroupButtons
-            elements={activeCauses}
+            elements={activeCausesWithAllCauses()}
             indexSelected={selectedButtonIndex}
             onChange={handleCauseChanged}
             nameExtractor={(cause) => cause.name}

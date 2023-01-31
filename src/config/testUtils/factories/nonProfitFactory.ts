@@ -1,5 +1,6 @@
 import NonProfit from "types/entities/NonProfit";
 import Cause from "types/entities/Cause";
+import { NonProfitImpact } from "types/entities/NonProfitImpact";
 
 function nonProfitFactory(params: Partial<NonProfit> = {}): NonProfit {
   const defaultValues: NonProfit = {
@@ -15,6 +16,7 @@ function nonProfitFactory(params: Partial<NonProfit> = {}): NonProfit {
     coverImage: "",
     mainImage: "",
     cause: {} as Cause,
+    nonProfitImpacts: [] as NonProfitImpact[],
   };
   return Object.assign(defaultValues, params) as NonProfit;
 }

@@ -6,7 +6,7 @@ import * as S from "./styles";
 
 export type Props = {
   image: string;
-  title?: string;
+  title?: string | JSX.Element;
   buttonText: string;
   onClickButton: () => void;
   onClickImage?: () => void;

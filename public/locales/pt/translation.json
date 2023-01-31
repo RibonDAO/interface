@@ -110,7 +110,11 @@
     "impactText": "Você doou ",
     "button": "Ver todos",
     "noImpactText": "O resumo do impacto das suas doações será mostrado aqui",
-    "noImpactButton": "Doar agora"
+    "noImpactButton": "Doar agora",
+    "donatedTickets": "Tickets doados",
+    "donatedMoney": "Dinheiro doado",
+    "supportedNgos": "ONGs apoiadas",
+    "supporterCauses": "Causas apoiadas"
   },
   "promoters": {
     "treasurePage": {
@@ -258,5 +262,16 @@
       "modalAnimationTo": "Ribon",
       "modalAnimationTitle": "Realizando contribuição..."
     }
+  },
+  "impactNormalizer": {
+    "year": "ano",
+    "years": "anos",
+    "month": "mês",
+    "months": "meses",
+    "day": "dia",
+    "days": "dias",
+    "for": "para",
+    "and": "e",
+    "of": "de"
   }
 }

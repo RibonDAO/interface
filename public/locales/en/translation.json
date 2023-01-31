@@ -110,7 +110,11 @@
     "impactText": "You donated ",
     "button": "Show more",
     "noImpactText": "Your donation impact summary will be shown here",
-    "noImpactButton": "Donate now"
+    "noImpactButton": "Donate now",
+    "donatedTickets": "Donated tickets",
+    "donatedMoney": "Donated money",
+    "supportedNgos": "Supported NGOs",
+    "supporterCauses": "Supporter causes"
   },
   "promoters": {
     "treasurePage": {
@@ -258,5 +262,16 @@
       "modalAnimationTo": "Ribon",
       "modalAnimationTitle": "Processing giving..."
     }
+  },
+  "impactNormalizer": {
+    "year": "year",
+    "years": "years",
+    "month": "month",
+    "months": "months",
+    "day": "day",
+    "days": "days",
+    "for": "for",
+    "and": "and",
+    "of": "of"
   }
 }

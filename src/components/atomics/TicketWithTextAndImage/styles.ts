@@ -57,7 +57,7 @@ export const Title = styled.h3`
 export const Link = styled.a`
   ${defaultBodyXsRegular}
 
-  color: ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
+  color: ${({ theme }) => theme.colors.brand.primary[300]};
 `;
 
 export const RightContainer = styled.div`

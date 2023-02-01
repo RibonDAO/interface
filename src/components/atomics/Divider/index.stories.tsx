@@ -1,5 +1,4 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { getPrimary } from "styles/colors/utils";
 import theme from "styles/theme";
 import Divider, { Props } from ".";
 
@@ -16,11 +15,11 @@ export const Default = Template.bind({});
 export const WithText = Template.bind({});
 
 Default.args = {
-  color: getPrimary(theme).colorBrandPrimary300,
+  color: theme.colors.brand.primary[300],
   width: "100px",
 };
 
 WithText.args = {
   text: "Divider",
-  color: getPrimary(theme).colorBrandPrimary300,
+  color: theme.colors.brand.primary[300],
 };

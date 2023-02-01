@@ -21,7 +21,7 @@ export const Treasure = styled.img`
 
 export const TreasureButton = styled.button`
   margin-left: 6%;
-  border: 1px solid ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
+  border: 1px solid ${({ theme }) => theme.colors.brand.primary[300]};
   border-radius: 50%;
   display: flex;
   justify-content: center;

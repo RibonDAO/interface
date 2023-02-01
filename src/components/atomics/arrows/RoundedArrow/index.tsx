@@ -10,7 +10,7 @@ export type Props = {
 const { primary } = theme.colors.brand;
 
 function RoundedArrow({
-  color = primary.colorBrandPrimary300,
+  color = primary[300],
   onClick = () => {},
   direction = "right",
 }: Props) {

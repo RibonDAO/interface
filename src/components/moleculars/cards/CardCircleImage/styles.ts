@@ -28,5 +28,5 @@ export const Title = styled.h3`
 `;
 
 export const Subtitle = styled.h5`
-  color: ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
+  color: ${({ theme }) => theme.colors.brand.primary[300]};
 `;

@@ -25,7 +25,7 @@ export const HalfInput = styled.input`
   display: inline-block;
   width: calc(50% - 4px);
   margin-bottom: ${({ theme }) => theme.spacing(12)};
-  border: 1px solid ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
+  border: 1px solid ${({ theme }) => theme.colors.brand.primary[300]};
   border-radius: 8px;
   padding: ${({ theme }) => theme.spacing(8, 16, 8, 16)};
 `;

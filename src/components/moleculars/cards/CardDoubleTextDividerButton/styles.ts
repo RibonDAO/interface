@@ -3,7 +3,6 @@ import {
   defaultBodyXsRegular,
   defaultHeadingXs,
 } from "styles/typography/default";
-import { getPrimary } from "styles/colors/utils";
 
 export const Container = styled.div`
   max-width: 206px;
@@ -34,7 +33,7 @@ export const MainContent = styled.h3<{
       ? props.theme.colors.gray30
       : props.refunded
       ? props.theme.colors.gray20
-      : getPrimary(props.theme).colorBrandPrimary300};
+      : props.theme.colors.brand.primary[300]};
 `;
 
 export const RightMainContent = styled.span<{
@@ -47,7 +46,7 @@ export const RightMainContent = styled.span<{
       ? props.theme.colors.gray30
       : props.refunded
       ? props.theme.colors.gray20
-      : getPrimary(props.theme).colorBrandPrimary300};
+      : props.theme.colors.brand.primary[300]};
 `;
 
 export const LinkSection = styled.a<{
@@ -65,7 +64,7 @@ export const SpinnerSection = styled.a`
   display: flex;
   gap: 10px;
   text-decoration: none;
-  color: ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
+  color: ${({ theme }) => theme.colors.brand.primary[300]};
 `;
 
 export const Image = styled.img``;

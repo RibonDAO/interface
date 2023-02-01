@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { stylizedDisplayLg } from "styles/typography/stylized";
-import { getPrimary } from "styles/colors/utils";
 
 export const Container = styled.div``;
 
@@ -40,7 +39,7 @@ export const FooterText = styled.p`
 
   a {
     text-decoration: none;
-    color: ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
+    color: ${({ theme }) => theme.colors.brand.primary[300]};
   }
 `;
 

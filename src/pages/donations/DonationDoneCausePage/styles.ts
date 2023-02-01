@@ -5,7 +5,6 @@ import {
   defaultBodySmSemibold,
 } from "styles/typography/default";
 import { stylizedDisplayLg } from "styles/typography/stylized";
-import { getPrimary } from "styles/colors/utils";
 
 export const Container = styled.div`
   width: 100%;
@@ -65,7 +64,7 @@ export const CauseName = styled.span<{
 
   color: ${(props) =>
     props.isGreen
-      ? ({ theme }) => getPrimary(theme).colorBrandPrimary300
+      ? ({ theme }) => theme.colors.brand.primary[300]
       : ({ color }) => color};
 `;
 

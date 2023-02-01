@@ -21,7 +21,7 @@ function InputRange({
   step = 1,
   onChange,
   disabled = false,
-  color = primary.colorBrandPrimary300,
+  color = primary[300],
 }: Props): JSX.Element {
   return (
     <S.Container>

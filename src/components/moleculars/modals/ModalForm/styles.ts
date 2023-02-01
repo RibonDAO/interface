@@ -30,7 +30,7 @@ export const Input = styled.input`
   height: 39px;
   margin-bottom: ${({ theme }) => theme.spacing(8)};
   padding: ${({ theme }) => theme.spacing(8)};
-  border: 1px solid ${({ theme }) => getPrimary(theme).colorBrandPrimary300};
+  border: 1px solid ${({ theme }) => theme.colors.brand.primary[300]};
   border-radius: 8px;
 `;
 

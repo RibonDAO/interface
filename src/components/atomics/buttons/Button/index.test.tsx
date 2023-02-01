@@ -51,7 +51,7 @@ describe("<Button />", () => {
     it("renders outline button", () => {
       renderComponent(<Button text="button" onClick={() => {}} outline />);
       expect(screen.getByText("button")).toHaveStyle(
-        `color: ${theme.colors.brand.primary.colorBrandPrimary300};`,
+        `color: ${theme.colors.brand.primary[300]};`,
       );
     });
 

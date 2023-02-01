@@ -29,11 +29,11 @@ const { primary } = theme.colors.brand;
 export default function Button({
   text,
   textColor,
-  backgroundColor = primary.colorBrandPrimary300,
+  backgroundColor = primary[300],
   softDisabled = false,
   borderColor = "",
   ribons = false,
-  ribonsColor = primary.colorBrandPrimary300,
+  ribonsColor = primary[300],
   leftIcon,
   rightIcon,
   onClick,
@@ -47,7 +47,7 @@ export default function Button({
   ...props
 }: Props): JSX.Element {
   function activeTextColor() {
-    if (outline && !textColor) return primary.colorBrandPrimary300;
+    if (outline && !textColor) return primary[300];
     if (softDisabled) return theme.colors.gray30;
     if (!textColor) return theme.colors.neutral10;
 
@@ -62,7 +62,7 @@ export default function Button({
   }
 
   function activeBorderColor() {
-    if (outline && !borderColor) return primary.colorBrandPrimary300;
+    if (outline && !borderColor) return primary[300];
     if (disabled && !borderColor) return theme.colors.gray30;
     if (softDisabled) return theme.colors.gray20;
 

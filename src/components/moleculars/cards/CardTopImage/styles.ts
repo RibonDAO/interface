@@ -60,6 +60,7 @@ export const Image = styled.img<{
 
 export const Text = styled.p`
   ${defaultBodySmRegular}
+
   margin-top: ${({ theme }) => theme.spacing(8)};
   color: ${({ theme }) => theme.colors.gray30};
 `;
@@ -71,6 +72,7 @@ export const Title = styled.span<{
     props.size === "small" &&
     css`
       ${defaultBodyLgBold}
+
       @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
         ${defaultHeadingXs}
       }

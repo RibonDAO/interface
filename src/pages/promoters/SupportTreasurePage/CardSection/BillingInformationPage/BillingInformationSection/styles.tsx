@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const BillingInformationSectionContainer = styled.div`
-  margin-top: 18px;
+  margin-top: ${({ theme }) => theme.spacing(20)};
   height: 256px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
@@ -10,21 +10,21 @@ export const BillingInformationSectionContainer = styled.div`
 `;
 
 export const Title = styled.h3`
-  margin-bottom: 18px;
+  margin-bottom: ${({ theme }) => theme.spacing(20)};
   color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const Form = styled.form`
   & :nth-child(2) {
-    margin-right: 4px;
+    margin-right: ${({ theme }) => theme.spacing(4)};
   }
 `;
 
 export const HalfInput = styled.input`
   display: inline-block;
   width: calc(50% - 4px);
-  margin-bottom: 12px;
+  margin-bottom: ${({ theme }) => theme.spacing(12)};
   border: 1px solid ${({ theme }) => theme.colors.green30};
   border-radius: 8px;
-  padding: 8px 16px 8px 16px;
+  padding: ${({ theme }) => theme.spacing(8, 16, 8, 16)};
 `;

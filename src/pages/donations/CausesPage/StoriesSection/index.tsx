@@ -1,9 +1,6 @@
 import CardStories from "components/moleculars/cards/CardStories";
-import { useCallback, useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import { useCallback, useState } from "react";
 import NonProfit from "types/entities/NonProfit";
-import Story from "types/entities/Story";
-import useNavigation from "hooks/useNavigation";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import useIntegration from "hooks/apiHooks/useIntegration";
 import { logEvent } from "services/analytics/firebase";
@@ -13,22 +10,24 @@ import { useCurrentUser } from "contexts/currentUserContext";
 import { useTranslation } from "react-i18next";
 import { logError } from "services/crashReport";
 import * as S from "./styles";
-import ConfirmSection from "../CausesPage/ConfirmSection";
+import ConfirmSection from "../ConfirmSection";
 
-type LocationStateType = {
+export type Props = {
   nonProfit: NonProfit;
-  stories: Story[];
   canDonateAndHasVoucher: boolean;
+  visible: boolean;
+  setVisible: (visible: boolean) => void;
 };
 
-function StoriesPage(): JSX.Element {
+function StoriesSection({
+  nonProfit,
+  canDonateAndHasVoucher,
+  visible,
+  setVisible,
+}: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.storiesPage",
   });
-
-  const {
-    state: { canDonateAndHasVoucher, nonProfit, stories },
-  } = useLocation<LocationStateType>();
 
   const [donationInProcessModalVisible, setDonationInProcessModalVisible] =
     useState(false);
@@ -43,14 +42,9 @@ function StoriesPage(): JSX.Element {
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
 
-  const { navigateBack } = useNavigation();
   const { findOrCreateUser } = useUsers();
   const { createSource } = useSources();
   const { signedIn, setCurrentUser } = useCurrentUser();
-
-  useEffect(() => {
-    if (!stories.length) navigateBack();
-  }, []);
 
   const donateTicket = useCallback(
     async (email: string) => {
@@ -83,34 +77,44 @@ function StoriesPage(): JSX.Element {
     }
   }, [canDonateAndHasVoucher]);
 
-  return (
-    <S.Container>
-      {nonProfit && integration && (
-        <ConfirmSection
-          chosenNonProfit={nonProfit}
-          donateTicket={donateTicket}
-          integration={integration}
-          setDonationInProcessModalVisible={setDonationInProcessModalVisible}
-          confirmModalVisible={confirmModalVisible}
-          donationInProcessModalVisible={donationInProcessModalVisible}
-          setConfirmModalVisible={setConfirmModalVisible}
-          closeConfirmModal={closeConfirmModal}
-        />
-      )}
+  const renderStories = () => {
+    if (visible) {
+      return (
+        <S.Container>
+          {nonProfit && integration && (
+            <ConfirmSection
+              chosenNonProfit={nonProfit}
+              donateTicket={donateTicket}
+              integration={integration}
+              setDonationInProcessModalVisible={
+                setDonationInProcessModalVisible
+              }
+              confirmModalVisible={confirmModalVisible}
+              donationInProcessModalVisible={donationInProcessModalVisible}
+              setConfirmModalVisible={setConfirmModalVisible}
+              closeConfirmModal={closeConfirmModal}
+            />
+          )}
 
-      <CardStories
-        stories={stories}
-        onAllStoriesEnd={navigateBack}
-        onCloseButtonClick={navigateBack}
-        profileData={profileData}
-        ctaData={{
-          text: t("ctaText"),
-          onClick: onClickButton,
-          visible: canDonateAndHasVoucher,
-        }}
-      />
-    </S.Container>
-  );
+          <CardStories
+            stories={nonProfit.stories || []}
+            onAllStoriesEnd={() => setVisible(false)}
+            onCloseButtonClick={() => setVisible(false)}
+            profileData={profileData}
+            ctaData={{
+              text: t("ctaText"),
+              onClick: onClickButton,
+              visible: canDonateAndHasVoucher,
+            }}
+          />
+        </S.Container>
+      );
+    }
+
+    return null;
+  };
+
+  return <>{renderStories()}</>;
 }
 
-export default StoriesPage;
+export default StoriesSection;

@@ -23,8 +23,8 @@ export const Container = styled.div<{
       min-width: 230px;
     `}
 
-  margin-bottom: 8px;
-  padding: 16px;
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
+  padding: ${({ theme }) => theme.spacing(16)};
   border-radius: 16px;
   display: flex;
   flex-direction: column;
@@ -75,7 +75,7 @@ export const Text = styled.p<{
       ${defaultBodySmRegular}
     `}
 
-  margin-top: 8px;
+  margin-top: ${({ theme }) => theme.spacing(8)};
   color: ${({ theme }) => theme.colors.gray30};
 `;
 
@@ -94,6 +94,6 @@ export const Title = styled.span<{
       ${defaultBodySmRegular}
     `}
 
-  margin-top: 8px;
+  margin-top: ${({ theme }) => theme.spacing(8)};
   color: ${({ theme }) => theme.colors.green40};
 `;

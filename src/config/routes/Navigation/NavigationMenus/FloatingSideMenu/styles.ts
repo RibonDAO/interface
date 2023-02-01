@@ -23,7 +23,7 @@ export const Menu = styled.div<{ visible: boolean }>`
 `;
 
 export const MenuItem = styled(Link)`
-  padding: 8px 16px;
+  padding: ${({ theme }) => theme.spacing(8, 16)};
   display: flex;
   flex-direction: column;
   font-weight: ${({ theme }) => theme.font.semibold};

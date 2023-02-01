@@ -33,15 +33,18 @@ import ChooseCauseModal from "./ChooseCauseModal";
 function CausesPage(): JSX.Element {
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
-  const [currentNonProfitIndex, setCurrentNonProfitIndex] = useState(0);
   const [donationInProcessModalVisible, setDonationInProcessModalVisible] =
     useState(false);
   const [chosenNonProfit, setChosenNonProfit] = useState<NonProfit>();
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
 
-  const { activeCauses, chooseCauseModalVisible, currentCauseId } =
-    useCausesContext();
+  const {
+    activeCauses,
+    chooseCauseModalVisible,
+    currentCauseId,
+    setCurrentCauseId,
+  } = useCausesContext();
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
@@ -147,6 +150,14 @@ function CausesPage(): JSX.Element {
     [chosenNonProfit],
   );
 
+  useEffect(() => {
+    if (chooseCauseModalVisible && !hasSeenChooseCauseModal.current) {
+      hasSeenChooseCauseModal.current = true;
+    } else if (!chooseCauseModalVisible && hasSeenChooseCauseModal.current) {
+      hasSeenChooseCauseModal.current = false;
+    }
+  }, [chooseCauseModalVisible]);
+
   const nonProfitsFilter = () => {
     if (currentCauseId >= 1 && currentCauseId !== undefined) {
       return (
@@ -155,55 +166,28 @@ function CausesPage(): JSX.Element {
             nonProfit.cause?.active && nonProfit.cause?.id === currentCauseId,
         ) || []
       );
-    } else {
-      return (
-        nonProfits?.filter(
-          (nonProfit) => nonProfit.cause?.active && nonProfit.cause?.id,
-        ) || []
-      );
     }
-  };
 
-  const jumpFirstNonProfitByCauseId = (id: number) => {
-    const nonProfitIndex = nonProfitsFilter().findIndex(
-      (nonProfit) => nonProfit?.cause?.id === id,
-    );
-    if (nonProfitIndex >= 0) setCurrentNonProfitIndex(nonProfitIndex);
+    return nonProfits || [];
   };
 
   const handleCauseChanged = (_element: any, index: number, event: any) => {
     if (_element && event?.type === "click") {
       const causeId = _element?.id;
-      if (nonProfits && causeId) jumpFirstNonProfitByCauseId(Number(causeId));
+      if (nonProfits && causeId !== undefined) {
+        setCurrentCauseId(Number(causeId));
+        setSelectedButtonIndex(index);
+      }
     }
   };
 
-  useEffect(() => {
-    if (chooseCauseModalVisible && !hasSeenChooseCauseModal.current) {
-      hasSeenChooseCauseModal.current = true;
-    } else if (!chooseCauseModalVisible && hasSeenChooseCauseModal.current) {
-      hasSeenChooseCauseModal.current = false;
-
-      if (isFirstAccess(signedIn) && nonProfits)
-        jumpFirstNonProfitByCauseId(Number(currentCauseId));
-    }
-  }, [chooseCauseModalVisible]);
-
-  useEffect(() => {
-    if (currentNonProfitIndex >= 0 && !isLoading) {
-      const currentCause = nonProfitsFilter()[currentNonProfitIndex]?.cause;
-
-      if (currentCause && activeCauses) {
-        const currentCauseIndex = activeCauses.findIndex(
-          (cause) => cause.id === currentCause.id,
-        );
-
-        if (currentCauseIndex >= 0) {
-          setSelectedButtonIndex(currentCauseIndex);
-        }
-      }
-    }
-  }, [currentNonProfitIndex, isLoading, activeCauses]);
+  const causesWithAllFilter = [
+    {
+      id: 0,
+      name: t("allCauses"),
+    },
+    ...(activeCauses || []),
+  ];
 
   return (
     <S.Container>
@@ -225,7 +209,7 @@ function CausesPage(): JSX.Element {
         <S.Title>{t("pageTitle")}</S.Title>
         {!isFirstAccess(signedIn) && (
           <GroupButtons
-            elements={activeCauses}
+            elements={causesWithAllFilter}
             indexSelected={selectedButtonIndex}
             onChange={handleCauseChanged}
             nameExtractor={(cause) => cause.name}
@@ -242,8 +226,6 @@ function CausesPage(): JSX.Element {
                 setConfirmModalVisible={setConfirmModalVisible}
                 canDonate={canDonate}
                 integration={integration}
-                currentNonProfit={currentNonProfitIndex}
-                onCurrentNonProfitChange={setCurrentNonProfitIndex}
               />
             </S.NonProfitsContainer>
           )

@@ -36,7 +36,7 @@ export const LogoContainer = styled.div`
 export const LogoImage = styled.img`
   width: 100%;
   height: 100%;
-  margin: 16px 12px;
+  margin: ${({ theme }) => theme.spacing(16, 12)};
   border-radius: 50%;
   object-fit: contain;
 `;

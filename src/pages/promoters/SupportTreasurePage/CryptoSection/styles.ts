@@ -6,18 +6,18 @@ import {
 } from "styles/typography/default";
 
 export const Container = styled.div`
-  padding-bottom: 50px;
+  padding-bottom: ${({ theme }) => theme.spacing(48)};
 `;
 
 export const Subtitle = styled.h3`
-  margin-top: 20px;
+  margin-top: ${({ theme }) => theme.spacing(20)};
 `;
 
 export const Label = styled.p`
   ${defaultBodySmSemibold}
 
-  margin-top: 24px;
-  margin-bottom: 12px;
+  margin-top: ${({ theme }) => theme.spacing(24)};
+  margin-bottom: ${({ theme }) => theme.spacing(12)};
 `;
 
 export const InputContainer = styled.div`
@@ -27,7 +27,7 @@ export const InputContainer = styled.div`
 `;
 
 export const ConnectContainer = styled.div`
-  margin-bottom: 24px;
+  margin-bottom: ${({ theme }) => theme.spacing(24)};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,10 +37,10 @@ export const ConnectContainer = styled.div`
 export const Image = styled.img`
   width: 92px;
   height: 92px;
-  margin-top: 100px;
+  margin-top: ${({ theme }) => theme.spacing(112)};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    margin-top: 50px;
+    margin-top: ${({ theme }) => theme.spacing(48)};
   }
 `;
 
@@ -49,9 +49,9 @@ export const Input = styled.input`
 
   width: 100%;
   height: 39px;
-  margin-top: 12px;
-  margin-bottom: 8px;
-  padding: 8px;
+  margin-top: ${({ theme }) => theme.spacing(12)};
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
+  padding: ${({ theme }) => theme.spacing(8)};
   border: 1px solid ${({ theme }) => theme.colors.green30};
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.gray30};
@@ -63,28 +63,28 @@ export const UsdcIcon = styled.img`
 `;
 
 export const UsdcContainer = styled.div`
-  margin-left: 8px;
+  margin-left: ${({ theme }) => theme.spacing(8)};
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 export const UsdcText = styled.p`
-  margin-left: 4px;
+  margin-left: ${({ theme }) => theme.spacing(4)};
   color: ${({ theme }) => theme.colors.gray40};
 `;
 
 export const Text = styled.p`
   ${defaultBodyXsRegular}
 
-  margin-top: 8px;
+  margin-top: ${({ theme }) => theme.spacing(8)};
   color: ${({ theme }) => theme.colors.green30};
 `;
 
 export const ButtonContainer = styled.div`
   width: 100%;
   height: 80px;
-  padding: 12px 16px;
+  padding: ${({ theme }) => theme.spacing(12, 16)};
   position: fixed;
   bottom: 0;
   left: 0;
@@ -96,7 +96,7 @@ export const ButtonContainer = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     height: 60px;
-    padding: 0;
+    padding: ${({ theme }) => theme.spacing(0)};
     position: static;
     box-shadow: none;
 
@@ -114,11 +114,11 @@ export const FinishButton = styled(Button)`
 
 export const ConnectButton = styled(Button)`
   width: 160px;
-  padding: 8px 16px;
+  padding: ${({ theme }) => theme.spacing(8, 16)};
 `;
 
 export const ExtraText = styled.h6`
-  margin-bottom: 20px;
+  margin-bottom: ${({ theme }) => theme.spacing(20)};
   font-weight: ${({ theme }) => theme.font.light};
   color: ${({ theme }) => theme.colors.gray30};
 `;

@@ -116,7 +116,7 @@ function LayoutHeader({
             paddingLeft: 16,
             paddingRight: 16,
             position: isMobile ? "relative" : "absolute",
-            top: isMobile ? "5%" : "8%",
+            top: isMobile ? "6%" : "10%",
             right: isMobile ? "" : "14%",
           },
         }}

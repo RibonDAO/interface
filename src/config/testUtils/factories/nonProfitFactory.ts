@@ -21,4 +21,4 @@ function nonProfitFactory(params: Partial<NonProfit> = {}): NonProfit {
   return Object.assign(defaultValues, params) as NonProfit;
 }
 
-export default nonProfitFactory; 
+export default nonProfitFactory;

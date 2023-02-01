@@ -25,8 +25,8 @@ export const LeftSide = styled.div<{ visible: boolean }>`
   visibility: hidden;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
     opacity: ${({ visible }) => (visible ? "1" : "0")};
+    visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
     transition: opacity 0.1s ease-in-out;
   }
 `;

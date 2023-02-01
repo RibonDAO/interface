@@ -117,7 +117,7 @@ export default function SliderCardsEnhanced({
               }
             />
           </S.RightSide>
-          <S.LeftSide visible={showLeftSide}>
+          <S.LeftSide visible={showLeftSide && children.length > 3}>
             <RoundedArrow
               direction="left"
               onClick={(e: any) =>

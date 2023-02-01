@@ -1,6 +1,7 @@
 import React, { ButtonHTMLAttributes } from "react";
 import { ReactComponent as RibonIcon } from "assets/icons/ribon.svg";
 import theme from "styles/theme";
+import { logEvent } from "lib/events";
 import * as S from "./styles";
 
 export type onClickType = () => void;
@@ -22,6 +23,8 @@ export type Props = {
   disabled?: boolean;
   round?: boolean;
   size?: string;
+  eventName?: string;
+  eventParams?: Record<string, any>;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export default function Button({
@@ -41,7 +44,8 @@ export default function Button({
   disabled = false,
   round = false,
   size = "large",
-
+  eventName,
+  eventParams,
   ...props
 }: Props): JSX.Element {
   function activeTextColor() {
@@ -71,6 +75,10 @@ export default function Button({
     if (round) return "80px";
 
     return "8px";
+  }
+
+  if (eventName) {
+    logEvent(eventName, eventParams);
   }
 
   return (

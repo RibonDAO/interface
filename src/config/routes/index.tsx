@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import WalletProvider from "contexts/walletContext";
 import CausesPage from "pages/donations/CausesPage";
@@ -23,9 +23,20 @@ import PostDonationPage from "pages/donations/PostDonationPage";
 import CryptoPaymentProvider from "contexts/cryptoPaymentContext";
 import SupportNonProfitPage from "pages/promoters/SupportNonProfitPage";
 import PaymentPage from "pages/promoters/PaymentPage";
+import { useLocation } from "react-router";
+import { logPageView } from "lib/events";
 import Navigation from "./Navigation";
 
 function RoutesComponent(): JSX.Element {
+  const location = useLocation();
+
+  useEffect(() => {
+    const urlName = location.pathname.replace(/\/\d+/, "");
+    const { search, state } = location;
+
+    logPageView(urlName, search, state);
+  }, [location]);
+
   return (
     <Switch>
       <Route path="/" exact>

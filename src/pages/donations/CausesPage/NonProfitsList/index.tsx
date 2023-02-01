@@ -120,6 +120,7 @@ function NonProfitsList({
               softDisabled={!canDonateAndHasVoucher}
               infoTextLeft={nonProfit.name}
               infoTextRight={nonProfit.cause?.name}
+              infoText={nonProfit.stories ? t("learnMore") : undefined}
               fullWidth
             />
           </S.CardWrapper>

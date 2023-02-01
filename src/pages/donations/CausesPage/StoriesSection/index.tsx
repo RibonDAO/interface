@@ -1,5 +1,5 @@
 import CardStories from "components/moleculars/cards/CardStories";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import NonProfit from "types/entities/NonProfit";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import useIntegration from "hooks/apiHooks/useIntegration";
@@ -77,10 +77,18 @@ function StoriesSection({
     }
   }, [canDonateAndHasVoucher]);
 
+  useEffect(() => {
+    document.body.style.overflow = visible ? "hidden" : "initial";
+
+    return () => {
+      document.body.style.overflow = "initial";
+    };
+  }, [visible]);
+
   const renderStories = () => {
     if (visible) {
       return (
-        <S.Container>
+        <S.Container visible={visible}>
           {nonProfit && integration && (
             <ConfirmSection
               chosenNonProfit={nonProfit}

@@ -12,6 +12,8 @@ export type Props = {
   color?: string;
 };
 
+const { primary } = theme.colors.brand;
+
 function InputRange({
   value,
   min,
@@ -19,7 +21,7 @@ function InputRange({
   step = 1,
   onChange,
   disabled = false,
-  color = theme.colors.green30,
+  color = primary[300],
 }: Props): JSX.Element {
   return (
     <S.Container>

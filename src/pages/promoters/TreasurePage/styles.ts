@@ -42,11 +42,11 @@ export const TreasureText = styled.h3`
   ${defaultHeadingLg}
 
   margin-bottom: ${({ theme }) => theme.spacing(8)};
-  color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => theme.colors.brand.primary[300]};
 `;
 
 export const TreasureTextCoin = styled.span`
-  color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => theme.colors.brand.primary[300]};
 `;
 
 export const SectionTitle = styled.h2`
@@ -87,7 +87,7 @@ export const GivingDate = styled.p`
 `;
 
 export const GivingTextCoin = styled.span`
-  color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => theme.colors.brand.primary[300]};
 `;
 
 export const StatusContainer = styled.div`
@@ -99,7 +99,7 @@ export const StatusContainer = styled.div`
 `;
 
 export const ProcessingText = styled.span`
-  color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => theme.colors.brand.primary[300]};
 `;
 
 export const TransactionLink = styled.a`

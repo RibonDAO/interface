@@ -31,7 +31,7 @@ export const MenuItem = styled(Link)`
   color: ${({ theme }) => theme.colors.gray30};
 
   :hover {
-    background-color: ${({ theme }) => theme.colors.green30};
+    background-color: ${({ theme }) => theme.colors.brand.primary[300]};
     color: ${({ theme }) => theme.colors.neutral10};
     box-shadow: inset 7px 0 9px -7px ${({ theme }) => theme.colors.defaultShadow};
   }

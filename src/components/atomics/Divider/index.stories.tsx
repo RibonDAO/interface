@@ -15,11 +15,11 @@ export const Default = Template.bind({});
 export const WithText = Template.bind({});
 
 Default.args = {
-  color: theme.colors.green30,
+  color: theme.colors.brand.primary[300],
   width: "100px",
 };
 
 WithText.args = {
   text: "Divider",
-  color: theme.colors.green30,
+  color: theme.colors.brand.primary[300],
 };

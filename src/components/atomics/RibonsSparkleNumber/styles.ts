@@ -12,7 +12,7 @@ export const RibonsAmount = styled.p`
   ${defaultBodySmSemibold}
 
   margin-right: ${({ theme }) => theme.spacing(4)};
-  color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => theme.colors.brand.primary[300]};
 `;
 
 export const Sparkle = styled.img`

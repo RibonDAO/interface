@@ -29,6 +29,7 @@ function CardPage(): JSX.Element {
   const [currentOffer, setCurrentOffer] = useState<Offer>(offerFactory());
   const { cause, setCause, setOfferId, setFlow } = useCardPaymentInformation();
   const { nonProfits } = useNonProfits();
+  const { tertiary } = theme.colors.brand;
 
   const { causes } = useCauses();
   const { state } = useLocation<LocationStateType>();
@@ -107,13 +108,13 @@ function CardPage(): JSX.Element {
         onChange={handleCauseClick}
         indexSelected={preSelectedIndex()}
         nameExtractor={(element) => element.name}
-        backgroundColor={theme.colors.red40}
-        textColorOutline={theme.colors.red40}
-        borderColor={theme.colors.red40}
-        borderColorOutline={theme.colors.red20}
+        backgroundColor={tertiary[800]}
+        textColorOutline={tertiary[800]}
+        borderColor={tertiary[800]}
+        borderColorOutline={tertiary[200]}
       />
       <S.NonProfitsListContainer>
-        <SliderCards scrollOffset={400} color={theme.colors.red30}>
+        <SliderCards scrollOffset={400} color={tertiary[400]}>
           {filteredNonProfits().map((nonProfit) => (
             <Fragment key={nonProfit.id}>
               <NonProfitCard

@@ -36,6 +36,8 @@ export type Props = {
   customStyles?: ReactModal.Styles;
 };
 
+const { primary } = theme.colors.brand;
+
 function ModalIcon({
   visible = false,
   icon = null,
@@ -48,7 +50,7 @@ function ModalIcon({
   primaryButtonText = null,
   primaryButtonLeftIcon = undefined,
   primaryButtonTextColor = theme.colors.neutral10,
-  primaryButtonColor = theme.colors.green30,
+  primaryButtonColor = primary[300],
   primaryButtonBorderColor,
   secondaryButtonText = null,
   secondaryButtonLeftIcon = undefined,

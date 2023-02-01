@@ -40,6 +40,8 @@ export type Props = {
   animationData?: Record<any, any>;
 };
 
+const { primary } = theme.colors.brand;
+
 function ModalRows({
   visible = false,
   icon = null,
@@ -54,7 +56,7 @@ function ModalRows({
   primaryButtonText = null,
   primaryButtonLeftIcon = undefined,
   primaryButtonTextColor = theme.colors.neutral10,
-  primaryButtonColor = theme.colors.green30,
+  primaryButtonColor = primary[300],
   primaryButtonBorderColor,
   secondaryButtonText = null,
   secondaryButtonLeftIcon = undefined,

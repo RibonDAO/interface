@@ -2,7 +2,7 @@ interface ThemeType {
   [key: string]: any;
 }
 
-const colorNeutral: ThemeType = {
+const neutralColors: ThemeType = {
   25: "#FAFAF9",
   50: "#F1F1EF",
   100: "#E5E2DC",
@@ -15,4 +15,4 @@ const colorNeutral: ThemeType = {
   900: "#221E16",
 };  
 
-export default colorNeutral;
+export default neutralColors;

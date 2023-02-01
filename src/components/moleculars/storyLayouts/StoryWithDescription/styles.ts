@@ -12,6 +12,15 @@ export const Container = styled.div<ContainerProps>`
   background-repeat: no-repeat;
 `;
 
+export const LoaderContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.neutral10};
+`;
+
 export type ContentProps = {
   hasProfileData: boolean;
 };

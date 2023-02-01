@@ -1,6 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/analytics";
-import { logError } from "../../crashReport";
+import { logError } from "services/crashReport";
 
 interface EventParams {
   [key: string]: string | number | undefined;

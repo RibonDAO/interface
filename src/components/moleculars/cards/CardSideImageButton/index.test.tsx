@@ -110,9 +110,7 @@ describe("CardSideImageButton", () => {
         />,
       );
 
-      expect(screen.getByText("text")).toHaveStyle(
-        `color: ${primary[300]};`,
-      );
+      expect(screen.getByText("text")).toHaveStyle(`color: ${primary[300]};`);
     });
 
     it("renders correct background color", () => {
@@ -157,9 +155,7 @@ describe("CardSideImageButton", () => {
         />,
       );
 
-      expect(screen.getByText("text")).toHaveStyle(
-        `color: ${primary[300]};`,
-      );
+      expect(screen.getByText("text")).toHaveStyle(`color: ${primary[300]};`);
     });
 
     it("renders correct background color", () => {

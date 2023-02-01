@@ -9,8 +9,8 @@ import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModa
 import { useLocation } from "react-router-dom";
 import useVoucher from "hooks/useVoucher";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
-import * as S from "../styles";
 import StoriesSection from "../StoriesSection";
+import * as S from "../styles";
 
 type LocationStateType = {
   failedDonation: boolean;
@@ -23,9 +23,9 @@ type Props = {
   setChosenNonProfit: (nonProfit: NonProfit) => void;
   setConfirmModalVisible: (visible: boolean) => void;
   canDonate: boolean;
-  currentNonProfit: number;
-  onCurrentNonProfitChange: (index: number) => void;
 };
+
+const MINIMUM_NON_PROFITS_TO_LOOP = 3;
 
 function NonProfitsList({
   nonProfits,
@@ -33,14 +33,14 @@ function NonProfitsList({
   setConfirmModalVisible,
   canDonate,
   integration,
-  currentNonProfit,
-  onCurrentNonProfitChange,
 }: Props): JSX.Element {
   const { state } = useLocation<LocationStateType>();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
+
+  const [currentNonProfitIndex, setCurrentNonProfitIndex] = useState(0);
 
   const { showBlockedDonationModal } = useBlockedDonationModal(
     state?.blockedDonation,
@@ -93,13 +93,13 @@ function NonProfitsList({
         canDonateAndHasVoucher={Boolean(canDonateAndHasVoucher)}
       />
       <SliderCardsEnhanced
-        currentSlide={currentNonProfit}
-        onCurrentSlideChange={onCurrentNonProfitChange}
+        currentSlide={currentNonProfitIndex}
+        onCurrentSlideChange={(index) => setCurrentNonProfitIndex(index)}
         saveStateIdentifier="nonProfitsList"
-        loop
+        loop={nonProfits.length >= MINIMUM_NON_PROFITS_TO_LOOP + 1}
       >
-        {nonProfits.map((nonProfit: any, idx: number) => (
-          <S.CardWrapper key={idx.toString()}>
+        {nonProfits.map((nonProfit: any) => (
+          <S.CardWrapper key={nonProfit.id}>
             <CardCenterImageButton
               image={nonProfit.mainImage || nonProfit.cause?.mainImage}
               title={formattedImpactText(

@@ -5,7 +5,7 @@ export const NavigationWrapper = styled.div`
   position: relative;
 `;
 
-export const LeftSide = styled.div`
+export const LeftSide = styled.div<{ visible: boolean }>`
   width: 100px;
   height: 100%;
   position: absolute;
@@ -25,11 +25,13 @@ export const LeftSide = styled.div`
   visibility: hidden;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    visibility: visible;
+    visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
+    opacity: ${({ visible }) => (visible ? "1" : "0")};
+    transition: opacity 0.1s ease-in-out;
   }
 `;
 
-export const RightSide = styled.div`
+export const RightSide = styled.div<{ visible: boolean }>`
   width: 100px;
   height: 100%;
   position: absolute;
@@ -50,6 +52,6 @@ export const RightSide = styled.div`
   visibility: hidden;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    visibility: visible;
+    visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
   }
 `;

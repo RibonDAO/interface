@@ -30,7 +30,7 @@ export const Subtitle = styled.h5`
 `;
 
 export const CardsButtonContainer = styled.div`
-  margin-top: ${({ theme }) => theme.spacing(16)};
+  margin-top: ${({ theme }) => theme.spacing(32)};
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

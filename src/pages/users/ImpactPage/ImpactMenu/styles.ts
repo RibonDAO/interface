@@ -80,4 +80,5 @@ export const EmptyText = styled.span`
 export const EmptyButton = styled(Button)`
   width: 196px;
   color: ${({ theme }) => theme.colors.green40};
+  padding: ${({ theme }) => theme.spacing(8, 16)};
 `;

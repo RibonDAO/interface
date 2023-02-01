@@ -7,7 +7,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { setUserId } from "services/analytics";
+import { setUserId } from "services/analytics/firebase";
 import User from "types/entities/User";
 
 export interface ICurrentUserContext {

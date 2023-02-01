@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "components/atomics/buttons/Button";
 import ReactModal from "react-modal";
-import { logEvent } from "services/analytics";
+import { logEvent } from "services/analytics/firebase";
 import { ZendeskOpenChat } from "config/zendesk/features";
 import { useTranslation } from "react-i18next";
 import * as S from "./styles";

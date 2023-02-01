@@ -19,7 +19,7 @@ import {
 } from "lib/web3Helpers/etherFormatters";
 import { logError } from "services/crashReport";
 import { stringToNumber } from "lib/formatters/stringToNumberFormatter";
-import { logEvent } from "services/analytics";
+import { logEvent } from "services/analytics/firebase";
 import { BigNumber, utils } from "ethers";
 import { useWalletContext } from "../walletContext";
 import { useLoadingOverlay } from "../loadingOverlayContext";

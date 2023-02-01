@@ -2,7 +2,7 @@ import Divider from "components/atomics/Divider";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import { useTranslation } from "react-i18next";
 import theme from "styles/theme";
-import { logEvent } from "services/analytics";
+import { logEvent } from "services/analytics/firebase";
 import Offer from "types/entities/Offer";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";

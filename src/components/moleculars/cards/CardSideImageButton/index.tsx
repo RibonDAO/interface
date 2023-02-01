@@ -41,7 +41,7 @@ function CardSideImageButton({
           text={buttonText}
           textColor={isCollected ? primary[300] : buttonTextColor}
           backgroundColor={isCollected ? neutral10 : buttonBackgroundColor}
-          borderColor={primary.colorBrandPrimary300}
+          borderColor={primary[300]}
           leftIcon={isCollected ? checkIcon : undefined}
           onClick={() => {}}
         />

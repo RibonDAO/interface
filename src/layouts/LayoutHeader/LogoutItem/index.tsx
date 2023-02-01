@@ -55,8 +55,8 @@ function LogoutItem(): JSX.Element {
             outline
             text={t("logoutButton")}
             onClick={() => setWarningModalVisible(true)}
-            textColor={tertiary.colorBrandTertiary400}
-            borderColor={tertiary.colorBrandTertiary400}
+            textColor={tertiary[400]}
+            borderColor={tertiary[400]}
             round
           />
         }

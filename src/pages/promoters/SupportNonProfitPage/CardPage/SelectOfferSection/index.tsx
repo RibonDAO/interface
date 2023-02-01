@@ -94,10 +94,10 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
             defaultValue={currentCoin}
             containerId={`currency-selector-${nonProfit?.id}`}
             customInputStyles={{
-              borderColor: tertiary.colorBrandTertiary800,
+              borderColor: tertiary[800],
               height: 40,
               marginBottom: 0,
-              color: tertiary.colorBrandTertiary800,
+              color: tertiary[800],
               width: 80,
             }}
           />
@@ -110,7 +110,7 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
         onChange={(event) => {
           setCurrentOfferIndex(event.target.value);
         }}
-        color={tertiary.colorBrandTertiary400}
+        color={tertiary[400]}
       />
     </S.Container>
   );

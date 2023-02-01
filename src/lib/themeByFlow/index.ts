@@ -10,10 +10,10 @@ const pageThemes: any = {
     shade40: theme.colors.orange40,
   },
   nonProfit: {
-    shade10: tertiary.colorBrandTertiary50,
+    shade10: tertiary[50],
     shade20: tertiary[200],
-    shade30: tertiary.colorBrandTertiary400,
-    shade40: tertiary.colorBrandTertiary800,
+    shade30: tertiary[400],
+    shade40: tertiary[800],
   },
 };
 

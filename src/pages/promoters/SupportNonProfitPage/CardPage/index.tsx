@@ -108,13 +108,13 @@ function CardPage(): JSX.Element {
         onChange={handleCauseClick}
         indexSelected={preSelectedIndex()}
         nameExtractor={(element) => element.name}
-        backgroundColor={tertiary.colorBrandTertiary800}
-        textColorOutline={tertiary.colorBrandTertiary800}
-        borderColor={tertiary.colorBrandTertiary800}
+        backgroundColor={tertiary[800]}
+        textColorOutline={tertiary[800]}
+        borderColor={tertiary[800]}
         borderColorOutline={tertiary[200]}
       />
       <S.NonProfitsListContainer>
-        <SliderCards scrollOffset={400} color={tertiary.color}>
+        <SliderCards scrollOffset={400} color={tertiary[400]}>
           {filteredNonProfits().map((nonProfit) => (
             <Fragment key={nonProfit.id}>
               <NonProfitCard

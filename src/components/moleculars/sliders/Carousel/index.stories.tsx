@@ -12,8 +12,8 @@ export default {
   component: Carousel,
   parameters: {
     backgrounds: {
-      default: "colorBrandPrimary300",
-      values: [{ name: "colorBrandPrimary300", value: primary[300] }],
+      default: "color.brand.primary[300]",
+      values: [{ name: "color.brand.primary[300]", value: primary[300] }],
     },
   },
 } as ComponentMeta<typeof Carousel>;

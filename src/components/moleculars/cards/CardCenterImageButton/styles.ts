@@ -1,3 +1,4 @@
+import { rgba } from "lib/hexToRgba";
 import styled from "styled-components";
 import { defaultBodyMdSemibold } from "styles/typography/default";
 
@@ -54,7 +55,7 @@ export const InfoText = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => `${theme.colors.gray40}B3`};
+  background-color: ${({ theme }) => rgba(theme.colors.gray40, 0.7)};
   color: ${({ theme }) => theme.colors.neutral10};
   cursor: pointer;
 

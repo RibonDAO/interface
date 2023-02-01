@@ -1,3 +1,4 @@
+import { rgba } from "lib/hexToRgba";
 import styled from "styled-components";
 import { defaultBodyMdSemibold } from "styles/typography/default";
 
@@ -39,6 +40,28 @@ export const ExpandIcon = styled.img`
   left: 10px;
   z-index: ${({ theme }) => theme.zindex.above};
   cursor: pointer;
+`;
+
+export const InfoText = styled.div`
+  padding-block: ${({ theme }) => theme.spacing(4)};
+  padding-inline: ${({ theme }) => theme.spacing(8)};
+  min-width: 100px;
+  height: 30px;
+  border-radius: 15px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: ${({ theme }) => theme.zindex.above};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ theme }) => rgba(theme.colors.gray40, 0.7)};
+  color: ${({ theme }) => theme.colors.neutral10};
+  cursor: pointer;
+
+  img {
+    margin-right: ${({ theme }) => theme.spacing(4)};
+  }
 `;
 
 export const Image = styled.img`

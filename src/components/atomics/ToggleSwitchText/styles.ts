@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { defaultBodyMdSemibold } from "styles/typography/default";
-import { getPrimary } from "styles/colors/utils";
 
 export const Container = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.brand.primary[300]};

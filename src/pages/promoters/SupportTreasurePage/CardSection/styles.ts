@@ -5,7 +5,6 @@ import {
   defaultBodyXsRegular,
   defaultBodyMdBold,
 } from "styles/typography/default";
-import { getPrimary } from "styles/colors/utils";
 
 export const CardSectionContainer = styled.div`
   margin-top: ${({ theme }) => theme.spacing(24)};

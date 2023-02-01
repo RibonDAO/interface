@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { getPrimary } from "styles/colors/utils";
 
 type ContainerProps = {
   backgroundImage: string;

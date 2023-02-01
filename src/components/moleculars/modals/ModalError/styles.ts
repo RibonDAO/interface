@@ -1,6 +1,5 @@
 import Button from "components/atomics/buttons/Button";
 import styled from "styled-components";
-import { getPrimary } from "styles/colors/utils";
 import { Modal } from "../ModalBlank/styles";
 
 export const ModalWithIcon = styled(Modal)`

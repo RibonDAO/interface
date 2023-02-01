@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Button from "components/atomics/buttons/Button";
 import { MainBodyContainer, MainContainer } from "layouts/MainLayout/styles";
-import { getPrimary } from "styles/colors/utils";
 
 export const Container = styled(MainContainer)``;
 

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { getPrimary } from "styles/colors/utils";
 
 export const BillingInformationSectionContainer = styled.div`
   margin-top: ${({ theme }) => theme.spacing(20)};

@@ -4,7 +4,6 @@ import {
   defaultBodyXsRegular,
   defaultBodySmSemibold,
 } from "styles/typography/default";
-import { getPrimary } from "styles/colors/utils";
 
 export const Container = styled.div`
   padding-bottom: ${({ theme }) => theme.spacing(48)};

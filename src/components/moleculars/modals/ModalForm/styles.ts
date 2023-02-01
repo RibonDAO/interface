@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Modal } from "../ModalBlank/styles";
-import { getPrimary } from "styles/colors/utils";
 
 export const ModalWithIcon = styled(Modal)`
   padding: ${({ theme }) => theme.spacing(16)};

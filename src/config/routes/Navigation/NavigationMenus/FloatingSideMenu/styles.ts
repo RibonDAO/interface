@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { getPrimary } from "styles/colors/utils";
 
 export const Menu = styled.div<{ visible: boolean }>`
   padding-block: 10px;

@@ -3,7 +3,6 @@ import {
   stylizedDisplayMd,
   stylizedDisplaySm,
 } from "styles/typography/stylized";
-import { getPrimary } from "styles/colors/utils";
 import {
   defaultHeadingXs,
   defaultBodySmRegular,

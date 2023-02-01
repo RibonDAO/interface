@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { getPrimary } from "styles/colors/utils";
 import { defaultBodySmSemibold } from "styles/typography/default";
 
 export const Container = styled.div`

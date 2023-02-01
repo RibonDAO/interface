@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { stylizedDisplayMd } from "styles/typography/stylized";
-import { getPrimary } from "styles/colors/utils";
 
 export const Container = styled.div`
   display: flex;

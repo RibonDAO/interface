@@ -5,7 +5,6 @@ import {
 } from "styles/typography/default";
 import { stylizedDisplayXs } from "styles/typography/stylized";
 import Dropdown from "components/atomics/Dropdown";
-import { getTertiary } from "styles/colors/utils";
 
 export const Container = styled.div`
   display: flex;

@@ -6,7 +6,6 @@ import {
   defaultBodyMdBold,
 } from "styles/typography/default";
 import { stylizedDisplayLg } from "styles/typography/stylized";
-import { getPrimary } from "styles/colors/utils";
 
 export const Container = styled.div`
   display: flex;

@@ -181,7 +181,7 @@ function CausesPage(): JSX.Element {
       id: 0,
       name: t("allCauses"),
     },
-    ...activeCauses,
+    ...(activeCauses || []),
   ];
 
   return (

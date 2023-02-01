@@ -41,6 +41,28 @@ export const ExpandIcon = styled.img`
   cursor: pointer;
 `;
 
+export const InfoText = styled.div`
+  padding-block: ${({ theme }) => theme.spacing(4)};
+  padding-inline: ${({ theme }) => theme.spacing(8)};
+  min-width: 100px;
+  height: 30px;
+  border-radius: 15px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: ${({ theme }) => theme.zindex.above};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ theme }) => `${theme.colors.gray40}B3`};
+  color: ${({ theme }) => theme.colors.neutral10};
+  cursor: pointer;
+
+  img {
+    margin-right: ${({ theme }) => theme.spacing(4)};
+  }
+`;
+
 export const Image = styled.img`
   width: 100%;
   height: 100%;

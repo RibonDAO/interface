@@ -73,16 +73,16 @@ export const CommunityAddValue = styled.p`
 export const CommunityAddButton = styled(ButtonComponent)`
   margin-top: ${({ theme }) => theme.spacing(8)};
   padding: ${({ theme }) => theme.spacing(4)};
-  border-color: ${({ theme }) => theme.colors.tertiary[800]};
+  border-color: ${({ theme }) => theme.colors.brand.tertiary[800]};
   font-size: 11px;
-  color: ${({ theme }) => theme.colors.tertiary[800]};
+  color: ${({ theme }) => theme.colors.brand.tertiary[800]};
 `;
 
 export const DonateButton = styled(ButtonComponent)`
-  border-color: ${({ theme }) => theme.colors.tertiary[200]};
+  border-color: ${({ theme }) => theme.colors.brand.tertiary[200]};
   font-weight: 600;
-  background-color: ${({ theme }) => theme.colors.tertiary[200]};
-  color: ${({ theme }) => theme.colors.tertiary[800]};
+  background-color: ${({ theme }) => theme.colors.brand.tertiary[200]};
+  color: ${({ theme }) => theme.colors.brand.tertiary[800]};
 `;
 
 export const BackgroundImage = styled.img`
@@ -133,7 +133,7 @@ export const UserBalanceText = styled.p`
 export const UserBalanceTextHighlight = styled.span`
   ${defaultBodySmSemibold}
 
-  color: ${({ theme }) => theme.colors.tertiary[400]};
+  color: ${({ theme }) => theme.colors.brand.tertiary[400]};
 `;
 
 export const RefundText = styled.p`

@@ -25,6 +25,7 @@
       "donateAnimationModalOrigin": "You",
       "donateAnimationModalDestiny": "Project",
       "chooseCauseModalTitle": "Choose a cause",
+      "allCauses": "All",
       "stories": {
         "loading": "Loading stories...",
         "empty": "No stories available."

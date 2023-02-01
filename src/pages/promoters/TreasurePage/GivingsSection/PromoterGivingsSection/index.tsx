@@ -10,7 +10,7 @@ import {
 } from "lib/web3Helpers/etherFormatters";
 import { formatDate } from "lib/web3Helpers/timeStampFormatters";
 import { useEffect, useState, useCallback } from "react";
-import { logEvent } from "services/analytics";
+import { logEvent } from "services/analytics/firebase";
 import useNavigation from "hooks/useNavigation";
 import usePromoterDonations from "hooks/apiTheGraphHooks/usePromoterDonations";
 import { useWalletContext } from "contexts/walletContext";

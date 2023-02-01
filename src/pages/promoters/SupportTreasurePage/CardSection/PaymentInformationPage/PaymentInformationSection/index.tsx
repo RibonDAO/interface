@@ -5,7 +5,7 @@ import { maskToCreditCard } from "lib/maskToCreditCard";
 import { maskToExpirationDate } from "lib/maskToExpirationDate";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { logEvent } from "services/analytics";
+import { logEvent } from "services/analytics/firebase";
 import * as S from "./styles";
 
 function PaymentInformationSection() {

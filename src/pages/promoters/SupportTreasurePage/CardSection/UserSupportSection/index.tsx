@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { logEvent } from "services/analytics";
+import { logEvent } from "services/analytics/firebase";
 import supportIcon from "assets/icons/support-icon-orange.svg";
 import { ZendeskOpenChat } from "config/zendesk/features";
 import * as S from "./styles";

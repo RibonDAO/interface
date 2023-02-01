@@ -5,12 +5,12 @@ export const NavigationWrapper = styled.div`
   position: relative;
 `;
 
-export const LeftSide = styled.div`
+export const LeftSide = styled.div<{ visible: boolean }>`
   width: 100px;
   height: 100%;
   position: absolute;
   top: 0;
-  left: 0;
+  left: -20px;
   z-index: ${({ theme }) => theme.zindex.navigator};
   display: flex;
   align-items: center;
@@ -25,11 +25,13 @@ export const LeftSide = styled.div`
   visibility: hidden;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    visibility: visible;
+    opacity: ${({ visible }) => (visible ? "1" : "0")};
+    visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
+    transition: opacity 0.1s ease-in-out;
   }
 `;
 
-export const RightSide = styled.div`
+export const RightSide = styled.div<{ visible: boolean }>`
   width: 100px;
   height: 100%;
   position: absolute;
@@ -50,6 +52,6 @@ export const RightSide = styled.div`
   visibility: hidden;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    visibility: visible;
+    visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
   }
 `;

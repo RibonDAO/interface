@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { KeenSliderInstance, useKeenSlider } from "keen-slider/react";
+import { KeenSliderPlugin, useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import RoundedArrow from "components/atomics/arrows/RoundedArrow";
 import useBreakpoint from "hooks/useBreakpoint";
@@ -12,24 +12,19 @@ export type Props = {
   children: JSX.Element[];
   saveStateIdentifier?: string;
   slideWidthOnDesktop?: number;
+  resetOnChildrenChange?: boolean;
 };
-
-const SAVE_STATE_PREFIX = "slider-cards-enhanced";
-
-const MINIMUM_SLIDES_TO_LOOP = 5;
 
 export default function SliderCardsEnhanced({
   loop = false,
-  currentSlide,
-  onCurrentSlideChange,
   children,
-  saveStateIdentifier,
   slideWidthOnDesktop = 287,
 }: Props) {
   const [loaded, setLoaded] = useState(false);
   const { isMobile } = useBreakpoint();
   const mounted = useRef(true);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const [showLeftSide, setShowLeftSide] = useState(false);
 
   const calculateSlidesPerViewOnDesktop = () => {
     if (wrapperRef.current) {
@@ -46,53 +41,45 @@ export default function SliderCardsEnhanced({
     return calculateSlidesPerViewOnDesktop();
   };
 
-  const saveState = (s: KeenSliderInstance) => {
-    if (saveStateIdentifier) {
-      localStorage.setItem(
-        `${SAVE_STATE_PREFIX}__${saveStateIdentifier}`,
-        String(s.track.details.rel),
-      );
-    }
+  const MutationPlugin: KeenSliderPlugin = (slider) => {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach(() => {
+        setShowLeftSide(false);
+        slider.update();
+        slider.track.init(0);
+      });
+    });
+    const config = { childList: true };
+
+    slider.on("created", () => {
+      observer.observe(slider.container, config);
+    });
+    slider.on("destroyed", () => {
+      observer.disconnect();
+    });
   };
 
-  const loadState = () => {
-    if (saveStateIdentifier) {
-      const index = localStorage.getItem(
-        `${SAVE_STATE_PREFIX}__${saveStateIdentifier}`,
-      );
-      if (index) onCurrentSlideChange(Number(index));
-    }
-  };
-
-  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
-    initial: 0,
-    loop,
-    mode: "free-snap",
-    slides: {
-      perView: getSlidesPerView(),
-      spacing: 0,
+  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
+    {
+      initial: 0,
+      loop,
+      mode: "free-snap",
+      slides: {
+        perView: getSlidesPerView(),
+        spacing: 0,
+      },
+      created() {
+        setLoaded(true);
+      },
+      dragStarted() {
+        if (!showLeftSide) setShowLeftSide(true);
+      },
+      animationStarted() {
+        if (!showLeftSide) setShowLeftSide(true);
+      },
     },
-    animationEnded(s) {
-      if (mounted.current) onCurrentSlideChange(s.track.details.rel);
-    },
-    created() {
-      setLoaded(true);
-      loadState();
-    },
-    destroyed(s) {
-      saveState(s);
-    },
-  });
-
-  useEffect(() => {
-    if (instanceRef.current) {
-      if (instanceRef.current.track.details.rel !== currentSlide) {
-        instanceRef.current.moveToIdx(currentSlide, undefined, {
-          duration: 0,
-        });
-      }
-    }
-  }, [currentSlide]);
+    [MutationPlugin],
+  );
 
   useEffect(
     () => () => {
@@ -101,25 +88,6 @@ export default function SliderCardsEnhanced({
     [],
   );
 
-  const renderSlides = () => {
-    let elements = children;
-
-    while (elements.length < MINIMUM_SLIDES_TO_LOOP) {
-      elements = [...elements, ...children];
-    }
-
-    const slides = elements.flat().map(
-      (component: any, idx: number) =>
-        component && (
-          <div className="keen-slider__slide" key={idx.toString()}>
-            {component}
-          </div>
-        ),
-    );
-
-    return slides;
-  };
-
   return (
     <S.NavigationWrapper ref={wrapperRef}>
       <div
@@ -127,11 +95,22 @@ export default function SliderCardsEnhanced({
         className="keen-slider"
         onDrag={(e) => e.preventDefault()}
       >
-        {renderSlides()}
+        {children.flat().map(
+          (component: any) =>
+            component && (
+              <div
+                className="keen-slider__slide"
+                style={{ overflow: "visible" }}
+                key={`keen_slider___slide_element_${component.key}`}
+              >
+                {component}
+              </div>
+            ),
+        )}
       </div>
       {loaded && instanceRef.current && (
         <>
-          <S.RightSide>
+          <S.RightSide visible={children.length > 3}>
             <RoundedArrow
               direction="right"
               onClick={(e: any) =>
@@ -139,7 +118,7 @@ export default function SliderCardsEnhanced({
               }
             />
           </S.RightSide>
-          <S.LeftSide>
+          <S.LeftSide visible={showLeftSide && children.length > 3}>
             <RoundedArrow
               direction="left"
               onClick={(e: any) =>

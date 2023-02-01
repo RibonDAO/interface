@@ -27,7 +27,7 @@ function CardSideImageButton({
   ribons,
   title,
   buttonTextColor = neutral10,
-  buttonBackgroundColor = primary.colorBrandPrimary300,
+  buttonBackgroundColor = primary[300],
   buttonText,
   description,
   onClick,
@@ -39,9 +39,7 @@ function CardSideImageButton({
       buttonText && (
         <Button
           text={buttonText}
-          textColor={
-            isCollected ? primary.colorBrandPrimary300 : buttonTextColor
-          }
+          textColor={isCollected ? primary[300] : buttonTextColor}
           backgroundColor={isCollected ? neutral10 : buttonBackgroundColor}
           borderColor={primary.colorBrandPrimary300}
           leftIcon={isCollected ? checkIcon : undefined}

@@ -67,7 +67,7 @@ export const CommunityAddText = styled.p`
 export const CommunityAddValue = styled.p`
   ${stylizedDisplayXs}
 
-  color: ${({ theme }) => theme.colors.brand.tertiary.colorBrandTertiary200};
+  color: ${({ theme }) => theme.colors.brand.tertiary[200]};
 `;
 
 export const CommunityAddButton = styled(ButtonComponent)`

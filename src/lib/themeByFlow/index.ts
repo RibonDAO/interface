@@ -11,7 +11,7 @@ const pageThemes: any = {
   },
   nonProfit: {
     shade10: tertiary.colorBrandTertiary50,
-    shade20: tertiary.colorBrandTertiary200,
+    shade20: tertiary[200],
     shade30: tertiary.colorBrandTertiary400,
     shade40: tertiary.colorBrandTertiary800,
   },

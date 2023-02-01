@@ -111,7 +111,7 @@ function CardPage(): JSX.Element {
         backgroundColor={tertiary.colorBrandTertiary800}
         textColorOutline={tertiary.colorBrandTertiary800}
         borderColor={tertiary.colorBrandTertiary800}
-        borderColorOutline={tertiary.colorBrandTertiary200}
+        borderColorOutline={tertiary[200]}
       />
       <S.NonProfitsListContainer>
         <SliderCards scrollOffset={400} color={tertiary.color}>

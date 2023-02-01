@@ -10,7 +10,7 @@ export type Props = {
 const { primary } = theme.colors.brand;
 
 function Spinner({
-  strokeColor = primary.colorBrandPrimary300,
+  strokeColor = primary[300],
   size = "18",
 }: Props): JSX.Element {
   return (

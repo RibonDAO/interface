@@ -27,7 +27,7 @@ function GroupButtons({
   textColor = theme.colors.neutral10,
   textColorOutline = theme.colors.green40,
   borderColor = theme.colors.green40,
-  borderColorOutline = primary.colorBrandPrimary300,
+  borderColorOutline = primary[300],
 }: Props): JSX.Element {
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
 

@@ -16,5 +16,5 @@ const Template: ComponentStory<typeof Spinner> = function (args: Props) {
 export const Default = Template.bind({});
 
 Default.args = {
-  strokeColor: primary.colorBrandPrimary300,
+  strokeColor: primary[300],
 };

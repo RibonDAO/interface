@@ -14,7 +14,7 @@ const { primary } = theme.colors.brand;
 function SliderCards({
   children,
   scrollOffset,
-  color = primary.colorBrandPrimary300,
+  color = primary[300],
 }: Props): JSX.Element {
   const [sliderPosition, setSliderPosition] = useState(0);
   const [scrollInTheBeginning, setScrollInTheBeginning] = useState(true);

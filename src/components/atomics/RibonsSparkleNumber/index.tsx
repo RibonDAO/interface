@@ -13,7 +13,7 @@ export type Props = {
 };
 function RibonsSparkleNumber({
   ribons,
-  ribonColor = primary.colorBrandPrimary300,
+  ribonColor = primary[300],
 }: Props): JSX.Element {
   return (
     <S.Container>

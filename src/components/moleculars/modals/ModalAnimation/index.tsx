@@ -33,7 +33,7 @@ function ModalAnimation({
   icon,
   isIconDestinyFullSize = false,
   isIconOriginFullSize = false,
-  color = primary.colorBrandPrimary300,
+  color = primary[300],
 }: Props): JSX.Element {
   const [iconLoaded, setIconLoaded] = useState(false);
 

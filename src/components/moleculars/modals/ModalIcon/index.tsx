@@ -50,7 +50,7 @@ function ModalIcon({
   primaryButtonText = null,
   primaryButtonLeftIcon = undefined,
   primaryButtonTextColor = theme.colors.neutral10,
-  primaryButtonColor = primary.colorBrandPrimary300,
+  primaryButtonColor = primary[300],
   primaryButtonBorderColor,
   secondaryButtonText = null,
   secondaryButtonLeftIcon = undefined,

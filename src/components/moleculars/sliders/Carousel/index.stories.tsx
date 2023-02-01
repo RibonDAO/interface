@@ -13,9 +13,7 @@ export default {
   parameters: {
     backgrounds: {
       default: "colorBrandPrimary300",
-      values: [
-        { name: "colorBrandPrimary300", value: primary.colorBrandPrimary300 },
-      ],
+      values: [{ name: "colorBrandPrimary300", value: primary[300] }],
     },
   },
 } as ComponentMeta<typeof Carousel>;

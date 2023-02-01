@@ -12,9 +12,9 @@ describe("<RibonIcon />", () => {
   });
 
   it("should render with colorBrandTertiary400 color when color is passed ", () => {
-    renderComponent(<RibonIcon color="colorBrandTertiary400" />);
+    renderComponent(<RibonIcon color="color.brand.tertiary[400]" />);
     expect(screen.getByLabelText(/Ribon Icon/i).parentElement).toHaveStyle(
-      "color: colorBrandTertiary400",
+      "color: color.brand.tertiary[400]",
     );
   });
 });

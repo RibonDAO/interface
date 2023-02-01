@@ -111,7 +111,7 @@ describe("CardSideImageButton", () => {
       );
 
       expect(screen.getByText("text")).toHaveStyle(
-        `color: ${primary.colorBrandPrimary300};`,
+        `color: ${primary[300]};`,
       );
     });
 
@@ -158,7 +158,7 @@ describe("CardSideImageButton", () => {
       );
 
       expect(screen.getByText("text")).toHaveStyle(
-        `color: ${primary.colorBrandPrimary300};`,
+        `color: ${primary[300]};`,
       );
     });
 

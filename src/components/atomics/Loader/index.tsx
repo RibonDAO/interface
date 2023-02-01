@@ -13,7 +13,7 @@ export type Props = {
 };
 
 function Loader({
-  color = primary.colorBrandPrimary300,
+  color = primary[300],
   width = 40,
   height = 40,
 }: Props): JSX.Element {

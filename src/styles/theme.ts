@@ -1,6 +1,6 @@
 import brandColors from "styles/colors/brand";
 import feedbackColors from "./colors/feedback";
-import neutralColors from "./colors/neutral";
+import colorNeutral from "./colors/neutral";
 
 export interface Breakpoint {
   mobile: string;
@@ -54,7 +54,7 @@ const theme: ThemeType = {
     defaultShadow05: "rgba(40, 36, 28, 0.05)",
     backgroundOverlay: "rgba(40, 36, 28, 0.60)",
     brand: brandColors,
-    neutral: neutralColors,
+    neutral: colorNeutral,
     feedback: feedbackColors,
   },
   filters: {

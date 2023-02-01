@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import NonProfit from "types/entities/NonProfit";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import useIntegration from "hooks/apiHooks/useIntegration";
-import { logEvent } from "services/analytics";
+import { logEvent } from "services/analytics/firebase";
 import useUsers from "hooks/apiHooks/useUsers";
 import useSources from "hooks/apiHooks/useSources";
 import { useCurrentUser } from "contexts/currentUserContext";

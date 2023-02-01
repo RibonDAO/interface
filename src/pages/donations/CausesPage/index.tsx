@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { logEvent } from "services/analytics";
+import { logEvent } from "services/analytics/firebase";
 import NonProfit from "types/entities/NonProfit";
 import useNonProfits from "hooks/apiHooks/useNonProfits";
 import { useLocation } from "react-router-dom";
@@ -23,6 +23,7 @@ import GroupButtons from "components/moleculars/sections/GroupButtons";
 import useVoucher from "hooks/useVoucher";
 import { useCausesContext } from "contexts/causesContext";
 import UserSupportSection from "pages/promoters/SupportTreasurePage/CardSection/UserSupportSection";
+import { track } from "@amplitude/analytics-browser";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
@@ -97,6 +98,10 @@ function CausesPage(): JSX.Element {
   }
 
   const hasAvailableDonation = !state?.blockedDonation && canDonate;
+
+  useEffect(() => {
+    track("Cause Page View");
+  }, []);
 
   useEffect(() => {
     if (

@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useWalletContext } from "contexts/walletContext";
 import { onAccountChange } from "lib/walletConnector";
 import WalletIcon from "assets/icons/wallet-icon.svg";
-import { logEvent } from "services/analytics";
+import { logEvent } from "services/analytics/firebase";
 import { walletTruncate } from "lib/formatters/walletTruncate";
 import * as S from "./styles";
 

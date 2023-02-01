@@ -5,7 +5,7 @@ import { useLanguage } from "hooks/useLanguage";
 import { maskForTaxId } from "lib/maskForTaxId";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import InputText from "components/atomics/inputs/InputText";
-import { logEvent } from "services/analytics";
+import { logEvent } from "services/analytics/firebase";
 import { countryList } from "utils/countryList";
 import * as S from "./styles";
 

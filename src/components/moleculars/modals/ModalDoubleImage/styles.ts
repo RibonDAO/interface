@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { defaultBodyMdBold } from "styles/typography/default";
 import { Modal } from "../ModalBlank/styles";
 
 export const ModalWithDoubleImage = styled(Modal)`
@@ -40,7 +41,9 @@ export const Body = styled.h4`
   color: ${({ theme }) => theme.colors.gray30};
 `;
 
-export const HighlightedText = styled.h4`
+export const HighlightedText = styled.p`
+  ${defaultBodyMdBold}
+
   margin-top: ${({ theme }) => theme.spacing(16)};
   text-align: center;
   color: ${({ theme }) => theme.colors.gray40};

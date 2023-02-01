@@ -11,11 +11,11 @@ export const MainContainer = styled.div`
 `;
 
 export const MainBodyContainer = styled.div`
-  margin-bottom: 64px;
-  padding: 24px 16px 16px;
+  margin-bottom: ${({ theme }) => theme.spacing(64)};
+  padding: ${({ theme }) => theme.spacing(24, 16, 16)};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    padding: 0;
+    padding: ${({ theme }) => theme.spacing(0)};
   }
 `;
 

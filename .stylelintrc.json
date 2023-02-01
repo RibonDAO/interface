@@ -11,7 +11,7 @@
       "except": ["first-nested"],
       "ignore": ["after-comment", "after-declaration"]
     }],
-    "function-no-unknown": [true, {"ignoreFunctions": ["${", "`url"]}],
+    "function-no-unknown": [true, {"ignoreFunctions": ["${", "`url", "theme.spacing"]}],
     "color-no-invalid-hex": true,
     "color-function-notation": null,
     "font-family-name-quotes": null,

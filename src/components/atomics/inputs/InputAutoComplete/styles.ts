@@ -13,7 +13,7 @@ export const InputAutoComplete = styled(Input)``;
 
 export const OptionContainer = styled.div`
   width: 100%;
-  padding: 8px 16px;
+  padding: ${({ theme }) => theme.spacing(8, 16)};
   background-color: ${({ theme }) => theme.colors.neutral10};
 
   &:hover {

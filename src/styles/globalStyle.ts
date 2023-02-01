@@ -7,8 +7,8 @@ const GlobalStyle = createGlobalStyle`
   ${typography}
 
   * {
-    margin: 0;
-    padding: 0;
+    margin: ${({ theme }) => theme.spacing(0)};
+    padding: ${({ theme }) => theme.spacing(0)};
     box-sizing: border-box;
     :focus {
       outline: none;

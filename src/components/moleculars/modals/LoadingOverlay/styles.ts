@@ -15,7 +15,7 @@ export const Container = styled.div`
 `;
 
 export const CenterDiv = styled.div`
-  padding: 16px 8px;
+  padding: ${({ theme }) => theme.spacing(16, 8)};
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -23,6 +23,6 @@ export const CenterDiv = styled.div`
 `;
 
 export const Message = styled.h3`
-  margin-left: 8px;
+  margin-left: ${({ theme }) => theme.spacing(8)};
   color: ${({ theme }) => theme.colors.gray40};
 `;

@@ -46,6 +46,12 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
+      <Route path="/app-in-development" exact>
+        <Suspense fallback={<div />}>
+          <StoriesPage />
+        </Suspense>
+      </Route>
+
       <Route path="/confirm-email" exact>
         <Suspense fallback={<div />}>
           <Navigation />

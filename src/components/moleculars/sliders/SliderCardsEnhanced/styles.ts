@@ -10,7 +10,7 @@ export const LeftSide = styled.div<{ visible: boolean }>`
   height: 100%;
   position: absolute;
   top: 0;
-  left: 0;
+  left: -20px;
   z-index: ${({ theme }) => theme.zindex.navigator};
   display: flex;
   align-items: center;

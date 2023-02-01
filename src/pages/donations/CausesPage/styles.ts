@@ -46,8 +46,14 @@ export const FooterText = styled.p`
 export const CardWrapper = styled.div`
   margin-bottom: 32px;
   margin-left: 16px;
+  overflow: visible;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    margin-inline: 8px;
+    margin-inline: 12px;
+    margin-left: 0px;
+
+    :nth-of-type(1) {
+      margin-left: 0px;
+    }
   }
 `;

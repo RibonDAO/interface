@@ -100,6 +100,7 @@ export default function SliderCardsEnhanced({
             component && (
               <div
                 className="keen-slider__slide"
+                style={{ overflow: "visible" }}
                 key={`keen_slider___slide_element_${component.key}`}
               >
                 {component}

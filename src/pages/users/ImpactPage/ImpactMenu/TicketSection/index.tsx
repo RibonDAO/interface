@@ -16,7 +16,11 @@ function TicketSection() {
       <S.EmptyImage src={ticketIllustration} />
       <S.EmptyTitle>{t("emptyTitle")}</S.EmptyTitle>
       <S.EmptyText>{t("emptyText")}</S.EmptyText>
-      <S.EmptyButton text={t("emptyButton")} onClick={handleEmptyButtonClick} />
+      <S.EmptyButton
+        text={t("emptyButton")}
+        size="medium"
+        onClick={handleEmptyButtonClick}
+      />
     </S.EmptySectionContainer>
   );
 }

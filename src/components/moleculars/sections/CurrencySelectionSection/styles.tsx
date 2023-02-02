@@ -9,7 +9,7 @@ export const Container = styled.div`
 
 export const Amount = styled.h3`
   ${stylizedDisplayMd}
-  color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => theme.colors.brand.primary[300]};
   font-weight: ${({ theme }) => theme.font.light};
 `;
 

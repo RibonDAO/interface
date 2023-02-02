@@ -44,6 +44,8 @@ export type Props = {
   onValuesChange?: (values: Record<any, any>) => void;
 };
 
+const { primary } = theme.colors.brand;
+
 function ModalForm({
   visible = false,
   icon = null,
@@ -51,7 +53,7 @@ function ModalForm({
   titleColor,
   primaryButtonText = null,
   primaryButtonTextColor = theme.colors.neutral10,
-  primaryButtonColor = theme.colors.green30,
+  primaryButtonColor = primary[300],
   primaryButtonBorderColor,
   primaryButtonDisabled,
   secondaryButtonText = null,

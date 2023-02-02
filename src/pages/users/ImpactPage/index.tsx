@@ -77,14 +77,8 @@ function ImpactPage(): JSX.Element {
               key={item.nonProfit.id}
               title={item.nonProfit.name}
               text={
-                formattedImpactText(
-                  item.nonProfit,
-                  item.impact,
-                  false,
-                  true,
-                  undefined,
-                  t("impactText"),
-                ) || ""
+                formattedImpactText(item.nonProfit, item.impact, false, true) ||
+                ""
               }
               icon={item.nonProfit.logo}
               size="large"

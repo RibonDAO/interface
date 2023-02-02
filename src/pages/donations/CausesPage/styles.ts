@@ -39,7 +39,7 @@ export const FooterText = styled.p`
 
   a {
     text-decoration: none;
-    color: ${({ theme }) => theme.colors.green30};
+    color: ${({ theme }) => theme.colors.brand.primary[300]};
   }
 `;
 

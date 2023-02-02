@@ -33,7 +33,7 @@ export const MainContent = styled.h3<{
       ? props.theme.colors.gray30
       : props.refunded
       ? props.theme.colors.gray20
-      : props.theme.colors.green30};
+      : props.theme.colors.brand.primary[300]};
 `;
 
 export const RightMainContent = styled.span<{
@@ -46,7 +46,7 @@ export const RightMainContent = styled.span<{
       ? props.theme.colors.gray30
       : props.refunded
       ? props.theme.colors.gray20
-      : props.theme.colors.green30};
+      : props.theme.colors.brand.primary[300]};
 `;
 
 export const LinkSection = styled.a<{
@@ -64,7 +64,7 @@ export const SpinnerSection = styled.a`
   display: flex;
   gap: 10px;
   text-decoration: none;
-  color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => theme.colors.brand.primary[300]};
 `;
 
 export const Image = styled.img``;

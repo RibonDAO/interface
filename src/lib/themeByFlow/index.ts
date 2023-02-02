@@ -1,5 +1,7 @@
 import theme from "styles/theme";
 
+const { tertiary } = theme.colors.brand;
+
 const pageThemes: any = {
   cause: {
     shade10: theme.colors.orange10,
@@ -8,10 +10,10 @@ const pageThemes: any = {
     shade40: theme.colors.orange40,
   },
   nonProfit: {
-    shade10: theme.colors.red10,
-    shade20: theme.colors.red20,
-    shade30: theme.colors.red30,
-    shade40: theme.colors.red40,
+    shade10: tertiary[50],
+    shade20: tertiary[200],
+    shade30: tertiary[400],
+    shade40: tertiary[800],
   },
 };
 

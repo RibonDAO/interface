@@ -4,8 +4,7 @@ import { flatten } from "lottie-colorify";
 import animationData from "./assets/loader.json";
 import * as S from "./styles";
 
-const { colors } = theme;
-const { green30 } = colors;
+const { primary } = theme.colors.brand;
 
 export type Props = {
   color?: string;
@@ -14,7 +13,7 @@ export type Props = {
 };
 
 function Loader({
-  color = green30,
+  color = primary[300],
   width = 40,
   height = 40,
 }: Props): JSX.Element {

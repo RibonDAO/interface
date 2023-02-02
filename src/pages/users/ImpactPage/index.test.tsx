@@ -79,7 +79,7 @@ describe("Impact Page", () => {
       });
 
       it("shows the impact cards", () => {
-        expectTextToBeInTheDocument("You donated 1 Impact description");
+        expectTextToBeInTheDocument("1 Impact description");
       });
     });
   });

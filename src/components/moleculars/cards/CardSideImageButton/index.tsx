@@ -5,8 +5,8 @@ import RibonsSparkleNumber from "components/atomics/RibonsSparkleNumber";
 import checkIcon from "assets/icons/check-icon.svg";
 import * as S from "./styles";
 
-const { colors } = theme;
-const { green30, neutral10 } = colors;
+const { neutral10 } = theme.colors;
+const { primary } = theme.colors.brand;
 
 export type Props = {
   backgroundColor?: string;
@@ -21,12 +21,13 @@ export type Props = {
   counter?: number;
   isCollected?: boolean;
 };
+
 function CardSideImageButton({
   icon,
   ribons,
   title,
   buttonTextColor = neutral10,
-  buttonBackgroundColor = green30,
+  buttonBackgroundColor = primary[300],
   buttonText,
   description,
   onClick,
@@ -38,9 +39,9 @@ function CardSideImageButton({
       buttonText && (
         <Button
           text={buttonText}
-          textColor={isCollected ? green30 : buttonTextColor}
+          textColor={isCollected ? primary[300] : buttonTextColor}
           backgroundColor={isCollected ? neutral10 : buttonBackgroundColor}
-          borderColor={green30}
+          borderColor={primary[300]}
           leftIcon={isCollected ? checkIcon : undefined}
           onClick={() => {}}
         />

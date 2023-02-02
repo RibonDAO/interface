@@ -2,8 +2,6 @@ import { useTranslation } from "react-i18next";
 import LeftArrow from "assets/icons/arrow-left-green.svg";
 import { logEvent } from "services/analytics/firebase";
 import useNavigation from "hooks/useNavigation";
-import { useLanguage } from "hooks/useLanguage";
-import { SURVEY_IN_EN, SURVEY_IN_PT_BR } from "utils/constants";
 import * as S from "./styles";
 import IllustrationMobile from "./assets/illustration-mobile.svg";
 import LeftImage from "./assets/left-image.svg";
@@ -16,17 +14,6 @@ function AppInDevelopmentPage() {
   });
 
   const { navigateBack } = useNavigation();
-
-  const { currentLang } = useLanguage();
-
-  const handleSurveyButtonClick = () => {
-    logEvent("webDwnldSurveyBtn_click");
-
-    if (currentLang === "pt-BR") {
-      return SURVEY_IN_PT_BR;
-    }
-    return SURVEY_IN_EN;
-  };
 
   const handleGoBack = () => {
     navigateBack();
@@ -50,9 +37,10 @@ function AppInDevelopmentPage() {
             <S.Image src={SurveyIcon} />
             <S.SurveyDescription>{t("surveyDescription")}</S.SurveyDescription>
             <S.SurveyButton
-              href={handleSurveyButtonClick()}
+              href={t("surveyLink")}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => logEvent("webDwnldSurveyBtn_click")}
             >
               {t("surveyButton")}
             </S.SurveyButton>

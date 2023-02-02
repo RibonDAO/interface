@@ -18,10 +18,10 @@ export const Title = styled.h1`
   margin-right: 5%;
 `;
 export const TitleContainer = styled.div`
+  margin-bottom: ${({ theme }) => theme.spacing(32)};
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: ${({ theme }) => theme.spacing(32)};
 `;
 
 export const NonProfitsContainer = styled.div`

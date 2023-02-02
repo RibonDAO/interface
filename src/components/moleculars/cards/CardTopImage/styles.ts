@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 import {
-  defaultBodyMdBold,
   defaultBodySmRegular,
-  defaultBodyXsMedium,
+  defaultHeadingXs,
+  defaultBodyLgBold,
 } from "styles/typography/default";
 
 export const Container = styled.div<{
@@ -25,7 +25,7 @@ export const Container = styled.div<{
 
   margin-bottom: ${({ theme }) => theme.spacing(8)};
   padding: ${({ theme }) => theme.spacing(16)};
-  border-radius: 16px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.neutral10};
@@ -58,22 +58,8 @@ export const Image = styled.img<{
   object-fit: cover;
 `;
 
-export const Text = styled.p<{
-  size?: string;
-}>`
-  ${(props) =>
-    props.size === "small" &&
-    css`
-      ${defaultBodyXsMedium}
-
-      font-weight: 400;
-    `}
-
-  ${(props) =>
-    props.size === "large" &&
-    css`
-      ${defaultBodySmRegular}
-    `}
+export const Text = styled.p`
+  ${defaultBodySmRegular}
 
   margin-top: ${({ theme }) => theme.spacing(8)};
   color: ${({ theme }) => theme.colors.gray30};
@@ -85,7 +71,11 @@ export const Title = styled.span<{
   ${(props) =>
     props.size === "small" &&
     css`
-      ${defaultBodyMdBold}
+      ${defaultBodyLgBold}
+
+      @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+        ${defaultHeadingXs}
+      }
     `}
 
   ${(props) =>

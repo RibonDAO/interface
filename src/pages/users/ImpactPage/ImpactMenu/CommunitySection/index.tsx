@@ -16,7 +16,11 @@ function CommunitySection() {
       <S.EmptyImage src={directIllustration} />
       <S.EmptyTitle>{t("emptyTitle")}</S.EmptyTitle>
       <S.EmptyText>{t("emptyText")}</S.EmptyText>
-      <S.EmptyButton text={t("emptyButton")} onClick={handleEmptyButtonClick} />
+      <S.EmptyButton
+        text={t("emptyButton")}
+        size="medium"
+        onClick={handleEmptyButtonClick}
+      />
     </S.EmptySectionContainer>
   );
 }

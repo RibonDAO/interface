@@ -34,12 +34,12 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
   width: 328px;
+  margin: 0 auto;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin: 0 auto;
-  flex-direction: column;
 `;
 
 export const SurveyCard = styled.div`
@@ -57,6 +57,7 @@ export const SurveyCard = styled.div`
 
 export const SurveyButton = styled.a`
   ${defaultBodyMdSemibold}
+
   width: 100%;
   border-radius: 8px;
   position: relative;
@@ -101,8 +102,9 @@ export const RightImage = styled.img`
 export const LeftArrow = styled.img`
   width: 24px;
   height: 24px;
-  cursor: pointer;
   margin: ${({ theme }) => theme.spacing(16)};
+  cursor: pointer;
+
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     margin-top: ${({ theme }) => theme.spacing(64)};
   }

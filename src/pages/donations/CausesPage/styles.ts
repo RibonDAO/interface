@@ -15,7 +15,13 @@ export const BodyContainer = styled.div`
 export const Title = styled.h1`
   ${stylizedDisplayLg}
 
-  margin: ${({ theme }) => theme.spacing(12, 0)};
+  margin-right: 5%;
+`;
+export const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: ${({ theme }) => theme.spacing(32)};
 `;
 
 export const NonProfitsContainer = styled.div`
@@ -56,4 +62,10 @@ export const CardWrapper = styled.div`
       margin-left: 0px;
     }
   }
+`;
+
+export const TooltipSection = styled.div`
+  margin-bottom: ${({ theme }) => theme.spacing(32)};
+  display: flex;
+  justify-content: center;
 `;

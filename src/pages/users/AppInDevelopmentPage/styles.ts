@@ -59,16 +59,16 @@ export const SurveyButton = styled.a`
   ${defaultBodyMdSemibold}
 
   width: 100%;
+  padding: ${({ theme }) => theme.spacing(12, 16)};
   border-radius: 8px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
   background-color: ${({ theme }) => theme.colors.brand.primary[300]};
   color: ${({ theme }) => theme.colors.green40};
-  text-decoration: none;
   cursor: pointer;
-  padding: ${({ theme }) => theme.spacing(12, 16)};
 `;
 
 export const SurveyDescription = styled.p`

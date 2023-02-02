@@ -1,5 +1,6 @@
 import Cause from "./Cause";
 import { NonProfitImpact } from "./NonProfitImpact";
+import Story from "./Story";
 
 export default interface NonProfit {
   id: any;
@@ -15,4 +16,5 @@ export default interface NonProfit {
   updatedAt?: string;
   cause: Cause;
   nonProfitImpacts?: NonProfitImpact[];
+  stories?: Story[];
 }

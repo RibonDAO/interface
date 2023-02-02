@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 export const Container = styled.div<{ visible: boolean }>`
   width: 100%;
   position: absolute;
-  bottom: 78px;
+  bottom: 70px;
+  z-index: ${({ theme }) => theme.zindex.below};
   display: flex;
   flex-direction: column;
   visibility: ${({ visible }) => (visible ? "visible" : "hidden")};

@@ -1,18 +1,15 @@
 import CardCenterImageButton from "components/moleculars/cards/CardCenterImageButton";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { logEvent } from "services/analytics";
+import { logEvent } from "services/analytics/firebase";
 import NonProfit from "types/entities/NonProfit";
 import Integration from "types/entities/Integration";
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
 import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
 import { useLocation } from "react-router-dom";
 import useVoucher from "hooks/useVoucher";
-import useStories from "hooks/apiHooks/useStories";
-import useNavigation from "hooks/useNavigation";
-import useToast from "hooks/useToast";
-import { useLoadingOverlay } from "contexts/loadingOverlayContext";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
+import StoriesSection from "../StoriesSection";
 import * as S from "../styles";
 
 type LocationStateType = {
@@ -26,9 +23,9 @@ type Props = {
   setChosenNonProfit: (nonProfit: NonProfit) => void;
   setConfirmModalVisible: (visible: boolean) => void;
   canDonate: boolean;
-  currentNonProfit: number;
-  onCurrentNonProfitChange: (index: number) => void;
 };
+
+const MINIMUM_NON_PROFITS_TO_LOOP = 3;
 
 function NonProfitsList({
   nonProfits,
@@ -36,8 +33,6 @@ function NonProfitsList({
   setConfirmModalVisible,
   canDonate,
   integration,
-  currentNonProfit,
-  onCurrentNonProfitChange,
 }: Props): JSX.Element {
   const { state } = useLocation<LocationStateType>();
 
@@ -45,14 +40,12 @@ function NonProfitsList({
     keyPrefix: "donations.causesPage",
   });
 
+  const [currentNonProfitIndex, setCurrentNonProfitIndex] = useState(0);
+
   const { showBlockedDonationModal } = useBlockedDonationModal(
     state?.blockedDonation,
     integration,
   );
-
-  const { showLoadingOverlay, hideLoadingOverlay } = useLoadingOverlay();
-
-  const toast = useToast();
 
   const chooseNonProfit = useCallback((nonProfit: NonProfit) => {
     setChosenNonProfit(nonProfit);
@@ -77,44 +70,36 @@ function NonProfitsList({
       logEvent("donateBlockedDonation_view");
     }
   }
-  const { fetchNonProfitStories } = useStories();
 
-  const { navigateTo } = useNavigation();
+  const [currentNonProfitWithStories, setCurrentNonProfitWithStories] =
+    useState(nonProfits[0]);
+  const [storiesSectionVisible, setStoriesSectionVisible] = useState(false);
 
-  const handleImageClick = async (nonProfit: NonProfit) => {
-    showLoadingOverlay(t("stories.loading"));
-    const stories = await fetchNonProfitStories(nonProfit.id);
+  const handleImageClick = (nonProfit: NonProfit) => {
+    const stories = nonProfit.stories || [];
 
     if (stories.length > 0) {
-      hideLoadingOverlay();
-      navigateTo({
-        pathname: "/stories",
-        state: {
-          stories,
-          nonProfit,
-          canDonateAndHasVoucher,
-        },
-      });
-    } else {
-      hideLoadingOverlay();
-
-      toast({
-        message: t("stories.empty"),
-        type: "error",
-      });
+      setCurrentNonProfitWithStories(nonProfit);
+      setStoriesSectionVisible(true);
     }
   };
 
   return (
     <S.NonProfitsListContainer>
+      <StoriesSection
+        nonProfit={currentNonProfitWithStories}
+        visible={storiesSectionVisible}
+        setVisible={setStoriesSectionVisible}
+        canDonateAndHasVoucher={Boolean(canDonateAndHasVoucher)}
+      />
       <SliderCardsEnhanced
-        currentSlide={currentNonProfit}
-        onCurrentSlideChange={onCurrentNonProfitChange}
+        currentSlide={currentNonProfitIndex}
+        onCurrentSlideChange={(index) => setCurrentNonProfitIndex(index)}
         saveStateIdentifier="nonProfitsList"
-        loop
+        loop={nonProfits.length >= MINIMUM_NON_PROFITS_TO_LOOP + 1}
       >
-        {nonProfits.map((nonProfit: any, idx: number) => (
-          <S.CardWrapper key={idx.toString()}>
+        {nonProfits.map((nonProfit: any) => (
+          <S.CardWrapper key={nonProfit.id}>
             <CardCenterImageButton
               image={nonProfit.mainImage || nonProfit.cause?.mainImage}
               title={formattedImpactText(
@@ -135,6 +120,7 @@ function NonProfitsList({
               softDisabled={!canDonateAndHasVoucher}
               infoTextLeft={nonProfit.name}
               infoTextRight={nonProfit.cause?.name}
+              infoText={nonProfit.stories ? t("learnMore") : undefined}
               fullWidth
             />
           </S.CardWrapper>

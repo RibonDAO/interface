@@ -1,20 +1,19 @@
 import CardTopImage from "components/moleculars/cards/CardTopImage";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { logEvent } from "services/analytics";
+import { logEvent } from "services/analytics/firebase";
+import useImpact from "hooks/apiHooks/useImpact";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import useUserStatistics from "hooks/apiHooks/useStatistics";
 import { formatPriceWithZeros } from "lib/formatters/currencyFormatter";
 import { useLanguage } from "hooks/useLanguage";
 import { coinByLanguage } from "lib/coinByLanguage";
-import useImpact from "hooks/apiHooks/useImpact";
-import impactIllustration from "assets/images/impact-illustration.svg";
-import useNavigation from "hooks/useNavigation";
 import TicketIcon from "./assets/ticket-icon.svg";
 import MoneyIcon from "./assets/money-icon.svg";
 import NgoIcon from "./assets/ngo-icon.svg";
 import CausesIcon from "./assets/causes-icon.svg";
 import * as S from "./styles";
+import TicketSection from "./ImpactMenu/TicketSection";
 
 function ImpactPage(): JSX.Element {
   const { t } = useTranslation("translation", {
@@ -22,7 +21,6 @@ function ImpactPage(): JSX.Element {
   });
 
   const { userImpact } = useImpact();
-  const { navigateTo } = useNavigation();
   const { userStatistics } = useUserStatistics();
   const { currentLang } = useLanguage();
   const { formattedImpactText } = useFormattedImpactText();
@@ -36,24 +34,6 @@ function ImpactPage(): JSX.Element {
     (item) => item.impact.toString() !== "0",
   );
   const hasImpact = impactItems.length > 0;
-
-  const handleEmptyButtonClick = () => {
-    navigateTo("/");
-  };
-
-  function renderEmptyImpact() {
-    return (
-      <S.EmptySectionContainer>
-        <S.EmptyImage src={impactIllustration} />
-        <S.EmptyTitle>{t("emptyTitle")}</S.EmptyTitle>
-        <S.EmptyText>{t("emptyText")}</S.EmptyText>
-        <S.EmptyButton
-          text={t("emptyButton")}
-          onClick={handleEmptyButtonClick}
-        />
-      </S.EmptySectionContainer>
-    );
-  }
 
   return (
     <S.Container>
@@ -97,14 +77,8 @@ function ImpactPage(): JSX.Element {
               key={item.nonProfit.id}
               title={item.nonProfit.name}
               text={
-                formattedImpactText(
-                  item.nonProfit,
-                  item.impact,
-                  false,
-                  true,
-                  undefined,
-                  t("impactText"),
-                ) || ""
+                formattedImpactText(item.nonProfit, item.impact, false, true) ||
+                ""
               }
               icon={item.nonProfit.logo}
               size="large"
@@ -112,7 +86,7 @@ function ImpactPage(): JSX.Element {
           ))}
         </S.CardsContainer>
       ) : (
-        renderEmptyImpact()
+        <TicketSection />
       )}
     </S.Container>
   );

@@ -11,7 +11,7 @@ import { logError } from "services/crashReport";
 import UsdcIcon from "assets/icons/usdc-icon.svg";
 import useToast from "hooks/useToast";
 import useNavigation from "hooks/useNavigation";
-import { logEvent } from "services/analytics";
+import { logEvent } from "services/analytics/firebase";
 import { stringToNumber } from "lib/formatters/stringToNumberFormatter";
 import { useLoadingOverlay } from "contexts/loadingOverlayContext";
 import useTokenDecimals from "hooks/useTokenDecimals";

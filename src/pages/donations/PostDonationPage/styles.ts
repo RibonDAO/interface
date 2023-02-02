@@ -3,7 +3,6 @@ import {
   stylizedDisplayMd,
   stylizedDisplaySm,
 } from "styles/typography/stylized";
-
 import {
   defaultHeadingXs,
   defaultBodySmRegular,
@@ -118,9 +117,9 @@ export const CardMainText = styled.h2`
 export const OutlineButton = styled(Button)`
   width: 100%;
   margin-top: ${({ theme }) => theme.spacing(24)};
-  border: solid 1px ${({ theme }) => theme.colors.green30};
+  border: solid 1px ${({ theme }) => theme.colors.brand.primary[300]};
   background-color: ${({ theme }) => theme.colors.neutral10};
-  color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => theme.colors.brand.primary[300]};
 `;
 
 export const ButtonContainer = styled.div`

@@ -17,7 +17,7 @@ import { useIntegrationId } from "hooks/useIntegrationId";
 import useNavigation from "hooks/useNavigation";
 import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
 import { RIBON_COMPANY_ID } from "utils/constants";
-import { logEvent } from "services/analytics";
+import { logEvent } from "services/analytics/firebase";
 import { useModal } from "hooks/modalHooks/useModal";
 import ChangeLanguageItem from "./ChangeLanguageItem";
 import LogoutItem from "./LogoutItem";
@@ -30,6 +30,8 @@ export type Props = {
   hasBackButton?: boolean;
   hideWallet?: boolean;
 };
+
+const { primary } = theme.colors.brand;
 
 function LayoutHeader({
   rightComponent,
@@ -147,7 +149,7 @@ function LayoutHeader({
                   <S.TicketsAmount
                     color={
                       canDonateAndHasVoucher
-                        ? theme.colors.green30
+                        ? primary[300]
                         : theme.colors.gray30
                     }
                   >

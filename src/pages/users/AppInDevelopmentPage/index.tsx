@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import LeftArrow from "assets/icons/arrow-left-green.svg";
-import { logEvent } from "services/analytics";
+import { logEvent } from "services/analytics/firebase";
 import useNavigation from "hooks/useNavigation";
 import { useLanguage } from "hooks/useLanguage";
 import * as S from "./styles";
@@ -36,7 +36,11 @@ function AppInDevelopmentPage() {
       <S.RightImage src={RightImage} />
 
       <S.Container>
-        <S.LeftArrow src={LeftArrow} onClick={() => handleGoBack()} />
+        <S.LeftArrow
+          src={LeftArrow}
+          alt="back-arrow-button"
+          onClick={() => handleGoBack()}
+        />
         <S.Wrapper>
           <S.Image src={IllustrationMobile} />
           <S.Title>{t("title")}</S.Title>

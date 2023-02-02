@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { defaultBodyMdSemibold } from "styles/typography/default";
 
 export const Container = styled.div`
-  border: 1px solid ${({ theme }) => theme.colors.green30};
+  border: 1px solid ${({ theme }) => theme.colors.brand.primary[300]};
   border-radius: 40px;
   display: flex;
   flex-direction: row;
@@ -22,11 +22,11 @@ export const Selected = styled.a`
 
   min-width: 50%;
   border-radius: 16px;
-  background: ${({ theme }) => theme.colors.green30};
+  background: ${({ theme }) => theme.colors.brand.primary[300]};
   color: ${({ theme }) => theme.colors.neutral10};
 `;
 
 export const Unselected = styled(Selected)`
   background: ${({ theme }) => theme.colors.neutral10};
-  color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => theme.colors.brand.primary[300]};
 `;

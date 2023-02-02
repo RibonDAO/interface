@@ -14,7 +14,7 @@ import {
   useEffect,
 } from "react";
 import { useTranslation } from "react-i18next";
-import { logEvent } from "services/analytics";
+import { logEvent } from "services/analytics/firebase";
 import { logError } from "services/crashReport";
 import { Currencies } from "types/enums/Currencies";
 import creditCardPaymentApi from "services/api/creditCardPaymentApi";

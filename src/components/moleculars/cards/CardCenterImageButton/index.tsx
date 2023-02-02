@@ -1,7 +1,7 @@
 import Button from "components/atomics/buttons/Button";
 import React from "react";
 import securityIcon from "assets/icons/security-mark-icon.svg";
-import expandIcon from "assets/icons/expand-icon.svg";
+import infoIcon from "assets/icons/info-icon-white.svg";
 import * as S from "./styles";
 
 export type Props = {
@@ -15,6 +15,7 @@ export type Props = {
   infoTextLeft?: string;
   infoTextRight?: string;
   fullWidth?: boolean;
+  infoText?: string;
 };
 function CardCenterImageButton({
   image,
@@ -27,11 +28,17 @@ function CardCenterImageButton({
   infoTextLeft,
   infoTextRight,
   fullWidth = false,
+  infoText,
 }: Props): JSX.Element {
   return (
     <S.Container fullWidth={fullWidth}>
       <S.ImageSection onClick={onClickImage}>
-        <S.ExpandIcon src={expandIcon} />
+        {infoText && (
+          <S.InfoText>
+            <img src={infoIcon} alt="info" />
+            {infoText}
+          </S.InfoText>
+        )}
         <S.Image src={image} alt="image" />
         <S.ImageDescription>{title}</S.ImageDescription>
 

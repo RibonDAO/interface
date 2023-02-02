@@ -17,7 +17,7 @@ export const Description = styled.p`
   ${defaultBodyMdBold}
 
   margin-top: ${({ theme }) => theme.spacing(24)};
-  color: ${({ theme }) => theme.colors.neutral.colorNeutral500};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const Container = styled.div`
@@ -63,7 +63,7 @@ export const SurveyButton = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.colors.green30};
+  background-color: ${({ theme }) => theme.colors.brand.primary[300]};
   color: ${({ theme }) => theme.colors.green40};
   text-decoration: none;
   cursor: pointer;
@@ -74,7 +74,7 @@ export const SurveyDescription = styled.p`
   ${defaultBodySmRegular}
 
   margin-top: ${({ theme }) => theme.spacing(24)};
-  color: ${({ theme }) => theme.colors.neutral.colorNeutral500};
+  color: ${({ theme }) => theme.colors.neutral[700]};
 `;
 export const Image = styled.img``;
 

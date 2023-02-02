@@ -37,6 +37,11 @@ export const CardsButtonContainer = styled.div`
   gap: 8px;
   align-items: center;
   align-self: flex-start;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    flex-wrap: nowrap;
+    align-self: normal;
+  }
 `;
 
 export const CardsContainer = styled.div`
@@ -51,9 +56,9 @@ export const CardsContainer = styled.div`
 export const CardButton = styled(Button)`
   width: 135px;
   margin: ${({ theme }) => theme.spacing(16, 0)};
-  border: 1px solid ${({ theme }) => theme.colors.green30};
+  border: 1px solid ${({ theme }) => theme.colors.brand.primary[300]};
   background-color: ${({ theme }) => theme.colors.neutral10};
-  color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => theme.colors.brand.primary[300]};
 `;
 
 export const EmptySectionContainer = styled.div`

@@ -9,10 +9,12 @@ export type Props = {
   color?: string;
 };
 
+const { primary } = theme.colors.brand;
+
 function SliderCards({
   children,
   scrollOffset,
-  color = theme.colors.green30,
+  color = primary[300],
 }: Props): JSX.Element {
   const [sliderPosition, setSliderPosition] = useState(0);
   const [scrollInTheBeginning, setScrollInTheBeginning] = useState(true);

@@ -19,7 +19,7 @@ import { Currencies } from "types/enums/Currencies";
 import getThemeByFlow from "lib/themeByFlow";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import * as S from "./styles";
-import { logEvent } from "../../../services/analytics";
+import { logEvent } from "../../../services/analytics/firebase";
 
 function DonationDoneCausePage(): JSX.Element {
   type LocationState = {

@@ -25,6 +25,8 @@
       "donateAnimationModalOrigin": "Você",
       "donateAnimationModalDestiny": "Projeto",
       "chooseCauseModalTitle": "Escolha uma causa",
+      "allCauses": "Todas",
+      "learnMore": "Saiba mais",
       "stories": {
         "loading": "Carregando stories...",
         "empty": "Não há stories disponíveis."
@@ -115,9 +117,26 @@
     "donatedMoney": "Dinheiro doado",
     "supportedNgos": "ONGs apoiadas",
     "supporterCauses": "Causas apoiadas",
-    "emptyTitle": "Suas doações de tickets aparecerão aqui.",
-    "emptyText": "Você ainda não fez doações gratuitas com tickets, que tal fazer a primeira?",
-    "emptyButton": "Doar usando tickets"
+    "impactMenu": {
+      "ticketDonations": "Doações em ticket",
+      "communityDonations": "Doações em comunidade",
+      "directDonations": "Doações diretas"
+    },
+    "ticketSection": {
+      "emptyTitle": "Suas doações de tickets aparecerão aqui.",
+      "emptyText": "Você ainda não fez doações gratuitas com tickets, que tal fazer a primeira?",
+      "emptyButton": "Doar usando tickets"
+    },
+    "directSection": {
+      "emptyTitle": "Suas doações diretas aparecerão aqui.",
+      "emptyText": "Você ainda não fez doações diretas, que tal fazer a sua primeira?",
+      "emptyButton": "Doar diretamente"
+    },
+    "communitySection": {
+      "emptyTitle": "Suas doações em comunidade aparecerão aqui.",
+      "emptyText": "Você ainda não fez doações em comunidade ainda, que tal fazer a sua primeira?",
+      "emptyButton": "Doar em comunidade"
+    }
   },
   "promoters": {
     "treasurePage": {

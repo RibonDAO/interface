@@ -276,5 +276,11 @@
     "for": "for",
     "and": "and",
     "of": "of"
+  },
+  "appInDevelopmentPage": {
+    "title": "App in development",
+    "description": "Don't worry, we’ll remember you to download it when its released",
+    "surveyDescription": "Take this survey and help us build the app",
+    "surveyButton": "Take survey"
   }
 }

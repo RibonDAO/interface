@@ -23,6 +23,7 @@ import PostDonationPage from "pages/donations/PostDonationPage";
 import CryptoPaymentProvider from "contexts/cryptoPaymentContext";
 import SupportNonProfitPage from "pages/promoters/SupportNonProfitPage";
 import PaymentPage from "pages/promoters/PaymentPage";
+import AppInDevelopmentPage from "pages/users/AppInDevelopmentPage";
 import Navigation from "./Navigation";
 
 function RoutesComponent(): JSX.Element {
@@ -48,7 +49,7 @@ function RoutesComponent(): JSX.Element {
 
       <Route path="/app-in-development" exact>
         <Suspense fallback={<div />}>
-          <StoriesPage />
+          <AppInDevelopmentPage />
         </Suspense>
       </Route>
 

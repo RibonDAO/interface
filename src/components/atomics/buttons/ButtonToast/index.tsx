@@ -24,7 +24,7 @@ function ButtonToast({
   const { isMobile } = useBreakpoint();
 
   const handleClick = () => {
-    if (!collapsed) return setCollapsed(true);
+    if (isMobile && collapsed) return setCollapsed(true);
 
     return onClick();
   };

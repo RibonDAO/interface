@@ -302,5 +302,10 @@
     "surveyDescription": "Responda a pesquisa e ajude na construção",
     "surveyButton": "Responder",
     "surveyLink": "https://docs.google.com/forms/d/e/1FAIpQLSfBpxhZIYl5QKvtlPGP3UOWpVskIRn_RD5-o1QF6b4QcO0lsA/viewform?usp=sf_link"
+  },
+  "downloadApp": {
+    "floating": {
+      "title": "Baixar app"
+    }
   }
 }

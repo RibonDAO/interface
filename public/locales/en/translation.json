@@ -302,5 +302,10 @@
     "surveyDescription": "Take this survey and help us build the app",
     "surveyButton": "Take survey",
     "surveyLink": "https://docs.google.com/forms/d/e/1FAIpQLSc6Z7YQh56lIxD3uh1kX8TwlbkF6c9Q4nkQ1SXdblOljzFs-w/viewform?usp=sf_link"
+  },
+  "downloadApp": {
+    "floating": {
+      "title": "Get app"
+    }
   }
 }

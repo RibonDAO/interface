@@ -12,7 +12,7 @@ export type Props = {
   tooltipSymbol: string;
   tooltipText: string;
 };
-function CardTextImageTooltip({
+function CardTooltip({
   icon,
   title,
   text,
@@ -35,4 +35,4 @@ function CardTextImageTooltip({
   );
 }
 
-export default CardTextImageTooltip;
+export default CardTooltip;

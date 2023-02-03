@@ -12,8 +12,8 @@ export const Slider = styled.div`
   scroll-behavior: smooth;
   scrollbar-width: none;
   padding-inline: 17px;
-  margin-top: 20px;
-  padding-bottom: 30px;
+  margin-top: ${({ theme }) => theme.spacing(20)};
+  padding-bottom: ${({ theme }) => theme.spacing(32)};
   display: grid;
   grid-auto-columns: 85%;
   grid-auto-flow: column;

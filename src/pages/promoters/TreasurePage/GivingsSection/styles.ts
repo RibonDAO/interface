@@ -13,8 +13,8 @@ export const TextLastCard = styled.h4`
 export const LastCardCarousel = styled.a`
   width: 206px;
   height: 123px;
-  margin: 8px;
-  padding: 12px 16px;
+  margin: ${({ theme }) => theme.spacing(8)};
+  padding: ${({ theme }) => theme.spacing(12, 16)};
   border-radius: 16px;
   display: flex;
   flex-direction: column;
@@ -34,7 +34,7 @@ export const GivingText = styled.span`
 
 export const CardBlank = styled.div`
   max-width: 206px;
-  padding: 18px 29px 12px;
+  padding: ${({ theme }) => theme.spacing(20, 32, 12)};
   border-radius: 16px;
   display: flex;
   flex-direction: column;
@@ -52,6 +52,6 @@ export const Image = styled.img`
 export const SectionTitle = styled.h2`
   ${defaultBodyMdBold}
 
-  margin-top: 28px;
+  margin-top: ${({ theme }) => theme.spacing(32)};
   color: ${({ theme }) => theme.colors.gray40};
 `;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
-  margin: 8px 0;
+  margin: ${({ theme }) => theme.spacing(8, 0)};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,10 +26,10 @@ export const Divider = styled.div<DividerProps>`
   }
 
   &:not(:empty)::before {
-    margin-right: 0.25em;
+    margin-right: ${({ theme }) => theme.spacing(4)};
   }
 
   &:not(:empty)::after {
-    margin-left: 0.25em;
+    margin-left: ${({ theme }) => theme.spacing(4)};
   }
 `;

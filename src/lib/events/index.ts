@@ -1,4 +1,4 @@
-import { logFirebaseEvent } from "services/analytics";
+import { logFirebaseEvent } from "services/analytics/firebase";
 import events from "./constants";
 
 interface EventParams {
@@ -12,7 +12,11 @@ function eventPageTransalation(url: string) {
   return events.pages[url];
 }
 
-export function logPageView(urlName: string, search?: string, state?: any) {
+export function logPageView(
+  urlName: string,
+  search?: string,
+  state?: any,
+): void {
   let flow = "";
   let query = "";
   const params: any = {};

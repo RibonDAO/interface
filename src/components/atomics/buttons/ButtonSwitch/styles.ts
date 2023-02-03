@@ -14,7 +14,7 @@ export const BoxIcon = styled.div`
 `;
 
 export const ContainerSwitch = styled.div`
-  margin: 0 4px;
+  margin: ${({ theme }) => theme.spacing(0, 4)};
 `;
 
 export const Text = styled.p`

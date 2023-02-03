@@ -1,14 +1,14 @@
 import "@testing-library/jest-dom";
 import "jest-canvas-mock";
-import { initializeFirebase } from "./services";
 
 export const mockNavigationFunction = jest.fn();
 export const mockNavigateBackFunction = jest.fn();
 export const mockLogErrorFunction = jest.fn();
 export const mockLogEventFunction = jest.fn();
+export const mockLogPageViewFunction = jest.fn();
 export const mockLocationReload = jest.fn();
 
-function setupMocks() {
+export function setupMocks() {
   jest.mock("hooks/useNavigation", () => ({
     __esModule: true,
     default: () => ({
@@ -24,10 +24,10 @@ function setupMocks() {
   jest.mock("lib/events", () => ({
     __esModule: true,
     logEvent: mockLogEventFunction,
+    logPageView: mockLogPageViewFunction,
   }));
   delete (window as any).location;
   (window as any).location = { reload: mockLocationReload };
 }
 
 setupMocks();
-initializeFirebase();

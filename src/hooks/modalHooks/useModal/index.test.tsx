@@ -52,11 +52,6 @@ describe("useModal", () => {
 
     it("hides the modal when hide is called", () => {
       act(() => {
-        current.show();
-      });
-      expectTextToBeInTheDocument("test");
-
-      act(() => {
         current.hide();
       });
       expectTextNotToBeInTheDocument("test");

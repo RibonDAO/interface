@@ -4,7 +4,7 @@ import { stylizedDisplayXs } from "styles/typography/stylized";
 import { Modal } from "../ModalBlank/styles";
 
 export const ModalWithIcon = styled(Modal)`
-  padding: 16px;
+  padding: ${({ theme }) => theme.spacing(16)};
 `;
 
 export const Icon = styled.img`
@@ -46,24 +46,24 @@ export const Title = styled.h3<TitleProps>`
 export const Body = styled.h3`
   ${defaultBodyXsMedium}
 
-  margin: 8px 0 14px;
+  margin: ${({ theme }) => theme.spacing(8, 0, 14)};
   text-align: center;
   color: ${({ theme }) => theme.colors.gray30};
 `;
 
 export const RowsModalContainer = styled.div`
-  padding-top: 16px;
+  padding-top: ${({ theme }) => theme.spacing(16)};
 `;
 
 export const RowsModalSection = styled.div`
-  padding: 0;
+  padding: ${({ theme }) => theme.spacing(0)};
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
 export const RowsModalRow = styled.div`
-  margin-bottom: 28px;
+  margin-bottom: ${({ theme }) => theme.spacing(32)};
   display: flex;
 `;
 

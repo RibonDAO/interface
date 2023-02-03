@@ -89,6 +89,9 @@
       "userSupportItem": {
         "userSupportText": "Suporte ao usuário"
       },
+      "getTheAppItem": {
+        "getTheAppText": "Baixar app"
+      },
       "donationModalTitle": "Legal! Você tem 1 ticket para doar",
       "donationModalBody": "Você pode destiná-lo para qualquer projeto",
       "donationModalButtonText": "Vamos lá!",

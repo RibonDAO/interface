@@ -74,7 +74,6 @@ export const SurveyButton = styled.a`
 export const SurveyDescription = styled.p`
   ${defaultBodySmRegular}
 
-  margin-top: ${({ theme }) => theme.spacing(24)};
   color: ${({ theme }) => theme.colors.neutral[700]};
 `;
 export const Image = styled.img``;

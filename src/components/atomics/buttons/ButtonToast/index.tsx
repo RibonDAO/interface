@@ -19,7 +19,7 @@ function ButtonToast({
   backgroundColor = theme.colors.orange20,
   textColor = theme.colors.orange40,
 }: Props): JSX.Element {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
 
   const { isMobile } = useBreakpoint();
 

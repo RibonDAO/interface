@@ -5,7 +5,7 @@ export const Container = styled.div<{ collapsed: boolean }>`
   position: fixed;
   top: ${({ theme }) => theme.spacing(112)};
   right: 0;
-  z-index: ${({ theme }) => theme.zindex.toast};
+  z-index: ${({ theme }) => theme.zindex.navigator};
   display: flex;
   flex-direction: row;
   align-items: center;

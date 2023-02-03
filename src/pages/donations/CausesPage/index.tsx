@@ -24,11 +24,12 @@ import useVoucher from "hooks/useVoucher";
 import { useCausesContext } from "contexts/causesContext";
 import UserSupportSection from "pages/promoters/SupportTreasurePage/CardSection/UserSupportSection";
 import { track } from "@amplitude/analytics-browser";
-import * as S from "./styles";
+import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
 import ConfirmSection from "./ConfirmSection";
 import ChooseCauseModal from "./ChooseCauseModal";
+import * as S from "./styles";
 
 function CausesPage(): JSX.Element {
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
@@ -191,6 +192,7 @@ function CausesPage(): JSX.Element {
 
   return (
     <S.Container>
+      {!isFirstAccess(signedIn) && <DownloadAppToast />}
       <ChooseCauseModal visible={chooseCauseModalVisible} />
       {chosenNonProfit && integration && (
         <ConfirmSection

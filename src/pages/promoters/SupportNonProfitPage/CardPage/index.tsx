@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useCallback, useEffect, useState, Fragment } from "react";
 import { logEvent } from "services/analytics/firebase";
 import useCauses from "hooks/apiHooks/useCauses";
+import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import Cause from "types/entities/Cause";
 import IntersectBackground from "assets/images/intersect-background.svg";
 import useNavigation from "hooks/useNavigation";
@@ -91,6 +92,7 @@ function CardPage(): JSX.Element {
 
   return (
     <S.Container>
+      <DownloadAppToast />
       <S.TitleContainer>
         <S.Title>{t("title")}</S.Title>
         {!isMobile && (

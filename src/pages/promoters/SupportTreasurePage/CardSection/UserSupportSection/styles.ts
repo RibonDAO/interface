@@ -17,7 +17,7 @@ export const Container = styled.div`
 export const SupportButton = styled(Button)`
   border: 1px solid ${({ theme }) => theme.colors.neutral10};
   background-color: ${({ theme }) => theme.colors.neutral10};
-  color: ${({ theme }) => theme.colors.orange40};
+  color: ${({ theme }) => theme.colors.brand.secondary[700]};
 `;
 
 export const Title = styled.h2`
@@ -26,7 +26,7 @@ export const Title = styled.h2`
 
 export const Description = styled.h5`
   margin-bottom: ${({ theme }) => theme.spacing(12)};
-  color: ${({ theme }) => theme.colors.orange40};
+  color: ${({ theme }) => theme.colors.brand.secondary[700]};
 `;
 
 export const IconText = styled.div`

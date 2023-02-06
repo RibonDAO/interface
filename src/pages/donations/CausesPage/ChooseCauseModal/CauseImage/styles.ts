@@ -30,7 +30,7 @@ export const CauseName = styled.span`
 
   position: absolute;
   z-index: 2;
-  color: ${({ theme }) => theme.colors.orange40};
+  color: ${({ theme }) => theme.colors.brand.secondary[700]};
   transform: translate(30%, -100%);
 `;
 

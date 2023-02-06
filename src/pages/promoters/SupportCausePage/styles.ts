@@ -79,16 +79,16 @@ export const CommunityAddValue = styled.p`
 export const CommunityAddButton = styled(ButtonComponent)`
   margin-top: ${({ theme }) => theme.spacing(8)};
   padding: ${({ theme }) => theme.spacing(4)};
-  border-color: ${({ theme }) => theme.colors.orange40};
+  border-color: ${({ theme }) => theme.colors.brand.secondary[700]};
   font-size: 11px;
-  color: ${({ theme }) => theme.colors.orange40};
+  color: ${({ theme }) => theme.colors.brand.secondary[700]};
 `;
 
 export const DonateButton = styled(ButtonComponent)`
   border-color: ${({ theme }) => theme.colors.brand.secondary[300]};
   font-weight: 600;
   background-color: ${({ theme }) => theme.colors.brand.secondary[300]};
-  color: ${({ theme }) => theme.colors.orange40};
+  color: ${({ theme }) => theme.colors.brand.secondary[700]};
 `;
 
 export const BackgroundImage = styled.img`

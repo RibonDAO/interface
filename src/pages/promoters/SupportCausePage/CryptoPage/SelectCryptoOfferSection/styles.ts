@@ -30,9 +30,9 @@ export const ValueInputContainer = styled.div`
   input {
     height: 40px;
     margin-bottom: ${({ theme }) => theme.spacing(0)};
-    border: 1px solid ${({ theme }) => theme.colors.orange40};
+    border: 1px solid ${({ theme }) => theme.colors.brand.secondary[700]};
     border-radius: 4px;
-    color: ${({ theme }) => theme.colors.orange40};
+    color: ${({ theme }) => theme.colors.brand.secondary[700]};
   }
 `;
 
@@ -62,5 +62,5 @@ export const CurrencySelectorContainer = styled.div`
 `;
 
 export const CurrencySelector = styled(Dropdown)`
-  border: 1px solid ${({ theme }) => theme.colors.orange40};
+  border: 1px solid ${({ theme }) => theme.colors.brand.secondary[700]};
 `;

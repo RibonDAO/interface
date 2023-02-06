@@ -9,7 +9,7 @@ import { useLocationSearch } from "hooks/useLocationSearch";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import * as S from "./styles";
 
-const { secondary, orange40 } = theme.colors;
+const { secondary } = theme.colors;
 
 type Props = {
   cause: Cause | undefined;
@@ -67,10 +67,10 @@ function SelectCryptoOfferSection({
             defaultValue={tokenSymbol}
             containerId="currencies-dropdown"
             customInputStyles={{
-              borderColor: orange40,
+              borderColor: secondary[700],
               height: 40,
               marginBottom: 0,
-              color: orange40,
+              color: secondary[700],
               width: 92,
             }}
           />

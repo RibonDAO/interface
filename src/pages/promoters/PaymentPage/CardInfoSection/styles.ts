@@ -32,7 +32,7 @@ export const Half = styled.div`
 export const Form = styled.form`
   input {
     height: 48px;
-    border: 1px solid ${({ theme }) => theme.colors.orange40};
+    border: 1px solid ${({ theme }) => theme.colors.brand.secondary[700]};
     color: ${({ theme }) => theme.colors.brand.secondary[300]};
 
     ::placeholder {

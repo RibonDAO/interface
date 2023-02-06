@@ -47,5 +47,5 @@ export const CurrencySelectorContainer = styled.div`
 `;
 
 export const CurrencySelector = styled(Dropdown)`
-  border: 1px solid ${({ theme }) => theme.colors.orange40};
+  border: 1px solid ${({ theme }) => theme.colors.brand.secondary[700]};
 `;

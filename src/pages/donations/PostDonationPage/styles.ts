@@ -148,7 +148,7 @@ export const BoostedDonation = styled.div`
   display: flex;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.brand.secondary[200]};
-  color: ${({ theme }) => theme.colors.orange40};
+  color: ${({ theme }) => theme.colors.brand.secondary[700]};
   box-shadow: 0 4px 8px ${({ theme }) => theme.colors.defaultShadow};
 `;
 

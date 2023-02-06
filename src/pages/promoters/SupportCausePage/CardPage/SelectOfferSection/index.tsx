@@ -12,7 +12,6 @@ import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import { useLocationSearch } from "hooks/useLocationSearch";
 import * as S from "./styles";
 
-const { orange40 } = theme.colors;
 const { secondary } = theme.colors;
 
 type Props = {
@@ -89,10 +88,10 @@ function SelectOfferPage({ cause, onOfferChange }: Props): JSX.Element {
             defaultValue={currentCoin}
             containerId="currencies-dropdown"
             customInputStyles={{
-              borderColor: orange40,
+              borderColor: secondary[700],
               height: 40,
               marginBottom: 0,
-              color: orange40,
+              color: secondary[700],
               width: 80,
             }}
           />

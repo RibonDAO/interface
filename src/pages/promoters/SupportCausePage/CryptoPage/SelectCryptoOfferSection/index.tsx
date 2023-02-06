@@ -9,7 +9,7 @@ import { useLocationSearch } from "hooks/useLocationSearch";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import * as S from "./styles";
 
-const { secondary } = theme.colors;
+const { secondary } = theme.colors.brand;
 
 type Props = {
   cause: Cause | undefined;

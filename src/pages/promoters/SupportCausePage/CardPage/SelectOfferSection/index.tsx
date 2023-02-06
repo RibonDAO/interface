@@ -12,7 +12,7 @@ import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import { useLocationSearch } from "hooks/useLocationSearch";
 import * as S from "./styles";
 
-const { secondary } = theme.colors;
+const { secondary } = theme.colors.brand;
 
 type Props = {
   cause: Cause | undefined;

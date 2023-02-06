@@ -6,6 +6,7 @@ import { initializeAmplitude } from "./services/analytics/amplitude";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./i18n";
+import { initializeMixpanel } from "services/analytics/mixpanel";
 
 declare global {
   interface Window {
@@ -16,6 +17,7 @@ declare global {
 initializeFirebase();
 initializeSentry();
 initializeAmplitude();
+initializeMixpanel();
 
 ReactDOM.render(
   <React.StrictMode>

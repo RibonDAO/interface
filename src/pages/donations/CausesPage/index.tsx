@@ -26,6 +26,7 @@ import UserSupportSection from "pages/promoters/SupportTreasurePage/CardSection/
 import { track } from "@amplitude/analytics-browser";
 import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
+import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
@@ -195,6 +196,7 @@ function CausesPage(): JSX.Element {
 
   return (
     <S.Container>
+      {!isFirstAccess(signedIn) && <DownloadAppToast />}
       <ChooseCauseModal visible={chooseCauseModalVisible} />
       {chosenNonProfit && integration && (
         <ConfirmSection

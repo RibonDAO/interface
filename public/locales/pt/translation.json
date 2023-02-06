@@ -27,6 +27,8 @@
       "chooseCauseModalTitle": "Escolha uma causa",
       "allCauses": "Todas",
       "learnMore": "Saiba mais",
+      "tooltipTicketText": "Os tickets servem para fazer doações e você recebe um a cada dia que entrar aqui na Ribon.",
+      "tooltipTicket": "O que é um ticket?",
       "stories": {
         "loading": "Carregando stories...",
         "empty": "Não há stories disponíveis."
@@ -88,6 +90,9 @@
       },
       "userSupportItem": {
         "userSupportText": "Suporte ao usuário"
+      },
+      "getTheAppItem": {
+        "getTheAppText": "Baixar app"
       },
       "donationModalTitle": "Legal! Você tem 1 ticket para doar",
       "donationModalBody": "Você pode destiná-lo para qualquer projeto",
@@ -295,5 +300,17 @@
     "for": "para",
     "and": "e",
     "of": "de"
+  },
+  "appInDevelopmentPage": {
+    "title": "App em construção",
+    "description": "Não se preocupe, vamos te lembrar de baixar quando o app for lançado",
+    "surveyDescription": "Responda a pesquisa e ajude na construção",
+    "surveyButton": "Responder",
+    "surveyLink": "https://docs.google.com/forms/d/e/1FAIpQLSfBpxhZIYl5QKvtlPGP3UOWpVskIRn_RD5-o1QF6b4QcO0lsA/viewform?usp=sf_link"
+  },
+  "downloadApp": {
+    "floating": {
+      "title": "Baixar app"
+    }
   }
 }

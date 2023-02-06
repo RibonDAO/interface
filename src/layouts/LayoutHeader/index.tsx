@@ -24,6 +24,7 @@ import LogoutItem from "./LogoutItem";
 import * as S from "./styles";
 import useCanDonate from "../../hooks/apiHooks/useCanDonate";
 import UserSupportItem from "./UserSupportItem";
+import GetTheAppItem from "./GetTheAppItem";
 
 export type Props = {
   rightComponent?: JSX.Element;
@@ -123,9 +124,11 @@ function LayoutHeader({
           },
         }}
       >
-        <ChangeLanguageItem />
+        <GetTheAppItem />
         <Divider color={theme.colors.gray20} />
         <UserSupportItem />
+        <Divider color={theme.colors.gray20} />
+        <ChangeLanguageItem />
 
         {signedIn ? (
           <div>

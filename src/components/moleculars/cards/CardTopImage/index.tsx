@@ -13,7 +13,7 @@ function CardTopImage({ icon, title, text, size }: Props): JSX.Element {
     <S.Container size={size}>
       <S.Image src={icon} size={size} />
       <S.Title size={size}>{title}</S.Title>
-      <S.Text size={size}>{text}</S.Text>
+      <S.Text>{text}</S.Text>
     </S.Container>
   );
 }

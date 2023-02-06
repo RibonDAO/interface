@@ -79,5 +79,6 @@ export const EmptyText = styled.span`
 
 export const EmptyButton = styled(Button)`
   width: 196px;
+  padding: ${({ theme }) => theme.spacing(8, 16)};
   color: ${({ theme }) => theme.colors.green40};
 `;

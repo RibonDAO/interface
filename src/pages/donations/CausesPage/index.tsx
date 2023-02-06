@@ -27,6 +27,7 @@ import { track } from "@amplitude/analytics-browser";
 import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
+import mixpanel from "mixpanel-browser";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
@@ -106,6 +107,7 @@ function CausesPage(): JSX.Element {
 
   useEffect(() => {
     track("Cause Page View");
+    mixpanel.track("Cause Page View");
   }, []);
 
   useEffect(() => {

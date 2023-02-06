@@ -103,6 +103,6 @@ export const CounterContainer = styled.span`
   top: 8px;
   right: 0;
   text-align: center;
-  background-color: ${({ theme }) => theme.colors.orange30};
+  background-color: ${({ theme }) => theme.colors.brand.secondary[400]};
   color: ${({ theme }) => theme.colors.neutral10};
 `;

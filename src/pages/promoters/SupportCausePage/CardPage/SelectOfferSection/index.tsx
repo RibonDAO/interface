@@ -12,7 +12,8 @@ import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import { useLocationSearch } from "hooks/useLocationSearch";
 import * as S from "./styles";
 
-const { orange30, orange40 } = theme.colors;
+const { orange40 } = theme.colors;
+const { secondary } = theme.colors;
 
 type Props = {
   cause: Cause | undefined;
@@ -104,7 +105,7 @@ function SelectOfferPage({ cause, onOfferChange }: Props): JSX.Element {
         onChange={(event) => {
           setCurrentOfferIndex(event.target.value);
         }}
-        color={orange30}
+        color={secondary[400]}
       />
     </S.Container>
   );

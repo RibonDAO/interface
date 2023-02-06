@@ -6,7 +6,7 @@ const pageThemes: any = {
   cause: {
     shade10: secondary[200],
     shade20: secondary[300],
-    shade30: theme.colors.orange30,
+    shade30: secondary[400],
     shade40: theme.colors.orange40,
   },
   nonProfit: {

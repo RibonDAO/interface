@@ -9,7 +9,7 @@ import { useLocationSearch } from "hooks/useLocationSearch";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import * as S from "./styles";
 
-const { orange30, orange40 } = theme.colors;
+const { secondary, orange40 } = theme.colors;
 
 type Props = {
   cause: Cause | undefined;
@@ -83,7 +83,7 @@ function SelectCryptoOfferSection({
         onChange={(event) => {
           setCurrentIndex(event.target.value);
         }}
-        color={orange30}
+        color={secondary[400]}
       />
     </S.Container>
   );

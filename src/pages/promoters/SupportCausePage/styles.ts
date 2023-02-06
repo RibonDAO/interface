@@ -142,7 +142,7 @@ export const UserBalanceText = styled.p`
 export const UserBalanceTextHighlight = styled.span`
   ${defaultBodySmSemibold}
 
-  color: ${({ theme }) => theme.colors.orange30};
+  color: ${({ theme }) => theme.colors.brand.secondary[400]};
 `;
 
 export const RefundText = styled.p`

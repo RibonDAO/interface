@@ -5,7 +5,7 @@ const { secondary, tertiary } = theme.colors.brand;
 const pageThemes: any = {
   cause: {
     shade10: secondary[200],
-    shade20: theme.colors.orange20,
+    shade20: secondary[300],
     shade30: theme.colors.orange30,
     shade40: theme.colors.orange40,
   },

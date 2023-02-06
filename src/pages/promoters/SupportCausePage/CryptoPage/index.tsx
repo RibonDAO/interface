@@ -135,7 +135,7 @@ function CryptoPage(): JSX.Element {
         backgroundColor={theme.colors.orange40}
         textColorOutline={theme.colors.orange40}
         borderColor={theme.colors.orange40}
-        borderColorOutline={theme.colors.orange20}
+        borderColorOutline={theme.colors.brand.secondary[300]}
       />
       <S.ContentContainer>
         <S.SupportImage src={cause?.coverImage || SupportImage} />

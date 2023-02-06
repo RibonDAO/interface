@@ -26,7 +26,7 @@ export const Title = styled.h3`
 export const Form = styled.form`
   input {
     border: 1px solid ${({ theme }) => theme.colors.orange40};
-    color: ${({ theme }) => theme.colors.orange20};
+    color: ${({ theme }) => theme.colors.brand.secondary[300]};
     font-weight: 600;
     height: 48px;
 

@@ -20,7 +20,7 @@ export const ValueText = styled.p`
   ${stylizedDisplayXs}
 
   margin-right: ${({ theme }) => theme.spacing(8)};
-  color: ${({ theme }) => theme.colors.orange20};
+  color: ${({ theme }) => theme.colors.brand.secondary[300]};
 `;
 
 export const CauseText = styled.p`

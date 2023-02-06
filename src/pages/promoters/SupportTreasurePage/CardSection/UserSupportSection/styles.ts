@@ -9,7 +9,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  background-color: ${({ theme }) => theme.colors.orange20};
+  background-color: ${({ theme }) => theme.colors.brand.secondary[300]};
   background-image: url(${cardBackground});
   background-size: cover;
   box-shadow: 0 4px 12px 0 ${({ theme }) => theme.colors.defaultShadow};

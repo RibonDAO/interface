@@ -73,7 +73,7 @@ export const CommunityAddText = styled.p`
 export const CommunityAddValue = styled.p`
   ${stylizedDisplayXs}
 
-  color: ${({ theme }) => theme.colors.orange20};
+  color: ${({ theme }) => theme.colors.brand.secondary[300]};
 `;
 
 export const CommunityAddButton = styled(ButtonComponent)`
@@ -85,9 +85,9 @@ export const CommunityAddButton = styled(ButtonComponent)`
 `;
 
 export const DonateButton = styled(ButtonComponent)`
-  border-color: ${({ theme }) => theme.colors.orange20};
+  border-color: ${({ theme }) => theme.colors.brand.secondary[300]};
   font-weight: 600;
-  background-color: ${({ theme }) => theme.colors.orange20};
+  background-color: ${({ theme }) => theme.colors.brand.secondary[300]};
   color: ${({ theme }) => theme.colors.orange40};
 `;
 

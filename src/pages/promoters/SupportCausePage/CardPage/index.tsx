@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { logEvent } from "services/analytics/firebase";
+import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import useCauses from "hooks/apiHooks/useCauses";
 import Cause from "types/entities/Cause";
 import IntersectBackground from "assets/images/intersect-background.svg";
@@ -100,6 +101,7 @@ function SupportCausePage(): JSX.Element {
 
   return (
     <S.Container>
+      <DownloadAppToast />
       <S.Title>{t("title")}</S.Title>
       <GroupButtons
         elements={causesFilter()}

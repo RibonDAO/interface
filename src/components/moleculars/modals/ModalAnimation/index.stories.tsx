@@ -53,5 +53,5 @@ WithDifferentColor.args = {
   iconDestiny: UserIcon,
   icon: Ticket,
   visible: true,
-  color: theme.colors.brand.secondary[400]
+  color: theme.colors.brand.secondary[400],
 };

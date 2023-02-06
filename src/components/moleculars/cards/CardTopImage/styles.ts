@@ -85,5 +85,5 @@ export const Title = styled.span<{
     `}
 
   margin-top: ${({ theme }) => theme.spacing(8)};
-  color: ${({ theme }) => theme.colors.green40};
+  color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;

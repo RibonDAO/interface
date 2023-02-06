@@ -27,6 +27,8 @@
       "chooseCauseModalTitle": "Choose a cause",
       "allCauses": "All",
       "learnMore": "Learn more",
+      "tooltipTicketText": "Tickets are used to make donations and you get a new one everyday when you log in Ribon.",
+      "tooltipTicket": "What is a ticket?",
       "stories": {
         "loading": "Loading stories...",
         "empty": "No stories available."

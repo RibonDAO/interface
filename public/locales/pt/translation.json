@@ -27,6 +27,8 @@
       "chooseCauseModalTitle": "Escolha uma causa",
       "allCauses": "Todas",
       "learnMore": "Saiba mais",
+      "tooltipTicketText": "Os tickets servem para fazer doações e você recebe um a cada dia que entrar aqui na Ribon.",
+      "tooltipTicket": "O que é um ticket?",
       "stories": {
         "loading": "Carregando stories...",
         "empty": "Não há stories disponíveis."

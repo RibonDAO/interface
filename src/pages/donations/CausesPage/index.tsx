@@ -24,12 +24,14 @@ import useVoucher from "hooks/useVoucher";
 import { useCausesContext } from "contexts/causesContext";
 import UserSupportSection from "pages/promoters/SupportTreasurePage/CardSection/UserSupportSection";
 import { track } from "@amplitude/analytics-browser";
+import Tooltip from "components/moleculars/Tooltip";
+import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
+import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
 import ConfirmSection from "./ConfirmSection";
 import ChooseCauseModal from "./ChooseCauseModal";
-import * as S from "./styles";
 
 function CausesPage(): JSX.Element {
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
@@ -81,6 +83,8 @@ function CausesPage(): JSX.Element {
   );
   const { canDonate } = useCanDonate(integrationId);
   const { createVoucher } = useVoucher();
+
+  const { isMobile } = useBreakpoint();
 
   useEffect(() => {
     if (canDonate) createVoucher();
@@ -208,7 +212,17 @@ function CausesPage(): JSX.Element {
       )}
 
       <S.BodyContainer>
-        <S.Title>{t("pageTitle")}</S.Title>
+        <S.TitleContainer>
+          <S.Title>{t("pageTitle")}</S.Title>
+          {!isMobile && (
+            <Tooltip
+              text={t("tooltipTicketText")}
+              symbol="?"
+              textRight={t("tooltipTicket")}
+              place="top"
+            />
+          )}
+        </S.TitleContainer>
         {!isFirstAccess(signedIn) && (
           <GroupButtons
             elements={causesWithAllFilter}
@@ -231,6 +245,16 @@ function CausesPage(): JSX.Element {
               />
             </S.NonProfitsContainer>
           )
+        )}
+        {isMobile && (
+          <S.TooltipSection>
+            <Tooltip
+              text={t("tooltipTicketText")}
+              symbol="?"
+              textRight={t("tooltipTicket")}
+              place="bottom"
+            />
+          </S.TooltipSection>
         )}
         <UserSupportSection />
       </S.BodyContainer>

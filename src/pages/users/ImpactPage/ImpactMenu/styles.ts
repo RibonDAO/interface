@@ -41,8 +41,8 @@ export const FirstParagraph = styled.p``;
 export const SecondParagraph = styled.p``;
 
 export const Container = styled.div`
-  margin-top: ${({ theme }) => theme.spacing(40)};
   width: 100%;
+  margin-top: ${({ theme }) => theme.spacing(40)};
   display: flex;
   flex-direction: column;
 `;

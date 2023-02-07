@@ -12,8 +12,8 @@ export const Container = styled.div<{
   padding: ${({ theme }) => theme.spacing(16)};
   border-radius: 16px;
   display: flex;
-  gap: ${({ theme }) => theme.spacing(8)};
   flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(8)};
   background-color: ${({ theme }) => theme.colors.neutral10};
   box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};
 
@@ -55,6 +55,7 @@ export const Value = styled.p<{
   textColor?: string;
 }>`
   ${defaultBodyMdBold}
+
   color: ${(props) => props.textColor};
 `;
 
@@ -75,7 +76,7 @@ export const InfoLeft = styled.p`
 export const InfoContainer = styled.div`
   width: 100%;
   display: flex;
-  align-items: center;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
 `;

@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { initializeAmplitude } from "services/analytics/amplitude";
 import { initializeFirebase } from "services/analytics/firebase";
+import { initializeMixpanel } from "services/analytics/mixpanel";
 import { initializeSentry } from "services/analytics/sentry";
-import { initializeAmplitude } from "./services/analytics/amplitude";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./i18n";
@@ -13,9 +14,10 @@ declare global {
   }
 }
 
-initializeFirebase();
-initializeSentry();
 initializeAmplitude();
+initializeFirebase();
+initializeMixpanel();
+initializeSentry();
 
 ReactDOM.render(
   <React.StrictMode>

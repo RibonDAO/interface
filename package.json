@@ -103,7 +103,7 @@
     "@types/react-router": "^5.1.5",
     "@types/react-router-dom": "^5.3.2",
     "@types/styled-components": "^5.1.25",
-    "@typescript-eslint/eslint-plugin": "^5.33.1",
+    "@typescript-eslint/eslint-plugin": "^5.51.0",
     "@typescript-eslint/parser": "^5.33.0",
     "axios-mock-adapter": "^1.21.2",
     "babel-eslint": "^10.1.0",

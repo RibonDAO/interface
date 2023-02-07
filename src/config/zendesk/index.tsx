@@ -8,8 +8,8 @@ import { useCurrentUser } from "contexts/currentUserContext";
 function Zendesk(): JSX.Element {
   const zendeskSettings = {
     color: {
-      theme: theme.colors.orange20,
-      button: theme.colors.orange20,
+      theme: theme.colors.brand.secondary[300],
+      button: theme.colors.brand.secondary[300],
     },
     position: {
       horizontal: "right",

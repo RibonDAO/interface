@@ -27,6 +27,7 @@ type LocationStateType = {
 };
 
 function SupportCausePage(): JSX.Element {
+  const { secondary } = theme.colors.brand;
   const { navigateTo } = useNavigation();
   const [currentOffer, setCurrentOffer] = useState<Offer>(offerFactory());
   const { cause, setCause, setOfferId, setFlow } = useCardPaymentInformation();
@@ -108,10 +109,10 @@ function SupportCausePage(): JSX.Element {
         onChange={handleCauseClick}
         indexSelected={preSelectedIndex()}
         nameExtractor={(element) => element.name}
-        backgroundColor={theme.colors.orange40}
-        textColorOutline={theme.colors.orange40}
-        borderColor={theme.colors.orange40}
-        borderColorOutline={theme.colors.orange20}
+        backgroundColor={secondary[700]}
+        textColorOutline={secondary[700]}
+        borderColor={secondary[700]}
+        borderColorOutline={secondary[300]}
       />
       <S.ContentContainer>
         <S.SupportImage src={cause?.coverImage || SupportImage} />

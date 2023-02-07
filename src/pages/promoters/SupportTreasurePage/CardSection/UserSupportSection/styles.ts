@@ -9,7 +9,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  background-color: ${({ theme }) => theme.colors.orange20};
+  background-color: ${({ theme }) => theme.colors.brand.secondary[300]};
   background-image: url(${cardBackground});
   background-size: cover;
   box-shadow: 0 4px 12px 0 ${({ theme }) => theme.colors.defaultShadow};
@@ -17,7 +17,7 @@ export const Container = styled.div`
 export const SupportButton = styled(Button)`
   border: 1px solid ${({ theme }) => theme.colors.neutral10};
   background-color: ${({ theme }) => theme.colors.neutral10};
-  color: ${({ theme }) => theme.colors.orange40};
+  color: ${({ theme }) => theme.colors.brand.secondary[700]};
 `;
 
 export const Title = styled.h2`
@@ -26,7 +26,7 @@ export const Title = styled.h2`
 
 export const Description = styled.h5`
   margin-bottom: ${({ theme }) => theme.spacing(12)};
-  color: ${({ theme }) => theme.colors.orange40};
+  color: ${({ theme }) => theme.colors.brand.secondary[700]};
 `;
 
 export const IconText = styled.div`

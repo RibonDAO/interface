@@ -41,11 +41,10 @@ export const Button = styled.button<{
   backgroundColor?: string;
   textColor?: string;
 }>`
-  padding-block: ${({ theme }) => theme.spacing(4)};
   width: 100%;
-  height: 35px;
+  height: 40px;
   border: none;
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.spacing(4)};
   display: flex;
   gap: ${({ theme }) => theme.spacing(8)};
   align-items: center;
@@ -58,6 +57,8 @@ export const Button = styled.button<{
 
   span {
     ${defaultBodySmSemibold}
+
+    margin-right: ${({ theme }) => theme.spacing(4)};
   }
 `;
 
@@ -69,11 +70,11 @@ export const ToggleButton = styled.button<{
 
   @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
     padding-inline: ${({ theme }) => theme.spacing(12)};
-    width: 100%;
-    height: 35px;
+    width: 50px;
+    height: 40px;
     margin-left: ${({ theme }) => theme.spacing(4)};
     border: none;
-    border-radius: 8px;
+    border-radius: ${({ theme }) => theme.spacing(4)};
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     display: flex;

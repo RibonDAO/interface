@@ -37,7 +37,7 @@ function CardTooltip({
       {icon && <S.Image src={icon} />}
       <S.Title textColor={titleColor}>{title}</S.Title>
       <S.Value textColor={valueColor}>{value}</S.Value>
-      <S.Text>{text}</S.Text>
+      {text && <S.Text>{text}</S.Text>}
       <S.InfoContainer>
         <S.InfoLeft>{infoLeft}</S.InfoLeft>
         {tooltipText && (

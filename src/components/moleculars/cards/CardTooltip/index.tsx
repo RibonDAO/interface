@@ -15,6 +15,7 @@ export type Props = {
   valueColor?: string;
   tooltipPosition?: "center" | "left" | "right";
   idTooltip: string;
+  size?: "large";
 };
 function CardTooltip({
   icon,
@@ -29,9 +30,10 @@ function CardTooltip({
   valueColor,
   tooltipPosition = "center",
   idTooltip,
+  size,
 }: Props): JSX.Element {
   return (
-    <S.Container>
+    <S.Container size={size}>
       {icon && <S.Image src={icon} />}
       <S.Title textColor={titleColor}>{title}</S.Title>
       <S.Value textColor={valueColor}>{value}</S.Value>

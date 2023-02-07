@@ -32,6 +32,14 @@ export const CardsContainer = styled.div`
   gap: 8px;
 `;
 
+export const TooltipText = styled.div`
+  display: flex;
+`;
+
+export const FirstParagraph = styled.p``;
+
+export const SecondParagraph = styled.p``;
+
 export const Container = styled.div`
   margin-top: ${({ theme }) => theme.spacing(40)};
   width: 100%;

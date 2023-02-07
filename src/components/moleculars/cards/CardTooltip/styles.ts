@@ -1,11 +1,13 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {
   defaultBodyMdBold,
   defaultBodySmRegular,
   defaultBodyXsRegular,
 } from "styles/typography/default";
 
-export const Container = styled.div`
+export const Container = styled.div<{
+  size?: string;
+}>`
   width: 100%;
   padding: ${({ theme }) => theme.spacing(16)};
   border-radius: 16px;
@@ -19,11 +21,18 @@ export const Container = styled.div`
     width: 24%;
     height: 100%;
   }
+
+  ${(props) =>
+    props.size === "large" &&
+    css`
+      @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+        width: 230px;
+        min-height: 292px;
+      }
+    `}
 `;
 
-export const Image = styled.img<{
-  size?: string;
-}>`
+export const Image = styled.img`
   width: 72px;
   height: 72px;
   border-radius: 50%;
@@ -36,6 +45,10 @@ export const Text = styled.p`
   ${defaultBodySmRegular}
 
   color: ${({ theme }) => theme.colors.gray30};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    min-height: 72px;
+  }
 `;
 
 export const Value = styled.p<{
@@ -62,7 +75,7 @@ export const InfoLeft = styled.p`
 export const InfoContainer = styled.div`
   width: 100%;
   display: flex;
+  align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
 `;

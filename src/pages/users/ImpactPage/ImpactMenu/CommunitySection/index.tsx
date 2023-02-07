@@ -16,9 +16,9 @@ function CommunitySection() {
     navigateTo("/promoters/support-cause");
   };
 
-  const { personPayments } = usePersonPayments();
+  const { userPersonCommunityPayments } = usePersonPayments();
 
-  const impactCards = personPayments || [];
+  const impactCards = userPersonCommunityPayments || [];
   const hasPayments = impactCards?.length > 0;
 
   return (

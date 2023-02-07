@@ -4,7 +4,13 @@ import CardTooltip from ".";
 
 describe("CartTextImageTooltip", () => {
   it("should render without error", () => {
-    renderComponent(<CardTooltip tooltipText="text" tooltipSymbol="!" />);
+    renderComponent(
+      <CardTooltip
+        tooltipText="text"
+        tooltipSymbol="!"
+        idTooltip="cardTooltip"
+      />,
+    );
 
     expectTextToBeInTheDocument("CartTextImageTooltip");
   });

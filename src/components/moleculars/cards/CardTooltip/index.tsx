@@ -10,7 +10,11 @@ export type Props = {
   value?: string | number;
   infoLeft?: string;
   tooltipSymbol: string;
-  tooltipText: string;
+  tooltipText?: string;
+  children?: JSX.Element;
+  valueColor?: string;
+  tooltipPosition?: "center" | "left" | "right";
+  idTooltip: string;
 };
 function CardTooltip({
   icon,
@@ -20,16 +24,37 @@ function CardTooltip({
   infoLeft,
   tooltipSymbol,
   tooltipText,
+  children,
+  titleColor,
+  valueColor,
+  tooltipPosition = "center",
+  idTooltip,
 }: Props): JSX.Element {
   return (
     <S.Container>
-      <S.Image src={icon} />
-      <S.Title>{title}</S.Title>
-      <S.Value>{value}</S.Value>
+      {icon && <S.Image src={icon} />}
+      <S.Title textColor={titleColor}>{title}</S.Title>
+      <S.Value textColor={valueColor}>{value}</S.Value>
       <S.Text>{text}</S.Text>
       <S.InfoContainer>
         <S.InfoLeft>{infoLeft}</S.InfoLeft>
-        <Tooltip text={tooltipText} symbol={tooltipSymbol} />
+        {tooltipText && (
+          <Tooltip
+            text={tooltipText}
+            symbol={tooltipSymbol}
+            tooltipPosition={tooltipPosition}
+            idTooltip={idTooltip}
+          />
+        )}
+        {children && (
+          <Tooltip
+            symbol={tooltipSymbol}
+            tooltipPosition={tooltipPosition}
+            idTooltip={idTooltip}
+          >
+            {children}
+          </Tooltip>
+        )}
       </S.InfoContainer>
     </S.Container>
   );

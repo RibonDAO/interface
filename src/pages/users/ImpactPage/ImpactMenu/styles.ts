@@ -23,7 +23,17 @@ export const Menu = styled.div`
   }
 `;
 
+export const CardsContainer = styled.div`
+  width: 100%;
+  min-height: 216px;
+  margin-top: ${({ theme }) => theme.spacing(32)};
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+`;
+
 export const Container = styled.div`
+  margin-top: ${({ theme }) => theme.spacing(40)};
   width: 100%;
   display: flex;
   flex-direction: column;

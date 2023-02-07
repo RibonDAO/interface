@@ -1,11 +1,15 @@
+import theme from "styles/theme";
 import * as S from "./styles";
 
 export type Props = {
-  text: string;
+  text?: string;
   textRight?: string;
   symbol: string;
   isClick?: boolean;
   place?: "top" | "bottom" | "left" | "right";
+  tooltipPosition?: "center" | "left" | "right";
+  children?: JSX.Element;
+  idTooltip: string;
 };
 function Tooltip({
   text,
@@ -13,10 +17,16 @@ function Tooltip({
   symbol,
   isClick,
   place = "top",
+  children,
+  tooltipPosition = "center",
+  idTooltip,
 }: Props): JSX.Element {
+  function handleTooltipPosition() {
+    return tooltipPosition === "right" ? "4.5%" : theme.spacing(0);
+  }
   return (
     <S.Container>
-      <S.TooltipContainer id="tooltip">
+      <S.TooltipContainer id={idTooltip}>
         <S.LeftContainer>
           <S.IconCircle>
             <S.Symbol>{symbol}</S.Symbol>
@@ -29,12 +39,15 @@ function Tooltip({
         )}
       </S.TooltipContainer>
       <S.TooltipBox
-        anchorId="tooltip"
+        anchorId={idTooltip}
         content={text}
         place={place}
         positionStrategy="fixed"
         events={isClick ? ["click"] : ["hover"]}
-      />
+        tooltipPosition={handleTooltipPosition()}
+      >
+        {children}
+      </S.TooltipBox>
     </S.Container>
   );
 }

@@ -6,16 +6,19 @@ import { emptyRequest } from "services/api";
 
 function usePersonPayments() {
   const { currentUser } = useCurrentUser();
-  const { data: personPayments } = useApi<PersonPayment[]>({
+  const { data: personPayments, isLoading } = useApi<PersonPayment[]>({
     key: "personPayments",
     fetchMethod: () => {
       if (!currentUser?.id) return emptyRequest();
-      return personPaymentsApi.getPersonPayments(btoa(currentUser?.email));
+      return personPaymentsApi.getCommunityPersonPayments(
+        btoa(currentUser?.email),
+      );
     },
   });
 
   return {
     personPayments,
+    isLoading,
   };
 }
 

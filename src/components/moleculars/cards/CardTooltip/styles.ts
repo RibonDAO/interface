@@ -7,7 +7,6 @@ import {
 
 export const Container = styled.div`
   width: 100%;
-  min-width: 230px;
   padding: ${({ theme }) => theme.spacing(16)};
   border-radius: 16px;
   display: flex;
@@ -17,7 +16,8 @@ export const Container = styled.div`
   box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    width: 230px;
+    width: 24%;
+    height: 100%;
   }
 `;
 
@@ -38,16 +38,19 @@ export const Text = styled.p`
   color: ${({ theme }) => theme.colors.gray30};
 `;
 
-export const Value = styled.p`
+export const Value = styled.p<{
+  textColor?: string;
+}>`
   ${defaultBodyMdBold}
-
-  color: ${({ theme }) => theme.colors.red30};
+  color: ${(props) => props.textColor};
 `;
 
-export const Title = styled.span`
+export const Title = styled.span<{
+  textColor?: string;
+}>`
   ${defaultBodySmRegular}
 
-  color: ${({ theme }) => theme.colors.red40};
+  color: ${(props) => props.textColor};
 `;
 
 export const InfoLeft = styled.p`

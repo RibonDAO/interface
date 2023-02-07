@@ -101,6 +101,8 @@ function CardPage(): JSX.Element {
             symbol="?"
             textRight={t("tooltipImpact")}
             place="top"
+            idTooltip="tooltipImpact"
+            tooltipPosition="right"
           />
         )}
       </S.TitleContainer>
@@ -135,6 +137,8 @@ function CardPage(): JSX.Element {
             symbol="?"
             textRight={t("tooltipImpact")}
             place="bottom"
+            tooltipPosition="right"
+            idTooltip="tooltipImpact"
           />
         </S.TooltipSection>
       )}

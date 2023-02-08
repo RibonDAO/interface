@@ -14,6 +14,6 @@ const neutralColors: ThemeType = {
   700: "#44413B",
   800: "#302D27",
   900: "#221E16",
-};  
+};
 
 export default neutralColors;

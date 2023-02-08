@@ -21,7 +21,6 @@ import useFormattedImpactText from "hooks/useFormattedImpactText";
 import { getAudioFromStorage } from "lib/cachedAudio";
 import ReactHowler from "react-howler";
 import * as S from "./styles";
-import { logEvent } from "../../../services/analytics/firebase";
 
 function DonationDoneCausePage(): JSX.Element {
   type LocationState = {
@@ -81,9 +80,6 @@ function DonationDoneCausePage(): JSX.Element {
   }
 
   useEffect(() => {
-    logEvent("donateFinishedDonation_view", {
-      selected: nonProfit?.id,
-    });
     if (offerId) {
       donationInfos(offerId);
     }

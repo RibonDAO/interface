@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Currencies } from "types/enums/Currencies";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import useOffers from "hooks/apiHooks/useOffers";
-import { logEvent } from "services/analytics/firebase";
+import { logEvent } from "lib/events";
 import { removeInsignificantZeros } from "lib/formatters/currencyFormatter";
 import CardSelect from "components/moleculars/cards/CardSelect";
 import useNonProfits from "hooks/apiHooks/useNonProfits";

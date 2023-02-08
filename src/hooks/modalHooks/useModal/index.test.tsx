@@ -6,12 +6,16 @@ import {
 } from "config/testUtils/expects";
 import ModalProvider from "contexts/modalContext";
 import { act } from "@testing-library/react";
+import { ThemeProvider } from "styled-components";
+import theme from "styles/theme";
 import { useModal } from ".";
 
 describe("useModal", () => {
   let current: ReturnType<typeof useModal>;
   const wrapper = ({ children }: any) => (
-    <ModalProvider>{children}</ModalProvider>
+    <ThemeProvider theme={theme}>
+      <ModalProvider>{children}</ModalProvider>
+    </ThemeProvider>
   );
 
   describe("when the screen is on mobile size", () => {

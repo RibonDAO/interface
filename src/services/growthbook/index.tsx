@@ -1,5 +1,5 @@
 import { GrowthBook } from "@growthbook/growthbook-react";
-import { logEvent } from "services/analytics/firebase";
+import { logEvent } from "lib/events";
 import firebase from "firebase/app";
 import { RIBON_GROWTHBOOK_URL } from "utils/constants";
 import { logError } from "services/crashReport";

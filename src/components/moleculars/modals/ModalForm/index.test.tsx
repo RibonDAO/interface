@@ -4,6 +4,7 @@ import {
   expectTextNotToBeInTheDocument,
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
+import { mockNewLogEventFunction } from "setupTests";
 import ModalForm from ".";
 
 describe("ModalForm", () => {
@@ -45,7 +46,10 @@ describe("ModalForm", () => {
           },
         ]}
         onFormSubmit={handleOnSubmitMock}
-        primaryButtonText="click"
+        primaryButton={{
+          text: "click",
+          onClick: handleOnSubmitMock,
+        }}
         initialState={{ email: "email" }}
       />,
     );
@@ -63,6 +67,38 @@ describe("ModalForm", () => {
         />,
       );
       expectTextNotToBeInTheDocument("ModalForm");
+    });
+  });
+
+  describe("when the modal is visible and has an eventName", () => {
+    const eventName = "test";
+    const eventParams = { test: "test" };
+    const action = "view";
+    it("logs an event", () => {
+      renderComponent(
+        <ModalForm
+          title="ModalForm"
+          visible
+          formFields={[
+            {
+              name: "email",
+              id: "email",
+              type: "email",
+              placeholder: "email",
+              required: true,
+            },
+          ]}
+          onFormSubmit={() => {}}
+          initialState={{ email: "email" }}
+          eventName={eventName}
+          eventParams={eventParams}
+        />,
+      );
+      expect(mockNewLogEventFunction).toHaveBeenCalledWith(
+        action,
+        eventName,
+        eventParams,
+      );
     });
   });
 });

@@ -1,12 +1,5 @@
 import * as CrashReport from "services/crashReport";
-import {
-  logEvent,
-  setUserProperties,
-  setUserId,
-  convertParamsToString,
-} from ".";
-
-jest.unmock("services/analytics/firebase");
+import { logFirebaseEvent, setUserProperties, setUserId } from ".";
 
 const mockAnalytics = {
   logEvent: jest.fn(),
@@ -20,7 +13,7 @@ jest.mock("firebase/app", () => ({
 
 jest.spyOn(CrashReport, "logError");
 
-describe("logEvent", () => {
+describe("logFirebaseEvent", () => {
   const eventName = "teste";
 
   beforeEach(() => {
@@ -33,7 +26,7 @@ describe("logEvent", () => {
   describe("with params", () => {
     const eventParams = { param: "teste" };
     it("sends an event to firebase", async () => {
-      logEvent(eventName, eventParams);
+      logFirebaseEvent(eventName, eventParams);
 
       expect(mockAnalytics.logEvent).toHaveBeenCalledWith(
         eventName,
@@ -44,12 +37,8 @@ describe("logEvent", () => {
 
   describe("without params", () => {
     it("sends an event to firebase", () => {
-      logEvent(eventName);
-      expect(mockAnalytics.logEvent).toHaveBeenCalledWith(eventName, {
-        anonymousId: "false",
-        integrationName: "false",
-        hasDonated: "false",
-      });
+      logFirebaseEvent(eventName);
+      expect(mockAnalytics.logEvent).toHaveBeenCalledWith(eventName, {});
     });
   });
 
@@ -61,7 +50,7 @@ describe("logEvent", () => {
     });
 
     it("calls logError", () => {
-      logEvent(eventName);
+      logFirebaseEvent(eventName);
       expect(CrashReport.logError).toHaveBeenCalled();
     });
   });
@@ -95,35 +84,5 @@ describe("#setUserId", () => {
     const userId = 1;
     setUserId(userId);
     expect(mockAnalytics.setUserId).toHaveBeenCalledWith("1");
-  });
-});
-
-describe("#convertParamsToString", () => {
-  describe("when params are defined", () => {
-    it("converts the params to string", () => {
-      const params = {
-        id: 5,
-        brand: "Brand",
-      };
-
-      const convertedParams = convertParamsToString(params);
-
-      expect(convertedParams.id).toEqual("5");
-      expect(convertedParams.brand).toEqual("Brand");
-    });
-  });
-
-  describe("when there is an undefined param", () => {
-    it("converts the undefined param to an empty string", () => {
-      const params = {
-        id: 5,
-        brand: undefined,
-      };
-
-      const convertedParams = convertParamsToString(params);
-
-      expect(convertedParams.id).toEqual("5");
-      expect(convertedParams.brand).toEqual("");
-    });
   });
 });

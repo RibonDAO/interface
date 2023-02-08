@@ -54,7 +54,7 @@ const feedbackColors: ThemeType = {
     700: "#302D27",
     800: "#221E16",
     900: "#221E16",
-  }
+  },
 };
 
 export default feedbackColors;

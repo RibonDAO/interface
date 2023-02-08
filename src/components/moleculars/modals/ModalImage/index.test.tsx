@@ -5,6 +5,7 @@ import {
   expectTextNotToBeInTheDocument,
   expectImageToBeInTheDocument,
 } from "config/testUtils/expects";
+import { mockNewLogEventFunction } from "setupTests";
 import ModalImage from ".";
 
 describe("ModalImage", () => {
@@ -38,8 +39,12 @@ describe("ModalImage", () => {
         <ModalImage
           title="ModalImage"
           visible
-          primaryButtonText="click"
-          secondaryButtonText="click2"
+          primaryButton={{
+            text: "click",
+          }}
+          secondaryButton={{
+            text: "click2",
+          }}
         />,
       );
 
@@ -52,8 +57,10 @@ describe("ModalImage", () => {
         <ModalImage
           title="ModalImage"
           visible
-          primaryButtonText="click"
-          primaryButtonCallback={handlePrimaryButton}
+          primaryButton={{
+            text: "click",
+            onClick: handlePrimaryButton,
+          }}
         />,
       );
 
@@ -64,7 +71,13 @@ describe("ModalImage", () => {
     it("should not call function when click in primary button", () => {
       const handlePrimaryButton = jest.fn();
       renderComponent(
-        <ModalImage title="ModalImage" visible primaryButtonText="click" />,
+        <ModalImage
+          title="ModalImage"
+          visible
+          primaryButton={{
+            text: "click",
+          }}
+        />,
       );
 
       clickOn("click");
@@ -77,8 +90,10 @@ describe("ModalImage", () => {
         <ModalImage
           title="ModalImage"
           visible
-          secondaryButtonText="click"
-          secondaryButtonCallback={handleSecondaryButton}
+          secondaryButton={{
+            text: "click",
+            onClick: handleSecondaryButton,
+          }}
         />,
       );
 
@@ -89,11 +104,33 @@ describe("ModalImage", () => {
     it("should not call function when click in secondary button", () => {
       const handleSecondaryButton = jest.fn();
       renderComponent(
-        <ModalImage title="ModalImage" visible secondaryButtonText="click" />,
+        <ModalImage
+          title="ModalImage"
+          visible
+          secondaryButton={{
+            text: "click",
+          }}
+        />,
       );
 
       clickOn("click");
       expect(handleSecondaryButton).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("when the modal is visible and has an eventName", () => {
+    const eventName = "test";
+    const eventParams = { test: "test" };
+    const action = "view";
+    it("logs an event", () => {
+      renderComponent(
+        <ModalImage visible eventName={eventName} eventParams={eventParams} />,
+      );
+      expect(mockNewLogEventFunction).toHaveBeenCalledWith(
+        action,
+        eventName,
+        eventParams,
+      );
     });
   });
 });

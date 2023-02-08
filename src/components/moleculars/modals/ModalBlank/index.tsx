@@ -1,3 +1,5 @@
+import { newLogEvent } from "lib/events";
+import { useState } from "react";
 import { Styles } from "react-modal";
 import { defaultCustomStyles } from "../defaultCustomStyles";
 import * as S from "./styles";
@@ -9,6 +11,8 @@ export type Props = {
   onClose?: () => void;
   customStyles?: Styles;
   parentSelector?: () => HTMLElement;
+  eventName?: string;
+  eventParams?: Record<string, any>;
 };
 
 function ModalBlank({
@@ -18,7 +22,16 @@ function ModalBlank({
   contentLabel,
   customStyles,
   parentSelector,
+  eventName,
+  eventParams,
 }: Props): JSX.Element {
+  const [logged, SetLogged] = useState(false);
+
+  if (visible && eventName && !logged) {
+    newLogEvent("view", eventName, eventParams);
+    SetLogged(true);
+  }
+
   return (
     <S.BlankModal
       isOpen={visible}

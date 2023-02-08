@@ -18,8 +18,8 @@ import Offer from "types/entities/Offer";
 import { Currencies } from "types/enums/Currencies";
 import getThemeByFlow from "lib/themeByFlow";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
+import { getAudioFromStorage } from "lib/cachedAudio";
 import ReactHowler from "react-howler";
-import DonationDoneSound from "assets/sounds/donation-done.mp3";
 import * as S from "./styles";
 import { logEvent } from "../../../services/analytics/firebase";
 
@@ -102,9 +102,11 @@ function DonationDoneCausePage(): JSX.Element {
     return formattedImpactText(nonProfit);
   };
 
+  const audio = getAudioFromStorage("donationDoneSound");
+
   return (
     <S.Container>
-      <ReactHowler src={DonationDoneSound} loop={false} playing />
+      {audio && <ReactHowler src={audio} loop={false} playing />}
       <S.ImageContainer>
         <IconsAroundImage
           imageSrc={

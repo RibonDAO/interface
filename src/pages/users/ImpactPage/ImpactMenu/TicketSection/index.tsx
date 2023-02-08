@@ -2,8 +2,6 @@ import CardTopImage from "components/moleculars/cards/CardTopImage";
 import useImpact from "hooks/apiHooks/useImpact";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import useNavigation from "hooks/useNavigation";
-import { logEvent } from "lib/events";
-import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import ticketIllustration from "../../assets/ticket-illustration.svg";
 import * as S from "../styles";
@@ -19,10 +17,6 @@ function TicketSection() {
 
   const { userImpact } = useImpact();
   const { formattedImpactText } = useFormattedImpactText();
-
-  useEffect(() => {
-    logEvent("profile_view");
-  }, []);
 
   const impactCards = userImpact || [];
   const impactItems = impactCards.filter(

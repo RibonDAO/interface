@@ -30,8 +30,10 @@ function ModalOnboarding(): JSX.Element {
         visible={visible}
         title={t("title")}
         body={t("subtitle")}
-        primaryButtonText={t("button")}
-        primaryButtonCallback={() => setVisible(false)}
+        primaryButton={{
+          text: t("button"),
+          onClick: () => setVisible(false),
+        }}
         onClose={() => setVisible(false)}
       />
     </S.Container>

@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Button, { Props } from ".";
+import Button, { ButtonProps } from ".";
 
 export default {
   title: "Button",
@@ -13,7 +13,7 @@ export default {
   },
 } as ComponentMeta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = function (args: Props) {
+const Template: ComponentStory<typeof Button> = function (args: ButtonProps) {
   return <Button {...args} />;
 };
 

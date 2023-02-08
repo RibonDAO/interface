@@ -9,6 +9,7 @@ const events: any = {
     "/promoters/payment?payment_method=card?cause": "P5",
     "/promoters/payment?nonProfit": "P6",
     "/donation-done-cause": "P7",
+    "/donation-done-cause?cause": "P7",
     "/post-donation": "P8",
     "/impact": "P9",
   },

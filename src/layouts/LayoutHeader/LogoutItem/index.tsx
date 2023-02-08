@@ -64,20 +64,24 @@ function LogoutItem(): JSX.Element {
         visible={warningModalVisible}
         title={t("logoutModalTitle")}
         body={t("logoutModalSubtitle")}
-        primaryButtonText={t("confirmModalButton")}
-        secondaryButtonText={t("cancelModalButton")}
-        icon={warningIcon}
-        primaryButtonCallback={() => handleConfirmation()}
-        secondaryButtonCallback={() => {
-          setWarningModalVisible(false);
+        primaryButton={{
+          text: t("confirmModalButton"),
+          onClick: handleConfirmation,
         }}
+        secondaryButton={{
+          text: t("cancelModalButton"),
+          onClick: () => setWarningModalVisible(false),
+        }}
+        icon={warningIcon}
       />
       <ModalIcon
         visible={successLogoutModalVisible}
         title={t("successModalTitle")}
-        primaryButtonText={t("successModalButton")}
+        primaryButton={{
+          text: t("successModalButton"),
+          onClick: handleLogout,
+        }}
         icon={successIcon}
-        primaryButtonCallback={() => handleLogout()}
       />
     </S.Container>
   );

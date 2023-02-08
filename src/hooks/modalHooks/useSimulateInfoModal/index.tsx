@@ -14,9 +14,9 @@ export function useSimulateInfoModal(initialState?: boolean) {
     props: {
       title: t("title"),
       body: t("body"),
-      primaryButtonText: t("primaryButtonText"),
-      primaryButtonCallback: () => {
-        hide();
+      primaryButton: {
+        text: t("primaryButtonText"),
+        onClick: () => hide(),
       },
       onClose: () => hide(),
       icon: questionMarks,

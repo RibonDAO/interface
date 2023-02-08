@@ -53,10 +53,18 @@ export const Title = styled.h3`
   ${defaultBodyXsMedium}
 `;
 
-export const Link = styled.a`
+export const Subtitle = styled.p`
   ${defaultBodyXsRegular}
 
   color: ${({ theme }) => theme.colors.green30};
+`;
+
+export const Link = styled.a`
+  ${defaultBodyXsRegular}
+
+  text-decoration: underline;
+  color: ${({ theme }) => theme.colors.green30};
+  cursor: pointer;
 `;
 
 export const RightContainer = styled.div`

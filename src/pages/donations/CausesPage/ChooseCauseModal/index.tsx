@@ -30,7 +30,11 @@ export function ChooseCauseModal({ visible }: Props): JSX.Element {
   );
 
   return (
-    <ModalRows title={t("chooseCauseModalTitle")} visible={visible}>
+    <ModalRows
+      title={t("chooseCauseModalTitle")}
+      visible={visible}
+      eventName="P1_causeModal"
+    >
       {causesList()}
     </ModalRows>
   );

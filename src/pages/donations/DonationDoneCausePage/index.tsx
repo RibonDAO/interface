@@ -19,7 +19,6 @@ import { Currencies } from "types/enums/Currencies";
 import getThemeByFlow from "lib/themeByFlow";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import * as S from "./styles";
-import { logEvent } from "../../../lib/events";
 
 function DonationDoneCausePage(): JSX.Element {
   type LocationState = {
@@ -79,9 +78,6 @@ function DonationDoneCausePage(): JSX.Element {
   }
 
   useEffect(() => {
-    logEvent("donateFinishedDonation_view", {
-      selected: nonProfit?.id,
-    });
     if (offerId) {
       donationInfos(offerId);
     }

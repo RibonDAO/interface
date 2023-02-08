@@ -5,7 +5,6 @@ import useVoucher from "hooks/useVoucher";
 import Ticket from "assets/icons/ticket-rounded-icon.svg";
 import SupportersIcon from "assets/icons/community-icon.svg";
 import UserIcon from "assets/icons/user-mono-icon.svg";
-import { logEvent } from "lib/events";
 import { useCausesContext } from "contexts/causesContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { isFirstAccess } from "lib/onboardingFirstAccess";
@@ -30,6 +29,7 @@ export function useAnimationReceiveTicketModal(initialState?: boolean) {
       iconDestiny: UserIcon,
       textDestiny: t("receiveTicketAnimationModalDestiny"),
       icon: Ticket,
+      eventName: "P1_dailyTicketModal",
     },
   });
 
@@ -41,7 +41,6 @@ export function useAnimationReceiveTicketModal(initialState?: boolean) {
   const showAnimationReceiveTicketModal = () => {
     show();
     setTimeout(() => {
-      logEvent("dailyTicketDial_view");
       createVoucher();
       hideAnimationReceiveTicketModal();
     }, 3000);

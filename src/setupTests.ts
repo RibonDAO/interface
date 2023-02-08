@@ -5,6 +5,7 @@ export const mockNavigationFunction = jest.fn();
 export const mockNavigateBackFunction = jest.fn();
 export const mockLogErrorFunction = jest.fn();
 export const mockLogEventFunction = jest.fn();
+export const mockNewLogEventFunction = jest.fn();
 export const mockLogPageViewFunction = jest.fn();
 export const mockLocationReload = jest.fn();
 
@@ -25,6 +26,7 @@ export function setupMocks() {
     __esModule: true,
     logEvent: mockLogEventFunction,
     logPageView: mockLogPageViewFunction,
+    newLogEvent: mockNewLogEventFunction,
   }));
   delete (window as any).location;
   (window as any).location = { reload: mockLocationReload };

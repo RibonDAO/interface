@@ -43,21 +43,29 @@ function ConfirmDonationModal({
       icon={Ticket}
       visible={donationInProcessModalVisible}
       isIconDestinyFullSize
+      eventName="P1_donateProgressModal"
+      eventParams={{ nonProfitId: chosenNonProfit?.id }}
     />
   ) : (
     <ModalIcon
       icon={Ticket}
       title={t("confirmModalAuthTitle")}
       body={formattedImpactText(chosenNonProfit)}
-      primaryButtonText={t("confirmModalPrimaryButtonText")}
-      primaryButtonCallback={() => {
-        if (currentUser) donate(currentUser.email);
+      primaryButton={{
+        text: t("confirmModalPrimaryButtonText"),
+        onClick: () => {
+          if (currentUser) donate(currentUser.email);
+        },
+        eventName: "P1_donateConfirmBtn",
       }}
-      secondaryButtonText={t("confirmModalSecondaryButtonText")}
-      secondaryButtonCallback={closeConfirmModal}
+      secondaryButton={{
+        text: t("confirmModalSecondaryButtonText"),
+        onClick: closeConfirmModal,
+      }}
       visible={confirmModalVisible}
       onClose={closeConfirmModal}
       roundIcon
+      eventName="P1_donateConfirmModal"
     />
   );
 }

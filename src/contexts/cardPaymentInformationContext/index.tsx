@@ -133,14 +133,16 @@ function CardPaymentInformationProvider({ children }: Props) {
       title: t("modalSuccessTitle").replace("{{value}}", cryptoGiving),
       body: t("modalSuccessDescription"),
       icon: successIcon,
-      primaryButtonText: t("modalSuccessButton"),
+      primaryButton: {
+        text: t("modalSuccessButton"),
+        onClick: () => {
+          handleConfirmation();
+          hide();
+        },
+      },
       onClose: () => {
         handleConfirmation();
 
-        hide();
-      },
-      primaryButtonCallback: () => {
-        handleConfirmation();
         hide();
       },
     },

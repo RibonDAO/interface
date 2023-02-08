@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { newLogEvent } from "lib/events";
+import { useState } from "react";
 import theme from "styles/theme";
 import * as S from "./styles";
 
@@ -13,6 +14,8 @@ export type Props = {
   textColorOutline?: string;
   borderColor?: string;
   borderColorOutline?: string;
+  eventName?: string;
+  eventParams?: (element: any) => Record<string, any>;
 };
 
 function GroupButtons({
@@ -26,19 +29,20 @@ function GroupButtons({
   textColorOutline = theme.colors.green40,
   borderColor = theme.colors.green40,
   borderColorOutline = theme.colors.green30,
+  eventName,
+  eventParams,
 }: Props): JSX.Element {
-  const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
+  const [selectedButtonIndex, setSelectedButtonIndex] = useState(
+    indexSelected || 0,
+  );
 
   const handleElementClick = (index: number, element: any, event?: any) => {
     setSelectedButtonIndex(index);
+    if (eventName && eventParams) {
+      newLogEvent("click", eventName, eventParams(element));
+    }
     if (onChange) onChange(element, index, event);
   };
-
-  useEffect(() => {
-    if (indexSelected !== undefined) {
-      handleElementClick(indexSelected, elements[indexSelected]);
-    }
-  }, [indexSelected]);
 
   function renderGroupButtons() {
     return elements?.map((element, index) => (

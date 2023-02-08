@@ -6,6 +6,7 @@ import {
 import theme from "styles/theme";
 import { screen } from "@testing-library/react";
 import SupportersIcon from "assets/icons/supporters.svg";
+import { mockNewLogEventFunction } from "setupTests";
 import ModalAnimation from ".";
 
 describe("ModalAnimation", () => {
@@ -46,6 +47,26 @@ describe("ModalAnimation", () => {
         font-weight: ${theme.font.medium};
         padding-top: 8px;
         text-align: center;`,
+      );
+    });
+  });
+
+  describe("when the modal is visible and has an eventName", () => {
+    const eventName = "test";
+    const eventParams = { test: "test" };
+    const action = "view";
+    it("logs an event", () => {
+      renderComponent(
+        <ModalAnimation
+          visible
+          eventName={eventName}
+          eventParams={eventParams}
+        />,
+      );
+      expect(mockNewLogEventFunction).toHaveBeenCalledWith(
+        action,
+        eventName,
+        eventParams,
       );
     });
   });

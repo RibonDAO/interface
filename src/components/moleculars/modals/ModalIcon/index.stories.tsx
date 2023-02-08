@@ -15,8 +15,14 @@ export const Default = Template.bind({});
 
 Default.args = {
   title: "Title",
-  primaryButtonText: "first",
-  secondaryButtonText: "second",
+  primaryButton: {
+    text: "first",
+    onClick: () => "first",
+  },
+  secondaryButton: {
+    text: "second",
+    onClick: () => "second",
+  },
   visible: true,
   icon,
   body: "A disciplina é a chama refinadora por meio da qual o talento se transforma em capacidade",

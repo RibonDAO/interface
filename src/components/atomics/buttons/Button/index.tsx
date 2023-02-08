@@ -1,12 +1,12 @@
 import React, { ButtonHTMLAttributes } from "react";
 import { ReactComponent as RibonIcon } from "assets/icons/ribon.svg";
 import theme from "styles/theme";
-import { logEvent } from "lib/events";
+import { newLogEvent } from "lib/events";
 import * as S from "./styles";
 
 export type onClickType = () => void;
 
-export type Props = {
+export type ButtonProps = {
   text: string;
   textColor?: string;
   backgroundColor?: string;
@@ -18,7 +18,7 @@ export type Props = {
   rightIcon?: string;
   altLeftIconText?: string;
   altRightIconText?: string;
-  onClick: onClickType;
+  onClick?: onClickType;
   outline?: boolean;
   disabled?: boolean;
   round?: boolean;
@@ -47,7 +47,7 @@ export default function Button({
   eventName,
   eventParams,
   ...props
-}: Props): JSX.Element {
+}: ButtonProps): JSX.Element {
   function activeTextColor() {
     if (outline && !textColor) return theme.colors.green30;
     if (softDisabled) return theme.colors.gray30;
@@ -77,9 +77,12 @@ export default function Button({
     return "8px";
   }
 
-  if (eventName) {
-    logEvent(eventName, eventParams);
-  }
+  const handleClick = () => {
+    if (onClick) onClick();
+    if (eventName) {
+      newLogEvent("click", eventName, eventParams);
+    }
+  };
 
   return (
     <S.Container
@@ -87,7 +90,7 @@ export default function Button({
       backgroundColor={activeBackgroundColor()}
       borderColor={activeBorderColor()}
       ribonsColor={ribonsColor}
-      onClick={onClick}
+      onClick={handleClick}
       leftIcon={leftIcon}
       disabled={disabled}
       borderRadius={borderRadius()}

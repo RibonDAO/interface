@@ -34,9 +34,6 @@ function DonationDonePage(): JSX.Element {
 
   useEffect(() => {
     if (nonProfit) {
-      logEvent("donateFinishedDonation_view", {
-        selected: nonProfit?.id,
-      });
       setLocalStorageItem("HAS_DONATED", "true");
       setTimeout(() => {
         navigateTo({

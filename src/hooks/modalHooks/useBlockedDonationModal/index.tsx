@@ -32,6 +32,8 @@ export function useBlockedDonationModal(
             subtitle={integration?.integrationTask.link}
             image={integration?.logo}
             link={integration?.integrationTask.linkAddress}
+            eventName="ticketModalWinBtn"
+            eventParams={{ ticketQtd: 0 }}
           />,
           <TicketWithTextAndImage
             title={t("ribonTitle")}
@@ -49,6 +51,7 @@ export function useBlockedDonationModal(
       children: renderTickets(),
       onClose: () => hide(),
       icon: blockedIcon,
+      eventName: "noTicketModal",
     },
   });
 

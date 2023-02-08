@@ -1,15 +1,37 @@
-import { logFirebaseEvent } from "services/analytics/firebase";
+import {
+  EventNameTooLongError,
+  logFirebaseEvent,
+} from "services/analytics/firebase";
 import events from "./constants";
 
 interface EventParams {
   [key: string]: string | number | undefined;
 }
-export function logEvent(name: string, params?: EventParams) {
-  logFirebaseEvent(name, params);
-}
 
 function eventPageTransalation(url: string) {
   return events.pages[url];
+}
+
+export function logEvent(
+  eventName: string,
+  eventParams: EventParams = {},
+): void {
+  // TODO: remove this console.log
+  // eslint-disable-next-line no-console
+  console.log(eventName, eventParams);
+  if (eventName.length > 32) {
+    throw new EventNameTooLongError();
+  } else if (process.env.NODE_ENV === "production") {
+    logFirebaseEvent(eventName, eventParams);
+  }
+}
+
+export function newLogEvent(
+  action: string,
+  eventName: string,
+  eventParams?: EventParams,
+): void {
+  logEvent(`web_${eventName}_${action}`, eventParams);
 }
 
 export function logPageView(
@@ -38,10 +60,10 @@ export function logPageView(
   ) {
     query = "?payment_method=crypto";
   }
+
   const pageName = eventPageTransalation(urlName + query + flow);
 
   if (pageName) {
-    const event = `web_${pageName}_view`;
-    logEvent(event, params);
+    newLogEvent("view", pageName, params);
   }
 }

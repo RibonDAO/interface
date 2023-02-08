@@ -3,7 +3,6 @@ import { useCallback, useState } from "react";
 import NonProfit from "types/entities/NonProfit";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import useIntegration from "hooks/apiHooks/useIntegration";
-import { logEvent } from "lib/events";
 import useUsers from "hooks/apiHooks/useUsers";
 import useSources from "hooks/apiHooks/useSources";
 import { useCurrentUser } from "contexts/currentUserContext";
@@ -50,7 +49,6 @@ function StoriesSection({
     async (email: string) => {
       try {
         if (!signedIn) {
-          logEvent("authDonationDialButton_click");
           const user = await findOrCreateUser(email);
           if (integration) {
             createSource(user.id, integration.id);
@@ -60,9 +58,6 @@ function StoriesSection({
       } catch (e) {
         logError(e);
       }
-      logEvent("donateConfirmDialButton_click", {
-        causeId: nonProfit?.id,
-      });
     },
     [nonProfit],
   );

@@ -19,8 +19,14 @@ Default.args = {
   body: "Subtitle",
   visible: true,
   icon,
-  primaryButtonText: "Primary",
-  secondaryButtonText: "Secondary",
+  primaryButton: {
+    text: "first",
+    onClick: () => "first",
+  },
+  secondaryButton: {
+    text: "second",
+    onClick: () => "second",
+  },
   rowsContent: [
     {
       id: 1,

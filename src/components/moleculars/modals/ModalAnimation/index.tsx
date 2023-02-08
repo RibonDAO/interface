@@ -1,3 +1,4 @@
+import { newLogEvent } from "lib/events";
 import React, { useState } from "react";
 import ReactModal from "react-modal";
 import theme from "styles/theme";
@@ -17,6 +18,8 @@ export type Props = {
   isIconDestinyFullSize?: boolean;
   isIconOriginFullSize?: boolean;
   color?: string;
+  eventName?: string;
+  eventParams?: Record<string, any>;
 };
 function ModalAnimation({
   visible = false,
@@ -31,7 +34,16 @@ function ModalAnimation({
   isIconDestinyFullSize = false,
   isIconOriginFullSize = false,
   color = theme.colors.green30,
+  eventName,
+  eventParams,
 }: Props): JSX.Element {
+  const [logged, SetLogged] = useState(false);
+
+  if (visible && eventName && !logged) {
+    newLogEvent("view", eventName, eventParams);
+    SetLogged(true);
+  }
+
   const [iconLoaded, setIconLoaded] = useState(false);
 
   const renderDiamond = (isFullSize: boolean, image: string) =>

@@ -20,7 +20,7 @@ export const TooltipContainer = styled.div`
 export const LeftContainer = styled.div`
   padding: ${({ theme }) => theme.spacing(4)};
   border-radius: 4px;
-  background-color: ${({ theme }) => theme.colors.gray10};
+  background-color: ${({ theme }) => theme.colors.neutral[50]};
 `;
 
 export const RightContainer = styled.div`

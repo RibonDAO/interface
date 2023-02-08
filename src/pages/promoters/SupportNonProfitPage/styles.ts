@@ -119,7 +119,7 @@ export const SupportImage = styled.img`
   flex-wrap: wrap;
   gap: 8px;
   object-fit: cover;
-  background-color: ${({ theme }) => theme.colors.gray10};
+  background-color: ${({ theme }) => theme.colors.neutral[50]};
 `;
 
 export const UserBalanceText = styled.p`

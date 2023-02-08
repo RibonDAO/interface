@@ -27,14 +27,16 @@ export type ButtonProps = {
   eventParams?: Record<string, any>;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
+const { primary } = theme.colors.brand;
+
 export default function Button({
   text,
   textColor,
-  backgroundColor = theme.colors.green30,
+  backgroundColor = primary[300],
   softDisabled = false,
   borderColor = "",
   ribons = false,
-  ribonsColor = theme.colors.green30,
+  ribonsColor = primary[300],
   leftIcon,
   rightIcon,
   onClick,
@@ -49,7 +51,7 @@ export default function Button({
   ...props
 }: ButtonProps): JSX.Element {
   function activeTextColor() {
-    if (outline && !textColor) return theme.colors.green30;
+    if (outline && !textColor) return primary[300];
     if (softDisabled) return theme.colors.gray30;
     if (!textColor) return theme.colors.neutral10;
 
@@ -64,7 +66,7 @@ export default function Button({
   }
 
   function activeBorderColor() {
-    if (outline && !borderColor) return theme.colors.green30;
+    if (outline && !borderColor) return primary[300];
     if (disabled && !borderColor) return theme.colors.gray30;
     if (softDisabled) return theme.colors.gray20;
 

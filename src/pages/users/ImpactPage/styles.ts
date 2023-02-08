@@ -30,7 +30,7 @@ export const Subtitle = styled.h5`
 `;
 
 export const CardsButtonContainer = styled.div`
-  margin-top: ${({ theme }) => theme.spacing(16)};
+  margin-top: ${({ theme }) => theme.spacing(32)};
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -56,9 +56,9 @@ export const CardsContainer = styled.div`
 export const CardButton = styled(Button)`
   width: 135px;
   margin: ${({ theme }) => theme.spacing(16, 0)};
-  border: 1px solid ${({ theme }) => theme.colors.green30};
+  border: 1px solid ${({ theme }) => theme.colors.brand.primary[300]};
   background-color: ${({ theme }) => theme.colors.neutral10};
-  color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => theme.colors.brand.primary[300]};
 `;
 
 export const EmptySectionContainer = styled.div`
@@ -92,5 +92,5 @@ export const EmptyText = styled.span`
 
 export const EmptyButton = styled(Button)`
   width: 196px;
-  color: ${({ theme }) => theme.colors.green40};
+  color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;

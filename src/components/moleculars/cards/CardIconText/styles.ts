@@ -12,7 +12,7 @@ export const Icon = styled.img`
   width: 24px;
   height: 24px;
   margin-right: ${({ theme }) => theme.spacing(12)};
-  object-fit: cover;
+  object-fit: contain;
 `;
 
 export const Text = styled.p`

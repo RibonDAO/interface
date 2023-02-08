@@ -126,7 +126,7 @@ export const CardImpactText = styled.h4`
 
   span {
     display: inline-block;
-    color: ${({ theme }) => theme.colors.green30};
+    color: ${({ theme }) => theme.colors.brand.primary[300]};
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {

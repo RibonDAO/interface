@@ -21,6 +21,9 @@ export type Props = {
   eventName?: string;
   eventParams?: Record<string, any>;
 };
+
+const { primary } = theme.colors.brand;
+
 function ModalAnimation({
   visible = false,
   text,
@@ -33,7 +36,7 @@ function ModalAnimation({
   icon,
   isIconDestinyFullSize = false,
   isIconOriginFullSize = false,
-  color = theme.colors.green30,
+  color = primary[300],
   eventName,
   eventParams,
 }: Props): JSX.Element {

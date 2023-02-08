@@ -18,17 +18,19 @@ export type Props = {
   eventParams?: (element: any) => Record<string, any>;
 };
 
+const { primary } = theme.colors.brand;
+
 function GroupButtons({
   elements,
   onChange,
   nameExtractor,
   indexSelected,
-  backgroundColor = theme.colors.green40,
+  backgroundColor = primary[800],
   backgroundColorOutline = theme.colors.neutral10,
   textColor = theme.colors.neutral10,
-  textColorOutline = theme.colors.green40,
-  borderColor = theme.colors.green40,
-  borderColorOutline = theme.colors.green30,
+  textColorOutline = primary[800],
+  borderColor = primary[800],
+  borderColorOutline = primary[300],
   eventName,
   eventParams,
 }: Props): JSX.Element {

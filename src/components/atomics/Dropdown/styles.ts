@@ -6,7 +6,7 @@ export const Input = styled.div`
   height: 50px;
   margin-bottom: ${({ theme }) => theme.spacing(12)};
   padding: ${({ theme }) => theme.spacing(0, 12)};
-  border: 1px solid ${({ theme }) => theme.colors.green30};
+  border: 1px solid ${({ theme }) => theme.colors.brand.primary[300]};
   border-radius: 4px;
   display: flex;
   justify-content: space-between;
@@ -21,7 +21,7 @@ export const Input = styled.div`
     display: inline;
     text-align: center;
     background-color: ${({ theme }) => theme.colors.neutral10};
-    color: ${({ theme }) => theme.colors.green30};
+    color: ${({ theme }) => theme.colors.brand.primary[300]};
   }
 
   input {

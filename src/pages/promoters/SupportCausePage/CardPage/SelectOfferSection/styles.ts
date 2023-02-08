@@ -20,7 +20,7 @@ export const ValueText = styled.p`
   ${stylizedDisplayXs}
 
   margin-right: ${({ theme }) => theme.spacing(8)};
-  color: ${({ theme }) => theme.colors.orange20};
+  color: ${({ theme }) => theme.colors.brand.secondary[300]};
 `;
 
 export const CauseText = styled.p`
@@ -34,7 +34,7 @@ export const CauseText = styled.p`
 export const CauseTextHighlight = styled.span`
   ${defaultBodyXsRegular}
 
-  color: ${({ theme }) => theme.colors.orange30};
+  color: ${({ theme }) => theme.colors.brand.secondary[400]};
 `;
 
 export const CurrencySelectorContainer = styled.div`
@@ -47,5 +47,5 @@ export const CurrencySelectorContainer = styled.div`
 `;
 
 export const CurrencySelector = styled(Dropdown)`
-  border: 1px solid ${({ theme }) => theme.colors.orange40};
+  border: 1px solid ${({ theme }) => theme.colors.brand.secondary[700]};
 `;

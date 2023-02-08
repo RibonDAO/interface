@@ -24,12 +24,15 @@ import LogoutItem from "./LogoutItem";
 import * as S from "./styles";
 import useCanDonate from "../../hooks/apiHooks/useCanDonate";
 import UserSupportItem from "./UserSupportItem";
+import GetTheAppItem from "./GetTheAppItem";
 
 export type Props = {
   rightComponent?: JSX.Element;
   hasBackButton?: boolean;
   hideWallet?: boolean;
 };
+
+const { primary } = theme.colors.brand;
 
 function LayoutHeader({
   rightComponent,
@@ -130,9 +133,11 @@ function LayoutHeader({
           },
         }}
       >
-        <ChangeLanguageItem />
+        <GetTheAppItem />
         <Divider color={theme.colors.gray20} />
         <UserSupportItem />
+        <Divider color={theme.colors.gray20} />
+        <ChangeLanguageItem />
 
         {signedIn ? (
           <div>
@@ -156,7 +161,7 @@ function LayoutHeader({
                   <S.TicketsAmount
                     color={
                       canDonateAndHasVoucher
-                        ? theme.colors.green30
+                        ? primary[300]
                         : theme.colors.gray30
                     }
                   >

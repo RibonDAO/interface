@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { logEvent } from "lib/events";
+import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import useCauses from "hooks/apiHooks/useCauses";
 import Cause from "types/entities/Cause";
 import IntersectBackground from "assets/images/intersect-background.svg";
@@ -26,6 +27,7 @@ type LocationStateType = {
 };
 
 function SupportCausePage(): JSX.Element {
+  const { secondary } = theme.colors.brand;
   const { navigateTo } = useNavigation();
   const [currentOffer, setCurrentOffer] = useState<Offer>(offerFactory());
   const { cause, setCause, setOfferId, setFlow } = useCardPaymentInformation();
@@ -100,16 +102,17 @@ function SupportCausePage(): JSX.Element {
 
   return (
     <S.Container>
+      <DownloadAppToast />
       <S.Title>{t("title")}</S.Title>
       <GroupButtons
         elements={causesFilter()}
         onChange={handleCauseClick}
         indexSelected={preSelectedIndex()}
         nameExtractor={(element) => element.name}
-        backgroundColor={theme.colors.orange40}
-        textColorOutline={theme.colors.orange40}
-        borderColor={theme.colors.orange40}
-        borderColorOutline={theme.colors.orange20}
+        backgroundColor={secondary[700]}
+        textColorOutline={secondary[700]}
+        borderColor={secondary[700]}
+        borderColorOutline={secondary[300]}
       />
       <S.ContentContainer>
         <S.SupportImage src={cause?.coverImage || SupportImage} />

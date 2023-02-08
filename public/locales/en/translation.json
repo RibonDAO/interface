@@ -26,6 +26,9 @@
       "donateAnimationModalDestiny": "Project",
       "chooseCauseModalTitle": "Choose a cause",
       "allCauses": "All",
+      "learnMore": "Learn more",
+      "tooltipTicketText": "Tickets are used to make donations and you get a new one everyday when you log in Ribon.",
+      "tooltipTicket": "What is a ticket?",
       "stories": {
         "loading": "Loading stories...",
         "empty": "No stories available."
@@ -87,6 +90,9 @@
       },
       "userSupportItem": {
         "userSupportText": "User Support"
+      },
+      "getTheAppItem": {
+        "getTheAppText": "Get the app"
       },
       "donationModalTitle": "Great! You got 1 ticket to donate",
       "donationModalBody": "You can assign the ticket to any project",
@@ -294,5 +300,17 @@
     "for": "for",
     "and": "and",
     "of": "of"
+  },
+  "appInDevelopmentPage": {
+    "title": "App in development",
+    "description": "Don't worry, we’ll remember you to download it when its released",
+    "surveyDescription": "Take this survey and help us build the app",
+    "surveyButton": "Take survey",
+    "surveyLink": "https://docs.google.com/forms/d/e/1FAIpQLSc6Z7YQh56lIxD3uh1kX8TwlbkF6c9Q4nkQ1SXdblOljzFs-w/viewform?usp=sf_link"
+  },
+  "downloadApp": {
+    "floating": {
+      "title": "Get app"
+    }
   }
 }

@@ -16,6 +16,7 @@ function LogoutItem(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "layouts.layoutHeader.logoutItem",
   });
+  const { tertiary } = theme.colors.brand;
 
   const { logoutCurrentUser, currentUser } = useCurrentUser();
   const [email, setEmail] = useState("");
@@ -54,8 +55,8 @@ function LogoutItem(): JSX.Element {
             outline
             text={t("logoutButton")}
             onClick={() => setWarningModalVisible(true)}
-            textColor={theme.colors.red30}
-            borderColor={theme.colors.red30}
+            textColor={tertiary[400]}
+            borderColor={tertiary[400]}
             round
           />
         }

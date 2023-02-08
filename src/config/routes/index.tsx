@@ -24,6 +24,7 @@ import SupportNonProfitPage from "pages/promoters/SupportNonProfitPage";
 import PaymentPage from "pages/promoters/PaymentPage";
 import { useLocation } from "react-router";
 import { logPageView } from "lib/events";
+import AppInDevelopmentPage from "pages/users/AppInDevelopmentPage";
 import Navigation from "./Navigation";
 
 function RoutesComponent(): JSX.Element {
@@ -47,6 +48,12 @@ function RoutesComponent(): JSX.Element {
               </MainLayout>
             </CausesProvider>
           </WalletProvider>
+        </Suspense>
+      </Route>
+
+      <Route path="/app-in-development" exact>
+        <Suspense fallback={<div />}>
+          <AppInDevelopmentPage />
         </Suspense>
       </Route>
 

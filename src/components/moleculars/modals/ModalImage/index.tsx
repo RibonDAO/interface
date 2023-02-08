@@ -20,6 +20,7 @@ export type Props = {
   eventName?: string;
   eventParams?: Record<string, any>;
 };
+
 function ModalImage({
   visible = false,
   image = null,

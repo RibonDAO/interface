@@ -67,22 +67,22 @@ export const CommunityAddText = styled.p`
 export const CommunityAddValue = styled.p`
   ${stylizedDisplayXs}
 
-  color: ${({ theme }) => theme.colors.red20};
+  color: ${({ theme }) => theme.colors.brand.tertiary[200]};
 `;
 
 export const CommunityAddButton = styled(ButtonComponent)`
   margin-top: ${({ theme }) => theme.spacing(8)};
   padding: ${({ theme }) => theme.spacing(4)};
-  border-color: ${({ theme }) => theme.colors.red40};
+  border-color: ${({ theme }) => theme.colors.brand.tertiary[800]};
   font-size: 11px;
-  color: ${({ theme }) => theme.colors.red40};
+  color: ${({ theme }) => theme.colors.brand.tertiary[800]};
 `;
 
 export const DonateButton = styled(ButtonComponent)`
-  border-color: ${({ theme }) => theme.colors.red20};
+  border-color: ${({ theme }) => theme.colors.brand.tertiary[200]};
   font-weight: 600;
-  background-color: ${({ theme }) => theme.colors.red20};
-  color: ${({ theme }) => theme.colors.red40};
+  background-color: ${({ theme }) => theme.colors.brand.tertiary[200]};
+  color: ${({ theme }) => theme.colors.brand.tertiary[800]};
 `;
 
 export const BackgroundImage = styled.img`
@@ -133,7 +133,7 @@ export const UserBalanceText = styled.p`
 export const UserBalanceTextHighlight = styled.span`
   ${defaultBodySmSemibold}
 
-  color: ${({ theme }) => theme.colors.red30};
+  color: ${({ theme }) => theme.colors.brand.tertiary[400]};
 `;
 
 export const RefundText = styled.p`

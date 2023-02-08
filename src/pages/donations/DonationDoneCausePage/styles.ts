@@ -63,7 +63,9 @@ export const CauseName = styled.span<{
   ${defaultBodySmSemibold}
 
   color: ${(props) =>
-    props.isGreen ? ({ theme }) => theme.colors.green30 : ({ color }) => color};
+    props.isGreen
+      ? ({ theme }) => theme.colors.brand.primary[300]
+      : ({ color }) => color};
 `;
 
 export const FinishButton = styled(Button)<{ background: string }>`

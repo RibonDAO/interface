@@ -12,7 +12,6 @@ import { useCryptoPayment } from "contexts/cryptoPaymentContext";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import theme from "styles/theme";
 import Intersection from "assets/images/intersection-image.svg";
-import { useCausesContext } from "contexts/causesContext";
 import SupportImage from "../assets/support-image.png";
 import * as S from "../styles";
 import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
@@ -41,8 +40,6 @@ function CryptoPage(): JSX.Element {
 
   const { state } = useLocation<LocationStateType>();
 
-  const { setCurrentCauseId } = useCausesContext();
-
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportCausePage",
   });
@@ -55,12 +52,6 @@ function CryptoPage(): JSX.Element {
     const causesApi = causes.filter((currentCause) => currentCause.active);
     return causesApi || [];
   };
-
-  useEffect(() => {
-    if (cause) {
-      setCurrentCauseId(cause.id);
-    }
-  }, [cause]);
 
   useEffect(() => {
     setCause(state?.causeDonated || causesFilter()[0]);
@@ -96,8 +87,11 @@ function CryptoPage(): JSX.Element {
   };
 
   const handleDonateClick = async () => {
-    if (wallet) {
-      await handleDonationToContract(onDonationToContractSuccess);
+    if (wallet && cause) {
+      await handleDonationToContract(
+        Number(cause.id),
+        onDonationToContractSuccess,
+      );
       return;
     }
 

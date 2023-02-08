@@ -1,4 +1,6 @@
 import { Offer } from "@ribon.io/shared";
+import Cause from "./Cause";
+import NonProfit from "./NonProfit";
 
 export interface PersonPayment {
   id: string;
@@ -18,6 +20,7 @@ export interface PersonPayment {
     };
   };
   serviceFees: number;
+  receiver: NonProfit | Cause;
   status: string;
   totalItems: number;
   totalPages: number;

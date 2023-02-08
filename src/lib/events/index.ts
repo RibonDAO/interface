@@ -1,3 +1,4 @@
+import { logAmplitudeEvent } from "services/analytics/amplitude";
 import { logFirebaseEvent } from "services/analytics/firebase";
 import { logMixpanelEvent } from "services/analytics/mixpanel";
 import events from "./constants";
@@ -42,6 +43,7 @@ export function logEvent(
 
     logFirebaseEvent(eventName, convertedParams);
     logMixpanelEvent(eventName, convertedParams);
+    logAmplitudeEvent(eventName, convertedParams);
   }
 }
 

@@ -51,7 +51,7 @@ export const FeeText = styled.p`
   ${defaultBodyXsRegular}
 
   text-align: center;
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const Image = styled.img`

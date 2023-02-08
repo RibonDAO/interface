@@ -36,8 +36,6 @@ const theme: ThemeType = {
   },
   colors: {
     neutral10: "#FFFFFF",
-    gray20: "#D2CEC6",
-    gray30: "#736D64",
     gray40: "#302D27",
     defaultShadow: "rgba(40, 36, 28, 0.15)",
     defaultShadow10: "rgba(40, 36, 28, 0.1)",

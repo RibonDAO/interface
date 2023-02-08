@@ -45,7 +45,7 @@ export const MenuItem = styled.div<{ active: boolean }>`
 
   align-items: center;
   color: ${({ theme, active }) =>
-    active ? theme.colors.brand.primary[800] : theme.colors.gray30};
+    active ? theme.colors.brand.primary[800] : theme.colors.neutral[500]};
   cursor: pointer;
 `;
 export const EmptySectionContainer = styled.div`
@@ -74,7 +74,7 @@ export const EmptyText = styled.span`
   ${defaultBodyMdRegular}
 
   max-width: 392px;
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const EmptyButton = styled(Button)`

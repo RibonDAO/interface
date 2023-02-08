@@ -57,7 +57,7 @@ function ModalForm({
   primaryButtonBorderColor,
   primaryButtonDisabled,
   secondaryButtonText = null,
-  secondaryButtonTextColor = theme.colors.gray30,
+  secondaryButtonTextColor = theme.colors.neutral[500],
   secondaryButtonBorderColor,
   secondaryButtonColor = theme.colors.neutral10,
   primaryButtonCallback = () => {},

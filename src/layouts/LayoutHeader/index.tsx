@@ -153,7 +153,7 @@ function LayoutHeader({
                     color={
                       canDonateAndHasVoucher
                         ? primary[300]
-                        : theme.colors.gray30
+                        : theme.colors.neutral[500]
                     }
                   >
                     {canDonateAndHasVoucher ? 1 : 0}

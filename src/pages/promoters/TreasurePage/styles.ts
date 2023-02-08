@@ -83,7 +83,7 @@ export const GivingsCard = styled.div`
 export const GivingDate = styled.p`
   ${defaultBodyXsRegular}
 
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const GivingTextCoin = styled.span`

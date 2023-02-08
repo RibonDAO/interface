@@ -26,7 +26,7 @@ export const Title = styled.h1`
 `;
 
 export const Subtitle = styled.h5`
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const CardsButtonContainer = styled.div`
@@ -87,7 +87,7 @@ export const EmptyText = styled.span`
   ${defaultBodyMdRegular}
 
   max-width: 392px;
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const EmptyButton = styled(Button)`

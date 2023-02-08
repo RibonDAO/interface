@@ -48,7 +48,7 @@ export default function Button({
 }: Props): JSX.Element {
   function activeTextColor() {
     if (outline && !textColor) return primary[300];
-    if (softDisabled) return theme.colors.gray30;
+    if (softDisabled) return theme.colors.neutral[500];
     if (!textColor) return theme.colors.neutral10;
 
     return textColor;
@@ -56,14 +56,14 @@ export default function Button({
 
   function activeBackgroundColor() {
     if (outline || softDisabled) return theme.colors.neutral10;
-    if (disabled) return theme.colors.gray30;
+    if (disabled) return theme.colors.neutral[500];
 
     return backgroundColor;
   }
 
   function activeBorderColor() {
     if (outline && !borderColor) return primary[300];
-    if (disabled && !borderColor) return theme.colors.gray30;
+    if (disabled && !borderColor) return theme.colors.neutral[500];
     if (softDisabled) return theme.colors.neutral[200];
 
     return borderColor;

@@ -6,6 +6,7 @@ const neutralColors: ThemeType = {
   25: "#FAFAF9",
   50: "#F1F1EF",
   100: "#E5E2DC",
+  200: "#D2CEC6",
   300: "#BFBCB5",
   400: "#969188",
   500: "#7B756B",

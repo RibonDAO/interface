@@ -33,7 +33,7 @@ export const RightContainer = styled.div`
 export const Symbol = styled.p`
   ${defaultBodySmSemibold}
 
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const Text = styled.p`
@@ -60,7 +60,7 @@ export const TooltipBox = styled(Tooltip)`
 export const IconCircle = styled.div`
   width: 20px;
   height: 20px;
-  border: solid 2px ${({ theme }) => theme.colors.gray30};
+  border: solid 2px ${({ theme }) => theme.colors.neutral[500]};
   border-radius: 50%;
   display: inline-flex;
   align-items: center;

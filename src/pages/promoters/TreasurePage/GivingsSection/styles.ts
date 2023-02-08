@@ -29,7 +29,7 @@ export const GivingText = styled.span`
   ${defaultBodySmSemibold}
 
   text-align: center;
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const CardBlank = styled.div`

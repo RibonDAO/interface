@@ -17,7 +17,7 @@ export function logAmplitudeEvent(
     amplitude.track(eventName, params);
   } catch (error) {
     logError(error, {
-      customMessage: "Error sending event to mixpanel",
+      customMessage: "Error sending event to amplitude",
       context: { eventName },
     });
   }

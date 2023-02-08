@@ -2,11 +2,11 @@ import { Offer } from "@ribon.io/shared";
 
 export interface PersonPayment {
   id: string;
-  amount_cents: number;
-  crypto_amount: number;
+  amountCents: number;
+  cryptoAmount: number;
   offer: Offer;
   page: number;
-  paid_date: string;
+  paidDate: string;
   payment_method: string;
   person: {
     id: string;
@@ -17,7 +17,8 @@ export interface PersonPayment {
       wallet_address: string;
     };
   };
+  serviceFees: number;
   status: string;
-  total_items: number;
-  total_pages: number;
+  totalItems: number;
+  totalPages: number;
 }

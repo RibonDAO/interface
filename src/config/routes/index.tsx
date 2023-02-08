@@ -120,17 +120,19 @@ function RoutesComponent(): JSX.Element {
 
       <Route path="/promoters/support-cause" exact>
         <Suspense fallback={<div />}>
-          <NetworkProvider>
-            <WalletProvider>
-              <WalletLayout>
-                <CardPaymentInformationProvider>
-                  <CryptoPaymentProvider>
-                    <SupportCausePage />
-                  </CryptoPaymentProvider>
-                </CardPaymentInformationProvider>
-              </WalletLayout>
-            </WalletProvider>
-          </NetworkProvider>
+          <CausesProvider>
+            <NetworkProvider>
+              <WalletProvider>
+                <WalletLayout>
+                  <CardPaymentInformationProvider>
+                    <CryptoPaymentProvider>
+                      <SupportCausePage />
+                    </CryptoPaymentProvider>
+                  </CardPaymentInformationProvider>
+                </WalletLayout>
+              </WalletProvider>
+            </NetworkProvider>
+          </CausesProvider>
         </Suspense>
       </Route>
 

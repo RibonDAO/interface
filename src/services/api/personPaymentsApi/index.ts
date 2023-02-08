@@ -6,12 +6,12 @@ const personPaymentsApi = {
   getCommunityPersonPayments: (
     personIdentifier: string,
   ): Promise<AxiosResponse<PersonPayment[]>> =>
-    apiGet(`person_payments/causes/${personIdentifier}`),
+    apiGet(`person_payments/${personIdentifier}/causes`),
 
   getDirectPersonPayments: (
     personIdentifier: string,
   ): Promise<AxiosResponse<PersonPayment[]>> =>
-    apiGet(`person_payments/non_profits/${personIdentifier}`),
+    apiGet(`person_payments/${personIdentifier}/non_profits`),
 };
 
 export default personPaymentsApi;

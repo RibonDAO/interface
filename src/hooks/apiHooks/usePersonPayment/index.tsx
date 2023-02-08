@@ -39,19 +39,10 @@ function usePersonPayments() {
     },
   });
 
-  const { data: guestPersonDirectPayments } = useApi<PersonPayment[]>({
-    key: "guestPersonDirectPayments",
-    fetchMethod: () => {
-      if (!wallet) return emptyRequest();
-      return personPaymentsApi.getDirectPersonPayments(btoa(wallet));
-    },
-  });
-
   return {
     userPersonCommunityPayments,
     guestPersonCommunityPayments,
     userPersonDirectPayments,
-    guestPersonDirectPayments,
   };
 }
 

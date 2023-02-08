@@ -2,6 +2,7 @@ import CardTooltip from "components/moleculars/cards/CardTooltip";
 import usePersonPayments from "hooks/apiHooks/usePersonPayment";
 import { useFormattedImpactText } from "hooks/useFormattedImpactText";
 import useNavigation from "hooks/useNavigation";
+import { formatPriceWithZeros } from "lib/formatters/currencyFormatter";
 import { useTranslation } from "react-i18next";
 import theme from "styles/theme";
 import directIllustration from "../../assets/direct-illustration.svg";
@@ -21,6 +22,28 @@ function DirectSection() {
 
   const impactCards = userPersonDirectPayments || [];
   const hasPayments = impactCards?.length > 0;
+
+  const formatPrice = (item: any) => {
+    if (!item.offer) {
+      return `${item.amountCents / 100} USDC`;
+    }
+    return formatPriceWithZeros(
+      item.offer.priceCents / 100 - item.serviceFees,
+      item.offer.currency,
+      "en",
+    );
+  };
+
+  const formatFee = (item: any) => {
+    if (!item.offer) {
+      return "0 USDC";
+    }
+    return formatPriceWithZeros(
+      item.serviceFees,
+      item.offer.currency,
+      item.offer.currency === "brl" ? "pt" : "en",
+    );
+  };
 
   return (
     <S.Container>
@@ -45,12 +68,24 @@ function DirectSection() {
                 .join("/")}
               tooltipSymbol="i"
               icon={item.receiver.logo}
-              tooltipText={item.status}
               titleColor={theme.colors.red40}
               valueColor={theme.colors.red30}
               idTooltip={item.id}
               size="large"
-            />
+            >
+              <S.TooltipText>
+                <S.Paragraph>
+                  {t("tooltipFirstParagraphText", {
+                    value: formatPrice(item),
+                  })}
+                </S.Paragraph>
+                <S.Paragraph>
+                  {t("tooltipSecondParagraphText", {
+                    value: formatFee(item),
+                  })}
+                </S.Paragraph>
+              </S.TooltipText>
+            </CardTooltip>
           ))}
         </S.CardsContainer>
       ) : (

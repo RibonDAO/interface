@@ -135,12 +135,16 @@
     "directSection": {
       "emptyTitle": "Suas doações diretas aparecerão aqui.",
       "emptyText": "Você ainda não fez doações diretas, que tal fazer a sua primeira?",
-      "emptyButton": "Doar diretamente"
+      "emptyButton": "Doar diretamente",
+      "tooltipFirstParagraphText": "Doação líquida: {{value}}",
+      "tooltipSecondParagraphText": "Taxa de serviço: {{value}}"
     },
     "communitySection": {
       "emptyTitle": "Suas doações em comunidade aparecerão aqui.",
       "emptyText": "Você ainda não fez doações em comunidade ainda, que tal fazer a sua primeira?",
-      "emptyButton": "Doar em comunidade"
+      "emptyButton": "Doar em comunidade",
+      "tooltipFirstParagraphText": "Doação líquida: {{value}}",
+      "tooltipSecondParagraphText": "Taxa de serviço: {{value}}"
     }
   },
   "promoters": {

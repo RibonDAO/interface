@@ -3,6 +3,7 @@ import {
   defaultBodyMdMedium,
   defaultBodyMdBold,
   defaultBodyMdRegular,
+  defaultBodySmRegular,
 } from "styles/typography/default";
 import Button from "components/atomics/buttons/Button";
 
@@ -34,11 +35,15 @@ export const CardsContainer = styled.div`
 
 export const TooltipText = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-export const FirstParagraph = styled.p``;
+export const Paragraph = styled.p`
+  ${defaultBodySmRegular}
 
-export const SecondParagraph = styled.p``;
+  color: ${({ theme }) => theme.colors.gray40};
+`;
 
 export const Container = styled.div`
   width: 100%;

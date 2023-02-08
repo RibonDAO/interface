@@ -21,6 +21,7 @@ import { logError } from "services/crashReport";
 import { stringToNumber } from "lib/formatters/stringToNumberFormatter";
 import { logEvent } from "lib/events";
 import { BigNumber, utils } from "ethers";
+import { useCausesContext } from "contexts/causesContext";
 import { useWalletContext } from "../walletContext";
 import { useLoadingOverlay } from "../loadingOverlayContext";
 import { useNetworkContext } from "../networkContext";
@@ -79,6 +80,7 @@ function CryptoPaymentProvider({ children }: Props) {
   });
   const { showLoadingOverlay, hideLoadingOverlay } = useLoadingOverlay();
   const { wallet } = useWalletContext();
+  const { currentCauseId } = useCausesContext();
   const { createTransaction } = useCryptoTransaction();
 
   const approveAmount = async () =>
@@ -135,7 +137,13 @@ function CryptoPaymentProvider({ children }: Props) {
       const { hash } = response;
       const timestamp = Math.floor(new Date().getTime() / 1000);
 
-      createTransaction(hash, amount, wallet ?? "", integrationId ?? 1);
+      createTransaction(
+        hash,
+        amount,
+        wallet ?? "",
+        integrationId ?? 1,
+        currentCauseId ?? 1,
+      );
 
       if (onSuccess) onSuccess(hash, timestamp, utils.parseEther(amount));
     } catch (error) {

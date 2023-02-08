@@ -59,7 +59,6 @@ function TicketSection() {
           />
         </S.EmptySectionContainer>
       )}
-      ;
     </S.Container>
   );
 }

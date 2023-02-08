@@ -1,10 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/analytics";
 import { logError } from "services/crashReport";
-
-interface EventParams {
-  [key: string]: string | number | undefined;
-}
+import { EventParams } from "lib/events";
 
 export function initializeFirebase(): any {
   if (process.env.NODE_ENV === "development") return;
@@ -21,35 +18,15 @@ export function initializeFirebase(): any {
   firebase.initializeApp(firebaseConfig);
 }
 
-export function convertParamsToString(params: EventParams): EventParams {
-  const convertedParams = params;
-
-  Object.keys(params).forEach((key) => {
-    convertedParams[key] = params[key] ? params[key]?.toString() : "";
-  });
-
-  return convertedParams;
-}
-
-export class EventNameTooLongError extends Error {}
-
 export function logFirebaseEvent(
   eventName: string,
-  params?: EventParams,
+  params: EventParams = {},
 ): void {
   try {
-    const convertedParams = params ? convertParamsToString(params) : {};
-
-    convertedParams.anonymousId =
-      localStorage.getItem("installationId") ?? "false";
-    convertedParams.integrationName =
-      localStorage.getItem("integrationName") ?? "false";
-    convertedParams.hasDonated = localStorage.getItem("HAS_DONATED") ?? "false";
-
-    firebase.analytics().logEvent(eventName, convertedParams);
+    firebase.analytics().logEvent(eventName, params);
   } catch (error) {
     logError(error, {
-      customMessage: "Error sending event to analytics",
+      customMessage: "Error sending event to firebase",
       context: { eventName },
     });
   }

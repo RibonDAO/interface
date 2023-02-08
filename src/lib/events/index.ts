@@ -1,15 +1,23 @@
-import {
-  EventNameTooLongError,
-  logFirebaseEvent,
-} from "services/analytics/firebase";
+import { logFirebaseEvent } from "services/analytics/firebase";
+import { logMixpanelEvent } from "services/analytics/mixpanel";
 import events from "./constants";
-
-interface EventParams {
-  [key: string]: string | number | undefined;
-}
 
 function eventPageTransalation(url: string) {
   return events.pages[url];
+}
+class EventNameTooLongError extends Error {}
+export interface EventParams {
+  [key: string]: string | number | undefined;
+}
+
+export function convertParamsToString(params: EventParams): EventParams {
+  const convertedParams = params;
+
+  Object.keys(params).forEach((key) => {
+    convertedParams[key] = params[key] ? params[key]?.toString() : "";
+  });
+
+  return convertedParams;
 }
 
 export function logEvent(
@@ -22,7 +30,18 @@ export function logEvent(
   if (eventName.length > 32) {
     throw new EventNameTooLongError();
   } else if (process.env.NODE_ENV === "production") {
-    logFirebaseEvent(eventName, eventParams);
+    const convertedParams = eventParams
+      ? convertParamsToString(eventParams)
+      : {};
+
+    convertedParams.anonymousId =
+      localStorage.getItem("installationId") ?? "false";
+    convertedParams.integrationName =
+      localStorage.getItem("integrationName") ?? "false";
+    convertedParams.hasDonated = localStorage.getItem("HAS_DONATED") ?? "false";
+
+    logFirebaseEvent(eventName, convertedParams);
+    logMixpanelEvent(eventName, convertedParams);
   }
 }
 

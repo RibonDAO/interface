@@ -67,8 +67,8 @@ function CommunitySection() {
                 .reverse()
                 .join("/")}
               tooltipSymbol="i"
-              titleColor={theme.colors.orange40}
-              valueColor={theme.colors.orange30}
+              titleColor={theme.colors.brand.secondary[700]}
+              valueColor={theme.colors.brand.secondary[400]}
               idTooltip={item.id}
             >
               <S.TooltipText>

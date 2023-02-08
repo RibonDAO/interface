@@ -63,8 +63,8 @@ function DirectImpactCard({ personPayment }: Props): JSX.Element {
         .join("/")}
       tooltipSymbol="i"
       icon={personPayment.receiver.logo}
-      titleColor={theme.colors.red40}
-      valueColor={theme.colors.red30}
+      titleColor={theme.colors.brand.tertiary[800]}
+      valueColor={theme.colors.brand.tertiary[400]}
       idTooltip={personPayment.id}
       size="large"
     >

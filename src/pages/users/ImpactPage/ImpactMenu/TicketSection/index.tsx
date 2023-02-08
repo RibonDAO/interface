@@ -2,9 +2,9 @@ import CardTopImage from "components/moleculars/cards/CardTopImage";
 import useImpact from "hooks/apiHooks/useImpact";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import useNavigation from "hooks/useNavigation";
+import { logEvent } from "lib/events";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { logEvent } from "services/analytics/firebase";
 import ticketIllustration from "../../assets/ticket-illustration.svg";
 import * as S from "../styles";
 

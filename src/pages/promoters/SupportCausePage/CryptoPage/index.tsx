@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
-import { logEvent } from "services/analytics/firebase";
+import { logEvent } from "lib/events";
 import useCauses from "hooks/apiHooks/useCauses";
 import Cause from "types/entities/Cause";
 import IntersectBackground from "assets/images/intersect-background.svg";
@@ -22,6 +22,7 @@ type LocationStateType = {
 };
 
 function CryptoPage(): JSX.Element {
+  const { secondary } = theme.colors.brand;
   const { navigateTo } = useNavigation();
   const { cause, setCause, nonProfit } = useCardPaymentInformation();
   const { connectWallet, wallet } = useWalletContext();
@@ -132,10 +133,10 @@ function CryptoPage(): JSX.Element {
         onChange={handleCauseClick}
         indexSelected={preSelectedIndex()}
         nameExtractor={(element) => element.name}
-        backgroundColor={theme.colors.orange40}
-        textColorOutline={theme.colors.orange40}
-        borderColor={theme.colors.orange40}
-        borderColorOutline={theme.colors.orange20}
+        backgroundColor={secondary[700]}
+        textColorOutline={secondary[700]}
+        borderColor={secondary[700]}
+        borderColorOutline={secondary[300]}
       />
       <S.ContentContainer>
         <S.SupportImage src={cause?.coverImage || SupportImage} />

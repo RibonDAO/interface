@@ -16,8 +16,10 @@ export const Default = Template.bind({});
 
 Default.args = {
   title: "Title",
-  primaryButtonText: "first",
-  secondaryButtonText: "second",
+  primaryButton: {
+    text: "first",
+    onClick: () => "first",
+  },
   visible: true,
   leftImage: "https://picsum.photos/200/300",
   rightImage: "https://picsum.photos/200/300",

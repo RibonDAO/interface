@@ -92,5 +92,5 @@ export const EmptyText = styled.span`
 
 export const EmptyButton = styled(Button)`
   width: 196px;
-  color: ${({ theme }) => theme.colors.green40};
+  color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;

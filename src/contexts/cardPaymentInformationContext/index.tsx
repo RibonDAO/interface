@@ -14,7 +14,7 @@ import {
   useEffect,
 } from "react";
 import { useTranslation } from "react-i18next";
-import { logEvent } from "services/analytics/firebase";
+import { logEvent } from "lib/events";
 import { logError } from "services/crashReport";
 import { Currencies } from "types/enums/Currencies";
 import creditCardPaymentApi from "services/api/creditCardPaymentApi";
@@ -133,14 +133,16 @@ function CardPaymentInformationProvider({ children }: Props) {
       title: t("modalSuccessTitle").replace("{{value}}", cryptoGiving),
       body: t("modalSuccessDescription"),
       icon: successIcon,
-      primaryButtonText: t("modalSuccessButton"),
+      primaryButton: {
+        text: t("modalSuccessButton"),
+        onClick: () => {
+          handleConfirmation();
+          hide();
+        },
+      },
       onClose: () => {
         handleConfirmation();
 
-        hide();
-      },
-      primaryButtonCallback: () => {
-        handleConfirmation();
         hide();
       },
     },

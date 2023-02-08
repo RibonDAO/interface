@@ -5,6 +5,7 @@ import {
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
 import { screen } from "@testing-library/react";
+import { mockNewLogEventFunction } from "setupTests";
 import ModalIcon from ".";
 
 describe("ModalIcon", () => {
@@ -21,8 +22,10 @@ describe("ModalIcon", () => {
         <ModalIcon
           title="ModalIcon"
           visible
-          primaryButtonText="button"
-          primaryButtonCallback={mockFunction}
+          primaryButton={{
+            text: "button",
+            onClick: mockFunction,
+          }}
         />,
       );
       clickOn("button");
@@ -36,8 +39,10 @@ describe("ModalIcon", () => {
         <ModalIcon
           title="ModalIcon"
           visible
-          secondaryButtonText="button"
-          secondaryButtonCallback={mockFunction}
+          secondaryButton={{
+            text: "button",
+            onClick: mockFunction,
+          }}
         />,
       );
       clickOn("button");
@@ -83,6 +88,22 @@ describe("ModalIcon", () => {
     it("does not show", () => {
       renderComponent(<ModalIcon />);
       expectTextNotToBeInTheDocument("ModalIcon");
+    });
+  });
+
+  describe("when the modal is visible and has an eventName", () => {
+    const eventName = "test";
+    const eventParams = { test: "test" };
+    const action = "view";
+    it("logs an event", () => {
+      renderComponent(
+        <ModalIcon visible eventName={eventName} eventParams={eventParams} />,
+      );
+      expect(mockNewLogEventFunction).toHaveBeenCalledWith(
+        action,
+        eventName,
+        eventParams,
+      );
     });
   });
 });

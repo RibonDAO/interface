@@ -3,6 +3,7 @@ import {
   expectTextNotToBeInTheDocument,
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
+import { mockNewLogEventFunction } from "setupTests";
 import ModalError from ".";
 
 describe("ModalError", () => {
@@ -45,6 +46,22 @@ describe("ModalError", () => {
       clickOn("button");
 
       expect(mockFunction).toHaveBeenCalled();
+    });
+  });
+
+  describe("when the modal is visible and has an eventName", () => {
+    const eventName = "test";
+    const eventParams = { test: "test" };
+    const action = "view";
+    it("logs an event", () => {
+      renderComponent(
+        <ModalError visible eventName={eventName} eventParams={eventParams} />,
+      );
+      expect(mockNewLogEventFunction).toHaveBeenCalledWith(
+        action,
+        eventName,
+        eventParams,
+      );
     });
   });
 });

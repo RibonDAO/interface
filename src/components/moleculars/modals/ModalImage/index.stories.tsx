@@ -16,8 +16,14 @@ export const Default = Template.bind({});
 Default.args = {
   title: "title",
   body: "body",
-  primaryButtonText: "primary",
-  secondaryButtonText: "secondary",
+  primaryButton: {
+    text: "first",
+    onClick: () => "first",
+  },
+  secondaryButton: {
+    text: "second",
+    onClick: () => "second",
+  },
   image,
   visible: true,
 };

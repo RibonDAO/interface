@@ -17,7 +17,7 @@ import { useIntegrationId } from "hooks/useIntegrationId";
 import useNavigation from "hooks/useNavigation";
 import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
 import { RIBON_COMPANY_ID } from "utils/constants";
-import { logEvent } from "services/analytics/firebase";
+import { logEvent, newLogEvent } from "lib/events";
 import { useModal } from "hooks/modalHooks/useModal";
 import ChangeLanguageItem from "./ChangeLanguageItem";
 import LogoutItem from "./LogoutItem";
@@ -63,17 +63,23 @@ function LayoutHeader({
     props: {
       title: t("donationModalTitle"),
       body: t("donationModalBody"),
-      primaryButtonText: t("donationModalButtonText"),
-      primaryButtonCallback: () => {
-        if (history.location.pathname === "/") {
-          hide();
-        } else {
-          navigateTo("/");
-          hide();
-        }
+      primaryButton: {
+        text: t("donationModalButtonText"),
+        onClick: () => {
+          if (history.location.pathname === "/") {
+            hide();
+          } else {
+            navigateTo("/");
+            hide();
+          }
+        },
+        eventName: "ticketModalBtn",
+        eventParams: { ticketQtd: 1 },
       },
       onClose: () => hide(),
       icon: Ticket,
+      eventName: "ticketModal",
+      eventParams: { ticketQtd: 1 },
     },
   });
 
@@ -89,8 +95,11 @@ function LayoutHeader({
   }
 
   function handleCounterClick() {
-    if (canDonateAndHasVoucher) show();
-    else {
+    if (canDonateAndHasVoucher) {
+      newLogEvent("click", "ticketIcon", { ticketQtd: 1 });
+      show();
+    } else {
+      newLogEvent("click", "ticketIcon", { ticketQtd: 0 });
       showBlockedDonationModal();
     }
   }

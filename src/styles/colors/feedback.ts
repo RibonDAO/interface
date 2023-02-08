@@ -14,7 +14,7 @@ const feedbackColors: ThemeType = {
     600: "#1D8158",
     700: "#086E43",
     800: "#025F39",
-    900: "#025F39",
+    900: "#00472B",
   },
   warning: {
     25: "#FFFBEB",
@@ -54,7 +54,7 @@ const feedbackColors: ThemeType = {
     700: "#302D27",
     800: "#221E16",
     900: "#221E16",
-  }
+  },
 };
 
 export default feedbackColors;

@@ -5,6 +5,7 @@ import NonProfit from "types/entities/NonProfit";
 import useNavigation from "hooks/useNavigation";
 import VolunteerActivismGreen from "assets/icons/volunteer-activism-green.svg";
 import Rocket from "assets/icons/rocket.svg";
+import { newLogEvent } from "lib/events";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -31,6 +32,7 @@ function PostDonationPage(): JSX.Element {
   }, []);
 
   const handleDonateWithCommunityClick = () => {
+    newLogEvent("click", "P8_causeCard", { causeId: nonProfit.cause.id });
     navigateTo({
       pathname: "/promoters/support-cause",
       state: {
@@ -40,6 +42,7 @@ function PostDonationPage(): JSX.Element {
   };
 
   const handleDonateDirectlyClick = () => {
+    newLogEvent("click", "P8_nonProfitCard", { nonProfitId: nonProfit.id });
     navigateTo({
       pathname: "/promoters/support-non-profit",
       state: {

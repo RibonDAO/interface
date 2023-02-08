@@ -10,7 +10,7 @@ export const Title = styled.p`
   ${stylizedDisplayMd}
 
   margin-top: ${({ theme }) => theme.spacing(20)};
-  color: ${({ theme }) => theme.colors.green40};
+  color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;
 
 export const Description = styled.p`
@@ -67,7 +67,7 @@ export const SurveyButton = styled.a`
   justify-content: center;
   text-decoration: none;
   background-color: ${({ theme }) => theme.colors.brand.primary[300]};
-  color: ${({ theme }) => theme.colors.green40};
+  color: ${({ theme }) => theme.colors.brand.primary};
   cursor: pointer;
 `;
 

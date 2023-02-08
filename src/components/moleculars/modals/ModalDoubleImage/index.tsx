@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactModal from "react-modal";
-import theme from "styles/theme";
-import Button, { onClickType } from "components/atomics/buttons/Button";
+import Button, { ButtonProps } from "components/atomics/buttons/Button";
+import { newLogEvent } from "lib/events";
 import * as S from "./styles";
 import { defaultCustomStyles } from "../defaultCustomStyles";
 
@@ -14,26 +14,16 @@ export type Props = {
   title?: string | null;
   titleColor?: string;
   body?: string | null;
-  primaryButtonText?: string | null;
-  primaryButtonLeftIcon?: string | undefined;
-  primaryButtonLink?: string;
-  primaryButtonTextColor?: string;
-  primaryButtonColor?: string;
-  primaryButtonBorderColor?: string;
-  primaryButtonCallback?: onClickType;
-  secondaryButtonText?: string | null;
-  secondaryButtonLeftIcon?: string | undefined;
-  secondaryButtonLink?: string;
-  secondaryButtonTextColor?: string;
-  secondaryButtonColor?: string;
-  secondaryButtonBorderColor?: string;
-  secondaryButtonCallback?: onClickType;
+  primaryButton?: ButtonProps | null;
+  secondaryButton?: ButtonProps | null;
   contentLabel?: string;
   onClose?: () => void;
   highlightedText?: string;
   zIndex?: number;
   animationData?: Record<any, any>;
   customStyles?: ReactModal.Styles;
+  eventName?: string;
+  eventParams?: Record<string, any>;
 };
 
 function ModalDoubleImage({
@@ -45,23 +35,22 @@ function ModalDoubleImage({
   title = null,
   titleColor,
   body = null,
-  primaryButtonText = null,
-  primaryButtonLeftIcon = undefined,
-  primaryButtonTextColor = "white",
-  primaryButtonColor = theme.colors.mediumGreen,
-  primaryButtonBorderColor,
-  secondaryButtonText = null,
-  secondaryButtonLeftIcon = undefined,
-  secondaryButtonTextColor = theme.colors.mediumGray,
-  secondaryButtonBorderColor,
-  secondaryButtonColor = "white",
-  primaryButtonCallback = () => {},
-  secondaryButtonCallback = () => {},
+  primaryButton = null,
+  secondaryButton = null,
   onClose = () => {},
   contentLabel,
   highlightedText,
   customStyles,
+  eventName,
+  eventParams,
 }: Props): JSX.Element {
+  const [logged, SetLogged] = useState(false);
+
+  if (visible && eventName && !logged) {
+    newLogEvent("view", eventName, eventParams);
+    SetLogged(true);
+  }
+
   function renderDoubleImage() {
     const hasDoubleImage = Boolean(leftImage && rightImage);
 
@@ -103,24 +92,28 @@ function ModalDoubleImage({
           )}
         </S.Body>
       )}
-      {primaryButtonText && (
+      {primaryButton && (
         <Button
-          leftIcon={primaryButtonLeftIcon}
-          text={primaryButtonText}
-          textColor={primaryButtonTextColor}
-          backgroundColor={primaryButtonColor}
-          borderColor={primaryButtonBorderColor}
-          onClick={primaryButtonCallback}
+          leftIcon={primaryButton.leftIcon}
+          text={primaryButton.text}
+          textColor={primaryButton.textColor}
+          backgroundColor={primaryButton.color}
+          borderColor={primaryButton.borderColor}
+          onClick={primaryButton.onClick}
+          eventName={primaryButton.eventName}
+          eventParams={primaryButton.eventParams}
         />
       )}
-      {secondaryButtonText && (
+      {secondaryButton && (
         <Button
-          leftIcon={secondaryButtonLeftIcon}
-          text={secondaryButtonText}
-          textColor={secondaryButtonTextColor}
-          backgroundColor={secondaryButtonColor}
-          onClick={secondaryButtonCallback}
-          borderColor={secondaryButtonBorderColor}
+          leftIcon={secondaryButton.leftIcon}
+          text={secondaryButton.text}
+          textColor={secondaryButton.textColor}
+          backgroundColor={secondaryButton.backgroundColor}
+          onClick={secondaryButton.onClick}
+          borderColor={secondaryButton.borderColor}
+          eventName={secondaryButton.eventName}
+          eventParams={secondaryButton.eventParams}
         />
       )}
     </S.ModalWithDoubleImage>

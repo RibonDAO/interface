@@ -14,7 +14,7 @@ const brandColors: ThemeType = {
     600: "#1D8158",
     700: "#086E43",
     800: "#025F39",
-    900: "#025F39",
+    900: "#00472B",
   },
   secondary: {
     25: "#FFF7F0",
@@ -55,6 +55,6 @@ const brandColors: ThemeType = {
     800: "#754B00",
     900: "#613E00",
   },
-};  
+};
 
 export default brandColors;

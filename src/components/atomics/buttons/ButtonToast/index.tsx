@@ -16,8 +16,8 @@ function ButtonToast({
   text,
   onClick,
   leftIcon,
-  backgroundColor = theme.colors.orange20,
-  textColor = theme.colors.orange40,
+  backgroundColor = theme.colors.brand.secondary[300],
+  textColor = theme.colors.brand.secondary[700],
 }: Props): JSX.Element {
   const [collapsed, setCollapsed] = useState(true);
 

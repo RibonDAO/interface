@@ -32,7 +32,7 @@ export const MainContent = styled.h3<{
     props.processing
       ? props.theme.colors.gray30
       : props.refunded
-      ? props.theme.colors.gray20
+      ? props.theme.colors.neutral[200]
       : props.theme.colors.brand.primary[300]};
 `;
 
@@ -45,7 +45,7 @@ export const RightMainContent = styled.span<{
     props.processing
       ? props.theme.colors.gray30
       : props.refunded
-      ? props.theme.colors.gray20
+      ? props.theme.colors.neutral[200]
       : props.theme.colors.brand.primary[300]};
 `;
 
@@ -56,7 +56,9 @@ export const LinkSection = styled.a<{
   justify-content: space-between;
   text-decoration: none;
   color: ${(props) =>
-    props.refunded ? props.theme.colors.gray20 : props.theme.colors.gray40};
+    props.refunded
+      ? props.theme.colors.neutral[200]
+      : props.theme.colors.gray40};
 `;
 
 export const SpinnerSection = styled.a`

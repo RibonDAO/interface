@@ -31,7 +31,7 @@ export const Form = styled.form`
     height: 48px;
 
     ::placeholder {
-      color: ${({ theme }) => theme.colors.gray20};
+      color: ${({ theme }) => theme.colors.neutral[200]};
     }
   }
 

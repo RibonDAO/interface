@@ -115,7 +115,7 @@ function LayoutHeader({
             zIndex: `${theme.zindex.modal}`,
           },
           content: {
-            border: `1px solid ${theme.colors.gray20}`,
+            border: `1px solid ${theme.colors.neutral[200]}`,
             paddingLeft: 16,
             paddingRight: 16,
             position: isMobile ? "relative" : "absolute",
@@ -125,14 +125,14 @@ function LayoutHeader({
         }}
       >
         <GetTheAppItem />
-        <Divider color={theme.colors.gray20} />
+        <Divider color={theme.colors.neutral[200]} />
         <UserSupportItem />
-        <Divider color={theme.colors.gray20} />
+        <Divider color={theme.colors.neutral[200]} />
         <ChangeLanguageItem />
 
         {signedIn ? (
           <div>
-            <Divider color={theme.colors.gray20} />
+            <Divider color={theme.colors.neutral[200]} />
             <LogoutItem />
           </div>
         ) : (

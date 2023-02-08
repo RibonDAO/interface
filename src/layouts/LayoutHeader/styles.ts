@@ -27,7 +27,7 @@ export const CounterContainer = styled.div`
   margin-right: ${({ theme }) => theme.spacing(4)};
   margin-left: ${({ theme }) => theme.spacing(8)};
   padding: ${({ theme }) => theme.spacing(8)};
-  border: 1px solid ${({ theme }) => theme.colors.gray20};
+  border: 1px solid ${({ theme }) => theme.colors.neutral[200]};
   border-radius: 4px;
   display: flex;
   flex-direction: row;

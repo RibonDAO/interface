@@ -64,7 +64,7 @@ export default function Button({
   function activeBorderColor() {
     if (outline && !borderColor) return primary[300];
     if (disabled && !borderColor) return theme.colors.gray30;
-    if (softDisabled) return theme.colors.gray20;
+    if (softDisabled) return theme.colors.neutral[200];
 
     return borderColor;
   }

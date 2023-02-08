@@ -39,7 +39,7 @@ export const MenuItem = styled.div<{ active: boolean }>`
   border-bottom: ${({ theme, active }) =>
     active
       ? `3px solid ${theme.colors.green30}`
-      : `1px solid ${theme.colors.gray20}`};
+      : `1px solid ${theme.colors.neutral[200]}`};
   display: flex;
   flex-direction: column;
 

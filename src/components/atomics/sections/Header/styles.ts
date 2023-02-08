@@ -20,7 +20,7 @@ export const Logo = styled.img`
 
 export const Divider = styled.span`
   margin: ${({ theme }) => theme.spacing(0, 8)};
-  color: ${({ theme }) => theme.colors.gray20};
+  color: ${({ theme }) => theme.colors.neutral[200]};
 `;
 
 export const InsideContainer = styled.div`

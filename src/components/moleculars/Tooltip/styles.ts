@@ -37,7 +37,7 @@ export const Symbol = styled.p`
 `;
 
 export const Text = styled.p`
-  border-bottom: 1px dashed ${({ theme }) => theme.colors.gray20};
+  border-bottom: 1px dashed ${({ theme }) => theme.colors.neutral[200]};
 `;
 
 export const TooltipBox = styled(Tooltip)`

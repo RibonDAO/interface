@@ -24,9 +24,6 @@ export function logEvent(
   eventName: string,
   eventParams: EventParams = {},
 ): void {
-  // TODO: remove this console.log
-  // eslint-disable-next-line no-console
-  console.log(eventName, eventParams);
   if (eventName.length > 32) {
     throw new EventNameTooLongError();
   } else if (process.env.NODE_ENV === "production") {

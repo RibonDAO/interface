@@ -29,7 +29,9 @@ function ButtonSwitch({
   return (
     <S.Container>
       <S.BoxIcon>
-        <S.Text color={checked ? colors.neutral[500] : primary[300]}>{leftText}</S.Text>
+        <S.Text color={checked ? colors.neutral[500] : primary[300]}>
+          {leftText}
+        </S.Text>
       </S.BoxIcon>
       <S.ContainerSwitch>
         <Switch
@@ -48,7 +50,9 @@ function ButtonSwitch({
         />
       </S.ContainerSwitch>
       <S.BoxIcon>
-        <S.Text color={checked ? primary[300] : colors.neutral[500]}>{rightText}</S.Text>
+        <S.Text color={checked ? primary[300] : colors.neutral[500]}>
+          {rightText}
+        </S.Text>
       </S.BoxIcon>
     </S.Container>
   );

@@ -1,5 +1,5 @@
 import { ZendeskAPI } from "react-zendesk";
-import { logEvent } from "services/analytics/firebase";
+import { logEvent } from "lib/events";
 
 export const ZendeskOpenChat = () => {
   ZendeskAPI("webWidget", "open");

@@ -6,7 +6,7 @@ import { maskToExpirationDate } from "lib/maskToExpirationDate";
 import getThemeByFlow from "lib/themeByFlow";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { logEvent } from "services/analytics/firebase";
+import { logEvent } from "lib/events";
 import * as S from "./styles";
 
 function CardInfoSection() {

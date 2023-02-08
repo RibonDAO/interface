@@ -1,8 +1,9 @@
-import React, { FormEventHandler, useEffect } from "react";
+import React, { FormEventHandler, useEffect, useState } from "react";
 import ReactModal from "react-modal";
-import theme from "styles/theme";
-import Button, { onClickType } from "components/atomics/buttons/Button";
+import Button, { ButtonProps } from "components/atomics/buttons/Button";
 import { useForm } from "hooks/useForm";
+import theme from "styles/theme";
+import { newLogEvent } from "lib/events";
 import * as S from "./styles";
 import { defaultCustomStyles } from "../defaultCustomStyles";
 
@@ -19,18 +20,8 @@ export type Props = {
   icon?: string | null;
   title?: string | null;
   titleColor?: string;
-  primaryButtonText?: string | null;
-  primaryButtonTextColor?: string;
-  primaryButtonColor?: string;
-  primaryButtonBorderColor?: string;
-  primaryButtonCallback?: onClickType;
-  primaryButtonDisabled?: boolean;
-  secondaryButtonText?: string | null;
-  secondaryButtonLink?: string;
-  secondaryButtonTextColor?: string;
-  secondaryButtonColor?: string;
-  secondaryButtonBorderColor?: string;
-  secondaryButtonCallback?: onClickType;
+  primaryButton?: ButtonProps;
+  secondaryButton?: ButtonProps;
   contentLabel?: string;
   onClose?: () => void;
   highlightedText?: string;
@@ -42,26 +33,17 @@ export type Props = {
   onFormSubmit: (values: Record<any, any>) => void;
   footer?: JSX.Element;
   onValuesChange?: (values: Record<any, any>) => void;
+  eventName?: string;
+  eventParams?: Record<string, any>;
 };
-
-const { primary } = theme.colors.brand;
 
 function ModalForm({
   visible = false,
   icon = null,
   title = null,
   titleColor,
-  primaryButtonText = null,
-  primaryButtonTextColor = theme.colors.neutral10,
-  primaryButtonColor = primary[300],
-  primaryButtonBorderColor,
-  primaryButtonDisabled,
-  secondaryButtonText = null,
-  secondaryButtonTextColor = theme.colors.gray30,
-  secondaryButtonBorderColor,
-  secondaryButtonColor = theme.colors.neutral10,
-  primaryButtonCallback = () => {},
-  secondaryButtonCallback = () => {},
+  primaryButton,
+  secondaryButton,
   onClose = () => {},
   contentLabel,
   customStyles,
@@ -70,7 +52,16 @@ function ModalForm({
   onFormSubmit,
   footer,
   onValuesChange,
+  eventName,
+  eventParams,
 }: Props): JSX.Element {
+  const [logged, SetLogged] = useState(false);
+
+  if (visible && eventName && !logged) {
+    newLogEvent("view", eventName, eventParams);
+    SetLogged(true);
+  }
+
   // eslint-disable-next-line no-use-before-define
   const [onChange, onSubmit, values] = useForm(handleOnSubmit, initialState);
 
@@ -110,27 +101,35 @@ function ModalForm({
             />
           ))}
 
-          {primaryButtonText && (
+          {primaryButton && (
             <Button
-              text={primaryButtonText}
-              textColor={primaryButtonTextColor}
-              backgroundColor={primaryButtonColor}
-              borderColor={primaryButtonBorderColor}
-              onClick={primaryButtonCallback}
+              leftIcon={primaryButton.leftIcon}
+              text={primaryButton.text}
+              textColor={primaryButton.textColor}
+              backgroundColor={primaryButton.color}
+              borderColor={primaryButton.borderColor}
+              onClick={primaryButton.onClick}
+              eventName={primaryButton.eventName}
+              eventParams={primaryButton.eventParams}
+              disabled={primaryButton.disabled}
               type="submit"
-              disabled={primaryButtonDisabled}
             />
           )}
         </S.FormContainer>
       </form>
 
-      {secondaryButtonText && (
+      {secondaryButton && (
         <Button
-          text={secondaryButtonText}
-          textColor={secondaryButtonTextColor}
-          backgroundColor={secondaryButtonColor}
-          onClick={secondaryButtonCallback}
-          borderColor={secondaryButtonBorderColor}
+          leftIcon={secondaryButton.leftIcon}
+          text={secondaryButton.text}
+          textColor={secondaryButton.textColor || theme.colors.gray30}
+          backgroundColor={
+            secondaryButton.backgroundColor || theme.colors.neutral10
+          }
+          onClick={secondaryButton.onClick}
+          borderColor={secondaryButton.borderColor}
+          eventName={secondaryButton.eventName}
+          eventParams={secondaryButton.eventParams}
           type="submit"
         />
       )}

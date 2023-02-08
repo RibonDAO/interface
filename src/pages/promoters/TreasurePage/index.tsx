@@ -9,7 +9,7 @@ import { COMES_FROM_TREASURE } from "lib/localStorage/constants";
 import { useContract } from "hooks/useContract";
 import DonationTokenAbi from "utils/abis/DonationToken.json";
 import RibonAbi from "utils/abis/RibonAbi.json";
-import { logEvent } from "services/analytics/firebase";
+import { logEvent } from "lib/events";
 import useContractBalance from "hooks/apiHooks/useContractBalance";
 import { setLocalStorageItem } from "lib/localStorage";
 import * as S from "./styles";

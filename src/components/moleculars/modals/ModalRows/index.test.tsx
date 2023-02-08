@@ -5,6 +5,7 @@ import {
   expectTextToBeInTheDocument,
   expectTextNotToBeInTheDocument,
 } from "config/testUtils/expects";
+import { mockNewLogEventFunction } from "setupTests";
 import ModalRows from ".";
 
 jest.mock(
@@ -14,6 +15,7 @@ jest.mock(
       return <p>animation</p>;
     },
 );
+
 describe("ModalRows", () => {
   it("should render without error", () => {
     renderComponent(
@@ -67,8 +69,12 @@ describe("ModalRows", () => {
             },
           ]}
           visible
-          primaryButtonText="click"
-          secondaryButtonText="click2"
+          primaryButton={{
+            text: "click",
+          }}
+          secondaryButton={{
+            text: "click2",
+          }}
         />,
       );
 
@@ -87,8 +93,10 @@ describe("ModalRows", () => {
             },
           ]}
           visible
-          primaryButtonText="click"
-          primaryButtonCallback={handlePrimaryButton}
+          primaryButton={{
+            text: "click",
+            onClick: handlePrimaryButton,
+          }}
         />,
       );
 
@@ -108,7 +116,9 @@ describe("ModalRows", () => {
             },
           ]}
           visible
-          primaryButtonText="click"
+          primaryButton={{
+            text: "click",
+          }}
         />,
       );
 
@@ -128,8 +138,10 @@ describe("ModalRows", () => {
             },
           ]}
           visible
-          secondaryButtonText="click"
-          secondaryButtonCallback={handleSecondaryButton}
+          secondaryButton={{
+            text: "click",
+            onClick: handleSecondaryButton,
+          }}
         />,
       );
 
@@ -149,12 +161,30 @@ describe("ModalRows", () => {
             },
           ]}
           visible
-          secondaryButtonText="click"
+          secondaryButton={{
+            text: "click",
+          }}
         />,
       );
 
       clickOn("click");
       expect(handleSecondaryButton).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("when the modal is visible and has an eventName", () => {
+    const eventName = "test";
+    const eventParams = { test: "test" };
+    const action = "view";
+    it("logs an event", () => {
+      renderComponent(
+        <ModalRows visible eventName={eventName} eventParams={eventParams} />,
+      );
+      expect(mockNewLogEventFunction).toHaveBeenCalledWith(
+        action,
+        eventName,
+        eventParams,
+      );
     });
   });
 });

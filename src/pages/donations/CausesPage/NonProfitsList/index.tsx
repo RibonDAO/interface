@@ -1,7 +1,7 @@
 import CardCenterImageButton from "components/moleculars/cards/CardCenterImageButton";
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { logEvent } from "services/analytics/firebase";
+import { newLogEvent } from "lib/events";
 import NonProfit from "types/entities/NonProfit";
 import Integration from "types/entities/Integration";
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
@@ -57,17 +57,17 @@ function NonProfitsList({
   const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
 
   function handleButtonClick(nonProfit: NonProfit) {
-    logEvent("donateCardButton_click", {
-      causeId: nonProfit.id,
-    });
     chooseNonProfit(nonProfit);
     if (canDonate) {
+      newLogEvent("click", "P1_donateBtn", {
+        nonProfitId: nonProfit.id,
+      });
       setConfirmModalVisible(true);
-      logEvent("authDonationDial_view");
     } else {
-      logEvent("donateBlockedButton_click");
+      newLogEvent("click", "P1_donateBlockedBtn", {
+        nonProfitId: nonProfit.id,
+      });
       showBlockedDonationModal();
-      logEvent("donateBlockedDonation_view");
     }
   }
 

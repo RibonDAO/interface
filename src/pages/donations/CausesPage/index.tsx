@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { logEvent } from "services/analytics/firebase";
 import NonProfit from "types/entities/NonProfit";
 import useNonProfits from "hooks/apiHooks/useNonProfits";
 import { useLocation } from "react-router-dom";
@@ -62,6 +61,7 @@ function CausesPage(): JSX.Element {
         buttonText: t("errorModalButtonText"),
         onClose: () => closeWarningModal(),
         warning: true,
+        eventName: "P1_donateErrorModal",
       },
     },
     state?.failedDonation,
@@ -120,16 +120,6 @@ function CausesPage(): JSX.Element {
     }
   }, [integration]);
 
-  useEffect(() => {
-    if (integration) {
-      logEvent("donateIntroDial_view", { integration: integration.name });
-    }
-  }, [integration]);
-
-  useEffect(() => {
-    if (state?.failedDonation) logEvent("donateDonationError_view");
-  }, []);
-
   const closeConfirmModal = useCallback(() => {
     setConfirmModalVisible(false);
   }, []);
@@ -138,7 +128,6 @@ function CausesPage(): JSX.Element {
     async (email: string) => {
       try {
         if (!signedIn) {
-          logEvent("authDonationDialButton_click");
           const user = await findOrCreateUser(email);
           if (integration) {
             createSource(user.id, integration.id);
@@ -148,9 +137,6 @@ function CausesPage(): JSX.Element {
       } catch (e) {
         logError(e);
       }
-      logEvent("donateConfirmDialButton_click", {
-        causeId: chosenNonProfit?.id,
-      });
     },
     [chosenNonProfit],
   );
@@ -229,6 +215,8 @@ function CausesPage(): JSX.Element {
             indexSelected={selectedButtonIndex}
             onChange={handleCauseChanged}
             nameExtractor={(cause) => cause.name}
+            eventParams={(cause) => ({ causeId: cause.id })}
+            eventName="P1_causeTab"
           />
         )}
         {isLoading ? (

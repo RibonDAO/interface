@@ -14,7 +14,7 @@ import {
 } from "lib/walletConnector";
 import { useTranslation } from "react-i18next";
 import useToast from "hooks/useToast";
-import { logEvent } from "services/analytics/firebase";
+import { logEvent } from "lib/events";
 import { utils } from "ethers";
 import { networks } from "config/networks";
 

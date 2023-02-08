@@ -9,7 +9,6 @@ import useVoucher from "hooks/useVoucher";
 import useNavigation from "hooks/useNavigation";
 import NonProfit from "types/entities/NonProfit";
 import Integration from "types/entities/Integration";
-import { logEvent } from "services/analytics/firebase";
 import extractUrlValue from "lib/extractUrlValue";
 import ConfirmEmail from "../ConfirmEmail";
 import ConfirmDonationModal from "../ConfirmDonationModal";
@@ -85,7 +84,6 @@ function ConfirmSection({
   const handleSignedInDonation = useCallback(async (email: string) => {
     setConfirmModalVisible(false);
     setDonationInProcessModalVisible(true);
-    logEvent("donateDonationLoaderDial_view");
     setTimeout(async () => {
       await handleDonate(email);
     }, 3000);
@@ -108,9 +106,11 @@ function ConfirmSection({
       visible={confirmModalVisible}
       icon={Ticket}
       title={t("confirmModalTitle")}
-      primaryButtonText={t("confirmModalPrimaryButtonText")}
-      secondaryButtonText={t("confirmModalSecondaryButtonText")}
-      secondaryButtonCallback={closeConfirmModal}
+      primaryButton={{ text: t("confirmModalPrimaryButtonText") }}
+      secondaryButton={{
+        text: t("confirmModalSecondaryButtonText"),
+        onClick: closeConfirmModal,
+      }}
     />
   );
 }

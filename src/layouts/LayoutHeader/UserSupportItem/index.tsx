@@ -3,7 +3,7 @@ import supportIcon from "assets/icons/support-icon.svg";
 import CardIconText from "components/moleculars/cards/CardIconText";
 import { useTranslation } from "react-i18next";
 import ArrowRight from "assets/icons/arrow-right-blue-icon.svg";
-import { logEvent } from "services/analytics/firebase";
+import { logEvent } from "lib/events";
 import { ZendeskOpenChat } from "config/zendesk/features";
 import * as S from "./styles";
 

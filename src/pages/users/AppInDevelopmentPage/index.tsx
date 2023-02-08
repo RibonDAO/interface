@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import LeftArrow from "assets/icons/arrow-left-green.svg";
-import { logEvent } from "services/analytics/firebase";
+import { logEvent } from "lib/events";
 import useNavigation from "hooks/useNavigation";
 import * as S from "./styles";
 import IllustrationMobile from "./assets/illustration-mobile.svg";

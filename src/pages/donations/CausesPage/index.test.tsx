@@ -2,10 +2,7 @@ import React from "react";
 import { renderComponent } from "config/testUtils";
 import { mockRequest } from "config/testUtils/test-helper";
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
-import {
-  expectLogEventToHaveBeenCalledWith,
-  expectTextToBeInTheDocument,
-} from "config/testUtils/expects";
+import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import causeFactory from "config/testUtils/factories/causeFactory";
 import Causes from ".";
 
@@ -79,20 +76,6 @@ describe("Causes", () => {
       expectTextToBeInTheDocument(
         `Donate ${nonProfit.impactByTicket} ${nonProfit.impactDescription}`,
       );
-    });
-  });
-
-  describe("when the page state is donationFailed", () => {
-    beforeEach(() => {
-      renderComponent(<Causes />, {
-        locationState: {
-          failedDonation: true,
-        },
-      });
-    });
-
-    it("logs the donateDonationError_view event", () => {
-      expectLogEventToHaveBeenCalledWith("donateDonationError_view");
     });
   });
 });

@@ -1,10 +1,5 @@
 import * as CrashReport from "services/crashReport";
-import {
-  logFirebaseEvent,
-  setUserProperties,
-  setUserId,
-  convertParamsToString,
-} from ".";
+import { logFirebaseEvent, setUserProperties, setUserId } from ".";
 
 const mockAnalytics = {
   logEvent: jest.fn(),
@@ -43,11 +38,7 @@ describe("logFirebaseEvent", () => {
   describe("without params", () => {
     it("sends an event to firebase", () => {
       logFirebaseEvent(eventName);
-      expect(mockAnalytics.logEvent).toHaveBeenCalledWith(eventName, {
-        anonymousId: "false",
-        integrationName: "false",
-        hasDonated: "false",
-      });
+      expect(mockAnalytics.logEvent).toHaveBeenCalledWith(eventName, {});
     });
   });
 
@@ -93,35 +84,5 @@ describe("#setUserId", () => {
     const userId = 1;
     setUserId(userId);
     expect(mockAnalytics.setUserId).toHaveBeenCalledWith("1");
-  });
-});
-
-describe("#convertParamsToString", () => {
-  describe("when params are defined", () => {
-    it("converts the params to string", () => {
-      const params = {
-        id: 5,
-        brand: "Brand",
-      };
-
-      const convertedParams = convertParamsToString(params);
-
-      expect(convertedParams.id).toEqual("5");
-      expect(convertedParams.brand).toEqual("Brand");
-    });
-  });
-
-  describe("when there is an undefined param", () => {
-    it("converts the undefined param to an empty string", () => {
-      const params = {
-        id: 5,
-        brand: undefined,
-      };
-
-      const convertedParams = convertParamsToString(params);
-
-      expect(convertedParams.id).toEqual("5");
-      expect(convertedParams.brand).toEqual("");
-    });
   });
 });

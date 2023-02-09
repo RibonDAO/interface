@@ -1,35 +1,57 @@
-import {
-  EventNameTooLongError,
-  logFirebaseEvent,
-} from "services/analytics/firebase";
+import { logAmplitudeEvent } from "services/analytics/amplitude";
+import { logFirebaseEvent } from "services/analytics/firebase";
+import { logMixpanelEvent } from "services/analytics/mixpanel";
 import events from "./constants";
-
-interface EventParams {
-  [key: string]: string | number | undefined;
-}
 
 function eventPageTransalation(url: string) {
   return events.pages[url];
+}
+class EventNameTooLongError extends Error {}
+export interface EventParams {
+  [key: string]: string | number | undefined;
+}
+
+const integrationName = localStorage.getItem("integrationName") ?? "false";
+const installationId = localStorage.getItem("installationId") ?? "false";
+const hasDonated = localStorage.getItem("HAS_DONATED") ?? "false";
+
+export function convertParamsToString(params: EventParams): EventParams {
+  const convertedParams = params;
+
+  Object.keys(params).forEach((key) => {
+    convertedParams[key] = params[key] ? params[key]?.toString() : "";
+  });
+
+  return convertedParams;
 }
 
 export function logEvent(
   eventName: string,
   eventParams: EventParams = {},
 ): void {
-  // TODO: remove this console.log
-  // eslint-disable-next-line no-console
-  console.log(eventName, eventParams);
   if (eventName.length > 32) {
     throw new EventNameTooLongError();
   } else if (process.env.NODE_ENV === "production") {
-    logFirebaseEvent(eventName, eventParams);
+    const convertedParams = eventParams
+      ? convertParamsToString(eventParams)
+      : {};
+
+    convertedParams.anonymousId = installationId;
+    convertedParams.integrationName = integrationName;
+    convertedParams.hasDonated = hasDonated;
+
+    logFirebaseEvent(eventName, convertedParams);
+    if (eventName.includes("web_")) {
+      logMixpanelEvent(eventName, convertedParams);
+      logAmplitudeEvent(eventName, convertedParams);
+    }
   }
 }
 
 export function newLogEvent(
   action: string,
   eventName: string,
-  eventParams?: EventParams,
+  eventParams: EventParams = {},
 ): void {
   logEvent(`web_${eventName}_${action}`, eventParams);
 }

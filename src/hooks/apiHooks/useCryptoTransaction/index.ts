@@ -7,12 +7,14 @@ function useCryptoTransaction() {
     amount: string,
     walletAddress: string,
     integrationId: string | number,
+    causeId: string | number,
   ) {
     const { data: transaction } = await cryptoTransactionApi.postTransaction(
       transactionHash,
       amount,
       walletAddress,
       integrationId,
+      causeId,
     );
 
     return transaction;

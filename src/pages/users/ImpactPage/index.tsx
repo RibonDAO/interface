@@ -2,40 +2,29 @@ import CardTopImage from "components/moleculars/cards/CardTopImage";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "lib/events";
-import useFormattedImpactText from "hooks/useFormattedImpactText";
 import useUserStatistics from "hooks/apiHooks/useStatistics";
 import { formatPriceWithZeros } from "lib/formatters/currencyFormatter";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import { useLanguage } from "hooks/useLanguage";
 import { coinByLanguage } from "lib/coinByLanguage";
-import useImpact from "hooks/apiHooks/useImpact";
+import ImpactMenu from "./ImpactMenu";
 import TicketIcon from "./assets/ticket-icon.svg";
 import MoneyIcon from "./assets/money-icon.svg";
 import NgoIcon from "./assets/ngo-icon.svg";
 import CausesIcon from "./assets/causes-icon.svg";
 import * as S from "./styles";
 
-import TicketSection from "./ImpactMenu/TicketSection";
-
 function ImpactPage(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "impactPage",
   });
 
-  const { userImpact } = useImpact();
   const { userStatistics } = useUserStatistics();
   const { currentLang } = useLanguage();
-  const { formattedImpactText } = useFormattedImpactText();
 
   useEffect(() => {
     logEvent("profile_view");
   }, []);
-
-  const impactCards = userImpact || [];
-  const impactItems = impactCards.filter(
-    (item) => item.impact.toString() !== "0",
-  );
-  const hasImpact = impactItems.length > 0;
 
   return (
     <S.Container>
@@ -73,24 +62,8 @@ function ImpactPage(): JSX.Element {
           size="small"
         />
       </S.CardsButtonContainer>
-      {hasImpact ? (
-        <S.CardsContainer>
-          {impactItems.map((item: any) => (
-            <CardTopImage
-              key={item.nonProfit.id}
-              title={item.nonProfit.name}
-              text={
-                formattedImpactText(item.nonProfit, item.impact, false, true) ||
-                ""
-              }
-              icon={item.nonProfit.logo}
-              size="large"
-            />
-          ))}
-        </S.CardsContainer>
-      ) : (
-        <TicketSection />
-      )}
+
+      <ImpactMenu />
     </S.Container>
   );
 }

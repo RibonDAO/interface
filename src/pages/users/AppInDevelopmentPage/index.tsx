@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import LeftArrow from "assets/icons/arrow-left-green.svg";
-import { logEvent } from "lib/events";
+import { newLogEvent } from "lib/events";
 import useNavigation from "hooks/useNavigation";
 import * as S from "./styles";
 import IllustrationMobile from "./assets/illustration-mobile.svg";
@@ -40,7 +40,7 @@ function AppInDevelopmentPage() {
               href={t("surveyLink")}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => logEvent("webDwnldSurveyBtn_click")}
+              onClick={() => newLogEvent("click", "webDwnldSurveyBtn")}
             >
               {t("surveyButton")}
             </S.SurveyButton>

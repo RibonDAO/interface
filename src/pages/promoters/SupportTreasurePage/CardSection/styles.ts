@@ -75,7 +75,7 @@ export const FinishButton = styled(Button)`
 
 export const GivingValue = styled.h2`
   margin-top: ${({ theme }) => theme.spacing(4)};
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;
 
 export const NetGivingValue = styled.p`
@@ -122,7 +122,7 @@ export const CardImpactImage = styled.img`
 `;
 
 export const CardImpactText = styled.h4`
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 
   span {
     display: inline-block;

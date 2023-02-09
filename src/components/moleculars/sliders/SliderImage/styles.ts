@@ -56,7 +56,7 @@ export const PaginationContainer = styled.div`
   bottom: 14px;
   left: 50%;
   z-index: ${({ theme }) => theme.zindex.above};
-  background-color: ${({ theme }) => theme.colors.gray40};
+  background-color: ${({ theme }) => theme.colors.neutral[800]};
   opacity: 0.7;
   transform: translateX(-50%);
 `;

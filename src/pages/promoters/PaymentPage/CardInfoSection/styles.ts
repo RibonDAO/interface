@@ -18,7 +18,7 @@ export const PaymentInformationSectionContainer = styled.div<{
 
 export const Title = styled.h3`
   margin-bottom: ${({ theme }) => theme.spacing(20)};
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;
 
 export const Half = styled.div`

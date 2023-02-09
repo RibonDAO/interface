@@ -101,7 +101,7 @@ export const Title = styled.h1`
   margin: ${({ theme }) => theme.spacing(4, 0)};
   margin-right: 5%;
   margin-bottom: ${({ theme }) => theme.spacing(24)};
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     ${stylizedDisplayLg}

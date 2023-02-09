@@ -7,7 +7,7 @@ import {
 export const Container = styled.div``;
 
 export const TextLastCard = styled.h4`
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;
 
 export const LastCardCarousel = styled.a`
@@ -53,5 +53,5 @@ export const SectionTitle = styled.h2`
   ${defaultBodyMdBold}
 
   margin-top: ${({ theme }) => theme.spacing(32)};
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;

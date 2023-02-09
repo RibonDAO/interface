@@ -53,7 +53,7 @@ export const SectionTitle = styled.h2`
   ${defaultBodyMdBold}
 
   margin-bottom: ${({ theme }) => theme.spacing(8)};
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     margin: ${({ theme }) => theme.spacing(8, 0)};
@@ -103,5 +103,5 @@ export const ProcessingText = styled.span`
 `;
 
 export const TransactionLink = styled.a`
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;

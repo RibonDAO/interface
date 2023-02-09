@@ -735,7 +735,7 @@ export const HighlightedText = styled.p`
     font-weight: 700;
     font-size: 16px;
     text-align: center;
-    color: ${theme.colors.gray40};
+    color: ${theme.colors.neutral[800]};
   `}
 `;
 
@@ -755,7 +755,7 @@ export const HighlightedText = styled.p`
   font-weight: 700;
   font-size: 16px;
   text-align: center;
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;
 export const RowsModalRow = styled.div`
   margin-bottom: 28px;

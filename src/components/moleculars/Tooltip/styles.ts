@@ -27,7 +27,7 @@ export const RightContainer = styled.div`
   ${defaultBodySmSemibold}
 
   padding: ${({ theme }) => theme.spacing(4)};
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;
 
 export const Symbol = styled.p`
@@ -49,7 +49,7 @@ export const TooltipBox = styled(Tooltip)<{
   margin-right: ${({ theme }) => theme.spacing(16)};
   z-index: 1;
   background: ${({ theme }) => theme.colors.neutral10};
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
   box-shadow: 2px 2px 8px 2px rgba(40, 36, 28, 0.25);
   opacity: 1;
 

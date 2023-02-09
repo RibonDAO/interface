@@ -121,3 +121,7 @@ export const ShowMoreButton = styled(Button)`
   color: ${({ theme }) => theme.colors.brand.primary[800]};
   color: ${({ theme }) => theme.colors.brand.primary[300]};
 `;
+
+export const TabSection = styled.section<{ visible?: boolean }>`
+  display: ${({ visible }) => (visible ? "block" : "none")};
+`;

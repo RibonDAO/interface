@@ -102,7 +102,7 @@ function DonationDoneCausePage(): JSX.Element {
 
   return (
     <S.Container>
-      {audio && <ReactHowler src={audio} loop={false} playing />}
+      {audio && !hasButton && <ReactHowler src={audio} loop={false} playing />}
       <S.ImageContainer>
         <IconsAroundImage
           imageSrc={

@@ -47,6 +47,7 @@ export const Paragraph = styled.p`
 
 export const Container = styled.div`
   width: 100%;
+  margin-bottom: ${({ theme }) => theme.spacing(112)};
   display: flex;
   flex-direction: column;
 `;
@@ -103,4 +104,20 @@ export const EmptyButton = styled(Button)`
   width: 196px;
   padding: ${({ theme }) => theme.spacing(8, 16)};
   color: ${({ theme }) => theme.colors.brand.primary[800]};
+`;
+
+export const ShowMoreButtonContainer = styled.div`
+  width: 100%;
+  margin-top: ${({ theme }) => theme.spacing(32)};
+  display: flex;
+  justify-content: center;
+`;
+
+export const ShowMoreButton = styled(Button)`
+  width: 196px;
+  padding: ${({ theme }) => theme.spacing(8, 16)};
+  border-color: ${({ theme }) => theme.colors.brand.primary[300]};
+  background-color: ${({ theme }) => theme.colors.neutral10};
+  color: ${({ theme }) => theme.colors.brand.primary[800]};
+  color: ${({ theme }) => theme.colors.brand.primary[300]};
 `;

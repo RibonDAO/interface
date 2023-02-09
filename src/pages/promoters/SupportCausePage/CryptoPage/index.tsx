@@ -87,8 +87,11 @@ function CryptoPage(): JSX.Element {
   };
 
   const handleDonateClick = async () => {
-    if (wallet) {
-      await handleDonationToContract(onDonationToContractSuccess);
+    if (wallet && cause) {
+      await handleDonationToContract(
+        Number(cause.id),
+        onDonationToContractSuccess,
+      );
       return;
     }
 

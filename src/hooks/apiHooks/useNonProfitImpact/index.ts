@@ -14,7 +14,7 @@ function useNonProfitImpact(
     isLoading,
     refetch,
   } = useApi<NonProfitImpact>({
-    key: `nonProfitImpact${nonProfitId}`,
+    key: `nonProfitImpact${nonProfitId}${value}${currency}`,
     fetchMethod: () => {
       if (nonProfitId && value && currency)
         return nonProfitImpactApi.postImpactByNonProfit(

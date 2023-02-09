@@ -1,3 +1,4 @@
+import { causeFactory } from "@ribon.io/shared";
 import { renderHook } from "@testing-library/react-hooks";
 import cryptoTransactionApi from "services/api/cryptoTransactionsApi";
 import { TransactionStatus } from "types/enums/TransactionStatus";
@@ -10,8 +11,19 @@ describe("useCryptoTransaction", () => {
   const testAmount = "5.00";
   const testWallet = "0xBBBB";
   const testIntegrationId = 1;
+  const testCause = causeFactory({
+    id: 1,
+    name: "cause1",
+    active: true,
+  });
 
-  const transactionData = [testHash, testAmount, testWallet, testIntegrationId];
+  const transactionData = [
+    testHash,
+    testAmount,
+    testWallet,
+    testIntegrationId,
+    testCause.id,
+  ];
 
   beforeEach(() => {
     const { result } = renderHook(() => useCryptoTransaction());
@@ -31,6 +43,7 @@ describe("useCryptoTransaction", () => {
         testAmount,
         testWallet,
         testIntegrationId,
+        testCause.id,
       );
 
       expect(cryptoTransactionApi.postTransaction).toHaveBeenCalledWith(

@@ -40,7 +40,9 @@ export const Text = styled.p`
   border-bottom: 1px dashed ${({ theme }) => theme.colors.neutral[200]};
 `;
 
-export const TooltipBox = styled(Tooltip)`
+export const TooltipBox = styled(Tooltip)<{
+  tooltipPosition?: string;
+}>`
   ${defaultBodyXsRegular}
 
   max-width: 92%;
@@ -53,7 +55,7 @@ export const TooltipBox = styled(Tooltip)`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     max-width: 372px;
-    margin-left: 4.5%;
+    margin-left: ${(props) => props.tooltipPosition};
   }
 `;
 

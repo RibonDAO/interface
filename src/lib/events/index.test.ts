@@ -1,9 +1,4 @@
-import {
-  logEvent,
-  newLogEvent,
-  logPageView,
-  convertParamsToString,
-} from "lib/events";
+import { logEvent, newLogEvent, logPageView } from "lib/events";
 import * as FirebaseEvents from "services/analytics/firebase";
 import * as MixpanelEvents from "services/analytics/mixpanel";
 import * as AmplitudeEvents from "services/analytics/amplitude";
@@ -121,36 +116,6 @@ describe("Events", () => {
         `web_${translation}_view`,
         paramsDefault,
       );
-    });
-  });
-
-  describe("#convertParamsToString", () => {
-    describe("when params are defined", () => {
-      it("converts the params to string", () => {
-        const params = {
-          id: 5,
-          brand: "Brand",
-        };
-
-        const convertedParams = convertParamsToString(params);
-
-        expect(convertedParams.id).toEqual("5");
-        expect(convertedParams.brand).toEqual("Brand");
-      });
-    });
-
-    describe("when there is an undefined param", () => {
-      it("converts the undefined param to an empty string", () => {
-        const params = {
-          id: 5,
-          brand: undefined,
-        };
-
-        const convertedParams = convertParamsToString(params);
-
-        expect(convertedParams.id).toEqual("5");
-        expect(convertedParams.brand).toEqual("");
-      });
     });
   });
 });

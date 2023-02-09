@@ -40,7 +40,13 @@ function ButtonToast({
   };
 
   useEffect(() => {
-    if (isMobile && !collapsed && !logged && eventName && eventParams) {
+    if (logged) return;
+    if (!eventName) return;
+
+    if (isMobile && !collapsed) {
+      newLogEvent("view", eventName, eventParams);
+      setLogged(true);
+    } else if (!isMobile) {
       newLogEvent("view", eventName, eventParams);
       setLogged(true);
     }

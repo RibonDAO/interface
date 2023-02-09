@@ -1,7 +1,8 @@
 import CloseIconOrange from "assets/icons/close-icon-orange.svg";
 import theme from "styles/theme";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useBreakpoint from "hooks/useBreakpoint";
+import { newLogEvent } from "lib/events";
 import * as S from "./styles";
 
 export type Props = {
@@ -10,6 +11,8 @@ export type Props = {
   leftIcon: string;
   backgroundColor?: string;
   textColor?: string;
+  eventName?: string;
+  eventParams?: any;
 };
 
 function ButtonToast({
@@ -18,20 +21,30 @@ function ButtonToast({
   leftIcon,
   backgroundColor = theme.colors.brand.secondary[300],
   textColor = theme.colors.brand.secondary[700],
+  eventName,
+  eventParams,
 }: Props): JSX.Element {
   const [collapsed, setCollapsed] = useState(true);
+  const [logged, setLogged] = useState(false);
 
   const { isMobile } = useBreakpoint();
 
   const handleClick = () => {
     if (isMobile && collapsed) return setCollapsed(true);
-
+    if (eventName && eventParams) newLogEvent("click", eventName, eventParams);
     return onClick();
   };
 
   const handleToggle = () => {
     setCollapsed(!collapsed);
   };
+
+  useEffect(() => {
+    if (isMobile && !collapsed && !logged && eventName && eventParams) {
+      newLogEvent("view", eventName, eventParams);
+      setLogged(true);
+    }
+  }, [collapsed]);
 
   return (
     <S.Container collapsed={isMobile && collapsed}>

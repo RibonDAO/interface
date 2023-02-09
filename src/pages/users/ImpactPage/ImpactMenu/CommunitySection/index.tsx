@@ -2,10 +2,13 @@ import CardTooltip from "components/moleculars/cards/CardTooltip";
 import usePersonPayments from "hooks/apiHooks/usePersonPayment";
 import useNavigation from "hooks/useNavigation";
 import { formatFee } from "lib/formatters/feeFormatter";
+import { useEffect, useState } from "react";
+import Spinner from "components/atomics/Spinner";
 import { formatNetDonation } from "lib/formatters/netDonationFormatter";
 import { useTranslation } from "react-i18next";
 import theme from "styles/theme";
 import { PersonPayment } from "types/entities/PersonPayment";
+import useBreakpoint from "hooks/useBreakpoint";
 import directIllustration from "../../assets/direct-illustration.svg";
 import * as S from "../styles";
 
@@ -19,22 +22,43 @@ function CommunitySection() {
     navigateTo("/promoters/support-cause");
   };
 
-  const { userPersonCommunityPayments, guestPersonCommunityPayments } =
-    usePersonPayments();
+  const { isMobile } = useBreakpoint();
 
-  const impactCards =
-    userPersonCommunityPayments?.concat(guestPersonCommunityPayments || []) ||
-    [];
-  const impactCardsDesc = [...impactCards].sort((a, b) =>
-    a.paidDate > b.paidDate ? -1 : 1,
-  );
+  const [page, setPage] = useState(1);
+  const per = isMobile ? 6 : 8;
+
+  const [showMoreDisabled, setShowMoreDisabled] = useState(false);
+  const [showMoreVisible, setShowMoreVisible] = useState(true);
+  const [impactCards, setImpactCards] = useState<any>([]);
+
+  const { userPersonCommunityPayments, guestPersonCommunityPayments } =
+    usePersonPayments(page, per);
+
+  useEffect(() => {
+    const concatPayments = [
+      ...(userPersonCommunityPayments || []),
+      ...(guestPersonCommunityPayments || []),
+    ].sort((a, b) => (a.paidDate > b.paidDate ? -1 : 1));
+
+    if (concatPayments.length === 0) return;
+    if (concatPayments.length < per) setShowMoreVisible(false);
+
+    setImpactCards([...impactCards, ...concatPayments]);
+    setShowMoreDisabled(false);
+  }, [userPersonCommunityPayments, guestPersonCommunityPayments]);
+
   const hasImpactCards = impactCards?.length > 0;
+
+  const handleShowMoreClick = () => {
+    setPage(page + 1);
+    setShowMoreDisabled(true);
+  };
 
   return (
     <S.Container>
       {hasImpactCards ? (
         <S.CardsContainer>
-          {impactCardsDesc.map((item: PersonPayment) => (
+          {impactCards.map((item: PersonPayment) => (
             <CardTooltip
               key={item.id}
               title={item.receiver.name}
@@ -70,6 +94,17 @@ function CommunitySection() {
               </S.TooltipText>
             </CardTooltip>
           ))}
+
+          {showMoreVisible && (
+            <S.ShowMoreButtonContainer>
+              <S.ShowMoreButton
+                text={showMoreDisabled ? <Spinner size="14" /> : t("showMore")}
+                size="medium"
+                onClick={handleShowMoreClick}
+                disabled={showMoreDisabled}
+              />
+            </S.ShowMoreButtonContainer>
+          )}
         </S.CardsContainer>
       ) : (
         <S.EmptySectionContainer>

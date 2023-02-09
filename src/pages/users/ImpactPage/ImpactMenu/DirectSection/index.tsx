@@ -31,15 +31,11 @@ function DirectSection() {
   const hasPayments = impactCards?.length > 0;
 
   useEffect(() => {
-    if (
-      JSON.stringify(userPersonDirectPayments) === JSON.stringify(impactCards)
-    )
+    if (!userPersonDirectPayments || userPersonDirectPayments.length === 0)
       return;
-    if (userPersonDirectPayments) {
-      if (userPersonDirectPayments.length < per) setShowMoreVisible(false);
+    if (userPersonDirectPayments.length < per) setShowMoreVisible(false);
 
-      setImpactCards([...impactCards, ...userPersonDirectPayments]);
-    }
+    setImpactCards([...impactCards, ...userPersonDirectPayments]);
   }, [userPersonDirectPayments]);
 
   const handleShowMoreClick = () => {

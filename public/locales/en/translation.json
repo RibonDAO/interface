@@ -256,8 +256,8 @@
           "primaryButtonText": "Ok"
         },
         "userSupportCard": {
-          "title": "User Support",
-          "description": "Questions, ideas, refunds. We’re here!",
+          "title": "Ribon Support",
+          "description": "Questions, ideas, refunds about donations!",
           "primaryButtonText": "Access user support"
         }
       },

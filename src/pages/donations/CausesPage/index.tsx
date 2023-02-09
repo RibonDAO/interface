@@ -206,6 +206,7 @@ function CausesPage(): JSX.Element {
               symbol="?"
               textRight={t("tooltipTicket")}
               place="top"
+              idTooltip="tooltipTicket"
             />
           )}
         </S.TitleContainer>
@@ -241,6 +242,7 @@ function CausesPage(): JSX.Element {
               symbol="?"
               textRight={t("tooltipTicket")}
               place="bottom"
+              idTooltip="tooltipTicket"
             />
           </S.TooltipSection>
         )}

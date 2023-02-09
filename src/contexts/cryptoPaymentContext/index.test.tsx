@@ -1,3 +1,4 @@
+import { causeFactory } from "@ribon.io/shared";
 import {
   clickOn,
   fillByPlaceholder,
@@ -22,6 +23,8 @@ const mockContract = {
   balanceOf: () => 100 * 10 ** 18,
   decimals: () => 18,
 };
+
+const cause = causeFactory();
 
 jest.mock("hooks/useContract", () => ({
   __esModule: true,
@@ -48,7 +51,7 @@ function CryptoPaymentTestPage() {
       CryptoPayment
       <button
         type="button"
-        onClick={() => handleDonationToContract(mockOnSuccess)}
+        onClick={() => handleDonationToContract(cause.id, mockOnSuccess)}
       >
         donate
       </button>

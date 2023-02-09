@@ -63,7 +63,7 @@ export const Link = styled.a`
   ${defaultBodyXsRegular}
 
   text-decoration: underline;
-  color: ${({ theme }) => theme.colors.green30};
+  color: ${({ theme }) => theme.colors.brand.primary[300]};
   cursor: pointer;
 `;
 

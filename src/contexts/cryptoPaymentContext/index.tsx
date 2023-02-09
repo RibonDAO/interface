@@ -33,6 +33,7 @@ export type onDonationToContractSuccessProps = (
 
 export interface ICryptoPaymentContext {
   handleDonationToContract: (
+    causeId: number,
     onSuccess?: onDonationToContractSuccessProps,
   ) => Promise<void>;
   disableButton: () => boolean;
@@ -122,6 +123,7 @@ function CryptoPaymentProvider({ children }: Props) {
     amount === "0.00" || insufficientBalance() || loading;
 
   const handleDonationToContract = async (
+    causeId: number,
     onSuccess?: onDonationToContractSuccessProps,
   ) => {
     setLoading(true);
@@ -135,7 +137,13 @@ function CryptoPaymentProvider({ children }: Props) {
       const { hash } = response;
       const timestamp = Math.floor(new Date().getTime() / 1000);
 
-      createTransaction(hash, amount, wallet ?? "", integrationId ?? 1);
+      createTransaction(
+        hash,
+        amount,
+        wallet ?? "",
+        integrationId ?? 1,
+        causeId ?? 1,
+      );
 
       if (onSuccess) onSuccess(hash, timestamp, utils.parseEther(amount));
     } catch (error) {

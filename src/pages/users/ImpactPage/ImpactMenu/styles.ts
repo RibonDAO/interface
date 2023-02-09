@@ -3,6 +3,7 @@ import {
   defaultBodyMdMedium,
   defaultBodyMdBold,
   defaultBodyMdRegular,
+  defaultBodySmRegular,
 } from "styles/typography/default";
 import Button from "components/atomics/buttons/Button";
 
@@ -23,6 +24,27 @@ export const Menu = styled.div`
   }
 `;
 
+export const CardsContainer = styled.div`
+  width: 100%;
+  min-height: 216px;
+  margin-top: ${({ theme }) => theme.spacing(32)};
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+`;
+
+export const TooltipText = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const Paragraph = styled.p`
+  ${defaultBodySmRegular}
+
+  color: ${({ theme }) => theme.colors.gray40};
+`;
+
 export const Container = styled.div`
   width: 100%;
   display: flex;
@@ -38,7 +60,7 @@ export const MenuItem = styled.div<{ active: boolean }>`
   padding: ${({ theme }) => theme.spacing(8, 0, 0)};
   border-bottom: ${({ theme, active }) =>
     active
-      ? `3px solid ${theme.colors.green30}`
+      ? `3px solid ${theme.colors.brand.primary[300]}`
       : `1px solid ${theme.colors.gray20}`};
   display: flex;
   flex-direction: column;

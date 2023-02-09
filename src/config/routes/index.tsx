@@ -84,9 +84,11 @@ function RoutesComponent(): JSX.Element {
 
       <Route path="/impact" exact>
         <Suspense fallback={<div />}>
-          <MainLayout>
-            <ImpactPage />
-          </MainLayout>
+          <WalletProvider>
+            <MainLayout>
+              <ImpactPage />
+            </MainLayout>
+          </WalletProvider>
         </Suspense>
       </Route>
 

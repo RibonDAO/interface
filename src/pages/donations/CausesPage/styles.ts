@@ -41,7 +41,7 @@ export const NonProfitsListContainer = styled.div`
 
 export const FooterText = styled.p`
   text-align: center;
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 
   a {
     text-decoration: none;

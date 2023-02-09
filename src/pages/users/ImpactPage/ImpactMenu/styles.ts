@@ -60,14 +60,14 @@ export const MenuItem = styled.div<{ active: boolean }>`
   padding: ${({ theme }) => theme.spacing(8, 0, 0)};
   border-bottom: ${({ theme, active }) =>
     active
-      ? `3px solid ${theme.colors.brand.primary[300]}`
-      : `1px solid ${theme.colors.gray20}`};
+    ? `3px solid ${theme.colors.brand.primary[300]}`
+    : `1px solid ${theme.colors.neutral[200]}`};
   display: flex;
   flex-direction: column;
 
   align-items: center;
   color: ${({ theme, active }) =>
-    active ? theme.colors.brand.primary[800] : theme.colors.gray30};
+    active ? theme.colors.brand.primary[800] : theme.colors.neutral[500]};
   cursor: pointer;
 `;
 export const EmptySectionContainer = styled.div`
@@ -96,7 +96,7 @@ export const EmptyText = styled.span`
   ${defaultBodyMdRegular}
 
   max-width: 392px;
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const EmptyButton = styled(Button)`

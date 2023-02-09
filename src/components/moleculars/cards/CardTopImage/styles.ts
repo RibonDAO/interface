@@ -62,7 +62,7 @@ export const Text = styled.p`
   ${defaultBodySmRegular}
 
   margin-top: ${({ theme }) => theme.spacing(8)};
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const Title = styled.span<{

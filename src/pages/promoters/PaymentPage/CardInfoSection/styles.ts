@@ -36,7 +36,7 @@ export const Form = styled.form`
     color: ${({ theme }) => theme.colors.brand.secondary[300]};
 
     ::placeholder {
-      color: ${({ theme }) => theme.colors.gray20};
+      color: ${({ theme }) => theme.colors.neutral[200]};
     }
   }
 `;

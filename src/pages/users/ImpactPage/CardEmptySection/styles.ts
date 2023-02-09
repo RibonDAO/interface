@@ -17,7 +17,7 @@ export const Text = styled.p`
 
   margin-top: ${({ theme }) => theme.spacing(32)};
   text-align: center;
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const EmptyDonationButton = styled(Button)`

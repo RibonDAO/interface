@@ -27,7 +27,7 @@ const track = css<TrackProps>`
   cursor: pointer;
   background: ${({ value, min, max, theme, color }) => {
     const mainColor = color;
-    const secondaryColor = theme.colors.gray20;
+    const secondaryColor = theme.colors.neutral[200];
 
     const percent =
       ((Number(value) - Number(min)) / (Number(max) - Number(min))) * 100;

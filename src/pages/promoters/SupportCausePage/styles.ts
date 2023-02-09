@@ -67,7 +67,7 @@ export const CommunityAddContainer = styled.div`
 export const CommunityAddText = styled.p`
   ${defaultBodyXsRegular}
 
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const CommunityAddValue = styled.p`
@@ -136,7 +136,7 @@ export const UserBalanceText = styled.p`
 
   margin-bottom: ${({ theme }) => theme.spacing(4)};
   text-align: center;
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const UserBalanceTextHighlight = styled.span`
@@ -150,5 +150,5 @@ export const RefundText = styled.p`
 
   margin-top: ${({ theme }) => theme.spacing(4)};
   text-align: center;
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;

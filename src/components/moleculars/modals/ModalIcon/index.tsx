@@ -93,7 +93,7 @@ function ModalIcon({
         <Button
           leftIcon={secondaryButton.leftIcon}
           text={secondaryButton.text}
-          textColor={secondaryButton.textColor || theme.colors.gray30}
+          textColor={secondaryButton.textColor || theme.colors.neutral[500]}
           backgroundColor={
             secondaryButton.backgroundColor || theme.colors.neutral10
           }

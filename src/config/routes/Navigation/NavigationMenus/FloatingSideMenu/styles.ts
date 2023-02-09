@@ -28,7 +28,7 @@ export const MenuItem = styled(Link)`
   flex-direction: column;
   font-weight: ${({ theme }) => theme.font.semibold};
   text-decoration: none;
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 
   :hover {
     background-color: ${({ theme }) => theme.colors.brand.primary[300]};

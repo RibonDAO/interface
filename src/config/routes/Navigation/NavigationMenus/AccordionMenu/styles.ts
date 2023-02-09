@@ -21,7 +21,7 @@ export const MenuSwiper = styled.div<{ pressed: boolean }>`
   align-items: center;
   justify-content: center;
   background-color: ${({ theme, pressed }) =>
-    pressed ? theme.colors.gray30 : theme.colors.gray10};
+    pressed ? theme.colors.neutral[500] : theme.colors.neutral[50]};
   cursor: pointer;
   transition: background-color 0.05s;
 `;
@@ -35,7 +35,7 @@ export const Menu = styled.div<{ collapsed: boolean }>`
   justify-content: space-around;
   overflow-y: hidden;
   white-space: nowrap;
-  background: ${({ theme }) => theme.colors.gray10};
+  background: ${({ theme }) => theme.colors.neutral[50]};
   transition: height 0.15s;
 `;
 
@@ -44,18 +44,18 @@ export const MenuItem = styled(Link)<{ $active: boolean }>`
   padding-block: auto;
   width: 47%;
   max-height: 25px;
-  border: solid 1px ${({ theme }) => theme.colors.gray30};
+  border: solid 1px ${({ theme }) => theme.colors.neutral[500]};
   border-radius: 5px;
   font-weight: ${({ theme }) => theme.font.semibold};
   text-align: center;
   text-decoration: none;
   background: ${({ theme, $active }) =>
-    $active ? theme.colors.gray30 : theme.colors.gray10};
+    $active ? theme.colors.neutral[500] : theme.colors.neutral[50]};
   color: ${({ theme, $active }) =>
-    $active ? theme.colors.neutral10 : theme.colors.gray30};
+    $active ? theme.colors.neutral10 : theme.colors.neutral[500]};
 
   :hover {
-    background-color: ${({ theme }) => theme.colors.gray30};
+    background-color: ${({ theme }) => theme.colors.neutral[500]};
     color: ${({ theme }) => theme.colors.neutral10};
   }
 `;

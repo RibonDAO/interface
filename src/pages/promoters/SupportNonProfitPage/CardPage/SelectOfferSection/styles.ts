@@ -32,7 +32,7 @@ export const CauseText = styled.p`
   height: 5.3rem;
   margin-bottom: ${({ theme }) => theme.spacing(4)};
   text-align: center;
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const CauseTextHighlight = styled.span`

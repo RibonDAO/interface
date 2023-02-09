@@ -33,7 +33,7 @@ export const Container = styled.div`
     position: absolute;
     top: 50%;
     right: -2%;
-    background: ${({ theme }) => theme.colors.gray10};
+    background: ${({ theme }) => theme.colors.neutral[50]};
     box-shadow: 0 3px 0 0 #d9d9d9;
     transform: translate(-50%, -50%);
   }

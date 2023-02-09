@@ -14,7 +14,7 @@ export const Title = styled.h3`
 
 export const Text = styled.p`
   margin-top: ${({ theme }) => theme.spacing(4)};
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const InsideContainer = styled.div`

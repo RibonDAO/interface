@@ -15,16 +15,6 @@ const integrationName = localStorage.getItem("integrationName") ?? "false";
 const installationId = localStorage.getItem("installationId") ?? "false";
 const hasDonated = localStorage.getItem("HAS_DONATED") ?? "false";
 
-export function convertParamsToString(params: EventParams): EventParams {
-  const convertedParams = params;
-
-  Object.keys(params).forEach((key) => {
-    convertedParams[key] = params[key] ? params[key]?.toString() : "";
-  });
-
-  return convertedParams;
-}
-
 export function logEvent(
   eventName: string,
   eventParams: EventParams = {},
@@ -32,9 +22,7 @@ export function logEvent(
   if (eventName.length > 32) {
     throw new EventNameTooLongError();
   } else if (process.env.NODE_ENV === "production") {
-    const convertedParams = eventParams
-      ? convertParamsToString(eventParams)
-      : {};
+    const convertedParams = eventParams;
 
     convertedParams.anonymousId = installationId;
     convertedParams.integrationName = integrationName;

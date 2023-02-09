@@ -3,6 +3,8 @@ import CardIconText from "components/moleculars/cards/CardIconText";
 import { useTranslation } from "react-i18next";
 import ArrowRight from "assets/icons/arrow-right-blue-icon.svg";
 import useNavigation from "hooks/useNavigation";
+import { useEffect } from "react";
+import { newLogEvent } from "lib/events";
 import * as S from "./styles";
 
 function GetTheAppItem(): JSX.Element {
@@ -12,7 +14,12 @@ function GetTheAppItem(): JSX.Element {
 
   const { navigateTo } = useNavigation();
 
+  useEffect(() => {
+    newLogEvent("view", "webDwnldCta", { from: "configMenu" });
+  }, []);
+
   const handleClick = () => {
+    newLogEvent("click", "webDwnldCta", { from: "configMenu" });
     navigateTo("/app-in-development");
   };
 

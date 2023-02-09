@@ -55,7 +55,7 @@ export const InfoText = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => rgba(theme.colors.gray40, 0.7)};
+  background-color: ${({ theme }) => rgba(theme.colors.neutral[800], 0.7)};
   color: ${({ theme }) => theme.colors.neutral10};
   cursor: pointer;
 
@@ -120,7 +120,7 @@ export const Bullet = styled.h6`
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;
 
 export const InfoContainer = styled.div`

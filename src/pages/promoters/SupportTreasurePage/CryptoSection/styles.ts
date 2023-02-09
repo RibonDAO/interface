@@ -71,7 +71,7 @@ export const UsdcContainer = styled.div`
 
 export const UsdcText = styled.p`
   margin-left: ${({ theme }) => theme.spacing(4)};
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;
 
 export const Text = styled.p`

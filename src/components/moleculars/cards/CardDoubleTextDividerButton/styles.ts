@@ -58,7 +58,7 @@ export const LinkSection = styled.a<{
   color: ${(props) =>
     props.refunded
       ? props.theme.colors.neutral[200]
-      : props.theme.colors.gray40};
+      : props.theme.colors.neutral[800]};
 `;
 
 export const SpinnerSection = styled.a`

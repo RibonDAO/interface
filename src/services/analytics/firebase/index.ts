@@ -18,12 +18,27 @@ export function initializeFirebase(): any {
   firebase.initializeApp(firebaseConfig);
 }
 
+export function convertParamsToString(params: EventParams): EventParams {
+  const convertedParams = params;
+
+  Object.keys(params).forEach((key) => {
+    if (params[key] === undefined || params[key] === null) {
+      convertedParams[key] = "";
+    } else {
+      convertedParams[key] = params[key]?.toString();
+    }
+  });
+
+  return convertedParams;
+}
+
 export function logFirebaseEvent(
   eventName: string,
   params: EventParams = {},
 ): void {
   try {
-    firebase.analytics().logEvent(eventName, params);
+    const convertedParams = params ? convertParamsToString(params) : {};
+    firebase.analytics().logEvent(eventName, convertedParams);
   } catch (error) {
     logError(error, {
       customMessage: "Error sending event to firebase",

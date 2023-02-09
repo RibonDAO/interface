@@ -42,7 +42,7 @@ export const TooltipText = styled.div`
 export const Paragraph = styled.p`
   ${defaultBodySmRegular}
 
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;
 
 export const Container = styled.div`
@@ -60,8 +60,8 @@ export const MenuItem = styled.div<{ active: boolean }>`
   padding: ${({ theme }) => theme.spacing(8, 0, 0)};
   border-bottom: ${({ theme, active }) =>
     active
-    ? `3px solid ${theme.colors.brand.primary[300]}`
-    : `1px solid ${theme.colors.neutral[200]}`};
+      ? `3px solid ${theme.colors.brand.primary[300]}`
+      : `1px solid ${theme.colors.neutral[200]}`};
   display: flex;
   flex-direction: column;
 
@@ -89,7 +89,7 @@ export const EmptyTitle = styled.p`
   ${defaultBodyMdBold}
 
   width: 100%;
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;
 
 export const EmptyText = styled.span`

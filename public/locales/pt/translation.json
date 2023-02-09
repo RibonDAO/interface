@@ -256,8 +256,8 @@
           "primaryButtonText": "Entendi"
         },
         "userSupportCard": {
-          "title": "Suporte ao usuário",
-          "description": "Dúvidas, ideias, estornos. Estamos aqui!",
+          "title": "Suporte Ribon",
+          "description": "Dúvidas, ideias, estornos sobre as doações!",
           "primaryButtonText": "Acesse o suporte"
         }
       },

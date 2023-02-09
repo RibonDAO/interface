@@ -31,7 +31,7 @@ export const NotificationToast = styled.div`
   bottom: 12px;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral10};
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
   box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};
   opacity: 0.9;
   pointer-events: auto;

@@ -1,3 +1,4 @@
+import { logAmplitudeEvent } from "services/analytics/amplitude";
 import { logFirebaseEvent } from "services/analytics/firebase";
 import { logMixpanelEvent } from "services/analytics/mixpanel";
 import events from "./constants";
@@ -9,6 +10,10 @@ class EventNameTooLongError extends Error {}
 export interface EventParams {
   [key: string]: string | number | undefined;
 }
+
+const integrationName = localStorage.getItem("integrationName") ?? "false";
+const installationId = localStorage.getItem("installationId") ?? "false";
+const hasDonated = localStorage.getItem("HAS_DONATED") ?? "false";
 
 export function convertParamsToString(params: EventParams): EventParams {
   const convertedParams = params;
@@ -31,21 +36,22 @@ export function logEvent(
       ? convertParamsToString(eventParams)
       : {};
 
-    convertedParams.anonymousId =
-      localStorage.getItem("installationId") ?? "false";
-    convertedParams.integrationName =
-      localStorage.getItem("integrationName") ?? "false";
-    convertedParams.hasDonated = localStorage.getItem("HAS_DONATED") ?? "false";
+    convertedParams.anonymousId = installationId;
+    convertedParams.integrationName = integrationName;
+    convertedParams.hasDonated = hasDonated;
 
     logFirebaseEvent(eventName, convertedParams);
-    logMixpanelEvent(eventName, convertedParams);
+    if (eventName.includes("web_")) {
+      logMixpanelEvent(eventName, convertedParams);
+      logAmplitudeEvent(eventName, convertedParams);
+    }
   }
 }
 
 export function newLogEvent(
   action: string,
   eventName: string,
-  eventParams?: EventParams,
+  eventParams: EventParams = {},
 ): void {
   logEvent(`web_${eventName}_${action}`, eventParams);
 }

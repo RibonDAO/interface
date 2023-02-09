@@ -23,6 +23,7 @@ function ConfirmEmail({
   secondaryButton,
 }: Props): JSX.Element {
   const [primaryButtonDisabled, setPrimaryButtonDisabled] = useState(true);
+  const [logged, setLogged] = useState(false);
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage.modalForm",
   });
@@ -73,7 +74,10 @@ function ConfirmEmail({
       }}
       onValuesChange={(values) => {
         if (values.email) {
-          newLogEvent("fill", "P1_loginForm");
+          if (!logged) {
+            newLogEvent("fill", "P1_loginForm");
+            setLogged(true);
+          }
         }
         setPrimaryButtonDisabled(!isValidEmail(values.email));
       }}

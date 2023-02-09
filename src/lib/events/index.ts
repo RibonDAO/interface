@@ -41,7 +41,6 @@ export function newLogEvent(
   eventName: string,
   eventParams: EventParams = {},
 ): void {
-  console.log(eventName, action);
   logEvent(`web_${eventName}_${action}`, eventParams);
 }
 

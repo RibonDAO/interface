@@ -10,7 +10,7 @@ function usePersonPayments(page?: number, per?: number) {
   const { wallet } = useWalletContext();
 
   const { data: userPersonCommunityPayments } = useApi<PersonPayment[]>({
-    key: "userPersonCommunityPayments",
+    key: `userPersonCommunityPayments_${page || 0}_${per || 0}`,
     fetchMethod: () => {
       if (!currentUser?.id) return emptyRequest();
       return personPaymentsApi.getCommunityPersonPayments(
@@ -22,7 +22,7 @@ function usePersonPayments(page?: number, per?: number) {
   });
 
   const { data: guestPersonCommunityPayments } = useApi<PersonPayment[]>({
-    key: "guestPersonCommunityPayments",
+    key: `guestPersonCommunityPayments_${page || 0}_${per || 0}`,
     fetchMethod: () => {
       if (!wallet) return emptyRequest();
       return personPaymentsApi.getCommunityPersonPayments(

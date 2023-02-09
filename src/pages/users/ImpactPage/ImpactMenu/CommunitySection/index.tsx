@@ -1,9 +1,11 @@
 import CardTooltip from "components/moleculars/cards/CardTooltip";
 import usePersonPayments from "hooks/apiHooks/usePersonPayment";
 import useNavigation from "hooks/useNavigation";
-import { formatPriceWithZeros } from "lib/formatters/currencyFormatter";
+import { formatFee } from "lib/formatters/feeFormatter";
+import { formatNetDonation } from "lib/formatters/netDonationFormatter";
 import { useTranslation } from "react-i18next";
 import theme from "styles/theme";
+import { PersonPayment } from "types/entities/PersonPayment";
 import directIllustration from "../../assets/direct-illustration.svg";
 import * as S from "../styles";
 
@@ -28,33 +30,11 @@ function CommunitySection() {
   );
   const hasImpactCards = impactCards?.length > 0;
 
-  const formatPrice = (item: any) => {
-    if (!item.offer) {
-      return `${item.amountCents / 100} USDC`;
-    }
-    return formatPriceWithZeros(
-      item.offer.priceCents / 100 - item.serviceFees,
-      item.offer.currency,
-      "en",
-    );
-  };
-
-  const formatFee = (item: any) => {
-    if (!item.offer) {
-      return "0 USDC";
-    }
-    return formatPriceWithZeros(
-      item.serviceFees,
-      item.offer.currency,
-      item.offer.currency === "brl" ? "pt" : "en",
-    );
-  };
-
   return (
     <S.Container>
       {hasImpactCards ? (
         <S.CardsContainer>
-          {impactCardsDesc.map((item: any) => (
+          {impactCardsDesc.map((item: PersonPayment) => (
             <CardTooltip
               key={item.id}
               title={item.receiver.name}
@@ -74,12 +54,17 @@ function CommunitySection() {
               <S.TooltipText>
                 <S.Paragraph>
                   {t("tooltipFirstParagraphText", {
-                    value: formatPrice(item),
+                    value: formatNetDonation(
+                      item.serviceFees,
+                      item.amountCents,
+                      item.offer?.priceCents,
+                      item.offer?.currency,
+                    ),
                   })}
                 </S.Paragraph>
                 <S.Paragraph>
                   {t("tooltipSecondParagraphText", {
-                    value: formatFee(item),
+                    value: formatFee(item.serviceFees, item.offer?.currency),
                   })}
                 </S.Paragraph>
               </S.TooltipText>

@@ -47,7 +47,6 @@ export const Paragraph = styled.p`
 
 export const Container = styled.div`
   width: 100%;
-  margin-top: ${({ theme }) => theme.spacing(40)};
   display: flex;
   flex-direction: column;
 `;

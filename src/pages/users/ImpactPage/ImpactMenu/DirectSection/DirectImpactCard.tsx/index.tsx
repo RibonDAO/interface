@@ -1,7 +1,8 @@
 import CardTooltip from "components/moleculars/cards/CardTooltip";
 import useNonProfitImpact from "hooks/apiHooks/useNonProfitImpact";
 import { useFormattedImpactText } from "hooks/useFormattedImpactText";
-import { formatPriceWithZeros } from "lib/formatters/currencyFormatter";
+import { formatFee } from "lib/formatters/feeFormatter";
+import { formatNetDonation } from "lib/formatters/netDonationFormatter";
 import { useTranslation } from "react-i18next";
 import theme from "styles/theme";
 import * as S from "../../styles";
@@ -21,28 +22,6 @@ function DirectImpactCard({ personPayment }: Props): JSX.Element {
     personPayment.offer.priceValue,
     personPayment.offer.currency,
   );
-
-  const formatPrice = (item: any) => {
-    if (!item.offer) {
-      return `${item.amountCents / 100} USDC`;
-    }
-    return formatPriceWithZeros(
-      item.offer.priceCents / 100 - item.serviceFees,
-      item.offer.currency,
-      "en",
-    );
-  };
-
-  const formatFee = (item: any) => {
-    if (!item.offer) {
-      return "0 USDC";
-    }
-    return formatPriceWithZeros(
-      item.serviceFees,
-      item.offer.currency,
-      item.offer.currency === "brl" ? "pt" : "en",
-    );
-  };
 
   return (
     <CardTooltip
@@ -71,12 +50,20 @@ function DirectImpactCard({ personPayment }: Props): JSX.Element {
       <S.TooltipText>
         <S.Paragraph>
           {t("tooltipFirstParagraphText", {
-            value: formatPrice(personPayment),
+            value: formatNetDonation(
+              personPayment.serviceFees,
+              personPayment.amountCents,
+              personPayment.offer.priceCents,
+              personPayment.offer.currency,
+            ),
           })}
         </S.Paragraph>
         <S.Paragraph>
           {t("tooltipSecondParagraphText", {
-            value: formatFee(personPayment),
+            value: formatFee(
+              personPayment.serviceFees,
+              personPayment.offer.currency,
+            ),
           })}
         </S.Paragraph>
       </S.TooltipText>

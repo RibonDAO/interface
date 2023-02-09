@@ -18,7 +18,7 @@ export const FirstText = styled.p`
   ${defaultBodyXsRegular}
 
   font-style: italic;
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const MainContent = styled.h3<{
@@ -30,9 +30,9 @@ export const MainContent = styled.h3<{
   color: ${(props) =>
     // eslint-disable-next-line no-nested-ternary
     props.processing
-      ? props.theme.colors.gray30
+      ? props.theme.colors.neutral[500]
       : props.refunded
-      ? props.theme.colors.gray20
+      ? props.theme.colors.neutral[200]
       : props.theme.colors.brand.primary[300]};
 `;
 
@@ -43,9 +43,9 @@ export const RightMainContent = styled.span<{
   color: ${(props) =>
     // eslint-disable-next-line no-nested-ternary
     props.processing
-      ? props.theme.colors.gray30
+      ? props.theme.colors.neutral[500]
       : props.refunded
-      ? props.theme.colors.gray20
+      ? props.theme.colors.neutral[200]
       : props.theme.colors.brand.primary[300]};
 `;
 
@@ -56,7 +56,9 @@ export const LinkSection = styled.a<{
   justify-content: space-between;
   text-decoration: none;
   color: ${(props) =>
-    props.refunded ? props.theme.colors.gray20 : props.theme.colors.gray40};
+    props.refunded
+      ? props.theme.colors.neutral[200]
+      : props.theme.colors.gray40};
 `;
 
 export const SpinnerSection = styled.a`

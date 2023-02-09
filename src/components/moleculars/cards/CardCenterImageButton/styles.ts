@@ -107,7 +107,7 @@ export const ContentSection = styled.div`
 
 export const Info = styled.p`
   text-align: center;
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 
   &:not(:first-child) {
     margin-left: ${({ theme }) => theme.spacing(4)};

@@ -54,7 +54,7 @@ export const PostDonationText = styled.p`
   ${defaultBodySmRegular}
 
   text-align: center;
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const CauseName = styled.span<{

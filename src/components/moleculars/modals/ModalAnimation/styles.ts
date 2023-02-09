@@ -22,11 +22,11 @@ export const DiamondBackground = css<{ bg?: string }>`
 export const StripedBackground = css`
   background-image: linear-gradient(
     90deg,
-    ${({ theme }) => theme.colors.gray10} 35.71%,
+    ${({ theme }) => theme.colors.neutral[50]} 35.71%,
     transparent 35.71%,
     transparent 50%,
-    ${({ theme }) => theme.colors.gray10} 50%,
-    ${({ theme }) => theme.colors.gray10} 85.71%,
+    ${({ theme }) => theme.colors.neutral[50]} 50%,
+    ${({ theme }) => theme.colors.neutral[50]} 85.71%,
     transparent 85.71%,
     transparent 100%
   );

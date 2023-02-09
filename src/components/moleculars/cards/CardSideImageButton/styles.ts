@@ -79,7 +79,7 @@ export const DescriptionContainer = styled.div`
 
 export const Description = styled.h5`
   text-align: center;
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const ImageSection = styled.div`

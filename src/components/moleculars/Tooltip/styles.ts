@@ -20,7 +20,7 @@ export const TooltipContainer = styled.div`
 export const LeftContainer = styled.div`
   padding: ${({ theme }) => theme.spacing(4)};
   border-radius: 4px;
-  background-color: ${({ theme }) => theme.colors.gray10};
+  background-color: ${({ theme }) => theme.colors.neutral[50]};
 `;
 
 export const RightContainer = styled.div`
@@ -33,11 +33,11 @@ export const RightContainer = styled.div`
 export const Symbol = styled.p`
   ${defaultBodySmSemibold}
 
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const Text = styled.p`
-  border-bottom: 1px dashed ${({ theme }) => theme.colors.gray20};
+  border-bottom: 1px dashed ${({ theme }) => theme.colors.neutral[200]};
 `;
 
 export const TooltipBox = styled(Tooltip)<{
@@ -62,7 +62,7 @@ export const TooltipBox = styled(Tooltip)<{
 export const IconCircle = styled.div`
   width: 20px;
   height: 20px;
-  border: solid 2px ${({ theme }) => theme.colors.gray30};
+  border: solid 2px ${({ theme }) => theme.colors.neutral[500]};
   border-radius: 50%;
   display: inline-flex;
   align-items: center;

@@ -54,7 +54,7 @@ export const Input = styled.input`
   padding: ${({ theme }) => theme.spacing(8)};
   border: 1px solid ${({ theme }) => theme.colors.brand.primary[300]};
   border-radius: 8px;
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const UsdcIcon = styled.img`
@@ -120,5 +120,5 @@ export const ConnectButton = styled(Button)`
 export const ExtraText = styled.h6`
   margin-bottom: ${({ theme }) => theme.spacing(20)};
   font-weight: ${({ theme }) => theme.font.light};
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;

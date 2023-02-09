@@ -16,7 +16,7 @@ export const Title = styled.h3`
 `;
 
 export const Subtitle = styled.p`
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const LeftContainer = styled.div`

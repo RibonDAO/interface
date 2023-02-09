@@ -34,7 +34,7 @@ export const Title = styled.h3<TitleProps>`
 export const Body = styled.h4`
   margin: ${({ theme }) => theme.spacing(0, 0, 20)};
   text-align: center;
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const HighlightedText = styled.p`

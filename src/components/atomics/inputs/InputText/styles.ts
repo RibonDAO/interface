@@ -13,6 +13,6 @@ export const Input = styled.input`
   border-radius: 8px;
 
   &:disabled {
-    border: 1px solid ${({ theme }) => theme.colors.gray30};
+    border: 1px solid ${({ theme }) => theme.colors.neutral[500]};
   }
 `;

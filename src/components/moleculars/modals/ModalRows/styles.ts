@@ -48,7 +48,7 @@ export const Body = styled.h3`
 
   margin: ${({ theme }) => theme.spacing(8, 0, 14)};
   text-align: center;
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const RowsModalContainer = styled.div`

@@ -99,7 +99,7 @@ describe("<Button />", () => {
     it("renders softDisabled button", () => {
       renderComponent(<Button text="button" onClick={() => {}} softDisabled />);
       expect(screen.getByText("button")).toHaveStyle(
-        `color: ${theme.colors.gray30};`,
+        `color: ${theme.colors.neutral[500]};`,
       );
     });
 

@@ -40,7 +40,7 @@ export const Title = styled.p`
 
   text-decoration: none;
   color: ${({ theme, enabled }: Props) =>
-    enabled ? theme.colors.gray40 : theme.colors.gray30};
+    enabled ? theme.colors.gray40 : theme.colors.neutral[500]};
 `;
 
 export const StyledLinkContainer = styled.div`

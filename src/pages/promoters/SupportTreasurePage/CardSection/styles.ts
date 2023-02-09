@@ -79,11 +79,11 @@ export const GivingValue = styled.h2`
 `;
 
 export const NetGivingValue = styled.p`
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const ServiceFeesValue = styled.p`
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const CryptoGivingValue = styled.p`
@@ -92,7 +92,7 @@ export const CryptoGivingValue = styled.p`
   margin-bottom: ${({ theme }) => theme.spacing(32)};
   font-style: italic;
   line-height: 19.2px;
-  color: ${({ theme }) => theme.colors.gray30};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const CardImpact = styled.div`

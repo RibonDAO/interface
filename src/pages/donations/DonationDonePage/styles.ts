@@ -33,7 +33,7 @@ export const InnerContainer = styled.div`
 
 export const Title = styled.h3`
   margin-top: ${({ theme }) => theme.spacing(20)};
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;
 
 export const Subtitle = styled.h4`

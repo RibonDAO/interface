@@ -90,7 +90,7 @@ export const Title = styled.h1`
   margin-top: ${({ theme }) => theme.spacing(24)};
   margin-bottom: ${({ theme }) => theme.spacing(8)};
   text-align: center;
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     ${stylizedDisplayMd}

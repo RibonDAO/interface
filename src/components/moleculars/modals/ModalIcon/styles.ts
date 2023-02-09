@@ -28,7 +28,7 @@ type TitleProps = {
 export const Title = styled.h3<TitleProps>`
   margin-bottom: ${({ theme }) => theme.spacing(16)};
   text-align: center;
-  color: ${({ theme, color }) => color || theme.colors.gray40};
+  color: ${({ theme, color }) => color || theme.colors.neutral[800]};
 `;
 
 export const Body = styled.h4`
@@ -42,7 +42,7 @@ export const HighlightedText = styled.p`
 
   margin-top: ${({ theme }) => theme.spacing(16)};
   text-align: center;
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;
 
 export const RowsModalRow = styled.div`

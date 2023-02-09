@@ -69,7 +69,7 @@ export const TitleContainer = styled.div`
 export const Title = styled.h4`
   margin-bottom: ${({ theme }) => theme.spacing(4)};
   text-align: center;
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;
 
 export const DescriptionContainer = styled.div`

@@ -34,7 +34,7 @@ const useToast = () => {
         message,
         link,
         linkMessage,
-        color: type === "success" ? theme.colors.gray40 : tertiary[200],
+        color: type === "success" ? theme.colors.neutral[800] : tertiary[200],
       },
     });
     setTimeout(() => {

@@ -9,7 +9,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h3`
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;
 
 export const Text = styled.p`

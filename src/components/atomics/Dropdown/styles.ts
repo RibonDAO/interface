@@ -11,7 +11,7 @@ export const Input = styled.div`
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 
   label {
     padding: ${({ theme }) => theme.spacing(0, 4)};
@@ -33,7 +33,7 @@ export const Input = styled.div`
     box-sizing: border-box;
     line-height: 20px;
     background: transparent;
-    color: ${({ theme }) => theme.colors.gray40};
+    color: ${({ theme }) => theme.colors.neutral[800]};
 
     &:hover {
       cursor: pointer;

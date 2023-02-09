@@ -10,7 +10,7 @@ export const Container = styled.div<{ visible: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${({ theme }) => theme.colors.gray40};
+  background: ${({ theme }) => theme.colors.neutral[800]};
   animation: ${({ visible }) =>
     visible ? "reveal-overlay 0.3s ease-in-out" : "none"};
 

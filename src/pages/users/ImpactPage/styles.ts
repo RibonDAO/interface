@@ -22,7 +22,7 @@ export const Title = styled.h1`
   ${stylizedDisplayLg}
 
   margin: ${({ theme }) => theme.spacing(0)};
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;
 
 export const Subtitle = styled.h5`
@@ -80,7 +80,7 @@ export const EmptyTitle = styled.p`
   ${defaultBodyMdBold}
 
   width: 100%;
-  color: ${({ theme }) => theme.colors.gray40};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;
 
 export const EmptyText = styled.span`

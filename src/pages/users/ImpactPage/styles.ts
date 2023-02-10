@@ -94,3 +94,12 @@ export const EmptyButton = styled(Button)`
   width: 196px;
   color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;
+
+export const ImpactMenuContainer = styled.div`
+  width: 100%;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: 960px;
+    padding-right: ${({ theme }) => theme.spacing(12)};
+  }
+`;

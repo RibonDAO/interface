@@ -63,7 +63,9 @@ function ImpactPage(): JSX.Element {
         />
       </S.CardsButtonContainer>
 
-      <ImpactMenu />
+      <S.ImpactMenuContainer>
+        <ImpactMenu />
+      </S.ImpactMenuContainer>
     </S.Container>
   );
 }

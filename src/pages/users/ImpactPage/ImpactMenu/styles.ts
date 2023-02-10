@@ -118,7 +118,6 @@ export const ShowMoreButton = styled(Button)`
   padding: ${({ theme }) => theme.spacing(8, 16)};
   border-color: ${({ theme }) => theme.colors.brand.primary[300]};
   background-color: ${({ theme }) => theme.colors.neutral10};
-  color: ${({ theme }) => theme.colors.brand.primary[800]};
   color: ${({ theme }) => theme.colors.brand.primary[300]};
 `;
 

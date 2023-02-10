@@ -5,36 +5,42 @@ import { useCurrentUser } from "contexts/currentUserContext";
 import { emptyRequest } from "services/api";
 import { useWalletContext } from "contexts/walletContext";
 
-function usePersonPayments() {
+function usePersonPayments(page?: number, per?: number) {
   const { currentUser } = useCurrentUser();
   const { wallet } = useWalletContext();
 
   const { data: userPersonCommunityPayments } = useApi<PersonPayment[]>({
-    key: "userPersonCommunityPayments",
+    key: `userPersonCommunityPayments_${page || 0}_${per || 0}`,
     fetchMethod: () => {
       if (!currentUser?.id) return emptyRequest();
       return personPaymentsApi.getCommunityPersonPayments(
-        btoa(currentUser?.email),
+        window.btoa(currentUser?.email),
+        page || undefined,
+        per || undefined,
       );
     },
   });
 
   const { data: guestPersonCommunityPayments } = useApi<PersonPayment[]>({
-    key: "guestPersonCommunityPayments",
+    key: `guestPersonCommunityPayments_${page || 0}_${per || 0}`,
     fetchMethod: () => {
       if (!wallet) return emptyRequest();
       return personPaymentsApi.getCommunityPersonPayments(
-        btoa(wallet.toLowerCase()),
+        window.btoa(wallet.toLowerCase()),
+        page || undefined,
+        per || undefined,
       );
     },
   });
 
   const { data: userPersonDirectPayments } = useApi<PersonPayment[]>({
-    key: "userPersonDirectPayments",
+    key: `userPersonDirectPayments_${page || 0}_${per || 0}`,
     fetchMethod: () => {
       if (!currentUser?.id) return emptyRequest();
       return personPaymentsApi.getDirectPersonPayments(
-        btoa(currentUser?.email),
+        window.btoa(currentUser?.email),
+        page || undefined,
+        per || undefined,
       );
     },
   });

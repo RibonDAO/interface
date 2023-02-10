@@ -32,6 +32,8 @@ function DonationDoneCausePage(): JSX.Element {
   };
 
   const { navigateTo } = useNavigation();
+  const [pageTimeout, setPageTimeout] = useState<any>(null);
+
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.donationDoneCausePage",
   });
@@ -59,6 +61,7 @@ function DonationDoneCausePage(): JSX.Element {
   );
 
   function navigate() {
+    clearTimeout(pageTimeout);
     if (flow === "cause" && hasButton) {
       navigateTo({
         pathname: "/promoters/support-cause",
@@ -84,9 +87,11 @@ function DonationDoneCausePage(): JSX.Element {
       donationInfos(offerId);
     }
     setLocalStorageItem("HAS_DONATED", "true");
-    setTimeout(() => {
-      navigate();
-    }, 5000);
+    setPageTimeout(
+      setTimeout(() => {
+        navigate();
+      }, 5000),
+    );
   }, []);
 
   const colorTheme = getThemeByFlow(flow || "cause");

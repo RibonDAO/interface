@@ -7,7 +7,7 @@ import * as S from "./styles";
 export type onClickType = () => void;
 
 export type ButtonProps = {
-  text: string;
+  text: string | JSX.Element;
   textColor?: string;
   backgroundColor?: string;
   softDisabled?: boolean;

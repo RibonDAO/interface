@@ -11,19 +11,6 @@ function ImpactMenu() {
     keyPrefix: "impactPage.impactMenu",
   });
 
-  const renderSection = () => {
-    switch (currentTab) {
-      case "ticket":
-        return <TicketSection />;
-      case "community":
-        return <CommunitySection />;
-      case "direct":
-        return <DirectSection />;
-      default:
-        return <TicketSection />;
-    }
-  };
-
   return (
     <S.Container>
       <S.Menu>
@@ -46,7 +33,15 @@ function ImpactMenu() {
           {t("directDonations")}
         </S.MenuItem>
       </S.Menu>
-      {renderSection()}
+      <S.TabSection visible={currentTab === "ticket"}>
+        <TicketSection />
+      </S.TabSection>
+      <S.TabSection visible={currentTab === "community"}>
+        <CommunitySection />
+      </S.TabSection>
+      <S.TabSection visible={currentTab === "direct"}>
+        <DirectSection />
+      </S.TabSection>
     </S.Container>
   );
 }

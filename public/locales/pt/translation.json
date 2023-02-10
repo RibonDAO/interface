@@ -130,21 +130,24 @@
     "ticketSection": {
       "emptyTitle": "Suas doações de tickets aparecerão aqui.",
       "emptyText": "Você ainda não fez doações gratuitas com tickets, que tal fazer a primeira?",
-      "emptyButton": "Doar usando tickets"
+      "emptyButton": "Doar usando tickets",
+      "showMore": "Mostrar mais"
     },
     "directSection": {
       "emptyTitle": "Suas doações diretas aparecerão aqui.",
       "emptyText": "Você ainda não fez doações diretas, que tal fazer a sua primeira?",
       "emptyButton": "Doar diretamente",
       "tooltipFirstParagraphText": "Doação líquida: {{value}}",
-      "tooltipSecondParagraphText": "Taxa de serviço: {{value}}"
+      "tooltipSecondParagraphText": "Taxa de serviço: {{value}}",
+      "showMore": "Mostrar mais"
     },
     "communitySection": {
       "emptyTitle": "Suas doações em comunidade aparecerão aqui.",
       "emptyText": "Você ainda não fez doações em comunidade ainda, que tal fazer a sua primeira?",
       "emptyButton": "Doar em comunidade",
       "tooltipFirstParagraphText": "Doação líquida: {{value}}",
-      "tooltipSecondParagraphText": "Taxa de serviço: {{value}}"
+      "tooltipSecondParagraphText": "Taxa de serviço: {{value}}",
+      "showMore": "Mostrar mais"
     }
   },
   "promoters": {

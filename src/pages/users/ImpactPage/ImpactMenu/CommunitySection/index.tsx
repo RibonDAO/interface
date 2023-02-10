@@ -32,18 +32,18 @@ function CommunitySection() {
   const [impactCards, setImpactCards] = useState<any>([]);
 
   const { userPersonCommunityPayments, guestPersonCommunityPayments } =
-    usePersonPayments(page, per);
+    usePersonPayments(1, per * page);
+
+  const concatPayments = [
+    ...(userPersonCommunityPayments || []),
+    ...(guestPersonCommunityPayments || []),
+  ].sort((a, b) => (a.paidDate > b.paidDate ? -1 : 1));
 
   useEffect(() => {
-    const concatPayments = [
-      ...(userPersonCommunityPayments || []),
-      ...(guestPersonCommunityPayments || []),
-    ].sort((a, b) => (a.paidDate > b.paidDate ? -1 : 1));
-
     if (concatPayments.length === 0) return;
-    if (concatPayments.length < per) setShowMoreVisible(false);
+    if (concatPayments.length < page * per) setShowMoreVisible(false);
 
-    setImpactCards([...impactCards, ...concatPayments]);
+    setImpactCards(concatPayments);
     setShowMoreDisabled(false);
   }, [userPersonCommunityPayments, guestPersonCommunityPayments]);
 

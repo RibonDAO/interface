@@ -26,17 +26,20 @@ function DirectSection() {
   const [showMoreVisible, setShowMoreVisible] = useState(true);
 
   const [impactCards, setImpactCards] = useState<any>([]);
-  const { userPersonDirectPayments } = usePersonPayments(page, per);
+  const { userPersonDirectPayments: directPayments } = usePersonPayments(
+    1,
+    per * page,
+  );
 
   const hasPayments = impactCards?.length > 0;
 
   useEffect(() => {
-    if (!userPersonDirectPayments || userPersonDirectPayments.length === 0)
-      return;
-    if (userPersonDirectPayments.length < per) setShowMoreVisible(false);
+    if (!directPayments || directPayments.length === 0) return;
+    if (directPayments.length < page * per) setShowMoreVisible(false);
 
-    setImpactCards([...impactCards, ...userPersonDirectPayments]);
-  }, [userPersonDirectPayments]);
+    setImpactCards(directPayments);
+    setShowMoreDisabled(false);
+  }, [directPayments]);
 
   const handleShowMoreClick = () => {
     setPage(page + 1);

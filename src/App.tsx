@@ -1,6 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClientComponent } from "@ribon.io/shared/hooks";
 import { ToastContextProvider } from "contexts/toastContext";
 import Toast from "contexts/toastContext/toastComponent";
 import { GrowthBookProvider } from "@growthbook/growthbook-react";
@@ -19,8 +19,6 @@ import LoadingOverlayProvider from "./contexts/loadingOverlayContext";
 import ModalProvider from "./contexts/modalContext";
 
 function App() {
-  const queryClient = new QueryClient();
-
   useEffect(() => {
     if (
       process.env.NODE_ENV === "development" ||
@@ -34,7 +32,7 @@ function App() {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <QueryClientComponent>
       <GrowthBookProvider growthbook={growthbook}>
         <ThemeProvider theme={theme}>
           <LoadingOverlayProvider>
@@ -53,7 +51,7 @@ function App() {
           </LoadingOverlayProvider>
         </ThemeProvider>
       </GrowthBookProvider>
-    </QueryClientProvider>
+    </QueryClientComponent>
   );
 }
 

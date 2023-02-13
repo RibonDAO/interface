@@ -7,18 +7,18 @@ function useUsers() {
     return user;
   }
 
-  async function createUser(email: string) {
-    const { data: user } = await usersApi.postCreateUser(email);
+  async function createUser(email: string, language: string) {
+    const { data: user } = await usersApi.postCreateUser(email, language);
 
     return user;
   }
 
-  async function findOrCreateUser(email: string) {
+  async function findOrCreateUser(email: string, language: string) {
     let user;
     try {
       user = await findUser(email);
     } catch (e) {
-      user = await createUser(email);
+      user = await createUser(email, language);
     }
 
     return user;

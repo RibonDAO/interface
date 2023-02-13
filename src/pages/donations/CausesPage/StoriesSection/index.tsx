@@ -8,6 +8,7 @@ import useSources from "hooks/apiHooks/useSources";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useTranslation } from "react-i18next";
 import { logError } from "services/crashReport";
+import { useLanguage } from "hooks/useLanguage";
 import * as S from "./styles";
 import ConfirmSection from "../ConfirmSection";
 
@@ -44,12 +45,13 @@ function StoriesSection({
   const { findOrCreateUser } = useUsers();
   const { createSource } = useSources();
   const { signedIn, setCurrentUser } = useCurrentUser();
+  const { currentLang } = useLanguage();
 
   const donateTicket = useCallback(
     async (email: string) => {
       try {
         if (!signedIn) {
-          const user = await findOrCreateUser(email);
+          const user = await findOrCreateUser(email, currentLang);
           if (integration) {
             createSource(user.id, integration.id);
           }

@@ -9,11 +9,12 @@ import SupportCausePage from ".";
 const mockCause = causeFactory();
 const mockCause2 = causeFactory({ name: "💊 Health", id: 2 });
 
-jest.mock("hooks/apiHooks/useCauses", () => ({
+jest.mock("@ribon.io/shared/hooks", () => ({
   __esModule: true,
-  default: () => ({
+  ...jest.requireActual("@ribon.io/shared/hooks"),
+  useCauses: () => ({
     causes: [mockCause, mockCause2],
-    refetch: () => {},
+    refetch: jest.fn(),
   }),
 }));
 

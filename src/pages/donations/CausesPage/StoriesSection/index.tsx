@@ -1,10 +1,8 @@
 import CardStories from "components/moleculars/cards/CardStories";
 import { useCallback, useEffect, useState } from "react";
-import NonProfit from "types/entities/NonProfit";
+import { NonProfit } from "@ribon.io/shared/types";
 import { useIntegrationId } from "hooks/useIntegrationId";
-import useIntegration from "hooks/apiHooks/useIntegration";
-import useUsers from "hooks/apiHooks/useUsers";
-import useSources from "hooks/apiHooks/useSources";
+import { useIntegration, useUsers, useSources } from "@ribon.io/shared/hooks";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useTranslation } from "react-i18next";
 import { logError } from "services/crashReport";

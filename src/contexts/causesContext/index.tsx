@@ -1,4 +1,4 @@
-import useCauses from "hooks/apiHooks/useCauses";
+import { useCauses } from "@ribon.io/shared/hooks";
 import {
   createContext,
   SetStateAction,

@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 import { useContract } from "hooks/useContract";
 import RibonAbi from "utils/abis/RibonAbi.json";
 import DonationTokenAbi from "utils/abis/DonationToken.json";
-import useCryptoTransaction from "hooks/apiHooks/useCryptoTransaction";
+import { useCryptoTransaction } from "@ribon.io/shared/hooks";
 import {
   formatFromDecimals,
   formatToDecimals,

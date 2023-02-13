@@ -1,6 +1,6 @@
 import { renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
-import { Currencies } from "types/enums/Currencies";
+import { Currencies } from "@ribon.io/shared/types";
 import FeesSection from ".";
 
 describe("FeesSection", () => {

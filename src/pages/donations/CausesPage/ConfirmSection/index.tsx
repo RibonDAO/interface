@@ -1,14 +1,13 @@
 import Ticket from "assets/images/ticket.svg";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import useDonations from "hooks/apiHooks/useDonations";
+import { useDonations } from "@ribon.io/shared/hooks";
 import { useCurrentUser, SHOW_MENU } from "contexts/currentUserContext";
 import { logError } from "services/crashReport";
 import { setLocalStorageItem } from "lib/localStorage";
 import useVoucher from "hooks/useVoucher";
 import useNavigation from "hooks/useNavigation";
-import NonProfit from "types/entities/NonProfit";
-import Integration from "types/entities/Integration";
+import { NonProfit, Integration } from "@ribon.io/shared/types";
 import extractUrlValue from "lib/extractUrlValue";
 import ConfirmEmail from "../ConfirmEmail";
 import ConfirmDonationModal from "../ConfirmDonationModal";
@@ -37,9 +36,9 @@ function ConfirmSection({
     keyPrefix: "donations.causesPage",
   });
 
-  const { donate } = useDonations();
   const { navigateTo } = useNavigation();
-  const { signedIn } = useCurrentUser();
+  const { signedIn, currentUser } = useCurrentUser();
+  const { donate } = useDonations(currentUser?.id);
   const { destroyVoucher } = useVoucher();
   const { history } = useNavigation();
 

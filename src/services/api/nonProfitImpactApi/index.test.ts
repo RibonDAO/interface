@@ -1,5 +1,5 @@
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
-import { Currencies } from "types/enums/Currencies";
+import { Currencies } from "@ribon.io/shared/types";
 import nonProfitImpactApi from ".";
 import api from "..";
 

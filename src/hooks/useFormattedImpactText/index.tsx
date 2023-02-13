@@ -1,8 +1,7 @@
 import { impactNormalizer } from "@ribon.io/shared/lib";
 import { Fragment } from "react";
 import { useTranslation } from "react-i18next";
-import NonProfit from "types/entities/NonProfit";
-import NonProfitImpact from "types/apiResponses/NonProfitImpact";
+import { NonProfit, NonProfitImpact } from "@ribon.io/shared/types";
 
 export function useFormattedImpactText() {
   const { t: normalizerTranslation } = useTranslation("translation", {

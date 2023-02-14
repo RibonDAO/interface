@@ -8,10 +8,11 @@ describe("usersApi", () => {
     });
 
     it("expects to send a get request with the correct info: url, params and headers", () => {
-      usersApi.postCreateUser("user@test.com");
+      usersApi.postCreateUser("user@test.com", "en-US");
 
       expect(api.post).toHaveBeenCalledWith("/api/v1/users", {
         email: "user@test.com",
+        language: "en-US",
       });
     });
   });

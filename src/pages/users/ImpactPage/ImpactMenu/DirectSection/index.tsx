@@ -20,26 +20,44 @@ function DirectSection() {
   const { isMobile } = useBreakpoint();
 
   const [page, setPage] = useState(1);
+
   const per = isMobile ? 6 : 8;
 
   const [showMoreDisabled, setShowMoreDisabled] = useState(false);
   const [showMoreVisible, setShowMoreVisible] = useState(true);
 
   const [impactCards, setImpactCards] = useState<any>([]);
-  const { userPersonDirectPayments: directPayments } = usePersonPayments(
-    1,
-    per * page,
-  );
+
+  const { useDirectPersonPayments } = usePersonPayments();
+  const { data } = useDirectPersonPayments(page, per);
 
   const hasPayments = impactCards?.length > 0;
 
-  useEffect(() => {
-    if (!directPayments || directPayments.length === 0) return;
-    if (directPayments.length < page * per) setShowMoreVisible(false);
+  const hasDuplicatedIds = (items: any[]) => {
+    const existentIds = new Set(impactCards.map((obj: any) => obj.id));
+    const newIds = items.map((obj: any) => obj.id);
 
-    setImpactCards(directPayments);
-    setShowMoreDisabled(false);
-  }, [directPayments]);
+    return newIds.some((id) => existentIds.has(id));
+  };
+
+  useEffect(() => {
+    if (!data) return;
+
+    if (data.length === 0) {
+      setShowMoreVisible(false);
+      return;
+    }
+
+    if (page === 1) {
+      setImpactCards(data);
+      setShowMoreDisabled(false);
+    } else if (!hasDuplicatedIds(data) && page > 1) {
+      setImpactCards((items: any) => [...items, ...data]);
+      setShowMoreDisabled(false);
+
+      if (data.length < per) setShowMoreVisible(false);
+    }
+  }, [data, page]);
 
   const handleShowMoreClick = () => {
     setPage(page + 1);
@@ -48,7 +66,7 @@ function DirectSection() {
 
   return (
     <S.Container>
-      {hasPayments ? (
+      {hasPayments && impactCards ? (
         <S.CardsContainer>
           {impactCards.map((item: any) => (
             <DirectImpactCard key={item.id} personPayment={item} />

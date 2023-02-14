@@ -31,21 +31,35 @@ function CommunitySection() {
   const [showMoreVisible, setShowMoreVisible] = useState(true);
   const [impactCards, setImpactCards] = useState<any>([]);
 
-  const { userPersonCommunityPayments, guestPersonCommunityPayments } =
-    usePersonPayments(1, per * page);
+  const { useCommunityPersonPayments } = usePersonPayments();
 
-  const concatPayments = [
-    ...(userPersonCommunityPayments || []),
-    ...(guestPersonCommunityPayments || []),
-  ].sort((a, b) => (a.paidDate > b.paidDate ? -1 : 1));
+  const { data } = useCommunityPersonPayments(page, per);
+
+  const hasDuplicatedIds = (items: any[]) => {
+    const existentIds = new Set(impactCards.map((obj: any) => obj.id));
+    const newIds = items.map((obj: any) => obj.id);
+
+    return newIds.some((id) => existentIds.has(id));
+  };
 
   useEffect(() => {
-    if (concatPayments.length === 0) return;
-    if (concatPayments.length < page * per) setShowMoreVisible(false);
+    if (!data) return;
 
-    setImpactCards(concatPayments);
-    setShowMoreDisabled(false);
-  }, [userPersonCommunityPayments, guestPersonCommunityPayments]);
+    if (data.length === 0) {
+      setShowMoreVisible(false);
+      return;
+    }
+
+    if (page === 1) {
+      setImpactCards(data);
+      setShowMoreDisabled(false);
+    } else if (!hasDuplicatedIds(data) && page > 1) {
+      setImpactCards((items: any) => [...items, ...data]);
+      setShowMoreDisabled(false);
+
+      if (data.length < per) setShowMoreVisible(false);
+    }
+  }, [data, page]);
 
   const hasImpactCards = impactCards?.length > 0;
 

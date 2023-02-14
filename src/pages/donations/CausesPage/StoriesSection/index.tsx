@@ -8,6 +8,7 @@ import useSources from "hooks/apiHooks/useSources";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useTranslation } from "react-i18next";
 import { logError } from "services/crashReport";
+import { normalizedLanguage } from "lib/currentLanguage";
 import * as S from "./styles";
 import ConfirmSection from "../ConfirmSection";
 
@@ -49,7 +50,7 @@ function StoriesSection({
     async (email: string) => {
       try {
         if (!signedIn) {
-          const user = await findOrCreateUser(email);
+          const user = await findOrCreateUser(email, normalizedLanguage());
           if (integration) {
             createSource(user.id, integration.id);
           }

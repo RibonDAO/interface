@@ -66,7 +66,7 @@ function DirectSection() {
 
   return (
     <S.Container>
-      {hasPayments && impactCards ? (
+      {hasPayments ? (
         <S.CardsContainer>
           {impactCards.map((item: any) => (
             <DirectImpactCard key={item.id} personPayment={item} />

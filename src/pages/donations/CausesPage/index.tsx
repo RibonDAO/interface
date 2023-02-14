@@ -84,7 +84,7 @@ function CausesPage(): JSX.Element {
     integration,
   );
   const { canDonate } = useCanDonate(integrationId);
-  const { createVoucher } = useVoucher();
+  const { createVoucher, destroyVoucher } = useVoucher();
 
   const { isMobile } = useBreakpoint();
 
@@ -115,6 +115,7 @@ function CausesPage(): JSX.Element {
       !hasReceivedTicketToday() ||
       (hasAvailableDonation && hasNotSeenDonationModal)
     ) {
+      destroyVoucher();
       if (integration) {
         setLocalStorageItem(DONATION_MODAL_SEEN_AT_KEY, Date.now().toString());
         showDonationTicketModal();

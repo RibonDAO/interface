@@ -4,25 +4,27 @@ import { apiGet } from "..";
 
 const personPaymentsApi = {
   getCommunityPersonPayments: (
-    personIdentifier: string,
+    email?: string,
+    walletAddress?: string,
     page?: number,
     per?: number,
   ): Promise<AxiosResponse<PersonPayment[]>> =>
     apiGet(
-      `person_payments/${personIdentifier}/causes${
-        page && per ? `?page=${page}&per=${per}` : ""
-      }`,
+      `person_payments/cause?${email ? `email=${email}&` : ""}${
+        walletAddress ? `wallet_address=${walletAddress}&` : ""
+      }${page && per ? `page=${page}&per=${per}` : ""}`,
     ),
 
   getDirectPersonPayments: (
-    personIdentifier: string,
+    email?: string,
+    walletAddress?: string,
     page?: number,
     per?: number,
   ): Promise<AxiosResponse<PersonPayment[]>> =>
     apiGet(
-      `person_payments/${personIdentifier}/non_profits${
-        page && per ? `?page=${page}&per=${per}` : ""
-      }`,
+      `person_payments/non_profit?${email ? `email=${email}&` : ""}${
+        walletAddress ? `wallet_address=${walletAddress}&` : ""
+      }${page && per ? `page=${page}&per=${per}` : ""}`,
     ),
 };
 

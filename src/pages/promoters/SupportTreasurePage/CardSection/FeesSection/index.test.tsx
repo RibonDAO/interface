@@ -3,6 +3,14 @@ import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import { Currencies } from "@ribon.io/shared/types";
 import FeesSection from ".";
 
+jest.mock("@ribon.io/shared/hooks", () => ({
+  __esModule: true,
+  ...jest.requireActual("@ribon.io/shared/hooks"),
+  useCardGivingFees: () => ({
+    cardGivingFees: { netGiving: 5, serviceFees: 5, cryptoGiving: "$5" },
+    refetch: jest.fn(),
+  }),
+}));
 describe("FeesSection", () => {
   it("should render without error", () => {
     renderComponent(

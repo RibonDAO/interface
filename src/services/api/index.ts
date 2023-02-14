@@ -10,9 +10,9 @@ import {
 import { initializeHooks } from "@ribon.io/shared/hooks";
 import { normalizedLanguage } from "lib/currentLanguage";
 import { currentUserFromStorage } from "lib/currentUser";
+import { RIBON_API } from "utils/constants";
 
-const RIBON_API = "https://dapp-dev-api.ribon.io/";
-export const baseURL = process.env.REACT_APP_RIBON_API || RIBON_API;
+export const baseURL = RIBON_API;
 export function initializeApi() {
   const lang = normalizedLanguage();
   const user = currentUserFromStorage();

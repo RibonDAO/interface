@@ -26,7 +26,7 @@ import { track } from "@amplitude/analytics-browser";
 import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
-import { useLanguage } from "hooks/useLanguage";
+import { normalizedLanguage } from "lib/currentLanguage";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
@@ -41,7 +41,6 @@ function CausesPage(): JSX.Element {
   const [chosenNonProfit, setChosenNonProfit] = useState<NonProfit>();
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
-  const { currentLang } = useLanguage();
 
   const {
     activeCauses,
@@ -130,7 +129,7 @@ function CausesPage(): JSX.Element {
     async (email: string) => {
       try {
         if (!signedIn) {
-          const user = await findOrCreateUser(email, currentLang);
+          const user = await findOrCreateUser(email, normalizedLanguage());
           if (integration) {
             createSource(user.id, integration.id);
           }

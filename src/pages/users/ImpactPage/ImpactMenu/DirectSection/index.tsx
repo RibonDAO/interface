@@ -50,13 +50,12 @@ function DirectSection() {
 
     if (page === 1) {
       setImpactCards(data);
-      setShowMoreDisabled(false);
     } else if (!hasDuplicatedIds(data) && page > 1) {
       setImpactCards((items: any) => [...items, ...data]);
-      setShowMoreDisabled(false);
-
-      if (data.length < per) setShowMoreVisible(false);
     }
+
+    setShowMoreDisabled(false);
+    if (data.length < per) setShowMoreVisible(false);
   }, [data, page]);
 
   const handleShowMoreClick = () => {

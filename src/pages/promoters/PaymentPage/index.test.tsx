@@ -8,6 +8,15 @@ import causeFactory from "config/testUtils/factories/causeFactory";
 import { screen } from "@testing-library/react";
 import PaymentPage from ".";
 
+jest.mock("@ribon.io/shared/hooks", () => ({
+  __esModule: true,
+  ...jest.requireActual("@ribon.io/shared/hooks"),
+  useCardGivingFees: () => ({
+    cardGivingFees: { netGiving: 5, serviceFees: 5 },
+    refetch: jest.fn(),
+  }),
+}));
+
 describe("PaymentPage", () => {
   const offer = offerFactory();
   const cause = causeFactory();

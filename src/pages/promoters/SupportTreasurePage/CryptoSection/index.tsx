@@ -15,7 +15,7 @@ import { logEvent } from "lib/events";
 import { stringToNumber } from "lib/formatters/stringToNumberFormatter";
 import { useLoadingOverlay } from "contexts/loadingOverlayContext";
 import useTokenDecimals from "hooks/useTokenDecimals";
-import useCryptoTransaction from "hooks/apiHooks/useCryptoTransaction";
+import { useCryptoTransaction } from "@ribon.io/shared/hooks";
 import {
   formatFromDecimals,
   formatToDecimals,

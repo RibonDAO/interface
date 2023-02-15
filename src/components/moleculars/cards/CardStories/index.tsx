@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import Stories from "react-insta-stories";
-import Story from "types/entities/Story";
+import { Story } from "@ribon.io/shared/types";
 import StoryWithDescription from "components/moleculars/storyLayouts/StoryWithDescription";
 import closeIcon from "assets/icons/close-icon.svg";
 import securityIcon from "assets/icons/security-mark-icon.svg";

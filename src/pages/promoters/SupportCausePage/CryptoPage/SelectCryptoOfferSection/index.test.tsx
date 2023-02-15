@@ -5,9 +5,10 @@ import { screen } from "@testing-library/react";
 import OfferSelectionSection from "./index";
 
 const mockOffer = offerFactory();
-jest.mock("hooks/apiHooks/useOffers", () => ({
+jest.mock("@ribon.io/shared/hooks", () => ({
   __esModule: true,
-  default: () => ({
+  ...jest.requireActual("@ribon.io/shared/hooks"),
+  useOffers: () => ({
     offers: [mockOffer],
     refetch: jest.fn(),
   }),

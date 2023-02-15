@@ -4,7 +4,7 @@ import Ticket from "assets/icons/ticket-rounded-icon.svg";
 import ModalIcon from "components/moleculars/modals/ModalIcon";
 import ModalAnimation from "components/moleculars/modals/ModalAnimation";
 import { useTranslation } from "react-i18next";
-import NonProfit from "types/entities/NonProfit";
+import { NonProfit } from "@ribon.io/shared/types";
 import { useCurrentUser } from "contexts/currentUserContext";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import DonationDoneSound from "assets/sounds/donation-done.mp3";

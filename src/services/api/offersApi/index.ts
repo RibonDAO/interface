@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import Offer from "types/entities/Offer";
-import { Currencies } from "types/enums/Currencies";
+import { Currencies } from "@ribon.io/shared/types";
 import { apiGet } from "..";
 
 const offersApi = {

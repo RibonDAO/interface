@@ -1,4 +1,4 @@
-import Story from "types/entities/Story";
+import { Story } from "@ribon.io/shared/types";
 import { useEffect, useState } from "react";
 import Spinner from "components/atomics/Spinner";
 import * as S from "./styles";

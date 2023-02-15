@@ -38,6 +38,15 @@ jest.mock("hooks/useTokenDecimals", () => ({
   }),
 }));
 
+jest.mock("@ribon.io/shared/hooks", () => ({
+  __esModule: true,
+  ...jest.requireActual("@ribon.io/shared/hooks"),
+  useCryptoTransaction: () => ({
+    createTransaction: jest.fn(),
+    refetch: jest.fn(),
+  }),
+}));
+
 function CryptoPaymentTestPage() {
   const {
     userBalance,

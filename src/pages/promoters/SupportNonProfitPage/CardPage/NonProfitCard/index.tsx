@@ -1,6 +1,5 @@
 import { removeInsignificantZeros } from "lib/formatters/currencyFormatter";
-import NonProfit from "types/entities/NonProfit";
-import Offer from "types/entities/Offer";
+import { NonProfit, Offer } from "@ribon.io/shared/types";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import * as S from "../../styles";

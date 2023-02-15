@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import PromoterCardGiving from "types/apiResponses/PromoterCardGiving";
-import { Currencies } from "types/enums/Currencies";
+import { Currencies } from "@ribon.io/shared/types";
 import { apiGet } from "..";
 
 const promoterCardGivingsApi = {

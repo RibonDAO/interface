@@ -1,6 +1,6 @@
 import ModalBlank from "components/moleculars/modals/ModalBlank";
 import Header from "components/atomics/sections/Header";
-import useIntegration from "hooks/apiHooks/useIntegration";
+import { useIntegration, useCanDonate } from "@ribon.io/shared/hooks";
 import { useCurrentUser } from "contexts/currentUserContext";
 import cogIcon from "assets/icons/cog-icon.svg";
 import ticketOn from "assets/icons/ticket-icon-on.svg";
@@ -22,7 +22,6 @@ import { useModal } from "hooks/modalHooks/useModal";
 import ChangeLanguageItem from "./ChangeLanguageItem";
 import LogoutItem from "./LogoutItem";
 import * as S from "./styles";
-import useCanDonate from "../../hooks/apiHooks/useCanDonate";
 import UserSupportItem from "./UserSupportItem";
 import GetTheAppItem from "./GetTheAppItem";
 

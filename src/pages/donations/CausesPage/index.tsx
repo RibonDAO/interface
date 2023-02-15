@@ -1,14 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import NonProfit from "types/entities/NonProfit";
-import useNonProfits from "hooks/apiHooks/useNonProfits";
+import { NonProfit } from "@ribon.io/shared/types";
+import {
+  useNonProfits,
+  useSources,
+  useUsers,
+  useIntegration,
+  useCanDonate,
+} from "@ribon.io/shared/hooks";
 import { useLocation } from "react-router-dom";
-import useUsers from "hooks/apiHooks/useUsers";
-import useSources from "hooks/apiHooks/useSources";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { isFirstAccess } from "lib/onboardingFirstAccess";
-import useIntegration from "hooks/apiHooks/useIntegration";
 import { useModal } from "hooks/modalHooks/useModal";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
@@ -16,7 +19,6 @@ import { DONATION_MODAL_SEEN_AT_KEY } from "lib/localStorage/constants";
 import { today } from "lib/dateTodayFormatter";
 import { useDonationTicketModal } from "hooks/modalHooks/useDonationTicketModal";
 import Spinner from "components/atomics/Spinner";
-import useCanDonate from "hooks/apiHooks/useCanDonate";
 import { logError } from "services/crashReport";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import useVoucher from "hooks/useVoucher";

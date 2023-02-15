@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import Cause from "types/entities/Cause";
 import theme from "styles/theme";
 import { useCryptoPayment } from "contexts/cryptoPaymentContext";
-import { Currencies } from "types/enums/Currencies";
+import { Currencies } from "@ribon.io/shared/types";
 import { useLocationSearch } from "hooks/useLocationSearch";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import * as S from "./styles";

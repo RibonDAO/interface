@@ -2,8 +2,7 @@ import CardCenterImageButton from "components/moleculars/cards/CardCenterImageBu
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { newLogEvent } from "lib/events";
-import NonProfit from "types/entities/NonProfit";
-import Integration from "types/entities/Integration";
+import { NonProfit, Integration } from "@ribon.io/shared/types";
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
 import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
 import { useLocation } from "react-router-dom";

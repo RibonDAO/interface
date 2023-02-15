@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { Currencies } from "types/enums/Currencies";
-import useCardGivingFees from "hooks/apiHooks/useCardGivingFees";
+import { Currencies } from "@ribon.io/shared/types";
+import { useCardGivingFees } from "@ribon.io/shared/hooks";
 import { useEffect } from "react";
 import * as S from "../styles";
 

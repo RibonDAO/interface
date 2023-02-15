@@ -1,5 +1,5 @@
 import CardTooltip from "components/moleculars/cards/CardTooltip";
-import useNonProfitImpact from "hooks/apiHooks/useNonProfitImpact";
+import { useNonProfitImpact } from "@ribon.io/shared/hooks";
 import { useFormattedImpactText } from "hooks/useFormattedImpactText";
 import { formatFee } from "lib/formatters/feeFormatter";
 import { formatNetDonation } from "lib/formatters/netDonationFormatter";

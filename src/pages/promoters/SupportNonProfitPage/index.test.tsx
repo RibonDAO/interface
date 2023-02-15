@@ -16,19 +16,15 @@ const mockNonProfit2 = nonProfitFactory({
   name: "Other non Profit",
 });
 
-jest.mock("hooks/apiHooks/useCauses", () => ({
+jest.mock("@ribon.io/shared/hooks", () => ({
   __esModule: true,
-  default: () => ({
-    causes: [mockCause, mockCause2],
-    refetch: () => {},
-  }),
-}));
-
-jest.mock("hooks/apiHooks/useNonProfits", () => ({
-  __esModule: true,
-  default: () => ({
+  ...jest.requireActual("@ribon.io/shared/hooks"),
+  useNonProfits: () => ({
     nonProfits: [mockNonProfit, mockNonProfit2],
-    refetch: () => {},
+    refetch: jest.fn(),
+  }),
+  useCauses: () => ({
+    causes: [mockCause, mockCause2],
   }),
 }));
 

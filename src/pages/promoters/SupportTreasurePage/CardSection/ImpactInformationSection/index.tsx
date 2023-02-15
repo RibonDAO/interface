@@ -1,15 +1,15 @@
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
-import { Currencies } from "types/enums/Currencies";
+import { Currencies, NonProfit, Offer } from "@ribon.io/shared/types";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
-import useOffers from "hooks/apiHooks/useOffers";
+import {
+  useOffers,
+  useNonProfits,
+  useNonProfitImpact,
+} from "@ribon.io/shared/hooks";
 import { logEvent } from "lib/events";
 import { removeInsignificantZeros } from "lib/formatters/currencyFormatter";
 import CardSelect from "components/moleculars/cards/CardSelect";
-import useNonProfits from "hooks/apiHooks/useNonProfits";
-import NonProfit from "types/entities/NonProfit";
-import useNonProfitImpact from "hooks/apiHooks/useNonProfitImpact";
-import Offer from "types/entities/Offer";
 import useNavigation from "hooks/useNavigation";
 import questionIcon from "assets/icons/question-icon.svg";
 import { useSimulateInfoModal } from "hooks/modalHooks/useSimulateInfoModal";

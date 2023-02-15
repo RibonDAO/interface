@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
 import InputRange from "components/atomics/inputs/InputRange";
-import useOffers from "hooks/apiHooks/useOffers";
+import { useOffers, useNonProfitImpact } from "@ribon.io/shared/hooks";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
-import Offer from "types/entities/Offer";
+import { Offer, Currencies, NonProfit } from "@ribon.io/shared/types";
 import { useTranslation } from "react-i18next";
-import { Currencies } from "types/enums/Currencies";
 import theme from "styles/theme";
 import { formatPrice } from "lib/formatters/currencyFormatter";
 import { setLocalStorageItem } from "lib/localStorage";
-import NonProfit from "types/entities/NonProfit";
-import useNonProfitImpact from "hooks/apiHooks/useNonProfitImpact";
 import * as S from "./styles";
 
 const { tertiary } = theme.colors.brand;

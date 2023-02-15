@@ -1,4 +1,4 @@
-import { Currencies } from "types/enums/Currencies";
+import { Currencies } from "@ribon.io/shared/types";
 import givingFeesApi from ".";
 import api from "..";
 

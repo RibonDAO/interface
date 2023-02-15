@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { logEvent } from "lib/events";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
-import useCauses from "hooks/apiHooks/useCauses";
+import { useCauses } from "@ribon.io/shared/hooks";
 import Cause from "types/entities/Cause";
 import IntersectBackground from "assets/images/intersect-background.svg";
 import useNavigation from "hooks/useNavigation";

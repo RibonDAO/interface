@@ -1,8 +1,9 @@
 import CardTopImage from "components/moleculars/cards/CardTopImage";
-import useImpact from "hooks/apiHooks/useImpact";
+import { useImpact } from "@ribon.io/shared/hooks";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import useNavigation from "hooks/useNavigation";
 import { useTranslation } from "react-i18next";
+import { useCurrentUser } from "contexts/currentUserContext";
 import ticketIllustration from "../../assets/ticket-illustration.svg";
 import * as S from "../styles";
 
@@ -15,7 +16,8 @@ function TicketSection() {
     navigateTo("/");
   };
 
-  const { userImpact } = useImpact();
+  const { currentUser } = useCurrentUser();
+  const { userImpact } = useImpact(currentUser?.id);
   const { formattedImpactText } = useFormattedImpactText();
 
   const impactCards = userImpact || [];

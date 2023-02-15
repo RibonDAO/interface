@@ -12,19 +12,15 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   overflow-x: hidden;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    justify-content: center;
-  }
 `;
 
 export const ImageContainer = styled.div`
+  margin-bottom: ${({ theme }) => theme.spacing(40)};
   transform: scale(1.3);
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    margin-bottom: ${({ theme }) => theme.spacing(40)};
     transform: scale(1.4);
   }
 `;

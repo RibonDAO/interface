@@ -130,9 +130,9 @@ export const ButtonContainer = styled.div`
   width: 100%;
   padding: ${({ theme }) => theme.spacing(0, 16, 16)};
   position: fixed;
-  z-index: ${({ theme }) => theme.zindex.modal};
   bottom: 0;
   left: 0;
+  z-index: ${({ theme }) => theme.zindex.modal};
   background-color: ${({ theme }) => theme.colors.neutral10};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {

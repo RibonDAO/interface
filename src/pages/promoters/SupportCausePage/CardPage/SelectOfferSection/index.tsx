@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import InputRange from "components/atomics/inputs/InputRange";
-import useOffers from "hooks/apiHooks/useOffers";
+import { useOffers } from "@ribon.io/shared/hooks";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import Offer from "types/entities/Offer";
 import { useTranslation } from "react-i18next";
 import Cause from "types/entities/Cause";
-import { Currencies } from "types/enums/Currencies";
+import { Currencies } from "@ribon.io/shared/types";
 import theme from "styles/theme";
 import { formatPrice } from "lib/formatters/currencyFormatter";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";

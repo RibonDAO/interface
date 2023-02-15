@@ -10,7 +10,7 @@ import userFactory from "config/testUtils/factories/userFactory";
 import { formatToDecimals } from "lib/web3Helpers/etherFormatters";
 import { mockGraphqlRequest, mockRequest } from "config/testUtils/test-helper";
 import { PROMOTER_DONATIONS_ID_QUERY_NAME } from "services/apiTheGraph/querys/promoterDonation";
-import { Currencies } from "types/enums/Currencies";
+import { Currencies } from "@ribon.io/shared/types";
 import PromoterGivingsSection from ".";
 
 describe("PromoterGivingsSection", () => {

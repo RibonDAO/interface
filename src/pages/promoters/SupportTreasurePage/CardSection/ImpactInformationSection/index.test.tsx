@@ -8,21 +8,18 @@ import ImpactInformationSection from ".";
 const mockNonProfit = nonProfitFactory({
   impactDescription: "1 hour of study",
 });
-jest.mock("hooks/apiHooks/useNonProfits", () => ({
-  __esModule: true,
-  default: () => ({
-    nonProfits: [mockNonProfit],
-  }),
-}));
-
 const mockOffer = offerFactory({ price: "$5,00", id: 1 });
 const mockOffer2 = offerFactory({ price: "$15,00", id: 2 });
-
-jest.mock("hooks/apiHooks/useOffers", () => ({
+jest.mock("@ribon.io/shared/hooks", () => ({
   __esModule: true,
-  default: () => ({
+  ...jest.requireActual("@ribon.io/shared/hooks"),
+  useNonProfits: () => ({
+    nonProfits: [mockNonProfit],
+    refetch: jest.fn(),
+  }),
+  useOffers: () => ({
     offers: [mockOffer, mockOffer2],
-    refetch: () => {},
+    refetch: jest.fn(),
   }),
 }));
 

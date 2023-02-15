@@ -8,11 +8,11 @@ describe("SliderCards", () => {
   it("should render without error", () => {
     renderComponent(
       <SliderCardsEnhanced currentSlide={1} onCurrentSlideChange={mockFn}>
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
-        <div>5</div>
+        <div key={1}>1</div>
+        <div key={2}>2</div>
+        <div key={3}>3</div>
+        <div key={4}>4</div>
+        <div key={5}>5</div>
       </SliderCardsEnhanced>,
     );
 
@@ -22,11 +22,11 @@ describe("SliderCards", () => {
   it("should render with loop", () => {
     renderComponent(
       <SliderCardsEnhanced currentSlide={1} onCurrentSlideChange={mockFn} loop>
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
-        <div>5</div>
+        <div key={1}>1</div>
+        <div key={2}>2</div>
+        <div key={3}>3</div>
+        <div key={4}>4</div>
+        <div key={5}>5</div>
       </SliderCardsEnhanced>,
     );
 
@@ -40,11 +40,11 @@ describe("SliderCards", () => {
         onCurrentSlideChange={mockFn}
         saveStateIdentifier="test"
       >
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
-        <div>5</div>
+        <div key={1}>1</div>
+        <div key={2}>2</div>
+        <div key={3}>3</div>
+        <div key={4}>4</div>
+        <div key={5}>5</div>
       </SliderCardsEnhanced>,
     );
 
@@ -59,11 +59,11 @@ describe("SliderCards", () => {
         saveStateIdentifier="test"
         loop
       >
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
-        <div>5</div>
+        <div key={1}>1</div>
+        <div key={2}>2</div>
+        <div key={3}>3</div>
+        <div key={4}>4</div>
+        <div key={5}>5</div>
       </SliderCardsEnhanced>,
     );
 
@@ -78,11 +78,11 @@ describe("SliderCards", () => {
         saveStateIdentifier="test"
         loop
       >
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
-        <div>5</div>
+        <div key={1}>1</div>
+        <div key={2}>2</div>
+        <div key={3}>3</div>
+        <div key={4}>4</div>
+        <div key={5}>5</div>
       </SliderCardsEnhanced>,
     );
 

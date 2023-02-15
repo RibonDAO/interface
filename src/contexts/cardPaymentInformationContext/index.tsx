@@ -16,7 +16,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { logEvent } from "lib/events";
 import { logError } from "services/crashReport";
-import { Currencies } from "types/enums/Currencies";
+import { Currencies, Cause, NonProfit } from "@ribon.io/shared/types";
 import creditCardPaymentApi from "services/api/creditCardPaymentApi";
 import successIcon from "assets/icons/success-icon.svg";
 import GivingIcon from "assets/icons/giving-icon.svg";
@@ -24,8 +24,6 @@ import Logo from "assets/icons/logo-background-icon.svg";
 import UserIcon from "assets/icons/user.svg";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
-import Cause from "types/entities/Cause";
-import NonProfit from "types/entities/NonProfit";
 
 export interface ICardPaymentInformationContext {
   setCurrentCoin: (value: SetStateAction<Currencies>) => void;

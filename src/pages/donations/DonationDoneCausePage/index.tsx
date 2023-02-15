@@ -1,5 +1,5 @@
 import IconsAroundImage from "components/atomics/sections/IconsAroundImage";
-import useOffers from "hooks/apiHooks/useOffers";
+import { useOffers } from "@ribon.io/shared/hooks";
 import VolunteerActivismPink from "assets/icons/volunteer-activism-pink.svg";
 import VolunteerActivismYellow from "assets/icons/volunteer-activism-yellow.svg";
 import VolunteerActivismGreen from "assets/icons/volunteer-activism-green.svg";
@@ -15,7 +15,7 @@ import { logError } from "services/crashReport";
 import Cause from "types/entities/Cause";
 import NonProfit from "types/entities/NonProfit";
 import Offer from "types/entities/Offer";
-import { Currencies } from "types/enums/Currencies";
+import { Currencies } from "@ribon.io/shared/types";
 import getThemeByFlow from "lib/themeByFlow";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import { getAudioFromStorage } from "lib/cachedAudio";

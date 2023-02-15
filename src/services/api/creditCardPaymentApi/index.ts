@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import CreditCardPayment from "types/entities/CreditCardPayment";
+import { CreditCardPayment } from "@ribon.io/shared/types";
 import { apiPost } from "..";
 
 const creditCardPaymentApi = {

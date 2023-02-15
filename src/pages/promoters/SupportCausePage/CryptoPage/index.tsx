@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { logEvent } from "lib/events";
 import { useCauses } from "@ribon.io/shared/hooks";
-import Cause from "types/entities/Cause";
+import { Cause } from "@ribon.io/shared/types";
 import IntersectBackground from "assets/images/intersect-background.svg";
 import useNavigation from "hooks/useNavigation";
 import { useLocation } from "react-router-dom";

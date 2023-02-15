@@ -1,4 +1,4 @@
-import User from "types/entities/User";
+import { User } from "@ribon.io/shared/types";
 
 function userFactory(params: Partial<User> = {}): User {
   const defaultValues: User = {

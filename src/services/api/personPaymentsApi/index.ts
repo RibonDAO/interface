@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { PersonPayment } from "types/entities/PersonPayment";
+import { PersonPayment } from "@ribon.io/shared/types";
 import { apiGet } from "..";
 
 const personPaymentsApi = {

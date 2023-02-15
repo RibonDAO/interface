@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import Story from "types/entities/Story";
+import { Story } from "@ribon.io/shared/types";
 import { apiGet } from "..";
 
 const storiesApi = {

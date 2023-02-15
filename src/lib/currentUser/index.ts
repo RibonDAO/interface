@@ -1,5 +1,5 @@
 import { getLocalStorageItem } from "lib/localStorage";
-import User from "types/entities/User";
+import { User } from "@ribon.io/shared/types";
 import { CURRENT_USER_KEY } from "contexts/currentUserContext";
 
 export function currentUserFromStorage(): User | null {

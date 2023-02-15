@@ -7,7 +7,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import Cause from "types/entities/Cause";
+import { Cause } from "@ribon.io/shared/types";
 
 export interface ICausesContext {
   causes: Cause[];

@@ -116,16 +116,21 @@ export const CardMainText = styled.h2`
 
 export const OutlineButton = styled(Button)`
   width: 100%;
-  margin-top: ${({ theme }) => theme.spacing(24)};
+  margin-top: ${({ theme }) => theme.spacing(16)};
   border: solid 1px ${({ theme }) => theme.colors.brand.primary[300]};
   background-color: ${({ theme }) => theme.colors.neutral10};
   color: ${({ theme }) => theme.colors.brand.primary[300]};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    margin-top: ${({ theme }) => theme.spacing(24)};
+  }
 `;
 
 export const ButtonContainer = styled.div`
   width: 100%;
-  padding: ${({ theme }) => theme.spacing(16)};
+  padding: ${({ theme }) => theme.spacing(0, 16, 16)};
   position: fixed;
+  z-index: 5;
   bottom: 0;
   left: 0;
   background-color: ${({ theme }) => theme.colors.neutral10};

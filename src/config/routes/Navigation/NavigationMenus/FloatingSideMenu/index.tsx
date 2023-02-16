@@ -7,6 +7,7 @@ export type Props = {
   menuOptions: {
     path: LocationDescriptor;
     title: string;
+    search?: string;
   }[];
 };
 
@@ -18,7 +19,10 @@ function FloatingSideMenu({
   return (
     <S.Menu visible={visible} onMouseLeave={onMouseLeave}>
       {menuOptions.map((option, index) => (
-        <S.MenuItem key={index.toString(10)} to={option.path}>
+        <S.MenuItem
+          key={index.toString(10)}
+          to={{ pathname: option.path.toString(), search: option.search }}
+        >
           {option.title}
         </S.MenuItem>
       ))}

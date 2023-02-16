@@ -14,6 +14,7 @@ export type Props = {
   menuOptions?: {
     path: LocationDescriptor;
     title: string;
+    search?: string;
   }[];
 };
 

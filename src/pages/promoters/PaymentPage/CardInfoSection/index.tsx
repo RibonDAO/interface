@@ -54,7 +54,13 @@ function CardInfoSection() {
 
   return (
     <S.PaymentInformationSectionContainer colorTheme={colorTheme}>
-      <S.Form>
+      <S.EForm
+        textColor={colorTheme.shade20}
+        borderColor={{
+          default: colorTheme.shade40,
+          active: colorTheme.shade40,
+        }}
+      >
         <InputText
           name="email"
           placeholder={t("email")}
@@ -63,11 +69,6 @@ function CardInfoSection() {
           onChange={(e) => setEmail(e.target.value)}
           disabled={!!currentUser?.email}
           required
-          textColor={colorTheme.shade20}
-          borderColor={{
-            default: colorTheme.shade40,
-            active: colorTheme.shade40,
-          }}
         />
         <InputText
           name="number"
@@ -77,11 +78,6 @@ function CardInfoSection() {
           maxLength={19}
           minLength={19}
           required
-          textColor={colorTheme.shade20}
-          borderColor={{
-            default: colorTheme.shade40,
-            active: colorTheme.shade40,
-          }}
         />
         <InputText
           name="name"
@@ -89,11 +85,6 @@ function CardInfoSection() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
-          textColor={colorTheme.shade20}
-          borderColor={{
-            default: colorTheme.shade40,
-            active: colorTheme.shade40,
-          }}
         />
         <S.Half>
           <InputText
@@ -104,11 +95,6 @@ function CardInfoSection() {
             onChange={maskExpiration}
             maxLength={7}
             required
-            textColor={colorTheme.shade20}
-            borderColor={{
-              default: colorTheme.shade40,
-              active: colorTheme.shade40,
-            }}
           />
           <InputText
             name="cvv"
@@ -118,14 +104,9 @@ function CardInfoSection() {
             value={cvv}
             onChange={(e) => setCvv(e.target.value)}
             required
-            textColor={colorTheme.shade20}
-            borderColor={{
-              default: colorTheme.shade40,
-              active: colorTheme.shade40,
-            }}
           />
         </S.Half>
-      </S.Form>
+      </S.EForm>
     </S.PaymentInformationSectionContainer>
   );
 }

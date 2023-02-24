@@ -59,7 +59,7 @@ function InputText({
           )}
         </S.LabelContainer>
       )}
-      <>
+      <S.Container>
         <S.Input
           placeholder={placeholder}
           type={type}
@@ -87,7 +87,7 @@ function InputText({
             <S.Span>{errorMessage}</S.Span>
           </S.ErrorContainer>
         )}
-      </>
+      </S.Container>
       {helper && (
         <S.HelperContainer>
           {helper.icon && helper.icon.class === "left" && (

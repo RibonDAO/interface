@@ -1,3 +1,4 @@
+import Form from "components/moleculars/forms";
 import styled from "styled-components";
 
 export const PaymentInformationSectionContainer = styled.div<{
@@ -24,4 +25,4 @@ export const Half = styled.div`
   }
 `;
 
-export const Form = styled.form``;
+export const EForm = styled(Form)``;

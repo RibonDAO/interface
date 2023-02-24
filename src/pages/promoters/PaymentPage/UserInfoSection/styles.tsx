@@ -11,11 +11,6 @@ export const BillingInformationSectionContainer = styled.div<{
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     height: auto;
   }
-
-  * > input {
-    border: 1px solid ${({ colorTheme }) => colorTheme.shade40} !important;
-    color: ${({ colorTheme }) => colorTheme.shade20} !important;
-  }
 `;
 
 export const Title = styled.h3`
@@ -24,17 +19,6 @@ export const Title = styled.h3`
 `;
 
 export const Form = styled.form`
-  input {
-    border: 1px solid ${({ theme }) => theme.colors.brand.secondary[700]};
-    color: ${({ theme }) => theme.colors.brand.secondary[300]};
-    font-weight: 600;
-    height: 48px;
-
-    ::placeholder {
-      color: ${({ theme }) => theme.colors.neutral[200]};
-    }
-  }
-
   & :nth-child(2) {
     margin-right: ${({ theme }) => theme.spacing(4)};
   }

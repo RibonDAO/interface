@@ -65,6 +65,11 @@ function UserInfoSection(): JSX.Element {
           placeholder={t("country")}
           onOptionChanged={handleCountryChange}
           required
+          textColor={colorTheme.shade20}
+          borderColor={{
+            default: colorTheme.shade40,
+            active: colorTheme.shade40,
+          }}
         />
         <S.HalfInputContainer>
           <S.HalfInput
@@ -73,6 +78,11 @@ function UserInfoSection(): JSX.Element {
             value={city}
             onChange={(e) => setCity(e.target.value)}
             required
+            textColor={colorTheme.shade20}
+            borderColor={{
+              default: colorTheme.shade40,
+              active: colorTheme.shade40,
+            }}
           />
           <S.HalfInput
             name={state}
@@ -80,6 +90,11 @@ function UserInfoSection(): JSX.Element {
             value={state}
             onChange={(e) => setState(e.target.value)}
             required
+            textColor={colorTheme.shade20}
+            borderColor={{
+              default: colorTheme.shade40,
+              active: colorTheme.shade40,
+            }}
           />
         </S.HalfInputContainer>
         <S.TaxIdInput
@@ -89,6 +104,11 @@ function UserInfoSection(): JSX.Element {
           onChange={handleChangeMask}
           maxLength={maxTaxIdLength()}
           required
+          textColor={colorTheme.shade20}
+          borderColor={{
+            default: colorTheme.shade40,
+            active: colorTheme.shade40,
+          }}
         />
       </S.Form>
     </S.BillingInformationSectionContainer>

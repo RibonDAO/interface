@@ -24,8 +24,4 @@ export const Half = styled.div`
   }
 `;
 
-export const Form = styled.form`
-  input {
-    height: 48px;
-  }
-`;
+export const Form = styled.form``;

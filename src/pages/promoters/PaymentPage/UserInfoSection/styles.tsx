@@ -35,10 +35,6 @@ export const HalfInputContainer = styled.div`
 
 export const HalfInput = styled(InputText)``;
 
-export const CountryInput = styled(InputAutoComplete)`
-  input {
-    border: 1px solid ${({ theme }) => theme.colors.brand.secondary[700]};
-  }
-`;
+export const CountryInput = styled(InputAutoComplete)``;
 
 export const TaxIdInput = styled(InputText)``;

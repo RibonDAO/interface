@@ -31,6 +31,8 @@ export const Input = styled.input<{
 
   &:active,
   &:focus {
+    /* this is here to avoid input increase size because of border increase */
+    padding: 11px;
     border: 2px solid
       ${(props) => props.borderColor?.active || props.theme.colors.neutral[600]};
   }

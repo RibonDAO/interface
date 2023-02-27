@@ -24,7 +24,7 @@ function InputAutoComplete({
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const userInput = e.target.value;
-    const relatedSuggestions = suggestions
+    const relatedSuggestions = suggestions.length
       ? suggestions.filter((suggestion) =>
           suggestion.toLowerCase().includes(userInput.toLowerCase()),
         )

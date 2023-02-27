@@ -85,6 +85,7 @@ function Navigation(): JSX.Element {
           menuOptions={route?.menuOptions?.map((option) => ({
             ...option,
             onClick: () => handleEvent(option.event),
+            search,
           }))}
         />
       ))}

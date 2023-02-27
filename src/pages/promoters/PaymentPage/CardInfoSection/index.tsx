@@ -54,7 +54,13 @@ function CardInfoSection() {
 
   return (
     <S.PaymentInformationSectionContainer colorTheme={colorTheme}>
-      <S.Form>
+      <S.EForm
+        textColor={colorTheme.shade20}
+        borderColor={{
+          default: colorTheme.shade40,
+          active: colorTheme.shade40,
+        }}
+      >
         <InputText
           name="email"
           placeholder={t("email")}
@@ -100,7 +106,7 @@ function CardInfoSection() {
             required
           />
         </S.Half>
-      </S.Form>
+      </S.EForm>
     </S.PaymentInformationSectionContainer>
   );
 }

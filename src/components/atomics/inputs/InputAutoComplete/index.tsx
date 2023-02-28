@@ -7,6 +7,8 @@ export type Props = {
   placeholder: string;
   onOptionChanged?: (value: any) => void;
   required?: boolean;
+  borderColor?: Record<string, any>;
+  textColor?: string;
 };
 
 function InputAutoComplete({
@@ -15,6 +17,9 @@ function InputAutoComplete({
   placeholder,
   onOptionChanged,
   required,
+  borderColor,
+  textColor,
+  ...props
 }: Props): JSX.Element {
   const [filteredSuggestions, setFilteredSuggestions] = useState(suggestions);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -59,6 +64,9 @@ function InputAutoComplete({
         name={name}
         required={required}
         autoComplete="off"
+        textColor={textColor}
+        borderColor={borderColor}
+        {...props}
       />
       {showSuggestions && input && (
         <S.Container>

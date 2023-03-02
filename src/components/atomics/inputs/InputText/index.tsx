@@ -1,6 +1,4 @@
 import React from "react";
-import ErrorIcon from "assets/icons/input-error-icon.svg";
-import SuccessIcon from "assets/icons/input-success-icon.svg";
 import * as S from "./styles";
 
 export type Props = {
@@ -48,14 +46,14 @@ function InputText({
       {label && (
         <S.LabelContainer>
           {label.icon && label.icon.class === "left" && (
-            <S.LabelIcon src={label.icon.url} className={label.icon.class} />
+            <S.LabelIcon name={label.icon.name} className={label.icon.class} />
           )}
           <S.Label>
             {required && <span>*</span>}
             {label.text}
           </S.Label>
           {label.icon && label.icon.class === "right" && (
-            <S.LabelIcon src={label.icon.url} className={label.icon.class} />
+            <S.LabelIcon className={label.icon.class} name={label.icon.name} />
           )}
         </S.LabelContainer>
       )}
@@ -72,18 +70,17 @@ function InputText({
           onChange={onChange}
           disabled={disabled}
           autoComplete={autofill}
-          className={`${status} icon-${icon?.class}`}
           textColor={textColor}
           borderColor={borderColor}
+          status={status}
+          icon={icon}
           {...props}
         />
-        {icon && <S.Icon src={icon.url} className={icon.class} />}
-        {status === "success" && (
-          <S.SuccessIcon alt="right-icon" src={SuccessIcon} />
-        )}
+        {icon && <S.InputIcon className={icon.class} name={icon.name} />}
+        {status === "success" && <S.SuccessIcon name="check_circle" />}
         {errorMessage && status === "error" && (
           <S.ErrorContainer>
-            <S.ErrorIcon src={ErrorIcon} />
+            <S.ErrorIcon name="dangerous" />
             <S.Span>{errorMessage}</S.Span>
           </S.ErrorContainer>
         )}
@@ -91,11 +88,17 @@ function InputText({
       {helper && (
         <S.HelperContainer>
           {helper.icon && helper.icon.class === "left" && (
-            <S.HelperIcon src={helper.icon.url} className={helper.icon.class} />
+            <S.HelperIcon
+              className={helper.icon.class}
+              name={helper.icon.name}
+            />
           )}
           <S.Helper>{helper.text}</S.Helper>
           {helper.icon && helper.icon.class === "right" && (
-            <S.HelperIcon src={helper.icon.url} className={helper.icon.class} />
+            <S.HelperIcon
+              className={helper.icon.class}
+              name={helper.icon.name}
+            />
           )}
         </S.HelperContainer>
       )}

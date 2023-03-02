@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import InputAutoComplete from "components/atomics/inputs/InputAutoComplete";
 import InputText from "components/atomics/inputs/InputText";
-import Form from "components/moleculars/forms";
 
 export const BillingInformationSectionContainer = styled.div<{
   colorTheme: any;
@@ -19,7 +18,9 @@ export const Title = styled.h3`
   color: ${({ theme }) => theme.colors.neutral[800]};
 `;
 
-export const EForm = styled(Form)`
+export const Form = styled.form`
+  width: 100%;
+  position: relative;
   & :nth-child(2) {
     margin-right: ${({ theme }) => theme.spacing(4)};
   }

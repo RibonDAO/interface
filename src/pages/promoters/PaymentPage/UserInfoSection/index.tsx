@@ -58,13 +58,7 @@ function UserInfoSection(): JSX.Element {
 
   return (
     <S.BillingInformationSectionContainer colorTheme={colorTheme}>
-      <S.EForm
-        textColor={colorTheme.shade20}
-        borderColor={{
-          default: colorTheme.shade40,
-          active: colorTheme.shade40,
-        }}
-      >
+      <S.Form>
         <S.CountryInput
           name="country"
           suggestions={countryList(currentLang)}
@@ -96,7 +90,7 @@ function UserInfoSection(): JSX.Element {
           maxLength={maxTaxIdLength()}
           required
         />
-      </S.EForm>
+      </S.Form>
     </S.BillingInformationSectionContainer>
   );
 }

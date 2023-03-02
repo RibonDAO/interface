@@ -12,7 +12,6 @@ import { Router } from "react-router-dom";
 import { I18nextProvider } from "react-i18next";
 import i18n from "i18n-test";
 import theme from "styles/theme";
-import { QueryClient, QueryClientProvider } from "react-query";
 import WalletProvider, {
   IWalletContext,
   WalletContext,
@@ -48,6 +47,7 @@ import CryptoPaymentProvider, {
   CryptoPaymentContext,
   ICryptoPaymentContext,
 } from "contexts/cryptoPaymentContext";
+import { QueryClientComponent } from "@ribon.io/shared/hooks";
 
 export function renderWithTheme(children: React.ReactNode): RenderResult {
   return render(<ThemeProvider theme={theme}>{children}</ThemeProvider>);
@@ -116,14 +116,13 @@ export function renderComponent(
     cryptoPaymentProviderValue = {},
   }: RenderComponentProps = {},
 ): RenderWithContextResult {
-  const queryClient = new QueryClient();
   const historyObject = history;
   historyObject.location.state = locationState;
 
   return {
     component: render(
       <ThemeProvider theme={theme}>
-        <QueryClientProvider client={queryClient}>
+        <QueryClientComponent>
           <I18nextProvider i18n={i18n}>
             <Router history={historyObject}>
               {renderProvider(
@@ -169,7 +168,7 @@ export function renderComponent(
               )}
             </Router>
           </I18nextProvider>
-        </QueryClientProvider>
+        </QueryClientComponent>
       </ThemeProvider>,
     ),
     history,

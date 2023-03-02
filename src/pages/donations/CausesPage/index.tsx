@@ -85,13 +85,9 @@ function CausesPage(): JSX.Element {
     integration,
   );
   const { canDonate } = useCanDonate(integrationId);
-  const { createVoucher, destroyVoucher } = useVoucher();
+  const { destroyVoucher } = useVoucher();
 
   const { isMobile } = useBreakpoint();
-
-  useEffect(() => {
-    if (canDonate) createVoucher();
-  }, [canDonate]);
 
   function hasReceivedTicketToday() {
     const donationModalSeenAtKey = getLocalStorageItem(

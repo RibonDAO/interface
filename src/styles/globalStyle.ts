@@ -40,7 +40,7 @@ const GlobalStyle = createGlobalStyle`
     'FILL' 0,
     'wght' 400,
     'GRAD' 0,
-    'opsz' 48
+    'opsz' 24
   }
 `;
 

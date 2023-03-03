@@ -85,7 +85,7 @@ function CausesPage(): JSX.Element {
     integration,
   );
   const { canDonate } = useCanDonate(integrationId);
-  const { destroyVoucher } = useVoucher();
+  const { destroyVoucher, createVoucher } = useVoucher();
 
   const { isMobile } = useBreakpoint();
 
@@ -108,7 +108,9 @@ function CausesPage(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    if (
+    if (!hasNotSeenDonationModal && hasAvailableDonation) {
+      createVoucher();
+    } else if (
       !hasReceivedTicketToday() ||
       (hasAvailableDonation && hasNotSeenDonationModal)
     ) {

@@ -38,6 +38,28 @@ export const Input = styled.input<{
     padding: 11px;
     border: 2px solid
       ${(props) => props.borderColor?.active || props.theme.colors.neutral[600]};
+
+    ${(props) =>
+      props.status === "success" &&
+      css`
+        /* this is here to avoid input increase size because of border increase */
+        padding-right: 39px;
+      `}
+
+    ${(props) =>
+      props.icon?.class === "left" &&
+      css`
+        /* this is here to avoid input increase size because of border increase */
+        padding-left: 39px;
+      `}
+  
+
+    ${(props) =>
+      props.icon?.class === "right" &&
+      css`
+        /* this is here to avoid input increase size because of border increase */
+        padding-right: 39px;
+      `}
   }
 
   &:disabled {
@@ -53,7 +75,7 @@ export const Input = styled.input<{
   ${(props) =>
     props.status === "success" &&
     css`
-      padding-right: ${({ theme }) => theme.spacing(48)};
+      padding-right: ${({ theme }) => theme.spacing(40)};
       border-color: ${({ theme }) => theme.colors.brand.primary[600]};
     `}
 
@@ -66,13 +88,14 @@ export const Input = styled.input<{
   ${(props) =>
     props.icon?.class === "left" &&
     css`
-      padding-left: ${({ theme }) => theme.spacing(48)};
+      padding-left: ${({ theme }) => theme.spacing(40)};
     `}
+  
 
   ${(props) =>
     props.icon?.class === "right" &&
     css`
-      padding-right: ${({ theme }) => theme.spacing(48)};
+      padding-right: ${({ theme }) => theme.spacing(40)};
     `}
 `;
 
@@ -139,11 +162,11 @@ export const InputIcon = styled(Icon)`
   font-size: ${({ theme }) => theme.icons.xs};
 
   &.left {
-    left: 14px;
+    left: 12px;
   }
 
   &.right {
-    right: 14px;
+    right: 12px;
   }
 `;
 

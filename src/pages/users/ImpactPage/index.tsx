@@ -23,7 +23,7 @@ function ImpactPage(): JSX.Element {
   const { currentUser } = useCurrentUser();
   const { wallet } = useWalletContext();
 
-  const { userStatistics } = useStatistics({
+  const { userStatistics, refetch: refetchStatistics } = useStatistics({
     userId: currentUser?.id,
     walletAddress: wallet!,
   });
@@ -34,6 +34,9 @@ function ImpactPage(): JSX.Element {
     logEvent("profile_view");
   }, []);
 
+  useEffect(() => {
+    refetchStatistics();
+  }, [wallet, currentUser?.id]);
   return (
     <S.Container>
       <DownloadAppToast />

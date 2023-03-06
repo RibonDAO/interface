@@ -9,6 +9,7 @@ import React, {
 } from "react";
 import { setUserId } from "services/analytics/firebase";
 import User from "types/entities/User";
+import { initializeApi } from "services/api";
 
 export interface ICurrentUserContext {
   currentUser: User | undefined;
@@ -66,6 +67,7 @@ function CurrentUserProvider({ children }: Props) {
   useEffect(() => {
     setSignedIn(!!currentUser);
     setUserInLocalStorage();
+    initializeApi();
 
     if (process.env.NODE_ENV !== "development") {
       setUserIdInAnalytics();

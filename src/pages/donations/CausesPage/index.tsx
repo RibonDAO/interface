@@ -70,7 +70,7 @@ function CausesPage(): JSX.Element {
     state?.failedDonation,
   );
 
-  const hasNotSeenDonationModal = !getLocalStorageItem(
+  const hasSeenDonationModal = !!getLocalStorageItem(
     DONATION_MODAL_SEEN_AT_KEY,
   );
 
@@ -108,11 +108,11 @@ function CausesPage(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    if (!hasNotSeenDonationModal && hasAvailableDonation) {
+    if (hasSeenDonationModal && hasAvailableDonation) {
       createVoucher();
     } else if (
       !hasReceivedTicketToday() ||
-      (hasAvailableDonation && hasNotSeenDonationModal)
+      (hasAvailableDonation && !hasSeenDonationModal)
     ) {
       destroyVoucher();
       if (integration) {

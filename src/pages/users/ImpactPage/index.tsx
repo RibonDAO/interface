@@ -2,12 +2,13 @@ import CardTopImage from "components/moleculars/cards/CardTopImage";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "lib/events";
-import { useStatistics } from "@ribon.io/shared/hooks";
 import { formatPriceWithZeros } from "lib/formatters/currencyFormatter";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import { useLanguage } from "hooks/useLanguage";
 import { coinByLanguage } from "lib/coinByLanguage";
+import { useWalletContext } from "contexts/walletContext";
 import { useCurrentUser } from "contexts/currentUserContext";
+import { useStatistics } from "@ribon.io/shared/hooks";
 import ImpactMenu from "./ImpactMenu";
 import TicketIcon from "./assets/ticket-icon.svg";
 import MoneyIcon from "./assets/money-icon.svg";
@@ -19,9 +20,14 @@ function ImpactPage(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "impactPage",
   });
-
   const { currentUser } = useCurrentUser();
-  const { userStatistics } = useStatistics({ userId: currentUser?.id });
+  const { wallet } = useWalletContext();
+
+  const { userStatistics } = useStatistics({
+    userId: currentUser?.id,
+    walletAddress: wallet!,
+  });
+
   const { currentLang } = useLanguage();
 
   useEffect(() => {

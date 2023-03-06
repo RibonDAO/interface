@@ -79,12 +79,12 @@ function CausesPage(): JSX.Element {
   const { nonProfits, isLoading } = useNonProfits();
   const { findOrCreateUser } = useUsers();
   const { createSource } = useSources();
-  const { signedIn, setCurrentUser } = useCurrentUser();
+  const { signedIn, setCurrentUser, currentUser } = useCurrentUser();
   const { showDonationTicketModal } = useDonationTicketModal(
     undefined,
     integration,
   );
-  const { canDonate } = useCanDonate(integrationId);
+  const { canDonate, refetch: refetchCanDonate } = useCanDonate(integrationId);
   const { destroyVoucher, createVoucher } = useVoucher();
 
   const { isMobile } = useBreakpoint();
@@ -101,18 +101,25 @@ function CausesPage(): JSX.Element {
     return false;
   }
 
-  const hasAvailableDonation = !state?.blockedDonation && canDonate;
+  const hasAvailableDonation = useCallback(
+    () => !state?.blockedDonation && canDonate,
+    [state?.blockedDonation, canDonate],
+  );
+
+  useEffect(() => {
+    refetchCanDonate();
+  }, [JSON.stringify(currentUser)]);
 
   useEffect(() => {
     track("Cause Page View");
   }, []);
 
   useEffect(() => {
-    if (hasSeenDonationModal && hasAvailableDonation) {
+    if (hasReceivedTicketToday() && hasAvailableDonation()) {
       createVoucher();
     } else if (
       !hasReceivedTicketToday() ||
-      (hasAvailableDonation && !hasSeenDonationModal)
+      (hasAvailableDonation() && !hasSeenDonationModal)
     ) {
       destroyVoucher();
       if (integration) {

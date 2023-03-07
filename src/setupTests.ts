@@ -32,7 +32,7 @@ export function setupMocks() {
   jest.mock("config/zendesk/features", () => ({
     __esModule: true,
     ZendeskOpenChat: mockZendeskOpenChatFunction,
-  }))
+  }));
   delete (window as any).location;
   (window as any).location = { reload: mockLocationReload };
 }

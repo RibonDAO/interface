@@ -45,7 +45,6 @@ describe("ModalError", () => {
         />,
       );
       clickOn("button");
-
       expect(mockFunction).toHaveBeenCalled();
     });
   });
@@ -72,7 +71,7 @@ describe("ModalError", () => {
         <ModalError visible />,
       );
       clickOn("Access user support");
-      expect(mockZendeskOpenChatFunction).toHaveBeenCalled()
+      expect(mockZendeskOpenChatFunction).toHaveBeenCalled();
     });
   });
 

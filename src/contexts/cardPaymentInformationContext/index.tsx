@@ -18,7 +18,6 @@ import { logEvent } from "lib/events";
 import { logError } from "services/crashReport";
 import { Currencies, Cause, NonProfit } from "@ribon.io/shared/types";
 import creditCardPaymentApi from "services/api/creditCardPaymentApi";
-import successIcon from "assets/icons/success-icon.svg";
 import GivingIcon from "assets/icons/giving-icon.svg";
 import Logo from "assets/icons/logo-background-icon.svg";
 import UserIcon from "assets/icons/user.svg";
@@ -125,27 +124,6 @@ function CardPaymentInformationProvider({ children }: Props) {
     });
   };
 
-  const { show, hide } = useModal({
-    type: MODAL_TYPES.MODAL_ICON,
-    props: {
-      title: t("modalSuccessTitle").replace("{{value}}", cryptoGiving),
-      body: t("modalSuccessDescription"),
-      icon: successIcon,
-      primaryButton: {
-        text: t("modalSuccessButton"),
-        onClick: () => {
-          handleConfirmation();
-          hide();
-        },
-      },
-      onClose: () => {
-        handleConfirmation();
-
-        hide();
-      },
-    },
-  });
-
   const { show: showAnimationModal, hide: closeAnimationModal } = useModal({
     type: MODAL_TYPES.MODAL_ANIMATION,
     props: {
@@ -162,6 +140,7 @@ function CardPaymentInformationProvider({ children }: Props) {
     showAnimationModal();
     setTimeout(() => {
       closeAnimationModal();
+      handleConfirmation();
     }, 3000);
   };
 
@@ -192,7 +171,6 @@ function CardPaymentInformationProvider({ children }: Props) {
 
     try {
       await creditCardPaymentApi.postCreditCardPayment(paymentInformation);
-      show();
 
       logEvent("treasureGivingConfirmMdl_view");
     } catch (error) {

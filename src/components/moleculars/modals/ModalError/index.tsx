@@ -22,6 +22,7 @@ export type Props = {
   eventName?: string;
   eventParams?: Record<string, any>;
 };
+
 function ModalError({
   visible = false,
   title = null,

@@ -2,7 +2,7 @@ import personPaymentsApi from "services/api/personPaymentsApi";
 import { useApi } from "hooks/useApi";
 import { PersonPayment } from "types/entities/PersonPayment";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { emptyRequest } from "services/api";
+import { emptyRequest } from "@ribon.io/shared/services";
 import { useWalletContext } from "contexts/walletContext";
 
 function usePersonPayments() {

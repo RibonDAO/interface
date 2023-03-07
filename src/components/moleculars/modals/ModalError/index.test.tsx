@@ -69,10 +69,9 @@ describe("ModalError", () => {
   describe("when the modal is visible and clicks on button", () => {
     it("open zendesk chat clicking button", () => {
       renderComponent(
-        <ModalError visible  />,
+        <ModalError visible />,
       );
-      const button = screen.getByRole("button")
-      button.click()
+      clickOn("Access user support");
       expect(mockZendeskOpenChatFunction).toHaveBeenCalled()
     });
   });

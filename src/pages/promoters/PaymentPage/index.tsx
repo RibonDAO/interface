@@ -13,7 +13,6 @@ import NonProfit from "types/entities/NonProfit";
 import * as S from "./styles";
 import UserInfoSection from "./UserInfoSection";
 import CardInfoSection from "./CardInfoSection";
-import SupportImage from "../SupportCausePage/assets/support-image.png";
 
 type LocationState = {
   offer: Offer;
@@ -84,7 +83,7 @@ function PaymentPage(): JSX.Element {
       />
       <S.MainContainer>
         <S.SupportImage
-          src={nonProfit?.mainImage || SupportImage}
+          src={nonProfit?.mainImage || cause.mainImage}
           alt="support-cause-img"
         />
         <S.ContentContainer>

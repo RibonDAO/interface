@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { PersonPayment } from "types/entities/PersonPayment";
-import { apiGet } from "..";
+import { apiGet } from "@ribon.io/shared/services";
 
 const personPaymentsApi = {
   getCommunityPersonPayments: (

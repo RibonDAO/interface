@@ -1,5 +1,4 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import GlobeIcon from "assets/icons/globe-icon.svg";
 import InputText, { Props } from ".";
 
 export default {
@@ -21,23 +20,24 @@ Default.args = {
     console.log(value);
   },
   icon: {
-    url: GlobeIcon,
+    name: "bolt",
     class: "left",
   },
   label: {
     text: "Input label",
     icon: {
-      url: GlobeIcon,
+      name: "g_translate",
       class: "left",
     },
   },
   helper: {
     text: "helper text",
     icon: {
-      url: GlobeIcon,
+      name: "error",
       class: "left",
     },
   },
   borderColor: { default: "#eb19c3", active: "#eb19c3" },
   textColor: "#eb19c3",
+  status: "success",
 };

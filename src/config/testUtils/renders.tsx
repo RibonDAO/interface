@@ -6,7 +6,6 @@ import { Router } from "react-router-dom";
 import { I18nextProvider } from "react-i18next";
 import i18n from "i18n-test";
 import theme from "styles/theme";
-import { QueryClient, QueryClientProvider } from "react-query";
 import WalletProvider, {
   IWalletContext,
   WalletContext,
@@ -36,6 +35,7 @@ import NetworkProvider, {
   INetworkContext,
   NetworkContext,
 } from "contexts/networkContext";
+import { QueryClientComponent } from "@ribon.io/shared/hooks";
 
 export interface RenderWithContextResult {
   component: RenderResult;
@@ -92,14 +92,13 @@ function renderAllProviders(
     networkProviderValue = {},
   }: RenderComponentProps = {},
 ) {
-  const queryClient = new QueryClient();
   const historyObject = history;
   historyObject.location.state = locationState;
 
   return {
     component: (
       <ThemeProvider theme={theme}>
-        <QueryClientProvider client={queryClient}>
+        <QueryClientComponent>
           <I18nextProvider i18n={i18n}>
             <Router history={historyObject}>
               {renderProvider(
@@ -135,7 +134,7 @@ function renderAllProviders(
               )}
             </Router>
           </I18nextProvider>
-        </QueryClientProvider>
+        </QueryClientComponent>
       </ThemeProvider>
     ),
     history: historyObject,

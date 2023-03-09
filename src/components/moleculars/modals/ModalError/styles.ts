@@ -27,11 +27,6 @@ export const Body = styled.h4`
   color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
-export const RowsModalRow = styled.div`
-  margin-bottom: ${({ theme }) => theme.spacing(32)};
-  display: flex;
-`;
-
 export const SupportButton = styled(Button)`
   border: 1px solid ${({ theme }) => theme.colors.brand.primary[300]};
   background-color: ${({ theme }) => theme.colors.neutral10};

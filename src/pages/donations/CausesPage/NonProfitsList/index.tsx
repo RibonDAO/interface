@@ -57,7 +57,7 @@ function NonProfitsList({
 
   function handleButtonClick(nonProfit: NonProfit) {
     chooseNonProfit(nonProfit);
-    if (canDonate) {
+    if (canDonateAndHasVoucher) {
       newLogEvent("click", "P1_donateBtn", {
         nonProfitId: nonProfit.id,
       });

@@ -12,3 +12,5 @@ export const RIBON_API =
 export const THE_GRAPH_API =
   getLocalStorageItem(SUBGRAPH_URL) ||
   "https://api.thegraph.com/subgraphs/name/ribondao/ribonsubgraph";
+
+export const PLATFORM = "web";

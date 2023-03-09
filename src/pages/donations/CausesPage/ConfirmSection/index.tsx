@@ -64,7 +64,6 @@ function ConfirmSection({
           state: {
             cause: chosenNonProfit.cause,
             nonProfit: chosenNonProfit,
-            flow: "cause",
           },
         });
       } catch (e: any) {

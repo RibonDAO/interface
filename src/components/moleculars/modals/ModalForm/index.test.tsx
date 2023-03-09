@@ -66,14 +66,15 @@ describe("ModalForm", () => {
           formFields={[]}
           onFormSubmit={() => {}}
           initialState={{ email: "email" }}
+          title="ModalFormTitle"
         />,
       );
-      expectTextNotToBeInTheDocument("ModalForm");
+      expectTextNotToBeInTheDocument("ModalFormTitle");
     });
   });
 
-  describe("when onValuesChange is passed", () => {
-    it("should call onValuesChange when values change", () => {
+  describe("ModalForm with onValuesChange", () => {
+    it("should call onValuesChange when values changes", () => {
       const onValuesChange = jest.fn();
 
       renderComponent(
@@ -98,7 +99,7 @@ describe("ModalForm", () => {
     });
   });
 
-  describe("when passing a icon", () => {
+  describe("ModalError with icon", () => {
     it("should render the icon", () => {
       renderComponent(
         <ModalForm
@@ -113,7 +114,7 @@ describe("ModalForm", () => {
     });
   });
 
-  describe("when passing secondaryButton props", () => {
+  describe("ModalError with secondaryButton", () => {
     it("should render the secondaryButton", () => {
       const onClick = jest.fn();
       renderComponent(
@@ -141,7 +142,7 @@ describe("ModalForm", () => {
           formFields={[]}
           onFormSubmit={() => {}}
           initialState={{ email: "email" }}
-          title={"title"}
+          title="title"
           visible
         />,
       );

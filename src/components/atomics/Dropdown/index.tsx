@@ -1,4 +1,11 @@
-import React, { CSSProperties, useCallback, useEffect, useState } from "react";
+import React, {
+  CSSProperties,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import ArrowDownIcon from "assets/icons/arrow-down-icon.svg";
 import ModalBlank from "components/moleculars/modals/ModalBlank";
 import * as S from "./styles";
@@ -24,6 +31,7 @@ function Dropdown({
   containerId = "dropdown-container",
   customInputStyles = {},
 }: Props): JSX.Element {
+  const containerRef = useRef<HTMLDivElement>(null);
   const valueToText = (value: any) => {
     if (valueText && value) return valueText(value);
 
@@ -51,11 +59,16 @@ function Dropdown({
     updateDropdownValue();
   }, [updateDropdownValue]);
 
+  const parentElement = useMemo(() => {
+    if (containerRef?.current != null)
+      return containerRef.current as HTMLElement;
+    return document.body;
+  }, [containerRef.current]);
+
   return (
-    <S.Container id={containerId}>
+    <S.Container id={containerId} ref={containerRef}>
       <ModalBlank
         visible={optionsVisible}
-        onClose={() => setOptionsVisible(false)}
         customStyles={{
           overlay: {
             backgroundColor: "transparent",
@@ -75,9 +88,7 @@ function Dropdown({
             maxWidth: "472px",
           },
         }}
-        parentSelector={() =>
-          document.querySelector(`#${containerId}`) || document.body
-        }
+        parentSelector={() => parentElement}
       >
         {values.map((value, index) => (
           <S.OptionContainer

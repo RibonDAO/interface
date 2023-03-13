@@ -65,3 +65,7 @@ export function expectPageToNavigateTo(
 export function expectPageToNavigateBack() {
   return expect(mockNavigateBackFunction).toHaveBeenCalled();
 }
+
+export function expectFunctionNotToHaveBeenCalledWith(fn: any, value: any) {
+  return expect(fn).not.toHaveBeenCalledWith(value);
+}

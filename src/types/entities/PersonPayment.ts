@@ -15,7 +15,7 @@ export interface PersonPayment {
     customer: {
       email: string;
     };
-    guest: {
+    crypto_user: {
       wallet_address: string;
     };
   };

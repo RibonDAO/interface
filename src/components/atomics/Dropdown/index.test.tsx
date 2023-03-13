@@ -2,7 +2,7 @@ import { clickOn, renderComponent } from "config/testUtils";
 import {
   expectFunctionNotToHaveBeenCalledWith,
   expectTextNotToBeInTheDocument,
-  expectTextToBeInTheDocument
+  expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
 import Dropdown from ".";
 
@@ -11,12 +11,12 @@ describe("Dropdown", () => {
 
   beforeEach(() => {
     renderComponent(
-        <Dropdown
-            name="dropdown"
-            values={["test1", "test2"]}
-            label="dropdown"
-            onOptionChanged={mockFn}
-        />,
+      <Dropdown
+        name="dropdown"
+        values={["test1", "test2"]}
+        label="dropdown"
+        onOptionChanged={mockFn}
+      />,
     );
   });
 
@@ -40,18 +40,18 @@ describe("Dropdown", () => {
   it("update optionsVisible state when onClose", () => {
     clickOn("dropdown");
     clickOn("test1");
-    expectTextNotToBeInTheDocument("test1")
+    expectTextNotToBeInTheDocument("test1");
   });
 
   describe("without onOptionChanged", () => {
     const onOptionChangedMock = jest.fn();
     it("should not call onOptionChanged when clicked", () => {
       renderComponent(
-          <Dropdown
-              name="dropdown-without-onOptionChanged"
-              values={["option1", "option2"]}
-              label="dropdown-without-onOptionChanged"
-          />,
+        <Dropdown
+          name="dropdown-without-onOptionChanged"
+          values={["option1", "option2"]}
+          label="dropdown-without-onOptionChanged"
+        />,
       );
       clickOn("dropdown-without-onOptionChanged");
       clickOn("option1");
@@ -59,5 +59,3 @@ describe("Dropdown", () => {
     });
   });
 });
-
-

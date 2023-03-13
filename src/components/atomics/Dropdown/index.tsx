@@ -1,4 +1,11 @@
-import React, {CSSProperties, useCallback, useEffect, useMemo, useRef, useState} from "react";
+import React, {
+  CSSProperties,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import ArrowDownIcon from "assets/icons/arrow-down-icon.svg";
 import ModalBlank from "components/moleculars/modals/ModalBlank";
 import * as S from "./styles";
@@ -52,10 +59,11 @@ function Dropdown({
     updateDropdownValue();
   }, [updateDropdownValue]);
 
- const parentElement = useMemo(() => {
-    if (containerRef?.current != null) return containerRef.current as HTMLElement;
+  const parentElement = useMemo(() => {
+    if (containerRef?.current != null)
+      return containerRef.current as HTMLElement;
     return document.body;
- },[containerRef.current])
+  }, [containerRef.current]);
 
   return (
     <S.Container id={containerId} ref={containerRef}>

@@ -3,6 +3,8 @@ name: Continuous Integration
 on:
   push:
   pull_request_target:
+  pull_request:
+    types: [opened, edited]
 
 jobs:
   install-and-test:

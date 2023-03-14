@@ -10,7 +10,7 @@ export const networks = [
     symbolName: "MATIC",
     currencyName: "Matic",
     blockExplorerUrls: "https://polygonscan.com/",
-    defaultPoolAddress: "0x1E7aF4A35E33E8CfA97e12237509623a8037632C",
+    defaultPoolAddress: "0x2108f76aB221999f3Af6d85567cF1c6C14E2A0D1",
     subgraphUrl:
       "https://api.thegraph.com/subgraphs/name/ribondao/subgraphribon",
   },

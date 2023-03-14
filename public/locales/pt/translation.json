@@ -308,12 +308,18 @@
     "and": "e",
     "of": "de"
   },
-  "appInDevelopmentPage": {
-    "title": "App em construção",
-    "description": "Não se preocupe, vamos te lembrar de baixar quando o app for lançado",
-    "surveyDescription": "Responda a pesquisa e ajude na construção",
-    "surveyButton": "Responder",
-    "surveyLink": "https://docs.google.com/forms/d/e/1FAIpQLSfBpxhZIYl5QKvtlPGP3UOWpVskIRn_RD5-o1QF6b4QcO0lsA/viewform?usp=sf_link"
+  "appDownloadPage": {
+    "title": "Baixe o app da Ribon",
+    "description": "Tenha a melhor experiência de doação e acesso a funcionalidades exclusivas",
+    "button": "Pular",
+    "buttonCopyLink": "Copiar link",
+    "buttonDownloadApp": "Baixar app",
+    "buttonCopyLinkSuccess": "Copiado!",
+    "pasteLink": "Cole este link no navegador do celular",
+    "scanQrCode": "QR Code",
+    "chooseStore": "Escolha a loja",
+    "copyText": "Copiar link",
+    "copiedText": "Copiado!"
   },
   "downloadApp": {
     "floating": {

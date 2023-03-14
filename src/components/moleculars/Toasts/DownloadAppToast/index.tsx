@@ -12,7 +12,7 @@ function DownloadAppToast(): JSX.Element {
   const { navigateTo } = useNavigation();
 
   const handleClick = () => {
-    navigateTo("/app-in-development");
+    navigateTo("/app-download");
   };
 
   return (

@@ -311,7 +311,7 @@
   "appDownloadPage": {
     "title": "Baixe o app da Ribon",
     "description": "Tenha a melhor experiência de doação e acesso a funcionalidades exclusivas",
-    "button": "Pular",
+    "button": "Voltar",
     "buttonCopyLink": "Copiar link",
     "buttonDownloadApp": "Baixar app",
     "buttonCopyLinkSuccess": "Copiado!",

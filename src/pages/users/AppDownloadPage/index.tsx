@@ -91,7 +91,7 @@ function AppDownloadPage() {
               {currentText}
             </S.Button>
           </S.LinkContainer>
-          <S.FilledButton>{t("button")}</S.FilledButton>
+          <S.FilledButton onClick={handleGoBack}>{t("button")}</S.FilledButton>
         </>
       );
     }

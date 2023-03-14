@@ -1,3 +1,5 @@
+import { languageByCoin } from "lib/languageByCoin";
+
 export function removeInsignificantZeros(price: string) {
   const lastThree = price.slice(price.length - 3);
   if (lastThree === ".00" || lastThree === ",00")
@@ -6,7 +8,7 @@ export function removeInsignificantZeros(price: string) {
 }
 
 export function formatPrice(price: number, currency: string) {
-  const formatter = new Intl.NumberFormat("en-US", {
+  const formatter = new Intl.NumberFormat(languageByCoin(currency), {
     style: "currency",
     currency,
   });

@@ -104,8 +104,8 @@ describe("useCryptoPayment", () => {
   });
 
   describe("#handleDonateToContract", () => {
-    const RIBON_CONTRACT_ADDRESS = "0x4Ef236DA69ac23a9246cd1d8866264f1A95601C0";
-    const DEFAULT_POOL_ADDRESS = "0x1E7aF4A35E33E8CfA97e12237509623a8037632C";
+    const RIBON_CONTRACT_ADDRESS = "0xE2847c17Be357b1536De359cb6799D367F8ad2ec";
+    const DEFAULT_POOL_ADDRESS = "0x2108f76aB221999f3Af6d85567cF1c6C14E2A0D1";
     const amount = 0;
 
     it("calls the approve function with correct params", async () => {

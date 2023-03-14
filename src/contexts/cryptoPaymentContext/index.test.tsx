@@ -134,6 +134,7 @@ describe("useCryptoPayment", () => {
       expect(addPoolBalanceSpy).toHaveBeenCalledWith(
         DEFAULT_POOL_ADDRESS,
         amount.toString(),
+        true,
       );
       addPoolBalanceSpy.mockRestore();
     });

@@ -1,7 +1,7 @@
 export const networks = [
   {
     chainName: "Polygon Mainnet",
-    ribonContractAddress: "0x4Ef236DA69ac23a9246cd1d8866264f1A95601C0",
+    ribonContractAddress: "0xE2847c17Be357b1536De359cb6799D367F8ad2ec",
     donationTokenContractAddress: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
     chainId: 137,
     rpcUrls: "https://polygon-rpc.com/",
@@ -16,7 +16,7 @@ export const networks = [
   },
   {
     chainName: "Mumbai Testnet",
-    ribonContractAddress: "0x348eA4886c5F0926d7A6Ad6C5CF6dFA4F88CA9Bf",
+    ribonContractAddress: "0xF02a09B21267EDB53B459ddC802C60245dEfbE34",
     donationTokenContractAddress: "0xfe4F5145f6e09952a5ba9e956ED0C25e3Fa4c7F1",
     chainId: 0x13881,
     rpcUrls: "https://rpc-mumbai.maticvigil.com",
@@ -25,7 +25,7 @@ export const networks = [
     symbolName: "MATIC",
     currencyName: "Matic",
     blockExplorerUrls: "https://mumbai.polygonscan.com/",
-    defaultPoolAddress: "0xDE5dD6864A8aE4e5D93E24e24Fee9D42320753B6",
+    defaultPoolAddress: "0x9B00b1a3C4ea8BFbBE984360513f7bE7e971e431",
     subgraphUrl:
       "https://api.thegraph.com/subgraphs/name/ribondao/ribonsubgraph",
   },

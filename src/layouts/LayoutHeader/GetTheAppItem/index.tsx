@@ -20,7 +20,7 @@ function GetTheAppItem(): JSX.Element {
 
   const handleClick = () => {
     newLogEvent("click", "webDwnldCta", { from: "configMenu" });
-    navigateTo("/app-in-development");
+    navigateTo("/app-download");
   };
 
   return (

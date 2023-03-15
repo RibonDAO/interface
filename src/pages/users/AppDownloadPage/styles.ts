@@ -67,26 +67,23 @@ export const Button = styled.button<{ copy?: boolean }>`
     copy ? theme.colors.neutral10 : theme.colors.brand.primary[900]};
 `;
 
-export const ImagesContainer = styled.div`
+export const Badges = styled.div`
   width: 100%;
   margin-top: ${({ theme }) => theme.spacing(12)};
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: start;
   justify-content: center;
 `;
 
-export const DescriptionsContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+export const DescriptionBadge = styled(Description)`
+  margin-left: ${({ theme }) => theme.spacing(40)};
 `;
 
 export const QRCode = styled.img`
   width: 120px;
   height: 120px;
+  margin-top: ${({ theme }) => theme.spacing(12)};
 `;
 
 export const InputLink = styled.input`
@@ -98,16 +95,19 @@ export const InputLink = styled.input`
   background-color: ${({ theme }) => theme.colors.neutral10};
 `;
 
-export const Badges = styled.div`
+export const ImageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  :first-child {
+    margin-right: ${({ theme }) => theme.spacing(40)};
+  }
 `;
 
 export const BorderContainer = styled.div`
-  margin-left: ${({ theme }) => theme.spacing(40)};
-  padding-left: ${({ theme }) => theme.spacing(40)};
+  margin-top: ${({ theme }) => theme.spacing(32)};
   border-left: 1px solid #bfbcb5;
 `;
 
@@ -135,7 +135,9 @@ export const ButtonsContainer = styled.div`
   }
 `;
 
-export const Image = styled.img``;
+export const Image = styled.img`
+  padding-left: ${({ theme }) => theme.spacing(40)};
+`;
 
 export const Link = styled.a``;
 

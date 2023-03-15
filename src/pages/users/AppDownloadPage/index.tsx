@@ -59,12 +59,12 @@ function AppDownloadPage() {
       return (
         <>
           <S.Badges>
-            <S.DescriptionsContainer>
+            <S.ImageContainer>
               <S.Description>{t("scanQrCode")}</S.Description>
-              <S.Description>{t("chooseStore")}</S.Description>
-            </S.DescriptionsContainer>
-            <S.ImagesContainer>
               <S.QRCode src={QRCode} />
+            </S.ImageContainer>
+            <S.ImageContainer>
+              <S.DescriptionBadge>{t("chooseStore")}</S.DescriptionBadge>
               <S.BorderContainer>
                 <S.Link
                   href={ANDROID_APP_LINK}
@@ -81,7 +81,7 @@ function AppDownloadPage() {
                   <S.Image src={AppleBadge} />
                 </S.Link>
               </S.BorderContainer>
-            </S.ImagesContainer>
+            </S.ImageContainer>
           </S.Badges>
 
           <S.Description>{t("pasteLink")}</S.Description>

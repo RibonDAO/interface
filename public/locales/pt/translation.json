@@ -4,7 +4,7 @@
       "donationModalTitle": "Você ganhou um ticket doação",
       "donationModalButtonText": "Receber ticket",
       "donationWithRibonModalTitle": "Doar juntos para mudar vidas!",
-      "donationWithIntegrationModalTitle": "A {{integrationName}} te trouxe aqui",
+      "donationWithIntegrationModalTitle": "{{integrationName}} te trouxe aqui",
       "donationWithIntegrationModalSubtitle": "Você tem um ticket para receber",
       "donationWithIntegrationModalButtonText": "Receber ticket",
       "confirmModalTitle": "Insira seu e-mail para usar seu ticket doação",

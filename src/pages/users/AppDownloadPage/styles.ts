@@ -59,7 +59,7 @@ export const Button = styled.button<{ copy?: boolean }>`
 
   width: 100%;
   padding: ${({ theme }) => theme.spacing(12, 16)};
-  border: 1px solid ${({ theme }) => theme.colors.brand.primary[900]};
+  border: 1px solid ${({ theme }) => theme.colors.brand.primary[600]};
   border-radius: 8px;
   background-color: ${({ theme, copy }) =>
     copy ? theme.colors.brand.primary[900] : theme.colors.neutral10};

@@ -9,7 +9,6 @@ export const Title = styled.p`
   ${stylizedDisplayMd}
 
   margin-top: ${({ theme }) => theme.spacing(20)};
-  margin-bottom: ${({ theme }) => theme.spacing(24)};
   color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;
 
@@ -135,7 +134,9 @@ export const ButtonsContainer = styled.div`
   }
 `;
 
-export const Image = styled.img`
+export const Image = styled.img``;
+
+export const ImageBadge = styled.img`
   padding-left: ${({ theme }) => theme.spacing(40)};
 `;
 

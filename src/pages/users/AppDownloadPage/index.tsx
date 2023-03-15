@@ -71,14 +71,14 @@ function AppDownloadPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <S.Image src={GoogleBadge} />
+                  <S.ImageBadge src={GoogleBadge} />
                 </S.Link>
                 <S.Link
                   href={IOS_APP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <S.Image src={AppleBadge} />
+                  <S.ImageBadge src={AppleBadge} />
                 </S.Link>
               </S.BorderContainer>
             </S.ImageContainer>

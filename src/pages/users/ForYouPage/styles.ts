@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  height: 100vh;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  grid-gap: 0;
+export const Container = styled.div``;
+
+export const TopImageBackground = styled.img`
+  left: 0;
+  top: 0;
+  position: fixed;
+  display: block;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    width: 960px;
+    display: none;
   }
 `;
 
@@ -28,17 +29,7 @@ export const RightImage = styled.img`
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     position: absolute;
     right: 0;
+    top: 0;
     display: block;
-  }
-`;
-
-export const LeftArrow = styled.img`
-  width: 24px;
-  height: 24px;
-  margin: ${({ theme }) => theme.spacing(16)};
-  cursor: pointer;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    margin-top: ${({ theme }) => theme.spacing(64)};
   }
 `;

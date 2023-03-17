@@ -78,6 +78,7 @@
     "menu": {
       "impactPageTitle": "Impact",
       "causesPageTitle": "Tickets",
+      "forYouPageTitle": "For you",
       "givingPageTitle": "Giving",
       "communityMenuItem": "Community",
       "directDonationMenuItem": "Direct donation"
@@ -309,7 +310,7 @@
     "of": "of"
   },
   "appDownloadPage": {
-    "title": "Get Ribon's mobile app",
+    "title": "Get Ribon's Beta mobile app",
     "description": "Get the best donation experience we can offer and access exclusive features!",
     "button": "Go back",
     "buttonCopyLink": "Copy link",
@@ -325,5 +326,9 @@
     "floating": {
       "title": "Get app"
     }
+  },
+  "forYouPage": {
+    "title": "Get the app and check out what's new for you",
+    "getAppButtonText": "Get app"
   }
 }

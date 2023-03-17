@@ -25,6 +25,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   grid-gap: 0;
+
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 960px;
   }
@@ -32,8 +33,8 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div<{ hasMenu?: boolean }>`
   width: ${({ hasMenu }) => (hasMenu ? "100%" : "320px")};
-  margin-top: ${({ hasMenu }) => hasMenu && "20%"};
-  margin: ${({ hasMenu }) => !hasMenu && "0 auto"};
+  margin: ${({ hasMenu }) => hasMenu === false && "0 auto"};
+  margin-top: ${({ hasMenu }) => hasMenu && "30%"};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -128,11 +129,11 @@ export const ButtonsContainer = styled.div<{
   hasMenu?: boolean;
 }>`
   width: 100%;
-  position: fixed;
   padding: ${({ theme }) => theme.spacing(0, 16, 16)};
-  bottom: ${({ hasMenu }) => (!hasMenu ? "0" : "10%")};
+  position: fixed;
+  bottom: ${({ hasMenu }) => (hasMenu === false ? "0" : "10%")};
   left: 0;
-  z-index: ${({ theme, hasMenu }) => !hasMenu && theme.zindex.navbar};
+  z-index: ${({ theme, hasMenu }) => hasMenu === false && theme.zindex.navbar};
   background-color: ${({ theme }) => theme.colors.neutral10};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
@@ -142,7 +143,7 @@ export const ButtonsContainer = styled.div<{
   }
 `;
 
-export const Image = styled.img<{ hasMenu?: boolean }>``;
+export const Image = styled.img``;
 
 export const ImageBadge = styled.img`
   padding-left: ${({ theme }) => theme.spacing(40)};
@@ -184,7 +185,6 @@ export const LeftArrow = styled.img`
 export const DownloadButton = styled.a<{
   textColor?: string;
   backgroundColor?: string;
-  hasMenu?: boolean;
 }>`
   ${defaultBodyMdSemibold}
 

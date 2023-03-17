@@ -58,7 +58,6 @@ function AppDownloadSection({
           {description && <S.Description>{description}</S.Description>}
           <S.ButtonsContainer hasMenu={!hasBackButton}>
             <S.DownloadButton
-              hasMenu={!hasBackButton}
               href={handleReturnLinkDevice()}
               textColor={firstButton.textColor}
               backgroundColor={firstButton.backgroundColor}

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import useBreakpoint from "hooks/useBreakpoint";
 import { useState } from "react";
 import { ANDROID_APP_LINK, IOS_APP_LINK, LINK_TREE } from "utils/constants";

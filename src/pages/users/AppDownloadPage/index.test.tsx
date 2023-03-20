@@ -13,7 +13,7 @@ describe("App Download Page", () => {
   });
 
   it("should render the app download page", () => {
-    expectTextToBeInTheDocument("Get Ribon's mobile app");
+    expectTextToBeInTheDocument("Get Ribon's Beta mobile app");
 
     expectTextToBeInTheDocument("Scan QR Code");
     expectTextToBeInTheDocument("Choose a store");

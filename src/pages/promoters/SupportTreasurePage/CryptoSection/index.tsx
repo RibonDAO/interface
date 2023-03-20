@@ -79,6 +79,7 @@ function CryptoSection(): JSX.Element {
     contract?.functions.addPoolBalance(
       currentNetwork.defaultPoolAddress, // TODO get pool address dynamically
       formatToDecimals(amount, tokenDecimals).toString(),
+      true,
     );
 
   const fetchUsdcUserBalance = useCallback(async () => {

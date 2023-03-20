@@ -151,26 +151,6 @@ export const ImageBadge = styled.img`
 
 export const Link = styled.a``;
 
-export const LeftImage = styled.img`
-  display: none;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    display: block;
-  }
-`;
-export const RightImage = styled.img`
-  display: none;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    position: absolute;
-    right: 0;
-    display: block;
-  }
-`;
-
 export const LeftArrow = styled.img`
   width: 24px;
   height: 24px;
@@ -189,7 +169,7 @@ export const DownloadButton = styled.a<{
   ${defaultBodyMdSemibold}
 
   width: 100%;
-  margin-bottom: ${({ theme }) => theme.spacing(16)};
+  margin-bottom: ${({ theme }) => theme.spacing(32)};
   padding: ${({ theme }) => theme.spacing(12, 16)};
   border-radius: 8px;
   position: relative;

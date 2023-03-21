@@ -95,6 +95,7 @@ function CryptoPaymentProvider({ children }: Props) {
     contract?.functions.addPoolBalance(
       currentPool,
       formatToDecimals(amount, tokenDecimals).toString(),
+      true,
     );
 
   const fetchUsdcUserBalance = useCallback(async () => {

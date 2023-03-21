@@ -78,6 +78,7 @@
     "menu": {
       "impactPageTitle": "Impacto",
       "causesPageTitle": "Tickets",
+      "forYouPageTitle": "Para você",
       "givingPageTitle": "Contribuir",
       "communityMenuItem": "Comunidade",
       "directDonationMenuItem": "Doação direta"
@@ -309,7 +310,7 @@
     "of": "de"
   },
   "appDownloadPage": {
-    "title": "Baixe o app da Ribon",
+    "title": "Baixe o app Beta da Ribon",
     "description": "Tenha a melhor experiência de doação e acesso a funcionalidades exclusivas",
     "button": "Voltar",
     "buttonCopyLink": "Copiar link",
@@ -325,5 +326,9 @@
     "floating": {
       "title": "Baixar app"
     }
+  },
+  "forYouPage": {
+    "title": "Baixe o app e veja novidades pra você",
+    "getAppButtonText": "Baixar app"
   }
 }

@@ -25,6 +25,7 @@ import PaymentPage from "pages/promoters/PaymentPage";
 import { useLocation } from "react-router";
 import { logPageView } from "lib/events";
 import AppInDevelopmentPage from "pages/users/AppDownloadPage";
+import ForYouPage from "pages/users/ForYouPage";
 import Navigation from "./Navigation";
 
 function RoutesComponent(): JSX.Element {
@@ -87,6 +88,16 @@ function RoutesComponent(): JSX.Element {
           <WalletProvider>
             <MainLayout>
               <ImpactPage />
+            </MainLayout>
+          </WalletProvider>
+        </Suspense>
+      </Route>
+
+      <Route path="/forYou" exact>
+        <Suspense fallback={<div />}>
+          <WalletProvider>
+            <MainLayout hideHeader>
+              <ForYouPage />
             </MainLayout>
           </WalletProvider>
         </Suspense>

@@ -5,7 +5,7 @@ import {
 } from "config/testUtils/expects";
 import offerFactory from "config/testUtils/factories/offerFactory";
 import causeFactory from "config/testUtils/factories/causeFactory";
-import { screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import PaymentPage from ".";
 
 jest.mock("@ribon.io/shared/hooks", () => ({
@@ -62,7 +62,9 @@ describe("PaymentPage", () => {
           fillByPlaceholder("Country", "Brazil");
           fillByPlaceholder("City", "Brasilia");
           fillByPlaceholder("State", "DF");
-          fillByPlaceholder("Tax ID", "00000000000");
+          fireEvent.change(screen.getByPlaceholderText("Tax ID"), {
+            target: { value: "000.000.000-00" },
+          });
         });
 
         it("goes to enabled mode", () => {
@@ -85,7 +87,9 @@ describe("PaymentPage", () => {
       fillByPlaceholder("Country", "Brazil");
       fillByPlaceholder("City", "Brasilia");
       fillByPlaceholder("State", "DF");
-      fillByPlaceholder("Tax ID", "00000000000");
+      fireEvent.change(screen.getByPlaceholderText("Tax ID"), {
+        target: { value: "000.000.000-00" },
+      });
 
       clickOn("Continue");
     });
@@ -107,8 +111,12 @@ describe("PaymentPage", () => {
 
       describe("when the form is filled", () => {
         beforeEach(() => {
-          fillByPlaceholder("Card number", "4111111111111111");
-          fillByPlaceholder("Expiration", "0525");
+          fireEvent.change(screen.getByPlaceholderText("Card number"), {
+            target: { value: "4111 1111 1111 111" },
+          });
+          fireEvent.change(screen.getByPlaceholderText("Expiration"), {
+            target: { value: "12/2023" },
+          });
           fillByPlaceholder("Name on card", "JOHN DOE");
           fillByPlaceholder("E-mail", "john@doe.com");
           fillByPlaceholder("Card verification code", "411");

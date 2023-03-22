@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderComponent } from "config/testUtils";
 import { expectDisplayValueToBeInTheDocument } from "config/testUtils/expects";
@@ -15,7 +15,9 @@ describe("UserInfoSection", () => {
     userEvent.type(screen.getByPlaceholderText("Country"), "Brazil");
     userEvent.type(screen.getByPlaceholderText("City"), "São Paulo");
     userEvent.type(screen.getByPlaceholderText("State"), "SP");
-    userEvent.type(screen.getByPlaceholderText("Tax ID"), "00000000000");
+    fireEvent.change(screen.getByPlaceholderText("Tax ID"), {
+      target: { value: "000.000.000-00" },
+    });
 
     expectDisplayValueToBeInTheDocument("Brazil");
     expectDisplayValueToBeInTheDocument("São Paulo");

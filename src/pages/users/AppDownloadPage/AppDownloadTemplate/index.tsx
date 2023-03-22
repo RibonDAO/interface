@@ -61,6 +61,7 @@ function AppDownloadTemplate({
               textColor={firstButton.textColor}
               backgroundColor={firstButton.backgroundColor}
               hasAnotherButton={!!secondButton}
+              onClick={firstButton.onClick}
             >
               {firstButton.text}
             </S.DownloadButton>

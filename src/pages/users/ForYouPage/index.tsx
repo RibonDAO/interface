@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import useBreakpoint from "hooks/useBreakpoint";
 import theme from "styles/theme";
 import NewsImage from "./assets/news-image.svg";
-import AppDownloadSection from "../AppDownloadSection";
+import AppDownloadTemplate from "../AppDownloadPage/AppDownloadTemplate";
 import LeftImage from "./assets/left-background.svg";
 import RightImage from "./assets/right-background.svg";
 import BackgroundImage from "./assets/for-you-background.svg";
@@ -26,7 +26,7 @@ function ForYouPage(): JSX.Element {
             <S.RightImage src={RightImage} />
           </>
         )}
-        <AppDownloadSection
+        <AppDownloadTemplate
           title={t("title")}
           image={NewsImage}
           hasBackButton={false}

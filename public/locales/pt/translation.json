@@ -312,7 +312,8 @@
   "appDownloadPage": {
     "title": "Baixe o app Beta da Ribon",
     "description": "Tenha a melhor experiência de doação e acesso a funcionalidades exclusivas",
-    "button": "Voltar",
+    "buttonBack": "Voltar",
+    "buttonSkip": "Pular",
     "buttonCopyLink": "Copiar link",
     "buttonDownloadApp": "Baixar app",
     "buttonCopyLinkSuccess": "Copiado!",

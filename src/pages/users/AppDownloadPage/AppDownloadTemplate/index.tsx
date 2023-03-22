@@ -18,7 +18,7 @@ export type Props = {
   secondButton?: ButtonProps;
 };
 
-function AppDownloadSection({
+function AppDownloadTemplate({
   title,
   image,
   description,
@@ -60,10 +60,11 @@ function AppDownloadSection({
               href={handleReturnLinkDevice()}
               textColor={firstButton.textColor}
               backgroundColor={firstButton.backgroundColor}
+              hasAnotherButton={!!secondButton}
             >
               {firstButton.text}
             </S.DownloadButton>
-            {hasBackButton && (
+            {secondButton && (
               <S.Button onClick={secondButton?.onClick}>
                 {secondButton?.text}
               </S.Button>
@@ -126,4 +127,4 @@ function AppDownloadSection({
   );
 }
 
-export default AppDownloadSection;
+export default AppDownloadTemplate;

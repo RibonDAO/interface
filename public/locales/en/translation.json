@@ -312,7 +312,8 @@
   "appDownloadPage": {
     "title": "Get Ribon's Beta mobile app",
     "description": "Get the best donation experience we can offer and access exclusive features!",
-    "button": "Go back",
+    "buttonBack": "Go back",
+    "buttonSkip": "Skip",
     "buttonCopyLink": "Copy link",
     "buttonDownloadApp": "Download app",
     "buttonCopyLinkSuccess": "Copied!",

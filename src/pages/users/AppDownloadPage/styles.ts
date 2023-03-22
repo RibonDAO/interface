@@ -35,8 +35,9 @@ export const RightImage = styled.img`
 export const LeftArrow = styled.img`
   width: 24px;
   height: 24px;
-  margin: ${({ theme }) => theme.spacing(16)};
   cursor: pointer;
+  margin: ${({ theme }) =>
+    `${theme.spacing(16)} ${theme.spacing(16)} ${theme.spacing(16)} 0`};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     margin-top: ${({ theme }) => theme.spacing(64)};

@@ -31,10 +31,16 @@ export const Container = styled.div`
   }
 `;
 
-export const Wrapper = styled.div<{ hasMenu?: boolean }>`
+export const Wrapper = styled.div<{
+  hasMenu?: boolean;
+  hasMarginTop?: boolean;
+}>`
   width: ${({ hasMenu }) => (hasMenu ? "100%" : "320px")};
   margin: ${({ hasMenu }) => hasMenu === false && "0 auto"};
-  margin-top: ${({ hasMenu }) => (hasMenu ? "30%" : "5%")};
+  margin-top: ${({ hasMenu }) => hasMenu && "30%"};
+  margin-top: ${({ hasMarginTop, theme }) => hasMarginTop && theme.spacing(64)};
+  margin-top: ${({ hasMenu, hasMarginTop }) =>
+    !hasMenu && !hasMarginTop && "5%"};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,6 +50,7 @@ export const Wrapper = styled.div<{ hasMenu?: boolean }>`
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 320px;
     margin: ${({ hasMenu }) => hasMenu && "15% auto 0 auto"};
+    margin-top: ${({ hasMarginTop }) => hasMarginTop && "56px"};
   }
 `;
 

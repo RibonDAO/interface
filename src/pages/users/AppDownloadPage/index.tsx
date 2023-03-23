@@ -76,6 +76,7 @@ function AppDownloadPage() {
             onClick: () => handleOnClickSecondButton(),
           }}
           hasBackButton
+          spacingTopDonationFlow={comesFromPostDonation}
         />
       </S.Container>
     </S.Container>

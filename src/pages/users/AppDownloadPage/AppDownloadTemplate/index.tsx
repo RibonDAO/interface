@@ -16,6 +16,7 @@ export type Props = {
   hasBackButton?: boolean;
   firstButton: ButtonProps;
   secondButton?: ButtonProps;
+  spacingTopDonationFlow?: boolean;
 };
 
 function AppDownloadTemplate({
@@ -25,6 +26,7 @@ function AppDownloadTemplate({
   hasBackButton,
   firstButton,
   secondButton,
+  spacingTopDonationFlow,
 }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "appDownloadPage",
@@ -120,7 +122,7 @@ function AppDownloadTemplate({
   };
 
   return (
-    <S.Wrapper hasMenu={!hasBackButton}>
+    <S.Wrapper hasMenu={!hasBackButton} hasMarginTop={spacingTopDonationFlow}>
       <S.Image src={image} />
       <S.Title>{title}</S.Title>
       {render()}

@@ -1,5 +1,5 @@
 import IconsAroundImage from "components/atomics/sections/IconsAroundImage";
-import { useOffers } from "@ribon.io/shared/hooks";
+import { useOffers, useStatistics } from "@ribon.io/shared/hooks";
 import VolunteerActivismPink from "assets/icons/volunteer-activism-pink.svg";
 import VolunteerActivismYellow from "assets/icons/volunteer-activism-yellow.svg";
 import VolunteerActivismGreen from "assets/icons/volunteer-activism-green.svg";
@@ -20,6 +20,7 @@ import getThemeByFlow from "lib/themeByFlow";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import { getAudioFromStorage } from "lib/cachedAudio";
 import ReactHowler from "react-howler";
+import { useCurrentUser } from "contexts/currentUserContext";
 import * as S from "./styles";
 
 function DonationDoneCausePage(): JSX.Element {
@@ -45,6 +46,29 @@ function DonationDoneCausePage(): JSX.Element {
   } = useLocation<LocationState>();
   const { getOffer } = useOffers(currency);
   const [offer, setOffer] = useState<Offer>();
+  const { currentUser } = useCurrentUser();
+
+  const {
+    userStatistics,
+    refetch: refetchStatistics,
+    isLoading,
+  } = useStatistics({
+    userId: currentUser?.id,
+  });
+
+  const quantityOfDonationsToShowDownload = 3;
+
+  const shouldShowAppDownload = useCallback(
+    () =>
+      Number(userStatistics?.totalTickets) %
+        quantityOfDonationsToShowDownload ===
+      0,
+    [userStatistics],
+  );
+
+  useEffect(() => {
+    refetchStatistics();
+  }, [currentUser]);
 
   const donationInfos = useCallback(
     async (idOffer: number) => {
@@ -74,7 +98,12 @@ function DonationDoneCausePage(): JSX.Element {
         state: { nonProfit, cause },
       });
     }
-    if (!hasButton) {
+    if (!hasButton && shouldShowAppDownload()) {
+      navigateTo({
+        pathname: "/app-download",
+        state: { nonProfit },
+      });
+    } else if (!hasButton && !isLoading) {
       navigateTo({
         pathname: "/post-donation",
         state: { nonProfit, cause },
@@ -92,7 +121,7 @@ function DonationDoneCausePage(): JSX.Element {
         navigate();
       }, 5000),
     );
-  }, []);
+  }, [currentUser, userStatistics]);
 
   const colorTheme = getThemeByFlow(flow || "cause");
 

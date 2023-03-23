@@ -34,7 +34,7 @@ export const Container = styled.div`
 export const Wrapper = styled.div<{ hasMenu?: boolean }>`
   width: ${({ hasMenu }) => (hasMenu ? "100%" : "320px")};
   margin: ${({ hasMenu }) => hasMenu === false && "0 auto"};
-  margin-top: ${({ hasMenu }) => hasMenu && "30%"};
+  margin-top: ${({ hasMenu }) => (hasMenu ? "30%" : "5%")};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -151,25 +151,16 @@ export const ImageBadge = styled.img`
 
 export const Link = styled.a``;
 
-export const LeftArrow = styled.img`
-  width: 24px;
-  height: 24px;
-  margin: ${({ theme }) => theme.spacing(16)};
-  cursor: pointer;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    margin-top: ${({ theme }) => theme.spacing(64)};
-  }
-`;
-
 export const DownloadButton = styled.a<{
   textColor?: string;
   backgroundColor?: string;
+  hasAnotherButton?: boolean;
 }>`
   ${defaultBodyMdSemibold}
 
   width: 100%;
-  margin-bottom: ${({ theme }) => theme.spacing(32)};
+  margin-bottom: ${({ theme, hasAnotherButton }) =>
+    hasAnotherButton ? theme.spacing(16) : theme.spacing(32)};
   padding: ${({ theme }) => theme.spacing(12, 16)};
   border-radius: 8px;
   position: relative;

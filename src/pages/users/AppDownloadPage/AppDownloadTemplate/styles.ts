@@ -40,7 +40,7 @@ export const Wrapper = styled.div<{
   margin-top: ${({ hasMenu }) => hasMenu && "30%"};
   margin-top: ${({ hasMarginTop, theme }) => hasMarginTop && theme.spacing(64)};
   margin-top: ${({ hasMenu, hasMarginTop }) =>
-    !hasMenu && !hasMarginTop && "5%"};
+    hasMenu === false && hasMarginTop === false && "5%"};
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -57,6 +57,8 @@ function DonationDoneCausePage(): JSX.Element {
   });
 
   const quantityOfDonationsToShowDownload = 3;
+  const quantityOfDonationsToShowContribute = 5;
+
   const firstDonation = 1;
 
   const shouldShowAppDownload = useCallback(
@@ -64,6 +66,14 @@ function DonationDoneCausePage(): JSX.Element {
       Number(userStatistics?.totalTickets) %
         quantityOfDonationsToShowDownload ===
         0 || Number(userStatistics?.totalTickets) === firstDonation,
+    [userStatistics],
+  );
+
+  const shouldShowContribute = useCallback(
+    () =>
+      Number(userStatistics?.totalTickets) %
+        quantityOfDonationsToShowContribute ===
+        0 || Number(userStatistics?.totalTickets) === 0,
     [userStatistics],
   );
 
@@ -99,16 +109,22 @@ function DonationDoneCausePage(): JSX.Element {
         state: { nonProfit, cause },
       });
     }
-    if (!hasButton && shouldShowAppDownload()) {
-      navigateTo({
-        pathname: "/app-download",
-        state: { nonProfit },
-      });
-    } else if (!hasButton && !isLoading) {
-      navigateTo({
-        pathname: "/post-donation",
-        state: { nonProfit, cause },
-      });
+    if (!hasButton) {
+      if (shouldShowAppDownload()) {
+        navigateTo({
+          pathname: "/app-download",
+          state: { nonProfit, showContribute: shouldShowContribute() },
+        });
+      } else if (!isLoading && shouldShowContribute()) {
+        navigateTo({
+          pathname: "/post-donation",
+          state: { nonProfit, cause },
+        });
+      } else if (!isLoading && userStatistics) {
+        navigateTo({
+          pathname: "/",
+        });
+      }
     }
   }
 

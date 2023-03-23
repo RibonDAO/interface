@@ -57,12 +57,13 @@ function DonationDoneCausePage(): JSX.Element {
   });
 
   const quantityOfDonationsToShowDownload = 3;
+  const firstDonation = 1;
 
   const shouldShowAppDownload = useCallback(
     () =>
       Number(userStatistics?.totalTickets) %
         quantityOfDonationsToShowDownload ===
-      0,
+        0 || Number(userStatistics?.totalTickets) === firstDonation,
     [userStatistics],
   );
 

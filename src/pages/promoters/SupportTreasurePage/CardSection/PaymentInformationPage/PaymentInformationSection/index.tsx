@@ -1,8 +1,7 @@
 import InputText from "components/atomics/inputs/InputText";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { maskToCreditCard } from "lib/maskToCreditCard";
-import { maskToExpirationDate } from "lib/maskToExpirationDate";
+
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "lib/events";
@@ -34,14 +33,6 @@ function PaymentInformationSection() {
     logEvent("treasureSupportPayment_view");
   }, []);
 
-  const maskExpiration = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setExpirationDate(maskToExpirationDate(e.target.value));
-  };
-
-  const maskCreditCard = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNumber(maskToCreditCard(e.target.value));
-  };
-
   useEffect(() => {
     if (email && number && name && expirationDate && cvv.length >= 3) {
       setButtonDisabled(false);
@@ -65,11 +56,10 @@ function PaymentInformationSection() {
       />
       <InputText
         name="number"
+        mask="9999 9999 9999 9999"
         placeholder={t("cardNumber")}
         value={number}
-        onChange={maskCreditCard}
-        maxLength={19}
-        minLength={19}
+        onChange={(e) => setNumber(e.target.value)}
         required
       />
       <InputText
@@ -82,11 +72,11 @@ function PaymentInformationSection() {
       <S.Half>
         <InputText
           name="expirationDate"
+          mask="99/9999"
           autofill="cc-exp"
           value={expirationDate}
           placeholder={t("cardDueDate")}
-          onChange={maskExpiration}
-          maxLength={7}
+          onChange={(e) => setExpirationDate(e.target.value)}
           required
         />
         <InputText

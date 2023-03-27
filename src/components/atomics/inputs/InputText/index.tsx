@@ -19,6 +19,7 @@ export type Props = {
   helper?: Record<string, any>;
   borderColor?: Record<string, any>;
   textColor?: string;
+  mask?: string;
 };
 
 function InputText({
@@ -39,6 +40,7 @@ function InputText({
   helper,
   borderColor,
   textColor,
+  mask,
   ...props
 }: Props): JSX.Element {
   return (
@@ -60,6 +62,7 @@ function InputText({
       <S.Container>
         <S.Input
           placeholder={placeholder}
+          mask={mask ?? ""}
           type={type}
           name={name}
           aria-label={name}

@@ -5,13 +5,14 @@ import {
   defaultBodyXsRegular,
 } from "styles/typography/default";
 import Icon from "components/atomics/Icon";
+import InputMask from "react-input-mask";
 
 export const Container = styled.div`
   width: 100%;
   position: relative;
 `;
 
-export const Input = styled.input<{
+export const Input = styled(InputMask)<{
   borderColor?: Record<string, any>;
   textColor?: string;
   status?: string;

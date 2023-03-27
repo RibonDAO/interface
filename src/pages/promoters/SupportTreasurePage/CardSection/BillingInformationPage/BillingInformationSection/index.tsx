@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import InputAutoComplete from "components/atomics/inputs/InputAutoComplete";
 import { useLanguage } from "hooks/useLanguage";
-import { maskForTaxId } from "lib/maskForTaxId";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import InputText from "components/atomics/inputs/InputText";
 import { logEvent } from "lib/events";
 import { countryList } from "utils/countryList";
+import { maskForTaxId } from "lib/maskForTaxId";
 import * as S from "./styles";
 
 function BillingInformationSection(): JSX.Element {
@@ -32,11 +32,6 @@ function BillingInformationSection(): JSX.Element {
   }
 
   const maxTaxIdLength = isInBrazil() ? 14 : 11;
-
-  const handleChangeMask = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setTaxId(maskForTaxId(value, isInBrazil()));
-  };
 
   useEffect(() => {
     if (country && state && city && taxId.length === maxTaxIdLength) {
@@ -78,9 +73,10 @@ function BillingInformationSection(): JSX.Element {
         />
         <InputText
           name={taxId}
+          mask={maskForTaxId(country, currentLang)}
           placeholder={t("taxId")}
           value={taxId}
-          onChange={handleChangeMask}
+          onChange={(e) => setTaxId(e.target.value)}
           maxLength={maxTaxIdLength}
           required
         />

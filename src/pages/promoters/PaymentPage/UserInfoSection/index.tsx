@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "hooks/useLanguage";
-import { maskForTaxId } from "lib/maskForTaxId";
+
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import { logEvent } from "lib/events";
 import { countryList } from "utils/countryList";
 import getThemeByFlow from "lib/themeByFlow";
+import { maskForTaxId } from "lib/maskForTaxId";
 import * as S from "./styles";
 
 function UserInfoSection(): JSX.Element {
@@ -35,11 +36,6 @@ function UserInfoSection(): JSX.Element {
   const [brazilFormatForTaxId, setBrazilFormatForTaxId] = useState(true);
 
   const maxTaxIdLength = () => (brazilFormatForTaxId ? 14 : 11);
-
-  const handleChangeMask = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setTaxId(maskForTaxId(value, brazilFormatForTaxId));
-  };
 
   const handleCountryChange = (value: string) => {
     setCountry(value);
@@ -84,10 +80,10 @@ function UserInfoSection(): JSX.Element {
         </S.HalfInputContainer>
         <S.TaxIdInput
           name={taxId}
+          mask={maskForTaxId(country, currentLang)}
           placeholder={t("taxId")}
           value={taxId}
-          onChange={handleChangeMask}
-          maxLength={maxTaxIdLength()}
+          onChange={(e) => setTaxId(e.target.value)}
           required
         />
       </S.Form>

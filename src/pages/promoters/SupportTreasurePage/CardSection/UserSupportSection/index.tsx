@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { logEvent } from "lib/events";
 import supportIcon from "assets/icons/support-icon-orange.svg";
-import { ZendeskOpenChat } from "config/zendesk/features";
 import * as S from "./styles";
 
 function UserSupportSection(): JSX.Element {
@@ -11,7 +10,7 @@ function UserSupportSection(): JSX.Element {
 
   const handleClick = () => {
     logEvent("UserSupportBtn_Click");
-    ZendeskOpenChat();
+    window.open(t("userSupportLink"), "_blank");
   };
 
   return (

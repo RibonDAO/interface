@@ -90,7 +90,8 @@
         "changeLanguageText": "Change language"
       },
       "userSupportItem": {
-        "userSupportText": "User Support"
+        "userSupportText": "User Support",
+        "userSupportLink": "https://api.whatsapp.com/send/?phone=554896605461&text=Hii+Ribon%2C+let’s+talk%3F+&type=phone_number&app_absent=0"
       },
       "getTheAppItem": {
         "getTheAppText": "Get the app"
@@ -262,7 +263,8 @@
         "userSupportCard": {
           "title": "Ribon Support",
           "description": "Questions, ideas, refunds about donations!",
-          "primaryButtonText": "Access user support"
+          "primaryButtonText": "Contact us",
+          "userSupportLink": "https://api.whatsapp.com/send/?phone=554896605461&text=Hii+Ribon%2C+let’s+talk%3F+&type=phone_number&app_absent=0"
         }
       },
       "linkMessageToast": "Learn more"

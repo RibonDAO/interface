@@ -34,12 +34,12 @@
         "empty": "Não há stories disponíveis."
       },
       "modalForm": {
-        "footerStartText": "Ao inserir seu e-mail e se inscrever, você aceita a nossa",
-        "footerAnd": "e",
-        "useTermsText": "Termos de Serviço",
+        "footerStartText": "Ao clicar em Confirmar, eu concordo com os",
+        "footerEndText": " e a",
+        "termsText": "Termos",
+        "termsLink": "https://ribon.io/privacy-policy/#termos",
         "privacyPolicyText": "Política de Privacidade",
-        "privacyPolicyLink": "https://ribon.io/2021/06/01/politica-de-privacidade-e-retencao-de-dados-pessoais/",
-        "useTermsLink": "https://blog.ribon.io/2021/07/12/termos-e-condicoes-de-uso-da-ribon/",
+        "privacyPolicyLink": "https://ribon.io/privacy-policy/#pol%C3%ADtica",
         "accessUserSupport": "Acessar o suporte ao usuário"
       },
       "blockedModal": {

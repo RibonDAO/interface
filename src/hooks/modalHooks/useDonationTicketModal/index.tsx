@@ -56,7 +56,7 @@ export function useDonationTicketModal(
   };
 
   useEffect(() => {
-    if (initialState) showDonationTicketModal();
+    if (initialState && integration) showDonationTicketModal();
   }, []);
 
   return { showDonationTicketModal, hideDonationTicketModal };

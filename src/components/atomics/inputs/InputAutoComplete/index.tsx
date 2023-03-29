@@ -9,6 +9,7 @@ export type Props = {
   required?: boolean;
   borderColor?: Record<string, any>;
   textColor?: string;
+  mask?: string;
 };
 
 function InputAutoComplete({
@@ -19,6 +20,7 @@ function InputAutoComplete({
   required,
   borderColor,
   textColor,
+  mask,
   ...props
 }: Props): JSX.Element {
   const [filteredSuggestions, setFilteredSuggestions] = useState(suggestions);
@@ -29,7 +31,7 @@ function InputAutoComplete({
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const userInput = e.target.value;
-    const relatedSuggestions = suggestions
+    const relatedSuggestions = suggestions.length
       ? suggestions.filter((suggestion) =>
           suggestion.toLowerCase().includes(userInput.toLowerCase()),
         )
@@ -56,6 +58,7 @@ function InputAutoComplete({
     <>
       <S.InputAutoComplete
         id={name}
+        mask={mask ?? ""}
         onChange={onChange}
         onClick={onClick}
         value={input}

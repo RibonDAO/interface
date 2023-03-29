@@ -3,6 +3,8 @@ import { useLocation } from "react-router-dom";
 import { logEvent } from "lib/events";
 import CausesIconOn from "./assets/causesIconOn.svg";
 import CausesIconOff from "./assets/causesIconOff.svg";
+import ForYouIconOn from "./assets/forYouIconOn.svg";
+import ForYouIconOff from "./assets/forYouIconOff.svg";
 import ImpactIconOn from "./assets/impactIconOn.svg";
 import ImpactIconOff from "./assets/impactIconOff.svg";
 import GivingIconOn from "./assets/givingIconOn.svg";
@@ -39,6 +41,13 @@ function Navigation(): JSX.Element {
       iconOff: CausesIconOff,
       title: t("causesPageTitle"),
       event: "homeNavBtn_click",
+    },
+    {
+      path: "/forYou",
+      iconOn: ForYouIconOn,
+      iconOff: ForYouIconOff,
+      title: t("forYouPageTitle"),
+      event: "forYouNavBtn_click",
     },
     {
       path: "/promoters/support-cause",

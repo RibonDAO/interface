@@ -11,10 +11,6 @@ export interface EventParams {
   [key: string]: string | number | undefined;
 }
 
-const integrationName = localStorage.getItem("integrationName") ?? "false";
-const installationId = localStorage.getItem("installationId") ?? "false";
-const hasDonated = localStorage.getItem("HAS_DONATED") ?? "false";
-
 export function logEvent(
   eventName: string,
   eventParams: EventParams = {},
@@ -23,10 +19,11 @@ export function logEvent(
     throw new EventNameTooLongError();
   } else if (process.env.NODE_ENV === "production") {
     const convertedParams = eventParams;
-
-    convertedParams.anonymousId = installationId;
-    convertedParams.integrationName = integrationName;
-    convertedParams.hasDonated = hasDonated;
+    convertedParams.anonymousId =
+      localStorage.getItem("installationId") ?? "false";
+    convertedParams.integrationName =
+      localStorage.getItem("integrationName") ?? "false";
+    convertedParams.hasDonated = localStorage.getItem("HAS_DONATED") ?? "false";
 
     logFirebaseEvent(eventName, convertedParams);
     if (eventName.includes("web_")) {

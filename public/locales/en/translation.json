@@ -34,12 +34,12 @@
         "empty": "No stories available."
       },
       "modalForm": {
-        "footerStartText": "By signing up you agree to Ribon's",
-        "footerAnd": "and",
-        "useTermsText": "Terms of Service",
+        "footerStartText": "By clicking Confirm I agree on Ribon’s",
+        "footerEndText": " and",
+        "termsText": "Terms",
+        "termsLink": "https://ribon.io/en/privacy-policy/#terms",
         "privacyPolicyText": "Privacy Policy",
-        "privacyPolicyLink": "https://ribon.io/2022/06/10/privacy-and-personal-data-retention-policy/",
-        "useTermsLink": "https://blog.ribon.io/2021/07/12/termos-e-condicoes-de-uso-da-ribon/",
+        "privacyPolicyLink": "https://ribon.io/en/privacy-policy/#privacy",
         "accessUserSupport": "Access user support"
       },
       "blockedModal": {
@@ -78,6 +78,7 @@
     "menu": {
       "impactPageTitle": "Impact",
       "causesPageTitle": "Tickets",
+      "forYouPageTitle": "For you",
       "givingPageTitle": "Giving",
       "communityMenuItem": "Community",
       "directDonationMenuItem": "Direct donation"
@@ -308,16 +309,27 @@
     "and": "and",
     "of": "of"
   },
-  "appInDevelopmentPage": {
-    "title": "App in development",
-    "description": "Don't worry, we’ll remember you to download it when its released",
-    "surveyDescription": "Take this survey and help us build the app",
-    "surveyButton": "Take survey",
-    "surveyLink": "https://docs.google.com/forms/d/e/1FAIpQLSc6Z7YQh56lIxD3uh1kX8TwlbkF6c9Q4nkQ1SXdblOljzFs-w/viewform?usp=sf_link"
+  "appDownloadPage": {
+    "title": "Get Ribon's Beta mobile app",
+    "description": "Get the best donation experience we can offer and access exclusive features!",
+    "buttonBack": "Go back",
+    "buttonSkip": "Skip",
+    "buttonCopyLink": "Copy link",
+    "buttonDownloadApp": "Download app",
+    "buttonCopyLinkSuccess": "Copied!",
+    "pasteLink": "Paste this link on your mobile browser",
+    "scanQrCode": "Scan QR Code",
+    "chooseStore": "Choose a store",
+    "copyText": "Copy link",
+    "copiedText": "Copied!"
   },
   "downloadApp": {
     "floating": {
       "title": "Get app"
     }
+  },
+  "forYouPage": {
+    "title": "Get the app and check out what's new for you",
+    "getAppButtonText": "Get app"
   }
 }

@@ -9,6 +9,7 @@ import useVoucher from "hooks/useVoucher";
 import useNavigation from "hooks/useNavigation";
 import { NonProfit, Integration } from "@ribon.io/shared/types";
 import extractUrlValue from "lib/extractUrlValue";
+import { PLATFORM } from "utils/constants";
 import ConfirmEmail from "../ConfirmEmail";
 import ConfirmDonationModal from "../ConfirmDonationModal";
 
@@ -54,6 +55,7 @@ function ConfirmSection({
           integration?.id,
           chosenNonProfit.id,
           email,
+          PLATFORM,
           getExternalIdFromLocationSearch(),
         );
         destroyVoucher();
@@ -62,7 +64,6 @@ function ConfirmSection({
           state: {
             cause: chosenNonProfit.cause,
             nonProfit: chosenNonProfit,
-            flow: "cause",
           },
         });
       } catch (e: any) {

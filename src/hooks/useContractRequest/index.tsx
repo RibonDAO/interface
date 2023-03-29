@@ -1,4 +1,4 @@
-import { useQuery, UseQueryOptions } from "react-query";
+import { useQuery, UseQueryOptions } from "@ribon.io/shared/hooks";
 import { logError } from "services/crashReport";
 
 interface Props {

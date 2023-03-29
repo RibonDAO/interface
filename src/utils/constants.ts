@@ -12,3 +12,12 @@ export const RIBON_API =
 export const THE_GRAPH_API =
   getLocalStorageItem(SUBGRAPH_URL) ||
   "https://api.thegraph.com/subgraphs/name/ribondao/ribonsubgraph";
+
+export const PLATFORM = "web";
+
+export const LINK_TREE = "https://linktr.ee/appribon";
+
+export const ANDROID_APP_LINK =
+  "https://play.google.com/store/apps/details?id=com.app.ribon";
+
+export const IOS_APP_LINK = "https://testflight.apple.com/join/UtOMP5Ie";

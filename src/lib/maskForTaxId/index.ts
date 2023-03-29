@@ -1,14 +1,14 @@
-export const maskForTaxId = (originalString: string, brazilFormat = false) => {
-  let newString = originalString.replace(/\D/g, "");
+import { Languages } from "@ribon.io/shared/types";
+import { TaxIdPTBR } from "types/enums/TaxIdPTBR";
+import { TaxIdUS } from "types/enums/TaxIdUS";
 
-  if (brazilFormat) {
-    newString = newString.replace(/(\d{3})(\d)/, "$1.$2");
-    newString = newString.replace(/(\d{3})(\d)/, "$1.$2");
-    newString = newString.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
-  } else {
-    newString = newString.replace(/(\d{3})(\d)/, "$1-$2");
-    newString = newString.replace(/(\d{2})(\d{3,4})$/, "$1-$2");
-  }
+export function maskForTaxId(coin: string, currentLang: Languages) {
+  const TaxId = currentLang === Languages.PT ? TaxIdPTBR : TaxIdUS;
+  const key = coin
+    .toUpperCase()
+    .replace(/\s/g, "")
+    .split("(")[0] as keyof typeof TaxId;
+  if (key in TaxId) return TaxId[key];
 
-  return newString;
-};
+  return "";
+}

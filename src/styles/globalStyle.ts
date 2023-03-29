@@ -35,6 +35,13 @@ const GlobalStyle = createGlobalStyle`
   button:hover {
     cursor: pointer;
   }
+  .material-symbols-rounded {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+  }
 `;
 
 export default GlobalStyle;

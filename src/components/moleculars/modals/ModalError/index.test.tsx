@@ -3,7 +3,11 @@ import {
   expectTextNotToBeInTheDocument,
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
-import { mockNewLogEventFunction } from "setupTests";
+import {
+  mockNewLogEventFunction,
+  mockZendeskOpenChatFunction,
+} from "setupTests";
+import { screen } from "@testing-library/react";
 import ModalError from ".";
 
 describe("ModalError", () => {
@@ -44,7 +48,6 @@ describe("ModalError", () => {
         />,
       );
       clickOn("button");
-
       expect(mockFunction).toHaveBeenCalled();
     });
   });
@@ -62,6 +65,22 @@ describe("ModalError", () => {
         eventName,
         eventParams,
       );
+    });
+  });
+
+  describe("when the modal is visible and clicks on button", () => {
+    it("open zendesk chat clicking button", () => {
+      renderComponent(<ModalError visible />);
+      clickOn("Access user support");
+      expect(mockZendeskOpenChatFunction).toHaveBeenCalled();
+    });
+  });
+
+  describe("when warning is passed", () => {
+    it("should show warningIcon", () => {
+      renderComponent(<ModalError visible warning />);
+      const icon = screen.getByRole("img");
+      expect(icon).toHaveAttribute("src", "warning-icon.svg");
     });
   });
 });

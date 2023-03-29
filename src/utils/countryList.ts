@@ -357,7 +357,7 @@ export const countryListPtBr = [
   "Jugoslávia",
   "Zaire",
   "Zâmbia",
-  "Zimbábue.",
+  "Zimbábue",
 ];
 
 export const countryList = (currentLang: Languages) =>

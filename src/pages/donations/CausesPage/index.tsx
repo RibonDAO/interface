@@ -70,7 +70,7 @@ function CausesPage(): JSX.Element {
     state?.failedDonation,
   );
 
-  const hasNotSeenDonationModal = !getLocalStorageItem(
+  const hasSeenDonationModal = !!getLocalStorageItem(
     DONATION_MODAL_SEEN_AT_KEY,
   );
 
@@ -79,19 +79,15 @@ function CausesPage(): JSX.Element {
   const { nonProfits, isLoading } = useNonProfits();
   const { findOrCreateUser } = useUsers();
   const { createSource } = useSources();
-  const { signedIn, setCurrentUser } = useCurrentUser();
+  const { signedIn, setCurrentUser, currentUser } = useCurrentUser();
   const { showDonationTicketModal } = useDonationTicketModal(
     undefined,
     integration,
   );
-  const { canDonate } = useCanDonate(integrationId);
-  const { createVoucher, destroyVoucher } = useVoucher();
+  const { canDonate, refetch: refetchCanDonate } = useCanDonate(integrationId);
+  const { destroyVoucher, createVoucher } = useVoucher();
 
   const { isMobile } = useBreakpoint();
-
-  useEffect(() => {
-    if (canDonate) createVoucher();
-  }, [canDonate]);
 
   function hasReceivedTicketToday() {
     const donationModalSeenAtKey = getLocalStorageItem(
@@ -105,16 +101,25 @@ function CausesPage(): JSX.Element {
     return false;
   }
 
-  const hasAvailableDonation = !state?.blockedDonation && canDonate;
+  const hasAvailableDonation = useCallback(
+    () => !state?.blockedDonation && canDonate,
+    [state?.blockedDonation, canDonate],
+  );
+
+  useEffect(() => {
+    refetchCanDonate();
+  }, [JSON.stringify(currentUser)]);
 
   useEffect(() => {
     track("Cause Page View");
   }, []);
 
   useEffect(() => {
-    if (
+    if (hasReceivedTicketToday() && hasAvailableDonation()) {
+      createVoucher();
+    } else if (
       !hasReceivedTicketToday() ||
-      (hasAvailableDonation && hasNotSeenDonationModal)
+      (hasAvailableDonation() && !hasSeenDonationModal)
     ) {
       destroyVoucher();
       if (integration) {

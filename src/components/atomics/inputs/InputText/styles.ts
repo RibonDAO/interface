@@ -1,18 +1,22 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {
   defaultBodyMdRegular,
   defaultBodySmMedium,
   defaultBodyXsRegular,
 } from "styles/typography/default";
+import Icon from "components/atomics/Icon";
+import InputMask from "react-input-mask";
 
 export const Container = styled.div`
   width: 100%;
   position: relative;
 `;
 
-export const Input = styled.input<{
+export const Input = styled(InputMask)<{
   borderColor?: Record<string, any>;
   textColor?: string;
+  status?: string;
+  icon?: Record<string, any>;
 }>`
   ${defaultBodyMdRegular}
 
@@ -35,6 +39,28 @@ export const Input = styled.input<{
     padding: 11px;
     border: 2px solid
       ${(props) => props.borderColor?.active || props.theme.colors.neutral[600]};
+
+    ${(props) =>
+      props.status === "success" &&
+      css`
+        /* this is here to avoid input increase size because of border increase */
+        padding-right: 39px;
+      `}
+
+    ${(props) =>
+      props.icon?.class === "left" &&
+      css`
+        /* this is here to avoid input increase size because of border increase */
+        padding-left: 39px;
+      `}
+  
+
+    ${(props) =>
+      props.icon?.class === "right" &&
+      css`
+        /* this is here to avoid input increase size because of border increase */
+        padding-right: 39px;
+      `}
   }
 
   &:disabled {
@@ -47,22 +73,31 @@ export const Input = styled.input<{
     }
   }
 
-  &.success {
-    padding-right: ${({ theme }) => theme.spacing(48)};
-    border: 1px solid ${({ theme }) => theme.colors.brand.primary[600]};
-  }
+  ${(props) =>
+    props.status === "success" &&
+    css`
+      padding-right: ${({ theme }) => theme.spacing(40)};
+      border-color: ${({ theme }) => theme.colors.brand.primary[600]};
+    `}
 
-  &.error {
-    border: 1px solid ${({ theme }) => theme.colors.feedback.error[600]};
-  }
+  ${(props) =>
+    props.status === "error" &&
+    css`
+      border-color: ${({ theme }) => theme.colors.feedback.error[600]};
+    `}
 
-  &.icon-left {
-    padding-left: ${({ theme }) => theme.spacing(48)};
-  }
+  ${(props) =>
+    props.icon?.class === "left" &&
+    css`
+      padding-left: ${({ theme }) => theme.spacing(40)};
+    `}
+  
 
-  &.icon-right {
-    padding-right: ${({ theme }) => theme.spacing(48)};
-  }
+  ${(props) =>
+    props.icon?.class === "right" &&
+    css`
+      padding-right: ${({ theme }) => theme.spacing(40)};
+    `}
 `;
 
 export const LabelContainer = styled.div`
@@ -84,9 +119,8 @@ export const Label = styled.p`
   }
 `;
 
-export const LabelIcon = styled.img`
-  width: 20px;
-  height: 20px;
+export const LabelIcon = styled(Icon)`
+  font-size: ${({ theme }) => theme.icons.xs};
 
   &.right {
     margin-left: ${({ theme }) => theme.spacing(4)};
@@ -110,9 +144,8 @@ export const Helper = styled.p`
   color: ${({ theme }) => theme.colors.neutral[600]};
 `;
 
-export const HelperIcon = styled.img`
-  width: 14px;
-  height: 14px;
+export const HelperIcon = styled(Icon)`
+  font-size: ${({ theme }) => theme.icons.xs};
 
   &.right {
     margin-left: ${({ theme }) => theme.spacing(4)};
@@ -123,28 +156,27 @@ export const HelperIcon = styled.img`
   }
 `;
 
-export const Icon = styled.img`
-  width: 24px;
-  height: 24px;
+export const InputIcon = styled(Icon)`
   padding: 2px;
   position: absolute;
   top: 14px;
+  font-size: ${({ theme }) => theme.icons.xs};
 
   &.left {
-    left: 14px;
+    left: 12px;
   }
 
   &.right {
-    right: 14px;
+    right: 12px;
   }
 `;
 
-export const SuccessIcon = styled.img`
-  width: 20px;
-  height: 20px;
+export const SuccessIcon = styled(Icon)`
   position: absolute;
   top: 14px;
   right: 14px;
+  font-size: ${({ theme }) => theme.icons.sm};
+  color: ${({ theme }) => theme.colors.brand.primary[600]};
 `;
 
 export const Span = styled.span`
@@ -153,10 +185,10 @@ export const Span = styled.span`
   color: ${({ theme }) => theme.colors.feedback.error[600]};
 `;
 
-export const ErrorIcon = styled.img`
-  width: 14px;
-  height: 14px;
+export const ErrorIcon = styled(Icon)`
   margin-right: ${({ theme }) => theme.spacing(4)};
+  font-size: ${({ theme }) => theme.icons.xs};
+  color: ${({ theme }) => theme.colors.feedback.error[600]};
 `;
 
 export const ErrorContainer = styled.div`

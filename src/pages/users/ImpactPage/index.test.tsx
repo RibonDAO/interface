@@ -21,12 +21,12 @@ describe("Impact Page", () => {
             currentUser: user,
           },
         });
-        mockRequest(`api/v1/users/${user.id}/statistics`, {
+        mockRequest(`api/v1/users/statistics/?id=${user.id}&`, {
           payload: userStatistics as UserStatistics,
         });
       });
 
-      it("should render the imp", () => {
+      it("should render the impacts cards", () => {
         expectTextToBeInTheDocument(userStatistics.totalTickets.toString());
         expectTextToBeInTheDocument("Donated tickets");
 
@@ -66,7 +66,7 @@ describe("Impact Page", () => {
     const user = userFactory({ id: 1 });
     const impact = [impactFactory({ nonProfit: nonProfitFactory({ id: 1 }) })];
 
-    describe("when there are  cards to show", () => {
+    describe("when there are cards to show", () => {
       beforeEach(() => {
         renderComponent(<Impact />, {
           currentUserProviderValue: {

@@ -6,7 +6,7 @@
     "@amplitude/analytics-browser": "^1.6.8",
     "@apollo/client": "^3.6.9",
     "@growthbook/growthbook-react": "^0.9.1",
-    "@ribon.io/shared": "^1.0.34",
+    "@ribon.io/shared": "^1.0.43",
     "@sentry/react": "^6.16.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^12.1.5",
@@ -16,6 +16,7 @@
     "@types/react": "^17.0.20",
     "@types/react-dom": "^17.0.9",
     "@types/react-howler": "^5.2.0",
+    "@types/react-input-mask": "^3.0.2",
     "axios": "^0.27.2",
     "camelcase-keys": "^7.0.2",
     "ethers": "^5.7.0",
@@ -31,6 +32,7 @@
     "react-dom": "^17.0.2",
     "react-howler": "^5.2.0",
     "react-i18next": "^11.15.3",
+    "react-input-mask": "^3.0.0-alpha.2",
     "react-insta-stories": "^2.4.2",
     "react-lottie-player": "^1.4.3",
     "react-modal": "^3.15.1",
@@ -47,10 +49,10 @@
     "web-vitals": "^3.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "testCoverage": "react-scripts test --coverage --watchAll=false",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "testCoverage": "craco test --coverage --watchAll=false",
     "eject": "react-scripts eject",
     "generate": "yarn plop --plopfile ./generators/plopfile.js",
     "lint": "eslint src/**/*.ts src/**/*.tsx && prettier --check src/**/*.ts src/**/*.tsx",
@@ -91,6 +93,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^16.0.0",
+    "@craco/craco": "^7.0.0",
     "@storybook/addon-actions": "^6.5.10",
     "@storybook/addon-essentials": "^6.5.10",
     "@storybook/addon-links": "^6.5.11",
@@ -173,6 +176,10 @@
       "global": {
         "statements": 77
       }
+    },
+    "moduleNameMapper": {
+      "^react$": "<rootDir>/node_modules/react",
+      "^react-dom$": "<rootDir>/node_modules/react-dom"
     }
   }
 }

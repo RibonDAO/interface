@@ -117,7 +117,7 @@ function CardPaymentInformationProvider({ children }: Props) {
   const { integration } = useIntegration(integrationId);
   const { createSource } = useSources();
 
-  const handleConfirmation = async () => {
+  const login = async () => {
     if (!signedIn) {
       const user = await findOrCreateUser(email, normalizedLanguage());
       if (integration) {
@@ -125,6 +125,10 @@ function CardPaymentInformationProvider({ children }: Props) {
       }
       setCurrentUser(user);
     }
+  };
+
+  const handleConfirmation = async () => {
+    login();
     navigateTo({
       pathname: "/donation-done-cause",
       state: {

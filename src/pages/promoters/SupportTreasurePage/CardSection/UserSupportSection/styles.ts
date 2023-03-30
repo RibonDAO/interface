@@ -4,7 +4,7 @@ import cardBackground from "assets/images/card-background.svg";
 
 export const Container = styled.div`
   max-width: 472px;
-  padding: ${({ theme }) => theme.spacing(20, 16, 16)};
+  padding: ${({ theme }) => theme.spacing(16, 16, 16)};
   border-radius: 16px;
   display: flex;
   flex-direction: column;

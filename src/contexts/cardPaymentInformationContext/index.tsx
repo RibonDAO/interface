@@ -23,6 +23,8 @@ import Logo from "assets/icons/logo-background-icon.svg";
 import UserIcon from "assets/icons/user.svg";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
+import { useIntegration, useSources, useUsers } from "@ribon.io/shared/hooks";
+import { normalizedLanguage } from "lib/currentLanguage";
 
 export interface ICardPaymentInformationContext {
   setCurrentCoin: (value: SetStateAction<Currencies>) => void;
@@ -110,8 +112,19 @@ function CardPaymentInformationProvider({ children }: Props) {
   const { navigateTo } = useNavigation();
 
   const toast = useToast();
+  const { findOrCreateUser } = useUsers();
+  const { signedIn, setCurrentUser } = useCurrentUser();
+  const { integration } = useIntegration(integrationId);
+  const { createSource } = useSources();
 
-  const handleConfirmation = () => {
+  const handleConfirmation = async () => {
+    if (!signedIn) {
+      const user = await findOrCreateUser(email, normalizedLanguage());
+      if (integration) {
+        createSource(user.id, integration.id);
+      }
+      setCurrentUser(user);
+    }
     navigateTo({
       pathname: "/donation-done-cause",
       state: {

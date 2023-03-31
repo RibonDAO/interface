@@ -119,11 +119,15 @@ function CardPaymentInformationProvider({ children }: Props) {
 
   const login = async () => {
     if (!signedIn) {
-      const user = await findOrCreateUser(email, normalizedLanguage());
-      if (integration) {
-        createSource(user.id, integration.id);
+      try {
+        const user = await findOrCreateUser(email, normalizedLanguage());
+        if (integration) {
+          createSource(user.id, integration.id);
+        }
+        setCurrentUser(user);
+      } catch (e) {
+        logError(e);
       }
-      setCurrentUser(user);
     }
   };
 

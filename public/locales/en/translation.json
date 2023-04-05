@@ -331,7 +331,20 @@
     }
   },
   "forYouPage": {
-    "title": "Get the app and check out what's new for you",
-    "getAppButtonText": "Get app"
+    "title": "For you",
+    "forYouMenu": {
+      "tasks": "Tasks",
+      "news": "Posts"
+    },
+    "newsSection": {
+      "title": "Get the app and check out what's new for you",
+      "getAppButtonText": "Get app"
+    },
+    "tasksSection": {
+      "title": "Tasks",
+      "tasks": {
+        "donate_ticket": "Donate ticket"
+      }
+    }
   }
 }

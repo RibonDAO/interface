@@ -70,7 +70,6 @@ function TasksProvider({ children }: any) {
           expiresAt: isExpired(currentTask),
         };
       });
-      console.log("state", state);
       setTasksState(state);
     });
   };

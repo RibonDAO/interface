@@ -47,7 +47,7 @@ function TasksSection() {
           );
         })}
 
-      {!tasksState.length &&
+      {(!tasksState || !tasksState.length) &&
         dailyTasks.map((task) => (
           <S.CheckboxContainer key={task.id}>
             <CheckBox

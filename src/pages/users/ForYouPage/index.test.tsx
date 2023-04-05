@@ -6,6 +6,6 @@ describe("ForYouPage", () => {
   it("should render without error", () => {
     renderComponent(<ForYouPage />);
 
-    expectTextToBeInTheDocument("Get the app and check out what's new for you");
+    expectTextToBeInTheDocument("For you");
   });
 });

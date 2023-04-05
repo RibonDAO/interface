@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useTasks } from "utils/constants/Tasks";
 import theme from "styles/theme";
 import Icon from "components/atomics/Icon";
+import ProgressBar from "components/atomics/ProgressBar";
 import * as S from "./styles";
 
 function TasksSection() {
@@ -14,8 +15,16 @@ function TasksSection() {
   const dailyTasks = useTasks("daily");
   const { tasksState } = useTasksContext();
 
+  const progressBarValue = tasksState
+    ? tasksState.filter((obj) => obj.done === true).length
+    : 0;
+
   return (
     <S.Container>
+      <S.ProgressBar>
+        <ProgressBar value={progressBarValue} min={0} max={dailyTasks.length} />
+      </S.ProgressBar>
+
       <S.TitleContainer>
         <Icon
           name="light_mode"

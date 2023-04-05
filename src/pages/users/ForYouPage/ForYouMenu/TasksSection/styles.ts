@@ -4,7 +4,6 @@ import { defaultBodyLgBold } from "styles/typography/default";
 export const Container = styled.div``;
 
 export const TitleContainer = styled.div`
-  margin-top: ${({ theme }) => theme.spacing(32)};
   margin-bottom: ${({ theme }) => theme.spacing(16)};
   display: flex;
   flex-direction: row;
@@ -21,4 +20,9 @@ export const Title = styled.p`
 
 export const CheckboxContainer = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing(16)};
+`;
+
+export const ProgressBar = styled.div`
+  margin-top: ${({ theme }) => theme.spacing(16)};
+  margin-bottom: ${({ theme }) => theme.spacing(32)};
 `;

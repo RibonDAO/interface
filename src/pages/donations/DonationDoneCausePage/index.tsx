@@ -20,6 +20,7 @@ import getThemeByFlow from "lib/themeByFlow";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import { getAudioFromStorage } from "lib/cachedAudio";
 import ReactHowler from "react-howler";
+import { useTasksContext } from "contexts/tasksContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import * as S from "./styles";
 
@@ -47,7 +48,7 @@ function DonationDoneCausePage(): JSX.Element {
   const { getOffer } = useOffers(currency);
   const [offer, setOffer] = useState<Offer>();
   const { currentUser } = useCurrentUser();
-
+  const { registerAction } = useTasksContext();
   const {
     userStatistics,
     refetch: refetchStatistics,
@@ -110,6 +111,8 @@ function DonationDoneCausePage(): JSX.Element {
       });
     }
     if (!hasButton) {
+      registerAction("donation_done_page_view");
+
       if (shouldShowAppDownload()) {
         navigateTo({
           pathname: "/app-download",
@@ -136,7 +139,7 @@ function DonationDoneCausePage(): JSX.Element {
     setPageTimeout(
       setTimeout(() => {
         navigate();
-      }, 5000),
+      }, 2500),
     );
   }, [currentUser, userStatistics]);
 

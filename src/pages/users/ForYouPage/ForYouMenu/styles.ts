@@ -50,6 +50,11 @@ export const Container = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing(112)};
   display: flex;
   flex-direction: column;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    max-width: 960px;
+    padding-right: ${({ theme }) => theme.spacing(12)};
+  }
 `;
 
 export const MenuItem = styled.div<{ active: boolean }>`

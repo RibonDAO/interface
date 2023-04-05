@@ -21,6 +21,7 @@ function NewsSection() {
             backgroundColor: theme.colors.brand.primary[800],
             textColor: theme.colors.neutral10,
           }}
+          spacingTopDonationFlow
         />
       </S.Container>
     );

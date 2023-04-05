@@ -33,7 +33,6 @@ import ModalProvider, {
   IModalContext,
   ModalContext,
 } from "contexts/modalContext";
-
 import CardPaymentInformationProvider, {
   CardPaymentInformationContext,
   ICardPaymentInformationContext,
@@ -47,6 +46,11 @@ import CryptoPaymentProvider, {
   CryptoPaymentContext,
   ICryptoPaymentContext,
 } from "contexts/cryptoPaymentContext";
+import TasksProvider, {
+  TasksContext,
+  ITasksContext,
+} from "contexts/tasksContext";
+
 import { QueryClientComponent } from "@ribon.io/shared/hooks";
 
 export function renderWithTheme(children: React.ReactNode): RenderResult {
@@ -92,6 +96,7 @@ function renderProvider(
 export type RenderComponentProps = {
   history?: MemoryHistory;
   walletProviderValue?: Partial<IWalletContext>;
+  tasksProviderValue?: Partial<ITasksContext>;
   currentUserProviderValue?: Partial<ICurrentUserContext>;
   toastProviderValue?: Partial<IToastContext>;
   loadingOverlayValue?: Partial<ILoadingOverlayContext>;
@@ -106,6 +111,7 @@ export function renderComponent(
   {
     history = createMemoryHistory(),
     walletProviderValue = {},
+    tasksProviderValue = {},
     currentUserProviderValue = {},
     toastProviderValue = {},
     locationState = {},
@@ -134,30 +140,35 @@ export function renderComponent(
                   CurrentUserContext,
                   currentUserProviderValue,
                   renderProvider(
-                    ToastContextProvider,
-                    ToastContext,
-                    toastProviderValue,
+                    TasksProvider,
+                    TasksContext,
+                    tasksProviderValue,
                     renderProvider(
-                      LoadingOverlayProvider,
-                      LoadingOverlayContext,
-                      loadingOverlayValue,
+                      ToastContextProvider,
+                      ToastContext,
+                      toastProviderValue,
                       renderProvider(
-                        ModalProvider,
-                        ModalContext,
-                        modalProviderValue,
+                        LoadingOverlayProvider,
+                        LoadingOverlayContext,
+                        loadingOverlayValue,
                         renderProvider(
-                          CardPaymentInformationProvider,
-                          CardPaymentInformationContext,
-                          cardPaymentProviderValue,
+                          ModalProvider,
+                          ModalContext,
+                          modalProviderValue,
                           renderProvider(
-                            NetworkProvider,
-                            NetworkContext,
-                            networkProviderValue,
+                            CardPaymentInformationProvider,
+                            CardPaymentInformationContext,
+                            cardPaymentProviderValue,
                             renderProvider(
-                              CryptoPaymentProvider,
-                              CryptoPaymentContext,
-                              cryptoPaymentProviderValue,
-                              component,
+                              NetworkProvider,
+                              NetworkContext,
+                              networkProviderValue,
+                              renderProvider(
+                                CryptoPaymentProvider,
+                                CryptoPaymentContext,
+                                cryptoPaymentProviderValue,
+                                component,
+                              ),
                             ),
                           ),
                         ),

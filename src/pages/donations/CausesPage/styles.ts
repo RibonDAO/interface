@@ -1,4 +1,9 @@
+import Button from "components/atomics/buttons/Button";
 import styled from "styled-components";
+import {
+  defaultBodyMdBold,
+  defaultBodyMdRegular,
+} from "styles/typography/default";
 import { stylizedDisplayLg } from "styles/typography/stylized";
 
 export const Container = styled.div``;
@@ -68,4 +73,42 @@ export const TooltipSection = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing(32)};
   display: flex;
   justify-content: center;
+`;
+
+export const EmptySectionContainer = styled.div`
+  width: 100%;
+  margin: ${({ theme }) => theme.spacing(40, 0)};
+  display: flex;
+`;
+
+export const EmptySectionBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  align-self: center;
+  text-align: center;
+`;
+
+export const EmptyImage = styled.img`
+  max-width: 300px;
+`;
+
+export const EmptyTitle = styled.p`
+  ${defaultBodyMdBold}
+
+  width: 100%;
+  color: ${({ theme }) => theme.colors.neutral[800]};
+`;
+
+export const EmptyText = styled.span`
+  ${defaultBodyMdRegular}
+
+  max-width: 392px;
+  color: ${({ theme }) => theme.colors.neutral[500]};
+`;
+
+export const EmptyButton = styled(Button)`
+  width: 196px;
+  color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;

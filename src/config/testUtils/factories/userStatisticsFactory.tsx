@@ -1,4 +1,4 @@
-import { UserStatistics } from "types/entities/userStatistics";
+import { UserStatistics } from "@ribon.io/shared/types";
 
 function userStatisticsFactory(
   params: Partial<UserStatistics> = {},

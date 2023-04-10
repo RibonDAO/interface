@@ -2,7 +2,7 @@ import ModalRows from "components/moleculars/modals/ModalRows";
 import { useCausesContext } from "contexts/causesContext";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import Cause from "types/entities/Cause";
+import { Cause } from "@ribon.io/shared/types";
 import CauseImage from "./CauseImage";
 
 type Props = {

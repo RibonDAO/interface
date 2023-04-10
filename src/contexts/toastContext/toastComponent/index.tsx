@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import Notification from "types/entities/Notification";
+import { Notification } from "@ribon.io/shared/types";
 import { ToastContext } from "..";
 import * as S from "./styles";
 

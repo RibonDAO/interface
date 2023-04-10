@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import Integration from "types/entities/Integration";
+import { Integration } from "@ribon.io/shared/types";
 import { apiGet } from "..";
 
 const integrationsApi = {

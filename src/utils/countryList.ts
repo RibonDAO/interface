@@ -1,4 +1,4 @@
-import { Languages } from "types/enums/Languages";
+import { Languages } from "@ribon.io/shared/types";
 
 export const countryListEnglish = [
   "Afghanistan",

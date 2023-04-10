@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import Donation from "types/entities/Donation";
+import { Donation } from "@ribon.io/shared/types";
 import { apiPost } from "..";
 
 const donationsApi = {

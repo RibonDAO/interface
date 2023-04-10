@@ -1,5 +1,5 @@
 import { createContext, useMemo, useReducer } from "react";
-import Notification from "types/entities/Notification";
+import { Notification } from "@ribon.io/shared/types";
 
 export interface IToastContext {
   notifications: Notification[];

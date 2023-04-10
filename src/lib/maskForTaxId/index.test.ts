@@ -1,4 +1,4 @@
-import { Languages } from "types/enums/Languages";
+import { Languages } from "@ribon.io/shared/types";
 import { maskForTaxId } from ".";
 
 describe("should format according to language", () => {

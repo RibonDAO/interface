@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useAnimationReceiveTicketModal } from "hooks/modalHooks/useAnimationReceiveTicketModal";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useEffect } from "react";
-import Integration from "types/entities/Integration";
+import { Integration } from "@ribon.io/shared/types";
 import { RIBON_COMPANY_ID } from "utils/constants";
 import RibonIcon from "assets/icons/logo-background-icon.svg";
 import { useModal } from "../useModal";

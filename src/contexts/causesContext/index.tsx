@@ -1,4 +1,4 @@
-import { useCauses } from "@ribon.io/shared/hooks";
+import { useFreeDonationCauses } from "@ribon.io/shared/hooks";
 import {
   createContext,
   SetStateAction,
@@ -26,7 +26,7 @@ export const CausesContext = createContext<ICausesContext>(
 
 function CausesProvider({ children }: any) {
   const causeWasNotSelectedByModal = -1;
-  const { causes, refetch, isLoading } = useCauses();
+  const { causes, refetch, isLoading } = useFreeDonationCauses();
   const [activeCauses, setActiveCauses] = useState<Cause[]>([]);
   const [chooseCauseModalVisible, setChooseCauseModalVisible] = useState(false);
   const [currentCauseId, setCurrentCauseId] = useState(

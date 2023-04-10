@@ -85,45 +85,52 @@ function NonProfitsList({
 
   return (
     <S.NonProfitsListContainer>
-      <StoriesSection
-        nonProfit={currentNonProfitWithStories}
-        visible={storiesSectionVisible}
-        setVisible={setStoriesSectionVisible}
-        canDonateAndHasVoucher={Boolean(canDonateAndHasVoucher)}
-      />
+      {currentNonProfitWithStories && (
+        <StoriesSection
+          nonProfit={currentNonProfitWithStories}
+          visible={storiesSectionVisible}
+          setVisible={setStoriesSectionVisible}
+          canDonateAndHasVoucher={Boolean(canDonateAndHasVoucher)}
+        />
+      )}
       <SliderCardsEnhanced
         currentSlide={currentNonProfitIndex}
         onCurrentSlideChange={(index) => setCurrentNonProfitIndex(index)}
         saveStateIdentifier="nonProfitsList"
         loop={nonProfits.length >= MINIMUM_NON_PROFITS_TO_LOOP + 1}
       >
-        {nonProfits.map((nonProfit: any) => (
-          <S.CardWrapper key={nonProfit.id}>
-            <CardCenterImageButton
-              image={nonProfit.mainImage || nonProfit.cause?.mainImage}
-              title={formattedImpactText(
-                nonProfit,
-                undefined,
-                false,
-                false,
-                undefined,
-                t("impactPrefix"),
-              )}
-              buttonText={
-                canDonateAndHasVoucher
-                  ? t("donateText")
-                  : t("donateBlockedText")
-              }
-              onClickButton={() => handleButtonClick(nonProfit)}
-              onClickImage={() => handleImageClick(nonProfit)}
-              softDisabled={!canDonateAndHasVoucher}
-              infoTextLeft={nonProfit.name}
-              infoTextRight={nonProfit.cause?.name}
-              infoText={nonProfit.stories?.length ? t("learnMore") : undefined}
-              fullWidth
-            />
-          </S.CardWrapper>
-        ))}
+        {nonProfits.map(
+          (nonProfit: any) =>
+            nonProfit && (
+              <S.CardWrapper key={nonProfit.id}>
+                <CardCenterImageButton
+                  image={nonProfit.mainImage || nonProfit.cause?.mainImage}
+                  title={formattedImpactText(
+                    nonProfit,
+                    undefined,
+                    false,
+                    false,
+                    undefined,
+                    t("impactPrefix"),
+                  )}
+                  buttonText={
+                    canDonateAndHasVoucher
+                      ? t("donateText")
+                      : t("donateBlockedText")
+                  }
+                  onClickButton={() => handleButtonClick(nonProfit)}
+                  onClickImage={() => handleImageClick(nonProfit)}
+                  softDisabled={!canDonateAndHasVoucher}
+                  infoTextLeft={nonProfit.name}
+                  infoTextRight={nonProfit.cause?.name}
+                  infoText={
+                    nonProfit.stories?.length ? t("learnMore") : undefined
+                  }
+                  fullWidth
+                />
+              </S.CardWrapper>
+            ),
+        )}
       </SliderCardsEnhanced>
     </S.NonProfitsListContainer>
   );

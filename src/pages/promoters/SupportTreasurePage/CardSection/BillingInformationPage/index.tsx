@@ -5,7 +5,7 @@ import theme from "styles/theme";
 import { logEvent } from "lib/events";
 import useNavigation from "hooks/useNavigation";
 import { useLocation } from "react-router-dom";
-import Offer from "types/entities/Offer";
+import { Offer } from "@ribon.io/shared/types";
 import { useEffect } from "react";
 import BillingInformationSection from "./BillingInformationSection";
 import FeesSection from "../FeesSection";

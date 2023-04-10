@@ -1,4 +1,4 @@
-import Offer from "types/entities/Offer";
+import { Offer } from "@ribon.io/shared/types";
 
 function offerFactory(params: Partial<Offer> = {}): Offer {
   const defaultValues: Offer = {

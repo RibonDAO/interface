@@ -3,7 +3,7 @@ import useNavigation from "hooks/useNavigation";
 import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "hooks/useLanguage";
-import { Languages } from "types/enums/Languages";
+import { Languages } from "@ribon.io/shared/types";
 import * as S from "./styles";
 import CommunityAddCycle from "./assets/community-add-cycle.png";
 import CommunityAddCyclePT from "./assets/community-add-cycle-pt.png";

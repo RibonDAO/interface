@@ -3,7 +3,7 @@ import { useCardPaymentInformation } from "contexts/cardPaymentInformationContex
 import { useTranslation } from "react-i18next";
 import theme from "styles/theme";
 import { logEvent } from "lib/events";
-import Offer from "types/entities/Offer";
+import { Offer } from "@ribon.io/shared/types";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import PaymentInformationSection from "./PaymentInformationSection";

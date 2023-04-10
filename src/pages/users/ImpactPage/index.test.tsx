@@ -5,7 +5,7 @@ import userFactory from "config/testUtils/factories/userFactory";
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
 
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
-import { UserStatistics } from "types/entities/userStatistics";
+import { UserStatistics } from "@ribon.io/shared/types";
 import userStatisticsFactory from "config/testUtils/factories/userStatisticsFactory";
 import Impact from ".";
 

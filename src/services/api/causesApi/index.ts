@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import Cause from "types/entities/Cause";
+import { Cause } from "@ribon.io/shared/types";
 import { apiGet } from "..";
 
 const causesApi = {

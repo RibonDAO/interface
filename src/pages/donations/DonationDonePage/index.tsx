@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import { logEvent } from "lib/events";
 import UserIcon from "assets/icons/user-background-icon.svg";
 import Logo from "assets/icons/logo-background-icon.svg";
-import NonProfit from "types/entities/NonProfit";
+import { NonProfit } from "@ribon.io/shared/types";
 import { COMES_FROM_TREASURE } from "lib/localStorage/constants";
 import heartsBackground from "assets/animations/hearts-background.json";
 import { removeLocalStorageItem, setLocalStorageItem } from "lib/localStorage";

@@ -66,7 +66,7 @@ function InputAutoComplete({
         aria-label={placeholder}
         name={name}
         required={required}
-        autoComplete="off"
+        autoComplete="nope"
         textColor={textColor}
         borderColor={borderColor}
         {...props}

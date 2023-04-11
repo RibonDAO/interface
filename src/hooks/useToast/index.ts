@@ -6,14 +6,21 @@ import {
 import { useContext } from "react";
 import theme from "styles/theme";
 
-const { tertiary } = theme.colors.brand;
-
 type Props = {
   message: string;
-  type?: "success" | "error";
+  type?: "success" | "error" | "warning" | "info";
   link?: string;
   timeout?: number;
   linkMessage?: string;
+  icon?: string;
+  color?: string;
+};
+
+const typeColorBackground = {
+  success: theme.colors.brand.primary[600],
+  error: theme.colors.feedbackColors.error[600],
+  warning: theme.colors.brand.quaternary[200],
+  info: theme.colors.feedbackColors.informational[500],
 };
 
 const useToast = () => {
@@ -24,6 +31,7 @@ const useToast = () => {
     link,
     timeout = 10000,
     linkMessage,
+    color,
   }: Props) {
     const id = Math.random();
     dispatch({
@@ -34,7 +42,7 @@ const useToast = () => {
         message,
         link,
         linkMessage,
-        color: type === "success" ? theme.colors.neutral[800] : tertiary[200],
+        color: type ? typeColorBackground[type] : color,
       },
     });
     setTimeout(() => {

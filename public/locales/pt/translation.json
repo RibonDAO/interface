@@ -30,8 +30,8 @@
       "tooltipTicketText": "Os tickets servem para fazer doações e você recebe um a cada dia que entrar aqui na Ribon.",
       "tooltipTicket": "O que é um ticket?",
       "noCauses":{
-        "title": "Nenhuma ONG disponível",
-        "text": "Mas você pode fazer uma contribuição",
+        "title": "Nenhuma causa disponível",
+        "text": "Mas você pode contribuir doando em comunidade para uma causa",
         "button": "Doe em comunidade"
       },
       "stories": {

@@ -161,7 +161,6 @@ function CardPaymentInformationProvider({ children }: Props) {
     showAnimationModal();
     setTimeout(() => {
       closeAnimationModal();
-      handleConfirmation();
     }, 3000);
   };
 
@@ -192,7 +191,8 @@ function CardPaymentInformationProvider({ children }: Props) {
 
     try {
       await creditCardPaymentApi.postCreditCardPayment(paymentInformation);
-
+      closeAnimationModal();
+      handleConfirmation();
       logEvent("treasureGivingConfirmMdl_view");
     } catch (error) {
       closeAnimationModal();

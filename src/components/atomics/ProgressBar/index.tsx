@@ -6,8 +6,11 @@ export type Props = {
   min: number;
   max: number;
 };
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ProgressBar({ value, min, max }: Props): JSX.Element {
   const percentage = (value / max) * 100;
+
   const wrapperRef = useRef(null);
   return (
     <S.Container ref={wrapperRef}>

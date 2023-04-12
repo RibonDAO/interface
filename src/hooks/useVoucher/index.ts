@@ -23,7 +23,8 @@ function useVoucher() {
 
   const createVoucher = () => setVoucher(true);
 
-  const isVoucherAvailable = () => voucher;
+  const isVoucherAvailable = () =>
+    getLocalStorageItem(HAS_AN_AVAILABLE_VOUCHER);
 
   return {
     destroyVoucher,

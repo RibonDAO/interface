@@ -39,6 +39,7 @@ describe("useTokenDecimals", () => {
     removeLocalStorageItem(HAS_AN_AVAILABLE_VOUCHER);
     renderComponent(<Component />);
     clickOn(screen.getByText("create"));
+    renderComponent(<Component />);
 
     expect(screen.getByText("available")).toBeInTheDocument();
   });
@@ -47,6 +48,7 @@ describe("useTokenDecimals", () => {
     setLocalStorageItem(HAS_AN_AVAILABLE_VOUCHER, "true");
     renderComponent(<Component />);
     clickOn(screen.getByText("destroy"));
+    renderComponent(<Component />);
 
     expect(screen.getByText("unavailable")).toBeInTheDocument();
   });

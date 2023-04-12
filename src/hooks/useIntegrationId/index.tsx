@@ -1,6 +1,6 @@
 import { isValidUuid } from "lib/validators";
 import { RIBON_COMPANY_ID } from "utils/constants";
-import useQueryParams from "../useQueryParams";
+import useQueryParams from "hooks/useQueryParams";
 
 export function useIntegrationId() {
   const queryParams = useQueryParams();

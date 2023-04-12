@@ -1,5 +1,8 @@
 import styled from "styled-components";
-import { defaultBodySmSemibold } from "styles/typography/default";
+import {
+  defaultBodySmMedium,
+  defaultBodySmSemibold,
+} from "styles/typography/default";
 
 export const NotificationContainer = styled.div`
   position: fixed;
@@ -46,6 +49,7 @@ export const NotificationToast = styled.div`
 `;
 
 export const Message = styled.span`
+  ${defaultBodySmMedium}
   margin: ${({ theme }) => theme.spacing(0)};
   margin-left: -1px;
   overflow: hidden;
@@ -65,3 +69,5 @@ export const Link = styled.span`
 export const LinkNotificationToast = styled.a`
   text-decoration: none;
 `;
+
+export const Icon = styled.img``;

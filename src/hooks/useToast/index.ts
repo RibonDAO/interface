@@ -18,9 +18,9 @@ type Props = {
 
 const typeColorBackground = {
   success: theme.colors.brand.primary[600],
-  error: theme.colors.feedbackColors.error[600],
+  error: theme.colors.feedback.error[600],
   warning: theme.colors.brand.quaternary[200],
-  info: theme.colors.feedbackColors.informational[500],
+  info: theme.colors.feedback.informational[500],
 };
 
 const useToast = () => {

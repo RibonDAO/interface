@@ -4,4 +4,6 @@ export default interface Notification {
   linkMessage: string;
   link: string;
   color: string;
+  textColor: string;
+  type: string;
 }

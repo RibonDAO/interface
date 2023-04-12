@@ -1,10 +1,29 @@
 import { useContext } from "react";
 import Notification from "types/entities/Notification";
-import { ToastContext } from "..";
+import SuccessIcon from "./assets/success-icon.svg";
+import ErrorIcon from "./assets/error-icon.svg";
+import WarningIcon from "./assets/warning-icon.svg";
+import InfoIcon from "./assets/info-icon.svg";
 import * as S from "./styles";
+import { ToastContext } from "..";
 
 function Toast() {
   const { notifications } = useContext(ToastContext);
+
+  const iconToast = (type: string) => {
+    switch (type) {
+      case "success":
+        return SuccessIcon;
+      case "error":
+        return ErrorIcon;
+      case "warning":
+        return WarningIcon;
+      case "info":
+        return InfoIcon;
+      default:
+        return InfoIcon;
+    }
+  };
 
   return (
     <S.NotificationContainer>
@@ -16,9 +35,11 @@ function Toast() {
             target="_blank"
             key={index}
           >
+            <S.Icon src={iconToast(notification.type)} />
             <S.NotificationToast
               style={{
                 backgroundColor: notifications[index].color,
+                color: notifications[index].textColor,
               }}
               key={index}
             >

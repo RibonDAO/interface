@@ -1,4 +1,4 @@
-import PromoterCardGiving from "types/apiResponses/PromoterCardGiving";
+import { PromoterCardGiving } from "@ribon.io/shared/types";
 
 function promoterCardGivingFactory(
   params: Partial<PromoterCardGiving> = {},

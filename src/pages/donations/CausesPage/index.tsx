@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NonProfit } from "@ribon.io/shared/types";
 import {
-  useNonProfits,
+  useFreeDonationNonProfits,
   useSources,
   useUsers,
   useIntegration,
@@ -82,7 +82,7 @@ function CausesPage(): JSX.Element {
 
   const hasSeenChooseCauseModal = useRef(false);
 
-  const { nonProfits, isLoading } = useNonProfits();
+  const { nonProfits, isLoading } = useFreeDonationNonProfits();
   const { findOrCreateUser } = useUsers();
   const { createSource } = useSources();
   const { signedIn, setCurrentUser, currentUser } = useCurrentUser();

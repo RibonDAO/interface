@@ -1,4 +1,4 @@
-import PromoterDonation from "types/apiResponses/PromoterDonation";
+import { PromoterDonation } from "@ribon.io/shared/types";
 
 function promoterDonationFactory(
   params: Partial<PromoterDonation> = {},

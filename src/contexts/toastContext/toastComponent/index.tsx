@@ -35,16 +35,16 @@ function Toast() {
             target="_blank"
             key={index}
           >
-            <S.Icon src={iconToast(notification.type)} />
             <S.NotificationToast
               style={{
                 backgroundColor: notifications[index].color,
-                color: notifications[index].textColor,
               }}
               key={index}
             >
+              <S.Icon src={iconToast(notification.type)} />
               <S.Message>{notification.message}</S.Message>
               {notification.link && <S.Link>{notification.linkMessage}</S.Link>}
+              {notification.linkName2 && <S.Link>{notification.link2}</S.Link>}
             </S.NotificationToast>
           </S.LinkNotificationToast>
         );

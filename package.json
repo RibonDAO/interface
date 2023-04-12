@@ -6,7 +6,7 @@
     "@amplitude/analytics-browser": "^1.6.8",
     "@apollo/client": "^3.6.9",
     "@growthbook/growthbook-react": "^0.9.1",
-    "@ribon.io/shared": "^1.0.43",
+    "@ribon.io/shared": "^1.0.46",
     "@sentry/react": "^6.16.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^12.1.5",
@@ -170,7 +170,15 @@
       "!<rootDir>/src/config/routes/ComponentLoader.tsx",
       "!<rootDir>/src/i18n.ts",
       "!<rootDir>/src/reportWebVitals.ts",
-      "!<rootDir>/src/index.tsx"
+      "!<rootDir>/src/index.tsx",
+      "!<rootDir>/src/utils",
+      "!<rootDir>/src/utils/**/*.{ts,tsx}",
+      "!<rootDir>/src/types",
+      "!<rootDir>/src/types/**/*.{ts,tsx}",
+      "!<rootDir>/src/styles",
+      "!<rootDir>/src/styles/**/*.{ts,tsx}",
+      "!<rootDir>/src/config",
+      "!<rootDir>/src/config/**/*.{ts,tsx}"
     ],
     "coverageThreshold": {
       "global": {

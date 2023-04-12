@@ -1,4 +1,4 @@
-import { TransactionStatus } from "types/enums/TransactionStatus";
+import { TransactionStatus } from "@ribon.io/shared/types";
 import cryptoTransactionApi from ".";
 import api from "..";
 

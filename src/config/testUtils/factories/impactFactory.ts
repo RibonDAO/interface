@@ -1,5 +1,4 @@
-import Impact from "types/entities/Impact";
-import NonProfit from "types/entities/NonProfit";
+import { NonProfit, Impact } from "@ribon.io/shared/types";
 
 function impactFactory(params: Partial<Impact> = {}): Impact {
   const defaultValues: Impact = {

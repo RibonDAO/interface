@@ -46,11 +46,11 @@ describe("Causes", () => {
     }),
   ];
 
-  mockRequest("/api/v1/non_profits", {
+  mockRequest("/api/v1/free_donation_non_profits", {
     payload: nonProfits,
   });
 
-  mockRequest("/api/v1/causes", {
+  mockRequest("/api/v1/free_donation_causes", {
     payload: [cause1],
   });
 

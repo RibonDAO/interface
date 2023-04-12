@@ -1,4 +1,4 @@
-import { Languages } from "types/enums/Languages";
+import { Languages } from "@ribon.io/shared/types";
 import { TaxIdPTBR } from "types/enums/TaxIdPTBR";
 import { TaxIdUS } from "types/enums/TaxIdUS";
 

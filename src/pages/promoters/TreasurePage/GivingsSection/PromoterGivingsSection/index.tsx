@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import Carousel from "components/moleculars/sliders/Carousel";
 import CardDoubleTextDividerButton from "components/moleculars/cards/CardDoubleTextDividerButton";
 import useBreakpoint from "hooks/useBreakpoint";
-import { TransactionStatus } from "types/enums/TransactionStatus";
+import { TransactionStatus } from "@ribon.io/shared/types";
 import { logError } from "services/crashReport";
 import {
   formatFromDecimals,

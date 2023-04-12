@@ -14,6 +14,8 @@ type Props = {
   linkMessage?: string;
   icon?: string;
   color?: string;
+  link2?: string;
+  linkName2?: string;
 };
 
 const typeColorBackground = {
@@ -29,7 +31,7 @@ const useToast = () => {
     type = "success",
     message,
     link,
-    timeout = 10000,
+    timeout = 1000000,
     linkMessage,
     color,
   }: Props) {

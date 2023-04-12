@@ -9,7 +9,7 @@ import {
 import { networks } from "config/networks";
 import { logError } from "services/crashReport";
 import { useProvider } from "hooks/useProvider";
-import CurrentNetwork from "types/entities/CurrentNetwork";
+import { CurrentNetwork } from "@ribon.io/shared/types";
 import { SUBGRAPH_URL, CHAIN_ID } from "lib/localStorage/constants";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 

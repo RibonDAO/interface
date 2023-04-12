@@ -4,7 +4,7 @@ import Spinner from "components/atomics/Spinner";
 import { useTranslation } from "react-i18next";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useEffect, useState } from "react";
-import directIllustration from "../../assets/direct-illustration.svg";
+import directIllustration from "assets/images/direct-illustration.svg";
 import * as S from "../styles";
 import DirectImpactCard from "./DirectImpactCard.tsx";
 

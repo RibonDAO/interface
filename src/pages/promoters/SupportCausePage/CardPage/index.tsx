@@ -3,10 +3,9 @@ import { useEffect, useState } from "react";
 import { logEvent } from "lib/events";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import { useCauses } from "@ribon.io/shared/hooks";
-import Cause from "types/entities/Cause";
+import { Cause, Offer } from "@ribon.io/shared/types";
 import IntersectBackground from "assets/images/intersect-background.svg";
 import useNavigation from "hooks/useNavigation";
-import Offer from "types/entities/Offer";
 import offerFactory from "config/testUtils/factories/offerFactory";
 import {
   formatPrice,

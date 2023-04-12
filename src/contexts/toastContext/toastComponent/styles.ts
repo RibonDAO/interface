@@ -40,6 +40,9 @@ export const NotificationToast = styled.div`
   pointer-events: auto;
   transition: 0.3s ease;
   animation: toast-in-right 0.7s;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
 
   &:hover {
     box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};

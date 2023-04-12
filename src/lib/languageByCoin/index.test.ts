@@ -1,5 +1,4 @@
-import { Languages } from "types/enums/Languages";
-import { Currencies } from "@ribon.io/shared/types";
+import { Currencies, Languages } from "@ribon.io/shared/types";
 import { languageByCoin } from "./index";
 
 describe("#languageByCoin", () => {

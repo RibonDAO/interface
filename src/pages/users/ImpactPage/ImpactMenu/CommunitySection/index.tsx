@@ -7,9 +7,9 @@ import Spinner from "components/atomics/Spinner";
 import { formatNetDonation } from "lib/formatters/netDonationFormatter";
 import { useTranslation } from "react-i18next";
 import theme from "styles/theme";
-import { PersonPayment } from "types/entities/PersonPayment";
+import { PersonPayment } from "@ribon.io/shared/types";
 import useBreakpoint from "hooks/useBreakpoint";
-import directIllustration from "../../assets/direct-illustration.svg";
+import directIllustration from "assets/images/direct-illustration.svg";
 import * as S from "../styles";
 
 function CommunitySection() {

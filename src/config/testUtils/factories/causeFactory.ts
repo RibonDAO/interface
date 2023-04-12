@@ -1,4 +1,4 @@
-import Cause from "types/entities/Cause";
+import { Cause } from "@ribon.io/shared/types";
 
 function causeFactory(params: Partial<Cause> = {}): Cause {
   const defaultValues: Cause = {

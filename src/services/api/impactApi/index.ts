@@ -1,6 +1,5 @@
 import { AxiosResponse } from "axios";
-import Impact from "types/entities/Impact";
-import DonationsCount from "types/apiResponses/DonationsCount";
+import { DonationsCount, Impact } from "@ribon.io/shared/types";
 import { apiGet } from "..";
 
 const impactApi = {

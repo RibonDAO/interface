@@ -1,6 +1,5 @@
 import { AxiosResponse } from "axios";
-import NonProfit from "types/entities/NonProfit";
-import { Currencies } from "@ribon.io/shared/types";
+import { NonProfit, Currencies } from "@ribon.io/shared/types";
 import { apiPost } from "..";
 
 const nonProfitImpactApi = {

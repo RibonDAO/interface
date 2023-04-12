@@ -29,6 +29,11 @@
       "learnMore": "Saiba mais",
       "tooltipTicketText": "Os tickets servem para fazer doações e você recebe um a cada dia que entrar aqui na Ribon.",
       "tooltipTicket": "O que é um ticket?",
+      "noCauses":{
+        "title": "Nenhuma causa disponível",
+        "text": "Mas você pode contribuir doando em comunidade para uma causa",
+        "button": "Doe em comunidade"
+      },
       "stories": {
         "loading": "Carregando stories...",
         "empty": "Não há stories disponíveis."

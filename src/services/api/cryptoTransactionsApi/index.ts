@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { TransactionStatus } from "types/enums/TransactionStatus";
+import { TransactionStatus } from "@ribon.io/shared/types";
 import { apiPost, apiPut } from "..";
 
 const cryptoTransactionApi = {

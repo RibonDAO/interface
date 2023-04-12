@@ -58,11 +58,11 @@ describe("InputAutoComplete", () => {
   });
 
   it("should always have autocomplete off", () => {
-    expect(input).toHaveAttribute("autocomplete", "off");
+    expect(input).toHaveAttribute("autocomplete", "nope");
   });
 
   it("always should have required turned on if given", () => {
-    expect(input).toHaveAttribute("autocomplete", "off");
+    expect(input).toHaveAttribute("autocomplete", "nope");
   });
 
   it("should not show more than 4 suggestions", () => {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
-import { Languages } from "types/enums/Languages";
+import { Languages } from "@ribon.io/shared/types";
 
 export const LANGUAGE_KEY = "LANGUAGE_KEY";
 

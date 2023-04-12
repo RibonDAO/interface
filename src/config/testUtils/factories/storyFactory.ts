@@ -1,4 +1,4 @@
-import Story from "types/entities/Story";
+import { Story } from "@ribon.io/shared/types";
 
 function storyFactory(params: Partial<Story> = {}): Story {
   const defaultValues: Story = {

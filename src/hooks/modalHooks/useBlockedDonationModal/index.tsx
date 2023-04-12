@@ -3,7 +3,7 @@ import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import blockedIcon from "assets/icons/ticket-off.svg";
 import giftIcon from "assets/icons/gift-ribon.svg";
 import { useEffect } from "react";
-import Integration from "types/entities/Integration";
+import { Integration } from "@ribon.io/shared/types";
 import TicketWithTextAndImage from "components/atomics/TicketWithTextAndImage";
 import { RIBON_COMPANY_ID } from "utils/constants";
 import { useModal } from "../useModal";

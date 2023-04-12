@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import InputRange from "components/atomics/inputs/InputRange";
 import { useTranslation } from "react-i18next";
-import Cause from "types/entities/Cause";
+import { Cause, Currencies } from "@ribon.io/shared/types";
 import theme from "styles/theme";
 import { useCryptoPayment } from "contexts/cryptoPaymentContext";
-import { Currencies } from "@ribon.io/shared/types";
 import { useLocationSearch } from "hooks/useLocationSearch";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import * as S from "./styles";

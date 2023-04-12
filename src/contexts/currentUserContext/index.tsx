@@ -8,7 +8,7 @@ import React, {
   useState,
 } from "react";
 import { setUserId } from "services/analytics/firebase";
-import User from "types/entities/User";
+import { User } from "@ribon.io/shared/types";
 import { initializeApi } from "services/api";
 
 export interface ICurrentUserContext {

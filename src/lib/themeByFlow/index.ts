@@ -18,5 +18,5 @@ const pageThemes: any = {
 };
 
 export default function getThemeByFlow(flow: string) {
-  return pageThemes[flow];
+  return pageThemes[flow] || pageThemes.cause;
 }

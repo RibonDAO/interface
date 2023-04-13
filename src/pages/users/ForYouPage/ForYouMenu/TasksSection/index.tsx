@@ -41,7 +41,11 @@ function TasksSection() {
               text={t(`tasks.${task?.title}`)}
               sectionStyle={{ marginBottom: 8, paddingLeft: 4 }}
               lineThroughOnChecked
-              navigationCallback={task?.navigationCallback}
+              navigationCallback={
+                !tasksState.find((obj) => obj.id === task.id)?.done
+                  ? task?.navigationCallback
+                  : undefined
+              }
               disabled
               checked={tasksState.find((obj) => obj.id === task.id)?.done}
             />

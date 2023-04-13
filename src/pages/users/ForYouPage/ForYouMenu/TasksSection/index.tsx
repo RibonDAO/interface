@@ -34,29 +34,6 @@ function TasksSection() {
         <S.Title>{t("title")}</S.Title>
       </S.TitleContainer>
       {tasksState &&
-        tasksState.map((task) => {
-          const currentTask = dailyTasks.find(
-            (taskObj) => taskObj.id === task.id,
-          );
-
-          return (
-            <S.CheckboxContainer key={task.id}>
-              <CheckBox
-                key={task.id}
-                text={t(`tasks.${currentTask?.title}`)}
-                sectionStyle={{ marginBottom: 8, paddingLeft: 4 }}
-                lineThroughOnChecked
-                navigationCallback={
-                  !task.done ? currentTask?.navigationCallback : undefined
-                }
-                disabled
-                checked={task.done}
-              />
-            </S.CheckboxContainer>
-          );
-        })}
-
-      {(!tasksState || !tasksState.length) &&
         dailyTasks.map((task) => (
           <S.CheckboxContainer key={task.id}>
             <CheckBox
@@ -66,7 +43,7 @@ function TasksSection() {
               lineThroughOnChecked
               navigationCallback={task?.navigationCallback}
               disabled
-              checked={false}
+              checked={tasksState.find((obj) => obj.id === task.id)?.done}
             />
           </S.CheckboxContainer>
         ))}

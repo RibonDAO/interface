@@ -1,11 +1,11 @@
 import { renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
-import ForYouPage from ".";
+import ForYouMenu from ".";
 
-describe("ForYouPage", () => {
+describe("ForYouMenu", () => {
   it("should render without error", () => {
-    renderComponent(<ForYouPage />);
+    renderComponent(<ForYouMenu />);
 
-    expectTextToBeInTheDocument("For you");
+    expectTextToBeInTheDocument("Posts");
   });
 });

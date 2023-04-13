@@ -12,6 +12,7 @@ import {
 } from "services/growthbook";
 import Zendesk from "config/zendesk";
 import CurrentUserProvider from "contexts/currentUserContext";
+import TasksProvider from "contexts/tasksContext";
 import RoutesComponent from "./config/routes";
 import GlobalStyle from "./styles/globalStyle";
 import theme from "./styles/theme";
@@ -41,8 +42,10 @@ function App() {
               <BrowserRouter>
                 <ToastContextProvider>
                   <CurrentUserProvider>
-                    <RoutesComponent />
-                    <Zendesk />
+                    <TasksProvider>
+                      <RoutesComponent />
+                      <Zendesk />
+                    </TasksProvider>
                   </CurrentUserProvider>
                   <Toast />
                 </ToastContextProvider>

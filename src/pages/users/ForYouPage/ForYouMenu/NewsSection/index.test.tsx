@@ -1,11 +1,11 @@
 import { renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
-import ForYouPage from ".";
+import NewsSection from ".";
 
-describe("ForYouPage", () => {
+describe("NewsSection", () => {
   it("should render without error", () => {
-    renderComponent(<ForYouPage />);
+    renderComponent(<NewsSection />);
 
-    expectTextToBeInTheDocument("For you");
+    expectTextToBeInTheDocument("Get the app and check out what's new for you");
   });
 });

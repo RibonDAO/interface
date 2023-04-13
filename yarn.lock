@@ -3005,7 +3005,6 @@
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==
-
 "@ribon.io/shared@^1.0.46":
   version "1.0.46"
   resolved "https://registry.yarnpkg.com/@ribon.io/shared/-/shared-1.0.46.tgz#bb074c7ff8cdec2f781887ac349e2606ffbe89f1"

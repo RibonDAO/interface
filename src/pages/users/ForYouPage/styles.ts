@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { stylizedDisplayLg } from "styles/typography/stylized";
 
 export const Container = styled.div``;
 
@@ -35,4 +36,11 @@ export const RightImage = styled.img`
     right: 0;
     display: block;
   }
+`;
+
+export const Title = styled.h1`
+  ${stylizedDisplayLg}
+
+  margin: ${({ theme }) => theme.spacing(0)};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;

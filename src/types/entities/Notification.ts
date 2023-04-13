@@ -6,6 +6,7 @@ export default interface Notification {
   timeout?: number;
   linkMessage?: string;
   icon?: string;
+  iconColor?: string;
   backgroundColor?: string;
   textColor?: string;
   position?:

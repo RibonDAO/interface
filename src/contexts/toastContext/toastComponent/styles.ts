@@ -11,6 +11,9 @@ export const NotificationToast = styled.div`
   padding: ${({ theme }) => theme.spacing(20)};
   border-radius: 8px;
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral10};
   color: ${({ theme }) => theme.colors.neutral[800]};
@@ -19,9 +22,6 @@ export const NotificationToast = styled.div`
   pointer-events: auto;
   transition: 0.3s ease;
   animation: toast-in-right 0.7s;
-  align-items: center;
-  justify-content: space-between;
-  display: flex;
 
   &:hover {
     box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};
@@ -32,8 +32,8 @@ export const NotificationToast = styled.div`
 
 export const Message = styled.span`
   ${defaultBodySmMedium}
-  margin: ${({ theme }) => theme.spacing(0)};
-  margin-left: -1px;
+
+  margin-left: ${({ theme }) => theme.spacing(8)};
   overflow: hidden;
   text-align: left;
   text-overflow: ellipsis;
@@ -44,9 +44,8 @@ export const Message = styled.span`
 export const Link = styled.a`
   ${defaultBodySmSemibold}
 
+  margin: ${({ theme }) => theme.spacing(0, 24, 0, 8)};
   float: right;
-  margin-left: ${({ theme }) => theme.spacing(8)};
-  margin-right: ${({ theme }) => theme.spacing(24)};
   color: ${({ theme }) => theme.colors.neutral10};
 `;
 
@@ -55,8 +54,8 @@ export const Icon = styled.img`
 `;
 
 export const CloseIcon = styled.img`
-  height: 24px;
   width: 24px;
+  height: 24px;
 
   margin-left: ${({ theme }) => theme.spacing(24)};
 `;

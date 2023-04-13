@@ -2,10 +2,7 @@ import { useContext } from "react";
 import Notification from "types/entities/Notification";
 import theme from "styles/theme";
 import Icon from "components/atomics/Icon";
-import SuccessIcon from "./assets/success-icon.svg";
-import ErrorIcon from "./assets/error-icon.svg";
-import WarningIcon from "./assets/warning-icon.svg";
-import InfoIcon from "./assets/info-icon.svg";
+
 import * as S from "./styles";
 import { ToastContext } from "..";
 
@@ -15,15 +12,30 @@ function Toast() {
   const iconToast = (type: string) => {
     switch (type) {
       case "success":
-        return SuccessIcon;
+        return "check_circle";
       case "error":
-        return ErrorIcon;
+        return "report";
       case "warning":
-        return WarningIcon;
+        return "warning";
       case "info":
-        return InfoIcon;
+        return "info";
       default:
-        return InfoIcon;
+        return "info";
+    }
+  };
+
+  const iconColorToast = (type: string) => {
+    switch (type) {
+      case "success":
+        return theme.colors.feedback.success[200];
+      case "error":
+        return theme.colors.feedback.error[200];
+      case "warning":
+        return theme.colors.feedback.warning[600];
+      case "info":
+        return theme.colors.feedback.informational[500];
+      default:
+        return theme.colors.feedback.informational[300];
     }
   };
 
@@ -77,7 +89,24 @@ function Toast() {
             }}
             key={index}
           >
-            <S.Icon src={iconToast(notification.type)} />
+            <Icon
+              className={
+                notification.icon
+                  ? notification.icon
+                  : iconToast(notification.type)
+              }
+              name={
+                notification.icon
+                  ? notification.icon
+                  : iconToast(notification.type)
+              }
+              size="24"
+              color={
+                notification.iconColor
+                  ? notification.iconColor
+                  : iconColorToast(notification.type)
+              }
+            />
             <S.Message
               style={{
                 color: notification.textColor

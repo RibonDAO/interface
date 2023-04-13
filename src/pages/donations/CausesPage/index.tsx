@@ -29,7 +29,6 @@ import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import { normalizedLanguage } from "lib/currentLanguage";
-import { PLATFORM } from "utils/constants";
 import WarningIcon from "assets/icons/warning-icon.svg";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
@@ -90,10 +89,7 @@ function CausesPage(): JSX.Element {
     undefined,
     integration,
   );
-  const { canDonate, refetch: refetchCanDonate } = useCanDonate(
-    integrationId,
-    PLATFORM,
-  );
+  const { canDonate, refetch: refetchCanDonate } = useCanDonate(integrationId);
   const { destroyVoucher, createVoucher } = useVoucher();
 
   const { isMobile } = useBreakpoint();

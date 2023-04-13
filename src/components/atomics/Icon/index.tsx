@@ -6,14 +6,23 @@ export type Props = {
   size?: string;
   color?: string;
   className?: string;
+  onClick?: () => void;
 };
 
-function Icon({ name, color, size, className, ...props }: Props): JSX.Element {
+function Icon({
+  name,
+  color,
+  size,
+  className,
+  onClick,
+  ...props
+}: Props): JSX.Element {
   return (
     <S.Icon
       color={color}
       size={size}
       {...props}
+      onClick={onClick}
       className={`${className} material-symbols-rounded`}
     >
       {name}

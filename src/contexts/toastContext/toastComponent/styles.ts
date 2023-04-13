@@ -4,34 +4,13 @@ import {
   defaultBodySmSemibold,
 } from "styles/typography/default";
 
-export const NotificationContainer = styled.div`
-  position: fixed;
-  right: 12px;
-  bottom: 12px;
-  z-index: ${({ theme }) => theme.zindex.toast};
-  box-sizing: border-box;
-  animation: toast-in-right 0.7s;
-
-  @keyframes toast-in-right {
-    from {
-      transform: translateX(100%);
-    }
-
-    to {
-      transform: translateX(0);
-    }
-  }
-`;
-
 export const NotificationToast = styled.div`
   width: 336px;
-  margin: ${({ theme }) => theme.spacing(0, 0, 8)};
+  margin: ${({ theme }) => theme.spacing(24)};
   margin-bottom: ${({ theme }) => theme.spacing(16)};
   padding: ${({ theme }) => theme.spacing(20)};
   border-radius: 8px;
-  position: relative;
-  right: 12px;
-  bottom: 12px;
+  position: fixed;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral10};
   color: ${({ theme }) => theme.colors.neutral[800]};
@@ -62,15 +41,22 @@ export const Message = styled.span`
   color: ${({ theme }) => theme.colors.neutral10};
 `;
 
-export const Link = styled.span`
+export const Link = styled.a`
   ${defaultBodySmSemibold}
 
   float: right;
+  margin-left: ${({ theme }) => theme.spacing(8)};
+  margin-right: ${({ theme }) => theme.spacing(24)};
   color: ${({ theme }) => theme.colors.neutral10};
 `;
 
-export const LinkNotificationToast = styled.a`
-  text-decoration: none;
+export const Icon = styled.img`
+  margin-right: ${({ theme }) => theme.spacing(8)};
 `;
 
-export const Icon = styled.img``;
+export const CloseIcon = styled.img`
+  height: 24px;
+  width: 24px;
+
+  margin-left: ${({ theme }) => theme.spacing(24)};
+`;

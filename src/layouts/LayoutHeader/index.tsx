@@ -16,7 +16,7 @@ import useBreakpoint from "hooks/useBreakpoint";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import useNavigation from "hooks/useNavigation";
 import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
-import { PLATFORM, RIBON_COMPANY_ID } from "utils/constants";
+import { RIBON_COMPANY_ID } from "utils/constants";
 import { logEvent, newLogEvent } from "lib/events";
 import { useModal } from "hooks/modalHooks/useModal";
 import ChangeLanguageItem from "./ChangeLanguageItem";
@@ -48,7 +48,7 @@ function LayoutHeader({
     undefined,
     integration,
   );
-  const { canDonate } = useCanDonate(integrationId, PLATFORM);
+  const { canDonate } = useCanDonate(integrationId);
   const { isVoucherAvailable } = useVoucher();
 
   const { t } = useTranslation("translation", {

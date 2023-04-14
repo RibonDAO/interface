@@ -73,7 +73,6 @@ function Toast() {
         return theme.colors.neutral10;
     }
   };
-
   return (
     <>
       {notifications.map((notification: Notification) => {

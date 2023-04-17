@@ -31,12 +31,27 @@ function InlineNotification({
     if (onCloseClick) onCloseClick();
   };
 
+  const iconByType = () => {
+    switch (type) {
+      case "success":
+        return "check_circle";
+      case "warning":
+        return "warning";
+      case "error":
+        return "dangerous";
+      case "informational":
+        return "info";
+      default:
+        return "info";
+    }
+  };
+
   if (!visible) return <div />;
 
   return (
     <S.Container type={type}>
       <S.LeftContainer>
-        <Icon name="check_circle" />
+        <Icon name={iconByType()} />
         <S.TextContainer>
           <S.Title>{title}</S.Title>
           <S.Description>{description}</S.Description>

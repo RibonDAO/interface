@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import {
+  defaultBodySmBold,
+  defaultBodySmRegular,
+  defaultBodySmSemibold,
+} from "styles/typography/default";
 
 interface NotificationProps {
   type: "success" | "warning" | "error" | "informational";
@@ -6,14 +11,15 @@ interface NotificationProps {
 
 export const Container = styled.div<NotificationProps>`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  width: 300px;
+  justify-content: space-between;
+  width: 100%;
   padding: 16px;
   border-radius: 8px;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.neutral[800]};
   border-width: 1px;
+  border-style: solid;
   border-color: ${({ theme, type }) => {
     switch (type) {
       case "success":
@@ -44,19 +50,47 @@ export const Container = styled.div<NotificationProps>`
   }};
 `;
 
+export const TextContainer = styled.div`
+  margin-left: ${({ theme }) => theme.spacing(16)};
+`;
+export const LeftContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const RightContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const CloseIconContainer = styled.div`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const Title = styled.h3`
-  margin-top: 0;
-  margin-bottom: 8px;
+  ${defaultBodySmSemibold};
 `;
 
 export const Description = styled.p`
-  margin: 0;
+  ${defaultBodySmRegular};
 `;
 
 export const Links = styled.div`
-  margin-top: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 `;
 
-export const Link = styled.a`
-  margin-right: 8px;
+export const Link = styled.p`
+  ${defaultBodySmBold};
+  margin-top: 0;
+  cursor: pointer;
+  margin-right: ${({ theme }) => theme.spacing(16)};
+  text-decoration: underline;
 `;

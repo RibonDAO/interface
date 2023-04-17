@@ -155,6 +155,11 @@
       "tooltipFirstParagraphText": "Net donation: {{value}}",
       "tooltipSecondParagraphText": "Service fees: {{value}}",
       "showMore": "Show more"
+    },
+    "impactNotification": {
+      "title": "Your impact was migrated!",
+      "description": "Your history of donations made on the old platform is in the \"ticket donations\" tab.",
+      "link": "Do not show again"
     }
   },
   "promoters": {

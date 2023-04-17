@@ -1,5 +1,6 @@
 import Icon from "components/atomics/Icon";
 import { useState } from "react";
+import useBreakpoint from "hooks/useBreakpoint";
 import * as S from "./styles";
 
 export type Props = {
@@ -23,6 +24,7 @@ function InlineNotification({
   onCloseClick,
 }: Props): JSX.Element {
   const [visible, setVisible] = useState(true);
+  const { isMobile } = useBreakpoint();
 
   const handleCloseIconClick = () => {
     setVisible(false);
@@ -38,13 +40,21 @@ function InlineNotification({
         <S.TextContainer>
           <S.Title>{title}</S.Title>
           <S.Description>{description}</S.Description>
+          {isMobile && (
+            <S.Links>
+              {link1 && <S.Link onClick={onLink1Click}>{link1}</S.Link>}
+              {link2 && <S.Link onClick={onLink2Click}>{link2}</S.Link>}
+            </S.Links>
+          )}
         </S.TextContainer>
       </S.LeftContainer>
       <S.RightContainer>
-        <S.Links>
-          {link1 && <S.Link onClick={onLink1Click}>{link1}</S.Link>}
-          {link2 && <S.Link onClick={onLink2Click}>{link2}</S.Link>}
-        </S.Links>
+        {!isMobile && (
+          <S.Links>
+            {link1 && <S.Link onClick={onLink1Click}>{link1}</S.Link>}
+            {link2 && <S.Link onClick={onLink2Click}>{link2}</S.Link>}
+          </S.Links>
+        )}
         <S.CloseIconContainer onClick={handleCloseIconClick}>
           <Icon name="close" />
         </S.CloseIconContainer>

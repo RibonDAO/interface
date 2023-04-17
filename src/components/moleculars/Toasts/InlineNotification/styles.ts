@@ -10,10 +10,6 @@ interface NotificationProps {
 }
 
 export const Container = styled.div<NotificationProps>`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
   padding: 16px;
   border-radius: 8px;
@@ -48,6 +44,13 @@ export const Container = styled.div<NotificationProps>`
         return theme.colors.neutral10;
     }
   }};
+  display: flex;
+  flex-direction: row;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 
 export const TextContainer = styled.div`
@@ -61,8 +64,13 @@ export const LeftContainer = styled.div`
 export const RightContainer = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    align-items: center;
+    justify-content: flex-end;
+  }
 `;
 
 export const CloseIconContainer = styled.div`
@@ -83,8 +91,11 @@ export const Description = styled.p`
 export const Links = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  margin-top: ${({ theme }) => theme.spacing(8)};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    margin-top: 0;
+  }
 `;
 
 export const Link = styled.p`

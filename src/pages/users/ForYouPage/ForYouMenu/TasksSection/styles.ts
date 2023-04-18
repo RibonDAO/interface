@@ -65,8 +65,7 @@ export const RightContainer = styled.div`
 export const Image = styled.img`
   width: 57px;
   height: 57px;
-  margin-right: ${({ theme }) => theme.spacing(20)};
-  margin-left: ${({ theme }) => theme.spacing(4)};
+  margin-right: ${({ theme }) => theme.spacing(12)};
   padding: ${({ theme }) => theme.spacing(8)};
   border: 1px solid ${({ theme }) => theme.colors.neutral[200]};
   border-radius: 4px;

@@ -5,6 +5,8 @@ import { useTasks } from "utils/constants/Tasks";
 import theme from "styles/theme";
 import Icon from "components/atomics/Icon";
 import ProgressBar from "components/atomics/ProgressBar";
+import { useIntegrationId } from "hooks/useIntegrationId";
+import { useIntegration } from "@ribon.io/shared/hooks";
 import * as S from "./styles";
 
 function TasksSection() {
@@ -15,6 +17,14 @@ function TasksSection() {
   const dailyTasks = useTasks("daily");
   const { tasksState } = useTasksContext();
 
+  const donateTicketTask = dailyTasks.find(
+    (obj) => obj.title === "donate_ticket",
+  );
+
+  const integrationId = useIntegrationId();
+
+  const { integration } = useIntegration(integrationId);
+
   const progressBarValue = tasksState
     ? tasksState.filter((obj) => obj.done === true).length
     : 0;
@@ -24,7 +34,6 @@ function TasksSection() {
       <S.ProgressBar>
         <ProgressBar value={progressBarValue} min={0} max={dailyTasks.length} />
       </S.ProgressBar>
-
       <S.TitleContainer>
         <Icon
           name="light_mode"
@@ -51,6 +60,26 @@ function TasksSection() {
             />
           </S.CheckboxContainer>
         ))}
+      {integration?.integrationTask.description &&
+        tasksState.find((obj) => obj.id === donateTicketTask?.id)?.done && (
+          <S.IntegrationContainer>
+            <S.RightContainer>
+              <S.Image src={integration?.logo} alt="logo" />
+            </S.RightContainer>
+            <S.LeftContainer>
+              <S.IntegrationTitle>
+                {integration?.integrationTask.description}
+              </S.IntegrationTitle>
+              <S.Link
+                href={integration?.integrationTask.linkAddress}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {integration?.integrationTask.link}
+              </S.Link>
+            </S.LeftContainer>
+          </S.IntegrationContainer>
+        )}
     </S.Container>
   );
 }

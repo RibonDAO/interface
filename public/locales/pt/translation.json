@@ -336,7 +336,20 @@
     }
   },
   "forYouPage": {
-    "title": "Baixe o app e veja novidades pra você",
-    "getAppButtonText": "Baixar app"
+    "title": "Para você",
+    "forYouMenu": {
+      "tasks": "Tarefas",
+      "news": "Publicações"
+    },
+    "newsSection": {
+      "title": "Baixe o app e veja novidades pra você",
+      "getAppButtonText": "Baixar app"
+    },
+    "tasksSection": {
+      "title": "Tarefas",
+      "tasks": {
+        "donate_ticket": "Doar ticket"
+      }
+    }
   }
 }

@@ -1,11 +1,5 @@
 import { useTranslation } from "react-i18next";
-import useBreakpoint from "hooks/useBreakpoint";
-import theme from "styles/theme";
-import NewsImage from "./assets/news-image.svg";
-import AppDownloadTemplate from "../AppDownloadPage/AppDownloadTemplate";
-import LeftImage from "./assets/left-background.svg";
-import RightImage from "./assets/right-background.svg";
-import BackgroundImage from "./assets/for-you-background.svg";
+import ForYouMenu from "./ForYouMenu";
 import * as S from "./styles";
 
 function ForYouPage(): JSX.Element {
@@ -13,34 +7,12 @@ function ForYouPage(): JSX.Element {
     keyPrefix: "forYouPage",
   });
 
-  const { isMobile } = useBreakpoint();
-
-  function renderPage() {
-    return (
-      <S.Container>
-        {isMobile ? (
-          <S.TopImageBackground src={BackgroundImage} />
-        ) : (
-          <>
-            <S.LeftImage src={LeftImage} />
-            <S.RightImage src={RightImage} />
-          </>
-        )}
-        <AppDownloadTemplate
-          title={t("title")}
-          image={NewsImage}
-          hasBackButton={false}
-          firstButton={{
-            text: t("getAppButtonText"),
-            backgroundColor: theme.colors.brand.primary[800],
-            textColor: theme.colors.neutral10,
-          }}
-        />
-      </S.Container>
-    );
-  }
-
-  return <S.Container>{renderPage()}</S.Container>;
+  return (
+    <S.Container>
+      <S.Title>{t("title")}</S.Title>
+      <ForYouMenu />
+    </S.Container>
+  );
 }
 
 export default ForYouPage;

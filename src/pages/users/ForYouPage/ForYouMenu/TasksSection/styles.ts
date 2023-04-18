@@ -46,6 +46,7 @@ export const LeftContainer = styled.div`
 
 export const IntegrationTitle = styled.p`
   ${defaultBodySmBold}
+
   color: ${({ theme }) => theme.colors.neutral[900]};
 `;
 
@@ -66,8 +67,8 @@ export const Image = styled.img`
   height: 57px;
   margin-right: ${({ theme }) => theme.spacing(20)};
   margin-left: ${({ theme }) => theme.spacing(4)};
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colors.neutral[200]};
-  object-fit: contain;
   padding: ${({ theme }) => theme.spacing(8)};
+  border: 1px solid ${({ theme }) => theme.colors.neutral[200]};
+  border-radius: 4px;
+  object-fit: contain;
 `;

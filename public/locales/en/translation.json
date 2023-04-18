@@ -29,7 +29,7 @@
       "learnMore": "Learn more",
       "tooltipTicketText": "Tickets are used to make donations and you get a new one everyday when you log in Ribon.",
       "tooltipTicket": "What is a ticket?",
-      "noCauses":{
+      "noCauses": {
         "title": "No causes available",
         "text": "But you can contribute donating in community for a cause",
         "button": "Donate in community"
@@ -45,7 +45,8 @@
         "termsLink": "https://ribon.io/en/privacy-policy/#terms",
         "privacyPolicyText": "Privacy Policy",
         "privacyPolicyLink": "https://ribon.io/en/privacy-policy/#privacy",
-        "accessUserSupport": "Access user support"
+        "accessUserSupport": "Access user support",
+        "userSupportLink": "https://api.whatsapp.com/send/?phone=554896605461&text=Hii+Ribon%2C+let’s+talk%3F+&type=phone_number&app_absent=0"
       },
       "blockedModal": {
         "title": "You have no more tickets :(",
@@ -336,7 +337,20 @@
     }
   },
   "forYouPage": {
-    "title": "Get the app and check out what's new for you",
-    "getAppButtonText": "Get app"
+    "title": "For you",
+    "forYouMenu": {
+      "tasks": "Tasks",
+      "news": "Posts"
+    },
+    "newsSection": {
+      "title": "Get the app and check out what's new for you",
+      "getAppButtonText": "Get app"
+    },
+    "tasksSection": {
+      "title": "Tasks",
+      "tasks": {
+        "donate_ticket": "Donate ticket"
+      }
+    }
   }
 }

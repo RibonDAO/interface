@@ -96,7 +96,7 @@ function RoutesComponent(): JSX.Element {
       <Route path="/forYou" exact>
         <Suspense fallback={<div />}>
           <WalletProvider>
-            <MainLayout hideHeader>
+            <MainLayout>
               <ForYouPage />
             </MainLayout>
           </WalletProvider>

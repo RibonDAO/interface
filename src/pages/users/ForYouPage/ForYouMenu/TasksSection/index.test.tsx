@@ -1,11 +1,11 @@
 import { renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
-import ForYouPage from ".";
+import TasksSection from ".";
 
-describe("ForYouPage", () => {
+describe("TasksSection", () => {
   it("should render without error", () => {
-    renderComponent(<ForYouPage />);
+    renderComponent(<TasksSection />);
 
-    expectTextToBeInTheDocument("For you");
+    expectTextToBeInTheDocument("Tasks");
   });
 });

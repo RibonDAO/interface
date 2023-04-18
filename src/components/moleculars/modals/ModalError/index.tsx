@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Button from "components/atomics/buttons/Button";
 import ReactModal from "react-modal";
 import { newLogEvent } from "lib/events";
-import { ZendeskOpenChat } from "config/zendesk/features";
 import { useTranslation } from "react-i18next";
 import * as S from "./styles";
 import errorIcon from "./assets/alert.svg";
@@ -48,8 +47,9 @@ function ModalError({
   });
 
   const handleClick = () => {
-    ZendeskOpenChat();
+    window.open(t("userSupportLink"), "_blank");
   };
+
   return (
     <S.ModalWithIcon
       isOpen={visible}

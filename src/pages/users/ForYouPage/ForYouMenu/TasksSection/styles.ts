@@ -63,8 +63,8 @@ export const RightContainer = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 57px;
-  height: 57px;
+  width: 64px;
+  height: 64px;
   margin-right: ${({ theme }) => theme.spacing(12)};
   padding: ${({ theme }) => theme.spacing(8)};
   border: 1px solid ${({ theme }) => theme.colors.neutral[200]};

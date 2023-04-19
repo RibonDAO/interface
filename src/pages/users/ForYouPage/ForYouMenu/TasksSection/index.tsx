@@ -5,6 +5,8 @@ import { useTasks } from "utils/constants/Tasks";
 import theme from "styles/theme";
 import Icon from "components/atomics/Icon";
 import ProgressBar from "components/atomics/ProgressBar";
+import { useCountdown } from "hooks/useCountdown";
+import { nextDay } from "lib/dateUtils";
 import * as S from "./styles";
 
 function TasksSection() {
@@ -13,17 +15,41 @@ function TasksSection() {
   });
 
   const dailyTasks = useTasks("daily");
-  const { tasksState } = useTasksContext();
+  const { tasksState, reload } = useTasksContext();
 
   const progressBarValue = tasksState
     ? tasksState.filter((obj) => obj.done === true).length
     : 0;
+
+  const renderCountdown = () => {
+    const countdown = useCountdown(nextDay(), reload);
+
+    const parseCountdown = (count: number[]) =>
+      count
+        .toString()
+        .split(",")
+        .map((part) => part.trim().padStart(2, "0"))
+        .join(":");
+
+    if (!tasksState) return null;
+    if (!tasksState.length) return null;
+    if (tasksState.filter((obj) => obj.done === false).length) return null;
+    if (countdown.reduce((a, b) => a + b, 0) <= 0) return null;
+
+    return (
+      <S.TimerWrapper>
+        <S.Countdown>{parseCountdown(countdown)}</S.Countdown>
+        <p>{t("countdown")}</p>
+      </S.TimerWrapper>
+    );
+  };
 
   return (
     <S.Container>
       <S.ProgressBar>
         <ProgressBar value={progressBarValue} min={0} max={dailyTasks.length} />
       </S.ProgressBar>
+      {renderCountdown()}
 
       <S.TitleContainer>
         <Icon

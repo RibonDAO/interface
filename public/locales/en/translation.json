@@ -348,6 +348,7 @@
     },
     "tasksSection": {
       "title": "Tasks",
+      "countdown": "until task reset",
       "tasks": {
         "donate_ticket": "Donate ticket"
       }

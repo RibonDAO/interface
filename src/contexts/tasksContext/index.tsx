@@ -20,6 +20,7 @@ export type TaskStateItem = {
 export interface ITasksContext {
   tasksState: TaskStateItem[];
   registerAction: (action: string) => void;
+  reload: () => void;
 }
 
 export const TasksContext = createContext<ITasksContext>({} as ITasksContext);
@@ -74,6 +75,8 @@ function TasksProvider({ children }: any) {
     });
   };
 
+  const reload = () => buildTasksState();
+
   useEffect(() => {
     if (currentUser && signedIn && currentUser.email) buildTasksState();
   }, [currentUser, signedIn]);
@@ -114,6 +117,7 @@ function TasksProvider({ children }: any) {
     () => ({
       tasksState,
       registerAction,
+      reload,
     }),
     [tasksState],
   );

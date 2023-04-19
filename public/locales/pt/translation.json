@@ -348,6 +348,7 @@
     },
     "tasksSection": {
       "title": "Tarefas",
+      "countdown": "até reiniciar tarefas",
       "tasks": {
         "donate_ticket": "Doar ticket"
       }

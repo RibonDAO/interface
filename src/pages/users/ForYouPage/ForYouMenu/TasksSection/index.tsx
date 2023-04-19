@@ -7,6 +7,7 @@ import Icon from "components/atomics/Icon";
 import ProgressBar from "components/atomics/ProgressBar";
 import { useCountdown } from "hooks/useCountdown";
 import { nextDay } from "lib/dateUtils";
+import { formatCountdown } from "lib/formatters/countdownFormatter";
 import * as S from "./styles";
 
 function TasksSection() {
@@ -24,13 +25,6 @@ function TasksSection() {
   const renderCountdown = () => {
     const countdown = useCountdown(nextDay(), reload);
 
-    const parseCountdown = (count: number[]) =>
-      count
-        .toString()
-        .split(",")
-        .map((part) => part.trim().padStart(2, "0"))
-        .join(":");
-
     if (!tasksState) return null;
     if (!tasksState.length) return null;
     if (tasksState.filter((obj) => obj.done === false).length) return null;
@@ -38,7 +32,7 @@ function TasksSection() {
 
     return (
       <S.TimerWrapper>
-        <S.Countdown>{parseCountdown(countdown)}</S.Countdown>
+        <S.Countdown>{formatCountdown(countdown)}</S.Countdown>
         <p>{t("countdown")}</p>
       </S.TimerWrapper>
     );

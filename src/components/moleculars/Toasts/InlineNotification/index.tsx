@@ -6,20 +6,20 @@ import * as S from "./styles";
 export type Props = {
   title: string;
   description: string;
-  link1?: string;
-  onLink1Click?: (setVisible: Dispatch<boolean>) => void;
-  link2?: string;
-  onLink2Click?: (setVisible: Dispatch<boolean>) => void;
+  firstLink?: string;
+  onFirstLinkClick?: (setVisible: Dispatch<boolean>) => void;
+  secondLink?: string;
+  onSecondLinkClick?: (setVisible: Dispatch<boolean>) => void;
   type: "success" | "warning" | "error" | "informational";
   onCloseClick?: () => void;
 };
 function InlineNotification({
   title,
   description,
-  link1,
-  onLink1Click,
-  link2,
-  onLink2Click,
+  firstLink,
+  onFirstLinkClick,
+  secondLink,
+  onSecondLinkClick,
   type,
   onCloseClick,
 }: Props): JSX.Element {
@@ -31,12 +31,12 @@ function InlineNotification({
     if (onCloseClick) onCloseClick();
   };
 
-  const handleLink1Click = () => {
-    if (onLink1Click) onLink1Click(setVisible);
+  const handleFirstLinkClick = () => {
+    if (onFirstLinkClick) onFirstLinkClick(setVisible);
   };
 
-  const handleLink2Click = () => {
-    if (onLink2Click) onLink2Click(setVisible);
+  const handleSecondLinkClick = () => {
+    if (onSecondLinkClick) onSecondLinkClick(setVisible);
   };
 
   const iconByType = () => {
@@ -65,8 +65,12 @@ function InlineNotification({
           <S.Description>{description}</S.Description>
           {isMobile && (
             <S.Links>
-              {link1 && <S.Link onClick={handleLink1Click}>{link1}</S.Link>}
-              {link2 && <S.Link onClick={handleLink2Click}>{link2}</S.Link>}
+              {firstLink && (
+                <S.Link onClick={handleFirstLinkClick}>{firstLink}</S.Link>
+              )}
+              {secondLink && (
+                <S.Link onClick={handleSecondLinkClick}>{secondLink}</S.Link>
+              )}
             </S.Links>
           )}
         </S.TextContainer>
@@ -74,8 +78,12 @@ function InlineNotification({
       <S.RightContainer>
         {!isMobile && (
           <S.Links>
-            {link1 && <S.Link onClick={handleLink1Click}>{link1}</S.Link>}
-            {link2 && <S.Link onClick={handleLink2Click}>{link2}</S.Link>}
+            {firstLink && (
+              <S.Link onClick={handleFirstLinkClick}>{firstLink}</S.Link>
+            )}
+            {secondLink && (
+              <S.Link onClick={handleSecondLinkClick}>{secondLink}</S.Link>
+            )}
           </S.Links>
         )}
         <S.CloseIconContainer onClick={handleCloseIconClick}>

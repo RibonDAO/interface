@@ -12,8 +12,8 @@ describe("InlineNotification", () => {
         type="success"
         title="Title"
         description="InlineNotification"
-        link1="Link 1"
-        link2="Link 2"
+        firstLink="Link 1"
+        secondLink="Link 2"
       />,
     );
 
@@ -52,8 +52,8 @@ describe("InlineNotification", () => {
   });
 
   describe("when the links are pressed", () => {
-    const onLink1Click = jest.fn();
-    const onLink2Click = jest.fn();
+    const onFirstLinkClick = jest.fn();
+    const onSecondLinkClick = jest.fn();
 
     beforeEach(() => {
       renderComponent(
@@ -61,20 +61,20 @@ describe("InlineNotification", () => {
           title="title"
           description="description"
           type="success"
-          link1="link1"
-          link2="link2"
-          onLink1Click={onLink1Click}
-          onLink2Click={onLink2Click}
+          firstLink="firstLink"
+          secondLink="secondLink"
+          onFirstLinkClick={onFirstLinkClick}
+          onSecondLinkClick={onSecondLinkClick}
         />,
       );
     });
 
     it("calls the onLinkClick", () => {
-      clickOn("link1");
-      clickOn("link2");
+      clickOn("firstLink");
+      clickOn("secondLink");
 
-      expect(onLink1Click).toHaveBeenCalled();
-      expect(onLink2Click).toHaveBeenCalled();
+      expect(onFirstLinkClick).toHaveBeenCalled();
+      expect(onSecondLinkClick).toHaveBeenCalled();
     });
   });
 });

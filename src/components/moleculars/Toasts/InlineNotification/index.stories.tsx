@@ -17,7 +17,7 @@ export const Default = Template.bind({});
 Default.args = {
   title: "Title",
   description: "Description",
-  link1: "Link 1",
-  link2: "Link 2",
+  firstLink: "Link 1",
+  secondLink: "Link 2",
   type: "success",
 };

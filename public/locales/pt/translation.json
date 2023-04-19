@@ -126,7 +126,7 @@
     "button": "Ver todos",
     "noImpactText": "O resumo do impacto das suas doações será mostrado aqui",
     "noImpactButton": "Doar agora",
-    "donatedTickets": "Tickets doados",
+    "donatedTickets": "Doações realizadas",
     "donatedMoney": "Dinheiro doado",
     "supportedNgos": "ONGs apoiadas",
     "supporterCauses": "Causas apoiadas",
@@ -136,6 +136,7 @@
       "directDonations": "Doações diretas"
     },
     "ticketSection": {
+      "totalDonations": "Você já doou {{value}} tickets",
       "emptyTitle": "Suas doações de tickets aparecerão aqui.",
       "emptyText": "Você ainda não fez doações gratuitas com tickets, que tal fazer a primeira?",
       "emptyButton": "Doar usando tickets",

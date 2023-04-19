@@ -1,9 +1,11 @@
+import { useEffect } from "react";
 import CardTopImage from "components/moleculars/cards/CardTopImage";
-import { useImpact } from "@ribon.io/shared/hooks";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import useNavigation from "hooks/useNavigation";
 import { useTranslation } from "react-i18next";
 import { useCurrentUser } from "contexts/currentUserContext";
+import { useWalletContext } from "contexts/walletContext";
+import { useStatistics, useImpact } from "@ribon.io/shared/hooks";
 import ticketIllustration from "../../assets/ticket-illustration.svg";
 import * as S from "../styles";
 
@@ -15,8 +17,13 @@ function TicketSection() {
   const handleEmptyButtonClick = () => {
     navigateTo("/");
   };
-
   const { currentUser } = useCurrentUser();
+  const { wallet } = useWalletContext();
+  const { userStatistics, refetch: refetchStatistics } = useStatistics({
+    userId: currentUser?.id,
+    walletAddress: wallet!,
+  });
+
   const { userImpact } = useImpact(currentUser?.id);
   const { formattedImpactText } = useFormattedImpactText();
 
@@ -26,24 +33,32 @@ function TicketSection() {
   );
   const hasImpact = impactItems.length > 0;
 
+  useEffect(() => {
+    refetchStatistics();
+  }, [wallet, currentUser?.id]);
+
   return (
     <S.Container>
       {hasImpact ? (
         <S.CardsContainer>
-          <S.DonationsCountTitle>Você já doou 1 ticket</S.DonationsCountTitle>
+          <S.DonationsCountTitle>
+            {t("totalDonations", { value: userStatistics?.totalTickets ?? 0 })}
+          </S.DonationsCountTitle>
 
-          {impactItems.map((item: any) => (
-            <CardTopImage
-              key={item.nonProfit.id}
-              title={item.nonProfit.name}
-              text={
-                formattedImpactText(item.nonProfit, item.impact, false, true) ||
-                ""
-              }
-              icon={item.nonProfit.logo}
-              size="large"
-            />
-          ))}
+          <S.CardsSection>
+            {impactItems.map((item: any) => (
+              <CardTopImage
+                key={item.nonProfit.id}
+                title={item.nonProfit.name}
+                text={
+                  formattedImpactText(item.nonProfit, item.impact, false, true) ||
+                  ""
+                }
+                icon={item.nonProfit.logo}
+                size="large"
+              />
+            ))}
+          </S.CardsSection>
         </S.CardsContainer>
       ) : (
         <S.EmptySectionContainer>

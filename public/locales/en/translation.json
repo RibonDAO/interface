@@ -126,7 +126,7 @@
     "button": "Show more",
     "noImpactText": "Your donation impact summary will be shown here",
     "noImpactButton": "Donate now",
-    "donatedTickets": "Donated tickets",
+    "donatedTickets": "Total Donations",
     "donatedMoney": "Donated money",
     "supportedNgos": "Supported NGOs",
     "supporterCauses": "Supporter causes",
@@ -136,6 +136,7 @@
       "directDonations": "Direct donations"
     },
     "ticketSection": {
+      "totalDonations": "You already donated {{value}} tickets",
       "emptyTitle": "Your ticket donations will appear here.",
       "emptyText": "You have not made free donations using tickets yet, why not try your first one?",
       "emptyButton": "Donate using tickets",

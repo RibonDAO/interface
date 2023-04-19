@@ -10,7 +10,7 @@ import { useWalletContext } from "contexts/walletContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useStatistics } from "@ribon.io/shared/hooks";
 import ImpactMenu from "./ImpactMenu";
-import TicketIcon from "./assets/ticket-icon.svg";
+import DonationIcon from "./assets/donation-icon.svg";
 import MoneyIcon from "./assets/money-icon.svg";
 import NgoIcon from "./assets/ngo-icon.svg";
 import CausesIcon from "./assets/causes-icon.svg";
@@ -44,7 +44,7 @@ function ImpactPage(): JSX.Element {
       <S.CardsButtonContainer>
         <CardTopImage
           text={t("donatedTickets")}
-          icon={TicketIcon}
+          icon={DonationIcon}
           title={userStatistics?.totalTickets ?? 0}
           size="small"
         />

@@ -1,24 +1,20 @@
 import React from "react";
 import { renderComponent } from "config/testUtils";
+import { expectTextToBeInTheDocument } from "config/testUtils/expects";
+import { Notification } from "@ribon.io/shared";
 import Toast from ".";
 
-const mockContext = {
-  notifications: [
-    {
-      type: "success",
-      message: "This is a success message",
-    },
-    {
-      type: "warning",
-      message: "This is a warning message",
-    },
-  ],
-};
+describe("Toast component", () => {
+  const notification = {
+    message: "Test notification",
+    type: "error",
+  } as Notification;
+  it("should render a notification with the correct message", () => {
+    renderComponent(
+      <Toast />,
 
-test("renders the Toast component without any errors", () => {
-  renderComponent(
-    <Toast />,
-
-    { toastProviderValue: { notifications: mockContext } },
-  );
+      { toastProviderValue: { notifications: [notification] } },
+    );
+    expectTextToBeInTheDocument("Test notification");
+  });
 });

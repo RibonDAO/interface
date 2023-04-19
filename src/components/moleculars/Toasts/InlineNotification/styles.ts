@@ -12,8 +12,6 @@ interface NotificationProps {
 export const Container = styled.div<NotificationProps>`
   width: 100%;
   padding: 16px;
-  border-radius: 8px;
-  color: ${({ theme }) => theme.colors.neutral[800]};
   border-width: 1px;
   border-style: solid;
   border-color: ${({ theme, type }) => {
@@ -30,6 +28,9 @@ export const Container = styled.div<NotificationProps>`
         return theme.colors.neutral10;
     }
   }};
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
   background-color: ${({ theme, type }) => {
     switch (type) {
       case "success":
@@ -44,8 +45,7 @@ export const Container = styled.div<NotificationProps>`
         return theme.colors.neutral10;
     }
   }};
-  display: flex;
-  flex-direction: row;
+  color: ${({ theme }) => theme.colors.neutral[800]};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     align-items: center;
@@ -74,24 +74,24 @@ export const RightContainer = styled.div`
 `;
 
 export const CloseIconContainer = styled.div`
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `;
 
 export const Title = styled.h3`
-  ${defaultBodySmSemibold};
+  ${defaultBodySmSemibold}
 `;
 
 export const Description = styled.p`
-  ${defaultBodySmRegular};
+  ${defaultBodySmRegular}
 `;
 
 export const Links = styled.div`
+  margin-top: ${({ theme }) => theme.spacing(8)};
   display: flex;
   flex-direction: row;
-  margin-top: ${({ theme }) => theme.spacing(8)};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     margin-top: 0;
@@ -99,9 +99,10 @@ export const Links = styled.div`
 `;
 
 export const Link = styled.p`
-  ${defaultBodySmBold};
+  ${defaultBodySmBold}
+
   margin-top: 0;
-  cursor: pointer;
   margin-right: ${({ theme }) => theme.spacing(16)};
   text-decoration: underline;
+  cursor: pointer;
 `;

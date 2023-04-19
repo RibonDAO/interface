@@ -1,5 +1,5 @@
 import Icon from "components/atomics/Icon";
-import { useState } from "react";
+import { Dispatch, useState } from "react";
 import useBreakpoint from "hooks/useBreakpoint";
 import * as S from "./styles";
 
@@ -7,9 +7,9 @@ export type Props = {
   title: string;
   description: string;
   link1?: string;
-  onLink1Click?: () => void;
+  onLink1Click?: (setVisible: Dispatch<boolean>) => void;
   link2?: string;
-  onLink2Click?: () => void;
+  onLink2Click?: (setVisible: Dispatch<boolean>) => void;
   type: "success" | "warning" | "error" | "informational";
   onCloseClick?: () => void;
 };
@@ -29,6 +29,14 @@ function InlineNotification({
   const handleCloseIconClick = () => {
     setVisible(false);
     if (onCloseClick) onCloseClick();
+  };
+
+  const handleLink1Click = () => {
+    if (onLink1Click) onLink1Click(setVisible);
+  };
+
+  const handleLink2Click = () => {
+    if (onLink2Click) onLink2Click(setVisible);
   };
 
   const iconByType = () => {
@@ -57,8 +65,8 @@ function InlineNotification({
           <S.Description>{description}</S.Description>
           {isMobile && (
             <S.Links>
-              {link1 && <S.Link onClick={onLink1Click}>{link1}</S.Link>}
-              {link2 && <S.Link onClick={onLink2Click}>{link2}</S.Link>}
+              {link1 && <S.Link onClick={handleLink1Click}>{link1}</S.Link>}
+              {link2 && <S.Link onClick={handleLink2Click}>{link2}</S.Link>}
             </S.Links>
           )}
         </S.TextContainer>
@@ -66,8 +74,8 @@ function InlineNotification({
       <S.RightContainer>
         {!isMobile && (
           <S.Links>
-            {link1 && <S.Link onClick={onLink1Click}>{link1}</S.Link>}
-            {link2 && <S.Link onClick={onLink2Click}>{link2}</S.Link>}
+            {link1 && <S.Link onClick={handleLink1Click}>{link1}</S.Link>}
+            {link2 && <S.Link onClick={handleLink2Click}>{link2}</S.Link>}
           </S.Links>
         )}
         <S.CloseIconContainer onClick={handleCloseIconClick}>

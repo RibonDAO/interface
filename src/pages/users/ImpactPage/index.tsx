@@ -46,6 +46,9 @@ function ImpactPage(): JSX.Element {
         title={t("impactNotification.title")}
         description={t("impactNotification.description")}
         link1={t("impactNotification.link")}
+        onLink1Click={(setVisible) => {
+          setVisible(false);
+        }}
         type="success"
       />
       <S.CardsButtonContainer>

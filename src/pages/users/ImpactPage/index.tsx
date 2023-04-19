@@ -9,7 +9,6 @@ import { coinByLanguage } from "lib/coinByLanguage";
 import { useWalletContext } from "contexts/walletContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useStatistics } from "@ribon.io/shared/hooks";
-import InlineNotification from "components/moleculars/Toasts/InlineNotification";
 import ImpactMenu from "./ImpactMenu";
 import TicketIcon from "./assets/ticket-icon.svg";
 import MoneyIcon from "./assets/money-icon.svg";
@@ -42,15 +41,6 @@ function ImpactPage(): JSX.Element {
     <S.Container>
       <DownloadAppToast />
       <S.Title>{t("title")}</S.Title>
-      <InlineNotification
-        title={t("impactNotification.title")}
-        description={t("impactNotification.description")}
-        link1={t("impactNotification.link")}
-        onLink1Click={(setVisible) => {
-          setVisible(false);
-        }}
-        type="success"
-      />
       <S.CardsButtonContainer>
         <CardTopImage
           text={t("donatedTickets")}

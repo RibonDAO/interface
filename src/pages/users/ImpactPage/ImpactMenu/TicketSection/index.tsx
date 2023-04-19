@@ -30,6 +30,8 @@ function TicketSection() {
     <S.Container>
       {hasImpact ? (
         <S.CardsContainer>
+          <S.DonationsCountTitle>Você já doou 1 ticket</S.DonationsCountTitle>
+
           {impactItems.map((item: any) => (
             <CardTopImage
               key={item.nonProfit.id}

@@ -29,8 +29,15 @@ export const CardsContainer = styled.div`
   min-height: 216px;
   margin-top: ${({ theme }) => theme.spacing(32)};
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   gap: 8px;
+`;
+
+export const DonationsCountTitle = styled.p`
+  ${defaultBodyMdBold}
+
+  padding-bottom: 16px;
 `;
 
 export const TooltipText = styled.div`

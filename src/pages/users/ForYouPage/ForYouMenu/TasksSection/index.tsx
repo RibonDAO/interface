@@ -60,7 +60,7 @@ function TasksSection() {
             />
           </S.CheckboxContainer>
         ))}
-      {integration?.integrationTask.description &&
+      {integration?.integrationTask &&
         tasksState.find((obj) => obj.id === donateTicketTask?.id)?.done && (
           <S.IntegrationContainer>
             <S.RightContainer>

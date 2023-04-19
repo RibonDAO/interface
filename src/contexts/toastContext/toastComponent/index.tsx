@@ -18,7 +18,7 @@ function Toast() {
           >
             <S.NotificationToast
               style={{
-                backgroundColor: notifications[index].backgroundColor
+                backgroundColor: notifications[index].backgroundColor,
               }}
               key={index}
             >

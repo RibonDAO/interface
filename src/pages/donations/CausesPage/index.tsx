@@ -29,6 +29,7 @@ import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import { normalizedLanguage } from "lib/currentLanguage";
+import extractUrlValue from "lib/extractUrlValue";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
@@ -53,7 +54,7 @@ function CausesPage(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
-  const { state } = useLocation<LocationStateType>();
+  const { state, search } = useLocation<LocationStateType>();
 
   const { hide: closeWarningModal } = useModal(
     {
@@ -84,6 +85,7 @@ function CausesPage(): JSX.Element {
     undefined,
     integration,
   );
+  const externalId = extractUrlValue("external_id", search);
   const { canDonate, refetch: refetchCanDonate } = useCanDonate(integrationId);
   const { destroyVoucher, createVoucher } = useVoucher();
 
@@ -115,7 +117,9 @@ function CausesPage(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    if (hasReceivedTicketToday() && hasAvailableDonation()) {
+    if(externalId){
+      createVoucher();
+    } else if (hasReceivedTicketToday() && hasAvailableDonation()) {
       createVoucher();
     } else if (
       !hasReceivedTicketToday() ||
@@ -238,7 +242,7 @@ function CausesPage(): JSX.Element {
                 nonProfits={nonProfitsFilter()}
                 setChosenNonProfit={setChosenNonProfit}
                 setConfirmModalVisible={setConfirmModalVisible}
-                canDonate={canDonate}
+                canDonate={canDonate || !!externalId}
                 integration={integration}
               />
             </S.NonProfitsContainer>

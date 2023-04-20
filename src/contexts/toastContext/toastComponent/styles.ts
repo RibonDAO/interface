@@ -9,6 +9,7 @@ export const NotificationToast = styled.div`
   margin: ${({ theme }) => theme.spacing(24)};
   margin-bottom: ${({ theme }) => theme.spacing(16)};
   padding: ${({ theme }) => theme.spacing(20)};
+  border: 1px solid ${({ theme }) => theme.colors.neutral[200]};
   border-radius: 8px;
   position: fixed;
   display: flex;
@@ -22,7 +23,6 @@ export const NotificationToast = styled.div`
   pointer-events: auto;
   transition: 0.3s ease;
   animation: toast-in-right 0.7s;
-  border: 1px solid ${({ theme }) => theme.colors.neutral[200]};
 
   &:hover {
     box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};

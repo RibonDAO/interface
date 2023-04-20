@@ -26,6 +26,19 @@ function TicketSection() {
   );
   const hasImpact = impactItems.length > 0;
 
+  const legacyImpacts = [
+    {
+      nonProfit: {
+        id: 1,
+        name: "Instituto Horas de Vida",
+        impactDescription:
+          "tele consulta para quem não tem condições e acesso à saúde.",
+        logoUrl: "",
+      },
+      totalImpact: 2,
+    },
+  ];
+
   return (
     <S.Container>
       {hasImpact ? (
@@ -38,8 +51,25 @@ function TicketSection() {
                 formattedImpactText(item.nonProfit, item.impact, false, true) ||
                 ""
               }
+              icon={item.nonProfit.logoUrl}
+              size="large"
+            />
+          ))}
+          {legacyImpacts.map((item: any) => (
+            <CardTopImage
+              key={item.nonProfit.id}
+              title={item.nonProfit.name}
+              text={
+                formattedImpactText(
+                  item.nonProfit,
+                  item.totalImpact,
+                  false,
+                  true,
+                ) || ""
+              }
               icon={item.nonProfit.logo}
               size="large"
+              label={t("migrated")}
             />
           ))}
         </S.CardsContainer>

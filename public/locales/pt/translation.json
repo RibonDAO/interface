@@ -156,6 +156,11 @@
       "tooltipFirstParagraphText": "Doação líquida: {{value}}",
       "tooltipSecondParagraphText": "Taxa de serviço: {{value}}",
       "showMore": "Mostrar mais"
+    },
+    "impactNotification": {
+      "title": "Migramos seu impacto!",
+      "description": "O seu histórico de doações feitas na plataforma antiga está na aba \"doações em ticket\".",
+      "link": "Não mostrar novamente"
     }
   },
   "promoters": {

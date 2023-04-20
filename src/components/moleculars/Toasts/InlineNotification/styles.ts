@@ -91,10 +91,10 @@ export const Description = styled.p`
 `;
 
 export const Links = styled.div`
+  min-width: 100px;
   margin-top: ${({ theme }) => theme.spacing(8)};
   display: flex;
   flex-direction: row;
-  min-width: 100px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     margin-top: 0;
@@ -102,7 +102,7 @@ export const Links = styled.div`
 `;
 
 export const Link = styled.p`
-  ${defaultBodySmBold};
+  ${defaultBodySmBold}
 
   margin-top: 0;
   margin-right: ${({ theme }) => theme.spacing(8)};

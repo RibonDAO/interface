@@ -29,6 +29,7 @@ import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import { normalizedLanguage } from "lib/currentLanguage";
+import extractUrlValue from "lib/extractUrlValue";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
@@ -53,7 +54,7 @@ function CausesPage(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
-  const { state } = useLocation<LocationStateType>();
+  const { state, search } = useLocation<LocationStateType>();
 
   const { hide: closeWarningModal } = useModal(
     {
@@ -84,7 +85,12 @@ function CausesPage(): JSX.Element {
     undefined,
     integration,
   );
-  const { canDonate, refetch: refetchCanDonate } = useCanDonate(integrationId);
+  const externalId = extractUrlValue("external_id", search);
+  const { canDonate, refetch: refetchCanDonate } = useCanDonate(
+    integrationId,
+    "web",
+    externalId,
+  );
   const { destroyVoucher, createVoucher } = useVoucher();
 
   const { isMobile } = useBreakpoint();

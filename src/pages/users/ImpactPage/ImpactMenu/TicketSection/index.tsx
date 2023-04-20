@@ -1,5 +1,5 @@
 import CardTopImage from "components/moleculars/cards/CardTopImage";
-import { useImpact } from "@ribon.io/shared/hooks";
+import { useImpact, useLegacyImpact } from "@ribon.io/shared/hooks";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import useNavigation from "hooks/useNavigation";
 import { useTranslation } from "react-i18next";
@@ -18,6 +18,7 @@ function TicketSection() {
 
   const { currentUser } = useCurrentUser();
   const { userImpact } = useImpact(currentUser?.id);
+  const { legacyUserImpact } = useLegacyImpact(currentUser?.id);
   const { formattedImpactText } = useFormattedImpactText();
 
   const impactCards = userImpact || [];
@@ -25,19 +26,6 @@ function TicketSection() {
     (item) => item.impact.toString() !== "0",
   );
   const hasImpact = impactItems.length > 0;
-
-  const legacyImpacts = [
-    {
-      nonProfit: {
-        id: 1,
-        name: "Instituto Horas de Vida",
-        impactDescription:
-          "tele consulta para quem não tem condições e acesso à saúde.",
-        logoUrl: "",
-      },
-      totalImpact: 2,
-    },
-  ];
 
   return (
     <S.Container>
@@ -55,19 +43,19 @@ function TicketSection() {
               size="large"
             />
           ))}
-          {legacyImpacts.map((item: any) => (
+          {legacyUserImpact?.map((item: any) => (
             <CardTopImage
-              key={item.nonProfit.id}
-              title={item.nonProfit.name}
+              key={item.legacyNonProfit.id}
+              title={item.legacyNonProfit.name}
               text={
                 formattedImpactText(
-                  item.nonProfit,
+                  item.legacyNonProfit,
                   item.totalImpact,
                   false,
                   true,
                 ) || ""
               }
-              icon={item.nonProfit.logo}
+              icon={item.legacyNonProfit.logoUrl}
               size="large"
               label={t("migrated")}
             />

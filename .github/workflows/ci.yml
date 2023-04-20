@@ -2,7 +2,6 @@ name: Continuous Integration
 
 on:
   push:
-  pull_request_target:
   pull_request:
     types: [opened, edited]
 
@@ -11,9 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.ref }}
+      - uses: actions/checkout@v2
       - name: Install npm dependencies
         run: |
           yarn install

@@ -91,13 +91,13 @@ export const Title = styled.span<{
 `;
 
 export const Label = styled.span`
-  ${defaultBodyXsRegular}
+  ${defaultBodyXsRegular};
 
   padding: 4px 8px;
   border-radius: 30px;
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: ${({ theme }) => theme.spacing(16)};
+  right: ${({ theme }) => theme.spacing(16)};
   background-color: ${({ theme }) => theme.colors.brand.primary[50]};
   color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;

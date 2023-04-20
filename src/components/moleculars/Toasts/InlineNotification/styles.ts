@@ -10,7 +10,6 @@ interface NotificationProps {
 }
 
 export const Container = styled.div<NotificationProps>`
-  width: 100%;
   padding: 16px;
   border-width: 1px;
   border-style: solid;
@@ -57,6 +56,8 @@ export const TextContainer = styled.div`
   margin-left: ${({ theme }) => theme.spacing(16)};
 `;
 export const LeftContainer = styled.div`
+  width: 100%;
+  margin-right: ${({ theme }) => theme.spacing(8)};
   display: flex;
   flex-direction: row;
 `;
@@ -99,10 +100,10 @@ export const Links = styled.div`
 `;
 
 export const Link = styled.p`
-  ${defaultBodySmBold}
+  ${defaultBodySmBold};
 
   margin-top: 0;
-  margin-right: ${({ theme }) => theme.spacing(16)};
+  margin-right: ${({ theme }) => theme.spacing(8)};
   text-decoration: underline;
   cursor: pointer;
 `;

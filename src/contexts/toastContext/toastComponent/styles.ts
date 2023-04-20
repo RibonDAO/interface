@@ -5,7 +5,7 @@ import {
 } from "styles/typography/default";
 
 export const NotificationToast = styled.div`
-  width: 336px;
+  min-width: 336px;
   margin: ${({ theme }) => theme.spacing(24)};
   margin-bottom: ${({ theme }) => theme.spacing(16)};
   padding: ${({ theme }) => theme.spacing(20)};

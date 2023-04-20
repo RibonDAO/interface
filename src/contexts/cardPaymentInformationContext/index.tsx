@@ -199,7 +199,9 @@ function CardPaymentInformationProvider({ children }: Props) {
       logError(error);
       toast({
         message: t("onErrorMessage"),
-        type: "error",
+        type: "info",
+        link: "link",
+        linkMessage: "linkMessage",
       });
 
       logEvent("toastNotification_view", {

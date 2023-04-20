@@ -58,11 +58,19 @@ function Toast() {
     }
   };
 
-  const backgroundColorToast = {
-    success: theme.colors.brand.primary[600],
-    error: theme.colors.feedback.error[600],
-    warning: theme.colors.brand.quaternary[200],
-    info: theme.colors.feedback.informational[500],
+  const backgroundColorToast = (type: string) => {
+    switch (type) {
+      case "success":
+        return theme.colors.brand.primary[600];
+      case "error":
+        return theme.colors.feedback.error[600];
+      case "warning":
+        return theme.colors.brand.quaternary[200];
+      case "info":
+        return theme.colors.feedback.informational[500];
+      default:
+        return theme.colors.feedback.informational[500];
+    }
   };
 
   const textColorToast = (type: string) => {
@@ -82,10 +90,10 @@ function Toast() {
             style={{
               backgroundColor: notification.backgroundColor
                 ? notification.backgroundColor
-                : backgroundColorToast[notification.type],
+                : backgroundColorToast(notification.type),
               borderColor: notification.borderColor
                 ? notification.borderColor
-                : backgroundColorToast[notification.type],
+                : backgroundColorToast(notification.type),
 
               ...positionToast(notification.position || "bottom-right"),
             }}
@@ -124,17 +132,19 @@ function Toast() {
                   {notification.linkMessage}
                 </S.Link>
               )}
-              <Icon
-                name="close"
-                className="close"
-                onClick={notification.onClose}
-                color={
-                  notification.textColor
-                    ? notification.textColor
-                    : textColorToast(notification.type)
-                }
-                size="24"
-              />
+              {notification.closeButton && (
+                <Icon
+                  name="close"
+                  className="close"
+                  onClick={notification.onClose}
+                  color={
+                    notification.textColor
+                      ? notification.textColor
+                      : textColorToast(notification.type)
+                  }
+                  size="24"
+                />
+              )}
             </S.Wrapper>
           </S.NotificationToast>
         );

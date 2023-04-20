@@ -5,25 +5,7 @@ import {
 } from "contexts/toastContext";
 import { useContext } from "react";
 
-type Props = {
-  message: string;
-  type: "success" | "error" | "warning" | "info";
-  link?: string;
-  timeout?: number;
-  linkMessage?: string;
-  icon?: string;
-  backgroundColor?: string;
-  borderColor?: string;
-  textColor?: string;
-  position?:
-    | "top-right"
-    | "top-left"
-    | "bottom-right"
-    | "bottom-left"
-    | "top-center"
-    | "bottom-center";
-  onClose?: () => void;
-};
+import Notification from "types/entities/Notification";
 
 const useToast = () => {
   const { dispatch } = useContext(ToastContext);
@@ -45,7 +27,8 @@ const useToast = () => {
     textColor,
     position,
     icon,
-  }: Props) {
+    closeButton = true,
+  }: Notification) {
     const id = Math.random();
     dispatch({
       type: ADD_NOTIFICATION,
@@ -61,6 +44,7 @@ const useToast = () => {
         position,
         icon,
         onClose: () => handleClose(id),
+        closeButton,
       },
     });
     setTimeout(() => {

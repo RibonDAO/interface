@@ -38,7 +38,7 @@ const useToast = () => {
     type = "success",
     message,
     link,
-    timeout = 1000000,
+    timeout = 5000,
     linkMessage,
     backgroundColor,
     borderColor,

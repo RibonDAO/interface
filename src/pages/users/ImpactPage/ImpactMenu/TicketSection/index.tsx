@@ -47,14 +47,7 @@ function TicketSection() {
             <CardTopImage
               key={item.legacyNonProfit.id}
               title={item.legacyNonProfit.name}
-              text={
-                formattedImpactText(
-                  item.legacyNonProfit,
-                  item.totalImpact,
-                  false,
-                  true,
-                ) || ""
-              }
+              text={item.totalImpact}
               icon={item.legacyNonProfit.logoUrl}
               size="large"
               label={t("migrated")}

@@ -101,7 +101,7 @@ export const Links = styled.div`
 `;
 
 export const Link = styled.p`
-  ${defaultBodySmBold};
+  ${defaultBodySmBold}
 
   margin-top: 0;
   margin-right: ${({ theme }) => theme.spacing(8)};

@@ -12,9 +12,9 @@ export const NotificationToast = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.neutral[200]};
   border-radius: 8px;
   position: fixed;
+  z-index: ${({ theme }) => theme.zindex.navigator};
   display: flex;
   align-items: center;
-  z-index: ${({ theme }) => theme.zindex.navigator};
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral10};
   color: ${({ theme }) => theme.colors.neutral[800]};
@@ -56,8 +56,8 @@ export const Icon = styled.img`
 export const CloseIcon = styled.img`
   width: 24px;
   height: 24px;
-  float: right;
   margin-left: ${({ theme }) => theme.spacing(24)};
+  float: right;
 `;
 
 export const Wrapper = styled.div`

@@ -19,6 +19,7 @@ import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModa
 import { RIBON_COMPANY_ID } from "utils/constants";
 import { logEvent, newLogEvent } from "lib/events";
 import { useModal } from "hooks/modalHooks/useModal";
+import extractUrlValue from "lib/extractUrlValue";
 import ChangeLanguageItem from "./ChangeLanguageItem";
 import LogoutItem from "./LogoutItem";
 import * as S from "./styles";
@@ -48,7 +49,9 @@ function LayoutHeader({
     undefined,
     integration,
   );
-  const { canDonate } = useCanDonate(integrationId);
+  const externalId = extractUrlValue("external_id", history.location.search);
+  const { canDonate } = useCanDonate(integrationId, "web", externalId);
+
   const { isVoucherAvailable } = useVoucher();
 
   const { t } = useTranslation("translation", {

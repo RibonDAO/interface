@@ -90,6 +90,7 @@ export const Description = styled.p`
 `;
 
 export const Links = styled.div`
+  min-width: 100px;
   margin-top: ${({ theme }) => theme.spacing(8)};
   display: flex;
   flex-direction: row;

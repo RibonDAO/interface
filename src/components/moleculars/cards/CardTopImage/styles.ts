@@ -91,7 +91,7 @@ export const Title = styled.span<{
 `;
 
 export const Label = styled.span`
-  ${defaultBodyXsRegular};
+  ${defaultBodyXsRegular}
 
   padding: 4px 8px;
   border-radius: 30px;

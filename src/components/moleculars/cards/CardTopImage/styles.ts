@@ -27,11 +27,11 @@ export const Container = styled.div<{
   margin-bottom: ${({ theme }) => theme.spacing(8)};
   padding: ${({ theme }) => theme.spacing(16)};
   border-radius: 8px;
+  position: relative;
   display: flex;
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.neutral10};
   box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};
-  position: relative;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 230px;
@@ -91,12 +91,13 @@ export const Title = styled.span<{
 `;
 
 export const Label = styled.span`
-  ${defaultBodyXsRegular};
-  color: ${({ theme }) => theme.colors.brand.primary[800]};
-  position: absolute;
-  right: 16px;
-  top: 16px;
+  ${defaultBodyXsRegular}
+
   padding: 4px 8px;
-  background-color: ${({ theme }) => theme.colors.brand.primary[50]};
   border-radius: 30px;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: ${({ theme }) => theme.colors.brand.primary[50]};
+  color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;

@@ -33,7 +33,7 @@ function Toast() {
       case "warning":
         return theme.colors.feedback.warning[600];
       case "info":
-        return theme.colors.feedback.informational[500];
+        return theme.colors.feedback.informational[300];
       default:
         return theme.colors.feedback.informational[300];
     }
@@ -118,22 +118,24 @@ function Toast() {
             >
               {notification.message}
             </S.Message>
-            {notification.link && (
-              <S.Link href={notification.link} target="_blank" key={index}>
-                {notification.linkMessage}
-              </S.Link>
-            )}
-            <Icon
-              name="close"
-              className="close"
-              onClick={notification.onClose}
-              color={
-                notification.textColor
-                  ? notification.textColor
-                  : textColorToast(notification.type)
-              }
-              size="24"
-            />
+            <S.Wrapper>
+              {notification.link && (
+                <S.Link href={notification.link} target="_blank" key={index}>
+                  {notification.linkMessage}
+                </S.Link>
+              )}
+              <Icon
+                name="close"
+                className="close"
+                onClick={notification.onClose}
+                color={
+                  notification.textColor
+                    ? notification.textColor
+                    : textColorToast(notification.type)
+                }
+                size="24"
+              />
+            </S.Wrapper>
           </S.NotificationToast>
         );
       })}

@@ -8,6 +8,7 @@ export default interface Notification {
   icon?: string;
   iconColor?: string;
   backgroundColor?: string;
+  borderColor?: string;
   textColor?: string;
   position?:
     | "top-right"

@@ -13,6 +13,7 @@ type Props = {
   linkMessage?: string;
   icon?: string;
   backgroundColor?: string;
+  borderColor?: string;
   textColor?: string;
   position?:
     | "top-right"
@@ -40,6 +41,7 @@ const useToast = () => {
     timeout = 1000000,
     linkMessage,
     backgroundColor,
+    borderColor,
     textColor,
     position,
     icon,
@@ -54,6 +56,7 @@ const useToast = () => {
         link,
         linkMessage,
         backgroundColor,
+        borderColor,
         textColor,
         position,
         icon,

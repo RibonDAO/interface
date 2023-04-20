@@ -83,6 +83,9 @@ function Toast() {
               backgroundColor: notification.backgroundColor
                 ? notification.backgroundColor
                 : backgroundColorToast[notification.type],
+              borderColor: notification.borderColor
+                ? notification.borderColor
+                : backgroundColorToast[notification.type],
 
               ...positionToast(notification.position || "bottom-right"),
             }}

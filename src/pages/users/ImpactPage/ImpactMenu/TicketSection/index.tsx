@@ -39,7 +39,7 @@ function TicketSection() {
                 formattedImpactText(item.nonProfit, item.impact, false, true) ||
                 ""
               }
-              icon={item.nonProfit.logoUrl}
+              icon={item.nonProfit.logo}
               size="large"
             />
           ))}

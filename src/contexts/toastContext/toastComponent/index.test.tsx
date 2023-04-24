@@ -1,7 +1,7 @@
 import React from "react";
 import { renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
-import { Notification } from "@ribon.io/shared/types";
+import Notification from "types/entities/Notification";
 import Toast from ".";
 
 describe("Toast component", () => {

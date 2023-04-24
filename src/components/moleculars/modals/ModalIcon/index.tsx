@@ -3,6 +3,8 @@ import ReactModal from "react-modal";
 import Button, { ButtonProps } from "components/atomics/buttons/Button";
 import theme from "styles/theme";
 import { newLogEvent } from "lib/events";
+import { ZendeskOpenChat } from "config/zendesk/features";
+import { useTranslation } from "react-i18next";
 import * as S from "./styles";
 import { defaultCustomStyles } from "../defaultCustomStyles";
 
@@ -17,6 +19,7 @@ export type Props = {
   body?: string | JSX.Element | null;
   primaryButton?: ButtonProps | null;
   secondaryButton?: ButtonProps | null;
+  supportButton?: boolean;
   contentLabel?: string;
   onClose?: () => void;
   highlightedText?: string;
@@ -38,6 +41,7 @@ function ModalIcon({
   body = null,
   primaryButton = null,
   secondaryButton = null,
+  supportButton = false,
   onClose = () => {},
   contentLabel,
   highlightedText,
@@ -46,6 +50,10 @@ function ModalIcon({
   eventParams,
 }: Props): JSX.Element {
   const [logged, SetLogged] = useState(false);
+
+  const { t } = useTranslation("translation", {
+    keyPrefix: "donations.causesPage.modalForm",
+  });
 
   if (visible && eventName && !logged) {
     newLogEvent("view", eventName, eventParams);
@@ -58,6 +66,10 @@ function ModalIcon({
 
     return icon && <S.Icon src={icon} />;
   }
+
+  const handleSupportButtonClick = () => {
+    ZendeskOpenChat();
+  };
 
   return (
     <S.ModalWithIcon
@@ -76,6 +88,12 @@ function ModalIcon({
             <S.HighlightedText>{highlightedText}</S.HighlightedText>
           )}
         </S.Body>
+      )}
+      {supportButton && (
+        <S.SupportButton
+          text={t("accessUserSupport")}
+          onClick={handleSupportButtonClick}
+        />
       )}
       {primaryButton && (
         <Button

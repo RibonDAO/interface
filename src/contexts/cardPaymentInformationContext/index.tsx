@@ -200,8 +200,6 @@ function CardPaymentInformationProvider({ children }: Props) {
       toast({
         message: t("onErrorMessage"),
         type: "info",
-        link: "link",
-        linkMessage: "linkMessage",
       });
 
       logEvent("toastNotification_view", {

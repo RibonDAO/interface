@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import LottieAnimation from "components/atomics/LottieAnimation";
 import { defaultBodyXsRegular } from "styles/typography/default";
 
 type Props = {
@@ -64,3 +65,23 @@ export const StyledLink = styled(Link)`
 export const Icon = styled.img`
   height: 30px;
 `;
+
+export const RedBall = styled.span`
+  top: 0px;
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  align-self: center;
+  left: 68%;
+  text-align: center;
+  background-color: ${({ theme }) => theme.colors.feedback.error[500]};
+  border-radius: 100%;
+`;
+
+export const IconContainer = styled.div`
+  display: flex;
+  position: relative;
+  flex-direction: column;
+`;
+
+export const SparklesAnimation = styled(LottieAnimation)``;

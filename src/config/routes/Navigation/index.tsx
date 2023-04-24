@@ -1,6 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { logEvent } from "lib/events";
+import { useTasksContext } from "contexts/tasksContext";
+import useBreakpoint from "hooks/useBreakpoint";
+import sparklesAnimation from "assets/animations/sparkle.json";
 import CausesIconOn from "./assets/causesIconOn.svg";
 import CausesIconOff from "./assets/causesIconOff.svg";
 import ForYouIconOn from "./assets/forYouIconOn.svg";
@@ -21,6 +24,8 @@ function Navigation(): JSX.Element {
   });
   const location = useLocation();
   const { search } = location;
+  const { isMobile } = useBreakpoint();
+  const { hasCompletedATask } = useTasksContext();
 
   function isInPath(route: any): boolean {
     const { menuOptions, path } = route;
@@ -98,6 +103,19 @@ function Navigation(): JSX.Element {
           }))}
         />
       ))}
+      {isMobile && hasCompletedATask && (
+        <S.SparklesAnimation
+          animationData={sparklesAnimation}
+          loop={false}
+          width={window.innerWidth}
+          style={{
+            position: "absolute",
+            zIndex: -1,
+            bottom: 0,
+            mixBlendMode: "multiply",
+          }}
+        />
+      )}
     </S.Container>
   );
 }

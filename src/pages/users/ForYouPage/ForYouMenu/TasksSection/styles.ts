@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import LottieAnimation from "components/atomics/LottieAnimation";
 import {
   defaultBodyLgBold,
   defaultBodySmBold,
@@ -71,3 +72,5 @@ export const Image = styled.img`
   border-radius: 4px;
   object-fit: contain;
 `;
+
+export const SparklesAnimation = styled(LottieAnimation)``;

@@ -24,6 +24,7 @@ function Icon({
       {...props}
       onClick={onClick}
       className={`${className} material-symbols-rounded`}
+      data-testid={`icon-${name}`}
     >
       {name}
     </S.Icon>

@@ -24,6 +24,7 @@ Default.args = {
     onClick: () => "second",
   },
   visible: true,
+  supportButton: true,
   icon,
   body: "A disciplina é a chama refinadora por meio da qual o talento se transforma em capacidade",
 };

@@ -16,7 +16,7 @@ import useBreakpoint from "hooks/useBreakpoint";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import useNavigation from "hooks/useNavigation";
 import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
-import { RIBON_COMPANY_ID } from "utils/constants";
+import { PLATFORM, RIBON_COMPANY_ID } from "utils/constants";
 import { logEvent, newLogEvent } from "lib/events";
 import { useModal } from "hooks/modalHooks/useModal";
 import extractUrlValue from "lib/extractUrlValue";
@@ -50,7 +50,7 @@ function LayoutHeader({
     integration,
   );
   const externalId = extractUrlValue("external_id", history.location.search);
-  const { canDonate } = useCanDonate(integrationId, "web", externalId);
+  const { canDonate } = useCanDonate(integrationId, PLATFORM, externalId);
 
   const { isVoucherAvailable } = useVoucher();
 

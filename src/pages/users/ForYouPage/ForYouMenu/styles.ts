@@ -133,15 +133,16 @@ export const TabSection = styled.section<{ visible?: boolean }>`
 export const RedBallContainer = styled.span`
   width: 8px;
   height: 8px;
+  padding: 1px;
+  border-radius: 100%;
   position: absolute;
   background-color: ${({ theme }) => theme.colors.feedback.error[500]};
-  border-radius: 100%;
-  padding: 1px;
 `;
 
 export const TextMenuItem = styled.span`
   ${defaultBodyMdMedium}
-  text-align: center;
+
   align-items: center;
+  text-align: center;
   cursor: pointer;
 `;

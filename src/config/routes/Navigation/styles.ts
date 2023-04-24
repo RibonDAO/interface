@@ -67,20 +67,20 @@ export const Icon = styled.img`
 `;
 
 export const RedBall = styled.span`
-  top: 0px;
   width: 8px;
   height: 8px;
+  border-radius: 100%;
   position: absolute;
-  align-self: center;
+  top: 0px;
   left: 68%;
+  align-self: center;
   text-align: center;
   background-color: ${({ theme }) => theme.colors.feedback.error[500]};
-  border-radius: 100%;
 `;
 
 export const IconContainer = styled.div`
-  display: flex;
   position: relative;
+  display: flex;
   flex-direction: column;
 `;
 

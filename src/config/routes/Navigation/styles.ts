@@ -83,5 +83,3 @@ export const IconContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
-export const SparklesAnimation = styled(LottieAnimation)``;

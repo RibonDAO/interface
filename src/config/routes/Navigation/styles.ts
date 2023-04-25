@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import LottieAnimation from "components/atomics/LottieAnimation";
 import { defaultBodyXsRegular } from "styles/typography/default";
 
 type Props = {

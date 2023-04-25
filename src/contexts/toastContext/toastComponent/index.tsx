@@ -3,11 +3,13 @@ import Notification from "types/entities/Notification";
 import theme from "styles/theme";
 import Icon from "components/atomics/Icon";
 
+import useNavigation from "hooks/useNavigation";
 import * as S from "./styles";
 import { ToastContext } from "..";
 
 function Toast() {
   const { notifications } = useContext(ToastContext);
+  const { navigateTo } = useNavigation();
 
   const iconToast = (type: string) => {
     switch (type) {
@@ -98,6 +100,7 @@ function Toast() {
               ...positionToast(notification.position || "bottom-right"),
             }}
             key={index}
+            onClick={() => navigateTo("forYou")}
           >
             <Icon
               className={

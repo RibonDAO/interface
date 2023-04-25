@@ -27,6 +27,7 @@ const useToast = () => {
     textColor,
     position,
     icon,
+    navigate,
     closeButton = true,
   }: Notification) {
     const id = Math.random();
@@ -45,6 +46,7 @@ const useToast = () => {
         icon,
         onClose: () => handleClose(id),
         closeButton,
+        navigate,
       },
     });
     setTimeout(() => {

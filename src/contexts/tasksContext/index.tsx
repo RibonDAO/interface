@@ -9,6 +9,8 @@ import {
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useCompletedTasks } from "@ribon.io/shared/hooks";
 import { CompletedTask } from "@ribon.io/shared/types/apiResponses";
+import { theme } from "@ribon.io/shared/styles";
+import useToast from "hooks/useToast";
 
 export type TaskStateItem = {
   id: string;
@@ -31,6 +33,7 @@ function TasksProvider({ children }: any) {
   const [hasCompletedATask, setHasCompletedATask] = useState(false);
   const { findCompletedTasks, completeTask } = useCompletedTasks();
   const { currentUser, signedIn } = useCurrentUser();
+  const toast = useToast();
 
   const isDone = (task: CompletedTask | undefined) => {
     if (!task) return false;
@@ -46,6 +49,10 @@ function TasksProvider({ children }: any) {
 
     return true;
   };
+
+  function allDone(tasks: any) {
+    return tasks.every((task: any) => task.done === true);
+  }
 
   const isExpired = (task: CompletedTask | undefined) => {
     if (!task) return false;
@@ -100,6 +107,7 @@ function TasksProvider({ children }: any) {
         } else {
           completeTask(task.id);
           setHasCompletedATask(true);
+
           return {
             ...task,
             done: true,
@@ -112,6 +120,19 @@ function TasksProvider({ children }: any) {
     });
 
     setTasksState(newState);
+    if (allDone(newState)) {
+      toast({
+        type: "success",
+        backgroundColor: theme.colors.feedback.success[50],
+        borderColor: theme.colors.brand.primary[500],
+        textColor: theme.colors.brand.primary[900],
+        icon: "celebration",
+        iconColor: theme.colors.brand.primary[500],
+        message: "You've completed all tasks",
+        closeButton: false,
+        position: "top-right",
+      });
+    }
   };
 
   const tasksObject: ITasksContext = useMemo(

@@ -3,7 +3,6 @@ import ReactModal from "react-modal";
 import Button, { ButtonProps } from "components/atomics/buttons/Button";
 import theme from "styles/theme";
 import { newLogEvent } from "lib/events";
-import { ZendeskOpenChat } from "config/zendesk/features";
 import { useTranslation } from "react-i18next";
 import * as S from "./styles";
 import { defaultCustomStyles } from "../defaultCustomStyles";
@@ -68,7 +67,7 @@ function ModalIcon({
   }
 
   const handleSupportButtonClick = () => {
-    ZendeskOpenChat();
+    window.open(t("userSupportLink"), "_blank");
   };
 
   return (

@@ -49,7 +49,7 @@ export function useFormattedImpactText() {
     return isRoundedImpact && nonProfitImpact
       ? `${nonProfitImpact?.roundedImpact} ${nonProfit?.impactDescription}`
       : `${prefixText} ${
-          impact?.toString() || nonProfit?.impactByTicket.toString()
+          impact?.toString() || nonProfit?.impactByTicket?.toString()
         } ${nonProfit?.impactDescription}`;
   }
   return { formattedImpactText };

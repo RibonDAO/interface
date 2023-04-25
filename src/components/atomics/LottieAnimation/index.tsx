@@ -16,6 +16,7 @@ function LottieAnimation({
 }: Props): JSX.Element {
   return (
     <Lottie
+      loop
       play
       animationData={animationData}
       style={{ width, height, ...style }}

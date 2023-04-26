@@ -2,6 +2,7 @@ import CheckBox from "components/atomics/inputs/Checkbox";
 import { useTasksContext } from "contexts/tasksContext";
 import { useTranslation } from "react-i18next";
 import { useTasks } from "utils/constants/Tasks";
+import { useEffect } from "react";
 import theme from "styles/theme";
 import Icon from "components/atomics/Icon";
 import ProgressBar from "components/atomics/ProgressBar";
@@ -15,7 +16,11 @@ function TasksSection() {
   });
 
   const dailyTasks = useTasks("daily");
-  const { tasksState } = useTasksContext();
+  const { tasksState, setHasCompletedATask } = useTasksContext();
+
+  useEffect(() => {
+    setHasCompletedATask(false);
+  }, []);
 
   const donateTicketTask = dailyTasks.find(
     (obj) => obj.title === "donate_ticket",

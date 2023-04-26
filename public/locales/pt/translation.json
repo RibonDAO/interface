@@ -309,6 +309,9 @@
       "modalAnimationFrom": "Você",
       "modalAnimationTo": "Ribon",
       "modalAnimationTitle": "Realizando contribuição..."
+    },
+    "tasksContext": {
+      "allTasksCompleted": "Você completou todas as tarefas!"
     }
   },
   "impactNormalizer": {

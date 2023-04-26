@@ -19,20 +19,21 @@ export const TASKS = [
     actions: ["donation_done_page_view"],
     type: "daily",
     navigationCallback: "/",
-    isVisible(this: Task, params?: any) {
+    isVisible(this: Task) {
       return true;
     },
   },
   {
     id: "9177df10-8e93-4938-b2fb-e04b138127f7",
     title: "download_app",
-    actions: ["donation_done_page_view"],
+    actions: ["download_app"],
     type: "daily",
-    navigationCallback: "CausesScreen",
     isVisible(this: Task, params?: any) {
       const taskState = params?.state.find((obj: any) => obj.id === this.id);
       const timesCompleted = taskState?.timesCompleted || 0;
       const taskDone = taskState?.done;
+
+      console.log(timesCompleted, taskDone);
 
       if (timesCompleted === 0 && !taskDone) {
         return true;

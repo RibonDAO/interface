@@ -32,6 +32,7 @@ import { normalizedLanguage } from "lib/currentLanguage";
 import WarningIcon from "assets/icons/warning-icon.svg";
 import extractUrlValue from "lib/extractUrlValue";
 import { PLATFORM } from "utils/constants";
+import { useTasksContext } from "contexts/tasksContext";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
@@ -53,6 +54,8 @@ function CausesPage(): JSX.Element {
     currentCauseId,
     setCurrentCauseId,
   } = useCausesContext();
+
+  const { registerAction } = useTasksContext();
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
@@ -92,11 +95,11 @@ function CausesPage(): JSX.Element {
     integration,
   );
   const externalId = extractUrlValue("external_id", search);
-  const { canDonate, refetch: refetchCanDonate } = useCanDonate(
-    integrationId,
-    PLATFORM,
-    externalId,
-  );
+  const {
+    canDonate,
+    refetch: refetchCanDonate,
+    donateApp,
+  } = useCanDonate(integrationId, PLATFORM, externalId);
   const { destroyVoucher, createVoucher } = useVoucher();
 
   const { isMobile } = useBreakpoint();
@@ -124,6 +127,12 @@ function CausesPage(): JSX.Element {
 
   useEffect(() => {
     track("Cause Page View");
+  }, []);
+
+  useEffect(() => {
+    if (donateApp) {
+      registerAction("download_app");
+    }
   }, []);
 
   useEffect(() => {

@@ -22,9 +22,12 @@ function TasksSection() {
     if (!tasksState) return;
     if (!tasksState.length) return;
 
+    const filterVisible = dailyTasks.filter((task: any) =>
+      task.isVisible({ state: tasksState }),
+    );
+
     // eslint-disable-next-line consistent-return
-    return dailyTasks.filter((task) => task.isVisible({ state: tasksState }))
-      .length;
+    return filterVisible.length;
   }, [tasksState]);
 
   useEffect(() => {

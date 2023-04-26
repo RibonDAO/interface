@@ -1,7 +1,7 @@
 export default interface Notification {
   id?: number;
   message: string;
-  type: "success" | "error" | "warning" | "info";
+  type: "success" | "error" | "warning" | "info" | "custom";
   link?: string;
   timeout?: number;
   linkMessage?: string;

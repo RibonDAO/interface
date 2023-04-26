@@ -11,12 +11,15 @@ import { useCompletedTasks } from "@ribon.io/shared/hooks";
 import { CompletedTask } from "@ribon.io/shared/types/apiResponses";
 import { theme } from "@ribon.io/shared/styles";
 import useToast from "hooks/useToast";
+import useBreakpoint from "hooks/useBreakpoint";
+import { useTranslation } from "react-i18next";
 
 export type TaskStateItem = {
   id: string;
   nextAction: string;
   done: boolean;
   expiresAt: string;
+  timesCompleted: number;
 };
 
 export interface ITasksContext {
@@ -33,12 +36,20 @@ function TasksProvider({ children }: any) {
   const [hasCompletedATask, setHasCompletedATask] = useState(false);
   const { findCompletedTasks, completeTask } = useCompletedTasks();
   const { currentUser, signedIn } = useCurrentUser();
+  const { t } = useTranslation("translation", {
+    keyPrefix: "contexts.walletContext",
+  });
+
   const toast = useToast();
+
+  const { isMobile } = useBreakpoint();
 
   const isDone = (task: CompletedTask | undefined) => {
     if (!task) return false;
     const lastCompletedAt = new Date(task.lastCompletedAt);
-    const taskObject = TASKS.find((t) => t.id === task.taskIdentifier);
+    const taskObject = TASKS.find(
+      (filterTask) => filterTask.id === task.taskIdentifier,
+    );
 
     const baseDate =
       taskObject?.type === "daily"
@@ -57,7 +68,9 @@ function TasksProvider({ children }: any) {
   const isExpired = (task: CompletedTask | undefined) => {
     if (!task) return false;
 
-    const taskObject = TASKS.find((t) => t.id === task.taskIdentifier);
+    const taskObject = TASKS.find(
+      (filterTask) => filterTask.id === task.taskIdentifier,
+    );
 
     if (isDone(task)) {
       return taskObject?.type === "daily" ? nextDay() : nextMonth();
@@ -70,12 +83,13 @@ function TasksProvider({ children }: any) {
     findCompletedTasks().then((completedTasks) => {
       const state = TASKS.map((task) => {
         const currentTask = completedTasks.find(
-          (t) => t.taskIdentifier === task.id,
+          (filterTask) => filterTask.taskIdentifier === task.id,
         );
 
         return {
           id: task.id,
           nextAction: task.actions[0],
+          timesCompleted: currentTask?.timesCompleted || 0,
           done: isDone(currentTask),
           expiresAt: isExpired(currentTask),
         };
@@ -93,7 +107,7 @@ function TasksProvider({ children }: any) {
     if (tasksState.length === 0) return;
 
     const newState = tasksState.map((task) => {
-      const currentTask = TASKS.find((t) => t.id === task.id);
+      const currentTask = TASKS.find((filterTask) => filterTask.id === task.id);
 
       if (task.nextAction === action && currentTask) {
         const nextActionIndex = currentTask.actions.indexOf(action) + 1;
@@ -111,6 +125,7 @@ function TasksProvider({ children }: any) {
           return {
             ...task,
             done: true,
+            timesCompleted: task.timesCompleted + 1,
             expiresAt: currentTask.type === "daily" ? nextDay() : nextMonth(),
           };
         }
@@ -122,15 +137,15 @@ function TasksProvider({ children }: any) {
     setTasksState(newState);
     if (allDone(newState)) {
       toast({
-        type: "success",
+        type: "custom",
         backgroundColor: theme.colors.feedback.success[50],
         borderColor: theme.colors.brand.primary[500],
         textColor: theme.colors.brand.primary[900],
         icon: "celebration",
         iconColor: theme.colors.brand.primary[500],
-        message: "You've completed all tasks",
+        message: t("allTasksCompleted"),
         closeButton: false,
-        position: "top-right",
+        position: isMobile ? "bottom-center" : "top-right",
       });
     }
   };

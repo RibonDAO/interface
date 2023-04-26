@@ -309,6 +309,9 @@
       "modalAnimationFrom": "You",
       "modalAnimationTo": "Ribon",
       "modalAnimationTitle": "Processing giving..."
+    },
+    "tasksContext": {
+      "allTasksCompleted": "You completed all tasks!"
     }
   },
   "impactNormalizer": {

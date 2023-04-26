@@ -37,7 +37,7 @@ function TasksProvider({ children }: any) {
   const { findCompletedTasks, completeTask } = useCompletedTasks();
   const { currentUser, signedIn } = useCurrentUser();
   const { t } = useTranslation("translation", {
-    keyPrefix: "contexts.walletContext",
+    keyPrefix: "contexts.tasksContext",
   });
 
   const toast = useToast();
@@ -118,10 +118,9 @@ function TasksProvider({ children }: any) {
             ...task,
             nextAction,
           };
-        } else {
+        } else if (!task.done) {
           completeTask(task.id);
           setHasCompletedATask(true);
-
           return {
             ...task,
             done: true,
@@ -134,7 +133,6 @@ function TasksProvider({ children }: any) {
       return task;
     });
 
-    setTasksState(newState);
     if (allDone(newState)) {
       toast({
         type: "custom",
@@ -145,7 +143,7 @@ function TasksProvider({ children }: any) {
         iconColor: theme.colors.brand.primary[500],
         message: t("allTasksCompleted"),
         closeButton: false,
-        position: isMobile ? "bottom-center" : "top-right",
+        position: isMobile ? "top-center" : "top-right",
       });
     }
   };

@@ -130,12 +130,6 @@ function CausesPage(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    if (donateApp) {
-      registerAction("download_app");
-    }
-  }, []);
-
-  useEffect(() => {
     if (hasReceivedTicketToday() && hasAvailableDonation()) {
       createVoucher();
     } else if (

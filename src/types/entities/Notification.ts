@@ -16,7 +16,8 @@ export default interface Notification {
     | "bottom-right"
     | "bottom-left"
     | "top-center"
-    | "bottom-center";
+    | "bottom-center"
+    | "bottom";
   onClose?: () => void;
   closeButton?: boolean;
   navigate?: string;

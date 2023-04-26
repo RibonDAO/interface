@@ -24,10 +24,10 @@ function TasksSection() {
 
     const filterVisible = dailyTasks.filter((task: any) =>
       task.isVisible({ state: tasksState }),
-    );
+    ).length;
 
     // eslint-disable-next-line consistent-return
-    return filterVisible.length;
+    return filterVisible;
   }, [tasksState]);
 
   useEffect(() => {

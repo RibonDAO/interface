@@ -7,12 +7,16 @@ import {
   nextMonth,
 } from "lib/dateUtils";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { useCompletedTasks } from "@ribon.io/shared/hooks";
+import { useCanDonate, useCompletedTasks } from "@ribon.io/shared/hooks";
 import { CompletedTask } from "@ribon.io/shared/types/apiResponses";
 import { theme } from "@ribon.io/shared/styles";
 import useToast from "hooks/useToast";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useTranslation } from "react-i18next";
+import extractUrlValue from "lib/extractUrlValue";
+import { useIntegrationId } from "hooks/useIntegrationId";
+import { PLATFORM } from "utils/constants";
+import { useLocation } from "react-router-dom";
 
 export type TaskStateItem = {
   id: string;
@@ -39,6 +43,10 @@ function TasksProvider({ children }: any) {
   const { t } = useTranslation("translation", {
     keyPrefix: "contexts.tasksContext",
   });
+  const integrationId = useIntegrationId();
+  const { search } = useLocation();
+  const externalId = extractUrlValue("external_id", search);
+  const { donateApp } = useCanDonate(integrationId, PLATFORM, externalId);
 
   const toast = useToast();
 
@@ -133,6 +141,7 @@ function TasksProvider({ children }: any) {
       return task;
     });
 
+    setTasksState(newState);
     if (allDone(newState)) {
       toast({
         type: "custom",
@@ -143,10 +152,23 @@ function TasksProvider({ children }: any) {
         iconColor: theme.colors.brand.primary[500],
         message: t("allTasksCompleted"),
         closeButton: false,
-        position: isMobile ? "top-center" : "top-right",
+        position: isMobile ? "bottom" : "top-right",
       });
     }
   };
+
+  useEffect(() => {
+    const taskDownloadApp = TASKS.filter(
+      (task) => task.title === "download_app",
+    )[0];
+
+    const done = tasksState?.find(
+      (task) => task.id === taskDownloadApp.id,
+    )?.done;
+    if (donateApp && !done) {
+      registerAction("download_app");
+    }
+  }, [buildTasksState]);
 
   const tasksObject: ITasksContext = useMemo(
     () => ({

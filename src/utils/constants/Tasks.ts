@@ -3,7 +3,7 @@
  * is completed. This will help us to split tasks or not between clients, and give us more freedom to set callbacks and more.
  */
 
-interface Task {
+export interface Task {
   id: string;
   title: string;
   actions: string[];
@@ -32,8 +32,6 @@ export const TASKS = [
       const taskState = params?.state.find((obj: any) => obj.id === this.id);
       const timesCompleted = taskState?.timesCompleted || 0;
       const taskDone = taskState?.done;
-
-      console.log(timesCompleted, taskDone);
 
       if (timesCompleted === 0 && !taskDone) {
         return true;

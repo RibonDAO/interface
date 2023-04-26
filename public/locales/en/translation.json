@@ -354,7 +354,8 @@
     "tasksSection": {
       "title": "Tasks",
       "tasks": {
-        "donate_ticket": "Donate ticket"
+        "donate_ticket": "Donate ticket",
+        "download_app": "Download app"
       }
     }
   }

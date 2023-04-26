@@ -2,7 +2,7 @@ import CheckBox from "components/atomics/inputs/Checkbox";
 import { useTasksContext } from "contexts/tasksContext";
 import { useTranslation } from "react-i18next";
 import { useTasks } from "utils/constants/Tasks";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import theme from "styles/theme";
 import Icon from "components/atomics/Icon";
 import ProgressBar from "components/atomics/ProgressBar";
@@ -17,6 +17,15 @@ function TasksSection() {
 
   const dailyTasks = useTasks("daily");
   const { tasksState, setHasCompletedATask } = useTasksContext();
+
+  const tasksCount = useCallback(() => {
+    if (!tasksState) return;
+    if (!tasksState.length) return;
+
+    // eslint-disable-next-line consistent-return
+    return dailyTasks.filter((task) => task.isVisible({ state: tasksState }))
+      .length;
+  }, [tasksState]);
 
   useEffect(() => {
     setHasCompletedATask(false);
@@ -37,7 +46,11 @@ function TasksSection() {
   return (
     <S.Container>
       <S.ProgressBar>
-        <ProgressBar value={progressBarValue} min={0} max={dailyTasks.length} />
+        <ProgressBar
+          value={progressBarValue}
+          min={0}
+          max={tasksCount() || dailyTasks.length}
+        />
       </S.ProgressBar>
       <S.TitleContainer>
         <Icon

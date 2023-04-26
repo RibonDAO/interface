@@ -354,7 +354,8 @@
     "tasksSection": {
       "title": "Tarefas",
       "tasks": {
-        "donate_ticket": "Doar ticket"
+        "donate_ticket": "Doar ticket",
+        "download_app": "Baixar o app"
       }
     }
   }

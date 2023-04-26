@@ -129,3 +129,20 @@ export const ShowMoreButton = styled(Button)`
 export const TabSection = styled.section<{ visible?: boolean }>`
   display: ${({ visible }) => (visible ? "block" : "none")};
 `;
+
+export const RedBallContainer = styled.span`
+  width: 8px;
+  height: 8px;
+  padding: 1px;
+  border-radius: 100%;
+  position: absolute;
+  background-color: ${({ theme }) => theme.colors.feedback.error[500]};
+`;
+
+export const TextMenuItem = styled.span`
+  ${defaultBodyMdMedium}
+
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+`;

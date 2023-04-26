@@ -64,3 +64,21 @@ export const StyledLink = styled(Link)`
 export const Icon = styled.img`
   height: 30px;
 `;
+
+export const RedBall = styled.span`
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+  position: absolute;
+  top: 0px;
+  left: 68%;
+  align-self: center;
+  text-align: center;
+  background-color: ${({ theme }) => theme.colors.feedback.error[500]};
+`;
+
+export const IconContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+`;

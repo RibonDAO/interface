@@ -1,13 +1,15 @@
 import { useContext } from "react";
 import Notification from "types/entities/Notification";
-import theme from "styles/theme";
+import { theme } from "@ribon.io/shared/styles";
 import Icon from "components/atomics/Icon";
 
+import useNavigation from "hooks/useNavigation";
 import * as S from "./styles";
 import { ToastContext } from "..";
 
 function Toast() {
   const { notifications } = useContext(ToastContext);
+  const { navigateTo } = useNavigation();
 
   const iconToast = (type: string) => {
     switch (type) {
@@ -53,6 +55,8 @@ function Toast() {
         return { top: 0, left: "50%", transform: "translateX(-50%)" };
       case "center-bottom":
         return { bottom: 0, left: "50%", transform: "translateX(-50%)" };
+      case "bottom":
+        return { bottom: 70 };
       default:
         return { bottom: 0, right: 0 };
     }
@@ -90,14 +94,15 @@ function Toast() {
             style={{
               backgroundColor: notification.backgroundColor
                 ? notification.backgroundColor
-                : backgroundColorToast(notification.type),
+                : backgroundColorToast(notification?.type),
               borderColor: notification.borderColor
                 ? notification.borderColor
-                : backgroundColorToast(notification.type),
+                : backgroundColorToast(notification?.type),
 
               ...positionToast(notification.position || "bottom-right"),
             }}
             key={index}
+            onClick={() => navigateTo("forYou")}
           >
             <Icon
               className={
@@ -112,9 +117,7 @@ function Toast() {
               }
               size="24"
               color={
-                notification.iconColor
-                  ? notification.iconColor
-                  : iconColorToast(notification.type)
+                notification.iconColor || iconColorToast(notification.type)
               }
             />
             <S.Message

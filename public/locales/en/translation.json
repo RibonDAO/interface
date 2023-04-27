@@ -309,6 +309,9 @@
       "modalAnimationFrom": "You",
       "modalAnimationTo": "Ribon",
       "modalAnimationTitle": "Processing giving..."
+    },
+    "tasksContext": {
+      "allTasksCompleted": "You completed all tasks!"
     }
   },
   "impactNormalizer": {
@@ -353,8 +356,10 @@
     },
     "tasksSection": {
       "title": "Tasks",
+      "countdown": "until task reset",
       "tasks": {
-        "donate_ticket": "Donate ticket"
+        "donate_ticket": "Donate ticket",
+        "download_app": "Download app"
       }
     }
   }

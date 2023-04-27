@@ -8,7 +8,6 @@ export const Container = styled.div`
   position: relative;
   display: flex;
   align-items: flex-start;
-  justify-content: center;
   text-align: center;
   background-color: ${({ theme }) => theme.colors.neutral[50]};
 `;

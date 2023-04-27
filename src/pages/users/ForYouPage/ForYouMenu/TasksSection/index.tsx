@@ -30,8 +30,6 @@ function TasksSection() {
     return filterVisible;
   }, [tasksState]);
 
-  console.log(tasksState);
-
   useEffect(() => {
     setHasCompletedATask(false);
   }, []);

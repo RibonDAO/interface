@@ -2,12 +2,15 @@ import CheckBox from "components/atomics/inputs/Checkbox";
 import { useTasksContext } from "contexts/tasksContext";
 import { useTranslation } from "react-i18next";
 import { useTasks } from "utils/constants/Tasks";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import theme from "styles/theme";
 import Icon from "components/atomics/Icon";
 import ProgressBar from "components/atomics/ProgressBar";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useIntegration } from "@ribon.io/shared/hooks";
+import { useCountdown } from "hooks/useCountdown";
+import { nextDay } from "lib/dateUtils";
+import { formatCountdown } from "lib/formatters/countdownFormatter";
 import * as S from "./styles";
 
 function TasksSection() {
@@ -16,7 +19,19 @@ function TasksSection() {
   });
 
   const dailyTasks = useTasks("daily");
-  const { tasksState, setHasCompletedATask } = useTasksContext();
+  const { tasksState, setHasCompletedATask, reload } = useTasksContext();
+
+  const tasksCount = useCallback(() => {
+    if (!tasksState) return 0;
+    if (!tasksState.length) return 0;
+
+    const count = dailyTasks.filter((task: any) => {
+      const tasks = task.isVisible({ state: tasksState });
+      return tasks;
+    });
+
+    return count.length;
+  }, [tasksState]);
 
   useEffect(() => {
     setHasCompletedATask(false);
@@ -30,15 +45,45 @@ function TasksSection() {
 
   const { integration } = useIntegration(integrationId);
 
-  const progressBarValue = tasksState
-    ? tasksState.filter((obj) => obj.done === true).length
-    : 0;
+  const progressBarValue = () => {
+    const tasks = dailyTasks.map((visibleTask: any) => {
+      const completedTasks = tasksState.find(
+        (completedTask: any) => completedTask.id === visibleTask.id,
+      );
+      return { ...visibleTask, ...completedTasks };
+    });
+    return tasks.filter(
+      (task: any) => task.done && task.isVisible({ state: tasksState }),
+    );
+  };
+
+  const renderCountdown = () => {
+    const countdown = useCountdown(nextDay(), reload);
+
+    if (!tasksState) return null;
+    if (!tasksState.length) return null;
+    if (tasksState.filter((obj) => obj.done === false).length) return null;
+    if (countdown.reduce((a, b) => a + b, 0) <= 0) return null;
+
+    return (
+      <S.TimerWrapper>
+        <S.Countdown>{formatCountdown(countdown)}</S.Countdown>
+        <p>{t("countdown")}</p>
+      </S.TimerWrapper>
+    );
+  };
 
   return (
     <S.Container>
       <S.ProgressBar>
-        <ProgressBar value={progressBarValue} min={0} max={dailyTasks.length} />
+        <ProgressBar
+          value={progressBarValue().length}
+          min={0}
+          max={tasksCount() || dailyTasks.length}
+        />
       </S.ProgressBar>
+      {renderCountdown()}
+
       <S.TitleContainer>
         <Icon
           name="light_mode"
@@ -48,23 +93,28 @@ function TasksSection() {
         <S.Title>{t("title")}</S.Title>
       </S.TitleContainer>
       {tasksState &&
-        dailyTasks.map((task) => (
-          <S.CheckboxContainer key={task.id}>
-            <CheckBox
-              key={task.id}
-              text={t(`tasks.${task?.title}`)}
-              sectionStyle={{ marginBottom: 8, paddingLeft: 4 }}
-              lineThroughOnChecked
-              navigationCallback={
-                !tasksState.find((obj) => obj.id === task.id)?.done
-                  ? task?.navigationCallback
-                  : undefined
-              }
-              disabled
-              checked={tasksState.find((obj) => obj.id === task.id)?.done}
-            />
-          </S.CheckboxContainer>
-        ))}
+        dailyTasks.map((task: any) => {
+          if (!task.isVisible({ state: tasksState })) {
+            return null;
+          }
+          return (
+            <S.CheckboxContainer key={task.id}>
+              <CheckBox
+                key={task.id}
+                text={t(`tasks.${task?.title}`)}
+                sectionStyle={{ marginBottom: 8, paddingLeft: 4 }}
+                lineThroughOnChecked
+                navigationCallback={
+                  !tasksState.find((obj) => obj.id === task.id)?.done
+                    ? task?.navigationCallback
+                    : undefined
+                }
+                disabled
+                checked={tasksState.find((obj) => obj.id === task.id)?.done}
+              />
+            </S.CheckboxContainer>
+          );
+        })}
       {integration?.integrationTask &&
         tasksState.find((obj) => obj.id === donateTicketTask?.id)?.done && (
           <S.IntegrationContainer>

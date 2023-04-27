@@ -7,14 +7,23 @@ import {
   nextMonth,
 } from "lib/dateUtils";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { useCompletedTasks } from "@ribon.io/shared/hooks";
+import { useCanDonate, useCompletedTasks } from "@ribon.io/shared/hooks";
 import { CompletedTask } from "@ribon.io/shared/types/apiResponses";
+import { theme } from "@ribon.io/shared/styles";
+import useToast from "hooks/useToast";
+import useBreakpoint from "hooks/useBreakpoint";
+import { useTranslation } from "react-i18next";
+import extractUrlValue from "lib/extractUrlValue";
+import { useIntegrationId } from "hooks/useIntegrationId";
+import { PLATFORM } from "utils/constants";
+import { useLocation } from "react-router-dom";
 
 export type TaskStateItem = {
   id: string;
   nextAction: string;
   done: boolean;
   expiresAt: string;
+  timesCompleted: number;
 };
 
 export interface ITasksContext {
@@ -22,6 +31,7 @@ export interface ITasksContext {
   setHasCompletedATask: (value: boolean) => void;
   tasksState: TaskStateItem[];
   registerAction: (action: string) => void;
+  reload: () => void;
 }
 
 export const TasksContext = createContext<ITasksContext>({} as ITasksContext);
@@ -31,11 +41,24 @@ function TasksProvider({ children }: any) {
   const [hasCompletedATask, setHasCompletedATask] = useState(false);
   const { findCompletedTasks, completeTask } = useCompletedTasks();
   const { currentUser, signedIn } = useCurrentUser();
+  const { t } = useTranslation("translation", {
+    keyPrefix: "contexts.tasksContext",
+  });
+  const integrationId = useIntegrationId();
+  const { search } = useLocation();
+  const externalId = extractUrlValue("external_id", search);
+  const { donateApp } = useCanDonate(integrationId, PLATFORM, externalId);
+
+  const toast = useToast();
+
+  const { isMobile } = useBreakpoint();
 
   const isDone = (task: CompletedTask | undefined) => {
     if (!task) return false;
     const lastCompletedAt = new Date(task.lastCompletedAt);
-    const taskObject = TASKS.find((t) => t.id === task.taskIdentifier);
+    const taskObject = TASKS.find(
+      (filterTask) => filterTask.id === task.taskIdentifier,
+    );
 
     const baseDate =
       taskObject?.type === "daily"
@@ -47,10 +70,16 @@ function TasksProvider({ children }: any) {
     return true;
   };
 
+  function allDone(tasks: any) {
+    return tasks.every((task: any) => task.done === true);
+  }
+
   const isExpired = (task: CompletedTask | undefined) => {
     if (!task) return false;
 
-    const taskObject = TASKS.find((t) => t.id === task.taskIdentifier);
+    const taskObject = TASKS.find(
+      (filterTask) => filterTask.id === task.taskIdentifier,
+    );
 
     if (isDone(task)) {
       return taskObject?.type === "daily" ? nextDay() : nextMonth();
@@ -63,19 +92,23 @@ function TasksProvider({ children }: any) {
     findCompletedTasks().then((completedTasks) => {
       const state = TASKS.map((task) => {
         const currentTask = completedTasks.find(
-          (t) => t.taskIdentifier === task.id,
+          (filterTask) => filterTask.taskIdentifier === task.id,
         );
 
         return {
           id: task.id,
           nextAction: task.actions[0],
+          timesCompleted: currentTask?.timesCompleted || 0,
           done: isDone(currentTask),
           expiresAt: isExpired(currentTask),
+          lastCompletedAt: currentTask?.lastCompletedAt,
         };
       });
       setTasksState(state);
     });
   };
+
+  const reload = () => buildTasksState();
 
   useEffect(() => {
     if (currentUser && signedIn && currentUser.email) buildTasksState();
@@ -86,7 +119,7 @@ function TasksProvider({ children }: any) {
     if (tasksState.length === 0) return;
 
     const newState = tasksState.map((task) => {
-      const currentTask = TASKS.find((t) => t.id === task.id);
+      const currentTask = TASKS.find((filterTask) => filterTask.id === task.id);
 
       if (task.nextAction === action && currentTask) {
         const nextActionIndex = currentTask.actions.indexOf(action) + 1;
@@ -97,12 +130,13 @@ function TasksProvider({ children }: any) {
             ...task,
             nextAction,
           };
-        } else {
+        } else if (!task.done) {
           completeTask(task.id);
           setHasCompletedATask(true);
           return {
             ...task,
             done: true,
+            timesCompleted: task.timesCompleted + 1,
             expiresAt: currentTask.type === "daily" ? nextDay() : nextMonth(),
           };
         }
@@ -112,7 +146,33 @@ function TasksProvider({ children }: any) {
     });
 
     setTasksState(newState);
+    if (allDone(newState)) {
+      toast({
+        type: "custom",
+        backgroundColor: theme.colors.feedback.success[50],
+        borderColor: theme.colors.brand.primary[500],
+        textColor: theme.colors.brand.primary[900],
+        icon: "celebration",
+        iconColor: theme.colors.brand.primary[500],
+        message: t("allTasksCompleted"),
+        closeButton: false,
+        position: isMobile ? "bottom" : "top-right",
+      });
+    }
   };
+
+  useEffect(() => {
+    const taskDownloadApp = TASKS.filter(
+      (task) => task.title === "download_app",
+    )[0];
+
+    const done = tasksState?.find(
+      (task) => task.id === taskDownloadApp.id,
+    )?.done;
+    if (donateApp && !done) {
+      registerAction("download_app");
+    }
+  }, [buildTasksState]);
 
   const tasksObject: ITasksContext = useMemo(
     () => ({
@@ -120,6 +180,7 @@ function TasksProvider({ children }: any) {
       setHasCompletedATask,
       tasksState,
       registerAction,
+      reload,
     }),
     [tasksState, hasCompletedATask],
   );

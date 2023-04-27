@@ -56,7 +56,6 @@ export const TextContainer = styled.div`
   margin-left: ${({ theme }) => theme.spacing(16)};
 `;
 export const LeftContainer = styled.div`
-  width: 100%;
   margin-right: ${({ theme }) => theme.spacing(8)};
   display: flex;
   flex-direction: row;
@@ -78,9 +77,11 @@ export const CloseIconContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: ${({ theme }) => theme.spacing(8)};
   cursor: pointer;
 `;
-
 export const Title = styled.h3`
   ${defaultBodySmSemibold}
 `;
@@ -91,12 +92,16 @@ export const Description = styled.p`
 
 export const Links = styled.div`
   min-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin-top: ${({ theme }) => theme.spacing(8)};
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     margin-top: 0;
+    flex-direction: row;
   }
 `;
 
@@ -105,6 +110,8 @@ export const Link = styled.p`
 
   margin-top: 0;
   margin-right: ${({ theme }) => theme.spacing(8)};
+  padding-top: ${({ theme }) => theme.spacing(8)};
+  padding-bottom: ${({ theme }) => theme.spacing(8)};
   text-decoration: underline;
   cursor: pointer;
 `;

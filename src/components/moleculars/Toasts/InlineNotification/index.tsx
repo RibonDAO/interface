@@ -1,6 +1,7 @@
 import Icon from "components/atomics/Icon";
 import { Dispatch, useState } from "react";
 import useBreakpoint from "hooks/useBreakpoint";
+import { theme } from "@ribon.io/shared/styles";
 import * as S from "./styles";
 
 export type Props = {
@@ -54,15 +55,31 @@ function InlineNotification({
     }
   };
 
+  const colorByType = () => {
+    switch (type) {
+      case "success":
+        return theme.colors.feedback.success[800];
+      case "warning":
+        return theme.colors.feedback.warning[600];
+      case "error":
+        return theme.colors.feedback.error[600];
+      case "informational":
+        return theme.colors.feedback.informational[600];
+      default:
+        return "info";
+    }
+  };
+
   if (!visible) return <div />;
 
   return (
     <S.Container type={type}>
       <S.LeftContainer>
-        <Icon name={iconByType()} />
+        <Icon name={iconByType()} color={colorByType()} />
         <S.TextContainer>
           <S.Title>{title}</S.Title>
           <S.Description>{description}</S.Description>
+
           {isMobile && (
             <S.Links>
               {firstLink && (
@@ -87,7 +104,7 @@ function InlineNotification({
           </S.Links>
         )}
         <S.CloseIconContainer onClick={handleCloseIconClick}>
-          <Icon name="close" />
+          <Icon name="close" size="24px" />
         </S.CloseIconContainer>
       </S.RightContainer>
     </S.Container>

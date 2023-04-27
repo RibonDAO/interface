@@ -31,6 +31,7 @@ export interface ITasksContext {
   setHasCompletedATask: (value: boolean) => void;
   tasksState: TaskStateItem[];
   registerAction: (action: string) => void;
+  reload: () => void;
 }
 
 export const TasksContext = createContext<ITasksContext>({} as ITasksContext);
@@ -100,11 +101,14 @@ function TasksProvider({ children }: any) {
           timesCompleted: currentTask?.timesCompleted || 0,
           done: isDone(currentTask),
           expiresAt: isExpired(currentTask),
+          lastCompletedAt: currentTask?.lastCompletedAt,
         };
       });
       setTasksState(state);
     });
   };
+
+  const reload = () => buildTasksState();
 
   useEffect(() => {
     if (currentUser && signedIn && currentUser.email) buildTasksState();
@@ -176,6 +180,7 @@ function TasksProvider({ children }: any) {
       setHasCompletedATask,
       tasksState,
       registerAction,
+      reload,
     }),
     [tasksState, hasCompletedATask],
   );

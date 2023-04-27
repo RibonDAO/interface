@@ -158,8 +158,8 @@
       "showMore": "Show more"
     },
     "impactNotification": {
-      "title": "Your impact was migrated!",
-      "description": "Your history of donations made on the old platform is in the \"ticket donations\" tab.",
+      "title": "We will be importing your impact soon!",
+      "description": "Your ribon`s donations from the old platform will soon be imported into your profile.",
       "link": "Do not show again"
     }
   },

@@ -19,9 +19,12 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  ${stylizedDisplayLg}
+  ${stylizedDisplayLg};
 
-  margin: ${({ theme }) => theme.spacing(0)};
+  margin-bottom: ${({ theme }) => theme.spacing(16)};
+  margin-right: ${({ theme }) => theme.spacing(0)};
+  margin-left: ${({ theme }) => theme.spacing(0)};
+  margin-top: ${({ theme }) => theme.spacing(0)};
   color: ${({ theme }) => theme.colors.neutral[800]};
 `;
 

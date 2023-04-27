@@ -18,6 +18,8 @@ export type TaskStateItem = {
 };
 
 export interface ITasksContext {
+  hasCompletedATask: boolean;
+  setHasCompletedATask: (value: boolean) => void;
   tasksState: TaskStateItem[];
   registerAction: (action: string) => void;
 }
@@ -26,6 +28,7 @@ export const TasksContext = createContext<ITasksContext>({} as ITasksContext);
 
 function TasksProvider({ children }: any) {
   const [tasksState, setTasksState] = useState<any[]>([]);
+  const [hasCompletedATask, setHasCompletedATask] = useState(false);
   const { findCompletedTasks, completeTask } = useCompletedTasks();
   const { currentUser, signedIn } = useCurrentUser();
 
@@ -96,6 +99,7 @@ function TasksProvider({ children }: any) {
           };
         } else {
           completeTask(task.id);
+          setHasCompletedATask(true);
           return {
             ...task,
             done: true,
@@ -112,10 +116,12 @@ function TasksProvider({ children }: any) {
 
   const tasksObject: ITasksContext = useMemo(
     () => ({
+      hasCompletedATask,
+      setHasCompletedATask,
       tasksState,
       registerAction,
     }),
-    [tasksState],
+    [tasksState, hasCompletedATask],
   );
 
   return (

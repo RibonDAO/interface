@@ -1,3 +1,4 @@
+import Button from "components/atomics/buttons/Button";
 import styled from "styled-components";
 import { defaultBodyMdBold } from "styles/typography/default";
 import { Modal } from "../ModalBlank/styles";
@@ -48,4 +49,9 @@ export const HighlightedText = styled.p`
 export const RowsModalRow = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing(32)};
   display: flex;
+`;
+export const SupportButton = styled(Button)`
+  border: 1px solid ${({ theme }) => theme.colors.brand.primary[300]};
+  background-color: ${({ theme }) => theme.colors.neutral10};
+  color: ${({ theme, color }) => color || theme.colors.brand.primary[300]};
 `;

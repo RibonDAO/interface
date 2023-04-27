@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useTasksContext } from "contexts/tasksContext";
 import TasksSection from "./TasksSection";
 import NewsSection from "./NewsSection";
 import * as S from "./styles";
@@ -9,6 +10,8 @@ function ForYouMenu() {
   const { t } = useTranslation("translation", {
     keyPrefix: "forYouPage.forYouMenu",
   });
+
+  const { hasCompletedATask } = useTasksContext();
 
   const renderSection = () => {
     switch (currentTab) {
@@ -28,7 +31,10 @@ function ForYouMenu() {
           active={currentTab === "tasks"}
           onClick={() => setCurrentTab("tasks")}
         >
-          {t("tasks")}
+          <S.TextMenuItem>
+            {t("tasks")}
+            {hasCompletedATask && <S.RedBallContainer />}
+          </S.TextMenuItem>
         </S.MenuItem>
         <S.MenuItem
           active={currentTab === "news"}

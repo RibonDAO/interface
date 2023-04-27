@@ -74,12 +74,12 @@ export const RightContainer = styled.div`
 `;
 
 export const CloseIconContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 40px;
   height: 40px;
   padding: ${({ theme }) => theme.spacing(8)};
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
 `;
 export const Title = styled.h3`
@@ -92,12 +92,12 @@ export const Description = styled.p`
 
 export const Links = styled.div`
   min-width: 100px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   margin-top: ${({ theme }) => theme.spacing(8)};
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     margin-top: 0;

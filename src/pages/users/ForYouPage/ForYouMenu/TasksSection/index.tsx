@@ -30,6 +30,8 @@ function TasksSection() {
     return filterVisible;
   }, [tasksState]);
 
+  console.log(tasksState);
+
   useEffect(() => {
     setHasCompletedATask(false);
   }, []);
@@ -64,23 +66,28 @@ function TasksSection() {
         <S.Title>{t("title")}</S.Title>
       </S.TitleContainer>
       {tasksState &&
-        dailyTasks.map((task) => (
-          <S.CheckboxContainer key={task.id}>
-            <CheckBox
-              key={task.id}
-              text={t(`tasks.${task?.title}`)}
-              sectionStyle={{ marginBottom: 8, paddingLeft: 4 }}
-              lineThroughOnChecked
-              navigationCallback={
-                !tasksState.find((obj) => obj.id === task.id)?.done
-                  ? task?.navigationCallback
-                  : undefined
-              }
-              disabled
-              checked={tasksState.find((obj) => obj.id === task.id)?.done}
-            />
-          </S.CheckboxContainer>
-        ))}
+        dailyTasks.map((task: any) => {
+          if (!task.isVisible({ state: tasksState })) {
+            return null;
+          }
+          return (
+            <S.CheckboxContainer key={task.id}>
+              <CheckBox
+                key={task.id}
+                text={t(`tasks.${task?.title}`)}
+                sectionStyle={{ marginBottom: 8, paddingLeft: 4 }}
+                lineThroughOnChecked
+                navigationCallback={
+                  !tasksState.find((obj) => obj.id === task.id)?.done
+                    ? task?.navigationCallback
+                    : undefined
+                }
+                disabled
+                checked={tasksState.find((obj) => obj.id === task.id)?.done}
+              />
+            </S.CheckboxContainer>
+          );
+        })}
       {integration?.integrationTask &&
         tasksState.find((obj) => obj.id === donateTicketTask?.id)?.done && (
           <S.IntegrationContainer>

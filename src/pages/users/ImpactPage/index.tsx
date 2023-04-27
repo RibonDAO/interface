@@ -9,6 +9,7 @@ import { coinByLanguage } from "lib/coinByLanguage";
 import { useWalletContext } from "contexts/walletContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useStatistics } from "@ribon.io/shared/hooks";
+import ImpactMigrationNotification from "pages/users/ImpactPage/ImpactMigrationNotification";
 import ImpactMenu from "./ImpactMenu";
 import TicketIcon from "./assets/ticket-icon.svg";
 import MoneyIcon from "./assets/money-icon.svg";
@@ -22,12 +23,10 @@ function ImpactPage(): JSX.Element {
   });
   const { currentUser } = useCurrentUser();
   const { wallet } = useWalletContext();
-
   const { userStatistics, refetch: refetchStatistics } = useStatistics({
     userId: currentUser?.id,
     walletAddress: wallet!,
   });
-
   const { currentLang } = useLanguage();
 
   useEffect(() => {
@@ -37,10 +36,12 @@ function ImpactPage(): JSX.Element {
   useEffect(() => {
     refetchStatistics();
   }, [wallet, currentUser?.id]);
+
   return (
     <S.Container>
       <DownloadAppToast />
       <S.Title>{t("title")}</S.Title>
+      <ImpactMigrationNotification />
       <S.CardsButtonContainer>
         <CardTopImage
           text={t("donatedTickets")}

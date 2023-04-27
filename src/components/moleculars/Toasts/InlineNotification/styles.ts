@@ -10,7 +10,6 @@ interface NotificationProps {
 }
 
 export const Container = styled.div<NotificationProps>`
-  width: 100%;
   padding: 16px;
   border-width: 1px;
   border-style: solid;

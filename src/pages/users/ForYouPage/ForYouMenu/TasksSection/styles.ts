@@ -90,3 +90,12 @@ export const Countdown = styled.p`
   margin-right: ${({ theme }) => theme.spacing(4)};
   color: ${({ theme }) => theme.colors.brand.primary[900]};
 `;
+export const StatisticsCardsContainer = styled.div`
+  margin-top: ${({ theme }) => theme.spacing(32)};
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  align-self: flex-start;
+`;

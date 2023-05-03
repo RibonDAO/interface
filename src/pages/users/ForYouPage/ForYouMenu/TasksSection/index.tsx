@@ -11,6 +11,10 @@ import { useIntegration } from "@ribon.io/shared/hooks";
 import { useCountdown } from "hooks/useCountdown";
 import { nextDay } from "lib/dateUtils";
 import { formatCountdown } from "lib/formatters/countdownFormatter";
+import CardTopImage from "components/moleculars/cards/CardTopImage";
+import SunIcon from "./assets/sun-icon.svg";
+import BoltIcon from "./assets/bolt-icon.svg";
+import EventIcon from "./assets/event-icon.svg";
 import * as S from "./styles";
 
 function TasksSection() {
@@ -72,6 +76,40 @@ function TasksSection() {
       </S.TimerWrapper>
     );
   };
+
+  const totalDailyTasksCompleted = () => {
+    if (!tasksState) return 0;
+    return tasksState.reduce((total, task) => total + task.timesCompleted, 0);
+  };
+
+  const renderStatisticsCards = () => (
+    <S.StatisticsCardsContainer>
+      {totalDailyTasksCompleted() > 0 && (
+        <CardTopImage
+          text="daily tasks completed"
+          icon={SunIcon}
+          title={totalDailyTasksCompleted().toString()}
+          size="small"
+        />
+      )}
+      <CardTopImage
+        text="super tasks completed"
+        icon={BoltIcon}
+        title="0"
+        size="small"
+        textColor={theme.colors.brand.tertiary[900]}
+        titleColor={theme.colors.brand.tertiary[900]}
+      />
+      <CardTopImage
+        text="days in a row completing tasks "
+        icon={EventIcon}
+        title="0"
+        size="small"
+        textColor={theme.colors.brand.secondary[800]}
+        titleColor={theme.colors.brand.secondary[800]}
+      />
+    </S.StatisticsCardsContainer>
+  );
 
   return (
     <S.Container>
@@ -135,6 +173,7 @@ function TasksSection() {
             </S.LeftContainer>
           </S.IntegrationContainer>
         )}
+      {renderStatisticsCards()}
     </S.Container>
   );
 }

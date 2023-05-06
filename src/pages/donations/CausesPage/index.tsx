@@ -53,6 +53,7 @@ function CausesPage(): JSX.Element {
     currentCauseId,
     setCurrentCauseId,
   } = useCausesContext();
+
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });

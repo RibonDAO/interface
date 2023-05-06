@@ -4,7 +4,7 @@ import { QueryClientComponent } from "@ribon.io/shared/hooks";
 import { ToastContextProvider } from "contexts/toastContext";
 import Toast from "contexts/toastContext/toastComponent";
 import { GrowthBookProvider } from "@growthbook/growthbook-react";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import {
   growthbook,
   growthbookSetAttributes,
@@ -42,10 +42,12 @@ function App() {
               <BrowserRouter>
                 <ToastContextProvider>
                   <CurrentUserProvider>
-                    <TasksProvider>
-                      <RoutesComponent />
-                      <Zendesk />
-                    </TasksProvider>
+                    <Suspense fallback={<div />}>
+                      <TasksProvider>
+                        <RoutesComponent />
+                        <Zendesk />
+                      </TasksProvider>
+                    </Suspense>
                   </CurrentUserProvider>
                   <Toast />
                 </ToastContextProvider>

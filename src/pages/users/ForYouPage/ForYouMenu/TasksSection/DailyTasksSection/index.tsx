@@ -30,23 +30,25 @@ function DailyTasksSection() {
         <S.Title>{t("title")}</S.Title>
       </S.TitleContainer>
       {tasksState &&
-        dailyTasks.map((task) => (
-          <S.CheckboxContainer key={task.id}>
-            <CheckBox
-              key={task.id}
-              text={t(`tasks.${task?.title}`)}
-              sectionStyle={{ marginBottom: 8, paddingLeft: 4 }}
-              lineThroughOnChecked
-              navigationCallback={
-                !tasksState.find((obj) => obj.id === task.id)?.done
-                  ? task?.navigationCallback
-                  : undefined
-              }
-              disabled
-              checked={tasksState.find((obj) => obj.id === task.id)?.done}
-            />
-          </S.CheckboxContainer>
-        ))}
+        dailyTasks.map((task) =>
+          task.isVisible({ state: tasksState }) ? (
+            <S.CheckboxContainer key={task.id}>
+              <CheckBox
+                key={task.id}
+                text={t(`tasks.${task?.title}`)}
+                sectionStyle={{ marginBottom: 8, paddingLeft: 4 }}
+                lineThroughOnChecked
+                navigationCallback={
+                  !tasksState.find((obj) => obj.id === task.id)?.done
+                    ? task?.navigationCallback
+                    : undefined
+                }
+                disabled
+                checked={tasksState.find((obj) => obj.id === task.id)?.done}
+              />
+            </S.CheckboxContainer>
+          ) : null,
+        )}
     </S.Container>
   );
 }

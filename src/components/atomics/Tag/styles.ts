@@ -1,16 +1,19 @@
 import styled from "styled-components";
+import { defaultBodyXsRegular } from "styles/typography/default";
 
-export const Text = styled.p`
-    ...defaultBodyXsRegular,
-    color: theme.colors.neutral[25],
+export const Text = styled.p<{ textColor?: string }>`
+  ${defaultBodyXsRegular}
+
+  color:  ${({ theme, textColor }) => textColor || theme.colors.neutral10};
 `;
-export const Container = styled.div`
-    background-color: theme.colors.brand.primary[900],
-    height: 28,
-    min-width: 50,
-    border-radius: 14,
-    display: "flex",
-    justify-content: "center",
-    align-items: "center",
-    padding: theme.spacingNative(4),
+export const Container = styled.div<{ backgroundColor?: string }>`
+  min-width: 50px;
+  height: 28px;
+  padding: ${({ theme }) => theme.spacing(4)};
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ theme, backgroundColor }) =>
+    backgroundColor || theme.colors.brand.primary[900]};
 `;

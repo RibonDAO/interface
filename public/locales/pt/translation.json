@@ -357,9 +357,12 @@
     "tasksSection": {
       "title": "Tarefas",
       "countdown": "até reiniciar tarefas",
+      "new": "Novo",
+      "titleSuperTasks": "Super tarefas",
       "tasks": {
         "donate_ticket": "Doar ticket",
-        "download_app": "Baixar o app"
+        "download_app": "Baixar o app",
+        "make_contribution": "Fazer uma doação paga"
       }
     }
   }

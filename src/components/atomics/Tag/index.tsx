@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import React from "react";
 
 import * as S from "./styles";
@@ -10,8 +11,8 @@ type Props = {
 
 function Tag({ text, textColor, backgroundColor }: Props) {
   return (
-    <S.Container>
-      <S.Text>{text}</S.Text>
+    <S.Container backgroundColor={backgroundColor}>
+      <S.Text textColor={textColor}>{text}</S.Text>
     </S.Container>
   );
 }

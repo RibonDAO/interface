@@ -19,7 +19,8 @@ function TasksSection() {
   });
 
   const dailyTasks = useTasks("daily");
-  const { tasksState, setHasCompletedATask, reload } = useTasksContext();
+  const { tasksState, setHasCompletedATask, reload, tasksStatistics } =
+    useTasksContext();
 
   const tasksCount = useCallback(() => {
     if (!tasksState) return 0;
@@ -57,6 +58,14 @@ function TasksSection() {
     );
   };
 
+  const showMonthlyTasks = useCallback(() => {
+    if (!tasksStatistics) return false;
+    if (tasksStatistics.hasContribution) return true;
+    if (tasksStatistics.firstCompletedAllTasksAt) return true;
+
+    return false;
+  }, [tasksState, tasksStatistics]);
+
   const renderCountdown = () => {
     const countdown = useCountdown(nextDay(), reload);
 
@@ -86,7 +95,7 @@ function TasksSection() {
 
       <S.TasksContainer>
         <DailyTasksSection />
-        <MonthlyTasksSection />
+        {showMonthlyTasks() && <MonthlyTasksSection />}
       </S.TasksContainer>
 
       {integration?.integrationTask &&

@@ -3,6 +3,7 @@ import {
   defaultBodySmRegular,
   defaultHeadingXs,
   defaultBodyLgBold,
+  defaultBodyXsRegular,
 } from "styles/typography/default";
 
 export const Container = styled.div<{
@@ -26,6 +27,7 @@ export const Container = styled.div<{
   margin-bottom: ${({ theme }) => theme.spacing(8)};
   padding: ${({ theme }) => theme.spacing(16)};
   border-radius: 8px;
+  position: relative;
   display: flex;
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.neutral10};
@@ -85,5 +87,17 @@ export const Title = styled.span<{
     `}
 
   margin-top: ${({ theme }) => theme.spacing(8)};
+  color: ${({ theme }) => theme.colors.brand.primary[800]};
+`;
+
+export const Label = styled.span`
+  ${defaultBodyXsRegular}
+
+  padding: 4px 8px;
+  border-radius: 30px;
+  position: absolute;
+  top: ${({ theme }) => theme.spacing(16)};
+  right: ${({ theme }) => theme.spacing(16)};
+  background-color: ${({ theme }) => theme.colors.brand.primary[50]};
   color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;

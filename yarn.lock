@@ -3010,7 +3010,6 @@
   version "1.0.51"
   resolved "https://registry.yarnpkg.com/@ribon.io/shared/-/shared-1.0.51.tgz#fe62a2ca4a7cf861a0a9477b878a61843795b0a3"
   integrity sha512-gIuWnYuJvJ+qMhhTJCYNoXeV4Fb/cTbzKT5DOlSsOQ3Cje/3OjI9jvPvx/2S3+HJ9lYazaiIKrP783MCeIdJEw==
-  
   dependencies:
     "@apollo/client" "^3.6.9"
     "@types/base-64" "^1.0.0"

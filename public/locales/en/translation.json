@@ -363,6 +363,11 @@
         "donate_ticket": "Donate ticket",
         "download_app": "Download app",
         "make_contribution": "Make a paid donation"
+      },
+      "cardsStatisticsSection": {
+        "dailyTasksTitle": "daily tasks completed",
+        "superTasksTitle": "super tasks completed",
+        "streakTitle": "days in a row completing tasks"
       }
     }
   }

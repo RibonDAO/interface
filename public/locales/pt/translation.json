@@ -363,6 +363,11 @@
         "donate_ticket": "Doar ticket",
         "download_app": "Baixar o app",
         "make_contribution": "Fazer uma doação paga"
+      },
+      "cardsStatisticsSection": {
+        "dailyTasksTitle": "tarefas diárias completas",
+        "superTasksTitle": "super tarefas completas",
+        "streakTitle": "dias seguidos completando tarefas"
       }
     }
   }

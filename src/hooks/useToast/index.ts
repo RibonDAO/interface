@@ -4,27 +4,33 @@ import {
   ToastContext,
 } from "contexts/toastContext";
 import { useContext } from "react";
-import theme from "styles/theme";
 
-const { tertiary } = theme.colors.brand;
-
-type Props = {
-  message: string;
-  type?: "success" | "error";
-  link?: string;
-  timeout?: number;
-  linkMessage?: string;
-};
+import Notification from "types/entities/Notification";
 
 const useToast = () => {
   const { dispatch } = useContext(ToastContext);
+
+  const handleClose = (id: number) => {
+    dispatch({
+      type: DELETE_NOTIFICATION,
+      payload: id,
+    });
+  };
   function toast({
     type = "success",
     message,
     link,
-    timeout = 10000,
+    timeout = 5000,
     linkMessage,
-  }: Props) {
+    backgroundColor,
+    borderColor,
+    textColor,
+    position,
+    icon,
+    iconColor,
+    navigate,
+    closeButton = true,
+  }: Notification) {
     const id = Math.random();
     dispatch({
       type: ADD_NOTIFICATION,
@@ -34,7 +40,15 @@ const useToast = () => {
         message,
         link,
         linkMessage,
-        color: type === "success" ? theme.colors.neutral[800] : tertiary[200],
+        backgroundColor,
+        borderColor,
+        textColor,
+        position,
+        icon,
+        iconColor,
+        onClose: () => handleClose(id),
+        closeButton,
+        navigate,
       },
     });
     setTimeout(() => {

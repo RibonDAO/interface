@@ -159,8 +159,8 @@
       "showMore": "Mostrar mais"
     },
     "impactNotification": {
-      "title": "Migramos seu impacto!",
-      "description": "O seu histórico de doações feitas na plataforma antiga está na aba \"doações em ticket\".",
+      "title": "Vamos importar o seu impacto em breve!",
+      "description": "Suas doações em ribons da plataforma antiga irão ser importados em breve para o seu perfil.",
       "link": "Não mostrar novamente"
     }
   },
@@ -310,6 +310,9 @@
       "modalAnimationFrom": "Você",
       "modalAnimationTo": "Ribon",
       "modalAnimationTitle": "Realizando contribuição..."
+    },
+    "tasksContext": {
+      "allTasksCompleted": "Você completou todas as tarefas!"
     }
   },
   "impactNormalizer": {
@@ -354,8 +357,10 @@
     },
     "tasksSection": {
       "title": "Tarefas",
+      "countdown": "até reiniciar tarefas",
       "tasks": {
-        "donate_ticket": "Doar ticket"
+        "donate_ticket": "Doar ticket",
+        "download_app": "Baixar o app"
       }
     }
   }

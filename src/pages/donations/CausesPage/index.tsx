@@ -29,7 +29,9 @@ import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import { normalizedLanguage } from "lib/currentLanguage";
+import WarningIcon from "assets/icons/warning-icon.svg";
 import extractUrlValue from "lib/extractUrlValue";
+import { PLATFORM } from "utils/constants";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
@@ -51,6 +53,7 @@ function CausesPage(): JSX.Element {
     currentCauseId,
     setCurrentCauseId,
   } = useCausesContext();
+
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
@@ -58,13 +61,17 @@ function CausesPage(): JSX.Element {
 
   const { hide: closeWarningModal } = useModal(
     {
-      type: MODAL_TYPES.MODAL_ERROR,
+      type: MODAL_TYPES.MODAL_ICON,
       props: {
         title: t("errorModalTitle"),
         body: state?.message || t("errorModalText"),
-        buttonText: t("errorModalButtonText"),
+        primaryButton: {
+          text: t("errorModalButtonText"),
+          onClick: () => closeWarningModal(),
+        },
         onClose: () => closeWarningModal(),
-        warning: true,
+        icon: WarningIcon,
+        supportButton: true,
         eventName: "P1_donateErrorModal",
       },
     },
@@ -88,7 +95,7 @@ function CausesPage(): JSX.Element {
   const externalId = extractUrlValue("external_id", search);
   const { canDonate, refetch: refetchCanDonate } = useCanDonate(
     integrationId,
-    "web",
+    PLATFORM,
     externalId,
   );
   const { destroyVoucher, createVoucher } = useVoucher();

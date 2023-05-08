@@ -1,6 +1,8 @@
 import { LocationDescriptor } from "history";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useTasksContext } from "contexts/tasksContext";
 import FloatingSideMenu from "../NavigationMenus/FloatingSideMenu";
 import AccordionMenu from "../NavigationMenus/AccordionMenu";
 import * as S from "../styles";
@@ -30,6 +32,15 @@ function NavigationLink({
 
   const { isMobile } = useBreakpoint();
 
+  const { t } = useTranslation("translation", {
+    keyPrefix: "donations.menu",
+  });
+
+  const { hasCompletedATask } = useTasksContext();
+
+  const showTaskCompletedAlert =
+    hasCompletedATask && title === t("forYouPageTitle");
+
   const renderFloatingSideMenu = () => {
     if (menuOptions && !isMobile) {
       return (
@@ -58,7 +69,10 @@ function NavigationLink({
           to={to}
           onClick={onClick}
         >
-          <S.Icon src={icon} />
+          <S.IconContainer>
+            <S.Icon src={icon} />
+            {showTaskCompletedAlert && <S.RedBall />}
+          </S.IconContainer>
           <S.Title enabled={enabled}>{title}</S.Title>
         </S.StyledLink>
         {renderFloatingSideMenu()}

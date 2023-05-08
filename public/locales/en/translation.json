@@ -159,8 +159,8 @@
       "showMore": "Show more"
     },
     "impactNotification": {
-      "title": "Your impact was migrated!",
-      "description": "Your history of donations made on the old platform is in the \"ticket donations\" tab.",
+      "title": "We will be importing your impact soon!",
+      "description": "Your ribons donations from the old platform will soon be imported into your profile.",
       "link": "Do not show again"
     }
   },
@@ -310,6 +310,9 @@
       "modalAnimationFrom": "You",
       "modalAnimationTo": "Ribon",
       "modalAnimationTitle": "Processing giving..."
+    },
+    "tasksContext": {
+      "allTasksCompleted": "You completed all tasks!"
     }
   },
   "impactNormalizer": {
@@ -354,8 +357,10 @@
     },
     "tasksSection": {
       "title": "Tasks",
+      "countdown": "until task reset",
       "tasks": {
-        "donate_ticket": "Donate ticket"
+        "donate_ticket": "Donate ticket",
+        "download_app": "Download app"
       }
     }
   }

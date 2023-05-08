@@ -5,6 +5,7 @@ import CausesPage from "pages/donations/CausesPage";
 import ConfirmEmailPage from "pages/donations/ConfirmEmailPage";
 import DonationDonePage from "pages/donations/DonationDonePage";
 import DonationDoneCausePage from "pages/donations/DonationDoneCausePage";
+import DonationLegacyMigrationPage from "pages/donations/DonationLegacyMigrationPage";
 import ImpactPage from "pages/users/ImpactPage";
 import MainLayout from "layouts/MainLayout";
 import TreasurePage from "pages/promoters/TreasurePage";
@@ -74,6 +75,12 @@ function RoutesComponent(): JSX.Element {
       <Route path="/donation-done-cause" exact>
         <Suspense fallback={<div />}>
           <DonationDoneCausePage />
+        </Suspense>
+      </Route>
+
+      <Route path="/donation-legacy-migration" exact>
+        <Suspense fallback={<div />}>
+          <DonationLegacyMigrationPage />
         </Suspense>
       </Route>
 

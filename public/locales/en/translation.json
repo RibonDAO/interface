@@ -81,6 +81,12 @@
       "youDonatedText": "You donated",
       "button": "Finish"
     },
+    "donationLegacyMigrationPage": {
+      "title": "Ribon changed!",
+      "description": "Forget the 'ribons', now you receive daily 'tickets' to make you donations in a ",
+      "descriptionBold": "simpler way!",
+      "buttonText": "Continue on platform"
+    },
     "menu": {
       "impactPageTitle": "Impact",
       "causesPageTitle": "Tickets",

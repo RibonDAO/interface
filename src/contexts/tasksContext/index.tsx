@@ -47,7 +47,8 @@ function TasksProvider({ children }: any) {
   const [tasksState, setTasksState] = useState<any[]>([]);
   const [hasCompletedATask, setHasCompletedATask] = useState(false);
   const { findCompletedTasks, completeTask } = useCompletedTasks();
-  const { tasksStatistics, completeAllTasks } = useTasksStatistics();
+  const { tasksStatistics, completeAllTasks, updateStreak } =
+    useTasksStatistics();
   const { currentUser, signedIn } = useCurrentUser();
   const { t } = useTranslation("translation", {
     keyPrefix: "contexts.tasksContext",
@@ -122,6 +123,12 @@ function TasksProvider({ children }: any) {
   useEffect(() => {
     if (currentUser && signedIn && currentUser.email) buildTasksState();
   }, [currentUser, signedIn]);
+
+  useEffect(() => {
+    if (currentUser) {
+      updateStreak();
+    }
+  }, [currentUser]);
 
   const registerAction = (action: string) => {
     if (!currentUser && !signedIn) return;

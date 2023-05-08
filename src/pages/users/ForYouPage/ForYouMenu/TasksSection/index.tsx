@@ -1,7 +1,6 @@
 import { useTasksContext } from "contexts/tasksContext";
 import { useTasks } from "utils/constants/Tasks";
 import { useCallback, useEffect } from "react";
-
 import ProgressBar from "components/atomics/ProgressBar";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useIntegration } from "@ribon.io/shared/hooks";
@@ -12,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import * as S from "./styles";
 import DailyTasksSection from "./DailyTasksSection";
 import MonthlyTasksSection from "./MonthlyTasksSection";
+import StatisticsCardsSection from "./StatisticsCardsSection";
 
 function TasksSection() {
   const { t } = useTranslation("translation", {
@@ -118,6 +118,7 @@ function TasksSection() {
             </S.LeftContainer>
           </S.IntegrationContainer>
         )}
+      <StatisticsCardsSection />
     </S.Container>
   );
 }

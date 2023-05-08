@@ -8,12 +8,21 @@ export type Props = {
   textColor?: string;
   size?: "small" | "large";
 };
-function CardTopImage({ icon, title, text, size }: Props): JSX.Element {
+function CardTopImage({
+  icon,
+  title,
+  titleColor,
+  text,
+  textColor,
+  size,
+}: Props): JSX.Element {
   return (
     <S.Container size={size}>
       <S.Image src={icon} size={size} />
-      <S.Title size={size}>{title}</S.Title>
-      <S.Text>{text}</S.Text>
+      <S.Title size={size} titleColor={titleColor}>
+        {title}
+      </S.Title>
+      <S.Text textColor={textColor}>{text}</S.Text>
     </S.Container>
   );
 }

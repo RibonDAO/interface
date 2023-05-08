@@ -3,6 +3,7 @@ import {
   defaultBodySmRegular,
   defaultHeadingXs,
   defaultBodyLgBold,
+  defaultBodyXsRegular,
 } from "styles/typography/default";
 
 export const Container = styled.div<{
@@ -58,15 +59,18 @@ export const Image = styled.img<{
   object-fit: cover;
 `;
 
-export const Text = styled.p`
-  ${defaultBodySmRegular}
+export const Text = styled.p<{
+  textColor?: string;
+}>`
+  ${defaultBodyXsRegular}
 
   margin-top: ${({ theme }) => theme.spacing(8)};
-  color: ${({ theme }) => theme.colors.neutral[500]};
+  color: ${({ theme, textColor }) => textColor || theme.colors.neutral[500]};
 `;
 
 export const Title = styled.span<{
   size?: string;
+  titleColor?: string;
 }>`
   ${(props) =>
     props.size === "small" &&
@@ -85,5 +89,6 @@ export const Title = styled.span<{
     `}
 
   margin-top: ${({ theme }) => theme.spacing(8)};
-  color: ${({ theme }) => theme.colors.brand.primary[800]};
+  color: ${({ theme, titleColor }) =>
+    titleColor || theme.colors.brand.primary[800]};
 `;

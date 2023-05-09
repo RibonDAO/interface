@@ -38,6 +38,7 @@ export const Container = styled.div<{
   margin-bottom: ${({ theme }) => theme.spacing(8)};
   padding: ${({ theme }) => theme.spacing(16)};
   border-radius: 8px;
+  position: relative;
   display: flex;
   flex-grow: ${({ biggerContainer }) => biggerContainer && "1"};
   flex-direction: column;
@@ -104,4 +105,16 @@ export const Title = styled.span<{
   margin-top: ${({ theme }) => theme.spacing(8)};
   color: ${({ theme, titleColor }) =>
     titleColor || theme.colors.brand.primary[800]};
+`;
+
+export const Label = styled.span`
+  ${defaultBodyXsRegular}
+
+  padding: 4px 8px;
+  border-radius: 30px;
+  position: absolute;
+  top: ${({ theme }) => theme.spacing(16)};
+  right: ${({ theme }) => theme.spacing(16)};
+  background-color: ${({ theme }) => theme.colors.brand.primary[50]};
+  color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;

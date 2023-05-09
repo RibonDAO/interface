@@ -139,7 +139,8 @@
       "emptyTitle": "Suas doações de tickets aparecerão aqui.",
       "emptyText": "Você ainda não fez doações gratuitas com tickets, que tal fazer a primeira?",
       "emptyButton": "Doar usando tickets",
-      "showMore": "Mostrar mais"
+      "showMore": "Mostrar mais",
+      "migrated": "Migrado"
     },
     "directSection": {
       "emptyTitle": "Suas doações diretas aparecerão aqui.",

@@ -24,6 +24,12 @@ describe("Impact Page", () => {
         mockRequest(`api/v1/users/statistics/?id=${user.id}&`, {
           payload: userStatistics as UserStatistics,
         });
+        mockRequest("/api/v1/users/update_streak", {
+          method: "POST",
+          payload: {
+            streak: 1,
+          },
+        });
       });
 
       it("should render the impacts cards", () => {

@@ -10,11 +10,20 @@ export const Container = styled.div<{
   textColor?: string;
   titleColor?: string;
   size?: string;
+  biggerContainer?: boolean;
 }>`
   ${(props) =>
     props.size === "small" &&
+    !props.biggerContainer &&
     css`
       width: 48%;
+    `}
+
+  ${(props) =>
+    props.size === "small" &&
+    props.biggerContainer &&
+    css`
+      max-width: 48%;
     `}
 
   ${(props) =>
@@ -22,18 +31,22 @@ export const Container = styled.div<{
     css`
       width: 100%;
       min-width: 230px;
-    `}
+    `}    
+
+  height: ${({ biggerContainer }) => biggerContainer && "128px"};
 
   margin-bottom: ${({ theme }) => theme.spacing(8)};
   padding: ${({ theme }) => theme.spacing(16)};
   border-radius: 8px;
   display: flex;
+  flex-grow: ${({ biggerContainer }) => biggerContainer && "1"};
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.neutral10};
   box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    width: 230px;
+    max-width: ${({ biggerContainer }) =>
+      biggerContainer ? "250px" : "230px"};
   }
 `;
 

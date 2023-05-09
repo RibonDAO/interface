@@ -31,16 +31,64 @@ function TicketSection() {
       {hasImpact ? (
         <S.CardsContainer>
           {impactItems.map((item: any) => (
-            <CardTopImage
-              key={item.nonProfit.id}
-              title={item.nonProfit.name}
-              text={
-                formattedImpactText(item.nonProfit, item.impact, false, true) ||
-                ""
-              }
-              icon={item.nonProfit.logo}
-              size="large"
-            />
+            <>
+              <CardTopImage
+                key={item.nonProfit.id}
+                title={item.nonProfit.name}
+                text={
+                  formattedImpactText(
+                    item.nonProfit,
+                    item.impact,
+                    false,
+                    true,
+                  ) || ""
+                }
+                icon={item.nonProfit.logo}
+                size="large"
+              />
+              <CardTopImage
+                key={item.nonProfit.id}
+                title={item.nonProfit.name}
+                text={
+                  formattedImpactText(
+                    item.nonProfit,
+                    item.impact,
+                    false,
+                    true,
+                  ) || ""
+                }
+                icon={item.nonProfit.logo}
+                size="large"
+              />
+              <CardTopImage
+                key={item.nonProfit.id}
+                title={item.nonProfit.name}
+                text={
+                  formattedImpactText(
+                    item.nonProfit,
+                    item.impact,
+                    false,
+                    true,
+                  ) || ""
+                }
+                icon={item.nonProfit.logo}
+                size="large"
+              />
+              <CardTopImage
+                key={item.nonProfit.id}
+                title={item.nonProfit.name}
+                text={
+                  formattedImpactText(
+                    item.nonProfit,
+                    item.impact,
+                    false,
+                    true,
+                  ) || ""
+                }
+                icon={item.nonProfit.logo}
+                size="large"
+              />
+            </>
           ))}
         </S.CardsContainer>
       ) : (

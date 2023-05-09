@@ -3,7 +3,7 @@ import { useTasks } from "utils/constants/Tasks";
 import { useCallback, useEffect } from "react";
 import ProgressBar from "components/atomics/ProgressBar";
 import { useIntegrationId } from "hooks/useIntegrationId";
-import { useIntegration } from "@ribon.io/shared/hooks";
+import { useIntegration, useTasksStatistics } from "@ribon.io/shared/hooks";
 import { useCountdown } from "hooks/useCountdown";
 import { nextDay } from "lib/dateUtils";
 import { formatCountdown } from "lib/formatters/countdownFormatter";
@@ -45,6 +45,7 @@ function TasksSection() {
   const integrationId = useIntegrationId();
 
   const { integration } = useIntegration(integrationId);
+  const { refetchTasksStatistics } = useTasksStatistics();
 
   const progressBarValue = () => {
     const tasks = dailyTasks.map((visibleTask: any) => {
@@ -60,11 +61,19 @@ function TasksSection() {
 
   const showMonthlyTasks = useCallback(() => {
     if (!tasksStatistics) return false;
-    if (tasksStatistics.hasContribution) return true;
+    if (tasksStatistics.contributor) return true;
     if (tasksStatistics.firstCompletedAllTasksAt) return true;
 
     return false;
   }, [tasksState, tasksStatistics]);
+
+  useEffect(() => {
+    refetchTasksStatistics();
+  }, [tasksStatistics, refetchTasksStatistics]);
+
+  useEffect(() => {
+    reload();
+  }, []);
 
   const renderCountdown = () => {
     const countdown = useCountdown(nextDay(), reload);

@@ -47,8 +47,12 @@ function TasksProvider({ children }: any) {
   const [tasksState, setTasksState] = useState<any[]>([]);
   const [hasCompletedATask, setHasCompletedATask] = useState(false);
   const { findCompletedTasks, completeTask } = useCompletedTasks();
-  const { tasksStatistics, completeAllTasks, updateStreak } =
-    useTasksStatistics();
+  const {
+    tasksStatistics,
+    completeAllTasks,
+    updateStreak,
+    refetchTasksStatistics,
+  } = useTasksStatistics();
   const { currentUser, signedIn } = useCurrentUser();
   const { t } = useTranslation("translation", {
     keyPrefix: "contexts.tasksContext",
@@ -190,10 +194,14 @@ function TasksProvider({ children }: any) {
       registerAction("download_app");
     }
 
-    if (tasksStatistics?.firstCompletedAllTasksAt === null) {
+    if (
+      tasksStatistics?.firstCompletedAllTasksAt === null &&
+      allDone(tasksState)
+    ) {
       completeAllTasks();
+      refetchTasksStatistics();
     }
-  }, [buildTasksState]);
+  }, [buildTasksState, tasksState]);
 
   const tasksObject: ITasksContext = useMemo(
     () => ({

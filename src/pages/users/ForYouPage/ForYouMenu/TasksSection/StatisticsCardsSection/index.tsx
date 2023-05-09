@@ -3,6 +3,7 @@ import { theme } from "@ribon.io/shared/styles";
 import { useTasksContext } from "contexts/tasksContext";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useTasksStatistics } from "@ribon.io/shared/hooks";
 import SunIcon from "./assets/sun-icon.svg";
 import BoltIcon from "./assets/bolt-icon.svg";
 import EventIcon from "./assets/event-icon.svg";
@@ -12,7 +13,8 @@ function StatisticsCardsSection() {
   const { t } = useTranslation("translation", {
     keyPrefix: "forYouPage.tasksSection.cardsStatisticsSection",
   });
-  const { tasksState, tasksStatistics } = useTasksContext();
+  const { tasksState, tasksStatistics, reload } = useTasksContext();
+  const { refetchTasksStatistics } = useTasksStatistics();
   const [dailyTasksCompleted, setDailyTasksCompleted] = useState(0);
   const [superTasksCompleted, setSuperTasksCompleted] = useState(0);
 
@@ -38,7 +40,7 @@ function StatisticsCardsSection() {
 
   const showMonthlyTasks = useCallback(() => {
     if (!tasksStatistics) return false;
-    if (tasksStatistics.hasContribution) return true;
+    if (tasksStatistics.contributor) return true;
     if (tasksStatistics.firstCompletedAllTasksAt) return true;
 
     return false;
@@ -49,14 +51,23 @@ function StatisticsCardsSection() {
     setSuperTasksCompleted(countSuperTasksCompleted());
   }, [tasksState]);
 
+  useEffect(() => {
+    refetchTasksStatistics();
+  }, [tasksStatistics, refetchTasksStatistics]);
+
+  useEffect(() => {
+    reload();
+  }, []);
+
   return (
-    <S.Container>
+    <S.CardsButtonContainer>
       {dailyTasksCompleted > 0 && (
         <CardTopImage
           text={t("dailyTasksTitle")}
           icon={SunIcon}
           title={dailyTasksCompleted.toString() ?? "0"}
           size="small"
+          biggerContainer
         />
       )}
       {showMonthlyTasks() && (
@@ -65,8 +76,8 @@ function StatisticsCardsSection() {
           icon={BoltIcon}
           title={superTasksCompleted.toString() ?? "0"}
           size="small"
-          textColor={theme.colors.brand.tertiary[900]}
-          titleColor={theme.colors.brand.tertiary[900]}
+          biggerContainer
+          color={theme.colors.brand.tertiary[900]}
         />
       )}
       {dailyTasksCompleted > 0 && (
@@ -75,11 +86,11 @@ function StatisticsCardsSection() {
           icon={EventIcon}
           title={tasksStatistics?.streak?.toString() ?? "0"}
           size="small"
-          textColor={theme.colors.brand.secondary[800]}
-          titleColor={theme.colors.brand.secondary[800]}
+          biggerContainer
+          color={theme.colors.brand.secondary[800]}
         />
       )}
-    </S.Container>
+    </S.CardsButtonContainer>
   );
 }
 

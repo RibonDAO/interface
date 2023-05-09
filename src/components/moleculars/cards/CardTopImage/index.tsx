@@ -4,25 +4,25 @@ export type Props = {
   icon?: string;
   title?: string | number;
   text?: string | JSX.Element;
-  titleColor?: string;
-  textColor?: string;
+  color?: string;
   size?: "small" | "large";
+  biggerContainer?: boolean;
 };
 function CardTopImage({
   icon,
   title,
-  titleColor,
+  color,
   text,
-  textColor,
   size,
+  biggerContainer = false,
 }: Props): JSX.Element {
   return (
-    <S.Container size={size}>
+    <S.Container size={size} biggerContainer={biggerContainer}>
       <S.Image src={icon} size={size} />
-      <S.Title size={size} titleColor={titleColor}>
+      <S.Title size={size} titleColor={color}>
         {title}
       </S.Title>
-      <S.Text textColor={textColor}>{text}</S.Text>
+      <S.Text textColor={color}>{text}</S.Text>
     </S.Container>
   );
 }

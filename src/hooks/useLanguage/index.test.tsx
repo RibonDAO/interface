@@ -2,8 +2,8 @@ import React from "react";
 import { renderComponent, waitForPromises } from "config/testUtils";
 import { screen, fireEvent } from "@testing-library/react";
 import { setLocalStorageItem } from "lib/localStorage";
-import { LANGUAGE_KEY, useLanguage } from ".";
 import { mockRequest } from "config/testUtils/test-helper";
+import { LANGUAGE_KEY, useLanguage } from ".";
 
 function TestPage() {
   const { currentLang, handleSwitchLanguage } = useLanguage();

@@ -80,7 +80,11 @@ function TasksSection() {
 
     if (!tasksState) return null;
     if (!tasksState.length) return null;
-    if (tasksState.filter((obj) => obj.done === false).length) return null;
+    if (
+      tasksState.filter((obj) => obj.done === false && obj.type === "daily")
+        .length
+    )
+      return null;
     if (countdown.reduce((a, b) => a + b, 0) <= 0) return null;
 
     return (

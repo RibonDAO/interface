@@ -1,17 +1,17 @@
-import CheckBox from "components/atomics/inputs/Checkbox";
 import { useTasksContext } from "contexts/tasksContext";
-import { useTranslation } from "react-i18next";
 import { useTasks } from "utils/constants/Tasks";
 import { useCallback, useEffect } from "react";
-import theme from "styles/theme";
-import Icon from "components/atomics/Icon";
 import ProgressBar from "components/atomics/ProgressBar";
 import { useIntegrationId } from "hooks/useIntegrationId";
-import { useIntegration } from "@ribon.io/shared/hooks";
+import { useIntegration, useTasksStatistics } from "@ribon.io/shared/hooks";
 import { useCountdown } from "hooks/useCountdown";
 import { nextDay } from "lib/dateUtils";
 import { formatCountdown } from "lib/formatters/countdownFormatter";
+import { useTranslation } from "react-i18next";
 import * as S from "./styles";
+import DailyTasksSection from "./DailyTasksSection";
+import MonthlyTasksSection from "./MonthlyTasksSection";
+import StatisticsCardsSection from "./StatisticsCardsSection";
 
 function TasksSection() {
   const { t } = useTranslation("translation", {
@@ -19,7 +19,8 @@ function TasksSection() {
   });
 
   const dailyTasks = useTasks("daily");
-  const { tasksState, setHasCompletedATask, reload } = useTasksContext();
+  const { tasksState, setHasCompletedATask, reload, tasksStatistics } =
+    useTasksContext();
 
   const tasksCount = useCallback(() => {
     if (!tasksState) return 0;
@@ -44,6 +45,7 @@ function TasksSection() {
   const integrationId = useIntegrationId();
 
   const { integration } = useIntegration(integrationId);
+  const { refetchTasksStatistics } = useTasksStatistics();
 
   const progressBarValue = () => {
     const tasks = dailyTasks.map((visibleTask: any) => {
@@ -57,12 +59,32 @@ function TasksSection() {
     );
   };
 
+  const showMonthlyTasks = useCallback(() => {
+    if (!tasksStatistics) return false;
+    if (tasksStatistics.contributor) return true;
+    if (tasksStatistics.firstCompletedAllTasksAt) return true;
+
+    return false;
+  }, [tasksState, tasksStatistics]);
+
+  useEffect(() => {
+    refetchTasksStatistics();
+  }, [tasksStatistics, refetchTasksStatistics]);
+
+  useEffect(() => {
+    reload();
+  }, []);
+
   const renderCountdown = () => {
     const countdown = useCountdown(nextDay(), reload);
 
     if (!tasksState) return null;
     if (!tasksState.length) return null;
-    if (tasksState.filter((obj) => obj.done === false).length) return null;
+    if (
+      tasksState.filter((obj) => obj.done === false && obj.type === "daily")
+        .length
+    )
+      return null;
     if (countdown.reduce((a, b) => a + b, 0) <= 0) return null;
 
     return (
@@ -84,37 +106,11 @@ function TasksSection() {
       </S.ProgressBar>
       {renderCountdown()}
 
-      <S.TitleContainer>
-        <Icon
-          name="light_mode"
-          size="25px"
-          color={theme.colors.brand.primary[900]}
-        />
-        <S.Title>{t("title")}</S.Title>
-      </S.TitleContainer>
-      {tasksState &&
-        dailyTasks.map((task: any) => {
-          if (!task.isVisible({ state: tasksState })) {
-            return null;
-          }
-          return (
-            <S.CheckboxContainer key={task.id}>
-              <CheckBox
-                key={task.id}
-                text={t(`tasks.${task?.title}`)}
-                sectionStyle={{ marginBottom: 8, paddingLeft: 4 }}
-                lineThroughOnChecked
-                navigationCallback={
-                  !tasksState.find((obj) => obj.id === task.id)?.done
-                    ? task?.navigationCallback
-                    : undefined
-                }
-                disabled
-                checked={tasksState.find((obj) => obj.id === task.id)?.done}
-              />
-            </S.CheckboxContainer>
-          );
-        })}
+      <S.TasksContainer>
+        <DailyTasksSection />
+        {showMonthlyTasks() && <MonthlyTasksSection />}
+      </S.TasksContainer>
+
       {integration?.integrationTask &&
         tasksState.find((obj) => obj.id === donateTicketTask?.id)?.done && (
           <S.IntegrationContainer>
@@ -135,6 +131,7 @@ function TasksSection() {
             </S.LeftContainer>
           </S.IntegrationContainer>
         )}
+      <StatisticsCardsSection />
     </S.Container>
   );
 }

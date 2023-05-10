@@ -7,7 +7,11 @@ import {
   nextMonth,
 } from "lib/dateUtils";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { useCanDonate, useCompletedTasks } from "@ribon.io/shared/hooks";
+import {
+  useCanDonate,
+  useCompletedTasks,
+  useTasksStatistics,
+} from "@ribon.io/shared/hooks";
 import { CompletedTask } from "@ribon.io/shared/types/apiResponses";
 import { theme } from "@ribon.io/shared/styles";
 import useToast from "hooks/useToast";
@@ -17,11 +21,13 @@ import extractUrlValue from "lib/extractUrlValue";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { PLATFORM } from "utils/constants";
 import { useLocation } from "react-router-dom";
+import TasksStatistics from "@ribon.io/shared/types/apiResponses/TasksStatistics";
 
 export type TaskStateItem = {
   id: string;
   nextAction: string;
   done: boolean;
+  type: string;
   expiresAt: string;
   timesCompleted: number;
 };
@@ -32,6 +38,7 @@ export interface ITasksContext {
   tasksState: TaskStateItem[];
   registerAction: (action: string) => void;
   reload: () => void;
+  tasksStatistics?: TasksStatistics;
 }
 
 export const TasksContext = createContext<ITasksContext>({} as ITasksContext);
@@ -40,6 +47,12 @@ function TasksProvider({ children }: any) {
   const [tasksState, setTasksState] = useState<any[]>([]);
   const [hasCompletedATask, setHasCompletedATask] = useState(false);
   const { findCompletedTasks, completeTask } = useCompletedTasks();
+  const {
+    tasksStatistics,
+    completeAllTasks,
+    updateStreak,
+    refetchTasksStatistics,
+  } = useTasksStatistics();
   const { currentUser, signedIn } = useCurrentUser();
   const { t } = useTranslation("translation", {
     keyPrefix: "contexts.tasksContext",
@@ -71,9 +84,9 @@ function TasksProvider({ children }: any) {
   };
 
   function allDone(tasks: any) {
-    return tasks.every((task: any) => task.done === true);
+    const dailyTasks = tasks.filter((task: any) => task.type === "daily");
+    return dailyTasks.every((task: any) => task.done === true);
   }
-
   const isExpired = (task: CompletedTask | undefined) => {
     if (!task) return false;
 
@@ -98,6 +111,7 @@ function TasksProvider({ children }: any) {
         return {
           id: task.id,
           nextAction: task.actions[0],
+          type: task.type,
           timesCompleted: currentTask?.timesCompleted || 0,
           done: isDone(currentTask),
           expiresAt: isExpired(currentTask),
@@ -113,6 +127,12 @@ function TasksProvider({ children }: any) {
   useEffect(() => {
     if (currentUser && signedIn && currentUser.email) buildTasksState();
   }, [currentUser, signedIn]);
+
+  useEffect(() => {
+    if (currentUser) {
+      updateStreak();
+    }
+  }, [currentUser]);
 
   const registerAction = (action: string) => {
     if (!currentUser && !signedIn) return;
@@ -136,6 +156,7 @@ function TasksProvider({ children }: any) {
           return {
             ...task,
             done: true,
+            type: currentTask.type,
             timesCompleted: task.timesCompleted + 1,
             expiresAt: currentTask.type === "daily" ? nextDay() : nextMonth(),
           };
@@ -172,7 +193,15 @@ function TasksProvider({ children }: any) {
     if (donateApp && !done) {
       registerAction("download_app");
     }
-  }, [buildTasksState]);
+
+    if (
+      tasksStatistics?.firstCompletedAllTasksAt === null &&
+      allDone(tasksState)
+    ) {
+      completeAllTasks();
+      refetchTasksStatistics();
+    }
+  }, [buildTasksState, tasksState]);
 
   const tasksObject: ITasksContext = useMemo(
     () => ({
@@ -181,6 +210,7 @@ function TasksProvider({ children }: any) {
       tasksState,
       registerAction,
       reload,
+      tasksStatistics,
     }),
     [tasksState, hasCompletedATask],
   );

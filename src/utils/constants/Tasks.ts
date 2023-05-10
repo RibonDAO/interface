@@ -10,7 +10,7 @@ export interface Task {
   title: string;
   actions: string[];
   type: string;
-  navigationCallback: string;
+  navigationCallback?: string;
   isVisible: (params?: any) => boolean;
 }
 
@@ -29,6 +29,7 @@ export const TASKS = [
     id: "9177df10-8e93-4938-b2fb-e04b138127f7",
     title: "download_app",
     actions: ["download_app"],
+    navigationCallback: "/app-download",
     type: "daily",
     isVisible(this: Task, params?: any) {
       const taskState = params?.state.find((obj: any) => obj.id === this.id);
@@ -46,6 +47,16 @@ export const TASKS = [
       }
 
       return false;
+    },
+  },
+  {
+    id: "ed180aa8-e8e7-11ed-a05b-0242ac120003",
+    title: "make_contribution",
+    actions: ["contribution_done_page_view"],
+    type: "monthly",
+    navigationCallback: "/promoters/support-non-profit",
+    isVisible(this: Task) {
+      return true;
     },
   },
 ];

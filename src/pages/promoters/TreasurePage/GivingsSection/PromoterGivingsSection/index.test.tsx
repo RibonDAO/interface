@@ -120,6 +120,13 @@ describe("when the promoter has card givings", () => {
     }),
   ];
 
+  mockRequest("/api/v1/users/update_streak", {
+    method: "POST",
+    payload: {
+      streak: 1,
+    },
+  });
+
   mockRequest(
     `/api/v1/givings/user_givings?email=${user.email}&currency=${currency}`,
     {

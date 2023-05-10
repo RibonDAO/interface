@@ -2,6 +2,7 @@ import React from "react";
 import { renderComponent, waitForPromises } from "config/testUtils";
 import { screen, fireEvent } from "@testing-library/react";
 import { setLocalStorageItem } from "lib/localStorage";
+import { mockRequest } from "config/testUtils/test-helper";
 import { LANGUAGE_KEY, useLanguage } from ".";
 
 function TestPage() {
@@ -45,7 +46,13 @@ describe("useLanguage", () => {
   });
 
   describe("#handleSwitchLanguage", () => {
-    it("switches the current language", async () => {
+    mockRequest("/api/v1/users/update_streak", {
+      method: "POST",
+      payload: {
+        streak: 1,
+      },
+    });
+    beforeEach(async () => {
       Object.defineProperty(window, "location", {
         value: {
           reload: jest.fn(),
@@ -53,6 +60,9 @@ describe("useLanguage", () => {
       });
       setLocalStorageItem(LANGUAGE_KEY, "en-US");
       renderComponent(<TestPage />);
+      await waitForPromises();
+    });
+    it("switches the current language", async () => {
       expect(screen.getByText("en-US")).toBeInTheDocument();
 
       fireEvent.click(screen.getByText("change language"));

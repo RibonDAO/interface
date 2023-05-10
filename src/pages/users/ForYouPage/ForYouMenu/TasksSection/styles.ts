@@ -90,3 +90,8 @@ export const Countdown = styled.p`
   margin-right: ${({ theme }) => theme.spacing(4)};
   color: ${({ theme }) => theme.colors.brand.primary[900]};
 `;
+
+export const TasksContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;

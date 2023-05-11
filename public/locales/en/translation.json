@@ -360,9 +360,17 @@
     "tasksSection": {
       "title": "Tasks",
       "countdown": "until task reset",
+      "new": "New",
+      "titleSuperTasks": "Super tasks",
       "tasks": {
         "donate_ticket": "Donate ticket",
-        "download_app": "Download app"
+        "download_app": "Download app",
+        "make_contribution": "Make a paid donation"
+      },
+      "cardsStatisticsSection": {
+        "dailyTasksTitle": "daily tasks completed",
+        "superTasksTitle": "super tasks completed",
+        "streakTitle": "days in a row completing tasks"
       }
     }
   }

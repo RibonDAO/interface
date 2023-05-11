@@ -96,12 +96,14 @@ function DonationDoneCausePage(): JSX.Element {
   function navigate() {
     clearTimeout(pageTimeout);
     if (flow === "cause" && hasButton) {
+      registerAction("contribution_done_page_view");
       navigateTo({
         pathname: "/promoters/support-cause",
         state: { nonProfit, cause },
       });
     }
     if (flow === "nonProfit") {
+      registerAction("contribution_done_page_view");
       navigateTo({
         pathname: "/promoters/support-non-profit",
         state: { nonProfit, cause },

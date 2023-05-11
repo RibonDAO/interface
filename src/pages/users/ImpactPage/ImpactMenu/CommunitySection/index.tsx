@@ -71,8 +71,6 @@ function CommunitySection() {
     setShowMoreDisabled(true);
   };
 
-  console.log(legacyContributions);
-
   return (
     <S.Container>
       {hasImpactCards ? (

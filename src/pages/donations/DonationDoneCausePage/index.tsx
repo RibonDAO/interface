@@ -62,16 +62,22 @@ function DonationDoneCausePage(): JSX.Element {
   const shouldShowAppDownload = useCallback(
     () =>
       Number(userStatistics?.totalTickets) %
-        quantityOfDonationsToShowDownload ===
-        0 || Number(userStatistics?.totalTickets) === firstDonation,
+      quantityOfDonationsToShowDownload ===
+      0 || Number(userStatistics?.totalTickets) === firstDonation,
     [userStatistics],
   );
 
   const shouldShowContribute = useCallback(
     () =>
       Number(userStatistics?.totalTickets) %
-        quantityOfDonationsToShowContribute ===
-        0 || Number(userStatistics?.totalTickets) === 0,
+      quantityOfDonationsToShowContribute ===
+      0 || Number(userStatistics?.totalTickets) === 0,
+    [userStatistics],
+  );
+
+  const shouldShowAppMigrationPage = useCallback(
+    // TODO: currentUser?.legacyId != null
+    () => shouldShowAppDownload(),
     [userStatistics],
   );
 
@@ -95,6 +101,7 @@ function DonationDoneCausePage(): JSX.Element {
 
   function navigate() {
     clearTimeout(pageTimeout);
+
     if (flow === "cause" && hasButton) {
       navigateTo({
         pathname: "/promoters/support-cause",
@@ -109,6 +116,10 @@ function DonationDoneCausePage(): JSX.Element {
     }
     if (!hasButton) {
       registerAction("donation_done_page_view");
+
+      if (shouldShowAppMigrationPage()) {
+        navigateTo("/donation-legacy-migration");
+      }
 
       if (shouldShowAppDownload()) {
         navigateTo({

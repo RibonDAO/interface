@@ -10,6 +10,8 @@ import theme from "styles/theme";
 import { PersonPayment } from "@ribon.io/shared/types";
 import useBreakpoint from "hooks/useBreakpoint";
 import directIllustration from "assets/images/direct-illustration.svg";
+import { useLegacyContributions } from "@ribon.io/shared/hooks";
+import { useCurrentUser } from "contexts/currentUserContext";
 import * as S from "../styles";
 
 function CommunitySection() {
@@ -32,6 +34,8 @@ function CommunitySection() {
   const [impactCards, setImpactCards] = useState<any>([]);
 
   const { useCommunityPersonPayments } = usePersonPayments();
+  const { currentUser } = useCurrentUser();
+  const { legacyContributions } = useLegacyContributions(currentUser?.id);
 
   const { data } = useCommunityPersonPayments(page, per);
 
@@ -67,18 +71,7 @@ function CommunitySection() {
     setShowMoreDisabled(true);
   };
 
-  const legacyContributions = [
-    {
-      id: 1,
-      userId: 1,
-      value: "R$ 100,00",
-      day: "2021-01-01",
-      legacyPaymentId: 1,
-      legacyPaymentPlatform: 1,
-      legacyPaymentMethod: 1,
-      fromSubscription: true,
-    }
-  ]
+  console.log(legacyContributions);
 
   return (
     <S.Container>
@@ -120,24 +113,18 @@ function CommunitySection() {
               </S.TooltipText>
             </CardTooltip>
           ))}
-          {legacyContributions.map((item) => (
-              <CardTooltip
-                  key={item.id}
-                  title={t("generalReceiver")}
-                  label={t("migrated")}
-                  value={
-                    item.value
-                  }
-                  infoLeft={item.day
-                      .split(" ")[0]
-                      .split("-")
-                      .reverse()
-                      .join("/")}
-                  tooltipSymbol="i"
-                  titleColor={theme.colors.brand.secondary[700]}
-                  valueColor={theme.colors.brand.secondary[400]}
-                  idTooltip={item.id.toString()}
-              />
+          {legacyContributions?.map((item) => (
+            <CardTooltip
+              key={item.id}
+              title={t("generalReceiver")}
+              label={t("migrated")}
+              value={item.value}
+              infoLeft={item.day?.split(" ")[0].split("-").reverse().join("/")}
+              tooltipSymbol="i"
+              titleColor={theme.colors.brand.secondary[700]}
+              valueColor={theme.colors.brand.secondary[400]}
+              idTooltip={item.id?.toString()}
+            />
           ))}
 
           {showMoreVisible && (

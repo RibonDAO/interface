@@ -156,7 +156,9 @@
       "emptyButton": "Donate in community",
       "tooltipFirstParagraphText": "Net donation: {{value}}",
       "tooltipSecondParagraphText": "Service fees: {{value}}",
-      "showMore": "Show more"
+      "showMore": "Show more",
+      "generalReceiver": "General",
+      "migrated": "Migrated"
     },
     "impactNotification": {
       "title": "We will be importing your impact soon!",

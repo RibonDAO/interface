@@ -156,7 +156,9 @@
       "emptyButton": "Doar em comunidade",
       "tooltipFirstParagraphText": "Doação líquida: {{value}}",
       "tooltipSecondParagraphText": "Taxa de serviço: {{value}}",
-      "showMore": "Mostrar mais"
+      "showMore": "Mostrar mais",
+      "generalReceiver": "Geral",
+      "migrated": "Migrado"
     },
     "impactNotification": {
       "title": "Vamos importar o seu impacto em breve!",

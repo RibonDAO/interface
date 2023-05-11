@@ -42,6 +42,7 @@ describe("useNetwork", () => {
       defaultPoolAddress: "0x9B00b1a3C4ea8BFbBE984360513f7bE7e971e431",
       subgraphUrl:
         "https://api.thegraph.com/subgraphs/name/ribondao/ribonsubgraph",
+      defaultIntegrationHolding: "",
     };
 
     beforeEach(async () => {

@@ -1,7 +1,7 @@
 import { impactNormalizer } from "@ribon.io/shared/lib";
 import { Fragment } from "react";
 import { useTranslation } from "react-i18next";
-import { NonProfit, NonProfitImpact } from "@ribon.io/shared/types";
+import { NonProfit, NonProfitImpactResponse } from "@ribon.io/shared/types";
 
 export function useFormattedImpactText() {
   const { t: normalizerTranslation } = useTranslation("translation", {
@@ -23,7 +23,7 @@ export function useFormattedImpactText() {
     impact?: number,
     isRoundedImpact?: boolean,
     isHighlighted?: boolean,
-    nonProfitImpact?: NonProfitImpact,
+    nonProfitImpact?: NonProfitImpactResponse,
     prefix?: string,
   ) {
     if (!nonProfit) return "";

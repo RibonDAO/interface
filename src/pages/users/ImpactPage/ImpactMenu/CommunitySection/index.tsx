@@ -64,7 +64,9 @@ function CommunitySection() {
     if (data.length < per) setShowMoreVisible(false);
   }, [data, page]);
 
-  const hasImpactCards = impactCards?.length > 0;
+  const hasImpactCards =
+    impactCards?.length > 0 ||
+    (legacyContributions?.length && legacyContributions?.length > 0);
 
   const handleShowMoreClick = () => {
     setPage(page + 1);

@@ -3,7 +3,7 @@ import { defaultBodyLgBold } from "styles/typography/default";
 
 export const Container = styled.div<{ isMobile: boolean }>`
   width: 100%;
-  margin-left: ${({ theme, isMobile }) => (!isMobile ? theme.spacing(24) : 0)};
+  margin-left: ${({ theme, isMobile }) => (isMobile ? 0 : theme.spacing(24))};
 `;
 
 export const TitleContainer = styled.div`

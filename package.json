@@ -60,7 +60,8 @@
     "lint:css:fix": "stylelint --fix src/**/styles.ts",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "codehawk": "codehawk src"
+    "codehawk": "codehawk src",
+    "coveralls": "cat coverage/lcov.info | coveralls"
   },
   "eslintConfig": {
     "extends": [
@@ -114,6 +115,7 @@
     "axios-mock-adapter": "^1.21.2",
     "babel-eslint": "^10.1.0",
     "codehawk-cli": "^10.0.1",
+    "coveralls": "^3.1.1",
     "eslint": "^8.26.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",

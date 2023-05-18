@@ -40,7 +40,7 @@ export interface ICryptoPaymentContext {
   amount: string;
   setAmount: (amount: string) => void;
   insufficientBalance: () => boolean;
-  currentPool: string;
+  currentPool?: string;
   setCurrentPool: (pool: string) => void;
   userBalance: string;
   tokenSymbol: string;
@@ -61,7 +61,7 @@ function CryptoPaymentProvider({ children }: Props) {
   const { currentNetwork } = useNetworkContext();
   const { tokenDecimals } = useTokenDecimals();
   const [currentPool, setCurrentPool] = useState(
-    currentNetwork.defaultPoolAddress,
+    currentNetwork?.defaultPoolAddress,
   );
   const [tokenSymbol, setTokenSymbol] = useState("");
 
@@ -71,11 +71,11 @@ function CryptoPaymentProvider({ children }: Props) {
     keyPrefix: "promoters.supportTreasurePage",
   });
   const contract = useContract({
-    address: currentNetwork.ribonContractAddress,
+    address: currentNetwork?.ribonContractAddress,
     ABI: RibonAbi.abi,
   });
   const donationTokenContract = useContract({
-    address: currentNetwork.donationTokenContractAddress,
+    address: currentNetwork?.donationTokenContractAddress,
     ABI: DonationTokenAbi.abi,
   });
   const { showLoadingOverlay, hideLoadingOverlay } = useLoadingOverlay();
@@ -84,7 +84,7 @@ function CryptoPaymentProvider({ children }: Props) {
 
   const approveAmount = async () =>
     donationTokenContract?.functions.approve(
-      currentNetwork.ribonContractAddress,
+      currentNetwork?.ribonContractAddress,
       formatToDecimals(amount, tokenDecimals).toString(),
       {
         from: wallet,

@@ -8,7 +8,7 @@ function useTokenDecimals() {
   const { currentNetwork } = useNetworkContext();
 
   const donationTokenContract = useContract({
-    address: currentNetwork.donationTokenContractAddress,
+    address: currentNetwork?.donationTokenContractAddress,
     ABI: DonationTokenAbi.abi,
   });
 

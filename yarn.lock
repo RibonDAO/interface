@@ -3006,10 +3006,10 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==
 
-"@ribon.io/shared@^1.0.56":
-  version "1.0.56"
-  resolved "https://registry.yarnpkg.com/@ribon.io/shared/-/shared-1.0.56.tgz#18b6d6781d87943ba242e5a13213b59911a168e3"
-  integrity sha512-9dXt6L7vYjLpDVP2ndkBsRoFvSthH501aFzImQOA5sRXL7TxPQN1o9ruZW9AYt1oFXobvulDMpY1w1aj9aHwpg==
+"@ribon.io/shared@^1.0.59":
+  version "1.0.59"
+  resolved "https://registry.yarnpkg.com/@ribon.io/shared/-/shared-1.0.59.tgz#9cf82b31b9b71c2df98cab1a1e69b23fc47524f2"
+  integrity sha512-W7wqxVpucHKWaLNtlQL51YkH7ZHh1vQLzNuaMhqw3LX5/DJxx2uXenLY/vhqjFZOQCJEyuu5GXmVygflGQ9uYA==
   dependencies:
     "@apollo/client" "^3.6.9"
     "@types/base-64" "^1.0.0"
@@ -4433,6 +4433,11 @@
   integrity sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==
   dependencies:
     "@types/node" "*"
+
+"@types/crypto-js@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@types/crypto-js/-/crypto-js-4.1.1.tgz#602859584cecc91894eb23a4892f38cfa927890d"
+  integrity sha512-BG7fQKZ689HIoc5h+6D2Dgq1fABRa0RbBWKBd9SP/MVRVXROflpm5fhwyATX5duFmbStzyzyycPB8qUYKDH3NA==
 
 "@types/eslint-scope@^3.7.3":
   version "3.7.4"
@@ -7798,6 +7803,11 @@ crypto-browserify@^3.11.0:
     public-encrypt "^4.0.0"
     randombytes "^2.0.0"
     randomfill "^1.0.3"
+
+crypto-js@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.1.1.tgz#9e485bcf03521041bd85844786b83fb7619736cf"
+  integrity sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==
 
 crypto-random-string@^1.0.0:
   version "1.0.0"

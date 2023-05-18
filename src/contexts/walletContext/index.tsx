@@ -16,7 +16,7 @@ import { useTranslation } from "react-i18next";
 import useToast from "hooks/useToast";
 import { logEvent } from "lib/events";
 import { utils } from "ethers";
-import { networks } from "config/networks";
+import { useNetworkContext } from "contexts/networkContext";
 
 export interface IWalletContext {
   wallet: string | null;
@@ -37,6 +37,7 @@ export const WalletContext = createContext<IWalletContext>(
 function WalletProvider({ children }: Props) {
   const [wallet, setWallet] = useState<string | null>(null);
   const toast = useToast();
+  const { permittedNetworks, isLoading } = useNetworkContext();
   const { t } = useTranslation("translation", {
     keyPrefix: "contexts.walletContext",
   });
@@ -52,18 +53,19 @@ function WalletProvider({ children }: Props) {
 
   const addNetwork = useCallback(async () => {
     try {
+      if (!permittedNetworks) return;
       await window.ethereum.request({
         method: "wallet_addEthereumChain",
         params: [
           {
-            chainName: networks[0].chainName,
-            chainId: utils.hexValue(networks[0].chainId),
+            chainName: permittedNetworks[0].name,
+            chainId: utils.hexValue(permittedNetworks[0].chainId),
             nativeCurrency: {
-              name: networks[0].currencyName,
+              name: permittedNetworks[0].currencyName,
               decimals: 18,
-              symbol: networks[0].symbolName,
+              symbol: permittedNetworks[0].symbolName,
             },
-            rpcUrls: [networks[0].rpcUrls],
+            rpcUrls: [permittedNetworks[0].rpcUrls],
           },
         ],
       });
@@ -75,18 +77,19 @@ function WalletProvider({ children }: Props) {
         });
       }
     }
-  }, []);
+  }, [permittedNetworks]);
 
   const changeNetwork = useCallback(async () => {
-    const permittedNetworks = networks.filter(
+    if (!permittedNetworks) return;
+    const permittedNetwork = permittedNetworks.filter(
       (network) =>
         window.ethereum.networkVersion === network.chainId.toString(),
     );
-    if (permittedNetworks.length === 0) {
+    if (permittedNetwork.length === 0) {
       try {
         await window.ethereum.request({
           method: "wallet_switchEthereumChain",
-          params: [{ chainId: utils.hexValue(networks[0].chainId) }],
+          params: [{ chainId: utils.hexValue(permittedNetworks[0].chainId) }],
         });
       } catch (err: any) {
         if (err.code === 4902) {
@@ -100,7 +103,7 @@ function WalletProvider({ children }: Props) {
         }
       }
     }
-  }, []);
+  }, [permittedNetworks]);
 
   const connectWallet = useCallback(async () => {
     const connectWalletResponse = await connectWalletRequest({
@@ -129,7 +132,7 @@ function WalletProvider({ children }: Props) {
     });
     setWallet(connectWalletResponse);
     await changeNetwork();
-  }, []);
+  }, [permittedNetworks]);
 
   const walletObject: IWalletContext = useMemo(
     () => ({
@@ -142,7 +145,7 @@ function WalletProvider({ children }: Props) {
     [wallet, checkIfWalletIsConnected, connectWallet, changeNetwork],
   );
 
-  return (
+  return isLoading ? null : (
     <WalletContext.Provider value={walletObject}>
       {children}
     </WalletContext.Provider>

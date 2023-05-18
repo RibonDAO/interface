@@ -31,11 +31,11 @@ function TreasurePage(): JSX.Element {
     keyPrefix: "promoters.treasurePage",
   });
   const donationTokenContract = useContract({
-    address: currentNetwork.donationTokenContractAddress,
+    address: currentNetwork?.donationTokenContractAddress,
     ABI: DonationTokenAbi.abi,
   });
   const contract = useContract({
-    address: currentNetwork.ribonContractAddress,
+    address: currentNetwork?.ribonContractAddress,
     ABI: RibonAbi.abi,
   });
 
@@ -45,7 +45,7 @@ function TreasurePage(): JSX.Element {
     refetch: fetchContractBalance,
   } = useContractBalance(
     donationTokenContract,
-    currentNetwork.defaultPoolAddress,
+    currentNetwork?.defaultPoolAddress,
   );
 
   const handleSupportButtonClick = () => {

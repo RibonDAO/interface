@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { defaultBodyLgBold } from "styles/typography/default";
 
-export const Container = styled.div`
-  width: 50%;
-  margin-left: ${({ theme }) => theme.spacing(24)};
+export const Container = styled.div<{ isMobile: boolean }>`
+  width: 100%;
+  margin-left: ${({ theme, isMobile }) => (!isMobile ? theme.spacing(24) : 0)};
 `;
 
 export const TitleContainer = styled.div`

@@ -37,3 +37,7 @@ jobs:
           REACT_APP_ZENDESK_KEY: ${{ secrets.REACT_APP_ZENDESK_KEY }}
         run: |
           yarn testCoverage
+      - name: Report Coveralls
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        uses: coverallsapp/github-action@v2

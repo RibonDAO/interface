@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { defaultBodyLgBold } from "styles/typography/default";
 
 export const Container = styled.div`
-  width: 50%;
+  width: 100%;
 `;
 
 export const TitleContainer = styled.div`

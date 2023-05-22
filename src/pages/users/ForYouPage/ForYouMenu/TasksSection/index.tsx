@@ -8,6 +8,7 @@ import { useCountdown } from "hooks/useCountdown";
 import { nextDay } from "lib/dateUtils";
 import { formatCountdown } from "lib/formatters/countdownFormatter";
 import { useTranslation } from "react-i18next";
+import useBreakpoint from "hooks/useBreakpoint";
 import * as S from "./styles";
 import DailyTasksSection from "./DailyTasksSection";
 import MonthlyTasksSection from "./MonthlyTasksSection";
@@ -46,6 +47,7 @@ function TasksSection() {
 
   const { integration } = useIntegration(integrationId);
   const { refetchTasksStatistics } = useTasksStatistics();
+  const { isMobile } = useBreakpoint();
 
   const progressBarValue = () => {
     const tasks = dailyTasks.map((visibleTask: any) => {
@@ -106,10 +108,19 @@ function TasksSection() {
       </S.ProgressBar>
       {renderCountdown()}
 
-      <S.TasksContainer>
-        <DailyTasksSection />
-        {showMonthlyTasks() && <MonthlyTasksSection />}
-      </S.TasksContainer>
+      {!isMobile && (
+        <S.TasksContainer>
+          <DailyTasksSection />
+          {showMonthlyTasks() && <MonthlyTasksSection />}
+        </S.TasksContainer>
+      )}
+
+      {isMobile && (
+        <>
+          <DailyTasksSection />
+          {showMonthlyTasks() && <MonthlyTasksSection />}
+        </>
+      )}
 
       {integration?.integrationTask &&
         tasksState.find((obj) => obj.id === donateTicketTask?.id)?.done && (

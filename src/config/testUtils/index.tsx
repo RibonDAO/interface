@@ -118,7 +118,7 @@ export function renderComponent(
     loadingOverlayValue = {},
     modalProviderValue = {},
     cardPaymentProviderValue = {},
-    networkProviderValue = {},
+    networkProviderValue = { isLoading: false },
     cryptoPaymentProviderValue = {},
   }: RenderComponentProps = {},
 ): RenderWithContextResult {

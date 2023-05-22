@@ -7,6 +7,7 @@ import theme from "styles/theme";
 import Icon from "components/atomics/Icon";
 import Tag from "components/atomics/Tag";
 import { beginningOfToday } from "lib/dateUtils";
+import useBreakpoint from "hooks/useBreakpoint";
 import * as S from "./styles";
 
 function MonthlyTasksSection() {
@@ -16,6 +17,7 @@ function MonthlyTasksSection() {
 
   const monthlyTasks = useTasks("monthly");
   const { tasksState, tasksStatistics, registerAction } = useTasksContext();
+  const { isMobile } = useBreakpoint();
 
   const showTagNew = () =>
     !(
@@ -41,7 +43,7 @@ function MonthlyTasksSection() {
   }, []);
 
   return (
-    <S.Container>
+    <S.Container isMobile={isMobile}>
       <S.TitleContainer>
         <S.Wrapper>
           <Icon

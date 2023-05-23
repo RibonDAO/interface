@@ -74,7 +74,7 @@ function NetworkProvider({ children }: Props) {
       setPermittedNetworks(chains);
       setCurrentNetwork(setInitialNetwork());
     }
-  }, [chains, isLoading]);
+  }, [isLoading]);
 
   useEffect(() => {
     window.ethereum?.on("chainChanged", getCurrentNetwork);
@@ -83,7 +83,7 @@ function NetworkProvider({ children }: Props) {
   useEffect(() => {
     if (currentNetwork?.chainId)
       setLocalStorageItem(CHAIN_ID, currentNetwork?.chainId.toString());
-  }, [currentNetwork?.chainId]);
+  }, [currentNetwork]);
 
   const networkObject: INetworkContext = useMemo(
     () => ({

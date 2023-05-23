@@ -44,7 +44,8 @@ function WalletProvider({ children }: Props) {
 
   const checkIfWalletIsConnected = useCallback(async () => {
     const checkConnectionRequestResponse = await checkConnectionRequest();
-    setWallet(checkConnectionRequestResponse);
+    if (checkConnectionRequestResponse)
+      setWallet(checkConnectionRequestResponse);
   }, []);
 
   useEffect(() => {

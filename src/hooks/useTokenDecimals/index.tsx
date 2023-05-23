@@ -12,13 +12,14 @@ function useTokenDecimals() {
     ABI: DonationTokenAbi.abi,
   });
 
+  async function fetchDecimals() {
+    const decimals = await donationTokenContract?.decimals();
+    if (decimals) setTokenDecimals(decimals);
+  }
+
   useEffect(() => {
-    async function fetchDecimals() {
-      const decimals = await donationTokenContract?.decimals();
-      setTokenDecimals(decimals);
-    }
     fetchDecimals();
-  }, []);
+  }, [donationTokenContract]);
 
   return { tokenDecimals };
 }

@@ -58,7 +58,6 @@ describe("useNetwork", () => {
     });
 
     it("renders the modal when show is called", async () => {
-      await current.getCurrentNetwork();
       const { currentNetwork } = current;
 
       expect(currentNetwork).toEqual(mockChain);

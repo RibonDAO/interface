@@ -184,6 +184,10 @@
       "!<rootDir>/src/config",
       "!<rootDir>/src/config/**/*.{ts,tsx}"
     ],
+    "watchPathIgnorePatterns": [
+      "!<rootDir>/src/pages/promoters/TreasurePage/",
+      "!<rootDir>/src/pages/promoters/SupportTreasurePage/"
+    ],
     "coverageThreshold": {
       "global": {
         "statements": 77

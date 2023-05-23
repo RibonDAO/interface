@@ -86,8 +86,7 @@ function CryptoSection(): JSX.Element {
     try {
       const balance = await donationTokenContract?.balanceOf(wallet);
       const formattedBalance = formatFromDecimals(balance, tokenDecimals);
-
-      setUserBalance(formattedBalance.toString());
+      if (formattedBalance) setUserBalance(formattedBalance.toString());
     } catch (error) {
       logError(error);
     }

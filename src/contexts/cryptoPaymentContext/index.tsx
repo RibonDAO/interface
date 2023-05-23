@@ -102,8 +102,7 @@ function CryptoPaymentProvider({ children }: Props) {
     try {
       const balance = await donationTokenContract?.balanceOf(wallet);
       const formattedBalance = formatFromDecimals(balance, tokenDecimals);
-
-      setUserBalance(formattedBalance.toString());
+      if (formattedBalance) setUserBalance(formattedBalance.toString());
     } catch (error) {
       logError(error);
     }
@@ -160,7 +159,7 @@ function CryptoPaymentProvider({ children }: Props) {
 
   const fetchTokenSymbol = useCallback(async () => {
     const contractSymbol = await donationTokenContract?.functions.symbol();
-    setTokenSymbol(contractSymbol);
+    if (contractSymbol) setTokenSymbol(contractSymbol);
   }, [donationTokenContract]);
 
   useEffect(() => {

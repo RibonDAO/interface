@@ -131,7 +131,7 @@ function WalletProvider({ children }: Props) {
         toast({ type: "error", message: t("onErrorMessage") });
       },
     });
-    setWallet(connectWalletResponse);
+    if (connectWalletResponse) setWallet(connectWalletResponse);
     await changeNetwork();
   }, [permittedNetworks]);
 

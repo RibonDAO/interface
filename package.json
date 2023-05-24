@@ -182,11 +182,9 @@
       "!<rootDir>/src/styles",
       "!<rootDir>/src/styles/**/*.{ts,tsx}",
       "!<rootDir>/src/config",
-      "!<rootDir>/src/config/**/*.{ts,tsx}"
-    ],
-    "watchPathIgnorePatterns": [
-      "!<rootDir>/src/pages/promoters/TreasurePage/",
-      "!<rootDir>/src/pages/promoters/SupportTreasurePage/"
+      "!<rootDir>/src/config/**/*.{ts,tsx}",
+      "!<rootDir>/src/pages/promoters/SupportTreasurePage/**/*.{ts,tsx}",
+      "!<rootDir>/src/pages/promoters/TreasurePage/**/*.{ts,tsx}"
     ],
     "coverageThreshold": {
       "global": {

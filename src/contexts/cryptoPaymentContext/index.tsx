@@ -58,7 +58,7 @@ function CryptoPaymentProvider({ children }: Props) {
   const [amount, setAmount] = useState("");
   const [loading, setLoading] = useState(false);
   const [userBalance, setUserBalance] = useState("");
-  const { currentNetwork, isLoading } = useNetworkContext();
+  const { currentNetwork } = useNetworkContext();
   const { tokenDecimals } = useTokenDecimals();
   const [currentPool, setCurrentPool] = useState(
     currentNetwork?.defaultPoolAddress,
@@ -181,7 +181,7 @@ function CryptoPaymentProvider({ children }: Props) {
     [amount, currentPool, userBalance, tokenSymbol],
   );
 
-  return isLoading ? null : (
+  return (
     <CryptoPaymentContext.Provider value={cryptoPaymentObject}>
       {children}
     </CryptoPaymentContext.Provider>

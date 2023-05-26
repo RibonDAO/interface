@@ -18,7 +18,6 @@ export interface INetworkContext {
   currentNetwork?: Chain;
   permittedNetworks?: Chain[];
   getCurrentNetwork: () => void;
-  isLoading: boolean;
 }
 
 export type Props = {
@@ -91,7 +90,6 @@ function NetworkProvider({ children }: Props) {
       permittedNetworks,
       isValidNetwork,
       getCurrentNetwork,
-      isLoading,
     }),
     [currentNetwork, isValidNetwork],
   );

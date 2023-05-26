@@ -37,7 +37,7 @@ export const WalletContext = createContext<IWalletContext>(
 function WalletProvider({ children }: Props) {
   const [wallet, setWallet] = useState<string | null>(null);
   const toast = useToast();
-  const { permittedNetworks, isLoading } = useNetworkContext();
+  const { permittedNetworks } = useNetworkContext();
   const { t } = useTranslation("translation", {
     keyPrefix: "contexts.walletContext",
   });
@@ -146,7 +146,7 @@ function WalletProvider({ children }: Props) {
     [wallet, checkIfWalletIsConnected, connectWallet, changeNetwork],
   );
 
-  return isLoading ? null : (
+  return (
     <WalletContext.Provider value={walletObject}>
       {children}
     </WalletContext.Provider>

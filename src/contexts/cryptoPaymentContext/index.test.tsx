@@ -96,7 +96,6 @@ describe("useCryptoPayment", () => {
     defaultPoolAddress: "0x9B00b1a3C4ea8BFbBE984360513f7bE7e971e431",
   };
   const permittedNetworks = [currentNetwork];
-  const isLoading = false;
 
   beforeEach(async () => {
     renderComponent(<CryptoPaymentTestPage />, {
@@ -106,7 +105,6 @@ describe("useCryptoPayment", () => {
       networkProviderValue: {
         currentNetwork,
         permittedNetworks,
-        isLoading,
       },
     });
     await waitForPromises();

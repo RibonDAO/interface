@@ -57,7 +57,7 @@ export const CryptoPaymentContext = createContext<ICryptoPaymentContext>(
 function CryptoPaymentProvider({ children }: Props) {
   const [amount, setAmount] = useState("");
   const [loading, setLoading] = useState(false);
-  const [userBalance, setUserBalance] = useState("");
+  const [userBalance, setUserBalance] = useState("0");
   const { currentNetwork } = useNetworkContext();
   const { tokenDecimals } = useTokenDecimals();
   const [currentPool, setCurrentPool] = useState(
@@ -100,13 +100,16 @@ function CryptoPaymentProvider({ children }: Props) {
 
   const fetchUsdcUserBalance = useCallback(async () => {
     try {
-      const balance = await donationTokenContract?.balanceOf(wallet);
+      const balance = wallet
+        ? await donationTokenContract?.balanceOf(wallet)
+        : 0;
       const formattedBalance = formatFromDecimals(balance, tokenDecimals);
-      if (formattedBalance) setUserBalance(formattedBalance.toString());
+      setUserBalance(formattedBalance.toString());
     } catch (error) {
       logError(error);
+      setUserBalance("0");
     }
-  }, [wallet, tokenDecimals]);
+  }, [wallet, tokenDecimals, currentNetwork]);
 
   useEffect(() => {
     fetchUsdcUserBalance();

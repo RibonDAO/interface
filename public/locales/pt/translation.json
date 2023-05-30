@@ -373,5 +373,11 @@
         "streakTitle": "dias seguidos completando tarefas"
       }
     }
+  },
+  "deleteAccountPage": {
+    "loading": "Carregando...",
+    "invalidLink": "Link inválido",
+    "accountDeleted": "Conta excluída",
+    "accountDeletedText": "Para entrar novamente, você deverá criar uma nova conta sem acesso aos seus dados de impacto anteriores"
   }
 }

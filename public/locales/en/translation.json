@@ -373,5 +373,11 @@
         "streakTitle": "days in a row completing tasks"
       }
     }
+  },
+  "deleteAccountPage": {
+    "loading": "Loading...",
+    "invalidLink": "Invalid link",
+    "accountDeleted": "Account deleted",
+    "accountDeletedText": "If you try to sign in, you will need to create a new account without access to your previous impact data"
   }
 }

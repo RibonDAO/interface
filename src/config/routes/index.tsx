@@ -21,6 +21,7 @@ import CommunityAddPage from "pages/promoters/SupportCausePage/CommunityAddPage"
 import PostDonationPage from "pages/donations/PostDonationPage";
 import CryptoPaymentProvider from "contexts/cryptoPaymentContext";
 import SupportNonProfitPage from "pages/promoters/SupportNonProfitPage";
+import DeleteAccountPage from "pages/users/DeleteAccountPage";
 import PaymentPage from "pages/promoters/PaymentPage";
 import { useLocation } from "react-router";
 import { logPageView } from "lib/events";
@@ -220,6 +221,12 @@ function RoutesComponent(): JSX.Element {
               </WalletLayout>
             </WalletProvider>
           </NetworkProvider>
+        </Suspense>
+      </Route>
+
+      <Route path="/delete_account" exact>
+        <Suspense fallback={<div />}>
+          <DeleteAccountPage />
         </Suspense>
       </Route>
     </Switch>

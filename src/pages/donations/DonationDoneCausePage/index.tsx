@@ -71,7 +71,7 @@ function DonationDoneCausePage(): JSX.Element {
     () =>
       Number(userStatistics?.totalTickets) %
         quantityOfDonationsToShowContribute ===
-        0 || Number(userStatistics?.totalTickets) === 0,
+        0 || Number(userStatistics?.totalTickets) === firstDonation,
     [userStatistics],
   );
 

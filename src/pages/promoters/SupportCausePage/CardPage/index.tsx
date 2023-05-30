@@ -47,7 +47,9 @@ function SupportCausePage(): JSX.Element {
   };
 
   useEffect(() => {
-    setCause(state?.causeDonated || causesFilter()[0]);
+    if (!cause) {
+      setCause(state?.causeDonated || causesFilter()[0]);
+    }
   }, [causes]);
 
   const handleCauseClick = (causeClicked: Cause) => {
@@ -93,10 +95,11 @@ function SupportCausePage(): JSX.Element {
     setOfferId(offer.id);
   };
 
-  const preSelectedIndex = () =>
-    state?.causeDonated
-      ? causesFilter().findIndex((c) => c.id === state?.causeDonated?.id)
-      : 0;
+  const preSelectedIndex = () => {
+    if (state?.causeDonated)
+      return causesFilter().findIndex((c) => c.id === state?.causeDonated?.id);
+    return cause ? causesFilter().findIndex((c) => c.id === cause?.id) : 0;
+  };
 
   return (
     <S.Container>

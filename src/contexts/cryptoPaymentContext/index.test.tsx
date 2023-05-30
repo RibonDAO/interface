@@ -95,7 +95,6 @@ describe("useCryptoPayment", () => {
     blockExplorerUrls: "https://mumbai.polygonscan.com/",
     defaultPoolAddress: "0x9B00b1a3C4ea8BFbBE984360513f7bE7e971e431",
   };
-  const permittedNetworks = [currentNetwork];
 
   beforeEach(async () => {
     renderComponent(<CryptoPaymentTestPage />, {
@@ -104,7 +103,6 @@ describe("useCryptoPayment", () => {
       },
       networkProviderValue: {
         currentNetwork,
-        permittedNetworks,
       },
     });
     await waitForPromises();
@@ -123,8 +121,6 @@ describe("useCryptoPayment", () => {
   });
 
   describe("#handleDonateToContract", () => {
-    const RIBON_CONTRACT_ADDRESS = "0xF02a09B21267EDB53B459ddC802C60245dEfbE34";
-    const DEFAULT_POOL_ADDRESS = "0x9B00b1a3C4ea8BFbBE984360513f7bE7e971e431";
     const amount = 0;
 
     it("calls the approve function with correct params", async () => {
@@ -133,7 +129,7 @@ describe("useCryptoPayment", () => {
       await waitForPromises();
 
       expect(approveSpy).toHaveBeenCalledWith(
-        RIBON_CONTRACT_ADDRESS,
+        currentNetwork.ribonContractAddress,
         amount.toString(),
         {
           from: wallet,
@@ -151,7 +147,7 @@ describe("useCryptoPayment", () => {
       await waitForPromises();
 
       expect(addPoolBalanceSpy).toHaveBeenCalledWith(
-        DEFAULT_POOL_ADDRESS,
+        currentNetwork.defaultPoolAddress,
         amount.toString(),
         true,
       );

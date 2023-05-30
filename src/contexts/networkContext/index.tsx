@@ -91,7 +91,7 @@ function NetworkProvider({ children }: Props) {
       isValidNetwork,
       getCurrentNetwork,
     }),
-    [currentNetwork, isValidNetwork],
+    [currentNetwork, isValidNetwork, permittedNetworks],
   );
 
   return (

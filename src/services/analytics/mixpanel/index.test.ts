@@ -4,6 +4,7 @@ import { logMixpanelEvent } from ".";
 
 jest.spyOn(CrashReport, "logError");
 jest.spyOn(mixpanel, "track");
+jest.spyOn(mixpanel, "init");
 
 describe("logMixpanelEvent", () => {
   const eventName = "teste";
@@ -42,5 +43,18 @@ describe("logMixpanelEvent", () => {
       logMixpanelEvent(eventName);
       expect(CrashReport.logError).toHaveBeenCalled();
     });
+  });
+});
+
+describe("if key does not exists", () => {
+  beforeEach(() => {
+    Object.defineProperty(process.env, "REACT_APP_MIXPANEL_API_KEY", {
+      value: null,
+      writable: true,
+    });
+  });
+
+  it("initializeMixpanel should not initialize", () => {
+    expect(mixpanel.init).toHaveBeenCalledTimes(0);
   });
 });

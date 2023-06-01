@@ -63,7 +63,7 @@ function CryptoPaymentProvider({ children }: Props) {
   const [currentPool, setCurrentPool] = useState(
     currentNetwork?.defaultPoolAddress,
   );
-  const [tokenSymbol, setTokenSymbol] = useState("");
+  const [tokenSymbol, setTokenSymbol] = useState("USDC");
 
   const integrationId = useIntegrationId();
 

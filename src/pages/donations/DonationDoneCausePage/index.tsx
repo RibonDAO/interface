@@ -159,7 +159,7 @@ function DonationDoneCausePage(): JSX.Element {
       <S.ImageContainer>
         <IconsAroundImage
           imageSrc={
-            flow === "cause" ? cause?.mainImage : nonProfit?.backgroundImage
+            flow === "cause" ? cause?.mainImage : nonProfit?.confirmationImage
           }
           iconAnimationYellow={
             hasButton ? VolunteerActivismYellow : ConfirmationNumberYellow

@@ -127,7 +127,7 @@ function CryptoPaymentProvider({ children }: Props) {
   };
 
   const disableButton = () =>
-    amount === "0.00" || insufficientBalance() || loading;
+    amount === "0.00" || (wallet && insufficientBalance()) || loading;
 
   const handleDonationToContract = async (
     causeId: number,

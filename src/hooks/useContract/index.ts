@@ -1,23 +1,24 @@
 import { Contract } from "@ethersproject/contracts";
 import { useMemo } from "react";
 import { getContract } from "utils/contractUtils";
-import { useNetworkContext } from "contexts/networkContext";
 import { Web3Provider, JsonRpcProvider } from "@ethersproject/providers";
 import { logError } from "services/crashReport";
 import { useWalletContext } from "contexts/walletContext";
 import { decryptString } from "utils/encryption";
+import { Chain } from "@ribon.io/shared";
 
 type Props = {
   address?: string;
   ABI: any;
+  currentNetwork?: Chain;
 };
 
 export function useContract<T extends Contract = Contract>({
   address,
   ABI,
+  currentNetwork,
 }: Props): T | null {
   const { wallet } = useWalletContext();
-  const { currentNetwork } = useNetworkContext();
   return useMemo(() => {
     if (!address || !ABI) return null;
     try {
@@ -40,5 +41,5 @@ export function useContract<T extends Contract = Contract>({
       logError(error);
       return null;
     }
-  }, [address, ABI, wallet]) as T;
+  }, [address, ABI, wallet, currentNetwork]) as T;
 }

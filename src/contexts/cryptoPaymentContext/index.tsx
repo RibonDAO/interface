@@ -70,14 +70,18 @@ function CryptoPaymentProvider({ children }: Props) {
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportTreasurePage",
   });
+
   const contract = useContract({
     address: currentNetwork?.ribonContractAddress,
     ABI: RibonAbi.abi,
+    currentNetwork,
   });
   const donationTokenContract = useContract({
     address: currentNetwork?.donationTokenContractAddress,
     ABI: DonationTokenAbi.abi,
+    currentNetwork,
   });
+
   const { showLoadingOverlay, hideLoadingOverlay } = useLoadingOverlay();
   const { wallet } = useWalletContext();
   const { createTransaction } = useCryptoTransaction();
@@ -109,7 +113,7 @@ function CryptoPaymentProvider({ children }: Props) {
       logError(error);
       setUserBalance("0");
     }
-  }, [wallet, tokenDecimals, currentNetwork]);
+  }, [wallet, tokenDecimals, donationTokenContract]);
 
   useEffect(() => {
     fetchUsdcUserBalance();
@@ -161,8 +165,12 @@ function CryptoPaymentProvider({ children }: Props) {
   };
 
   const fetchTokenSymbol = useCallback(async () => {
-    const contractSymbol = await donationTokenContract?.functions.symbol();
-    if (contractSymbol) setTokenSymbol(contractSymbol);
+    try {
+      const contractSymbol = await donationTokenContract?.functions.symbol();
+      if (contractSymbol) setTokenSymbol(contractSymbol);
+    } catch (error) {
+      logError(error);
+    }
   }, [donationTokenContract]);
 
   useEffect(() => {

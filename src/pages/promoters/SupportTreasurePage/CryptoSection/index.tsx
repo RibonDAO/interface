@@ -38,11 +38,11 @@ function CryptoSection(): JSX.Element {
     keyPrefix: "promoters.supportTreasurePage",
   });
   const contract = useContract({
-    address: currentNetwork.ribonContractAddress,
+    address: currentNetwork?.ribonContractAddress,
     ABI: RibonAbi.abi,
   });
   const donationTokenContract = useContract({
-    address: currentNetwork.donationTokenContractAddress,
+    address: currentNetwork?.donationTokenContractAddress,
     ABI: DonationTokenAbi.abi,
   });
   const toast = useToast();
@@ -68,7 +68,7 @@ function CryptoSection(): JSX.Element {
 
   const approveAmount = async () =>
     donationTokenContract?.functions.approve(
-      currentNetwork.ribonContractAddress,
+      currentNetwork?.ribonContractAddress,
       formatToDecimals(amount, tokenDecimals).toString(),
       {
         from: wallet,
@@ -77,7 +77,7 @@ function CryptoSection(): JSX.Element {
 
   const donateToContract = async () =>
     contract?.functions.addPoolBalance(
-      currentNetwork.defaultPoolAddress, // TODO get pool address dynamically
+      currentNetwork?.defaultPoolAddress, // TODO get pool address dynamically
       formatToDecimals(amount, tokenDecimals).toString(),
       true,
     );
@@ -86,8 +86,7 @@ function CryptoSection(): JSX.Element {
     try {
       const balance = await donationTokenContract?.balanceOf(wallet);
       const formattedBalance = formatFromDecimals(balance, tokenDecimals);
-
-      setUserBalance(formattedBalance.toString());
+      if (formattedBalance) setUserBalance(formattedBalance.toString());
     } catch (error) {
       logError(error);
     }
@@ -139,7 +138,7 @@ function CryptoSection(): JSX.Element {
       toast({
         message: t("transactionOnBlockchainText"),
         type: "success",
-        link: `${currentNetwork.blockExplorerUrls}tx/${id}`,
+        link: `${currentNetwork?.blockExplorerUrls}tx/${id}`,
         linkMessage: t("linkMessageToast"),
       });
       logEvent("toastNotification_view", {

@@ -54,7 +54,7 @@ function GivingsSection(): JSX.Element {
   }, []);
 
   function concatLinkHash(hash: string) {
-    return `${currentNetwork.blockExplorerUrls}tx/${hash}`;
+    return `${currentNetwork?.blockExplorerUrls}tx/${hash}`;
   }
 
   function renderCardsCarouselAllGivings() {

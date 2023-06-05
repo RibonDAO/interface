@@ -70,7 +70,7 @@ function GivingsSection(): JSX.Element {
     state?.processing,
   );
   const contract = useContract({
-    address: currentNetwork.ribonContractAddress,
+    address: currentNetwork?.ribonContractAddress,
     ABI: RibonAbi.abi,
   });
 
@@ -120,7 +120,7 @@ function GivingsSection(): JSX.Element {
           toast({
             message: t("transactionSuccessText"),
             type: "success",
-            link: `${currentNetwork.blockExplorerUrls}tx/${hash}`,
+            link: `${currentNetwork?.blockExplorerUrls}tx/${hash}`,
             linkMessage: t("linkMessageToast"),
           });
         }
@@ -130,7 +130,7 @@ function GivingsSection(): JSX.Element {
         toast({
           message: t("transactionFailedText"),
           type: "error",
-          link: `${currentNetwork.blockExplorerUrls}tx/${hash}`,
+          link: `${currentNetwork?.blockExplorerUrls}tx/${hash}`,
         });
       }
     },
@@ -166,7 +166,7 @@ function GivingsSection(): JSX.Element {
   }, []);
 
   function concatLinkHash(hash: string) {
-    return `${currentNetwork.blockExplorerUrls}tx/${hash}`;
+    return `${currentNetwork?.blockExplorerUrls}tx/${hash}`;
   }
 
   const shouldRenderCarousel = () => allPromoterDonations?.length;

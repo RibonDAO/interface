@@ -11,6 +11,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^12.1.5",
     "@testing-library/user-event": "^13.2.1",
+    "@types/crypto-js": "^4.1.1",
     "@types/jest": "^29.0.0",
     "@types/node": "^18.11.9",
     "@types/react": "^17.0.20",
@@ -19,6 +20,7 @@
     "@types/react-input-mask": "^3.0.2",
     "axios": "^0.27.2",
     "camelcase-keys": "^7.0.2",
+    "crypto-js": "^4.1.1",
     "ethers": "^5.7.0",
     "firebase": "8.8.1",
     "graphql": "^16.6.0",
@@ -180,7 +182,9 @@
       "!<rootDir>/src/styles",
       "!<rootDir>/src/styles/**/*.{ts,tsx}",
       "!<rootDir>/src/config",
-      "!<rootDir>/src/config/**/*.{ts,tsx}"
+      "!<rootDir>/src/config/**/*.{ts,tsx}",
+      "!<rootDir>/src/pages/promoters/SupportTreasurePage/**/*.{ts,tsx}",
+      "!<rootDir>/src/pages/promoters/TreasurePage/**/*.{ts,tsx}"
     ],
     "coverageThreshold": {
       "global": {

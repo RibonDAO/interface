@@ -25,6 +25,21 @@ const mockContract = {
 };
 
 const cause = causeFactory();
+const wallet = "0x123";
+const currentNetwork = {
+  id: 1,
+  name: "Mumbai Testnet",
+  ribonContractAddress: "0xF02a09B21267EDB53B459ddC802C60245dEfbE34",
+  donationTokenContractAddress: "0xfe4F5145f6e09952a5ba9e956ED0C25e3Fa4c7F1",
+  chainId: 0x13881,
+  rpcUrls: "https://rpc-mumbai.maticvigil.com",
+  nodeUrl:
+    "https://polygon-mumbai.g.alchemy.com/v2/1fEWpdSHuohPveNBGvlozE6qv9P1uAks",
+  symbolName: "MATIC",
+  currencyName: "Matic",
+  blockExplorerUrls: "https://mumbai.polygonscan.com/",
+  defaultPoolAddress: "0x9B00b1a3C4ea8BFbBE984360513f7bE7e971e431",
+};
 
 jest.mock("hooks/useContract", () => ({
   __esModule: true,
@@ -80,12 +95,13 @@ function CryptoPaymentTestPage() {
 }
 
 describe("useCryptoPayment", () => {
-  const wallet = "0x123";
-
   beforeEach(async () => {
     renderComponent(<CryptoPaymentTestPage />, {
       walletProviderValue: {
         wallet,
+      },
+      networkProviderValue: {
+        currentNetwork,
       },
     });
     await waitForPromises();
@@ -104,8 +120,6 @@ describe("useCryptoPayment", () => {
   });
 
   describe("#handleDonateToContract", () => {
-    const RIBON_CONTRACT_ADDRESS = "0xE2847c17Be357b1536De359cb6799D367F8ad2ec";
-    const DEFAULT_POOL_ADDRESS = "0x2108f76aB221999f3Af6d85567cF1c6C14E2A0D1";
     const amount = 0;
 
     it("calls the approve function with correct params", async () => {
@@ -114,7 +128,7 @@ describe("useCryptoPayment", () => {
       await waitForPromises();
 
       expect(approveSpy).toHaveBeenCalledWith(
-        RIBON_CONTRACT_ADDRESS,
+        currentNetwork.ribonContractAddress,
         amount.toString(),
         {
           from: wallet,
@@ -132,7 +146,7 @@ describe("useCryptoPayment", () => {
       await waitForPromises();
 
       expect(addPoolBalanceSpy).toHaveBeenCalledWith(
-        DEFAULT_POOL_ADDRESS,
+        currentNetwork.defaultPoolAddress,
         amount.toString(),
         true,
       );
@@ -146,5 +160,27 @@ describe("useCryptoPayment", () => {
 
       expect(mockOnSuccess).toHaveBeenCalled();
     });
+  });
+});
+
+describe("useCryptoPayment without contract", () => {
+  beforeAll(() => {
+    jest.unmock("hooks/useContract");
+  });
+  beforeEach(async () => {
+    renderComponent(<CryptoPaymentTestPage />);
+    await waitForPromises();
+  });
+
+  it("renders without error", () => {
+    expectTextToBeInTheDocument("CryptoPayment");
+  });
+
+  it("returns the user balance", () => {
+    expectTextToBeInTheDocument("0");
+  });
+
+  it("returns the token symbol", () => {
+    expectTextToBeInTheDocument("USDC");
   });
 });

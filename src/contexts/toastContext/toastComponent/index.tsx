@@ -102,7 +102,11 @@ function Toast() {
               ...positionToast(notification.position || "bottom-right"),
             }}
             key={index}
-            onClick={() => navigateTo("forYou")}
+            onClick={
+              notification.navigate
+                ? () => navigateTo(notification.navigate ?? "/")
+                : () => {}
+            }
           >
             <Icon
               className={

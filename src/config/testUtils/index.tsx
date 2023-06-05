@@ -138,41 +138,41 @@ export function renderComponent(
           <I18nextProvider i18n={i18n}>
             <Router history={historyObject}>
               {renderProvider(
-                WalletProvider,
-                WalletContext,
-                walletProviderValue,
+                CurrentUserProvider,
+                CurrentUserContext,
+                currentUserProviderValue,
                 renderProvider(
-                  CurrentUserProvider,
-                  CurrentUserContext,
-                  currentUserProviderValue,
+                  TasksProvider,
+                  TasksContext,
+                  tasksProviderValue,
                   renderProvider(
-                    TasksProvider,
-                    TasksContext,
-                    tasksProviderValue,
+                    CausesProvider,
+                    CausesContext,
+                    causesProviderValue,
                     renderProvider(
-                      CausesProvider,
-                      CausesContext,
-                      causesProviderValue,
+                      ToastContextProvider,
+                      ToastContext,
+                      toastProviderValue,
                       renderProvider(
-                        ToastContextProvider,
-                        ToastContext,
-                        toastProviderValue,
+                        LoadingOverlayProvider,
+                        LoadingOverlayContext,
+                        loadingOverlayValue,
                         renderProvider(
-                          LoadingOverlayProvider,
-                          LoadingOverlayContext,
-                          loadingOverlayValue,
+                          ModalProvider,
+                          ModalContext,
+                          modalProviderValue,
                           renderProvider(
-                            ModalProvider,
-                            ModalContext,
-                            modalProviderValue,
+                            CardPaymentInformationProvider,
+                            CardPaymentInformationContext,
+                            cardPaymentProviderValue,
                             renderProvider(
-                              CardPaymentInformationProvider,
-                              CardPaymentInformationContext,
-                              cardPaymentProviderValue,
+                              NetworkProvider,
+                              NetworkContext,
+                              networkProviderValue,
                               renderProvider(
-                                NetworkProvider,
-                                NetworkContext,
-                                networkProviderValue,
+                                WalletProvider,
+                                WalletContext,
+                                walletProviderValue,
                                 renderProvider(
                                   CryptoPaymentProvider,
                                   CryptoPaymentContext,

@@ -2,23 +2,30 @@ import { useEffect, useState } from "react";
 import DonationTokenAbi from "utils/abis/DonationToken.json";
 import { useContract } from "hooks/useContract";
 import { useNetworkContext } from "contexts/networkContext";
+import { logError } from "services/crashReport";
 
 function useTokenDecimals() {
   const [tokenDecimals, setTokenDecimals] = useState<number>();
   const { currentNetwork } = useNetworkContext();
 
   const donationTokenContract = useContract({
-    address: currentNetwork.donationTokenContractAddress,
+    address: currentNetwork?.donationTokenContractAddress,
     ABI: DonationTokenAbi.abi,
+    currentNetwork,
   });
 
-  useEffect(() => {
-    async function fetchDecimals() {
+  async function fetchDecimals() {
+    try {
       const decimals = await donationTokenContract?.decimals();
-      setTokenDecimals(decimals);
+      if (decimals) setTokenDecimals(decimals);
+    } catch (error) {
+      logError(error);
     }
+  }
+
+  useEffect(() => {
     fetchDecimals();
-  }, []);
+  }, [donationTokenContract]);
 
   return { tokenDecimals };
 }

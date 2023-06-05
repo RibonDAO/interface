@@ -6,16 +6,17 @@ import {
   useEffect,
   useState,
 } from "react";
-import { networks } from "config/networks";
 import { logError } from "services/crashReport";
 import { useProvider } from "hooks/useProvider";
-import { CurrentNetwork } from "@ribon.io/shared/types";
-import { SUBGRAPH_URL, CHAIN_ID } from "lib/localStorage/constants";
+import { Chain } from "@ribon.io/shared/types";
+import { CHAIN_ID } from "lib/localStorage/constants";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
+import { useChains } from "@ribon.io/shared/hooks";
 
 export interface INetworkContext {
   isValidNetwork: boolean;
-  currentNetwork: CurrentNetwork;
+  currentNetwork?: Chain;
+  permittedNetworks?: Chain[];
   getCurrentNetwork: () => void;
 }
 
@@ -28,29 +29,31 @@ export const NetworkContext = createContext<INetworkContext>(
 );
 
 function NetworkProvider({ children }: Props) {
-  function setInitialNetwork() {
-    return (
-      networks.find(
-        (network) =>
-          network.chainId.toString() === getLocalStorageItem(CHAIN_ID),
-      ) || networks[0]
-    );
-  }
+  const { chains, isLoading } = useChains();
 
-  const [currentNetwork, setCurrentNetwork] = useState(setInitialNetwork());
+  const [currentNetwork, setCurrentNetwork] = useState<Chain | undefined>();
+  const [permittedNetworks, setPermittedNetworks] = useState<
+    Chain[] | undefined
+  >(chains);
   const [isValidNetwork, setIsValidNetwork] = useState(false);
   const provider = useProvider();
+
+  function setInitialNetwork() {
+    return chains?.find(
+      (chain) => chain.chainId.toString() === getLocalStorageItem(CHAIN_ID),
+    );
+  }
 
   const getCurrentNetwork = useCallback(async () => {
     try {
       const providerNetwork = await provider?.getNetwork();
 
       if (providerNetwork) {
-        const permittedNetworks = networks.filter(
-          (network) => providerNetwork.chainId === network.chainId,
+        const permittedNetwork = chains?.filter(
+          (chain) => providerNetwork.chainId === chain.chainId,
         );
-        if (permittedNetworks.length > 0) {
-          setCurrentNetwork(permittedNetworks[0]);
+        if (permittedNetwork) {
+          setCurrentNetwork(permittedNetwork[0]);
           setIsValidNetwork(true);
         } else {
           setIsValidNetwork(false);
@@ -59,33 +62,36 @@ function NetworkProvider({ children }: Props) {
     } catch (e) {
       logError(e);
     }
-  }, [provider]);
+  }, [provider, chains]);
 
   useEffect(() => {
-    getCurrentNetwork();
-  }, [getCurrentNetwork]);
+    if (chains) getCurrentNetwork();
+  }, [chains]);
+
+  useEffect(() => {
+    if (!isLoading) {
+      setPermittedNetworks(chains);
+      setCurrentNetwork(setInitialNetwork());
+    }
+  }, [isLoading]);
 
   useEffect(() => {
     window.ethereum?.on("chainChanged", getCurrentNetwork);
   }, [currentNetwork]);
 
   useEffect(() => {
-    const chainChanged =
-      currentNetwork.subgraphUrl !== getLocalStorageItem(SUBGRAPH_URL);
-    setLocalStorageItem(SUBGRAPH_URL, currentNetwork.subgraphUrl);
-    setLocalStorageItem(CHAIN_ID, currentNetwork.chainId.toString());
-    if (chainChanged) {
-      window.location.reload();
-    }
-  }, [currentNetwork.chainId]);
+    if (currentNetwork?.chainId)
+      setLocalStorageItem(CHAIN_ID, currentNetwork?.chainId.toString());
+  }, [currentNetwork]);
 
   const networkObject: INetworkContext = useMemo(
     () => ({
       currentNetwork,
+      permittedNetworks,
       isValidNetwork,
       getCurrentNetwork,
     }),
-    [currentNetwork, isValidNetwork],
+    [currentNetwork, isValidNetwork, permittedNetworks],
   );
 
   return (

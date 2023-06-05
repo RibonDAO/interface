@@ -23,8 +23,8 @@ export const Description = styled.p`
 export const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
-  text-align: center;
   gap: ${({ theme }) => theme.spacing(8)};
+  text-align: center;
 `;
 
 export const Container = styled.div`
@@ -78,6 +78,7 @@ export const TopImage = styled.img`
   right: 0;
   left: 0;
   display: block;
+
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     display: none;
   }
@@ -186,10 +187,12 @@ export const IconDescription = styled.p`
 export const Text = styled.p<{ color: string }>`
   ${defaultBodyMdBold}
 
-  text-align: center;
-  position: absolute;
-  bottom: 0;
   margin-bottom: ${({ theme }) => theme.spacing(32)};
+  position: absolute;
+
+  bottom: 0;
+  text-align: center;
+
   color: ${({ color }) => color};
 `;
 

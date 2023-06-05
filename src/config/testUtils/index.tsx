@@ -50,6 +50,10 @@ import TasksProvider, {
   TasksContext,
   ITasksContext,
 } from "contexts/tasksContext";
+import CausesProvider, {
+  CausesContext,
+  ICausesContext,
+} from "contexts/causesContext";
 
 import { QueryClientComponent } from "@ribon.io/shared/hooks";
 
@@ -97,6 +101,7 @@ export type RenderComponentProps = {
   history?: MemoryHistory;
   walletProviderValue?: Partial<IWalletContext>;
   tasksProviderValue?: Partial<ITasksContext>;
+  causesProviderValue?: Partial<ICausesContext>;
   currentUserProviderValue?: Partial<ICurrentUserContext>;
   toastProviderValue?: Partial<IToastContext>;
   loadingOverlayValue?: Partial<ILoadingOverlayContext>;
@@ -112,6 +117,7 @@ export function renderComponent(
     history = createMemoryHistory(),
     walletProviderValue = {},
     tasksProviderValue = {},
+    causesProviderValue = {},
     currentUserProviderValue = {},
     toastProviderValue = {},
     locationState = {},
@@ -144,30 +150,35 @@ export function renderComponent(
                     TasksContext,
                     tasksProviderValue,
                     renderProvider(
-                      ToastContextProvider,
-                      ToastContext,
-                      toastProviderValue,
+                      CausesProvider,
+                      CausesContext,
+                      causesProviderValue,
                       renderProvider(
-                        LoadingOverlayProvider,
-                        LoadingOverlayContext,
-                        loadingOverlayValue,
+                        ToastContextProvider,
+                        ToastContext,
+                        toastProviderValue,
                         renderProvider(
-                          ModalProvider,
-                          ModalContext,
-                          modalProviderValue,
+                          LoadingOverlayProvider,
+                          LoadingOverlayContext,
+                          loadingOverlayValue,
                           renderProvider(
-                            CardPaymentInformationProvider,
-                            CardPaymentInformationContext,
-                            cardPaymentProviderValue,
+                            ModalProvider,
+                            ModalContext,
+                            modalProviderValue,
                             renderProvider(
-                              NetworkProvider,
-                              NetworkContext,
-                              networkProviderValue,
+                              CardPaymentInformationProvider,
+                              CardPaymentInformationContext,
+                              cardPaymentProviderValue,
                               renderProvider(
-                                CryptoPaymentProvider,
-                                CryptoPaymentContext,
-                                cryptoPaymentProviderValue,
-                                component,
+                                NetworkProvider,
+                                NetworkContext,
+                                networkProviderValue,
+                                renderProvider(
+                                  CryptoPaymentProvider,
+                                  CryptoPaymentContext,
+                                  cryptoPaymentProviderValue,
+                                  component,
+                                ),
                               ),
                             ),
                           ),

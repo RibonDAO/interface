@@ -32,6 +32,8 @@ import { normalizedLanguage } from "lib/currentLanguage";
 import WarningIcon from "assets/icons/warning-icon.svg";
 import extractUrlValue from "lib/extractUrlValue";
 import { PLATFORM } from "utils/constants";
+import useFirstAccessToIntegration from "hooks/apiHooks/useFirstAccessToIntegration";
+import useNavigation from "hooks/useNavigation";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
@@ -99,6 +101,11 @@ function CausesPage(): JSX.Element {
     externalId,
   );
   const { destroyVoucher, createVoucher } = useVoucher();
+  const { navigateTo } = useNavigation();
+  const {
+    isFirstAccessToIntegration,
+    isLoading: isLoadingIsFirstAccessToIntegration,
+  } = useFirstAccessToIntegration(integration?.id || integrationId);
 
   const { isMobile } = useBreakpoint();
 
@@ -123,9 +130,21 @@ function CausesPage(): JSX.Element {
     refetchCanDonate();
   }, [JSON.stringify(currentUser)]);
 
+  const renderOnboardingPage = () => {
+    if (integration && !isLoadingIsFirstAccessToIntegration) {
+      if (isFirstAccessToIntegration && !state?.comesFromReceiveTicketPage) {
+        navigateTo("/welcome");
+      } else {
+        track("Cause Page View");
+      }
+    }
+  };
+
   useEffect(() => {
-    track("Cause Page View");
-  }, []);
+    if (integration && !isLoadingIsFirstAccessToIntegration) {
+      renderOnboardingPage();
+    }
+  }, [integration, isLoadingIsFirstAccessToIntegration, integrationId, state]);
 
   useEffect(() => {
     if (hasReceivedTicketToday() && hasAvailableDonation()) {
@@ -135,12 +154,16 @@ function CausesPage(): JSX.Element {
       (hasAvailableDonation() && !hasSeenDonationModal)
     ) {
       destroyVoucher();
-      if (integration) {
+      if (
+        integration &&
+        !isFirstAccessToIntegration &&
+        !isLoadingIsFirstAccessToIntegration
+      ) {
         setLocalStorageItem(DONATION_MODAL_SEEN_AT_KEY, Date.now().toString());
         showDonationTicketModal();
       }
     }
-  }, [integration]);
+  }, [integration, isFirstAccessToIntegration]);
 
   const closeConfirmModal = useCallback(() => {
     setConfirmModalVisible(false);

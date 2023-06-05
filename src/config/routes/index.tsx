@@ -16,7 +16,6 @@ import GivingsPage from "pages/promoters/GivingsPage";
 import WalletLayout from "layouts/WalletLayout";
 import CardPaymentInformationProvider from "contexts/cardPaymentInformationContext";
 import NetworkProvider from "contexts/networkContext";
-import CausesProvider from "contexts/causesContext";
 import CommunityAddPage from "pages/promoters/SupportCausePage/CommunityAddPage";
 import PostDonationPage from "pages/donations/PostDonationPage";
 import CryptoPaymentProvider from "contexts/cryptoPaymentContext";
@@ -27,6 +26,8 @@ import { useLocation } from "react-router";
 import { logPageView } from "lib/events";
 import AppInDevelopmentPage from "pages/users/AppDownloadPage";
 import ForYouPage from "pages/users/ForYouPage";
+import WelcomePage from "pages/donations/WelcomePage";
+import ReceiveTicketPage from "pages/donations/ReceiveTicketPage";
 import Navigation from "./Navigation";
 
 function RoutesComponent(): JSX.Element {
@@ -44,18 +45,28 @@ function RoutesComponent(): JSX.Element {
       <Route path="/" exact>
         <Suspense fallback={<div />}>
           <WalletProvider>
-            <CausesProvider>
-              <MainLayout>
-                <CausesPage />
-              </MainLayout>
-            </CausesProvider>
+            <MainLayout>
+              <CausesPage />
+            </MainLayout>
           </WalletProvider>
+        </Suspense>
+      </Route>
+
+      <Route path="/welcome" exact>
+        <Suspense fallback={<div />}>
+          <WelcomePage />
         </Suspense>
       </Route>
 
       <Route path="/app-download" exact>
         <Suspense fallback={<div />}>
           <AppInDevelopmentPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/receive-ticket" exact>
+        <Suspense fallback={<div />}>
+          <ReceiveTicketPage />
         </Suspense>
       </Route>
 

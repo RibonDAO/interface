@@ -25,6 +25,7 @@ import DeleteAccountPage from "pages/users/DeleteAccountPage";
 import PaymentPage from "pages/promoters/PaymentPage";
 import { useLocation } from "react-router";
 import { logPageView } from "lib/events";
+import preventBackNavigation from "lib/preventBackNavigation";
 import AppInDevelopmentPage from "pages/users/AppDownloadPage";
 import ForYouPage from "pages/users/ForYouPage";
 import Navigation from "./Navigation";
@@ -41,6 +42,7 @@ function RoutesComponent(): JSX.Element {
 
   return (
     <Switch>
+      {preventBackNavigation()}
       <Route path="/" exact>
         <Suspense fallback={<div />}>
           <WalletProvider>

@@ -40,9 +40,10 @@ function RoutesComponent(): JSX.Element {
     logPageView(urlName, search, state);
   }, [location]);
 
+  preventBackNavigation();
+
   return (
     <Switch>
-      {preventBackNavigation()}
       <Route path="/" exact>
         <Suspense fallback={<div />}>
           <WalletProvider>

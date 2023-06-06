@@ -1,10 +1,7 @@
 import React from "react";
 import { renderComponent } from "config/testUtils";
-import { mockRequest } from "config/testUtils/test-helper";
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
-import causeFactory from "config/testUtils/factories/causeFactory";
-import Causes from ".";
 import ConfirmSection from ".";
 
 describe("ConfirmSection", () => {

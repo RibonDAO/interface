@@ -13,6 +13,9 @@ describe("Impact Page", () => {
   describe("Total Impact Cards", () => {
     const user = userFactory({ id: 1 });
     const userStatistics = userStatisticsFactory();
+    Object.defineProperty(window, "navigator", {
+      value: { language: "pt-BR" },
+    });
 
     describe("when there are more cards to show", () => {
       beforeEach(() => {

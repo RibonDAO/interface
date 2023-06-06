@@ -24,7 +24,7 @@ export function formattedShortLanguage(language: string | null): Languages {
     case "pt-BR":
       return Languages.PT;
     default:
-      return Languages.EN;
+      return Languages.PT;
   }
 }
 

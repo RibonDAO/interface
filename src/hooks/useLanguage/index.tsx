@@ -9,8 +9,9 @@ export const LANGUAGE_KEY = "LANGUAGE_KEY";
 export function useLanguage() {
   const { i18n } = useTranslation();
   const [currentLang, setCurrentLang] = useState<Languages>(
-    (getLocalStorageItem(LANGUAGE_KEY) as Languages) ||
-      formattedShortLanguage(i18n.resolvedLanguage),
+    formattedShortLanguage(
+      getLocalStorageItem(LANGUAGE_KEY) || navigator.language,
+    ),
   );
 
   useEffect(() => {

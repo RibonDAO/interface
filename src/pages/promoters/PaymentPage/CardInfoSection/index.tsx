@@ -39,7 +39,13 @@ function CardInfoSection() {
 
   useEffect(() => {
     setButtonDisabled(
-      !(email && number && name && expirationDate && cvv.length >= 3),
+      !(
+        email &&
+        number &&
+        name &&
+        !expirationDate.includes("_") &&
+        cvv.length >= 3
+      ),
     );
   }, [email, number, name, expirationDate, cvv]);
 
@@ -79,6 +85,7 @@ function CardInfoSection() {
             placeholder={t("cardDueDate")}
             onChange={(e) => setExpirationDate(e.target.value)}
             required
+            minLength={6}
           />
           <InputText
             name="cvv"

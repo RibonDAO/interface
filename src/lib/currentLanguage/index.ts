@@ -11,7 +11,7 @@ export function formattedLanguage(language: string | null) {
     case "pt-BR":
       return "pt-BR";
     default:
-      return "pt-BR";
+      return "en";
   }
 }
 

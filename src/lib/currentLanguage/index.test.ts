@@ -9,7 +9,7 @@ describe("currentLanguage", () => {
     it("should return the correct language", () => {
       expect(formattedLanguage("en-US")).toEqual("en");
       expect(formattedLanguage("pt-BR")).toEqual("pt-BR");
-      expect(formattedLanguage(null)).toEqual("pt-BR");
+      expect(formattedLanguage(null)).toEqual("en");
     });
   });
 
@@ -23,7 +23,7 @@ describe("currentLanguage", () => {
 
   describe("normalizedLanguage", () => {
     it("should return the correct language", () => {
-      expect(normalizedLanguage()).toEqual("pt-BR");
+      expect(normalizedLanguage()).toEqual("en");
     });
   });
 });

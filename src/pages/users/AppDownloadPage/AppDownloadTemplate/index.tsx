@@ -1,11 +1,11 @@
 import useBreakpoint from "hooks/useBreakpoint";
 import { useState } from "react";
-import { ANDROID_APP_LINK, IOS_APP_LINK, LINK_TREE } from "utils/constants";
+import { APP_LINK, LINK_TREE } from "utils/constants";
 import { useTranslation } from "react-i18next";
 import { ButtonProps } from "components/atomics/buttons/Button";
 import AppleBadge from "./assets/apple-badge.png";
 import GoogleBadge from "./assets/google-badge.png";
-import QRCode from "./assets/appribon.png";
+import QRCode from "./assets/qrcodeapp.svg";
 
 import * as S from "./styles";
 
@@ -37,13 +37,7 @@ function AppDownloadTemplate({
   const { isMobile } = useBreakpoint();
 
   function handleReturnLinkDevice() {
-    const { userAgent } = navigator;
-
-    if (/iPad|iPhone|iPod/.test(userAgent)) {
-      return IOS_APP_LINK;
-    } else {
-      return ANDROID_APP_LINK;
-    }
+    return APP_LINK;
   }
 
   const copyText = () => {
@@ -87,14 +81,14 @@ function AppDownloadTemplate({
               <S.DescriptionBadge>{t("chooseStore")}</S.DescriptionBadge>
               <S.BorderContainer>
                 <S.Link
-                  href={ANDROID_APP_LINK}
+                  href={APP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <S.ImageBadge src={GoogleBadge} />
                 </S.Link>
                 <S.Link
-                  href={IOS_APP_LINK}
+                  href={APP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -106,7 +100,7 @@ function AppDownloadTemplate({
 
           <S.Description>{t("pasteLink")}</S.Description>
           <S.LinkContainer>
-            <S.InputLink value={LINK_TREE} disabled />
+            <S.InputLink value={APP_LINK} disabled />
             <S.Button copy={isCopy} onClick={copyText}>
               {currentText}
             </S.Button>

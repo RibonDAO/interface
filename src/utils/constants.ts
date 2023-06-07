@@ -17,7 +17,6 @@ export const PLATFORM = "web";
 
 export const LINK_TREE = "https://linktr.ee/appribon";
 
-export const ANDROID_APP_LINK =
-  "https://play.google.com/store/apps/details?id=com.app.ribon";
+export const APP_LINK = "https://donation.app.link/5ImVVNZViAb ";
 
 export const IOS_APP_LINK = "https://testflight.apple.com/join/UtOMP5Ie";

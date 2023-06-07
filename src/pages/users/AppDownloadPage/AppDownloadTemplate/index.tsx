@@ -41,7 +41,7 @@ function AppDownloadTemplate({
   }
 
   const copyText = () => {
-    navigator.clipboard.writeText(LINK_TREE);
+    navigator.clipboard.writeText(APP_LINK);
     setCurrentText(t("copiedText"));
     setIsCopy(true);
   };

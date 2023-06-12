@@ -379,5 +379,10 @@
     "invalidLink": "Link inválido",
     "accountDeleted": "Conta excluída",
     "accountDeletedText": "Para entrar novamente, você deverá criar uma nova conta sem acesso aos seus dados de impacto anteriores"
+  },
+  "downloadAppModalTemplate": {
+    "title": "Tenha uma experiência completa usando o nosso App",
+    "description": "Baixe o app e tenha acesso a todas as funcionalidades da Ribon",
+    "button": "Baixar o app"
   }
 }

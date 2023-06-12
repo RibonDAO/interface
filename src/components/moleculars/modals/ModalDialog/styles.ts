@@ -7,7 +7,7 @@ import Icon from "components/atomics/Icon";
 import { Modal } from "../ModalBlank/styles";
 
 export const Container = styled(Modal)`
-  min-width: 360px;
+  max-width: 360px;
   padding: ${({ theme }) => theme.spacing(24)};
   border-radius: 4px;
   display: flex;
@@ -15,6 +15,25 @@ export const Container = styled(Modal)`
   align-items: flex-start;
   justify-content: center;
   background-color: ${({ theme }) => theme.colors.neutral10};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
+    min-width: ${() => window.innerWidth}px;
+    border-radius: 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    transform: translateY(300px);
+    animation: swipeUp 0.2s ease-in-out forwards;
+
+    @keyframes swipeUp {
+      0% {
+        transform: translateY(300px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+  }
 `;
 
 export const Title = styled.h1`

@@ -37,6 +37,7 @@ import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
 import ConfirmSection from "./ConfirmSection";
 import ChooseCauseModal from "./ChooseCauseModal";
+import DownloadAppModalTemplate from "./DownloadAppModalTemplate";
 
 function CausesPage(): JSX.Element {
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
@@ -201,6 +202,23 @@ function CausesPage(): JSX.Element {
     },
     ...(activeCauses || []),
   ];
+
+  const modalDialogProps = {
+    children: <DownloadAppModalTemplate />,
+  };
+
+  const { show } = useModal({
+    type: MODAL_TYPES.MODAL_DIALOG,
+    props: modalDialogProps,
+  });
+
+  useEffect(() => {
+    if (isMobile && !isFirstAccess(signedIn)) {
+      setTimeout(() => {
+        show();
+      }, 3000);
+    }
+  }, []);
 
   return (
     <S.Container>

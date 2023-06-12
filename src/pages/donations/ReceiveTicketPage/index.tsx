@@ -42,10 +42,7 @@ function ReceiveTicketPage(): JSX.Element {
       createVoucher();
       setLocalStorageItem(DONATION_MODAL_SEEN_AT_KEY, Date.now().toString());
       navigateTo({
-        pathname: "/",
-        state: {
-          comesFromReceiveTicketPage: true,
-        },
+        pathname: "/causes",
       });
     }, 3000);
   };

@@ -13,7 +13,7 @@ function TicketSection() {
     keyPrefix: "impactPage.ticketSection",
   });
   const handleEmptyButtonClick = () => {
-    navigateTo("/");
+    navigateTo("/causes");
   };
 
   const { currentUser } = useCurrentUser();

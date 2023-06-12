@@ -7,6 +7,7 @@ import {
   useUsers,
   useIntegration,
   useCanDonate,
+  useFirstAccessToIntegration,
 } from "@ribon.io/shared/hooks";
 import { useLocation } from "react-router-dom";
 import { useCurrentUser } from "contexts/currentUserContext";
@@ -32,8 +33,6 @@ import { normalizedLanguage } from "lib/currentLanguage";
 import WarningIcon from "assets/icons/warning-icon.svg";
 import extractUrlValue from "lib/extractUrlValue";
 import { PLATFORM } from "utils/constants";
-import useFirstAccessToIntegration from "hooks/apiHooks/useFirstAccessToIntegration";
-import useNavigation from "hooks/useNavigation";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
@@ -101,7 +100,6 @@ function CausesPage(): JSX.Element {
     externalId,
   );
   const { destroyVoucher, createVoucher } = useVoucher();
-  const { navigateTo } = useNavigation();
   const {
     isFirstAccessToIntegration,
     isLoading: isLoadingIsFirstAccessToIntegration,
@@ -130,21 +128,9 @@ function CausesPage(): JSX.Element {
     refetchCanDonate();
   }, [JSON.stringify(currentUser)]);
 
-  const renderOnboardingPage = () => {
-    if (integration && !isLoadingIsFirstAccessToIntegration) {
-      if (isFirstAccessToIntegration && !state?.comesFromReceiveTicketPage) {
-        navigateTo("/welcome");
-      } else {
-        track("Cause Page View");
-      }
-    }
-  };
-
   useEffect(() => {
-    if (integration && !isLoadingIsFirstAccessToIntegration) {
-      renderOnboardingPage();
-    }
-  }, [integration, isLoadingIsFirstAccessToIntegration, integrationId, state]);
+    track("Cause Page View");
+  }, []);
 
   useEffect(() => {
     if (hasReceivedTicketToday() && hasAvailableDonation()) {

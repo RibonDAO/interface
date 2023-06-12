@@ -9,9 +9,9 @@ import { useIntegration } from "@ribon.io/shared/hooks";
 import { RIBON_COMPANY_ID } from "utils/constants";
 import * as S from "./styles";
 
-function WelcomePage(): JSX.Element {
+function GiveTicketPage(): JSX.Element {
   const { t } = useTranslation("translation", {
-    keyPrefix: "donations.welcomePage",
+    keyPrefix: "donations.giveTicketPage",
   });
   const { navigateTo } = useNavigation();
   const integrationId = useIntegrationId();
@@ -51,4 +51,4 @@ function WelcomePage(): JSX.Element {
   );
 }
 
-export default WelcomePage;
+export default GiveTicketPage;

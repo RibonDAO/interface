@@ -89,7 +89,7 @@
       "communityMenuItem": "Community",
       "directDonationMenuItem": "Direct donation"
     },
-    "welcomePage": {
+    "giveTicketPage": {
       "ribonTitle": "Welcome to Ribon!",
       "integrationTitle": "{{integrationName}} brought you here!",
       "subtitle": "Your donation ticket is available",

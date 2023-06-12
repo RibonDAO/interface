@@ -1,11 +1,11 @@
 import { renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 
-import WelcomePage from ".";
+import GiveTicketPage from ".";
 
-describe("WelcomePage", () => {
+describe("GiveTicketPage", () => {
   it("should render without error", () => {
-    renderComponent(<WelcomePage />);
+    renderComponent(<GiveTicketPage />);
     expectTextToBeInTheDocument("Your donation ticket is available");
     expectTextToBeInTheDocument("Get my ticket");
   });

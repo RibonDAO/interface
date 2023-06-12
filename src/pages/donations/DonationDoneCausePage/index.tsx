@@ -3,6 +3,7 @@ import {
   useIntegration,
   useOffers,
   useStatistics,
+  useFirstAccessToIntegration,
 } from "@ribon.io/shared/hooks";
 import VolunteerActivismPink from "assets/icons/volunteer-activism-pink.svg";
 import VolunteerActivismYellow from "assets/icons/volunteer-activism-yellow.svg";
@@ -23,7 +24,6 @@ import { getAudioFromStorage } from "lib/cachedAudio";
 import ReactHowler from "react-howler";
 import { useTasksContext } from "contexts/tasksContext";
 import { useCurrentUser } from "contexts/currentUserContext";
-import useFirstAccessToIntegration from "hooks/apiHooks/useFirstAccessToIntegration";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import * as S from "./styles";
 
@@ -137,7 +137,7 @@ function DonationDoneCausePage(): JSX.Element {
         });
       } else if (!isLoading && userStatistics) {
         navigateTo({
-          pathname: "/",
+          pathname: "/causes",
         });
       }
     }

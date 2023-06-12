@@ -1,6 +1,5 @@
 import { AxiosResponse } from "axios";
 import { User, CanDonate } from "@ribon.io/shared/types";
-import FirstAccessToIntegration from "types/apiResponses/FirstAccessToIntegration";
 import { apiPost, apiGet } from "..";
 
 const usersApi = {
@@ -14,13 +13,6 @@ const usersApi = {
 
   getUserStatistics: (id: number): Promise<AxiosResponse<User>> =>
     apiGet(`users/${id}/statistics`),
-
-  getFirstAccessToIntegration: (
-    integrationId: number | string | null,
-  ): Promise<AxiosResponse<FirstAccessToIntegration>> =>
-    apiGet(
-      `users/first_access_to_integration/?integration_id=${integrationId}`,
-    ),
 
   postCanDonate: (
     integrationId: number | string,

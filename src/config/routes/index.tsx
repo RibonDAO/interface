@@ -26,8 +26,9 @@ import { useLocation } from "react-router";
 import { logPageView } from "lib/events";
 import AppInDevelopmentPage from "pages/users/AppDownloadPage";
 import ForYouPage from "pages/users/ForYouPage";
-import WelcomePage from "pages/donations/WelcomePage";
+import GiveTicketPage from "pages/donations/GiveTicketPage";
 import ReceiveTicketPage from "pages/donations/ReceiveTicketPage";
+import LoadingPage from "pages/donations/LoadingPage";
 import Navigation from "./Navigation";
 
 function RoutesComponent(): JSX.Element {
@@ -44,6 +45,12 @@ function RoutesComponent(): JSX.Element {
     <Switch>
       <Route path="/" exact>
         <Suspense fallback={<div />}>
+          <LoadingPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/causes" exact>
+        <Suspense fallback={<div />}>
           <WalletProvider>
             <MainLayout>
               <CausesPage />
@@ -52,9 +59,9 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
-      <Route path="/welcome" exact>
+      <Route path="/give-ticket" exact>
         <Suspense fallback={<div />}>
-          <WelcomePage />
+          <GiveTicketPage />
         </Suspense>
       </Route>
 

@@ -1,6 +1,6 @@
 import useBreakpoint from "hooks/useBreakpoint";
 import { useState } from "react";
-import { APP_LINK, LINK_TREE } from "utils/constants";
+import { APP_LINK } from "utils/constants";
 import { useTranslation } from "react-i18next";
 import { ButtonProps } from "components/atomics/buttons/Button";
 import AppleBadge from "./assets/apple-badge.png";

@@ -1,5 +1,5 @@
 import IconsAroundImage from "components/atomics/sections/IconsAroundImage";
-import { useOffers, useStatistics } from "@ribon.io/shared/hooks";
+import { useCanDonate, useOffers, useStatistics } from "@ribon.io/shared/hooks";
 import VolunteerActivismPink from "assets/icons/volunteer-activism-pink.svg";
 import VolunteerActivismYellow from "assets/icons/volunteer-activism-yellow.svg";
 import VolunteerActivismGreen from "assets/icons/volunteer-activism-green.svg";
@@ -19,6 +19,9 @@ import { getAudioFromStorage } from "lib/cachedAudio";
 import ReactHowler from "react-howler";
 import { useTasksContext } from "contexts/tasksContext";
 import { useCurrentUser } from "contexts/currentUserContext";
+import { PLATFORM } from "utils/constants";
+import { useIntegrationId } from "hooks/useIntegrationId";
+import extractUrlValue from "lib/extractUrlValue";
 import * as S from "./styles";
 
 function DonationDoneCausePage(): JSX.Element {
@@ -54,19 +57,27 @@ function DonationDoneCausePage(): JSX.Element {
     userId: currentUser?.id,
   });
 
+  const integrationId = useIntegrationId();
+  const { search } = useLocation();
+  const externalId = extractUrlValue("external_id", search);
+  const { donateApp } = useCanDonate(integrationId, PLATFORM, externalId);
+
   const quantityOfDonationsToShowDownload = 3;
   const quantityOfDonationsToShowContribute = 5;
 
   const firstDonation = 1;
 
-  const shouldShowAppDownload = useCallback(
-    () =>
+  const shouldShowAppDownload = useCallback(() => {
+    if (donateApp) return false;
+    return (
       Number(userStatistics?.totalTickets) %
         quantityOfDonationsToShowDownload ===
         0 || Number(userStatistics?.totalTickets) === firstDonation,
-    [userStatistics],
-  );
-
+      Number(userStatistics?.totalTickets) %
+        quantityOfDonationsToShowDownload ===
+        0 || Number(userStatistics?.totalTickets) === firstDonation
+    );
+  }, [userStatistics, donateApp]);
   const shouldShowContribute = useCallback(
     () =>
       Number(userStatistics?.totalTickets) %

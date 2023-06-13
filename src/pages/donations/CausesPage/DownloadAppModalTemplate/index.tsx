@@ -1,6 +1,6 @@
 import LogoBackgroundIcon from "assets/icons/logo-background-icon.svg";
 import { useTranslation } from "react-i18next";
-import { ANDROID_APP_LINK, IOS_APP_LINK } from "utils/constants";
+import { APP_LINK } from "utils/constants";
 import * as S from "./styles";
 
 function DownloadAppModalTemplate(): JSX.Element {
@@ -9,14 +9,7 @@ function DownloadAppModalTemplate(): JSX.Element {
   });
 
   const handleClickedDownloadButton = () => {
-    const isIOS = navigator.userAgent.match(/iPhone|iPad|iPod/i);
-    const isAndroid = navigator.userAgent.match(/Android/i);
-
-    if (isIOS) {
-      window.open(IOS_APP_LINK, "_blank");
-    } else if (isAndroid) {
-      window.open(ANDROID_APP_LINK, "_blank");
-    }
+    window.open(APP_LINK, "_blank");
   };
 
   return (

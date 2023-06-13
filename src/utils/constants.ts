@@ -15,9 +15,6 @@ export const THE_GRAPH_API =
 
 export const PLATFORM = "web";
 
-export const LINK_TREE = "https://linktr.ee/appribon";
-
-export const ANDROID_APP_LINK =
-  "https://play.google.com/store/apps/details?id=com.app.ribon";
+export const APP_LINK = "https://donation.app.link/RibonApp";
 
 export const IOS_APP_LINK = "https://testflight.apple.com/join/UtOMP5Ie";

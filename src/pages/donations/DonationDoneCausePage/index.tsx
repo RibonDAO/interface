@@ -1,6 +1,7 @@
 import IconsAroundImage from "components/atomics/sections/IconsAroundImage";
 import {
   useIntegration,
+  useCanDonate,
   useOffers,
   useStatistics,
   useFirstAccessToIntegration,
@@ -25,6 +26,8 @@ import ReactHowler from "react-howler";
 import { useTasksContext } from "contexts/tasksContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationId } from "hooks/useIntegrationId";
+import { PLATFORM } from "utils/constants";
+import extractUrlValue from "lib/extractUrlValue";
 import * as S from "./styles";
 
 function DonationDoneCausePage(): JSX.Element {
@@ -60,6 +63,11 @@ function DonationDoneCausePage(): JSX.Element {
     userId: currentUser?.id,
   });
 
+  const integrationId = useIntegrationId();
+  const { search } = useLocation();
+  const externalId = extractUrlValue("external_id", search);
+  const { donateApp } = useCanDonate(integrationId, PLATFORM, externalId);
+
   const quantityOfDonationsToShowDownload = 3;
   const quantityOfDonationsToShowContribute = 5;
   const integrationId = useIntegrationId();
@@ -71,14 +79,17 @@ function DonationDoneCausePage(): JSX.Element {
 
   const firstDonation = 1;
 
-  const shouldShowAppDownload = useCallback(
-    () =>
+  const shouldShowAppDownload = useCallback(() => {
+    if (donateApp) return false;
+    return (
       Number(userStatistics?.totalTickets) %
         quantityOfDonationsToShowDownload ===
         0 || Number(userStatistics?.totalTickets) === firstDonation,
-    [userStatistics],
-  );
-
+      Number(userStatistics?.totalTickets) %
+        quantityOfDonationsToShowDownload ===
+        0 || Number(userStatistics?.totalTickets) === firstDonation
+    );
+  }, [userStatistics, donateApp]);
   const shouldShowContribute = useCallback(
     () =>
       Number(userStatistics?.totalTickets) %

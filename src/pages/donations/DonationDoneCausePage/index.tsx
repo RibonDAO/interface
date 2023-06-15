@@ -70,7 +70,6 @@ function DonationDoneCausePage(): JSX.Element {
 
   const quantityOfDonationsToShowDownload = 3;
   const quantityOfDonationsToShowContribute = 5;
-  const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
 
   const { refetch } = useFirstAccessToIntegration(

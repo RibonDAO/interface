@@ -67,6 +67,7 @@ function ConfirmSection({
           },
         });
       } catch (e: any) {
+        logError(e);
         const failedKey =
           e.response.status === 403 ? "blockedDonation" : "failedDonation";
         const newState = {
@@ -75,7 +76,6 @@ function ConfirmSection({
         };
         navigateTo({ pathname: "/", state: newState });
         window.location.reload();
-        logError(e);
       }
       setLocalStorageItem(SHOW_MENU, "true");
     }

@@ -58,8 +58,6 @@ export const RightImage = styled.img`
   }
 `;
 
-export const CenterImage = styled.img``;
-
 export const Image = styled.img`
   max-width: 144px;
   padding: ${({ theme }) => theme.spacing(20)};

@@ -1,6 +1,5 @@
 import IconsAroundImage from "components/atomics/sections/IconsAroundImage";
 import {
-  useIntegration,
   useCanDonate,
   useOffers,
   useStatistics,
@@ -70,11 +69,8 @@ function DonationDoneCausePage(): JSX.Element {
 
   const quantityOfDonationsToShowDownload = 3;
   const quantityOfDonationsToShowContribute = 5;
-  const { integration } = useIntegration(integrationId);
 
-  const { refetch } = useFirstAccessToIntegration(
-    integration?.id || integrationId,
-  );
+  const { refetch } = useFirstAccessToIntegration(integrationId);
 
   const firstDonation = 1;
 

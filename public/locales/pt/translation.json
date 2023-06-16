@@ -29,6 +29,7 @@
       "learnMore": "Saiba mais",
       "tooltipTicketText": "Os tickets servem para fazer doações e você recebe um a cada dia que entrar aqui na Ribon.",
       "tooltipTicket": "O que é um ticket?",
+      "nonProfits": "ONGs",
       "noCauses": {
         "title": "Nenhuma causa disponível",
         "text": "Mas você pode contribuir doando em comunidade para uma causa",
@@ -384,5 +385,9 @@
     "title": "Tenha uma experiência completa usando o nosso App",
     "description": "Baixe o app e tenha acesso a todas as funcionalidades da Ribon",
     "button": "Baixar o app"
+  },
+  "contributionCard": {
+    "title": "Faça ainda mais",
+    "button": "Doar"
   }
 }

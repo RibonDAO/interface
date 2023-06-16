@@ -20,6 +20,7 @@ import NonProfitCard from "./NonProfitCard";
 
 type LocationStateType = {
   causeDonated?: Cause;
+  offerId?: number;
 };
 
 function CardPage(): JSX.Element {
@@ -49,6 +50,12 @@ function CardPage(): JSX.Element {
   useEffect(() => {
     setCause(state?.causeDonated || causesFilter()[0]);
   }, [causes]);
+
+  useEffect(() => {
+    if (state.offerId) {
+      setOfferId(state?.offerId ?? 1);
+    }
+  }, [state?.offerId]);
 
   const handleCauseClick = (causeClicked: Cause) => {
     logEvent("nonProfitCauseSelection_click", {

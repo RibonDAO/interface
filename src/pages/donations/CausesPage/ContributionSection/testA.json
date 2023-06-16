@@ -1,0 +1,49 @@
+{
+  "AgainstMalariaFoundation": {
+    "name": "Against Malaria Foundation",
+    "description": "Forneça tela de proteção contra a malária para <p>1 pessoa.</p>",
+    "image": "https://ribon-marketing.s3.amazonaws.com/againstmalariafoundation.png",
+    "value": 15,
+    "params": {
+      "offerId": "AgainstMalariaFoundation",
+      "nonProfitId": "1"
+    }
+  },
+
+  "EvidenceAction": {
+    "name": "Evidence Action",
+    "description": "Forneça tela de proteção contra a malária para <p>1 pessoa.</p>",
+    "image": "https://ribon-marketing.s3.amazonaws.com/evidenceaction.png",
+    "value": 15,
+    "params": {
+      "offerId": "AgainstMalariaFoundation"
+    }
+  },
+  "NewIncentives": {
+    "name": "New Incentives",
+    "description": "Incentive a aplicação de <p>2 vacinas para um bebê.</p>",
+    "image": "https://ribon-marketing.s3.amazonaws.com/newincentives.png",
+    "value": 15,
+    "params": {
+      "offerId": "AgainstMalariaFoundation"
+    }
+  },
+  "SahaGlobal": {
+    "name": "Saha Global",
+    "description": "Forneça uma mentoria para <p> formar 1 empreendedora na distribuição de água.</p>",
+    "image": "https://ribon-marketing.s3.amazonaws.com/sahaglobal.png",
+    "value": 15,
+    "params": {
+      "offerId": "AgainstMalariaFoundation"
+    }
+  },
+  "Lwala": {
+    "name": "Lwala",
+    "description": "Forneça acompanhamento pré-natal <p>para uma mãe durante a gestação.</p>",
+    "image": "https://ribon-marketing.s3.amazonaws.com/lwala.png",
+    "value": 15,
+    "params": {
+      "offerId": "AgainstMalariaFoundation"
+    }
+  }
+}

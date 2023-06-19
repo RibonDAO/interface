@@ -33,7 +33,7 @@ function ReceiveTicketPage(): JSX.Element {
       <S.Diamond bg={image} mainColor={primary[300]} />
     ) : (
       <S.Diamond mainColor={primary[300]}>
-        <S.Icon src={image} alt="icon" />
+        <S.Icon src={image} alt="diamondIcon" />
       </S.Diamond>
     );
 
@@ -66,7 +66,7 @@ function ReceiveTicketPage(): JSX.Element {
           <S.ProgressBar>
             <S.ProgressImg
               src={Ticket}
-              alt="icon"
+              alt="ticketIcon"
               onLoad={() => setIconLoaded(true)}
               loaded={iconLoaded}
             />

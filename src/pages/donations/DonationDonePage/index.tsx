@@ -57,7 +57,7 @@ function DonationDonePage(): JSX.Element {
       from: "/donation-done",
     };
     navigateTo({
-      pathname: "/",
+      pathname: "/causes",
       state: newState,
     });
   };

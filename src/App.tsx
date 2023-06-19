@@ -13,6 +13,7 @@ import {
 import Zendesk from "config/zendesk";
 import CurrentUserProvider from "contexts/currentUserContext";
 import TasksProvider from "contexts/tasksContext";
+import CausesProvider from "contexts/causesContext";
 import RoutesComponent from "./config/routes";
 import GlobalStyle from "./styles/globalStyle";
 import theme from "./styles/theme";
@@ -44,8 +45,10 @@ function App() {
                   <CurrentUserProvider>
                     <Suspense fallback={<div />}>
                       <TasksProvider>
-                        <RoutesComponent />
-                        <Zendesk />
+                        <CausesProvider>
+                          <RoutesComponent />
+                          <Zendesk />
+                        </CausesProvider>
                       </TasksProvider>
                     </Suspense>
                   </CurrentUserProvider>

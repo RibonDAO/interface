@@ -39,7 +39,7 @@ function AppDownloadPage() {
         });
       else
         navigateTo({
-          pathname: "/",
+          pathname: "/causes",
         });
     } else {
       navigateBack();

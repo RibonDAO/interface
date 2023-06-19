@@ -88,6 +88,17 @@
       "givingPageTitle": "Giving",
       "communityMenuItem": "Community",
       "directDonationMenuItem": "Direct donation"
+    },
+    "giveTicketPage": {
+      "ribonTitle": "Welcome to Ribon!",
+      "integrationTitle": "{{integrationName}} brought you here!",
+      "subtitle": "Your donation ticket is available",
+      "button": "Get my ticket"
+    },
+    "receiveTicketPage": {
+      "textOrigin": "Community",
+      "textDestiny": "You",
+      "description": "Receiving ticket..."
     }
   },
   "layouts": {

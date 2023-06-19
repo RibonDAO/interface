@@ -172,8 +172,8 @@
       "migrated": "Migrado"
     },
     "impactNotification": {
-      "title": "Vamos importar o seu impacto em breve!",
-      "description": "Suas doações em ribons da plataforma antiga irão ser importados em breve para o seu perfil.",
+      "title": "Migramos seu impacto!",
+      "description": "O seu histórico de doações feitas na plataforma antiga está na aba \"doações em ticket\".",
       "link": "Não mostrar novamente"
     }
   },

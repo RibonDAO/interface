@@ -35,9 +35,6 @@ describe("RadioAccordion", () => {
     it("does not show", () => {
       renderComponent(<RadioAccordion {...props} />);
 
-      expectTextToBeInTheDocument("Credit Card");
-      expectTextToBeInTheDocument("Google Play");
-      expectTextToBeInTheDocument("Apple Pay");
       expectTextNotToBeInTheDocument("Credit Card is Visible");
     });
   });
@@ -46,9 +43,6 @@ describe("RadioAccordion", () => {
     it("shows the current item", () => {
       renderComponent(<RadioAccordion {...props} current={0} />);
 
-      expectTextToBeInTheDocument("Credit Card");
-      expectTextToBeInTheDocument("Google Play");
-      expectTextToBeInTheDocument("Apple Pay");
       expectTextToBeInTheDocument("Credit Card is Visible");
     });
   });

@@ -12,7 +12,7 @@ import GiveTicketPage from ".";
 describe("GiveTicketPage", () => {
   describe("when the integration is Ribon", () => {
     const ribonIntegration = {
-      id: 1,
+      id: 3,
       name: "Ribon",
       logo: "https://ribon.io/logo.png",
     } as Integration;
@@ -35,7 +35,11 @@ describe("GiveTicketPage", () => {
     });
 
     beforeEach(() => {
-      renderComponent(<GiveTicketPage />);
+      renderComponent(<GiveTicketPage />, {
+        locationState: {
+          isOnboarding: true,
+        },
+      });
       waitForPromises();
     });
 
@@ -113,7 +117,11 @@ describe("GiveTicketPage", () => {
     });
 
     beforeEach(() => {
-      renderComponent(<GiveTicketPage />);
+      renderComponent(<GiveTicketPage />, {
+        locationState: {
+          isOnboarding: true,
+        },
+      });
       waitForPromises();
     });
 

@@ -1,8 +1,5 @@
 import { clickOn, renderComponent } from "config/testUtils";
-import {
-  expectPageToNavigateTo,
-  expectTextToBeInTheDocument,
-} from "config/testUtils/expects";
+import { expectPageToNavigateTo } from "config/testUtils/expects";
 import { setLocalStorageItem } from "lib/localStorage";
 import { HAS_AN_AVAILABLE_VOUCHER } from "lib/localStorage/constants";
 import React from "react";

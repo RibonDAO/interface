@@ -13,7 +13,7 @@ describe("GiveTicketPage", () => {
   describe("when is the first access to ribon", () => {
     describe("when the integration is Ribon", () => {
       const ribonIntegration = {
-        id: 3,
+        id: 1,
         name: "Ribon",
         logo: "https://ribon.io/logo.png",
       } as Integration;

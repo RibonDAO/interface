@@ -88,6 +88,17 @@
       "givingPageTitle": "Contribuir",
       "communityMenuItem": "Comunidade",
       "directDonationMenuItem": "Doação direta"
+    },
+    "giveTicketPage": {
+      "ribonTitle": "Que bom ter você na Ribon!",
+      "integrationTitle": "{{integrationName}} te trouxe aqui",
+      "subtitle": "Seu ticket doação está disponível",
+      "button": "Receber meu ticket"
+    },
+    "receiveTicketPage": {
+      "textOrigin": "Comunidade",
+      "textDestiny": "Você",
+      "description": "Recebendo ticket..."
     }
   },
   "layouts": {
@@ -161,8 +172,8 @@
       "migrated": "Migrado"
     },
     "impactNotification": {
-      "title": "Vamos importar o seu impacto em breve!",
-      "description": "Suas doações em ribons da plataforma antiga irão ser importados em breve para o seu perfil.",
+      "title": "Migramos seu impacto!",
+      "description": "O seu histórico de doações feitas na plataforma antiga está na aba \"doações em ticket\".",
       "link": "Não mostrar novamente"
     }
   },

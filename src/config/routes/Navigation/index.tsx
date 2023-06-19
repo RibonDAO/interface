@@ -36,7 +36,7 @@ function Navigation(): JSX.Element {
 
   const routes = [
     {
-      path: "/",
+      path: "/causes",
       iconOn: CausesIconOn,
       iconOff: CausesIconOff,
       title: t("causesPageTitle"),

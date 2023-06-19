@@ -7,6 +7,7 @@ import {
   useUsers,
   useIntegration,
   useCanDonate,
+  useFirstAccessToIntegration,
 } from "@ribon.io/shared/hooks";
 import { useLocation } from "react-router-dom";
 import { useCurrentUser } from "contexts/currentUserContext";
@@ -100,6 +101,10 @@ function CausesPage(): JSX.Element {
     externalId,
   );
   const { destroyVoucher, createVoucher } = useVoucher();
+  const {
+    isFirstAccessToIntegration,
+    isLoading: isLoadingIsFirstAccessToIntegration,
+  } = useFirstAccessToIntegration(integration?.id || integrationId);
 
   const { isMobile } = useBreakpoint();
 
@@ -136,12 +141,16 @@ function CausesPage(): JSX.Element {
       (hasAvailableDonation() && !hasSeenDonationModal)
     ) {
       destroyVoucher();
-      if (integration) {
+      if (
+        integration &&
+        !isFirstAccessToIntegration &&
+        !isLoadingIsFirstAccessToIntegration
+      ) {
         setLocalStorageItem(DONATION_MODAL_SEEN_AT_KEY, Date.now().toString());
         showDonationTicketModal();
       }
     }
-  }, [integration]);
+  }, [integration, isFirstAccessToIntegration]);
 
   const closeConfirmModal = useCallback(() => {
     setConfirmModalVisible(false);

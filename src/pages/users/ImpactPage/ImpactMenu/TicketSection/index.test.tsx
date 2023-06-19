@@ -24,7 +24,7 @@ describe("Impact Page", () => {
           renderComponent(<TicketSection />);
           expectTextToBeInTheDocument("Donate using tickets");
           clickOn("Donate using tickets");
-          expectPageToNavigateTo("/");
+          expectPageToNavigateTo("/causes");
         });
       });
     });

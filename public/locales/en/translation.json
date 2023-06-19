@@ -88,6 +88,17 @@
       "givingPageTitle": "Giving",
       "communityMenuItem": "Community",
       "directDonationMenuItem": "Direct donation"
+    },
+    "giveTicketPage": {
+      "ribonTitle": "Welcome to Ribon!",
+      "integrationTitle": "{{integrationName}} brought you here!",
+      "subtitle": "Your donation ticket is available",
+      "button": "Get my ticket"
+    },
+    "receiveTicketPage": {
+      "textOrigin": "Community",
+      "textDestiny": "You",
+      "description": "Receiving ticket..."
     }
   },
   "layouts": {
@@ -161,9 +172,9 @@
       "migrated": "Migrated"
     },
     "impactNotification": {
-      "title": "We will be importing your impact soon!",
-      "description": "Your ribons donations from the old platform will soon be imported into your profile.",
-      "link": "Do not show again"
+      "title": "We have imported your impact!",
+      "description": "Your history of donations from the old platform are in the \"Ticket donations\" tab.",
+      "link": "Don’t show this again"
     }
   },
   "promoters": {

@@ -68,10 +68,10 @@ function LayoutHeader({
       primaryButton: {
         text: t("donationModalButtonText"),
         onClick: () => {
-          if (history.location.pathname === "/") {
+          if (history.location.pathname === "/causes") {
             hide();
           } else {
-            navigateTo("/");
+            navigateTo("/causes");
             hide();
           }
         },

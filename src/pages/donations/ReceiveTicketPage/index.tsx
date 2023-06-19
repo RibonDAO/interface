@@ -10,7 +10,7 @@ import { theme } from "@ribon.io/shared/styles";
 import useVoucher from "hooks/useVoucher";
 import useNavigation from "hooks/useNavigation";
 import { setLocalStorageItem } from "lib/localStorage";
-import { DONATION_MODAL_SEEN_AT_KEY } from "lib/localStorage/constants";
+import { DONATION_TOAST_SEEN_AT_KEY } from "lib/localStorage/constants";
 import { useCausesContext } from "contexts/causesContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { isFirstAccess } from "lib/onboardingFirstAccess";
@@ -40,7 +40,7 @@ function ReceiveTicketPage(): JSX.Element {
   const navigate = () => {
     setTimeout(() => {
       createVoucher();
-      setLocalStorageItem(DONATION_MODAL_SEEN_AT_KEY, Date.now().toString());
+      setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());
       navigateTo({
         pathname: "/causes",
       });

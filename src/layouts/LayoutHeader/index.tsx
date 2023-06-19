@@ -60,7 +60,7 @@ function LayoutHeader({
 
   const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
 
-  const { show, hide } = useModal({
+  const { hide } = useModal({
     type: MODAL_TYPES.MODAL_ICON,
     props: {
       title: t("donationModalTitle"),
@@ -99,7 +99,7 @@ function LayoutHeader({
   function handleCounterClick() {
     if (canDonateAndHasVoucher) {
       newLogEvent("click", "ticketIcon", { ticketQtd: 1 });
-      show();
+      navigateTo("/give-ticket");
     } else {
       newLogEvent("click", "ticketIcon", { ticketQtd: 0 });
       showBlockedDonationModal();

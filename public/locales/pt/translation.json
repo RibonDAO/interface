@@ -386,8 +386,11 @@
     "description": "Baixe o app e tenha acesso a todas as funcionalidades da Ribon",
     "button": "Baixar o app"
   },
+  "contributionSection": {
+    "titleCard": "Faça ainda mais",
+    "title": "Que incrível! Obrigado por ajudar {{nonProfitName}}"
+  },
   "contributionCard": {
-    "title": "Faça ainda mais",
     "button": "Doar"
   }
 }

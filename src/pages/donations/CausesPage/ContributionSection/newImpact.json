@@ -1,0 +1,43 @@
+[
+  {
+    "name": "Against Malaria Foundation",
+    "description": "Forneça tela de proteção contra a malária para <b>1 pessoa.</b>",
+    "image": "https://ribon-marketing.s3.amazonaws.com/againstmalariafoundation.png",
+    "value": 15,
+    "offerId": 28,
+    "nonProfitId": 9
+  },
+
+  {
+    "name": "Evidence Action",
+    "description": "Forneça tela de proteção contra a malária para <b>1 pessoa.</b>",
+    "image": "https://ribon-marketing.s3.amazonaws.com/evidenceaction.png",
+    "value": 15,
+    "offerId": 28,
+    "nonProfitId": 6
+  },
+  {
+    "name": "New Incentives",
+    "description": "Incentive a aplicação de <b>2 vacinas para um bebê.</b>",
+    "image": "https://ribon-marketing.s3.amazonaws.com/newincentives.png",
+    "value": 15,
+    "offerId": 28,
+    "nonProfitId": 8
+  },
+  {
+    "name": "Saha Global",
+    "description": "Forneça uma mentoria para <b>formar 1 empreendedora na distribuição de água.</b>",
+    "image": "https://ribon-marketing.s3.amazonaws.com/sahaglobal.png",
+    "value": 15,
+    "offerId": 28,
+    "nonProfitId": 11
+  },
+  {
+    "name": "Lwala",
+    "description": "Forneça acompanhamento pré-natal <b>para uma mãe durante a gestação.</b>",
+    "image": "https://ribon-marketing.s3.amazonaws.com/lwala.png",
+    "value": 15,
+    "offerId": 28,
+    "nonProfitId": 10
+  }
+]

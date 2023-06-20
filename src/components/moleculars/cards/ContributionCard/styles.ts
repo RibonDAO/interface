@@ -4,13 +4,12 @@ import {
   defaultBodyXsBold,
 } from "styles/typography/default";
 import { stylizedDisplayXs } from "styles/typography/stylized";
-import { Button } from "../../sections/GroupButtons/styles";
+import Button from "components/atomics/buttons/Button";
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 446px;
-  height: 216px;
+  max-width: 458px;
   background-color: ${({ theme }) => theme.colors.brand.primary[50]};
   border-radius: 8px;
   align-items: flex-start;
@@ -28,6 +27,10 @@ export const Description = styled.p`
   ${defaultBodyMdRegular}
   color: ${({ theme }) => theme.colors.neutral[800]};
   margin-bottom: ${({ theme }) => theme.spacing(16)};
+
+  b {
+    font-style: bold;
+  }
 `;
 
 export const DonationButton = styled(Button)`
@@ -35,6 +38,7 @@ export const DonationButton = styled(Button)`
   height: 48px;
   padding: ${({ theme }) => theme.spacing(12, 16)};
   background-color: ${({ theme }) => theme.colors.brand.primary[600]};
+  border: none;
   color: ${({ theme }) => theme.colors.neutral[50]};
   border-radius: 4px;
 `;

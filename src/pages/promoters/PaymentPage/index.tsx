@@ -80,9 +80,11 @@ function PaymentPage(): JSX.Element {
       />
       <S.MainContainer>
         <S.SupportImage
-          src={nonProfit?.backgroundImage || cause.coverImage}
+          src={nonProfit?.backgroundImage || cause?.coverImage}
           alt={
-            nonProfit?.backgroundImageDescription || cause.coverImageDescription
+            (nonProfit?.backgroundImageDescription ||
+              cause?.coverImageDescription) ??
+            ""
           }
         />
         <S.ContentContainer>

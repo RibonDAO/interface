@@ -6,15 +6,19 @@ export const Container = styled.div<{ isMobile: boolean }>`
   flex-direction: ${({ isMobile }) => (isMobile ? "column" : "row")};
   align-items: center;
   margin-bottom: ${({ theme }) => theme.spacing(48)};
-  width: 100%;
 `;
 
-export const NonProfitImage = styled.img``;
+export const NonProfitImage = styled.img<{ isMobile: boolean }>`
+  width: ${({ isMobile }) => (isMobile ? "110%" : "100%")};
+  left: ${({ isMobile }) => (isMobile ? "-16px" : "initial")};
+  position: relative;
+  border-radius: ${({ isMobile }) => (isMobile ? "0" : "8px")};
+`;
 
-export const ImageContainer = styled.div`
+export const ImageContainer = styled.div<{ isMobile: boolean }>`
   display: flex;
   flex-direction: column;
-  margin-right: ${({ theme }) => theme.spacing(40)};
+  margin-right: ${({ theme, isMobile }) => (isMobile ? 0 : theme.spacing(40))};
 `;
 
 export const Title = styled.h1`

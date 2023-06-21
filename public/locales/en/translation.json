@@ -391,6 +391,7 @@
     "title": "Que incrível! Obrigado por ajudar {{nonProfitName}}"
   },
   "contributionCard": {
-    "button": "Doar"
+    "button": "Doar",
+    "donate": "Doe {{value}}"
   }
 }

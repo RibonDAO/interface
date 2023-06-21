@@ -6,7 +6,9 @@ import { logError } from "services/crashReport";
 
 // Create a GrowthBook instance
 export const growthbook = new GrowthBook({
-  // Callback when a user is put into an A/B experiment
+  apiHost: "https://growthbook.ribon.io:444",
+  clientKey: "sdk-Ljz6kxkXYsUHafef",
+  enableDevMode: true,
   trackingCallback: (experiment, result) => {
     logEvent("viewed_experiment", {
       experimentId: experiment.key,

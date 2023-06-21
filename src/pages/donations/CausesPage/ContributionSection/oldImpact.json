@@ -1,5 +1,5 @@
-{
-  "AgainstMalariaFoundation": {
+[
+  {
     "name": "Against Malaria Foundation",
     "value": 60,
     "image": "https://ribon-marketing.s3.amazonaws.com/againstmalariafoundation.png",
@@ -7,32 +7,32 @@
     "nonProfitId": 9
   },
 
-  "EvidenceAction": {
+  {
     "name": "Evidence Action",
     "value": 60,
     "image": "https://ribon-marketing.s3.amazonaws.com/evidenceaction.png",
     "offerId": 29,
     "nonProfitId": 6
   },
-  "NewIncetives": {
+  {
     "name": "New Incetives",
     "value": 60,
     "image": "https://ribon-marketing.s3.amazonaws.com/newincentives.png",
     "offerId": 29,
     "nonProfitId": 8
   },
-  "SahaGlobal": {
+  {
     "name": "Saha Global",
     "image": "https://ribon-marketing.s3.amazonaws.com/sahaglobal.png",
     "value": 60,
     "offerId": 29,
     "nonProfitId": 11
   },
-  "Lwala": {
+  {
     "name": "Lwala",
     "image": "https://ribon-marketing.s3.amazonaws.com/lwala.png",
     "value": 60,
     "offerId": 29,
     "nonProfitId": 10
   }
-}
+]

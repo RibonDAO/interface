@@ -387,11 +387,11 @@
     "button": "Download app"
   },
   "contributionSection": {
-    "titleCard": "Faça ainda mais",
     "title": "Que incrível! Obrigado por ajudar {{nonProfitName}}"
   },
   "contributionCard": {
     "button": "Doar",
-    "donate": "Doe {{value}}"
+    "donate": "Doe {{value}}",
+    "titleCard": "Faça ainda mais"
   }
 }

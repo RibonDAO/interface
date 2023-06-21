@@ -9,7 +9,6 @@ import * as S from "./styles";
 export type Props = {
   description: string | JSX.Element | undefined;
   impact: string;
-  title: string;
   value: number;
   style?: React.CSSProperties;
   offer?: Offer;
@@ -19,7 +18,6 @@ export type Props = {
 function ContributionCard({
   description,
   impact,
-  title,
   value,
   style,
   offer,
@@ -47,7 +45,7 @@ function ContributionCard({
 
   return (
     <S.Container style={style}>
-      <S.Title>{title}</S.Title>
+      <S.Title>{t("titleCard")}</S.Title>
       <S.Value>
         {t("donate").replace("{{value}}", formatPrice(value, "brl"))}
       </S.Value>

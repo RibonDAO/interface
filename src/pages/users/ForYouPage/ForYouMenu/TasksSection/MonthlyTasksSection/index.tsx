@@ -55,7 +55,6 @@ function MonthlyTasksSection() {
             size="25px"
             color={theme.colors.brand.primary[900]}
           />
-
           <S.Title>{t("titleSuperTasks")}</S.Title>
         </S.Wrapper>
 
@@ -91,10 +90,6 @@ function MonthlyTasksSection() {
       <ContributionCard
         description={description}
         impact={contribution?.impact ?? ""}
-        title={t("titleCard").replace(
-          "{{nonProfitName}}",
-          nonProfit?.name ?? "",
-        )}
         value={contribution?.value ?? 0}
         offer={offer}
         nonProfit={nonProfit}

@@ -101,10 +101,6 @@ function DirectSection() {
           <ContributionCard
             description={description}
             impact={contribution?.impact ?? ""}
-            title={t("titleCard").replace(
-              "{{nonProfitName}}",
-              nonProfit?.name ?? "",
-            )}
             value={contribution?.value ?? 0}
             offer={offer}
             nonProfit={nonProfit}

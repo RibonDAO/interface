@@ -1,5 +1,9 @@
-import { useFeatureValue } from "@growthbook/growthbook-react";
+import { useExperiment } from "@growthbook/growthbook-react";
 
-export const ImpactConversion = () => {
-  useFeatureValue("nameOfFeature", "default value");
-};
+export function ImpactVariation() {
+  const { value } = useExperiment({
+    key: "impact-conversion-staging",
+    variations: ["Control", "NewImpact", "OldImpact"],
+  });
+  return value;
+}

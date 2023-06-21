@@ -8,6 +8,8 @@ import Icon from "components/atomics/Icon";
 import Tag from "components/atomics/Tag";
 import { beginningOfToday } from "lib/dateUtils";
 import useBreakpoint from "hooks/useBreakpoint";
+import ContributionCard from "components/moleculars/cards/ContributionCard";
+import { useImpactConversion } from "hooks/useImpactConversion";
 import * as S from "./styles";
 
 function MonthlyTasksSection() {
@@ -18,6 +20,8 @@ function MonthlyTasksSection() {
   const monthlyTasks = useTasks("monthly");
   const { tasksState, tasksStatistics, registerAction } = useTasksContext();
   const { isMobile } = useBreakpoint();
+
+  const { description, contribution, offer, nonProfit } = useImpactConversion();
 
   const showTagNew = () =>
     !(
@@ -84,6 +88,21 @@ function MonthlyTasksSection() {
             </S.CheckboxContainer>
           ) : null,
         )}
+      <ContributionCard
+        description={description}
+        impact={contribution?.impact ?? ""}
+        title={t("titleCard").replace(
+          "{{nonProfitName}}",
+          nonProfit?.name ?? "",
+        )}
+        value={contribution?.value ?? 0}
+        offer={offer}
+        nonProfit={nonProfit}
+        style={{
+          marginTop: isMobile ? "0" : "16px",
+          width: isMobile ? "110%" : "100%",
+        }}
+      />
     </S.Container>
   );
 }

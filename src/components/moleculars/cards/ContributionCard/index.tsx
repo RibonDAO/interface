@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import * as S from "./styles";
 
 export type Props = {
-  description: () => string | JSX.Element | undefined;
+  description: string | JSX.Element | undefined;
   impact: string;
   title: string;
   value: number;
@@ -52,7 +52,7 @@ function ContributionCard({
         {t("donate").replace("{{value}}", formatPrice(value, "brl"))}
       </S.Value>
       <S.Description>
-        {description()} <b>{impact}</b>
+        {description} <b>{impact}</b>
       </S.Description>
       <S.DonationButton
         onClick={() => handleClickedDonationButton()}

@@ -10,7 +10,7 @@ import { theme } from "@ribon.io/shared/styles";
 import useVoucher from "hooks/useVoucher";
 import useNavigation from "hooks/useNavigation";
 import { setLocalStorageItem } from "lib/localStorage";
-import { DONATION_MODAL_SEEN_AT_KEY } from "lib/localStorage/constants";
+import { DONATION_TOAST_SEEN_AT_KEY } from "lib/localStorage/constants";
 import { useCausesContext } from "contexts/causesContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { isFirstAccess } from "lib/onboardingFirstAccess";
@@ -33,14 +33,14 @@ function ReceiveTicketPage(): JSX.Element {
       <S.Diamond bg={image} mainColor={primary[300]} />
     ) : (
       <S.Diamond mainColor={primary[300]}>
-        <S.Icon src={image} alt="icon" />
+        <S.Icon src={image} alt="diamondIcon" />
       </S.Diamond>
     );
 
   const navigate = () => {
     setTimeout(() => {
       createVoucher();
-      setLocalStorageItem(DONATION_MODAL_SEEN_AT_KEY, Date.now().toString());
+      setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());
       navigateTo({
         pathname: "/causes",
       });
@@ -66,7 +66,7 @@ function ReceiveTicketPage(): JSX.Element {
           <S.ProgressBar>
             <S.ProgressImg
               src={Ticket}
-              alt="icon"
+              alt="ticketIcon"
               onLoad={() => setIconLoaded(true)}
               loaded={iconLoaded}
             />

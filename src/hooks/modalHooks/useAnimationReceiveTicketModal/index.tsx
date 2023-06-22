@@ -10,6 +10,7 @@ import { useCurrentUser } from "contexts/currentUserContext";
 import { isFirstAccess } from "lib/onboardingFirstAccess";
 import { useModal } from "../useModal";
 
+// This hook is not used in the project since the receive ticket modal was changed to a toast.
 export function useAnimationReceiveTicketModal(initialState?: boolean) {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",

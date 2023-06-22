@@ -7,6 +7,7 @@ import { RIBON_COMPANY_ID } from "utils/constants";
 import RibonIcon from "assets/icons/logo-background-icon.svg";
 import { useModal } from "../useModal";
 
+// This hook is not used in the project since the receive ticket modal was changed to a toast.
 export function useDonationTicketModal(
   initialState?: boolean,
   integration?: Integration,

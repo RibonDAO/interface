@@ -14,6 +14,10 @@ import CurrentUserProvider, {
   CurrentUserContext,
   ICurrentUserContext,
 } from "contexts/currentUserContext";
+import CausesProvider, {
+  CausesContext,
+  ICausesContext,
+} from "contexts/causesContext";
 import {
   IToastContext,
   ToastContext,
@@ -71,6 +75,7 @@ function renderProvider(
 export type RenderComponentProps = {
   history?: MemoryHistory;
   walletProviderValue?: Partial<IWalletContext>;
+  causesProviderValue?: Partial<ICausesContext>;
   currentUserProviderValue?: Partial<ICurrentUserContext>;
   toastProviderValue?: Partial<IToastContext>;
   loadingOverlayValue?: Partial<ILoadingOverlayContext>;
@@ -84,6 +89,7 @@ function renderAllProviders(
   {
     history = createMemoryHistory(),
     walletProviderValue = {},
+    causesProviderValue = {},
     currentUserProviderValue = {},
     toastProviderValue = {},
     locationState = {},
@@ -110,22 +116,27 @@ function renderAllProviders(
                   CurrentUserContext,
                   currentUserProviderValue,
                   renderProvider(
-                    ToastContextProvider,
-                    ToastContext,
-                    toastProviderValue,
+                    CausesProvider,
+                    CausesContext,
+                    causesProviderValue,
                     renderProvider(
-                      LoadingOverlayProvider,
-                      LoadingOverlayContext,
-                      loadingOverlayValue,
+                      ToastContextProvider,
+                      ToastContext,
+                      toastProviderValue,
                       renderProvider(
-                        ModalProvider,
-                        ModalContext,
-                        modalProviderValue,
+                        LoadingOverlayProvider,
+                        LoadingOverlayContext,
+                        loadingOverlayValue,
                         renderProvider(
-                          NetworkProvider,
-                          NetworkContext,
-                          networkProviderValue,
-                          children,
+                          ModalProvider,
+                          ModalContext,
+                          modalProviderValue,
+                          renderProvider(
+                            NetworkProvider,
+                            NetworkContext,
+                            networkProviderValue,
+                            children,
+                          ),
                         ),
                       ),
                     ),

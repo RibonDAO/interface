@@ -21,6 +21,7 @@
       "receiveTicketAnimationModalTitle": "Receiving Ticket...",
       "receiveTicketAnimationModalOrigin": "Community",
       "receiveTicketAnimationModalDestiny": "You",
+      "ticketToast": "You have a new ticket!",
       "donateAnimationModalTitle": "Making donation...",
       "donateAnimationModalOrigin": "You",
       "donateAnimationModalDestiny": "Project",
@@ -90,10 +91,16 @@
       "directDonationMenuItem": "Direct donation"
     },
     "giveTicketPage": {
-      "ribonTitle": "Welcome to Ribon!",
-      "integrationTitle": "{{integrationName}} brought you here!",
-      "subtitle": "Your donation ticket is available",
-      "button": "Get my ticket"
+      "onboardingRibonTitle": "Welcome to Ribon!",
+      "onboardingIntegrationTitle": "{{integrationName}} brought you here!",
+      "onboardingSubtitle": "Your donation ticket is available",
+      "onboardingButtonText": "Get my ticket",
+      "title": "You have 1 ticket!",
+      "integrationSubtitle": "Keep with {{integrationName}} and get new tickets",
+      "subtitle": "Every day when you login in Ribon you get a new ticket.",
+      "buttonText": "Donate ticket",
+      "tooltipTicketText": "Tickets are used to make donations and you get a new one everyday when you log in Ribon.",
+      "tooltipTicket": "What is a ticket?"
     },
     "receiveTicketPage": {
       "textOrigin": "Community",

@@ -116,6 +116,7 @@ export const EmptyButton = styled(Button)`
 
 export const NonProfitTitle = styled.h1`
   ${defaultBodyLgSemibold}
-  color: ${({ theme }) => theme.colors.neutral[800]};
+
   margin-bottom: ${({ theme }) => theme.spacing(16)};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;

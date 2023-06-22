@@ -17,9 +17,6 @@ function ContributionSection(): JSX.Element {
 
   const { isMobile } = useBreakpoint();
 
-  // eslint-disable-next-line no-console
-  console.log(variation, contribution);
-
   return variation !== "Control" && contribution ? (
     <S.Container isMobile={isMobile}>
       <S.ImageContainer isMobile={isMobile}>

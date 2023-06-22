@@ -78,20 +78,7 @@ function CommunitySection() {
     setShowMoreDisabled(true);
   };
   const renderEmptySection = () => {
-    if (variation === "Control") {
-      return (
-        <S.EmptySectionContainer>
-          <S.EmptyImage src={directIllustration} />
-          <S.EmptyTitle>{t("emptyTitle")}</S.EmptyTitle>
-          <S.EmptyText>{t("emptyText")}</S.EmptyText>
-          <S.EmptyButton
-            text={t("emptyButton")}
-            size="medium"
-            onClick={handleEmptyButtonClick}
-          />
-        </S.EmptySectionContainer>
-      );
-    } else
+    if (variation !== "Control" && contribution) {
       return (
         <S.EmptySectionContainer>
           <S.EmptyTitle>{t("emptyTitle")}</S.EmptyTitle>
@@ -112,6 +99,19 @@ function CommunitySection() {
             }}
             from="impact_page"
             flow="cause"
+          />
+        </S.EmptySectionContainer>
+      );
+    } else
+      return (
+        <S.EmptySectionContainer>
+          <S.EmptyImage src={directIllustration} />
+          <S.EmptyTitle>{t("emptyTitle")}</S.EmptyTitle>
+          <S.EmptyText>{t("emptyText")}</S.EmptyText>
+          <S.EmptyButton
+            text={t("emptyButton")}
+            size="medium"
+            onClick={handleEmptyButtonClick}
           />
         </S.EmptySectionContainer>
       );

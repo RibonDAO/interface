@@ -8,7 +8,6 @@ import { useTranslation } from "react-i18next";
 import theme from "styles/theme";
 import { formatPrice } from "lib/formatters/currencyFormatter";
 import { setLocalStorageItem } from "lib/localStorage";
-import { useLocation } from "react-router-dom";
 import * as S from "./styles";
 
 const { tertiary } = theme.colors.brand;
@@ -18,11 +17,6 @@ type Props = {
   onOfferChange: (offer: Offer) => void;
 };
 
-type LocationStateType = {
-  offerId: number;
-  value: number;
-  nonProfitId: number;
-};
 const CURRENT_OFFER_INDEX_KEY = "CURRENT_OFFER_INDEX_KEY";
 
 function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
@@ -32,8 +26,6 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
   const [currentOffer, setCurrentOffer] = useState<Offer>();
   const { currentCoin, setCurrentCoin } = useCardPaymentInformation();
   const { offers, refetch: refetchOffers } = useOffers(currentCoin, false);
-
-  const state = useLocation<LocationStateType>();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportNonProfitPage.selectOfferSection",
@@ -60,18 +52,6 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
   useEffect(() => {
     if (currentOffer) onOfferChange(currentOffer);
   }, [currentOffer]);
-
-  useEffect(() => {
-    if (state.state?.offerId && offers.length > 0) {
-      const current = offers.find(
-        (offer) =>
-          offer.id === state.state.offerId &&
-          nonProfit?.id === state.state.nonProfitId,
-      );
-      setCurrentOffer(current);
-      setCurrentOfferIndex(offers.indexOf(current!));
-    }
-  }, [state.state?.offerId, offers]);
 
   useEffect(() => {
     setCurrentOffer(offers[currentOfferIndex]);

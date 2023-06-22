@@ -58,10 +58,18 @@ export function useImpactConversion() {
 
   useEffect(() => {
     if (variation === "NewImpact") {
-      return setContribution(NewImpact.find((o) => o.nonProfitId === 1));
+      return setContribution(
+        NewImpact.find(
+          (o) => o.nonProfitId === userStatistics?.lastDonatedNonProfit,
+        ),
+      );
     }
     if (variation === "OldImpact") {
-      return setContribution(OldImpact.find((o) => o.nonProfitId === 1));
+      return setContribution(
+        OldImpact.find(
+          (o) => o.nonProfitId === userStatistics?.lastDonatedNonProfit,
+        ),
+      );
     }
     return undefined;
   }, [

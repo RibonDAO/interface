@@ -59,6 +59,11 @@ describe("Causes", () => {
     method: "POST",
   });
 
+  mockRequest("/api/v1/users/can_donate", {
+    payload: { canDonate: true },
+    method: "POST",
+  });
+
   beforeEach(() => {
     renderComponent(<Causes />);
   });

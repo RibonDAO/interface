@@ -17,6 +17,7 @@ Default.args = {
   values: ["value1", "value2", "value3"],
   label: "dropdown",
   onOptionChanged: (value) => {
+    // eslint-disable-next-line no-console
     console.log(value);
   },
 };

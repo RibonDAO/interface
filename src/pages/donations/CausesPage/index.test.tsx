@@ -1,5 +1,5 @@
 import React from "react";
-import { renderComponent, waitForPromises } from "config/testUtils";
+import { renderComponent } from "config/testUtils";
 import { mockRequest } from "config/testUtils/test-helper";
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";

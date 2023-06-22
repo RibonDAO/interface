@@ -17,6 +17,7 @@ Default.args = {
   value: "value",
   placeholder: "placeholder",
   onChange: (value) => {
+    // eslint-disable-next-line no-console
     console.log(value);
   },
   icon: {

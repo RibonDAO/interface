@@ -16,7 +16,6 @@ import GivingsPage from "pages/promoters/GivingsPage";
 import WalletLayout from "layouts/WalletLayout";
 import CardPaymentInformationProvider from "contexts/cardPaymentInformationContext";
 import NetworkProvider from "contexts/networkContext";
-import CausesProvider from "contexts/causesContext";
 import CommunityAddPage from "pages/promoters/SupportCausePage/CommunityAddPage";
 import PostDonationPage from "pages/donations/PostDonationPage";
 import CryptoPaymentProvider from "contexts/cryptoPaymentContext";
@@ -27,6 +26,9 @@ import { useLocation } from "react-router";
 import { logPageView } from "lib/events";
 import AppInDevelopmentPage from "pages/users/AppDownloadPage";
 import ForYouPage from "pages/users/ForYouPage";
+import GiveTicketPage from "pages/donations/GiveTicketPage";
+import ReceiveTicketPage from "pages/donations/ReceiveTicketPage";
+import LoadingPage from "pages/donations/LoadingPage";
 import Navigation from "./Navigation";
 
 function RoutesComponent(): JSX.Element {
@@ -43,19 +45,35 @@ function RoutesComponent(): JSX.Element {
     <Switch>
       <Route path="/" exact>
         <Suspense fallback={<div />}>
+          <LoadingPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/causes" exact>
+        <Suspense fallback={<div />}>
           <WalletProvider>
-            <CausesProvider>
-              <MainLayout>
-                <CausesPage />
-              </MainLayout>
-            </CausesProvider>
+            <MainLayout>
+              <CausesPage />
+            </MainLayout>
           </WalletProvider>
+        </Suspense>
+      </Route>
+
+      <Route path="/give-ticket" exact>
+        <Suspense fallback={<div />}>
+          <GiveTicketPage />
         </Suspense>
       </Route>
 
       <Route path="/app-download" exact>
         <Suspense fallback={<div />}>
           <AppInDevelopmentPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/receive-ticket" exact>
+        <Suspense fallback={<div />}>
+          <ReceiveTicketPage />
         </Suspense>
       </Route>
 

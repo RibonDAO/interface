@@ -1,5 +1,10 @@
 import IconsAroundImage from "components/atomics/sections/IconsAroundImage";
-import { useCanDonate, useOffers, useStatistics } from "@ribon.io/shared/hooks";
+import {
+  useCanDonate,
+  useOffers,
+  useStatistics,
+  useFirstAccessToIntegration,
+} from "@ribon.io/shared/hooks";
 import VolunteerActivismPink from "assets/icons/volunteer-activism-pink.svg";
 import VolunteerActivismYellow from "assets/icons/volunteer-activism-yellow.svg";
 import VolunteerActivismGreen from "assets/icons/volunteer-activism-green.svg";
@@ -19,8 +24,8 @@ import { getAudioFromStorage } from "lib/cachedAudio";
 import ReactHowler from "react-howler";
 import { useTasksContext } from "contexts/tasksContext";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { PLATFORM } from "utils/constants";
 import { useIntegrationId } from "hooks/useIntegrationId";
+import { PLATFORM } from "utils/constants";
 import extractUrlValue from "lib/extractUrlValue";
 import * as S from "./styles";
 
@@ -65,6 +70,8 @@ function DonationDoneCausePage(): JSX.Element {
   const quantityOfDonationsToShowDownload = 3;
   const quantityOfDonationsToShowContribute = 5;
 
+  const { refetch } = useFirstAccessToIntegration(integrationId);
+
   const firstDonation = 1;
 
   const shouldShowAppDownload = useCallback(() => {
@@ -106,6 +113,7 @@ function DonationDoneCausePage(): JSX.Element {
 
   function navigate() {
     clearTimeout(pageTimeout);
+    refetch();
     if (flow === "cause" && hasButton) {
       registerAction("contribution_done_page_view");
       navigateTo({
@@ -135,7 +143,7 @@ function DonationDoneCausePage(): JSX.Element {
         });
       } else if (!isLoading && userStatistics) {
         navigateTo({
-          pathname: "/",
+          pathname: "/causes",
         });
       }
     }

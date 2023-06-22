@@ -14,8 +14,6 @@ describe("App", () => {
     renderComponent(<App />);
     await waitForPromises();
 
-    expect(screen.queryAllByText("Donate to a project").length).toBeGreaterThan(
-      0,
-    );
+    expect(screen.queryAllByText("spinner.svg").length).toBeGreaterThan(0);
   });
 });

@@ -42,7 +42,7 @@ describe("LogoutItem", () => {
     it("Signs out and returns to initial page", () => {
       clickOn("Sign out");
       clickOn("Ok");
-      expectPageToNavigateTo("/");
+      expectPageToNavigateTo("/causes");
     });
   });
 });

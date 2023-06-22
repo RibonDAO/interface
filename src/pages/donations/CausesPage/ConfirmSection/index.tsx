@@ -74,7 +74,7 @@ function ConfirmSection({
           [failedKey]: true,
           message: e.response.data?.formatted_message,
         };
-        navigateTo({ pathname: "/", state: newState });
+        navigateTo({ pathname: "/causes", state: newState });
         window.location.reload();
       }
       setLocalStorageItem(SHOW_MENU, "true");

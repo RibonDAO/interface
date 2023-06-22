@@ -34,7 +34,7 @@ function LogoutItem(): JSX.Element {
   function handleLogout() {
     logoutCurrentUser();
     createVoucher();
-    navigateTo("/");
+    navigateTo("/causes");
     setSuccessLogoutModalVisible(false);
     window.location.reload();
   }

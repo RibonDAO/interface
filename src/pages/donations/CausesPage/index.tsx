@@ -7,6 +7,7 @@ import {
   useUsers,
   useIntegration,
   useCanDonate,
+  useFirstAccessToIntegration,
 } from "@ribon.io/shared/hooks";
 import { useLocation } from "react-router-dom";
 import { useCurrentUser } from "contexts/currentUserContext";
@@ -15,9 +16,8 @@ import { isFirstAccess } from "lib/onboardingFirstAccess";
 import { useModal } from "hooks/modalHooks/useModal";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
-import { DONATION_MODAL_SEEN_AT_KEY } from "lib/localStorage/constants";
+import { DONATION_TOAST_SEEN_AT_KEY } from "lib/localStorage/constants";
 import { today } from "lib/dateTodayFormatter";
-import { useDonationTicketModal } from "hooks/modalHooks/useDonationTicketModal";
 import Spinner from "components/atomics/Spinner";
 import { logError } from "services/crashReport";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
@@ -32,6 +32,7 @@ import { normalizedLanguage } from "lib/currentLanguage";
 import WarningIcon from "assets/icons/warning-icon.svg";
 import extractUrlValue from "lib/extractUrlValue";
 import { PLATFORM } from "utils/constants";
+import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import * as S from "./styles";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
@@ -80,38 +81,40 @@ function CausesPage(): JSX.Element {
     state?.failedDonation,
   );
 
-  const hasSeenDonationModal = !!getLocalStorageItem(
-    DONATION_MODAL_SEEN_AT_KEY,
+  const hasSeenDonationToast = !!getLocalStorageItem(
+    DONATION_TOAST_SEEN_AT_KEY,
   );
 
   const hasSeenChooseCauseModal = useRef(false);
 
   const { nonProfits, isLoading } = useFreeDonationNonProfits();
+  const { showReceiveTicketToast } = useReceiveTicketToast();
   const { findOrCreateUser } = useUsers();
   const { createSource } = useSources();
   const { signedIn, setCurrentUser, currentUser } = useCurrentUser();
-  const { showDonationTicketModal } = useDonationTicketModal(
-    undefined,
-    integration,
-  );
+
   const externalId = extractUrlValue("external_id", search);
   const { canDonate, refetch: refetchCanDonate } = useCanDonate(
     integrationId,
     PLATFORM,
     externalId,
   );
-  const { destroyVoucher, createVoucher } = useVoucher();
+  const { createVoucher } = useVoucher();
+  const {
+    isFirstAccessToIntegration,
+    isLoading: isLoadingIsFirstAccessToIntegration,
+  } = useFirstAccessToIntegration(integration?.id || integrationId);
 
   const { isMobile } = useBreakpoint();
 
   function hasReceivedTicketToday() {
-    const donationModalSeenAtKey = getLocalStorageItem(
-      DONATION_MODAL_SEEN_AT_KEY,
+    const donationToastSeenAtKey = getLocalStorageItem(
+      DONATION_TOAST_SEEN_AT_KEY,
     );
 
-    if (donationModalSeenAtKey) {
-      const dateUserSawModal = new Date(parseInt(donationModalSeenAtKey, 10));
-      return dateUserSawModal.toLocaleDateString() === today();
+    if (donationToastSeenAtKey) {
+      const dateUserSawToast = new Date(parseInt(donationToastSeenAtKey, 10));
+      return dateUserSawToast.toLocaleDateString() === today();
     }
     return false;
   }
@@ -134,15 +137,19 @@ function CausesPage(): JSX.Element {
       createVoucher();
     } else if (
       !hasReceivedTicketToday() ||
-      (hasAvailableDonation() && !hasSeenDonationModal)
+      (hasAvailableDonation() && !hasSeenDonationToast)
     ) {
-      destroyVoucher();
-      if (integration) {
-        setLocalStorageItem(DONATION_MODAL_SEEN_AT_KEY, Date.now().toString());
-        showDonationTicketModal();
+      if (
+        integration &&
+        !isFirstAccessToIntegration &&
+        !isLoadingIsFirstAccessToIntegration
+      ) {
+        setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());
+        showReceiveTicketToast();
+        createVoucher();
       }
     }
-  }, [integration]);
+  }, [integration, isFirstAccessToIntegration]);
 
   const closeConfirmModal = useCallback(() => {
     setConfirmModalVisible(false);

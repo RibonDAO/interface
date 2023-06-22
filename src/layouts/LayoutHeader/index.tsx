@@ -5,10 +5,7 @@ import { useCurrentUser } from "contexts/currentUserContext";
 import cogIcon from "assets/icons/cog-icon.svg";
 import ticketOn from "assets/icons/ticket-icon-on.svg";
 import ticketOff from "assets/icons/ticket-icon-off.svg";
-import Ticket from "assets/images/ticket.svg";
-import { useTranslation } from "react-i18next";
 import useVoucher from "hooks/useVoucher";
-import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useState } from "react";
 import { Divider } from "components/atomics/Divider/styles";
 import theme from "styles/theme";
@@ -18,7 +15,6 @@ import useNavigation from "hooks/useNavigation";
 import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
 import { PLATFORM, RIBON_COMPANY_ID } from "utils/constants";
 import { logEvent, newLogEvent } from "lib/events";
-import { useModal } from "hooks/modalHooks/useModal";
 import extractUrlValue from "lib/extractUrlValue";
 import ChangeLanguageItem from "./ChangeLanguageItem";
 import LogoutItem from "./LogoutItem";
@@ -54,36 +50,7 @@ function LayoutHeader({
 
   const { isVoucherAvailable } = useVoucher();
 
-  const { t } = useTranslation("translation", {
-    keyPrefix: "layouts.layoutHeader",
-  });
-
   const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
-
-  const { show, hide } = useModal({
-    type: MODAL_TYPES.MODAL_ICON,
-    props: {
-      title: t("donationModalTitle"),
-      body: t("donationModalBody"),
-      primaryButton: {
-        text: t("donationModalButtonText"),
-        onClick: () => {
-          if (history.location.pathname === "/") {
-            hide();
-          } else {
-            navigateTo("/");
-            hide();
-          }
-        },
-        eventName: "ticketModalBtn",
-        eventParams: { ticketQtd: 1 },
-      },
-      onClose: () => hide(),
-      icon: Ticket,
-      eventName: "ticketModal",
-      eventParams: { ticketQtd: 1 },
-    },
-  });
 
   if (!integrationId) return <div />;
 
@@ -99,7 +66,7 @@ function LayoutHeader({
   function handleCounterClick() {
     if (canDonateAndHasVoucher) {
       newLogEvent("click", "ticketIcon", { ticketQtd: 1 });
-      show();
+      navigateTo("/give-ticket");
     } else {
       newLogEvent("click", "ticketIcon", { ticketQtd: 0 });
       showBlockedDonationModal();

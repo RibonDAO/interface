@@ -20,7 +20,7 @@ export const TASKS = [
     title: "donate_ticket",
     actions: ["donation_done_page_view"],
     type: "daily",
-    navigationCallback: "/",
+    navigationCallback: "/causes",
     isVisible(this: Task) {
       return true;
     },

@@ -21,6 +21,7 @@
       "receiveTicketAnimationModalTitle": "Receiving Ticket...",
       "receiveTicketAnimationModalOrigin": "Community",
       "receiveTicketAnimationModalDestiny": "You",
+      "ticketToast": "You have a new ticket!",
       "donateAnimationModalTitle": "Making donation...",
       "donateAnimationModalOrigin": "You",
       "donateAnimationModalDestiny": "Project",
@@ -89,6 +90,23 @@
       "givingPageTitle": "Giving",
       "communityMenuItem": "Community",
       "directDonationMenuItem": "Direct donation"
+    },
+    "giveTicketPage": {
+      "onboardingRibonTitle": "Welcome to Ribon!",
+      "onboardingIntegrationTitle": "{{integrationName}} brought you here!",
+      "onboardingSubtitle": "Your donation ticket is available",
+      "onboardingButtonText": "Get my ticket",
+      "title": "You have 1 ticket!",
+      "integrationSubtitle": "Keep with {{integrationName}} and get new tickets",
+      "subtitle": "Every day when you login in Ribon you get a new ticket.",
+      "buttonText": "Donate ticket",
+      "tooltipTicketText": "Tickets are used to make donations and you get a new one everyday when you log in Ribon.",
+      "tooltipTicket": "What is a ticket?"
+    },
+    "receiveTicketPage": {
+      "textOrigin": "Community",
+      "textDestiny": "You",
+      "description": "Receiving ticket..."
     }
   },
   "layouts": {
@@ -162,9 +180,9 @@
       "migrated": "Migrated"
     },
     "impactNotification": {
-      "title": "We will be importing your impact soon!",
-      "description": "Your ribons donations from the old platform will soon be imported into your profile.",
-      "link": "Do not show again"
+      "title": "We have imported your impact!",
+      "description": "Your history of donations from the old platform are in the \"Ticket donations\" tab.",
+      "link": "Don’t show this again"
     }
   },
   "promoters": {

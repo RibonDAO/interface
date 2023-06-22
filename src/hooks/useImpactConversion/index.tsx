@@ -16,6 +16,8 @@ type ContributionProps =
   | {
       name: string;
       description?: string;
+      communityDescription?: string;
+      communityValue?: number;
       impact?: string;
       image: string;
       value: number;
@@ -43,7 +45,7 @@ export function useImpactConversion() {
     (n) => n.id === userStatistics?.lastDonatedNonProfit,
   );
 
-  const offer = offers?.find((o) => o.id === 3);
+  const offer = offers?.find((o) => o.id === contribution?.offerId);
 
   const { value } = useExperiment({
     key: "impact-conversion-staging",
@@ -56,13 +58,22 @@ export function useImpactConversion() {
 
   useEffect(() => {
     if (variation === "NewImpact") {
-      return setContribution(NewImpact.find((o) => o.nonProfitId === 8));
+      return setContribution(NewImpact.find((o) => o.nonProfitId === 1));
     }
     if (variation === "OldImpact") {
-      return setContribution(OldImpact.find((o) => o.nonProfitId === 8));
+      return setContribution(OldImpact.find((o) => o.nonProfitId === 1));
     }
     return undefined;
-  }, [variation, nonProfit, contribution]);
+  }, [
+    variation,
+    NewImpact,
+    OldImpact,
+    setContribution,
+    nonProfits,
+    offers,
+    userStatistics,
+    currentUser?.id,
+  ]);
 
   useEffect(() => {
     if (variation === "NewImpact") {
@@ -74,7 +85,14 @@ export function useImpactConversion() {
       );
     }
     return undefined;
-  }, [variation, nonProfit, contribution, formattedImpactText]);
+  }, [variation, contribution, nonProfit]);
 
-  return { contribution, description, offer, nonProfit, variation };
+  return {
+    contribution,
+    description,
+    offer,
+    nonProfit,
+    variation,
+    lastNonProfitDonated: userStatistics?.lastDonatedNonProfit,
+  };
 }

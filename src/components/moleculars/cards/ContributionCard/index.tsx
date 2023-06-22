@@ -50,7 +50,7 @@ function ContributionCard({
         {t("donate").replace("{{value}}", formatPrice(value, "brl"))}
       </S.Value>
       <S.Description>
-        {description} <b>{impact}</b>
+        {description} {impact && <b>{impact}</b>}
       </S.Description>
       <S.DonationButton
         onClick={() => handleClickedDonationButton()}

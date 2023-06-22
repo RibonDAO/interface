@@ -33,7 +33,8 @@ function DirectSection() {
   const { useDirectPersonPayments } = usePersonPayments();
   const { data } = useDirectPersonPayments(page, per);
 
-  const { description, contribution, offer, nonProfit } = useImpactConversion();
+  const { description, contribution, offer, nonProfit, variation } =
+    useImpactConversion();
 
   const hasPayments = impactCards?.length > 0;
 
@@ -67,6 +68,41 @@ function DirectSection() {
     setShowMoreDisabled(true);
   };
 
+  const renderEmptySection = () => {
+    if (variation === "Control") {
+      return (
+        <S.EmptySectionContainer>
+          <S.EmptyImage src={directIllustration} />
+          <S.EmptyTitle>{t("emptyTitle")}</S.EmptyTitle>
+          <S.EmptyText>{t("emptyText")}</S.EmptyText>
+          <S.EmptyButton
+            text={t("emptyButton")}
+            size="medium"
+            onClick={handleEmptyButtonClick}
+          />
+        </S.EmptySectionContainer>
+      );
+    } else
+      return (
+        <S.EmptySectionContainer>
+          <S.EmptyTitle>{t("emptyTitle")}</S.EmptyTitle>
+          <S.EmptyText>{t("emptyText")}</S.EmptyText>
+          <ContributionCard
+            description={description}
+            impact={contribution?.impact ?? ""}
+            value={contribution?.value ?? 0}
+            offer={offer}
+            nonProfit={nonProfit}
+            style={{
+              marginTop: isMobile ? "0" : "8px",
+              width: isMobile ? "110%" : "100%",
+              textAlign: "start",
+            }}
+          />
+        </S.EmptySectionContainer>
+      );
+  };
+
   return (
     <S.Container>
       {hasPayments ? (
@@ -87,29 +123,7 @@ function DirectSection() {
           )}
         </S.CardsContainer>
       ) : (
-        <>
-          <S.EmptySectionContainer>
-            <S.EmptyImage src={directIllustration} />
-            <S.EmptyTitle>{t("emptyTitle")}</S.EmptyTitle>
-            <S.EmptyText>{t("emptyText")}</S.EmptyText>
-            <S.EmptyButton
-              text={t("emptyButton")}
-              size="medium"
-              onClick={handleEmptyButtonClick}
-            />
-          </S.EmptySectionContainer>
-          <ContributionCard
-            description={description}
-            impact={contribution?.impact ?? ""}
-            value={contribution?.value ?? 0}
-            offer={offer}
-            nonProfit={nonProfit}
-            style={{
-              marginTop: isMobile ? "0" : "48px",
-              width: isMobile ? "110%" : "100%",
-            }}
-          />
-        </>
+        renderEmptySection()
       )}
     </S.Container>
   );

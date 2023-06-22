@@ -2,6 +2,7 @@ import { NonProfit, Offer } from "@ribon.io/shared/types";
 import useNavigation from "hooks/useNavigation";
 import { newLogEvent } from "lib/events";
 import { formatPrice } from "lib/formatters/currencyFormatter";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import * as S from "./styles";
@@ -13,6 +14,8 @@ export type Props = {
   style?: React.CSSProperties;
   offer?: Offer;
   nonProfit?: NonProfit;
+  from: string;
+  flow?: string;
 };
 
 function ContributionCard({
@@ -22,14 +25,26 @@ function ContributionCard({
   style,
   offer,
   nonProfit,
+  from,
+  flow,
 }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "contributionCard",
   });
   const { navigateTo } = useNavigation();
 
+  useEffect(() => {
+    newLogEvent(
+      "view",
+      flow === "nonProfit" ? "contributeNgoBtn" : "contributeCauseBtn",
+      {
+        from,
+      },
+    );
+  }, []);
+
   const handleClickedDonationButton = () => {
-    newLogEvent("start", "giveNgoBtn", {
+    newLogEvent("start", flow === "nonProfit" ? "giveNgoBtn" : "giveCauseBtn", {
       from: "donateTickets_page",
     });
 
@@ -38,7 +53,8 @@ function ContributionCard({
       state: {
         offer,
         nonProfit,
-        flow: "nonProfit",
+        flow,
+        cause: nonProfit?.cause,
       },
     });
   };

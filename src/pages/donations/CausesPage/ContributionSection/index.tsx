@@ -2,8 +2,7 @@ import ContributionCard from "components/moleculars/cards/ContributionCard";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useTranslation } from "react-i18next";
 
-import { Fragment, useEffect } from "react";
-import { newLogEvent } from "lib/events";
+import { Fragment } from "react";
 
 import { useImpactConversion } from "hooks/useImpactConversion";
 import * as S from "./styles";
@@ -17,12 +16,6 @@ function ContributionSection(): JSX.Element {
     useImpactConversion();
 
   const { isMobile } = useBreakpoint();
-
-  useEffect(() => {
-    newLogEvent("view", "contributeNgoBtn", {
-      from: "donateTickets_page",
-    });
-  }, []);
 
   return variation !== "Control" && contribution ? (
     <S.Container isMobile={isMobile}>
@@ -42,6 +35,8 @@ function ContributionSection(): JSX.Element {
           marginTop: isMobile ? "0" : "48px",
           width: isMobile ? "110%" : "100%",
         }}
+        from="donateTickets_page"
+        flow="nonProfit"
       />
     </S.Container>
   ) : (

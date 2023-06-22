@@ -110,6 +110,8 @@ function CommunitySection() {
               width: isMobile ? "110%" : "100%",
               textAlign: "start",
             }}
+            from="impact_page"
+            flow="cause"
           />
         </S.EmptySectionContainer>
       );

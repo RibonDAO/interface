@@ -38,9 +38,9 @@ function CausesProvider({ children }: any) {
   useEffect(() => {
     if (!isLoading) {
       setActiveCauses(causesFilter());
-      setCurrentCauseId(activeCauses[0]?.id);
+      setCurrentCauseId(causeWasNotSelectedByModal);
     }
-  }, [causes, isLoading]);
+  }, [JSON.stringify(causes), isLoading]);
 
   const causesObject: ICausesContext = useMemo(
     () => ({

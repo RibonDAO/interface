@@ -70,7 +70,7 @@ describe("ContributionSection", () => {
       nonProfit: { name: "Test Non-Profit" },
       offer: { id: 1 },
       description: "This is a test description",
-      variation: "Test Variation",
+      variation: "Control",
     });
 
     renderComponent(<ContributionSection />);

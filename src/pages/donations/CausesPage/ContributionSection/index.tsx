@@ -21,14 +21,14 @@ function ContributionSection(): JSX.Element {
     <S.Container isMobile={isMobile}>
       <S.ImageContainer isMobile={isMobile}>
         <S.Title>
-          {t("title").replace("{{nonProfitName}}", nonProfit?.name ?? "")}
+          {t("title").replace("{{nonProfitName}}", nonProfit?.name)}
         </S.Title>
-        <S.NonProfitImage src={contribution?.image ?? ""} isMobile={isMobile} />
+        <S.NonProfitImage src={contribution?.image} isMobile={isMobile} />
       </S.ImageContainer>
       <ContributionCard
         description={description}
-        impact={contribution?.impact ?? ""}
-        value={contribution?.value ?? 0}
+        impact={contribution?.impact}
+        value={contribution?.value}
         offer={offer}
         nonProfit={nonProfit}
         style={{

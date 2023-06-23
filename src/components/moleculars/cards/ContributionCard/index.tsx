@@ -10,7 +10,7 @@ import * as S from "./styles";
 export type Props = {
   title?: string;
   description: string | JSX.Element | undefined;
-  impact: string;
+  impact?: string;
   value: number;
   style?: React.CSSProperties;
   offer?: Offer;

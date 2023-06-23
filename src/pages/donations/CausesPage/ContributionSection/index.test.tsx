@@ -1,7 +1,11 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
 import { useImpactConversion } from "hooks/useImpactConversion";
 import { renderComponent } from "config/testUtils";
+import {
+  expectTextNotToBeInTheDocument,
+  expectTextToBeInTheDocument,
+} from "config/testUtils/expects";
+import { screen } from "@testing-library/react";
 import ContributionSection from ".";
 
 jest.mock("hooks/useImpactConversion", () => ({
@@ -10,6 +14,9 @@ jest.mock("hooks/useImpactConversion", () => ({
 }));
 
 describe("ContributionSection", () => {
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
   test("renders contribution card when variation is not 'Control' and contribution exists", () => {
     const mockUseImpactConversion = useImpactConversion as jest.Mock;
     mockUseImpactConversion.mockReturnValue({
@@ -26,11 +33,11 @@ describe("ContributionSection", () => {
 
     renderComponent(<ContributionSection />);
 
-    expect(
-      screen.getByText("Que incrível! Obrigado por ajudar Test Non-Profit"),
-    ).toBeInTheDocument();
-    expect(screen.getByText("This is a test impact")).toBeInTheDocument();
-    expect(screen.getByText("Doe R$ 100")).toBeInTheDocument();
+    expectTextToBeInTheDocument(
+      "Que incrível! Obrigado por ajudar Test Non-Profit",
+    );
+    expectTextToBeInTheDocument("This is a test impact");
+    expectTextToBeInTheDocument("Doe R$ 100");
   });
 
   test("does not render contribution card when variation is 'Control'", () => {
@@ -47,13 +54,13 @@ describe("ContributionSection", () => {
       variation: "Control",
     });
 
-    render(<ContributionSection />);
+    renderComponent(<ContributionSection />);
 
-    expect(
-      screen.queryByText("Que incrível! Obrigado por ajudar Test Non-Profit"),
-    ).toBeNull();
-    expect(screen.queryByText("This is a test impact")).toBeNull();
-    expect(screen.queryByText("Doe R$ 100")).toBeNull();
+    expectTextNotToBeInTheDocument(
+      "Que incrível! Obrigado por ajudar Test Non-Profit",
+    );
+    expectTextNotToBeInTheDocument("This is a test impact");
+    expectTextNotToBeInTheDocument("Doe R$ 100");
   });
 
   test("does not render contribution card when contribution is null", () => {
@@ -66,12 +73,61 @@ describe("ContributionSection", () => {
       variation: "Test Variation",
     });
 
-    render(<ContributionSection />);
+    renderComponent(<ContributionSection />);
 
-    expect(
-      screen.queryByText("Que incrível! Obrigado por ajudar Test Non-Profit"),
-    ).toBeNull();
-    expect(screen.queryByText("This is a test impact")).toBeNull();
-    expect(screen.queryByText("Doe R$ 100")).toBeNull();
+    expectTextNotToBeInTheDocument(
+      "Que incrível! Obrigado por ajudar Test Non-Profit",
+    );
+    expectTextNotToBeInTheDocument("This is a test impact");
+    expectTextNotToBeInTheDocument("Doe R$ 100");
+  });
+  test("applies mobile styles when isMobile is true", () => {
+    Object.assign(global, { innerWidth: 500 });
+
+    const mockUseImpactConversion = useImpactConversion as jest.Mock;
+    mockUseImpactConversion.mockReturnValue({
+      contribution: {
+        image: "test-image-url",
+        impact: "This is a test impact",
+        value: 100,
+      },
+      nonProfit: { name: "Test Non-Profit" },
+      offer: { id: 1 },
+      description: "This is a test description",
+      variation: "Test Variation",
+    });
+
+    renderComponent(<ContributionSection />);
+
+    const container = screen.getByTestId("contribution-section-container");
+    expect(container).toHaveStyle({
+      marginTop: "0",
+      width: "110%",
+    });
+  });
+
+  test("applies desktop styles when isMobile is false", () => {
+    const mockUseImpactConversion = useImpactConversion as jest.Mock;
+    mockUseImpactConversion.mockReturnValue({
+      contribution: {
+        image: "test-image-url",
+        impact: "This is a test impact",
+        value: 100,
+      },
+      nonProfit: { name: "Test Non-Profit" },
+      offer: { id: 1 },
+      description: "This is a test description",
+      variation: "Test Variation",
+    });
+
+    Object.assign(global, { innerWidth: 1200 });
+
+    renderComponent(<ContributionSection />);
+
+    const container = screen.getByTestId("contribution-section-container");
+    expect(container).toHaveStyle({
+      marginTop: "48px",
+      width: "100%",
+    });
   });
 });

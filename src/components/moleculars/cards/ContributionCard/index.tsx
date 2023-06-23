@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import * as S from "./styles";
 
 export type Props = {
+  title?: string;
   description: string | JSX.Element | undefined;
   impact: string;
   value: number;
@@ -27,6 +28,7 @@ function ContributionCard({
   nonProfit,
   from,
   flow,
+  title,
 }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "contributionCard",
@@ -46,6 +48,11 @@ function ContributionCard({
   const handleClickedDonationButton = () => {
     newLogEvent("start", flow === "nonProfit" ? "giveNgoBtn" : "giveCauseBtn", {
       from: "donateTickets_page",
+      value,
+      coin: offer?.currency,
+      nonProfitId: nonProfit?.id,
+      causeId: nonProfit?.cause?.id,
+      offerId: offer?.id,
     });
 
     navigateTo({
@@ -61,7 +68,7 @@ function ContributionCard({
 
   return (
     <S.Container style={style}>
-      <S.Title>{t("titleCard")}</S.Title>
+      <S.Title>{title || t("titleCard")}</S.Title>
       <S.Value>
         {t("donate").replace("{{value}}", formatPrice(value, "brl"))}
       </S.Value>

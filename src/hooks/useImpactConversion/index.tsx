@@ -30,6 +30,8 @@ export function useImpactConversion() {
   const [contribution, setContribution] = useState<ContributionProps>();
   const [description, setDescription] = useState<any>();
   const [variation, setVariation] = useState<string>("Control");
+  const [nonProfit, setNonProfit] = useState<any>();
+  const [offer, setOffer] = useState<any>();
 
   const { formattedImpactText } = useFormattedImpactText();
 
@@ -41,11 +43,13 @@ export function useImpactConversion() {
     userId: currentUser?.id ?? undefined,
   });
 
-  const nonProfit = nonProfits?.find(
-    (n) => n.id === userStatistics?.lastDonatedNonProfit,
-  );
+  useEffect(() => {
+    setNonProfit(
+      nonProfits?.find((n) => n.id === userStatistics?.lastDonatedNonProfit),
+    );
 
-  const offer = offers?.find((o) => o.id === contribution?.offerId);
+    setOffer(offers?.find((o) => o.id === contribution?.offerId));
+  }, [nonProfits, offers, userStatistics, contribution?.offerId]);
 
   const { value } = useExperiment({
     key: "impact-conversion-staging",

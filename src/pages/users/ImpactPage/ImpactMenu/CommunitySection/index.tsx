@@ -84,6 +84,7 @@ function CommunitySection() {
           <S.EmptyTitle>{t("emptyTitle")}</S.EmptyTitle>
           <S.EmptyText>{t("emptyText")}</S.EmptyText>
           <ContributionCard
+            title={t("titleCard").replace("{{cause}}", nonProfit?.cause.name)}
             description={contribution?.communityDescription ?? ""}
             impact={`+ ${formatPrice(
               contribution?.communityValue ?? 0,

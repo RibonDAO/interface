@@ -87,7 +87,8 @@ function PaymentPage(): JSX.Element {
     }
   };
 
-  const highlightText = () => nonProfit?.name || cause?.name;
+  const isNonprofit = () => flow === "nonProfit" && nonProfit;
+  const highlightText = () => (isNonprofit() ? nonProfit?.name : cause?.name);
 
   return (
     <S.Container>
@@ -98,11 +99,11 @@ function PaymentPage(): JSX.Element {
       />
       <S.MainContainer>
         <S.SupportImage
-          src={nonProfit?.backgroundImage || cause?.coverImage}
+          src={isNonprofit() ? nonProfit?.backgroundImage : cause?.coverImage}
           alt={
-            (nonProfit?.backgroundImageDescription ||
-              cause?.coverImageDescription) ??
-            ""
+            (isNonprofit()
+              ? nonProfit?.backgroundImageDescription
+              : cause?.coverImageDescription) ?? ""
           }
         />
         <S.ContentContainer>

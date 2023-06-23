@@ -177,7 +177,8 @@
       "tooltipSecondParagraphText": "Taxa de serviço: {{value}}",
       "showMore": "Mostrar mais",
       "generalReceiver": "Geral",
-      "migrated": "Migrado"
+      "migrated": "Migrado",
+      "titleCard": "Ajude a causa de {{cause}}"
     },
     "impactNotification": {
       "title": "Migramos seu impacto!",

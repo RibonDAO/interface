@@ -78,6 +78,7 @@ function CommunitySection() {
       {hasImpactCards ? (
         <S.CardsContainer>
           {impactCards.map((item: PersonPayment) => (
+            
             <CardTooltip
               key={item.id}
               title={item.receiver.name}
@@ -96,6 +97,7 @@ function CommunitySection() {
             >
               <S.TooltipText>
                 <S.Paragraph>
+                  {console.log(item.id)}
                   {t("tooltipFirstParagraphText", {
                     value: formatNetDonation(
                       item.serviceFees,

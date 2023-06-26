@@ -33,7 +33,7 @@ describe("GiveTicketPage", () => {
       it("renders the Ribon integration with correct title", () => {
         expect(mockNewLogEventFunction).toHaveBeenCalledWith(
           action,
-          "onboarding_page",
+          "P10_view",
         );
         expectTextToBeInTheDocument("Welcome to Ribon!");
       });

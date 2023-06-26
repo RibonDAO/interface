@@ -54,7 +54,7 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
 
   useEffect(() => {
     if (isOnboarding) {
-      newLogEvent("view", "onboarding_page");
+      newLogEvent("view", "P10_view");
     } else {
       newLogEvent("view", "haveTickets_page");
     }

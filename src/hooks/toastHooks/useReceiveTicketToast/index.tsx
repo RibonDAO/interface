@@ -4,6 +4,7 @@ import useToast from "hooks/useToast";
 import useBreakpoint from "hooks/useBreakpoint";
 import { theme } from "@ribon.io/shared/styles";
 import { Integration } from "@ribon.io/shared/types";
+import { newLogEvent } from "lib/events";
 
 export function useReceiveTicketToast(
   initialState?: boolean,
@@ -28,6 +29,7 @@ export function useReceiveTicketToast(
       borderColor: theme.colors.brand.primary[600],
       textColor: theme.colors.brand.primary[600],
     });
+    newLogEvent("view", "receiveTicket", { from: "receivedTickets_toast" });
   };
 
   useEffect(() => {

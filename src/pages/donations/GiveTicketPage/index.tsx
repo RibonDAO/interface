@@ -4,7 +4,6 @@ import LeftImage from "assets/images/bottom-left-shape-red.svg";
 import RightImage from "assets/images/top-right-shape.svg";
 import CenterImage from "assets/images/center-shape-background.svg";
 import useNavigation from "hooks/useNavigation";
-import { useLocation } from "react-router-dom";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useIntegration } from "@ribon.io/shared/hooks";
 import { RIBON_COMPANY_ID } from "utils/constants";
@@ -14,21 +13,20 @@ import { useEffect } from "react";
 import ArrowLeft from "./assets/arrow-left-dark-green.svg";
 import * as S from "./styles";
 
-type LocationStateType = {
+export type Props = {
   isOnboarding?: boolean;
 };
 
-function GiveTicketPage(): JSX.Element {
+function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.giveTicketPage",
   });
   const { navigateTo, navigateBack } = useNavigation();
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
-  const { state } = useLocation<LocationStateType>();
 
   const handleClick = () => {
-    if (state?.isOnboarding) {
+    if (isOnboarding) {
       newLogEvent("view", "receiveTicket", { from: "onboarding_page" });
       navigateTo("/receive-ticket");
     } else {
@@ -50,21 +48,21 @@ function GiveTicketPage(): JSX.Element {
         integrationName: integration?.name,
       });
 
-  const subtitle = state?.isOnboarding
-    ? t("onboardingSubtitle")
-    : handleSubtitle;
+  const subtitle = isOnboarding ? t("onboardingSubtitle") : handleSubtitle;
 
-  const buttonText = state?.isOnboarding
-    ? t("onboardingButtonText")
-    : t("buttonText");
+  const buttonText = isOnboarding ? t("onboardingButtonText") : t("buttonText");
 
   useEffect(() => {
-    if (state?.isOnboarding) newLogEvent("view", "P10");
-  }, [state]);
+    if (isOnboarding) {
+      newLogEvent("view", "onboarding_page");
+    } else {
+      newLogEvent("view", "haveTickets_page");
+    }
+  }, [isOnboarding]);
 
   return (
     <S.Container>
-      {!state?.isOnboarding && (
+      {!isOnboarding && (
         <S.BackArrowButton
           src={ArrowLeft}
           onClick={navigateBack}
@@ -84,13 +82,11 @@ function GiveTicketPage(): JSX.Element {
             </S.ImageContainer>
           )}
           <S.TextContainer>
-            <S.Title>
-              {state.isOnboarding ? titleOnboarding : t("title")}
-            </S.Title>
+            <S.Title>{isOnboarding ? titleOnboarding : t("title")}</S.Title>
             <S.Description>{subtitle}</S.Description>
           </S.TextContainer>
           <S.FilledButton onClick={handleClick}>{buttonText}</S.FilledButton>
-          {!state?.isOnboarding && (
+          {!isOnboarding && (
             <S.TooltipSection>
               <Tooltip
                 text={t("tooltipTicketText")}

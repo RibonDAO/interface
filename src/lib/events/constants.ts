@@ -12,6 +12,8 @@ const events: any = {
     "/donation-done-cause?cause": "P7",
     "/post-donation": "P8",
     "/impact": "P9",
+    "/intro": "P10",
+    "/tickets": "P11",
   },
 };
 

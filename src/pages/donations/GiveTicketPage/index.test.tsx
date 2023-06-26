@@ -16,16 +16,15 @@ describe("GiveTicketPage", () => {
       const action = "view";
 
       beforeEach(() => {
-        renderComponent(<GiveTicketPage />, {
-          locationState: {
-            isOnboarding: true,
-          },
-        });
+        renderComponent(<GiveTicketPage isOnboarding />);
         waitForPromises();
       });
 
       it("renders the Ribon integration with correct title", () => {
-        expect(mockNewLogEventFunction).toHaveBeenCalledWith(action, "P10");
+        expect(mockNewLogEventFunction).toHaveBeenCalledWith(
+          action,
+          "onboarding_page",
+        );
         expectTextToBeInTheDocument("Welcome to Ribon!");
       });
 
@@ -42,11 +41,7 @@ describe("GiveTicketPage", () => {
 
     describe("when the integration is not Ribon", () => {
       beforeEach(() => {
-        renderComponent(<GiveTicketPage />, {
-          locationState: {
-            isOnboarding: true,
-          },
-        });
+        renderComponent(<GiveTicketPage isOnboarding />);
         waitForPromises();
       });
 

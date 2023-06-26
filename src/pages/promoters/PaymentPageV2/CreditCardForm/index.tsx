@@ -1,19 +1,28 @@
 import InputText from "components/atomics/inputs/InputText";
 import { theme } from "@ribon.io/shared/styles";
-import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
+import { useTranslation } from "react-i18next";
 import * as S from "./styles";
 
-function CreditCardForm(): JSX.Element {
-  const {
-    name,
-    setName,
-    number,
-    setNumber,
-    expirationDate,
-    setExpirationDate,
-    cvv,
-    setCvv,
-  } = useCardPaymentInformation();
+export type Props = {
+  data: {
+    name: string;
+    number: string;
+    expirationDate: string;
+    cvv: string;
+  };
+  setData: (data: any) => void;
+};
+
+function CreditCardForm({ data, setData }: Props): JSX.Element {
+  const setFieldValue = (key: string, value: string) => {
+    setData({
+      ...data,
+      [key]: value,
+    });
+  };
+  const { t } = useTranslation("translation", {
+    keyPrefix: "promoters.paymentPageV2.paymentMethodSection.creditCardFields",
+  });
 
   const { primary } = theme.colors.brand;
 
@@ -23,10 +32,10 @@ function CreditCardForm(): JSX.Element {
     <S.Container>
       <InputText
         name="number"
-        label={{ text: "Número do cartão" }}
-        value={number}
+        label={{ text: t("number") }}
+        value={data.number}
         mask="9999 9999 9999 9999"
-        onChange={(e) => setNumber(e.target.value)}
+        onChange={(e) => setFieldValue("number", e.target.value)}
         borderColor={{
           active: activeBorderColor,
         }}
@@ -36,9 +45,9 @@ function CreditCardForm(): JSX.Element {
 
       <InputText
         name="name"
-        label={{ text: "Nome impresso" }}
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+        label={{ text: t("name") }}
+        value={data.name}
+        onChange={(e) => setFieldValue("name", e.target.value)}
         borderColor={{
           active: activeBorderColor,
         }}
@@ -49,11 +58,11 @@ function CreditCardForm(): JSX.Element {
       <S.Half>
         <InputText
           name="expirationDate"
-          label={{ text: "Data de expiração" }}
+          label={{ text: t("expirationDate") }}
           mask="99/9999"
           autofill="cc-exp"
-          value={expirationDate}
-          onChange={(e) => setExpirationDate(e.target.value)}
+          value={data.expirationDate}
+          onChange={(e) => setFieldValue("expirationDate", e.target.value)}
           required
           minLength={6}
           data-testid="expirationDate"
@@ -63,11 +72,10 @@ function CreditCardForm(): JSX.Element {
         />
         <InputText
           name="cvv"
-          label={{ text: "CVV" }}
-          maxLength={4}
+          label={{ text: t("cvv") }}
           minLength={3}
-          value={cvv}
-          onChange={(e) => setCvv(e.target.value)}
+          value={data.cvv}
+          onChange={(e) => setFieldValue("cvv", e.target.value)}
           borderColor={{
             active: activeBorderColor,
           }}

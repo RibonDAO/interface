@@ -54,4 +54,5 @@ export const CloseIcon = styled(Icon)`
   margin-bottom: ${({ theme }) => theme.spacing(16)};
   display: flex;
   align-self: flex-end;
+  cursor: pointer;
 `;

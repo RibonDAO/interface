@@ -15,6 +15,16 @@ describe("GiveTicketPage", () => {
     describe("when the integration is Ribon", () => {
       const action = "view";
 
+      const ribonIntegration = {
+        id: 1,
+        name: "Ribon",
+        logo: "https://ribon.io/logo.png",
+      } as Integration;
+
+      mockRequest(`/api/v1/integrations/${ribonIntegration.id}`, {
+        payload: ribonIntegration,
+      });
+
       beforeEach(() => {
         renderComponent(<GiveTicketPage isOnboarding />);
         waitForPromises();

@@ -313,6 +313,8 @@
       "netDonation": "Doação líquida: ",
       "serviceFees": "Taxas de serviço: ",
       "payment": "Pagamento",
+      "selectCurrency": "Selecione a moeda",
+      "selectValue": "Selecione o valor",
       "paymentMethodSection": {
         "creditCard": "Cartão de crédito",
         "googlePay": "Google Pay",

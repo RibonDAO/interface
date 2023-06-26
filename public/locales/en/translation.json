@@ -313,6 +313,8 @@
       "netDonation": "Net donation: ",
       "serviceFees": "Service fees: ",
       "payment": "Payment",
+      "selectCurrency": "Select currency",
+      "selectValue": "Select value",
       "paymentMethodSection": {
         "creditCard": "Credit card",
         "googlePay": "Google Pay",

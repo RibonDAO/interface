@@ -66,7 +66,7 @@ function LayoutHeader({
   function handleCounterClick() {
     if (canDonateAndHasVoucher) {
       newLogEvent("click", "ticketIcon", { ticketQtd: 1 });
-      navigateTo("/give-ticket");
+      navigateTo("/tickets");
     } else {
       newLogEvent("click", "ticketIcon", { ticketQtd: 0 });
       showBlockedDonationModal();

@@ -59,7 +59,13 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
-      <Route path="/give-ticket" exact>
+      <Route path="/intro" exact>
+        <Suspense fallback={<div />}>
+          <GiveTicketPage isOnboarding />
+        </Suspense>
+      </Route>
+
+      <Route path="/tickets" exact>
         <Suspense fallback={<div />}>
           <GiveTicketPage />
         </Suspense>

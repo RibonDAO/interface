@@ -168,14 +168,15 @@ export const BottomContainer = styled.div``;
 
 export const InsideButton = styled(Button)`
   ${defaultBodyMdSemibold}
+
   width: auto;
+  min-width: 118px;
+  padding: ${({ theme }) => theme.spacing(16, 12)};
+  border: none;
+  border-radius: 4px;
   position: absolute;
   right: 16px;
   bottom: 16px;
-  min-width: 118px;
   gap: ${({ theme }) => theme.spacing(4)};
-  padding: ${({ theme }) => theme.spacing(16, 12)};
   background-color: ${({ theme }) => theme.colors.brand.primary[600]};
-  border: none;
-  border-radius: 4px;
 `;

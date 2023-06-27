@@ -21,6 +21,6 @@ describe("LayoutHeader", () => {
     renderComponent(<LayoutHeader />);
 
     clickOn("1");
-    expectPageToNavigateTo("/give-ticket");
+    expectPageToNavigateTo("/tickets");
   });
 });

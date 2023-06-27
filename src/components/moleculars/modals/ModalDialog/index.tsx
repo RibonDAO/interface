@@ -19,6 +19,7 @@ export type Props = {
   children?: JSX.Element[] | JSX.Element | null;
   eventName?: string;
   eventParams?: Record<string, any>;
+  onClose?: () => void;
 };
 
 function ModalDialog({
@@ -33,9 +34,9 @@ function ModalDialog({
   type,
   icon,
   iconColor,
+  onClose = () => {},
 }: Props): JSX.Element {
   const [logged, setLogged] = useState(false);
-  const [isVisible, setIsVisible] = useState(visible);
 
   const { isMobile } = useBreakpoint();
 
@@ -43,10 +44,6 @@ function ModalDialog({
     newLogEvent("view", eventName, eventParams);
     setLogged(true);
   }
-
-  const handleCloseModal = () => {
-    setIsVisible(false);
-  };
 
   const modalIcon = () => {
     switch (type) {
@@ -112,8 +109,8 @@ function ModalDialog({
 
   return (
     <S.Container
-      isOpen={isVisible}
-      onRequestClose={handleCloseModal}
+      isOpen={visible}
+      onRequestClose={onClose}
       style={{
         ...defaultCustomStyles,
         overlay: {
@@ -126,7 +123,7 @@ function ModalDialog({
       <S.CloseIcon
         name="close"
         className="close"
-        onClick={handleCloseModal}
+        onClick={onClose}
         color={theme.colors.neutral[600]}
         size="24px"
       />

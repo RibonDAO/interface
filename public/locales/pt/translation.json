@@ -314,6 +314,28 @@
         "netDonationText": "Doação líquida:",
         "serviceFeesText": "Taxas de serviço:"
       }
+    },
+    "paymentPageV2": {
+      "changeCurrency": "Mudar moeda",
+      "back": "Voltar",
+      "donatingTo": "Doando para ",
+      "netDonation": "Doação líquida: ",
+      "serviceFees": "Taxas de serviço: ",
+      "payment": "Pagamento",
+      "selectCurrency": "Selecione a moeda",
+      "selectValue": "Selecione o valor",
+      "paymentMethodSection": {
+        "creditCard": "Cartão de crédito",
+        "googlePay": "Google Pay",
+        "applePay": "Apple Pay",
+        "creditCardFields": {
+          "number": "Número do cartão",
+          "name": "Nome impresso",
+          "expirationDate": "Data de expiração",
+          "cvv": "CVV"
+        }
+      },
+      "confirmPayment": "Confirmar pagamento"
     }
   },
   "contexts": {

@@ -314,6 +314,28 @@
         "netDonationText": "Net donation:",
         "serviceFeesText": "Service fees:"
       }
+    },
+    "paymentPageV2": {
+      "changeCurrency": "Change currency",
+      "back": "Back",
+      "donatingTo": "Donating to ",
+      "netDonation": "Net donation: ",
+      "serviceFees": "Service fees: ",
+      "payment": "Payment",
+      "selectCurrency": "Select currency",
+      "selectValue": "Select value",
+      "paymentMethodSection": {
+        "creditCard": "Credit card",
+        "googlePay": "Google Pay",
+        "applePay": "Apple Pay",
+        "creditCardFields": {
+          "number": "Card number",
+          "name": "Cardholder name",
+          "expirationDate": "Expiration date",
+          "cvv": "CVV"
+        }
+      },
+      "confirmPayment": "Confirm payment"
     }
   },
   "contexts": {

@@ -41,10 +41,11 @@ function PaymentPageV2(): JSX.Element {
 
   const { updateLocationSearch } = useLocationSearch();
 
-  const { offers, refetch: refetchOffers } = useOffers(
-    Currencies[currency as keyof typeof Currencies],
-    false,
-  );
+  const {
+    offers,
+    refetch: refetchOffers,
+    isLoading: isLoadingOffers,
+  } = useOffers(Currencies[currency as keyof typeof Currencies], false);
 
   const currentPayable = usePayable(target, targetId);
 
@@ -66,11 +67,6 @@ function PaymentPageV2(): JSX.Element {
     },
   ];
 
-  const resetOffer = () => {
-    updateLocationSearch("offer", "0");
-    setCurrentOffer(offers[0]);
-  };
-
   useEffect(() => {
     if (currentPayable) setLoaded(true);
   }, [currentPayable]);
@@ -79,15 +75,19 @@ function PaymentPageV2(): JSX.Element {
     refetchOffers();
   }, [currency]);
 
-  useEffect(() => {
-    if (!offer || !offers) return;
-    if (!offers[Number(offer)]) {
-      resetOffer();
-      return;
-    }
+  const resetOffer = () => {
+    updateLocationSearch("offer", "0");
+  };
 
-    setCurrentOffer(offers[Number(offer)] || offers[0]);
-  }, [offer, offers]);
+  useEffect(() => {
+    if (!isLoadingOffers) {
+      const offerIndex = Number(offer);
+      const actualOffer = offers?.[offerIndex];
+
+      if (actualOffer) setCurrentOffer(actualOffer);
+      else resetOffer();
+    }
+  }, [offers, offer, isLoadingOffers]);
 
   const handleOfferChange = (offerItem: Offer) => {
     const offerIndex = offers?.findIndex((item) => item.id === offerItem.id);

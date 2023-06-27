@@ -147,10 +147,7 @@ function PostDonationPage(): JSX.Element {
               <S.CardMainText>{nonProfit.name}</S.CardMainText>
             </S.BottomContainer>
             {shouldRenderVariation && (
-              <S.InsideButton
-                onClick={handleDonateDirectlyClick}
-                text={t("donateButton")}
-              />
+              <S.InsideButton onClick={() => {}} text={t("donateButton")} />
             )}
           </S.Card>
         </>

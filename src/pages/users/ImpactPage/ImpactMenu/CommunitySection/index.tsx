@@ -86,10 +86,10 @@ function CommunitySection() {
           <ContributionCard
             title={t("titleCard").replace("{{cause}}", nonProfit?.cause.name)}
             description={contribution?.communityDescription ?? ""}
-            impact={`+ ${formatPrice(
+            impact={`+${formatPrice(
               contribution?.communityValue ?? 0,
               "brl",
-            )}`}
+            ).replace(/\s/g, "")}`}
             value={contribution?.value ?? 0}
             offer={offer}
             nonProfit={nonProfit}

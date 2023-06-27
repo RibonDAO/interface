@@ -34,10 +34,10 @@ describe("ContributionSection", () => {
     renderComponent(<ContributionSection />);
 
     expectTextToBeInTheDocument(
-      "Que incrível! Obrigado por ajudar Test Non-Profit",
+      "Amazing! Thank you for helping Test Non-Profit",
     );
     expectTextToBeInTheDocument("This is a test impact");
-    expectTextToBeInTheDocument("Doe R$ 100");
+    expectTextToBeInTheDocument("Donate R$ 100");
   });
 
   test("does not render contribution card when variation is 'Control'", () => {
@@ -57,7 +57,7 @@ describe("ContributionSection", () => {
     renderComponent(<ContributionSection />);
 
     expectTextNotToBeInTheDocument(
-      "Que incrível! Obrigado por ajudar Test Non-Profit",
+      "Amazing! Thank you for helping Test Non-Profit",
     );
     expectTextNotToBeInTheDocument("This is a test impact");
     expectTextNotToBeInTheDocument("Doe R$ 100");
@@ -76,10 +76,10 @@ describe("ContributionSection", () => {
     renderComponent(<ContributionSection />);
 
     expectTextNotToBeInTheDocument(
-      "Que incrível! Obrigado por ajudar Test Non-Profit",
+      "Amazing! Thank you for helping Test Test Non-Profit",
     );
     expectTextNotToBeInTheDocument("This is a test impact");
-    expectTextNotToBeInTheDocument("Doe R$ 100");
+    expectTextNotToBeInTheDocument("Donate R$ 100");
   });
   test("applies mobile styles when isMobile is true", () => {
     Object.assign(global, { innerWidth: 500 });

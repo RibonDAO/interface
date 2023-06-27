@@ -178,7 +178,7 @@
       "showMore": "Show more",
       "generalReceiver": "General",
       "migrated": "Migrated",
-      "titleCard": "Ajude a causa de {{cause}}"
+      "titleCard": "Help the {{cause}} cause"
     },
     "impactNotification": {
       "title": "We have imported your impact!",
@@ -406,11 +406,11 @@
     "button": "Download app"
   },
   "contributionSection": {
-    "title": "Que incrível! Obrigado por ajudar {{nonProfitName}}"
+    "title": "Amazing! Thank you for helping {{nonProfitName}}"
   },
   "contributionCard": {
-    "button": "Doar",
-    "donate": "Doe {{value}}",
-    "titleCard": "Faça ainda mais"
+    "button": "Donate",
+    "donate": "Donate {{value}}",
+    "titleCard": "Do even more"
   }
 }

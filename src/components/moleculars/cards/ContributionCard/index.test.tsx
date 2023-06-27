@@ -41,9 +41,9 @@ describe("ContributionCard", () => {
 
     expectTextToBeInTheDocument("This is a test description");
     expectTextToBeInTheDocument("This is a test impact");
-    expectTextToBeInTheDocument("Doe R$ 100");
+    expectTextToBeInTheDocument("Donate R$ 100");
 
-    clickOn("Doar");
+    clickOn("Donate");
 
     expectPageToNavigateTo("promoters/payment", {
       state: {
@@ -86,9 +86,9 @@ describe("ContributionCard", () => {
 
     expectTextToBeInTheDocument("This is a test description");
     expectTextToBeInTheDocument("This is a test impact");
-    expectTextToBeInTheDocument("Doe R$ 100");
+    expectTextToBeInTheDocument("Donate R$ 100");
 
-    clickOn("Doar");
+    clickOn("Donate");
 
     expectPageToNavigateTo("promoters/payment", {
       state: {

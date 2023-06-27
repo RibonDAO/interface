@@ -402,5 +402,25 @@
     "title": "Tenha uma experiência completa usando o nosso App",
     "description": "Baixe o app e tenha acesso a todas as funcionalidades da Ribon",
     "button": "Baixar o app"
+  },
+  "contributionStatsPage": {
+    "title": "Você doou 20$ para Educação",
+    "engagementSection": {
+      "title": "Sua doação gerou tickets",
+      "numberOfTicketDonors": "pessoas já doaram tickets",
+      "numberOfContributorsDonors": "doaram dinheiro inspiradas por você"
+    },
+    "boostSection": {
+      "title": "Sua causa recebe mais",
+      "subtitle": "Total arrecadado para sua causa até agora",
+      "tip": "Doando dinheiro pela Ribon, você gera tickets para que outras pessoas possam doar de graça. Com isso, algumas delas se inspiram a doar dinheiro também."
+    },
+    "video": {
+      "title": "Entenda como a comunidade da Ribon aumenta a sua doação"
+    },
+    "supportSection": {
+      "title": "Sua doação gerou impacto",
+      "text": "O que você achou dessa experiência ?",
+    }
   }
 }

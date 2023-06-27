@@ -47,7 +47,7 @@ function ContributionCard({
 
   const handleClickedDonationButton = () => {
     newLogEvent("start", flow === "nonProfit" ? "giveNgoBtn" : "giveCauseBtn", {
-      from: "donateTickets_page",
+      from,
       value,
       coin: offer?.currency,
       nonProfitId: nonProfit?.id,

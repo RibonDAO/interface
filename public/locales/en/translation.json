@@ -30,7 +30,6 @@
       "learnMore": "Learn more",
       "tooltipTicketText": "Tickets are used to make donations and you get a new one everyday when you log in Ribon.",
       "tooltipTicket": "What is a ticket?",
-      "nonProfits": "Non-profits",
       "noCauses": {
         "title": "No causes available",
         "text": "But you can contribute donating in community for a cause",
@@ -65,7 +64,9 @@
       "donateAsCommunity": "Donate as a community to",
       "donateDirectly": "Donate directly to",
       "donateLater": "Donate later",
-      "boostedDonation": "Boosted donation"
+      "boostedDonation": "Boosted donation",
+      "donate": "Donate {{value}} to",
+      "donateButton": "Donate now"
     },
     "donationDonePage": {
       "title": "Thank you for the donation!",
@@ -428,7 +429,9 @@
     "button": "Download app"
   },
   "contributionSection": {
-    "title": "Amazing! Thank you for helping {{nonProfitName}}"
+    "title": "Amazing! Thank you for helping {{nonProfitName}}",
+    "titleCard": "Do even more",
+    "nonProfits": "NGOs"
   },
   "contributionCard": {
     "button": "Donate",

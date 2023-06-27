@@ -1,7 +1,6 @@
 import Button from "components/atomics/buttons/Button";
 import styled from "styled-components";
 import {
-  defaultBodyLgSemibold,
   defaultBodyMdBold,
   defaultBodyMdRegular,
 } from "styles/typography/default";
@@ -112,11 +111,4 @@ export const EmptyText = styled.span`
 export const EmptyButton = styled(Button)`
   width: 196px;
   color: ${({ theme }) => theme.colors.brand.primary[800]};
-`;
-
-export const NonProfitTitle = styled.h1`
-  ${defaultBodyLgSemibold}
-
-  margin-bottom: ${({ theme }) => theme.spacing(16)};
-  color: ${({ theme }) => theme.colors.neutral[800]};
 `;

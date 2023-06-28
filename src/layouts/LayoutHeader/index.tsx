@@ -16,6 +16,8 @@ import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModa
 import { PLATFORM, RIBON_COMPANY_ID } from "utils/constants";
 import { logEvent, newLogEvent } from "lib/events";
 import extractUrlValue from "lib/extractUrlValue";
+import { useBlockedDonationContributionModal } from "hooks/modalHooks/useBlockedDonationContributionModal";
+import { useImpactConversion } from "hooks/useImpactConversion";
 import ChangeLanguageItem from "./ChangeLanguageItem";
 import LogoutItem from "./LogoutItem";
 import * as S from "./styles";
@@ -52,6 +54,11 @@ function LayoutHeader({
 
   const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
 
+  const { contribution, variation } = useImpactConversion();
+
+  const { showBlockedDonationContributionModal } =
+    useBlockedDonationContributionModal();
+
   if (!integrationId) return <div />;
 
   function openMenu() {
@@ -69,7 +76,11 @@ function LayoutHeader({
       navigateTo("/tickets");
     } else {
       newLogEvent("click", "ticketIcon", { ticketQtd: 0 });
-      showBlockedDonationModal();
+      if (variation !== "Control" && contribution) {
+        showBlockedDonationContributionModal();
+      } else {
+        showBlockedDonationModal();
+      }
     }
   }
 

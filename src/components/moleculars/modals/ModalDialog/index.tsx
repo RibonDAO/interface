@@ -14,6 +14,7 @@ export type Props = {
   iconColor?: string;
   title?: string | null;
   description?: string | JSX.Element | null;
+  highlightedText?: string | null;
   primaryButton?: ButtonProps | null;
   secondaryButton?: ButtonProps | null;
   children?: JSX.Element[] | JSX.Element | null;
@@ -29,6 +30,7 @@ function ModalDialog({
   primaryButton = null,
   secondaryButton = null,
   children = null,
+  highlightedText = null,
   eventName,
   eventParams,
   type,
@@ -137,6 +139,9 @@ function ModalDialog({
       )}
       {title && <S.Title style={{ color: titleColor() }}>{title}</S.Title>}
       {description && <S.Description>{description}</S.Description>}
+      {highlightedText && (
+        <S.HighlightedText>{highlightedText}</S.HighlightedText>
+      )}
       {primaryButton && (
         <Button
           text={primaryButton.text}

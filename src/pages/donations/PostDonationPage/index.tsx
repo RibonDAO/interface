@@ -48,8 +48,8 @@ function PostDonationPage(): JSX.Element {
   }, [variation]);
 
   const handleClickedDonationButton = (flow: string) => {
-    newLogEvent("start", "giveCauseBtn", {
-      from: flow === "nonProfit" ? "giveNgoBtn" : "giveCauseBtn",
+    newLogEvent("start", flow === "nonProfit" ? "giveNgoBtn" : "giveCauseBtn", {
+      from: "givePostDonation_page",
       value: contribution?.value,
       coin: offer?.currency,
       causeId: nonProfit?.cause?.id,

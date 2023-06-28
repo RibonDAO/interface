@@ -10,6 +10,8 @@ import { useLocation } from "react-router-dom";
 import useVoucher from "hooks/useVoucher";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import causeIllustration from "assets/images/direct-illustration.svg";
+import { useBlockedDonationContributionModal } from "hooks/modalHooks/useBlockedDonationContributionModal";
+import { useImpactConversion } from "hooks/useImpactConversion";
 import StoriesSection from "../StoriesSection";
 import * as S from "../styles";
 
@@ -48,6 +50,10 @@ function NonProfitsList({
     state?.blockedDonation,
     integration,
   );
+  const { contribution, variation } = useImpactConversion();
+
+  const { showBlockedDonationContributionModal } =
+    useBlockedDonationContributionModal();
 
   const chooseNonProfit = useCallback((nonProfit: NonProfit) => {
     setChosenNonProfit(nonProfit);
@@ -69,7 +75,11 @@ function NonProfitsList({
       newLogEvent("click", "P1_donateBlockedBtn", {
         nonProfitId: nonProfit.id,
       });
-      showBlockedDonationModal();
+      if (variation !== "Control" && contribution) {
+        showBlockedDonationContributionModal();
+      } else {
+        showBlockedDonationModal();
+      }
     }
   }
   const handleEmptyButtonClick = () => {

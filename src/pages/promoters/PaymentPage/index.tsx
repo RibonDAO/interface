@@ -8,12 +8,13 @@ import { useEffect, useState } from "react";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import getThemeByFlow from "lib/themeByFlow";
 import { newLogEvent } from "lib/events";
+import { useBlockedDonationContributionModal } from "hooks/modalHooks/useBlockedDonationContributionModal";
 import * as S from "./styles";
 import UserInfoSection from "./UserInfoSection";
 import CardInfoSection from "./CardInfoSection";
 
 type LocationState = {
-  offer: Offer;
+  offer?: Offer;
   cause: Cause;
   nonProfit?: NonProfit;
   flow: "cause" | "nonProfit";
@@ -29,13 +30,19 @@ function PaymentPage(): JSX.Element {
   });
   const [currentSection, setCurrentSection] = useState<"user" | "card">("user");
   const { cardGivingFees } = useCardGivingFees(
-    offer.priceValue,
-    offer.currency.toUpperCase() as Currencies,
+    offer?.priceValue ?? 0,
+    offer?.currency.toUpperCase() as Currencies,
   );
   const { buttonDisabled, handleSubmit, setCause, setNonProfit } =
     useCardPaymentInformation();
+  const { hideBlockedDonationContributionModal } =
+    useBlockedDonationContributionModal();
 
   const colorTheme = getThemeByFlow(flow);
+
+  useEffect(() => {
+    hideBlockedDonationContributionModal();
+  }, []);
 
   useEffect(() => {
     setCause(cause);
@@ -49,15 +56,15 @@ function PaymentPage(): JSX.Element {
     if (flow === "cause") {
       newLogEvent("view", "P5", {
         causeId: cause?.id,
-        price: offer.priceValue,
-        currency: offer.currency,
+        price: offer?.priceValue,
+        currency: offer?.currency,
       });
     }
     if (flow === "nonProfit") {
       newLogEvent("view", "P6", {
         nonprofitId: nonProfit?.id,
-        price: offer.priceValue,
-        currency: offer.currency,
+        price: offer?.priceValue,
+        currency: offer?.currency,
       });
     }
   }, []);
@@ -114,7 +121,7 @@ function PaymentPage(): JSX.Element {
             </S.TitleHighlight>
           </S.Title>
           <S.DonationValueText color={colorTheme.shade20}>
-            {offer.price}
+            {offer?.price}
           </S.DonationValueText>
           {cardGivingFees && (
             <S.FeeText>

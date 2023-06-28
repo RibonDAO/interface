@@ -53,7 +53,11 @@
         "title": "You have no more tickets :(",
         "text": "Would you like to receive more?",
         "ribonTitle": "Ribon gift",
-        "ribonText": "Come back tomorrow to receive 1 more ticket"
+        "ribonText": "Come back tomorrow to receive 1 more ticket",
+        "titleContributionModal": "You used all your tickets",
+        "descriptionContributionModal": "How about making a paid donation?",
+        "buttonContributionModal": "Donate now",
+        "textContributionModal": "Donate {{value}} to {{nonProfitName}}"
       }
     },
     "storiesPage": {

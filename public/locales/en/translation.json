@@ -428,7 +428,9 @@
     "button": "Download app"
   },
   "contributionSection": {
-    "title": "Amazing! Thank you for helping {{nonProfitName}}"
+    "title": "Amazing! Thank you for helping {{nonProfitName}}",
+    "titleCard": "Do even more",
+    "nonProfits": "NGOs"
   },
   "contributionCard": {
     "button": "Donate",

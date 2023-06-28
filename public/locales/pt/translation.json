@@ -429,10 +429,12 @@
   },
   "contributionSection": {
     "titleCard": "Faça ainda mais",
-    "title": "Que incrível! Obrigado por ajudar {{nonProfitName}}"
+    "title": "Que incrível! Obrigado por ajudar {{nonProfitName}}",
+    "nonProfits": "ONGs"
   },
   "contributionCard": {
     "button": "Doar",
-    "donate": "Doe {{value}}"
+    "donate": "Doe {{value}}",
+    "titleCard": "Faça ainda mais"
   }
 }

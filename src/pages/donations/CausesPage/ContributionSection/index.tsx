@@ -20,9 +20,7 @@ function ContributionSection(): JSX.Element {
   return variation !== "Control" && contribution ? (
     <S.Container isMobile={isMobile}>
       <S.ImageContainer isMobile={isMobile}>
-        <S.Title>
-          {t("title").replace("{{nonProfitName}}", nonProfit?.name)}
-        </S.Title>
+        <S.Title>{t("title", { nonProfitName: nonProfit?.name })}</S.Title>
         <S.NonProfitImage src={contribution?.image} isMobile={isMobile} />
       </S.ImageContainer>
       <ContributionCard

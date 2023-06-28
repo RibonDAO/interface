@@ -7,7 +7,7 @@ import { logError } from "services/crashReport";
 // Create a GrowthBook instance
 export const growthbook = new GrowthBook({
   apiHost: "https://growthbook.ribon.io:444",
-  clientKey: "sdk-Ljz6kxkXYsUHafef",
+  clientKey: process.env.REACT_APP_GROWTHBOOK_CLIENT_KEY,
   enableDevMode: true,
   trackingCallback: (experiment, result) => {
     logEvent("viewed_experiment", {

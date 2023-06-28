@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { defaultBodyMdMedium } from "styles/typography/default";
 
 
 export const Container = styled.div`
@@ -10,6 +11,7 @@ export const Container = styled.div`
 export const Title = styled.h5`
   color: ${({ theme }) => theme.colors.neutral[800]};
   margin-bottom: ${({ theme }) => theme.spacing(16)};
+  ${defaultBodyMdMedium}
 `;
 
 export const IframeContainer = styled.div`

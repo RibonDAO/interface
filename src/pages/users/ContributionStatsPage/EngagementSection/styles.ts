@@ -13,7 +13,7 @@ export const DataContainer = styled.div`
   flex: 0.5;
   
   &:first-child {
-    margin-right: ${({ theme }) => theme.spacing(4)};
+    margin-right: ${({ theme }) => theme.spacing(20)};
   }
 `;
 

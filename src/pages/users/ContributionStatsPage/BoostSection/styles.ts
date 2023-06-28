@@ -1,12 +1,9 @@
 import styled from "styled-components";
+import { defaultBodySmMedium, defaultHeadingMd } from "styles/typography/default";
 
 export const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
 `;
+
 export const TitleContainer = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing(24)};
 `;
@@ -45,6 +42,7 @@ export const InnerCardContainer = styled.div`
 `;
 
 export const SubtitleContainer = styled.div`
+
   width: 280px;
   margin-right: ${({ theme }) => theme.spacing(18)};
   word-wrap: break-word;
@@ -67,9 +65,11 @@ export const Boost = styled.span`
 `;
 
 export const Title = styled.h2`
+  ${defaultHeadingMd}
   color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;
 
 export const Text = styled.p`
   color: ${({ theme }) => theme.colors.neutral[600]};
+  ${defaultBodySmMedium}
 `;

@@ -1,9 +1,7 @@
 import styled from "styled-components";
-import { defaultBodySmMedium } from "styles/typography/default";
+import { stylizedDisplayLg } from "styles/typography/stylized";
 
 export const Container = styled.div`
-  padding-right: 228px;
-  padding-left: 228px;
   margin-bottom: ${({ theme }) => theme.spacing(64)};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
@@ -12,30 +10,34 @@ export const Container = styled.div`
   }
 `;
 
-export const GiftText = styled.p`
-  ${defaultBodySmMedium}
+export const Title = styled.h1`
+  color: ${({ theme }) => theme.colors.neutral[800]};
+  ${stylizedDisplayLg}
+  margin-bottom: ${({ theme }) => theme.spacing(32)};
 
-  color: ${({ theme }) => theme.colors.neutral[700]};
-`;
-
-export const SelectContributionContainer = styled.div`
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    max-width: 328px;
+  > * {
+    color: ${({ theme }) => theme.colors.brand.primary[600]};
+    font-size: inherit;
   }
 `;
 
-export const GiftSection = styled.div`
-  margin-bottom: ${({ theme }) => theme.spacing(24)};
+export const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    flex-direction: row;
+  }
 `;
 
-export const Section = styled.div`
-  margin-bottom: ${({ theme }) => theme.spacing(16)};
+export const ContainerItem = styled.div`
+  > * {
+    margin-bottom: ${({ theme }) => theme.spacing(32)};
+  }
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: ${({ theme }) => theme.spacing(24)};
-    background-color: transparent;
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    &:first-child {
+      margin-right: ${({ theme }) => theme.spacing(16)};
+    }
   }
 `;
 

@@ -38,7 +38,7 @@ import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
 import ConfirmSection from "./ConfirmSection";
 import ChooseCauseModal from "./ChooseCauseModal";
-import DownloadAppModalTemplate from "./DownloadAppModalTemplate";
+// import DownloadAppModalTemplate from "./DownloadAppModalTemplate";
 
 function CausesPage(): JSX.Element {
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
@@ -210,23 +210,23 @@ function CausesPage(): JSX.Element {
     ...(activeCauses || []),
   ];
 
-  const modalDialogProps = {
-    children: <DownloadAppModalTemplate />,
-  };
+  // NOTE: Uncomment this after fix the redirect back and finish deeplink
+  // const modalDialogProps = {
+  //   children: <DownloadAppModalTemplate />,
+  // };
 
-  const { show } = useModal({
-    type: MODAL_TYPES.MODAL_DIALOG,
-    props: modalDialogProps,
-  });
+  // const { show } = useModal({
+  //   type: MODAL_TYPES.MODAL_DIALOG,
+  //   props: modalDialogProps,
+  // });
 
-  useEffect(() => {
-    /* NOTE: Enable this modal after fix the redirect back issue and finish deeplink */
-    if (isMobile && !isFirstAccess(signedIn) && false) {
-      setTimeout(() => {
-        show();
-      }, 3000);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (isMobile && !isFirstAccess(signedIn)) {
+  //     setTimeout(() => {
+  //       show();
+  //     }, 3000);
+  //   }
+  // }, []);
 
   return (
     <S.Container>

@@ -47,6 +47,29 @@ function MonthlyTasksSection() {
     }
   }, []);
 
+  const renderContributionCard = () => {
+    if (variation !== "Control" && contribution) {
+      return (
+        <ContributionCard
+          description={description}
+          impact={contribution?.impact ?? ""}
+          value={contribution?.value ?? 0}
+          offer={offer}
+          nonProfit={nonProfit}
+          style={{
+            marginTop: isMobile ? "0" : "16px",
+            width: isMobile ? "110%" : "100%",
+            position: "relative",
+            left: isMobile ? "-16px" : "0",
+          }}
+          from="tasks_page"
+          flow="nonProfit"
+        />
+      );
+    }
+    return null;
+  };
+
   return (
     <S.Container isMobile={isMobile}>
       <S.TitleContainer>
@@ -88,23 +111,7 @@ function MonthlyTasksSection() {
             </S.CheckboxContainer>
           ) : null,
         )}
-      {variation !== "Control" && (
-        <ContributionCard
-          description={description}
-          impact={contribution?.impact ?? ""}
-          value={contribution?.value ?? 0}
-          offer={offer}
-          nonProfit={nonProfit}
-          style={{
-            marginTop: isMobile ? "0" : "16px",
-            width: isMobile ? "110%" : "100%",
-            position: "relative",
-            left: isMobile ? "-16px" : "0",
-          }}
-          from="tasks_page"
-          flow="nonProfit"
-        />
-      )}
+      {renderContributionCard()}
     </S.Container>
   );
 }

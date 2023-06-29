@@ -69,9 +69,7 @@ function ContributionCard({
   return (
     <S.Container style={style} data-testid="contribution-section-container">
       <S.Title>{title || t("titleCard")}</S.Title>
-      <S.Value>
-        {t("donate").replace("{{value}}", formatPrice(value, "brl"))}
-      </S.Value>
+      <S.Value>{t("donate", { value: formatPrice(value, "brl") })}</S.Value>
       <S.Description>
         {description} {impact && <b>{impact}</b>}
       </S.Description>

@@ -336,7 +336,7 @@
         "creditCardFields": {
           "number": "Número do cartão",
           "name": "Nome impresso",
-          "expirationDate": "Data de expiração",
+          "expirationDate": "Data de validade",
           "cvv": "CVV"
         }
       },

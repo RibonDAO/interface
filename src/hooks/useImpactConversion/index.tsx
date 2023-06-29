@@ -52,7 +52,10 @@ export function useImpactConversion() {
   }, [nonProfits, offers, userStatistics, contribution?.offerId]);
 
   const { value } = useExperiment({
-    key: "impact-conversion-staging",
+    key:
+      process.env.NODE_ENV !== "production"
+        ? "impact-conversion-production"
+        : "impact-conversion-staging",
     variations: ["Control", "NewImpact", "OldImpact"],
   });
 

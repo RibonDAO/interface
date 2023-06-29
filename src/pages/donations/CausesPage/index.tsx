@@ -220,7 +220,8 @@ function CausesPage(): JSX.Element {
   });
 
   useEffect(() => {
-    if (isMobile && !isFirstAccess(signedIn)) {
+    /* NOTE: Enable this modal after fix the redirect back issue and finish deeplink */
+    if (isMobile && !isFirstAccess(signedIn) && false) {
       setTimeout(() => {
         show();
       }, 3000);

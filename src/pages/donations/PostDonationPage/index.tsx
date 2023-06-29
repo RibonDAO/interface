@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { NonProfit } from "@ribon.io/shared/types";
 import useNavigation from "hooks/useNavigation";
 import VolunteerActivismGreen from "assets/icons/volunteer-activism-green.svg";
@@ -26,7 +26,10 @@ function PostDonationPage(): JSX.Element {
   const { navigateTo } = useNavigation();
   const { contribution, variation, offer } = useImpactConversion();
 
-  const shouldRenderVariation = variation !== "Control" && contribution;
+  const shouldRenderVariation = useCallback(
+    () => variation !== "Control" && contribution,
+    [contribution, variation],
+  );
 
   useEffect(() => {
     if (nonProfit === undefined) {
@@ -37,7 +40,7 @@ function PostDonationPage(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    if (shouldRenderVariation) {
+    if (shouldRenderVariation()) {
       newLogEvent("view", "contributeCauseBtn", {
         from: "givePostDonation_page",
       });
@@ -67,7 +70,7 @@ function PostDonationPage(): JSX.Element {
   };
 
   const handleDonateWithCommunityClick = () => {
-    if (shouldRenderVariation) {
+    if (shouldRenderVariation()) {
       handleClickedDonationButton("cause");
     } else {
       newLogEvent("click", "P8_causeCard", { causeId: nonProfit.cause.id });
@@ -81,7 +84,7 @@ function PostDonationPage(): JSX.Element {
   };
 
   const handleDonateDirectlyClick = () => {
-    if (shouldRenderVariation) {
+    if (shouldRenderVariation()) {
       handleClickedDonationButton("nonProfit");
     } else {
       newLogEvent("click", "P8_nonProfitCard", { nonProfitId: nonProfit.id });
@@ -119,7 +122,7 @@ function PostDonationPage(): JSX.Element {
             </S.BoostedDonation>
             <S.BottomContainer>
               <S.Text>
-                {shouldRenderVariation
+                {shouldRenderVariation()
                   ? t("donate", {
                       value: formatPrice(contribution?.value ?? 0, "brl"),
                     })
@@ -127,7 +130,7 @@ function PostDonationPage(): JSX.Element {
               </S.Text>
               <S.CardMainText>{nonProfit.cause.name}</S.CardMainText>
             </S.BottomContainer>
-            {shouldRenderVariation && (
+            {shouldRenderVariation() && (
               <S.InsideButton onClick={() => {}} text={t("donateButton")} />
             )}
           </S.Card>
@@ -138,7 +141,7 @@ function PostDonationPage(): JSX.Element {
             <S.DarkOverlay />
             <S.BottomContainer>
               <S.Text>
-                {shouldRenderVariation
+                {shouldRenderVariation()
                   ? t("donate", {
                       value: formatPrice(contribution?.value ?? 0, "brl"),
                     })
@@ -146,7 +149,7 @@ function PostDonationPage(): JSX.Element {
               </S.Text>
               <S.CardMainText>{nonProfit.name}</S.CardMainText>
             </S.BottomContainer>
-            {shouldRenderVariation && (
+            {shouldRenderVariation() && (
               <S.InsideButton onClick={() => {}} text={t("donateButton")} />
             )}
           </S.Card>

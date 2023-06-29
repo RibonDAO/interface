@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Fragment } from "react";
 
 import { useImpactConversion } from "hooks/useImpactConversion";
+import { handleVariation } from "lib/handleVariation";
 import * as S from "./styles";
 
 function ContributionSection(): JSX.Element {
@@ -16,8 +17,7 @@ function ContributionSection(): JSX.Element {
     useImpactConversion();
 
   const { isMobile } = useBreakpoint();
-
-  return variation !== "Control" && contribution ? (
+  const contributionWithVariation = () => (
     <S.Container isMobile={isMobile}>
       <S.ImageContainer isMobile={isMobile}>
         <S.Title>{t("title", { nonProfitName: nonProfit?.name })}</S.Title>
@@ -26,20 +26,31 @@ function ContributionSection(): JSX.Element {
       <ContributionCard
         description={description}
         impact={contribution?.impact}
-        value={contribution?.value}
+        value={contribution?.value ?? 0}
         offer={offer}
         nonProfit={nonProfit}
         style={{
           marginTop: isMobile ? "0" : "48px",
           width: isMobile ? "110%" : "100%",
+          borderRadius: isMobile ? "0" : "8px",
         }}
         from="donateTickets_page"
         flow="nonProfit"
       />
     </S.Container>
-  ) : (
-    <Fragment key={variation} />
   );
+
+  const ContributionSectionWithVariation = handleVariation(
+    variation,
+    contribution,
+    null,
+    contributionWithVariation,
+    {},
+  );
+
+  const renderContributionSection = () => ContributionSectionWithVariation;
+
+  return renderContributionSection() ?? <Fragment key={variation} />;
 }
 
 export default ContributionSection;

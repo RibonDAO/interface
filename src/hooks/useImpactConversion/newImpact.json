@@ -13,7 +13,7 @@
 
   {
     "name": "Evidence Action",
-    "description": "Forneça tela de proteção contra a malária para",
+    "description": "Forneça água tratada para",
     "communityDescription": "A comunidade impulsionará sua doação com",
     "communityValue": 3,
     "impact": "1 pessoa.",
@@ -40,8 +40,8 @@
     "communityValue": 3,
     "impact": "1 empreendedora na distribuição de água.",
     "image": "https://ribon-marketing.s3.amazonaws.com/sahaglobal.png",
-    "value": 15,
-    "offerId": 28,
+    "value": 60,
+    "offerId": 29,
     "nonProfitId": 11
   },
   {
@@ -51,8 +51,8 @@
     "communityValue": 3,
     "impact": "para uma mãe durante a gestação.",
     "image": "https://ribon-marketing.s3.amazonaws.com/lwala.png",
-    "value": 15,
-    "offerId": 28,
+    "value": 60,
+    "offerId": 29,
     "nonProfitId": 10
   }
 ]

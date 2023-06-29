@@ -13,7 +13,7 @@ import UserInfoSection from "./UserInfoSection";
 import CardInfoSection from "./CardInfoSection";
 
 type LocationState = {
-  offer?: Offer;
+  offer: Offer;
   cause: Cause;
   nonProfit?: NonProfit;
   flow: "cause" | "nonProfit";
@@ -29,8 +29,8 @@ function PaymentPage(): JSX.Element {
   });
   const [currentSection, setCurrentSection] = useState<"user" | "card">("user");
   const { cardGivingFees } = useCardGivingFees(
-    offer?.priceValue ?? 0,
-    offer?.currency.toUpperCase() as Currencies,
+    offer.priceValue ?? 0,
+    offer.currency.toUpperCase() as Currencies,
   );
   const { buttonDisabled, handleSubmit, setCause, setNonProfit } =
     useCardPaymentInformation();
@@ -49,15 +49,15 @@ function PaymentPage(): JSX.Element {
     if (flow === "cause") {
       newLogEvent("view", "P5", {
         causeId: cause?.id,
-        price: offer?.priceValue,
-        currency: offer?.currency,
+        price: offer.priceValue,
+        currency: offer.currency,
       });
     }
     if (flow === "nonProfit") {
       newLogEvent("view", "P6", {
         nonprofitId: nonProfit?.id,
-        price: offer?.priceValue,
-        currency: offer?.currency,
+        price: offer.priceValue,
+        currency: offer.currency,
       });
     }
   }, []);
@@ -114,7 +114,7 @@ function PaymentPage(): JSX.Element {
             </S.TitleHighlight>
           </S.Title>
           <S.DonationValueText color={colorTheme.shade20}>
-            {offer?.price}
+            {offer.price}
           </S.DonationValueText>
           {cardGivingFees && (
             <S.FeeText>

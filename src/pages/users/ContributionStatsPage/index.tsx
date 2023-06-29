@@ -23,9 +23,16 @@ function ContributionStatsPage(): JSX.Element {
   const { data } = useContributionStats(Number(contributionId));
   
   if(!data) return <>carregando</>;
+
+  const amount = data.stats.totalAmountToCause;
+  const cause = data.label;
   return (
     <S.Container>
-      <S.Title>Você doou <span>{data.stats.initialAmount}</span> para <span>{data.label}</span></S.Title>
+      <S.Title>{
+        parse(t("title",
+          { amount: amount.toString(), cause: cause })
+        )
+      }</S.Title>
       <S.ContentContainer>
         <S.ContainerItem>
           <EngagementSection 

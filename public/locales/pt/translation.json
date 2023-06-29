@@ -404,7 +404,7 @@
     "button": "Baixar o app"
   },
   "contributionStatsPage": {
-    "title": "Você doou 20$ para Educação",
+    "title": "Você doou <span>{{amount}}</span> para <span>{{cause}}</span>",
     "engagementSection": {
       "title": "Sua doação gerou tickets",
       "numberOfTicketDonors": "pessoas já doaram tickets",

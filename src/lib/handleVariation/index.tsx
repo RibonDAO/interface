@@ -16,6 +16,3 @@ export function handleVariation<Props>(
     ControlComponent && <ControlComponent />
   );
 }
-
-export const showVariation = (variation: string, contribution: Contribution) =>
-  variation !== "Control" && contribution;

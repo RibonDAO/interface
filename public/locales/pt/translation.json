@@ -176,7 +176,9 @@
       "tooltipSecondParagraphText": "Taxa de serviço: {{value}}",
       "showMore": "Mostrar mais",
       "generalReceiver": "Geral",
-      "migrated": "Migrado"
+      "migrated": "Migrado",
+      "cardText": "Sua doação gera até <b>+$200</b> para a causa animal!",
+      "callToAction": "Acompanhar impacto ->"
     },
     "impactNotification": {
       "title": "Migramos seu impacto!",

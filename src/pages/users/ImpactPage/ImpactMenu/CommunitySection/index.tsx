@@ -12,7 +12,9 @@ import useBreakpoint from "hooks/useBreakpoint";
 import directIllustration from "assets/images/direct-illustration.svg";
 import { useLegacyContributions } from "@ribon.io/shared/hooks";
 import { useCurrentUser } from "contexts/currentUserContext";
+import parse from "html-react-parser";
 import * as S from "../styles";
+import { logEvent } from "lib/events";
 
 function CommunitySection() {
   const { navigateTo } = useNavigation();
@@ -94,10 +96,16 @@ function CommunitySection() {
               titleColor={theme.colors.brand.secondary[700]}
               valueColor={theme.colors.brand.secondary[400]}
               idTooltip={item.id}
-            >
+              onPress={() => {
+                logEvent("contributionDashCta_Btn_click", {from: "impact_page"});
+                navigateTo(`/contribution-stats?contribution_id=${item.id}`);
+              }}
+              callToAction={t("callToAction")}
+              text={parse(t("cardText"))}
+            > 
+              {console.log(item)}
               <S.TooltipText>
                 <S.Paragraph>
-                  {console.log(item.id)}
                   {t("tooltipFirstParagraphText", {
                     value: formatNetDonation(
                       item.serviceFees,

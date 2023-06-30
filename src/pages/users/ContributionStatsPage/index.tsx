@@ -9,6 +9,8 @@ import BoostSection from "./BoostSection";
 import YoutubeEmbed from "./YoutubeEmbed";
 import bannerBackground from "assets/images/banner-logo-background.svg";
 import * as S from "./styles";
+import { useEffect } from "react";
+import { logEvent } from "lib/events";
 
 
 
@@ -19,6 +21,10 @@ function ContributionStatsPage(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "contributionStatsPage",
   });
+
+  useEffect(() => {
+    logEvent("P24_view ");
+  }, []);
   
   const { data } = useContributionStats(Number(contributionId));
   console.log(data);
@@ -59,7 +65,7 @@ function ContributionStatsPage(): JSX.Element {
               textColor={theme.colors.neutral[800]}
               arrowLinkColor={theme.colors.brand.secondary[800]}
               onArrowClick={() => {
-                console.log("Contact Us");
+                logEvent("P24_opinionCardBtn_click");
               }}
             />
           </S.ContainerItem>

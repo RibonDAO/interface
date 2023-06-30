@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import {
   defaultBodyMdBold,
+  defaultBodySmBold,
   defaultBodySmRegular,
   defaultBodyXsRegular,
 } from "styles/typography/default";
@@ -92,4 +93,9 @@ export const Label = styled.span`
   right: ${({ theme }) => theme.spacing(16)};
   background-color: ${({ theme }) => theme.colors.brand.primary[50]};
   color: ${({ theme }) => theme.colors.brand.primary[800]};
+`;
+
+export const CallToAction = styled.h5`
+  ${defaultBodySmBold}
+  color: ${({ theme }) => theme.colors.brand.primary[600]};
 `;

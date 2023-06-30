@@ -3,11 +3,6 @@ import { stylizedDisplayLg } from "styles/typography/stylized";
 
 export const Container = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing(64)};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    padding-right: 16px;
-    padding-left: 16px;
-  }
 `;
 
 export const Title = styled.h1`
@@ -31,10 +26,14 @@ export const ContentContainer = styled.div`
 
 export const ContainerItem = styled.div`
   > * {
-    margin-bottom: ${({ theme }) => theme.spacing(32)};
+    padding: ${({ theme }) => theme.spacing(16)} 0;
+    margin-bottom: ${({ theme }) => theme.spacing(16)};
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    > * {
+      padding: ${({ theme }) => theme.spacing(32)};
+    }
     &:first-child {
       margin-right: ${({ theme }) => theme.spacing(16)};
     }

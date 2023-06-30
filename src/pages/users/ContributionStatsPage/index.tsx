@@ -21,11 +21,11 @@ function ContributionStatsPage(): JSX.Element {
   });
   
   const { data } = useContributionStats(Number(contributionId));
-  
+  console.log(data);
   if(!data) return <>carregando</>;
 
   const amount = data.stats.totalAmountToCause;
-  const cause = data.label;
+  const cause = data.receiver.name;
   return (
     <S.Container>
       <S.Title>{

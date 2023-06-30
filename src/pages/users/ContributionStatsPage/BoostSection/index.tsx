@@ -8,7 +8,7 @@ import parse from "html-react-parser";
 import * as S from "./styles";
 
 type Props = {
-  totalAmountToCause: string;
+  totalAmountToCause: number;
 };
 function BoostSection({
   totalAmountToCause,
@@ -23,7 +23,7 @@ function BoostSection({
     color: brand.primary[800],
     size: "24px",
   };
-  const total = "↑" + totalAmountToCause;
+
   return (
     <Card border backgroundColor="transparent">
       <S.Container>

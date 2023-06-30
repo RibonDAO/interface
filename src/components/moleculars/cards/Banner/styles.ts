@@ -13,7 +13,7 @@ export const Container = styled.div<{
 }>`
   max-width: 472px;
   width: 100%;
-  width: auto;
+  height: 128px;
   padding: ${({ theme }) => theme.spacing(16, 16, 16)};
   border-radius: 8px;
   display: flex;

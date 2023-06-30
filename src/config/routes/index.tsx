@@ -116,7 +116,7 @@ function RoutesComponent(): JSX.Element {
       <Route path="/contribution-stats" exact>
         <Suspense fallback={<div />}>
           <WalletProvider>
-            <MainLayout>
+            <MainLayout hasBackButton={true} >
               <ContributionStatsPage />
             </MainLayout>
           </WalletProvider>

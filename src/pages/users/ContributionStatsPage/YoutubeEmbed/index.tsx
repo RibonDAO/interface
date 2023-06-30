@@ -3,7 +3,7 @@ import * as S from './styles';
 
 type Props = {
   embedId: string;
-  title?: string;
+  title?: string | JSX.Element | JSX.Element[];
 };
 
 function YoutubeEmbed({

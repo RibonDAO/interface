@@ -18,14 +18,6 @@ describe("ContributionCard", () => {
     const nonProfit = nonProfitFactory();
     const from = "test";
     const flow = "nonProfit";
-    const mockNavigateTo = jest.fn();
-
-    jest.mock("hooks/useNavigation", () => ({
-      __esModule: true,
-      default: jest.fn(() => ({
-        navigateTo: mockNavigateTo,
-      })),
-    }));
 
     renderComponent(
       <ContributionCard
@@ -63,14 +55,6 @@ describe("ContributionCard", () => {
     const nonProfit = nonProfitFactory();
     const from = "test";
     const flow = "cause";
-    const mockNavigateTo = jest.fn();
-
-    jest.mock("hooks/useNavigation", () => ({
-      __esModule: true,
-      default: jest.fn(() => ({
-        navigateTo: mockNavigateTo,
-      })),
-    }));
 
     renderComponent(
       <ContributionCard

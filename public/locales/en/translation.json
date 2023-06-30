@@ -70,7 +70,7 @@
       "donateLater": "Donate later",
       "boostedDonation": "Boosted donation",
       "donate": "Donate {{value}} to",
-      "donateButton": "Donate now"
+      "donateButton": "Donate {{value}}"
     },
     "donationDonePage": {
       "title": "Thank you for the donation!",

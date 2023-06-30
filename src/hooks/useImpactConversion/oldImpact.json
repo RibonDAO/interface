@@ -2,29 +2,29 @@
   {
     "name": "Against Malaria Foundation",
     "communityDescription": "A comunidade impulsionará sua doação com",
-    "communityValue": 12,
-    "value": 5,
+    "communityValue": 3,
+    "value": 15,
     "image": "https://ribon-marketing.s3.amazonaws.com/againstmalariafoundation.png",
-    "offerId": 7,
-    "nonProfitId": 1
+    "offerId": 28,
+    "nonProfitId": 9
   },
 
   {
     "name": "Evidence Action",
     "communityDescription": "A comunidade impulsionará sua doação com",
     "communityValue": 12,
-    "value": 60,
+    "value": 15,
     "image": "https://ribon-marketing.s3.amazonaws.com/evidenceaction.png",
-    "offerId": 29,
+    "offerId": 28,
     "nonProfitId": 6
   },
   {
     "name": "New Incetives",
     "communityDescription": "A comunidade impulsionará sua doação com",
     "communityValue": 12,
-    "value": 60,
+    "value": 15,
     "image": "https://ribon-marketing.s3.amazonaws.com/newincentives.png",
-    "offerId": 29,
+    "offerId": 28,
     "nonProfitId": 8
   },
   {

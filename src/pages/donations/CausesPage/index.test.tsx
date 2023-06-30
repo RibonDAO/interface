@@ -79,7 +79,6 @@ describe("Causes", () => {
   });
 
   it("shows the non profit", async () => {
-    await waitForPromises();
     nonProfits.forEach((nonProfit) => {
       expectTextToBeInTheDocument(
         `Donate ${nonProfit.impactByTicket} ${nonProfit.impactDescription}`,

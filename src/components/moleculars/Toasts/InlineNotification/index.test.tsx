@@ -3,6 +3,8 @@ import {
   expectTextNotToBeInTheDocument,
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
+import { screen } from "@testing-library/react";
+import theme from "styles/theme";
 import InlineNotification from ".";
 
 describe("InlineNotification", () => {
@@ -75,6 +77,66 @@ describe("InlineNotification", () => {
 
       expect(onFirstLinkClick).toHaveBeenCalled();
       expect(onSecondLinkClick).toHaveBeenCalled();
+    });
+  });
+
+  describe("when the type is passed", () => {
+    const onFirstLinkClick = jest.fn();
+    const onSecondLinkClick = jest.fn();
+
+    beforeEach(() => {
+      Object.assign(global, { innerWidth: 500 });
+    });
+
+    it("renders warning", () => {
+      renderComponent(
+        <InlineNotification
+          title="title"
+          description="description"
+          type="warning"
+          firstLink="firstLink"
+          secondLink="secondLink"
+          onFirstLinkClick={onFirstLinkClick}
+          onSecondLinkClick={onSecondLinkClick}
+        />,
+      );
+      expect(screen.getByTestId("icon-warning")).toHaveStyle(
+        `color: ${theme.colors.feedback.warning[600]};`,
+      );
+    });
+
+    it("renders error", () => {
+      renderComponent(
+        <InlineNotification
+          title="title"
+          description="description"
+          type="error"
+          firstLink="firstLink"
+          secondLink="secondLink"
+          onFirstLinkClick={onFirstLinkClick}
+          onSecondLinkClick={onSecondLinkClick}
+        />,
+      );
+      expect(screen.getByTestId("icon-dangerous")).toHaveStyle(
+        `color: ${theme.colors.feedback.error[600]};`,
+      );
+    });
+
+    it("renders informational", () => {
+      renderComponent(
+        <InlineNotification
+          title="title"
+          description="informational"
+          type="informational"
+          firstLink="firstLink"
+          secondLink="secondLink"
+          onFirstLinkClick={onFirstLinkClick}
+          onSecondLinkClick={onSecondLinkClick}
+        />,
+      );
+      expect(screen.getByTestId("icon-info")).toHaveStyle(
+        `color: ${theme.colors.feedback.informational[600]};`,
+      );
     });
   });
 });

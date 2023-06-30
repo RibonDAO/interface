@@ -9,26 +9,15 @@ import { Currencies } from "@ribon.io/shared/types";
 import { useCurrentUser } from "contexts/currentUserContext";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import { useEffect, useState } from "react";
+import { Contribution } from "types/entities/Contribution";
 import NewImpact from "./newImpact.json";
 import OldImpact from "./oldImpact.json";
 
-type ContributionProps =
-  | {
-      name: string;
-      description?: string;
-      communityDescription?: string;
-      communityValue?: number;
-      impact?: string;
-      image: string;
-      value: number;
-      offerId: number;
-      nonProfitId: number;
-    }
-  | undefined;
-
 export function useImpactConversion() {
-  const [contribution, setContribution] = useState<ContributionProps>();
-  const [description, setDescription] = useState<any>();
+  const [contribution, setContribution] = useState<Contribution>();
+  const [description, setDescription] = useState<
+    string | JSX.Element | undefined
+  >();
   const [variation, setVariation] = useState<string>("Control");
   const [nonProfit, setNonProfit] = useState<any>();
   const [offer, setOffer] = useState<any>();
@@ -48,11 +37,16 @@ export function useImpactConversion() {
       nonProfits?.find((n) => n.id === userStatistics?.lastDonatedNonProfit),
     );
 
-    setOffer(offers?.find((o) => o.id === contribution?.offerId));
+    setOffer(
+      offers?.find((o) => o.id === contribution?.offerId) ?? offers?.[0],
+    );
   }, [nonProfits, offers, userStatistics, contribution?.offerId]);
 
   const { value } = useExperiment({
-    key: "impact-conversion-staging",
+    key:
+      process.env.NODE_ENV !== "production"
+        ? "impact-conversion-staging"
+        : "impact-conversion-production",
     variations: ["Control", "NewImpact", "OldImpact"],
   });
 

@@ -15,6 +15,7 @@ import { useCurrentUser } from "contexts/currentUserContext";
 import ContributionCard from "components/moleculars/cards/ContributionCard";
 import { useImpactConversion } from "hooks/useImpactConversion";
 import { formatPrice } from "lib/formatters/currencyFormatter";
+import { handleVariation } from "lib/handleVariation";
 import * as S from "../styles";
 
 function CommunitySection() {
@@ -77,46 +78,55 @@ function CommunitySection() {
     setPage(page + 1);
     setShowMoreDisabled(true);
   };
-  const renderEmptySection = () => {
-    if (variation !== "Control" && contribution) {
-      return (
-        <S.EmptySectionContainer>
-          <S.EmptyTitle>{t("emptyTitle")}</S.EmptyTitle>
-          <S.EmptyText>{t("emptyText")}</S.EmptyText>
-          <ContributionCard
-            title={t("titleCard", { cause: nonProfit?.cause.name })}
-            description={contribution?.communityDescription ?? ""}
-            impact={`+${formatPrice(
-              contribution?.communityValue ?? 0,
-              "brl",
-            ).replace(/\s/g, "")}`}
-            value={contribution?.value ?? 0}
-            offer={offer}
-            nonProfit={nonProfit}
-            style={{
-              marginTop: isMobile ? "0" : "8px",
-              width: isMobile ? "110%" : "100%",
-              textAlign: "start",
-            }}
-            from="impact_page"
-            flow="cause"
-          />
-        </S.EmptySectionContainer>
-      );
-    } else
-      return (
-        <S.EmptySectionContainer>
-          <S.EmptyImage src={directIllustration} />
-          <S.EmptyTitle>{t("emptyTitle")}</S.EmptyTitle>
-          <S.EmptyText>{t("emptyText")}</S.EmptyText>
-          <S.EmptyButton
-            text={t("emptyButton")}
-            size="medium"
-            onClick={handleEmptyButtonClick}
-          />
-        </S.EmptySectionContainer>
-      );
-  };
+
+  const emptySection = () => (
+    <S.EmptySectionContainer>
+      <S.EmptyImage src={directIllustration} />
+      <S.EmptyTitle>{t("emptyTitle")}</S.EmptyTitle>
+      <S.EmptyText>{t("emptyText")}</S.EmptyText>
+      <S.EmptyButton
+        text={t("emptyButton")}
+        size="medium"
+        onClick={handleEmptyButtonClick}
+      />
+    </S.EmptySectionContainer>
+  );
+
+  const contributionWithVariation = () => (
+    <S.EmptySectionContainer>
+      <S.EmptyTitle>{t("emptyTitle")}</S.EmptyTitle>
+      <S.EmptyText>{t("emptyText")}</S.EmptyText>
+      <ContributionCard
+        title={t("titleCard", { cause: nonProfit?.cause.name })}
+        description={contribution?.communityDescription ?? ""}
+        impact={`+${formatPrice(
+          contribution?.communityValue ?? 0,
+          "brl",
+        ).replace(/\s/g, "")}`}
+        value={contribution?.value ?? 0}
+        offer={offer}
+        nonProfit={nonProfit}
+        style={{
+          marginTop: isMobile ? "0" : "8px",
+          width: isMobile ? "110%" : "100%",
+          textAlign: "start",
+          borderRadius: isMobile ? "0" : "8px",
+        }}
+        from="impact_page"
+        flow="cause"
+      />
+    </S.EmptySectionContainer>
+  );
+
+  const EmptySectionWithVariation = handleVariation(
+    variation,
+    contribution,
+    emptySection,
+    contributionWithVariation,
+    {},
+  );
+
+  const renderEmptySection = () => EmptySectionWithVariation;
   return (
     <S.Container>
       {hasImpactCards ? (

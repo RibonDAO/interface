@@ -13,7 +13,7 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
     keyPrefix: "donations.causesPage.blockedModal",
   });
   const { primary } = theme.colors.brand;
-  const { contribution, nonProfit, offer } = useImpactConversion();
+  const { contribution, nonProfit, offer, description } = useImpactConversion();
   const { navigateTo } = useNavigation();
 
   const handleClickedDonationButton = () => {
@@ -35,6 +35,13 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
     });
   };
 
+  const highlightedText = (
+    <>
+      {description && <>{description} </>}
+      {contribution?.impact && <b>{contribution?.impact}</b>}
+    </>
+  );
+
   const { show, hide } = useModal({
     type: MODAL_TYPES.MODAL_DIALOG,
 
@@ -44,12 +51,11 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
       description: t("descriptionContributionModal"),
       icon: "confirmation_number",
       iconColor: primary[500],
-      highlightedText: t("textContributionModal", {
-        value: formatPrice(contribution?.value ?? 0, "brl"),
-        nonProfitName: nonProfit?.name,
-      }),
+      highlightedText,
       primaryButton: {
-        text: t("buttonContributionModal"),
+        text: t("buttonContributionModal", {
+          value: formatPrice(contribution?.value ?? 0, "brl"),
+        }),
         onClick: handleClickedDonationButton,
       },
     },

@@ -56,7 +56,7 @@
         "ribonText": "Volte amanhã para receber mais 1 ticket",
         "titleContributionModal": "Você usou todos seus tickets",
         "descriptionContributionModal": "Que tal fazer uma doação paga?",
-        "buttonContributionModal": "Doe agora",
+        "buttonContributionModal": "Doe {{value}}",
         "textContributionModal": "Doe {{value}} para {{nonProfitName}}"
       }
     },

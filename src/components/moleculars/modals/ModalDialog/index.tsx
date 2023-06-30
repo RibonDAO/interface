@@ -14,7 +14,7 @@ export type Props = {
   iconColor?: string;
   title?: string | null;
   description?: string | JSX.Element | null;
-  highlightedText?: string | null;
+  highlightedText?: string | null | JSX.Element;
   primaryButton?: ButtonProps | null;
   secondaryButton?: ButtonProps | null;
   children?: JSX.Element[] | JSX.Element | null;

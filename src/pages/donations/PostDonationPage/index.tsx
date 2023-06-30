@@ -24,7 +24,7 @@ function PostDonationPage(): JSX.Element {
   } = useLocation<LocationStateType>();
 
   const { navigateTo } = useNavigation();
-  const { contribution, variation, offer } = useImpactConversion();
+  const { contribution, variation, offer, description } = useImpactConversion();
 
   const shouldRenderVariation = useCallback(
     () => variation !== "Control" && contribution,
@@ -131,7 +131,12 @@ function PostDonationPage(): JSX.Element {
               <S.CardMainText>{nonProfit.cause.name}</S.CardMainText>
             </S.BottomContainer>
             {shouldRenderVariation() && (
-              <S.InsideButton onClick={() => {}} text={t("donateButton")} />
+              <S.InsideButton
+                onClick={() => {}}
+                text={t("donateButton", {
+                  value: formatPrice(contribution?.value ?? 0, "brl"),
+                })}
+              />
             )}
           </S.Card>
           <S.Card
@@ -142,15 +147,25 @@ function PostDonationPage(): JSX.Element {
             <S.BottomContainer>
               <S.Text>
                 {shouldRenderVariation()
-                  ? t("donate", {
-                      value: formatPrice(contribution?.value ?? 0, "brl"),
-                    })
+                  ? description ??
+                    `${contribution?.impact && <b>{contribution?.impact}</b>}`
                   : t("donateDirectly")}
               </S.Text>
-              <S.CardMainText>{nonProfit.name}</S.CardMainText>
+              <S.CardMainText>
+                {shouldRenderVariation() ? (
+                  <b>{contribution?.impact}</b>
+                ) : (
+                  nonProfit.name
+                )}
+              </S.CardMainText>
             </S.BottomContainer>
             {shouldRenderVariation() && (
-              <S.InsideButton onClick={() => {}} text={t("donateButton")} />
+              <S.InsideButton
+                onClick={() => {}}
+                text={t("donateButton", {
+                  value: formatPrice(contribution?.value ?? 0, "brl"),
+                })}
+              />
             )}
           </S.Card>
         </>

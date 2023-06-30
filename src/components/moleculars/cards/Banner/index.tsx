@@ -69,7 +69,7 @@ function Banner({
       {onArrowClick && (
         <S.ArrowContainer>
           <Arrow
-            disabled={true}
+            disabled
             direction="right"
             onClick={handleClick}
             color={arrowLinkColor}

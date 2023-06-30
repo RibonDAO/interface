@@ -1,3 +1,4 @@
+import { logEvent } from "lib/events";
 import CardTooltip from "components/moleculars/cards/CardTooltip";
 import usePersonPayments from "hooks/apiHooks/usePersonPayment";
 import useNavigation from "hooks/useNavigation";
@@ -14,7 +15,6 @@ import { useLegacyContributions } from "@ribon.io/shared/hooks";
 import { useCurrentUser } from "contexts/currentUserContext";
 import parse from "html-react-parser";
 import * as S from "../styles";
-import { logEvent } from "lib/events";
 
 function CommunitySection() {
   const { navigateTo } = useNavigation();
@@ -102,8 +102,7 @@ function CommunitySection() {
               }}
               callToAction={t("callToAction")}
               text={parse(t("cardText"))}
-            > 
-              {console.log(item)}
+            >
               <S.TooltipText>
                 <S.Paragraph>
                   {t("tooltipFirstParagraphText", {

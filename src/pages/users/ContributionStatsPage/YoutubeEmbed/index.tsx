@@ -1,5 +1,5 @@
-import Card from 'components/moleculars/cards/Card';
-import * as S from './styles';
+import Card from "components/moleculars/cards/Card";
+import * as S from "./styles";
 
 type Props = {
   embedId: string;

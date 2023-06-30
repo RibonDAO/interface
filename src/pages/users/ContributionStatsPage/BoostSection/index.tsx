@@ -2,7 +2,6 @@ import Card from "components/moleculars/cards/Card";
 import Title from "components/moleculars/Title";
 import { useTranslation } from "react-i18next";
 import { theme } from "@ribon.io/shared/styles";
-import Data from "components/moleculars/Data";
 import Subtitle from "components/moleculars/Subtitle";
 import parse from "html-react-parser";
 import * as S from "./styles";

@@ -38,8 +38,12 @@ function CardTooltip({
   onPress,
   callToAction,
 }: Props): JSX.Element {
+  const press = () => {
+    if (onPress) onPress();
+  }
+  
   return (
-    <S.Container size={size} onClick={() => onPress()}>
+    <S.Container size={size} onClick={() => press()}>
       {icon && <S.Image src={icon} />}
       <S.Title textColor={titleColor}>{title}</S.Title>
       <S.Value textColor={valueColor}>{value}</S.Value>

@@ -1,16 +1,16 @@
+import { useEffect } from "react";
+import { logEvent } from "lib/events";
 import useContributions from "hooks/apiHooks/useContributions";
 import useQueryParams from "hooks/useQueryParams";
 import Banner from "components/moleculars/cards/Banner";
 import { useTranslation } from "react-i18next";
 import parse from "html-react-parser";
 import { theme } from "@ribon.io/shared/styles";
+import bannerBackground from "assets/images/banner-logo-background.svg";
 import EngagementSection from "./EngagementSection";
 import BoostSection from "./BoostSection";
 import YoutubeEmbed from "./YoutubeEmbed";
-import bannerBackground from "assets/images/banner-logo-background.svg";
 import * as S from "./styles";
-import { useEffect } from "react";
-import { logEvent } from "lib/events";
 
 
 
@@ -35,9 +35,7 @@ function ContributionStatsPage(): JSX.Element {
   return (
     <S.Container>
       <S.Title>{
-        parse(t("title",
-          { amount: amount.toString(), cause: cause })
-        )
+        parse(t("title",{ amount, cause }))
       }</S.Title>
       <S.ContentContainer>
         <S.ContainerItem>

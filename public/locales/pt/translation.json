@@ -53,7 +53,11 @@
         "title": "Você não tem mais tickets :(",
         "text": "Gostaria de receber mais?",
         "ribonTitle": "Presente Ribon",
-        "ribonText": "Volte amanhã para receber mais 1 ticket"
+        "ribonText": "Volte amanhã para receber mais 1 ticket",
+        "titleContributionModal": "Você usou todos seus tickets",
+        "descriptionContributionModal": "Que tal fazer uma doação paga?",
+        "buttonContributionModal": "Doe {{value}}",
+        "textContributionModal": "Doe {{value}} para {{nonProfitName}}"
       }
     },
     "storiesPage": {
@@ -66,7 +70,8 @@
       "donateLater": "Doar depois",
       "boostedDonation": "Doação impulsionada",
       "donate": "Doe {{value}} para",
-      "donateButton": "Doe {{value}}"
+      "donateButton": "Doe {{value}}",
+      "donateNow": "Doar agora"
     },
     "donationDonePage": {
       "title": "Obrigada pela doação!",

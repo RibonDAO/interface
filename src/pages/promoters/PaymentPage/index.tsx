@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import getThemeByFlow from "lib/themeByFlow";
 import { newLogEvent } from "lib/events";
+import { useBlockedDonationContributionModal } from "hooks/modalHooks/useBlockedDonationContributionModal";
 import * as S from "./styles";
 import UserInfoSection from "./UserInfoSection";
 import CardInfoSection from "./CardInfoSection";
@@ -34,8 +35,14 @@ function PaymentPage(): JSX.Element {
   );
   const { buttonDisabled, handleSubmit, setCause, setNonProfit } =
     useCardPaymentInformation();
+  const { hideBlockedDonationContributionModal } =
+    useBlockedDonationContributionModal();
 
   const colorTheme = getThemeByFlow(flow);
+
+  useEffect(() => {
+    hideBlockedDonationContributionModal();
+  }, []);
 
   useEffect(() => {
     setCause(cause);

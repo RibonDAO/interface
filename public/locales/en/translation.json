@@ -30,6 +30,7 @@
       "learnMore": "Learn more",
       "tooltipTicketText": "Tickets are used to make donations and you get a new one everyday when you log in Ribon.",
       "tooltipTicket": "What is a ticket?",
+      "nonProfits": "Non-profits",
       "noCauses": {
         "title": "No causes available",
         "text": "But you can contribute donating in community for a cause",
@@ -176,7 +177,9 @@
       "tooltipSecondParagraphText": "Service fees: {{value}}",
       "showMore": "Show more",
       "generalReceiver": "General",
-      "migrated": "Migrated"
+      "migrated": "Migrated",
+      "titleCard": "Help the {{cause}} cause",
+      "communityDescription": "The community will boost your donation with"
     },
     "impactNotification": {
       "title": "We have imported your impact!",
@@ -424,5 +427,15 @@
     "title": "Get Ribon's mobile app",
     "description": "Get the best donation experience we can offer and access exclusive features!",
     "button": "Download app"
+  },
+  "contributionSection": {
+    "title": "Amazing! Thank you for helping {{nonProfitName}}",
+    "titleCard": "Do even more",
+    "nonProfits": "NGOs"
+  },
+  "contributionCard": {
+    "button": "Donate",
+    "donate": "Donate {{value}}",
+    "titleCard": "Do even more"
   }
 }

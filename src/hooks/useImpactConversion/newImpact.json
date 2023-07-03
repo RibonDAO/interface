@@ -1,0 +1,108 @@
+{
+  "pt": [
+    {
+      "name": "Against Malaria Foundation",
+      "description": "Forneça tela de proteção contra a malária para",
+      "communityValue": 3,
+      "impact": "1 pessoa.",
+      "image": "https://ribon-marketing.s3.amazonaws.com/againstmalariafoundation.png",
+      "value": 15,
+      "offerId": 28,
+      "nonProfitId": 1
+    },
+
+    {
+      "name": "Evidence Action",
+      "description": "Forneça água tratada para",
+      "communityValue": 3,
+      "impact": "1 pessoa.",
+      "image": "https://ribon-marketing.s3.amazonaws.com/evidenceaction.png",
+      "value": 15,
+      "offerId": 28,
+      "nonProfitId": 6
+    },
+    {
+      "name": "New Incentives",
+      "description": "Incentive a aplicação de ",
+      "communityValue": 3,
+      "impact": "2 vacinas para um bebê.",
+      "image": "https://ribon-marketing.s3.amazonaws.com/newincentives.png",
+      "value": 15,
+      "offerId": 28,
+      "nonProfitId": 8
+    },
+    {
+      "name": "Saha Global",
+      "description": "Forneça uma mentoria para ",
+      "communityValue": 3,
+      "impact": "1 empreendedora na distribuição de água.",
+      "image": "https://ribon-marketing.s3.amazonaws.com/sahaglobal.png",
+      "value": 60,
+      "offerId": 29,
+      "nonProfitId": 11
+    },
+    {
+      "name": "Lwala",
+      "description": "Forneça acompanhamento pré-natal",
+      "communityValue": 3,
+      "impact": "para uma mãe durante a gestação.",
+      "image": "https://ribon-marketing.s3.amazonaws.com/lwala.png",
+      "value": 60,
+      "offerId": 29,
+      "nonProfitId": 10
+    }
+  ],
+  "en": [
+    {
+      "name": "Against Malaria Foundation",
+      "description": "Provide malaria bed nets for",
+      "communityValue": 3,
+      "impact": "1 person.",
+      "image": "https://ribon-marketing.s3.amazonaws.com/againstmalariafoundation.png",
+      "value": 15,
+      "offerId": 28,
+      "nonProfitId": 1
+    },
+
+    {
+      "name": "Evidence Action",
+      "description": "Provide treated water for",
+      "communityValue": 3,
+      "impact": "1 person.",
+      "image": "https://ribon-marketing.s3.amazonaws.com/evidenceaction.png",
+      "value": 15,
+      "offerId": 28,
+      "nonProfitId": 6
+    },
+    {
+      "name": "New Incentives",
+      "description": "Encourage the application of",
+      "communityValue": 3,
+      "impact": "2 vaccines for a baby.",
+      "image": "https://ribon-marketing.s3.amazonaws.com/newincentives.png",
+      "value": 15,
+      "offerId": 28,
+      "nonProfitId": 8
+    },
+    {
+      "name": "Saha Global",
+      "description": "Provide mentorship to",
+      "communityValue": 3,
+      "impact": "1 female entrepreneur in water distribution.",
+      "image": "https://ribon-marketing.s3.amazonaws.com/sahaglobal.png",
+      "value": 60,
+      "offerId": 29,
+      "nonProfitId": 11
+    },
+    {
+      "name": "Lwala",
+      "description": "Provide prenatal care for",
+      "communityValue": 3,
+      "impact": "a mother during pregnancy.",
+      "image": "https://ribon-marketing.s3.amazonaws.com/lwala.png",
+      "value": 60,
+      "offerId": 29,
+      "nonProfitId": 10
+    }
+  ]
+}

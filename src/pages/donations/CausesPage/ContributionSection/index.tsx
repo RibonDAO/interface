@@ -43,7 +43,7 @@ function ContributionSection(): JSX.Element {
     </>
   );
 
-  const ContributionSectionWithVariation = handleVariation(
+  const ContributionSectionWithVariation: JSX.Element | null = handleVariation(
     variation,
     contribution,
     null,
@@ -51,9 +51,7 @@ function ContributionSection(): JSX.Element {
     {},
   );
 
-  const renderContributionSection = () => ContributionSectionWithVariation;
-
-  return renderContributionSection() ?? <Fragment key={variation} />;
+  return ContributionSectionWithVariation ?? <Fragment key={variation} />;
 }
 
 export default ContributionSection;

@@ -118,7 +118,7 @@ function CommunitySection() {
     </S.EmptySectionContainer>
   );
 
-  const EmptySectionWithVariation = handleVariation(
+  const EmptySectionWithVariation: JSX.Element | null = handleVariation(
     variation,
     contribution,
     emptySection,
@@ -126,7 +126,6 @@ function CommunitySection() {
     {},
   );
 
-  const renderEmptySection = () => EmptySectionWithVariation;
   return (
     <S.Container>
       {hasImpactCards ? (
@@ -193,7 +192,7 @@ function CommunitySection() {
           )}
         </S.CardsContainer>
       ) : (
-        renderEmptySection()
+        EmptySectionWithVariation
       )}
     </S.Container>
   );

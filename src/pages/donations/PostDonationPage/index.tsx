@@ -8,6 +8,7 @@ import Rocket from "assets/icons/rocket.svg";
 import { newLogEvent } from "lib/events";
 import { useImpactConversion } from "hooks/useImpactConversion";
 import { formatPrice } from "lib/formatters/currencyFormatter";
+import { shouldRenderVariation } from "lib/handleVariation";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -26,8 +27,8 @@ function PostDonationPage(): JSX.Element {
   const { navigateTo } = useNavigation();
   const { contribution, variation, offer, description } = useImpactConversion();
 
-  const shouldRenderVariation = useCallback(
-    () => variation !== "Control" && contribution,
+  const isVariation = useCallback(
+    () => shouldRenderVariation(variation, contribution),
     [contribution, variation],
   );
 
@@ -40,7 +41,7 @@ function PostDonationPage(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    if (shouldRenderVariation()) {
+    if (isVariation()) {
       newLogEvent("view", "contributeCauseBtn", {
         from: "givePostDonation_page",
       });
@@ -70,7 +71,7 @@ function PostDonationPage(): JSX.Element {
   };
 
   const handleDonateWithCommunityClick = () => {
-    if (shouldRenderVariation()) {
+    if (isVariation()) {
       handleClickedDonationButton("cause");
     } else {
       newLogEvent("click", "P8_causeCard", { causeId: nonProfit.cause.id });
@@ -84,7 +85,7 @@ function PostDonationPage(): JSX.Element {
   };
 
   const handleDonateDirectlyClick = () => {
-    if (shouldRenderVariation()) {
+    if (isVariation()) {
       handleClickedDonationButton("nonProfit");
     } else {
       newLogEvent("click", "P8_nonProfitCard", { nonProfitId: nonProfit.id });
@@ -122,7 +123,7 @@ function PostDonationPage(): JSX.Element {
             </S.BoostedDonation>
             <S.BottomContainer>
               <S.Text>
-                {shouldRenderVariation()
+                {isVariation()
                   ? t("donate", {
                       value: formatPrice(contribution?.value ?? 0, "brl"),
                     })
@@ -130,7 +131,7 @@ function PostDonationPage(): JSX.Element {
               </S.Text>
               <S.CardMainText>{nonProfit.cause.name}</S.CardMainText>
             </S.BottomContainer>
-            {shouldRenderVariation() && (
+            {isVariation() && (
               <S.InsideButton
                 onClick={() => {}}
                 text={t("donateButton", {
@@ -146,20 +147,16 @@ function PostDonationPage(): JSX.Element {
             <S.DarkOverlay />
             <S.BottomContainer>
               <S.Text>
-                {shouldRenderVariation()
+                {isVariation()
                   ? description ??
                     `${contribution?.impact && <b>{contribution?.impact}</b>}`
                   : t("donateDirectly")}
               </S.Text>
               <S.CardMainText>
-                {shouldRenderVariation() ? (
-                  <b>{contribution?.impact}</b>
-                ) : (
-                  nonProfit.name
-                )}
+                {isVariation() ? <b>{contribution?.impact}</b> : nonProfit.name}
               </S.CardMainText>
             </S.BottomContainer>
-            {shouldRenderVariation() && (
+            {isVariation() && (
               <S.InsideButton
                 onClick={() => {}}
                 text={t("donateButton", {

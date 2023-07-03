@@ -12,6 +12,7 @@ import useFormattedImpactText from "hooks/useFormattedImpactText";
 import causeIllustration from "assets/images/direct-illustration.svg";
 import { useBlockedDonationContributionModal } from "hooks/modalHooks/useBlockedDonationContributionModal";
 import { useImpactConversion } from "hooks/useImpactConversion";
+import { shouldRenderVariation } from "lib/handleVariation";
 import StoriesSection from "../StoriesSection";
 import * as S from "../styles";
 
@@ -75,7 +76,7 @@ function NonProfitsList({
       newLogEvent("click", "P1_donateBlockedBtn", {
         nonProfitId: nonProfit.id,
       });
-      if (variation !== "Control" && contribution) {
+      if (shouldRenderVariation(variation, contribution)) {
         showBlockedDonationContributionModal();
       } else {
         showBlockedDonationModal();

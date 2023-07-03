@@ -18,6 +18,7 @@ import { logEvent, newLogEvent } from "lib/events";
 import extractUrlValue from "lib/extractUrlValue";
 import { useBlockedDonationContributionModal } from "hooks/modalHooks/useBlockedDonationContributionModal";
 import { useImpactConversion } from "hooks/useImpactConversion";
+import { shouldRenderVariation } from "lib/handleVariation";
 import ChangeLanguageItem from "./ChangeLanguageItem";
 import LogoutItem from "./LogoutItem";
 import * as S from "./styles";
@@ -76,7 +77,7 @@ function LayoutHeader({
       navigateTo("/tickets");
     } else {
       newLogEvent("click", "ticketIcon", { ticketQtd: 0 });
-      if (variation !== "Control" && contribution) {
+      if (shouldRenderVariation(variation, contribution)) {
         showBlockedDonationContributionModal();
       } else {
         showBlockedDonationModal();

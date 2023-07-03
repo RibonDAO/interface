@@ -33,7 +33,7 @@ function PaymentPage(): JSX.Element {
     offer.priceValue ?? 0,
     offer.currency.toUpperCase() as Currencies,
   );
-  const { buttonDisabled, handleSubmit, setCause, setNonProfit } =
+  const { buttonDisabled, handleSubmit, setCause, setNonProfit, setOfferId } =
     useCardPaymentInformation();
   const { hideBlockedDonationContributionModal } =
     useBlockedDonationContributionModal();
@@ -51,6 +51,10 @@ function PaymentPage(): JSX.Element {
   useEffect(() => {
     setNonProfit(nonProfit);
   }, [nonProfit]);
+
+  useEffect(() => {
+    setOfferId(offer.id);
+  }, [offer]);
 
   useEffect(() => {
     if (flow === "cause") {

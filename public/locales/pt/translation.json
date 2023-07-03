@@ -178,7 +178,8 @@
       "showMore": "Mostrar mais",
       "generalReceiver": "Geral",
       "migrated": "Migrado",
-      "titleCard": "Ajude a causa de {{cause}}"
+      "titleCard": "Ajude a causa de {{cause}}",
+      "communityDescription": "A comunidade impulsionará sua doação com"
     },
     "impactNotification": {
       "title": "Migramos seu impacto!",

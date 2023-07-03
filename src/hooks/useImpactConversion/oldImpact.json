@@ -1,17 +1,15 @@
 [
   {
     "name": "Against Malaria Foundation",
-    "communityDescription": "A comunidade impulsionará sua doação com",
     "communityValue": 3,
     "value": 15,
     "image": "https://ribon-marketing.s3.amazonaws.com/againstmalariafoundation.png",
     "offerId": 28,
-    "nonProfitId": 9
+    "nonProfitId": 1
   },
 
   {
     "name": "Evidence Action",
-    "communityDescription": "A comunidade impulsionará sua doação com",
     "communityValue": 12,
     "value": 15,
     "image": "https://ribon-marketing.s3.amazonaws.com/evidenceaction.png",
@@ -20,7 +18,6 @@
   },
   {
     "name": "New Incetives",
-    "communityDescription": "A comunidade impulsionará sua doação com",
     "communityValue": 12,
     "value": 15,
     "image": "https://ribon-marketing.s3.amazonaws.com/newincentives.png",
@@ -29,7 +26,6 @@
   },
   {
     "name": "Saha Global",
-    "communityDescription": "A comunidade impulsionará sua doação com",
     "communityValue": 12,
     "image": "https://ribon-marketing.s3.amazonaws.com/sahaglobal.png",
     "value": 60,
@@ -38,7 +34,6 @@
   },
   {
     "name": "Lwala",
-    "communityDescription": "A comunidade impulsionará sua doação com",
     "communityValue": 12,
     "image": "https://ribon-marketing.s3.amazonaws.com/lwala.png",
     "value": 60,

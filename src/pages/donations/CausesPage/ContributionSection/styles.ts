@@ -1,24 +1,38 @@
 import styled from "styled-components";
 import { defaultBodyLgSemibold } from "styles/typography/default";
 
-export const Container = styled.div<{ isMobile: boolean }>`
+export const Container = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing(48)};
   display: flex;
-  flex-direction: ${({ isMobile }) => (isMobile ? "column" : "row")};
+  flex-direction: column;
   align-items: center;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    flex-direction: row;
+  }
 `;
 
-export const NonProfitImage = styled.img<{ isMobile: boolean }>`
-  width: ${({ isMobile }) => (isMobile ? "110%" : "100%")};
-  border-radius: ${({ isMobile }) => (isMobile ? "0" : "8px")};
+export const NonProfitImage = styled.img`
+  width: 110%;
+  border-radius: 0;
   position: relative;
-  left: ${({ isMobile }) => (isMobile ? "-16px" : "initial")};
+  left: -16px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: 100%;
+    border-radius: 8px;
+    left: initial;
+  }
 `;
 
-export const ImageContainer = styled.div<{ isMobile: boolean }>`
-  margin-right: ${({ theme, isMobile }) => (isMobile ? 0 : theme.spacing(40))};
+export const ImageContainer = styled.div`
+  margin-right: 0;
   display: flex;
   flex-direction: column;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    margin-right: ${({ theme }) => theme.spacing(40)};
+  }
 `;
 
 export const Title = styled.h1`

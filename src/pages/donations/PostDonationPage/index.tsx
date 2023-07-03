@@ -27,7 +27,7 @@ function PostDonationPage(): JSX.Element {
   const { contribution, variation, offer, description } = useImpactConversion();
 
   const shouldRenderVariation = useCallback(
-    () => variation !== "Control" && contribution,
+    () => variation !== "Control" && !!contribution,
     [contribution, variation],
   );
 
@@ -121,7 +121,7 @@ function PostDonationPage(): JSX.Element {
               {t("boostedDonation")}
             </S.BoostedDonation>
             <S.BottomContainer>
-              <S.Text>
+              <S.Text hasButton={shouldRenderVariation()}>
                 {shouldRenderVariation()
                   ? t("donate", {
                       value: formatPrice(contribution?.value ?? 0, "brl"),
@@ -131,12 +131,7 @@ function PostDonationPage(): JSX.Element {
               <S.CardMainText>{nonProfit.cause.name}</S.CardMainText>
             </S.BottomContainer>
             {shouldRenderVariation() && (
-              <S.InsideButton
-                onClick={() => {}}
-                text={t("donateButton", {
-                  value: formatPrice(contribution?.value ?? 0, "brl"),
-                })}
-              />
+              <S.InsideButton onClick={() => {}} text="Doar agora" />
             )}
           </S.Card>
           <S.Card
@@ -145,7 +140,7 @@ function PostDonationPage(): JSX.Element {
           >
             <S.DarkOverlay />
             <S.BottomContainer>
-              <S.Text>
+              <S.Text hasButton={shouldRenderVariation()}>
                 {shouldRenderVariation()
                   ? description ??
                     `${contribution?.impact && <b>{contribution?.impact}</b>}`

@@ -53,7 +53,11 @@
         "title": "Você não tem mais tickets :(",
         "text": "Gostaria de receber mais?",
         "ribonTitle": "Presente Ribon",
-        "ribonText": "Volte amanhã para receber mais 1 ticket"
+        "ribonText": "Volte amanhã para receber mais 1 ticket",
+        "titleContributionModal": "Você usou todos seus tickets",
+        "descriptionContributionModal": "Que tal fazer uma doação paga?",
+        "buttonContributionModal": "Doe {{value}}",
+        "textContributionModal": "Doe {{value}} para {{nonProfitName}}"
       }
     },
     "storiesPage": {
@@ -64,7 +68,10 @@
       "donateAsCommunity": "Doar em comunidade para",
       "donateDirectly": "Doar diretamente para",
       "donateLater": "Doar depois",
-      "boostedDonation": "Doação impulsionada"
+      "boostedDonation": "Doação impulsionada",
+      "donate": "Doe {{value}} para",
+      "donateButton": "Doe {{value}}",
+      "donateNow": "Doar agora"
     },
     "donationDonePage": {
       "title": "Obrigada pela doação!",
@@ -176,7 +183,9 @@
       "tooltipSecondParagraphText": "Taxa de serviço: {{value}}",
       "showMore": "Mostrar mais",
       "generalReceiver": "Geral",
-      "migrated": "Migrado"
+      "migrated": "Migrado",
+      "titleCard": "Ajude a causa de {{cause}}",
+      "communityDescription": "A comunidade impulsionará sua doação com"
     },
     "impactNotification": {
       "title": "Migramos seu impacto!",
@@ -424,5 +433,15 @@
     "title": "Tenha uma experiência completa usando o nosso App",
     "description": "Baixe o app e tenha acesso a todas as funcionalidades da Ribon",
     "button": "Baixar o app"
+  },
+  "contributionSection": {
+    "titleCard": "Faça ainda mais",
+    "title": "Que incrível! Obrigado por ajudar {{nonProfitName}}",
+    "nonProfits": "ONGs"
+  },
+  "contributionCard": {
+    "button": "Doar",
+    "donate": "Doe {{value}}",
+    "titleCard": "Faça ainda mais"
   }
 }

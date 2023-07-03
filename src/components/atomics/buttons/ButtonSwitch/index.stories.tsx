@@ -16,6 +16,7 @@ Default.args = {
   leftText: "PT",
   rightText: "EN",
   onSwitch: (checked) => {
+    // eslint-disable-next-line no-console
     console.log(checked);
   },
 };

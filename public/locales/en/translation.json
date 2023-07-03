@@ -53,7 +53,11 @@
         "title": "You have no more tickets :(",
         "text": "Would you like to receive more?",
         "ribonTitle": "Ribon gift",
-        "ribonText": "Come back tomorrow to receive 1 more ticket"
+        "ribonText": "Come back tomorrow to receive 1 more ticket",
+        "titleContributionModal": "You used all your tickets",
+        "descriptionContributionModal": "How about making a paid donation?",
+        "buttonContributionModal": "Donate {{value}}",
+        "textContributionModal": "Donate {{value}} to {{nonProfitName}}"
       }
     },
     "storiesPage": {
@@ -64,7 +68,10 @@
       "donateAsCommunity": "Donate as a community to",
       "donateDirectly": "Donate directly to",
       "donateLater": "Donate later",
-      "boostedDonation": "Boosted donation"
+      "boostedDonation": "Boosted donation",
+      "donate": "Donate {{value}} to",
+      "donateButton": "Donate {{value}}",
+      "donateNow": "Donate now"
     },
     "donationDonePage": {
       "title": "Thank you for the donation!",
@@ -176,7 +183,9 @@
       "tooltipSecondParagraphText": "Service fees: {{value}}",
       "showMore": "Show more",
       "generalReceiver": "General",
-      "migrated": "Migrated"
+      "migrated": "Migrated",
+      "titleCard": "Help the {{cause}} cause",
+      "communityDescription": "The community will boost your donation with"
     },
     "impactNotification": {
       "title": "We have imported your impact!",
@@ -424,5 +433,15 @@
     "title": "Get Ribon's mobile app",
     "description": "Get the best donation experience we can offer and access exclusive features!",
     "button": "Download app"
+  },
+  "contributionSection": {
+    "title": "Amazing! Thank you for helping {{nonProfitName}}",
+    "titleCard": "Do even more",
+    "nonProfits": "NGOs"
+  },
+  "contributionCard": {
+    "button": "Donate",
+    "donate": "Donate {{value}}",
+    "titleCard": "Do even more"
   }
 }

@@ -60,7 +60,7 @@ function CryptoPage(): JSX.Element {
   }, [causes]);
 
   useEffect(() => {
-    if (cause && cause.pools.length > 0) {
+    if (cause && cause.pools?.length > 0) {
       setCurrentPool(cause?.pools[cause.pools.length - 1].address);
     }
   }, [cause]);

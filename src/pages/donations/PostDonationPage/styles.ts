@@ -103,8 +103,8 @@ export const Text = styled.p<{
 }>`
   ${defaultBodySmRegular}
 
-  max-width: ${({ hasButton }) => (hasButton ? "50%" : "100%")};
   margin-block: 0;
+  max-width: ${({ hasButton }) => (hasButton ? "50%" : "100%")};
   margin-left: ${({ theme }) => theme.spacing(16)};
   color: ${({ theme }) => theme.colors.neutral10};
 `;

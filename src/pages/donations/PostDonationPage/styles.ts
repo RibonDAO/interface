@@ -98,10 +98,13 @@ export const Title = styled.h1`
   }
 `;
 
-export const Text = styled.p`
+export const Text = styled.p<{
+  hasButton?: boolean;
+}>`
   ${defaultBodySmRegular}
 
   margin-block: 0;
+  max-width: ${({ hasButton }) => (hasButton ? "50%" : "100%")};
   margin-left: ${({ theme }) => theme.spacing(16)};
   color: ${({ theme }) => theme.colors.neutral10};
 `;
@@ -164,7 +167,9 @@ export const Rocket = styled.img`
   height: 16px;
 `;
 
-export const BottomContainer = styled.div``;
+export const BottomContainer = styled.div`
+  width: 100%;
+`;
 
 export const InsideButton = styled(Button)`
   ${defaultBodyMdSemibold}

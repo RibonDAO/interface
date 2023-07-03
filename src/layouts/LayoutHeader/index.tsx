@@ -77,7 +77,7 @@ function LayoutHeader({
       navigateTo("/tickets");
     } else {
       newLogEvent("click", "ticketIcon", { ticketQtd: 0 });
-      if (shouldRenderVariation(variation, contribution)) {
+      if (shouldRenderVariation(variation) && !!contribution) {
         showBlockedDonationContributionModal();
       } else {
         showBlockedDonationModal();

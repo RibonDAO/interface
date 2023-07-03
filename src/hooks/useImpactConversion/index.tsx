@@ -5,10 +5,10 @@ import {
   useStatistics,
 } from "@ribon.io/shared/hooks";
 import { Currencies } from "@ribon.io/shared/types";
-
+import { useLanguage } from "hooks/useLanguage";
 import { useCurrentUser } from "contexts/currentUserContext";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Contribution } from "types/entities/Contribution";
 import NewImpact from "./newImpact.json";
 import OldImpact from "./oldImpact.json";
@@ -21,6 +21,7 @@ export function useImpactConversion() {
   const [variation, setVariation] = useState<string>("Control");
   const [nonProfit, setNonProfit] = useState<any>();
   const [offer, setOffer] = useState<any>();
+  const { currentLang } = useLanguage();
 
   const { formattedImpactText } = useFormattedImpactText();
 
@@ -50,6 +51,13 @@ export function useImpactConversion() {
     variations: ["Control", "NewImpact", "OldImpact"],
   });
 
+  const currentNewImpact = useCallback(() => {
+    if (currentLang === "pt-BR") {
+      return NewImpact.pt;
+    }
+    return NewImpact.en;
+  }, [currentLang]);
+
   useEffect(() => {
     setVariation(value);
   }, [value]);
@@ -57,7 +65,7 @@ export function useImpactConversion() {
   useEffect(() => {
     if (variation === "NewImpact") {
       return setContribution(
-        NewImpact.find(
+        currentNewImpact().find(
           (o) => o.nonProfitId === userStatistics?.lastDonatedNonProfit,
         ),
       );

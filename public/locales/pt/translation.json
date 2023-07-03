@@ -70,7 +70,8 @@
       "donateLater": "Doar depois",
       "boostedDonation": "Doação impulsionada",
       "donate": "Doe {{value}} para",
-      "donateButton": "Doe {{value}}"
+      "donateButton": "Doe {{value}}",
+      "donateNow": "Doar agora"
     },
     "donationDonePage": {
       "title": "Obrigada pela doação!",
@@ -183,7 +184,8 @@
       "showMore": "Mostrar mais",
       "generalReceiver": "Geral",
       "migrated": "Migrado",
-      "titleCard": "Ajude a causa de {{cause}}"
+      "titleCard": "Ajude a causa de {{cause}}",
+      "communityDescription": "A comunidade impulsionará sua doação com"
     },
     "impactNotification": {
       "title": "Migramos seu impacto!",

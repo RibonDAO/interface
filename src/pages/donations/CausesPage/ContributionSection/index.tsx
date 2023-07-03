@@ -19,10 +19,10 @@ function ContributionSection(): JSX.Element {
   const { isMobile } = useBreakpoint();
   const contributionWithVariation = () => (
     <>
-      <S.Container isMobile={isMobile}>
-        <S.ImageContainer isMobile={isMobile}>
+      <S.Container>
+        <S.ImageContainer>
           <S.Title>{t("title", { nonProfitName: nonProfit?.name })}</S.Title>
-          <S.NonProfitImage src={contribution?.image} isMobile={isMobile} />
+          <S.NonProfitImage src={contribution?.image} />
         </S.ImageContainer>
         <ContributionCard
           description={description}
@@ -45,13 +45,15 @@ function ContributionSection(): JSX.Element {
 
   const ContributionSectionWithVariation: JSX.Element | null = handleVariation(
     variation,
-    contribution,
     null,
     contributionWithVariation,
     {},
   );
 
-  return ContributionSectionWithVariation ?? <Fragment key={variation} />;
+  if (contribution)
+    return ContributionSectionWithVariation ?? <Fragment key={variation} />;
+
+  return <Fragment key={variation} />;
 }
 
 export default ContributionSection;

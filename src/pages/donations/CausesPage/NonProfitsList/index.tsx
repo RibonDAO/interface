@@ -76,7 +76,7 @@ function NonProfitsList({
       newLogEvent("click", "P1_donateBlockedBtn", {
         nonProfitId: nonProfit.id,
       });
-      if (shouldRenderVariation(variation, contribution)) {
+      if (shouldRenderVariation(variation) && !!contribution) {
         showBlockedDonationContributionModal();
       } else {
         showBlockedDonationModal();

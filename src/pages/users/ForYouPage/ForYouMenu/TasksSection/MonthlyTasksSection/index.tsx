@@ -67,12 +67,10 @@ function MonthlyTasksSection() {
 
   const ContributionCardWithVariation: JSX.Element | null = handleVariation(
     variation,
-    contribution,
     null,
     ContributionCard,
     contributionCardProps(),
   );
-
   return (
     <S.Container isMobile={isMobile}>
       <S.TitleContainer>
@@ -114,7 +112,7 @@ function MonthlyTasksSection() {
             </S.CheckboxContainer>
           ) : null,
         )}
-      {ContributionCardWithVariation}
+      {!!contribution && ContributionCardWithVariation}
     </S.Container>
   );
 }

@@ -70,7 +70,8 @@
       "donateLater": "Donate later",
       "boostedDonation": "Boosted donation",
       "donate": "Donate {{value}} to",
-      "donateButton": "Donate {{value}}"
+      "donateButton": "Donate {{value}}",
+      "donateNow": "Donate now"
     },
     "donationDonePage": {
       "title": "Thank you for the donation!",
@@ -183,7 +184,8 @@
       "showMore": "Show more",
       "generalReceiver": "General",
       "migrated": "Migrated",
-      "titleCard": "Help the {{cause}} cause"
+      "titleCard": "Help the {{cause}} cause",
+      "communityDescription": "The community will boost your donation with"
     },
     "impactNotification": {
       "title": "We have imported your impact!",

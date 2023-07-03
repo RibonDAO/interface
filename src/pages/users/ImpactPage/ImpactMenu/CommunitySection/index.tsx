@@ -98,7 +98,7 @@ function CommunitySection() {
       <S.EmptyText>{t("emptyText")}</S.EmptyText>
       <ContributionCard
         title={t("titleCard", { cause: nonProfit?.cause.name })}
-        description={contribution?.communityDescription ?? ""}
+        description={t("communityDescription")}
         impact={`+${formatPrice(
           contribution?.communityValue ?? 0,
           "brl",
@@ -120,7 +120,6 @@ function CommunitySection() {
 
   const EmptySectionWithVariation: JSX.Element | null = handleVariation(
     variation,
-    contribution,
     emptySection,
     contributionWithVariation,
     {},
@@ -192,7 +191,7 @@ function CommunitySection() {
           )}
         </S.CardsContainer>
       ) : (
-        EmptySectionWithVariation
+        (!!contribution && EmptySectionWithVariation) || emptySection()
       )}
     </S.Container>
   );

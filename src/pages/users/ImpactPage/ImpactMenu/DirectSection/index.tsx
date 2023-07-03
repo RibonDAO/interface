@@ -104,15 +104,13 @@ function DirectSection() {
     </S.EmptySectionContainer>
   );
 
-  const EmptySectionWithVariation = handleVariation(
+  const EmptySectionWithVariation: JSX.Element | null = handleVariation(
     variation,
     contribution,
     emptySection,
     contributionWithVariation,
     {},
   );
-
-  const renderEmptySection = () => EmptySectionWithVariation;
 
   return (
     <S.Container>
@@ -134,7 +132,7 @@ function DirectSection() {
           )}
         </S.CardsContainer>
       ) : (
-        renderEmptySection()
+        EmptySectionWithVariation
       )}
     </S.Container>
   );

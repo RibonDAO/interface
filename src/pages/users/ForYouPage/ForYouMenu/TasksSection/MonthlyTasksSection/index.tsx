@@ -65,15 +65,13 @@ function MonthlyTasksSection() {
     flow: "nonProfit",
   });
 
-  const ContributionCardWithVariation = handleVariation(
+  const ContributionCardWithVariation: JSX.Element | null = handleVariation(
     variation,
     contribution,
     null,
     ContributionCard,
     contributionCardProps(),
   );
-
-  const renderContributionCard = () => ContributionCardWithVariation;
 
   return (
     <S.Container isMobile={isMobile}>
@@ -116,7 +114,7 @@ function MonthlyTasksSection() {
             </S.CheckboxContainer>
           ) : null,
         )}
-      {renderContributionCard()}
+      {ContributionCardWithVariation}
     </S.Container>
   );
 }

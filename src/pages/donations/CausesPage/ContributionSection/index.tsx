@@ -18,26 +18,29 @@ function ContributionSection(): JSX.Element {
 
   const { isMobile } = useBreakpoint();
   const contributionWithVariation = () => (
-    <S.Container>
-      <S.ImageContainer>
-        <S.Title>{t("title", { nonProfitName: nonProfit?.name })}</S.Title>
-        <S.NonProfitImage src={contribution?.image} />
-      </S.ImageContainer>
-      <ContributionCard
-        description={description}
-        impact={contribution?.impact}
-        value={contribution?.value ?? 0}
-        offer={offer}
-        nonProfit={nonProfit}
-        style={{
-          marginTop: isMobile ? "0" : "48px",
-          width: isMobile ? "110%" : "100%",
-          borderRadius: isMobile ? "0" : "8px",
-        }}
-        from="donateTickets_page"
-        flow="nonProfit"
-      />
-    </S.Container>
+    <>
+      <S.Container>
+        <S.ImageContainer>
+          <S.Title>{t("title", { nonProfitName: nonProfit?.name })}</S.Title>
+          <S.NonProfitImage src={contribution?.image} />
+        </S.ImageContainer>
+        <ContributionCard
+          description={description}
+          impact={contribution?.impact}
+          value={contribution?.value ?? 0}
+          offer={offer}
+          nonProfit={nonProfit}
+          style={{
+            marginTop: isMobile ? "0" : "48px",
+            width: isMobile ? "110%" : "100%",
+            borderRadius: isMobile ? "0" : "8px",
+          }}
+          from="donateTickets_page"
+          flow="nonProfit"
+        />
+      </S.Container>
+      <S.NonProfitTitle>{t("nonProfits")}</S.NonProfitTitle>
+    </>
   );
 
   const ContributionSectionWithVariation: JSX.Element | null = handleVariation(

@@ -1,11 +1,13 @@
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { NonProfit } from "@ribon.io/shared/types";
 import useNavigation from "hooks/useNavigation";
 import VolunteerActivismGreen from "assets/icons/volunteer-activism-green.svg";
 import Rocket from "assets/icons/rocket.svg";
 import { newLogEvent } from "lib/events";
+import { useImpactConversion } from "hooks/useImpactConversion";
+import { formatPrice } from "lib/formatters/currencyFormatter";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -22,6 +24,12 @@ function PostDonationPage(): JSX.Element {
   } = useLocation<LocationStateType>();
 
   const { navigateTo } = useNavigation();
+  const { contribution, variation, offer, description } = useImpactConversion();
+
+  const shouldRenderVariation = useCallback(
+    () => variation !== "Control" && !!contribution,
+    [contribution, variation],
+  );
 
   useEffect(() => {
     if (nonProfit === undefined) {
@@ -31,24 +39,62 @@ function PostDonationPage(): JSX.Element {
     }
   }, []);
 
-  const handleDonateWithCommunityClick = () => {
-    newLogEvent("click", "P8_causeCard", { causeId: nonProfit.cause.id });
+  useEffect(() => {
+    if (shouldRenderVariation()) {
+      newLogEvent("view", "contributeCauseBtn", {
+        from: "givePostDonation_page",
+      });
+      newLogEvent("view", "contributeNgoBtn", {
+        from: "givePostDonation_page",
+      });
+    }
+  }, [variation]);
+
+  const handleClickedDonationButton = (flow: string) => {
+    newLogEvent("start", "giveCauseBtn", {
+      from: flow === "nonProfit" ? "giveNgoBtn" : "giveCauseBtn",
+      value: contribution?.value,
+      coin: offer?.currency,
+      causeId: nonProfit?.cause?.id,
+    });
+
     navigateTo({
-      pathname: "/promoters/support-cause",
+      pathname: "promoters/payment",
       state: {
-        causeDonated: nonProfit.cause,
+        offer,
+        nonProfit,
+        flow,
+        cause: nonProfit?.cause,
       },
     });
   };
 
+  const handleDonateWithCommunityClick = () => {
+    if (shouldRenderVariation()) {
+      handleClickedDonationButton("cause");
+    } else {
+      newLogEvent("click", "P8_causeCard", { causeId: nonProfit.cause.id });
+      navigateTo({
+        pathname: "/promoters/support-cause",
+        state: {
+          causeDonated: nonProfit.cause,
+        },
+      });
+    }
+  };
+
   const handleDonateDirectlyClick = () => {
-    newLogEvent("click", "P8_nonProfitCard", { nonProfitId: nonProfit.id });
-    navigateTo({
-      pathname: "/promoters/support-non-profit",
-      state: {
-        causeDonated: nonProfit.cause,
-      },
-    });
+    if (shouldRenderVariation()) {
+      handleClickedDonationButton("nonProfit");
+    } else {
+      newLogEvent("click", "P8_nonProfitCard", { nonProfitId: nonProfit.id });
+      navigateTo({
+        pathname: "/promoters/support-non-profit",
+        state: {
+          causeDonated: nonProfit.cause,
+        },
+      });
+    }
   };
 
   const handleDonateLaterClick = () => {
@@ -75,9 +121,18 @@ function PostDonationPage(): JSX.Element {
               {t("boostedDonation")}
             </S.BoostedDonation>
             <S.BottomContainer>
-              <S.Text>{t("donateAsCommunity")}</S.Text>
+              <S.Text hasButton={shouldRenderVariation()}>
+                {shouldRenderVariation()
+                  ? t("donate", {
+                      value: formatPrice(contribution?.value ?? 0, "brl"),
+                    })
+                  : t("donateAsCommunity")}
+              </S.Text>
               <S.CardMainText>{nonProfit.cause.name}</S.CardMainText>
             </S.BottomContainer>
+            {shouldRenderVariation() && (
+              <S.InsideButton onClick={() => {}} text="Doar agora" />
+            )}
           </S.Card>
           <S.Card
             image={nonProfit.mainImage}
@@ -85,9 +140,28 @@ function PostDonationPage(): JSX.Element {
           >
             <S.DarkOverlay />
             <S.BottomContainer>
-              <S.Text>{t("donateDirectly")}</S.Text>
-              <S.CardMainText>{nonProfit.name}</S.CardMainText>
+              <S.Text hasButton={shouldRenderVariation()}>
+                {shouldRenderVariation()
+                  ? description ??
+                    `${contribution?.impact && <b>{contribution?.impact}</b>}`
+                  : t("donateDirectly")}
+              </S.Text>
+              <S.CardMainText>
+                {shouldRenderVariation() ? (
+                  <b>{contribution?.impact}</b>
+                ) : (
+                  nonProfit.name
+                )}
+              </S.CardMainText>
             </S.BottomContainer>
+            {shouldRenderVariation() && (
+              <S.InsideButton
+                onClick={() => {}}
+                text={t("donateButton", {
+                  value: formatPrice(contribution?.value ?? 0, "brl"),
+                })}
+              />
+            )}
           </S.Card>
         </>
       )}

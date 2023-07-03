@@ -261,7 +261,6 @@ function CausesPage(): JSX.Element {
           )}
         </S.TitleContainer>
         <ContributionSection />
-        <S.NonProfitTitle>{t("nonProfits")}</S.NonProfitTitle>
         {!isFirstAccess(signedIn) && (
           <GroupButtons
             elements={causesWithAllFilter}

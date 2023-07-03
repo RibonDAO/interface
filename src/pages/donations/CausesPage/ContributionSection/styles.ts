@@ -35,6 +35,13 @@ export const ImageContainer = styled.div`
   }
 `;
 
+export const NonProfitTitle = styled.h1`
+  ${defaultBodyLgSemibold}
+
+  margin-bottom: ${({ theme }) => theme.spacing(16)};
+  color: ${({ theme }) => theme.colors.neutral[800]};
+`;
+
 export const Title = styled.h1`
   ${defaultBodyLgSemibold}
 

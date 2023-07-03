@@ -30,7 +30,6 @@
       "learnMore": "Saiba mais",
       "tooltipTicketText": "Os tickets servem para fazer doações e você recebe um a cada dia que entrar aqui na Ribon.",
       "tooltipTicket": "O que é um ticket?",
-      "nonProfits": "ONGs",
       "noCauses": {
         "title": "Nenhuma causa disponível",
         "text": "Mas você pode contribuir doando em comunidade para uma causa",
@@ -65,7 +64,9 @@
       "donateAsCommunity": "Doar em comunidade para",
       "donateDirectly": "Doar diretamente para",
       "donateLater": "Doar depois",
-      "boostedDonation": "Doação impulsionada"
+      "boostedDonation": "Doação impulsionada",
+      "donate": "Doe {{value}} para",
+      "donateButton": "Doe {{value}}"
     },
     "donationDonePage": {
       "title": "Obrigada pela doação!",

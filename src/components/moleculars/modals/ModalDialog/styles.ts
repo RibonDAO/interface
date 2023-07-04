@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {
+  defaultBodyMdBold,
   defaultBodyMdRegular,
   defaultHeadingXxs,
 } from "styles/typography/default";
@@ -42,6 +43,14 @@ export const Title = styled.h1`
   margin-top: ${({ theme }) => theme.spacing(16)};
 `;
 
+export const HighlightedText = styled.h1`
+  ${defaultBodyMdBold}
+
+  margin-top: ${({ theme }) => theme.spacing(16)};
+  margin-bottom: ${({ theme }) => theme.spacing(16)};
+  color: ${({ theme }) => theme.colors.brand.primary[600]};
+`;
+
 export const Description = styled.p`
   ${defaultBodyMdRegular}
 
@@ -54,4 +63,5 @@ export const CloseIcon = styled(Icon)`
   margin-bottom: ${({ theme }) => theme.spacing(16)};
   display: flex;
   align-self: flex-end;
+  cursor: pointer;
 `;

@@ -53,7 +53,11 @@
         "title": "Você não tem mais tickets :(",
         "text": "Gostaria de receber mais?",
         "ribonTitle": "Presente Ribon",
-        "ribonText": "Volte amanhã para receber mais 1 ticket"
+        "ribonText": "Volte amanhã para receber mais 1 ticket",
+        "titleContributionModal": "Você usou todos seus tickets",
+        "descriptionContributionModal": "Que tal fazer uma doação paga?",
+        "buttonContributionModal": "Doe {{value}}",
+        "textContributionModal": "Doe {{value}} para {{nonProfitName}}"
       }
     },
     "storiesPage": {
@@ -64,7 +68,10 @@
       "donateAsCommunity": "Doar em comunidade para",
       "donateDirectly": "Doar diretamente para",
       "donateLater": "Doar depois",
-      "boostedDonation": "Doação impulsionada"
+      "boostedDonation": "Doação impulsionada",
+      "donate": "Doe {{value}} para",
+      "donateButton": "Doe {{value}}",
+      "donateNow": "Doar agora"
     },
     "donationDonePage": {
       "title": "Obrigada pela doação!",
@@ -177,8 +184,13 @@
       "showMore": "Mostrar mais",
       "generalReceiver": "Geral",
       "migrated": "Migrado",
+<<<<<<< HEAD
       "cardText": "Sua doação gera até <b>+$200</b> para a causa animal!",
       "callToAction": "Acompanhar impacto ->"
+=======
+      "titleCard": "Ajude a causa de {{cause}}",
+      "communityDescription": "A comunidade impulsionará sua doação com"
+>>>>>>> 8154e3c817a6fea1abed31fea2b179186cfc6254
     },
     "impactNotification": {
       "title": "Migramos seu impacto!",
@@ -314,6 +326,28 @@
         "netDonationText": "Doação líquida:",
         "serviceFeesText": "Taxas de serviço:"
       }
+    },
+    "paymentPageV2": {
+      "changeCurrency": "Mudar moeda",
+      "back": "Voltar",
+      "donatingTo": "Doando para ",
+      "netDonation": "Doação líquida: ",
+      "serviceFees": "Taxas de serviço: ",
+      "payment": "Pagamento",
+      "selectCurrency": "Selecione a moeda",
+      "selectValue": "Selecione o valor",
+      "paymentMethodSection": {
+        "creditCard": "Cartão de crédito",
+        "googlePay": "Google Pay",
+        "applePay": "Apple Pay",
+        "creditCardFields": {
+          "number": "Número do cartão",
+          "name": "Nome impresso",
+          "expirationDate": "Data de validade",
+          "cvv": "CVV"
+        }
+      },
+      "confirmPayment": "Confirmar pagamento"
     }
   },
   "contexts": {
@@ -429,5 +463,15 @@
     "title": "Obrigado pela doação!",
     "description": "Acompanhe o aumento da sua doação!",
     "link": "Acompanhar doação"
+  },
+  "contributionSection": {
+    "titleCard": "Faça ainda mais",
+    "title": "Que incrível! Obrigado por ajudar {{nonProfitName}}",
+    "nonProfits": "ONGs"
+  },
+  "contributionCard": {
+    "button": "Doar",
+    "donate": "Doe {{value}}",
+    "titleCard": "Faça ainda mais"
   }
 }

@@ -7,6 +7,8 @@ import { useCardGivingFees } from "@ribon.io/shared/hooks";
 import { useEffect, useState } from "react";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import getThemeByFlow from "lib/themeByFlow";
+import { newLogEvent } from "lib/events";
+import { useBlockedDonationContributionModal } from "hooks/modalHooks/useBlockedDonationContributionModal";
 import * as S from "./styles";
 import UserInfoSection from "./UserInfoSection";
 import CardInfoSection from "./CardInfoSection";
@@ -28,13 +30,19 @@ function PaymentPage(): JSX.Element {
   });
   const [currentSection, setCurrentSection] = useState<"user" | "card">("user");
   const { cardGivingFees } = useCardGivingFees(
-    offer.priceValue,
+    offer.priceValue ?? 0,
     offer.currency.toUpperCase() as Currencies,
   );
-  const { buttonDisabled, handleSubmit, setCause, setNonProfit } =
+  const { buttonDisabled, handleSubmit, setCause, setNonProfit, setOfferId } =
     useCardPaymentInformation();
+  const { hideBlockedDonationContributionModal } =
+    useBlockedDonationContributionModal();
 
   const colorTheme = getThemeByFlow(flow);
+
+  useEffect(() => {
+    hideBlockedDonationContributionModal();
+  }, []);
 
   useEffect(() => {
     setCause(cause);
@@ -43,6 +51,27 @@ function PaymentPage(): JSX.Element {
   useEffect(() => {
     setNonProfit(nonProfit);
   }, [nonProfit]);
+
+  useEffect(() => {
+    setOfferId(offer.id);
+  }, [offer]);
+
+  useEffect(() => {
+    if (flow === "cause") {
+      newLogEvent("view", "P5", {
+        causeId: cause?.id,
+        price: offer.priceValue,
+        currency: offer.currency,
+      });
+    }
+    if (flow === "nonProfit") {
+      newLogEvent("view", "P6", {
+        nonprofitId: nonProfit?.id,
+        price: offer.priceValue,
+        currency: offer.currency,
+      });
+    }
+  }, []);
 
   const isUserSection = () => currentSection === "user";
   const isCardSection = () => currentSection === "card";
@@ -69,7 +98,8 @@ function PaymentPage(): JSX.Element {
     }
   };
 
-  const highlightText = () => nonProfit?.name || cause?.name;
+  const isNonprofit = () => flow === "nonProfit" && nonProfit;
+  const highlightText = () => (isNonprofit() ? nonProfit?.name : cause?.name);
 
   return (
     <S.Container>
@@ -80,9 +110,11 @@ function PaymentPage(): JSX.Element {
       />
       <S.MainContainer>
         <S.SupportImage
-          src={nonProfit?.backgroundImage || cause.coverImage}
+          src={isNonprofit() ? nonProfit?.backgroundImage : cause?.coverImage}
           alt={
-            nonProfit?.backgroundImageDescription || cause.coverImageDescription
+            (isNonprofit()
+              ? nonProfit?.backgroundImageDescription
+              : cause?.coverImageDescription) ?? ""
           }
         />
         <S.ContentContainer>

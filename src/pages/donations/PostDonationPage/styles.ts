@@ -6,6 +6,7 @@ import {
 import {
   defaultHeadingXs,
   defaultBodySmRegular,
+  defaultBodyMdSemibold,
 } from "styles/typography/default";
 import YellowShape from "assets/images/yellow-shape.svg";
 import PinkShape from "assets/images/pink-shape.svg";
@@ -97,10 +98,13 @@ export const Title = styled.h1`
   }
 `;
 
-export const Text = styled.p`
+export const Text = styled.p<{
+  hasButton?: boolean;
+}>`
   ${defaultBodySmRegular}
 
   margin-block: 0;
+  max-width: ${({ hasButton }) => (hasButton ? "50%" : "100%")};
   margin-left: ${({ theme }) => theme.spacing(16)};
   color: ${({ theme }) => theme.colors.neutral10};
 `;
@@ -163,4 +167,21 @@ export const Rocket = styled.img`
   height: 16px;
 `;
 
-export const BottomContainer = styled.div``;
+export const BottomContainer = styled.div`
+  width: 100%;
+`;
+
+export const InsideButton = styled(Button)`
+  ${defaultBodyMdSemibold}
+
+  width: auto;
+  min-width: 118px;
+  padding: ${({ theme }) => theme.spacing(16, 12)};
+  border: none;
+  border-radius: 4px;
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  gap: ${({ theme }) => theme.spacing(4)};
+  background-color: ${({ theme }) => theme.colors.brand.primary[600]};
+`;

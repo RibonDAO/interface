@@ -1,0 +1,43 @@
+[
+  {
+    "name": "Against Malaria Foundation",
+    "communityValue": 3,
+    "value": 15,
+    "image": "https://ribon-marketing.s3.amazonaws.com/againstmalariafoundation.png",
+    "offerId": 28,
+    "nonProfitId": 9
+  },
+
+  {
+    "name": "Evidence Action",
+    "communityValue": 12,
+    "value": 15,
+    "image": "https://ribon-marketing.s3.amazonaws.com/evidenceaction.png",
+    "offerId": 28,
+    "nonProfitId": 6
+  },
+  {
+    "name": "New Incetives",
+    "communityValue": 12,
+    "value": 15,
+    "image": "https://ribon-marketing.s3.amazonaws.com/newincentives.png",
+    "offerId": 28,
+    "nonProfitId": 8
+  },
+  {
+    "name": "Saha Global",
+    "communityValue": 12,
+    "image": "https://ribon-marketing.s3.amazonaws.com/sahaglobal.png",
+    "value": 60,
+    "offerId": 29,
+    "nonProfitId": 11
+  },
+  {
+    "name": "Lwala",
+    "communityValue": 12,
+    "image": "https://ribon-marketing.s3.amazonaws.com/lwala.png",
+    "value": 60,
+    "offerId": 29,
+    "nonProfitId": 10
+  }
+]

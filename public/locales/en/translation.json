@@ -53,7 +53,11 @@
         "title": "You have no more tickets :(",
         "text": "Would you like to receive more?",
         "ribonTitle": "Ribon gift",
-        "ribonText": "Come back tomorrow to receive 1 more ticket"
+        "ribonText": "Come back tomorrow to receive 1 more ticket",
+        "titleContributionModal": "You used all your tickets",
+        "descriptionContributionModal": "How about making a paid donation?",
+        "buttonContributionModal": "Donate {{value}}",
+        "textContributionModal": "Donate {{value}} to {{nonProfitName}}"
       }
     },
     "storiesPage": {
@@ -64,7 +68,10 @@
       "donateAsCommunity": "Donate as a community to",
       "donateDirectly": "Donate directly to",
       "donateLater": "Donate later",
-      "boostedDonation": "Boosted donation"
+      "boostedDonation": "Boosted donation",
+      "donate": "Donate {{value}} to",
+      "donateButton": "Donate {{value}}",
+      "donateNow": "Donate now"
     },
     "donationDonePage": {
       "title": "Thank you for the donation!",
@@ -178,7 +185,9 @@
       "generalReceiver": "General",
       "migrated": "Migrated",
       "cardText": "Your donation generates up to <b>+%20</b> for the {{cause}} cause!",
-      "callToAction": "Track impact ->"
+      "callToAction": "Track impact ->",
+      "titleCard": "Help the {{cause}} cause",
+      "communityDescription": "The community will boost your donation with"
     },
     "impactNotification": {
       "title": "We have imported your impact!",
@@ -314,6 +323,28 @@
         "netDonationText": "Net donation:",
         "serviceFeesText": "Service fees:"
       }
+    },
+    "paymentPageV2": {
+      "changeCurrency": "Change currency",
+      "back": "Back",
+      "donatingTo": "Donating to ",
+      "netDonation": "Net donation: ",
+      "serviceFees": "Service fees: ",
+      "payment": "Payment",
+      "selectCurrency": "Select currency",
+      "selectValue": "Select value",
+      "paymentMethodSection": {
+        "creditCard": "Credit card",
+        "googlePay": "Google Pay",
+        "applePay": "Apple Pay",
+        "creditCardFields": {
+          "number": "Card number",
+          "name": "Cardholder name",
+          "expirationDate": "Expiration date",
+          "cvv": "CVV"
+        }
+      },
+      "confirmPayment": "Confirm payment"
     }
   },
   "contexts": {
@@ -405,6 +436,7 @@
     "description": "Get the best donation experience we can offer and access exclusive features!",
     "button": "Download app"
   },
+<<<<<<< HEAD
   "contributionStatsPage": {
     "title": "You donated <span>{{amount}}</span> for <span>{{cause}}</span>",
     "engagementSection": {
@@ -429,6 +461,17 @@
     "title": "Thanks for the donation!",
     "description": "Follow the increase in your donation",
     "link": "Follow donation!"
+=======
+  "contributionSection": {
+    "title": "Amazing! Thank you for helping {{nonProfitName}}",
+    "titleCard": "Do even more",
+    "nonProfits": "NGOs"
+  },
+  "contributionCard": {
+    "button": "Donate",
+    "donate": "Donate {{value}}",
+    "titleCard": "Do even more"
+>>>>>>> 8154e3c817a6fea1abed31fea2b179186cfc6254
   }
   
 }

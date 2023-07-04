@@ -39,7 +39,8 @@ import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
 import ConfirmSection from "./ConfirmSection";
 import ChooseCauseModal from "./ChooseCauseModal";
-import DownloadAppModalTemplate from "./DownloadAppModalTemplate";
+// import DownloadAppModalTemplate from "./DownloadAppModalTemplate";
+import ContributionSection from "./ContributionSection";
 
 function CausesPage(): JSX.Element {
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
@@ -211,22 +212,23 @@ function CausesPage(): JSX.Element {
     ...(activeCauses || []),
   ];
 
-  const modalDialogProps = {
-    children: <DownloadAppModalTemplate />,
-  };
+  // NOTE: Uncomment this after fix the redirect back and finish deeplink
+  // const modalDialogProps = {
+  //   children: <DownloadAppModalTemplate />,
+  // };
 
-  const { show } = useModal({
-    type: MODAL_TYPES.MODAL_DIALOG,
-    props: modalDialogProps,
-  });
+  // const { show } = useModal({
+  //   type: MODAL_TYPES.MODAL_DIALOG,
+  //   props: modalDialogProps,
+  // });
 
-  useEffect(() => {
-    if (isMobile && !isFirstAccess(signedIn)) {
-      setTimeout(() => {
-        show();
-      }, 3000);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (isMobile && !isFirstAccess(signedIn)) {
+  //     setTimeout(() => {
+  //       show();
+  //     }, 3000);
+  //   }
+  // }, []);
 
   return (
     <S.Container>
@@ -248,6 +250,7 @@ function CausesPage(): JSX.Element {
       <S.BodyContainer>
         <S.TitleContainer>
           <S.Title>{t("pageTitle")}</S.Title>
+
           {!isMobile && (
             <Tooltip
               text={t("tooltipTicketText")}
@@ -259,6 +262,7 @@ function CausesPage(): JSX.Element {
           )}
         </S.TitleContainer>
         <ContributionNotification />
+        <ContributionSection />
         {!isFirstAccess(signedIn) && (
           <GroupButtons
             elements={causesWithAllFilter}
@@ -269,6 +273,7 @@ function CausesPage(): JSX.Element {
             eventName="P1_causeTab"
           />
         )}
+
         {isLoading ? (
           <Spinner size="26" />
         ) : (

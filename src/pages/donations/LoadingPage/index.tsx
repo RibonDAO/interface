@@ -20,10 +20,7 @@ function LoadingPage(): JSX.Element {
   const renderOnboardingPage = () => {
     if (isFirstAccessToIntegration) {
       navigateTo({
-        pathname: "/give-ticket",
-        state: {
-          isOnboarding: true,
-        },
+        pathname: "/intro",
       });
     } else {
       navigateTo("/causes");

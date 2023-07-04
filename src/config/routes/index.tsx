@@ -21,6 +21,7 @@ import PostDonationPage from "pages/donations/PostDonationPage";
 import CryptoPaymentProvider from "contexts/cryptoPaymentContext";
 import SupportNonProfitPage from "pages/promoters/SupportNonProfitPage";
 import DeleteAccountPage from "pages/users/DeleteAccountPage";
+import PaymentPageV2 from "pages/promoters/PaymentPageV2";
 import PaymentPage from "pages/promoters/PaymentPage";
 import { useLocation } from "react-router";
 import { logPageView } from "lib/events";
@@ -60,7 +61,13 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
-      <Route path="/give-ticket" exact>
+      <Route path="/intro" exact>
+        <Suspense fallback={<div />}>
+          <GiveTicketPage isOnboarding />
+        </Suspense>
+      </Route>
+
+      <Route path="/tickets" exact>
         <Suspense fallback={<div />}>
           <GiveTicketPage />
         </Suspense>
@@ -247,6 +254,18 @@ function RoutesComponent(): JSX.Element {
                 <CardPaymentInformationProvider>
                   <PaymentPage />
                 </CardPaymentInformationProvider>
+              </WalletLayout>
+            </WalletProvider>
+          </NetworkProvider>
+        </Suspense>
+      </Route>
+
+      <Route path="/promoters/payment/v2" exact>
+        <Suspense fallback={<div />}>
+          <NetworkProvider>
+            <WalletProvider>
+              <WalletLayout hideNavigation>
+                <PaymentPageV2 />
               </WalletLayout>
             </WalletProvider>
           </NetworkProvider>

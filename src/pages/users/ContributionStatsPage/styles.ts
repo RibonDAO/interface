@@ -26,7 +26,7 @@ export const ContentContainer = styled.div`
 
 export const ContainerItem = styled.div`
   > * {
-    padding: ${({ theme }) => theme.spacing(16)} 0;
+    padding: ${({ theme }) => theme.spacing(16)};
     margin-bottom: ${({ theme }) => theme.spacing(16)};
   }
 

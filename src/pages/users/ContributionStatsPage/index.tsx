@@ -64,6 +64,7 @@ function ContributionStatsPage(): JSX.Element {
               arrowLinkColor={theme.colors.brand.secondary[800]}
               onArrowClick={() => {
                 logEvent("P24_opinionCardBtn_click");
+                window.open("https://api.whatsapp.com/send/?phone=554896605461&text=Oi%2C+quero+compartilhar+minha+opini%C3%A3o+:)&type=phone_number&app_absent=0");
               }}
             />
           </S.ContainerItem>

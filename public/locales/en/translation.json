@@ -444,16 +444,16 @@
       "numberOfContributorsDonors": "donated money inspired by you"
     },
     "boostSection": {
-      "title": "Sua causa recebe mais",
-      "subtitle": "Total arrecadado para sua causa até agora",
-      "tip": "Doando dinheiro pela Ribon,<strong>você gera tickets</strong> para que outras pessoas possam doar de graça. Com isso, algumas delas <strong>se inspiram a doar dinheiro também.</strong>"
+      "title": "Your cause gets more",
+      "subtitle": "Total raised for your cause so far",
+      "tip": "By donating money through Ribon,<strong>you generate tickets</strong> so that other people can donate for free. With that, some of them <strong>are inspired to donate money too.</strong>"
     },
     "video": {
-      "title": "Entenda como a comunidade da Ribon <b>aumenta a sua doação</b>"
+      "title": "Understand how the Ribon community <b>increases your donation</b>"
     },
     "supportSection": {
-      "title": "Sua doação gerou impacto",
-      "text": "O que você achou dessa experiência ?"
+      "title": "Give us your opinion",
+      "text": "What did you think of this experience?"
     }
   },
   "contributionNotification": {

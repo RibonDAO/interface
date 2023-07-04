@@ -98,4 +98,5 @@ export const Label = styled.span`
 export const CallToAction = styled.h5`
   ${defaultBodySmBold}
   color: ${({ theme }) => theme.colors.brand.primary[600]};
+  cursor: pointer;
 `;

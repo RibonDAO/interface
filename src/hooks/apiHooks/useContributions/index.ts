@@ -6,6 +6,23 @@ import contributionsApi from "services/api/contributionApi";
 
 function useContributions() {
   const { currentUser } = useCurrentUser();
+  function useUserContributions() {
+    const { data, error, isLoading, refetch } = useApi<Contribution[]>({
+      key: `useUserContributions-${currentUser?.id}`,
+      fetchMethod: () => {
+        if (!currentUser?.id) return emptyRequest();
+
+        return contributionsApi.getContributions(currentUser?.id);
+      },
+    });
+    
+    return {
+      data,
+      error,
+      isLoading,
+      refetch,
+    };
+  }
 
   function useContributionStats(contributionId: number) {
     const { data, error, isLoading, refetch } = useApi<Contribution>({
@@ -27,7 +44,7 @@ function useContributions() {
       refetch,
     };
   }
-  return { useContributionStats };
+  return { useUserContributions, useContributionStats };
 }
 
 export default useContributions;

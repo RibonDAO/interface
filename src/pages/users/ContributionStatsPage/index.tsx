@@ -1,7 +1,7 @@
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { logEvent } from "lib/events";
 import useContributions from "hooks/apiHooks/useContributions";
-import useQueryParams from "hooks/useQueryParams";
 import Banner from "components/moleculars/cards/Banner";
 import { useTranslation } from "react-i18next";
 import parse from "html-react-parser";
@@ -15,8 +15,7 @@ import * as S from "./styles";
 
 
 function ContributionStatsPage(): JSX.Element {
-  const queryParams = useQueryParams();
-  const contributionId = queryParams.get("contribution_id");
+  const { contributionId } = useParams<{ contributionId: string }>();
   const { useContributionStats } = useContributions();
   const { t } = useTranslation("translation", {
     keyPrefix: "contributionStatsPage",
@@ -31,7 +30,7 @@ function ContributionStatsPage(): JSX.Element {
   if(!data) return <>carregando</>;
 
   const amount = data.stats.totalAmountToCause;
-  const cause = data.receiver.name;
+  const cause = data.receiver?.name;
   return (
     <S.Container>
       <S.Title>{

@@ -30,6 +30,7 @@ export const Container = styled.div<NotificationProps>`
   border-radius: 8px;
   display: flex;
   flex-direction: row;
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
   background-color: ${({ theme, type }) => {
     switch (type) {
       case "success":

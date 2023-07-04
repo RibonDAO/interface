@@ -424,5 +424,10 @@
       "title": "Sua doação gerou impacto",
       "text": "O que você achou dessa experiência ?",
     }
+  },
+  "contributionNotification": {
+    "title": "Obrigado pela doação!",
+    "description": "Acompanhe o aumento da sua doação!",
+    "link": "Acompanhar doação"
   }
 }

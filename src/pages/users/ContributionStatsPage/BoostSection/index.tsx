@@ -7,7 +7,7 @@ import parse from "html-react-parser";
 import * as S from "./styles";
 
 type Props = {
-  totalAmountToCause: number;
+  totalAmountToCause: string;
 };
 function BoostSection({
   totalAmountToCause,

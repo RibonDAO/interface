@@ -177,7 +177,7 @@
       "showMore": "Show more",
       "generalReceiver": "General",
       "migrated": "Migrated",
-      "cardText": "Your donation generates up to <b>+$200</b> for the animal cause!",
+      "cardText": "Your donation generates up to <b>+%20</b> for the {{cause}} cause!",
       "callToAction": "Track impact ->"
     },
     "impactNotification": {
@@ -406,11 +406,11 @@
     "button": "Download app"
   },
   "contributionStatsPage": {
-    "title": "Você doou <span>{{amount}}</span> para <span>{{cause}}</span>",
+    "title": "You donated <span>{{amount}}</span> for <span>{{cause}}</span>",
     "engagementSection": {
-      "title": "Sua doação gerou tickets",
-      "numberOfTicketDonors": "pessoas já doaram tickets",
-      "numberOfContributorsDonors": "doaram dinheiro inspiradas por você"
+      "title": "Your donation generated tickets",
+      "numberOfTicketDonors": "people have already donated tickets",
+      "numberOfContributorsDonors": "donated money inspired by you"
     },
     "boostSection": {
       "title": "Sua causa recebe mais",
@@ -424,5 +424,11 @@
       "title": "Sua doação gerou impacto",
       "text": "O que você achou dessa experiência ?"
     }
+  },
+  "contributionNotification": {
+    "title": "Thanks for the donation!",
+    "description": "Follow the increase in your donation",
+    "link": "Follow donation!"
   }
+  
 }

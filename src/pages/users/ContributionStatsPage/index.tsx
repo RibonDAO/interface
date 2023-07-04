@@ -3,13 +3,14 @@ import { useParams } from "react-router-dom";
 import { logEvent } from "lib/events";
 import useContributions from "hooks/apiHooks/useContributions";
 import Banner from "components/moleculars/cards/Banner";
+import YoutubeEmbed from "components/moleculars/YoutubeEmbed";
+import Spinner from "components/atomics/Spinner";
 import { useTranslation } from "react-i18next";
 import parse from "html-react-parser";
 import { theme } from "@ribon.io/shared/styles";
 import bannerBackground from "assets/images/banner-logo-background.svg";
 import EngagementSection from "./EngagementSection";
 import BoostSection from "./BoostSection";
-import YoutubeEmbed from "./YoutubeEmbed";
 import * as S from "./styles";
 
 
@@ -26,8 +27,8 @@ function ContributionStatsPage(): JSX.Element {
   }, []);
   
   const { data } = useContributionStats(Number(contributionId));
-  console.log(data);
-  if(!data) return <>carregando</>;
+
+  if(!data) return <Spinner />;
 
   const amount = data.stats.totalAmountToCause;
   const cause = data.receiver?.name;

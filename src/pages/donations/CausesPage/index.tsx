@@ -211,6 +211,8 @@ function CausesPage(): JSX.Element {
     ...(activeCauses || []),
   ];
 
+  const canDonateAndHasVoucher = canDonate && hasAvailableDonation();
+
   // NOTE: Uncomment this after fix the redirect back and finish deeplink
   // const modalDialogProps = {
   //   children: <DownloadAppModalTemplate />,
@@ -260,7 +262,7 @@ function CausesPage(): JSX.Element {
             />
           )}
         </S.TitleContainer>
-        <ContributionSection />
+        {!canDonateAndHasVoucher && <ContributionSection />}
         {!isFirstAccess(signedIn) && (
           <GroupButtons
             elements={causesWithAllFilter}

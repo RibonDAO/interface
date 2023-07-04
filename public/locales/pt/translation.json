@@ -184,13 +184,10 @@
       "showMore": "Mostrar mais",
       "generalReceiver": "Geral",
       "migrated": "Migrado",
-<<<<<<< HEAD
       "cardText": "Sua doação gera até <b>+$200</b> para a causa animal!",
-      "callToAction": "Acompanhar impacto ->"
-=======
+      "callToAction": "Acompanhar impacto ->",
       "titleCard": "Ajude a causa de {{cause}}",
       "communityDescription": "A comunidade impulsionará sua doação com"
->>>>>>> 8154e3c817a6fea1abed31fea2b179186cfc6254
     },
     "impactNotification": {
       "title": "Migramos seu impacto!",
@@ -456,7 +453,7 @@
     },
     "supportSection": {
       "title": "Sua doação gerou impacto",
-      "text": "O que você achou dessa experiência ?",
+      "text": "O que você achou dessa experiência ?"
     }
   },
   "contributionNotification": {

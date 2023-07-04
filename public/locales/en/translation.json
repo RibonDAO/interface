@@ -436,7 +436,6 @@
     "description": "Get the best donation experience we can offer and access exclusive features!",
     "button": "Download app"
   },
-<<<<<<< HEAD
   "contributionStatsPage": {
     "title": "You donated <span>{{amount}}</span> for <span>{{cause}}</span>",
     "engagementSection": {
@@ -461,7 +460,7 @@
     "title": "Thanks for the donation!",
     "description": "Follow the increase in your donation",
     "link": "Follow donation!"
-=======
+  },
   "contributionSection": {
     "title": "Amazing! Thank you for helping {{nonProfitName}}",
     "titleCard": "Do even more",
@@ -471,7 +470,6 @@
     "button": "Donate",
     "donate": "Donate {{value}}",
     "titleCard": "Do even more"
->>>>>>> 8154e3c817a6fea1abed31fea2b179186cfc6254
   }
   
 }

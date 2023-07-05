@@ -8,6 +8,6 @@ describe("EngagementSection", () => {
       <EngagementSection totalDonors="80,000" totalContributors="100" />,
     );
 
-    expectTextToBeInTheDocument("Engagement");
+    expectTextToBeInTheDocument("80,000");
   });
 });

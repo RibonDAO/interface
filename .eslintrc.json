@@ -52,7 +52,8 @@
         "no-else-return": "off",
         "no-unused-vars": ["error", { "args": "none" }],
         "@typescript-eslint/no-explicit-any": "off",
-        "func-names": "off"
+        "func-names": "off",
+        "react/require-default-props": "off"
     },
     "settings": {
         "import/resolver": {

@@ -3,7 +3,8 @@ import { useTranslation } from "react-i18next";
 import { setLocalStorageItem } from "lib/localStorage";
 import useNavigation from "hooks/useNavigation";
 
-export const CONTRIBUTION_INLINE_NOTIFICATION = "CONTRIBUTION_INLINE_NOTIFICATION";
+export const CONTRIBUTION_INLINE_NOTIFICATION =
+  "CONTRIBUTION_INLINE_NOTIFICATION";
 function ContributionNotification() {
   const { t } = useTranslation("translation", {
     keyPrefix: "contributionNotification",
@@ -23,7 +24,10 @@ function ContributionNotification() {
 
   const handleCloseClick = () => {
     const notificationRemaningViews = currentRemainingViews() - 1;
-    setLocalStorageItem(CONTRIBUTION_INLINE_NOTIFICATION, notificationRemaningViews.toString());
+    setLocalStorageItem(
+      CONTRIBUTION_INLINE_NOTIFICATION,
+      notificationRemaningViews.toString(),
+    );
   };
 
   if (currentRemainingViews() === 0) return null;

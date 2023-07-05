@@ -9,11 +9,7 @@ export type Props = {
   hideHeader?: boolean;
   hasBackButton?: boolean;
 };
-function MainLayout({
-  children,
-  hideHeader = false,
-  hasBackButton = false,
-}: Props): JSX.Element {
+function MainLayout({ children, hideHeader = false }: Props): JSX.Element {
   const { signedIn } = useCurrentUser();
 
   return (

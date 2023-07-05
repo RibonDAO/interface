@@ -11,8 +11,8 @@ export const Container = styled.div<{
   backgroundImage?: string;
   flexDirection?: string;
 }>`
-  max-width: 472px;
   width: 100%;
+  max-width: 472px;
   height: 128px;
   padding: ${({ theme }) => theme.spacing(16, 16, 16)};
   border-radius: 8px;
@@ -30,9 +30,9 @@ export const Container = styled.div<{
 `;
 
 export const Content = styled.div`
+  margin-bottom: ${({ theme }) => theme.spacing(12)};
   display: flex;
   flex-direction: column;
-  margin-bottom: ${({ theme }) => theme.spacing(12)};
 `;
 
 export const IconContainer = styled.div`
@@ -87,8 +87,9 @@ export const Subtitle = styled.h4<{
 
 export const Text = styled.h5`
   ${defaultBodySmRegular}
-  color: ${({ theme, color }) => color || theme.colors.neutral[800]};
+
   margin-top: ${({ theme }) => theme.spacing(4)};
+  color: ${({ theme, color }) => color || theme.colors.neutral[800]};
 `;
 
 export const ChildrenContainer = styled.div`
@@ -103,8 +104,8 @@ export const CardButton = styled(Button)`
 `;
 
 export const ArrowContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-self: center;
-  position: relative;
 `;

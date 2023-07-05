@@ -10,6 +10,7 @@ interface NotificationProps {
 }
 
 export const Container = styled.div<NotificationProps>`
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
   padding: 16px;
   border-width: 1px;
   border-style: solid;
@@ -30,7 +31,6 @@ export const Container = styled.div<NotificationProps>`
   border-radius: 8px;
   display: flex;
   flex-direction: row;
-  margin-bottom: ${({ theme }) => theme.spacing(8)};
   background-color: ${({ theme, type }) => {
     switch (type) {
       case "success":

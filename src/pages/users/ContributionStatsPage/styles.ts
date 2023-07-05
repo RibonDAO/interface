@@ -6,19 +6,20 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
+  margin-bottom: ${({ theme }) => theme.spacing(32)};
   color: ${({ theme }) => theme.colors.neutral[800]};
   ${stylizedDisplayLg}
-  margin-bottom: ${({ theme }) => theme.spacing(32)};
 
   > * {
-    color: ${({ theme }) => theme.colors.brand.primary[600]};
     font-size: inherit;
+    color: ${({ theme }) => theme.colors.brand.primary[600]};
   }
 `;
 
 export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
+
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     flex-direction: row;
   }
@@ -26,14 +27,15 @@ export const ContentContainer = styled.div`
 
 export const ContainerItem = styled.div`
   > * {
-    padding: ${({ theme }) => theme.spacing(16)};
     margin-bottom: ${({ theme }) => theme.spacing(16)};
+    padding: ${({ theme }) => theme.spacing(16)};
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     > * {
       padding: ${({ theme }) => theme.spacing(32)};
     }
+
     &:first-child {
       margin-right: ${({ theme }) => theme.spacing(16)};
     }

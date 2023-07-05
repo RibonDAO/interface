@@ -17,6 +17,7 @@ export const Title = styled.h1`
 
 export const Subtitle = styled.p`
   ${defaultBodyMdRegular}
+
   color: ${({ theme }) => theme.colors.neutral[700]};
 `;
 export const IconBox = styled.div<{

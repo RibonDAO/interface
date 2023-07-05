@@ -49,13 +49,13 @@ export const SubtitleContainer = styled.div`
 `;
 
 export const IconContainer = styled.div`
-  cursor: pointer;
-  background-color: ${({ theme }) => theme.colors.neutral[100]};
   padding: 4px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
+  background-color: ${({ theme }) => theme.colors.neutral[100]};
+  cursor: pointer;
 `;
 
 
@@ -66,6 +66,7 @@ export const Boost = styled.span`
 
 export const Title = styled.h2`
   ${defaultHeadingMd}
+
   color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;
 

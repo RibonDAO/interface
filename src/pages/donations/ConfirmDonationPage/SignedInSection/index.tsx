@@ -4,20 +4,22 @@ import { useTranslation } from "react-i18next";
 import { theme } from "@ribon.io/shared/styles";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import BackgroundShapes from "assets/images/background-shapes.svg";
+import { useCurrentUser } from "contexts/currentUserContext";
 import * as S from "./styles";
 
 type Props = {
   nonProfit: NonProfit;
-  onContinue: () => void;
+  onContinue: (email: string) => void;
 };
 function SignedInSection({ nonProfit, onContinue }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.confirmDonationPage.signedInSection",
   });
   const { formattedImpactText } = useFormattedImpactText();
+  const { currentUser } = useCurrentUser();
 
   const handleButtonPress = () => {
-    onContinue();
+    if (currentUser) onContinue(currentUser.email);
   };
 
   return (

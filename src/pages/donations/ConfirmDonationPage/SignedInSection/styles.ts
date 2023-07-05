@@ -21,12 +21,12 @@ export const ImageContainer = styled.div`
 `;
 
 export const ContentContainer = styled.div`
+  width: 100%;
   margin-top: ${({ theme }) => theme.spacing(24)};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 368px;
@@ -36,29 +36,31 @@ export const ContentContainer = styled.div`
 export const ImageBackground = styled.div`
   position: absolute;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
+  left: 0;
 `;
 
 export const MainImage = styled.img`
   width: 200px;
   height: 200px;
-  object-fit: cover;
   border-radius: 8px;
   z-index: 1;
+  object-fit: cover;
 `;
 
 export const Title = styled.h1`
-  ${stylizedDisplayXs};
-  color: ${({ theme }) => theme.colors.brand.primary[900]};
+  ${stylizedDisplayXs}
+
   margin-bottom: ${({ theme }) => theme.spacing(8)};
+  color: ${({ theme }) => theme.colors.brand.primary[900]};
 `;
 
 export const Description = styled.p`
-  ${defaultBodyMdSemibold};
-  color: ${({ theme }) => theme.colors.neutral[500]};
+  ${defaultBodyMdSemibold}
+
   margin-bottom: ${({ theme }) => theme.spacing(24)};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const Button = styled(ButtonComponent)`

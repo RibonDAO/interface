@@ -25,6 +25,7 @@ import { useIntegrationId } from "hooks/useIntegrationId";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import { useIntegration, useSources, useUsers } from "@ribon.io/shared/hooks";
 import { normalizedLanguage } from "lib/currentLanguage";
+import { CONTRIBUTION_INLINE_NOTIFICATION } from "pages/donations/CausesPage/ContributionNotification";
 
 export interface ICardPaymentInformationContext {
   setCurrentCoin: (value: SetStateAction<Currencies>) => void;
@@ -132,6 +133,7 @@ function CardPaymentInformationProvider({ children }: Props) {
   };
 
   const handleConfirmation = async () => {
+    setLocalStorageItem(CONTRIBUTION_INLINE_NOTIFICATION, "3");
     login();
     navigateTo({
       pathname: "/donation-done-cause",

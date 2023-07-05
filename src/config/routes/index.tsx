@@ -30,7 +30,7 @@ import ForYouPage from "pages/users/ForYouPage";
 import GiveTicketPage from "pages/donations/GiveTicketPage";
 import ReceiveTicketPage from "pages/donations/ReceiveTicketPage";
 import LoadingPage from "pages/donations/LoadingPage";
-import Navigation from "./Navigation";
+import NavigationBackHeader from "config/routes/Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
   const location = useLocation();
@@ -84,9 +84,9 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
-      <Route path="/confirm-email" exact>
+      <Route path="/confirm-donation" exact>
         <Suspense fallback={<div />}>
-          <Navigation />
+          <NavigationBackHeader />
           <ConfirmDonationPage />
         </Suspense>
       </Route>

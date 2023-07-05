@@ -11,13 +11,19 @@ export const Container = styled.div`
 export const ImageContainer = styled.div`
   margin-top: ${theme.spacing(24)};
   padding: ${theme.spacing(48, 64, 48, 64)};
+  position: relative;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
 
 export const ContentContainer = styled.div`
   margin-top: ${theme.spacing(24)};
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 
 export const ImageBackground = styled.div`
@@ -33,6 +39,7 @@ export const MainImage = styled.img`
   height: 200px;
   object-fit: cover;
   border-radius: 8px;
+  z-index: 1;
 `;
 
 export const Title = styled.h1`
@@ -51,4 +58,7 @@ export const Button = styled(ButtonComponent)`
   height: 48px;
 `;
 
-export const BackgroundShapes = styled.img``;
+export const BackgroundShapes = styled.img`
+  width: 100%;
+  height: 296px;
+`;

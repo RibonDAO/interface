@@ -134,59 +134,56 @@ function CommunitySection() {
     <S.Container>
       {hasImpactCards ? (
         <S.CardsContainer>
-          {userContributions && (
-            <S.CardsContainer>
-              {userContributions?.map((item) => (
-                <CardTooltip
-                  key={item.id}
-                  title={item.receiver?.name}
-                  value={
-                    item.personPayment.offer
-                      ? item.personPayment.offer.price
-                      : `${item.personPayment.amountCents / 100} USDC`
-                  }
-                  infoLeft={item.personPayment.paidDate
-                    .split(" ")[0]
-                    .split("-")
-                    .reverse()
-                    .join("/")}
-                  tooltipSymbol="i"
-                  titleColor={theme.colors.brand.secondary[700]}
-                  valueColor={theme.colors.brand.secondary[400]}
-                  idTooltip={item.id.toString()}
-                  onPress={() => {
-                    logEvent("contributionDashCta_Btn_click", {
-                      from: "impact_page",
-                    });
-                    navigateTo(`/contribution-stats/${item.id}`);
-                  }}
-                  callToAction={t("callToAction")}
-                  text={parse(t("cardText", { cause: item.receiver?.name }))}
-                >
-                  <S.TooltipText>
-                    <S.Paragraph>
-                      {t("tooltipFirstParagraphText", {
-                        value: formatNetDonation(
-                          item.personPayment.serviceFees,
-                          item.personPayment.amountCents,
-                          item.personPayment.offer?.priceCents,
-                          item.personPayment.offer?.currency,
-                        ),
-                      })}
-                    </S.Paragraph>
-                    <S.Paragraph>
-                      {t("tooltipSecondParagraphText", {
-                        value: formatFee(
-                          item.personPayment.serviceFees,
-                          item.personPayment.offer?.currency,
-                        ),
-                      })}
-                    </S.Paragraph>
-                  </S.TooltipText>
-                </CardTooltip>
-              ))}
-            </S.CardsContainer>
-          )}
+          {userContributions &&
+            userContributions?.map((item) => (
+              <CardTooltip
+                key={item.id}
+                title={item.receiver?.name}
+                value={
+                  item.personPayment.offer
+                    ? item.personPayment.offer.price
+                    : `${item.personPayment.amountCents / 100} USDC`
+                }
+                infoLeft={item.personPayment.paidDate
+                  .split(" ")[0]
+                  .split("-")
+                  .reverse()
+                  .join("/")}
+                tooltipSymbol="i"
+                titleColor={theme.colors.brand.secondary[700]}
+                valueColor={theme.colors.brand.secondary[400]}
+                idTooltip={item.id.toString()}
+                onPress={() => {
+                  logEvent("contributionDashCta_Btn_click", {
+                    from: "impact_page",
+                  });
+                  navigateTo(`/contribution-stats/${item.id}`);
+                }}
+                callToAction={t("callToAction")}
+                text={parse(t("cardText", { cause: item.receiver?.name }))}
+              >
+                <S.TooltipText>
+                  <S.Paragraph>
+                    {t("tooltipFirstParagraphText", {
+                      value: formatNetDonation(
+                        item.personPayment.serviceFees,
+                        item.personPayment.amountCents,
+                        item.personPayment.offer?.priceCents,
+                        item.personPayment.offer?.currency,
+                      ),
+                    })}
+                  </S.Paragraph>
+                  <S.Paragraph>
+                    {t("tooltipSecondParagraphText", {
+                      value: formatFee(
+                        item.personPayment.serviceFees,
+                        item.personPayment.offer?.currency,
+                      ),
+                    })}
+                  </S.Paragraph>
+                </S.TooltipText>
+              </CardTooltip>
+            ))}
           {legacyContributions?.map((item) => (
             <CardTooltip
               key={item.id}

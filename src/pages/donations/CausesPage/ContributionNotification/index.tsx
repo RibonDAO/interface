@@ -2,6 +2,7 @@ import InlineNotification from "components/moleculars/Toasts/InlineNotification"
 import { useTranslation } from "react-i18next";
 import { setLocalStorageItem } from "lib/localStorage";
 import useNavigation from "hooks/useNavigation";
+import { logEvent } from "lib/events";
 
 export const CONTRIBUTION_INLINE_NOTIFICATION =
   "CONTRIBUTION_INLINE_NOTIFICATION";
@@ -17,6 +18,9 @@ function ContributionNotification() {
   const handleHideNotificationClick = (setVisible: any) => {
     setVisible(false);
     setLocalStorageItem(CONTRIBUTION_INLINE_NOTIFICATION, "0");
+    logEvent("contributionDashCta_Btn_click", {
+      from: "donateTickets_page",
+    });
     navigateTo({
       pathname: "/impact",
     });

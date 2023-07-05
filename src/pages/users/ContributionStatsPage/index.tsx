@@ -55,7 +55,7 @@ function ContributionStatsPage(): JSX.Element {
               size: "medium",
             }}
             cardBackground={bannerBackground}
-            text={t("supportSection.title")}
+            text={t("supportSection.text")}
             textColor={theme.colors.neutral[800]}
             arrowLinkColor={theme.colors.brand.secondary[800]}
             onArrowClick={() => {

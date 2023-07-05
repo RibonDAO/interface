@@ -184,7 +184,7 @@
       "showMore": "Show more",
       "generalReceiver": "General",
       "migrated": "Migrated",
-      "cardText": "Your donation generates up to <b>+%20</b> for the {{cause}} cause!",
+      "cardText": "The community increases the donation amount by <b>+20%.</b>",
       "callToAction": "Track impact ->",
       "titleCard": "Help the {{cause}} cause",
       "communityDescription": "The community will boost your donation with"

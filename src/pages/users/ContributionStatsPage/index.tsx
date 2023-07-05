@@ -28,7 +28,7 @@ function ContributionStatsPage(): JSX.Element {
 
   if (!data) return <Spinner />;
 
-  const amount = data.stats.totalAmountToCause;
+  const amount = data.stats.initialAmount;
   const cause = data.receiver?.name;
   return (
     <S.Container>

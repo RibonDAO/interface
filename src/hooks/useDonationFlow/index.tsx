@@ -28,7 +28,7 @@ function useDonationFlow() {
   const { donate } = useDonations(currentUser?.id);
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
-  const { history } = useNavigation();
+  const { history, navigateTo } = useNavigation();
   const { destroyVoucher } = useVoucher();
 
   function getExternalIdFromLocationSearch() {
@@ -59,6 +59,14 @@ function useDonationFlow() {
       } catch (e: any) {
         logError(e);
         if (onError) onError(e);
+        const failedKey =
+          e.response.status === 403 ? "blockedDonation" : "failedDonation";
+        const newState = {
+          [failedKey]: true,
+          message: e.response.data?.formatted_message,
+        };
+        navigateTo({ pathname: "/causes", state: newState });
+        window.location.reload();
       }
       setLocalStorageItem(SHOW_MENU, "true");
     }

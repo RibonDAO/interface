@@ -17,7 +17,6 @@ type LocationStateType = {
 function ConfirmDonationPage(): JSX.Element {
   const [donationInProgress, setDonationInProgress] = useState(false);
   const [donationSucceeded, setDonationSucceeded] = useState(false);
-  const [error, setError] = useState<any>(null);
   const { signedIn } = useCurrentUser();
   const {
     state: { nonProfit },
@@ -31,9 +30,8 @@ function ConfirmDonationPage(): JSX.Element {
       nonProfit,
       email,
       onSuccess: () => setDonationSucceeded(true),
-      onError: (e) => {
+      onError: () => {
         setDonationSucceeded(false);
-        setError(e);
       },
     });
   };
@@ -47,15 +45,6 @@ function ConfirmDonationPage(): JSX.Element {
           nonProfit,
         },
       });
-    } else {
-      const failedKey =
-        error.response.status === 403 ? "blockedDonation" : "failedDonation";
-      const newState = {
-        [failedKey]: true,
-        message: error.response.data?.formatted_message,
-      };
-      navigateTo({ pathname: "/causes", state: newState });
-      window.location.reload();
     }
   }, [donationSucceeded]);
 

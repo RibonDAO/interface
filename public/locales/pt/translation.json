@@ -113,6 +113,12 @@
       "textOrigin": "Comunidade",
       "textDestiny": "Você",
       "description": "Recebendo ticket..."
+    },
+    "confirmDonationPage": {
+      "signedInSection": {
+        "title": "Sua doação",
+        "confirmText": "Confirmar doação"
+      }
     }
   },
   "layouts": {

@@ -2,7 +2,7 @@ import React, { Suspense, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import WalletProvider from "contexts/walletContext";
 import CausesPage from "pages/donations/CausesPage";
-import ConfirmEmailPage from "pages/donations/ConfirmEmailPage";
+import ConfirmDonationPage from "pages/donations/ConfirmDonationPage";
 import DonationDonePage from "pages/donations/DonationDonePage";
 import DonationDoneCausePage from "pages/donations/DonationDoneCausePage";
 import ImpactPage from "pages/users/ImpactPage";
@@ -87,7 +87,7 @@ function RoutesComponent(): JSX.Element {
       <Route path="/confirm-email" exact>
         <Suspense fallback={<div />}>
           <Navigation />
-          <ConfirmEmailPage />
+          <ConfirmDonationPage />
         </Suspense>
       </Route>
 

@@ -13,10 +13,10 @@ export type Props = {
 };
 
 function Arrow({
-  disabled, 
-  onClick, 
+  disabled,
+  onClick,
   direction,
-  color = neutral10
+  color = neutral10,
 }: Props): JSX.Element {
   return direction === "right" ? (
     <S.ArrowRightImage

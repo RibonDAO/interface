@@ -40,8 +40,8 @@ function CardTooltip({
 }: Props): JSX.Element {
   const press = () => {
     if (onPress) onPress();
-  }
-  
+  };
+
   return (
     <S.Container size={size} onClick={() => press()}>
       {icon && <S.Image src={icon} />}
@@ -69,8 +69,7 @@ function CardTooltip({
           </Tooltip>
         )}
       </S.InfoContainer>
-      {callToAction && (<S.CallToAction>{callToAction}</S.CallToAction>)}
-      
+      {callToAction && <S.CallToAction>{callToAction}</S.CallToAction>}
     </S.Container>
   );
 }

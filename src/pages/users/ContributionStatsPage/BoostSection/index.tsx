@@ -9,9 +9,7 @@ import * as S from "./styles";
 type Props = {
   totalAmountToCause: string;
 };
-function BoostSection({
-  totalAmountToCause,
-}: Props): JSX.Element {
+function BoostSection({ totalAmountToCause }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "contributionStatsPage.boostSection",
   });
@@ -33,7 +31,9 @@ function BoostSection({
             secondaryColor={brand.primary[50]}
           />
         </S.TitleContainer>
-        <S.Title><S.Boost>↑</S.Boost> {totalAmountToCause}</S.Title>
+        <S.Title>
+          <S.Boost>↑</S.Boost> {totalAmountToCause}
+        </S.Title>
         <S.Text>{t("subtitle")}</S.Text>
         <S.TooltipCardContainer>
           <Card border={false} backgroundColor={brand.primary[50]}>

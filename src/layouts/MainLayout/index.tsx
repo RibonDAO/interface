@@ -9,14 +9,18 @@ export type Props = {
   hideHeader?: boolean;
   hasBackButton?: boolean;
 };
-function MainLayout({ children, hideHeader = false, hasBackButton = false }: Props): JSX.Element {
+function MainLayout({
+  children,
+  hideHeader = false,
+  hasBackButton = false,
+}: Props): JSX.Element {
   const { signedIn } = useCurrentUser();
 
   return (
     <>
       {!isFirstAccess(signedIn) && <Navigation />}
       <S.MainContainer>
-        {!hideHeader && <LayoutHeader hasBackButton/>}
+        {!hideHeader && <LayoutHeader hasBackButton />}
         <S.MainBodyContainer>{children}</S.MainBodyContainer>
       </S.MainContainer>
     </>

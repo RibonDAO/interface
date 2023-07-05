@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NonProfit } from "@ribon.io/shared/types";
 import { useTranslation } from "react-i18next";
 import { theme } from "@ribon.io/shared/styles";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import BackgroundShapes from "assets/images/background-shapes.svg";
 import { isValidEmail } from "lib/validators";
+import { newLogEvent } from "lib/events";
 import * as S from "./styles";
 
 type Props = {
@@ -17,6 +18,10 @@ function EmailInputSection({ nonProfit, onContinue }: Props): JSX.Element {
   });
   const { formattedImpactText } = useFormattedImpactText();
   const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    newLogEvent("view", "P1_loginModal");
+  }, []);
   const handleButtonPress = () => {
     onContinue(email);
   };
@@ -51,6 +56,7 @@ function EmailInputSection({ nonProfit, onContinue }: Props): JSX.Element {
           borderColor={theme.colors.brand.primary[600]}
           textColor={theme.colors.neutral[25]}
           disabled={!isValidEmail(email)}
+          eventName="P1_loginConfirmBtn"
         />
         <S.FooterText>
           {t("footerStartText")}{" "}

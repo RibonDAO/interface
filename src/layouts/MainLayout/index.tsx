@@ -7,6 +7,7 @@ import * as S from "./styles";
 export type Props = {
   children: JSX.Element;
   hideHeader?: boolean;
+  hasBackButton?: boolean;
 };
 function MainLayout({ children, hideHeader = false }: Props): JSX.Element {
   const { signedIn } = useCurrentUser();
@@ -15,7 +16,7 @@ function MainLayout({ children, hideHeader = false }: Props): JSX.Element {
     <>
       {!isFirstAccess(signedIn) && <Navigation />}
       <S.MainContainer>
-        {!hideHeader && <LayoutHeader />}
+        {!hideHeader && <LayoutHeader hasBackButton />}
         <S.MainBodyContainer>{children}</S.MainBodyContainer>
       </S.MainContainer>
     </>

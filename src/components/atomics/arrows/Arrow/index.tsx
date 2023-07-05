@@ -2,28 +2,24 @@ import theme from "styles/theme";
 import * as S from "./styles";
 
 const { colors } = theme;
-const { neutral10 } = colors;
+const { neutral10, transparent } = colors;
 
 export type Props = {
   disabled: boolean;
   // eslint-disable-next-line
   onClick: (...args: any[]) => void;
   direction: "left" | "right";
-  color?: string;
 };
 
-function Arrow({
-  disabled,
-  onClick,
-  direction,
-  color = neutral10,
-}: Props): JSX.Element {
+function Arrow({ disabled, onClick, direction }: Props): JSX.Element {
+  const setArrowColor = disabled ? transparent : neutral10;
+
   return direction === "right" ? (
     <S.ArrowRightImage
       id="arrow-right"
       disabled={disabled}
       onClick={onClick}
-      fill={color}
+      fill={setArrowColor}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
     >
@@ -34,7 +30,7 @@ function Arrow({
       id="arrow-left"
       disabled={disabled}
       onClick={onClick}
-      fill={color}
+      fill={setArrowColor}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
     >

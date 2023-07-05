@@ -1,12 +1,12 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import Icon, { IconProps } from ".";
+import Icon, { Props } from ".";
 
 export default {
   name: "Icon",
   component: Icon,
 } as ComponentMeta<typeof Icon>;
 
-const Template: ComponentStory<typeof Icon> = function (args: IconProps) {
+const Template: ComponentStory<typeof Icon> = function (args: Props) {
   return <Icon {...args} />;
 };
 

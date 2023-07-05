@@ -33,8 +33,8 @@ export const StripedBackground = css`
 `;
 
 export const Container = styled.div`
-  width: 100%;
   padding-inline: 24px;
+  width: 100%;
   max-width: 360px;
   margin: ${({ theme }) => theme.spacing(16)};
   padding-top: ${({ theme }) => theme.spacing(24)};

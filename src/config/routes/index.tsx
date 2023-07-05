@@ -30,7 +30,7 @@ import ForYouPage from "pages/users/ForYouPage";
 import GiveTicketPage from "pages/donations/GiveTicketPage";
 import ReceiveTicketPage from "pages/donations/ReceiveTicketPage";
 import LoadingPage from "pages/donations/LoadingPage";
-import NavigationBackHeader from "config/routes/Navigation/NavigationBackHeader";
+import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
   const location = useLocation();

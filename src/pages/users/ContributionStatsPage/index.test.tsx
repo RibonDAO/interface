@@ -4,9 +4,7 @@ import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 
 describe("ContributionStatsPage", () => {
   it("renders without error", () => {
-    renderComponent(
-      <ContributionStatsPage />,
-    );
+    renderComponent(<ContributionStatsPage />);
 
     expectTextToBeInTheDocument("spinner.svg");
   });

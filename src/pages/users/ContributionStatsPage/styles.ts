@@ -26,16 +26,7 @@ export const ContentContainer = styled.div`
 `;
 
 export const ContainerItem = styled.div`
-  > * {
-    margin-bottom: ${({ theme }) => theme.spacing(16)};
-    padding: ${({ theme }) => theme.spacing(16)};
-  }
-
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    > * {
-      padding: ${({ theme }) => theme.spacing(32)};
-    }
-
     &:first-child {
       margin-right: ${({ theme }) => theme.spacing(16)};
     }

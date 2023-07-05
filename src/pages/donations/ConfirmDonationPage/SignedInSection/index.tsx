@@ -8,14 +8,17 @@ import * as S from "./styles";
 
 type Props = {
   nonProfit: NonProfit;
+  onContinue: () => void;
 };
-function SignedInSection({ nonProfit }: Props): JSX.Element {
+function SignedInSection({ nonProfit, onContinue }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.confirmDonationPage.signedInSection",
   });
   const { formattedImpactText } = useFormattedImpactText();
 
-  const handleButtonPress = async () => {};
+  const handleButtonPress = () => {
+    onContinue();
+  };
 
   return (
     <S.Container>

@@ -34,7 +34,6 @@ import extractUrlValue from "lib/extractUrlValue";
 import { PLATFORM } from "utils/constants";
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import * as S from "./styles";
-import ContributionNotification from "./ContributionNotification";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
 import ConfirmSection from "./ConfirmSection";
@@ -263,8 +262,6 @@ function CausesPage(): JSX.Element {
             />
           )}
         </S.TitleContainer>
-        <ContributionNotification />
-        <ContributionSection />
         {!canDonateAndHasVoucher && <ContributionSection />}
         {!isFirstAccess(signedIn) && (
           <GroupButtons

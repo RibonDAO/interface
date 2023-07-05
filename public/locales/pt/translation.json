@@ -184,8 +184,6 @@
       "showMore": "Mostrar mais",
       "generalReceiver": "Geral",
       "migrated": "Migrado",
-      "cardText": "A comunidade aumenta sua doação em até <b>20%.</b>",
-      "callToAction": "Acompanhar aumento ->",
       "titleCard": "Ajude a causa de {{cause}}",
       "communityDescription": "A comunidade impulsionará sua doação com"
     },
@@ -435,31 +433,6 @@
     "title": "Tenha uma experiência completa usando o nosso App",
     "description": "Baixe o app e tenha acesso a todas as funcionalidades da Ribon",
     "button": "Baixar o app"
-  },
-  "contributionStatsPage": {
-    "title": "Você doou <span>{{amount}}</span> para <span>{{cause}}</span>",
-    "engagementSection": {
-      "title": "Sua doação gerou tickets",
-      "numberOfTicketDonors": "pessoas já doaram tickets",
-      "numberOfContributorsDonors": "doaram dinheiro inspiradas por você"
-    },
-    "boostSection": {
-      "title": "Sua causa recebe mais",
-      "subtitle": "Total arrecadado para sua causa até agora",
-      "tip": "Doando dinheiro pela Ribon, você gera tickets para que outras pessoas possam doar de graça. Com isso, algumas delas se inspiram a doar dinheiro também."
-    },
-    "video": {
-      "title": "Entenda como a comunidade da Ribon aumenta a sua doação"
-    },
-    "supportSection": {
-      "title": "Nos dê sua opinião",
-      "text": "O que você achou dessa experiência ?"
-    }
-  },
-  "contributionNotification": {
-    "title": "Obrigado pela doação!",
-    "description": "Acompanhe o aumento de sua doação na aba de Impacto, em Doações em comunidade.",
-    "link": "Acompanhar doação"
   },
   "contributionSection": {
     "titleCard": "Faça ainda mais",

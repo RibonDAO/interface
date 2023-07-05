@@ -8,6 +8,7 @@ import RightImage from "assets/images/top-right-sun-shape.svg";
 import DonatingSection from "pages/donations/ConfirmDonationPage/DonatingSection";
 import useDonationFlow from "hooks/useDonationFlow";
 import useNavigation from "hooks/useNavigation";
+import EmailInputSection from "pages/donations/ConfirmDonationPage/EmailInputSection";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -71,7 +72,7 @@ function ConfirmDonationPage(): JSX.Element {
       ) : signedIn ? (
         <SignedInSection nonProfit={nonProfit} onContinue={onContinue} />
       ) : (
-        <div />
+        <EmailInputSection nonProfit={nonProfit} onContinue={onContinue} />
       )}
     </S.Container>
   );

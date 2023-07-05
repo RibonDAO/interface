@@ -118,6 +118,16 @@
       "signedInSection": {
         "title": "Your donation",
         "confirmText": "Confirm donation"
+      },
+      "emailInputSection": {
+        "title": "Enter your e-mail to donate",
+        "confirmText": "Continue",
+        "footerStartText": "By clicking Confirm I agree on Ribon’s",
+        "footerEndText": " and",
+        "termsText": "Terms",
+        "termsLink": "https://ribon.io/en/privacy-policy/#terms",
+        "privacyPolicyText": "Privacy Policy",
+        "privacyPolicyLink": "https://ribon.io/en/privacy-policy/#privacy"
       }
     }
   },

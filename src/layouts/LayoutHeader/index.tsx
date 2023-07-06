@@ -91,16 +91,19 @@ function LayoutHeader({
     return integration?.logo;
   }
 
-  function onSideLogoClick() {
+  function handleSideLogoClick() {
     if (!integration?.integrationTask?.linkAddress) return;
     if (canDonateAndHasVoucher) {
       navigateTo("return-to-integration");
-      // open ticket page
       return;
     }
 
     window.open(integration?.integrationTask?.linkAddress);
   }
+
+  const onSideLogoClick = integration?.integrationTask?.linkAddress
+    ? handleSideLogoClick
+    : undefined;
 
   return (
     <S.Container>
@@ -144,7 +147,7 @@ function LayoutHeader({
         hasBackButton={hasBackButton}
         onBackButtonClick={navigateBack}
         sideLogo={renderSideLogo()}
-        onSideLogoClick={() => onSideLogoClick()}
+        onSideLogoClick={onSideLogoClick}
         rightComponent={
           <S.ContainerRight>
             {rightComponent}

@@ -13,7 +13,11 @@ export const Container = styled.div`
   }
 `;
 
-export const Logo = styled.img`
+export const Logo = styled.img.attrs((props) => ({
+  style: {
+    cursor: props.onClick ? "pointer" : "initial",
+  },
+}))`
   height: 34px;
   object-fit: contain;
 `;

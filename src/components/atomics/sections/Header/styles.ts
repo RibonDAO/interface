@@ -13,13 +13,10 @@ export const Container = styled.div`
   }
 `;
 
-export const Logo = styled.img.attrs((props) => ({
-  style: {
-    cursor: props.onClick ? "pointer" : "initial",
-  },
-}))`
+export const Logo = styled.img`
   height: 34px;
   object-fit: contain;
+  cursor: ${({ onClick }) => (onClick ? "pointer" : "initial")};
 `;
 
 export const Divider = styled.span`

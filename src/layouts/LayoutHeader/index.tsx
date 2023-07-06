@@ -98,7 +98,7 @@ function LayoutHeader({
       return;
     }
 
-    window.open(integration?.integrationTask?.linkAddress);
+    window.open(integration.integrationTask.linkAddress);
   }
 
   const onSideLogoClick = integration?.integrationTask?.linkAddress

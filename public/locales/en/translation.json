@@ -190,6 +190,8 @@
       "showMore": "Show more",
       "generalReceiver": "General",
       "migrated": "Migrated",
+      "cardText": "The community increases the donation amount by <b>+20%.</b>",
+      "callToAction": "Monitor increase ->",
       "titleCard": "Help the {{cause}} cause",
       "communityDescription": "The community will boost your donation with"
     },
@@ -440,6 +442,31 @@
     "description": "Get the best donation experience we can offer and access exclusive features!",
     "button": "Download app"
   },
+  "contributionStatsPage": {
+    "title": "You donated <span>{{amount}}</span> for <span>{{cause}}</span>",
+    "engagementSection": {
+      "title": "Your donation generated tickets",
+      "numberOfTicketDonors": "people have already donated tickets",
+      "numberOfContributorsDonors": "donated money inspired by you"
+    },
+    "boostSection": {
+      "title": "Your cause gets more",
+      "subtitle": "Total raised for your cause so far",
+      "tip": "By donating money through Ribon,<strong>you generate tickets</strong> so that other people can donate for free. With that, some of them <strong>are inspired to donate money too.</strong>"
+    },
+    "video": {
+      "title": "Understand how the Ribon community <b>increases your donation</b>"
+    },
+    "supportSection": {
+      "title": "Give us your opinion",
+      "text": "What did you think of this experience?"
+    }
+  },
+  "contributionNotification": {
+    "title": "Thanks for the donation!",
+    "description": "Track the increase in your donation on the Impact tab, in Community Donations.",
+    "link": "Follow donation!"
+  },
   "contributionSection": {
     "title": "Amazing! Thank you for helping {{nonProfitName}}",
     "titleCard": "Do even more",
@@ -450,4 +477,5 @@
     "donate": "Donate {{value}}",
     "titleCard": "Do even more"
   }
+  
 }

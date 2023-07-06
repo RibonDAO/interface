@@ -4,6 +4,7 @@ import * as S from "./styles";
 
 export type Props = {
   sideLogo?: string;
+  onSideLogoClick?: () => void;
   rightComponent?: JSX.Element;
   hasBackButton?: boolean;
   onBackButtonClick?: () => void;
@@ -13,6 +14,7 @@ function Header({
   rightComponent,
   hasBackButton = false,
   onBackButtonClick,
+  onSideLogoClick,
 }: Props): JSX.Element {
   return (
     <S.Container>
@@ -29,7 +31,11 @@ function Header({
             {sideLogo && (
               <>
                 <S.Divider>|</S.Divider>
-                <S.Logo src={sideLogo} alt="side-logo" />{" "}
+                <S.Logo
+                  src={sideLogo}
+                  alt="side-logo"
+                  onClick={onSideLogoClick}
+                />{" "}
               </>
             )}
           </>

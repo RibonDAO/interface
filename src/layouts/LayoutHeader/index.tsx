@@ -91,6 +91,10 @@ function LayoutHeader({
     return integration?.logo;
   }
 
+  function onSideLogoClick() {
+    console.log(integration);
+  }
+
   return (
     <S.Container>
       <ModalBlank
@@ -133,6 +137,7 @@ function LayoutHeader({
         hasBackButton={hasBackButton}
         onBackButtonClick={navigateBack}
         sideLogo={renderSideLogo()}
+        onSideLogoClick={() => onSideLogoClick()}
         rightComponent={
           <S.ContainerRight>
             {rightComponent}

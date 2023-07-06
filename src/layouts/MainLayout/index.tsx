@@ -7,7 +7,6 @@ import * as S from "./styles";
 export type Props = {
   children: JSX.Element;
   hideHeader?: boolean;
-  hasBackButton?: boolean;
 };
 function MainLayout({
   children,

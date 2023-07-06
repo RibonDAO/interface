@@ -10,6 +10,7 @@ interface NotificationProps {
 }
 
 export const Container = styled.div<NotificationProps>`
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
   padding: 16px;
   border-width: 1px;
   border-style: solid;

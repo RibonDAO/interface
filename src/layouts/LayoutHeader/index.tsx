@@ -92,7 +92,14 @@ function LayoutHeader({
   }
 
   function onSideLogoClick() {
-    console.log(integration);
+    if (!integration?.integrationTask?.linkAddress) return;
+    if (canDonateAndHasVoucher) {
+      navigateTo("return-to-integration");
+      // open ticket page
+      return;
+    }
+
+    window.open(integration?.integrationTask?.linkAddress);
   }
 
   return (

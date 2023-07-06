@@ -113,6 +113,12 @@
       "textOrigin": "Community",
       "textDestiny": "You",
       "description": "Receiving ticket..."
+    },
+    "returnToIntegrationPage": {
+      "title": "You still have tickets left",
+      "subtitle": "Do you want to go out without donating?",
+      "returnButtonText": "Return to {{integrationName}}",
+      "stayButtonText": "Stay in Ribon"
     }
   },
   "layouts": {
@@ -471,5 +477,5 @@
     "donate": "Donate {{value}}",
     "titleCard": "Do even more"
   }
-  
+
 }

@@ -113,6 +113,12 @@
       "textOrigin": "Comunidade",
       "textDestiny": "Você",
       "description": "Recebendo ticket..."
+    },
+    "returnToIntegrationPage": {
+      "title": "Você ainda tem tickets",
+      "subtitle": "Quer mesmo sair sem doar? ",
+      "returnButtonText": "Voltar para {{integrationName}}",
+      "stayButtonText": "Continuar na Ribon"
     }
   },
   "layouts": {

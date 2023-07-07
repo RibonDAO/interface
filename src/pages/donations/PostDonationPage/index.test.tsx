@@ -2,7 +2,7 @@ import React from "react";
 import { renderComponent } from "config/testUtils";
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
-import { mockNewLogEventFunction } from "setupTests";
+import { mockLogEventFunction } from "setupTests";
 import causeFactory from "config/testUtils/factories/causeFactory";
 import { useImpactConversion } from "hooks/useImpactConversion";
 import PostDonationPage from ".";
@@ -82,9 +82,14 @@ describe("Causes", () => {
     });
 
     it("logs view events", () => {
-      expect(mockNewLogEventFunction).toHaveBeenCalledWith(
-        "view",
-        "contributeCauseBtn",
+      expect(mockLogEventFunction).toHaveBeenCalledWith(
+        "contributeCauseBtn_view",
+        {
+          from: "givePostDonation_page",
+        },
+      );
+      expect(mockLogEventFunction).toHaveBeenCalledWith(
+        "contributeNgoBtn_view",
         {
           from: "givePostDonation_page",
         },

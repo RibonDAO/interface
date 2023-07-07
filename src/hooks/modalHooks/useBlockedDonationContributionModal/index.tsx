@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import theme from "styles/theme";
 import { useImpactConversion } from "hooks/useImpactConversion";
 import { formatPrice } from "lib/formatters/currencyFormatter";
-import { newLogEvent } from "lib/events";
+import { logEvent } from "lib/events";
 import useNavigation from "hooks/useNavigation";
 import { useModal } from "../useModal";
 
@@ -17,7 +17,7 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
   const { navigateTo } = useNavigation();
 
   const handleClickedDonationButton = () => {
-    newLogEvent("start", "giveNgoBtn", {
+    logEvent("giveNgoBtn_start", {
       from: "zeroTickets_modal",
       value: contribution?.value,
       coin: offer?.currency,
@@ -62,6 +62,9 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
   });
 
   const showBlockedDonationContributionModal = () => {
+    logEvent("contributeNgoBtn_view", {
+      from: "zeroTickets_modal",
+    });
     show();
   };
 
@@ -71,9 +74,6 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
 
   useEffect(() => {
     if (initialState) showBlockedDonationContributionModal();
-    newLogEvent("view", "contributeNgoBtn", {
-      from: "zeroTickets_modal",
-    });
   }, []);
 
   return {

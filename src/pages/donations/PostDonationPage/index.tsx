@@ -5,7 +5,7 @@ import { NonProfit } from "@ribon.io/shared/types";
 import useNavigation from "hooks/useNavigation";
 import VolunteerActivismGreen from "assets/icons/volunteer-activism-green.svg";
 import Rocket from "assets/icons/rocket.svg";
-import { newLogEvent } from "lib/events";
+import { logEvent, newLogEvent } from "lib/events";
 import { useImpactConversion } from "hooks/useImpactConversion";
 import { formatPrice } from "lib/formatters/currencyFormatter";
 import { shouldRenderVariation } from "lib/handleVariation";
@@ -42,17 +42,17 @@ function PostDonationPage(): JSX.Element {
 
   useEffect(() => {
     if (isVariation()) {
-      newLogEvent("view", "contributeCauseBtn", {
+      logEvent("contributeCauseBtn_view", {
         from: "givePostDonation_page",
       });
-      newLogEvent("view", "contributeNgoBtn", {
+      logEvent("contributeNgoBtn_view", {
         from: "givePostDonation_page",
       });
     }
   }, []);
 
   const handleClickedDonationButton = (flow: string) => {
-    newLogEvent("start", flow === "nonProfit" ? "giveNgoBtn" : "giveCauseBtn", {
+    logEvent(flow === "nonProfit" ? "giveNgoBtn_start" : "giveCauseBtn_start", {
       from: "givePostDonation_page",
       value: contribution?.value,
       coin: offer?.currency,

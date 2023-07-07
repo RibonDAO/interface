@@ -22,6 +22,7 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
       value: contribution?.value,
       coin: offer?.currency,
       causeId: nonProfit?.cause?.id,
+      platform: "web",
     });
 
     navigateTo({
@@ -64,6 +65,7 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
   const showBlockedDonationContributionModal = () => {
     logEvent("contributeNgoBtn_view", {
       from: "zeroTickets_modal",
+      platform: "web",
     });
     show();
   };

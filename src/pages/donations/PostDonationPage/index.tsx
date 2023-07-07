@@ -44,9 +44,11 @@ function PostDonationPage(): JSX.Element {
     if (isVariation()) {
       logEvent("contributeCauseBtn_view", {
         from: "givePostDonation_page",
+        platform: "web",
       });
       logEvent("contributeNgoBtn_view", {
         from: "givePostDonation_page",
+        platform: "web",
       });
     }
   }, []);
@@ -57,6 +59,7 @@ function PostDonationPage(): JSX.Element {
       value: contribution?.value,
       coin: offer?.currency,
       causeId: nonProfit?.cause?.id,
+      platform: "web",
     });
 
     navigateTo({

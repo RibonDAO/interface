@@ -86,12 +86,14 @@ describe("Causes", () => {
         "contributeCauseBtn_view",
         {
           from: "givePostDonation_page",
+          platform: "web",
         },
       );
       expect(mockLogEventFunction).toHaveBeenCalledWith(
         "contributeNgoBtn_view",
         {
           from: "givePostDonation_page",
+          platform: "web",
         },
       );
     });

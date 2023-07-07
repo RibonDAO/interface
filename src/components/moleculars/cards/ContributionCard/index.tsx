@@ -42,6 +42,7 @@ function ContributionCard({
         : "contributeCauseBtn_view",
       {
         from,
+        platform: "web",
       },
     );
   }, []);
@@ -54,6 +55,7 @@ function ContributionCard({
       nonProfitId: nonProfit?.id,
       causeId: nonProfit?.cause?.id,
       offerId: offer?.id,
+      platform: "web",
     });
 
     navigateTo({
@@ -63,6 +65,7 @@ function ContributionCard({
         nonProfit,
         flow,
         cause: nonProfit?.cause,
+        platform: "web",
       },
     });
   };

@@ -49,7 +49,7 @@ function PostDonationPage(): JSX.Element {
         from: "givePostDonation_page",
       });
     }
-  }, [variation]);
+  }, []);
 
   const handleClickedDonationButton = (flow: string) => {
     newLogEvent("start", flow === "nonProfit" ? "giveNgoBtn" : "giveCauseBtn", {

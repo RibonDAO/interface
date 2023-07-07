@@ -53,14 +53,17 @@ function PostDonationPage(): JSX.Element {
     }
   }, []);
 
-  const handleClickedDonationButton = (flow: string) => {
-    logEvent(flow === "nonProfit" ? "giveNgoBtn_start" : "giveCauseBtn_start", {
-      from: "givePostDonation_page",
-      value: contribution?.value,
-      coin: offer?.currency,
-      causeId: nonProfit?.cause?.id,
-      platform: "web",
-    });
+  const handleClickedDonationButton = async (flow: string) => {
+    await logEvent(
+      flow === "nonProfit" ? "giveNgoBtn_start" : "giveCauseBtn_start",
+      {
+        from: "givePostDonation_page",
+        value: contribution?.value,
+        coin: offer?.currency,
+        causeId: nonProfit?.cause?.id,
+        platform: "web",
+      },
+    );
 
     navigateTo({
       pathname: "promoters/payment",

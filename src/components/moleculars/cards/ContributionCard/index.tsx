@@ -65,7 +65,6 @@ function ContributionCard({
         nonProfit,
         flow,
         cause: nonProfit?.cause,
-        platform: "web",
       },
     });
   };

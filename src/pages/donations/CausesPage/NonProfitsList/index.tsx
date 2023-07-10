@@ -1,5 +1,5 @@
 import CardCenterImageButton from "components/moleculars/cards/CardCenterImageButton";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import useNavigation from "hooks/useNavigation";
 import { newLogEvent } from "lib/events";
@@ -24,7 +24,6 @@ type LocationStateType = {
 type Props = {
   nonProfits: NonProfit[];
   integration: Integration | undefined;
-  setChosenNonProfit: (nonProfit: NonProfit) => void;
   canDonate: boolean;
 };
 
@@ -32,7 +31,6 @@ const MINIMUM_NON_PROFITS_TO_LOOP = 3;
 
 function NonProfitsList({
   nonProfits,
-  setChosenNonProfit,
   canDonate,
   integration,
 }: Props): JSX.Element {
@@ -54,17 +52,12 @@ function NonProfitsList({
   const { showBlockedDonationContributionModal } =
     useBlockedDonationContributionModal();
 
-  const chooseNonProfit = useCallback((nonProfit: NonProfit) => {
-    setChosenNonProfit(nonProfit);
-  }, []);
-
   const { formattedImpactText } = useFormattedImpactText();
   const { isVoucherAvailable } = useVoucher();
 
   const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
 
   function handleButtonClick(nonProfit: NonProfit) {
-    chooseNonProfit(nonProfit);
     if (canDonateAndHasVoucher) {
       newLogEvent("click", "P1_donateBtn", {
         nonProfitId: nonProfit.id,

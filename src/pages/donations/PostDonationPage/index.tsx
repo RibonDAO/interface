@@ -55,7 +55,7 @@ function PostDonationPage(): JSX.Element {
 
   useEffect(() => {
     variationViewEvents();
-  }, []);
+  }, [variation]);
 
   const handleClickedDonationButton = (flow: string) => {
     logEvent(flow === "nonProfit" ? "giveNgoBtn_start" : "giveCauseBtn_start", {

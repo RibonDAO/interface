@@ -22,6 +22,7 @@ function EmailInputSection({ nonProfit, onContinue }: Props): JSX.Element {
   useEffect(() => {
     newLogEvent("view", "P1_loginModal");
   }, []);
+
   const handleButtonPress = () => {
     onContinue(email);
   };

@@ -40,7 +40,7 @@ function PostDonationPage(): JSX.Element {
     }
   }, []);
 
-  useEffect(() => {
+  const variationViewEvents = () => {
     if (isVariation()) {
       logEvent("contributeCauseBtn_view", {
         from: "givePostDonation_page",
@@ -51,6 +51,10 @@ function PostDonationPage(): JSX.Element {
         platform: "web",
       });
     }
+  };
+
+  useEffect(() => {
+    variationViewEvents();
   }, []);
 
   const handleClickedDonationButton = (flow: string) => {

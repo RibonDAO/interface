@@ -4,25 +4,26 @@ import { useTranslation } from "react-i18next";
 import { theme } from "@ribon.io/shared/styles";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import BackgroundShapes from "assets/images/background-shapes.svg";
-import LeftImage from "assets/images/bottom-left-shape-red.svg";
-import RightImage from "assets/images/top-right-sun-shape.svg";
+import { useCurrentUser } from "contexts/currentUserContext";
 import * as S from "./styles";
 
 type Props = {
   nonProfit: NonProfit;
+  onContinue: (email: string) => void;
 };
-function SignedInSection({ nonProfit }: Props): JSX.Element {
+function SignedInSection({ nonProfit, onContinue }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.confirmDonationPage.signedInSection",
   });
   const { formattedImpactText } = useFormattedImpactText();
+  const { currentUser } = useCurrentUser();
 
-  const handleButtonPress = async () => {};
+  const handleButtonPress = () => {
+    if (currentUser) onContinue(currentUser.email);
+  };
 
   return (
     <S.Container>
-      <S.LeftImage src={LeftImage} />
-      <S.RightImage src={RightImage} />
       <S.ImageContainer>
         <S.ImageBackground>
           <S.BackgroundShapes src={BackgroundShapes} />

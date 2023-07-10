@@ -119,7 +119,7 @@
         "title": "Sua doação",
         "confirmText": "Confirmar doação"
       },
-      "emailInputSection": {
+      "signInSection": {
         "title": "Insira seu e-mail para doar",
         "confirmText": "Continuar",
         "footerStartText": "Ao clicar em Confirmar, eu concordo com os",

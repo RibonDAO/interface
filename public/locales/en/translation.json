@@ -119,7 +119,7 @@
         "title": "Your donation",
         "confirmText": "Confirm donation"
       },
-      "emailInputSection": {
+      "signInSection": {
         "title": "Enter your e-mail to donate",
         "confirmText": "Continue",
         "footerStartText": "By clicking Confirm I agree on Ribon’s",
@@ -487,5 +487,5 @@
     "donate": "Donate {{value}}",
     "titleCard": "Do even more"
   }
-  
+
 }

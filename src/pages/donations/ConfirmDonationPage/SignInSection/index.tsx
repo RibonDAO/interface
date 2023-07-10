@@ -14,7 +14,7 @@ type Props = {
 };
 function EmailInputSection({ nonProfit, onContinue }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
-    keyPrefix: "donations.confirmDonationPage.emailInputSection",
+    keyPrefix: "donations.confirmDonationPage.signInSection",
   });
   const { formattedImpactText } = useFormattedImpactText();
   const [email, setEmail] = useState("");

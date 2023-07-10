@@ -40,7 +40,7 @@ function PostDonationPage(): JSX.Element {
     }
   }, []);
 
-  const variationViewEvents = () => {
+  useEffect(() => {
     if (isVariation()) {
       logEvent("contributeCauseBtn_view", {
         from: "givePostDonation_page",
@@ -51,11 +51,7 @@ function PostDonationPage(): JSX.Element {
         platform: "web",
       });
     }
-  };
-
-  useEffect(() => {
-    variationViewEvents();
-  }, [variation]);
+  }, [variation, contribution]);
 
   const handleClickedDonationButton = (flow: string) => {
     logEvent(flow === "nonProfit" ? "giveNgoBtn_start" : "giveCauseBtn_start", {

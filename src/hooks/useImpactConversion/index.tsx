@@ -57,9 +57,6 @@ export function useImpactConversion() {
 
   useEffect(() => {
     setVariation(value);
-
-    // eslint-disable-next-line no-console
-    console.log(process.env.NODE_ENV);
   }, [value]);
 
   useEffect(() => {

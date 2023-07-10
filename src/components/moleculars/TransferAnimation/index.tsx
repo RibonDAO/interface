@@ -38,7 +38,7 @@ function TransferAnimation({
   onAnimationEnd,
 }: Props): JSX.Element {
   const [logged, setLogged] = useState(false);
-  const ANIMATION_DURATION = 2700;
+  const ANIMATION_DURATION = 3000;
 
   useEffect(() => {
     setTimeout(() => {

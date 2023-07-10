@@ -3,21 +3,23 @@ import Ticket from "assets/icons/ticket-rounded-icon.svg";
 import SupportersIcon from "assets/icons/supporters.svg";
 import UserIcon from "assets/icons/user.svg";
 import theme from "styles/theme";
-import ModalAnimation, { Props } from ".";
+import TransferAnimation, { Props } from ".";
 
 export default {
-  text: "ModalAnimation",
+  text: "TransferAnimation",
   textOrigin: "supportes",
   textDestiny: "user",
   iconOrigin: UserIcon,
   iconDestiny: SupportersIcon,
   icon: Ticket,
   visible: true,
-  component: ModalAnimation,
-} as ComponentMeta<typeof ModalAnimation>;
+  component: TransferAnimation,
+} as ComponentMeta<typeof TransferAnimation>;
 
-const Template: ComponentStory<typeof ModalAnimation> = function (args: Props) {
-  return <ModalAnimation {...args} />;
+const Template: ComponentStory<typeof TransferAnimation> = function (
+  args: Props,
+) {
+  return <TransferAnimation {...args} />;
 };
 
 export const Default = Template.bind({});
@@ -25,7 +27,7 @@ export const WithFullSizeDiamond = Template.bind({});
 export const WithDifferentColor = Template.bind({});
 
 Default.args = {
-  text: "ModalAnimation...",
+  text: "TransferAnimation...",
   textOrigin: "Supporters",
   textDestiny: "User",
   iconOrigin: SupportersIcon,
@@ -34,7 +36,7 @@ Default.args = {
 };
 
 WithFullSizeDiamond.args = {
-  text: "ModalAnimation...",
+  text: "TransferAnimation...",
   textOrigin: "Supporters",
   textDestiny: "User",
   iconOrigin: SupportersIcon,
@@ -44,7 +46,7 @@ WithFullSizeDiamond.args = {
 };
 
 WithDifferentColor.args = {
-  text: "ModalAnimation...",
+  text: "TransferAnimation...",
   textOrigin: "Supporters",
   textDestiny: "User",
   iconOrigin: SupportersIcon,

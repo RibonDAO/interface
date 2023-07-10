@@ -7,27 +7,27 @@ import theme from "styles/theme";
 import { screen } from "@testing-library/react";
 import SupportersIcon from "assets/icons/supporters.svg";
 import { mockNewLogEventFunction } from "setupTests";
-import ModalAnimation from ".";
+import TransferAnimation from ".";
 
-describe("ModalAnimation", () => {
+describe("TransferAnimation", () => {
   it("should render without error", () => {
-    renderComponent(<ModalAnimation text="ModalAnimation" />);
+    renderComponent(<TransferAnimation text="TransferAnimation" />);
 
-    expectTextToBeInTheDocument("ModalAnimation");
+    expectTextToBeInTheDocument("TransferAnimation");
   });
 
   describe("when the component is not visible and don't have text", () => {
     it("does not show", () => {
-      renderComponent(<ModalAnimation />);
-      expectTextNotToBeInTheDocument("ModalAnimation");
+      renderComponent(<TransferAnimation />);
+      expectTextNotToBeInTheDocument("TransferAnimation");
     });
   });
 
   describe("when has a icon origin or destiny", () => {
     beforeEach(() => {
       renderComponent(
-        <ModalAnimation
-          text="ModalAnimation"
+        <TransferAnimation
+          text="TransferAnimation"
           iconOrigin={SupportersIcon}
           textOrigin="textOrigin"
         />,
@@ -56,7 +56,7 @@ describe("ModalAnimation", () => {
     const action = "view";
     it("logs an event", () => {
       renderComponent(
-        <ModalAnimation eventName={eventName} eventParams={eventParams} />,
+        <TransferAnimation eventName={eventName} eventParams={eventParams} />,
       );
       expect(mockNewLogEventFunction).toHaveBeenCalledWith(
         action,

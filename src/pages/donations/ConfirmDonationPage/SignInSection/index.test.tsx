@@ -3,15 +3,15 @@ import { renderComponent } from "config/testUtils/renders";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import { clickOn, fillByPlaceholder } from "config/testUtils";
 import { screen } from "@testing-library/react";
-import EmailInputSection from ".";
+import SignInSection from ".";
 
-describe("EmailInputSection", () => {
+describe("SignInSection", () => {
   const nonProfit = nonProfitFactory();
   const onContinue = jest.fn();
 
   beforeEach(() => {
     renderComponent(
-      <EmailInputSection nonProfit={nonProfit} onContinue={onContinue} />,
+      <SignInSection nonProfit={nonProfit} onContinue={onContinue} />,
     );
   });
 

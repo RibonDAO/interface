@@ -71,7 +71,6 @@ function NonProfitsList({
       newLogEvent("click", "P1_donateBtn", {
         nonProfitId: nonProfit.id,
       });
-      navigateTo({ pathname: "confirm-donation", state: { nonProfit } });
       setConfirmModalVisible(true);
     } else {
       newLogEvent("click", "P1_donateBlockedBtn", {

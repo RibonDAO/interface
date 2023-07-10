@@ -44,10 +44,7 @@ export function useImpactConversion() {
   }, [nonProfits, offers, userStatistics, contribution?.offerId]);
 
   const { value } = useExperiment({
-    key:
-      process.env.NODE_ENV !== "production"
-        ? "impact-conversion-staging"
-        : "impact-conversion-production",
+    key: "impact-conversion-staging",
     variations: ["Control", "NewImpact", "OldImpact"],
   });
 
@@ -60,6 +57,7 @@ export function useImpactConversion() {
 
   useEffect(() => {
     setVariation(value);
+    console.log(process.env.NODE_ENV);
   }, [value]);
 
   useEffect(() => {

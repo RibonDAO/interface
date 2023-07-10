@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NonProfit } from "@ribon.io/shared/types";
 import { useTranslation } from "react-i18next";
 import { theme } from "@ribon.io/shared/styles";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import BackgroundShapes from "assets/images/background-shapes.svg";
-import { useCurrentUser } from "contexts/currentUserContext";
+import { isValidEmail } from "lib/validators";
 import { newLogEvent } from "lib/events";
 import * as S from "./styles";
 
@@ -12,19 +12,19 @@ type Props = {
   nonProfit: NonProfit;
   onContinue: (email: string) => void;
 };
-function SignedInSection({ nonProfit, onContinue }: Props): JSX.Element {
+function EmailInputSection({ nonProfit, onContinue }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
-    keyPrefix: "donations.confirmDonationPage.signedInSection",
+    keyPrefix: "donations.confirmDonationPage.signInSection",
   });
   const { formattedImpactText } = useFormattedImpactText();
-  const { currentUser } = useCurrentUser();
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
-    newLogEvent("view", "P1_donateConfirmModal");
+    newLogEvent("view", "P1_loginModal");
   }, []);
 
   const handleButtonPress = () => {
-    if (currentUser) onContinue(currentUser.email);
+    onContinue(email);
   };
 
   return (
@@ -40,17 +40,38 @@ function SignedInSection({ nonProfit, onContinue }: Props): JSX.Element {
         <S.Description>
           {formattedImpactText(nonProfit, undefined, false, true)}
         </S.Description>
+        <S.Input
+          name="email"
+          id="email"
+          type="email"
+          placeholder="E-mail"
+          value={email}
+          onChange={(event) => {
+            setEmail(event.target.value);
+          }}
+        />
         <S.Button
           text={t("confirmText")}
           onClick={handleButtonPress}
           backgroundColor={theme.colors.brand.primary[600]}
           borderColor={theme.colors.brand.primary[600]}
           textColor={theme.colors.neutral[25]}
-          eventName="P1_donateConfirmBtn"
+          disabled={!isValidEmail(email)}
+          eventName="P1_loginConfirmBtn"
         />
+        <S.FooterText>
+          {t("footerStartText")}{" "}
+          <a href={t("termsLink")} target="_blank" rel="noreferrer">
+            {t("termsText")}
+          </a>
+          {t("footerEndText")}{" "}
+          <a href={t("privacyPolicyLink")} target="_blank" rel="noreferrer">
+            {t("privacyPolicyText")}
+          </a>
+        </S.FooterText>
       </S.ContentContainer>
     </S.Container>
   );
 }
 
-export default SignedInSection;
+export default EmailInputSection;

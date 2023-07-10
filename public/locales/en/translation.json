@@ -119,6 +119,12 @@
       "subtitle": "Do you want to go out without donating?",
       "returnButtonText": "Return to {{integrationName}}",
       "stayButtonText": "Stay in Ribon"
+    },
+    "confirmDonationPage": {
+      "signedInSection": {
+        "title": "Your donation",
+        "confirmText": "Confirm donation"
+      }
     }
   },
   "layouts": {

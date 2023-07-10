@@ -119,6 +119,12 @@
       "subtitle": "Quer mesmo sair sem doar? ",
       "returnButtonText": "Voltar para {{integrationName}}",
       "stayButtonText": "Continuar na Ribon"
+    },
+    "confirmDonationPage": {
+      "signedInSection": {
+        "title": "Sua doação",
+        "confirmText": "Confirmar doação"
+      }
     }
   },
   "layouts": {

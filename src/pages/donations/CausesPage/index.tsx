@@ -264,7 +264,6 @@ function CausesPage(): JSX.Element {
           )}
         </S.TitleContainer>
         <ContributionNotification />
-        <ContributionSection />
         {!canDonateAndHasVoucher && <ContributionSection />}
         {!isFirstAccess(signedIn) && (
           <GroupButtons

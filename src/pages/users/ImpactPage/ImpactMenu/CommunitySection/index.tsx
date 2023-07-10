@@ -1,3 +1,4 @@
+import { logEvent } from "lib/events";
 import CardTooltip from "components/moleculars/cards/CardTooltip";
 import usePersonPayments from "hooks/apiHooks/usePersonPayment";
 import useNavigation from "hooks/useNavigation";
@@ -7,11 +8,12 @@ import Spinner from "components/atomics/Spinner";
 import { formatNetDonation } from "lib/formatters/netDonationFormatter";
 import { useTranslation } from "react-i18next";
 import theme from "styles/theme";
-import { PersonPayment } from "@ribon.io/shared/types";
 import useBreakpoint from "hooks/useBreakpoint";
 import directIllustration from "assets/images/direct-illustration.svg";
 import { useLegacyContributions } from "@ribon.io/shared/hooks";
+import useContributions from "hooks/apiHooks/useContributions";
 import { useCurrentUser } from "contexts/currentUserContext";
+import parse from "html-react-parser";
 import ContributionCard from "components/moleculars/cards/ContributionCard";
 import { useImpactConversion } from "hooks/useImpactConversion";
 import { formatPrice } from "lib/formatters/currencyFormatter";
@@ -28,6 +30,8 @@ function CommunitySection() {
     navigateTo("/promoters/support-cause");
   };
 
+  const { useUserContributions } = useContributions();
+
   const { isMobile } = useBreakpoint();
 
   const [page, setPage] = useState(1);
@@ -40,6 +44,7 @@ function CommunitySection() {
   const { useCommunityPersonPayments } = usePersonPayments();
   const { currentUser } = useCurrentUser();
   const { legacyContributions } = useLegacyContributions(currentUser?.id);
+  const { data: userContributions } = useUserContributions();
 
   const { data } = useCommunityPersonPayments(page, per);
 
@@ -129,42 +134,56 @@ function CommunitySection() {
     <S.Container>
       {hasImpactCards ? (
         <S.CardsContainer>
-          {impactCards.map((item: PersonPayment) => (
-            <CardTooltip
-              key={item.id}
-              title={item.receiver.name}
-              value={
-                item.offer ? item.offer.price : `${item.amountCents / 100} USDC`
-              }
-              infoLeft={item.paidDate
-                .split(" ")[0]
-                .split("-")
-                .reverse()
-                .join("/")}
-              tooltipSymbol="i"
-              titleColor={theme.colors.brand.secondary[700]}
-              valueColor={theme.colors.brand.secondary[400]}
-              idTooltip={item.id}
-            >
-              <S.TooltipText>
-                <S.Paragraph>
-                  {t("tooltipFirstParagraphText", {
-                    value: formatNetDonation(
-                      item.serviceFees,
-                      item.amountCents,
-                      item.offer?.priceCents,
-                      item.offer?.currency,
-                    ),
-                  })}
-                </S.Paragraph>
-                <S.Paragraph>
-                  {t("tooltipSecondParagraphText", {
-                    value: formatFee(item.serviceFees, item.offer?.currency),
-                  })}
-                </S.Paragraph>
-              </S.TooltipText>
-            </CardTooltip>
-          ))}
+          {userContributions &&
+            userContributions?.map((item) => (
+              <CardTooltip
+                key={item.id}
+                title={item.receiver?.name}
+                value={
+                  item.personPayment.offer
+                    ? item.personPayment.offer.price
+                    : `${item.personPayment.amountCents / 100} USDC`
+                }
+                infoLeft={item.personPayment.paidDate
+                  .split(" ")[0]
+                  .split("-")
+                  .reverse()
+                  .join("/")}
+                tooltipSymbol="i"
+                titleColor={theme.colors.brand.secondary[700]}
+                valueColor={theme.colors.brand.secondary[400]}
+                idTooltip={item.id.toString()}
+                onPress={() => {
+                  logEvent("contributionDashCta_Btn_click", {
+                    from: "impact_page",
+                  });
+                  navigateTo(`/contribution-stats/${item.id}`);
+                }}
+                callToAction={t("callToAction")}
+                text={parse(t("cardText", { cause: item.receiver?.name }))}
+              >
+                <S.TooltipText>
+                  <S.Paragraph>
+                    {t("tooltipFirstParagraphText", {
+                      value: formatNetDonation(
+                        item.personPayment.serviceFees,
+                        item.personPayment.amountCents,
+                        item.personPayment.offer?.priceCents,
+                        item.personPayment.offer?.currency,
+                      ),
+                    })}
+                  </S.Paragraph>
+                  <S.Paragraph>
+                    {t("tooltipSecondParagraphText", {
+                      value: formatFee(
+                        item.personPayment.serviceFees,
+                        item.personPayment.offer?.currency,
+                      ),
+                    })}
+                  </S.Paragraph>
+                </S.TooltipText>
+              </CardTooltip>
+            ))}
           {legacyContributions?.map((item) => (
             <CardTooltip
               key={item.id}

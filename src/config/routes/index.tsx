@@ -30,6 +30,7 @@ import ForYouPage from "pages/users/ForYouPage";
 import GiveTicketPage from "pages/donations/GiveTicketPage";
 import ReceiveTicketPage from "pages/donations/ReceiveTicketPage";
 import LoadingPage from "pages/donations/LoadingPage";
+import ContributionStatsPage from "pages/users/ContributionStatsPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -114,6 +115,16 @@ function RoutesComponent(): JSX.Element {
           <WalletProvider>
             <MainLayout>
               <ImpactPage />
+            </MainLayout>
+          </WalletProvider>
+        </Suspense>
+      </Route>
+
+      <Route path="/contribution-stats/:contributionId" exact>
+        <Suspense fallback={<div />}>
+          <WalletProvider>
+            <MainLayout hasBackButton>
+              <ContributionStatsPage />
             </MainLayout>
           </WalletProvider>
         </Suspense>

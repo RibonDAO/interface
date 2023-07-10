@@ -122,7 +122,7 @@ export type ProgressImgProps = {
 export const ProgressImg = styled.img<ProgressImgProps>`
   width: 40px;
   z-index: ${({ theme }) => theme.zindex.above};
-  animation: ${({ loaded }) => (loaded ? "go 3s linear" : "none")};
+  animation: ${({ loaded }) => (loaded ? "go 3s linear forwards" : "none")};
 
   @keyframes go {
     from {

@@ -41,9 +41,13 @@ function TransferAnimation({
   const ANIMATION_DURATION = 2700;
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       if (onAnimationEnd) onAnimationEnd();
     }, ANIMATION_DURATION);
+
+    return () => {
+      clearTimeout(timeout);
+    };
   }, [onAnimationEnd]);
 
   if (eventName && !logged) {

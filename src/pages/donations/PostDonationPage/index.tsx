@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { useCallback, useEffect } from "react";
@@ -36,19 +37,6 @@ function PostDonationPage(): JSX.Element {
     if (nonProfit === undefined) {
       navigateTo({
         pathname: "/causes",
-      });
-    }
-  }, []);
-
-  useEffect(() => {
-    if (isVariation()) {
-      logEvent("contributeCauseBtn_view", {
-        from: "givePostDonation_page",
-        platform: "web",
-      });
-      logEvent("contributeNgoBtn_view", {
-        from: "givePostDonation_page",
-        platform: "web",
       });
     }
   }, []);
@@ -106,6 +94,21 @@ function PostDonationPage(): JSX.Element {
       pathname: "/causes",
     });
   };
+
+  useEffect(() => {
+    if (isVariation()) {
+      console.log("entrou?");
+      logEvent("contributeCauseBtn_view", {
+        from: "givePostDonation_page",
+        platform: "web",
+      });
+      logEvent("contributeNgoBtn_view", {
+        from: "givePostDonation_page",
+        platform: "web",
+      });
+      console.log("entrou?2");
+    }
+  }, [isVariation(), contribution?.value]);
 
   return (
     <S.Container>

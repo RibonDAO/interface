@@ -284,7 +284,6 @@ function CausesPage(): JSX.Element {
               <NonProfitsList
                 nonProfits={nonProfitsFilter()}
                 setChosenNonProfit={setChosenNonProfit}
-                setConfirmModalVisible={setConfirmModalVisible}
                 canDonate={canDonate}
                 integration={integration}
               />

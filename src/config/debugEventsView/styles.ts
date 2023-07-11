@@ -1,6 +1,7 @@
 import styled, { css, keyframes } from "styled-components";
 
 export const Container = styled.div`
+  max-width: 550px;
   padding: 20px;
   border: 1px solid #ccc;
   position: fixed;
@@ -8,7 +9,6 @@ export const Container = styled.div`
   bottom: 20px;
   z-index: 9999;
   background-color: white;
-  max-width: 550px;
 `;
 
 export const DebugViewHeader = styled.h3`

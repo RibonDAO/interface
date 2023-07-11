@@ -20,7 +20,7 @@ describe("LayoutHeader", () => {
       method: "POST",
     });
 
-    beforeEach(() => {
+    beforeEach(async () => {
       const mockUseImpactConversion = useImpactConversion as jest.Mock;
       mockUseImpactConversion.mockReturnValue({
         contribution: {
@@ -33,14 +33,12 @@ describe("LayoutHeader", () => {
         description: "This is a test description",
         variation: "Control",
       });
+      await waitForPromises();
       setLocalStorageItem(HAS_AN_AVAILABLE_VOUCHER, "123");
-      renderComponent(<LayoutHeader />);
-      waitForPromises();
     });
 
-    it("should render without errors", () => {});
-
     it("should navigate to give ticket page when click in ticket button", () => {
+      renderComponent(<LayoutHeader />);
       clickOn("1");
       expectPageToNavigateTo("/tickets");
     });

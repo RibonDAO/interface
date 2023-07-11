@@ -14,6 +14,7 @@ import Zendesk from "config/zendesk";
 import CurrentUserProvider from "contexts/currentUserContext";
 import TasksProvider from "contexts/tasksContext";
 import CausesProvider from "contexts/causesContext";
+import DebugEventsView from "config/debugEventsView";
 import RoutesComponent from "./config/routes";
 import GlobalStyle from "./styles/globalStyle";
 import theme from "./styles/theme";
@@ -48,6 +49,9 @@ function App() {
                         <CausesProvider>
                           <RoutesComponent />
                           <Zendesk />
+                          {process.env.REACT_APP_DEBUG_VIEW === "true" && (
+                            <DebugEventsView />
+                          )}
                         </CausesProvider>
                       </TasksProvider>
                     </Suspense>

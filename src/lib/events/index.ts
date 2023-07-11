@@ -1,6 +1,7 @@
 import { logAmplitudeEvent } from "services/analytics/amplitude";
 import { logFirebaseEvent } from "services/analytics/firebase";
 import { logMixpanelEvent } from "services/analytics/mixpanel";
+import { logDebugEvent } from "config/debugEventsView";
 import events from "./constants";
 
 function eventPageTransalation(url: string) {
@@ -30,6 +31,9 @@ export function logEvent(
       logMixpanelEvent(eventName, convertedParams);
       logAmplitudeEvent(eventName, convertedParams);
     }
+  } else if (process.env.REACT_APP_DEBUG_VIEW === "true") {
+    if (logDebugEvent) logDebugEvent(eventName, eventParams);
+    console.info(eventName, eventParams);
   }
 }
 

@@ -98,6 +98,7 @@ function LayoutHeader({
       return;
     }
 
+    newLogEvent("click", "backIntegration", { from: "header" });
     window.open(integration.integrationTask.linkAddress);
   }
 

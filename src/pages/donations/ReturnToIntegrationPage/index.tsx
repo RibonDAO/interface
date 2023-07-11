@@ -5,6 +5,7 @@ import RightImage from "assets/images/top-right-shape.svg";
 import useNavigation from "hooks/useNavigation";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useIntegration } from "@ribon.io/shared/hooks";
+import { newLogEvent } from "lib/events";
 import ArrowLeft from "./assets/arrow-left-dark-green.svg";
 import * as S from "./styles";
 
@@ -21,6 +22,7 @@ function ReturnToIntegrationPage(): JSX.Element {
   };
 
   const handleReturnButtonClick = () => {
+    newLogEvent("click", "backIntegration", { from: "haveTickets_page" });
     window.open(integration?.integrationTask?.linkAddress);
   };
 

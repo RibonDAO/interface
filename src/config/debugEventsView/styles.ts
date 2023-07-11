@@ -1,13 +1,13 @@
 import styled, { css, keyframes } from "styled-components";
 
 export const Container = styled.div`
+  padding: 20px;
+  border: 1px solid #ccc;
   position: fixed;
-  bottom: 20px;
   right: 20px;
+  bottom: 20px;
   z-index: 9999;
   background-color: white;
-  border: 1px solid #ccc;
-  padding: 20px;
 `;
 
 export const DebugViewHeader = styled.h3`
@@ -34,6 +34,7 @@ const highlightAnimation = keyframes`
   0% {
     background-color: transparent;
   }
+
   100% {
     background-color: #b9e6b3;
   }
@@ -52,16 +53,16 @@ export const HighlightRow = styled.tr<HighlightRowProps>`
 `;
 
 export const MinimizedContainer = styled.div`
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 9999;
-  background-color: white;
-  border: 1px solid #ccc;
   padding: 10px;
+  border: 1px solid #ccc;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: white;
   cursor: pointer;
 `;
 
@@ -70,30 +71,30 @@ export const MinimizedText = styled.h3`
 `;
 
 export const MinusButton = styled.button`
+  padding: 0;
   border: none;
-  background-color: transparent;
   font-size: 18px;
   line-height: 1;
-  padding: 0;
+  background-color: transparent;
   cursor: pointer;
 `;
 
 export const MinimizeButton = styled.button`
+  padding: 0;
+  border: none;
   position: absolute;
   top: 10px;
   right: 10px;
-  border: none;
-  background-color: transparent;
   font-size: 18px;
   line-height: 1;
-  padding: 0;
+  background-color: transparent;
   cursor: pointer;
 `;
 
 export const ResetCheckbox = styled.label`
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
 
   input[type="checkbox"] {
     margin-right: 5px;
@@ -101,49 +102,49 @@ export const ResetCheckbox = styled.label`
 `;
 
 export const MonitoredEventsList = styled.ul`
-  list-style-type: none;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
+  list-style-type: none;
 `;
 
 export const MonitoredEventItem = styled.li`
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  padding: 5px 10px;
-  border-radius: 5px;
   margin-right: 10px;
   margin-bottom: 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   display: flex;
   align-items: center;
+  background-color: #f5f5f5;
 `;
 
 export const RemoveMonitoredEventButton = styled.button`
+  margin-left: 5px;
+  padding: 0;
   border: none;
-  background-color: transparent;
   font-size: 12px;
   line-height: 1;
-  padding: 0;
-  margin-left: 5px;
+  background-color: transparent;
   cursor: pointer;
 `;
 
 export const MonitoredEventsInputContainer = styled.div`
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
 `;
 
 export const MonitoredEventsInput = styled.input`
-  padding: 5px 10px;
   margin-right: 10px;
+  padding: 5px 10px;
 `;
 
 export const MonitoredEventsButton = styled.button`
   padding: 5px 10px;
-  background-color: #ccc;
   border: none;
   border-radius: 5px;
+  background-color: #ccc;
   color: #fff;
   cursor: pointer;
 `;

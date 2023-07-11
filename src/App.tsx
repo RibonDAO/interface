@@ -15,6 +15,7 @@ import CurrentUserProvider from "contexts/currentUserContext";
 import TasksProvider from "contexts/tasksContext";
 import CausesProvider from "contexts/causesContext";
 import DebugEventsView from "config/debugEventsView";
+import { isLogoClickedValueGreaterThan15 } from "config/debugEventsView/helpers";
 import RoutesComponent from "./config/routes";
 import GlobalStyle from "./styles/globalStyle";
 import theme from "./styles/theme";
@@ -49,9 +50,10 @@ function App() {
                         <CausesProvider>
                           <RoutesComponent />
                           <Zendesk />
-                          {process.env.REACT_APP_DEBUG_VIEW === "true" && (
-                            <DebugEventsView />
-                          )}
+                          {process.env.REACT_APP_DEBUG_VIEW === "true" &&
+                            isLogoClickedValueGreaterThan15() && (
+                              <DebugEventsView />
+                            )}
                         </CausesProvider>
                       </TasksProvider>
                     </Suspense>

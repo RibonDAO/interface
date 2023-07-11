@@ -31,8 +31,9 @@ export function logEvent(
       logMixpanelEvent(eventName, convertedParams);
       logAmplitudeEvent(eventName, convertedParams);
     }
-  } else if (process.env.REACT_APP_DEBUG_VIEW === "true") {
-    if (logDebugEvent) logDebugEvent(eventName, eventParams);
+  }
+  if (process.env.REACT_APP_DEBUG_VIEW === "true" && logDebugEvent) {
+    logDebugEvent(eventName, eventParams);
   }
 }
 

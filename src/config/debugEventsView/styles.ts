@@ -158,3 +158,15 @@ export const HorizontalScrollDiv = styled.div`
   max-width: 250px;
   overflow-x: auto;
 `;
+
+export const ResetButton = styled.button`
+  padding: 0;
+  border: none;
+  position: absolute;
+  top: 10px;
+  right: 40px;
+  font-size: 14px;
+  line-height: 1;
+  background-color: transparent;
+  cursor: pointer;
+`;

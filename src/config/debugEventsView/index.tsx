@@ -78,11 +78,13 @@ function DebugEventsView() {
     return () => clearTimeout(timer);
   }, [eventLogs]);
 
+  const resetEventLogs = () => {
+    setEventLogs([]);
+  };
+
   useEffect(() => {
     const unlisten = history.listen(() => {
-      if (resetOnNavigation) {
-        setEventLogs([]);
-      }
+      if (resetOnNavigation) resetEventLogs();
     });
 
     return () => {
@@ -133,6 +135,7 @@ function DebugEventsView() {
       handleMonitoredEventsChange={handleMonitoredEventsChange}
       handleAddMonitoredEvent={handleAddMonitoredEvent}
       handleRemoveMonitoredEvent={handleRemoveMonitoredEvent}
+      resetEventLogs={resetEventLogs}
     />
   );
 }

@@ -17,6 +17,7 @@ interface DebugViewProps {
   ) => void;
   handleAddMonitoredEvent: () => void;
   handleRemoveMonitoredEvent: (eventName: string) => void;
+  resetEventLogs: () => void;
 }
 
 function DebugView({
@@ -30,6 +31,7 @@ function DebugView({
   handleMonitoredEventsChange,
   handleAddMonitoredEvent,
   handleRemoveMonitoredEvent,
+  resetEventLogs,
 }: DebugViewProps) {
   if (minimized) {
     return (
@@ -51,6 +53,7 @@ function DebugView({
           />
         ))}
       </S.MonitoredEventsList>
+      <S.ResetButton onClick={resetEventLogs}>reset</S.ResetButton>
       <S.MinimizeButton onClick={handleMinimize}>−</S.MinimizeButton>
       <S.ResetCheckbox>
         <input

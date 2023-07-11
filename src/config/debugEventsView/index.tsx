@@ -10,9 +10,7 @@ export interface EventLog {
 }
 
 // eslint-disable-next-line import/no-mutable-exports
-export let logDebugEvent:
-  | ((eventName: string, eventParams: any) => void)
-  | null;
+export let logDebugEvent: any = () => {};
 
 function DebugEventsView() {
   const [eventLogs, setEventLogs] = useState<EventLog[]>([]);

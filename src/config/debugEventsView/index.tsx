@@ -14,6 +14,8 @@ export let logDebugEvent:
   | null;
 function DebugEventsView() {
   const [eventLogs, setEventLogs] = useState<EventLog[]>([]);
+  const [minimized, setMinimized] = useState(false);
+
   function updateEventLogs(eventName: string, eventParams: any) {
     setEventLogs((prevEventLogs) => {
       const existingEventLog = prevEventLogs.find(
@@ -63,13 +65,27 @@ function DebugEventsView() {
           highlight: false,
         })),
       );
-    }, 1000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, [eventLogs]);
 
+  const handleMinimize = () => {
+    setMinimized(!minimized);
+  };
+
+  if (minimized) {
+    return (
+      <S.MinimizedContainer onClick={handleMinimize}>
+        <S.MinimizedText>Debug View</S.MinimizedText>
+        <S.MinusButton>+</S.MinusButton>
+      </S.MinimizedContainer>
+    );
+  }
+
   return (
     <S.Container>
+      <S.MinimizeButton onClick={handleMinimize}>−</S.MinimizeButton>
       <S.DebugViewHeader>Debug View</S.DebugViewHeader>
       <S.EventTable>
         <thead>

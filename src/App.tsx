@@ -15,7 +15,7 @@ import CurrentUserProvider from "contexts/currentUserContext";
 import TasksProvider from "contexts/tasksContext";
 import CausesProvider from "contexts/causesContext";
 import DebugEventsView from "config/debugEventsView";
-import { isLogoClickedValueGreaterThan15 } from "config/debugEventsView/helpers";
+import { debugEnabled } from "config/debugEventsView/helpers";
 import { DEBUG_EVENTS_ENABLED } from "utils/constants";
 import RoutesComponent from "./config/routes";
 import GlobalStyle from "./styles/globalStyle";
@@ -44,7 +44,7 @@ function App() {
             <ModalProvider>
               <GlobalStyle />
               <BrowserRouter>
-                {DEBUG_EVENTS_ENABLED && isLogoClickedValueGreaterThan15() && (
+                {DEBUG_EVENTS_ENABLED && debugEnabled() && (
                   <DebugEventsView />
                 )}
                 <ToastContextProvider>

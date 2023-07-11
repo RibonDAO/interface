@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import * as S from "./styles";
 
 interface EventLog {
@@ -12,9 +13,12 @@ interface EventLog {
 export let logDebugEvent:
   | ((eventName: string, eventParams: any) => void)
   | null;
+
 function DebugEventsView() {
   const [eventLogs, setEventLogs] = useState<EventLog[]>([]);
   const [minimized, setMinimized] = useState(false);
+  const [resetOnNavigation, setResetOnNavigation] = useState(false);
+  const history = useHistory();
 
   function updateEventLogs(eventName: string, eventParams: any) {
     setEventLogs((prevEventLogs) => {
@@ -70,8 +74,24 @@ function DebugEventsView() {
     return () => clearTimeout(timer);
   }, [eventLogs]);
 
+  useEffect(() => {
+    const unlisten = history.listen(() => {
+      if (resetOnNavigation) {
+        setEventLogs([]);
+      }
+    });
+
+    return () => {
+      unlisten();
+    };
+  }, [resetOnNavigation, history]);
+
   const handleMinimize = () => {
     setMinimized(!minimized);
+  };
+
+  const handleResetOnNavigation = () => {
+    setResetOnNavigation(!resetOnNavigation);
   };
 
   if (minimized) {
@@ -86,6 +106,14 @@ function DebugEventsView() {
   return (
     <S.Container>
       <S.MinimizeButton onClick={handleMinimize}>−</S.MinimizeButton>
+      <S.ResetCheckbox>
+        <input
+          type="checkbox"
+          checked={resetOnNavigation}
+          onChange={handleResetOnNavigation}
+        />
+        Reset on Navigation
+      </S.ResetCheckbox>
       <S.DebugViewHeader>Debug View</S.DebugViewHeader>
       <S.EventTable>
         <thead>
@@ -96,13 +124,15 @@ function DebugEventsView() {
           </tr>
         </thead>
         <tbody>
-          {eventLogs.map((log, index) => (
-            <S.HighlightRow key={index.toString()} highlight={log.highlight}>
-              <td>{log.eventName}</td>
-              <td>{JSON.stringify(log.eventParams)}</td>
-              <td>{log.count}</td>
-            </S.HighlightRow>
-          ))}
+          {eventLogs
+            .sort((a, b) => a.eventName.localeCompare(b.eventName)) // Sort the logs by event name
+            .map((log, index) => (
+              <S.HighlightRow key={index.toString()} highlight={log.highlight}>
+                <td>{log.eventName}</td>
+                <td>{JSON.stringify(log.eventParams)}</td>
+                <td>{log.count}</td>
+              </S.HighlightRow>
+            ))}
         </tbody>
       </S.EventTable>
     </S.Container>

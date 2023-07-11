@@ -24,10 +24,6 @@ export const EventTable = styled.table`
   td {
     padding: 8px 0;
   }
-
-  tbody tr:nth-child(odd) {
-    background-color: #f5f5f5;
-  }
 `;
 
 const highlightAnimation = keyframes`
@@ -88,4 +84,14 @@ export const MinimizeButton = styled.button`
   line-height: 1;
   padding: 0;
   cursor: pointer;
+`;
+
+export const ResetCheckbox = styled.label`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
 `;

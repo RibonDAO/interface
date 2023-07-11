@@ -4,7 +4,7 @@ import {
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
 import { clickOn } from "config/testUtils";
-import {act} from "@testing-library/react";
+import { act } from "@testing-library/react";
 import DebugEventsView, { logDebugEvent } from ".";
 
 describe("debugEventsView", () => {
@@ -20,10 +20,11 @@ describe("debugEventsView", () => {
     it("renders the event", () => {
       act(() => {
         logDebugEvent("testEvent", { testParam: "testValue" });
-      })
+      });
 
       expectTextToBeInTheDocument("testEvent");
-      expectTextToBeInTheDocument("{\"testParam\":\"testValue\"}");
+      // eslint-disable-next-line
+      expectTextToBeInTheDocument('{"testParam":"testValue"}');
       expectTextToBeInTheDocument("1");
     });
 
@@ -32,7 +33,7 @@ describe("debugEventsView", () => {
         act(() => {
           logDebugEvent("testEvent", { testParam: "testValue" });
           logDebugEvent("testEvent", { testParam: "testValue" });
-        })
+        });
 
         expectTextToBeInTheDocument("2");
       });
@@ -43,14 +44,16 @@ describe("debugEventsView", () => {
     it("clear all event logs", () => {
       act(() => {
         logDebugEvent("testEvent", { testParam: "testValue" });
-      })
+      });
 
       expectTextToBeInTheDocument("testEvent");
-      expectTextToBeInTheDocument("{\"testParam\":\"testValue\"}");
+      // eslint-disable-next-line
+      expectTextToBeInTheDocument('{"testParam":"testValue"}');
 
       clickOn("reset");
       expectTextNotToBeInTheDocument("testEvent");
-      expectTextNotToBeInTheDocument("{\"testParam\":\"testValue\"}");
+      // eslint-disable-next-line
+      expectTextNotToBeInTheDocument('{"testParam":"testValue"}');
     });
   });
 });

@@ -8,6 +8,7 @@ export const Container = styled.div`
   bottom: 20px;
   z-index: 9999;
   background-color: white;
+  max-width: 550px;
 `;
 
 export const DebugViewHeader = styled.h3`
@@ -151,4 +152,9 @@ export const MonitoredEventsButton = styled.button`
 
 export const MonitoredEventsHeader = styled.h4`
   margin: 0;
+`;
+
+export const HorizontalScrollDiv = styled.div`
+  max-width: 250px;
+  overflow-x: auto;
 `;

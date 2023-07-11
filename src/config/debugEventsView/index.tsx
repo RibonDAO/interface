@@ -186,7 +186,11 @@ function DebugEventsView() {
             .map((log, index) => (
               <S.HighlightRow key={index.toString()} highlight={log.highlight}>
                 <td>{log.eventName}</td>
-                <td>{JSON.stringify(log.eventParams)}</td>
+                <td>
+                  <S.HorizontalScrollDiv>
+                    {JSON.stringify(log.eventParams)}
+                  </S.HorizontalScrollDiv>
+                </td>
                 <td>{log.count}</td>
               </S.HighlightRow>
             ))}

@@ -24,6 +24,18 @@ describe("debugEventsView", () => {
 
       expectTextToBeInTheDocument("testEvent");
       expectTextToBeInTheDocument("{\"testParam\":\"testValue\"}");
+      expectTextToBeInTheDocument("1");
+    });
+
+    describe("when the event is logged again", () => {
+      it("increments the counter", () => {
+        act(() => {
+          logDebugEvent("testEvent", { testParam: "testValue" });
+          logDebugEvent("testEvent", { testParam: "testValue" });
+        })
+
+        expectTextToBeInTheDocument("2");
+      });
     });
   });
 

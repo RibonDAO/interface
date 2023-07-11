@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import * as S from "./styles";
+import DebugView from "./DebugView";
 
-interface EventLog {
+export interface EventLog {
   eventName: string;
   eventParams: any;
   count: number;
@@ -123,80 +123,19 @@ function DebugEventsView() {
     );
   };
 
-  if (minimized) {
-    return (
-      <S.MinimizedContainer onClick={handleMinimize}>
-        <S.MinimizedText>Debug View</S.MinimizedText>
-        <S.MinusButton>+</S.MinusButton>
-      </S.MinimizedContainer>
-    );
-  }
-
   return (
-    <S.Container>
-      <S.MonitoredEventsList>
-        {monitoredEvents.map((eventName, index) => (
-          <S.MonitoredEventItem key={index.toString()}>
-            {eventName}
-            <S.RemoveMonitoredEventButton
-              onClick={() => handleRemoveMonitoredEvent(eventName)}
-            >
-              X
-            </S.RemoveMonitoredEventButton>
-          </S.MonitoredEventItem>
-        ))}
-      </S.MonitoredEventsList>
-      <S.MinimizeButton onClick={handleMinimize}>−</S.MinimizeButton>
-      <S.ResetCheckbox>
-        <input
-          type="checkbox"
-          checked={resetOnNavigation}
-          onChange={handleResetOnNavigation}
-        />
-        Reset on Navigation
-      </S.ResetCheckbox>
-      <S.DebugViewHeader>Debug View</S.DebugViewHeader>
-      <S.MonitoredEventsInputContainer>
-        <S.MonitoredEventsInput
-          type="text"
-          placeholder="Enter Event Name"
-          value={newMonitoredEvent}
-          onChange={handleMonitoredEventsChange}
-        />
-        <S.MonitoredEventsButton onClick={handleAddMonitoredEvent}>
-          Add
-        </S.MonitoredEventsButton>
-      </S.MonitoredEventsInputContainer>
-      <S.EventTable>
-        <thead>
-          <tr>
-            <th>Event Name</th>
-            <th>Parameters</th>
-            <th>Count</th>
-          </tr>
-        </thead>
-        <tbody>
-          {eventLogs
-            .filter(
-              (log) =>
-                monitoredEvents.length === 0 ||
-                monitoredEvents.includes(log.eventName),
-            )
-            .sort((a, b) => a.eventName.localeCompare(b.eventName))
-            .map((log, index) => (
-              <S.HighlightRow key={index.toString()} highlight={log.highlight}>
-                <td>{log.eventName}</td>
-                <td>
-                  <S.HorizontalScrollDiv>
-                    {JSON.stringify(log.eventParams)}
-                  </S.HorizontalScrollDiv>
-                </td>
-                <td>{log.count}</td>
-              </S.HighlightRow>
-            ))}
-        </tbody>
-      </S.EventTable>
-    </S.Container>
+    <DebugView
+      minimized={minimized}
+      eventLogs={eventLogs}
+      monitoredEvents={monitoredEvents}
+      resetOnNavigation={resetOnNavigation}
+      newMonitoredEvent={newMonitoredEvent}
+      handleMinimize={handleMinimize}
+      handleResetOnNavigation={handleResetOnNavigation}
+      handleMonitoredEventsChange={handleMonitoredEventsChange}
+      handleAddMonitoredEvent={handleAddMonitoredEvent}
+      handleRemoveMonitoredEvent={handleRemoveMonitoredEvent}
+    />
   );
 }
 

@@ -26,6 +26,7 @@ export const Container = styled.div<{
     props.flexDirection === "row" &&
     css`
       justify-content: space-between;
+      cursor: pointer;
     `}
 `;
 

@@ -17,7 +17,9 @@ function DebugEventsView() {
   function updateEventLogs(eventName: string, eventParams: any) {
     setEventLogs((prevEventLogs) => {
       const existingEventLog = prevEventLogs.find(
-        (log) => log.eventName === eventName,
+        (log) =>
+          log.eventName === eventName &&
+          JSON.stringify(log.eventParams) === JSON.stringify(eventParams),
       );
       if (existingEventLog) {
         const updatedEventLog = {
@@ -26,7 +28,10 @@ function DebugEventsView() {
           highlight: true,
         };
         return prevEventLogs.map((log) =>
-          log.eventName === eventName ? updatedEventLog : log,
+          log.eventName === eventName &&
+          JSON.stringify(log.eventParams) === JSON.stringify(eventParams)
+            ? updatedEventLog
+            : log,
         );
       } else {
         const newEventLog: EventLog = {
@@ -58,7 +63,7 @@ function DebugEventsView() {
           highlight: false,
         })),
       );
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, [eventLogs]);

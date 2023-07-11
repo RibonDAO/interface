@@ -24,6 +24,10 @@ export const EventTable = styled.table`
   td {
     padding: 8px 0;
   }
+
+  tbody tr:nth-child(odd) {
+    background-color: #f5f5f5;
+  }
 `;
 
 const highlightAnimation = keyframes`
@@ -94,4 +98,44 @@ export const ResetCheckbox = styled.label`
   input[type="checkbox"] {
     margin-right: 5px;
   }
+`;
+
+export const MonitoredEventsList = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+export const MonitoredEventItem = styled.li`
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+`;
+
+export const MonitoredEventsInputContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+export const MonitoredEventsInput = styled.input`
+  padding: 5px 10px;
+  margin-right: 10px;
+`;
+
+export const MonitoredEventsButton = styled.button`
+  padding: 5px 10px;
+  background-color: #ccc;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+`;
+
+export const MonitoredEventsHeader = styled.h4`
+  margin: 0;
 `;

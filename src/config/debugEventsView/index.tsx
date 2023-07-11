@@ -18,9 +18,15 @@ function DebugEventsView() {
   const [eventLogs, setEventLogs] = useState<EventLog[]>([]);
   const [minimized, setMinimized] = useState(false);
   const [resetOnNavigation, setResetOnNavigation] = useState(false);
+  const [monitoredEvents, setMonitoredEvents] = useState<string[]>([]);
+  const [newMonitoredEvent, setNewMonitoredEvent] = useState("");
   const history = useHistory();
 
   function updateEventLogs(eventName: string, eventParams: any) {
+    if (monitoredEvents.length > 0 && !monitoredEvents.includes(eventName)) {
+      return;
+    }
+
     setEventLogs((prevEventLogs) => {
       const existingEventLog = prevEventLogs.find(
         (log) =>
@@ -59,7 +65,7 @@ function DebugEventsView() {
     return () => {
       logDebugEvent = null;
     };
-  }, []);
+  }, [monitoredEvents]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -69,7 +75,7 @@ function DebugEventsView() {
           highlight: false,
         })),
       );
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, [eventLogs]);
@@ -94,17 +100,41 @@ function DebugEventsView() {
     setResetOnNavigation(!resetOnNavigation);
   };
 
+  const handleMonitoredEventsChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const { value } = event.target;
+    setNewMonitoredEvent(value);
+  };
+
+  const handleAddMonitoredEvent = () => {
+    if (newMonitoredEvent.trim() !== "") {
+      setMonitoredEvents((prevMonitoredEvents) => [
+        ...prevMonitoredEvents,
+        newMonitoredEvent,
+      ]);
+      setNewMonitoredEvent("");
+    }
+  };
+
   if (minimized) {
     return (
       <S.MinimizedContainer onClick={handleMinimize}>
         <S.MinimizedText>Debug View</S.MinimizedText>
-        <S.MinusButton>+</S.MinusButton>
+        <S.MinusButton>−</S.MinusButton>
       </S.MinimizedContainer>
     );
   }
 
   return (
     <S.Container>
+      <S.MonitoredEventsList>
+        {monitoredEvents.map((eventName, index) => (
+          <S.MonitoredEventItem key={index.toString()}>
+            {eventName}
+          </S.MonitoredEventItem>
+        ))}
+      </S.MonitoredEventsList>
       <S.MinimizeButton onClick={handleMinimize}>−</S.MinimizeButton>
       <S.ResetCheckbox>
         <input
@@ -115,6 +145,17 @@ function DebugEventsView() {
         Reset on Navigation
       </S.ResetCheckbox>
       <S.DebugViewHeader>Debug View</S.DebugViewHeader>
+      <S.MonitoredEventsInputContainer>
+        <S.MonitoredEventsInput
+          type="text"
+          placeholder="Enter Event Name"
+          value={newMonitoredEvent}
+          onChange={handleMonitoredEventsChange}
+        />
+        <S.MonitoredEventsButton onClick={handleAddMonitoredEvent}>
+          Add
+        </S.MonitoredEventsButton>
+      </S.MonitoredEventsInputContainer>
       <S.EventTable>
         <thead>
           <tr>
@@ -124,15 +165,13 @@ function DebugEventsView() {
           </tr>
         </thead>
         <tbody>
-          {eventLogs
-            .sort((a, b) => a.eventName.localeCompare(b.eventName)) // Sort the logs by event name
-            .map((log, index) => (
-              <S.HighlightRow key={index.toString()} highlight={log.highlight}>
-                <td>{log.eventName}</td>
-                <td>{JSON.stringify(log.eventParams)}</td>
-                <td>{log.count}</td>
-              </S.HighlightRow>
-            ))}
+          {eventLogs.map((log, index) => (
+            <S.HighlightRow key={index.toString()} highlight={log.highlight}>
+              <td>{log.eventName}</td>
+              <td>{JSON.stringify(log.eventParams)}</td>
+              <td>{log.count}</td>
+            </S.HighlightRow>
+          ))}
         </tbody>
       </S.EventTable>
     </S.Container>

@@ -33,7 +33,6 @@ export function logEvent(
     }
   } else if (process.env.REACT_APP_DEBUG_VIEW === "true") {
     if (logDebugEvent) logDebugEvent(eventName, eventParams);
-    console.info(eventName, eventParams);
   }
 }
 

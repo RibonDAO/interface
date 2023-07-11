@@ -16,7 +16,6 @@ import TasksProvider from "contexts/tasksContext";
 import CausesProvider from "contexts/causesContext";
 import DebugEventsView from "config/debugEventsView";
 import { debugEnabled } from "config/debugEventsView/helpers";
-import { DEBUG_EVENTS_ENABLED } from "utils/constants";
 import RoutesComponent from "./config/routes";
 import GlobalStyle from "./styles/globalStyle";
 import theme from "./styles/theme";
@@ -44,9 +43,7 @@ function App() {
             <ModalProvider>
               <GlobalStyle />
               <BrowserRouter>
-                {DEBUG_EVENTS_ENABLED && debugEnabled() && (
-                  <DebugEventsView />
-                )}
+                {debugEnabled() && <DebugEventsView />}
                 <ToastContextProvider>
                   <CurrentUserProvider>
                     <Suspense fallback={<div />}>

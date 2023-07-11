@@ -6,7 +6,7 @@ import * as DebugEventsView from "config/debugEventsView";
 import * as Constants from "utils/constants";
 import events from "./constants";
 
-const mockConstants = Constants as { DEBUG_EVENTS_ENABLED: boolean }
+const mockConstants = Constants as { DEBUG_EVENTS_ENABLED: boolean };
 
 jest.unmock("lib/events");
 jest.spyOn(FirebaseEvents, "logFirebaseEvent");
@@ -44,17 +44,27 @@ describe("Events", () => {
       });
 
       describe("when debug events is enabled", () => {
-
         beforeEach(() => {
           mockConstants.DEBUG_EVENTS_ENABLED = true;
-        })
+        });
 
-        fit("adds the event to debug view", () => {
+        it("adds the event to debug view", () => {
           logEvent(eventName, eventParams);
           expect(DebugEventsView.logDebugEvent).toHaveBeenCalledWith(
             eventName,
             eventParams,
           );
+        });
+      });
+
+      describe("when debug events is disabled", () => {
+        beforeEach(() => {
+          mockConstants.DEBUG_EVENTS_ENABLED = false;
+        });
+
+        it("adds the event to debug view", () => {
+          logEvent(eventName, eventParams);
+          expect(DebugEventsView.logDebugEvent).not.toHaveBeenCalled();
         });
       });
     });

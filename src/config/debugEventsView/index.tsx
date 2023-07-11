@@ -117,11 +117,17 @@ function DebugEventsView() {
     }
   };
 
+  const handleRemoveMonitoredEvent = (eventName: string) => {
+    setMonitoredEvents((prevMonitoredEvents) =>
+      prevMonitoredEvents.filter((event) => event !== eventName),
+    );
+  };
+
   if (minimized) {
     return (
       <S.MinimizedContainer onClick={handleMinimize}>
         <S.MinimizedText>Debug View</S.MinimizedText>
-        <S.MinusButton>−</S.MinusButton>
+        <S.MinusButton>+</S.MinusButton>
       </S.MinimizedContainer>
     );
   }
@@ -132,6 +138,11 @@ function DebugEventsView() {
         {monitoredEvents.map((eventName, index) => (
           <S.MonitoredEventItem key={index.toString()}>
             {eventName}
+            <S.RemoveMonitoredEventButton
+              onClick={() => handleRemoveMonitoredEvent(eventName)}
+            >
+              X
+            </S.RemoveMonitoredEventButton>
           </S.MonitoredEventItem>
         ))}
       </S.MonitoredEventsList>
@@ -165,13 +176,20 @@ function DebugEventsView() {
           </tr>
         </thead>
         <tbody>
-          {eventLogs.map((log, index) => (
-            <S.HighlightRow key={index.toString()} highlight={log.highlight}>
-              <td>{log.eventName}</td>
-              <td>{JSON.stringify(log.eventParams)}</td>
-              <td>{log.count}</td>
-            </S.HighlightRow>
-          ))}
+          {eventLogs
+            .filter(
+              (log) =>
+                monitoredEvents.length === 0 ||
+                monitoredEvents.includes(log.eventName),
+            )
+            .sort((a, b) => a.eventName.localeCompare(b.eventName))
+            .map((log, index) => (
+              <S.HighlightRow key={index.toString()} highlight={log.highlight}>
+                <td>{log.eventName}</td>
+                <td>{JSON.stringify(log.eventParams)}</td>
+                <td>{log.count}</td>
+              </S.HighlightRow>
+            ))}
         </tbody>
       </S.EventTable>
     </S.Container>

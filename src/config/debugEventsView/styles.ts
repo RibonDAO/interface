@@ -114,6 +114,18 @@ export const MonitoredEventItem = styled.li`
   border-radius: 5px;
   margin-right: 10px;
   margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+`;
+
+export const RemoveMonitoredEventButton = styled.button`
+  border: none;
+  background-color: transparent;
+  font-size: 12px;
+  line-height: 1;
+  padding: 0;
+  margin-left: 5px;
+  cursor: pointer;
 `;
 
 export const MonitoredEventsInputContainer = styled.div`

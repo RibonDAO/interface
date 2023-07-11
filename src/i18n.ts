@@ -8,11 +8,11 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: "en",
+    fallbackLng: "en-US",
     debug: false,
     ns: "translation",
     defaultNS: "translation",
-    preload: ["en", "pt"],
+    preload: ["en-US", "pt-BR"],
     cleanCode: true,
     interpolation: {
       escapeValue: false,

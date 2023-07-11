@@ -1,21 +1,7 @@
-import { getLocalStorageItem } from "lib/localStorage";
-import { LANGUAGE_KEY } from "hooks/useLanguage";
 import { Languages } from "@ribon.io/shared/types";
+import { getLocalStorageItem } from "lib/localStorage";
 
-export function formattedLanguage(language: string | null) {
-  switch (language) {
-    case "en-US":
-      return "en";
-    case "en":
-      return "en";
-    case "pt-BR":
-      return "pt-BR";
-    default:
-      return "en";
-  }
-}
-
-export function formattedShortLanguage(language: string | null): Languages {
+export function formattedLanguage(language: string | null): Languages {
   switch (language) {
     case "en-US":
       return Languages.EN;
@@ -30,8 +16,8 @@ export function formattedShortLanguage(language: string | null): Languages {
   }
 }
 
-export function normalizedLanguage(): string {
-  const language = getLocalStorageItem(LANGUAGE_KEY) || navigator.language;
-
-  return formattedLanguage(language);
+export function normalizedLanguage(): Languages {
+  return formattedLanguage(
+    getLocalStorageItem("i18nextLng") || navigator.language,
+  );
 }

@@ -1,5 +1,5 @@
 {
-  "pt": [
+  "pt-BR": [
     {
       "name": "Against Malaria Foundation",
       "description": "Forneça tela de proteção contra a malária para",
@@ -52,7 +52,7 @@
       "nonProfitId": 10
     }
   ],
-  "en": [
+  "en-US": [
     {
       "name": "Against Malaria Foundation",
       "description": "Provide malaria bed nets for",

@@ -1,9 +1,9 @@
 import React from "react";
 import { renderComponent, waitForPromises } from "config/testUtils";
 import { screen, fireEvent } from "@testing-library/react";
-import { setLocalStorageItem } from "lib/localStorage";
 import { mockRequest } from "config/testUtils/test-helper";
-import { LANGUAGE_KEY, useLanguage } from ".";
+import { setLocalStorageItem } from "lib/localStorage";
+import { useLanguage } from ".";
 
 function TestPage() {
   const { currentLang, handleSwitchLanguage } = useLanguage();
@@ -20,6 +20,9 @@ function TestPage() {
 
 describe("useLanguage", () => {
   describe("when there is no language defined", () => {
+    beforeEach(() => {
+      window.localStorage.clear();
+    });
     it("gets the default language of the browser", async () => {
       Object.defineProperty(window, "navigator", {
         value: { language: "pt-BR" },
@@ -32,15 +35,13 @@ describe("useLanguage", () => {
 
   describe("when there is language defined", () => {
     it("gets the english language from localStorage", async () => {
-      setLocalStorageItem(LANGUAGE_KEY, "en-US");
+      setLocalStorageItem("i18nextLng", "en-US");
       renderComponent(<TestPage />);
-
       expect(screen.getByText("en-US")).toBeInTheDocument();
     });
     it("gets the portuguese language from localStorage", async () => {
-      setLocalStorageItem(LANGUAGE_KEY, "pt-BR");
+      setLocalStorageItem("i18nextLng", "pt-BR");
       renderComponent(<TestPage />);
-
       expect(screen.getByText("pt-BR")).toBeInTheDocument();
     });
   });
@@ -53,12 +54,7 @@ describe("useLanguage", () => {
       },
     });
     beforeEach(async () => {
-      Object.defineProperty(window, "location", {
-        value: {
-          reload: jest.fn(),
-        },
-      });
-      setLocalStorageItem(LANGUAGE_KEY, "en-US");
+      setLocalStorageItem("i18nextLng", "en-US");
       renderComponent(<TestPage />);
       await waitForPromises();
     });

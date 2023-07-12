@@ -1,4 +1,3 @@
-import { logAmplitudeEvent } from "services/analytics/amplitude";
 import { logFirebaseEvent } from "services/analytics/firebase";
 import { logMixpanelEvent } from "services/analytics/mixpanel";
 import events from "./constants";
@@ -26,10 +25,7 @@ export function logEvent(
     convertedParams.hasDonated = localStorage.getItem("HAS_DONATED") ?? "false";
 
     logFirebaseEvent(eventName, convertedParams);
-    if (eventName.includes("web_")) {
-      logMixpanelEvent(eventName, convertedParams);
-      logAmplitudeEvent(eventName, convertedParams);
-    }
+    logMixpanelEvent(eventName, convertedParams);
   }
 }
 

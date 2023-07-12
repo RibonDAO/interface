@@ -27,6 +27,7 @@ import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { PLATFORM } from "utils/constants";
 import extractUrlValue from "lib/extractUrlValue";
+import { logEvent } from "lib/events";
 import * as S from "./styles";
 
 function DonationDoneCausePage(): JSX.Element {
@@ -116,6 +117,9 @@ function DonationDoneCausePage(): JSX.Element {
     refetch();
     if (flow === "cause" && hasButton) {
       registerAction("contribution_done_page_view");
+      logEvent("causeGave_end", {
+        platform: "web",
+      });
       navigateTo({
         pathname: "/promoters/support-cause",
         state: { nonProfit, cause },
@@ -123,6 +127,9 @@ function DonationDoneCausePage(): JSX.Element {
     }
     if (flow === "nonProfit") {
       registerAction("contribution_done_page_view");
+      logEvent("ngoGave_end", {
+        platform: "web",
+      });
       navigateTo({
         pathname: "/promoters/support-non-profit",
         state: { nonProfit, cause },

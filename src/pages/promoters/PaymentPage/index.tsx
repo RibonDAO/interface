@@ -7,7 +7,7 @@ import { useCardGivingFees } from "@ribon.io/shared/hooks";
 import { useEffect, useState } from "react";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import getThemeByFlow from "lib/themeByFlow";
-import { newLogEvent } from "lib/events";
+import { logEvent } from "lib/events";
 import { useBlockedDonationContributionModal } from "hooks/modalHooks/useBlockedDonationContributionModal";
 import * as S from "./styles";
 import UserInfoSection from "./UserInfoSection";
@@ -58,17 +58,19 @@ function PaymentPage(): JSX.Element {
 
   useEffect(() => {
     if (flow === "cause") {
-      newLogEvent("view", "P5", {
+      logEvent("P5_view", {
         causeId: cause?.id,
         price: offer.priceValue,
         currency: offer.currency,
+        platform: "web",
       });
     }
     if (flow === "nonProfit") {
-      newLogEvent("view", "P6", {
+      logEvent("P6_view", {
         nonprofitId: nonProfit?.id,
         price: offer.priceValue,
         currency: offer.currency,
+        platform: "web",
       });
     }
   }, []);

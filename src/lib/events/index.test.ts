@@ -95,27 +95,4 @@ describe("Events", () => {
       );
     });
   });
-
-  describe("newLogEvent", () => {
-    const action = "view";
-    it("sends an event to Amplitude", () => {
-      newLogEvent(action, eventName);
-      expect(AmplitudeEvents.logAmplitudeEvent).toHaveBeenCalledWith(
-        `web_${eventName}_${action}`,
-        paramsDefault,
-      );
-    });
-  });
-
-  describe("logPageView", () => {
-    const urlName = "/";
-    const translation = events.pages[urlName];
-    it("sends an event to Amplitude", () => {
-      logPageView(urlName);
-      expect(AmplitudeEvents.logAmplitudeEvent).toHaveBeenCalledWith(
-        `web_${translation}_view`,
-        paramsDefault,
-      );
-    });
-  });
 });

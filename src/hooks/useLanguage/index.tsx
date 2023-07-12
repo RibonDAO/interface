@@ -14,11 +14,11 @@ export function useLanguage() {
   }, [currentLang]);
 
   function handleSwitchLanguage() {
-    if (currentLang === Languages.EN) {
+    if (currentLang === Languages.en) {
       setCurrentLang(Languages.PT);
       window.location.reload();
     } else if (currentLang === Languages.PT) {
-      setCurrentLang(Languages.EN);
+      setCurrentLang(Languages.en);
       window.location.reload();
     }
   }

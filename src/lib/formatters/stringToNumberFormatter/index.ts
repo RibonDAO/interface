@@ -1,5 +1,5 @@
-export function stringToNumber(value: string, localeString = "en-US"): number {
-  if (localeString === "en-US") {
+export function stringToNumber(value: string, localeString = "en"): number {
+  if (localeString === "en") {
     return parseFloat(value.replace(/,/g, ""));
   }
 

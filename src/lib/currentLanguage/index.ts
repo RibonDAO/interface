@@ -4,15 +4,15 @@ import { getLocalStorageItem } from "lib/localStorage";
 export function formattedLanguage(language: string | null): Languages {
   switch (language) {
     case "en-US":
-      return Languages.EN;
+      return Languages.en;
     case "en":
-      return Languages.EN;
+      return Languages.en;
     case "pt":
       return Languages.PT;
     case "pt-BR":
       return Languages.PT;
     default:
-      return Languages.EN;
+      return Languages.en;
   }
 }
 

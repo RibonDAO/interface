@@ -35,9 +35,9 @@ describe("useLanguage", () => {
 
   describe("when there is language defined", () => {
     it("gets the english language from localStorage", async () => {
-      setLocalStorageItem("i18nextLng", "en-US");
+      setLocalStorageItem("i18nextLng", "en");
       renderComponent(<TestPage />);
-      expect(screen.getByText("en-US")).toBeInTheDocument();
+      expect(screen.getByText("en")).toBeInTheDocument();
     });
     it("gets the portuguese language from localStorage", async () => {
       setLocalStorageItem("i18nextLng", "pt-BR");
@@ -54,12 +54,12 @@ describe("useLanguage", () => {
       },
     });
     beforeEach(async () => {
-      setLocalStorageItem("i18nextLng", "en-US");
+      setLocalStorageItem("i18nextLng", "en");
       renderComponent(<TestPage />);
       await waitForPromises();
     });
     it("switches the current language", async () => {
-      expect(screen.getByText("en-US")).toBeInTheDocument();
+      expect(screen.getByText("en")).toBeInTheDocument();
 
       fireEvent.click(screen.getByText("change language"));
       await waitForPromises();

@@ -3,7 +3,7 @@ import { stringToNumber } from ".";
 describe("#stringToNumber", () => {
   describe("when the locale is en", () => {
     it("formats with dots being for decimals", () => {
-      expect(stringToNumber("1,234,234.34", "en-US")).toEqual(1234234.34);
+      expect(stringToNumber("1,234,234.34", "en")).toEqual(1234234.34);
     });
   });
 

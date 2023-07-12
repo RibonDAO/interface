@@ -7,6 +7,6 @@ export const formatFee = (fee: number, currency?: string) => {
   return formatPriceWithZeros(
     fee,
     currency,
-    currency === "brl" ? "pt-BR" : "en-US",
+    currency === "brl" ? "pt-BR" : "en",
   );
 };

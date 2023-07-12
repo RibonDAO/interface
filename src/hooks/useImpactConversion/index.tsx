@@ -55,7 +55,7 @@ export function useImpactConversion() {
     if (currentLang === "pt-BR") {
       return NewImpact["pt-BR"];
     }
-    return NewImpact["en-US"];
+    return NewImpact.en;
   }, [currentLang]);
 
   useEffect(() => {

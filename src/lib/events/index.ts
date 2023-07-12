@@ -1,5 +1,7 @@
 import { logFirebaseEvent } from "services/analytics/firebase";
 import { logMixpanelEvent } from "services/analytics/mixpanel";
+import { logDebugEvent } from "config/debugEventsView";
+import { DEBUG_EVENTS_ENABLED } from "utils/constants";
 import events from "./constants";
 
 function eventPageTransalation(url: string) {
@@ -26,6 +28,9 @@ export function logEvent(
 
     logFirebaseEvent(eventName, convertedParams);
     logMixpanelEvent(eventName, convertedParams);
+  }
+  if (DEBUG_EVENTS_ENABLED && logDebugEvent) {
+    logDebugEvent(eventName, eventParams);
   }
 }
 

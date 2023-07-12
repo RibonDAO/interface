@@ -19,6 +19,7 @@ env:
   REACT_APP_ZENDESK_KEY: ${{ secrets.REACT_APP_ZENDESK_KEY }}
   REACT_APP_GROWTHBOOK_CLIENT_KEY: ${{ secrets.REACT_APP_GROWTHBOOK_CLIENT_KEY }}
   REACT_APP_RIBON_GROWTHBOOK_URL: ${{ secrets.REACT_APP_RIBON_GROWTHBOOK_URL }}
+  REACT_APP_DEBUG_VIEW: true
 jobs:
   build_and_preview:
     environment: development

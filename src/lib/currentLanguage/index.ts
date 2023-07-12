@@ -1,6 +1,8 @@
 import { Languages } from "@ribon.io/shared/types";
 import { getLocalStorageItem } from "lib/localStorage";
 
+export const I18NEXTLNG = "i18nextLng";
+
 export function formattedLanguage(language: string | null): Languages {
   switch (language) {
     case "en-US":
@@ -18,6 +20,6 @@ export function formattedLanguage(language: string | null): Languages {
 
 export function normalizedLanguage(): Languages {
   return formattedLanguage(
-    getLocalStorageItem("i18nextLng") || navigator.language,
+    getLocalStorageItem(I18NEXTLNG) || navigator.language,
   );
 }

@@ -3,6 +3,7 @@ import { renderComponent, waitForPromises } from "config/testUtils";
 import { screen, fireEvent } from "@testing-library/react";
 import { mockRequest } from "config/testUtils/test-helper";
 import { setLocalStorageItem } from "lib/localStorage";
+import { I18NEXTLNG } from "lib/currentLanguage";
 import { useLanguage } from ".";
 
 function TestPage() {
@@ -35,12 +36,12 @@ describe("useLanguage", () => {
 
   describe("when there is language defined", () => {
     it("gets the english language from localStorage", async () => {
-      setLocalStorageItem("i18nextLng", "en");
+      setLocalStorageItem(I18NEXTLNG, "en");
       renderComponent(<TestPage />);
       expect(screen.getByText("en")).toBeInTheDocument();
     });
     it("gets the portuguese language from localStorage", async () => {
-      setLocalStorageItem("i18nextLng", "pt-BR");
+      setLocalStorageItem(I18NEXTLNG, "pt-BR");
       renderComponent(<TestPage />);
       expect(screen.getByText("pt-BR")).toBeInTheDocument();
     });
@@ -54,7 +55,7 @@ describe("useLanguage", () => {
       },
     });
     beforeEach(async () => {
-      setLocalStorageItem("i18nextLng", "en");
+      setLocalStorageItem(I18NEXTLNG, "en");
       renderComponent(<TestPage />);
       await waitForPromises();
     });

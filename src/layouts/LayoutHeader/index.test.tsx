@@ -93,20 +93,23 @@ describe("LayoutHeader", () => {
   });
 
   describe("when side logo is clicked", () => {
+    beforeEach(() => {
+      const mockUseImpactConversion = useImpactConversion as jest.Mock;
+      mockUseImpactConversion.mockReturnValue({
+        contribution: {
+          image: "test-image-url",
+          impact: "This is a test impact",
+          value: 100,
+        },
+        nonProfit: { name: "Test Non-Profit" },
+        offer: { id: 1 },
+        description: "This is a test description",
+        variation: "Test Variation",
+      });
+    });
+
     describe("when user can donate", () => {
       beforeEach(() => {
-        const mockUseImpactConversion = useImpactConversion as jest.Mock;
-        mockUseImpactConversion.mockReturnValue({
-          contribution: {
-            image: "test-image-url",
-            impact: "This is a test impact",
-            value: 100,
-          },
-          nonProfit: { name: "Test Non-Profit" },
-          offer: { id: 1 },
-          description: "This is a test description",
-          variation: "Test Variation",
-        });
         setLocalStorageItem(HAS_AN_AVAILABLE_VOUCHER, "true");
         renderComponent(<LayoutHeader />);
 
@@ -116,6 +119,23 @@ describe("LayoutHeader", () => {
 
       it("goes to the return to integration page", () => {
         expectPageToNavigateTo("return-to-integration");
+      });
+    });
+
+    describe("when user can't donate", () => {
+      beforeEach(() => {
+        global.open = jest.fn();
+        removeLocalStorageItem(HAS_AN_AVAILABLE_VOUCHER);
+        renderComponent(<LayoutHeader />);
+
+        const sideLogo = screen.getByAltText("side-logo");
+        clickOn(sideLogo);
+      });
+
+      it("goes to the integration page directly", () => {
+        expect(global.open).toHaveBeenCalledWith(
+          mockIntegration.integrationTask.linkAddress,
+        );
       });
     });
   });

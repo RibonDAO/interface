@@ -1,9 +1,10 @@
 import React from "react";
 import { renderComponent, waitForPromises } from "config/testUtils";
 import { screen, fireEvent } from "@testing-library/react";
-import { setLocalStorageItem } from "lib/localStorage";
 import { mockRequest } from "config/testUtils/test-helper";
-import { LANGUAGE_KEY, useLanguage } from ".";
+import { setLocalStorageItem } from "lib/localStorage";
+import { I18NEXTLNG } from "lib/currentLanguage";
+import { useLanguage } from ".";
 
 function TestPage() {
   const { currentLang, handleSwitchLanguage } = useLanguage();
@@ -20,6 +21,9 @@ function TestPage() {
 
 describe("useLanguage", () => {
   describe("when there is no language defined", () => {
+    beforeEach(() => {
+      window.localStorage.clear();
+    });
     it("gets the default language of the browser", async () => {
       Object.defineProperty(window, "navigator", {
         value: { language: "pt-BR" },
@@ -32,15 +36,13 @@ describe("useLanguage", () => {
 
   describe("when there is language defined", () => {
     it("gets the english language from localStorage", async () => {
-      setLocalStorageItem(LANGUAGE_KEY, "en-US");
+      setLocalStorageItem(I18NEXTLNG, "en");
       renderComponent(<TestPage />);
-
-      expect(screen.getByText("en-US")).toBeInTheDocument();
+      expect(screen.getByText("en")).toBeInTheDocument();
     });
     it("gets the portuguese language from localStorage", async () => {
-      setLocalStorageItem(LANGUAGE_KEY, "pt-BR");
+      setLocalStorageItem(I18NEXTLNG, "pt-BR");
       renderComponent(<TestPage />);
-
       expect(screen.getByText("pt-BR")).toBeInTheDocument();
     });
   });
@@ -53,17 +55,12 @@ describe("useLanguage", () => {
       },
     });
     beforeEach(async () => {
-      Object.defineProperty(window, "location", {
-        value: {
-          reload: jest.fn(),
-        },
-      });
-      setLocalStorageItem(LANGUAGE_KEY, "en-US");
+      setLocalStorageItem(I18NEXTLNG, "en");
       renderComponent(<TestPage />);
       await waitForPromises();
     });
     it("switches the current language", async () => {
-      expect(screen.getByText("en-US")).toBeInTheDocument();
+      expect(screen.getByText("en")).toBeInTheDocument();
 
       fireEvent.click(screen.getByText("change language"));
       await waitForPromises();

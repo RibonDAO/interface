@@ -1,23 +1,11 @@
-import {
-  formattedLanguage,
-  formattedShortLanguage,
-  normalizedLanguage,
-} from ".";
+import { formattedLanguage, normalizedLanguage } from ".";
 
 describe("currentLanguage", () => {
   describe("formattedLanguage", () => {
     it("should return the correct language", () => {
-      expect(formattedLanguage("en-US")).toEqual("en");
+      expect(formattedLanguage("en")).toEqual("en");
       expect(formattedLanguage("pt-BR")).toEqual("pt-BR");
       expect(formattedLanguage(null)).toEqual("en");
-    });
-  });
-
-  describe("formattedShortLanguage", () => {
-    it("should return the correct language", () => {
-      expect(formattedShortLanguage("en")).toEqual("en-US");
-      expect(formattedShortLanguage("pt")).toEqual("pt-BR");
-      expect(formattedShortLanguage(null)).toEqual("en-US");
     });
   });
 

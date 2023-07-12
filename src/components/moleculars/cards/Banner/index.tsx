@@ -41,7 +41,11 @@ function Banner({
   const flexDirection = onArrowClick ? "row" : "column";
 
   return (
-    <S.Container backgroundImage={cardBackground} flexDirection={flexDirection}>
+    <S.Container
+      backgroundImage={cardBackground}
+      flexDirection={flexDirection}
+      onClick={handleClick}
+    >
       <S.Content>
         <S.IconText>
           {icon && (

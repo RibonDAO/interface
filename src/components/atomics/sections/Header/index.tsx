@@ -1,5 +1,6 @@
 import Logo from "assets/icons/logo.svg";
 import ArrowLeft from "assets/icons/arrow-left-green.svg";
+import { incrementLocalStorageValue } from "config/debugEventsView/helpers";
 import * as S from "./styles";
 
 export type Props = {
@@ -25,7 +26,11 @@ function Header({
           />
         ) : (
           <>
-            <S.Logo src={Logo} alt="logo" />
+            <S.Logo
+              src={Logo}
+              alt="logo"
+              onClick={incrementLocalStorageValue}
+            />
             {sideLogo && (
               <>
                 <S.Divider>|</S.Divider>

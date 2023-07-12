@@ -2,12 +2,17 @@ import { logEvent, newLogEvent, logPageView } from "lib/events";
 import * as FirebaseEvents from "services/analytics/firebase";
 import * as MixpanelEvents from "services/analytics/mixpanel";
 import * as AmplitudeEvents from "services/analytics/amplitude";
+import * as DebugEventsView from "config/debugEventsView";
+import * as Constants from "utils/constants";
 import events from "./constants";
+
+const mockConstants = Constants as { DEBUG_EVENTS_ENABLED: boolean };
 
 jest.unmock("lib/events");
 jest.spyOn(FirebaseEvents, "logFirebaseEvent");
 jest.spyOn(MixpanelEvents, "logMixpanelEvent");
 jest.spyOn(AmplitudeEvents, "logAmplitudeEvent");
+jest.spyOn(DebugEventsView, "logDebugEvent");
 
 describe("Events", () => {
   const eventName = "teste";
@@ -36,6 +41,31 @@ describe("Events", () => {
             ...eventParams,
           },
         );
+      });
+
+      describe("when debug events is enabled", () => {
+        beforeEach(() => {
+          mockConstants.DEBUG_EVENTS_ENABLED = true;
+        });
+
+        it("adds the event to debug view", () => {
+          logEvent(eventName, eventParams);
+          expect(DebugEventsView.logDebugEvent).toHaveBeenCalledWith(
+            eventName,
+            eventParams,
+          );
+        });
+      });
+
+      describe("when debug events is disabled", () => {
+        beforeEach(() => {
+          mockConstants.DEBUG_EVENTS_ENABLED = false;
+        });
+
+        it("adds the event to debug view", () => {
+          logEvent(eventName, eventParams);
+          expect(DebugEventsView.logDebugEvent).not.toHaveBeenCalled();
+        });
       });
     });
 
@@ -90,29 +120,6 @@ describe("Events", () => {
     it("sends an event to Mixpanel", () => {
       logPageView(urlName);
       expect(MixpanelEvents.logMixpanelEvent).toHaveBeenCalledWith(
-        `web_${translation}_view`,
-        paramsDefault,
-      );
-    });
-  });
-
-  describe("newLogEvent", () => {
-    const action = "view";
-    it("sends an event to Amplitude", () => {
-      newLogEvent(action, eventName);
-      expect(AmplitudeEvents.logAmplitudeEvent).toHaveBeenCalledWith(
-        `web_${eventName}_${action}`,
-        paramsDefault,
-      );
-    });
-  });
-
-  describe("logPageView", () => {
-    const urlName = "/";
-    const translation = events.pages[urlName];
-    it("sends an event to Amplitude", () => {
-      logPageView(urlName);
-      expect(AmplitudeEvents.logAmplitudeEvent).toHaveBeenCalledWith(
         `web_${translation}_view`,
         paramsDefault,
       );

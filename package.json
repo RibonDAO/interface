@@ -5,8 +5,8 @@
   "dependencies": {
     "@amplitude/analytics-browser": "^1.6.8",
     "@apollo/client": "^3.6.9",
-    "@ribon.io/shared": "^1.0.74",
     "@growthbook/growthbook-react": "^0.17.0",
+    "@ribon.io/shared": "^1.0.74",
     "@sentry/react": "^6.16.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^12.1.5",
@@ -53,6 +53,7 @@
   },
   "scripts": {
     "start": "craco start",
+    "start-debug": "REACT_APP_DEBUG_VIEW=true craco start",
     "build": "craco build",
     "test": "craco test",
     "testCoverage": "craco test --coverage --watchAll=false",

@@ -1,6 +1,6 @@
 import { NonProfit, Offer } from "@ribon.io/shared/types";
 import useNavigation from "hooks/useNavigation";
-import { newLogEvent } from "lib/events";
+import { logEvent } from "lib/events";
 import { formatPrice } from "lib/formatters/currencyFormatter";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
@@ -36,23 +36,26 @@ function ContributionCard({
   const { navigateTo } = useNavigation();
 
   useEffect(() => {
-    newLogEvent(
-      "view",
-      flow === "nonProfit" ? "contributeNgoBtn" : "contributeCauseBtn",
+    logEvent(
+      flow === "nonProfit"
+        ? "contributeNgoBtn_view"
+        : "contributeCauseBtn_view",
       {
         from,
+        platform: "web",
       },
     );
   }, []);
 
   const handleClickedDonationButton = () => {
-    newLogEvent("start", flow === "nonProfit" ? "giveNgoBtn" : "giveCauseBtn", {
+    logEvent(flow === "nonProfit" ? "giveNgoBtn_start" : "giveCauseBtn_start", {
       from,
       value,
       coin: offer?.currency,
       nonProfitId: nonProfit?.id,
       causeId: nonProfit?.cause?.id,
       offerId: offer?.id,
+      platform: "web",
     });
 
     navigateTo({

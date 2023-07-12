@@ -12,6 +12,6 @@ export const formatNetDonation = (
   return formatPriceWithZeros(
     priceCents / 100 - fee,
     currency ?? "",
-    currency === "brl" ? "pt" : "en",
+    currency === "brl" ? "pt-BR" : "en",
   );
 };

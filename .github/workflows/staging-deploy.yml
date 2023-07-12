@@ -20,6 +20,7 @@ env:
   REACT_APP_RIBON_API: ${{ secrets.REACT_APP_RIBON_API }}
   REACT_APP_RIBON_COMPANY_ID: ${{ secrets.REACT_APP_RIBON_COMPANY_ID }}
   REACT_APP_ZENDESK_KEY: ${{ secrets.REACT_APP_ZENDESK_KEY }}
+  REACT_APP_DEBUG_VIEW: true
 jobs:
   build_and_deploy:
     environment: staging

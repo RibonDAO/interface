@@ -13,10 +13,6 @@ describe("Impact Page", () => {
   describe("Total Impact Cards", () => {
     const user = userFactory({ id: 1 });
     const userStatistics = userStatisticsFactory();
-    Object.defineProperty(window, "navigator", {
-      value: { language: "pt-BR" },
-    });
-
     describe("when there are more cards to show", () => {
       beforeEach(() => {
         renderComponent(<Impact />, {
@@ -39,7 +35,7 @@ describe("Impact Page", () => {
         expectTextToBeInTheDocument(userStatistics.totalTickets.toString());
         expectTextToBeInTheDocument("Donated tickets");
 
-        expectTextToBeInTheDocument("R$ 15,00");
+        expectTextToBeInTheDocument("$3.00");
         expectTextToBeInTheDocument("Donated money");
 
         expectTextToBeInTheDocument(userStatistics.totalNonProfits.toString());

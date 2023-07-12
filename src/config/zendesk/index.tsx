@@ -1,8 +1,7 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import ZendeskApp, { ZendeskAPI } from "react-zendesk";
 import theme from "styles/theme";
-import { LANGUAGE_KEY } from "hooks/useLanguage";
-import { getLocalStorageItem } from "lib/localStorage";
 
 function Zendesk(): JSX.Element {
   const zendeskSettings = {
@@ -14,7 +13,8 @@ function Zendesk(): JSX.Element {
       horizontal: "right",
     },
   };
-  const [currentLang] = useState(getLocalStorageItem(LANGUAGE_KEY));
+  const { i18n } = useTranslation();
+  const [currentLang] = useState(i18n.language);
   const ZENDESK_KEY = process.env.REACT_APP_ZENDESK_KEY ?? "";
 
   const loadZendeskApi = () => {

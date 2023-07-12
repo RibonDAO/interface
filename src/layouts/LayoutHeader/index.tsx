@@ -91,6 +91,21 @@ function LayoutHeader({
     return integration?.logo;
   }
 
+  function handleSideLogoClick() {
+    if (!integration?.integrationTask?.linkAddress) return;
+    if (canDonateAndHasVoucher) {
+      navigateTo("return-to-integration");
+      return;
+    }
+
+    newLogEvent("click", "backIntegration", { from: "header" });
+    window.open(integration.integrationTask.linkAddress);
+  }
+
+  const onSideLogoClick = integration?.integrationTask?.linkAddress
+    ? handleSideLogoClick
+    : undefined;
+
   return (
     <S.Container>
       <ModalBlank
@@ -133,6 +148,7 @@ function LayoutHeader({
         hasBackButton={hasBackButton}
         onBackButtonClick={navigateBack}
         sideLogo={renderSideLogo()}
+        onSideLogoClick={onSideLogoClick}
         rightComponent={
           <S.ContainerRight>
             {rightComponent}

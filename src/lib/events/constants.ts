@@ -14,6 +14,7 @@ const events: any = {
     "/impact": "P9",
     "/intro": "P10",
     "/tickets": "P11",
+    "/return-to-integration": "P11",
   },
 };
 

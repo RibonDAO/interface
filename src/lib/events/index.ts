@@ -1,4 +1,3 @@
-import { logAmplitudeEvent } from "services/analytics/amplitude";
 import { logFirebaseEvent } from "services/analytics/firebase";
 import { logMixpanelEvent } from "services/analytics/mixpanel";
 import events from "./constants";

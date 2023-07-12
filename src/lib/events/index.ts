@@ -26,10 +26,7 @@ export function logEvent(
     convertedParams.hasDonated = localStorage.getItem("HAS_DONATED") ?? "false";
 
     logFirebaseEvent(eventName, convertedParams);
-    if (eventName.includes("web_")) {
-      logMixpanelEvent(eventName, convertedParams);
-      logAmplitudeEvent(eventName, convertedParams);
-    }
+    logMixpanelEvent(eventName, convertedParams);
   }
 }
 

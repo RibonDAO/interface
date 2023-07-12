@@ -33,7 +33,6 @@ import ContributionNotification from "./ContributionNotification";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
 import ChooseCauseModal from "./ChooseCauseModal";
-// import DownloadAppModalTemplate from "./DownloadAppModalTemplate";
 import ContributionSection from "./ContributionSection";
 
 function CausesPage(): JSX.Element {
@@ -180,24 +179,6 @@ function CausesPage(): JSX.Element {
   ];
 
   const canDonateAndHasVoucher = canDonate && hasAvailableDonation();
-
-  // NOTE: Uncomment this after fix the redirect back and finish deeplink
-  // const modalDialogProps = {
-  //   children: <DownloadAppModalTemplate />,
-  // };
-
-  // const { show } = useModal({
-  //   type: MODAL_TYPES.MODAL_DIALOG,
-  //   props: modalDialogProps,
-  // });
-
-  // useEffect(() => {
-  //   if (isMobile && !isFirstAccess(signedIn)) {
-  //     setTimeout(() => {
-  //       show();
-  //     }, 3000);
-  //   }
-  // }, []);
 
   return (
     <S.Container>

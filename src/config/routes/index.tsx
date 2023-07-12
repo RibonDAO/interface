@@ -31,6 +31,7 @@ import GiveTicketPage from "pages/donations/GiveTicketPage";
 import ReceiveTicketPage from "pages/donations/ReceiveTicketPage";
 import LoadingPage from "pages/donations/LoadingPage";
 import ContributionStatsPage from "pages/users/ContributionStatsPage";
+import IframeTestPage from "pages/tests/IframeTestPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -275,6 +276,14 @@ function RoutesComponent(): JSX.Element {
       <Route path="/delete_account" exact>
         <Suspense fallback={<div />}>
           <DeleteAccountPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/iframe-test" exact>
+        <Suspense fallback={<div />}>
+          <MainLayout>
+            <IframeTestPage />
+          </MainLayout>
         </Suspense>
       </Route>
     </Switch>

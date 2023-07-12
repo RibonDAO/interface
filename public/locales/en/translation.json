@@ -113,6 +113,22 @@
       "textOrigin": "Community",
       "textDestiny": "You",
       "description": "Receiving ticket..."
+    },
+    "confirmDonationPage": {
+      "signedInSection": {
+        "title": "Your donation",
+        "confirmText": "Confirm donation"
+      },
+      "signInSection": {
+        "title": "Enter your e-mail to donate",
+        "confirmText": "Continue",
+        "footerStartText": "By clicking Confirm I agree on Ribon’s",
+        "footerEndText": " and",
+        "termsText": "Terms",
+        "termsLink": "https://ribon.io/en/privacy-policy/#terms",
+        "privacyPolicyText": "Privacy Policy",
+        "privacyPolicyLink": "https://ribon.io/en/privacy-policy/#privacy"
+      }
     }
   },
   "layouts": {
@@ -471,5 +487,4 @@
     "donate": "Donate {{value}}",
     "titleCard": "Do even more"
   }
-  
 }

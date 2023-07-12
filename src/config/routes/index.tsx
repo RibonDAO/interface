@@ -2,7 +2,7 @@ import React, { Suspense, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import WalletProvider from "contexts/walletContext";
 import CausesPage from "pages/donations/CausesPage";
-import ConfirmEmailPage from "pages/donations/ConfirmEmailPage";
+import ConfirmDonationPage from "pages/donations/ConfirmDonationPage";
 import DonationDonePage from "pages/donations/DonationDonePage";
 import DonationDoneCausePage from "pages/donations/DonationDoneCausePage";
 import ImpactPage from "pages/users/ImpactPage";
@@ -31,7 +31,7 @@ import GiveTicketPage from "pages/donations/GiveTicketPage";
 import ReceiveTicketPage from "pages/donations/ReceiveTicketPage";
 import LoadingPage from "pages/donations/LoadingPage";
 import ContributionStatsPage from "pages/users/ContributionStatsPage";
-import Navigation from "./Navigation";
+import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
   const location = useLocation();
@@ -85,10 +85,10 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
-      <Route path="/confirm-email" exact>
+      <Route path="/confirm-donation" exact>
         <Suspense fallback={<div />}>
-          <Navigation />
-          <ConfirmEmailPage />
+          <NavigationBackHeader />
+          <ConfirmDonationPage />
         </Suspense>
       </Route>
 

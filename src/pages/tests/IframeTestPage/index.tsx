@@ -1,19 +1,10 @@
+import * as S from "./styles";
+
 function IframeTestPage() {
   return (
-    <div
-      style={{
-        width: "calc(100% + 520px)",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        overflow: "auto",
-        marginLeft: -260,
-        marginRight: -260,
-      }}
-    >
+    <S.Container>
       <iframe
-        src="https://ribon.io/comunidade/"
+        src="https://projetos.ribon.io/eventosolidario/carol-e-marcelo"
         title="Ribon Comunidade"
         style={{
           width: "100%",
@@ -21,7 +12,7 @@ function IframeTestPage() {
           border: "none",
         }}
       />
-    </div>
+    </S.Container>
   );
 }
 

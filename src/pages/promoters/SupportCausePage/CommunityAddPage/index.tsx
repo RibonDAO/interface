@@ -21,7 +21,7 @@ function CommunityAddPage(): JSX.Element {
   const { currentLang } = useLanguage();
 
   function communityAddImage() {
-    return currentLang === Languages.EN
+    return currentLang === Languages.en
       ? CommunityAddCycle
       : CommunityAddCyclePT;
   }

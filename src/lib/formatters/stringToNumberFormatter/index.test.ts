@@ -9,7 +9,7 @@ describe("#stringToNumber", () => {
 
   describe("when the locale is pt", () => {
     it("formats with commas being for decimals", () => {
-      expect(stringToNumber("1.234.234,34", "pt")).toEqual(1234234.34);
+      expect(stringToNumber("1.234.234,34", "pt-BR")).toEqual(1234234.34);
     });
   });
 });

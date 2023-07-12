@@ -10,7 +10,7 @@ describe("#languageByCoin", () => {
 
   describe("when the language is EN", () => {
     it("returns the USD currency", () => {
-      expect(languageByCoin(Currencies.USD)).toEqual(Languages.EN);
+      expect(languageByCoin(Currencies.USD)).toEqual(Languages.en);
     });
   });
 });

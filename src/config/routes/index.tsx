@@ -31,6 +31,7 @@ import GiveTicketPage from "pages/donations/GiveTicketPage";
 import ReceiveTicketPage from "pages/donations/ReceiveTicketPage";
 import LoadingPage from "pages/donations/LoadingPage";
 import ContributionStatsPage from "pages/users/ContributionStatsPage";
+import ReturnToIntegrationPage from "pages/donations/ReturnToIntegrationPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -70,6 +71,12 @@ function RoutesComponent(): JSX.Element {
       <Route path="/tickets" exact>
         <Suspense fallback={<div />}>
           <GiveTicketPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/return-to-integration" exact>
+        <Suspense fallback={<div />}>
+          <ReturnToIntegrationPage />
         </Suspense>
       </Route>
 

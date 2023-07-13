@@ -54,6 +54,14 @@ export const FeeText = styled.p`
   color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
+export const AdditionalFeesText = styled.p`
+  ${defaultBodyXsRegular}
+
+  margin-top: ${({ theme }) => theme.spacing(8)};
+  text-align: center;
+  color: ${({ theme }) => theme.colors.neutral[500]};
+`;
+
 export const Image = styled.img`
   width: 100%;
   height: 100%;

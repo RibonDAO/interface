@@ -103,6 +103,8 @@ function PaymentPage(): JSX.Element {
   const isNonprofit = () => flow === "nonProfit" && nonProfit;
   const highlightText = () => (isNonprofit() ? nonProfit?.name : cause?.name);
 
+  const isUsd = () => offer.currency === "usd";
+
   return (
     <S.Container>
       <S.BackArrowButton
@@ -138,6 +140,12 @@ function PaymentPage(): JSX.Element {
             <S.FeeText>
               {t("serviceFeesText")} {cardGivingFees.serviceFees}
             </S.FeeText>
+          )}
+
+          {offer && !isUsd() && (
+            <S.AdditionalFeesText>
+              {t("additionalFeesText")}
+            </S.AdditionalFeesText>
           )}
           {renderCurrentSection()}
         </S.ContentContainer>

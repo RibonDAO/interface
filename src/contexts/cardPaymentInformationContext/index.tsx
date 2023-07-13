@@ -26,6 +26,7 @@ import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import { useIntegration, useSources, useUsers } from "@ribon.io/shared/hooks";
 import { normalizedLanguage } from "lib/currentLanguage";
 import { CONTRIBUTION_INLINE_NOTIFICATION } from "pages/donations/CausesPage/ContributionNotification";
+import { PLATFORM } from "utils/constants";
 
 export interface ICardPaymentInformationContext {
   setCurrentCoin: (value: SetStateAction<Currencies>) => void;
@@ -189,6 +190,7 @@ function CardPaymentInformationProvider({ children }: Props) {
       },
       causeId: cause?.id,
       nonProfitId: nonProfit?.id,
+      platform: PLATFORM,
     };
 
     try {

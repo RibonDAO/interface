@@ -1,10 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { NonProfit } from "@ribon.io/shared/types";
 import {
   useFreeDonationNonProfits,
-  useSources,
-  useUsers,
   useIntegration,
   useCanDonate,
   useFirstAccessToIntegration,
@@ -19,7 +16,6 @@ import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import { DONATION_TOAST_SEEN_AT_KEY } from "lib/localStorage/constants";
 import { today } from "lib/dateTodayFormatter";
 import Spinner from "components/atomics/Spinner";
-import { logError } from "services/crashReport";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import useVoucher from "hooks/useVoucher";
 import { useCausesContext } from "contexts/causesContext";
@@ -28,7 +24,6 @@ import { track } from "@amplitude/analytics-browser";
 import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
-import { normalizedLanguage } from "lib/currentLanguage";
 import WarningIcon from "assets/icons/warning-icon.svg";
 import extractUrlValue from "lib/extractUrlValue";
 import { PLATFORM } from "utils/constants";
@@ -37,17 +32,11 @@ import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
-import ConfirmSection from "./ConfirmSection";
 import ChooseCauseModal from "./ChooseCauseModal";
-// import DownloadAppModalTemplate from "./DownloadAppModalTemplate";
 import ContributionSection from "./ContributionSection";
 
 function CausesPage(): JSX.Element {
-  const [confirmModalVisible, setConfirmModalVisible] = useState(false);
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
-  const [donationInProcessModalVisible, setDonationInProcessModalVisible] =
-    useState(false);
-  const [chosenNonProfit, setChosenNonProfit] = useState<NonProfit>();
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
 
@@ -90,9 +79,7 @@ function CausesPage(): JSX.Element {
 
   const { nonProfits, isLoading } = useFreeDonationNonProfits();
   const { showReceiveTicketToast } = useReceiveTicketToast();
-  const { findOrCreateUser } = useUsers();
-  const { createSource } = useSources();
-  const { signedIn, setCurrentUser, currentUser } = useCurrentUser();
+  const { signedIn, currentUser } = useCurrentUser();
 
   const externalId = extractUrlValue("external_id", search);
   const { canDonate, refetch: refetchCanDonate } = useCanDonate(
@@ -152,27 +139,6 @@ function CausesPage(): JSX.Element {
     }
   }, [integration, isFirstAccessToIntegration]);
 
-  const closeConfirmModal = useCallback(() => {
-    setConfirmModalVisible(false);
-  }, []);
-
-  const donateTicket = useCallback(
-    async (email: string) => {
-      try {
-        if (!signedIn) {
-          const user = await findOrCreateUser(email, normalizedLanguage());
-          if (integration) {
-            createSource(user.id, integration.id);
-          }
-          setCurrentUser(user);
-        }
-      } catch (e) {
-        logError(e);
-      }
-    },
-    [chosenNonProfit],
-  );
-
   useEffect(() => {
     if (chooseCauseModalVisible && !hasSeenChooseCauseModal.current) {
       hasSeenChooseCauseModal.current = true;
@@ -214,40 +180,10 @@ function CausesPage(): JSX.Element {
 
   const canDonateAndHasVoucher = canDonate && hasAvailableDonation();
 
-  // NOTE: Uncomment this after fix the redirect back and finish deeplink
-  // const modalDialogProps = {
-  //   children: <DownloadAppModalTemplate />,
-  // };
-
-  // const { show } = useModal({
-  //   type: MODAL_TYPES.MODAL_DIALOG,
-  //   props: modalDialogProps,
-  // });
-
-  // useEffect(() => {
-  //   if (isMobile && !isFirstAccess(signedIn)) {
-  //     setTimeout(() => {
-  //       show();
-  //     }, 3000);
-  //   }
-  // }, []);
-
   return (
     <S.Container>
       {!isFirstAccess(signedIn) && <DownloadAppToast />}
       <ChooseCauseModal visible={chooseCauseModalVisible} />
-      {chosenNonProfit && integration && (
-        <ConfirmSection
-          chosenNonProfit={chosenNonProfit}
-          donateTicket={donateTicket}
-          integration={integration}
-          setDonationInProcessModalVisible={setDonationInProcessModalVisible}
-          confirmModalVisible={confirmModalVisible}
-          donationInProcessModalVisible={donationInProcessModalVisible}
-          setConfirmModalVisible={setConfirmModalVisible}
-          closeConfirmModal={closeConfirmModal}
-        />
-      )}
 
       <S.BodyContainer>
         <S.TitleContainer>
@@ -283,8 +219,6 @@ function CausesPage(): JSX.Element {
             <S.NonProfitsContainer>
               <NonProfitsList
                 nonProfits={nonProfitsFilter()}
-                setChosenNonProfit={setChosenNonProfit}
-                setConfirmModalVisible={setConfirmModalVisible}
                 canDonate={canDonate}
                 integration={integration}
               />

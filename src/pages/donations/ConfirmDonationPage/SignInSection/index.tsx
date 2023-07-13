@@ -20,7 +20,7 @@ function EmailInputSection({ nonProfit, onContinue }: Props): JSX.Element {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    newLogEvent("view", "P1_loginModal");
+    newLogEvent("view", "P12");
   }, []);
 
   const handleButtonPress = () => {
@@ -57,7 +57,8 @@ function EmailInputSection({ nonProfit, onContinue }: Props): JSX.Element {
           borderColor={theme.colors.brand.primary[600]}
           textColor={theme.colors.neutral[25]}
           disabled={!isValidEmail(email)}
-          eventName="P1_loginConfirmBtn"
+          eventName="P12_continueBtn"
+          eventParams={{ nonProfitId: nonProfit.id }}
         />
         <S.FooterText>
           {t("footerStartText")}{" "}

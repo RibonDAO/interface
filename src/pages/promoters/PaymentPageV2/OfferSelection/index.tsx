@@ -23,6 +23,8 @@ function OfferSelection({
     keyPrefix: "promoters.paymentPageV2",
   });
 
+  const isUsd = currentOffer.currency === "usd";
+
   return (
     <S.Container>
       <S.Offer>
@@ -32,16 +34,21 @@ function OfferSelection({
         </S.EditButton>
       </S.Offer>
       {cardGivingFees ? (
-        <S.CardGivingInfoWrapper>
-          <S.CardGivingInfo>
-            {t("netDonation")}
-            {cardGivingFees?.netGiving}
-          </S.CardGivingInfo>
-          <S.CardGivingInfo>
-            {t("serviceFees")}
-            {cardGivingFees?.serviceFees}
-          </S.CardGivingInfo>
-        </S.CardGivingInfoWrapper>
+        <>
+          <S.CardGivingInfoWrapper>
+            <S.CardGivingInfo>
+              {t("netDonation")}
+              {cardGivingFees?.netGiving}
+            </S.CardGivingInfo>
+            <S.CardGivingInfo>
+              {t("serviceFees")}
+              {cardGivingFees?.serviceFees}
+            </S.CardGivingInfo>
+          </S.CardGivingInfoWrapper>
+          {!isUsd && (
+            <S.CardGivingInfo>{t("additionalFeesText")}</S.CardGivingInfo>
+          )}
+        </>
       ) : (
         <GivingFeesLoader />
       )}

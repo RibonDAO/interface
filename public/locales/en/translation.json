@@ -337,7 +337,8 @@
         "title": "Your donation to",
         "button": "Continue",
         "netDonationText": "Net donation:",
-        "serviceFeesText": "Service fees:"
+        "serviceFeesText": "Service fees:",
+        "additionalFeesText": "Payment is processed in USD, the amount may vary slightly according to your bank's fees."
       }
     },
     "paymentPageV2": {
@@ -346,6 +347,7 @@
       "donatingTo": "Donating to ",
       "netDonation": "Net donation: ",
       "serviceFees": "Service fees: ",
+      "additionalFeesText": "Payment is processed in USD, the amount may vary slightly according to your bank's fees.",
       "payment": "Payment",
       "selectCurrency": "Select currency",
       "selectValue": "Select value",

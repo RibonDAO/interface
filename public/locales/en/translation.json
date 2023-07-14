@@ -357,6 +357,8 @@
       "selectValue": "Select value",
       "additionalFeesText": "Payment is processed in USD, the amount may vary slightly according to your bank's fees.",
       "noRefundText": "Contributions in crypto are not refundable.",
+      "notEnoughFunds": "Insufficient balance ({{value}} {{currency}})",
+      "balance": "Balance: {{value}} {{currency}}",
       "customAmount": "Or enter a custom amount to donate",
       "save": "Save",
       "paymentMethodSection": {

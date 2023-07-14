@@ -359,6 +359,8 @@
       "noRefundText": "Contribuições em criptomoeda não são estornáveis.",
       "customAmount": "Ou insira um outro valor para doar",
       "save": "Salvar",
+      "notEnoughFunds": "Saldo insuficiente ({{value}} {{currency}})",
+      "balance": "Saldo: {{value}} {{currency}}",
       "paymentMethodSection": {
         "crypto": "Criptomoeda ({{currency}})",
         "creditCard": "Cartão de crédito",

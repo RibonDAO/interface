@@ -272,7 +272,11 @@ function RoutesComponent(): JSX.Element {
           <NetworkProvider>
             <WalletProvider>
               <WalletLayout hideNavigation>
-                <PaymentPageV2 />
+                <CardPaymentInformationProvider>
+                  <CryptoPaymentProvider>
+                    <PaymentPageV2 />
+                  </CryptoPaymentProvider>
+                </CardPaymentInformationProvider>
               </WalletLayout>
             </WalletProvider>
           </NetworkProvider>

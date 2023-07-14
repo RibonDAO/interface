@@ -6,6 +6,7 @@ import {
   defaultBodySmSemibold,
   defaultBodyXsSemibold,
 } from "styles/typography/default";
+import { stylizedDisplayMd } from "styles/typography/stylized";
 
 export const Container = styled.div`
   width: 100%;
@@ -132,5 +133,30 @@ export const DonateButtonContainer = styled.div`
     padding-bottom: 0;
     position: relative;
     background-color: transparent;
+  }
+`;
+
+export const Offer = styled.span`
+  ${stylizedDisplayMd}
+
+  margin-block: ${({ theme }) => theme.spacing(8)};
+  display: flex;
+  color: ${({ theme }) => theme.colors.brand.primary[800]};
+`;
+
+export const EditButton = styled.button`
+  width: 40px;
+  height: 40px;
+  margin-left: ${({ theme }) => theme.spacing(8)};
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ theme }) => theme.colors.brand.primary[50]};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.brand.primary[100]};
+    cursor: pointer;
   }
 `;

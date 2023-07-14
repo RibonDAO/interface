@@ -9,12 +9,14 @@ export type Props = {
   currentOffer?: Offer;
   priceValue?: string;
   onEditClick?: () => void;
+  tokenSymbol?: string;
 };
 
 function PriceSelection({
   currentOffer,
   priceValue,
   onEditClick,
+  tokenSymbol,
 }: Props): JSX.Element {
   const { cardGivingFees } = useCardGivingFees(
     currentOffer?.priceValue || 0,
@@ -26,7 +28,8 @@ function PriceSelection({
   });
 
   const isUSD = currentOffer && currentOffer.currency === "usd";
-  const price = currentOffer?.price || `${priceValue} USDC`;
+  const isCrypto = tokenSymbol && priceValue && !currentOffer;
+  const price = currentOffer?.price || `${priceValue} ${tokenSymbol || "USDC"}`;
 
   const renderGivingFees = () => {
     if (!currentOffer) return null;
@@ -58,6 +61,7 @@ function PriceSelection({
         </S.EditButton>
       </S.Offer>
       {renderGivingFees()}
+      {isCrypto && <S.SmallTextInfo>{t("noRefundText")}</S.SmallTextInfo>}
     </S.Container>
   );
 }

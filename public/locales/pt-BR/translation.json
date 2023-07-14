@@ -343,8 +343,7 @@
         "title": "Sua doação para",
         "button": "Continuar",
         "netDonationText": "Doação líquida:",
-        "serviceFeesText": "Taxas de serviço:",
-        "additionalFeesText": "O pagamento é processado em dólar, o valor pode sofrer uma pequena variação de acordo com as taxas do seu banco."
+        "serviceFeesText": "Taxas de serviço:"
       }
     },
     "paymentPageV2": {
@@ -353,7 +352,6 @@
       "donatingTo": "Doando para ",
       "netDonation": "Doação líquida: ",
       "serviceFees": "Taxas de serviço: ",
-      "additionalFeesText": "O pagamento é processado em dólar, o valor pode sofrer uma pequena variação de acordo com as taxas do seu banco.",
       "payment": "Pagamento",
       "selectCurrency": "Selecione a moeda",
       "selectValue": "Selecione o valor",

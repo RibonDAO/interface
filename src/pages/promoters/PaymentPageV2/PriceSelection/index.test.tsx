@@ -10,7 +10,7 @@ const mockOffer = offerFactory({
 describe("OfferSelection", () => {
   it("should render without error", () => {
     renderComponent(
-      <OfferSelection currentOffer={mockOffer} handleOfferChange={() => {}} />,
+      <OfferSelection currentOffer={mockOffer} onEditClick={() => {}} />,
     );
 
     expectTextToBeInTheDocument("$10.00");

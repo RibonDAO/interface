@@ -1,6 +1,6 @@
 import * as S from "./styles";
 
-export function OfferSelectionLoader() {
+export function PriceSelectionLoader() {
   return (
     <S.LoaderContainer>
       <S.LoaderShape style={{ width: 200, height: 40 }} />

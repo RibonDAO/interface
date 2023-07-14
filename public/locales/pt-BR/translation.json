@@ -355,7 +355,12 @@
       "payment": "Pagamento",
       "selectCurrency": "Selecione a moeda",
       "selectValue": "Selecione o valor",
+      "additionalFeesText": "O pagamento é processado em dólar, o valor pode sofrer uma pequena variação de acordo com as taxas do seu banco.",
+      "noRefundText": "Contribuições em criptomoeda não são estornáveis.",
+      "customAmount": "Ou insira um outro valor para doar",
+      "save": "Salvar",
       "paymentMethodSection": {
+        "crypto": "Criptomoeda ({{currency}})",
         "creditCard": "Cartão de crédito",
         "googlePay": "Google Pay",
         "applePay": "Apple Pay",
@@ -366,7 +371,9 @@
           "cvv": "CVV"
         }
       },
-      "confirmPayment": "Confirmar pagamento"
+      "confirmPayment": "Confirmar pagamento",
+      "donateValue": "Doar {{value}} {{currency}}",
+      "connectWallet": "Conecte sua carteira"
     }
   },
   "contexts": {

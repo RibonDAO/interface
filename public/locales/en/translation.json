@@ -355,7 +355,12 @@
       "payment": "Payment",
       "selectCurrency": "Select currency",
       "selectValue": "Select value",
+      "additionalFeesText": "Payment is processed in USD, the amount may vary slightly according to your bank's fees.",
+      "noRefundText": "Contributions in crypto are not refundable.",
+      "customAmount": "Or enter a custom amount to donate",
+      "save": "Save",
       "paymentMethodSection": {
+        "crypto": "Cryptocurrency ({{currency}})",
         "creditCard": "Credit card",
         "googlePay": "Google Pay",
         "applePay": "Apple Pay",
@@ -366,7 +371,9 @@
           "cvv": "CVV"
         }
       },
-      "confirmPayment": "Confirm payment"
+      "confirmPayment": "Confirm payment",
+      "donateValue": "Donate {{value}} {{currency}}",
+      "connectWallet": "Connect your wallet"
     }
   },
   "contexts": {

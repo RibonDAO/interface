@@ -6,10 +6,12 @@ const givingFeesApi = {
   postCardFees: (
     value: number,
     currency: Currencies,
+    gateway?: string,
   ): Promise<AxiosResponse<CardFees>> =>
     apiPost("givings/card_fees", {
       value,
       currency,
+      gateway,
     }),
 };
 

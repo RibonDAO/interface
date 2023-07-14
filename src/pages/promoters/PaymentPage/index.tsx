@@ -32,6 +32,7 @@ function PaymentPage(): JSX.Element {
   const { cardGivingFees } = useCardGivingFees(
     offer.priceValue ?? 0,
     offer.currency.toUpperCase() as Currencies,
+    offer.gateway,
   );
   const { buttonDisabled, handleSubmit, setCause, setNonProfit, setOfferId } =
     useCardPaymentInformation();

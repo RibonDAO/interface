@@ -35,6 +35,7 @@ function CreditCardForm(): JSX.Element {
         value={number}
         mask="9999 9999 9999 9999"
         onChange={(e) => setNumber(e.target.value)}
+        data-testid="number"
         required
       />
       <InputText
@@ -42,6 +43,7 @@ function CreditCardForm(): JSX.Element {
         placeholder={t("name")}
         value={name}
         onChange={(e) => setName(e.target.value)}
+        data-testid="name"
         required
       />
       <S.Half>
@@ -52,6 +54,7 @@ function CreditCardForm(): JSX.Element {
           value={expirationDate}
           placeholder={t("expirationDate")}
           onChange={(e) => setExpirationDate(e.target.value)}
+          data-testid="expirationDate"
           required
           minLength={6}
         />
@@ -62,6 +65,7 @@ function CreditCardForm(): JSX.Element {
           minLength={3}
           value={cvv}
           onChange={(e) => setCvv(e.target.value)}
+          data-testid="cvv"
           required
         />
       </S.Half>

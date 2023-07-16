@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import CreditCardIcon from "assets/icons/credit-card-icon.svg";
-import GooglePlayIcon from "assets/icons/google-pay-icon.svg";
 import usePayable from "hooks/usePayable";
 import usePaymentParams from "hooks/usePaymentParams";
 import { useTranslation } from "react-i18next";
@@ -88,11 +87,6 @@ export default function CardSection() {
       title: t("paymentMethodSection.creditCard"),
       rightIcon: CreditCardIcon,
       children: <CreditCardForm />,
-    },
-    {
-      title: t("paymentMethodSection.googlePay"),
-      rightIcon: GooglePlayIcon,
-      onClick: () => {},
     },
   ];
 

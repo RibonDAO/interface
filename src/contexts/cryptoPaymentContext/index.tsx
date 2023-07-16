@@ -150,6 +150,7 @@ function CryptoPaymentProvider({ children }: Props) {
         wallet ?? "",
         integrationId ?? 1,
         causeId ?? 1,
+        "web",
       );
 
       if (onSuccess) onSuccess(hash, timestamp, utils.parseEther(amount));

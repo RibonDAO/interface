@@ -16,8 +16,8 @@ import CreditCardForm from "../Components/CreditCardForm";
 import PriceSelection from "../Components/PriceSelection";
 import { PriceSelectionLoader } from "../Components/PriceSelection/loader";
 import ButtonSelectorTemplate from "../Components/ButtonSelectorTemplate";
-import * as S from "./styles";
 import Loader from "./loader";
+import * as S from "./styles";
 
 export default function CardSection() {
   const { t } = useTranslation("translation", {

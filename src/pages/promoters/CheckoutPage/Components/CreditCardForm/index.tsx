@@ -31,7 +31,7 @@ function CreditCardForm(): JSX.Element {
     <S.Container>
       <InputText
         name="number"
-        placeholder={t("number")}
+        label={{ text: t("number") }}
         value={number}
         mask="9999 9999 9999 9999"
         onChange={(e) => setNumber(e.target.value)}
@@ -40,7 +40,7 @@ function CreditCardForm(): JSX.Element {
       />
       <InputText
         name="name"
-        placeholder={t("name")}
+        label={{ text: t("name") }}
         value={name}
         onChange={(e) => setName(e.target.value)}
         data-testid="name"
@@ -52,7 +52,7 @@ function CreditCardForm(): JSX.Element {
           mask="99/9999"
           autofill="cc-exp"
           value={expirationDate}
-          placeholder={t("expirationDate")}
+          label={{ text: t("expirationDate") }}
           onChange={(e) => setExpirationDate(e.target.value)}
           data-testid="expirationDate"
           required
@@ -60,7 +60,7 @@ function CreditCardForm(): JSX.Element {
         />
         <InputText
           name="cvv"
-          placeholder={t("cvv")}
+          label={{ text: t("cvv") }}
           maxLength={4}
           minLength={3}
           value={cvv}

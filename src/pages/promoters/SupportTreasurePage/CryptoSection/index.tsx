@@ -133,7 +133,7 @@ function CryptoSection(): JSX.Element {
       const id = response.hash;
       const timestamp = Math.floor(new Date().getTime() / 1000);
 
-      createTransaction(id, amount, wallet ?? "", integrationId ?? 1, 1);
+      createTransaction(id, amount, wallet ?? "", integrationId ?? 1, 1, "web");
 
       toast({
         message: t("transactionOnBlockchainText"),

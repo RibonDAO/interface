@@ -1,4 +1,5 @@
 import usePaymentParams from "hooks/usePaymentParams";
+import { Currencies } from "@ribon.io/shared/types";
 import CardSection from "./CardSection";
 import CryptoSection from "./CryptoSection";
 import Header from "./Components/Header";
@@ -10,7 +11,7 @@ function CheckoutPage(): JSX.Element {
   return (
     <S.Container>
       <Header />
-      {currency === "USDC" ? <CryptoSection /> : <CardSection />}
+      {currency === Currencies.USDC ? <CryptoSection /> : <CardSection />}
     </S.Container>
   );
 }

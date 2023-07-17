@@ -38,7 +38,9 @@ function ContributionStatsPage(): JSX.Element {
         <S.ContainerItem>
           <GiftCycleSection />
           <EngagementSection
-            totalDonors={data.stats.totalDonors.toString()}
+            totalDonors={(
+              data.stats.totalDonors + data.stats.totalContributors
+            ).toString()}
             totalContributors={data.stats.totalContributors.toString()}
           />
           <BoostSection totalAmountToCause={data.stats.totalAmountToCause} />

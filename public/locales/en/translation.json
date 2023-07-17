@@ -346,7 +346,7 @@
         "serviceFeesText": "Service fees:"
       }
     },
-    "paymentPageV2": {
+    "checkoutPage": {
       "changeCurrency": "Change currency",
       "back": "Back",
       "donatingTo": "Donating to ",
@@ -355,6 +355,7 @@
       "payment": "Payment",
       "selectCurrency": "Select currency",
       "selectValue": "Select value",
+      "additionalFeesText": "Payment is processed in USD, the amount may vary slightly according to your bank's fees.",
       "paymentMethodSection": {
         "creditCard": "Credit card",
         "googlePay": "Google Pay",

@@ -1,8 +1,6 @@
 import { LocationDescriptor } from "history";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useTasksContext } from "contexts/tasksContext";
 import FloatingSideMenu from "../NavigationMenus/FloatingSideMenu";
 import AccordionMenu from "../NavigationMenus/AccordionMenu";
 import * as S from "../styles";
@@ -18,6 +16,7 @@ export type Props = {
     title: string;
     search?: string;
   }[];
+  showActivityIndicatorCircle?: boolean;
 };
 
 function NavigationLink({
@@ -27,19 +26,11 @@ function NavigationLink({
   enabled = false,
   onClick,
   menuOptions,
+  showActivityIndicatorCircle = false,
 }: Props): JSX.Element {
   const [menuVisible, setMenuVisible] = useState(false);
 
   const { isMobile } = useBreakpoint();
-
-  const { t } = useTranslation("translation", {
-    keyPrefix: "donations.menu",
-  });
-
-  const { hasCompletedATask } = useTasksContext();
-
-  const showTaskCompletedAlert =
-    hasCompletedATask && title === t("forYouPageTitle");
 
   const renderFloatingSideMenu = () => {
     if (menuOptions && !isMobile) {
@@ -71,7 +62,7 @@ function NavigationLink({
         >
           <S.IconContainer>
             <S.Icon src={icon} />
-            {showTaskCompletedAlert && <S.RedBall />}
+            {showActivityIndicatorCircle && <S.RedBall />}
           </S.IconContainer>
           <S.Title enabled={enabled}>{title}</S.Title>
         </S.StyledLink>

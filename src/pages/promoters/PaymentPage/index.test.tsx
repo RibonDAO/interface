@@ -119,7 +119,7 @@ describe("PaymentPage", () => {
           });
           fillByPlaceholder("Name on card", "JOHN DOE");
           fillByPlaceholder("E-mail", "john@doe.com");
-          fillByPlaceholder("Card verification code", "411");
+          fillByPlaceholder("Card verification code", "412");
         });
 
         it("calls the handle submit function when clicked", () => {

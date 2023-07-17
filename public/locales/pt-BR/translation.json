@@ -346,7 +346,7 @@
         "serviceFeesText": "Taxas de serviço:"
       }
     },
-    "paymentPageV2": {
+    "checkoutPage": {
       "changeCurrency": "Mudar moeda",
       "back": "Voltar",
       "donatingTo": "Doando para ",
@@ -355,6 +355,7 @@
       "payment": "Pagamento",
       "selectCurrency": "Selecione a moeda",
       "selectValue": "Selecione o valor",
+      "additionalFeesText": "O pagamento é processado em dólar, o valor pode sofrer uma pequena variação de acordo com as taxas do seu banco.",
       "paymentMethodSection": {
         "creditCard": "Cartão de crédito",
         "googlePay": "Google Pay",

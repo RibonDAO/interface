@@ -21,10 +21,12 @@ export default function Header() {
     updateLocationSearch("currency", currencyItem);
   };
 
-  const buttonCurrencyItems = Object.values(Currencies).map((currencyItem) => ({
-    label: currencyItem,
-    onClick: () => handleCurrencyChange(currencyItem),
-  }));
+  const buttonCurrencyItems = Object.values(Currencies)
+    .map((currencyItem) => ({
+      label: currencyItem,
+      onClick: () => handleCurrencyChange(currencyItem),
+    }))
+    .filter((currencyItem) => currencyItem.label !== Currencies.USDC);
 
   const filteredCurrencyItems = () => {
     if (target === "non_profit") {

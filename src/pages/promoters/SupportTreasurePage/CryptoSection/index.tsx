@@ -21,6 +21,7 @@ import {
   formatToDecimals,
 } from "lib/web3Helpers/etherFormatters";
 import { useIntegrationId } from "hooks/useIntegrationId";
+import { PLATFORM } from "utils/constants";
 import WalletIcon from "./assets/wallet-icon.svg";
 import * as S from "./styles";
 import UserSupportSection from "../CardSection/UserSupportSection";
@@ -133,7 +134,14 @@ function CryptoSection(): JSX.Element {
       const id = response.hash;
       const timestamp = Math.floor(new Date().getTime() / 1000);
 
-      createTransaction(id, amount, wallet ?? "", integrationId ?? 1, 1, "web");
+      createTransaction(
+        id,
+        amount,
+        wallet ?? "",
+        integrationId ?? 1,
+        1,
+        PLATFORM,
+      );
 
       toast({
         message: t("transactionOnBlockchainText"),

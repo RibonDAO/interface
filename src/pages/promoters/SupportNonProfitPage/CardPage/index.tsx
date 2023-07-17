@@ -14,6 +14,7 @@ import SliderCards from "components/moleculars/sliders/SliderCards";
 import { useLocation } from "react-router-dom";
 import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
+import extractUrlValue from "lib/extractUrlValue";
 import * as S from "../styles";
 import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
 import NonProfitCard from "./NonProfitCard";
@@ -30,7 +31,10 @@ function CardPage(): JSX.Element {
   const { tertiary } = theme.colors.brand;
 
   const { causes } = useCauses();
-  const { state } = useLocation<LocationStateType>();
+
+  const { state, search } = useLocation<LocationStateType>();
+  const platform = extractUrlValue("platform", search);
+
   const { isMobile } = useBreakpoint();
 
   const { t } = useTranslation("translation", {
@@ -67,6 +71,7 @@ function CardPage(): JSX.Element {
         flow: "nonProfit",
         cause,
         nonProfit,
+        platform,
       },
     });
   };

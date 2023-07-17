@@ -26,6 +26,7 @@ import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import { useIntegration, useSources, useUsers } from "@ribon.io/shared/hooks";
 import { normalizedLanguage } from "lib/currentLanguage";
 import { CONTRIBUTION_INLINE_NOTIFICATION } from "pages/donations/CausesPage/ContributionNotification";
+import { PLATFORM } from "utils/constants";
 
 export interface ICardPaymentInformationContext {
   setCurrentCoin: (value: SetStateAction<Currencies>) => void;
@@ -56,7 +57,7 @@ export interface ICardPaymentInformationContext {
   cryptoGiving: string;
   offerId: number;
   flow: "cause" | "nonProfit";
-  handleSubmit: () => void;
+  handleSubmit: (platform: string) => void;
   cause: Cause | undefined;
   setCause: (value: SetStateAction<Cause | undefined>) => void;
   nonProfit: NonProfit | undefined;
@@ -166,7 +167,7 @@ function CardPaymentInformationProvider({ children }: Props) {
     }, 3000);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (platform: string) => {
     logEvent("treasureSupportConfirmBtn_click");
     showAnimationCreditCardPaymentModal();
 
@@ -189,6 +190,7 @@ function CardPaymentInformationProvider({ children }: Props) {
       },
       causeId: cause?.id,
       nonProfitId: nonProfit?.id,
+      platform: platform || PLATFORM,
     };
 
     try {

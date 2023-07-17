@@ -18,12 +18,13 @@ type LocationState = {
   cause: Cause;
   nonProfit?: NonProfit;
   flow: "cause" | "nonProfit";
+  platform: string;
 };
 
 function PaymentPage(): JSX.Element {
   const { navigateBack } = useNavigation();
   const {
-    state: { offer, cause, nonProfit, flow },
+    state: { offer, cause, nonProfit, flow, platform },
   } = useLocation<LocationState>();
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportWithCommunityPage.paymentPage",
@@ -88,7 +89,7 @@ function PaymentPage(): JSX.Element {
     if (isUserSection()) {
       setCurrentSection("card");
     } else if (isCardSection()) {
-      handleSubmit();
+      handleSubmit(platform);
     }
   };
 

@@ -18,6 +18,7 @@ import ContributionCard from "components/moleculars/cards/ContributionCard";
 import { useImpactConversion } from "hooks/useImpactConversion";
 import { formatPrice } from "lib/formatters/currencyFormatter";
 import { handleVariation } from "lib/handleVariation";
+import useContributionActivity from "hooks/useContributionActivity";
 import * as S from "../styles";
 
 function CommunitySection() {
@@ -30,7 +31,7 @@ function CommunitySection() {
     navigateTo("/promoters/support-cause");
   };
 
-  const { useUserContributions } = useContributions();
+  const { useLabelableContributions } = useContributions();
 
   const { isMobile } = useBreakpoint();
 
@@ -44,11 +45,12 @@ function CommunitySection() {
   const { useCommunityPersonPayments } = usePersonPayments();
   const { currentUser } = useCurrentUser();
   const { legacyContributions } = useLegacyContributions(currentUser?.id);
-  const { data: userContributions } = useUserContributions();
+  const { data: userContributions } = useLabelableContributions();
 
   const { data } = useCommunityPersonPayments(page, per);
 
   const { contribution, offer, nonProfit, variation } = useImpactConversion();
+  const { setHasSeenToday } = useContributionActivity();
 
   const hasDuplicatedIds = (items: any[]) => {
     const existentIds = new Set(impactCards.map((obj: any) => obj.id));
@@ -56,6 +58,10 @@ function CommunitySection() {
 
     return newIds.some((id) => existentIds.has(id));
   };
+
+  useEffect(() => {
+    setHasSeenToday();
+  }, []);
 
   useEffect(() => {
     if (!data) return;

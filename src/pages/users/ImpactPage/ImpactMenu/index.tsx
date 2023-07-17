@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import useContributionActivity from "hooks/useContributionActivity";
 import CommunitySection from "./CommunitySection";
 import DirectSection from "./DirectSection";
 import TicketSection from "./TicketSection";
@@ -10,6 +11,7 @@ function ImpactMenu() {
   const { t } = useTranslation("translation", {
     keyPrefix: "impactPage.impactMenu",
   });
+  const { newContributionActivity } = useContributionActivity();
 
   const renderSection = () => {
     switch (currentTab) {
@@ -33,12 +35,15 @@ function ImpactMenu() {
         >
           {t("ticketDonations")}
         </S.MenuItem>
-        <S.MenuItem
-          active={currentTab === "community"}
-          onClick={() => setCurrentTab("community")}
-        >
-          {t("communityDonations")}
-        </S.MenuItem>
+        <S.MenuContainer>
+          {newContributionActivity && <S.RedBall />}
+          <S.MenuItem
+            active={currentTab === "community"}
+            onClick={() => setCurrentTab("community")}
+          >
+            {t("communityDonations")}
+          </S.MenuItem>
+        </S.MenuContainer>
         <S.MenuItem
           active={currentTab === "direct"}
           onClick={() => setCurrentTab("direct")}

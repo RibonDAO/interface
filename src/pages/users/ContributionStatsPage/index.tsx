@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import parse from "html-react-parser";
 import { theme } from "@ribon.io/shared/styles";
 import bannerBackground from "assets/images/banner-logo-background.svg";
+import GiftCycleSection from "pages/users/ContributionStatsPage/GiftCycleSection";
 import EngagementSection from "./EngagementSection";
 import BoostSection from "./BoostSection";
 import * as S from "./styles";
@@ -35,6 +36,7 @@ function ContributionStatsPage(): JSX.Element {
       <S.Title>{parse(t("title", { amount, cause }))}</S.Title>
       <S.ContentContainer>
         <S.ContainerItem>
+          <GiftCycleSection />
           <EngagementSection
             totalDonors={data.stats.totalDonors.toString()}
             totalContributors={data.stats.totalContributors.toString()}

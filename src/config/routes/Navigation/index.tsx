@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { logEvent } from "lib/events";
+import { useTasksContext } from "contexts/tasksContext";
 import CausesIconOn from "./assets/causesIconOn.svg";
 import CausesIconOff from "./assets/causesIconOff.svg";
 import ForYouIconOn from "./assets/forYouIconOn.svg";
@@ -21,6 +22,7 @@ function Navigation(): JSX.Element {
   });
   const location = useLocation();
   const { search } = location;
+  const { hasCompletedATask } = useTasksContext();
 
   function isInPath(route: any): boolean {
     const { menuOptions, path } = route;
@@ -48,6 +50,7 @@ function Navigation(): JSX.Element {
       iconOff: ForYouIconOff,
       title: t("forYouPageTitle"),
       event: "forYouNavBtn_click",
+      showActivityIndicatorCircle: hasCompletedATask,
     },
     {
       path: "/promoters/support-cause",
@@ -74,6 +77,7 @@ function Navigation(): JSX.Element {
       iconOff: ImpactIconOff,
       title: t("impactPageTitle"),
       event: "impactNavBtn_click",
+      showActivityIndicatorCircle: true,
     },
   ];
 
@@ -91,6 +95,7 @@ function Navigation(): JSX.Element {
           icon={isInPath(route) ? route.iconOn : route.iconOff}
           title={route.title}
           enabled={isInPath(route)}
+          showActivityIndicatorCircle={route.showActivityIndicatorCircle}
           menuOptions={route?.menuOptions?.map((option) => ({
             ...option,
             onClick: () => handleEvent(option.event),

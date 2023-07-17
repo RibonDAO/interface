@@ -30,7 +30,7 @@ function CommunitySection() {
     navigateTo("/promoters/support-cause");
   };
 
-  const { useUserContributions } = useContributions();
+  const { useLabelableContributions } = useContributions();
 
   const { isMobile } = useBreakpoint();
 
@@ -44,7 +44,7 @@ function CommunitySection() {
   const { useCommunityPersonPayments } = usePersonPayments();
   const { currentUser } = useCurrentUser();
   const { legacyContributions } = useLegacyContributions(currentUser?.id);
-  const { data: userContributions } = useUserContributions();
+  const { data: userContributions } = useLabelableContributions();
 
   const { data } = useCommunityPersonPayments(page, per);
 

@@ -12,11 +12,11 @@ import { useLocationSearch } from "hooks/useLocationSearch";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useModal } from "hooks/modalHooks/useModal";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
+import { PLATFORM } from "utils/constants";
 import CreditCardForm from "../Components/CreditCardForm";
 import PriceSelection from "../Components/PriceSelection";
 import { PriceSelectionLoader } from "../Components/PriceSelection/loader";
 import ButtonSelectorTemplate from "../Components/ButtonSelectorTemplate";
-import { PLATFORM } from "utils/constants";
 import Loader from "./loader";
 import * as S from "./styles";
 

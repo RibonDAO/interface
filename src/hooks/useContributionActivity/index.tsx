@@ -1,11 +1,13 @@
 import useContributions from "hooks/apiHooks/useContributions";
 import { useCallback, useEffect, useState } from "react";
+import { useLocation } from "react-router";
 
 export const HAS_SEEN_CONTRIBUTIONS_TODAY_KEY =
   "HAS_SEEN_CONTRIBUTIONS_TODAY_KEY";
 function useContributionActivity() {
   const { useLabelableContributions } = useContributions();
   const { data: userContributions } = useLabelableContributions();
+  const location = useLocation();
 
   const [newContributionActivity, setNewContributionActivity] = useState(false);
   const [hasSeenContributionsToday, setHasSeenContributionsToday] =
@@ -22,7 +24,7 @@ function useContributionActivity() {
         localStorage.removeItem(HAS_SEEN_CONTRIBUTIONS_TODAY_KEY);
       }
     }
-  }, []);
+  }, [location]);
 
   const setHasSeenToday = () => {
     const today = new Date().toLocaleDateString();

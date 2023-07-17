@@ -6,6 +6,7 @@ import { logEvent } from "lib/events";
 import { Offer } from "@ribon.io/shared/types";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { PLATFORM } from "utils/constants";
 import PaymentInformationSection from "./PaymentInformationSection";
 import FeesSection from "../FeesSection";
 import * as S from "./styles";
@@ -37,7 +38,7 @@ function PaymentInformationPage(): JSX.Element {
 
   function handleClickNext() {
     logEvent("treasureSupportNextStepBtn_click", { from: "billingInfo" });
-    handleSubmit();
+    handleSubmit(PLATFORM);
   }
 
   const givingValue = () => currentOffer.priceValue;

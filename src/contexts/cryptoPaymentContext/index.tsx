@@ -21,6 +21,7 @@ import { logError } from "services/crashReport";
 import { stringToNumber } from "lib/formatters/stringToNumberFormatter";
 import { logEvent } from "lib/events";
 import { BigNumber, utils } from "ethers";
+import { PLATFORM } from "utils/constants";
 import { useWalletContext } from "../walletContext";
 import { useLoadingOverlay } from "../loadingOverlayContext";
 import { useNetworkContext } from "../networkContext";
@@ -150,6 +151,7 @@ function CryptoPaymentProvider({ children }: Props) {
         wallet ?? "",
         integrationId ?? 1,
         causeId ?? 1,
+        PLATFORM,
       );
 
       if (onSuccess) onSuccess(hash, timestamp, utils.parseEther(amount));

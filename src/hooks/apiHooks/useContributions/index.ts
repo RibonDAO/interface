@@ -6,6 +6,24 @@ import contributionsApi from "services/api/contributionApi";
 
 function useContributions() {
   const { currentUser } = useCurrentUser();
+
+  function useLabelableContributions() {
+    const { data, error, isLoading, refetch } = useApi<Contribution[]>({
+      key: `useLabelableContributions-${currentUser?.id}`,
+      fetchMethod: () => {
+        if (!currentUser?.id) return emptyRequest();
+
+        return contributionsApi.getLabelableContributions(currentUser?.id);
+      },
+    });
+
+    return {
+      data,
+      error,
+      isLoading,
+      refetch,
+    };
+  }
   function useUserContributions() {
     const { data, error, isLoading, refetch } = useApi<Contribution[]>({
       key: `useUserContributions-${currentUser?.id}`,
@@ -15,7 +33,7 @@ function useContributions() {
         return contributionsApi.getContributions(currentUser?.id);
       },
     });
-    
+
     return {
       data,
       error,
@@ -32,7 +50,7 @@ function useContributions() {
 
         return contributionsApi.getContributionStats(
           currentUser?.id as number,
-          contributionId
+          contributionId,
         );
       },
     });
@@ -44,7 +62,11 @@ function useContributions() {
       refetch,
     };
   }
-  return { useUserContributions, useContributionStats };
+  return {
+    useUserContributions,
+    useContributionStats,
+    useLabelableContributions,
+  };
 }
 
 export default useContributions;

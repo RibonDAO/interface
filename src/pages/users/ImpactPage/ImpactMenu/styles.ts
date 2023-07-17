@@ -124,3 +124,19 @@ export const ShowMoreButton = styled(Button)`
 export const TabSection = styled.section<{ visible?: boolean }>`
   display: ${({ visible }) => (visible ? "block" : "none")};
 `;
+
+export const RedBall = styled.span`
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+  position: absolute;
+  top: 20%;
+  left: 0;
+  align-self: center;
+  text-align: center;
+  background-color: ${({ theme }) => theme.colors.feedback.error[500]};
+`;
+
+export const MenuContainer = styled.div`
+  position: relative;
+`;

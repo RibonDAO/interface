@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { logEvent } from "lib/events";
 import { useTasksContext } from "contexts/tasksContext";
+import useContributionActivity from "hooks/useContributionActivity";
 import CausesIconOn from "./assets/causesIconOn.svg";
 import CausesIconOff from "./assets/causesIconOff.svg";
 import ForYouIconOn from "./assets/forYouIconOn.svg";
@@ -23,6 +24,7 @@ function Navigation(): JSX.Element {
   const location = useLocation();
   const { search } = location;
   const { hasCompletedATask } = useTasksContext();
+  const { newContributionActivity } = useContributionActivity();
 
   function isInPath(route: any): boolean {
     const { menuOptions, path } = route;
@@ -77,7 +79,7 @@ function Navigation(): JSX.Element {
       iconOff: ImpactIconOff,
       title: t("impactPageTitle"),
       event: "impactNavBtn_click",
-      showActivityIndicatorCircle: true,
+      showActivityIndicatorCircle: newContributionActivity,
     },
   ];
 

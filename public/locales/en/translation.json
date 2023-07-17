@@ -477,6 +477,9 @@
     "supportSection": {
       "title": "Give us your opinion",
       "text": "What did you think of this experience?"
+    },
+    "giftCycleSection": {
+      "realTimeDonationLabel": "Updated in real time"
     }
   },
   "contributionNotification": {

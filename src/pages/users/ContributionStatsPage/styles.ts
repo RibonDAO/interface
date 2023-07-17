@@ -3,6 +3,7 @@ import { stylizedDisplayLg } from "styles/typography/stylized";
 
 export const Container = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing(64)};
+  position: relative;
 `;
 
 export const Title = styled.h1`

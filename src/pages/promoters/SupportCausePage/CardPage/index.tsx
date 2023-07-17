@@ -16,6 +16,7 @@ import GroupButtons from "components/moleculars/sections/GroupButtons";
 import theme from "styles/theme";
 import { useLocation } from "react-router-dom";
 import Intersection from "assets/images/intersection-image.svg";
+import extractUrlValue from "lib/extractUrlValue";
 import * as S from "../styles";
 import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
 import SelectOfferSection from "./SelectOfferSection";
@@ -31,7 +32,9 @@ function SupportCausePage(): JSX.Element {
   const { cause, setCause, setOfferId, setFlow } = useCardPaymentInformation();
 
   const { causes } = useCauses();
-  const { state } = useLocation<LocationStateType>();
+  const { state, search } = useLocation<LocationStateType>();
+
+  const platform = extractUrlValue("platform", search);
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportCausePage",
@@ -68,6 +71,7 @@ function SupportCausePage(): JSX.Element {
         offer: currentOffer,
         flow: "cause",
         cause,
+        platform,
       },
     });
   };

@@ -57,7 +57,7 @@ export interface ICardPaymentInformationContext {
   cryptoGiving: string;
   offerId: number;
   flow: "cause" | "nonProfit";
-  handleSubmit: () => void;
+  handleSubmit: (platform: string) => void;
   cause: Cause | undefined;
   setCause: (value: SetStateAction<Cause | undefined>) => void;
   nonProfit: NonProfit | undefined;
@@ -167,7 +167,7 @@ function CardPaymentInformationProvider({ children }: Props) {
     }, 3000);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (platform: string) => {
     logEvent("treasureSupportConfirmBtn_click");
     showAnimationCreditCardPaymentModal();
 
@@ -190,7 +190,7 @@ function CardPaymentInformationProvider({ children }: Props) {
       },
       causeId: cause?.id,
       nonProfitId: nonProfit?.id,
-      platform: PLATFORM,
+      platform: platform || PLATFORM,
     };
 
     try {

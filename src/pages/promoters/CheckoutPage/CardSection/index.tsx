@@ -16,6 +16,7 @@ import CreditCardForm from "../Components/CreditCardForm";
 import PriceSelection from "../Components/PriceSelection";
 import { PriceSelectionLoader } from "../Components/PriceSelection/loader";
 import ButtonSelectorTemplate from "../Components/ButtonSelectorTemplate";
+import { PLATFORM } from "utils/constants";
 import Loader from "./loader";
 import * as S from "./styles";
 
@@ -107,7 +108,7 @@ export default function CardSection() {
     if (target === "cause") setCause(currentPayable as Cause);
     if (target === "nonProfit") setNonProfit(currentPayable as NonProfit);
 
-    handleSubmit();
+    handleSubmit(PLATFORM);
   };
 
   return currentPayable && hasAllParams ? (

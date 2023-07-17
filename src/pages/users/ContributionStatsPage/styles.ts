@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { stylizedDisplayLg } from "styles/typography/stylized";
 
 export const Container = styled.div`
+  position: relative;
   margin-bottom: ${({ theme }) => theme.spacing(64)};
 `;
 

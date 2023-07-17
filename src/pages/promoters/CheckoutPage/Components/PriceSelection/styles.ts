@@ -55,14 +55,14 @@ export const LoaderShape = styled.div`
   }
 `;
 
-export const CardGivingInfoWrapper = styled.div`
+export const SmallTextInfoWrapper = styled.div`
   margin-block: ${({ theme }) => theme.spacing(8)};
   display: flex;
   flex-direction: row;
   gap: ${({ theme }) => theme.spacing(16)};
 `;
 
-export const CardGivingInfo = styled.span`
+export const SmallTextInfo = styled.span`
   display: flex;
   ${defaultBodyXsRegular}
 

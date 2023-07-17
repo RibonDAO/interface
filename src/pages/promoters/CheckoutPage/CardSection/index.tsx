@@ -5,7 +5,7 @@ import usePaymentParams from "hooks/usePaymentParams";
 import { useTranslation } from "react-i18next";
 import RadioAccordion from "components/moleculars/accordions/RadioAccordion";
 import Button from "components/atomics/buttons/Button";
-import { Currencies, Offer } from "@ribon.io/shared/types";
+import { Currencies, Offer, Cause, NonProfit } from "@ribon.io/shared/types";
 import { useOffers } from "@ribon.io/shared/hooks";
 import { theme } from "@ribon.io/shared/styles";
 import { useLocationSearch } from "hooks/useLocationSearch";
@@ -30,7 +30,14 @@ export default function CardSection() {
 
   const currentPayable = usePayable(target, targetId);
 
-  const { buttonDisabled, handleSubmit } = useCardPaymentInformation();
+  const {
+    buttonDisabled,
+    handleSubmit,
+    setOfferId,
+    setCurrentCoin,
+    setCause,
+    setNonProfit,
+  } = useCardPaymentInformation();
 
   const {
     offers,
@@ -44,7 +51,6 @@ export default function CardSection() {
   const resetOffer = () => updateLocationSearch("offer", "0");
 
   useEffect(() => {
-    resetOffer();
     refetchOffers();
   }, [currency]);
 
@@ -52,6 +58,8 @@ export default function CardSection() {
     if (!isLoadingOffers && offers && offer) {
       const actualOffer = offers[Number(offer)];
       setCurrentOffer(actualOffer);
+
+      if (offers.length - 1 < Number(offer)) resetOffer();
     }
   }, [offers, offer, isLoadingOffers]);
 
@@ -90,6 +98,18 @@ export default function CardSection() {
     },
   ];
 
+  const handlePayment = () => {
+    if (!currentOffer) return;
+
+    setOfferId(currentOffer?.id);
+    setCurrentCoin(Currencies[currency as keyof typeof Currencies]);
+
+    if (target === "cause") setCause(currentPayable as Cause);
+    if (target === "nonProfit") setNonProfit(currentPayable as NonProfit);
+
+    handleSubmit();
+  };
+
   return currentPayable && hasAllParams ? (
     <div>
       <S.Title>
@@ -113,7 +133,7 @@ export default function CardSection() {
 
       <S.DonateButtonContainer>
         <Button
-          onClick={handleSubmit}
+          onClick={handlePayment}
           text={t("confirmPayment")}
           softDisabled={false}
           disabled={buttonDisabled}

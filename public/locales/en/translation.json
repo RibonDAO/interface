@@ -356,16 +356,11 @@
       "selectCurrency": "Select currency",
       "selectValue": "Select value",
       "additionalFeesText": "Payment is processed in USD, the amount may vary slightly according to your bank's fees.",
-      "brazilName": "Brazil",
       "paymentMethodSection": {
         "creditCard": "Credit card",
         "googlePay": "Google Pay",
         "applePay": "Apple Pay",
         "creditCardFields": {
-          "country": "Country",
-          "state": "State",
-          "city": "City",
-          "taxId": "Tax ID",
           "number": "Card number",
           "name": "Cardholder name",
           "expirationDate": "Expiration date",

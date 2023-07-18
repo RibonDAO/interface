@@ -356,11 +356,16 @@
       "selectCurrency": "Selecione a moeda",
       "selectValue": "Selecione o valor",
       "additionalFeesText": "O pagamento é processado em dólar, o valor pode sofrer uma pequena variação de acordo com as taxas do seu banco.",
+      "brazilName": "Brasil",
       "paymentMethodSection": {
         "creditCard": "Cartão de crédito",
         "googlePay": "Google Pay",
         "applePay": "Apple Pay",
         "creditCardFields": {
+          "country": "País",
+          "state": "Estado",
+          "city": "Cidade",
+          "taxId": "CPF",
           "number": "Número do cartão",
           "name": "Nome impresso",
           "expirationDate": "Data de validade",

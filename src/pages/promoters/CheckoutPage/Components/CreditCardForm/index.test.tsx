@@ -11,17 +11,12 @@ describe("CardInfoSection", () => {
   it("should fill the credit form", () => {
     renderComponent(<CreditCardForm onSubmit={() => {}} showFiscalFields />);
 
-    fireEvent.change(screen.getByTestId("country"), {
-      target: { value: "Brazil" },
-    });
-
+    userEvent.type(screen.getByTestId("country"), "Brazil");
     userEvent.type(screen.getByTestId("city"), "City Test");
     userEvent.type(screen.getByTestId("state"), "State Test");
     userEvent.type(screen.getByTestId("taxId"), "12345678901");
 
-    fireEvent.change(screen.getByTestId("number"), {
-      target: { value: "1234 5678 9012 3456" },
-    });
+    userEvent.type(screen.getByTestId("number"), "1234 5678 9012 3456");
     userEvent.type(screen.getByTestId("name"), "User Test");
     fireEvent.change(screen.getByTestId("expirationDate"), {
       target: { value: "12/2023" },

@@ -25,7 +25,6 @@ function UserSupportItem(): JSX.Element {
         icon={supportIcon}
         rightComponent={<S.GoButton src={ArrowRight} onClick={handleClick} />}
       />
-      aaaaa
     </S.Container>
   );
 }

@@ -84,6 +84,7 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
             suggestions={countryList(currentLang)}
             label={{ text: field("country") }}
             onOptionChanged={handleCountryChange}
+            data-testid="country"
             required
           />
 
@@ -114,6 +115,7 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
             label={{ text: field("taxId") }}
             value={taxId}
             onChange={(e) => setTaxId(e.target.value)}
+            data-testid="taxId"
             required
           />
         </>

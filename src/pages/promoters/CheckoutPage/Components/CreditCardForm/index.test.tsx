@@ -6,7 +6,9 @@ import CreditCardForm from ".";
 
 describe("CardInfoSection", () => {
   it("should fill the credit form", () => {
-    renderComponent(<CreditCardForm />);
+    renderComponent(
+      <CreditCardForm onSubmit={() => {}} showFiscalFields={false} />,
+    );
 
     fireEvent.change(screen.getByTestId("number"), {
       target: { value: "1234 5678 9012 3456" },

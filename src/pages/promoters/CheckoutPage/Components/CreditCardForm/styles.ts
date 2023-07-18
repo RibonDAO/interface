@@ -1,7 +1,7 @@
 import InputAutoComplete from "components/atomics/inputs/InputAutoComplete";
 import styled from "styled-components";
 
-export const Container = styled.form`
+export const Container = styled.div`
   padding-inline: ${({ theme }) => theme.spacing(16)};
 `;
 

@@ -20,6 +20,7 @@ export type Props = {
   borderColor?: Record<string, any>;
   textColor?: string;
   mask?: string;
+  maskPlaceholder?: string;
 };
 
 function InputText({

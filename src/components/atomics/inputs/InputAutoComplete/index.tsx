@@ -4,12 +4,13 @@ import * as S from "./styles";
 export type Props = {
   name: string;
   suggestions: any[];
-  placeholder: string;
+  placeholder?: string;
   onOptionChanged?: (value: any) => void;
   required?: boolean;
   borderColor?: Record<string, any>;
   textColor?: string;
   mask?: string;
+  label?: Record<string, any>;
 };
 
 function InputAutoComplete({
@@ -21,6 +22,7 @@ function InputAutoComplete({
   borderColor,
   textColor,
   mask,
+  label,
   ...props
 }: Props): JSX.Element {
   const [filteredSuggestions, setFilteredSuggestions] = useState(suggestions);
@@ -56,6 +58,20 @@ function InputAutoComplete({
 
   return (
     <>
+      {label && (
+        <S.LabelContainer>
+          {label.icon && label.icon.class === "left" && (
+            <S.LabelIcon name={label.icon.name} className={label.icon.class} />
+          )}
+          <S.Label>
+            {required && <span>*</span>}
+            {label.text}
+          </S.Label>
+          {label.icon && label.icon.class === "right" && (
+            <S.LabelIcon className={label.icon.class} name={label.icon.name} />
+          )}
+        </S.LabelContainer>
+      )}
       <S.InputAutoComplete
         id={name}
         mask={mask ?? ""}

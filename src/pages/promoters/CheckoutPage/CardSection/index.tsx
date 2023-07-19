@@ -94,10 +94,13 @@ export default function CardSection() {
   }, [currentOffer]);
 
   useEffect(() => {
-    if (target === "cause" && currentPayable) {
+    if (!currentPayable) return;
+
+    if (target === "cause") {
+      setNonProfit(undefined);
       setCause(currentPayable as Cause);
       setFlow("cause");
-    } else if (target === "non_profit" && currentPayable) {
+    } else if (target === "non_profit") {
       setNonProfit(currentPayable as NonProfit);
       setCause((currentPayable as NonProfit).cause as Cause);
       setFlow("nonProfit");

@@ -1,6 +1,7 @@
 import { clickOn, renderComponent } from "config/testUtils";
 
 import {
+  expectLogEventToHaveBeenCalledWith,
   expectPageToNavigateTo,
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
@@ -22,10 +23,17 @@ describe("Impact Page", () => {
         expectTextToBeInTheDocument("Donate in community");
       });
       describe("when the donate in community button is clicked", () => {
-        it("should navigate to causes page", () => {
+        beforeEach(() => {
           renderComponent(<CommunitySection />);
-          expectTextToBeInTheDocument("Donate in community");
           clickOn("Donate in community");
+        });
+        it("should log the giveCauseCard_click event", () => {
+          expectLogEventToHaveBeenCalledWith("giveCauseCard_click", {
+            from: "impactEmptyState",
+          });
+        });
+
+        it("should navigate to causes page", () => {
           expectPageToNavigateTo("/promoters/support-cause");
         });
       });

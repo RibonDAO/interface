@@ -1,6 +1,7 @@
 import { clickOn, renderComponent } from "config/testUtils";
 
 import {
+  expectLogEventToHaveBeenCalledWith,
   expectPageToNavigateTo,
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
@@ -20,10 +21,18 @@ describe("Impact Page", () => {
         expectTextToBeInTheDocument("Donate directly");
       });
       describe("when the donate directly button is clicked", () => {
-        it("should navigate to causes page", () => {
+        beforeEach(() => {
           renderComponent(<DirectSection />);
-          expectTextToBeInTheDocument("Donate directly");
           clickOn("Donate directly");
+        });
+
+        it("should log the giveNonProfitCard_click event", () => {
+          expectLogEventToHaveBeenCalledWith("giveNonProfitCard_click", {
+            from: "impactEmptyState",
+          });
+        });
+
+        it("should navigate to causes page", () => {
           expectPageToNavigateTo("/promoters/support-non-profit");
         });
       });

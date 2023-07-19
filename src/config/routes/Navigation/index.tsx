@@ -71,7 +71,8 @@ function Navigation(): JSX.Element {
         {
           path: "/promoters/support-non-profit",
           title: t("directDonationMenuItem"),
-          event: "directDonationMenuBtn_click",
+          event: "giveNonProfitCard_click",
+          params: { from: "subheader" },
         },
       ],
     },

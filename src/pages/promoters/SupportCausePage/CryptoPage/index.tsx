@@ -98,7 +98,12 @@ function CryptoPage(): JSX.Element {
     }
 
     connectWallet();
-    logEvent("treasureComCicleBtn_click");
+    logEvent("giveCauseBtn_start", {
+      from: "giveCauseCrypto_page",
+      causeId: cause?.id,
+      amount,
+      currency: tokenSymbol,
+    });
   };
 
   const handleCommunityAddClick = () => {

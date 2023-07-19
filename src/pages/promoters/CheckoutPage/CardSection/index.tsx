@@ -29,8 +29,14 @@ export default function CardSection() {
 
   const currentPayable = usePayable(target, targetId);
 
-  const { handleSubmit, setOfferId, setCurrentCoin, setCause, setNonProfit } =
-    useCardPaymentInformation();
+  const {
+    handleSubmit,
+    setOfferId,
+    setCurrentCoin,
+    setCause,
+    setNonProfit,
+    setFlow,
+  } = useCardPaymentInformation();
 
   const {
     offers,
@@ -83,14 +89,28 @@ export default function CardSection() {
     props: offersModalProps,
   });
 
+  useEffect(() => {
+    if (currentOffer) setOfferId(currentOffer.id);
+  }, [currentOffer]);
+
+  useEffect(() => {
+    if (target === "cause" && currentPayable) {
+      setCause(currentPayable as Cause);
+      setFlow("cause");
+    } else if (target === "non_profit" && currentPayable) {
+      setNonProfit(currentPayable as NonProfit);
+      setCause((currentPayable as NonProfit).cause as Cause);
+      setFlow("nonProfit");
+    }
+  }, [currentPayable]);
+
+  useEffect(() => {
+    if (currentOffer)
+      setCurrentCoin(Currencies[currency as keyof typeof Currencies]);
+  }, [currentOffer]);
+
   const handlePayment = () => {
     if (!currentOffer) return;
-
-    setOfferId(currentOffer?.id);
-    setCurrentCoin(Currencies[currency as keyof typeof Currencies]);
-
-    if (target === "cause") setCause(currentPayable as Cause);
-    if (target === "nonProfit") setNonProfit(currentPayable as NonProfit);
 
     handleSubmit(PLATFORM);
   };

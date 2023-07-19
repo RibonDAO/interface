@@ -20,11 +20,11 @@ export const Container = styled.div<{
   display: flex;
   flex-direction: ${({ flexDirection }) => flexDirection};
   box-sizing: border-box;
-  background-image: ${({ backgroundImage }) => `url(${backgroundImage})`};
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: right;
   background-color: ${({ backgroundColor }) => backgroundColor};
+  background-image: ${({ backgroundImage }) => `url(${backgroundImage})`};
+  background-position: right;
+  background-size: contain;
+  background-repeat: no-repeat;
 
   ${(props) =>
     props.flexDirection === "row" &&

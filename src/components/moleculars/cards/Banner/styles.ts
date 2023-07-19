@@ -5,6 +5,7 @@ import {
   defaultBodySmSemibold,
   defaultHeadingXxs,
 } from "styles/typography/default";
+import { darken } from "polished";
 import Button from "../../../atomics/buttons/Button";
 
 export const Container = styled.div<{
@@ -25,6 +26,18 @@ export const Container = styled.div<{
   background-position: right;
   background-size: contain;
   background-repeat: no-repeat;
+
+  &:hover {
+    background-color: ${({ backgroundColor }) =>
+      darken(0.1, backgroundColor ?? "#fff")};
+    transition: 0.5s;
+  }
+
+  &:active {
+    background-color: ${({ backgroundColor }) =>
+      darken(0.1, backgroundColor ?? "#fff")};
+    transition: 0.5s;
+  }
 
   ${(props) =>
     props.flexDirection === "row" &&

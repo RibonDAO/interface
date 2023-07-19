@@ -31,6 +31,7 @@
     "keen-slider": "^6.7.0",
     "lottie-colorify": "^0.8.0",
     "mixpanel-browser": "^2.45.0",
+    "polished": "^4.2.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-howler": "^5.2.0",

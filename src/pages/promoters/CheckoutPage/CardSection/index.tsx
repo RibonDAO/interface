@@ -45,15 +45,6 @@ export default function CardSection() {
   const [currentOffer, setCurrentOffer] = useState<Offer>();
   const { updateLocationSearch } = useLocationSearch();
 
-  useEffect(() => {
-    if (currentOffer) setOfferId(currentOffer.id);
-    if (target === "cause") setCause(currentPayable as Cause);
-    if (target === "nonProfit") setNonProfit(currentPayable as NonProfit);
-    setCurrentCoin(
-      Currencies[currency?.toUpperCase() as keyof typeof Currencies],
-    );
-  }, [currentOffer, currentPayable, currency]);
-
   const resetOffer = () => updateLocationSearch("offer", "0");
 
   useEffect(() => {
@@ -103,6 +94,14 @@ export default function CardSection() {
       logEvent("confirmPaymentFormBtn_click", {
         [target === "cause" ? "causeId" : "nonProfitId"]: targetId,
       });
+
+    setOfferId(currentOffer?.id);
+    setCurrentCoin(
+      Currencies[currency?.toUpperCase() as keyof typeof Currencies],
+    );
+
+    if (target === "cause") setCause(currentPayable as Cause);
+    if (target === "nonProfit") setNonProfit(currentPayable as NonProfit);
 
     handleSubmit(PLATFORM);
   };

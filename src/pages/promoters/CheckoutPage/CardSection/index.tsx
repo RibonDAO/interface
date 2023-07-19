@@ -11,6 +11,7 @@ import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useModal } from "hooks/modalHooks/useModal";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import { PLATFORM } from "utils/constants";
+import { logEvent } from "lib/events";
 import CreditCardForm from "../Components/CreditCardForm";
 import PriceSelection from "../Components/PriceSelection";
 import { PriceSelectionLoader } from "../Components/PriceSelection/loader";
@@ -36,7 +37,10 @@ export default function CardSection() {
     offers,
     refetch: refetchOffers,
     isLoading: isLoadingOffers,
-  } = useOffers(Currencies[currency as keyof typeof Currencies], false);
+  } = useOffers(
+    Currencies[currency?.toUpperCase() as keyof typeof Currencies],
+    false,
+  );
 
   const [currentOffer, setCurrentOffer] = useState<Offer>();
   const { updateLocationSearch } = useLocationSearch();
@@ -86,8 +90,15 @@ export default function CardSection() {
   const handlePayment = () => {
     if (!currentOffer) return;
 
+    if (targetId)
+      logEvent("confirmPaymentFormBtn_click", {
+        [target === "cause" ? "causeId" : "nonProfitId"]: targetId,
+      });
+
     setOfferId(currentOffer?.id);
-    setCurrentCoin(Currencies[currency as keyof typeof Currencies]);
+    setCurrentCoin(
+      Currencies[currency?.toUpperCase() as keyof typeof Currencies],
+    );
 
     if (target === "cause") setCause(currentPayable as Cause);
     if (target === "nonProfit") setNonProfit(currentPayable as NonProfit);
@@ -105,6 +116,9 @@ export default function CardSection() {
           showFiscalFields={currentOffer?.gateway === "stripe"}
         />
       ),
+      onClick: () => {
+        logEvent("selectCreditCard_click");
+      },
     },
   ];
 

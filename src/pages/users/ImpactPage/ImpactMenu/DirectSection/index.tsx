@@ -8,6 +8,7 @@ import directIllustration from "assets/images/direct-illustration.svg";
 import ContributionCard from "components/moleculars/cards/ContributionCard";
 import { useImpactConversion } from "hooks/useImpactConversion";
 import { handleVariation } from "lib/handleVariation";
+import { logEvent } from "lib/events";
 import * as S from "../styles";
 import DirectImpactCard from "./DirectImpactCard.tsx";
 
@@ -17,6 +18,9 @@ function DirectSection() {
     keyPrefix: "impactPage.directSection",
   });
   const handleEmptyButtonClick = () => {
+    logEvent("giveNonProfitCard_click", {
+      from: "impactEmptyState",
+    });
     navigateTo("/promoters/support-non-profit");
   };
 

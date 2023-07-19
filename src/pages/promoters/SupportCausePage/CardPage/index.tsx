@@ -37,6 +37,8 @@ function SupportCausePage(): JSX.Element {
 
   const platform = extractUrlValue("platform", search);
 
+  const isRunningTheNewCheckoutForm = true;
+
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportCausePage",
   });
@@ -97,7 +99,7 @@ function SupportCausePage(): JSX.Element {
   };
 
   const handleDonateClick = () => {
-    if (platform === "web") {
+    if (isRunningTheNewCheckoutForm) {
       navigateToCheckout();
       return;
     }

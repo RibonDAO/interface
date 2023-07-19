@@ -38,6 +38,8 @@ function CardPage(): JSX.Element {
 
   const { isMobile } = useBreakpoint();
 
+  const isRunningTheNewCheckoutForm = true;
+
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportNonProfitPage",
   });
@@ -95,7 +97,7 @@ function CardPage(): JSX.Element {
   };
 
   const handleDonateClick = (nonProfit: NonProfit) => {
-    if (platform === "web") {
+    if (isRunningTheNewCheckoutForm) {
       navigateToCheckout(nonProfit);
       return;
     }

@@ -62,7 +62,8 @@
       "promoterCta": {
         "title": "Become a promoter of a Ribon cause",
         "listItem1": "Engage more people and generate more donations",
-        "listItem2": "Real-time monitoring"
+        "listItem2": "Real-time monitoring",
+        "label": "New"
       }
     },
     "storiesPage": {

@@ -97,12 +97,12 @@ function SupportCausePage(): JSX.Element {
   };
 
   const handleDonateClick = () => {
-    if (platform === "unknown") {
-      navigateToPayment();
+    if (platform === "web") {
+      navigateToCheckout();
       return;
     }
 
-    navigateToCheckout();
+    navigateToPayment();
   };
 
   const handleCommunityAddClick = () => {

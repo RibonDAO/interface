@@ -95,12 +95,12 @@ function CardPage(): JSX.Element {
   };
 
   const handleDonateClick = (nonProfit: NonProfit) => {
-    if (platform === "unknown") {
-      navigateToPayment(nonProfit);
+    if (platform === "web") {
+      navigateToCheckout(nonProfit);
       return;
     }
 
-    navigateToCheckout(nonProfit);
+    navigateToPayment(nonProfit);
   };
 
   const handleOfferChange = (offer: Offer, index?: number) => {

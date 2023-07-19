@@ -10,17 +10,21 @@ import Button from "../../../atomics/buttons/Button";
 export const Container = styled.div<{
   backgroundImage?: string;
   flexDirection?: string;
+  backgroundColor?: string;
 }>`
   width: 100%;
   max-width: 472px;
-  height: 128px;
+  max-height: 128px;
   padding: ${({ theme }) => theme.spacing(16, 16, 16)};
   border-radius: 8px;
   display: flex;
   flex-direction: ${({ flexDirection }) => flexDirection};
   box-sizing: border-box;
+  background-color: ${({ backgroundColor }) => backgroundColor};
   background-image: ${({ backgroundImage }) => `url(${backgroundImage})`};
-  background-size: cover;
+  background-position: right;
+  background-size: contain;
+  background-repeat: no-repeat;
 
   ${(props) =>
     props.flexDirection === "row" &&

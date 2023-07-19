@@ -18,6 +18,7 @@ export type Props = {
   text?: string;
   textColor?: string;
   cardBackground?: string | undefined;
+  backgroundColor?: string | undefined;
   children?: JSX.Element | JSX.Element[];
   arrowLinkColor?: string;
   onArrowClick?: () => void;
@@ -30,6 +31,7 @@ function Banner({
   text,
   textColor,
   cardBackground,
+  backgroundColor,
   children,
   arrowLinkColor = primary[800],
   onArrowClick,
@@ -43,6 +45,7 @@ function Banner({
   return (
     <S.Container
       backgroundImage={cardBackground}
+      backgroundColor={backgroundColor}
       flexDirection={flexDirection}
       onClick={handleClick}
     >

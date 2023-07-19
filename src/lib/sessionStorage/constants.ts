@@ -1,0 +1,1 @@
+export const SELECTED_CAUSE_ID = "SELECTED_CAUSE_ID_KEY";

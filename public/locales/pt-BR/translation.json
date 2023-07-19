@@ -164,6 +164,11 @@
     },
     "walletLayout": {
       "connectWallet": "Conectar"
+    },
+    "userSupportBanner": {
+      "title": "Suporte Ribon",
+      "text": "Dúvidas, ideias, estornos sobre as doações!",
+      "userSupportLink": "https://api.whatsapp.com/send/?phone=554896605461&text=Oii+Ribon%2C+vamos+conversar%3F+&type=phone_number&app_absent=0"
     }
   },
   "impactPage": {

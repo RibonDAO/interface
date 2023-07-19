@@ -17,8 +17,8 @@ import theme from "styles/theme";
 import { useLocation } from "react-router-dom";
 import Intersection from "assets/images/intersection-image.svg";
 import extractUrlValue from "lib/extractUrlValue";
+import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import * as S from "../styles";
-import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
 import SelectOfferSection from "./SelectOfferSection";
 
 type LocationStateType = {
@@ -148,7 +148,7 @@ function SupportCausePage(): JSX.Element {
             onClick={handleDonateClick}
           />
         </S.DonateContainer>
-        <UserSupportSection />
+        <UserSupportBanner from="giveCauseCC_page" />
       </S.ContentContainer>
 
       <S.BackgroundImage src={IntersectBackground} />

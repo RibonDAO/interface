@@ -15,8 +15,9 @@ import { useLocation } from "react-router-dom";
 import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import extractUrlValue from "lib/extractUrlValue";
+import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import * as S from "../styles";
-import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
+
 import NonProfitCard from "./NonProfitCard";
 
 type LocationStateType = {
@@ -144,7 +145,7 @@ function CardPage(): JSX.Element {
           />
         </S.TooltipSection>
       )}
-      <UserSupportSection />
+      <UserSupportBanner from="giveNonProfit_page" />
       <S.BackgroundImage src={IntersectBackground} />
     </S.Container>
   );

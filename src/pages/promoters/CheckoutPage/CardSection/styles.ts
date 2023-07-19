@@ -42,19 +42,3 @@ export const PaymentMethodsTitle = styled.h1`
   margin-top: ${({ theme }) => theme.spacing(24)};
   margin-bottom: ${({ theme }) => theme.spacing(16)};
 `;
-
-export const DonateButtonContainer = styled.div`
-  width: 100%;
-  padding: ${({ theme }) => theme.spacing(16)};
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  background-color: ${({ theme }) => theme.colors.neutral10};
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    padding-inline: 0;
-    padding-bottom: 0;
-    position: relative;
-    background-color: transparent;
-  }
-`;

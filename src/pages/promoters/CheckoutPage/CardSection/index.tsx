@@ -4,10 +4,8 @@ import usePayable from "hooks/usePayable";
 import usePaymentParams from "hooks/usePaymentParams";
 import { useTranslation } from "react-i18next";
 import RadioAccordion from "components/moleculars/accordions/RadioAccordion";
-import Button from "components/atomics/buttons/Button";
 import { Currencies, Offer, Cause, NonProfit } from "@ribon.io/shared/types";
 import { useOffers } from "@ribon.io/shared/hooks";
-import { theme } from "@ribon.io/shared/styles";
 import { useLocationSearch } from "hooks/useLocationSearch";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useModal } from "hooks/modalHooks/useModal";
@@ -31,14 +29,8 @@ export default function CardSection() {
 
   const currentPayable = usePayable(target, targetId);
 
-  const {
-    buttonDisabled,
-    handleSubmit,
-    setOfferId,
-    setCurrentCoin,
-    setCause,
-    setNonProfit,
-  } = useCardPaymentInformation();
+  const { handleSubmit, setOfferId, setCurrentCoin, setCause, setNonProfit } =
+    useCardPaymentInformation();
 
   const {
     offers,
@@ -91,14 +83,6 @@ export default function CardSection() {
     props: offersModalProps,
   });
 
-  const CardAccordionItems = [
-    {
-      title: t("paymentMethodSection.creditCard"),
-      rightIcon: CreditCardIcon,
-      children: <CreditCardForm />,
-    },
-  ];
-
   const handlePayment = () => {
     if (!currentOffer) return;
 
@@ -110,6 +94,19 @@ export default function CardSection() {
 
     handleSubmit(PLATFORM);
   };
+
+  const CardAccordionItems = [
+    {
+      title: t("paymentMethodSection.creditCard"),
+      rightIcon: CreditCardIcon,
+      children: (
+        <CreditCardForm
+          onSubmit={handlePayment}
+          showFiscalFields={currentOffer?.gateway === "stripe"}
+        />
+      ),
+    },
+  ];
 
   return currentPayable && hasAllParams ? (
     <div>
@@ -131,16 +128,6 @@ export default function CardSection() {
         <S.PaymentMethodsTitle>{t("payment")}</S.PaymentMethodsTitle>
         <RadioAccordion current={0} items={CardAccordionItems} />
       </S.PaymentMethods>
-
-      <S.DonateButtonContainer>
-        <Button
-          onClick={handlePayment}
-          text={t("confirmPayment")}
-          softDisabled={false}
-          disabled={buttonDisabled}
-          backgroundColor={theme.colors.brand.primary[600]}
-        />
-      </S.DonateButtonContainer>
     </div>
   ) : (
     <Loader />

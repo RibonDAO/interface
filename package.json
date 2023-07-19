@@ -53,7 +53,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "start-debug": "REACT_APP_DEBUG_VIEW=true craco start",
+    "start-debug": "REACT_APP_DEBUG_VIEW=true REACT_APP_GROWTHBOOK_DEV_MODE=true craco start",
     "build": "craco build",
     "test": "craco test",
     "testCoverage": "craco test --coverage --watchAll=false",

@@ -123,9 +123,9 @@ export const CardButton = styled(Button)`
 `;
 
 export const ArrowContainer = styled.div`
+  margin-left: ${({ theme }) => theme.spacing(16)};
   position: relative;
   display: flex;
   flex-direction: row;
   justify-self: center;
-  margin-left: ${({ theme }) => theme.spacing(16)};
 `;

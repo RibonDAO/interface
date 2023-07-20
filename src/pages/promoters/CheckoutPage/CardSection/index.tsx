@@ -4,10 +4,8 @@ import usePayable from "hooks/usePayable";
 import usePaymentParams from "hooks/usePaymentParams";
 import { useTranslation } from "react-i18next";
 import RadioAccordion from "components/moleculars/accordions/RadioAccordion";
-import Button from "components/atomics/buttons/Button";
 import { Currencies, Offer, Cause, NonProfit } from "@ribon.io/shared/types";
 import { useOffers } from "@ribon.io/shared/hooks";
-import { theme } from "@ribon.io/shared/styles";
 import { useLocationSearch } from "hooks/useLocationSearch";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useModal } from "hooks/modalHooks/useModal";
@@ -32,19 +30,22 @@ export default function CardSection() {
   const currentPayable = usePayable(target, targetId);
 
   const {
-    buttonDisabled,
     handleSubmit,
     setOfferId,
     setCurrentCoin,
     setCause,
     setNonProfit,
+    setFlow,
   } = useCardPaymentInformation();
 
   const {
     offers,
     refetch: refetchOffers,
     isLoading: isLoadingOffers,
-  } = useOffers(Currencies[currency as keyof typeof Currencies], false);
+  } = useOffers(
+    Currencies[currency?.toUpperCase() as keyof typeof Currencies],
+    false,
+  );
 
   const [currentOffer, setCurrentOffer] = useState<Offer>();
   const { updateLocationSearch } = useLocationSearch();
@@ -91,25 +92,49 @@ export default function CardSection() {
     props: offersModalProps,
   });
 
-  const CardAccordionItems = [
-    {
-      title: t("paymentMethodSection.creditCard"),
-      rightIcon: CreditCardIcon,
-      children: <CreditCardForm />,
-    },
-  ];
+  useEffect(() => {
+    if (currentOffer) setOfferId(currentOffer.id);
+  }, [currentOffer]);
+
+  useEffect(() => {
+    if (!currentPayable) return;
+
+    if (target === "cause") {
+      setNonProfit(undefined);
+      setCause(currentPayable as Cause);
+      setFlow("cause");
+    } else if (target === "non_profit") {
+      setNonProfit(currentPayable as NonProfit);
+      setCause((currentPayable as NonProfit).cause as Cause);
+      setFlow("nonProfit");
+    }
+  }, [currentPayable]);
+
+  useEffect(() => {
+    if (currentOffer)
+      setCurrentCoin(
+        Currencies[currency?.toUpperCase() as keyof typeof Currencies],
+      );
+  }, [currentOffer]);
 
   const handlePayment = () => {
     if (!currentOffer) return;
 
-    setOfferId(currentOffer?.id);
-    setCurrentCoin(Currencies[currency as keyof typeof Currencies]);
-
-    if (target === "cause") setCause(currentPayable as Cause);
-    if (target === "nonProfit") setNonProfit(currentPayable as NonProfit);
-
     handleSubmit(PLATFORM);
   };
+
+  const CardAccordionItems = [
+    {
+      title: t("paymentMethodSection.creditCard"),
+      rightIcon: CreditCardIcon,
+      children: (
+        <CreditCardForm
+          onSubmit={handlePayment}
+          showFiscalFields={currentOffer?.gateway === "stripe"}
+        />
+      ),
+    },
+  ];
 
   return currentPayable && hasAllParams ? (
     <div>
@@ -131,16 +156,6 @@ export default function CardSection() {
         <S.PaymentMethodsTitle>{t("payment")}</S.PaymentMethodsTitle>
         <RadioAccordion current={0} items={CardAccordionItems} />
       </S.PaymentMethods>
-
-      <S.DonateButtonContainer>
-        <Button
-          onClick={handlePayment}
-          text={t("confirmPayment")}
-          softDisabled={false}
-          disabled={buttonDisabled}
-          backgroundColor={theme.colors.brand.primary[600]}
-        />
-      </S.DonateButtonContainer>
     </div>
   ) : (
     <Loader />

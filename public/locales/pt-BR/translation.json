@@ -164,6 +164,11 @@
     },
     "walletLayout": {
       "connectWallet": "Conectar"
+    },
+    "userSupportBanner": {
+      "title": "Suporte Ribon",
+      "text": "Dúvidas, ideias, estornos sobre as doações!",
+      "userSupportLink": "https://api.whatsapp.com/send/?phone=554896605461&text=Oii+Ribon%2C+vamos+conversar%3F+&type=phone_number&app_absent=0"
     }
   },
   "impactPage": {
@@ -356,11 +361,17 @@
       "selectCurrency": "Selecione a moeda",
       "selectValue": "Selecione o valor",
       "additionalFeesText": "O pagamento é processado em dólar, o valor pode sofrer uma pequena variação de acordo com as taxas do seu banco.",
+      "brazilName": "Brasil",
       "paymentMethodSection": {
         "creditCard": "Cartão de crédito",
         "googlePay": "Google Pay",
         "applePay": "Apple Pay",
         "creditCardFields": {
+          "country": "País",
+          "state": "Estado",
+          "city": "Cidade",
+          "taxId": "Documento de identificação",
+          "cpf": "CPF",
           "number": "Número do cartão",
           "name": "Nome impresso",
           "expirationDate": "Data de validade",

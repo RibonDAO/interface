@@ -14,9 +14,9 @@ import Intersection from "assets/images/intersection-image.svg";
 import { SELECTED_CAUSE_ID } from "lib/sessionStorage/constants";
 import { setSessionStorageItem } from "lib/sessionStorage";
 import { useCausesContext } from "contexts/causesContext";
+import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import SupportImage from "../assets/support-image.png";
 import * as S from "../styles";
-import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
 import SelectCryptoOfferSection from "./SelectCryptoOfferSection";
 
 type LocationStateType = {
@@ -177,7 +177,7 @@ function CryptoPage(): JSX.Element {
           />
           <S.RefundText>{t("refundText")}</S.RefundText>
         </S.DonateContainer>
-        <UserSupportSection />
+        <UserSupportBanner from="giveCauseCrypto_page" />
       </S.ContentContainer>
 
       <S.BackgroundImage src={IntersectBackground} />

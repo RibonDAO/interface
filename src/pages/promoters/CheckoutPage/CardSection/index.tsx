@@ -42,7 +42,10 @@ export default function CardSection() {
     offers,
     refetch: refetchOffers,
     isLoading: isLoadingOffers,
-  } = useOffers(Currencies[currency as keyof typeof Currencies], false);
+  } = useOffers(
+    Currencies[currency?.toUpperCase() as keyof typeof Currencies],
+    false,
+  );
 
   const [currentOffer, setCurrentOffer] = useState<Offer>();
   const { updateLocationSearch } = useLocationSearch();
@@ -94,6 +97,7 @@ export default function CardSection() {
   }, [currentOffer]);
 
   useEffect(() => {
+    console.log(currentPayable);
     if (!currentPayable) return;
 
     if (target === "cause") {
@@ -109,7 +113,9 @@ export default function CardSection() {
 
   useEffect(() => {
     if (currentOffer)
-      setCurrentCoin(Currencies[currency as keyof typeof Currencies]);
+      setCurrentCoin(
+        Currencies[currency?.toUpperCase() as keyof typeof Currencies],
+      );
   }, [currentOffer]);
 
   const handlePayment = () => {

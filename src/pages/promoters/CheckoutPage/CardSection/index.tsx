@@ -97,7 +97,6 @@ export default function CardSection() {
   }, [currentOffer]);
 
   useEffect(() => {
-    console.log(currentPayable);
     if (!currentPayable) return;
 
     if (target === "cause") {

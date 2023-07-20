@@ -8,7 +8,7 @@ import Spinner from "components/atomics/Spinner";
 import { useTranslation } from "react-i18next";
 import parse from "html-react-parser";
 import { theme } from "@ribon.io/shared/styles";
-import bannerBackground from "assets/images/banner-logo-background.svg";
+import BannerBackground from "components/moleculars/banners/UserSupportBanner/assets/background.svg";
 import EngagementSection from "./EngagementSection";
 import BoostSection from "./BoostSection";
 import * as S from "./styles";
@@ -54,7 +54,7 @@ function ContributionStatsPage(): JSX.Element {
               color: theme.colors.neutral[900],
               size: "medium",
             }}
-            cardBackground={bannerBackground}
+            cardBackground={BannerBackground}
             text={t("supportSection.text")}
             textColor={theme.colors.neutral[800]}
             arrowLinkColor={theme.colors.brand.secondary[800]}

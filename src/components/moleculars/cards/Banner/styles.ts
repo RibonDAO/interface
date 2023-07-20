@@ -15,7 +15,6 @@ export const Container = styled.div<{
 }>`
   width: 100%;
   max-width: 472px;
-  max-height: 128px;
   padding: ${({ theme }) => theme.spacing(16, 16, 16)};
   border-radius: 8px;
   display: flex;
@@ -30,12 +29,14 @@ export const Container = styled.div<{
   &:hover {
     background-color: ${({ backgroundColor }) =>
       darken(0.1, backgroundColor ?? "#fff")};
+    background-image: none;
     transition: 0.5s;
   }
 
   &:active {
     background-color: ${({ backgroundColor }) =>
       darken(0.1, backgroundColor ?? "#fff")};
+    background-image: none;
     transition: 0.5s;
   }
 
@@ -107,6 +108,7 @@ export const Text = styled.h5`
   ${defaultBodySmRegular}
 
   margin-top: ${({ theme }) => theme.spacing(4)};
+  margin-right: ${({ theme }) => theme.spacing(16)};
   color: ${({ theme, color }) => color || theme.colors.neutral[800]};
 `;
 

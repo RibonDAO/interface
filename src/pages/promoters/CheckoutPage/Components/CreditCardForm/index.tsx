@@ -180,6 +180,7 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
       </S.Half>
       <S.DonateButtonContainer>
         <Button
+          type="button"
           onClick={onSubmit}
           text={t("confirmPayment")}
           softDisabled={false}

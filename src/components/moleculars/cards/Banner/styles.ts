@@ -108,7 +108,6 @@ export const Text = styled.h5`
   ${defaultBodySmRegular}
 
   margin-top: ${({ theme }) => theme.spacing(4)};
-  margin-right: ${({ theme }) => theme.spacing(16)};
   color: ${({ theme, color }) => color || theme.colors.neutral[800]};
 `;
 
@@ -128,4 +127,5 @@ export const ArrowContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-self: center;
+  margin-left: ${({ theme }) => theme.spacing(16)};
 `;

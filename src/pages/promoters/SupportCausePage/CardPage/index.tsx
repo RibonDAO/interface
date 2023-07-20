@@ -33,7 +33,8 @@ function SupportCausePage(): JSX.Element {
   const [currentOffer, setCurrentOffer] = useState<Offer>(offerFactory());
   const { cause, setCause, setOfferId, setFlow } = useCardPaymentInformation();
 
-  const { activeCauses, chosenCause, setCurrentCauseId, currentCauseIndex } = useCausesContext();
+  const { activeCauses, chosenCause, setCurrentCauseId, currentCauseIndex } =
+    useCausesContext();
   const { state, search } = useLocation<LocationStateType>();
 
   const platform = extractUrlValue("platform", search);
@@ -99,7 +100,7 @@ function SupportCausePage(): JSX.Element {
   };
 
   if (activeCauses.length === 0) {
-    return <div/>;
+    return <div />;
   }
 
   return (

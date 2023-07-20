@@ -27,7 +27,8 @@ function CryptoPage(): JSX.Element {
   const { secondary } = theme.colors.brand;
   const { navigateTo } = useNavigation();
   const { cause, setCause, nonProfit } = useCardPaymentInformation();
-  const { activeCauses, chosenCause, setCurrentCauseId, currentCauseIndex } = useCausesContext();
+  const { activeCauses, chosenCause, setCurrentCauseId, currentCauseIndex } =
+    useCausesContext();
   const { connectWallet, wallet } = useWalletContext();
   const {
     amount,
@@ -124,7 +125,7 @@ function CryptoPage(): JSX.Element {
   };
 
   if (activeCauses.length === 0) {
-    return <div/>;
+    return <div />;
   }
 
   return (

@@ -40,7 +40,9 @@ function CausesProvider({ children }: any) {
     causeIdFromSessionStorage || causeWasNotSelectedByModal,
   );
   const [chosenCause, setChosenCause] = useState<Cause | undefined>(causes[0]);
-  const [currentCauseIndex, setCurrentCauseIndex] = useState(causeIdFromSessionStorage || 0);
+  const [currentCauseIndex, setCurrentCauseIndex] = useState(
+    causeIdFromSessionStorage || 0,
+  );
 
   const causesFilter = () => causes.filter((cause) => cause.active);
 

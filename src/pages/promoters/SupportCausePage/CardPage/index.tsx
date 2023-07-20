@@ -2,7 +2,6 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { logEvent } from "lib/events";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
-import { useCauses } from "@ribon.io/shared/hooks";
 import { Cause, Offer } from "@ribon.io/shared/types";
 import IntersectBackground from "assets/images/intersect-background.svg";
 import useNavigation from "hooks/useNavigation";
@@ -17,6 +16,9 @@ import theme from "styles/theme";
 import { useLocation } from "react-router-dom";
 import Intersection from "assets/images/intersection-image.svg";
 import extractUrlValue from "lib/extractUrlValue";
+import { useCausesContext } from "contexts/causesContext";
+import { SELECTED_CAUSE_ID } from "lib/sessionStorage/constants";
+import { setSessionStorageItem } from "lib/sessionStorage";
 import * as S from "../styles";
 import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
 import SelectOfferSection from "./SelectOfferSection";
@@ -31,7 +33,7 @@ function SupportCausePage(): JSX.Element {
   const [currentOffer, setCurrentOffer] = useState<Offer>(offerFactory());
   const { cause, setCause, setOfferId, setFlow } = useCardPaymentInformation();
 
-  const { causes } = useCauses();
+  const { activeCauses, chosenCause, setCurrentCauseId, currentCauseIndex } = useCausesContext();
   const { state, search } = useLocation<LocationStateType>();
 
   const platform = extractUrlValue("platform", search);
@@ -44,22 +46,19 @@ function SupportCausePage(): JSX.Element {
     logEvent("treasureSupportScreen_view");
   }, []);
 
-  const causesFilter = () => {
-    const causesApi = causes.filter((currentCause) => currentCause.active);
-    return causesApi || [];
-  };
-
   useEffect(() => {
     if (!cause) {
-      setCause(state?.causeDonated || causesFilter()[0]);
+      setCause(state?.causeDonated || chosenCause);
     }
-  }, [causes]);
+  }, [activeCauses, currentCauseIndex]);
 
   const handleCauseClick = (causeClicked: Cause) => {
     logEvent("treasureCauseSelection_click", {
       id: causeClicked?.id,
     });
     setCause(causeClicked);
+    setCurrentCauseId(causeClicked?.id);
+    setSessionStorageItem(SELECTED_CAUSE_ID, causeClicked?.id.toString());
   };
 
   const handleDonateClick = () => {
@@ -99,20 +98,18 @@ function SupportCausePage(): JSX.Element {
     setOfferId(offer.id);
   };
 
-  const preSelectedIndex = () => {
-    if (state?.causeDonated)
-      return causesFilter().findIndex((c) => c.id === state?.causeDonated?.id);
-    return cause ? causesFilter().findIndex((c) => c.id === cause?.id) : 0;
-  };
+  if (activeCauses.length === 0) {
+    return <div/>;
+  }
 
   return (
     <S.Container>
       <DownloadAppToast />
       <S.Title>{t("title")}</S.Title>
       <GroupButtons
-        elements={causesFilter()}
+        elements={activeCauses}
         onChange={handleCauseClick}
-        indexSelected={preSelectedIndex()}
+        indexSelected={currentCauseIndex}
         nameExtractor={(element) => element.name}
         backgroundColor={secondary[700]}
         textColorOutline={secondary[700]}

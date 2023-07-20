@@ -8,15 +8,19 @@ import {
   useState,
 } from "react";
 import { Cause } from "@ribon.io/shared/types";
+import { getSessionStorageItem } from "lib/sessionStorage";
+import { SELECTED_CAUSE_ID } from "lib/sessionStorage/constants";
 
 export interface ICausesContext {
   causes: Cause[];
   activeCauses: Cause[];
   chosenCause: Cause | undefined;
+  setChosenCause: (id: SetStateAction<Cause | undefined>) => void;
   chooseCauseModalVisible: boolean;
   setChooseCauseModalVisible: (visible: SetStateAction<boolean>) => void;
   currentCauseId: number;
   setCurrentCauseId: (id: SetStateAction<number>) => void;
+  currentCauseIndex: number;
   refetch: () => void;
 }
 
@@ -26,12 +30,17 @@ export const CausesContext = createContext<ICausesContext>(
 
 function CausesProvider({ children }: any) {
   const causeWasNotSelectedByModal = -1;
+  const causeIdFromSessionStorage = Number(
+    getSessionStorageItem(SELECTED_CAUSE_ID),
+  );
   const { causes, refetch, isLoading } = useFreeDonationCauses();
   const [activeCauses, setActiveCauses] = useState<Cause[]>([]);
   const [chooseCauseModalVisible, setChooseCauseModalVisible] = useState(false);
   const [currentCauseId, setCurrentCauseId] = useState(
-    causeWasNotSelectedByModal,
+    causeIdFromSessionStorage || causeWasNotSelectedByModal,
   );
+  const [chosenCause, setChosenCause] = useState<Cause | undefined>(causes[0]);
+  const [currentCauseIndex, setCurrentCauseIndex] = useState(causeIdFromSessionStorage || 0);
 
   const causesFilter = () => causes.filter((cause) => cause.active);
 
@@ -39,19 +48,32 @@ function CausesProvider({ children }: any) {
     if (!isLoading) {
       setActiveCauses(causesFilter());
       setCurrentCauseId(causeWasNotSelectedByModal);
+
+      if (getSessionStorageItem(SELECTED_CAUSE_ID)) {
+        const causeId = causeIdFromSessionStorage;
+        setCurrentCauseId(causeId);
+        setChosenCause(causes.find((cause) => cause.id === causeId));
+      }
     }
-  }, [JSON.stringify(causes), isLoading]);
+  }, [JSON.stringify(causes), isLoading, currentCauseId]);
+
+  useEffect(() => {
+    const newIndex = causes.findIndex((cause) => cause.id === currentCauseId);
+    setCurrentCauseIndex(newIndex === -1 ? 0 : newIndex);
+  }, [currentCauseId]);
 
   const causesObject: ICausesContext = useMemo(
     () => ({
       causes,
       refetch,
-      chosenCause: causes[0],
+      chosenCause,
+      setChosenCause,
       chooseCauseModalVisible,
       setChooseCauseModalVisible,
       activeCauses,
       currentCauseId,
       setCurrentCauseId,
+      currentCauseIndex,
     }),
     [causes, chooseCauseModalVisible, activeCauses, currentCauseId],
   );

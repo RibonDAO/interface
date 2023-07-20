@@ -27,6 +27,7 @@ type LocationStateType = {
 function CardPage(): JSX.Element {
   const { navigateTo } = useNavigation();
   const [currentOffer, setCurrentOffer] = useState<Offer>(offerFactory());
+  const [currentOfferIndex, setCurrentOfferIndex] = useState(0);
   const { cause, setCause, setOfferId, setFlow } = useCardPaymentInformation();
   const { nonProfits } = useNonProfits();
   const { tertiary } = theme.colors.brand;
@@ -37,6 +38,8 @@ function CardPage(): JSX.Element {
   const platform = extractUrlValue("platform", search);
 
   const { isMobile } = useBreakpoint();
+
+  const isRunningTheNewCheckoutForm = true;
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportNonProfitPage",
@@ -62,7 +65,7 @@ function CardPage(): JSX.Element {
     setCause(causeClicked);
   };
 
-  const handleDonateClick = (nonProfit: NonProfit) => {
+  const navigateToPayment = (nonProfit: NonProfit) => {
     setFlow("nonProfit");
     logEvent("nonProfitComCicleBtn_click");
     navigateTo({
@@ -77,8 +80,35 @@ function CardPage(): JSX.Element {
     });
   };
 
-  const handleOfferChange = (offer: Offer) => {
+  const navigateToCheckout = (nonProfit: NonProfit) => {
+    logEvent("nonProfitComCicleBtn_click");
+    setFlow("nonProfit");
+
+    const searchParams = new URLSearchParams({
+      offer: currentOfferIndex.toString(),
+      target: "non_profit",
+      target_id: nonProfit.id.toString(),
+      currency: currentOffer.currency.toUpperCase(),
+    });
+
+    navigateTo({
+      pathname: "/promoters/checkout",
+      search: searchParams.toString(),
+    });
+  };
+
+  const handleDonateClick = (nonProfit: NonProfit) => {
+    if (isRunningTheNewCheckoutForm) {
+      navigateToCheckout(nonProfit);
+      return;
+    }
+
+    navigateToPayment(nonProfit);
+  };
+
+  const handleOfferChange = (offer: Offer, index?: number) => {
     setCurrentOffer(offer);
+    setCurrentOfferIndex(index || 0);
     setOfferId(offer.id);
   };
 

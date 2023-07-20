@@ -49,6 +49,16 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
     setTaxId,
   } = useCardPaymentInformation();
 
+  const validTaxId = () => {
+    if (!showFiscalFields) return true;
+
+    const maxLength = maxTaxIdLength();
+
+    if (brazilFormatForTaxId) return taxId.length === maxLength;
+
+    return taxId.length > 4 && taxId.length <= maxLength;
+  };
+
   function isBrazil(countryName: string) {
     return countryName === t("brazilName");
   }
@@ -61,16 +71,17 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
   const { currentLang } = useLanguage();
 
   useEffect(() => {
+    const fiscalFields = showFiscalFields
+      ? city && state && country && validTaxId()
+      : true;
+
     setButtonDisabled(
       !(
         number &&
         name &&
         !expirationDate.includes("_") &&
         cvv.length >= 3 &&
-        city &&
-        state &&
-        country &&
-        taxId.length === maxTaxIdLength()
+        fiscalFields
       ),
     );
   }, [number, name, expirationDate, cvv, country, state, city, taxId]);
@@ -91,7 +102,9 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
           <S.Half>
             <InputText
               name="city"
-              label={{ text: field("city") }}
+              label={{
+                text: field("city"),
+              }}
               value={city}
               onChange={(e) => setCity(e.target.value)}
               data-testid="city"
@@ -112,9 +125,12 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
             name={taxId}
             mask={maskForTaxId(country, currentLang)}
             maskPlaceholder=""
-            label={{ text: field("taxId") }}
+            label={{
+              text: brazilFormatForTaxId ? field("cpf") : field("taxId"),
+            }}
             value={taxId}
             onChange={(e) => setTaxId(e.target.value)}
+            maxLength={maxTaxIdLength()}
             data-testid="taxId"
             required
           />

@@ -372,6 +372,7 @@
           "state": "State",
           "city": "City",
           "taxId": "Tax ID",
+          "cpf": "CPF",
           "number": "Card number",
           "name": "Cardholder name",
           "expirationDate": "Expiration date",

@@ -7,7 +7,7 @@ import SelectOfferSection from "../SelectOfferSection";
 
 export type Props = {
   nonProfit: NonProfit;
-  handleOfferChange: (offer: Offer) => void;
+  handleOfferChange: (offer: Offer, index?: number) => void;
   handleDonate: () => void;
 };
 
@@ -21,8 +21,8 @@ export default function NonProfitCard({
   });
   const [value, setValue] = useState("");
 
-  const onOfferChange = (offer: Offer) => {
-    handleOfferChange(offer);
+  const onOfferChange = (offer: Offer, index?: number) => {
+    handleOfferChange(offer, index);
     setValue(removeInsignificantZeros(offer.price));
   };
 

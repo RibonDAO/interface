@@ -68,6 +68,7 @@ function ModalIcon({
 
   const handleSupportButtonClick = () => {
     window.open(t("userSupportLink"), "_blank");
+    newLogEvent("click", "support_Btn", { from: "error_modal" });
   };
 
   return (

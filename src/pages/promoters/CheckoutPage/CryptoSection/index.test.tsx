@@ -1,11 +1,11 @@
 import { renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
-import PaymentPageV2 from ".";
+import CryptoSection from ".";
 
-describe("PaymentPageV2", () => {
+describe("CryptoSection", () => {
   it("should render without error", () => {
-    renderComponent(<PaymentPageV2 />);
+    renderComponent(<CryptoSection />);
 
-    expectTextToBeInTheDocument("Change currency");
+    expectTextToBeInTheDocument("not available yet");
   });
 });

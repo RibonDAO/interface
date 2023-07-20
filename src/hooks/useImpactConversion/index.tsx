@@ -1,5 +1,6 @@
 import { useExperiment } from "@growthbook/growthbook-react";
 import {
+  useNonProfitImpact,
   useNonProfits,
   useOffers,
   useStatistics,
@@ -32,6 +33,12 @@ export function useImpactConversion() {
   const { userStatistics } = useStatistics({
     userId: currentUser?.id ?? undefined,
   });
+
+  const { nonProfitImpact } = useNonProfitImpact(
+    nonProfit?.id,
+    offer?.priceValue,
+    Currencies.BRL,
+  );
 
   useEffect(() => {
     setNonProfit(
@@ -95,7 +102,7 @@ export function useImpactConversion() {
     }
     if (variation === "OldImpact") {
       return setDescription(
-        formattedImpactText(nonProfit, undefined, true, true),
+        formattedImpactText(nonProfit, undefined, true, true, nonProfitImpact),
       );
     }
     return undefined;

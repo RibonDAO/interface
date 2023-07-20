@@ -352,7 +352,7 @@
         "serviceFeesText": "Service fees:"
       }
     },
-    "paymentPageV2": {
+    "checkoutPage": {
       "changeCurrency": "Change currency",
       "back": "Back",
       "donatingTo": "Donating to ",
@@ -361,11 +361,17 @@
       "payment": "Payment",
       "selectCurrency": "Select currency",
       "selectValue": "Select value",
+      "additionalFeesText": "Payment is processed in USD, the amount may vary slightly according to your bank's fees.",
+      "brazilName": "Brazil",
       "paymentMethodSection": {
         "creditCard": "Credit card",
         "googlePay": "Google Pay",
         "applePay": "Apple Pay",
         "creditCardFields": {
+          "country": "Country",
+          "state": "State",
+          "city": "City",
+          "taxId": "Tax ID",
           "number": "Card number",
           "name": "Cardholder name",
           "expirationDate": "Expiration date",
@@ -482,6 +488,9 @@
     "supportSection": {
       "title": "Give us your opinion",
       "text": "What did you think of this experience?"
+    },
+    "giftCycleSection": {
+      "realTimeDonationLabel": "Updated in real time"
     }
   },
   "contributionNotification": {

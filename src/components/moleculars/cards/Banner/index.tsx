@@ -3,7 +3,7 @@ import Arrow from "../../../atomics/arrows/Arrow";
 import Icon, { IconProps } from "../../../atomics/Icon";
 import * as S from "./styles";
 
-const { primary } = theme.colors.brand;
+const { primary, secondary } = theme.colors.brand;
 
 export type TitleProps = {
   text: string;
@@ -31,7 +31,7 @@ function Banner({
   text,
   textColor,
   cardBackground,
-  backgroundColor,
+  backgroundColor = secondary[100],
   children,
   arrowLinkColor = primary[800],
   onArrowClick,

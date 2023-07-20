@@ -164,6 +164,11 @@
     },
     "walletLayout": {
       "connectWallet": "Conectar"
+    },
+    "userSupportBanner": {
+      "title": "Suporte Ribon",
+      "text": "Dúvidas, ideias, estornos sobre as doações!",
+      "userSupportLink": "https://api.whatsapp.com/send/?phone=554896605461&text=Oii+Ribon%2C+vamos+conversar%3F+&type=phone_number&app_absent=0"
     }
   },
   "impactPage": {
@@ -365,7 +370,8 @@
           "country": "País",
           "state": "Estado",
           "city": "Cidade",
-          "taxId": "CPF",
+          "taxId": "Documento de identificação",
+          "cpf": "CPF",
           "number": "Número do cartão",
           "name": "Nome impresso",
           "expirationDate": "Data de validade",

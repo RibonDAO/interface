@@ -1,17 +1,24 @@
 {
-  "extends": ["stylelint-config-recommended", "stylelint-config-styled-components"],
-  "customSyntax": "@stylelint/postcss-css-in-js",
-  "plugins": [
-    "stylelint-order"
+  "extends": [
+    "stylelint-config-recommended",
+    "stylelint-config-styled-components"
   ],
+  "customSyntax": "@stylelint/postcss-css-in-js",
+  "plugins": ["stylelint-order"],
   "rules": {
     "rule-empty-line-before": ["always", { "except": "first-nested" }],
     "at-rule-empty-line-before": ["always", { "except": "first-nested" }],
-    "declaration-empty-line-before": ["always", {
-      "except": ["first-nested"],
-      "ignore": ["after-comment", "after-declaration"]
-    }],
-    "function-no-unknown": [true, {"ignoreFunctions": ["${", "`url", "theme.spacing"]}],
+    "declaration-empty-line-before": [
+      "always",
+      {
+        "except": ["first-nested"],
+        "ignore": ["after-comment", "after-declaration"]
+      }
+    ],
+    "function-no-unknown": [
+      true,
+      { "ignoreFunctions": ["${", "`url", "theme.spacing", "darken"] }
+    ],
     "color-no-invalid-hex": true,
     "color-function-notation": null,
     "font-family-name-quotes": null,

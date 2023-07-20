@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { logEvent } from "lib/events";
-import { useCauses } from "@ribon.io/shared/hooks";
 import { Cause } from "@ribon.io/shared/types";
 import IntersectBackground from "assets/images/intersect-background.svg";
 import useNavigation from "hooks/useNavigation";
@@ -12,6 +11,9 @@ import { useCryptoPayment } from "contexts/cryptoPaymentContext";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import theme from "styles/theme";
 import Intersection from "assets/images/intersection-image.svg";
+import { SELECTED_CAUSE_ID } from "lib/sessionStorage/constants";
+import { setSessionStorageItem } from "lib/sessionStorage";
+import { useCausesContext } from "contexts/causesContext";
 import SupportImage from "../assets/support-image.png";
 import * as S from "../styles";
 import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
@@ -25,6 +27,7 @@ function CryptoPage(): JSX.Element {
   const { secondary } = theme.colors.brand;
   const { navigateTo } = useNavigation();
   const { cause, setCause, nonProfit } = useCardPaymentInformation();
+  const { activeCauses, chosenCause, setCurrentCauseId, currentCauseIndex } = useCausesContext();
   const { connectWallet, wallet } = useWalletContext();
   const {
     amount,
@@ -36,8 +39,6 @@ function CryptoPage(): JSX.Element {
     tokenSymbol,
   } = useCryptoPayment();
 
-  const { causes } = useCauses();
-
   const { state } = useLocation<LocationStateType>();
 
   const { t } = useTranslation("translation", {
@@ -48,16 +49,11 @@ function CryptoPage(): JSX.Element {
     logEvent("causeSupportScreen_view");
   }, []);
 
-  const causesFilter = () => {
-    const causesApi = causes.filter((currentCause) => currentCause.active);
-    return causesApi || [];
-  };
-
   useEffect(() => {
     if (!cause) {
-      setCause(state?.causeDonated || causesFilter()[0]);
+      setCause(state?.causeDonated || chosenCause);
     }
-  }, [causes]);
+  }, [activeCauses, currentCauseIndex]);
 
   useEffect(() => {
     if (cause && cause.pools?.length > 0) {
@@ -70,6 +66,8 @@ function CryptoPage(): JSX.Element {
       id: causeClicked?.id,
     });
     setCause(causeClicked);
+    setCurrentCauseId(causeClicked?.id);
+    setSessionStorageItem(SELECTED_CAUSE_ID, causeClicked?.id.toString());
   };
 
   const onDonationToContractSuccess = () => {
@@ -125,19 +123,17 @@ function CryptoPage(): JSX.Element {
     return t("connectWalletButtonText");
   };
 
-  const preSelectedIndex = () => {
-    if (state?.causeDonated)
-      return causesFilter().findIndex((c) => c.id === state?.causeDonated?.id);
-    return cause ? causesFilter().findIndex((c) => c.id === cause?.id) : 0;
-  };
+  if (activeCauses.length === 0) {
+    return <div/>;
+  }
 
   return (
     <S.Container>
       <S.Title>{t("title")}</S.Title>
       <GroupButtons
-        elements={causesFilter()}
+        elements={activeCauses}
         onChange={handleCauseClick}
-        indexSelected={preSelectedIndex()}
+        indexSelected={currentCauseIndex}
         nameExtractor={(element) => element.name}
         backgroundColor={secondary[700]}
         textColorOutline={secondary[700]}

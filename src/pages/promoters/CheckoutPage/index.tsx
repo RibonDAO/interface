@@ -11,6 +11,8 @@ function CheckoutPage(): JSX.Element {
   const { currency } = usePaymentParams();
 
   useEffect(() => {
+    // this is not being logged on logPageView because it would log everytime a param changes
+    // (like currency, offer, etc)
     logEvent("P23_view");
   }, []);
 

@@ -97,7 +97,7 @@ describe("Events", () => {
     it("sends an event to firebase", () => {
       logPageView(urlName);
       expect(FirebaseEvents.logFirebaseEvent).toHaveBeenCalledWith(
-        `web_${translation}_view`,
+        `${translation}_view`,
         paramsDefault,
       );
     });
@@ -120,7 +120,7 @@ describe("Events", () => {
     it("sends an event to Mixpanel", () => {
       logPageView(urlName);
       expect(MixpanelEvents.logMixpanelEvent).toHaveBeenCalledWith(
-        `web_${translation}_view`,
+        `${translation}_view`,
         paramsDefault,
       );
     });

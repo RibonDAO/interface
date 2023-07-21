@@ -11,6 +11,7 @@ import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useModal } from "hooks/modalHooks/useModal";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import { PLATFORM } from "utils/constants";
+import { logEvent } from "lib/events";
 import CreditCardForm from "../Components/CreditCardForm";
 import PriceSelection from "../Components/PriceSelection";
 import { PriceSelectionLoader } from "../Components/PriceSelection/loader";
@@ -119,6 +120,10 @@ export default function CardSection() {
 
   const handlePayment = () => {
     if (!currentOffer) return;
+    if (targetId)
+      logEvent("confirmPaymentFormBtn_click", {
+        [target === "cause" ? "causeId" : "nonProfitId"]: targetId,
+      });
 
     handleSubmit(PLATFORM);
   };
@@ -133,6 +138,9 @@ export default function CardSection() {
           showFiscalFields={currentOffer?.gateway === "stripe"}
         />
       ),
+      onClick: () => {
+        logEvent("selectCreditCard_click");
+      },
     },
   ];
 

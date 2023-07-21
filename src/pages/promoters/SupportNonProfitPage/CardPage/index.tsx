@@ -39,7 +39,7 @@ function CardPage(): JSX.Element {
 
   const { isMobile } = useBreakpoint();
 
-  const isRunningTheNewCheckoutForm = true;
+  const isRunningTheNewCheckoutForm = false;
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportNonProfitPage",

@@ -13366,10 +13366,10 @@ move-concurrently@^1.0.1:
     rimraf "^2.5.4"
     run-queue "^1.0.3"
 
-mrm-core@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.npmjs.org/mrm-core/-/mrm-core-7.0.0.tgz"
-  integrity sha512-NB22azURu3CMDN/VWvC5QO5zAUECe0VIPr+QWft+dxeeSz/mbsNAXt4GxaepA1VUGrddPMUmQuWikFPoaPKMbw==
+mrm-core@^7.1.17:
+  version "7.1.17"
+  resolved "https://registry.yarnpkg.com/mrm-core/-/mrm-core-7.1.17.tgz#74fb31b4fffd5c6db5f2100ca0df507e48bc96ba"
+  integrity sha512-6gsWXIWrGRdaJwtM7B0V/RyifiQlIK4XaE1Q/KLx5e0mAtRyNLD1l4A/2zG15HWJ93kwAIQtl0DBaHemE9vkIQ==
   dependencies:
     babel-code-frame "^6.26.0"
     comment-json "^2.2.0"
@@ -13393,9 +13393,9 @@ mrm-core@^7.0.0:
     yaml "^2.0.0-1"
 
 mrm@4:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/mrm/-/mrm-4.0.0.tgz"
-  integrity sha512-Iz5ZF1Iy4aU2o/pQDuadnyc+u6DtXIEhAaKYyLHT+leLjC/mz6p/Uf6V8x8ITyQwilM13HiNNsFfED/0MHkmPA==
+  version "4.1.17"
+  resolved "https://registry.yarnpkg.com/mrm/-/mrm-4.1.17.tgz#fc1760d6908466ec3a17439f3594fe4ab41ce127"
+  integrity sha512-IvLYiEvVkdtX8TZVyvDUgQrsppWuxB9VTceKyKVIZhid4M63sG7hiZ+GpfYfpw4ALnQCy3XIY7S6KMiXr/Px7g==
   dependencies:
     git-username "^1.0.0"
     glob "^7.1.6"
@@ -13408,7 +13408,7 @@ mrm@4:
     longest "^2.0.1"
     middleearth-names "^1.1.0"
     minimist "^1.2.0"
-    mrm-core "^7.0.0"
+    mrm-core "^7.1.17"
     semver-utils "^1.1.4"
     update-notifier "^4.1.0"
     user-home "^2.0.0"

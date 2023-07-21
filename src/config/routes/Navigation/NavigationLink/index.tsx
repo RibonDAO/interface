@@ -15,6 +15,7 @@ export type Props = {
     path: LocationDescriptor;
     title: string;
     search?: string;
+    onClick?: () => void;
   }[];
   showActivityIndicatorCircle?: boolean;
 };

@@ -5,6 +5,7 @@ import {
   defaultBodySmSemibold,
   defaultHeadingXxs,
 } from "styles/typography/default";
+import { darken } from "polished";
 import Button from "../../../atomics/buttons/Button";
 
 export const Container = styled.div<{
@@ -14,7 +15,6 @@ export const Container = styled.div<{
 }>`
   width: 100%;
   max-width: 472px;
-  max-height: 128px;
   padding: ${({ theme }) => theme.spacing(16, 16, 16)};
   border-radius: 8px;
   display: flex;
@@ -25,6 +25,20 @@ export const Container = styled.div<{
   background-position: right;
   background-size: contain;
   background-repeat: no-repeat;
+
+  &:hover {
+    background-color: ${({ backgroundColor }) =>
+      darken(0.1, backgroundColor ?? "#fff")};
+    background-image: none;
+    transition: 0.5s;
+  }
+
+  &:active {
+    background-color: ${({ backgroundColor }) =>
+      darken(0.1, backgroundColor ?? "#fff")};
+    background-image: none;
+    transition: 0.5s;
+  }
 
   ${(props) =>
     props.flexDirection === "row" &&
@@ -109,6 +123,7 @@ export const CardButton = styled(Button)`
 `;
 
 export const ArrowContainer = styled.div`
+  margin-left: ${({ theme }) => theme.spacing(16)};
   position: relative;
   display: flex;
   flex-direction: row;

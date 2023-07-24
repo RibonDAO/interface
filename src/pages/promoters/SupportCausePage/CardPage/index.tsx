@@ -37,7 +37,7 @@ function SupportCausePage(): JSX.Element {
 
   const platform = extractUrlValue("platform", search);
 
-  const isRunningTheNewCheckoutForm = false;
+  const isRunningTheNewCheckoutForm = true;
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportCausePage",

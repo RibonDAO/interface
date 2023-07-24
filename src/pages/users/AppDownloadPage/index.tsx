@@ -30,14 +30,14 @@ function AppDownloadPage() {
   const comesFromPostDonation = !!nonProfit;
 
   const handleOnClickSecondButton = () => {
-    if (comesFromPostDonation) {
-      if (showContribute)
-        navigateTo({
-          pathname: "/post-donation",
-          state: { nonProfit },
-        });
+    if (comesFromPostDonation && showContribute) {
+      navigateTo({
+        pathname: "/post-donation",
+        state: { nonProfit },
+      });
+    } else {
+      navigateTo("/causes");
     }
-    navigateTo("/causes");
   };
 
   const handleOnClickFirstButton = () => {

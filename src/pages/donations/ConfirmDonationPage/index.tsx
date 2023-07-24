@@ -22,7 +22,7 @@ function ConfirmDonationPage(): JSX.Element {
     state: { nonProfit },
   } = useLocation<LocationStateType>();
   const { handleDonate } = useDonationFlow();
-  const { navigateTo } = useNavigation();
+  const { navigateTo, history } = useNavigation();
 
   const onContinue = async (email: string) => {
     setDonationInProgress(true);
@@ -47,6 +47,10 @@ function ConfirmDonationPage(): JSX.Element {
       });
     }
   }, [donationSucceeded]);
+
+  window.addEventListener("popstate", () => {
+    history.replace("/causes");
+  });
 
   return (
     <S.Container>

@@ -59,17 +59,20 @@ function Navigation(): JSX.Element {
       iconOn: GivingIconOn,
       iconOff: GivingIconOff,
       title: t("givingPageTitle"),
-      event: "givingNavBtn_click",
+      event: "giveCauseCard_click",
+      params: { from: "header" },
       menuOptions: [
         {
           path: "/promoters/support-cause",
           title: t("communityMenuItem"),
-          event: "communityMenuBtn_click",
+          event: "giveCauseCard_click",
+          params: { from: "subheader" },
         },
         {
           path: "/promoters/support-non-profit",
           title: t("directDonationMenuItem"),
-          event: "directDonationMenuBtn_click",
+          event: "giveNonProfitCard_click",
+          params: { from: "subheader" },
         },
       ],
     },
@@ -83,8 +86,8 @@ function Navigation(): JSX.Element {
     },
   ];
 
-  const handleEvent = (event: string) => {
-    logEvent(event);
+  const handleEvent = (event: string, params = {}) => {
+    logEvent(event, params);
   };
 
   return (
@@ -92,7 +95,7 @@ function Navigation(): JSX.Element {
       {routes.map((route) => (
         <NavigationLink
           key={route.path}
-          onClick={() => handleEvent(route.event)}
+          onClick={() => handleEvent(route.event, route.params)}
           to={{ pathname: route.path, search }}
           icon={isInPath(route) ? route.iconOn : route.iconOff}
           title={route.title}
@@ -100,7 +103,7 @@ function Navigation(): JSX.Element {
           showActivityIndicatorCircle={route.showActivityIndicatorCircle}
           menuOptions={route?.menuOptions?.map((option) => ({
             ...option,
-            onClick: () => handleEvent(option.event),
+            onClick: () => handleEvent(option.event, option.params),
             search,
           }))}
         />

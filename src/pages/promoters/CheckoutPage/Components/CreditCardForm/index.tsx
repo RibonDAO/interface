@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
+import { useCurrentUser } from "contexts/currentUserContext";
 import InputText from "components/atomics/inputs/InputText";
 import Button from "components/atomics/buttons/Button";
 import InputAutoComplete from "components/atomics/inputs/InputAutoComplete";
@@ -28,6 +29,8 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
 
   const maxTaxIdLength = () => (brazilFormatForTaxId ? 14 : 11);
 
+  const { signedIn } = useCurrentUser();
+
   const {
     name,
     setName,
@@ -47,7 +50,19 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
     setState,
     taxId,
     setTaxId,
+    email,
+    setEmail,
   } = useCardPaymentInformation();
+
+  const validTaxId = () => {
+    if (!showFiscalFields) return true;
+
+    const maxLength = maxTaxIdLength();
+
+    if (brazilFormatForTaxId) return taxId.length === maxLength;
+
+    return taxId.length > 4 && taxId.length <= maxLength;
+  };
 
   function isBrazil(countryName: string) {
     return countryName === t("brazilName");
@@ -61,22 +76,36 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
   const { currentLang } = useLanguage();
 
   useEffect(() => {
+    const fiscalFields = showFiscalFields
+      ? city && state && country && validTaxId()
+      : true;
+
     setButtonDisabled(
       !(
         number &&
         name &&
+        email &&
         !expirationDate.includes("_") &&
         cvv.length >= 3 &&
-        city &&
-        state &&
-        country &&
-        taxId.length === maxTaxIdLength()
+        fiscalFields
       ),
     );
-  }, [number, name, expirationDate, cvv, country, state, city, taxId]);
+  }, [number, name, expirationDate, cvv, country, state, city, taxId, email]);
 
   return (
     <S.Container>
+      {!signedIn && (
+        <InputText
+          name="email"
+          type="email"
+          label={{ text: field("email") }}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          data-testid="email"
+          required
+        />
+      )}
+
       {showFiscalFields && (
         <>
           <InputAutoComplete
@@ -91,7 +120,9 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
           <S.Half>
             <InputText
               name="city"
-              label={{ text: field("city") }}
+              label={{
+                text: field("city"),
+              }}
               value={city}
               onChange={(e) => setCity(e.target.value)}
               data-testid="city"
@@ -112,9 +143,12 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
             name={taxId}
             mask={maskForTaxId(country, currentLang)}
             maskPlaceholder=""
-            label={{ text: field("taxId") }}
+            label={{
+              text: brazilFormatForTaxId ? field("cpf") : field("taxId"),
+            }}
             value={taxId}
             onChange={(e) => setTaxId(e.target.value)}
+            maxLength={maxTaxIdLength()}
             data-testid="taxId"
             required
           />
@@ -164,11 +198,13 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
       </S.Half>
       <S.DonateButtonContainer>
         <Button
+          type="button"
           onClick={onSubmit}
           text={t("confirmPayment")}
           softDisabled={false}
           disabled={buttonDisabled}
           backgroundColor={theme.colors.brand.primary[600]}
+          data-testid="confirmPayment"
         />
       </S.DonateButtonContainer>
     </S.Container>

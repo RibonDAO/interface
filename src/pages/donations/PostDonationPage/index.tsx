@@ -5,7 +5,7 @@ import { NonProfit } from "@ribon.io/shared/types";
 import useNavigation from "hooks/useNavigation";
 import VolunteerActivismGreen from "assets/icons/volunteer-activism-green.svg";
 import Rocket from "assets/icons/rocket.svg";
-import { logEvent, newLogEvent } from "lib/events";
+import { logEvent } from "lib/events";
 import { useImpactConversion } from "hooks/useImpactConversion";
 import { formatPrice } from "lib/formatters/currencyFormatter";
 import { shouldRenderVariation } from "lib/handleVariation";
@@ -77,7 +77,10 @@ function PostDonationPage(): JSX.Element {
     if (isVariation()) {
       handleClickedDonationButton("cause");
     } else {
-      newLogEvent("click", "P8_causeCard", { causeId: nonProfit.cause.id });
+      logEvent("giveCauseCard_click", {
+        causeId: nonProfit.cause.id,
+        from: "givePosDonation_page",
+      });
       navigateTo({
         pathname: "/promoters/support-cause",
         state: {
@@ -91,7 +94,10 @@ function PostDonationPage(): JSX.Element {
     if (isVariation()) {
       handleClickedDonationButton("nonProfit");
     } else {
-      newLogEvent("click", "P8_nonProfitCard", { nonProfitId: nonProfit.id });
+      logEvent("giveNonProfitCard_click", {
+        nonProfitId: nonProfit.id,
+        from: "givePosDonation_page",
+      });
       navigateTo({
         pathname: "/promoters/support-non-profit",
         state: {

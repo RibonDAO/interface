@@ -152,6 +152,7 @@
         "userSupportText": "User Support",
         "userSupportLink": "https://api.whatsapp.com/send/?phone=554896605461&text=Hii+Ribon%2C+let’s+talk%3F+&type=phone_number&app_absent=0"
       },
+
       "getTheAppItem": {
         "getTheAppText": "Get the app"
       },
@@ -170,6 +171,11 @@
     },
     "walletLayout": {
       "connectWallet": "Connect"
+    },
+    "userSupportBanner": {
+      "title": "Access user support",
+      "text": "Questions, ideias, refunds. We’re here!",
+      "userSupportLink": "https://api.whatsapp.com/send/?phone=554896605461&text=Hii+Ribon%2C+let’s+talk%3F+&type=phone_number&app_absent=0"
     }
   },
   "impactPage": {
@@ -368,10 +374,12 @@
         "googlePay": "Google Pay",
         "applePay": "Apple Pay",
         "creditCardFields": {
+          "email": "E-mail",
           "country": "Country",
           "state": "State",
           "city": "City",
           "taxId": "Tax ID",
+          "cpf": "CPF",
           "number": "Card number",
           "name": "Cardholder name",
           "expirationDate": "Expiration date",

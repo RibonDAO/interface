@@ -14,7 +14,7 @@ const { tertiary } = theme.colors.brand;
 
 type Props = {
   nonProfit: NonProfit | undefined;
-  onOfferChange: (offer: Offer) => void;
+  onOfferChange: (offer: Offer, index?: number) => void;
 };
 
 const CURRENT_OFFER_INDEX_KEY = "CURRENT_OFFER_INDEX_KEY";
@@ -50,7 +50,13 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
   }, [offers]);
 
   useEffect(() => {
-    if (currentOffer) onOfferChange(currentOffer);
+    if (currentOffer) {
+      const offerIndex = offers.findIndex(
+        (offer) => offer.id === currentOffer.id,
+      );
+
+      onOfferChange(currentOffer, offerIndex);
+    }
   }, [currentOffer]);
 
   useEffect(() => {

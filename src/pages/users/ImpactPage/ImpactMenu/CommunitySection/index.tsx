@@ -28,6 +28,9 @@ function CommunitySection() {
   });
 
   const handleEmptyButtonClick = () => {
+    logEvent("giveCauseCard_click", {
+      from: "impactEmptyState",
+    });
     navigateTo("/promoters/support-cause");
   };
 

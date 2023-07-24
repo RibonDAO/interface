@@ -31,6 +31,7 @@
     "keen-slider": "^6.7.0",
     "lottie-colorify": "^0.8.0",
     "mixpanel-browser": "^2.45.0",
+    "polished": "^4.2.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-howler": "^5.2.0",
@@ -53,7 +54,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "start-debug": "REACT_APP_DEBUG_VIEW=true craco start",
+    "start-debug": "REACT_APP_DEBUG_VIEW=true REACT_APP_GROWTHBOOK_DEV_MODE=true craco start",
     "build": "craco build",
     "test": "craco test",
     "testCoverage": "craco test --coverage --watchAll=false",

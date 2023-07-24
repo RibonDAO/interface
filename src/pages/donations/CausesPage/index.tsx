@@ -19,7 +19,6 @@ import Spinner from "components/atomics/Spinner";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import useVoucher from "hooks/useVoucher";
 import { useCausesContext } from "contexts/causesContext";
-import UserSupportSection from "pages/promoters/SupportTreasurePage/CardSection/UserSupportSection";
 import { track } from "@amplitude/analytics-browser";
 import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
@@ -29,6 +28,7 @@ import extractUrlValue from "lib/extractUrlValue";
 import { PLATFORM } from "utils/constants";
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import PromoterCta from "pages/donations/CausesPage/PromoterCta";
+import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import NonProfitsList from "./NonProfitsList";
@@ -237,7 +237,7 @@ function CausesPage(): JSX.Element {
             />
           </S.TooltipSection>
         )}
-        <UserSupportSection />
+        <UserSupportBanner from="donateTickets_page" />
       </S.BodyContainer>
     </S.Container>
   );

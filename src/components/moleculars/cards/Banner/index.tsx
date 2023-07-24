@@ -3,7 +3,7 @@ import Arrow from "../../../atomics/arrows/Arrow";
 import Icon, { IconProps } from "../../../atomics/Icon";
 import * as S from "./styles";
 
-const { primary } = theme.colors.brand;
+const { primary, secondary } = theme.colors.brand;
 
 export type TitleProps = {
   text: string;
@@ -18,6 +18,7 @@ export type Props = {
   text?: string;
   textColor?: string;
   cardBackground?: string | undefined;
+  backgroundColor?: string | undefined;
   children?: JSX.Element | JSX.Element[];
   arrowLinkColor?: string;
   onArrowClick?: () => void;
@@ -30,6 +31,7 @@ function Banner({
   text,
   textColor,
   cardBackground,
+  backgroundColor = secondary[100],
   children,
   arrowLinkColor = primary[800],
   onArrowClick,
@@ -43,6 +45,7 @@ function Banner({
   return (
     <S.Container
       backgroundImage={cardBackground}
+      backgroundColor={backgroundColor}
       flexDirection={flexDirection}
       onClick={handleClick}
     >

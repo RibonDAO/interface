@@ -5,7 +5,7 @@ name: Staging Deploy
 "on":
   push:
     branches:
-      - main
+      - staging
 env:
   REACT_APP_AMPLITUDE_API_KEY: ${{ secrets.REACT_APP_AMPLITUDE_API_KEY }}
   REACT_APP_FIREBASE_API_KEY: ${{ secrets.REACT_APP_FIREBASE_API_KEY }}

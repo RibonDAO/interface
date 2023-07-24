@@ -12,9 +12,9 @@ import { useCryptoPayment } from "contexts/cryptoPaymentContext";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import theme from "styles/theme";
 import Intersection from "assets/images/intersection-image.svg";
+import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import SupportImage from "../assets/support-image.png";
 import * as S from "../styles";
-import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
 import SelectCryptoOfferSection from "./SelectCryptoOfferSection";
 
 type LocationStateType = {
@@ -98,7 +98,12 @@ function CryptoPage(): JSX.Element {
     }
 
     connectWallet();
-    logEvent("treasureComCicleBtn_click");
+    logEvent("giveCauseBtn_start", {
+      from: "giveCauseCrypto_page",
+      causeId: cause?.id,
+      amount,
+      currency: tokenSymbol,
+    });
   };
 
   const handleCommunityAddClick = () => {
@@ -180,7 +185,7 @@ function CryptoPage(): JSX.Element {
           />
           <S.RefundText>{t("refundText")}</S.RefundText>
         </S.DonateContainer>
-        <UserSupportSection />
+        <UserSupportBanner from="giveCauseCrypto_page" />
       </S.ContentContainer>
 
       <S.BackgroundImage src={IntersectBackground} />

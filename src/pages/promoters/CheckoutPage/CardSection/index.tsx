@@ -11,6 +11,7 @@ import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useModal } from "hooks/modalHooks/useModal";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import { PLATFORM } from "utils/constants";
+import { logEvent } from "lib/events";
 import CreditCardForm from "../Components/CreditCardForm";
 import PriceSelection from "../Components/PriceSelection";
 import { PriceSelectionLoader } from "../Components/PriceSelection/loader";
@@ -29,14 +30,23 @@ export default function CardSection() {
 
   const currentPayable = usePayable(target, targetId);
 
-  const { handleSubmit, setOfferId, setCurrentCoin, setCause, setNonProfit } =
-    useCardPaymentInformation();
+  const {
+    handleSubmit,
+    setOfferId,
+    setCurrentCoin,
+    setCause,
+    setNonProfit,
+    setFlow,
+  } = useCardPaymentInformation();
 
   const {
     offers,
     refetch: refetchOffers,
     isLoading: isLoadingOffers,
-  } = useOffers(Currencies[currency as keyof typeof Currencies], false);
+  } = useOffers(
+    Currencies[currency?.toUpperCase() as keyof typeof Currencies],
+    false,
+  );
 
   const [currentOffer, setCurrentOffer] = useState<Offer>();
   const { updateLocationSearch } = useLocationSearch();
@@ -83,14 +93,37 @@ export default function CardSection() {
     props: offersModalProps,
   });
 
+  useEffect(() => {
+    if (currentOffer) setOfferId(currentOffer.id);
+  }, [currentOffer]);
+
+  useEffect(() => {
+    if (!currentPayable) return;
+
+    if (target === "cause") {
+      setNonProfit(undefined);
+      setCause(currentPayable as Cause);
+      setFlow("cause");
+    } else if (target === "non_profit") {
+      setNonProfit(currentPayable as NonProfit);
+      setCause((currentPayable as NonProfit).cause as Cause);
+      setFlow("nonProfit");
+    }
+  }, [currentPayable]);
+
+  useEffect(() => {
+    if (currentOffer)
+      setCurrentCoin(
+        Currencies[currency?.toUpperCase() as keyof typeof Currencies],
+      );
+  }, [currentOffer]);
+
   const handlePayment = () => {
     if (!currentOffer) return;
-
-    setOfferId(currentOffer?.id);
-    setCurrentCoin(Currencies[currency as keyof typeof Currencies]);
-
-    if (target === "cause") setCause(currentPayable as Cause);
-    if (target === "nonProfit") setNonProfit(currentPayable as NonProfit);
+    if (targetId)
+      logEvent("confirmPaymentFormBtn_click", {
+        [target === "cause" ? "causeId" : "nonProfitId"]: targetId,
+      });
 
     handleSubmit(PLATFORM);
   };
@@ -105,6 +138,9 @@ export default function CardSection() {
           showFiscalFields={currentOffer?.gateway === "stripe"}
         />
       ),
+      onClick: () => {
+        logEvent("selectCreditCard_click");
+      },
     },
   ];
 

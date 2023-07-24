@@ -10,6 +10,7 @@ export type Props = {
     path: LocationDescriptor;
     title: string;
     search?: string;
+    onClick?: () => void;
   }[];
 };
 
@@ -67,6 +68,7 @@ function AccordionMenu({ menuOptions }: Props): JSX.Element {
             $active={isButtonActive(option.path)}
             key={index.toString(10)}
             to={{ pathname: option.path.toString(), search: option.search }}
+            onClick={option.onClick}
           >
             {option.title}
           </S.MenuItem>

@@ -72,6 +72,6 @@ export function logPageView(
   const pageName = eventPageTransalation(urlName + query + flow);
 
   if (pageName) {
-    newLogEvent("view", pageName, params);
+    logEvent(`${pageName}_view`, params);
   }
 }

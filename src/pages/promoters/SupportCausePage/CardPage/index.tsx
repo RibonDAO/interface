@@ -17,8 +17,8 @@ import theme from "styles/theme";
 import { useLocation } from "react-router-dom";
 import Intersection from "assets/images/intersection-image.svg";
 import extractUrlValue from "lib/extractUrlValue";
+import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import * as S from "../styles";
-import UserSupportSection from "../../SupportTreasurePage/CardSection/UserSupportSection";
 import SelectOfferSection from "./SelectOfferSection";
 
 type LocationStateType = {
@@ -29,12 +29,15 @@ function SupportCausePage(): JSX.Element {
   const { secondary } = theme.colors.brand;
   const { navigateTo } = useNavigation();
   const [currentOffer, setCurrentOffer] = useState<Offer>(offerFactory());
+  const [currentOfferIndex, setCurrentOfferIndex] = useState(0);
   const { cause, setCause, setOfferId, setFlow } = useCardPaymentInformation();
 
   const { causes } = useCauses();
   const { state, search } = useLocation<LocationStateType>();
 
   const platform = extractUrlValue("platform", search);
+
+  const isRunningTheNewCheckoutForm = true;
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportCausePage",
@@ -62,9 +65,14 @@ function SupportCausePage(): JSX.Element {
     setCause(causeClicked);
   };
 
-  const handleDonateClick = () => {
+  const navigateToPayment = () => {
     setFlow("cause");
-    logEvent("treasureComCicleBtn_click");
+    logEvent("giveCauseBtn_start", {
+      from: "giveCauseCC_page",
+      causeId: cause?.id,
+      amount: currentOffer.priceValue,
+      currency: currentOffer.currency,
+    });
     navigateTo({
       pathname: "/promoters/payment",
       state: {
@@ -74,6 +82,34 @@ function SupportCausePage(): JSX.Element {
         platform,
       },
     });
+  };
+
+  const navigateToCheckout = () => {
+    logEvent("nonProfitComCicleBtn_click");
+    setFlow("nonProfit");
+
+    if (!cause) return;
+
+    const searchParams = new URLSearchParams({
+      offer: currentOfferIndex.toString(),
+      target: "cause",
+      target_id: cause.id.toString(),
+      currency: currentOffer.currency.toUpperCase(),
+    });
+
+    navigateTo({
+      pathname: "/promoters/checkout",
+      search: searchParams.toString(),
+    });
+  };
+
+  const handleDonateClick = () => {
+    if (isRunningTheNewCheckoutForm) {
+      navigateToCheckout();
+      return;
+    }
+
+    navigateToPayment();
   };
 
   const handleCommunityAddClick = () => {
@@ -94,8 +130,9 @@ function SupportCausePage(): JSX.Element {
     )}`;
   };
 
-  const handleOfferChange = (offer: Offer) => {
+  const handleOfferChange = (offer: Offer, index?: number) => {
     setCurrentOffer(offer);
+    setCurrentOfferIndex(index || 0);
     setOfferId(offer.id);
   };
 
@@ -148,7 +185,7 @@ function SupportCausePage(): JSX.Element {
             onClick={handleDonateClick}
           />
         </S.DonateContainer>
-        <UserSupportSection />
+        <UserSupportBanner from="giveCauseCC_page" />
       </S.ContentContainer>
 
       <S.BackgroundImage src={IntersectBackground} />

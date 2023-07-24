@@ -368,6 +368,7 @@
         "googlePay": "Google Pay",
         "applePay": "Apple Pay",
         "creditCardFields": {
+          "email": "E-mail",
           "country": "Country",
           "state": "State",
           "city": "City",

@@ -189,6 +189,22 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
+      <Route
+        path="/promoters/support-cause-flow"
+        component={() => {
+          window.location.replace("https://projetos.ribon.io/promotor-causa");
+          return null;
+        }}
+      />
+
+      <Route
+        path="/promoters/support-cause-dash-flow"
+        component={() => {
+          window.location.replace("https://projetos.ribon.io/promotor-dash");
+          return null;
+        }}
+      />
+
       <Route path="/promoters/support-treasure/billing-information" exact>
         <Suspense fallback={<div />}>
           <WalletProvider>

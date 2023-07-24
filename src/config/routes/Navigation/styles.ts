@@ -78,21 +78,22 @@ export const RedBall = styled.span`
 `;
 
 export const NewLabel = styled.span`
-  display: flex;
   width: 28px;
   height: 16px;
   padding: 2px 4px;
+  border-radius: 30px;
+  position: absolute;
+  top: -8px;
+  right: 0;
+  display: flex;
+  gap: 8px;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  position: absolute;
-  right: 0;
-  top: -8px;
-  border-radius: 30px;
-  ${defaultBodyXsRegular};
+  ${defaultBodyXsRegular}
+
   font-size: 8px;
-  color: ${({ theme }) => theme.colors.brand.primary[900]};
   background-color: ${({ theme }) => theme.colors.feedback.success[50]};
+  color: ${({ theme }) => theme.colors.brand.primary[900]};
 `;
 
 export const IconContainer = styled.div`

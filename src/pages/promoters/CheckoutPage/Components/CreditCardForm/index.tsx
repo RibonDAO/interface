@@ -204,6 +204,7 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
           softDisabled={false}
           disabled={buttonDisabled}
           backgroundColor={theme.colors.brand.primary[600]}
+          data-testid="confirmPayment"
         />
       </S.DonateButtonContainer>
     </S.Container>

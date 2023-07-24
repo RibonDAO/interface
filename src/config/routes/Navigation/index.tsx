@@ -60,6 +60,7 @@ function Navigation(): JSX.Element {
       iconOff: GivingIconOff,
       title: t("givingPageTitle"),
       event: "giveCauseCard_click",
+      showNewLabel: true,
       params: { from: "header" },
       menuOptions: [
         {
@@ -101,6 +102,7 @@ function Navigation(): JSX.Element {
           title={route.title}
           enabled={isInPath(route)}
           showActivityIndicatorCircle={route.showActivityIndicatorCircle}
+          showNewLabel={route.showNewLabel}
           menuOptions={route?.menuOptions?.map((option) => ({
             ...option,
             onClick: () => handleEvent(option.event, option.params),

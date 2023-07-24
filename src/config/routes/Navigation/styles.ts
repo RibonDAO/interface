@@ -77,6 +77,24 @@ export const RedBall = styled.span`
   background-color: ${({ theme }) => theme.colors.feedback.error[500]};
 `;
 
+export const NewLabel = styled.span`
+  display: flex;
+  width: 28px;
+  height: 16px;
+  padding: 2px 4px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: absolute;
+  right: 0;
+  top: -8px;
+  border-radius: 30px;
+  ${defaultBodyXsRegular};
+  font-size: 8px;
+  color: ${({ theme }) => theme.colors.brand.primary[900]};
+  background-color: ${({ theme }) => theme.colors.feedback.success[50]};
+`;
+
 export const IconContainer = styled.div`
   position: relative;
   display: flex;

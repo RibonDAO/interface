@@ -25,7 +25,6 @@ function AppDownloadPage() {
     state: { nonProfit, showContribute },
   } = useLocation<LocationStateType>();
 
-  const { navigateBack } = useNavigation();
   const { navigateTo } = useNavigation();
 
   const comesFromPostDonation = !!nonProfit;
@@ -37,13 +36,8 @@ function AppDownloadPage() {
           pathname: "/post-donation",
           state: { nonProfit },
         });
-      else
-        navigateTo({
-          pathname: "/causes",
-        });
-    } else {
-      navigateBack();
     }
+    navigateTo("/causes");
   };
 
   const handleOnClickFirstButton = () => {

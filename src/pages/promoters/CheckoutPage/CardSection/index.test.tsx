@@ -47,6 +47,7 @@ describe("CardSection", () => {
     beforeEach(async () => {
       renderComponent(<CardSection />, {
         cardPaymentProviderValue: {
+          email: "mail@ribon.io",
           country: "Brasil",
           city: "Brasilia",
           name: "John Doe",

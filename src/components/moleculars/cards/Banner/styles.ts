@@ -14,8 +14,7 @@ export const Container = styled.div<{
   backgroundColor?: string;
 }>`
   width: 100%;
-  max-width: 520px;
-  min-height: 128px;
+  max-width: 472px;
   padding: ${({ theme }) => theme.spacing(16, 16, 16)};
   border-radius: 8px;
   display: flex;

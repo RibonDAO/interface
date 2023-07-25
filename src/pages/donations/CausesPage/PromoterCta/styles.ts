@@ -6,12 +6,26 @@ import {
 } from "styles/typography/default";
 import Button from "components/atomics/buttons/Button";
 
-export const OuterContainer = styled.div`
+export const OuterContainer = styled.div<{
+  backgroundImage?: string;
+}>`
+  width: 100%;
+  max-width: 520px;
+  min-height: 128px;
+  padding: ${({ theme }) => theme.spacing(24, 32, 24, 32)};
+  border-radius: 8px;
+  display: flex;
   margin-bottom: ${({ theme }) => theme.spacing(16)};
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: ${({ theme }) => theme.colors.brand.primary[900]};
+  background-image: ${({ backgroundImage }) => `url(${backgroundImage})`};
+  background-position: right;
+  background-size: cover;
+  background-repeat: no-repeat;
 `;
 export const Container = styled.div`
   width: 100%;
-  padding: ${({ theme }) => theme.spacing(0, 16, 0, 16)};
   position: relative;
   display: flex;
   flex-direction: column;

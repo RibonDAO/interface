@@ -94,8 +94,9 @@
       "causesPageTitle": "Tickets",
       "forYouPageTitle": "For you",
       "givingPageTitle": "Giving",
-      "communityMenuItem": "Community",
-      "directDonationMenuItem": "Direct donation"
+      "communityMenuItem": "Become a promoter",
+      "directDonationMenuItem": "Direct donation",
+      "new": "New"
     },
     "giveTicketPage": {
       "onboardingRibonTitle": "Welcome to Ribon!",

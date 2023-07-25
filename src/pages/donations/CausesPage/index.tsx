@@ -182,7 +182,7 @@ function CausesPage(): JSX.Element {
     <S.Container>
       {!isFirstAccess(signedIn) && <DownloadAppToast />}
       <ChooseCauseModal visible={chooseCauseModalVisible} />
-      <PromoterCta />
+      {!isFirstAccess(signedIn) && <PromoterCta />}
       <S.BodyContainer>
         <S.TitleContainer>
           <S.Title>{t("pageTitle")}</S.Title>

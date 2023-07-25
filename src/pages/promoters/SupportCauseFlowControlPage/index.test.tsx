@@ -20,7 +20,7 @@ describe("SupportCauseFlowControlPage", () => {
       });
     });
 
-    it("renders navigates to support cause", () => {
+    it("navigates to support cause", () => {
       renderComponent(<SupportCauseFlowControlPage />);
 
       expectPageToNavigateTo("/promoters/support-cause");
@@ -36,7 +36,7 @@ describe("SupportCauseFlowControlPage", () => {
       });
     });
 
-    it("renders navigates to cause landing page", () => {
+    it("navigates to cause landing page", () => {
       renderComponent(<SupportCauseFlowControlPage />);
 
       expect(window.location.replace).toHaveBeenCalledWith(
@@ -54,7 +54,7 @@ describe("SupportCauseFlowControlPage", () => {
       });
     });
 
-    it("renders navigates to dash landing page", () => {
+    it("navigates to dash landing page", () => {
       renderComponent(<SupportCauseFlowControlPage />);
 
       expect(window.location.replace).toHaveBeenCalledWith(

@@ -25,6 +25,7 @@ function PriceSelection({
   const { cardGivingFees } = useCardGivingFees(
     currentOffer?.priceValue || 0,
     currentOffer?.currency.toUpperCase() as Currencies,
+    currentOffer?.gateway || "stripe_global",
   );
 
   const price = currentOffer?.price || `${tokenSymbol} ${priceValue}`;

@@ -94,8 +94,9 @@
       "causesPageTitle": "Tickets",
       "forYouPageTitle": "Para você",
       "givingPageTitle": "Contribuir",
-      "communityMenuItem": "Comunidade",
-      "directDonationMenuItem": "Doação direta"
+      "communityMenuItem": "Seja um promotor",
+      "directDonationMenuItem": "Doação direta",
+      "new": "Novo"
     },
     "giveTicketPage": {
       "onboardingRibonTitle": "Que bom ter você na Ribon!",
@@ -451,7 +452,9 @@
       "tasks": {
         "donate_ticket": "Doar ticket",
         "download_app": "Baixar o app",
-        "make_contribution": "Fazer uma doação paga"
+        "make_contribution": "Fazer uma doação paga",
+        "start_contribution": "Entenda o que é ser um promotor",
+        "become_a_promoter": "Vire o promotor de uma causa"
       },
       "cardsStatisticsSection": {
         "dailyTasksTitle": "tarefas diárias completas",

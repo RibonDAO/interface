@@ -25,7 +25,6 @@ function Navigation(): JSX.Element {
   const { search } = location;
   const { hasCompletedATask } = useTasksContext();
   const { newContributionActivity } = useContributionActivity();
-
   function isInPath(route: any): boolean {
     const { menuOptions, path } = route;
 
@@ -55,15 +54,16 @@ function Navigation(): JSX.Element {
       showActivityIndicatorCircle: hasCompletedATask,
     },
     {
-      path: "/promoters/support-cause",
+      path: "/promoters/support-cause-control-flow",
       iconOn: GivingIconOn,
       iconOff: GivingIconOff,
       title: t("givingPageTitle"),
       event: "giveCauseCard_click",
+      showNewLabel: true,
       params: { from: "header" },
       menuOptions: [
         {
-          path: "/promoters/support-cause",
+          path: "/promoters/support-cause-control-flow",
           title: t("communityMenuItem"),
           event: "giveCauseCard_click",
           params: { from: "subheader" },
@@ -101,6 +101,7 @@ function Navigation(): JSX.Element {
           title={route.title}
           enabled={isInPath(route)}
           showActivityIndicatorCircle={route.showActivityIndicatorCircle}
+          showNewLabel={route.showNewLabel}
           menuOptions={route?.menuOptions?.map((option) => ({
             ...option,
             onClick: () => handleEvent(option.event, option.params),

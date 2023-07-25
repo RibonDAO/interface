@@ -64,7 +64,7 @@ export const TASKS = [
     title: "start_contribution",
     actions: ["navigate_to_contribution_page"],
     type: "daily",
-    navigationCallback: "/promoters/support-cause-flow",
+    navigationCallback: "/promoters/support-cause-control-flow",
     isVisible(this: Task) {
       return true;
     },

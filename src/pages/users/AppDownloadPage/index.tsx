@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { NonProfit } from "@ribon.io/shared";
 import { useEffect } from "react";
 import { newLogEvent } from "lib/events";
+import useAvoidBackButton from "hooks/useAvoidBackButton";
 import * as S from "./styles";
 import IllustrationMobile from "./assets/illustration-mobile.svg";
 import LeftImage from "./assets/left-image.svg";
@@ -49,6 +50,8 @@ function AppDownloadPage() {
     if (comesFromPostDonation)
       newLogEvent("view", "webDwnldCta", { from: "postDonation" });
   }, []);
+
+  useAvoidBackButton();
 
   return (
     <S.Container>

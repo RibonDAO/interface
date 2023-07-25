@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { NonProfit } from "@ribon.io/shared/types";
 import { useCurrentUser } from "contexts/currentUserContext";
 import SignedInSection from "pages/donations/ConfirmDonationPage/SignedInSection";
@@ -9,6 +9,7 @@ import DonatingSection from "pages/donations/ConfirmDonationPage/DonatingSection
 import useDonationFlow from "hooks/useDonationFlow";
 import useNavigation from "hooks/useNavigation";
 import SignInSection from "pages/donations/ConfirmDonationPage/SignInSection";
+import useAvoidBackButton from "hooks/useAvoidBackButton";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -22,7 +23,7 @@ function ConfirmDonationPage(): JSX.Element {
     state: { nonProfit },
   } = useLocation<LocationStateType>();
   const { handleDonate } = useDonationFlow();
-  const { navigateTo, history } = useNavigation();
+  const { navigateTo } = useNavigation();
 
   const onContinue = async (email: string) => {
     setDonationInProgress(true);
@@ -48,11 +49,7 @@ function ConfirmDonationPage(): JSX.Element {
     }
   }, [donationSucceeded]);
 
-  useEffect(() => {
-    window.addEventListener("popstate", () => {
-      history.replace("/causes");
-    });
-  }, []);
+  useAvoidBackButton();
 
   return (
     <S.Container>

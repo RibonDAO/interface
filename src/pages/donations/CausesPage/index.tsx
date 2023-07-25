@@ -28,7 +28,7 @@ import extractUrlValue from "lib/extractUrlValue";
 import { PLATFORM } from "utils/constants";
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
-import useNavigation from "hooks/useNavigation";
+import useAvoidBackButton from "hooks/useAvoidBackButton";
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import NonProfitsList from "./NonProfitsList";
@@ -81,7 +81,6 @@ function CausesPage(): JSX.Element {
   const { nonProfits, isLoading } = useFreeDonationNonProfits();
   const { showReceiveTicketToast } = useReceiveTicketToast();
   const { signedIn, currentUser } = useCurrentUser();
-  const { history } = useNavigation();
 
   const externalId = extractUrlValue("external_id", search);
   const { canDonate, refetch: refetchCanDonate } = useCanDonate(
@@ -120,12 +119,6 @@ function CausesPage(): JSX.Element {
 
   useEffect(() => {
     track("Cause Page View");
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("popstate", () => {
-      history.replace("/causes");
-    });
   }, []);
 
   useEffect(() => {
@@ -187,6 +180,8 @@ function CausesPage(): JSX.Element {
   ];
 
   const canDonateAndHasVoucher = canDonate && hasAvailableDonation();
+
+  useAvoidBackButton();
 
   return (
     <S.Container>

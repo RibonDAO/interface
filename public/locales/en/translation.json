@@ -58,6 +58,13 @@
         "descriptionContributionModal": "How about making a paid donation?",
         "buttonContributionModal": "Donate {{value}}",
         "textContributionModal": "Donate {{value}} to {{nonProfitName}}"
+      },
+      "promoterCta": {
+        "title": "Become a promoter of a Ribon cause",
+        "listItem1": "Engage more people and generate more donations",
+        "listItem2": "Real-time monitoring",
+        "label": "New",
+        "ctaButtonText": "Meet this feature"
       }
     },
     "storiesPage": {
@@ -94,8 +101,9 @@
       "causesPageTitle": "Tickets",
       "forYouPageTitle": "For you",
       "givingPageTitle": "Giving",
-      "communityMenuItem": "Community",
-      "directDonationMenuItem": "Direct donation"
+      "communityMenuItem": "Become a promoter",
+      "directDonationMenuItem": "Direct donation",
+      "new": "New"
     },
     "giveTicketPage": {
       "onboardingRibonTitle": "Welcome to Ribon!",
@@ -452,7 +460,9 @@
       "tasks": {
         "donate_ticket": "Donate ticket",
         "download_app": "Download app",
-        "make_contribution": "Make a paid donation"
+        "make_contribution": "Make a paid donation",
+        "start_contribution": "Understand what it means to be a promoter",
+        "become_a_promoter": "Become a promoter of a cause"
       },
       "cardsStatisticsSection": {
         "dailyTasksTitle": "daily tasks completed",

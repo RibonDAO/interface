@@ -1,7 +1,11 @@
 import styled from "styled-components";
-import { stylizedDisplayXs } from "styles/typography/stylized";
+import {
+  stylizedDisplayXs,
+  stylizedDisplayXxs,
+} from "styles/typography/stylized";
 import {
   defaultBodyMdRegular,
+  defaultBodySmRegular,
   defaultBodyXsRegular,
 } from "styles/typography/default";
 import Button from "components/atomics/buttons/Button";
@@ -32,16 +36,27 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  ${stylizedDisplayXs}
+  ${stylizedDisplayXxs}
 
+  max-width: 250px;
   margin-bottom: ${({ theme }) => theme.spacing(8)};
   color: ${({ theme }) => theme.colors.neutral[25]};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    ${stylizedDisplayXs}
+
+    max-width: 100%;
+  }
 `;
 
 export const Text = styled.span`
-  ${defaultBodyMdRegular}
+  ${defaultBodySmRegular}
 
   color: ${({ theme }) => theme.colors.neutral[25]};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    ${defaultBodyMdRegular}
+  }
 `;
 
 export const TextList = styled.li`

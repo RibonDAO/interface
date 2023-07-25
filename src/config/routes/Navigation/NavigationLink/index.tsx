@@ -1,6 +1,7 @@
 import { LocationDescriptor } from "history";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import FloatingSideMenu from "../NavigationMenus/FloatingSideMenu";
 import AccordionMenu from "../NavigationMenus/AccordionMenu";
 import * as S from "../styles";
@@ -18,6 +19,7 @@ export type Props = {
     onClick?: () => void;
   }[];
   showActivityIndicatorCircle?: boolean;
+  showNewLabel?: boolean;
 };
 
 function NavigationLink({
@@ -28,10 +30,14 @@ function NavigationLink({
   onClick,
   menuOptions,
   showActivityIndicatorCircle = false,
+  showNewLabel = false,
 }: Props): JSX.Element {
   const [menuVisible, setMenuVisible] = useState(false);
 
   const { isMobile } = useBreakpoint();
+  const { t } = useTranslation("translation", {
+    keyPrefix: "donations.menu",
+  });
 
   const renderFloatingSideMenu = () => {
     if (menuOptions && !isMobile) {
@@ -64,6 +70,7 @@ function NavigationLink({
           <S.IconContainer>
             <S.Icon src={icon} />
             {showActivityIndicatorCircle && <S.RedBall />}
+            {showNewLabel && <S.NewLabel>{t("new")}</S.NewLabel>}
           </S.IconContainer>
           <S.Title enabled={enabled}>{title}</S.Title>
         </S.StyledLink>

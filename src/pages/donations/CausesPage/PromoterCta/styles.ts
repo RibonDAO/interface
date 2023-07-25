@@ -44,6 +44,7 @@ export const Title = styled.h1`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     ${stylizedDisplayXs}
+
     max-width: 100%;
   }
 `;

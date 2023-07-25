@@ -451,7 +451,8 @@
       "tasks": {
         "donate_ticket": "Doar ticket",
         "download_app": "Baixar o app",
-        "make_contribution": "Fazer uma doação paga"
+        "make_contribution": "Fazer uma doação paga",
+        "start_contribution": "Entenda o que é ser um promotor"
       },
       "cardsStatisticsSection": {
         "dailyTasksTitle": "tarefas diárias completas",

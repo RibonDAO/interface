@@ -59,6 +59,16 @@ export const TASKS = [
       return true;
     },
   },
+  {
+    id: "4c436220-f94d-4113-b019-9d719c88ff8c",
+    title: "start_contribution",
+    actions: ["navigate_to_contribution_page"],
+    type: "daily",
+    navigationCallback: "/promoters/support-cause-flow",
+    isVisible(this: Task) {
+      return true;
+    },
+  },
 ];
 
 export const useTasks = (type: string) => {

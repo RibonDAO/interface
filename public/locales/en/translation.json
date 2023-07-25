@@ -452,7 +452,8 @@
       "tasks": {
         "donate_ticket": "Donate ticket",
         "download_app": "Download app",
-        "make_contribution": "Make a paid donation"
+        "make_contribution": "Make a paid donation",
+        "start_contribution": "Understand what it means to be a promoter"
       },
       "cardsStatisticsSection": {
         "dailyTasksTitle": "daily tasks completed",

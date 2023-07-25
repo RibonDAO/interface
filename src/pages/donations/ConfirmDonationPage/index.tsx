@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { NonProfit } from "@ribon.io/shared/types";
 import { useCurrentUser } from "contexts/currentUserContext";
 import SignedInSection from "pages/donations/ConfirmDonationPage/SignedInSection";
@@ -48,9 +48,11 @@ function ConfirmDonationPage(): JSX.Element {
     }
   }, [donationSucceeded]);
 
-  window.addEventListener("popstate", () => {
-    history.replace("/causes");
-  });
+  useEffect(() => {
+    window.addEventListener("popstate", () => {
+      history.replace("/causes");
+    });
+  }, []);
 
   return (
     <S.Container>

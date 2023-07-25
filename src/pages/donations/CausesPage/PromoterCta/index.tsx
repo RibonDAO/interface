@@ -2,6 +2,7 @@ import Banner from "components/moleculars/cards/Banner";
 import Background from "assets/images/background-green-shapes.svg";
 import { useTranslation } from "react-i18next";
 import { newLogEvent } from "lib/events";
+import { theme } from "@ribon.io/shared/styles";
 import * as S from "./styles";
 
 function PromoterCta() {
@@ -15,7 +16,10 @@ function PromoterCta() {
 
   return (
     <S.OuterContainer>
-      <Banner cardBackground={Background}>
+      <Banner
+        cardBackground={Background}
+        backgroundColor={theme.colors.brand.primary[900]}
+      >
         <S.Container>
           <S.LabelContainer>
             <S.Label>{t("label")}</S.Label>
@@ -27,10 +31,7 @@ function PromoterCta() {
           <S.TextList>
             <S.Text>{t("listItem2")}</S.Text>
           </S.TextList>
-          <S.CtaButton
-            text="Conhecer funcionalidade"
-            onClick={handleButtonClick}
-          />
+          <S.CtaButton text={t("ctaButtonText")} onClick={handleButtonClick} />
         </S.Container>
       </Banner>
     </S.OuterContainer>

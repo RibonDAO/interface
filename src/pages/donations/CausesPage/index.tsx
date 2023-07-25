@@ -34,7 +34,6 @@ import ContributionNotification from "./ContributionNotification";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
 import ChooseCauseModal from "./ChooseCauseModal";
-import ContributionSection from "./ContributionSection";
 
 function CausesPage(): JSX.Element {
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
@@ -179,8 +178,6 @@ function CausesPage(): JSX.Element {
     ...(activeCauses || []),
   ];
 
-  const canDonateAndHasVoucher = canDonate && hasAvailableDonation();
-
   return (
     <S.Container>
       {!isFirstAccess(signedIn) && <DownloadAppToast />}
@@ -201,7 +198,6 @@ function CausesPage(): JSX.Element {
           )}
         </S.TitleContainer>
         <ContributionNotification />
-        {!canDonateAndHasVoucher && <ContributionSection />}
         {!isFirstAccess(signedIn) && (
           <GroupButtons
             elements={causesWithAllFilter}

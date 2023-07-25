@@ -12,10 +12,10 @@ export const OuterContainer = styled.div<{
   width: 100%;
   max-width: 520px;
   min-height: 128px;
+  margin-bottom: ${({ theme }) => theme.spacing(16)};
   padding: ${({ theme }) => theme.spacing(24, 32, 24, 32)};
   border-radius: 8px;
   display: flex;
-  margin-bottom: ${({ theme }) => theme.spacing(16)};
   flex-direction: column;
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.colors.brand.primary[900]};

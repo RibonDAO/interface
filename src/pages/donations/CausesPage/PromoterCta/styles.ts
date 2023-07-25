@@ -67,7 +67,7 @@ export const LabelContainer = styled.div`
   border-radius: 30px;
   position: absolute;
   top: 0;
-  right: 16px;
+  right: 0;
   display: flex;
   align-items: center;
   justify-content: center;

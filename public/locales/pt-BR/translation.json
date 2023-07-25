@@ -101,8 +101,9 @@
       "causesPageTitle": "Tickets",
       "forYouPageTitle": "Para você",
       "givingPageTitle": "Contribuir",
-      "communityMenuItem": "Comunidade",
-      "directDonationMenuItem": "Doação direta"
+      "communityMenuItem": "Seja um promotor",
+      "directDonationMenuItem": "Doação direta",
+      "new": "Novo"
     },
     "giveTicketPage": {
       "onboardingRibonTitle": "Que bom ter você na Ribon!",

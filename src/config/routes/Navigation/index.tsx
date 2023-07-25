@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import { logEvent } from "lib/events";
 import { useTasksContext } from "contexts/tasksContext";
 import useContributionActivity from "hooks/useContributionActivity";
-import { useExperiment } from "@growthbook/growthbook-react";
 import CausesIconOn from "./assets/causesIconOn.svg";
 import CausesIconOff from "./assets/causesIconOff.svg";
 import ForYouIconOn from "./assets/forYouIconOn.svg";
@@ -26,11 +25,6 @@ function Navigation(): JSX.Element {
   const { search } = location;
   const { hasCompletedATask } = useTasksContext();
   const { newContributionActivity } = useContributionActivity();
-
-  const { value: variation } = useExperiment({
-    key: "support-cause-page-links",
-    variations: ["Control", "SupportDash", "SupportCause"],
-  });
   function isInPath(route: any): boolean {
     const { menuOptions, path } = route;
 
@@ -42,14 +36,6 @@ function Navigation(): JSX.Element {
 
     return [path].includes(location.pathname);
   }
-
-  const supportCausePath = () => {
-    if (variation === "SupportCause") return "/promoters/support-cause-flow";
-    if (variation === "SupportDash")
-      return "/promoters/support-cause-dash-flow";
-
-    return "/promoters/support-cause";
-  };
 
   const routes = [
     {
@@ -77,7 +63,7 @@ function Navigation(): JSX.Element {
       params: { from: "header" },
       menuOptions: [
         {
-          path: supportCausePath(),
+          path: "/promoters/support-cause-control-flow",
           title: t("communityMenuItem"),
           event: "giveCauseCard_click",
           params: { from: "subheader" },

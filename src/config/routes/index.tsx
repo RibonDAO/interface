@@ -32,6 +32,7 @@ import ReceiveTicketPage from "pages/donations/ReceiveTicketPage";
 import LoadingPage from "pages/donations/LoadingPage";
 import ContributionStatsPage from "pages/users/ContributionStatsPage";
 import ReturnToIntegrationPage from "pages/donations/ReturnToIntegrationPage";
+import SupportCauseFlowControlPage from "pages/promoters/SupportCauseFlowControlPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -189,21 +190,11 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
-      <Route
-        path="/promoters/support-cause-flow"
-        component={() => {
-          window.location.replace("https://projetos.ribon.io/promotor-causa");
-          return null;
-        }}
-      />
-
-      <Route
-        path="/promoters/support-cause-dash-flow"
-        component={() => {
-          window.location.replace("https://projetos.ribon.io/promotor-dash");
-          return null;
-        }}
-      />
+      <Route path="/promoters/support-cause-control-flow">
+        <Suspense fallback={<div />}>
+          <SupportCauseFlowControlPage />
+        </Suspense>
+      </Route>
 
       <Route path="/promoters/support-treasure/billing-information" exact>
         <Suspense fallback={<div />}>

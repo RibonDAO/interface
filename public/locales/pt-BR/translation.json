@@ -58,6 +58,13 @@
         "descriptionContributionModal": "Que tal fazer uma doação paga?",
         "buttonContributionModal": "Doe {{value}}",
         "textContributionModal": "Doe {{value}} para {{nonProfitName}}"
+      },
+      "promoterCta": {
+        "title": "Seja promotor de uma causa Ribon",
+        "listItem1": "Engaje mais pessoas e gere mais doações",
+        "listItem2": "Acompanhamento em tempo real",
+        "label": "Novo",
+        "ctaButtonText": "Conhecer funcionalidade"
       }
     },
     "storiesPage": {

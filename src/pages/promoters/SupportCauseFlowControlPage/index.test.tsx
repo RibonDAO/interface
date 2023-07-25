@@ -12,6 +12,18 @@ const defaultValues = {
   featureId: null,
 };
 describe("SupportCauseFlowControlPage", () => {
+  const mockFn = jest.fn();
+
+  it("registers a navigate_to_contribution_page action", () => {
+    renderComponent(<SupportCauseFlowControlPage />, {
+      tasksProviderValue: {
+        registerAction: mockFn,
+      },
+    });
+
+    expect(mockFn).toHaveBeenCalledWith("navigate_to_contribution_page");
+  });
+
   describe("when variation is control", () => {
     beforeEach(() => {
       jest.spyOn(growthbookReact, "useExperiment").mockReturnValue({

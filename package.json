@@ -187,7 +187,8 @@
       "!<rootDir>/src/config",
       "!<rootDir>/src/config/**/*.{ts,tsx}",
       "!<rootDir>/src/pages/promoters/SupportTreasurePage/**/*.{ts,tsx}",
-      "!<rootDir>/src/pages/promoters/TreasurePage/**/*.{ts,tsx}"
+      "!<rootDir>/src/pages/promoters/TreasurePage/**/*.{ts,tsx}",
+      "!<rootDir>/src/assets/fonts/**/*.{ts,tsx}"
     ],
     "coverageThreshold": {
       "global": {

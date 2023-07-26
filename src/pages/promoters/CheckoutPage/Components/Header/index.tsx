@@ -52,9 +52,17 @@ export default function Header() {
     props: currencyModalProps,
   });
 
+  const handleBackButton = () => {
+    if (target === "non_profit") {
+      return "/promoters/support-non-profit";
+    } else {
+      return "/promoters/support-cause";
+    }
+  };
+
   return (
     <S.Header>
-      <S.BackButton href="/">
+      <S.BackButton href={handleBackButton()}>
         <img src={ArrowLeftGreen} alt={t("back")} />
       </S.BackButton>
       <S.ChangeCurrencyButton onClick={() => showCurrencyModal()}>

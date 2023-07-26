@@ -5,7 +5,7 @@ import { theme } from "@ribon.io/shared/styles";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import BackgroundShapes from "assets/images/background-shapes.svg";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { newLogEvent } from "lib/events";
+import { logEvent } from "lib/events";
 import * as S from "./styles";
 
 type Props = {
@@ -20,7 +20,7 @@ function SignedInSection({ nonProfit, onContinue }: Props): JSX.Element {
   const { currentUser } = useCurrentUser();
 
   useEffect(() => {
-    newLogEvent("view", "P1_donateConfirmModal");
+    logEvent("P13_view");
   }, []);
 
   const handleButtonPress = () => {

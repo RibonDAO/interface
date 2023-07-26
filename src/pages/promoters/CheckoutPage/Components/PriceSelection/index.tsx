@@ -25,10 +25,11 @@ function PriceSelection({
   const { cardGivingFees } = useCardGivingFees(
     currentOffer?.priceValue || 0,
     currentOffer?.currency.toUpperCase() as Currencies,
+    currentOffer?.gateway || "stripe_global",
   );
 
   const price = currentOffer?.price || `${tokenSymbol} ${priceValue}`;
-  const hasAdditionalTaxes = currentOffer?.currency === "usd";
+  const hasAdditionalTaxes = currentOffer?.gateway === "stripe_global";
   const isCrypto = tokenSymbol && priceValue && !currentOffer;
 
   const renderGivingFees = () => {
@@ -46,7 +47,7 @@ function PriceSelection({
             {cardGivingFees?.serviceFees}
           </S.SmallTextInfo>
         </S.SmallTextInfoWrapper>
-        {!hasAdditionalTaxes && (
+        {hasAdditionalTaxes && (
           <S.SmallTextInfo>{t("additionalFeesText")}</S.SmallTextInfo>
         )}
       </>

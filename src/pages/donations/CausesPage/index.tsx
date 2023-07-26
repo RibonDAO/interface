@@ -27,6 +27,7 @@ import WarningIcon from "assets/icons/warning-icon.svg";
 import extractUrlValue from "lib/extractUrlValue";
 import { PLATFORM } from "utils/constants";
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
+import PromoterCta from "pages/donations/CausesPage/PromoterCta";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
 import * as S from "./styles";
@@ -34,7 +35,6 @@ import ContributionNotification from "./ContributionNotification";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
 import ChooseCauseModal from "./ChooseCauseModal";
-import ContributionSection from "./ContributionSection";
 
 function CausesPage(): JSX.Element {
   const integrationId = useIntegrationId();
@@ -184,15 +184,13 @@ function CausesPage(): JSX.Element {
     ...(causes || []),
   ];
 
-  const canDonateAndHasVoucher = canDonate && hasAvailableDonation();
-
   return (
     <S.Container>
       {!isFirstAccess(signedIn) && <DownloadAppToast />}
       {!isLoadingCauses && (
         <ChooseCauseModal visible={chooseCauseModalVisible} />
       )}
-
+      {!isFirstAccess(signedIn) && <PromoterCta />}
       <S.BodyContainer>
         <S.TitleContainer>
           <S.Title>{t("pageTitle")}</S.Title>
@@ -208,7 +206,6 @@ function CausesPage(): JSX.Element {
           )}
         </S.TitleContainer>
         <ContributionNotification />
-        {!canDonateAndHasVoucher && <ContributionSection />}
         {!isFirstAccess(signedIn) && (
           <GroupButtons
             elements={causesWithAllFilter}

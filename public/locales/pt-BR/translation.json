@@ -58,6 +58,13 @@
         "descriptionContributionModal": "Que tal fazer uma doação paga?",
         "buttonContributionModal": "Doe {{value}}",
         "textContributionModal": "Doe {{value}} para {{nonProfitName}}"
+      },
+      "promoterCta": {
+        "title": "Seja promotor de uma causa Ribon",
+        "listItem1": "Engaje mais pessoas e gere mais doações",
+        "listItem2": "Acompanhamento em tempo real",
+        "label": "Novo",
+        "ctaButtonText": "Conhecer funcionalidade"
       }
     },
     "storiesPage": {
@@ -94,8 +101,9 @@
       "causesPageTitle": "Tickets",
       "forYouPageTitle": "Para você",
       "givingPageTitle": "Contribuir",
-      "communityMenuItem": "Comunidade",
-      "directDonationMenuItem": "Doação direta"
+      "communityMenuItem": "Seja um promotor",
+      "directDonationMenuItem": "Doação direta",
+      "new": "Novo"
     },
     "giveTicketPage": {
       "onboardingRibonTitle": "Que bom ter você na Ribon!",
@@ -367,6 +375,7 @@
         "googlePay": "Google Pay",
         "applePay": "Apple Pay",
         "creditCardFields": {
+          "email": "E-mail",
           "country": "País",
           "state": "Estado",
           "city": "Cidade",
@@ -450,7 +459,9 @@
       "tasks": {
         "donate_ticket": "Doar ticket",
         "download_app": "Baixar o app",
-        "make_contribution": "Fazer uma doação paga"
+        "make_contribution": "Fazer uma doação paga",
+        "start_contribution": "Entenda o que é ser um promotor",
+        "become_a_promoter": "Vire o promotor de uma causa"
       },
       "cardsStatisticsSection": {
         "dailyTasksTitle": "tarefas diárias completas",

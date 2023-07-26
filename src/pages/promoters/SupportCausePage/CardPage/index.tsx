@@ -72,7 +72,12 @@ function SupportCausePage(): JSX.Element {
 
   const navigateToPayment = () => {
     setFlow("cause");
-    logEvent("treasureComCicleBtn_click");
+    logEvent("giveCauseBtn_start", {
+      from: "giveCauseCC_page",
+      causeId: cause?.id,
+      amount: currentOffer.priceValue,
+      currency: currentOffer.currency,
+    });
     navigateTo({
       pathname: "/promoters/payment",
       state: {

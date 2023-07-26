@@ -1,5 +1,8 @@
 import { renderComponent } from "config/testUtils";
-import { expectTextToBeInTheDocument } from "config/testUtils/expects";
+import {
+  expectTextToBeInTheDocument,
+  expectLogEventToHaveBeenCalledWith,
+} from "config/testUtils/expects";
 import CheckoutPage from ".";
 
 describe("CheckoutPage", () => {
@@ -7,5 +10,11 @@ describe("CheckoutPage", () => {
     renderComponent(<CheckoutPage />);
 
     expectTextToBeInTheDocument("Change currency");
+  });
+
+  it("logs the page view event", () => {
+    renderComponent(<CheckoutPage />);
+
+    expectLogEventToHaveBeenCalledWith("P23_view");
   });
 });

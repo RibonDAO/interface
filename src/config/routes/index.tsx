@@ -32,6 +32,7 @@ import ReceiveTicketPage from "pages/donations/ReceiveTicketPage";
 import LoadingPage from "pages/donations/LoadingPage";
 import ContributionStatsPage from "pages/users/ContributionStatsPage";
 import ReturnToIntegrationPage from "pages/donations/ReturnToIntegrationPage";
+import SupportCauseFlowControlPage from "pages/promoters/SupportCauseFlowControlPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -186,6 +187,12 @@ function RoutesComponent(): JSX.Element {
               </WalletLayout>
             </WalletProvider>
           </NetworkProvider>
+        </Suspense>
+      </Route>
+
+      <Route path="/promoters/support-cause-control-flow">
+        <Suspense fallback={<div />}>
+          <SupportCauseFlowControlPage />
         </Suspense>
       </Route>
 

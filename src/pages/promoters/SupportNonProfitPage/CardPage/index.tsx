@@ -63,7 +63,12 @@ function CardPage(): JSX.Element {
 
   const navigateToPayment = (nonProfit: NonProfit) => {
     setFlow("nonProfit");
-    logEvent("nonProfitComCicleBtn_click");
+    logEvent("giveNgoBtn_start", {
+      causeId: cause?.id,
+      amount: currentOffer.priceValue,
+      currency: currentOffer.currency,
+      from: "giveNonProfit_page",
+    });
     navigateTo({
       pathname: "/promoters/payment",
       state: {

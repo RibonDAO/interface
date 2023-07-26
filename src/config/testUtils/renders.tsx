@@ -44,6 +44,10 @@ import CauseDonationProvider, {
   CauseDonationContext,
   ICauseDonationContext,
 } from "contexts/causeDonationContext";
+import TasksProvider, {
+  ITasksContext,
+  TasksContext,
+} from "contexts/tasksContext";
 
 export interface RenderWithContextResult {
   component: RenderResult;
@@ -86,6 +90,7 @@ export type RenderComponentProps = {
   loadingOverlayValue?: Partial<ILoadingOverlayContext>;
   modalProviderValue?: Partial<IModalContext>;
   networkProviderValue?: Partial<INetworkContext>;
+  tasksProviderValue?: Partial<ITasksContext>;
   locationState?: Record<any, any>;
 };
 
@@ -102,6 +107,7 @@ function renderAllProviders(
     loadingOverlayValue = {},
     modalProviderValue = {},
     networkProviderValue = {},
+    tasksProviderValue = {},
   }: RenderComponentProps = {},
 ) {
   const historyObject = history;
@@ -145,7 +151,12 @@ function renderAllProviders(
                               NetworkProvider,
                               NetworkContext,
                               networkProviderValue,
-                              children,
+                              renderProvider(
+                                TasksProvider,
+                                TasksContext,
+                                tasksProviderValue,
+                                children,
+                              ),
                             ),
                           ),
                         ),

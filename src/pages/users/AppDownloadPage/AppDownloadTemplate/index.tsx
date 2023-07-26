@@ -1,9 +1,8 @@
 import useBreakpoint from "hooks/useBreakpoint";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { APP_LINK } from "utils/constants";
 import { useTranslation } from "react-i18next";
 import { ButtonProps } from "components/atomics/buttons/Button";
-import { logEvent } from "lib/events";
 import AppleBadge from "./assets/apple-badge.png";
 import GoogleBadge from "./assets/google-badge.png";
 import QRCode from "./assets/qrcodeapp.svg";
@@ -36,10 +35,6 @@ function AppDownloadTemplate({
   const [currentText, setCurrentText] = useState(t("copyText"));
   const [isCopy, setIsCopy] = useState(false);
   const { isMobile } = useBreakpoint();
-
-  useEffect(() => {
-    logEvent("P17_view");
-  }, []);
 
   function handleReturnLinkDevice() {
     return APP_LINK;

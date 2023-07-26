@@ -15,7 +15,8 @@ const events: any = {
     "/intro": "P10",
     "/tickets": "P11",
     "/return-to-integration": "P11",
-    "/forYou": "P15",
+    "/promoters/community-add": "P22",
+    "/app-download": "P17",
   },
 };
 

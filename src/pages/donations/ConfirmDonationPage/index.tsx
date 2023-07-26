@@ -9,6 +9,7 @@ import DonatingSection from "pages/donations/ConfirmDonationPage/DonatingSection
 import useDonationFlow from "hooks/useDonationFlow";
 import useNavigation from "hooks/useNavigation";
 import SignInSection from "pages/donations/ConfirmDonationPage/SignInSection";
+import useAvoidBackButton from "hooks/useAvoidBackButton";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -47,6 +48,8 @@ function ConfirmDonationPage(): JSX.Element {
       });
     }
   }, [donationSucceeded]);
+
+  useAvoidBackButton();
 
   return (
     <S.Container>

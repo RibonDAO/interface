@@ -1,7 +1,7 @@
 import { clickOn, renderComponent } from "config/testUtils";
 import { screen } from "@testing-library/react";
 import {
-  expectPageToNavigateBack,
+  expectPageToNavigateTo,
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
 
@@ -24,6 +24,6 @@ describe("App Download Page", () => {
   it("should go back when click in arrow", () => {
     clickOn(screen.getByAltText("back-arrow-button"));
 
-    expectPageToNavigateBack();
+    expectPageToNavigateTo("/causes");
   });
 });

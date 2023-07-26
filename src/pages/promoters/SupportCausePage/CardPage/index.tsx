@@ -20,6 +20,7 @@ import { useCausesContext } from "contexts/causesContext";
 import { SELECTED_CAUSE_ID } from "lib/sessionStorage/constants";
 import { setSessionStorageItem } from "lib/sessionStorage";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
+import { useCauseContributionContext } from "contexts/causeContributionContext";
 import * as S from "../styles";
 import SelectOfferSection from "./SelectOfferSection";
 
@@ -34,8 +35,9 @@ function SupportCausePage(): JSX.Element {
   const [currentOfferIndex, setCurrentOfferIndex] = useState(0);
   const { cause, setCause, setOfferId, setFlow } = useCardPaymentInformation();
 
-  const { activeCauses, chosenCause, setCurrentCauseId, currentCauseIndex } =
-    useCausesContext();
+  const { causes, isLoading } = useCausesContext();
+  const { chosenCause, setChosenCause, setChosenCauseId } =
+    useCauseContributionContext();
   const { state, search } = useLocation<LocationStateType>();
 
   const platform = extractUrlValue("platform", search);
@@ -54,14 +56,17 @@ function SupportCausePage(): JSX.Element {
     if (!cause) {
       setCause(state?.causeDonated || chosenCause);
     }
-  }, [activeCauses, currentCauseIndex]);
+    if (!isLoading) {
+      setChosenCause(causes[0]);
+    }
+  }, [causes]);
 
   const handleCauseClick = (causeClicked: Cause) => {
     logEvent("treasureCauseSelection_click", {
       id: causeClicked?.id,
     });
     setCause(causeClicked);
-    setCurrentCauseId(causeClicked?.id);
+    setChosenCauseId(causeClicked?.id);
     setSessionStorageItem(SELECTED_CAUSE_ID, causeClicked?.id.toString());
   };
 
@@ -131,7 +136,7 @@ function SupportCausePage(): JSX.Element {
     setOfferId(offer.id);
   };
 
-  if (activeCauses.length === 0) {
+  if (causes.length === 0) {
     return <div />;
   }
 
@@ -140,9 +145,9 @@ function SupportCausePage(): JSX.Element {
       <DownloadAppToast />
       <S.Title>{t("title")}</S.Title>
       <GroupButtons
-        elements={activeCauses}
+        elements={causes}
         onChange={handleCauseClick}
-        indexSelected={currentCauseIndex}
+        indexSelected={chosenCause?.id}
         nameExtractor={(element) => element.name}
         backgroundColor={secondary[700]}
         textColorOutline={secondary[700]}
@@ -150,14 +155,14 @@ function SupportCausePage(): JSX.Element {
         borderColorOutline={secondary[300]}
       />
       <S.ContentContainer>
-        <S.SupportImage src={cause?.coverImage} />
+        <S.SupportImage src={chosenCause?.coverImage} />
         <S.Intersection src={Intersection} />
 
         <S.DonateContainer>
           <S.GivingContainer>
             <S.ContributionContainer>
               <SelectOfferSection
-                cause={cause}
+                cause={chosenCause}
                 onOfferChange={handleOfferChange}
               />
             </S.ContributionContainer>

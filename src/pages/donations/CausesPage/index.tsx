@@ -28,6 +28,7 @@ import extractUrlValue from "lib/extractUrlValue";
 import { PLATFORM } from "utils/constants";
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
+import { useCauseDonationContext } from "contexts/causeDonationContext";
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import NonProfitsList from "./NonProfitsList";
@@ -36,16 +37,15 @@ import ChooseCauseModal from "./ChooseCauseModal";
 import ContributionSection from "./ContributionSection";
 
 function CausesPage(): JSX.Element {
-  const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
 
-  const {
-    activeCauses,
-    chooseCauseModalVisible,
-    currentCauseId,
-    setCurrentCauseId,
-  } = useCausesContext();
+  const { causes, isLoading: isLoadingCauses } = useCausesContext();
+  const { chosenCause, setChosenCause, chooseCauseModalVisible } =
+    useCauseDonationContext();
+  const [selectedButtonIndex, setSelectedButtonIndex] = useState(
+    chosenCause?.id,
+  );
 
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
@@ -148,11 +148,11 @@ function CausesPage(): JSX.Element {
   }, [chooseCauseModalVisible]);
 
   const nonProfitsFilter = () => {
-    if (currentCauseId >= 1 && currentCauseId !== undefined) {
+    if (chosenCause) {
       return (
         nonProfits?.filter(
           (nonProfit) =>
-            nonProfit.cause?.active && nonProfit.cause?.id === currentCauseId,
+            nonProfit.cause?.active && nonProfit.cause?.id === chosenCause.id,
         ) || []
       );
     }
@@ -160,12 +160,18 @@ function CausesPage(): JSX.Element {
     return nonProfits || [];
   };
 
+  useEffect(() => {
+    nonProfitsFilter();
+  }, [chosenCause]);
+
   const handleCauseChanged = (_element: any, index: number, event: any) => {
     if (_element && event?.type === "click") {
-      const causeId = _element?.id;
-      if (nonProfits && causeId !== undefined) {
-        setCurrentCauseId(Number(causeId));
-        setSelectedButtonIndex(index);
+      const cause = _element;
+      setSelectedButtonIndex(index);
+      if (cause.id !== 0) {
+        setChosenCause(cause);
+      } else {
+        setChosenCause(undefined);
       }
     }
   };
@@ -175,7 +181,7 @@ function CausesPage(): JSX.Element {
       id: 0,
       name: t("allCauses"),
     },
-    ...(activeCauses || []),
+    ...(causes || []),
   ];
 
   const canDonateAndHasVoucher = canDonate && hasAvailableDonation();
@@ -183,7 +189,9 @@ function CausesPage(): JSX.Element {
   return (
     <S.Container>
       {!isFirstAccess(signedIn) && <DownloadAppToast />}
-      <ChooseCauseModal visible={chooseCauseModalVisible} />
+      {!isLoadingCauses && (
+        <ChooseCauseModal visible={chooseCauseModalVisible} />
+      )}
 
       <S.BodyContainer>
         <S.TitleContainer>

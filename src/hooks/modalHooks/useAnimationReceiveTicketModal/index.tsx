@@ -5,9 +5,9 @@ import useVoucher from "hooks/useVoucher";
 import Ticket from "assets/icons/ticket-rounded-icon.svg";
 import SupportersIcon from "assets/icons/community-icon.svg";
 import UserIcon from "assets/icons/user-mono-icon.svg";
-import { useCausesContext } from "contexts/causesContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { isFirstAccess } from "lib/onboardingFirstAccess";
+import { useCauseDonationContext } from "contexts/causeDonationContext";
 import { useModal } from "../useModal";
 
 // This hook is not used in the project since the receive ticket modal was changed to a toast.
@@ -19,7 +19,7 @@ export function useAnimationReceiveTicketModal(initialState?: boolean) {
   const { createVoucher } = useVoucher();
   const { signedIn } = useCurrentUser();
   const { chooseCauseModalVisible, setChooseCauseModalVisible } =
-    useCausesContext();
+    useCauseDonationContext();
 
   const { show, hide } = useModal({
     type: MODAL_TYPES.MODAL_ANIMATION,

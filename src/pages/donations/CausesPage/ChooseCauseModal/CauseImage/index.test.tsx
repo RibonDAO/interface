@@ -46,13 +46,15 @@ describe("CauseImage", () => {
 
   describe("when clicks", () => {
     beforeEach(() => {
-      const setCurrentCauseId = jest.fn();
+      const setChosenCauseId = jest.fn();
       const setChooseCauseModalVisible = jest.fn();
 
       renderComponent(<CauseImage id={1} name="Test Cause" />, {
         causesProviderValue: {
           causes: [],
-          setCurrentCauseId,
+        },
+        causeDonationProviderValue: {
+          setChosenCauseId,
           setChooseCauseModalVisible,
         },
       });

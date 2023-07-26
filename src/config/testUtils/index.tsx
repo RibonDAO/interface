@@ -56,6 +56,10 @@ import CausesProvider, {
 } from "contexts/causesContext";
 
 import { QueryClientComponent } from "@ribon.io/shared/hooks";
+import CauseDonationProvider, {
+  CauseDonationContext,
+  ICauseDonationContext,
+} from "contexts/causeDonationContext";
 
 export function renderWithTheme(children: React.ReactNode): RenderResult {
   return render(<ThemeProvider theme={theme}>{children}</ThemeProvider>);
@@ -102,6 +106,7 @@ export type RenderComponentProps = {
   walletProviderValue?: Partial<IWalletContext>;
   tasksProviderValue?: Partial<ITasksContext>;
   causesProviderValue?: Partial<ICausesContext>;
+  causeDonationProviderValue?: Partial<ICauseDonationContext>;
   currentUserProviderValue?: Partial<ICurrentUserContext>;
   toastProviderValue?: Partial<IToastContext>;
   loadingOverlayValue?: Partial<ILoadingOverlayContext>;
@@ -118,6 +123,7 @@ export function renderComponent(
     walletProviderValue = {},
     tasksProviderValue = {},
     causesProviderValue = {},
+    causeDonationProviderValue = {},
     currentUserProviderValue = {},
     toastProviderValue = {},
     locationState = {},
@@ -150,34 +156,39 @@ export function renderComponent(
                     CausesContext,
                     causesProviderValue,
                     renderProvider(
-                      ToastContextProvider,
-                      ToastContext,
-                      toastProviderValue,
+                      CauseDonationProvider,
+                      CauseDonationContext,
+                      causeDonationProviderValue,
                       renderProvider(
-                        LoadingOverlayProvider,
-                        LoadingOverlayContext,
-                        loadingOverlayValue,
+                        ToastContextProvider,
+                        ToastContext,
+                        toastProviderValue,
                         renderProvider(
-                          ModalProvider,
-                          ModalContext,
-                          modalProviderValue,
+                          LoadingOverlayProvider,
+                          LoadingOverlayContext,
+                          loadingOverlayValue,
                           renderProvider(
-                            CardPaymentInformationProvider,
-                            CardPaymentInformationContext,
-                            cardPaymentProviderValue,
+                            ModalProvider,
+                            ModalContext,
+                            modalProviderValue,
                             renderProvider(
-                              NetworkProvider,
-                              NetworkContext,
-                              networkProviderValue,
+                              CardPaymentInformationProvider,
+                              CardPaymentInformationContext,
+                              cardPaymentProviderValue,
                               renderProvider(
-                                WalletProvider,
-                                WalletContext,
-                                walletProviderValue,
+                                NetworkProvider,
+                                NetworkContext,
+                                networkProviderValue,
                                 renderProvider(
-                                  CryptoPaymentProvider,
-                                  CryptoPaymentContext,
-                                  cryptoPaymentProviderValue,
-                                  component,
+                                  WalletProvider,
+                                  WalletContext,
+                                  walletProviderValue,
+                                  renderProvider(
+                                    CryptoPaymentProvider,
+                                    CryptoPaymentContext,
+                                    cryptoPaymentProviderValue,
+                                    component,
+                                  ),
                                 ),
                               ),
                             ),

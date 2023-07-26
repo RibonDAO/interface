@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useCallback, useEffect, useState, Fragment } from "react";
 import { logEvent } from "lib/events";
-import { useCauses, useNonProfits } from "@ribon.io/shared/hooks";
+import { useNonProfits } from "@ribon.io/shared/hooks";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import { Cause, Offer, NonProfit } from "@ribon.io/shared/types";
 import IntersectBackground from "assets/images/intersect-background.svg";
@@ -16,6 +16,7 @@ import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import extractUrlValue from "lib/extractUrlValue";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
+import { useCausesContext } from "contexts/causesContext";
 import * as S from "../styles";
 
 import NonProfitCard from "./NonProfitCard";
@@ -32,7 +33,7 @@ function CardPage(): JSX.Element {
   const { nonProfits } = useNonProfits();
   const { tertiary } = theme.colors.brand;
 
-  const { causes } = useCauses();
+  const { causes } = useCausesContext();
 
   const { state, search } = useLocation<LocationStateType>();
   const platform = extractUrlValue("platform", search);
@@ -49,13 +50,8 @@ function CardPage(): JSX.Element {
     logEvent("nonProfitSupportScreen_view");
   }, []);
 
-  const causesFilter = () => {
-    const causesApi = causes.filter((currentCause) => currentCause.active);
-    return causesApi || [];
-  };
-
   useEffect(() => {
-    setCause(state?.causeDonated || causesFilter()[0]);
+    setCause(state?.causeDonated || causes[0]);
   }, [causes]);
 
   const handleCauseClick = (causeClicked: Cause) => {
@@ -120,7 +116,7 @@ function CardPage(): JSX.Element {
 
   const preSelectedIndex = () =>
     state?.causeDonated
-      ? causesFilter().findIndex((c) => c.id === state?.causeDonated?.id)
+      ? causes.findIndex((c) => c.id === state?.causeDonated?.id)
       : 0;
 
   return (
@@ -141,7 +137,7 @@ function CardPage(): JSX.Element {
       </S.TitleContainer>
 
       <GroupButtons
-        elements={causesFilter()}
+        elements={causes}
         onChange={handleCauseClick}
         indexSelected={preSelectedIndex()}
         nameExtractor={(element) => element.name}

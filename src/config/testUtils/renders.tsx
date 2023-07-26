@@ -40,6 +40,10 @@ import NetworkProvider, {
   NetworkContext,
 } from "contexts/networkContext";
 import { QueryClientComponent } from "@ribon.io/shared/hooks";
+import CauseDonationProvider, {
+  CauseDonationContext,
+  ICauseDonationContext,
+} from "contexts/causeDonationContext";
 
 export interface RenderWithContextResult {
   component: RenderResult;
@@ -76,6 +80,7 @@ export type RenderComponentProps = {
   history?: MemoryHistory;
   walletProviderValue?: Partial<IWalletContext>;
   causesProviderValue?: Partial<ICausesContext>;
+  causeDonationProviderValue?: Partial<ICauseDonationContext>;
   currentUserProviderValue?: Partial<ICurrentUserContext>;
   toastProviderValue?: Partial<IToastContext>;
   loadingOverlayValue?: Partial<ILoadingOverlayContext>;
@@ -90,6 +95,7 @@ function renderAllProviders(
     history = createMemoryHistory(),
     walletProviderValue = {},
     causesProviderValue = {},
+    causeDonationProviderValue = {},
     currentUserProviderValue = {},
     toastProviderValue = {},
     locationState = {},
@@ -120,22 +126,27 @@ function renderAllProviders(
                     CausesContext,
                     causesProviderValue,
                     renderProvider(
-                      ToastContextProvider,
-                      ToastContext,
-                      toastProviderValue,
+                      CauseDonationProvider,
+                      CauseDonationContext,
+                      causeDonationProviderValue,
                       renderProvider(
-                        LoadingOverlayProvider,
-                        LoadingOverlayContext,
-                        loadingOverlayValue,
+                        ToastContextProvider,
+                        ToastContext,
+                        toastProviderValue,
                         renderProvider(
-                          ModalProvider,
-                          ModalContext,
-                          modalProviderValue,
+                          LoadingOverlayProvider,
+                          LoadingOverlayContext,
+                          loadingOverlayValue,
                           renderProvider(
-                            NetworkProvider,
-                            NetworkContext,
-                            networkProviderValue,
-                            children,
+                            ModalProvider,
+                            ModalContext,
+                            modalProviderValue,
+                            renderProvider(
+                              NetworkProvider,
+                              NetworkContext,
+                              networkProviderValue,
+                              children,
+                            ),
                           ),
                         ),
                       ),

@@ -15,6 +15,7 @@ import { SELECTED_CAUSE_ID } from "lib/sessionStorage/constants";
 import { setSessionStorageItem } from "lib/sessionStorage";
 import { useCausesContext } from "contexts/causesContext";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
+import { useCauseContributionContext } from "contexts/causeContributionContext";
 import SupportImage from "../assets/support-image.png";
 import * as S from "../styles";
 import SelectCryptoOfferSection from "./SelectCryptoOfferSection";
@@ -27,8 +28,8 @@ function CryptoPage(): JSX.Element {
   const { secondary } = theme.colors.brand;
   const { navigateTo } = useNavigation();
   const { cause, setCause, nonProfit } = useCardPaymentInformation();
-  const { activeCauses, chosenCause, setCurrentCauseId, currentCauseIndex } =
-    useCausesContext();
+  const { causes } = useCausesContext();
+  const { chosenCause, setChosenCauseId } = useCauseContributionContext();
   const { connectWallet, wallet } = useWalletContext();
   const {
     amount,
@@ -54,7 +55,7 @@ function CryptoPage(): JSX.Element {
     if (!cause) {
       setCause(state?.causeDonated || chosenCause);
     }
-  }, [activeCauses, currentCauseIndex]);
+  }, [causes]);
 
   useEffect(() => {
     if (cause && cause.pools?.length > 0) {
@@ -67,7 +68,7 @@ function CryptoPage(): JSX.Element {
       id: causeClicked?.id,
     });
     setCause(causeClicked);
-    setCurrentCauseId(causeClicked?.id);
+    setChosenCauseId(causeClicked?.id);
     setSessionStorageItem(SELECTED_CAUSE_ID, causeClicked?.id.toString());
   };
 
@@ -124,7 +125,7 @@ function CryptoPage(): JSX.Element {
     return t("connectWalletButtonText");
   };
 
-  if (activeCauses.length === 0) {
+  if (causes.length === 0) {
     return <div />;
   }
 
@@ -132,9 +133,9 @@ function CryptoPage(): JSX.Element {
     <S.Container>
       <S.Title>{t("title")}</S.Title>
       <GroupButtons
-        elements={activeCauses}
+        elements={causes}
         onChange={handleCauseClick}
-        indexSelected={currentCauseIndex}
+        indexSelected={chosenCause?.id || causes[0].id}
         nameExtractor={(element) => element.name}
         backgroundColor={secondary[700]}
         textColorOutline={secondary[700]}

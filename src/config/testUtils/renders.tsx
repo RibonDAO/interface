@@ -48,6 +48,10 @@ import TasksProvider, {
   ITasksContext,
   TasksContext,
 } from "contexts/tasksContext";
+import CauseContributionProvider, {
+  CauseContributionContext,
+  ICauseContributionContext,
+} from "contexts/causeContributionContext";
 
 export interface RenderWithContextResult {
   component: RenderResult;
@@ -85,6 +89,7 @@ export type RenderComponentProps = {
   walletProviderValue?: Partial<IWalletContext>;
   causesProviderValue?: Partial<ICausesContext>;
   causeDonationProviderValue?: Partial<ICauseDonationContext>;
+  causeContributionProviderValue?: Partial<ICauseContributionContext>;
   currentUserProviderValue?: Partial<ICurrentUserContext>;
   toastProviderValue?: Partial<IToastContext>;
   loadingOverlayValue?: Partial<ILoadingOverlayContext>;
@@ -101,6 +106,7 @@ function renderAllProviders(
     walletProviderValue = {},
     causesProviderValue = {},
     causeDonationProviderValue = {},
+    causeContributionProviderValue = {},
     currentUserProviderValue = {},
     toastProviderValue = {},
     locationState = {},
@@ -136,26 +142,31 @@ function renderAllProviders(
                       CauseDonationContext,
                       causeDonationProviderValue,
                       renderProvider(
-                        ToastContextProvider,
-                        ToastContext,
-                        toastProviderValue,
+                        CauseContributionProvider,
+                        CauseContributionContext,
+                        causeContributionProviderValue,
                         renderProvider(
-                          LoadingOverlayProvider,
-                          LoadingOverlayContext,
-                          loadingOverlayValue,
+                          ToastContextProvider,
+                          ToastContext,
+                          toastProviderValue,
                           renderProvider(
-                            ModalProvider,
-                            ModalContext,
-                            modalProviderValue,
+                            LoadingOverlayProvider,
+                            LoadingOverlayContext,
+                            loadingOverlayValue,
                             renderProvider(
-                              NetworkProvider,
-                              NetworkContext,
-                              networkProviderValue,
+                              ModalProvider,
+                              ModalContext,
+                              modalProviderValue,
                               renderProvider(
-                                TasksProvider,
-                                TasksContext,
-                                tasksProviderValue,
-                                children,
+                                NetworkProvider,
+                                NetworkContext,
+                                networkProviderValue,
+                                renderProvider(
+                                  TasksProvider,
+                                  TasksContext,
+                                  tasksProviderValue,
+                                  children,
+                                ),
                               ),
                             ),
                           ),

@@ -36,8 +36,9 @@ function SupportCausePage(): JSX.Element {
   const { cause, setCause, setOfferId, setFlow } = useCardPaymentInformation();
 
   const { causes, isLoading } = useCausesContext();
-  const { chosenCause, setChosenCause, setChosenCauseId } =
+  const { chosenCause, setChosenCause, chosenCauseIndex, setChosenCauseIndex } =
     useCauseContributionContext();
+
   const { state, search } = useLocation<LocationStateType>();
 
   const platform = extractUrlValue("platform", search);
@@ -61,12 +62,13 @@ function SupportCausePage(): JSX.Element {
     }
   }, [causes]);
 
-  const handleCauseClick = (causeClicked: Cause) => {
+  const handleCauseClick = (causeClicked: Cause, index: number) => {
     logEvent("treasureCauseSelection_click", {
       id: causeClicked?.id,
     });
     setCause(causeClicked);
-    setChosenCauseId(causeClicked?.id);
+    setChosenCause(causeClicked);
+    setChosenCauseIndex(index);
     setSessionStorageItem(SELECTED_CAUSE_ID, causeClicked?.id.toString());
   };
 
@@ -152,7 +154,7 @@ function SupportCausePage(): JSX.Element {
       <GroupButtons
         elements={causes}
         onChange={handleCauseClick}
-        indexSelected={chosenCause?.id}
+        indexSelected={chosenCauseIndex}
         nameExtractor={(element) => element.name}
         backgroundColor={secondary[700]}
         textColorOutline={secondary[700]}

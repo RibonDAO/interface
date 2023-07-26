@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import {
   useFreeDonationNonProfits,
@@ -41,12 +41,13 @@ function CausesPage(): JSX.Element {
   const { integration } = useIntegration(integrationId);
 
   const { causes, isLoading: isLoadingCauses } = useCausesContext();
-  const { chosenCause, setChosenCause, chooseCauseModalVisible } =
-    useCauseDonationContext();
-  const [selectedButtonIndex, setSelectedButtonIndex] = useState(
-    chosenCause?.id,
-  );
-
+  const {
+    chosenCause,
+    setChosenCause,
+    chosenCauseIndex,
+    setChosenCauseIndex,
+    chooseCauseModalVisible,
+  } = useCauseDonationContext();
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
@@ -162,12 +163,13 @@ function CausesPage(): JSX.Element {
 
   useEffect(() => {
     nonProfitsFilter();
+    setChosenCauseIndex(chosenCause?.id);
   }, [chosenCause]);
 
   const handleCauseChanged = (_element: any, index: number, event: any) => {
     if (_element && event?.type === "click") {
       const cause = _element;
-      setSelectedButtonIndex(index);
+      setChosenCauseIndex(index);
       if (cause.id !== 0) {
         setChosenCause(cause);
       } else {
@@ -209,7 +211,7 @@ function CausesPage(): JSX.Element {
         {!isFirstAccess(signedIn) && (
           <GroupButtons
             elements={causesWithAllFilter}
-            indexSelected={selectedButtonIndex}
+            indexSelected={chosenCauseIndex}
             onChange={handleCauseChanged}
             nameExtractor={(cause) => cause.name}
             eventParams={(cause) => ({ causeId: cause.id })}

@@ -17,6 +17,7 @@ import useBreakpoint from "hooks/useBreakpoint";
 import extractUrlValue from "lib/extractUrlValue";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import { useCausesContext } from "contexts/causesContext";
+import { useCauseContributionContext } from "contexts/causeContributionContext";
 import * as S from "../styles";
 
 import NonProfitCard from "./NonProfitCard";
@@ -34,7 +35,8 @@ function CardPage(): JSX.Element {
   const { tertiary } = theme.colors.brand;
 
   const { causes } = useCausesContext();
-
+  const { chosenCause, setChosenCause, chosenCauseIndex, setChosenCauseIndex } =
+    useCauseContributionContext();
   const { state, search } = useLocation<LocationStateType>();
   const platform = extractUrlValue("platform", search);
 
@@ -54,11 +56,13 @@ function CardPage(): JSX.Element {
     setCause(state?.causeDonated || causes[0]);
   }, [causes]);
 
-  const handleCauseClick = (causeClicked: Cause) => {
+  const handleCauseClick = (causeClicked: Cause, index: number) => {
     logEvent("nonProfitCauseSelection_click", {
       id: causeClicked?.id,
     });
     setCause(causeClicked);
+    setChosenCauseIndex(index);
+    setChosenCause(causeClicked);
   };
 
   const navigateToPayment = (nonProfit: NonProfit) => {
@@ -115,14 +119,16 @@ function CardPage(): JSX.Element {
 
   const filteredNonProfits = useCallback(
     () =>
-      nonProfits?.filter((nonProfit) => nonProfit.cause.id === cause?.id) || [],
-    [cause, nonProfits],
+      nonProfits?.filter(
+        (nonProfit) => nonProfit.cause.id === chosenCause?.id,
+      ) || [],
+    [chosenCause, nonProfits],
   );
 
-  const preSelectedIndex = () =>
-    state?.causeDonated
-      ? causes.findIndex((c) => c.id === state?.causeDonated?.id)
-      : 0;
+  // const preSelectedIndex = () =>
+  //   state?.causeDonated
+  //     ? causes.findIndex((c) => c.id === state?.causeDonated?.id)
+  //     : 0;
 
   return (
     <S.Container>
@@ -144,7 +150,7 @@ function CardPage(): JSX.Element {
       <GroupButtons
         elements={causes}
         onChange={handleCauseClick}
-        indexSelected={preSelectedIndex()}
+        indexSelected={chosenCauseIndex}
         nameExtractor={(element) => element.name}
         backgroundColor={tertiary[800]}
         textColorOutline={tertiary[800]}

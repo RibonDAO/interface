@@ -11,10 +11,12 @@ import { useCausesContext } from "contexts/causesContext";
 
 export interface ICauseDonationContext {
   chosenCause: Cause | undefined;
+  chosenCauseIndex: number | undefined;
   setChosenCause: (cause: SetStateAction<Cause | undefined>) => void;
   chooseCauseModalVisible: boolean;
   setChooseCauseModalVisible: (visible: SetStateAction<boolean>) => void;
   setChosenCauseId: (id: SetStateAction<number | undefined>) => void;
+  setChosenCauseIndex: (id: SetStateAction<number | undefined>) => void;
 }
 
 export const CauseDonationContext = createContext<ICauseDonationContext>(
@@ -27,6 +29,9 @@ function CauseDonationProvider({ children }: any) {
   const [chooseCauseModalVisible, setChooseCauseModalVisible] = useState(false);
   const [chosenCause, setChosenCause] = useState<Cause | undefined>();
   const [chosenCauseId, setChosenCauseId] = useState<number | undefined>();
+  const [chosenCauseIndex, setChosenCauseIndex] = useState<
+    number | undefined
+  >();
 
   useEffect(() => {
     if (chosenCauseId) {
@@ -41,6 +46,8 @@ function CauseDonationProvider({ children }: any) {
       chooseCauseModalVisible,
       setChooseCauseModalVisible,
       setChosenCauseId,
+      chosenCauseIndex,
+      setChosenCauseIndex,
     }),
     [
       chosenCause,
@@ -48,6 +55,8 @@ function CauseDonationProvider({ children }: any) {
       chooseCauseModalVisible,
       setChooseCauseModalVisible,
       setChosenCauseId,
+      chosenCauseIndex,
+      setChosenCauseIndex,
     ],
   );
 

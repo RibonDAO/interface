@@ -29,7 +29,9 @@ function CryptoPage(): JSX.Element {
   const { navigateTo } = useNavigation();
   const { cause, setCause, nonProfit } = useCardPaymentInformation();
   const { causes } = useCausesContext();
-  const { chosenCause, setChosenCauseId } = useCauseContributionContext();
+  const { chosenCause, setChosenCause, chosenCauseIndex, setChosenCauseIndex } =
+    useCauseContributionContext();
+
   const { connectWallet, wallet } = useWalletContext();
   const {
     amount,
@@ -63,12 +65,13 @@ function CryptoPage(): JSX.Element {
     }
   }, [cause]);
 
-  const handleCauseClick = (causeClicked: Cause) => {
+  const handleCauseClick = (causeClicked: Cause, index: number) => {
     logEvent("supportCauseSelection_click", {
       id: causeClicked?.id,
     });
     setCause(causeClicked);
-    setChosenCauseId(causeClicked?.id);
+    setChosenCause(causeClicked);
+    setChosenCauseIndex(index);
     setSessionStorageItem(SELECTED_CAUSE_ID, causeClicked?.id.toString());
   };
 
@@ -140,7 +143,7 @@ function CryptoPage(): JSX.Element {
       <GroupButtons
         elements={causes}
         onChange={handleCauseClick}
-        indexSelected={chosenCause?.id || causes[0].id}
+        indexSelected={chosenCauseIndex}
         nameExtractor={(element) => element.name}
         backgroundColor={secondary[700]}
         textColorOutline={secondary[700]}
@@ -148,13 +151,13 @@ function CryptoPage(): JSX.Element {
         borderColorOutline={secondary[300]}
       />
       <S.ContentContainer>
-        <S.SupportImage src={cause?.coverImage || SupportImage} />
+        <S.SupportImage src={chosenCause?.coverImage || SupportImage} />
         <S.Intersection src={Intersection} />
         <S.DonateContainer>
           <S.GivingContainer>
             <S.ContributionContainer>
               <SelectCryptoOfferSection
-                cause={cause}
+                cause={chosenCause}
                 onValueChange={(value: number) => setAmount(value.toString())}
               />
             </S.ContributionContainer>

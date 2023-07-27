@@ -1,8 +1,5 @@
-import { clickOn, renderComponent, waitForPromises } from "config/testUtils";
-import {
-  expectLogEventToHaveBeenCalledWith,
-  expectTextToBeInTheDocument,
-} from "config/testUtils/expects";
+import { renderComponent, waitForPromises } from "config/testUtils";
+import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import causeFactory from "config/testUtils/factories/causeFactory";
 import SupportCausePage from ".";
 

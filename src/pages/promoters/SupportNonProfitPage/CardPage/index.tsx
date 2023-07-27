@@ -45,10 +45,6 @@ function CardPage(): JSX.Element {
     keyPrefix: "promoters.supportNonProfitPage",
   });
 
-  useEffect(() => {
-    logEvent("nonProfitSupportScreen_view");
-  }, []);
-
   const causesFilter = () => {
     const causesApi = causes.filter((currentCause) => currentCause.active);
     return causesApi || [];
@@ -88,6 +84,9 @@ function CardPage(): JSX.Element {
   const navigateToCheckout = (nonProfit: NonProfit) => {
     logEvent("giveNgoBtn_start", {
       from: "giveNonProfit_page",
+      nonProfitId: nonProfit.id,
+      currency: currentOffer.currency,
+      amount: currentOffer.priceValue,
     });
     setFlow("nonProfit");
 

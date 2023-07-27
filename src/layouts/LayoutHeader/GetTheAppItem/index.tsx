@@ -15,11 +15,11 @@ function GetTheAppItem(): JSX.Element {
   const { navigateTo } = useNavigation();
 
   useEffect(() => {
-    newLogEvent("view", "webDwnldCta", { from: "configMenu" });
+    newLogEvent("view", "downloadCTA", { from: "configMenu" });
   }, []);
 
   const handleClick = () => {
-    newLogEvent("click", "webDwnldCta", { from: "configMenu" });
+    newLogEvent("click", "downloadCTA", { from: "configMenu" });
     navigateTo("/app-download");
   };
 

@@ -43,12 +43,12 @@ function AppDownloadPage() {
 
   const handleOnClickFirstButton = () => {
     if (comesFromPostDonation)
-      newLogEvent("click", "webDwnldCta", { from: "postDonation" });
+      newLogEvent("click", "downloadCTA", { from: "postDonation" });
   };
 
   useEffect(() => {
     if (comesFromPostDonation)
-      newLogEvent("view", "webDwnldCta", { from: "postDonation" });
+      newLogEvent("view", "downloadCTA", { from: "postDonation" });
   }, []);
 
   useAvoidBackButton();

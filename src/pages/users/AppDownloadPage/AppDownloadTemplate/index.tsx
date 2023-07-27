@@ -3,6 +3,7 @@ import { useState } from "react";
 import { APP_LINK } from "utils/constants";
 import { useTranslation } from "react-i18next";
 import { ButtonProps } from "components/atomics/buttons/Button";
+import { logEvent } from "lib/events";
 import AppleBadge from "./assets/apple-badge.png";
 import GoogleBadge from "./assets/google-badge.png";
 import QRCode from "./assets/qrcodeapp.svg";
@@ -44,6 +45,7 @@ function AppDownloadTemplate({
     navigator.clipboard.writeText(APP_LINK);
     setCurrentText(t("copiedText"));
     setIsCopy(true);
+    logEvent("copyDownloadBtn_click");
   };
 
   const render = () => {
@@ -84,6 +86,9 @@ function AppDownloadTemplate({
                   href={APP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => {
+                    logEvent("gPlayBtn_click");
+                  }}
                 >
                   <S.ImageBadge src={GoogleBadge} />
                 </S.Link>
@@ -91,6 +96,9 @@ function AppDownloadTemplate({
                   href={APP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => {
+                    logEvent("appStoreBtn_click");
+                  }}
                 >
                   <S.ImageBadge src={AppleBadge} />
                 </S.Link>

@@ -86,7 +86,7 @@ describe("Events", () => {
     it("sends an event to firebase", () => {
       newLogEvent(action, eventName);
       expect(FirebaseEvents.logFirebaseEvent).toHaveBeenCalledWith(
-        `web_${eventName}_${action}`,
+        `${eventName}_${action}`,
         paramsDefault,
       );
     });
@@ -109,7 +109,7 @@ describe("Events", () => {
     it("sends an event to Mixpanel", () => {
       newLogEvent(action, eventName);
       expect(MixpanelEvents.logMixpanelEvent).toHaveBeenCalledWith(
-        `web_${eventName}_${action}`,
+        `${eventName}_${action}`,
         paramsDefault,
       );
     });

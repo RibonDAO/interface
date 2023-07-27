@@ -123,6 +123,7 @@ function DonationDoneCausePage(): JSX.Element {
         platform: "web",
         currency: offer?.currency,
         amount: offer?.priceValue,
+        causeId: cause.id,
       });
       navigateTo({
         pathname: "/promoters/support-cause",

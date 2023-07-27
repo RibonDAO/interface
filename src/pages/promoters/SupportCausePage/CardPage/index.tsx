@@ -83,6 +83,9 @@ function SupportCausePage(): JSX.Element {
   const navigateToCheckout = () => {
     logEvent("giveCauseBtn_start", {
       from: "giveCauseCC_page",
+      causeId: cause?.id,
+      amount: currentOffer.priceValue,
+      currency: currentOffer.currency,
     });
     setFlow("nonProfit");
 

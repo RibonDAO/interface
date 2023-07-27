@@ -20,6 +20,7 @@ describe("Events", () => {
     anonymousId: "false",
     integrationName: "false",
     hasDonated: "false",
+    platform: "web",
   };
 
   beforeEach(() => {

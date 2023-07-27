@@ -12,7 +12,7 @@ function UserSupportItem(): JSX.Element {
   });
 
   const handleClick = () => {
-    logEvent("UserSupportBtn_Click");
+    logEvent("UserSupportBtn_click");
     window.open(t("userSupportLink"), "_blank");
 
     newLogEvent("click", "userSupportBtn_click", { from: "config_page" });

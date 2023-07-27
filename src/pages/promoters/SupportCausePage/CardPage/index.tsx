@@ -85,7 +85,9 @@ function SupportCausePage(): JSX.Element {
   };
 
   const navigateToCheckout = () => {
-    logEvent("nonProfitComCicleBtn_click");
+    logEvent("giveCauseBtn_start", {
+      from: "giveCauseCC_page",
+    });
     setFlow("nonProfit");
 
     if (!cause) return;

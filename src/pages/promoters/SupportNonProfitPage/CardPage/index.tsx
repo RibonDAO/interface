@@ -86,7 +86,9 @@ function CardPage(): JSX.Element {
   };
 
   const navigateToCheckout = (nonProfit: NonProfit) => {
-    logEvent("nonProfitComCicleBtn_click");
+    logEvent("giveNgoBtn_start", {
+      from: "giveNonProfit_page",
+    });
     setFlow("nonProfit");
 
     const searchParams = new URLSearchParams({

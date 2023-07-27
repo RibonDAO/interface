@@ -168,7 +168,6 @@ function CardPaymentInformationProvider({ children }: Props) {
   };
 
   const handleSubmit = async (platform: string) => {
-    logEvent("treasureSupportConfirmBtn_click");
     showAnimationCreditCardPaymentModal();
 
     const expiration = expirationDate.split("/");
@@ -197,7 +196,6 @@ function CardPaymentInformationProvider({ children }: Props) {
       await creditCardPaymentApi.postCreditCardPayment(paymentInformation);
       closeAnimationModal();
       handleConfirmation();
-      logEvent("treasureGivingConfirmMdl_view");
     } catch (error) {
       closeAnimationModal();
       logError(error);

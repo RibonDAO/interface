@@ -121,6 +121,8 @@ function DonationDoneCausePage(): JSX.Element {
       registerAction("contribution_done_page_view");
       logEvent("causeGave_end", {
         platform: "web",
+        currency: offer?.currency,
+        amount: offer?.priceValue,
       });
       navigateTo({
         pathname: "/promoters/support-cause",

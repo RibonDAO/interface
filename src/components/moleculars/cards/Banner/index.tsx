@@ -48,6 +48,7 @@ function Banner({
       backgroundColor={backgroundColor}
       flexDirection={flexDirection}
       onClick={handleClick}
+      data-testid="banner"
     >
       <S.Content>
         <S.IconText>

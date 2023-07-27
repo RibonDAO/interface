@@ -50,10 +50,6 @@ function SupportCausePage(): JSX.Element {
   });
 
   useEffect(() => {
-    logEvent("treasureSupportScreen_view");
-  }, []);
-
-  useEffect(() => {
     if (!cause) {
       setCause(state?.causeDonated || chosenCause);
     }
@@ -92,7 +88,12 @@ function SupportCausePage(): JSX.Element {
   };
 
   const navigateToCheckout = () => {
-    logEvent("nonProfitComCicleBtn_click");
+    logEvent("giveCauseBtn_start", {
+      from: "giveCauseCC_page",
+      causeId: cause?.id,
+      amount: currentOffer.priceValue,
+      currency: currentOffer.currency,
+    });
     setFlow("nonProfit");
 
     if (!cause) return;

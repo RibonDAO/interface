@@ -28,9 +28,11 @@ import { useIntegrationId } from "hooks/useIntegrationId";
 import { PLATFORM } from "utils/constants";
 import extractUrlValue from "lib/extractUrlValue";
 import { logEvent } from "lib/events";
+import useAvoidBackButton from "hooks/useAvoidBackButton";
 import * as S from "./styles";
 
 function DonationDoneCausePage(): JSX.Element {
+  useAvoidBackButton();
   type LocationState = {
     offerId?: number;
     cause: Cause;
@@ -119,6 +121,9 @@ function DonationDoneCausePage(): JSX.Element {
       registerAction("contribution_done_page_view");
       logEvent("causeGave_end", {
         platform: "web",
+        currency: offer?.currency,
+        amount: offer?.priceValue,
+        causeId: cause.id,
       });
       navigateTo({
         pathname: "/promoters/support-cause",
@@ -129,6 +134,9 @@ function DonationDoneCausePage(): JSX.Element {
       registerAction("contribution_done_page_view");
       logEvent("ngoGave_end", {
         platform: "web",
+        currency: offer?.currency,
+        amount: offer?.priceValue,
+        nonProfitId: nonProfit?.id,
       });
       navigateTo({
         pathname: "/promoters/support-non-profit",
@@ -161,11 +169,14 @@ function DonationDoneCausePage(): JSX.Element {
       donationInfos(offerId);
     }
     setLocalStorageItem("HAS_DONATED", "true");
-    setPageTimeout(
-      setTimeout(() => {
-        navigate();
-      }, 2500),
-    );
+    const timeout = setTimeout(() => {
+      navigate();
+    }, 2500);
+    setPageTimeout(timeout);
+
+    return () => {
+      clearTimeout(timeout);
+    };
   }, [currentUser, userStatistics]);
 
   const colorTheme = getThemeByFlow(flow || "cause");

@@ -29,6 +29,7 @@ import { PLATFORM } from "utils/constants";
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import PromoterCta from "pages/donations/CausesPage/PromoterCta";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
+import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
@@ -185,6 +186,8 @@ function CausesPage(): JSX.Element {
     },
     ...(causes || []),
   ];
+
+  useAvoidBackButton();
 
   return (
     <S.Container>

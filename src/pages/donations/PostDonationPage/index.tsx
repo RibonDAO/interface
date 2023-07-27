@@ -9,6 +9,7 @@ import { logEvent } from "lib/events";
 import { useImpactConversion } from "hooks/useImpactConversion";
 import { formatPrice } from "lib/formatters/currencyFormatter";
 import { shouldRenderVariation } from "lib/handleVariation";
+import useAvoidBackButton from "hooks/useAvoidBackButton";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -112,6 +113,8 @@ function PostDonationPage(): JSX.Element {
       pathname: "/causes",
     });
   };
+
+  useAvoidBackButton();
 
   return (
     <S.Container>

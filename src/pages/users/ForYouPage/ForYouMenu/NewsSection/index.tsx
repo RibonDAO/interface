@@ -1,6 +1,8 @@
 import AppDownloadTemplate from "pages/users/AppDownloadPage/AppDownloadTemplate";
 import theme from "styles/theme";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+import { logEvent } from "lib/events";
 import NewsImage from "./assets/news-image.svg";
 import * as S from "./styles";
 
@@ -8,6 +10,9 @@ function NewsSection() {
   const { t } = useTranslation("translation", {
     keyPrefix: "forYouPage.newsSection",
   });
+  useEffect(() => {
+    logEvent("P15_view");
+  }, []);
 
   function renderPage() {
     return (

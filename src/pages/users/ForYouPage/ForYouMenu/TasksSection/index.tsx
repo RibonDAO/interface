@@ -9,6 +9,7 @@ import { nextDay } from "lib/dateUtils";
 import { formatCountdown } from "lib/formatters/countdownFormatter";
 import { useTranslation } from "react-i18next";
 import useBreakpoint from "hooks/useBreakpoint";
+import { logEvent } from "lib/events";
 import * as S from "./styles";
 import DailyTasksSection from "./DailyTasksSection";
 import MonthlyTasksSection from "./MonthlyTasksSection";
@@ -18,6 +19,9 @@ function TasksSection() {
   const { t } = useTranslation("translation", {
     keyPrefix: "forYouPage.tasksSection",
   });
+  useEffect(() => {
+    logEvent("P21_view");
+  }, []);
 
   const dailyTasks = useTasks("daily");
   const { tasksState, setHasCompletedATask, reload, tasksStatistics } =

@@ -49,10 +49,6 @@ function CardPage(): JSX.Element {
   });
 
   useEffect(() => {
-    logEvent("nonProfitSupportScreen_view");
-  }, []);
-
-  useEffect(() => {
     setCause(state?.causeDonated || causes[0]);
   }, [causes]);
 
@@ -86,7 +82,12 @@ function CardPage(): JSX.Element {
   };
 
   const navigateToCheckout = (nonProfit: NonProfit) => {
-    logEvent("nonProfitComCicleBtn_click");
+    logEvent("giveNgoBtn_start", {
+      from: "giveNonProfit_page",
+      nonProfitId: nonProfit.id,
+      currency: currentOffer.currency,
+      amount: currentOffer.priceValue,
+    });
     setFlow("nonProfit");
 
     const searchParams = new URLSearchParams({

@@ -121,6 +121,9 @@ function DonationDoneCausePage(): JSX.Element {
       registerAction("contribution_done_page_view");
       logEvent("causeGave_end", {
         platform: "web",
+        currency: offer?.currency,
+        amount: offer?.priceValue,
+        causeId: cause.id,
       });
       navigateTo({
         pathname: "/promoters/support-cause",
@@ -131,6 +134,9 @@ function DonationDoneCausePage(): JSX.Element {
       registerAction("contribution_done_page_view");
       logEvent("ngoGave_end", {
         platform: "web",
+        currency: offer?.currency,
+        amount: offer?.priceValue,
+        nonProfitId: nonProfit?.id,
       });
       navigateTo({
         pathname: "/promoters/support-non-profit",

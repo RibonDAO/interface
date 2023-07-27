@@ -1,4 +1,4 @@
-import { useFreeDonationCauses } from "@ribon.io/shared/hooks";
+import { useCauses } from "@ribon.io/shared/hooks";
 import { createContext, useContext, useMemo } from "react";
 import { Cause } from "@ribon.io/shared/types";
 
@@ -14,7 +14,7 @@ export const CausesContext = createContext<ICausesContext>(
 CausesContext.displayName = "CausesContext";
 
 function CausesProvider({ children }: any) {
-  const { causes, refetch, isLoading } = useFreeDonationCauses();
+  const { causes, refetch, isLoading } = useCauses();
 
   const causesObject: ICausesContext = useMemo(
     () => ({

@@ -1,15 +1,37 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
+import { renderComponent } from "config/testUtils";
 import { useCauseContributionContext } from ".";
 
-function CausesContextTestPage() {
-  useCauseContributionContext();
-  return <div>CausesContext</div>;
+const mockCause = {
+  id: 1,
+  name: "Animal Cause",
+  active: true,
+  pools: [],
+};
+
+function CauseContributionContextTestPage() {
+  const { chosenCause } = useCauseContributionContext();
+  return (
+    <>
+      <div>CauseContributionContext</div>
+      <div>{chosenCause?.name}</div>
+    </>
+  );
 }
 
 describe("useCauseContributionContext", () => {
   it("should render without error", () => {
-    render(<CausesContextTestPage />);
-    expect(screen.getByText("CausesContext")).toBeInTheDocument();
+    render(<CauseContributionContextTestPage />);
+    expect(screen.getByText("CauseContributionContext")).toBeInTheDocument();
+  });
+
+  it("should show the chosen cause", () => {
+    renderComponent(<CauseContributionContextTestPage />, {
+      causeContributionProviderValue: {
+        chosenCause: mockCause,
+      },
+    });
+    expect(screen.getByText(mockCause.name)).toBeInTheDocument();
   });
 });

@@ -1,6 +1,9 @@
 import { nonProfitFactory } from "@ribon.io/shared/config";
 import { renderComponent } from "config/testUtils/renders";
-import { expectTextToBeInTheDocument } from "config/testUtils/expects";
+import {
+  expectLogEventToHaveBeenCalledWith,
+  expectTextToBeInTheDocument,
+} from "config/testUtils/expects";
 import { clickOn, fillByPlaceholder } from "config/testUtils";
 import { screen } from "@testing-library/react";
 import SignInSection from ".";
@@ -36,5 +39,11 @@ describe("SignInSection", () => {
     clickOn("Continue");
 
     expect(onContinue).toHaveBeenCalledWith("test@ribon.io");
+  });
+
+  it("logs the P12_view event", () => {
+    expectLogEventToHaveBeenCalledWith("P12_view", {
+      nonProfitId: nonProfit.id,
+    });
   });
 });

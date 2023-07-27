@@ -33,6 +33,7 @@ import LoadingPage from "pages/donations/LoadingPage";
 import ContributionStatsPage from "pages/users/ContributionStatsPage";
 import ReturnToIntegrationPage from "pages/donations/ReturnToIntegrationPage";
 import SupportCauseFlowControlPage from "pages/promoters/SupportCauseFlowControlPage";
+import TestPage from "pages/tests/TestPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -194,6 +195,10 @@ function RoutesComponent(): JSX.Element {
         <Suspense fallback={<div />}>
           <SupportCauseFlowControlPage />
         </Suspense>
+      </Route>
+
+      <Route path="/test-page">
+        <TestPage />
       </Route>
 
       <Route path="/promoters/support-treasure/billing-information" exact>

@@ -50,7 +50,7 @@ function CardPage(): JSX.Element {
 
   useEffect(() => {
     setCause(state?.causeDonated || causes[0]);
-  }, [causes]);
+  });
 
   const handleCauseClick = (causeClicked: Cause, index: number) => {
     logEvent("nonProfitCauseSelection_click", {
@@ -125,11 +125,6 @@ function CardPage(): JSX.Element {
       ) || [],
     [chosenCause, nonProfits],
   );
-
-  // const preSelectedIndex = () =>
-  //   state?.causeDonated
-  //     ? causes.findIndex((c) => c.id === state?.causeDonated?.id)
-  //     : 0;
 
   return (
     <S.Container>

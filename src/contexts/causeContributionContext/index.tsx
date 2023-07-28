@@ -25,9 +25,9 @@ function CauseContributionProvider({ children }: any) {
   const { causes } = useCausesContext();
   const [chosenCause, setChosenCause] = useState<Cause | undefined>(causes[0]);
   const [chosenCauseId, setChosenCauseId] = useState<number | undefined>();
-  const [chosenCauseIndex, setChosenCauseIndex] = useState<
-    number | undefined
-  >();
+  const [chosenCauseIndex, setChosenCauseIndex] = useState<number | undefined>(
+    0,
+  );
 
   useEffect(() => {
     if (chosenCauseId) {

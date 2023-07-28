@@ -11,8 +11,6 @@ import { useCryptoPayment } from "contexts/cryptoPaymentContext";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import theme from "styles/theme";
 import Intersection from "assets/images/intersection-image.svg";
-import { SELECTED_CAUSE_ID } from "lib/sessionStorage/constants";
-import { setSessionStorageItem } from "lib/sessionStorage";
 import { useCausesContext } from "contexts/causesContext";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import { useCauseContributionContext } from "contexts/causeContributionContext";
@@ -57,7 +55,7 @@ function CryptoPage(): JSX.Element {
     if (!cause) {
       setCause(state?.causeDonated || chosenCause);
     }
-  }, [causes]);
+  });
 
   useEffect(() => {
     if (cause && cause.pools?.length > 0) {
@@ -72,7 +70,6 @@ function CryptoPage(): JSX.Element {
     setCause(causeClicked);
     setChosenCause(causeClicked);
     setChosenCauseIndex(index);
-    setSessionStorageItem(SELECTED_CAUSE_ID, causeClicked?.id.toString());
   };
 
   const onDonationToContractSuccess = () => {

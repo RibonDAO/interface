@@ -17,8 +17,6 @@ import { useLocation } from "react-router-dom";
 import Intersection from "assets/images/intersection-image.svg";
 import extractUrlValue from "lib/extractUrlValue";
 import { useCausesContext } from "contexts/causesContext";
-import { SELECTED_CAUSE_ID } from "lib/sessionStorage/constants";
-import { setSessionStorageItem } from "lib/sessionStorage";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import { useCauseContributionContext } from "contexts/causeContributionContext";
 import * as S from "../styles";
@@ -53,19 +51,15 @@ function SupportCausePage(): JSX.Element {
     if (!cause) {
       setCause(state?.causeDonated || chosenCause);
     }
-    if (!isLoading) {
-      setChosenCause(causes[0]);
-    }
-  }, [causes]);
+  });
 
   const handleCauseClick = (causeClicked: Cause, index: number) => {
     logEvent("treasureCauseSelection_click", {
       id: causeClicked?.id,
     });
     setCause(causeClicked);
-    setChosenCause(causeClicked);
     setChosenCauseIndex(index);
-    setSessionStorageItem(SELECTED_CAUSE_ID, causeClicked?.id.toString());
+    setChosenCause(causeClicked);
   };
 
   const navigateToPayment = () => {
@@ -152,47 +146,51 @@ function SupportCausePage(): JSX.Element {
     <S.Container>
       <DownloadAppToast />
       <S.Title>{t("title")}</S.Title>
-      <GroupButtons
-        elements={causes}
-        onChange={handleCauseClick}
-        indexSelected={chosenCauseIndex}
-        nameExtractor={(element) => element.name}
-        backgroundColor={secondary[700]}
-        textColorOutline={secondary[700]}
-        borderColor={secondary[700]}
-        borderColorOutline={secondary[300]}
-      />
-      <S.ContentContainer>
-        <S.SupportImage src={chosenCause?.coverImage} />
-        <S.Intersection src={Intersection} />
+      {!isLoading && (
+        <GroupButtons
+          elements={causes}
+          onChange={handleCauseClick}
+          indexSelected={chosenCauseIndex}
+          nameExtractor={(element) => element.name}
+          backgroundColor={secondary[700]}
+          textColorOutline={secondary[700]}
+          borderColor={secondary[700]}
+          borderColorOutline={secondary[300]}
+        />
+      )}
+      {chosenCause && (
+        <S.ContentContainer>
+          <S.SupportImage src={chosenCause?.coverImage} />
+          <S.Intersection src={Intersection} />
 
-        <S.DonateContainer>
-          <S.GivingContainer>
-            <S.ContributionContainer>
-              <SelectOfferSection
-                cause={chosenCause}
-                onOfferChange={handleOfferChange}
-              />
-            </S.ContributionContainer>
-            <S.CommunityAddContainer>
-              <S.CommunityAddText>{t("communityAddText")}</S.CommunityAddText>
-              <S.CommunityAddValue>{communityAddText()}</S.CommunityAddValue>
-              <S.CommunityAddButton
-                text={t("communityAddButtonText")}
-                onClick={handleCommunityAddClick}
-                outline
-              />
-            </S.CommunityAddContainer>
-          </S.GivingContainer>
-          <S.DonateButton
-            text={t("donateButtonText", {
-              value: removeInsignificantZeros(currentOffer.price),
-            })}
-            onClick={handleDonateClick}
-          />
-        </S.DonateContainer>
-        <UserSupportBanner from="giveCauseCC_page" />
-      </S.ContentContainer>
+          <S.DonateContainer>
+            <S.GivingContainer>
+              <S.ContributionContainer>
+                <SelectOfferSection
+                  cause={chosenCause}
+                  onOfferChange={handleOfferChange}
+                />
+              </S.ContributionContainer>
+              <S.CommunityAddContainer>
+                <S.CommunityAddText>{t("communityAddText")}</S.CommunityAddText>
+                <S.CommunityAddValue>{communityAddText()}</S.CommunityAddValue>
+                <S.CommunityAddButton
+                  text={t("communityAddButtonText")}
+                  onClick={handleCommunityAddClick}
+                  outline
+                />
+              </S.CommunityAddContainer>
+            </S.GivingContainer>
+            <S.DonateButton
+              text={t("donateButtonText", {
+                value: removeInsignificantZeros(currentOffer.price),
+              })}
+              onClick={handleDonateClick}
+            />
+          </S.DonateContainer>
+          <UserSupportBanner from="giveCauseCC_page" />
+        </S.ContentContainer>
+      )}
 
       <S.BackgroundImage src={IntersectBackground} />
     </S.Container>

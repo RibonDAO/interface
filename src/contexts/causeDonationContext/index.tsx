@@ -29,9 +29,9 @@ function CauseDonationProvider({ children }: any) {
   const [chooseCauseModalVisible, setChooseCauseModalVisible] = useState(false);
   const [chosenCause, setChosenCause] = useState<Cause | undefined>();
   const [chosenCauseId, setChosenCauseId] = useState<number | undefined>();
-  const [chosenCauseIndex, setChosenCauseIndex] = useState<
-    number | undefined
-  >();
+  const [chosenCauseIndex, setChosenCauseIndex] = useState<number | undefined>(
+    0,
+  );
 
   useEffect(() => {
     if (chosenCauseId) {

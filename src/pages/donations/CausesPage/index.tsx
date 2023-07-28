@@ -164,7 +164,6 @@ function CausesPage(): JSX.Element {
 
   useEffect(() => {
     nonProfitsFilter();
-    setChosenCauseIndex(chosenCause?.id);
   }, [chosenCause]);
 
   const handleCauseChanged = (_element: any, index: number, event: any) => {

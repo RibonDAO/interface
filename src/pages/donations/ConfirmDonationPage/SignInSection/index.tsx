@@ -5,7 +5,7 @@ import { theme } from "@ribon.io/shared/styles";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import BackgroundShapes from "assets/images/background-shapes.svg";
 import { isValidEmail } from "lib/validators";
-import { newLogEvent } from "lib/events";
+import { logEvent } from "lib/events";
 import * as S from "./styles";
 
 type Props = {
@@ -20,7 +20,9 @@ function EmailInputSection({ nonProfit, onContinue }: Props): JSX.Element {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    newLogEvent("view", "P12");
+    logEvent("P12_view", {
+      nonProfitId: nonProfit.id,
+    });
   }, []);
 
   const handleButtonPress = () => {

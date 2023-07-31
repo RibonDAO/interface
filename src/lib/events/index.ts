@@ -40,7 +40,7 @@ export function newLogEvent(
   eventName: string,
   eventParams: EventParams = {},
 ): void {
-  logEvent(`web_${eventName}_${action}`, eventParams);
+  logEvent(`${eventName}_${action}`, eventParams);
 }
 
 export function logPageView(

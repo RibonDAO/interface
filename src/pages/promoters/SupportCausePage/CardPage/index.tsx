@@ -2,7 +2,6 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { logEvent } from "lib/events";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
-import { useCauses } from "@ribon.io/shared/hooks";
 import { Cause, Offer } from "@ribon.io/shared/types";
 import IntersectBackground from "assets/images/intersect-background.svg";
 import useNavigation from "hooks/useNavigation";
@@ -17,7 +16,9 @@ import theme from "styles/theme";
 import { useLocation } from "react-router-dom";
 import Intersection from "assets/images/intersection-image.svg";
 import extractUrlValue from "lib/extractUrlValue";
+import { useCausesContext } from "contexts/causesContext";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
+import { useCauseContributionContext } from "contexts/causeContributionContext";
 import * as S from "../styles";
 import SelectOfferSection from "./SelectOfferSection";
 
@@ -32,7 +33,10 @@ function SupportCausePage(): JSX.Element {
   const [currentOfferIndex, setCurrentOfferIndex] = useState(0);
   const { cause, setCause, setOfferId, setFlow } = useCardPaymentInformation();
 
-  const { causes } = useCauses();
+  const { causes, isLoading } = useCausesContext();
+  const { chosenCause, setChosenCause, chosenCauseIndex, setChosenCauseIndex } =
+    useCauseContributionContext();
+
   const { state, search } = useLocation<LocationStateType>();
 
   const platform = extractUrlValue("platform", search);
@@ -43,22 +47,19 @@ function SupportCausePage(): JSX.Element {
     keyPrefix: "promoters.supportCausePage",
   });
 
-  const causesFilter = () => {
-    const causesApi = causes.filter((currentCause) => currentCause.active);
-    return causesApi || [];
-  };
-
   useEffect(() => {
     if (!cause) {
-      setCause(state?.causeDonated || causesFilter()[0]);
+      setCause(state?.causeDonated || chosenCause);
     }
-  }, [causes]);
+  });
 
-  const handleCauseClick = (causeClicked: Cause) => {
+  const handleCauseClick = (causeClicked: Cause, index: number) => {
     logEvent("treasureCauseSelection_click", {
       id: causeClicked?.id,
     });
     setCause(causeClicked);
+    setChosenCauseIndex(index);
+    setChosenCause(causeClicked);
   };
 
   const navigateToPayment = () => {
@@ -137,57 +138,59 @@ function SupportCausePage(): JSX.Element {
     setOfferId(offer.id);
   };
 
-  const preSelectedIndex = () => {
-    if (state?.causeDonated)
-      return causesFilter().findIndex((c) => c.id === state?.causeDonated?.id);
-    return cause ? causesFilter().findIndex((c) => c.id === cause?.id) : 0;
-  };
+  if (causes.length === 0) {
+    return <div />;
+  }
 
   return (
     <S.Container>
       <DownloadAppToast />
       <S.Title>{t("title")}</S.Title>
-      <GroupButtons
-        elements={causesFilter()}
-        onChange={handleCauseClick}
-        indexSelected={preSelectedIndex()}
-        nameExtractor={(element) => element.name}
-        backgroundColor={secondary[700]}
-        textColorOutline={secondary[700]}
-        borderColor={secondary[700]}
-        borderColorOutline={secondary[300]}
-      />
-      <S.ContentContainer>
-        <S.SupportImage src={cause?.coverImage} />
-        <S.Intersection src={Intersection} />
+      {!isLoading && (
+        <GroupButtons
+          elements={causes}
+          onChange={handleCauseClick}
+          indexSelected={chosenCauseIndex}
+          nameExtractor={(element) => element.name}
+          backgroundColor={secondary[700]}
+          textColorOutline={secondary[700]}
+          borderColor={secondary[700]}
+          borderColorOutline={secondary[300]}
+        />
+      )}
+      {chosenCause && (
+        <S.ContentContainer>
+          <S.SupportImage src={chosenCause?.coverImage} />
+          <S.Intersection src={Intersection} />
 
-        <S.DonateContainer>
-          <S.GivingContainer>
-            <S.ContributionContainer>
-              <SelectOfferSection
-                cause={cause}
-                onOfferChange={handleOfferChange}
-              />
-            </S.ContributionContainer>
-            <S.CommunityAddContainer>
-              <S.CommunityAddText>{t("communityAddText")}</S.CommunityAddText>
-              <S.CommunityAddValue>{communityAddText()}</S.CommunityAddValue>
-              <S.CommunityAddButton
-                text={t("communityAddButtonText")}
-                onClick={handleCommunityAddClick}
-                outline
-              />
-            </S.CommunityAddContainer>
-          </S.GivingContainer>
-          <S.DonateButton
-            text={t("donateButtonText", {
-              value: removeInsignificantZeros(currentOffer.price),
-            })}
-            onClick={handleDonateClick}
-          />
-        </S.DonateContainer>
-        <UserSupportBanner from="giveCauseCC_page" />
-      </S.ContentContainer>
+          <S.DonateContainer>
+            <S.GivingContainer>
+              <S.ContributionContainer>
+                <SelectOfferSection
+                  cause={chosenCause}
+                  onOfferChange={handleOfferChange}
+                />
+              </S.ContributionContainer>
+              <S.CommunityAddContainer>
+                <S.CommunityAddText>{t("communityAddText")}</S.CommunityAddText>
+                <S.CommunityAddValue>{communityAddText()}</S.CommunityAddValue>
+                <S.CommunityAddButton
+                  text={t("communityAddButtonText")}
+                  onClick={handleCommunityAddClick}
+                  outline
+                />
+              </S.CommunityAddContainer>
+            </S.GivingContainer>
+            <S.DonateButton
+              text={t("donateButtonText", {
+                value: removeInsignificantZeros(currentOffer.price),
+              })}
+              onClick={handleDonateClick}
+            />
+          </S.DonateContainer>
+          <UserSupportBanner from="giveCauseCC_page" />
+        </S.ContentContainer>
+      )}
 
       <S.BackgroundImage src={IntersectBackground} />
     </S.Container>

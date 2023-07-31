@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import {
   useFreeDonationNonProfits,
@@ -30,6 +30,7 @@ import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import PromoterCta from "pages/donations/CausesPage/PromoterCta";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
+import { useCauseDonationContext } from "contexts/causeDonationContext";
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import NonProfitsList from "./NonProfitsList";
@@ -37,17 +38,17 @@ import { LocationStateType } from "./LocationStateType";
 import ChooseCauseModal from "./ChooseCauseModal";
 
 function CausesPage(): JSX.Element {
-  const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
 
+  const { causes, isLoading: isLoadingCauses } = useCausesContext();
   const {
-    activeCauses,
+    chosenCause,
+    setChosenCause,
+    chosenCauseIndex,
+    setChosenCauseIndex,
     chooseCauseModalVisible,
-    currentCauseId,
-    setCurrentCauseId,
-  } = useCausesContext();
-
+  } = useCauseDonationContext();
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
@@ -149,11 +150,11 @@ function CausesPage(): JSX.Element {
   }, [chooseCauseModalVisible]);
 
   const nonProfitsFilter = () => {
-    if (currentCauseId >= 1 && currentCauseId !== undefined) {
+    if (chosenCause) {
       return (
         nonProfits?.filter(
           (nonProfit) =>
-            nonProfit.cause?.active && nonProfit.cause?.id === currentCauseId,
+            nonProfit.cause?.active && nonProfit.cause?.id === chosenCause.id,
         ) || []
       );
     }
@@ -161,12 +162,18 @@ function CausesPage(): JSX.Element {
     return nonProfits || [];
   };
 
+  useEffect(() => {
+    nonProfitsFilter();
+  }, [chosenCause]);
+
   const handleCauseChanged = (_element: any, index: number, event: any) => {
     if (_element && event?.type === "click") {
-      const causeId = _element?.id;
-      if (nonProfits && causeId !== undefined) {
-        setCurrentCauseId(Number(causeId));
-        setSelectedButtonIndex(index);
+      const cause = _element;
+      setChosenCauseIndex(index);
+      if (cause.id !== 0) {
+        setChosenCause(cause);
+      } else {
+        setChosenCause(undefined);
       }
     }
   };
@@ -176,7 +183,7 @@ function CausesPage(): JSX.Element {
       id: 0,
       name: t("allCauses"),
     },
-    ...(activeCauses || []),
+    ...(causes || []),
   ];
 
   useAvoidBackButton();
@@ -184,7 +191,9 @@ function CausesPage(): JSX.Element {
   return (
     <S.Container>
       {!isFirstAccess(signedIn) && <DownloadAppToast />}
-      <ChooseCauseModal visible={chooseCauseModalVisible} />
+      {!isLoadingCauses && (
+        <ChooseCauseModal visible={chooseCauseModalVisible} />
+      )}
       {!isFirstAccess(signedIn) && <PromoterCta />}
       <S.BodyContainer>
         <S.TitleContainer>
@@ -204,7 +213,7 @@ function CausesPage(): JSX.Element {
         {!isFirstAccess(signedIn) && (
           <GroupButtons
             elements={causesWithAllFilter}
-            indexSelected={selectedButtonIndex}
+            indexSelected={chosenCauseIndex}
             onChange={handleCauseChanged}
             nameExtractor={(cause) => cause.name}
             eventParams={(cause) => ({ causeId: cause.id })}

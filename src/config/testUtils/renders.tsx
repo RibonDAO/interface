@@ -40,10 +40,18 @@ import NetworkProvider, {
   NetworkContext,
 } from "contexts/networkContext";
 import { QueryClientComponent } from "@ribon.io/shared/hooks";
+import CauseDonationProvider, {
+  CauseDonationContext,
+  ICauseDonationContext,
+} from "contexts/causeDonationContext";
 import TasksProvider, {
   ITasksContext,
   TasksContext,
 } from "contexts/tasksContext";
+import CauseContributionProvider, {
+  CauseContributionContext,
+  ICauseContributionContext,
+} from "contexts/causeContributionContext";
 
 export interface RenderWithContextResult {
   component: RenderResult;
@@ -80,6 +88,8 @@ export type RenderComponentProps = {
   history?: MemoryHistory;
   walletProviderValue?: Partial<IWalletContext>;
   causesProviderValue?: Partial<ICausesContext>;
+  causeDonationProviderValue?: Partial<ICauseDonationContext>;
+  causeContributionProviderValue?: Partial<ICauseContributionContext>;
   currentUserProviderValue?: Partial<ICurrentUserContext>;
   toastProviderValue?: Partial<IToastContext>;
   loadingOverlayValue?: Partial<ILoadingOverlayContext>;
@@ -95,6 +105,8 @@ function renderAllProviders(
     history = createMemoryHistory(),
     walletProviderValue = {},
     causesProviderValue = {},
+    causeDonationProviderValue = {},
+    causeContributionProviderValue = {},
     currentUserProviderValue = {},
     toastProviderValue = {},
     locationState = {},
@@ -126,26 +138,36 @@ function renderAllProviders(
                     CausesContext,
                     causesProviderValue,
                     renderProvider(
-                      ToastContextProvider,
-                      ToastContext,
-                      toastProviderValue,
+                      CauseDonationProvider,
+                      CauseDonationContext,
+                      causeDonationProviderValue,
                       renderProvider(
-                        LoadingOverlayProvider,
-                        LoadingOverlayContext,
-                        loadingOverlayValue,
+                        CauseContributionProvider,
+                        CauseContributionContext,
+                        causeContributionProviderValue,
                         renderProvider(
-                          ModalProvider,
-                          ModalContext,
-                          modalProviderValue,
+                          ToastContextProvider,
+                          ToastContext,
+                          toastProviderValue,
                           renderProvider(
-                            NetworkProvider,
-                            NetworkContext,
-                            networkProviderValue,
+                            LoadingOverlayProvider,
+                            LoadingOverlayContext,
+                            loadingOverlayValue,
                             renderProvider(
-                              TasksProvider,
-                              TasksContext,
-                              tasksProviderValue,
-                              children,
+                              ModalProvider,
+                              ModalContext,
+                              modalProviderValue,
+                              renderProvider(
+                                NetworkProvider,
+                                NetworkContext,
+                                networkProviderValue,
+                                renderProvider(
+                                  TasksProvider,
+                                  TasksContext,
+                                  tasksProviderValue,
+                                  children,
+                                ),
+                              ),
                             ),
                           ),
                         ),

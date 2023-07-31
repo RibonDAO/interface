@@ -56,6 +56,14 @@ import CausesProvider, {
 } from "contexts/causesContext";
 
 import { QueryClientComponent } from "@ribon.io/shared/hooks";
+import CauseDonationProvider, {
+  CauseDonationContext,
+  ICauseDonationContext,
+} from "contexts/causeDonationContext";
+import CauseContributionProvider, {
+  CauseContributionContext,
+  ICauseContributionContext,
+} from "contexts/causeContributionContext";
 
 export function renderWithTheme(children: React.ReactNode): RenderResult {
   return render(<ThemeProvider theme={theme}>{children}</ThemeProvider>);
@@ -102,6 +110,8 @@ export type RenderComponentProps = {
   walletProviderValue?: Partial<IWalletContext>;
   tasksProviderValue?: Partial<ITasksContext>;
   causesProviderValue?: Partial<ICausesContext>;
+  causeDonationProviderValue?: Partial<ICauseDonationContext>;
+  causeContributionProviderValue?: Partial<ICauseContributionContext>;
   currentUserProviderValue?: Partial<ICurrentUserContext>;
   toastProviderValue?: Partial<IToastContext>;
   loadingOverlayValue?: Partial<ILoadingOverlayContext>;
@@ -118,6 +128,8 @@ export function renderComponent(
     walletProviderValue = {},
     tasksProviderValue = {},
     causesProviderValue = {},
+    causeDonationProviderValue = {},
+    causeContributionProviderValue = {},
     currentUserProviderValue = {},
     toastProviderValue = {},
     locationState = {},
@@ -150,34 +162,44 @@ export function renderComponent(
                     CausesContext,
                     causesProviderValue,
                     renderProvider(
-                      ToastContextProvider,
-                      ToastContext,
-                      toastProviderValue,
+                      CauseDonationProvider,
+                      CauseDonationContext,
+                      causeDonationProviderValue,
                       renderProvider(
-                        LoadingOverlayProvider,
-                        LoadingOverlayContext,
-                        loadingOverlayValue,
+                        CauseContributionProvider,
+                        CauseContributionContext,
+                        causeContributionProviderValue,
                         renderProvider(
-                          ModalProvider,
-                          ModalContext,
-                          modalProviderValue,
+                          ToastContextProvider,
+                          ToastContext,
+                          toastProviderValue,
                           renderProvider(
-                            CardPaymentInformationProvider,
-                            CardPaymentInformationContext,
-                            cardPaymentProviderValue,
+                            LoadingOverlayProvider,
+                            LoadingOverlayContext,
+                            loadingOverlayValue,
                             renderProvider(
-                              NetworkProvider,
-                              NetworkContext,
-                              networkProviderValue,
+                              ModalProvider,
+                              ModalContext,
+                              modalProviderValue,
                               renderProvider(
-                                WalletProvider,
-                                WalletContext,
-                                walletProviderValue,
+                                CardPaymentInformationProvider,
+                                CardPaymentInformationContext,
+                                cardPaymentProviderValue,
                                 renderProvider(
-                                  CryptoPaymentProvider,
-                                  CryptoPaymentContext,
-                                  cryptoPaymentProviderValue,
-                                  component,
+                                  NetworkProvider,
+                                  NetworkContext,
+                                  networkProviderValue,
+                                  renderProvider(
+                                    WalletProvider,
+                                    WalletContext,
+                                    walletProviderValue,
+                                    renderProvider(
+                                      CryptoPaymentProvider,
+                                      CryptoPaymentContext,
+                                      cryptoPaymentProviderValue,
+                                      component,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),

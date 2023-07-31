@@ -14,11 +14,11 @@ export function ChooseCauseModal({ visible }: Props): JSX.Element {
     keyPrefix: "donations.causesPage",
   });
 
-  const { activeCauses } = useCausesContext();
+  const { causes } = useCausesContext();
 
   const causesList = useCallback(
     () =>
-      activeCauses?.map((cause: Cause) => (
+      causes?.map((cause: Cause) => (
         <CauseImage
           key={cause.id}
           id={cause.id}
@@ -26,7 +26,7 @@ export function ChooseCauseModal({ visible }: Props): JSX.Element {
           coverImage={cause.coverImage}
         />
       )),
-    [activeCauses],
+    [causes],
   );
 
   return (

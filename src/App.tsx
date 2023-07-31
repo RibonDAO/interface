@@ -16,6 +16,8 @@ import TasksProvider from "contexts/tasksContext";
 import CausesProvider from "contexts/causesContext";
 import DebugEventsView from "config/debugEventsView";
 import { debugEnabled } from "config/debugEventsView/helpers";
+import CauseDonationProvider from "contexts/causeDonationContext";
+import CauseContributionProvider from "contexts/causeContributionContext";
 import RoutesComponent from "./config/routes";
 import GlobalStyle from "./styles/globalStyle";
 import theme from "./styles/theme";
@@ -49,8 +51,12 @@ function App() {
                     <Suspense fallback={<div />}>
                       <TasksProvider>
                         <CausesProvider>
-                          <RoutesComponent />
-                          <Zendesk />
+                          <CauseDonationProvider>
+                            <CauseContributionProvider>
+                              <RoutesComponent />
+                              <Zendesk />
+                            </CauseContributionProvider>
+                          </CauseDonationProvider>
                         </CausesProvider>
                       </TasksProvider>
                     </Suspense>

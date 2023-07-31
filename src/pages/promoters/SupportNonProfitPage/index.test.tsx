@@ -23,14 +23,15 @@ jest.mock("@ribon.io/shared/hooks", () => ({
     nonProfits: [mockNonProfit, mockNonProfit2],
     refetch: jest.fn(),
   }),
-  useCauses: () => ({
-    causes: [mockCause, mockCause2],
-  }),
 }));
 
 describe("SupportNonProfit", () => {
   beforeEach(async () => {
-    renderComponent(<SupportNonProfit />);
+    renderComponent(<SupportNonProfit />, {
+      causesProviderValue: {
+        causes: [mockCause, mockCause2],
+      },
+    });
     await waitForPromises();
   });
 

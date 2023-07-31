@@ -17,6 +17,7 @@ import theme from "styles/theme";
 import { useLocation } from "react-router-dom";
 import Intersection from "assets/images/intersection-image.svg";
 import extractUrlValue from "lib/extractUrlValue";
+import { PLATFORM } from "utils/constants";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import * as S from "../styles";
 import SelectOfferSection from "./SelectOfferSection";
@@ -86,7 +87,9 @@ function SupportCausePage(): JSX.Element {
       causeId: cause?.id,
       amount: currentOffer.priceValue,
       currency: currentOffer.currency,
+      platform: PLATFORM,
     });
+
     setFlow("nonProfit");
 
     if (!cause) return;

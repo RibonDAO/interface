@@ -10,6 +10,7 @@ import useDonationFlow from "hooks/useDonationFlow";
 import useNavigation from "hooks/useNavigation";
 import SignInSection from "pages/donations/ConfirmDonationPage/SignInSection";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
+import { logEvent } from "lib/events";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -39,6 +40,9 @@ function ConfirmDonationPage(): JSX.Element {
 
   const onAnimationEnd = useCallback(() => {
     if (donationSucceeded) {
+      logEvent("ticketDonated_end", {
+        nonProfitId: nonProfit.id,
+      });
       navigateTo({
         pathname: "/donation-done-cause",
         state: {

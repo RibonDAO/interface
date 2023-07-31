@@ -66,7 +66,7 @@ function CausesPage(): JSX.Element {
         onClose: () => closeWarningModal(),
         icon: WarningIcon,
         supportButton: true,
-        eventName: "P1_donateErrorModal",
+        eventName: "P12_errorModal",
       },
     },
     state?.failedDonation,

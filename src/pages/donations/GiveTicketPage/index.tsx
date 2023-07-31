@@ -9,7 +9,6 @@ import { useIntegration } from "@ribon.io/shared/hooks";
 import { RIBON_COMPANY_ID } from "utils/constants";
 import Tooltip from "components/moleculars/Tooltip";
 import { newLogEvent } from "lib/events";
-import { useEffect } from "react";
 import ArrowLeft from "./assets/arrow-left-dark-green.svg";
 import * as S from "./styles";
 
@@ -51,14 +50,6 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
   const subtitle = isOnboarding ? t("onboardingSubtitle") : handleSubtitle;
 
   const buttonText = isOnboarding ? t("onboardingButtonText") : t("buttonText");
-
-  useEffect(() => {
-    if (isOnboarding) {
-      newLogEvent("view", "P10");
-    } else {
-      newLogEvent("view", "haveTickets_page");
-    }
-  }, [isOnboarding]);
 
   return (
     <S.Container>

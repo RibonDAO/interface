@@ -125,6 +125,7 @@ export default function CardSection() {
         [target === "cause" ? "causeId" : "nonProfitId"]: targetId,
         currency: currentOffer.currency,
         amount: currentOffer.priceValue,
+        platform: PLATFORM,
       });
 
     handleSubmit(PLATFORM);
@@ -141,7 +142,9 @@ export default function CardSection() {
         />
       ),
       onClick: () => {
-        logEvent("selectCreditCard_click");
+        logEvent("selectCreditCard_click", {
+          platform: PLATFORM,
+        });
       },
     },
   ];

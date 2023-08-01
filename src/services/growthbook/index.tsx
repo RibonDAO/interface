@@ -22,9 +22,11 @@ export const growthbookSetAttributes = async () => {
   const installationId = await firebase.app().installations().getId();
   localStorage.setItem("installationId", installationId);
   const hasDonated = localStorage.getItem("HAS_DONATED");
+  const hasContributed = localStorage.getItem("HAS_CONTRIBUTED");
   growthbook.setAttributes({
     id: installationId,
     hasDonated,
+    hasContributed,
     company: "ribon",
   });
 };

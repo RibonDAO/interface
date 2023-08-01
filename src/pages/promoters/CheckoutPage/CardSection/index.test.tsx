@@ -77,7 +77,8 @@ describe("CardSection", () => {
 
       it("logs the confirmPaymentFormBtn_click", () => {
         expectLogEventToHaveBeenCalledWith("confirmPaymentFormBtn_click", {
-          nonProfitId: `${mockCurrentPayable.id}`,
+          target: "non_profit",
+          targetId: `${mockCurrentPayable.id}`,
           amount: 10,
           currency: "usd",
         });

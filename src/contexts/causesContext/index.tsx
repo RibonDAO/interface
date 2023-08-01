@@ -4,6 +4,7 @@ import { Cause } from "@ribon.io/shared/types";
 
 export interface ICausesContext {
   causes: Cause[];
+  causesWithPoolBalance: Cause[];
   refetch: () => void;
   isLoading: boolean;
 }
@@ -15,10 +16,14 @@ CausesContext.displayName = "CausesContext";
 
 function CausesProvider({ children }: any) {
   const { causes, refetch, isLoading } = useCauses();
+  const causesWithPoolBalance = causes?.filter(
+    (cause) => cause.withPoolBalance === true,
+  );
 
   const causesObject: ICausesContext = useMemo(
     () => ({
       causes,
+      causesWithPoolBalance,
       refetch,
       isLoading,
     }),

@@ -41,7 +41,8 @@ function CausesPage(): JSX.Element {
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
 
-  const { causes, isLoading: isLoadingCauses } = useCausesContext();
+  const { causesWithPoolBalance, isLoading: isLoadingCauses } =
+    useCausesContext();
   const {
     chosenCause,
     setChosenCause,
@@ -183,7 +184,7 @@ function CausesPage(): JSX.Element {
       id: 0,
       name: t("allCauses"),
     },
-    ...(causes || []),
+    ...(causesWithPoolBalance || []),
   ];
 
   useAvoidBackButton();

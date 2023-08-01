@@ -34,7 +34,7 @@ function PriceSelection({
   const isCrypto = tokenSymbol && priceValue && !currentOffer;
 
   const variation = useExperiment({
-    key: "charge-payment-form-staging",
+    key: "charge-payment-form",
     variations: [false, true],
   });
 

@@ -25,6 +25,7 @@ export function logEvent(
     convertedParams.integrationName =
       localStorage.getItem("integrationName") ?? "false";
     convertedParams.hasDonated = localStorage.getItem("HAS_DONATED") ?? "false";
+    convertedParams.platform = "web";
 
     logFirebaseEvent(eventName, convertedParams);
     logMixpanelEvent(eventName, convertedParams);
@@ -39,7 +40,7 @@ export function newLogEvent(
   eventName: string,
   eventParams: EventParams = {},
 ): void {
-  logEvent(`web_${eventName}_${action}`, eventParams);
+  logEvent(`${eventName}_${action}`, eventParams);
 }
 
 export function logPageView(

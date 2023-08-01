@@ -29,6 +29,7 @@ import { PLATFORM } from "utils/constants";
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import PromoterCta from "pages/donations/CausesPage/PromoterCta";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
+import useAvoidBackButton from "hooks/useAvoidBackButton";
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import NonProfitsList from "./NonProfitsList";
@@ -65,7 +66,7 @@ function CausesPage(): JSX.Element {
         onClose: () => closeWarningModal(),
         icon: WarningIcon,
         supportButton: true,
-        eventName: "P1_donateErrorModal",
+        eventName: "P12_errorModal",
       },
     },
     state?.failedDonation,
@@ -177,6 +178,8 @@ function CausesPage(): JSX.Element {
     },
     ...(activeCauses || []),
   ];
+
+  useAvoidBackButton();
 
   return (
     <S.Container>

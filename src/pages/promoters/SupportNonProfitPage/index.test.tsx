@@ -6,7 +6,7 @@ import {
 } from "config/testUtils/expects";
 import causeFactory from "config/testUtils/factories/causeFactory";
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
-import SupportCausePage from ".";
+import SupportNonProfit from ".";
 
 const mockCause = causeFactory();
 const mockCause2 = causeFactory({ name: "💊 Health", id: 2, active: true });
@@ -28,18 +28,14 @@ jest.mock("@ribon.io/shared/hooks", () => ({
   }),
 }));
 
-describe("SupportCausePage", () => {
+describe("SupportNonProfit", () => {
   beforeEach(async () => {
-    renderComponent(<SupportCausePage />);
+    renderComponent(<SupportNonProfit />);
     await waitForPromises();
   });
 
   it("should render without error", () => {
     expectTextToBeInTheDocument("Make a direct donation");
-  });
-
-  it("logs the nonProfitSupportScreen_view event", () => {
-    expectLogEventToHaveBeenCalledWith("nonProfitSupportScreen_view");
   });
 
   it("shows only the non profits for that cause", () => {

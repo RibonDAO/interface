@@ -123,6 +123,8 @@ export default function CardSection() {
     if (targetId)
       logEvent("confirmPaymentFormBtn_click", {
         [target === "cause" ? "causeId" : "nonProfitId"]: targetId,
+        currency: currentOffer.currency,
+        amount: currentOffer.priceValue,
       });
 
     handleSubmit(PLATFORM);

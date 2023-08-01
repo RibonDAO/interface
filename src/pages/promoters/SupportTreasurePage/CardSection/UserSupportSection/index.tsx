@@ -9,7 +9,7 @@ function UserSupportSection(): JSX.Element {
   });
 
   const handleClick = () => {
-    logEvent("UserSupportBtn_Click");
+    logEvent("UserSupportBtn_click");
     window.open(t("userSupportLink"), "_blank");
   };
 

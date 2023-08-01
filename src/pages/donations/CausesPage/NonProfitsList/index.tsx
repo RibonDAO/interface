@@ -2,7 +2,7 @@ import CardCenterImageButton from "components/moleculars/cards/CardCenterImageBu
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import useNavigation from "hooks/useNavigation";
-import { newLogEvent } from "lib/events";
+import { logEvent, newLogEvent } from "lib/events";
 import { NonProfit, Integration } from "@ribon.io/shared/types";
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
 import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
@@ -57,10 +57,11 @@ function NonProfitsList({
 
   const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
 
-  function handleButtonClick(nonProfit: NonProfit) {
+  function handleButtonClick(nonProfit: NonProfit, from: string) {
     if (canDonateAndHasVoucher) {
-      newLogEvent("click", "P1_donateBtn", {
+      logEvent("donateTicketBtn_start", {
         nonProfitId: nonProfit.id,
+        from,
       });
       navigateTo({ pathname: "confirm-donation", state: { nonProfit } });
     } else {
@@ -99,7 +100,9 @@ function NonProfitsList({
           visible={storiesSectionVisible}
           setVisible={setStoriesSectionVisible}
           canDonateAndHasVoucher={Boolean(canDonateAndHasVoucher)}
-          onButtonClick={() => handleButtonClick(currentNonProfitWithStories)}
+          onButtonClick={() =>
+            handleButtonClick(currentNonProfitWithStories, "stories")
+          }
         />
       )}
       {nonProfits.length > 0 ? (
@@ -128,7 +131,9 @@ function NonProfitsList({
                         ? t("donateText")
                         : t("donateBlockedText")
                     }
-                    onClickButton={() => handleButtonClick(nonProfit)}
+                    onClickButton={() =>
+                      handleButtonClick(nonProfit, "nonProfitCard")
+                    }
                     onClickImage={() => handleImageClick(nonProfit)}
                     softDisabled={!canDonateAndHasVoucher}
                     infoTextLeft={nonProfit.name}

@@ -2,6 +2,7 @@ import { PaymentElement, Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useEffect, useState } from "react";
 
+const clientSecret = "pi_3NaH96JuOnwQq9Qx1qvrvd6A_secret_Y3mDv5AxAAFhSdW40z52e7n6u";
 function CheckoutForm() {
   return (
     <form>
@@ -13,8 +14,7 @@ function CheckoutForm() {
 
 function StripeProvider({ children, stripe }: any) {
   const options = {
-    clientSecret:
-      "pi_3NYEKdJuOnwQq9Qx0n209ZCi_secret_2cDgN7YFVugwfT5Bip3weF02a",
+    clientSecret,
   };
 
   if (!stripe) return null;
@@ -41,12 +41,15 @@ function TestPage() {
   }, []);
 
   useEffect(() => {
-    // if (stripe) {
-    //   stripe.confirmPixPayment(
-    //     "",
-    //   );
-    // }
+    console.log(stripe);
+    if (stripe) {
+      stripe.confirmPixPayment(
+        clientSecret,
+      );
+    }
   }, [stripe]);
+
+  if(!stripe) return null;
 
   return (
     <div>

@@ -55,7 +55,6 @@ function PostDonationPage(): JSX.Element {
   }, [variation, contribution]);
 
   const handleClickedDonationButton = (flow: string) => {
-    localStorage.setItem("HAS_CONTRIBUTED", "true");
     logEvent(flow === "nonProfit" ? "giveNgoBtn_start" : "giveCauseBtn_start", {
       from: "givePostDonation_page",
       value: contribution?.value,

@@ -48,7 +48,6 @@ function ContributionCard({
   }, []);
 
   const handleClickedDonationButton = () => {
-    localStorage.setItem("HAS_CONTRIBUTED", "true");
     logEvent(flow === "nonProfit" ? "giveNgoBtn_start" : "giveCauseBtn_start", {
       from,
       value,

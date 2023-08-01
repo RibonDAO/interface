@@ -62,6 +62,7 @@ function CardPage(): JSX.Element {
   };
 
   const navigateToPayment = (nonProfit: NonProfit) => {
+    localStorage.setItem("HAS_CONTRIBUTED", "true");
     setFlow("nonProfit");
     logEvent("giveNgoBtn_start", {
       causeId: cause?.id,
@@ -82,6 +83,7 @@ function CardPage(): JSX.Element {
   };
 
   const navigateToCheckout = (nonProfit: NonProfit) => {
+    localStorage.setItem("HAS_CONTRIBUTED", "true");
     logEvent("giveNgoBtn_start", {
       from: "giveNonProfit_page",
       nonProfitId: nonProfit.id,

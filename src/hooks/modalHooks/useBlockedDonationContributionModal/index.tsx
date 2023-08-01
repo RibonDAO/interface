@@ -17,6 +17,7 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
   const { navigateTo } = useNavigation();
 
   const handleClickedDonationButton = () => {
+    localStorage.setItem("HAS_CONTRIBUTED", "true");
     logEvent("giveNgoBtn_start", {
       from: "zeroTickets_modal",
       value: contribution?.value,

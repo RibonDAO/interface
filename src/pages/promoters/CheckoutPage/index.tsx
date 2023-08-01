@@ -8,13 +8,18 @@ import Header from "./Components/Header";
 import * as S from "./styles";
 
 function CheckoutPage(): JSX.Element {
-  const { currency } = usePaymentParams();
+  const { currency, target, targetId, offer } = usePaymentParams();
 
   useEffect(() => {
     // this is not being logged on logPageView because it would log everytime a param changes
     // (like currency, offer, etc)
-    logEvent("P23_view");
-  }, []);
+    logEvent("P23_view", {
+      currency: currency ?? "",
+      target: target ?? "",
+      targetId: targetId ?? "",
+      offer: offer ?? "",
+    });
+  }, [currency, target, targetId, offer]);
 
   return (
     <S.Container>

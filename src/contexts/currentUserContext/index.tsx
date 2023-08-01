@@ -8,6 +8,7 @@ import React, {
   useState,
 } from "react";
 import { setUserId } from "services/analytics/firebase";
+import { setUserId as setUserIdInMixpanel } from "services/analytics/mixpanel";
 import { User } from "@ribon.io/shared/types";
 import { initializeApi } from "services/api";
 
@@ -61,6 +62,7 @@ function CurrentUserProvider({ children }: Props) {
   function setUserIdInAnalytics() {
     if (currentUser?.id) {
       setUserId(currentUser?.id);
+      setUserIdInMixpanel(currentUser?.id);
     }
   }
 
@@ -69,7 +71,7 @@ function CurrentUserProvider({ children }: Props) {
     setUserInLocalStorage();
     initializeApi();
 
-    if (process.env.NODE_ENV !== "development") {
+    if (process.env.NODE_ENV === "development") {
       setUserIdInAnalytics();
     }
   }, [currentUser]);

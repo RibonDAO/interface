@@ -11,13 +11,13 @@ import {
   formatPrice,
   removeInsignificantZeros,
 } from "lib/formatters/currencyFormatter";
-import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import theme from "styles/theme";
 import { useLocation } from "react-router-dom";
 import Intersection from "assets/images/intersection-image.svg";
 import extractUrlValue from "lib/extractUrlValue";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
+import { usePaymentInformation } from "contexts/paymentInformationContext";
 import * as S from "../styles";
 import SelectOfferSection from "./SelectOfferSection";
 
@@ -30,7 +30,7 @@ function SupportCausePage(): JSX.Element {
   const { navigateTo } = useNavigation();
   const [currentOffer, setCurrentOffer] = useState<Offer>(offerFactory());
   const [currentOfferIndex, setCurrentOfferIndex] = useState(0);
-  const { cause, setCause, setOfferId, setFlow } = useCardPaymentInformation();
+  const { cause, setCause, setOfferId, setFlow } = usePaymentInformation();
 
   const { causes } = useCauses();
   const { state, search } = useLocation<LocationStateType>();

@@ -9,6 +9,7 @@ import { theme } from "@ribon.io/shared/styles";
 import { countryList } from "utils/countryList";
 import { useLanguage } from "hooks/useLanguage";
 import { maskForTaxId } from "lib/maskForTaxId";
+import { usePaymentInformation } from "contexts/paymentInformationContext";
 import * as S from "./styles";
 
 export type Props = {
@@ -42,6 +43,9 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
     setCvv,
     buttonDisabled,
     setButtonDisabled,
+  } = useCardPaymentInformation();
+
+  const {
     country,
     setCountry,
     city,
@@ -52,7 +56,7 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
     setTaxId,
     email,
     setEmail,
-  } = useCardPaymentInformation();
+  } = usePaymentInformation();
 
   const validTaxId = () => {
     if (!showFiscalFields) return true;

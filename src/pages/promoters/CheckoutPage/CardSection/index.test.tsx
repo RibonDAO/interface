@@ -47,12 +47,7 @@ describe("CardSection", () => {
     beforeEach(async () => {
       renderComponent(<CardSection />, {
         cardPaymentProviderValue: {
-          email: "mail@ribon.io",
-          country: "Brasil",
-          city: "Brasilia",
           name: "John Doe",
-          taxId: "411.411.411-41",
-          state: "DF",
           number: "4111111111111111",
           expirationDate: "05/2025",
           cvv: "411",

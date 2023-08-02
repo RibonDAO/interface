@@ -3,8 +3,6 @@ import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useModal } from "hooks/modalHooks/useModal";
 import useNavigation from "hooks/useNavigation";
 import useToast from "hooks/useToast";
-import { useLanguage } from "hooks/useLanguage";
-import { coinByLanguage } from "lib/coinByLanguage";
 import {
   createContext,
   useContext,
@@ -16,45 +14,26 @@ import {
 import { useTranslation } from "react-i18next";
 import { logEvent } from "lib/events";
 import { logError } from "services/crashReport";
-import { Currencies, Cause, NonProfit } from "@ribon.io/shared/types";
 import GivingIcon from "assets/icons/giving-icon.svg";
 import Logo from "assets/icons/logo-background-icon.svg";
 import UserIcon from "assets/icons/user.svg";
-import { useIntegrationId } from "hooks/useIntegrationId";
-import {getLocalStorageItem, removeLocalStorageItem, setLocalStorageItem} from "lib/localStorage";
+import {
+  getLocalStorageItem,
+  removeLocalStorageItem,
+  setLocalStorageItem,
+} from "lib/localStorage";
 import { useIntegration, useSources, useUsers } from "@ribon.io/shared/hooks";
 import { normalizedLanguage } from "lib/currentLanguage";
 import { CONTRIBUTION_INLINE_NOTIFICATION } from "pages/donations/CausesPage/ContributionNotification";
 import { PLATFORM } from "utils/constants";
 import pixPaymentApi from "services/api/pixPaymentApi";
 import { useStripe } from "contexts/stripeContext";
+import { usePaymentInformation } from "contexts/paymentInformationContext";
 
 export interface IPixPaymentInformationContext {
-  setCurrentCoin: (value: SetStateAction<Currencies>) => void;
-  setCountry: (value: SetStateAction<string>) => void;
-  setState: (value: SetStateAction<string>) => void;
-  setCity: (value: SetStateAction<string>) => void;
-  setTaxId: (value: SetStateAction<string>) => void;
-  setEmail: (value: SetStateAction<string>) => void;
-  setName: (value: SetStateAction<string>) => void;
   setButtonDisabled: (value: SetStateAction<boolean>) => void;
-  setOfferId: (value: SetStateAction<number>) => void;
-  setFlow: (value: SetStateAction<"cause" | "nonProfit">) => void;
   buttonDisabled: boolean;
-  currentCoin: Currencies;
-  country: string;
-  state: string;
-  city: string;
-  taxId: string;
-  email: string;
-  name: string;
-  offerId: number;
-  flow: "cause" | "nonProfit";
   handleSubmit: () => void;
-  cause: Cause | undefined;
-  setCause: (value: SetStateAction<Cause | undefined>) => void;
-  nonProfit: NonProfit | undefined;
-  setNonProfit: (value: SetStateAction<NonProfit | undefined>) => void;
   handleConfirmation: () => void;
   clientSecret: string;
 }
@@ -72,37 +51,26 @@ export const CURRENT_COIN_KEY = "CURRENT_COIN_KEY";
 const LAST_CLIENT_SECRET_KEY = "LAST_CLIENT_SECRET_KEY";
 
 function PixPaymentInformationProvider({ children }: Props) {
-  const { currentUser } = useCurrentUser();
-  const { currentLang } = useLanguage();
   const { stripe } = useStripe();
-
-  const defaultCoin = () =>
-    (getLocalStorageItem(CURRENT_COIN_KEY) as Currencies) ||
-    coinByLanguage(currentLang);
-
-  const [currentCoin, setCurrentCoin] = useState<Currencies>(defaultCoin());
-
-  useEffect(() => {
-    setLocalStorageItem(CURRENT_COIN_KEY, currentCoin);
-  }, [currentCoin]);
 
   const [clientSecret, setClientSecret] = useState<string>(
     getLocalStorageItem(LAST_CLIENT_SECRET_KEY) || "",
   );
 
-  const integrationId = useIntegrationId();
-  const [country, setCountry] = useState("");
-  const [state, setState] = useState("");
-  const [city, setCity] = useState("");
-  const [taxId, setTaxId] = useState("");
-  const [email, setEmail] = useState(currentUser?.email ?? "");
-  const [name, setName] = useState("");
+  const {
+    integrationId,
+    flow,
+    country,
+    state,
+    city,
+    taxId,
+    offerId,
+    cause,
+    nonProfit,
+    email,
+    name,
+  } = usePaymentInformation();
   const [buttonDisabled, setButtonDisabled] = useState(false);
-  const [cryptoGiving, setCryptoGiving] = useState("");
-  const [offerId, setOfferId] = useState(1);
-  const [cause, setCause] = useState<Cause>();
-  const [nonProfit, setNonProfit] = useState<NonProfit>();
-  const [flow, setFlow] = useState<"nonProfit" | "cause">("nonProfit");
 
   const { t } = useTranslation("translation", {
     keyPrefix: "contexts.pixPaymentInformation",
@@ -224,51 +192,13 @@ function PixPaymentInformationProvider({ children }: Props) {
 
   const pixPaymentInformationObject: IPixPaymentInformationContext = useMemo(
     () => ({
-      currentCoin,
-      setCurrentCoin,
-      country,
-      setCountry,
-      city,
-      setCity,
-      state,
-      setState,
-      taxId,
-      setTaxId,
       handleSubmit,
-      setName,
-      name,
-      setEmail,
-      email,
       buttonDisabled,
       setButtonDisabled,
-      setCryptoGiving,
-      cryptoGiving,
-      setOfferId,
-      offerId,
-      cause,
-      setCause,
-      nonProfit,
-      setNonProfit,
-      flow,
-      setFlow,
       handleConfirmation,
       clientSecret,
     }),
-    [
-      currentCoin,
-      offerId,
-      country,
-      city,
-      state,
-      taxId,
-      email,
-      name,
-      buttonDisabled,
-      cause,
-      nonProfit,
-      flow,
-      clientSecret,
-    ],
+    [buttonDisabled, clientSecret],
   );
 
   return (

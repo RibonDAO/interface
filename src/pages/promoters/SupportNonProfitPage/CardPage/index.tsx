@@ -7,7 +7,6 @@ import { Cause, Offer, NonProfit } from "@ribon.io/shared/types";
 import IntersectBackground from "assets/images/intersect-background.svg";
 import useNavigation from "hooks/useNavigation";
 import offerFactory from "config/testUtils/factories/offerFactory";
-import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import theme from "styles/theme";
 import SliderCards from "components/moleculars/sliders/SliderCards";
@@ -16,8 +15,8 @@ import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import extractUrlValue from "lib/extractUrlValue";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
+import { usePaymentInformation } from "contexts/paymentInformationContext";
 import * as S from "../styles";
-
 import NonProfitCard from "./NonProfitCard";
 
 type LocationStateType = {
@@ -28,7 +27,7 @@ function CardPage(): JSX.Element {
   const { navigateTo } = useNavigation();
   const [currentOffer, setCurrentOffer] = useState<Offer>(offerFactory());
   const [currentOfferIndex, setCurrentOfferIndex] = useState(0);
-  const { cause, setCause, setOfferId, setFlow } = useCardPaymentInformation();
+  const { cause, setCause, setOfferId, setFlow } = usePaymentInformation();
   const { nonProfits } = useNonProfits();
   const { tertiary } = theme.colors.brand;
 

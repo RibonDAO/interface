@@ -9,6 +9,7 @@ import { countryList } from "utils/countryList";
 import { useLanguage } from "hooks/useLanguage";
 import { maskForTaxId } from "lib/maskForTaxId";
 import { usePixPaymentInformation } from "contexts/pixPaymentInformationContext";
+import { usePaymentInformation } from "contexts/paymentInformationContext";
 import * as S from "./styles";
 
 export type Props = {
@@ -31,11 +32,11 @@ function PixForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
 
   const { signedIn } = useCurrentUser();
 
+  const { buttonDisabled, setButtonDisabled } = usePixPaymentInformation();
+
   const {
     name,
     setName,
-    buttonDisabled,
-    setButtonDisabled,
     country,
     setCountry,
     city,
@@ -46,7 +47,7 @@ function PixForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
     setTaxId,
     email,
     setEmail,
-  } = usePixPaymentInformation();
+  } = usePaymentInformation();
 
   const validTaxId = () => {
     if (!showFiscalFields) return true;

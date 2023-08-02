@@ -31,6 +31,7 @@ import PromoterCta from "pages/donations/CausesPage/PromoterCta";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
+import { NonProfit } from "@ribon.io/shared";
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import NonProfitsList from "./NonProfitsList";
@@ -151,21 +152,22 @@ function CausesPage(): JSX.Element {
   }, [chooseCauseModalVisible]);
 
   const nonProfitsFilter = () => {
+    const isActiveWithPoolBalance = (nonProfit: NonProfit) =>
+      nonProfit.cause?.active && nonProfit?.cause?.withPoolBalance;
+
     if (chosenCause) {
       return (
         nonProfits?.filter(
           (nonProfit) =>
-            nonProfit.cause?.active &&
-            nonProfit?.cause?.withPoolBalance &&
+            isActiveWithPoolBalance(nonProfit) &&
             nonProfit.cause?.id === chosenCause.id,
         ) || []
       );
     }
+
     return (
-      nonProfits?.filter(
-        (nonProfit) =>
-          nonProfit.cause?.active && nonProfit?.cause?.withPoolBalance,
-      ) || []
+      nonProfits?.filter((nonProfit) => isActiveWithPoolBalance(nonProfit)) ||
+      []
     );
   };
 

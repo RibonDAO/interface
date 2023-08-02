@@ -387,6 +387,15 @@
           "name": "Cardholder name",
           "expirationDate": "Expiration date",
           "cvv": "CVV"
+        },
+        "pixFields": {
+          "email": "E-mail",
+          "country": "Country",
+          "state": "State",
+          "city": "City",
+          "taxId": "Tax ID",
+          "cpf": "CPF",
+          "name": "Name"
         }
       },
       "confirmPayment": "Confirm payment",
@@ -412,6 +421,16 @@
     },
     "tasksContext": {
       "allTasksCompleted": "You completed all tasks!"
+    },
+    "pixPaymentInformation": {
+      "onErrorMessage": "Payment failed. Try again.",
+      "loadingMessage": "Payment in progress...",
+      "modalSuccessTitle": "You've added {{value}} USDC to the treasury!",
+      "modalSuccessDescription": "Your donation has been converted into cryptocurrencies to fund more tickets.",
+      "modalSuccessButton": "Ok",
+      "modalAnimationFrom": "You",
+      "modalAnimationTo": "Ribon",
+      "modalAnimationTitle": "Processing giving..."
     }
   },
   "impactNormalizer": {

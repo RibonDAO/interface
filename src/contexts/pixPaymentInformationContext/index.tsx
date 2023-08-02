@@ -21,12 +21,13 @@ import GivingIcon from "assets/icons/giving-icon.svg";
 import Logo from "assets/icons/logo-background-icon.svg";
 import UserIcon from "assets/icons/user.svg";
 import { useIntegrationId } from "hooks/useIntegrationId";
-import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
+import {getLocalStorageItem, removeLocalStorageItem, setLocalStorageItem} from "lib/localStorage";
 import { useIntegration, useSources, useUsers } from "@ribon.io/shared/hooks";
 import { normalizedLanguage } from "lib/currentLanguage";
 import { CONTRIBUTION_INLINE_NOTIFICATION } from "pages/donations/CausesPage/ContributionNotification";
 import { PLATFORM } from "utils/constants";
 import pixPaymentApi from "services/api/pixPaymentApi";
+import { useStripe } from "contexts/stripeContext";
 
 export interface IPixPaymentInformationContext {
   setCurrentCoin: (value: SetStateAction<Currencies>) => void;
@@ -49,12 +50,13 @@ export interface IPixPaymentInformationContext {
   name: string;
   offerId: number;
   flow: "cause" | "nonProfit";
-  handleSubmit: (platform: string) => void;
+  handleSubmit: () => void;
   cause: Cause | undefined;
   setCause: (value: SetStateAction<Cause | undefined>) => void;
   nonProfit: NonProfit | undefined;
   setNonProfit: (value: SetStateAction<NonProfit | undefined>) => void;
   handleConfirmation: () => void;
+  clientSecret: string;
 }
 
 export type Props = {
@@ -67,10 +69,12 @@ export const PixPaymentInformationContext =
   );
 
 export const CURRENT_COIN_KEY = "CURRENT_COIN_KEY";
+const LAST_CLIENT_SECRET_KEY = "LAST_CLIENT_SECRET_KEY";
 
 function PixPaymentInformationProvider({ children }: Props) {
   const { currentUser } = useCurrentUser();
   const { currentLang } = useLanguage();
+  const { stripe } = useStripe();
 
   const defaultCoin = () =>
     (getLocalStorageItem(CURRENT_COIN_KEY) as Currencies) ||
@@ -81,6 +85,10 @@ function PixPaymentInformationProvider({ children }: Props) {
   useEffect(() => {
     setLocalStorageItem(CURRENT_COIN_KEY, currentCoin);
   }, [currentCoin]);
+
+  const [clientSecret, setClientSecret] = useState<string>(
+    getLocalStorageItem(LAST_CLIENT_SECRET_KEY) || "",
+  );
 
   const integrationId = useIntegrationId();
   const [country, setCountry] = useState("");
@@ -124,6 +132,7 @@ function PixPaymentInformationProvider({ children }: Props) {
 
   const handleConfirmation = async () => {
     setLocalStorageItem(CONTRIBUTION_INLINE_NOTIFICATION, "3");
+    removeLocalStorageItem(LAST_CLIENT_SECRET_KEY);
     login();
     navigateTo({
       pathname: "/donation-done-cause",
@@ -149,6 +158,28 @@ function PixPaymentInformationProvider({ children }: Props) {
     },
   });
 
+  const confirmPixPayment = async () => {
+    setButtonDisabled(true);
+    try {
+      const response = await stripe?.confirmPixPayment(clientSecret);
+      if (response?.paymentIntent?.status === "succeeded") {
+        handleConfirmation();
+      }
+    } catch (e) {
+      logError(e);
+    } finally {
+      setButtonDisabled(false);
+    }
+  };
+
+  useEffect(() => {
+    console.log(clientSecret);
+    if (clientSecret) {
+      setLocalStorageItem(LAST_CLIENT_SECRET_KEY, clientSecret);
+      confirmPixPayment();
+    }
+  }, [clientSecret, stripe]);
+
   const showAnimationPixPaymentModal = () => {
     showAnimationModal();
     setTimeout(() => {
@@ -156,7 +187,7 @@ function PixPaymentInformationProvider({ children }: Props) {
     }, 3000);
   };
 
-  const handleSubmit = async (platform: string) => {
+  const handleSubmit = async () => {
     showAnimationPixPaymentModal();
 
     const paymentInformation = {
@@ -170,11 +201,12 @@ function PixPaymentInformationProvider({ children }: Props) {
       integrationId: integrationId ?? 1,
       causeId: cause?.id,
       nonProfitId: nonProfit?.id,
-      platform: platform || PLATFORM,
+      platform: PLATFORM,
     };
 
     try {
-      await pixPaymentApi.postPixPayment(paymentInformation);
+      const response = await pixPaymentApi.postPixPayment(paymentInformation);
+      setClientSecret(response.data.clientSecret);
       closeAnimationModal();
     } catch (error) {
       closeAnimationModal();
@@ -220,6 +252,7 @@ function PixPaymentInformationProvider({ children }: Props) {
       flow,
       setFlow,
       handleConfirmation,
+      clientSecret,
     }),
     [
       currentCoin,
@@ -234,6 +267,7 @@ function PixPaymentInformationProvider({ children }: Props) {
       cause,
       nonProfit,
       flow,
+      clientSecret,
     ],
   );
 

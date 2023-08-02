@@ -5,7 +5,7 @@ import { apiPost } from "..";
 const pixPaymentApi = {
   postPixPayment: (
     paymentInformation: PixPayment,
-  ): Promise<AxiosResponse<PixPayment>> =>
+  ): Promise<AxiosResponse<any>> =>
     apiPost("payments/pix", paymentInformation),
 };
 

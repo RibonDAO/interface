@@ -13,6 +13,7 @@ import { useCardPaymentInformation } from "contexts/cardPaymentInformationContex
 import { PLATFORM } from "utils/constants";
 import { logEvent } from "lib/events";
 import PixSection from "pages/promoters/CheckoutPage/PixSection";
+import { usePixPaymentInformation } from "contexts/pixPaymentInformationContext";
 import CreditCardForm from "../Components/CreditCardForm";
 import PriceSelection from "../Components/PriceSelection";
 import { PriceSelectionLoader } from "../Components/PriceSelection/loader";
@@ -39,6 +40,8 @@ export default function CardSection() {
     setNonProfit,
     setFlow,
   } = useCardPaymentInformation();
+
+  const { setOfferId: setPixOfferId } = usePixPaymentInformation();
 
   const {
     offers,
@@ -95,7 +98,10 @@ export default function CardSection() {
   });
 
   useEffect(() => {
-    if (currentOffer) setOfferId(currentOffer.id);
+    if (currentOffer) {
+      setOfferId(currentOffer.id);
+      setPixOfferId(currentOffer.id);
+    }
   }, [currentOffer]);
 
   useEffect(() => {

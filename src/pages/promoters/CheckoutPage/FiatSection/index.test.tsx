@@ -3,7 +3,7 @@ import {
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
 import { nonProfitFactory } from "@ribon.io/shared/config";
-import {act, screen} from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import offerFactory from "config/testUtils/factories/offerFactory";
 import { clickOn, waitForPromises, renderComponent } from "config/testUtils";
 import FiatSection from ".";

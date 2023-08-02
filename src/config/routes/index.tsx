@@ -34,6 +34,7 @@ import ContributionStatsPage from "pages/users/ContributionStatsPage";
 import ReturnToIntegrationPage from "pages/donations/ReturnToIntegrationPage";
 import SupportCauseFlowControlPage from "pages/promoters/SupportCauseFlowControlPage";
 import StripeProvider from "contexts/stripeContext";
+import PixPaymentInformationProvider from "contexts/pixPaymentInformationContext";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -283,7 +284,9 @@ function RoutesComponent(): JSX.Element {
                 <CardPaymentInformationProvider>
                   <CryptoPaymentProvider>
                     <StripeProvider>
-                      <CheckoutPage />
+                      <PixPaymentInformationProvider>
+                        <CheckoutPage />
+                      </PixPaymentInformationProvider>
                     </StripeProvider>
                   </CryptoPaymentProvider>
                 </CardPaymentInformationProvider>

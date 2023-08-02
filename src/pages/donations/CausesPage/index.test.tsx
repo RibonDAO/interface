@@ -21,8 +21,8 @@ describe("Causes", () => {
   });
 
   const cause2 = causeFactory({
-    id: 1,
-    name: "cause1",
+    id: 2,
+    name: "cause2",
     active: false,
     withPoolBalance: false,
   });

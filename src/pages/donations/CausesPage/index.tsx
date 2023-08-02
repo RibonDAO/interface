@@ -155,16 +155,37 @@ function CausesPage(): JSX.Element {
       return (
         nonProfits?.filter(
           (nonProfit) =>
-            nonProfit.cause?.active && nonProfit.cause?.id === chosenCause.id,
+            nonProfit.cause?.active &&
+            nonProfit?.cause?.withPoolBalance &&
+            nonProfit.cause?.id === chosenCause.id,
         ) || []
       );
     }
+    return (
+      nonProfits?.filter(
+        (nonProfit) =>
+          nonProfit.cause?.active && nonProfit?.cause?.withPoolBalance,
+      ) || []
+    );
+  };
 
-    return nonProfits || [];
+  const sortNonProfits = () => {
+    const filteredNonProfits = nonProfitsFilter();
+    const sorted = filteredNonProfits.sort((a, b) => {
+      const causeAIndex = causesWithPoolBalance.findIndex(
+        (cause) => cause.id === a.cause.id,
+      );
+      const causeBIndex = causesWithPoolBalance.findIndex(
+        (cause) => cause.id === b.cause.id,
+      );
+
+      return causeAIndex - causeBIndex;
+    });
+    return sorted;
   };
 
   useEffect(() => {
-    nonProfitsFilter();
+    sortNonProfits();
   }, [chosenCause]);
 
   const handleCauseChanged = (_element: any, index: number, event: any) => {
@@ -228,7 +249,7 @@ function CausesPage(): JSX.Element {
           nonProfits && (
             <S.NonProfitsContainer>
               <NonProfitsList
-                nonProfits={nonProfitsFilter()}
+                nonProfits={sortNonProfits()}
                 canDonate={canDonate}
                 integration={integration}
               />

@@ -1,10 +1,11 @@
 import * as CrashReport from "services/crashReport";
 import mixpanel from "mixpanel-browser";
-import { initializeMixpanel, logMixpanelEvent } from ".";
+import { initializeMixpanel, logMixpanelEvent, setUserId } from ".";
 
 jest.spyOn(CrashReport, "logError");
 jest.spyOn(mixpanel, "track");
 jest.spyOn(mixpanel, "init");
+jest.spyOn(mixpanel, "identify");
 
 describe("logMixpanelEvent", () => {
   const eventName = "teste";
@@ -71,5 +72,12 @@ describe("if key exists", () => {
   it("initializeMixpanel should initialize", () => {
     initializeMixpanel();
     expect(mixpanel.init).toHaveBeenCalled();
+  });
+});
+
+describe("setUserId", () => {
+  it("calls mixpanel.identify", () => {
+    setUserId("123");
+    expect(mixpanel.identify).toHaveBeenCalledWith("123");
   });
 });

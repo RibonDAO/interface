@@ -71,7 +71,7 @@ function CurrentUserProvider({ children }: Props) {
     setUserInLocalStorage();
     initializeApi();
 
-    if (process.env.NODE_ENV === "development") {
+    if (process.env.NODE_ENV !== "development") {
       setUserIdInAnalytics();
     }
   }, [currentUser]);

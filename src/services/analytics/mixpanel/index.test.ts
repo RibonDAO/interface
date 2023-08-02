@@ -78,6 +78,7 @@ describe("if key exists", () => {
 describe("setUserId", () => {
   it("calls mixpanel.identify", () => {
     setUserId("123");
+
     expect(mixpanel.identify).toHaveBeenCalledWith("123");
   });
 });

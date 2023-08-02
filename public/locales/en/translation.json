@@ -373,6 +373,7 @@
       "brazilName": "Brazil",
       "paymentMethodSection": {
         "creditCard": "Credit card",
+        "pix": "Pix",
         "googlePay": "Google Pay",
         "applePay": "Apple Pay",
         "creditCardFields": {
@@ -388,7 +389,8 @@
           "cvv": "CVV"
         }
       },
-      "confirmPayment": "Confirm payment"
+      "confirmPayment": "Confirm payment",
+      "pixButtonText": "Pay with Pix"
     }
   },
   "contexts": {

@@ -33,7 +33,7 @@ import LoadingPage from "pages/donations/LoadingPage";
 import ContributionStatsPage from "pages/users/ContributionStatsPage";
 import ReturnToIntegrationPage from "pages/donations/ReturnToIntegrationPage";
 import SupportCauseFlowControlPage from "pages/promoters/SupportCauseFlowControlPage";
-import TestPage from "pages/tests/TestPage";
+import StripeProvider from "contexts/stripeContext";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -197,10 +197,6 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
-      <Route path="/test-page">
-        <TestPage />
-      </Route>
-
       <Route path="/promoters/support-treasure/billing-information" exact>
         <Suspense fallback={<div />}>
           <WalletProvider>
@@ -286,7 +282,9 @@ function RoutesComponent(): JSX.Element {
               <WalletLayout hideNavigation>
                 <CardPaymentInformationProvider>
                   <CryptoPaymentProvider>
-                    <CheckoutPage />
+                    <StripeProvider>
+                      <CheckoutPage />
+                    </StripeProvider>
                   </CryptoPaymentProvider>
                 </CardPaymentInformationProvider>
               </WalletLayout>

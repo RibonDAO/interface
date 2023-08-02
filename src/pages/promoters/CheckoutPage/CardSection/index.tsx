@@ -12,6 +12,7 @@ import { useModal } from "hooks/modalHooks/useModal";
 import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import { PLATFORM } from "utils/constants";
 import { logEvent } from "lib/events";
+import PixSection from "pages/promoters/CheckoutPage/PixSection";
 import CreditCardForm from "../Components/CreditCardForm";
 import PriceSelection from "../Components/PriceSelection";
 import { PriceSelectionLoader } from "../Components/PriceSelection/loader";
@@ -142,6 +143,14 @@ export default function CardSection() {
       ),
       onClick: () => {
         logEvent("selectCreditCard_click");
+      },
+    },
+    {
+      title: t("paymentMethodSection.pix"),
+      rightIcon: CreditCardIcon,
+      children: <PixSection />,
+      onClick: () => {
+        logEvent("selectPix_click");
       },
     },
   ];

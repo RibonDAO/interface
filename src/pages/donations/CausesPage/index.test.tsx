@@ -17,6 +17,14 @@ describe("Causes", () => {
     id: 1,
     name: "cause1",
     active: true,
+    withPoolBalance: true,
+  });
+
+  const cause2 = causeFactory({
+    id: 1,
+    name: "cause1",
+    active: false,
+    withPoolBalance: false,
   });
 
   const nonProfits = [
@@ -30,7 +38,7 @@ describe("Causes", () => {
       id: 2,
       impactDescription: "days of impact",
       impactByTicket: 3,
-      cause: cause1,
+      cause: cause2,
     }),
     nonProfitFactory({
       id: 3,
@@ -42,13 +50,13 @@ describe("Causes", () => {
       id: 4,
       impactDescription: "days of impact",
       impactByTicket: 5,
-      cause: cause1,
+      cause: cause2,
     }),
     nonProfitFactory({
       id: 5,
       impactDescription: "days of impact",
       impactByTicket: 6,
-      cause: cause1,
+      cause: cause2,
     }),
   ];
 
@@ -78,11 +86,13 @@ describe("Causes", () => {
     expectTextToBeInTheDocument("Access user support");
   });
 
-  it("shows the non profit", async () => {
+  it("shows the non profit if the cause is active and has pool balance", async () => {
     nonProfits.forEach((nonProfit) => {
-      expectTextToBeInTheDocument(
-        `Donate ${nonProfit.impactByTicket} ${nonProfit.impactDescription}`,
-      );
+      if (nonProfit.cause?.active && nonProfit.cause?.withPoolBalance) {
+        expectTextToBeInTheDocument(
+          `Donate ${nonProfit.impactByTicket} ${nonProfit.impactDescription}`,
+        );
+      }
     });
   });
 });

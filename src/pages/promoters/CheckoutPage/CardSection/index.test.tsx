@@ -46,6 +46,13 @@ describe("CardSection", () => {
     const mockSubmitFn = jest.fn();
     beforeEach(async () => {
       renderComponent(<CardSection />, {
+        paymentProviderValue: {
+          country: "Brasil",
+          city: "Brasilia",
+          state: "DF",
+          taxId: "12345678901",
+          email: "john@doe.com"
+        },
         cardPaymentProviderValue: {
           name: "John Doe",
           number: "4111111111111111",

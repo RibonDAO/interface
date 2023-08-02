@@ -20,11 +20,9 @@ export interface IPaymentInformationContext {
   setCity: (value: SetStateAction<string>) => void;
   setTaxId: (value: SetStateAction<string>) => void;
   setEmail: (value: SetStateAction<string>) => void;
-  setButtonDisabled: (value: SetStateAction<boolean>) => void;
   setCryptoGiving: (value: SetStateAction<string>) => void;
   setOfferId: (value: SetStateAction<number>) => void;
   setFlow: (value: SetStateAction<"cause" | "nonProfit">) => void;
-  buttonDisabled: boolean;
   currentCoin: Currencies;
   country: string;
   state: string;
@@ -74,7 +72,6 @@ function PaymentInformationProvider({ children }: Props) {
   const [taxId, setTaxId] = useState("");
   const [email, setEmail] = useState(currentUser?.email ?? "");
   const [name, setName] = useState("");
-  const [buttonDisabled, setButtonDisabled] = useState(false);
   const [cryptoGiving, setCryptoGiving] = useState("");
   const [offerId, setOfferId] = useState(1);
   const [cause, setCause] = useState<Cause>();
@@ -97,8 +94,6 @@ function PaymentInformationProvider({ children }: Props) {
       name,
       setEmail,
       email,
-      buttonDisabled,
-      setButtonDisabled,
       setCryptoGiving,
       cryptoGiving,
       setOfferId,
@@ -120,7 +115,6 @@ function PaymentInformationProvider({ children }: Props) {
       taxId,
       email,
       name,
-      buttonDisabled,
       cause,
       nonProfit,
       flow,

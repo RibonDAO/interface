@@ -141,7 +141,6 @@ function PixPaymentInformationProvider({ children }: Props) {
   };
 
   useEffect(() => {
-    console.log(clientSecret);
     if (clientSecret) {
       setLocalStorageItem(LAST_CLIENT_SECRET_KEY, clientSecret);
       confirmPixPayment();

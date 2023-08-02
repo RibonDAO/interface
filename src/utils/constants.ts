@@ -22,4 +22,5 @@ export const IOS_APP_LINK = "https://testflight.apple.com/join/UtOMP5Ie";
 
 export const DEBUG_EVENTS_ENABLED = process.env.REACT_APP_DEBUG_VIEW === "true";
 
-export const STRIPE_PUBLISHABLE_KEY = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY || "";
+export const STRIPE_PUBLISHABLE_KEY =
+  process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY || "";

@@ -2,9 +2,9 @@ import { renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import { useStripe } from ".";
 
-function StripeTestPage(){
+function StripeTestPage() {
   useStripe();
-  return <div>Stripe</div>
+  return <div>Stripe</div>;
 }
 
 describe("useStripe", () => {

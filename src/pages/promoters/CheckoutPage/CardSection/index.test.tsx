@@ -51,7 +51,7 @@ describe("CardSection", () => {
           city: "Brasilia",
           state: "DF",
           taxId: "12345678901",
-          email: "john@doe.com"
+          email: "john@doe.com",
         },
         cardPaymentProviderValue: {
           name: "John Doe",

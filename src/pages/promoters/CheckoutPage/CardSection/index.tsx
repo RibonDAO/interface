@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import CreditCardIcon from "assets/icons/credit-card-icon.svg";
+import PixIcon from "assets/icons/pix-icon.svg";
 import usePayable from "hooks/usePayable";
 import usePaymentParams from "hooks/usePaymentParams";
 import { useTranslation } from "react-i18next";
@@ -144,7 +145,7 @@ export default function CardSection() {
     },
     {
       title: t("paymentMethodSection.pix"),
-      rightIcon: CreditCardIcon,
+      rightIcon: PixIcon,
       children: <PixSection />,
       onClick: () => {
         logEvent("selectPix_click");
@@ -170,7 +171,7 @@ export default function CardSection() {
 
       <S.PaymentMethods>
         <S.PaymentMethodsTitle>{t("payment")}</S.PaymentMethodsTitle>
-        <RadioAccordion current={0} items={CardAccordionItems} />
+        <RadioAccordion items={CardAccordionItems} />
       </S.PaymentMethods>
     </div>
   ) : (

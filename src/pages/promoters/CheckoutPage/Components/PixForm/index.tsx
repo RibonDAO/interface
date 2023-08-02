@@ -153,7 +153,7 @@ function PixForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
         <Button
           type="button"
           onClick={onSubmit}
-          text={t("confirmPayment")}
+          text={t("pixButtonText")}
           softDisabled={false}
           disabled={buttonDisabled}
           backgroundColor={theme.colors.brand.primary[600]}

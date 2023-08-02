@@ -398,7 +398,7 @@
         }
       },
       "confirmPayment": "Confirmar pagamento",
-      "pixButtonText": "Pagar com Pix"
+      "pixButtonText": "Gerar QR Code"
     }
   },
   "contexts": {

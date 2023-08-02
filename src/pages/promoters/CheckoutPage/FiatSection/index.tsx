@@ -25,7 +25,8 @@ export default function FiatSection() {
     keyPrefix: "promoters.checkoutPage",
   });
 
-  const { target, targetId, offer, currency } = usePaymentParams();
+  const { target, targetId, offer, currency, paymentMethodIndex } =
+    usePaymentParams();
   const hasAllParams = Boolean(target && targetId && offer && currency);
   const currentPayable = usePayable(target, targetId);
 
@@ -150,7 +151,10 @@ export default function FiatSection() {
 
       <S.PaymentMethods>
         <S.PaymentMethodsTitle>{t("payment")}</S.PaymentMethodsTitle>
-        <RadioAccordion items={CardAccordionItems} />
+        <RadioAccordion
+          current={paymentMethodIndex ? Number(paymentMethodIndex) : undefined}
+          items={CardAccordionItems}
+        />
       </S.PaymentMethods>
     </div>
   ) : (

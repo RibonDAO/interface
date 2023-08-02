@@ -3,10 +3,10 @@ import {
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
 import { nonProfitFactory } from "@ribon.io/shared/config";
-import { screen } from "@testing-library/react";
+import {act, screen} from "@testing-library/react";
 import offerFactory from "config/testUtils/factories/offerFactory";
 import { clickOn, waitForPromises, renderComponent } from "config/testUtils";
-import CardSection from ".";
+import FiatSection from ".";
 
 jest.mock("hooks/usePaymentParams", () => ({
   __esModule: true,
@@ -15,6 +15,7 @@ jest.mock("hooks/usePaymentParams", () => ({
     target: "non_profit",
     targetId: "1",
     offer: "0",
+    paymentMethodIndex: "0",
   }),
 }));
 
@@ -35,9 +36,9 @@ jest.mock("@ribon.io/shared/hooks", () => ({
   }),
 }));
 
-describe("CardSection", () => {
+describe("FiatSection", () => {
   it("should render without error", () => {
-    renderComponent(<CardSection />);
+    renderComponent(<FiatSection />);
 
     expectTextToBeInTheDocument("Payment");
   });
@@ -45,7 +46,7 @@ describe("CardSection", () => {
   describe("when the form is filled", () => {
     const mockSubmitFn = jest.fn();
     beforeEach(async () => {
-      renderComponent(<CardSection />, {
+      renderComponent(<FiatSection />, {
         paymentProviderValue: {
           country: "Brasil",
           city: "Brasilia",

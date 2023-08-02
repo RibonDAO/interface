@@ -16,6 +16,7 @@ describe("usePaymentParams", () => {
       targetId: "target_id",
       currency: "currency",
       offer: "offer",
+      paymentMethodIndex: "paymentMethodIndex",
       hasAllParams: true,
     });
   });

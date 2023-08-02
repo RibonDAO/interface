@@ -24,6 +24,6 @@ describe("CardInfoSection", () => {
     expectDisplayValueToBeInTheDocument("State Test");
     expectDisplayValueToBeInTheDocument("User Test");
 
-    expectTextToBeInTheDocument("Confirm payment");
+    expectTextToBeInTheDocument("Pay with Pix");
   });
 });

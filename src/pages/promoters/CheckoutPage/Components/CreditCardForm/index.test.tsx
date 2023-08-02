@@ -28,7 +28,6 @@ describe("CardInfoSection", () => {
     expectDisplayValueToBeInTheDocument("Brazil");
     expectDisplayValueToBeInTheDocument("City Test");
     expectDisplayValueToBeInTheDocument("State Test");
-    expectDisplayValueToBeInTheDocument("12345678901");
     expectDisplayValueToBeInTheDocument("1234 5678 9012 3456");
     expectDisplayValueToBeInTheDocument("User Test");
     expectDisplayValueToBeInTheDocument("12/2023");

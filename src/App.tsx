@@ -14,6 +14,7 @@ import Zendesk from "config/zendesk";
 import CurrentUserProvider from "contexts/currentUserContext";
 import TasksProvider from "contexts/tasksContext";
 import CausesProvider from "contexts/causesContext";
+import NonProfitsProvider from "contexts/nonProfitsContext";
 import DebugEventsView from "config/debugEventsView";
 import { debugEnabled } from "config/debugEventsView/helpers";
 import CauseDonationProvider from "contexts/causeDonationContext";
@@ -50,14 +51,16 @@ function App() {
                   <CurrentUserProvider>
                     <Suspense fallback={<div />}>
                       <TasksProvider>
-                        <CausesProvider>
-                          <CauseDonationProvider>
-                            <CauseContributionProvider>
-                              <RoutesComponent />
-                              <Zendesk />
-                            </CauseContributionProvider>
-                          </CauseDonationProvider>
-                        </CausesProvider>
+                        <NonProfitsProvider>
+                          <CausesProvider>
+                            <CauseDonationProvider>
+                              <CauseContributionProvider>
+                                <RoutesComponent />
+                                <Zendesk />
+                              </CauseContributionProvider>
+                            </CauseDonationProvider>
+                          </CausesProvider>
+                        </NonProfitsProvider>
                       </TasksProvider>
                     </Suspense>
                   </CurrentUserProvider>

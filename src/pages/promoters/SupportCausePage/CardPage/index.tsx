@@ -35,9 +35,7 @@ function SupportCausePage(): JSX.Element {
   const { causes } = useCauses();
   const { state, search } = useLocation<LocationStateType>();
 
-  const platform = extractUrlValue("platform", search);
-
-  const isRunningTheNewCheckoutForm = true;
+  const integrationId = extractUrlValue("integration_id", search);
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportCausePage",
@@ -61,25 +59,6 @@ function SupportCausePage(): JSX.Element {
     setCause(causeClicked);
   };
 
-  const navigateToPayment = () => {
-    setFlow("cause");
-    logEvent("giveCauseBtn_start", {
-      from: "giveCauseCC_page",
-      causeId: cause?.id,
-      amount: currentOffer.priceValue,
-      currency: currentOffer.currency,
-    });
-    navigateTo({
-      pathname: "/promoters/payment",
-      state: {
-        offer: currentOffer,
-        flow: "cause",
-        cause,
-        platform,
-      },
-    });
-  };
-
   const navigateToCheckout = () => {
     logEvent("giveCauseBtn_start", {
       from: "giveCauseCC_page",
@@ -96,6 +75,7 @@ function SupportCausePage(): JSX.Element {
       target: "cause",
       target_id: cause.id.toString(),
       currency: currentOffer.currency.toUpperCase(),
+      integration_id: integrationId || "",
     });
 
     navigateTo({
@@ -105,12 +85,7 @@ function SupportCausePage(): JSX.Element {
   };
 
   const handleDonateClick = () => {
-    if (isRunningTheNewCheckoutForm) {
-      navigateToCheckout();
-      return;
-    }
-
-    navigateToPayment();
+    navigateToCheckout();
   };
 
   const handleCommunityAddClick = () => {

@@ -47,7 +47,6 @@ export const PixPaymentInformationContext =
     {} as IPixPaymentInformationContext,
   );
 
-export const CURRENT_COIN_KEY = "CURRENT_COIN_KEY";
 const LAST_CLIENT_SECRET_KEY = "LAST_CLIENT_SECRET_KEY";
 
 function PixPaymentInformationProvider({ children }: Props) {

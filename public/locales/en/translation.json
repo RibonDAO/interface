@@ -399,7 +399,7 @@
         }
       },
       "confirmPayment": "Confirm payment",
-      "pixButtonText": "Pay with Pix"
+      "pixButtonText": "Generate QR Code"
     }
   },
   "contexts": {

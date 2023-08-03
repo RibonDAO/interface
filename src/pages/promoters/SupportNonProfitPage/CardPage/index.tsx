@@ -34,11 +34,9 @@ function CardPage(): JSX.Element {
   const { causes } = useCauses();
 
   const { state, search } = useLocation<LocationStateType>();
-  const platform = extractUrlValue("platform", search);
+  const integrationId = extractUrlValue("integration_id", search);
 
   const { isMobile } = useBreakpoint();
-
-  const isRunningTheNewCheckoutForm = true;
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportNonProfitPage",
@@ -60,26 +58,6 @@ function CardPage(): JSX.Element {
     setCause(causeClicked);
   };
 
-  const navigateToPayment = (nonProfit: NonProfit) => {
-    setFlow("nonProfit");
-    logEvent("giveNgoBtn_start", {
-      causeId: cause?.id,
-      amount: currentOffer.priceValue,
-      currency: currentOffer.currency,
-      from: "giveNonProfit_page",
-    });
-    navigateTo({
-      pathname: "/promoters/payment",
-      state: {
-        offer: currentOffer,
-        flow: "nonProfit",
-        cause,
-        nonProfit,
-        platform,
-      },
-    });
-  };
-
   const navigateToCheckout = (nonProfit: NonProfit) => {
     logEvent("giveNgoBtn_start", {
       from: "giveNonProfit_page",
@@ -94,6 +72,7 @@ function CardPage(): JSX.Element {
       target: "non_profit",
       target_id: nonProfit.id.toString(),
       currency: currentOffer.currency.toUpperCase(),
+      integration_id: integrationId || "",
     });
 
     navigateTo({
@@ -103,12 +82,7 @@ function CardPage(): JSX.Element {
   };
 
   const handleDonateClick = (nonProfit: NonProfit) => {
-    if (isRunningTheNewCheckoutForm) {
-      navigateToCheckout(nonProfit);
-      return;
-    }
-
-    navigateToPayment(nonProfit);
+    navigateToCheckout(nonProfit);
   };
 
   const handleOfferChange = (offer: Offer, index?: number) => {

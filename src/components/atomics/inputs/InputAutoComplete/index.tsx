@@ -40,6 +40,7 @@ function InputAutoComplete({
       : [];
 
     setInput(e.target.value);
+    if (onOptionChanged) onOptionChanged(e.target.value);
     setFilteredSuggestions(relatedSuggestions);
     setShowSuggestions(true);
   };

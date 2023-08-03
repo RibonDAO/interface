@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import InputText from "components/atomics/inputs/InputText";
 import Button from "components/atomics/buttons/Button";
@@ -9,6 +8,7 @@ import { theme } from "@ribon.io/shared/styles";
 import { countryList } from "utils/countryList";
 import { useLanguage } from "hooks/useLanguage";
 import { maskForTaxId } from "lib/maskForTaxId";
+import { usePixPaymentInformation } from "contexts/pixPaymentInformationContext";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
 import * as S from "./styles";
 
@@ -17,9 +17,9 @@ export type Props = {
   showFiscalFields?: boolean;
 };
 
-function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
+function PixForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
   const { t: field } = useTranslation("translation", {
-    keyPrefix: "promoters.checkoutPage.paymentMethodSection.creditCardFields",
+    keyPrefix: "promoters.checkoutPage.paymentMethodSection.pixFields",
   });
 
   const { t } = useTranslation("translation", {
@@ -32,20 +32,11 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
 
   const { signedIn } = useCurrentUser();
 
+  const { buttonDisabled, setButtonDisabled } = usePixPaymentInformation();
+
   const {
     name,
     setName,
-    number,
-    setNumber,
-    expirationDate,
-    setExpirationDate,
-    cvv,
-    setCvv,
-    buttonDisabled,
-    setButtonDisabled,
-  } = useCardPaymentInformation();
-
-  const {
     country,
     setCountry,
     city,
@@ -84,17 +75,8 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
       ? city && state && country && validTaxId()
       : true;
 
-    setButtonDisabled(
-      !(
-        number &&
-        name &&
-        email &&
-        !expirationDate.includes("_") &&
-        cvv.length >= 3 &&
-        fiscalFields
-      ),
-    );
-  }, [number, name, expirationDate, cvv, country, state, city, taxId, email]);
+    setButtonDisabled(!(name && email && fiscalFields));
+  }, [name, country, state, city, taxId, email]);
 
   return (
     <S.Container>
@@ -160,16 +142,6 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
       )}
 
       <InputText
-        name="number"
-        label={{ text: field("number") }}
-        value={number}
-        mask="9999 9999 9999 9999"
-        maskPlaceholder=""
-        onChange={(e) => setNumber(e.target.value)}
-        data-testid="number"
-        required
-      />
-      <InputText
         name="name"
         label={{ text: field("name") }}
         value={name}
@@ -177,34 +149,11 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
         data-testid="name"
         required
       />
-      <S.Half>
-        <InputText
-          name="expirationDate"
-          mask="99/9999"
-          autofill="cc-exp"
-          value={expirationDate}
-          label={{ text: field("expirationDate") }}
-          onChange={(e) => setExpirationDate(e.target.value)}
-          data-testid="expirationDate"
-          required
-          minLength={6}
-        />
-        <InputText
-          name="cvv"
-          label={{ text: field("cvv") }}
-          maxLength={4}
-          minLength={3}
-          value={cvv}
-          onChange={(e) => setCvv(e.target.value)}
-          data-testid="cvv"
-          required
-        />
-      </S.Half>
       <S.DonateButtonContainer>
         <Button
           type="button"
           onClick={onSubmit}
-          text={t("confirmPayment")}
+          text={t("pixButtonText")}
           softDisabled={false}
           disabled={buttonDisabled}
           backgroundColor={theme.colors.brand.primary[600]}
@@ -215,4 +164,4 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
   );
 }
 
-export default CreditCardForm;
+export default PixForm;

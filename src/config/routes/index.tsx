@@ -7,12 +7,8 @@ import DonationDonePage from "pages/donations/DonationDonePage";
 import DonationDoneCausePage from "pages/donations/DonationDoneCausePage";
 import ImpactPage from "pages/users/ImpactPage";
 import MainLayout from "layouts/MainLayout";
-import TreasurePage from "pages/promoters/TreasurePage";
 import CheckoutPage from "pages/promoters/CheckoutPage";
-import SupportTreasurePage from "pages/promoters/SupportTreasurePage";
 import SupportCausePage from "pages/promoters/SupportCausePage";
-import BillingInformationPage from "pages/promoters/SupportTreasurePage/CardSection/BillingInformationPage";
-import PaymentInformationPage from "pages/promoters/SupportTreasurePage/CardSection/PaymentInformationPage";
 import GivingsPage from "pages/promoters/GivingsPage";
 import WalletLayout from "layouts/WalletLayout";
 import CardPaymentInformationProvider from "contexts/cardPaymentInformationContext";
@@ -22,7 +18,6 @@ import PostDonationPage from "pages/donations/PostDonationPage";
 import CryptoPaymentProvider from "contexts/cryptoPaymentContext";
 import SupportNonProfitPage from "pages/promoters/SupportNonProfitPage";
 import DeleteAccountPage from "pages/users/DeleteAccountPage";
-import PaymentPage from "pages/promoters/PaymentPage";
 import { useLocation } from "react-router";
 import { logPageView } from "lib/events";
 import AppInDevelopmentPage from "pages/users/AppDownloadPage";
@@ -33,6 +28,9 @@ import LoadingPage from "pages/donations/LoadingPage";
 import ContributionStatsPage from "pages/users/ContributionStatsPage";
 import ReturnToIntegrationPage from "pages/donations/ReturnToIntegrationPage";
 import SupportCauseFlowControlPage from "pages/promoters/SupportCauseFlowControlPage";
+import StripeProvider from "contexts/stripeContext";
+import PixPaymentInformationProvider from "contexts/pixPaymentInformationContext";
+import PaymentInformationProvider from "contexts/paymentInformationContext";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -148,42 +146,18 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
-      <Route path="/promoters/treasure" exact>
-        <Suspense fallback={<div />}>
-          <NetworkProvider>
-            <WalletProvider>
-              <WalletLayout hasBackButton hideNavigation hideWallet>
-                <TreasurePage />
-              </WalletLayout>
-            </WalletProvider>
-          </NetworkProvider>
-        </Suspense>
-      </Route>
-
-      <Route path="/promoters/support-treasure" exact>
-        <Suspense fallback={<div />}>
-          <NetworkProvider>
-            <WalletProvider>
-              <WalletLayout>
-                <CardPaymentInformationProvider>
-                  <SupportTreasurePage />
-                </CardPaymentInformationProvider>
-              </WalletLayout>
-            </WalletProvider>
-          </NetworkProvider>
-        </Suspense>
-      </Route>
-
       <Route path="/promoters/support-cause" exact>
         <Suspense fallback={<div />}>
           <NetworkProvider>
             <WalletProvider>
               <WalletLayout>
-                <CardPaymentInformationProvider>
-                  <CryptoPaymentProvider>
-                    <SupportCausePage />
-                  </CryptoPaymentProvider>
-                </CardPaymentInformationProvider>
+                <PaymentInformationProvider>
+                  <CardPaymentInformationProvider>
+                    <CryptoPaymentProvider>
+                      <SupportCausePage />
+                    </CryptoPaymentProvider>
+                  </CardPaymentInformationProvider>
+                </PaymentInformationProvider>
               </WalletLayout>
             </WalletProvider>
           </NetworkProvider>
@@ -193,30 +167,6 @@ function RoutesComponent(): JSX.Element {
       <Route path="/promoters/support-cause-control-flow">
         <Suspense fallback={<div />}>
           <SupportCauseFlowControlPage />
-        </Suspense>
-      </Route>
-
-      <Route path="/promoters/support-treasure/billing-information" exact>
-        <Suspense fallback={<div />}>
-          <WalletProvider>
-            <WalletLayout hasBackButton>
-              <CardPaymentInformationProvider>
-                <BillingInformationPage />
-              </CardPaymentInformationProvider>
-            </WalletLayout>
-          </WalletProvider>
-        </Suspense>
-      </Route>
-
-      <Route path="/promoters/support-treasure/payment-information" exact>
-        <Suspense fallback={<div />}>
-          <WalletProvider>
-            <WalletLayout hasBackButton>
-              <CardPaymentInformationProvider>
-                <PaymentInformationPage />
-              </CardPaymentInformationProvider>
-            </WalletLayout>
-          </WalletProvider>
         </Suspense>
       </Route>
 
@@ -238,9 +188,11 @@ function RoutesComponent(): JSX.Element {
 
       <Route path="/promoters/community-add" exact>
         <Suspense fallback={<div />}>
-          <CardPaymentInformationProvider>
-            <CommunityAddPage />
-          </CardPaymentInformationProvider>
+          <PaymentInformationProvider>
+            <CardPaymentInformationProvider>
+              <CommunityAddPage />
+            </CardPaymentInformationProvider>
+          </PaymentInformationProvider>
         </Suspense>
       </Route>
 
@@ -249,25 +201,13 @@ function RoutesComponent(): JSX.Element {
           <NetworkProvider>
             <WalletProvider>
               <WalletLayout>
-                <CardPaymentInformationProvider>
-                  <CryptoPaymentProvider>
-                    <SupportNonProfitPage />
-                  </CryptoPaymentProvider>
-                </CardPaymentInformationProvider>
-              </WalletLayout>
-            </WalletProvider>
-          </NetworkProvider>
-        </Suspense>
-      </Route>
-
-      <Route path="/promoters/payment" exact>
-        <Suspense fallback={<div />}>
-          <NetworkProvider>
-            <WalletProvider>
-              <WalletLayout hideNavigation>
-                <CardPaymentInformationProvider>
-                  <PaymentPage />
-                </CardPaymentInformationProvider>
+                <PaymentInformationProvider>
+                  <CardPaymentInformationProvider>
+                    <CryptoPaymentProvider>
+                      <SupportNonProfitPage />
+                    </CryptoPaymentProvider>
+                  </CardPaymentInformationProvider>
+                </PaymentInformationProvider>
               </WalletLayout>
             </WalletProvider>
           </NetworkProvider>
@@ -279,11 +219,17 @@ function RoutesComponent(): JSX.Element {
           <NetworkProvider>
             <WalletProvider>
               <WalletLayout hideNavigation>
-                <CardPaymentInformationProvider>
-                  <CryptoPaymentProvider>
-                    <CheckoutPage />
-                  </CryptoPaymentProvider>
-                </CardPaymentInformationProvider>
+                <PaymentInformationProvider>
+                  <CardPaymentInformationProvider>
+                    <CryptoPaymentProvider>
+                      <StripeProvider>
+                        <PixPaymentInformationProvider>
+                          <CheckoutPage />
+                        </PixPaymentInformationProvider>
+                      </StripeProvider>
+                    </CryptoPaymentProvider>
+                  </CardPaymentInformationProvider>
+                </PaymentInformationProvider>
               </WalletLayout>
             </WalletProvider>
           </NetworkProvider>

@@ -5,7 +5,7 @@ import { Cause, Currencies } from "@ribon.io/shared/types";
 import theme from "styles/theme";
 import { useCryptoPayment } from "contexts/cryptoPaymentContext";
 import { useLocationSearch } from "hooks/useLocationSearch";
-import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
+import { usePaymentInformation } from "contexts/paymentInformationContext";
 import * as S from "./styles";
 
 const { secondary } = theme.colors.brand;
@@ -25,7 +25,7 @@ function SelectCryptoOfferSection({
   const [currentIndex, setCurrentIndex] = useState(0);
   const { tokenSymbol, amount, setAmount } = useCryptoPayment();
   const { updateLocationSearch } = useLocationSearch();
-  const { setCurrentCoin } = useCardPaymentInformation();
+  const { setCurrentCoin } = usePaymentInformation();
 
   const currentValue = useCallback(() => values[currentIndex], [currentIndex]);
 

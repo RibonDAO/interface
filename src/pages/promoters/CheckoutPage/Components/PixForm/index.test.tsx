@@ -24,6 +24,6 @@ describe("CardInfoSection", () => {
     expectDisplayValueToBeInTheDocument("State Test");
     expectDisplayValueToBeInTheDocument("User Test");
 
-    expectTextToBeInTheDocument("Pay with Pix");
+    expectTextToBeInTheDocument("Generate QR Code");
   });
 });

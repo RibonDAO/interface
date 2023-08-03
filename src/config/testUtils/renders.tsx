@@ -44,6 +44,10 @@ import TasksProvider, {
   ITasksContext,
   TasksContext,
 } from "contexts/tasksContext";
+import StripeProvider, {
+  IStripeContext,
+  StripeContext,
+} from "contexts/stripeContext";
 
 export interface RenderWithContextResult {
   component: RenderResult;
@@ -86,6 +90,7 @@ export type RenderComponentProps = {
   modalProviderValue?: Partial<IModalContext>;
   networkProviderValue?: Partial<INetworkContext>;
   tasksProviderValue?: Partial<ITasksContext>;
+  stripeProviderValue?: Partial<IStripeContext>;
   locationState?: Record<any, any>;
 };
 
@@ -102,6 +107,7 @@ function renderAllProviders(
     modalProviderValue = {},
     networkProviderValue = {},
     tasksProviderValue = {},
+    stripeProviderValue = {},
   }: RenderComponentProps = {},
 ) {
   const historyObject = history;
@@ -145,7 +151,12 @@ function renderAllProviders(
                               TasksProvider,
                               TasksContext,
                               tasksProviderValue,
-                              children,
+                              renderProvider(
+                                StripeProvider,
+                                StripeContext,
+                                stripeProviderValue,
+                                children,
+                              ),
                             ),
                           ),
                         ),

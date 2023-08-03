@@ -7,7 +7,6 @@ import { Cause, Offer, NonProfit } from "@ribon.io/shared/types";
 import IntersectBackground from "assets/images/intersect-background.svg";
 import useNavigation from "hooks/useNavigation";
 import offerFactory from "config/testUtils/factories/offerFactory";
-import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import theme from "styles/theme";
 import SliderCards from "components/moleculars/sliders/SliderCards";
@@ -16,8 +15,8 @@ import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import extractUrlValue from "lib/extractUrlValue";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
+import { usePaymentInformation } from "contexts/paymentInformationContext";
 import * as S from "../styles";
-
 import NonProfitCard from "./NonProfitCard";
 
 type LocationStateType = {
@@ -28,18 +27,16 @@ function CardPage(): JSX.Element {
   const { navigateTo } = useNavigation();
   const [currentOffer, setCurrentOffer] = useState<Offer>(offerFactory());
   const [currentOfferIndex, setCurrentOfferIndex] = useState(0);
-  const { cause, setCause, setOfferId, setFlow } = useCardPaymentInformation();
+  const { cause, setCause, setOfferId, setFlow } = usePaymentInformation();
   const { nonProfits } = useNonProfits();
   const { tertiary } = theme.colors.brand;
 
   const { causes } = useCauses();
 
   const { state, search } = useLocation<LocationStateType>();
-  const platform = extractUrlValue("platform", search);
+  const integrationId = extractUrlValue("integration_id", search);
 
   const { isMobile } = useBreakpoint();
-
-  const isRunningTheNewCheckoutForm = true;
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportNonProfitPage",
@@ -61,26 +58,6 @@ function CardPage(): JSX.Element {
     setCause(causeClicked);
   };
 
-  const navigateToPayment = (nonProfit: NonProfit) => {
-    setFlow("nonProfit");
-    logEvent("giveNgoBtn_start", {
-      causeId: cause?.id,
-      amount: currentOffer.priceValue,
-      currency: currentOffer.currency,
-      from: "giveNonProfit_page",
-    });
-    navigateTo({
-      pathname: "/promoters/payment",
-      state: {
-        offer: currentOffer,
-        flow: "nonProfit",
-        cause,
-        nonProfit,
-        platform,
-      },
-    });
-  };
-
   const navigateToCheckout = (nonProfit: NonProfit) => {
     logEvent("giveNgoBtn_start", {
       from: "giveNonProfit_page",
@@ -95,6 +72,7 @@ function CardPage(): JSX.Element {
       target: "non_profit",
       target_id: nonProfit.id.toString(),
       currency: currentOffer.currency.toUpperCase(),
+      integration_id: integrationId || "",
     });
 
     navigateTo({
@@ -104,12 +82,7 @@ function CardPage(): JSX.Element {
   };
 
   const handleDonateClick = (nonProfit: NonProfit) => {
-    if (isRunningTheNewCheckoutForm) {
-      navigateToCheckout(nonProfit);
-      return;
-    }
-
-    navigateToPayment(nonProfit);
+    navigateToCheckout(nonProfit);
   };
 
   const handleOfferChange = (offer: Offer, index?: number) => {

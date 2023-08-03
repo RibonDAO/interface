@@ -63,7 +63,7 @@ function Navigation(): JSX.Element {
       params: { from: "header" },
       menuOptions: [
         {
-          path: "/promoters/support-cause-control-flow",
+          path: "/promoters/support-cause",
           title: t("communityMenuItem"),
           event: "giveCauseCard_click",
           params: { from: "subheader" },

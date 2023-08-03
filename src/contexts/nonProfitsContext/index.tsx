@@ -39,7 +39,7 @@ function NonProfitsProvider({ children }: any) {
 
 export default NonProfitsProvider;
 
-export const useNonProfits = () => {
+export const useNonProfitsContext = () => {
   const context = useContext(NonProfitsContext);
 
   if (!context) {

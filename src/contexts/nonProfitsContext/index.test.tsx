@@ -1,9 +1,9 @@
 import { renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
-import { useNonProfits } from ".";
+import { useNonProfitsContext } from ".";
 
 function NonProfitsTestPage() {
-  useNonProfits();
+  useNonProfitsContext();
   return <div>NonProfits</div>;
 }
 

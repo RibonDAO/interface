@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import {
-  useFreeDonationNonProfits,
   useIntegration,
   useCanDonate,
   useFirstAccessToIntegration,
@@ -31,7 +30,7 @@ import PromoterCta from "pages/donations/CausesPage/PromoterCta";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
-import { NonProfit } from "@ribon.io/shared";
+import { useNonProfitsContext } from "contexts/nonProfitsContext";
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import NonProfitsList from "./NonProfitsList";
@@ -44,6 +43,8 @@ function CausesPage(): JSX.Element {
 
   const { causesWithPoolBalance, isLoading: isLoadingCauses } =
     useCausesContext();
+  const { activeNonProfits, isLoading: isLoadingNonProfits } =
+    useNonProfitsContext();
   const {
     chosenCause,
     setChosenCause,
@@ -81,7 +82,6 @@ function CausesPage(): JSX.Element {
 
   const hasSeenChooseCauseModal = useRef(false);
 
-  const { nonProfits, isLoading } = useFreeDonationNonProfits();
   const { showReceiveTicketToast } = useReceiveTicketToast();
   const { signedIn, currentUser } = useCurrentUser();
 
@@ -152,28 +152,19 @@ function CausesPage(): JSX.Element {
   }, [chooseCauseModalVisible]);
 
   const nonProfitsFilter = () => {
-    const isActiveWithPoolBalance = (nonProfit: NonProfit) =>
-      nonProfit.cause?.active && nonProfit?.cause?.withPoolBalance;
-
     if (chosenCause) {
       return (
-        nonProfits?.filter(
-          (nonProfit) =>
-            isActiveWithPoolBalance(nonProfit) &&
-            nonProfit.cause?.id === chosenCause.id,
+        activeNonProfits?.filter(
+          (nonProfit) => nonProfit.cause?.id === chosenCause.id,
         ) || []
       );
     }
-
-    return (
-      nonProfits?.filter((nonProfit) => isActiveWithPoolBalance(nonProfit)) ||
-      []
-    );
+    return activeNonProfits || [];
   };
 
   const sortNonProfits = () => {
     const filteredNonProfits = nonProfitsFilter();
-    const sorted = filteredNonProfits.sort((a, b) => {
+    const sorted = filteredNonProfits?.sort((a, b) => {
       const causeAIndex = causesWithPoolBalance.findIndex(
         (cause) => cause.id === a.cause.id,
       );
@@ -245,10 +236,10 @@ function CausesPage(): JSX.Element {
           />
         )}
 
-        {isLoading ? (
+        {isLoadingNonProfits ? (
           <Spinner size="26" />
         ) : (
-          nonProfits && (
+          activeNonProfits && (
             <S.NonProfitsContainer>
               <NonProfitsList
                 nonProfits={sortNonProfits()}

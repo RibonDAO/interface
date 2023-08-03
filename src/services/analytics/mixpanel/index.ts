@@ -22,3 +22,7 @@ export function logMixpanelEvent(
     });
   }
 }
+
+export function setUserId(userId: number | string){
+  mixpanel.identify(userId.toString());
+}

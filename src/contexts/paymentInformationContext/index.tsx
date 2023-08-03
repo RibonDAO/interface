@@ -118,6 +118,7 @@ function PaymentInformationProvider({ children }: Props) {
       cause,
       nonProfit,
       flow,
+      integrationId,
     ],
   );
 

@@ -54,12 +54,12 @@ function Navigation(): JSX.Element {
       showActivityIndicatorCircle: hasCompletedATask,
     },
     {
-      path: "/promoters/support-cause-control-flow",
+      path: "/promoters/support-cause",
       iconOn: GivingIconOn,
       iconOff: GivingIconOff,
       title: t("givingPageTitle"),
       event: "giveCauseCard_click",
-      showNewLabel: true,
+      showNewLabel: false,
       params: { from: "header" },
       menuOptions: [
         {

@@ -2,6 +2,7 @@ import { Currencies, Offer } from "@ribon.io/shared/types";
 import { useTranslation } from "react-i18next";
 import EditIcon from "assets/icons/edit-icon.svg";
 import { useCardGivingFees } from "@ribon.io/shared/hooks";
+import { useExperiment } from "@growthbook/growthbook-react";
 import { GivingFeesLoader } from "./loader";
 import * as S from "./styles";
 
@@ -32,6 +33,11 @@ function PriceSelection({
   const hasAdditionalTaxes = currentOffer?.gateway === "stripe_global";
   const isCrypto = tokenSymbol && priceValue && !currentOffer;
 
+  const variation = useExperiment({
+    key: "charge-payment-form",
+    variations: [false, true],
+  });
+
   const renderGivingFees = () => {
     if (!cardGivingFees) return <GivingFeesLoader />;
 
@@ -47,7 +53,7 @@ function PriceSelection({
             {cardGivingFees?.serviceFees}
           </S.SmallTextInfo>
         </S.SmallTextInfoWrapper>
-        {hasAdditionalTaxes && (
+        {hasAdditionalTaxes && variation.value && (
           <S.SmallTextInfo>{t("additionalFeesText")}</S.SmallTextInfo>
         )}
       </>

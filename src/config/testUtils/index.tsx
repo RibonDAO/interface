@@ -64,6 +64,10 @@ import CauseContributionProvider, {
   CauseContributionContext,
   ICauseContributionContext,
 } from "contexts/causeContributionContext";
+import NonProfitsProvider, {
+  INonProfitsContext,
+  NonProfitsContext,
+} from "contexts/nonProfitsContext";
 
 export function renderWithTheme(children: React.ReactNode): RenderResult {
   return render(<ThemeProvider theme={theme}>{children}</ThemeProvider>);
@@ -116,6 +120,7 @@ export type RenderComponentProps = {
   toastProviderValue?: Partial<IToastContext>;
   loadingOverlayValue?: Partial<ILoadingOverlayContext>;
   modalProviderValue?: Partial<IModalContext>;
+  nonProfitsProviderValue?: Partial<INonProfitsContext>;
   cardPaymentProviderValue?: Partial<ICardPaymentInformationContext>;
   networkProviderValue?: Partial<INetworkContext>;
   cryptoPaymentProviderValue?: Partial<ICryptoPaymentContext>;
@@ -135,6 +140,7 @@ export function renderComponent(
     locationState = {},
     loadingOverlayValue = {},
     modalProviderValue = {},
+    nonProfitsProviderValue = {},
     cardPaymentProviderValue = {},
     networkProviderValue = {},
     cryptoPaymentProviderValue = {},
@@ -182,22 +188,27 @@ export function renderComponent(
                               ModalContext,
                               modalProviderValue,
                               renderProvider(
-                                CardPaymentInformationProvider,
-                                CardPaymentInformationContext,
-                                cardPaymentProviderValue,
+                                NonProfitsProvider,
+                                NonProfitsContext,
+                                nonProfitsProviderValue,
                                 renderProvider(
-                                  NetworkProvider,
-                                  NetworkContext,
-                                  networkProviderValue,
+                                  CardPaymentInformationProvider,
+                                  CardPaymentInformationContext,
+                                  cardPaymentProviderValue,
                                   renderProvider(
-                                    WalletProvider,
-                                    WalletContext,
-                                    walletProviderValue,
+                                    NetworkProvider,
+                                    NetworkContext,
+                                    networkProviderValue,
                                     renderProvider(
-                                      CryptoPaymentProvider,
-                                      CryptoPaymentContext,
-                                      cryptoPaymentProviderValue,
-                                      component,
+                                      WalletProvider,
+                                      WalletContext,
+                                      walletProviderValue,
+                                      renderProvider(
+                                        CryptoPaymentProvider,
+                                        CryptoPaymentContext,
+                                        cryptoPaymentProviderValue,
+                                        component,
+                                      ),
                                     ),
                                   ),
                                 ),

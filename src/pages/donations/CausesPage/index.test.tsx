@@ -1,4 +1,3 @@
-import React from "react";
 import { renderComponent, waitForPromises } from "config/testUtils";
 import { mockRequest } from "config/testUtils/test-helper";
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
@@ -12,6 +11,7 @@ jest.mock("hooks/useImpactConversion", () => ({
     variation: "Control",
   }),
 }));
+
 describe("Causes", () => {
   const cause1 = causeFactory({
     id: 1,
@@ -74,7 +74,11 @@ describe("Causes", () => {
   });
 
   beforeEach(async () => {
-    renderComponent(<Causes />);
+    renderComponent(<Causes />, {
+      nonProfitsProviderValue: {
+        activeNonProfits: nonProfits,
+      },
+    });
     await waitForPromises();
   });
 

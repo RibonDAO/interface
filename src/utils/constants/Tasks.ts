@@ -59,26 +59,6 @@ export const TASKS = [
       return true;
     },
   },
-  {
-    id: "4c436220-f94d-4113-b019-9d719c88ff8c",
-    title: "start_contribution",
-    actions: ["navigate_to_contribution_page"],
-    type: "daily",
-    navigationCallback: "/promoters/support-cause-control-flow",
-    isVisible(this: Task) {
-      return true;
-    },
-  },
-  {
-    id: "e01c7298-8d7a-446b-9a27-b40baff1cca8",
-    title: "become_a_promoter",
-    actions: ["contribution_done_page_view"],
-    type: "monthly",
-    navigationCallback: "/promoters/support-cause-control-flow",
-    isVisible(this: Task) {
-      return true;
-    },
-  },
 ];
 
 export const useTasks = (type: string) => {

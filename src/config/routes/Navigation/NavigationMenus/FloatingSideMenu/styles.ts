@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const Menu = styled.div<{ visible: boolean }>`
   padding-block: 10px;
-  width: ${({ visible }) => (visible ? "150px" : "0px")};
+  width: ${({ visible }) => (visible ? "170px" : "0px")};
   border: ${({ theme, visible }) =>
     visible ? `solid 1px ${theme.colors.defaultShadow}` : "none"};
   border-left: none;

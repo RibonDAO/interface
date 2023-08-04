@@ -208,7 +208,6 @@ function CausesPage(): JSX.Element {
       {!isLoadingCauses && (
         <ChooseCauseModal visible={chooseCauseModalVisible} />
       )}
-      {!isFirstAccess(signedIn) && <PromoterCta />}
       <ChooseCauseModal visible={chooseCauseModalVisible} />
       <S.BodyContainer>
         <S.TitleContainer>

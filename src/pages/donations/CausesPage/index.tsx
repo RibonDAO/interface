@@ -26,7 +26,6 @@ import WarningIcon from "assets/icons/warning-icon.svg";
 import extractUrlValue from "lib/extractUrlValue";
 import { PLATFORM } from "utils/constants";
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
-import PromoterCta from "pages/donations/CausesPage/PromoterCta";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
@@ -210,6 +209,7 @@ function CausesPage(): JSX.Element {
         <ChooseCauseModal visible={chooseCauseModalVisible} />
       )}
       {!isFirstAccess(signedIn) && <PromoterCta />}
+      <ChooseCauseModal visible={chooseCauseModalVisible} />
       <S.BodyContainer>
         <S.TitleContainer>
           <S.Title>{t("pageTitle")}</S.Title>

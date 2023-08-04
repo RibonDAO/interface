@@ -68,6 +68,14 @@ import NonProfitsProvider, {
   INonProfitsContext,
   NonProfitsContext,
 } from "contexts/nonProfitsContext";
+import PaymentInformationProvider, {
+  IPaymentInformationContext,
+  PaymentInformationContext,
+} from "contexts/paymentInformationContext";
+import PixPaymentInformationProvider, {
+  IPixPaymentInformationContext,
+  PixPaymentInformationContext,
+} from "contexts/pixPaymentInformationContext";
 
 export function renderWithTheme(children: React.ReactNode): RenderResult {
   return render(<ThemeProvider theme={theme}>{children}</ThemeProvider>);
@@ -122,6 +130,8 @@ export type RenderComponentProps = {
   modalProviderValue?: Partial<IModalContext>;
   nonProfitsProviderValue?: Partial<INonProfitsContext>;
   cardPaymentProviderValue?: Partial<ICardPaymentInformationContext>;
+  paymentProviderValue?: Partial<IPaymentInformationContext>;
+  pixPaymentProviderValue?: Partial<IPixPaymentInformationContext>;
   networkProviderValue?: Partial<INetworkContext>;
   cryptoPaymentProviderValue?: Partial<ICryptoPaymentContext>;
   locationState?: Record<any, any>;
@@ -142,8 +152,10 @@ export function renderComponent(
     modalProviderValue = {},
     nonProfitsProviderValue = {},
     cardPaymentProviderValue = {},
+    paymentProviderValue = {},
     networkProviderValue = {},
     cryptoPaymentProviderValue = {},
+    pixPaymentProviderValue = {},
   }: RenderComponentProps = {},
 ): RenderWithContextResult {
   const historyObject = history;
@@ -192,22 +204,32 @@ export function renderComponent(
                                 NonProfitsContext,
                                 nonProfitsProviderValue,
                                 renderProvider(
-                                  CardPaymentInformationProvider,
-                                  CardPaymentInformationContext,
-                                  cardPaymentProviderValue,
+                                  PaymentInformationProvider,
+                                  PaymentInformationContext,
+                                  paymentProviderValue,
                                   renderProvider(
-                                    NetworkProvider,
-                                    NetworkContext,
-                                    networkProviderValue,
+                                    CardPaymentInformationProvider,
+                                    CardPaymentInformationContext,
+                                    cardPaymentProviderValue,
                                     renderProvider(
-                                      WalletProvider,
-                                      WalletContext,
-                                      walletProviderValue,
+                                      NetworkProvider,
+                                      NetworkContext,
+                                      networkProviderValue,
                                       renderProvider(
-                                        CryptoPaymentProvider,
-                                        CryptoPaymentContext,
-                                        cryptoPaymentProviderValue,
-                                        component,
+                                        WalletProvider,
+                                        WalletContext,
+                                        walletProviderValue,
+                                        renderProvider(
+                                          CryptoPaymentProvider,
+                                          CryptoPaymentContext,
+                                          cryptoPaymentProviderValue,
+                                          renderProvider(
+                                            PixPaymentInformationProvider,
+                                            PixPaymentInformationContext,
+                                            pixPaymentProviderValue,
+                                            component,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),

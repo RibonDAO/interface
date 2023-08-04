@@ -5,7 +5,6 @@ import { Cause } from "@ribon.io/shared/types";
 import IntersectBackground from "assets/images/intersect-background.svg";
 import useNavigation from "hooks/useNavigation";
 import { useLocation } from "react-router-dom";
-import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import { useWalletContext } from "contexts/walletContext";
 import { useCryptoPayment } from "contexts/cryptoPaymentContext";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
@@ -14,6 +13,7 @@ import Intersection from "assets/images/intersection-image.svg";
 import { useCausesContext } from "contexts/causesContext";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import { useCauseContributionContext } from "contexts/causeContributionContext";
+import { usePaymentInformation } from "contexts/paymentInformationContext";
 import SupportImage from "../assets/support-image.png";
 import * as S from "../styles";
 import SelectCryptoOfferSection from "./SelectCryptoOfferSection";
@@ -25,11 +25,11 @@ type LocationStateType = {
 function CryptoPage(): JSX.Element {
   const { secondary } = theme.colors.brand;
   const { navigateTo } = useNavigation();
-  const { cause, setCause, nonProfit } = useCardPaymentInformation();
   const { causes } = useCausesContext();
   const { chosenCause, setChosenCause, chosenCauseIndex, setChosenCauseIndex } =
     useCauseContributionContext();
 
+  const { cause, setCause, nonProfit } = usePaymentInformation();
   const { connectWallet, wallet } = useWalletContext();
   const {
     amount,

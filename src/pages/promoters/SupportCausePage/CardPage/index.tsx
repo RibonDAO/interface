@@ -10,7 +10,6 @@ import {
   formatPrice,
   removeInsignificantZeros,
 } from "lib/formatters/currencyFormatter";
-import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import theme from "styles/theme";
 import { useLocation } from "react-router-dom";
@@ -19,6 +18,7 @@ import extractUrlValue from "lib/extractUrlValue";
 import { useCausesContext } from "contexts/causesContext";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import { useCauseContributionContext } from "contexts/causeContributionContext";
+import { usePaymentInformation } from "contexts/paymentInformationContext";
 import * as S from "../styles";
 import SelectOfferSection from "./SelectOfferSection";
 
@@ -31,7 +31,7 @@ function SupportCausePage(): JSX.Element {
   const { navigateTo } = useNavigation();
   const [currentOffer, setCurrentOffer] = useState<Offer>(offerFactory());
   const [currentOfferIndex, setCurrentOfferIndex] = useState(0);
-  const { cause, setCause, setOfferId, setFlow } = useCardPaymentInformation();
+  const { cause, setCause, setOfferId, setFlow } = usePaymentInformation();
 
   const { causes, isLoading } = useCausesContext();
   const { chosenCause, setChosenCause, chosenCauseIndex, setChosenCauseIndex } =
@@ -39,9 +39,7 @@ function SupportCausePage(): JSX.Element {
 
   const { state, search } = useLocation<LocationStateType>();
 
-  const platform = extractUrlValue("platform", search);
-
-  const isRunningTheNewCheckoutForm = true;
+  const integrationId = extractUrlValue("integration_id", search);
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportCausePage",
@@ -62,25 +60,6 @@ function SupportCausePage(): JSX.Element {
     setChosenCause(causeClicked);
   };
 
-  const navigateToPayment = () => {
-    setFlow("cause");
-    logEvent("giveCauseBtn_start", {
-      from: "giveCauseCC_page",
-      causeId: cause?.id,
-      amount: currentOffer.priceValue,
-      currency: currentOffer.currency,
-    });
-    navigateTo({
-      pathname: "/promoters/payment",
-      state: {
-        offer: currentOffer,
-        flow: "cause",
-        cause,
-        platform,
-      },
-    });
-  };
-
   const navigateToCheckout = () => {
     logEvent("giveCauseBtn_start", {
       from: "giveCauseCC_page",
@@ -97,6 +76,7 @@ function SupportCausePage(): JSX.Element {
       target: "cause",
       target_id: cause.id.toString(),
       currency: currentOffer.currency.toUpperCase(),
+      integration_id: integrationId || "",
     });
 
     navigateTo({
@@ -106,12 +86,7 @@ function SupportCausePage(): JSX.Element {
   };
 
   const handleDonateClick = () => {
-    if (isRunningTheNewCheckoutForm) {
-      navigateToCheckout();
-      return;
-    }
-
-    navigateToPayment();
+    navigateToCheckout();
   };
 
   const handleCommunityAddClick = () => {

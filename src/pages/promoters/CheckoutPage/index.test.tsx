@@ -15,6 +15,11 @@ describe("CheckoutPage", () => {
   it("logs the page view event", () => {
     renderComponent(<CheckoutPage />);
 
-    expectLogEventToHaveBeenCalledWith("P23_view");
+    expectLogEventToHaveBeenCalledWith("P23_view", {
+      currency: "",
+      offer: "",
+      target: "",
+      targetId: "",
+    });
   });
 });

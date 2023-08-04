@@ -22,7 +22,9 @@ function ContributionStatsPage(): JSX.Element {
   });
 
   useEffect(() => {
-    logEvent("P24_view ");
+    logEvent("P24_view ", {
+      id: contributionId,
+    });
   }, []);
 
   const { data } = useContributionStats(Number(contributionId));
@@ -63,7 +65,9 @@ function ContributionStatsPage(): JSX.Element {
             textColor={theme.colors.neutral[800]}
             arrowLinkColor={theme.colors.brand.secondary[800]}
             onArrowClick={() => {
-              logEvent("P24_opinionCardBtn_click");
+              logEvent("P24_opinionCardBtn_click", {
+                id: contributionId,
+              });
               window.open(
                 "https://api.whatsapp.com/send/?phone=554896605461&text=Oi%2C+quero+compartilhar+minha+opini%C3%A3o+:)&type=phone_number&app_absent=0",
               );

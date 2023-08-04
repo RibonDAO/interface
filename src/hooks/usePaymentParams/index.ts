@@ -7,6 +7,7 @@ export default function usePaymentParams() {
   const targetId = queryParams.get("target_id");
   const currency = queryParams.get("currency");
   const offer = queryParams.get("offer");
+  const paymentMethodIndex = queryParams.get("paymentMethodIndex");
 
   const hasAllParams = Boolean(target && targetId && currency && offer);
 
@@ -16,5 +17,6 @@ export default function usePaymentParams() {
     currency,
     offer,
     hasAllParams,
+    paymentMethodIndex,
   };
 }

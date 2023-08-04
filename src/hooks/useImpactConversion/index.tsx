@@ -1,4 +1,3 @@
-import { useExperiment } from "@growthbook/growthbook-react";
 import {
   useNonProfitImpact,
   useNonProfits,
@@ -50,13 +49,7 @@ export function useImpactConversion() {
     );
   }, [nonProfits, offers, userStatistics, contribution?.offerId]);
 
-  const { value } = useExperiment({
-    key:
-      process.env.NODE_ENV !== "production"
-        ? "impact-conversion-staging"
-        : "impact-conversion-production",
-    variations: ["Control", "NewImpact", "OldImpact"],
-  });
+  const value = "Control";
 
   const currentNewImpact = useCallback(() => {
     if (currentLang === "pt-BR") {

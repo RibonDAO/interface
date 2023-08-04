@@ -429,7 +429,7 @@
       "modalSuccessButton": "Ok",
       "modalAnimationFrom": "Você",
       "modalAnimationTo": "Ribon",
-      "modalAnimationTitle": "Realizando contribuição..."
+      "modalAnimationTitle": "Gerando QR code..."
     }
   },
   "impactNormalizer": {

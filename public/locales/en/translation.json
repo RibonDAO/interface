@@ -430,7 +430,7 @@
       "modalSuccessButton": "Ok",
       "modalAnimationFrom": "You",
       "modalAnimationTo": "Ribon",
-      "modalAnimationTitle": "Processing giving..."
+      "modalAnimationTitle": "Generating QR code..."
     }
   },
   "impactNormalizer": {

@@ -126,7 +126,7 @@ export default function FiatSection() {
     showPix() && {
       title: t("paymentMethodSection.pix"),
       rightIcon: PixIcon,
-      children: <PixSection />,
+      children: <PixSection currentOffer={currentOffer} />,
       onClick: () => {
         logEvent("selectPix_click");
       },

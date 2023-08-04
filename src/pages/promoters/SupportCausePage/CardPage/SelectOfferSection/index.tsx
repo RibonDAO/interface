@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import InputRange from "components/atomics/inputs/InputRange";
 import { useOffers } from "@ribon.io/shared/hooks";
-import { useCardPaymentInformation } from "contexts/cardPaymentInformationContext";
 import { Offer, Cause, Currencies } from "@ribon.io/shared/types";
 import { useTranslation } from "react-i18next";
 import theme from "styles/theme";
 import { formatPrice } from "lib/formatters/currencyFormatter";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import { useLocationSearch } from "hooks/useLocationSearch";
+import { usePaymentInformation } from "contexts/paymentInformationContext";
 import * as S from "./styles";
 
 const { secondary } = theme.colors.brand;
@@ -34,7 +34,7 @@ function SelectOfferPage({ cause, onOfferChange }: Props): JSX.Element {
     defaultCurrentOfferIndex(),
   );
   const [currentOffer, setCurrentOffer] = useState<Offer>();
-  const { currentCoin, setCurrentCoin } = useCardPaymentInformation();
+  const { currentCoin, setCurrentCoin } = usePaymentInformation();
   const { offers, refetch: refetchOffers } = useOffers(currentCoin, false);
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportCausePage.selectOfferSection",

@@ -2,7 +2,7 @@ import usePaymentParams from "hooks/usePaymentParams";
 import { Currencies } from "@ribon.io/shared/types";
 import { useEffect } from "react";
 import { logEvent } from "lib/events";
-import CardSection from "./CardSection";
+import FiatSection from "pages/promoters/CheckoutPage/FiatSection";
 import CryptoSection from "./CryptoSection";
 import Header from "./Components/Header";
 import * as S from "./styles";
@@ -24,7 +24,7 @@ function CheckoutPage(): JSX.Element {
   return (
     <S.Container>
       <Header />
-      {currency === Currencies.USDC ? <CryptoSection /> : <CardSection />}
+      {currency === Currencies.USDC ? <CryptoSection /> : <FiatSection />}
     </S.Container>
   );
 }

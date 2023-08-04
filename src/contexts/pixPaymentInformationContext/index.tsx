@@ -9,45 +9,53 @@ import {
   SetStateAction,
   useState,
   useMemo,
+  useEffect,
 } from "react";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "lib/events";
 import { logError } from "services/crashReport";
-import creditCardPaymentApi from "services/api/creditCardPaymentApi";
 import GivingIcon from "assets/icons/giving-icon.svg";
 import Logo from "assets/icons/logo-background-icon.svg";
 import UserIcon from "assets/icons/user.svg";
-import { setLocalStorageItem } from "lib/localStorage";
+import {
+  getLocalStorageItem,
+  removeLocalStorageItem,
+  setLocalStorageItem,
+} from "lib/localStorage";
 import { useIntegration, useSources, useUsers } from "@ribon.io/shared/hooks";
 import { normalizedLanguage } from "lib/currentLanguage";
 import { CONTRIBUTION_INLINE_NOTIFICATION } from "pages/donations/CausesPage/ContributionNotification";
 import { PLATFORM } from "utils/constants";
+import pixPaymentApi from "services/api/pixPaymentApi";
+import { useStripe } from "contexts/stripeContext";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
 
-export interface ICardPaymentInformationContext {
-  setNumber: (value: SetStateAction<string>) => void;
-  setName: (value: SetStateAction<string>) => void;
-  setExpirationDate: (value: SetStateAction<string>) => void;
-  setCvv: (value: SetStateAction<string>) => void;
+export interface IPixPaymentInformationContext {
   setButtonDisabled: (value: SetStateAction<boolean>) => void;
   buttonDisabled: boolean;
-  number: string;
-  name: string;
-  expirationDate: string;
-  cvv: string;
-  handleSubmit: (platform: string) => void;
+  handleSubmit: () => void;
+  handleConfirmation: () => void;
+  clientSecret: string;
 }
 
 export type Props = {
   children: JSX.Element[] | JSX.Element;
 };
 
-export const CardPaymentInformationContext =
-  createContext<ICardPaymentInformationContext>(
-    {} as ICardPaymentInformationContext,
+export const PixPaymentInformationContext =
+  createContext<IPixPaymentInformationContext>(
+    {} as IPixPaymentInformationContext,
   );
 
-function CardPaymentInformationProvider({ children }: Props) {
+const LAST_CLIENT_SECRET_KEY = "LAST_CLIENT_SECRET_KEY";
+
+function PixPaymentInformationProvider({ children }: Props) {
+  const { stripe } = useStripe();
+
+  const [clientSecret, setClientSecret] = useState<string>(
+    getLocalStorageItem(LAST_CLIENT_SECRET_KEY) || "",
+  );
+
   const {
     integrationId,
     flow,
@@ -59,15 +67,12 @@ function CardPaymentInformationProvider({ children }: Props) {
     cause,
     nonProfit,
     email,
+    name,
   } = usePaymentInformation();
-  const [number, setNumber] = useState("");
-  const [name, setName] = useState("");
-  const [expirationDate, setExpirationDate] = useState("");
-  const [cvv, setCvv] = useState("");
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const { t } = useTranslation("translation", {
-    keyPrefix: "contexts.cardPaymentInformation",
+    keyPrefix: "contexts.pixPaymentInformation",
   });
 
   const { navigateTo } = useNavigation();
@@ -94,6 +99,7 @@ function CardPaymentInformationProvider({ children }: Props) {
 
   const handleConfirmation = async () => {
     setLocalStorageItem(CONTRIBUTION_INLINE_NOTIFICATION, "3");
+    removeLocalStorageItem(LAST_CLIENT_SECRET_KEY);
     login();
     navigateTo({
       pathname: "/donation-done-cause",
@@ -119,17 +125,36 @@ function CardPaymentInformationProvider({ children }: Props) {
     },
   });
 
-  const showAnimationCreditCardPaymentModal = () => {
+  const confirmPixPayment = async () => {
+    setButtonDisabled(true);
+    try {
+      const response = await stripe?.confirmPixPayment(clientSecret);
+      if (response?.paymentIntent?.status === "succeeded") {
+        handleConfirmation();
+      }
+    } catch (e) {
+      logError(e);
+    } finally {
+      setButtonDisabled(false);
+    }
+  };
+
+  useEffect(() => {
+    if (clientSecret) {
+      setLocalStorageItem(LAST_CLIENT_SECRET_KEY, clientSecret);
+      confirmPixPayment();
+    }
+  }, [clientSecret, stripe]);
+
+  const showAnimationPixPaymentModal = () => {
     showAnimationModal();
     setTimeout(() => {
       closeAnimationModal();
     }, 3000);
   };
 
-  const handleSubmit = async (platform: string) => {
-    showAnimationCreditCardPaymentModal();
-
-    const expiration = expirationDate.split("/");
+  const handleSubmit = async () => {
+    showAnimationPixPaymentModal();
 
     const paymentInformation = {
       email,
@@ -138,23 +163,17 @@ function CardPaymentInformationProvider({ children }: Props) {
       city,
       taxId,
       offerId,
+      name,
       integrationId: integrationId ?? 1,
-      card: {
-        number: number.replace(/\D/g, ""),
-        name,
-        expirationMonth: expiration[0],
-        expirationYear: expiration[1].slice(-2),
-        cvv,
-      },
       causeId: cause?.id,
       nonProfitId: nonProfit?.id,
-      platform: platform || PLATFORM,
+      platform: PLATFORM,
     };
 
     try {
-      await creditCardPaymentApi.postCreditCardPayment(paymentInformation);
+      const response = await pixPaymentApi.postPixPayment(paymentInformation);
+      setClientSecret(response.data.clientSecret);
       closeAnimationModal();
-      handleConfirmation();
     } catch (error) {
       closeAnimationModal();
       logError(error);
@@ -169,40 +188,32 @@ function CardPaymentInformationProvider({ children }: Props) {
     }
   };
 
-  const cardPaymentInformationObject: ICardPaymentInformationContext = useMemo(
+  const pixPaymentInformationObject: IPixPaymentInformationContext = useMemo(
     () => ({
       handleSubmit,
-      setName,
-      name,
-      setNumber,
-      number,
-      setExpirationDate,
-      expirationDate,
-      setCvv,
-      cvv,
       buttonDisabled,
       setButtonDisabled,
+      handleConfirmation,
+      clientSecret,
     }),
-    [number, name, expirationDate, cvv, buttonDisabled],
+    [buttonDisabled, clientSecret],
   );
 
   return (
-    <CardPaymentInformationContext.Provider
-      value={cardPaymentInformationObject}
-    >
+    <PixPaymentInformationContext.Provider value={pixPaymentInformationObject}>
       {children}
-    </CardPaymentInformationContext.Provider>
+    </PixPaymentInformationContext.Provider>
   );
 }
 
-export default CardPaymentInformationProvider;
+export default PixPaymentInformationProvider;
 
-export const useCardPaymentInformation = () => {
-  const context = useContext(CardPaymentInformationContext);
+export const usePixPaymentInformation = () => {
+  const context = useContext(PixPaymentInformationContext);
 
   if (!context) {
     throw new Error(
-      "useCardPaymentInformation must be used within CardPaymentInformationProvider",
+      "usePixPaymentInformation must be used within PixPaymentInformationProvider",
     );
   }
 

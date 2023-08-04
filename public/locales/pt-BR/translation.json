@@ -372,6 +372,7 @@
       "brazilName": "Brasil",
       "paymentMethodSection": {
         "creditCard": "Cartão de crédito",
+        "pix": "Pix",
         "googlePay": "Google Pay",
         "applePay": "Apple Pay",
         "creditCardFields": {
@@ -385,9 +386,19 @@
           "name": "Nome impresso",
           "expirationDate": "Data de validade",
           "cvv": "CVV"
+        },
+        "pixFields": {
+          "email": "E-mail",
+          "country": "País",
+          "state": "Estado",
+          "city": "Cidade",
+          "taxId": "CPF",
+          "cpf": "CPF",
+          "name": "Nome"
         }
       },
-      "confirmPayment": "Confirmar pagamento"
+      "confirmPayment": "Confirmar pagamento",
+      "pixButtonText": "Gerar QR Code"
     }
   },
   "contexts": {
@@ -409,6 +420,16 @@
     },
     "tasksContext": {
       "allTasksCompleted": "Você completou todas as tarefas!"
+    },
+    "pixPaymentInformation": {
+      "onErrorMessage": "Falha no pagamento. Tente novamente.",
+      "loadingMessage": "Confirmando pagamento...",
+      "modalSuccessTitle": "Você incluiu {{value}} USDC ao tesouro!",
+      "modalSuccessDescription": "Sua doação foi convertida em criptomoedas para financiar mais tickets.",
+      "modalSuccessButton": "Ok",
+      "modalAnimationFrom": "Você",
+      "modalAnimationTo": "Ribon",
+      "modalAnimationTitle": "Realizando contribuição..."
     }
   },
   "impactNormalizer": {

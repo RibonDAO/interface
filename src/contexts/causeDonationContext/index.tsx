@@ -25,7 +25,7 @@ export const CauseDonationContext = createContext<ICauseDonationContext>(
 CauseDonationContext.displayName = "CauseDonationContext";
 
 function CauseDonationProvider({ children }: any) {
-  const { causes } = useCausesContext();
+  const { causesWithPoolBalance } = useCausesContext();
   const [chooseCauseModalVisible, setChooseCauseModalVisible] = useState(false);
   const [chosenCause, setChosenCause] = useState<Cause | undefined>();
   const [chosenCauseId, setChosenCauseId] = useState<number | undefined>();
@@ -35,7 +35,9 @@ function CauseDonationProvider({ children }: any) {
 
   useEffect(() => {
     if (chosenCauseId) {
-      setChosenCause(causes.find((cause) => cause.id === chosenCauseId));
+      setChosenCause(
+        causesWithPoolBalance.find((cause) => cause.id === chosenCauseId),
+      );
     }
   }, [chosenCauseId]);
 

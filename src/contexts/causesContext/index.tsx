@@ -17,7 +17,7 @@ CausesContext.displayName = "CausesContext";
 function CausesProvider({ children }: any) {
   const { causes, refetch, isLoading } = useCauses();
   const causesWithPoolBalance = causes?.filter(
-    (cause) => cause.withPoolBalance && cause.active,
+    (cause) => cause.withPoolBalance,
   );
 
   const causesObject: ICausesContext = useMemo(

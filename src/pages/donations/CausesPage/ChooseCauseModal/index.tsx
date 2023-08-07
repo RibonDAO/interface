@@ -14,7 +14,7 @@ export function ChooseCauseModal({ visible }: Props): JSX.Element {
     keyPrefix: "donations.causesPage",
   });
 
-  const { causes } = useCausesContext();
+  const { causesWithPoolBalance: causes } = useCausesContext();
 
   const causesList = useCallback(
     () =>

@@ -51,6 +51,7 @@ function CausesPage(): JSX.Element {
     setChosenCauseIndex,
     chooseCauseModalVisible,
   } = useCauseDonationContext();
+
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });

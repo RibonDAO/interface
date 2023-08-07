@@ -1,4 +1,7 @@
-import { useFreeDonationNonProfits } from "@ribon.io/shared/hooks";
+import {
+  useFreeDonationNonProfits,
+  useNonProfits,
+} from "@ribon.io/shared/hooks";
 import { createContext, useContext, useMemo } from "react";
 import { NonProfit } from "@ribon.io/shared/types";
 
@@ -15,10 +18,14 @@ export const NonProfitsContext = createContext<INonProfitsContext>(
 NonProfitsContext.displayName = "NonProfitsContext";
 
 function NonProfitsProvider({ children }: any) {
-  const { nonProfits, refetch, isLoading } = useFreeDonationNonProfits();
-  const activeNonProfits = nonProfits?.filter(
-    (nonProfit) =>
-      nonProfit?.cause?.active && nonProfit?.cause?.withPoolBalance,
+  const {
+    nonProfits: nonProfitsWithPoolBalance,
+    refetch: refetchActive,
+    isLoading: isLoadingActive,
+  } = useFreeDonationNonProfits();
+  const { nonProfits, refetch, isLoading } = useNonProfits();
+  const activeNonProfits = nonProfitsWithPoolBalance?.filter(
+    (nonProfit) => nonProfit?.cause?.withPoolBalance,
   );
 
   const nonProfitsObject: INonProfitsContext = useMemo(
@@ -26,6 +33,8 @@ function NonProfitsProvider({ children }: any) {
       nonProfits,
       activeNonProfits,
       refetch,
+      refetchActive,
+      isLoadingActive,
       isLoading,
     }),
     [nonProfits, refetch, isLoading],

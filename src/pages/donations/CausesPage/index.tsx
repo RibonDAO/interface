@@ -18,7 +18,7 @@ import Spinner from "components/atomics/Spinner";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import useVoucher from "hooks/useVoucher";
 import { useCausesContext } from "contexts/causesContext";
-import { track } from "@amplitude/analytics-browser";
+import { logEvent, track } from "@amplitude/analytics-browser";
 import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
@@ -122,6 +122,13 @@ function CausesPage(): JSX.Element {
   useEffect(() => {
     track("Cause Page View");
   }, []);
+
+  useEffect(() => {
+    logEvent("donationCardsOrder_view", {
+      nonProfits: activeNonProfits,
+      causes: causesWithPoolBalance,
+    });
+  }, [activeNonProfits, causesWithPoolBalance]);
 
   useEffect(() => {
     if (hasReceivedTicketToday() && hasAvailableDonation()) {

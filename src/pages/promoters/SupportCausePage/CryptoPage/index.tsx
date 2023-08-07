@@ -52,6 +52,12 @@ function CryptoPage(): JSX.Element {
   }, []);
 
   useEffect(() => {
+    logEvent("contributionCardsOrder_view", {
+      causes: causes as any,
+    });
+  }, [causes]);
+
+  useEffect(() => {
     if (!cause) {
       setCause(state?.causeDonated || chosenCause);
     }

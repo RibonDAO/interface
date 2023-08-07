@@ -49,6 +49,13 @@ function CardPage(): JSX.Element {
     setCause(state?.causeDonated || causes[0]);
   });
 
+  useEffect(() => {
+    logEvent("contributionCardsOrder_view", {
+      nonProfits: nonProfits as any,
+      causes: causes as any,
+    });
+  }, [nonProfits, causes]);
+
   const handleCauseClick = (causeClicked: Cause, index: number) => {
     logEvent("nonProfitCauseSelection_click", {
       id: causeClicked?.id,

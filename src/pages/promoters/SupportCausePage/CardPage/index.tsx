@@ -51,6 +51,12 @@ function SupportCausePage(): JSX.Element {
     }
   });
 
+  useEffect(() => {
+    logEvent("contributionCardsOrder_view", {
+      causes: causes as any,
+    });
+  }, [causes]);
+
   const handleCauseClick = (causeClicked: Cause, index: number) => {
     logEvent("treasureCauseSelection_click", {
       id: causeClicked?.id,

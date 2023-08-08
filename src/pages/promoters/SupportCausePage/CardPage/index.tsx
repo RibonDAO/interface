@@ -29,7 +29,6 @@ function SupportCausePage(): JSX.Element {
   const { secondary } = theme.colors.brand;
   const { navigateTo } = useNavigation();
   const [currentOffer, setCurrentOffer] = useState<Offer>(offerFactory());
-  const [currentOfferIndex, setCurrentOfferIndex] = useState(0);
   const { cause, setCause, setOfferId, setFlow } = usePaymentInformation();
 
   const { causes } = useCauses();
@@ -71,7 +70,7 @@ function SupportCausePage(): JSX.Element {
     if (!cause) return;
 
     const searchParams = new URLSearchParams({
-      offer: currentOfferIndex.toString(),
+      offer: currentOffer.priceCents.toString(),
       target: "cause",
       target_id: cause.id.toString(),
       currency: currentOffer.currency.toUpperCase(),
@@ -106,9 +105,8 @@ function SupportCausePage(): JSX.Element {
     )}`;
   };
 
-  const handleOfferChange = (offer: Offer, index?: number) => {
+  const handleOfferChange = (offer: Offer) => {
     setCurrentOffer(offer);
-    setCurrentOfferIndex(index || 0);
     setOfferId(offer.id);
   };
 

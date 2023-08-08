@@ -43,9 +43,11 @@ export default function FiatSection() {
   );
 
   const [currentOffer, setCurrentOffer] = useState<Offer>();
+  const [currentOfferIndex, setCurrentOfferIndex] = useState(0);
   const { updateLocationSearch } = useLocationSearch();
 
-  const resetOffer = () => updateLocationSearch("offer", "0");
+  const resetOffer = () =>
+    updateLocationSearch("offer", offers[0].priceCents.toString());
 
   useEffect(() => {
     refetchOffers();
@@ -53,18 +55,26 @@ export default function FiatSection() {
 
   useEffect(() => {
     if (!isLoadingOffers && offers && offer) {
-      const actualOffer = offers[Number(offer)];
-      setCurrentOffer(actualOffer);
+      const actualOffer = offers?.find(
+        (offerItem: Offer) => offerItem.priceCents === Number(offer),
+      );
 
-      if (offers.length - 1 < Number(offer)) resetOffer();
+      const offerIndex = offers?.findIndex(
+        (offerItem: any) => offerItem.priceCents === Number(offer),
+      );
+      setCurrentOffer(actualOffer ?? offers[0]);
+      setCurrentOfferIndex(offerIndex || 0);
+
+      if (offers.length - 1 < Number(currentOfferIndex)) resetOffer();
     }
   }, [offers, offer, isLoadingOffers]);
 
   const handleOfferChange = (offerItem: any) => {
-    const offerIndex = offers?.findIndex(
-      (item: any) => item.id === offerItem.id,
+    const offerChanged = offers?.find((item: any) => item.id === offerItem.id);
+    updateLocationSearch(
+      "offer",
+      offerChanged?.priceCents.toString() || offers[0].priceCents.toString(),
     );
-    updateLocationSearch("offer", offerIndex.toString());
   };
 
   const buttonOfferItems = offers?.map((offerItem: any) => ({
@@ -77,7 +87,7 @@ export default function FiatSection() {
     children: (
       <ButtonSelectorTemplate
         items={buttonOfferItems}
-        current={Number(offer) || 0}
+        current={currentOfferIndex || 0}
       />
     ),
   };

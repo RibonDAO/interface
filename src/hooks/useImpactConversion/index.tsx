@@ -4,7 +4,7 @@ import {
   useOffers,
   useStatistics,
 } from "@ribon.io/shared/hooks";
-import { Currencies } from "@ribon.io/shared/types";
+import { Currencies, NonProfit, Offer } from "@ribon.io/shared/types";
 import { useLanguage } from "hooks/useLanguage";
 import { useCurrentUser } from "contexts/currentUserContext";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
@@ -19,8 +19,8 @@ export function useImpactConversion() {
     string | JSX.Element | undefined
   >();
   const [variation, setVariation] = useState<string>("Control");
-  const [nonProfit, setNonProfit] = useState<any>();
-  const [offer, setOffer] = useState<any>();
+  const [nonProfit, setNonProfit] = useState<NonProfit>();
+  const [offer, setOffer] = useState<Offer>();
   const { currentLang } = useLanguage();
 
   const { formattedImpactText } = useFormattedImpactText();
@@ -43,6 +43,8 @@ export function useImpactConversion() {
     setNonProfit(
       nonProfits?.find((n) => n.id === userStatistics?.lastDonatedNonProfit),
     );
+
+    if (!offers) return;
 
     setOffer(
       offers?.find((o) => o.id === contribution?.offerId) ?? offers?.[0],

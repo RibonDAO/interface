@@ -26,7 +26,7 @@ function PostDonationPage(): JSX.Element {
   } = useLocation<LocationStateType>();
 
   const { navigateTo } = useNavigation();
-  const { contribution, variation, offer, description } = useImpactConversion();
+  const { contribution, variation, offer } = useImpactConversion();
 
   const isVariation = useCallback(
     () => shouldRenderVariation(variation) && !!contribution,
@@ -134,18 +134,17 @@ function PostDonationPage(): JSX.Element {
               {t("boostedDonation")}
             </S.BoostedDonation>
             <S.BottomContainer>
-              <S.Text hasButton={isVariation()}>
-                {isVariation()
-                  ? t("donate", {
-                      value: formatPrice(contribution?.value ?? 0, "brl"),
-                    })
-                  : t("donateAsCommunity")}
+              <S.Text hasButton>
+                {t("donate", {
+                  value: formatPrice(
+                    contribution?.value ?? offer?.priceValue ?? 0,
+                    "brl",
+                  ),
+                })}
               </S.Text>
               <S.CardMainText>{nonProfit.cause.name}</S.CardMainText>
             </S.BottomContainer>
-            {isVariation() && (
-              <S.InsideButton onClick={() => {}} text={t("donateNow")} />
-            )}
+            <S.InsideButton onClick={() => {}} text={t("donateNow")} />
           </S.Card>
           <S.Card
             image={nonProfit.mainImage}
@@ -153,24 +152,19 @@ function PostDonationPage(): JSX.Element {
           >
             <S.DarkOverlay />
             <S.BottomContainer>
-              <S.Text hasButton={isVariation()}>
-                {isVariation()
-                  ? description ??
-                    `${contribution?.impact && <b>{contribution?.impact}</b>}`
-                  : t("donateDirectly")}
+              <S.Text hasButton>
+                {t("donate", {
+                  value: formatPrice(
+                    contribution?.value ?? offer?.priceValue ?? 0,
+                    "brl",
+                  ),
+                })}
               </S.Text>
               <S.CardMainText>
                 {isVariation() ? <b>{contribution?.impact}</b> : nonProfit.name}
               </S.CardMainText>
             </S.BottomContainer>
-            {isVariation() && (
-              <S.InsideButton
-                onClick={() => {}}
-                text={t("donateButton", {
-                  value: formatPrice(contribution?.value ?? 0, "brl"),
-                })}
-              />
-            )}
+            <S.InsideButton onClick={() => {}} text={t("donateNow")} />
           </S.Card>
         </>
       )}

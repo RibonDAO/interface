@@ -58,14 +58,19 @@ function ContributionCard({
       platform: "web",
     });
 
+    const searchParams = new URLSearchParams({
+      offer: "0",
+      target: flow === "nonProfit" ? "non_profit" : "cause",
+      target_id:
+        (flow === "nonProfit"
+          ? nonProfit?.id.toString()
+          : nonProfit?.cause?.id.toString()) ?? "",
+      currency: offer?.currency.toUpperCase() ?? "BRL",
+    });
+
     navigateTo({
-      pathname: "promoters/payment",
-      state: {
-        offer,
-        nonProfit,
-        flow,
-        cause: nonProfit?.cause,
-      },
+      pathname: "/promoters/checkout",
+      search: searchParams.toString(),
     });
   };
 

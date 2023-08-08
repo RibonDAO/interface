@@ -6,6 +6,7 @@ import { useImpactConversion } from "hooks/useImpactConversion";
 import { formatPrice } from "lib/formatters/currencyFormatter";
 import { logEvent } from "lib/events";
 import useNavigation from "hooks/useNavigation";
+import { useModalContext } from "contexts/modalContext";
 import { useModal } from "../useModal";
 
 export function useBlockedDonationContributionModal(initialState?: boolean) {
@@ -15,24 +16,28 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
   const { primary } = theme.colors.brand;
   const { contribution, nonProfit, offer, description } = useImpactConversion();
   const { navigateTo } = useNavigation();
+  const { hideModal } = useModalContext();
 
   const handleClickedDonationButton = () => {
     logEvent("giveNgoBtn_start", {
       from: "zeroTickets_modal",
-      value: contribution?.value,
+      value: contribution?.value ?? offer?.priceValue ?? 0,
       coin: offer?.currency,
       causeId: nonProfit?.cause?.id,
       platform: "web",
     });
 
+    const searchParams = new URLSearchParams({
+      offer: "0",
+      target: "non_profit",
+      target_id: nonProfit?.id?.toString() ?? "",
+      currency: offer?.currency.toUpperCase() ?? "BRL",
+    });
+    hideModal();
+
     navigateTo({
-      pathname: "promoters/payment",
-      state: {
-        offer,
-        nonProfit,
-        flow: "nonProfit",
-        cause: nonProfit?.cause,
-      },
+      pathname: "/promoters/checkout",
+      search: searchParams.toString(),
     });
   };
 
@@ -55,7 +60,10 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
       highlightedText,
       primaryButton: {
         text: t("buttonContributionModal", {
-          value: formatPrice(contribution?.value ?? 0, "brl"),
+          value: formatPrice(
+            contribution?.value ?? offer?.priceValue ?? 0,
+            "brl",
+          ),
         }),
         onClick: handleClickedDonationButton,
       },

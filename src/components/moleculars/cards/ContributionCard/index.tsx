@@ -5,6 +5,7 @@ import { formatPrice } from "lib/formatters/currencyFormatter";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
+import { useLanguage } from "hooks/useLanguage";
 import * as S from "./styles";
 
 export type Props = {
@@ -34,6 +35,10 @@ function ContributionCard({
     keyPrefix: "contributionCard",
   });
   const { navigateTo } = useNavigation();
+  const { currentLang } = useLanguage();
+
+  const currentCurrency =
+    offer?.currency.toUpperCase() ?? currentLang === "pt-BR" ? "BRL" : "USD";
 
   useEffect(() => {
     logEvent(
@@ -65,7 +70,7 @@ function ContributionCard({
         (flow === "nonProfit"
           ? nonProfit?.id.toString()
           : nonProfit?.cause?.id?.toString()) ?? "",
-      currency: offer?.currency.toUpperCase() ?? "BRL",
+      currency: currentCurrency,
     });
 
     navigateTo({
@@ -77,7 +82,11 @@ function ContributionCard({
   return (
     <S.Container style={style} data-testid="contribution-section-container">
       <S.Title>{title || t("titleCard")}</S.Title>
-      <S.Value>{t("donate", { value: formatPrice(value, "brl") })}</S.Value>
+      <S.Value>
+        {t("donate", {
+          value: formatPrice(value, currentCurrency.toLowerCase()),
+        })}
+      </S.Value>
       <S.Description>
         {description} {impact && <b>{impact}</b>}
       </S.Description>

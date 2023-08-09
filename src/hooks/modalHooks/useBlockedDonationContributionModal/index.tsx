@@ -6,6 +6,7 @@ import { useImpactConversion } from "hooks/useImpactConversion";
 import { formatPrice } from "lib/formatters/currencyFormatter";
 import { logEvent } from "lib/events";
 import useNavigation from "hooks/useNavigation";
+import { useLanguage } from "hooks/useLanguage";
 import { useModalContext } from "contexts/modalContext";
 import { useModal } from "../useModal";
 
@@ -17,6 +18,9 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
   const { contribution, nonProfit, offer, description } = useImpactConversion();
   const { navigateTo } = useNavigation();
   const { hideModal } = useModalContext();
+  const { currentLang } = useLanguage();
+
+  const currentCurrency = currentLang === "pt-BR" ? "brl" : "usd";
 
   const handleClickedDonationButton = () => {
     logEvent("giveNgoBtn_start", {
@@ -31,7 +35,7 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
       offer: "0",
       target: "non_profit",
       target_id: nonProfit?.id?.toString() ?? "",
-      currency: offer?.currency.toUpperCase() ?? "BRL",
+      currency: offer?.currency.toUpperCase() ?? currentCurrency,
     });
     hideModal();
 

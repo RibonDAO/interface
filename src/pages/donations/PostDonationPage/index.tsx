@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { NonProfit } from "@ribon.io/shared/types";
+import { useLanguage } from "hooks/useLanguage";
 import useNavigation from "hooks/useNavigation";
 import VolunteerActivismGreen from "assets/icons/volunteer-activism-green.svg";
 import Rocket from "assets/icons/rocket.svg";
@@ -19,6 +20,10 @@ function PostDonationPage(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.postDonationPage",
   });
+
+  const { currentLang } = useLanguage();
+
+  const currentCurrency = currentLang === "pt-BR" ? "brl" : "usd";
 
   const {
     state: { nonProfit },
@@ -104,7 +109,7 @@ function PostDonationPage(): JSX.Element {
                 {t("donate", {
                   value: formatPrice(
                     contribution?.value ?? offer?.priceValue ?? 0,
-                    offer?.currency ?? "brl",
+                    offer?.currency ?? currentCurrency,
                   ),
                 })}
               </S.Text>
@@ -122,7 +127,7 @@ function PostDonationPage(): JSX.Element {
                 {t("donate", {
                   value: formatPrice(
                     contribution?.value ?? offer?.priceValue ?? 0,
-                    offer?.currency ?? "brl",
+                    offer?.currency ?? currentCurrency,
                   ),
                 })}
               </S.Text>

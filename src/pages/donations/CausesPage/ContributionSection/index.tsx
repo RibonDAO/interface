@@ -1,7 +1,6 @@
 import ContributionCard from "components/moleculars/cards/ContributionCard";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useTranslation } from "react-i18next";
-import { Fragment } from "react";
 import { useImpactConversion } from "hooks/useImpactConversion";
 import * as S from "./styles";
 
@@ -10,8 +9,7 @@ function ContributionSection(): JSX.Element {
     keyPrefix: "contributionSection",
   });
 
-  const { contribution, nonProfit, offer, description, variation } =
-    useImpactConversion();
+  const { contribution, nonProfit, offer, description } = useImpactConversion();
 
   const { isMobile } = useBreakpoint();
   const contributionCard = () => (
@@ -40,9 +38,9 @@ function ContributionSection(): JSX.Element {
     </>
   );
 
-  if (contribution) return contributionCard() ?? <Fragment key={variation} />;
+  if (contribution) return contributionCard() ?? <div />;
 
-  return <Fragment key={variation} />;
+  return <div />;
 }
 
 export default ContributionSection;

@@ -62,7 +62,7 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
         text: t("buttonContributionModal", {
           value: formatPrice(
             contribution?.value ?? offer?.priceValue ?? 0,
-            "brl",
+            offer?.currency ?? "brl",
           ),
         }),
         onClick: handleClickedDonationButton,

@@ -104,7 +104,7 @@ function PostDonationPage(): JSX.Element {
                 {t("donate", {
                   value: formatPrice(
                     contribution?.value ?? offer?.priceValue ?? 0,
-                    "brl",
+                    offer?.currency ?? "brl",
                   ),
                 })}
               </S.Text>
@@ -122,7 +122,7 @@ function PostDonationPage(): JSX.Element {
                 {t("donate", {
                   value: formatPrice(
                     contribution?.value ?? offer?.priceValue ?? 0,
-                    "brl",
+                    offer?.currency ?? "brl",
                   ),
                 })}
               </S.Text>

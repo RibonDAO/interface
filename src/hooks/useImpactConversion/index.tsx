@@ -1,5 +1,4 @@
 import {
-  useContributions,
   useNonProfitImpact,
   useNonProfits,
   useOffers,
@@ -18,8 +17,6 @@ export function useImpactConversion() {
   >();
   const [nonProfit, setNonProfit] = useState<NonProfit>();
   const [offer, setOffer] = useState<Offer>();
-  const { useUserContributions } = useContributions();
-  const { data: contributions } = useUserContributions();
 
   const { formattedImpactText } = useFormattedImpactText();
 
@@ -50,17 +47,18 @@ export function useImpactConversion() {
   }, [nonProfits, offers, userStatistics, contribution?.offerId]);
 
   useEffect(() => {
-    if (!contributions) return;
+    if (!offer) return;
+    if (!nonProfit) return;
 
-    const selectedContribution = contributions.find(
-      (o) =>
-        o?.receiver &&
-        o.receiver?.id === userStatistics?.lastDonatedNonProfit &&
-        "impactByTicket" in o.receiver,
-    ) as Contribution;
-
-    setContribution(selectedContribution);
-  }, [setContribution, nonProfits, offers, userStatistics, currentUser?.id]);
+    setContribution({
+      nonProfitId: nonProfit.id,
+      name: nonProfit.name,
+      image: nonProfit.mainImage,
+      value: offer.priceValue ?? 0,
+      communityValue: (offer.priceValue ?? 0) * 0.2,
+      offerId: 28,
+    });
+  }, [setContribution, nonProfit, offers, userStatistics, currentUser?.id]);
 
   useEffect(() => {
     setDescription(

@@ -1,7 +1,4 @@
-import {
-  useFreeDonationNonProfits,
-  useNonProfits,
-} from "@ribon.io/shared/hooks";
+import { useNonProfits } from "@ribon.io/shared/hooks";
 import { createContext, useContext, useMemo } from "react";
 import { NonProfit } from "@ribon.io/shared/types";
 

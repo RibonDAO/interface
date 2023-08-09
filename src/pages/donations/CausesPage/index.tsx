@@ -218,7 +218,6 @@ function CausesPage(): JSX.Element {
               <NonProfitsList
                 nonProfits={nonProfitsFilter()}
                 canDonate={canDonate}
-                integration={integration}
               />
             </S.NonProfitsContainer>
           )

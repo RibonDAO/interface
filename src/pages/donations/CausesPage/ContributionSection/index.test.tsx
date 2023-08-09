@@ -1,4 +1,3 @@
-import React from "react";
 import { useImpactConversion } from "hooks/useImpactConversion";
 import { renderComponent } from "config/testUtils";
 import {
@@ -19,57 +18,28 @@ describe("ContributionSection", () => {
   });
 
   describe("when has contribution", () => {
-    describe("when it's not control variation", () => {
-      beforeEach(() => {
-        const mockUseImpactConversion = useImpactConversion as jest.Mock;
-        mockUseImpactConversion.mockReturnValue({
-          contribution: {
-            image: "test-image-url",
-            impact: "This is a test impact",
-            value: 100,
-          },
-          nonProfit: { name: "Test Non-Profit" },
-          offer: { id: 1 },
-          description: "This is a test description",
-          variation: "Test Variation",
-        });
+    beforeEach(() => {
+      const mockUseImpactConversion = useImpactConversion as jest.Mock;
+      mockUseImpactConversion.mockReturnValue({
+        contribution: {
+          image: "test-image-url",
+          impact: "This is a test impact",
+          value: 100,
+        },
+        nonProfit: { name: "Test Non-Profit" },
+        offer: { id: 1 },
+        description: "This is a test description",
+        variation: "Test Variation",
+      });
 
-        renderComponent(<ContributionSection />);
-      });
-      it("renders contribution card ", () => {
-        expectTextToBeInTheDocument(
-          "Amazing! Thank you for helping Test Non-Profit",
-        );
-        expectTextToBeInTheDocument("This is a test impact");
-        expectTextToBeInTheDocument("Donate R$ 100");
-      });
+      renderComponent(<ContributionSection />);
     });
-
-    describe("when it's control variation", () => {
-      beforeEach(() => {
-        const mockUseImpactConversion = useImpactConversion as jest.Mock;
-        mockUseImpactConversion.mockReturnValue({
-          contribution: {
-            image: "test-image-url",
-            impact: "This is a test impact",
-            value: 100,
-          },
-          nonProfit: { name: "Test Non-Profit" },
-          offer: { id: 1 },
-          description: "This is a test description",
-          variation: "Control",
-        });
-
-        renderComponent(<ContributionSection />);
-      });
-
-      it("renders contribution card when variation is 'Control'", () => {
-        expectTextNotToBeInTheDocument(
-          "Amazing! Thank you for helping Test Non-Profit",
-        );
-        expectTextNotToBeInTheDocument("This is a test impact");
-        expectTextNotToBeInTheDocument("Donate R$ 100");
-      });
+    it("renders contribution card ", () => {
+      expectTextToBeInTheDocument(
+        "Amazing! Thank you for helping Test Non-Profit",
+      );
+      expectTextToBeInTheDocument("This is a test impact");
+      expectTextToBeInTheDocument("Donate R$ 100");
     });
   });
 

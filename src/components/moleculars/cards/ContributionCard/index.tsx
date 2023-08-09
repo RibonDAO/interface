@@ -64,7 +64,7 @@ function ContributionCard({
       target_id:
         (flow === "nonProfit"
           ? nonProfit?.id.toString()
-          : nonProfit?.cause?.id.toString()) ?? "",
+          : nonProfit?.cause?.id?.toString()) ?? "",
       currency: offer?.currency.toUpperCase() ?? "BRL",
     });
 

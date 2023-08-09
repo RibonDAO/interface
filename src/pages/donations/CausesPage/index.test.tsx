@@ -76,7 +76,7 @@ describe("Causes", () => {
   beforeEach(async () => {
     renderComponent(<Causes />, {
       nonProfitsProviderValue: {
-        activeNonProfits: nonProfits,
+        nonProfitsWithPoolBalance: nonProfits,
       },
     });
     await waitForPromises();

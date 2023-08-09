@@ -42,7 +42,7 @@ function CausesPage(): JSX.Element {
 
   const { causesWithPoolBalance, isLoading: isLoadingCauses } =
     useCausesContext();
-  const { activeNonProfits, isLoading: isLoadingNonProfits } =
+  const { nonProfitsWithPoolBalance, isLoading: isLoadingNonProfits } =
     useNonProfitsContext();
   const {
     chosenCause,
@@ -126,10 +126,10 @@ function CausesPage(): JSX.Element {
 
   useEffect(() => {
     logEvent("donationCardsOrder_view", {
-      nonProfits: activeNonProfits,
+      nonProfits: nonProfitsWithPoolBalance,
       causes: causesWithPoolBalance,
     });
-  }, [activeNonProfits, causesWithPoolBalance]);
+  }, [nonProfitsWithPoolBalance, causesWithPoolBalance]);
 
   useEffect(() => {
     if (hasReceivedTicketToday() && hasAvailableDonation()) {
@@ -161,12 +161,12 @@ function CausesPage(): JSX.Element {
   const nonProfitsFilter = () => {
     if (chosenCause) {
       return (
-        activeNonProfits?.filter(
+        nonProfitsWithPoolBalance?.filter(
           (nonProfit) => nonProfit.cause?.id === chosenCause.id,
         ) || []
       );
     }
-    return activeNonProfits || [];
+    return nonProfitsWithPoolBalance || [];
   };
 
   const sortNonProfits = () => {
@@ -246,7 +246,7 @@ function CausesPage(): JSX.Element {
         {isLoadingNonProfits ? (
           <Spinner size="26" />
         ) : (
-          activeNonProfits && (
+          nonProfitsWithPoolBalance && (
             <S.NonProfitsContainer>
               <NonProfitsList
                 nonProfits={sortNonProfits()}

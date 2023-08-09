@@ -7,7 +7,7 @@ import { NonProfit } from "@ribon.io/shared/types";
 
 export interface INonProfitsContext {
   nonProfits: NonProfit[] | undefined;
-  activeNonProfits: NonProfit[] | undefined;
+  nonProfitsWithPoolBalance: NonProfit[] | undefined;
   refetch: () => void;
   isLoading: boolean;
 }
@@ -18,23 +18,16 @@ export const NonProfitsContext = createContext<INonProfitsContext>(
 NonProfitsContext.displayName = "NonProfitsContext";
 
 function NonProfitsProvider({ children }: any) {
-  const {
-    nonProfits: nonProfitsWithPoolBalance,
-    refetch: refetchActive,
-    isLoading: isLoadingActive,
-  } = useFreeDonationNonProfits();
   const { nonProfits, refetch, isLoading } = useNonProfits();
-  const activeNonProfits = nonProfitsWithPoolBalance?.filter(
-    (nonProfit) => nonProfit?.cause?.withPoolBalance,
+  const nonProfitsWithPoolBalance = nonProfits?.filter(
+    (nonProfit) => nonProfit.cause.withPoolBalance,
   );
 
   const nonProfitsObject: INonProfitsContext = useMemo(
     () => ({
       nonProfits,
-      activeNonProfits,
+      nonProfitsWithPoolBalance,
       refetch,
-      refetchActive,
-      isLoadingActive,
       isLoading,
     }),
     [nonProfits, refetch, isLoading],

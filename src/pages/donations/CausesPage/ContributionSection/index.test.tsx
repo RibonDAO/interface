@@ -39,7 +39,7 @@ describe("ContributionSection", () => {
         "Amazing! Thank you for helping Test Non-Profit",
       );
       expectTextToBeInTheDocument("This is a test impact");
-      expectTextToBeInTheDocument("Donate R$ 100");
+      expectTextToBeInTheDocument("Donate $100");
     });
   });
 
@@ -62,7 +62,7 @@ describe("ContributionSection", () => {
           "Amazing! Thank you for helping Test Test Non-Profit",
         );
         expectTextNotToBeInTheDocument("This is a test impact");
-        expectTextNotToBeInTheDocument("Donate R$ 100");
+        expectTextNotToBeInTheDocument("Donate $100");
       });
     });
   });

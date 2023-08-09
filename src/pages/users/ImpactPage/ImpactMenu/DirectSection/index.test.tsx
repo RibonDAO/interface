@@ -27,7 +27,7 @@ describe("Impact Page", () => {
 
         it("should navigate to causes page", () => {
           expectPageToNavigateTo("/promoters/checkout", {
-            search: "offer=0&target=non_profit&target_id=&currency=BRL",
+            search: "offer=0&target=non_profit&target_id=&currency=USD",
           });
         });
       });

@@ -38,7 +38,7 @@ function ContributionCard({
   const { currentLang } = useLanguage();
 
   const currentCurrency =
-    offer?.currency.toUpperCase() ?? currentLang === "pt-BR" ? "BRL" : "USD";
+    offer?.currency?.toUpperCase() ?? currentLang === "pt-BR" ? "BRL" : "USD";
 
   useEffect(() => {
     logEvent(

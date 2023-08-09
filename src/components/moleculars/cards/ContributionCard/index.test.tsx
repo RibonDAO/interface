@@ -39,7 +39,7 @@ describe("ContributionCard", () => {
     clickOn("Donate");
 
     expectPageToNavigateTo("/promoters/checkout", {
-      search: "offer=0&target=non_profit&target_id=1&currency=USD",
+      search: "offer=0&target=non_profit&target_id=1&currency=BRL",
     });
   });
 
@@ -74,7 +74,7 @@ describe("ContributionCard", () => {
     clickOn("Donate");
 
     expectPageToNavigateTo("/promoters/checkout", {
-      search: "offer=0&target=cause&target_id=1&currency=USD",
+      search: "offer=0&target=cause&target_id=1&currency=BRL",
     });
   });
 });

@@ -107,16 +107,11 @@ function CardPage(): JSX.Element {
     [cause, chosenCause, nonProfits],
   );
 
-  const preSelectedIndex = () =>
-    state?.causeDonated
-      ? causesFilter().findIndex((c) => c.id === state?.causeDonated?.id)
-      : 0;
-
   const variation = useExperiment({
     key: "progression-test-first-stage",
     variations: [false, true],
   });
- 
+
   return (
     <S.Container>
       <DownloadAppToast />

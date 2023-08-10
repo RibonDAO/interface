@@ -280,7 +280,7 @@
       "selectOfferSection": {
         "fundText": "geram",
         "impactText": "Impacte",
-        "lifesAmount": "{{value}} vidas",
+        "livesAmount": "{{value}} vidas",
         "impactDescription": "com {{value}}"
       },
       "tooltipImpact": "Como calculamos o impacto?",
@@ -550,7 +550,7 @@
     "donate": "Doe {{value}}",
     "titleCard": "Faça ainda mais",
     "donateAndImpact": "Doe {{value}} e impacte",
-    "livesAmount":"{{value}} vidas",
+    "livesAmount":"+{{value}} vidas",
     "impactDescription":"com {{value}}"
   }
 }

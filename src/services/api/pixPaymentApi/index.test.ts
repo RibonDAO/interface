@@ -15,7 +15,7 @@ describe("pixPaymentApi", () => {
       offerId: 1,
       email: "usertest@ribon.io",
       integrationId: 1,
-      name: "User Test"
+      name: "User Test",
     };
 
     it("expects to send a get request with the correct info: url, params and headers", () => {

@@ -160,6 +160,7 @@ function DonationDoneCausePage(): JSX.Element {
       } else if (!isLoading && userStatistics) {
         navigateTo({
           pathname: "/causes",
+          state: { cause },
         });
       }
     }

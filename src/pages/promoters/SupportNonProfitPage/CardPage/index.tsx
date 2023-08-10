@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useCallback, useEffect, useState, Fragment } from "react";
 import { logEvent } from "lib/events";
-import { useCauses, useNonProfits } from "@ribon.io/shared/hooks";
+import { useNonProfits } from "@ribon.io/shared/hooks";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import { Cause, Offer, NonProfit } from "@ribon.io/shared/types";
 import IntersectBackground from "assets/images/intersect-background.svg";
@@ -15,6 +15,8 @@ import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import extractUrlValue from "lib/extractUrlValue";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
+import { useCausesContext } from "contexts/causesContext";
+import { useCauseContributionContext } from "contexts/causeContributionContext";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
 import { useExperiment } from "@growthbook/growthbook-react";
 import * as S from "../styles";
@@ -32,8 +34,9 @@ function CardPage(): JSX.Element {
   const { nonProfits } = useNonProfits();
   const { tertiary } = theme.colors.brand;
 
-  const { causes } = useCauses();
-
+  const { causes } = useCausesContext();
+  const { chosenCause, setChosenCause, chosenCauseIndex, setChosenCauseIndex } =
+    useCauseContributionContext();
   const { state, search } = useLocation<LocationStateType>();
   const integrationId = extractUrlValue("integration_id", search);
 
@@ -43,20 +46,24 @@ function CardPage(): JSX.Element {
     keyPrefix: "promoters.supportNonProfitPage",
   });
 
-  const causesFilter = () => {
-    const causesApi = causes.filter((currentCause) => currentCause.active);
-    return causesApi || [];
-  };
+  useEffect(() => {
+    setCause(state?.causeDonated || causes[0]);
+  });
 
   useEffect(() => {
-    setCause(state?.causeDonated || causesFilter()[0]);
-  }, [causes]);
+    logEvent("contributionCardsOrder_view", {
+      nonProfits: nonProfits as any,
+      causes: causes as any,
+    });
+  }, [nonProfits, causes]);
 
-  const handleCauseClick = (causeClicked: Cause) => {
+  const handleCauseClick = (causeClicked: Cause, index: number) => {
     logEvent("nonProfitCauseSelection_click", {
       id: causeClicked?.id,
     });
     setCause(causeClicked);
+    setChosenCauseIndex(index);
+    setChosenCause(causeClicked);
   };
 
   const navigateToCheckout = (nonProfit: NonProfit) => {
@@ -94,8 +101,10 @@ function CardPage(): JSX.Element {
 
   const filteredNonProfits = useCallback(
     () =>
-      nonProfits?.filter((nonProfit) => nonProfit.cause.id === cause?.id) || [],
-    [cause, nonProfits],
+      nonProfits?.filter(
+        (nonProfit) => nonProfit.cause.id === chosenCause?.id,
+      ) || [],
+    [cause, chosenCause, nonProfits],
   );
 
   const preSelectedIndex = () =>
@@ -107,7 +116,7 @@ function CardPage(): JSX.Element {
     key: "progression-test-first-stage",
     variations: [false, true],
   });
-
+ 
   return (
     <S.Container>
       <DownloadAppToast />
@@ -126,9 +135,9 @@ function CardPage(): JSX.Element {
       </S.TitleContainer>
 
       <GroupButtons
-        elements={causesFilter()}
+        elements={causes}
         onChange={handleCauseClick}
-        indexSelected={preSelectedIndex()}
+        indexSelected={chosenCauseIndex}
         nameExtractor={(element) => element.name}
         backgroundColor={tertiary[800]}
         textColorOutline={tertiary[800]}

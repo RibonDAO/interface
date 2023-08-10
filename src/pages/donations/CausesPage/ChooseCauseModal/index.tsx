@@ -14,19 +14,20 @@ export function ChooseCauseModal({ visible }: Props): JSX.Element {
     keyPrefix: "donations.causesPage",
   });
 
-  const { activeCauses } = useCausesContext();
+  const { causesWithPoolBalance: causes } = useCausesContext();
 
   const causesList = useCallback(
     () =>
-      activeCauses?.map((cause: Cause) => (
+      causes?.map((cause: Cause, index) => (
         <CauseImage
           key={cause.id}
           id={cause.id}
           name={cause.name}
           coverImage={cause.coverImage}
+          index={index}
         />
       )),
-    [activeCauses],
+    [causes],
   );
 
   return (

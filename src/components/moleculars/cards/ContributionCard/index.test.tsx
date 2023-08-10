@@ -98,7 +98,7 @@ describe("ContributionCard with variation", () => {
         nonProfit={nonProfit}
         from={from}
         flow={flow}
-        mainVariation={{ value: true }}
+        testVariation={{ value: true }}
       />,
     );
 
@@ -134,7 +134,7 @@ describe("ContributionCard with variation", () => {
         nonProfit={nonProfit}
         from={from}
         flow={flow}
-        mainVariation={{ value: true }}
+        testVariation={{ value: true }}
       />,
     );
 

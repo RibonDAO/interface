@@ -20,7 +20,7 @@ export type Props = {
   nonProfit?: NonProfit;
   from: string;
   flow?: string;
-  mainVariation?: Record<
+  testVariation?: Record<
     string,
     any
   > /* NOTE: Remove it at the end of AB testing */;
@@ -36,13 +36,15 @@ function ContributionCard({
   from,
   flow,
   title,
-  mainVariation = { value: false },
+  testVariation = { value: false },
 }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "contributionCard",
   });
   const { navigateTo } = useNavigation();
   const { currentLang } = useLanguage();
+
+  const isTest = process.env.NODE_ENV === "test";
 
   const currentCurrency =
     offer?.currency?.toUpperCase() ?? currentLang === "pt-BR" ? "BRL" : "USD";
@@ -88,12 +90,12 @@ function ContributionCard({
 
   const { primary, tertiary } = theme.colors.brand;
 
-  const variation =
-    mainVariation ??
-    useExperiment({
-      key: "progression-test-first-stage",
-      variations: [false, true],
-    });
+  const variation = isTest
+    ? testVariation
+    : useExperiment({
+        key: "progression-test-first-stage",
+        variations: [false, true],
+      });
 
   const oldImpactFormat = () => (
     <>

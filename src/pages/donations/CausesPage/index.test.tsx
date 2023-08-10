@@ -27,6 +27,20 @@ describe("Causes", () => {
     withPoolBalance: false,
   });
 
+  const nonProfitsWithPoolBalance = [
+    nonProfitFactory({
+      id: 1,
+      impactDescription: "days of impact",
+      impactByTicket: 2,
+      cause: cause1,
+    }),
+    nonProfitFactory({
+      id: 3,
+      impactDescription: "days of impact",
+      impactByTicket: 4,
+      cause: cause1,
+    }),
+  ];
   const nonProfits = [
     nonProfitFactory({
       id: 1,
@@ -60,14 +74,6 @@ describe("Causes", () => {
     }),
   ];
 
-  mockRequest("/api/v1/free_donation_non_profits", {
-    payload: nonProfits,
-  });
-
-  mockRequest("/api/v1/free_donation_causes", {
-    payload: [cause1],
-  });
-
   mockRequest("/api/v1/users/can_donate", {
     payload: { canDonate: true },
     method: "POST",
@@ -76,7 +82,14 @@ describe("Causes", () => {
   beforeEach(async () => {
     renderComponent(<Causes />, {
       nonProfitsProviderValue: {
-        nonProfitsWithPoolBalance: nonProfits,
+        nonProfitsWithPoolBalance,
+        nonProfits,
+        isLoading: false,
+      },
+      causesProviderValue: {
+        causes: [cause1, cause2],
+        causesWithPoolBalance: [cause1],
+        isLoading: false,
       },
     });
     await waitForPromises();
@@ -90,8 +103,8 @@ describe("Causes", () => {
     expectTextToBeInTheDocument("Access user support");
   });
 
-  it("shows the non profit if the cause is active and has pool balance", async () => {
-    nonProfits.forEach((nonProfit) => {
+  it("shows the non profit if the cause is active and has pool balance", () => {
+    nonProfitsWithPoolBalance.forEach((nonProfit) => {
       if (nonProfit.cause?.active && nonProfit.cause?.withPoolBalance) {
         expectTextToBeInTheDocument(
           `Donate ${nonProfit.impactByTicket} ${nonProfit.impactDescription}`,

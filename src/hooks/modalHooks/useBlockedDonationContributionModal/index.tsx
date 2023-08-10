@@ -20,7 +20,7 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
   const { hideModal } = useModalContext();
   const { currentLang } = useLanguage();
 
-  const currentCurrency = currentLang === "pt-BR" ? "brl" : "usd";
+  const currentCurrency = currentLang === "pt-BR" ? "BRL" : "USD";
 
   const handleClickedDonationButton = () => {
     logEvent("giveNgoBtn_start", {

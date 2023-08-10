@@ -1,8 +1,14 @@
 import theme from "styles/theme";
 
-const { secondary, tertiary } = theme.colors.brand;
+const { primary, secondary, tertiary } = theme.colors.brand;
 
 const pageThemes: any = {
+  free: {
+    shade10: primary[50],
+    shade20: primary[200],
+    shade30: primary[400],
+    shade40: primary[800],
+  },
   cause: {
     shade10: secondary[200],
     shade20: secondary[300],

@@ -1,6 +1,8 @@
 import Button from "components/atomics/buttons/Button";
 import styled from "styled-components";
 import {
+  defaultBodyLgBold,
+  defaultBodyMdRegular,
   defaultBodySmRegular,
   defaultBodySmSemibold,
 } from "styles/typography/default";
@@ -72,4 +74,29 @@ export const FinishButton = styled(Button)<{ background: string }>`
   display: block;
   justify-self: end;
   background-color: ${({ background }) => background};
+`;
+
+export const ThanksToYou = styled.p`
+  ${defaultBodySmRegular}
+
+  margin-block: ${({ theme }) => theme.spacing(8)};
+  color: ${({ theme }) => theme.colors.neutral[500]};
+`;
+
+export const ImpactAmount = styled.h4<{ color: string }>`
+  ${defaultBodyLgBold}
+
+  color: ${({ color }) => color};
+`;
+
+export const ImpactDescription = styled.p<{
+  color: string;
+  hasButton: boolean;
+}>`
+  ${defaultBodyMdRegular}
+
+  margin-bottom: ${({ theme, hasButton }) =>
+    hasButton ? theme.spacing(16) : theme.spacing(8)};
+
+  color: ${({ color }) => color};
 `;

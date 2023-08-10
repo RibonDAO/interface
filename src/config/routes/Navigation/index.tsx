@@ -54,7 +54,7 @@ function Navigation(): JSX.Element {
       showActivityIndicatorCircle: hasCompletedATask,
     },
     {
-      path: "/promoters/support-cause",
+      path: "/promoters/support-non-profit",
       iconOn: GivingIconOn,
       iconOff: GivingIconOff,
       title: t("givingPageTitle"),
@@ -63,15 +63,15 @@ function Navigation(): JSX.Element {
       params: { from: "header" },
       menuOptions: [
         {
-          path: "/promoters/support-cause",
-          title: t("communityMenuItem"),
-          event: "giveCauseCard_click",
-          params: { from: "subheader" },
-        },
-        {
           path: "/promoters/support-non-profit",
           title: t("directDonationMenuItem"),
           event: "giveNonProfitCard_click",
+          params: { from: "subheader" },
+        },
+        {
+          path: "/promoters/support-cause",
+          title: t("communityMenuItem"),
+          event: "giveCauseCard_click",
           params: { from: "subheader" },
         },
       ],

@@ -359,9 +359,19 @@
         "serviceFeesText": "Taxas de serviço:"
       }
     },
+    "recurrencePage": {
+      "title": "Recorrência",
+      "donatingTo": "Doando para ",
+      "recurrentDonationDescription": "Contribuir mensalmente",
+      "uniqueDonationDescription": "Contribuir uma vez",
+      "selectValue": "Selecione o valor"
+    },
     "checkoutPage": {
       "changeCurrency": "Mudar moeda",
       "back": "Voltar",
+      "monthlyContribution": "Contribuindo mensalmente",
+      "uniqueContribution": "Contribuindo uma vez",
+      "recurrenceButton": "Alterar",
       "donatingTo": "Doando para ",
       "netDonation": "Doação líquida: ",
       "serviceFees": "Taxas de serviço: ",

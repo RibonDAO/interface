@@ -75,7 +75,7 @@ function CardPage(): JSX.Element {
     });
 
     navigateTo({
-      pathname: "/promoters/checkout",
+      pathname: "/promoters/recurrence",
       search: searchParams.toString(),
     });
   };

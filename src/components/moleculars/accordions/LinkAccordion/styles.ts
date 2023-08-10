@@ -8,7 +8,11 @@ export const Container = styled.div`
   position: relative;
 `;
 
-export const RadioListItem = styled.div<{ last?: boolean }>`
+export const Title = styled.p`
+  margin-left: 8px;
+`;
+
+export const LinkListItem = styled.div<{ last?: boolean }>`
   width: 100%;
   height: 100%;
   padding: 20px;
@@ -32,7 +36,7 @@ export const Thumb = styled.div<{ selected?: boolean }>`
   position: relative;
 `;
 
-export const RadioRow = styled.div`
+export const LinkRow = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
@@ -46,8 +50,25 @@ export const TitleContainer = styled.div`
   align-items: center;
 `;
 
+export const LeftIcon = styled.img`
+  height: 28px;
+  margin-left: 0px;
+  padding-right: 8px;
+`;
+
+export const RightElement = styled.span``;
+
 export const RightIcon = styled.img`
   height: 28px;
+`;
+
+export const LinkContent = styled.div`
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const RadioContent = styled.div`

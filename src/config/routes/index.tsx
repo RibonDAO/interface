@@ -30,6 +30,7 @@ import ReturnToIntegrationPage from "pages/donations/ReturnToIntegrationPage";
 import StripeProvider from "contexts/stripeContext";
 import PixPaymentInformationProvider from "contexts/pixPaymentInformationContext";
 import PaymentInformationProvider from "contexts/paymentInformationContext";
+import RecurrencePage from "pages/promoters/CheckoutPage/RecurrencePage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -219,6 +220,26 @@ function RoutesComponent(): JSX.Element {
                         <PixPaymentInformationProvider>
                           <CheckoutPage />
                         </PixPaymentInformationProvider>
+                      </StripeProvider>
+                    </CryptoPaymentProvider>
+                  </CardPaymentInformationProvider>
+                </PaymentInformationProvider>
+              </WalletLayout>
+            </WalletProvider>
+          </NetworkProvider>
+        </Suspense>
+      </Route>
+
+      <Route path="/promoters/recurrence" exact>
+        <Suspense fallback={<div />}>
+          <NetworkProvider>
+            <WalletProvider>
+              <WalletLayout hideNavigation>
+                <PaymentInformationProvider>
+                  <CardPaymentInformationProvider>
+                    <CryptoPaymentProvider>
+                      <StripeProvider>
+                        <RecurrencePage />
                       </StripeProvider>
                     </CryptoPaymentProvider>
                   </CardPaymentInformationProvider>

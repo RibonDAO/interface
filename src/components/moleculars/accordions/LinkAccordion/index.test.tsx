@@ -3,9 +3,9 @@ import {
   expectTextNotToBeInTheDocument,
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
-import RadioAccordion from ".";
+import LinkAccordion from ".";
 
-const props = {
+const radioProps = {
   items: [
     {
       title: "Credit Card",
@@ -20,11 +20,12 @@ const props = {
       onClick: () => {},
     },
   ],
+  isRadio: true,
 };
 
-describe("RadioAccordion", () => {
+describe("LinkAccordion", () => {
   it("should render without error", () => {
-    renderComponent(<RadioAccordion {...props} />);
+    renderComponent(<LinkAccordion {...radioProps} />);
 
     expectTextToBeInTheDocument("Credit Card");
     expectTextToBeInTheDocument("Google Play");
@@ -33,7 +34,7 @@ describe("RadioAccordion", () => {
 
   describe("when the component is not visible and don't have text", () => {
     it("does not show", () => {
-      renderComponent(<RadioAccordion {...props} />);
+      renderComponent(<LinkAccordion {...radioProps} />);
 
       expectTextNotToBeInTheDocument("Credit Card is Visible");
     });
@@ -41,7 +42,7 @@ describe("RadioAccordion", () => {
 
   describe("when the component is visible and has a current", () => {
     it("shows the current item", () => {
-      renderComponent(<RadioAccordion {...props} current={0} />);
+      renderComponent(<LinkAccordion {...radioProps} current={0} />);
 
       expectTextToBeInTheDocument("Credit Card is Visible");
     });
@@ -49,7 +50,7 @@ describe("RadioAccordion", () => {
 
   describe("when element is clicked", () => {
     it("shows the children", () => {
-      renderComponent(<RadioAccordion {...props} />);
+      renderComponent(<LinkAccordion {...radioProps} />);
 
       clickOn("Credit Card");
       expectTextToBeInTheDocument("Credit Card is Visible");

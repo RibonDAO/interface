@@ -47,19 +47,33 @@ export function expectLogEventToHaveBeenCalledWith(
 
 type expectPageToNavigateToType = {
   state?: Record<any, any>;
+  search?: string;
 };
 
 export function expectPageToNavigateTo(
   pathname: string,
-  { state }: expectPageToNavigateToType = {},
+  { state, search }: expectPageToNavigateToType = {},
 ) {
-  if (!state)
-    return expect(mockNavigationFunction).toHaveBeenCalledWith(pathname);
-
-  return expect(mockNavigationFunction).toHaveBeenCalledWith({
+  const expectedNavigation = {
     pathname,
     state,
-  });
+    search,
+  };
+
+  if (!state && !search) {
+    return expect(mockNavigationFunction).toHaveBeenCalledWith(pathname);
+  }
+
+  if (!state && search) {
+    return expect(mockNavigationFunction).toHaveBeenCalledWith({
+      pathname,
+      search,
+    });
+  }
+
+  return expect(mockNavigationFunction).toHaveBeenCalledWith(
+    expectedNavigation,
+  );
 }
 
 export function expectPageToNavigateBack() {

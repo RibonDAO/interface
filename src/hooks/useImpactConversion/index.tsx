@@ -7,6 +7,7 @@ import {
 import { Currencies, NonProfit, Offer } from "@ribon.io/shared/types";
 import { useCurrentUser } from "contexts/currentUserContext";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
+import { useLanguage } from "hooks/useLanguage";
 import { useEffect, useState } from "react";
 import { Contribution } from "types/entities/Contribution";
 
@@ -46,6 +47,10 @@ export function useImpactConversion() {
     );
   }, [nonProfits, offers, userStatistics, contribution?.offerId]);
 
+  const { currentLang } = useLanguage();
+
+  const actualOfferId = currentLang === "pt-BR" ? 28 : 31;
+
   useEffect(() => {
     if (!offer) return;
     if (!nonProfit) return;
@@ -56,7 +61,7 @@ export function useImpactConversion() {
       image: nonProfit.mainImage,
       value: offer.priceValue ?? 0,
       communityValue: (offer.priceValue ?? 0) * 0.2,
-      offerId: 28,
+      offerId: offer.id ?? actualOfferId,
     });
   }, [setContribution, nonProfit, offers, userStatistics, currentUser?.id]);
 

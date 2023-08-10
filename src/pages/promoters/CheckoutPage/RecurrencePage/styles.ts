@@ -71,7 +71,7 @@ export const PaymentTypes = styled.div`
 export const PaymentTypesTitle = styled.h1`
   ${defaultBodyMdSemibold}
 
-  color: ${({ theme }) => theme.colors.neutral[800]};
   margin-top: ${({ theme }) => theme.spacing(24)};
   margin-bottom: ${({ theme }) => theme.spacing(16)};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;

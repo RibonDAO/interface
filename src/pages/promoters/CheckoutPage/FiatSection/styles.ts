@@ -53,12 +53,13 @@ export const PaymentMethodsTitle = styled.h1`
 
 export const RecurrenceContainer = styled.div`
   display: flex;
-  align-items: center;
   gap: ${({ theme }) => theme.spacing(8)};
+  align-items: center;
 `;
 
 export const RecurrenceButton = styled(Button)`
   ${defaultBodyXsSemibold}
+
   display: flex;
   align-items: center;
 `;

@@ -548,6 +548,9 @@
   "contributionCard": {
     "button": "Doar",
     "donate": "Doe {{value}}",
-    "titleCard": "Faça ainda mais"
+    "titleCard": "Faça ainda mais",
+    "donateAndImpact": "Doe {{value}} e impacte",
+    "livesAmount":"{{value}} vidas",
+    "impactDescription":"com {{value}}"
   }
 }

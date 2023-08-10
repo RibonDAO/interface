@@ -197,7 +197,7 @@ function DonationDoneCausePage(): JSX.Element {
     variations: [false, true],
   });
 
-  const oldImpactFormatter = () => (
+  const oldImpactFormat = () => (
     <>
       <S.DonationValue color={colorTheme.shade20}>
         {hasButton ? offer?.price : t("title")}
@@ -216,7 +216,7 @@ function DonationDoneCausePage(): JSX.Element {
     </>
   );
 
-  const newImpactFormatter = () => (
+  const newImpactFormat = () => (
     <>
       <S.DonationValue color={colorTheme.shade40}>{t("title")}</S.DonationValue>
       <S.ThanksToYou>{t("thanksToYou")}</S.ThanksToYou>
@@ -256,7 +256,7 @@ function DonationDoneCausePage(): JSX.Element {
           }
         />
       </S.ImageContainer>
-      {variation.value ? newImpactFormatter() : oldImpactFormatter()}
+      {variation.value ? newImpactFormat() : oldImpactFormat()}
       {hasButton && (
         <S.FinishButton
           text={t("button")}

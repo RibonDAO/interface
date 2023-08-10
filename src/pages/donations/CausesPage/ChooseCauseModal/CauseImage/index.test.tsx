@@ -10,7 +10,7 @@ jest.mock("lib/events");
 describe("CauseImage", () => {
   describe("default props", () => {
     beforeEach(() => {
-      renderComponent(<CauseImage id={1} name="Test Cause" />, {
+      renderComponent(<CauseImage id={1} name="Test Cause" index={0} />, {
         causesProviderValue: {
           causes: [],
         },
@@ -29,6 +29,7 @@ describe("CauseImage", () => {
           id={1}
           name="Test Cause with image"
           coverImage="https://example.com/cover.jpg"
+          index={0}
         />,
         {
           causesProviderValue: {
@@ -49,7 +50,7 @@ describe("CauseImage", () => {
       const setChosenCauseId = jest.fn();
       const setChooseCauseModalVisible = jest.fn();
 
-      renderComponent(<CauseImage id={1} name="Test Cause" />, {
+      renderComponent(<CauseImage id={1} name="Test Cause" index={0} />, {
         causesProviderValue: {
           causes: [],
         },

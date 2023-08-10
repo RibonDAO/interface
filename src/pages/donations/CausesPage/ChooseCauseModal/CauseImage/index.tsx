@@ -7,14 +7,16 @@ type Props = {
   id: number;
   name: string;
   coverImage?: string;
+  index: number;
 };
 
-function CauseImage({ name, coverImage, id }: Props) {
-  const { setChosenCauseId, setChooseCauseModalVisible } =
+function CauseImage({ name, coverImage, id, index }: Props) {
+  const { setChosenCauseId, setChooseCauseModalVisible, setChosenCauseIndex } =
     useCauseDonationContext();
 
   const handleClick = () => {
     setChosenCauseId(id);
+    setChosenCauseIndex(index + 1);
     newLogEvent("click", "P1_causeCard", { causeId: id });
     setChooseCauseModalVisible(false);
   };

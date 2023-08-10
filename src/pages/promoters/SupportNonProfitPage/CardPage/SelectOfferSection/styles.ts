@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {
+  defaultBodyMdSemibold,
   defaultBodySmSemibold,
   defaultBodyXsRegular,
 } from "styles/typography/default";
@@ -60,4 +61,37 @@ export const Title = styled.p`
   margin-bottom: ${({ theme }) => theme.spacing(12)};
   text-align: center;
   color: ${({ theme }) => theme.colors.brand.tertiary[800]};
+`;
+
+export const ImpactSection = styled.div`
+  padding-bottom: ${({ theme }) => theme.spacing(16)};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+`;
+
+export const ImpactText = styled.p`
+  ${defaultBodyXsRegular}
+
+  color: ${({ theme }) => theme.colors.brand.tertiary[500]};
+`;
+
+export const CurrentLifeAmount = styled.h4`
+  ${defaultBodyMdSemibold}
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: ${({ theme }) => theme.colors.brand.tertiary[800]};
+`;
+
+export const HeartIcon = styled.img`
+  margin-right: ${({ theme }) => theme.spacing(4)};
+`;
+
+export const ImpactDescription = styled.p`
+  ${defaultBodyXsRegular}
+
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;

@@ -7,6 +7,7 @@ import { useLocationSearch } from "hooks/useLocationSearch";
 import useNavigation from "hooks/useNavigation";
 import usePayable from "hooks/usePayable";
 import usePaymentParams from "hooks/usePaymentParams";
+import { logEvent } from "lib/events";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ButtonSelectorTemplate from "../Components/ButtonSelectorTemplate";
@@ -98,6 +99,12 @@ function RecurrencePage(): JSX.Element {
       subscription: subscription ? "true" : "false",
     });
 
+    logEvent("P23_recurrenceSelect_click", {
+      receiver: currentPayable?.name,
+      recurring: subscription ? "true" : "false",
+      oneTime: subscription ? "false" : "true",
+    });
+
     navigateTo({
       pathname: "/promoters/checkout",
       search: searchParams.toString(),
@@ -116,6 +123,13 @@ function RecurrencePage(): JSX.Element {
       handleClick: () => navigateToCheckout(false),
     },
   ];
+
+  useEffect(() => {
+    if (currentPayable)
+      logEvent("P23_recurrenceSelect_view", {
+        target: currentPayable?.name,
+      });
+  }, [currentPayable]);
 
   return currentPayable && hasAllParams ? (
     <S.Container>

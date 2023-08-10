@@ -89,6 +89,10 @@ export default function FiatSection() {
   const onSubscriptionClick = (subscriptionState: boolean) => {
     setIsSubscription(subscriptionState);
     updateLocationSearch("subscription", subscriptionState.toString());
+    if (currentPayable)
+      logEvent("P23_changeRecurrence_click", {
+        receiver: currentPayable?.name,
+      });
   };
 
   const buttonOfferItems = offers?.map((offerItem: any) => ({

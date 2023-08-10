@@ -1,28 +1,17 @@
 import usePersonPayments from "hooks/apiHooks/usePersonPayment";
-import useNavigation from "hooks/useNavigation";
 import Spinner from "components/atomics/Spinner";
 import { useTranslation } from "react-i18next";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useEffect, useState } from "react";
-import directIllustration from "assets/images/direct-illustration.svg";
 import ContributionCard from "components/moleculars/cards/ContributionCard";
 import { useImpactConversion } from "hooks/useImpactConversion";
-import { handleVariation } from "lib/handleVariation";
-import { logEvent } from "lib/events";
 import * as S from "../styles";
 import DirectImpactCard from "./DirectImpactCard.tsx";
 
 function DirectSection() {
-  const { navigateTo } = useNavigation();
   const { t } = useTranslation("translation", {
     keyPrefix: "impactPage.directSection",
   });
-  const handleEmptyButtonClick = () => {
-    logEvent("giveNonProfitCard_click", {
-      from: "impactEmptyState",
-    });
-    navigateTo("/promoters/support-non-profit");
-  };
 
   const { isMobile } = useBreakpoint();
 
@@ -38,8 +27,7 @@ function DirectSection() {
   const { useDirectPersonPayments } = usePersonPayments();
   const { data } = useDirectPersonPayments(page, per);
 
-  const { description, contribution, offer, nonProfit, variation } =
-    useImpactConversion();
+  const { description, contribution, offer, nonProfit } = useImpactConversion();
 
   const hasPayments = impactCards?.length > 0;
 
@@ -73,27 +61,14 @@ function DirectSection() {
     setShowMoreDisabled(true);
   };
 
-  const emptySection = () => (
-    <S.EmptySectionContainer>
-      <S.EmptyImage src={directIllustration} />
-      <S.EmptyTitle>{t("emptyTitle")}</S.EmptyTitle>
-      <S.EmptyText>{t("emptyText")}</S.EmptyText>
-      <S.EmptyButton
-        text={t("emptyButton")}
-        size="medium"
-        onClick={handleEmptyButtonClick}
-      />
-    </S.EmptySectionContainer>
-  );
-
-  const contributionWithVariation = () => (
+  const cardWithCta = () => (
     <S.EmptySectionContainer>
       <S.EmptyTitle>{t("emptyTitle")}</S.EmptyTitle>
       <S.EmptyText>{t("emptyText")}</S.EmptyText>
       <ContributionCard
         description={description}
-        impact={contribution?.impact ?? ""}
-        value={contribution?.value ?? 0}
+        impact={contribution?.impact}
+        value={contribution?.value ?? Number(offer?.priceValue ?? 0)}
         offer={offer}
         nonProfit={nonProfit}
         style={{
@@ -106,13 +81,6 @@ function DirectSection() {
         flow="nonProfit"
       />
     </S.EmptySectionContainer>
-  );
-
-  const EmptySectionWithVariation: JSX.Element | null = handleVariation(
-    variation,
-    emptySection,
-    contributionWithVariation,
-    {},
   );
 
   return (
@@ -135,7 +103,7 @@ function DirectSection() {
           )}
         </S.CardsContainer>
       ) : (
-        (!!contribution && EmptySectionWithVariation) || emptySection()
+        cardWithCta()
       )}
     </S.Container>
   );

@@ -12,13 +12,10 @@ import theme from "styles/theme";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import useNavigation from "hooks/useNavigation";
-import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
 import { PLATFORM, RIBON_COMPANY_ID } from "utils/constants";
 import { logEvent, newLogEvent } from "lib/events";
 import extractUrlValue from "lib/extractUrlValue";
 import { useBlockedDonationContributionModal } from "hooks/modalHooks/useBlockedDonationContributionModal";
-import { useImpactConversion } from "hooks/useImpactConversion";
-import { shouldRenderVariation } from "lib/handleVariation";
 import ChangeLanguageItem from "./ChangeLanguageItem";
 import LogoutItem from "./LogoutItem";
 import * as S from "./styles";
@@ -44,18 +41,12 @@ function LayoutHeader({
   const { signedIn } = useCurrentUser();
   const { navigateBack, history, navigateTo } = useNavigation();
   const { integration } = useIntegration(integrationId);
-  const { showBlockedDonationModal } = useBlockedDonationModal(
-    undefined,
-    integration,
-  );
   const externalId = extractUrlValue("external_id", history.location.search);
   const { canDonate } = useCanDonate(integrationId, PLATFORM, externalId);
 
   const { isVoucherAvailable } = useVoucher();
 
   const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
-
-  const { contribution, variation } = useImpactConversion();
 
   const { showBlockedDonationContributionModal } =
     useBlockedDonationContributionModal();
@@ -77,11 +68,7 @@ function LayoutHeader({
       navigateTo("/tickets");
     } else {
       newLogEvent("click", "ticketIcon", { ticketQtd: 0 });
-      if (shouldRenderVariation(variation) && !!contribution) {
-        showBlockedDonationContributionModal();
-      } else {
-        showBlockedDonationModal();
-      }
+      showBlockedDonationContributionModal();
     }
   }
 

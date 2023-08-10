@@ -3,51 +3,29 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import useNavigation from "hooks/useNavigation";
 import { logEvent, newLogEvent } from "lib/events";
-import { NonProfit, Integration } from "@ribon.io/shared/types";
+import { NonProfit } from "@ribon.io/shared/types";
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
-import { useBlockedDonationModal } from "hooks/modalHooks/useBlockedDonationModal";
-import { useLocation } from "react-router-dom";
 import useVoucher from "hooks/useVoucher";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import causeIllustration from "assets/images/direct-illustration.svg";
 import { useBlockedDonationContributionModal } from "hooks/modalHooks/useBlockedDonationContributionModal";
-import { useImpactConversion } from "hooks/useImpactConversion";
-import { shouldRenderVariation } from "lib/handleVariation";
 import StoriesSection from "../StoriesSection";
 import * as S from "../styles";
 
-type LocationStateType = {
-  failedDonation: boolean;
-  blockedDonation: boolean;
-};
-
 type Props = {
   nonProfits: NonProfit[];
-  integration: Integration | undefined;
   canDonate: boolean;
 };
 
 const MINIMUM_NON_PROFITS_TO_LOOP = 3;
 
-function NonProfitsList({
-  nonProfits,
-  canDonate,
-  integration,
-}: Props): JSX.Element {
-  const { state } = useLocation<LocationStateType>();
-
+function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
   const { navigateTo } = useNavigation();
 
   const [currentNonProfitIndex, setCurrentNonProfitIndex] = useState(0);
-
-  const { showBlockedDonationModal } = useBlockedDonationModal(
-    state?.blockedDonation,
-    integration,
-  );
-  const { contribution, variation } = useImpactConversion();
 
   const { showBlockedDonationContributionModal } =
     useBlockedDonationContributionModal();
@@ -68,11 +46,7 @@ function NonProfitsList({
       newLogEvent("click", "P1_donateBlockedBtn", {
         nonProfitId: nonProfit.id,
       });
-      if (shouldRenderVariation(variation) && !!contribution) {
-        showBlockedDonationContributionModal();
-      } else {
-        showBlockedDonationModal();
-      }
+      showBlockedDonationContributionModal();
     }
   }
   const handleEmptyButtonClick = () => {

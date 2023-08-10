@@ -549,6 +549,9 @@
   "contributionCard": {
     "button": "Donate",
     "donate": "Donate {{value}}",
+    "donateAndImpact": "Donate {{value}} and impact",
+    "livesAmount":"+{{value}} lives",
+    "impactDescription":"with {{value}}",
     "titleCard": "Do even more"
   }
 }

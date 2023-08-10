@@ -67,7 +67,7 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
     }
   };
 
-  const oldImpactFormatter = (nonProfit: NonProfit) =>
+  const oldImpactFormat = (nonProfit: NonProfit) =>
     formattedImpactText(
       nonProfit,
       undefined,
@@ -77,7 +77,7 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
       t("impactPrefix"),
     );
 
-  const newImpactFormatter = (nonProfit: NonProfit) => (
+  const newImpactFormat = (nonProfit: NonProfit) => (
     <div>
       <h3>{t("impactOneLife")}</h3>
       <p>
@@ -121,8 +121,8 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
                     image={nonProfit.mainImage || nonProfit.cause?.mainImage}
                     title={
                       variation.value
-                        ? newImpactFormatter(nonProfit)
-                        : oldImpactFormatter(nonProfit)
+                        ? newImpactFormat(nonProfit)
+                        : oldImpactFormat(nonProfit)
                     }
                     buttonText={
                       canDonateAndHasVoucher

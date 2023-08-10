@@ -79,7 +79,7 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
     variations: [false, true],
   });
 
-  const oldImpactFormatter = () => (
+  const oldImpactFormat = () => (
     <S.CauseText>
       {currentPrice()} {t("fundText")}{" "}
       <S.CauseTextHighlight>
@@ -95,7 +95,7 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
     </S.CauseText>
   );
 
-  const newImpactFormatter = () => (
+  const newImpactFormat = () => (
     <S.ImpactSection>
       <S.ImpactText>{t("impactText")}</S.ImpactText>
       <S.CurrentLifeAmount>
@@ -117,7 +117,7 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
   return (
     <S.Container>
       <S.Title>{nonProfit?.name}</S.Title>
-      {variation.value ? newImpactFormatter() : oldImpactFormatter()}
+      {variation.value ? newImpactFormat() : oldImpactFormat()}
       <S.ValueContainer>
         <S.ValueText>{currentPrice()}</S.ValueText>
         <S.CurrencySelectorContainer>

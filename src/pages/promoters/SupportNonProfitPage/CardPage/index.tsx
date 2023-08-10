@@ -16,6 +16,7 @@ import useBreakpoint from "hooks/useBreakpoint";
 import extractUrlValue from "lib/extractUrlValue";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
+import { useExperiment } from "@growthbook/growthbook-react";
 import * as S from "../styles";
 import NonProfitCard from "./NonProfitCard";
 
@@ -102,11 +103,16 @@ function CardPage(): JSX.Element {
       ? causesFilter().findIndex((c) => c.id === state?.causeDonated?.id)
       : 0;
 
+  const variation = useExperiment({
+    key: "progression-test-first-stage",
+    variations: [false, true],
+  });
+
   return (
     <S.Container>
       <DownloadAppToast />
       <S.TitleContainer>
-        <S.Title>{t("title")}</S.Title>
+        <S.Title>{t(variation.value ? "impactMoreTitle" : "title")}</S.Title>
         {!isMobile && (
           <Tooltip
             text={t("tooltipImpactText")}

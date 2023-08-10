@@ -1,6 +1,8 @@
 {
   "donations": {
     "causesPage": {
+      "impactOneLife": "Impact 1 life",
+      "impactDescription": "with {{value}}",
       "donationModalTitle": "You got a donation ticket",
       "donationModalButtonText": "Receive ticket",
       "donationWithRibonModalTitle": "Donate together to change lives!",
@@ -92,6 +94,10 @@
     },
     "donationDoneCausePage": {
       "title": "Congratulations!",
+      "thanksToYou": "Thanks to you...",
+      "lifeWasImpacted": "1 life was impacted",
+      "livesWereImpacted": "{{value}} lives were impacted",
+      "impactDescription":"with {{value}}",
       "titleSecondLine": "You have donated to",
       "youDonatedText": "You donated",
       "button": "Finish"
@@ -270,9 +276,13 @@
     },
     "supportNonProfitPage": {
       "title": "Make a direct donation",
+      "impactMoreTitle": "Impact more",
       "donateButtonText": "Donate {{value}}",
       "selectOfferSection": {
-        "fundText": "fund"
+        "fundText": "fund",
+        "impactText": "Impact",
+        "lifesAmount": "{{value}} lifes",
+        "impactDescription": "with {{value}}"
       },
       "tooltipImpact": "How we calculate the impact?",
       "tooltipImpactText": "The calculations are based on the minimum value needed for the project achieve good results. Ribon’s causes are part of the social moviment “Effective Altruism”, which aim to generate big impact at low cost."

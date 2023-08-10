@@ -136,10 +136,10 @@ function ContributionCard({
   return (
     <S.Container
       style={style}
-      colorTheme={!variation.value ? tertiary : primary}
+      colorTheme={variation.value ? tertiary : primary}
       data-testid="contribution-section-container"
     >
-      {!variation.value ? newImpactFormatter() : oldImpactFormatter()}
+      {variation.value ? newImpactFormatter() : oldImpactFormatter()}
     </S.Container>
   );
 }

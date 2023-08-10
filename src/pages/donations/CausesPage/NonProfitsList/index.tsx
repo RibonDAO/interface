@@ -9,6 +9,7 @@ import useVoucher from "hooks/useVoucher";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import causeIllustration from "assets/images/direct-illustration.svg";
 import { useBlockedDonationContributionModal } from "hooks/modalHooks/useBlockedDonationContributionModal";
+import { useExperiment } from "@growthbook/growthbook-react";
 import StoriesSection from "../StoriesSection";
 import * as S from "../styles";
 
@@ -66,6 +67,32 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
     }
   };
 
+  const oldImpactFormatter = (nonProfit: NonProfit) =>
+    formattedImpactText(
+      nonProfit,
+      undefined,
+      false,
+      false,
+      undefined,
+      t("impactPrefix"),
+    );
+
+  const newImpactFormatter = (nonProfit: NonProfit) => (
+    <div>
+      <h3>{t("impactOneLife")}</h3>
+      <p>
+        {t("impactDescription", {
+          value: nonProfit.impactDescription.split(",")[0],
+        })}
+      </p>
+    </div>
+  );
+
+  const variation = useExperiment({
+    key: "progression-test-first-stage",
+    variations: [false, true],
+  });
+
   return (
     <S.NonProfitsListContainer>
       {currentNonProfitWithStories && (
@@ -92,14 +119,11 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
                 <S.CardWrapper key={nonProfit.id}>
                   <CardCenterImageButton
                     image={nonProfit.mainImage || nonProfit.cause?.mainImage}
-                    title={formattedImpactText(
-                      nonProfit,
-                      undefined,
-                      false,
-                      false,
-                      undefined,
-                      t("impactPrefix"),
-                    )}
+                    title={
+                      variation.value
+                        ? newImpactFormatter(nonProfit)
+                        : oldImpactFormatter(nonProfit)
+                    }
                     buttonText={
                       canDonateAndHasVoucher
                         ? t("donateText")

@@ -8,7 +8,21 @@ import {
 import { stylizedDisplayXs } from "styles/typography/stylized";
 import Button from "components/atomics/buttons/Button";
 
-export const Container = styled.div<{ colorTheme: any }>`
+export type ThemeShades = {
+  25: string;
+  50: string;
+  100: string;
+  200: string;
+  300: string;
+  400: string;
+  500: string;
+  600: string;
+  700: string;
+  800: string;
+  900: string;
+};
+
+export const Container = styled.div<{ colorTheme: ThemeShades }>`
   max-width: 458px;
   padding: ${({ theme }) => theme.spacing(32)};
   border-radius: 8px;
@@ -18,7 +32,7 @@ export const Container = styled.div<{ colorTheme: any }>`
   background-color: ${({ colorTheme }) => colorTheme[50]};
 `;
 
-export const Title = styled.h1<{ colorTheme: any }>`
+export const Title = styled.h1<{ colorTheme: ThemeShades }>`
   ${defaultBodyXsBold}
 
   margin-bottom: ${({ theme }) => theme.spacing(8)};
@@ -37,7 +51,7 @@ export const Description = styled.p`
   }
 `;
 
-export const DonationButton = styled(Button)<{ colorTheme: any }>`
+export const DonationButton = styled(Button)<{ colorTheme: ThemeShades }>`
   width: 100%;
   height: 48px;
   padding: ${({ theme }) => theme.spacing(12, 16)};
@@ -47,7 +61,7 @@ export const DonationButton = styled(Button)<{ colorTheme: any }>`
   color: ${({ theme }) => theme.colors.neutral[50]};
 `;
 
-export const Value = styled.span<{ colorTheme: any }>`
+export const Value = styled.span<{ colorTheme: ThemeShades }>`
   ${stylizedDisplayXs}
 
   margin-bottom: ${({ theme }) => theme.spacing(4)};

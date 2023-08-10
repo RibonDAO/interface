@@ -3,6 +3,7 @@ import { clickOn, renderComponent } from "config/testUtils";
 
 import offerFactory from "config/testUtils/factories/offerFactory";
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
+import causeFactory from "config/testUtils/factories/causeFactory";
 import {
   expectPageToNavigateTo,
   expectTextToBeInTheDocument,
@@ -37,13 +38,8 @@ describe("ContributionCard", () => {
 
     clickOn("Donate");
 
-    expectPageToNavigateTo("promoters/payment", {
-      state: {
-        offer,
-        nonProfit,
-        cause: nonProfit.cause,
-        flow,
-      },
+    expectPageToNavigateTo("/promoters/checkout", {
+      search: "offer=0&target=non_profit&target_id=1&currency=BRL",
     });
   });
 
@@ -52,7 +48,10 @@ describe("ContributionCard", () => {
     const impact = "This is a test impact";
     const value = 100;
     const offer = offerFactory();
-    const nonProfit = nonProfitFactory();
+    const cause = causeFactory();
+    const nonProfit = nonProfitFactory({
+      cause,
+    });
     const from = "test";
     const flow = "cause";
 
@@ -74,13 +73,8 @@ describe("ContributionCard", () => {
 
     clickOn("Donate");
 
-    expectPageToNavigateTo("promoters/payment", {
-      state: {
-        offer,
-        nonProfit,
-        cause: nonProfit.cause,
-        flow,
-      },
+    expectPageToNavigateTo("/promoters/checkout", {
+      search: "offer=0&target=cause&target_id=1&currency=BRL",
     });
   });
 });

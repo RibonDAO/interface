@@ -100,7 +100,7 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
       <S.ImpactText>{t("impactText")}</S.ImpactText>
       <S.CurrentLifeAmount>
         <S.HeartIcon src={HeartIcon} aria-hidden alt="life icon" />
-        {t("lifesAmount", {
+        {t("livesAmount", {
           value: Math.round(Number(currentOffer?.priceValue ?? 50) * 2),
         })}
       </S.CurrentLifeAmount>

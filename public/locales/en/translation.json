@@ -281,7 +281,7 @@
       "selectOfferSection": {
         "fundText": "fund",
         "impactText": "Impact",
-        "lifesAmount": "{{value}} lifes",
+        "livesAmount": "{{value}} lives",
         "impactDescription": "with {{value}}"
       },
       "tooltipImpact": "How we calculate the impact?",

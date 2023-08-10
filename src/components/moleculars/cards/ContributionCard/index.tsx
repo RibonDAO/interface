@@ -88,7 +88,7 @@ function ContributionCard({
     variations: [false, true],
   });
 
-  const oldImpactFormatter = () => (
+  const oldImpactFormat = () => (
     <>
       <S.Title colorTheme={primary}>{title || t("titleCard")}</S.Title>
       <S.Value colorTheme={primary}>
@@ -107,7 +107,7 @@ function ContributionCard({
     </>
   );
 
-  const newImpactFormatter = () => (
+  const newImpactFormat = () => (
     <S.Centered>
       <S.Value colorTheme={tertiary}>
         {t("donateAndImpact", {
@@ -139,7 +139,7 @@ function ContributionCard({
       colorTheme={variation.value ? tertiary : primary}
       data-testid="contribution-section-container"
     >
-      {variation.value ? newImpactFormatter() : oldImpactFormatter()}
+      {variation.value ? newImpactFormat() : oldImpactFormat()}
     </S.Container>
   );
 }

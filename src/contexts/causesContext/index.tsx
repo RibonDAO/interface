@@ -1,59 +1,33 @@
-import { useFreeDonationCauses } from "@ribon.io/shared/hooks";
-import {
-  createContext,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { useCauses } from "@ribon.io/shared/hooks";
+import { createContext, useContext, useMemo } from "react";
 import { Cause } from "@ribon.io/shared/types";
 
 export interface ICausesContext {
   causes: Cause[];
-  activeCauses: Cause[];
-  chosenCause: Cause | undefined;
-  chooseCauseModalVisible: boolean;
-  setChooseCauseModalVisible: (visible: SetStateAction<boolean>) => void;
-  currentCauseId: number;
-  setCurrentCauseId: (id: SetStateAction<number>) => void;
+  causesWithPoolBalance: Cause[];
   refetch: () => void;
+  isLoading: boolean;
 }
 
 export const CausesContext = createContext<ICausesContext>(
   {} as ICausesContext,
 );
+CausesContext.displayName = "CausesContext";
 
 function CausesProvider({ children }: any) {
-  const causeWasNotSelectedByModal = -1;
-  const { causes, refetch, isLoading } = useFreeDonationCauses();
-  const [activeCauses, setActiveCauses] = useState<Cause[]>([]);
-  const [chooseCauseModalVisible, setChooseCauseModalVisible] = useState(false);
-  const [currentCauseId, setCurrentCauseId] = useState(
-    causeWasNotSelectedByModal,
+  const { causes, refetch, isLoading } = useCauses();
+  const causesWithPoolBalance = causes?.filter(
+    (cause) => cause.withPoolBalance,
   );
-
-  const causesFilter = () => causes.filter((cause) => cause.active);
-
-  useEffect(() => {
-    if (!isLoading) {
-      setActiveCauses(causesFilter());
-      setCurrentCauseId(causeWasNotSelectedByModal);
-    }
-  }, [JSON.stringify(causes), isLoading]);
 
   const causesObject: ICausesContext = useMemo(
     () => ({
       causes,
+      causesWithPoolBalance,
       refetch,
-      chosenCause: causes[0],
-      chooseCauseModalVisible,
-      setChooseCauseModalVisible,
-      activeCauses,
-      currentCauseId,
-      setCurrentCauseId,
+      isLoading,
     }),
-    [causes, chooseCauseModalVisible, activeCauses, currentCauseId],
+    [causes, refetch, isLoading],
   );
 
   return (

@@ -1,7 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import {
-  useFreeDonationNonProfits,
   useIntegration,
   useCanDonate,
   useFirstAccessToIntegration,
@@ -19,7 +18,7 @@ import Spinner from "components/atomics/Spinner";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import useVoucher from "hooks/useVoucher";
 import { useCausesContext } from "contexts/causesContext";
-import { track } from "@amplitude/analytics-browser";
+import { logEvent, track } from "@amplitude/analytics-browser";
 import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
@@ -29,6 +28,8 @@ import { PLATFORM } from "utils/constants";
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
+import { useCauseDonationContext } from "contexts/causeDonationContext";
+import { useNonProfitsContext } from "contexts/nonProfitsContext";
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import NonProfitsList from "./NonProfitsList";
@@ -36,16 +37,20 @@ import { LocationStateType } from "./LocationStateType";
 import ChooseCauseModal from "./ChooseCauseModal";
 
 function CausesPage(): JSX.Element {
-  const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
 
+  const { causesWithPoolBalance, isLoading: isLoadingCauses } =
+    useCausesContext();
+  const { nonProfitsWithPoolBalance, isLoading: isLoadingNonProfits } =
+    useNonProfitsContext();
   const {
-    activeCauses,
+    chosenCause,
+    setChosenCause,
+    chosenCauseIndex,
+    setChosenCauseIndex,
     chooseCauseModalVisible,
-    currentCauseId,
-    setCurrentCauseId,
-  } = useCausesContext();
+  } = useCauseDonationContext();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
@@ -77,7 +82,6 @@ function CausesPage(): JSX.Element {
 
   const hasSeenChooseCauseModal = useRef(false);
 
-  const { nonProfits, isLoading } = useFreeDonationNonProfits();
   const { showReceiveTicketToast } = useReceiveTicketToast();
   const { signedIn, currentUser } = useCurrentUser();
 
@@ -121,6 +125,13 @@ function CausesPage(): JSX.Element {
   }, []);
 
   useEffect(() => {
+    logEvent("donationCardsOrder_view", {
+      nonProfits: nonProfitsWithPoolBalance,
+      causes: causesWithPoolBalance,
+    });
+  }, [nonProfitsWithPoolBalance, causesWithPoolBalance]);
+
+  useEffect(() => {
     if (hasReceivedTicketToday() && hasAvailableDonation()) {
       createVoucher();
     } else if (
@@ -148,24 +159,43 @@ function CausesPage(): JSX.Element {
   }, [chooseCauseModalVisible]);
 
   const nonProfitsFilter = () => {
-    if (currentCauseId >= 1 && currentCauseId !== undefined) {
+    if (chosenCause) {
       return (
-        nonProfits?.filter(
-          (nonProfit) =>
-            nonProfit.cause?.active && nonProfit.cause?.id === currentCauseId,
+        nonProfitsWithPoolBalance?.filter(
+          (nonProfit) => nonProfit.cause?.id === chosenCause.id,
         ) || []
       );
     }
-
-    return nonProfits || [];
+    return nonProfitsWithPoolBalance || [];
   };
+
+  const sortNonProfits = () => {
+    const filteredNonProfits = nonProfitsFilter();
+    const sorted = filteredNonProfits?.sort((a, b) => {
+      const causeAIndex = causesWithPoolBalance.findIndex(
+        (cause) => cause.id === a.cause.id,
+      );
+      const causeBIndex = causesWithPoolBalance.findIndex(
+        (cause) => cause.id === b.cause.id,
+      );
+
+      return causeAIndex - causeBIndex;
+    });
+    return sorted;
+  };
+
+  useEffect(() => {
+    sortNonProfits();
+  }, [chosenCause]);
 
   const handleCauseChanged = (_element: any, index: number, event: any) => {
     if (_element && event?.type === "click") {
-      const causeId = _element?.id;
-      if (nonProfits && causeId !== undefined) {
-        setCurrentCauseId(Number(causeId));
-        setSelectedButtonIndex(index);
+      const cause = _element;
+      setChosenCauseIndex(index);
+      if (cause.id !== 0) {
+        setChosenCause(cause);
+      } else {
+        setChosenCause(undefined);
       }
     }
   };
@@ -175,7 +205,7 @@ function CausesPage(): JSX.Element {
       id: 0,
       name: t("allCauses"),
     },
-    ...(activeCauses || []),
+    ...(causesWithPoolBalance || []),
   ];
 
   useAvoidBackButton();
@@ -183,6 +213,9 @@ function CausesPage(): JSX.Element {
   return (
     <S.Container>
       {!isFirstAccess(signedIn) && <DownloadAppToast />}
+      {!isLoadingCauses && (
+        <ChooseCauseModal visible={chooseCauseModalVisible} />
+      )}
       <ChooseCauseModal visible={chooseCauseModalVisible} />
       <S.BodyContainer>
         <S.TitleContainer>
@@ -202,7 +235,7 @@ function CausesPage(): JSX.Element {
         {!isFirstAccess(signedIn) && (
           <GroupButtons
             elements={causesWithAllFilter}
-            indexSelected={selectedButtonIndex}
+            indexSelected={chosenCauseIndex}
             onChange={handleCauseChanged}
             nameExtractor={(cause) => cause.name}
             eventParams={(cause) => ({ causeId: cause.id })}
@@ -210,13 +243,13 @@ function CausesPage(): JSX.Element {
           />
         )}
 
-        {isLoading ? (
+        {isLoadingNonProfits ? (
           <Spinner size="26" />
         ) : (
-          nonProfits && (
+          nonProfitsWithPoolBalance && (
             <S.NonProfitsContainer>
               <NonProfitsList
-                nonProfits={nonProfitsFilter()}
+                nonProfits={sortNonProfits()}
                 canDonate={canDonate}
               />
             </S.NonProfitsContainer>

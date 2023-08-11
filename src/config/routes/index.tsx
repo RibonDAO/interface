@@ -198,7 +198,7 @@ function RoutesComponent(): JSX.Element {
         <Suspense fallback={<div />}>
           <NetworkProvider>
             <WalletProvider>
-              <WalletLayout>
+              <WalletLayout hideWallet>
                 <PaymentInformationProvider>
                   <CardPaymentInformationProvider>
                     <CryptoPaymentProvider>
@@ -216,7 +216,10 @@ function RoutesComponent(): JSX.Element {
         <Suspense fallback={<div />}>
           <NetworkProvider>
             <WalletProvider>
-              <WalletLayout hideNavigation>
+              <WalletLayout
+                hideNavigation
+                hideWallet={params.get("currency") !== "USDC"}
+              >
                 <PaymentInformationProvider>
                   <CardPaymentInformationProvider>
                     <CryptoPaymentProvider>

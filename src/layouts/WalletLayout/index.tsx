@@ -3,6 +3,7 @@ import Navigation from "config/routes/Navigation";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { useWalletContext } from "contexts/walletContext";
+import useQueryParams from "hooks/useQueryParams";
 import { onAccountChange } from "lib/walletConnector";
 import WalletIcon from "assets/icons/wallet-icon.svg";
 import { logEvent } from "lib/events";
@@ -50,6 +51,12 @@ function WalletLayout({
     return walletTruncate(wallet);
   };
 
+  const queryParams = useQueryParams();
+
+  const paymentMethod = queryParams.get("payment_method") || "card";
+
+  const isCryptoPayment = paymentMethod === "crypto";
+
   return (
     <>
       {!hideNavigation && <Navigation />}
@@ -60,14 +67,16 @@ function WalletLayout({
             hasBackButton={hasBackButton}
             rightComponent={
               <S.RightContainer>
-                <S.WalletButton
-                  text={walletButtonText()}
-                  onClick={handleWalletButtonClick}
-                  outline
-                  round
-                  rightIcon={WalletIcon}
-                  size="small"
-                />
+                {isCryptoPayment && (
+                  <S.WalletButton
+                    text={walletButtonText()}
+                    onClick={handleWalletButtonClick}
+                    outline
+                    round
+                    rightIcon={WalletIcon}
+                    size="small"
+                  />
+                )}
               </S.RightContainer>
             }
             hideWallet

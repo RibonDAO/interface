@@ -1,4 +1,4 @@
-import React, { Suspense, useCallback, useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import WalletProvider from "contexts/walletContext";
 import CausesPage from "pages/donations/CausesPage";
@@ -44,11 +44,6 @@ function RoutesComponent(): JSX.Element {
   }, [location]);
 
   const params = useQueryParams();
-
-  const isCrypto = useCallback(
-    () => params.get("payment_method") === "crypto",
-    [params],
-  );
 
   return (
     <Switch>
@@ -157,7 +152,9 @@ function RoutesComponent(): JSX.Element {
         <Suspense fallback={<div />}>
           <NetworkProvider>
             <WalletProvider>
-              <WalletLayout hideWallet={!isCrypto()}>
+              <WalletLayout
+                hideWallet={params.get("payment_method") !== "crypto"}
+              >
                 <PaymentInformationProvider>
                   <CardPaymentInformationProvider>
                     <CryptoPaymentProvider>

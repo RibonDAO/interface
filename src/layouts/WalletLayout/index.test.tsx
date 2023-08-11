@@ -6,6 +6,13 @@ import {
 import { clickOn } from "config/testUtils";
 import WalletLayout from ".";
 
+jest.mock("hooks/useQueryParams", () => ({
+  __esModule: true,
+  default: () => ({
+    get: () => "crypto",
+  }),
+}));
+
 describe("WalletLayout", () => {
   it("renders the children passed", () => {
     renderComponent(

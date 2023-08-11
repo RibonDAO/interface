@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useCallback, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import WalletProvider from "contexts/walletContext";
 import CausesPage from "pages/donations/CausesPage";
@@ -30,6 +30,7 @@ import ReturnToIntegrationPage from "pages/donations/ReturnToIntegrationPage";
 import StripeProvider from "contexts/stripeContext";
 import PixPaymentInformationProvider from "contexts/pixPaymentInformationContext";
 import PaymentInformationProvider from "contexts/paymentInformationContext";
+import useQueryParams from "hooks/useQueryParams";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -41,6 +42,13 @@ function RoutesComponent(): JSX.Element {
 
     logPageView(urlName, search, state);
   }, [location]);
+
+  const params = useQueryParams();
+
+  const isCrypto = useCallback(
+    () => params.get("payment_method") === "crypto",
+    [params],
+  );
 
   return (
     <Switch>
@@ -149,7 +157,7 @@ function RoutesComponent(): JSX.Element {
         <Suspense fallback={<div />}>
           <NetworkProvider>
             <WalletProvider>
-              <WalletLayout>
+              <WalletLayout hideWallet={!isCrypto()}>
                 <PaymentInformationProvider>
                   <CardPaymentInformationProvider>
                     <CryptoPaymentProvider>

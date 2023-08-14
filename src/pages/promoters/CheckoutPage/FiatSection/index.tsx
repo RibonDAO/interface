@@ -13,7 +13,7 @@ import { logEvent } from "lib/events";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
 import { theme } from "@ribon.io/shared/styles";
 import Icon from "components/atomics/Icon";
-import LinkAccordion from "components/moleculars/accordions/LinkAccordion";
+import RadioAccordion from "components/moleculars/accordions/RadioAccordion";
 import PixSection from "../PixSection";
 import PriceSelection from "../Components/PriceSelection";
 import { PriceSelectionLoader } from "../Components/PriceSelection/loader";
@@ -86,9 +86,9 @@ export default function FiatSection() {
     );
   };
 
-  const onSubscriptionClick = (subscriptionState: boolean) => {
-    setIsSubscription(subscriptionState);
-    updateLocationSearch("subscription", subscriptionState.toString());
+  const onSubscriptionClick = () => {
+    setIsSubscription(!isSubscription);
+    updateLocationSearch("subscription", (!isSubscription).toString());
     if (currentPayable)
       logEvent("P23_changeRecurrence_click", {
         receiver: currentPayable?.name,
@@ -188,7 +188,7 @@ export default function FiatSection() {
         <S.RecurrenceButton
           outline
           text={t("recurrenceButton")}
-          onClick={() => onSubscriptionClick(!isSubscription)}
+          onClick={() => onSubscriptionClick()}
           textColor={theme.colors.brand.primary[600]}
           borderColor={theme.colors.brand.primary[600]}
           style={{
@@ -205,10 +205,9 @@ export default function FiatSection() {
 
       <S.PaymentMethods>
         <S.PaymentMethodsTitle>{t("payment")}</S.PaymentMethodsTitle>
-        <LinkAccordion
+        <RadioAccordion
           current={paymentMethodIndex ? Number(paymentMethodIndex) : undefined}
           items={CardAccordionItems}
-          isRadio
         />
       </S.PaymentMethods>
     </div>

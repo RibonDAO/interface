@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { logEvent } from "lib/events";
-import { useCauses } from "@ribon.io/shared/hooks";
 import { Cause } from "@ribon.io/shared/types";
 import IntersectBackground from "assets/images/intersect-background.svg";
 import useNavigation from "hooks/useNavigation";
@@ -11,7 +10,9 @@ import { useCryptoPayment } from "contexts/cryptoPaymentContext";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import theme from "styles/theme";
 import Intersection from "assets/images/intersection-image.svg";
+import { useCausesContext } from "contexts/causesContext";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
+import { useCauseContributionContext } from "contexts/causeContributionContext";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
 import SupportImage from "../assets/support-image.png";
 import * as S from "../styles";
@@ -24,6 +25,10 @@ type LocationStateType = {
 function CryptoPage(): JSX.Element {
   const { secondary } = theme.colors.brand;
   const { navigateTo } = useNavigation();
+  const { causes } = useCausesContext();
+  const { chosenCause, setChosenCause, chosenCauseIndex, setChosenCauseIndex } =
+    useCauseContributionContext();
+
   const { cause, setCause, nonProfit } = usePaymentInformation();
   const { connectWallet, wallet } = useWalletContext();
   const {
@@ -36,8 +41,6 @@ function CryptoPage(): JSX.Element {
     tokenSymbol,
   } = useCryptoPayment();
 
-  const { causes } = useCauses();
-
   const { state } = useLocation<LocationStateType>();
 
   const { t } = useTranslation("translation", {
@@ -48,16 +51,17 @@ function CryptoPage(): JSX.Element {
     logEvent("causeSupportScreen_view");
   }, []);
 
-  const causesFilter = () => {
-    const causesApi = causes.filter((currentCause) => currentCause.active);
-    return causesApi || [];
-  };
+  useEffect(() => {
+    logEvent("contributionCardsOrder_view", {
+      causes: causes as any,
+    });
+  }, [causes]);
 
   useEffect(() => {
     if (!cause) {
-      setCause(state?.causeDonated || causesFilter()[0]);
+      setCause(state?.causeDonated || chosenCause);
     }
-  }, [causes]);
+  });
 
   useEffect(() => {
     if (cause && cause.pools?.length > 0) {
@@ -65,11 +69,13 @@ function CryptoPage(): JSX.Element {
     }
   }, [cause]);
 
-  const handleCauseClick = (causeClicked: Cause) => {
+  const handleCauseClick = (causeClicked: Cause, index: number) => {
     logEvent("supportCauseSelection_click", {
       id: causeClicked?.id,
     });
     setCause(causeClicked);
+    setChosenCause(causeClicked);
+    setChosenCauseIndex(index);
   };
 
   const onDonationToContractSuccess = () => {
@@ -130,19 +136,17 @@ function CryptoPage(): JSX.Element {
     return t("connectWalletButtonText");
   };
 
-  const preSelectedIndex = () => {
-    if (state?.causeDonated)
-      return causesFilter().findIndex((c) => c.id === state?.causeDonated?.id);
-    return cause ? causesFilter().findIndex((c) => c.id === cause?.id) : 0;
-  };
+  if (causes.length === 0) {
+    return <div />;
+  }
 
   return (
     <S.Container>
       <S.Title>{t("title")}</S.Title>
       <GroupButtons
-        elements={causesFilter()}
+        elements={causes}
         onChange={handleCauseClick}
-        indexSelected={preSelectedIndex()}
+        indexSelected={chosenCauseIndex}
         nameExtractor={(element) => element.name}
         backgroundColor={secondary[700]}
         textColorOutline={secondary[700]}
@@ -150,13 +154,13 @@ function CryptoPage(): JSX.Element {
         borderColorOutline={secondary[300]}
       />
       <S.ContentContainer>
-        <S.SupportImage src={cause?.coverImage || SupportImage} />
+        <S.SupportImage src={chosenCause?.coverImage || SupportImage} />
         <S.Intersection src={Intersection} />
         <S.DonateContainer>
           <S.GivingContainer>
             <S.ContributionContainer>
               <SelectCryptoOfferSection
-                cause={cause}
+                cause={chosenCause}
                 onValueChange={(value: number) => setAmount(value.toString())}
               />
             </S.ContributionContainer>

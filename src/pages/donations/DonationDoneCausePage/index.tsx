@@ -29,6 +29,7 @@ import { PLATFORM } from "utils/constants";
 import extractUrlValue from "lib/extractUrlValue";
 import { logEvent } from "lib/events";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
+import { useExperiment } from "@growthbook/growthbook-react";
 import * as S from "./styles";
 
 function DonationDoneCausePage(): JSX.Element {
@@ -159,6 +160,7 @@ function DonationDoneCausePage(): JSX.Element {
       } else if (!isLoading && userStatistics) {
         navigateTo({
           pathname: "/causes",
+          state: { cause },
         });
       }
     }
@@ -179,7 +181,7 @@ function DonationDoneCausePage(): JSX.Element {
     };
   }, [currentUser, userStatistics]);
 
-  const colorTheme = getThemeByFlow(flow || "cause");
+  const colorTheme = getThemeByFlow(flow || "free");
 
   const bottomText = () => {
     if (flow === "cause" && hasButton) return cause?.name;
@@ -189,6 +191,51 @@ function DonationDoneCausePage(): JSX.Element {
   };
 
   const audio = getAudioFromStorage("donationDoneSound");
+
+  const variation = useExperiment({
+    key: "progression-test-first-stage",
+    variations: [false, true],
+  });
+
+  const oldImpactFormat = () => (
+    <>
+      <S.DonationValue color={colorTheme.shade20}>
+        {hasButton ? offer?.price : t("title")}
+      </S.DonationValue>
+      {hasButton && <S.PostDonationText>{t("title")}</S.PostDonationText>}
+      <S.PostDonationText>
+        {hasButton ? t("titleSecondLine") : t("youDonatedText")}
+        <S.CauseName
+          isGreen={!!nonProfit && !hasButton}
+          color={colorTheme.shade20}
+        >
+          {" "}
+          {bottomText()}{" "}
+        </S.CauseName>
+      </S.PostDonationText>
+    </>
+  );
+
+  const newImpactFormat = () => (
+    <>
+      <S.DonationValue color={colorTheme.shade40}>{t("title")}</S.DonationValue>
+      <S.ThanksToYou>{t("thanksToYou")}</S.ThanksToYou>
+      <S.ImpactAmount color={colorTheme.shade40}>
+        {offerId
+          ? t("livesWereImpacted", {
+              value: Math.round((offer?.priceValue ?? 0) * 2),
+            })
+          : t("lifeWasImpacted")}
+      </S.ImpactAmount>
+      {nonProfit?.impactDescription && (
+        <S.ImpactDescription color={colorTheme.shade40} hasButton>
+          {t("impactDescription", {
+            value: nonProfit?.impactDescription.split(",")[0],
+          })}
+        </S.ImpactDescription>
+      )}
+    </>
+  );
 
   return (
     <S.Container>
@@ -209,21 +256,7 @@ function DonationDoneCausePage(): JSX.Element {
           }
         />
       </S.ImageContainer>
-      <S.DonationValue color={colorTheme.shade20}>
-        {hasButton ? offer?.price : t("title")}
-      </S.DonationValue>
-      {hasButton && <S.PostDonationText>{t("title")}</S.PostDonationText>}
-      <S.PostDonationText>
-        {hasButton ? t("titleSecondLine") : t("youDonatedText")}
-        <S.CauseName
-          isGreen={!!nonProfit && !hasButton}
-          color={colorTheme.shade20}
-        >
-          {" "}
-          {bottomText()}{" "}
-        </S.CauseName>
-      </S.PostDonationText>
-
+      {variation.value ? newImpactFormat() : oldImpactFormat()}
       {hasButton && (
         <S.FinishButton
           text={t("button")}

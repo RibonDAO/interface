@@ -47,18 +47,20 @@ export function expectLogEventToHaveBeenCalledWith(
 
 type expectPageToNavigateToType = {
   state?: Record<any, any>;
+  search?: string;
 };
 
 export function expectPageToNavigateTo(
   pathname: string,
-  { state }: expectPageToNavigateToType = {},
+  { state, search }: expectPageToNavigateToType = {},
 ) {
-  if (!state)
+  if (!state && !search)
     return expect(mockNavigationFunction).toHaveBeenCalledWith(pathname);
 
   return expect(mockNavigationFunction).toHaveBeenCalledWith({
     pathname,
     state,
+    search,
   });
 }
 

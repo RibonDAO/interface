@@ -4,24 +4,20 @@ import {
   useOffers,
   useStatistics,
 } from "@ribon.io/shared/hooks";
-import { Currencies } from "@ribon.io/shared/types";
-import { useLanguage } from "hooks/useLanguage";
+import { Currencies, NonProfit, Offer } from "@ribon.io/shared/types";
 import { useCurrentUser } from "contexts/currentUserContext";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
-import { useCallback, useEffect, useState } from "react";
+import { useLanguage } from "hooks/useLanguage";
+import { useEffect, useState } from "react";
 import { Contribution } from "types/entities/Contribution";
-import NewImpact from "./newImpact.json";
-import OldImpact from "./oldImpact.json";
 
 export function useImpactConversion() {
   const [contribution, setContribution] = useState<Contribution>();
   const [description, setDescription] = useState<
     string | JSX.Element | undefined
   >();
-  const [variation, setVariation] = useState<string>("Control");
-  const [nonProfit, setNonProfit] = useState<any>();
-  const [offer, setOffer] = useState<any>();
-  const { currentLang } = useLanguage();
+  const [nonProfit, setNonProfit] = useState<NonProfit>();
+  const [offer, setOffer] = useState<Offer>();
 
   const { formattedImpactText } = useFormattedImpactText();
 
@@ -44,69 +40,42 @@ export function useImpactConversion() {
       nonProfits?.find((n) => n.id === userStatistics?.lastDonatedNonProfit),
     );
 
+    if (!offers) return;
+
     setOffer(
       offers?.find((o) => o.id === contribution?.offerId) ?? offers?.[0],
     );
   }, [nonProfits, offers, userStatistics, contribution?.offerId]);
 
-  const value = "Control";
+  const { currentLang } = useLanguage();
 
-  const currentNewImpact = useCallback(() => {
-    if (currentLang === "pt-BR") {
-      return NewImpact["pt-BR"];
-    }
-    return NewImpact.en;
-  }, [currentLang]);
+  const actualOfferId = currentLang === "pt-BR" ? 28 : 31;
 
   useEffect(() => {
-    setVariation(value);
-  }, [value]);
+    if (!offer) return;
+    if (!nonProfit) return;
+
+    setContribution({
+      nonProfitId: nonProfit.id,
+      name: nonProfit.name,
+      image: nonProfit.mainImage,
+      value: offer.priceValue ?? 0,
+      communityValue: (offer.priceValue ?? 0) * 0.2,
+      offerId: offer.id ?? actualOfferId,
+    });
+  }, [setContribution, nonProfit, offers, userStatistics, currentUser?.id]);
 
   useEffect(() => {
-    if (variation === "NewImpact") {
-      return setContribution(
-        currentNewImpact().find(
-          (o) => o.nonProfitId === userStatistics?.lastDonatedNonProfit,
-        ),
-      );
-    }
-    if (variation === "OldImpact") {
-      return setContribution(
-        OldImpact.find(
-          (o) => o.nonProfitId === userStatistics?.lastDonatedNonProfit,
-        ),
-      );
-    }
-    return undefined;
-  }, [
-    variation,
-    NewImpact,
-    OldImpact,
-    setContribution,
-    nonProfits,
-    offers,
-    userStatistics,
-    currentUser?.id,
-  ]);
-
-  useEffect(() => {
-    if (variation === "NewImpact") {
-      return setDescription(contribution?.description ?? "");
-    }
-    if (variation === "OldImpact") {
-      return setDescription(
-        formattedImpactText(nonProfit, undefined, true, true, nonProfitImpact),
-      );
-    }
-    return undefined;
-  }, [variation, contribution, nonProfit]);
+    setDescription(
+      formattedImpactText(nonProfit, undefined, true, true, nonProfitImpact),
+    );
+  }, [contribution, nonProfit]);
 
   return {
     contribution,
     description,
     offer,
     nonProfit,
-    variation,
     lastNonProfitDonated: userStatistics?.lastDonatedNonProfit,
   };
 }

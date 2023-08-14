@@ -1,6 +1,8 @@
 {
   "donations": {
     "causesPage": {
+      "impactOneLife": "Impacte 1 vida",
+      "impactDescription": "com {{value}}",
       "donationModalTitle": "Você ganhou um ticket doação",
       "donationModalButtonText": "Receber ticket",
       "donationWithRibonModalTitle": "Doar juntos para mudar vidas!",
@@ -92,6 +94,10 @@
     },
     "donationDoneCausePage": {
       "title": "Parabéns!",
+      "thanksToYou": "Graças a você...",
+      "lifeWasImpacted": "1 vida foi impactada",
+      "livesWereImpacted": "{{value}} vidas foram impactadas",
+      "impactDescription":"com {{value}}",
       "titleSecondLine": "Você doou para",
       "youDonatedText": "Você doou",
       "button": "Terminar"
@@ -269,9 +275,13 @@
     },
     "supportNonProfitPage": {
       "title": "Faça uma doação direta",
+      "impactMoreTitle": "Impacte mais",
       "donateButtonText": "Doar {{value}}",
       "selectOfferSection": {
-        "fundText": "geram"
+        "fundText": "geram",
+        "impactText": "Impacte",
+        "livesAmount": "{{value}} vidas",
+        "impactDescription": "com {{value}}"
       },
       "tooltipImpact": "Como calculamos o impacto?",
       "tooltipImpactText": "O cálculo é feito com base no valor mínimo necessário para que o projeto consiga bons resultados. As causas da Ribon fazem parte do movimento social “Altruísmo Eficaz”, e têm como objetivo gerar grande impacto a custo baixo."
@@ -538,6 +548,9 @@
   "contributionCard": {
     "button": "Doar",
     "donate": "Doe {{value}}",
-    "titleCard": "Faça ainda mais"
+    "titleCard": "Faça ainda mais",
+    "donateAndImpact": "Doe {{value}} e impacte",
+    "livesAmount":"+{{value}} vidas",
+    "impactDescription":"com {{value}}"
   }
 }

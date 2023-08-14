@@ -11,9 +11,9 @@ import useVoucher from "hooks/useVoucher";
 import useNavigation from "hooks/useNavigation";
 import { setLocalStorageItem } from "lib/localStorage";
 import { DONATION_TOAST_SEEN_AT_KEY } from "lib/localStorage/constants";
-import { useCausesContext } from "contexts/causesContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { isFirstAccess } from "lib/onboardingFirstAccess";
+import { useCauseDonationContext } from "contexts/causeDonationContext";
 import * as S from "./styles";
 
 function ReceiveTicketPage(): JSX.Element {
@@ -24,7 +24,7 @@ function ReceiveTicketPage(): JSX.Element {
   const { primary } = theme.colors.brand;
   const { createVoucher } = useVoucher();
   const { signedIn } = useCurrentUser();
-  const { setChooseCauseModalVisible } = useCausesContext();
+  const { setChooseCauseModalVisible } = useCauseDonationContext();
   const { navigateTo } = useNavigation();
   const [iconLoaded, setIconLoaded] = useState(false);
 

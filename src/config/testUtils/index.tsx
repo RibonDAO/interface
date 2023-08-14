@@ -56,6 +56,18 @@ import CausesProvider, {
 } from "contexts/causesContext";
 
 import { QueryClientComponent } from "@ribon.io/shared/hooks";
+import CauseDonationProvider, {
+  CauseDonationContext,
+  ICauseDonationContext,
+} from "contexts/causeDonationContext";
+import CauseContributionProvider, {
+  CauseContributionContext,
+  ICauseContributionContext,
+} from "contexts/causeContributionContext";
+import NonProfitsProvider, {
+  INonProfitsContext,
+  NonProfitsContext,
+} from "contexts/nonProfitsContext";
 import PaymentInformationProvider, {
   IPaymentInformationContext,
   PaymentInformationContext,
@@ -110,10 +122,13 @@ export type RenderComponentProps = {
   walletProviderValue?: Partial<IWalletContext>;
   tasksProviderValue?: Partial<ITasksContext>;
   causesProviderValue?: Partial<ICausesContext>;
+  causeDonationProviderValue?: Partial<ICauseDonationContext>;
+  causeContributionProviderValue?: Partial<ICauseContributionContext>;
   currentUserProviderValue?: Partial<ICurrentUserContext>;
   toastProviderValue?: Partial<IToastContext>;
   loadingOverlayValue?: Partial<ILoadingOverlayContext>;
   modalProviderValue?: Partial<IModalContext>;
+  nonProfitsProviderValue?: Partial<INonProfitsContext>;
   cardPaymentProviderValue?: Partial<ICardPaymentInformationContext>;
   paymentProviderValue?: Partial<IPaymentInformationContext>;
   pixPaymentProviderValue?: Partial<IPixPaymentInformationContext>;
@@ -128,11 +143,14 @@ export function renderComponent(
     walletProviderValue = {},
     tasksProviderValue = {},
     causesProviderValue = {},
+    causeDonationProviderValue = {},
+    causeContributionProviderValue = {},
     currentUserProviderValue = {},
     toastProviderValue = {},
     locationState = {},
     loadingOverlayValue = {},
     modalProviderValue = {},
+    nonProfitsProviderValue = {},
     cardPaymentProviderValue = {},
     paymentProviderValue = {},
     networkProviderValue = {},
@@ -162,42 +180,57 @@ export function renderComponent(
                     CausesContext,
                     causesProviderValue,
                     renderProvider(
-                      ToastContextProvider,
-                      ToastContext,
-                      toastProviderValue,
+                      CauseDonationProvider,
+                      CauseDonationContext,
+                      causeDonationProviderValue,
                       renderProvider(
-                        LoadingOverlayProvider,
-                        LoadingOverlayContext,
-                        loadingOverlayValue,
+                        CauseContributionProvider,
+                        CauseContributionContext,
+                        causeContributionProviderValue,
                         renderProvider(
-                          ModalProvider,
-                          ModalContext,
-                          modalProviderValue,
+                          ToastContextProvider,
+                          ToastContext,
+                          toastProviderValue,
                           renderProvider(
-                            PaymentInformationProvider,
-                            PaymentInformationContext,
-                            paymentProviderValue,
+                            LoadingOverlayProvider,
+                            LoadingOverlayContext,
+                            loadingOverlayValue,
                             renderProvider(
-                              CardPaymentInformationProvider,
-                              CardPaymentInformationContext,
-                              cardPaymentProviderValue,
+                              ModalProvider,
+                              ModalContext,
+                              modalProviderValue,
                               renderProvider(
-                                NetworkProvider,
-                                NetworkContext,
-                                networkProviderValue,
+                                NonProfitsProvider,
+                                NonProfitsContext,
+                                nonProfitsProviderValue,
                                 renderProvider(
-                                  WalletProvider,
-                                  WalletContext,
-                                  walletProviderValue,
+                                  PaymentInformationProvider,
+                                  PaymentInformationContext,
+                                  paymentProviderValue,
                                   renderProvider(
-                                    CryptoPaymentProvider,
-                                    CryptoPaymentContext,
-                                    cryptoPaymentProviderValue,
+                                    CardPaymentInformationProvider,
+                                    CardPaymentInformationContext,
+                                    cardPaymentProviderValue,
                                     renderProvider(
-                                      PixPaymentInformationProvider,
-                                      PixPaymentInformationContext,
-                                      pixPaymentProviderValue,
-                                      component,
+                                      NetworkProvider,
+                                      NetworkContext,
+                                      networkProviderValue,
+                                      renderProvider(
+                                        WalletProvider,
+                                        WalletContext,
+                                        walletProviderValue,
+                                        renderProvider(
+                                          CryptoPaymentProvider,
+                                          CryptoPaymentContext,
+                                          cryptoPaymentProviderValue,
+                                          renderProvider(
+                                            PixPaymentInformationProvider,
+                                            PixPaymentInformationContext,
+                                            pixPaymentProviderValue,
+                                            component,
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),

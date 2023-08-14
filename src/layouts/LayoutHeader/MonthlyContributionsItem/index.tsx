@@ -14,11 +14,11 @@ function MonthlyContributionsItem(): JSX.Element {
   const { navigateTo } = useNavigation();
 
   const handleClick = () => {
-    logEvent("monthlyContributionsBtn_click");
+    logEvent("manageSubscription_click");
     navigateTo("/monthly-contributions");
 
-    newLogEvent("click", "monthlyContributionsBtn_click", {
-      from: "config_page",
+    newLogEvent("click", "manageSubscription", {
+      from: "configPage",
     });
   };
 

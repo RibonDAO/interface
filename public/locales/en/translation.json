@@ -164,6 +164,9 @@
       "getTheAppItem": {
         "getTheAppText": "Get the app"
       },
+      "monthlyContributionsItem": {
+        "monthlyContributionsText": "Monthly Contributions"
+      },
       "donationModalTitle": "Great! You got 1 ticket to donate",
       "donationModalBody": "You can assign the ticket to any project",
       "donationModalButtonText": "Let’s go!",

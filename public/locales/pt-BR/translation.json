@@ -163,6 +163,9 @@
       "getTheAppItem": {
         "getTheAppText": "Baixar app"
       },
+      "monthlyContributionsItem": {
+        "monthlyContributionsText": "Contribuições Mensais"
+      },
       "donationModalTitle": "Legal! Você tem 1 ticket para doar",
       "donationModalBody": "Você pode destiná-lo para qualquer projeto",
       "donationModalButtonText": "Vamos lá!",

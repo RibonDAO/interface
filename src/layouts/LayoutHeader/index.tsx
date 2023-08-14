@@ -21,6 +21,7 @@ import LogoutItem from "./LogoutItem";
 import * as S from "./styles";
 import UserSupportItem from "./UserSupportItem";
 import GetTheAppItem from "./GetTheAppItem";
+import MonthlyContributionsItem from "./MonthlyContributionsItem";
 
 export type Props = {
   rightComponent?: JSX.Element;
@@ -121,6 +122,8 @@ function LayoutHeader({
         <UserSupportItem />
         <Divider color={theme.colors.neutral[200]} />
         <ChangeLanguageItem />
+        <Divider color={theme.colors.neutral[200]} />
+        <MonthlyContributionsItem />
 
         {signedIn ? (
           <div>

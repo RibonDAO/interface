@@ -112,7 +112,8 @@ export default function FiatSection() {
       );
   }, [currentOffer]);
 
-  const showPix = () => currentOffer?.gateway === "stripe";
+  const showPix = () =>
+    currentOffer?.gateway === "stripe" && currentOffer?.currency === "brl";
 
   const CardAccordionItems: any = [
     {

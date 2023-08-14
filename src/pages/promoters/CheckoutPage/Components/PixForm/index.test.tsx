@@ -18,6 +18,7 @@ describe("CardInfoSection", () => {
     userEvent.type(screen.getByTestId("name"), "User Test");
 
     expectDisplayValueToBeInTheDocument("mail@ribon.io");
+    expectDisplayValueToBeInTheDocument("Brazil");
     expectDisplayValueToBeInTheDocument("City Test");
     expectDisplayValueToBeInTheDocument("State Test");
     expectDisplayValueToBeInTheDocument("User Test");

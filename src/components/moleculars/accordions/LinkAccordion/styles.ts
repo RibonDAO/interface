@@ -4,12 +4,12 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   border: solid 1px ${({ theme }) => theme.colors.neutral[100]};
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.spacing(8)};
   position: relative;
 `;
 
 export const Title = styled.p`
-  margin-left: 8px;
+  margin-left: ${({ theme }) => theme.spacing(8)};
 `;
 
 export const LinkListItem = styled.div<{ last?: boolean }>`
@@ -53,7 +53,7 @@ export const TitleContainer = styled.div`
 export const LeftIcon = styled.img`
   height: 28px;
   margin-left: 0px;
-  padding-right: 8px;
+  padding-right: ${({ theme }) => theme.spacing(8)};
 `;
 
 export const RightElement = styled.span``;

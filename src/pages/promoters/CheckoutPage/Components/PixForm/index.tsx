@@ -10,6 +10,8 @@ import { useLanguage } from "hooks/useLanguage";
 import { maskForTaxId } from "lib/maskForTaxId";
 import { usePixPaymentInformation } from "contexts/pixPaymentInformationContext";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
+import parse from "html-react-parser";
+import Icon from "components/atomics/Icon";
 import * as S from "./styles";
 
 export type Props = {
@@ -150,7 +152,6 @@ function PixForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
         data-testid="name"
         required
       />
-      <S.SmallTextInfo>{t("pixReceiverText")}</S.SmallTextInfo>
       <S.DonateButtonContainer>
         <Button
           type="button"
@@ -162,6 +163,10 @@ function PixForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
           data-testid="confirmPayment"
         />
       </S.DonateButtonContainer>
+      <S.SmallTextInfoContainer>
+        <Icon name="error" size="20px" />
+        <S.SmallTextInfo>{parse(t("pixReceiverText"))}</S.SmallTextInfo>
+      </S.SmallTextInfoContainer>
     </S.Container>
   );
 }

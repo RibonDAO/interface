@@ -18,6 +18,7 @@ export const DonateButtonContainer = styled.div`
   bottom: 0;
   left: 0;
   background-color: ${({ theme }) => theme.colors.neutral10};
+  margin-bottom: ${({ theme }) => theme.spacing(16)};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     padding-inline: 0;
@@ -30,8 +31,12 @@ export const DonateButtonContainer = styled.div`
 export const CountryInput = styled(InputAutoComplete)``;
 
 export const SmallTextInfo = styled.span`
-  display: flex;
   ${defaultBodyXsRegular}
-
   color: ${({ theme }) => theme.colors.neutral[500]};
+  margin-left: ${({ theme }) => theme.spacing(4)};
+`;
+
+export const SmallTextInfoContainer = styled.div`
+  display: flex;
+  cursor: default;
 `;

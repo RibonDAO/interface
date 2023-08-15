@@ -18,6 +18,7 @@ describe("usePaymentParams", () => {
       offer: "offer",
       paymentMethodIndex: "paymentMethodIndex",
       hasAllParams: true,
+      subscription: "subscription",
     });
   });
 });

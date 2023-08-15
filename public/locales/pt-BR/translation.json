@@ -379,6 +379,7 @@
       "selectCurrency": "Selecione a moeda",
       "selectValue": "Selecione o valor",
       "additionalFeesText": "O pagamento é processado em dólar, o valor pode sofrer uma pequena variação de acordo com as taxas do seu banco.",
+      "pixReceiverText": "O destino do seu Pix será o <b>Stripe</b>, plataforma que processa os pagamentos da Ribon.",
       "brazilName": "Brasil",
       "paymentMethodSection": {
         "creditCard": "Cartão de crédito",

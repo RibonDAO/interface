@@ -370,9 +370,19 @@
         "serviceFeesText": "Service fees:"
       }
     },
+    "recurrencePage": {
+      "title": "Recurrence",
+      "donatingTo": "Donating to ",
+      "recurrentDonationDescription": "Contribute monthly",
+      "uniqueDonationDescription": "Contribute once",
+      "selectValue": "Select value"
+    },
     "checkoutPage": {
       "changeCurrency": "Change currency",
       "back": "Back",
+      "monthlyContribution": "Contributing monthly",
+      "uniqueContribution": "Contributing once",
+      "recurrenceButton": "Change",
       "donatingTo": "Donating to ",
       "netDonation": "Net donation: ",
       "serviceFees": "Service fees: ",

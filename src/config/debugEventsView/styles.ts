@@ -2,15 +2,15 @@ import styled, { css, keyframes } from "styled-components";
 
 export const Container = styled.div`
   max-width: 550px;
+  max-height: 60vh;
   padding: 20px;
   border: 1px solid #ccc;
   position: fixed;
   right: 20px;
   bottom: 20px;
   z-index: 9999;
-  background-color: white;
-  max-height: 60vh;
   overflow-y: scroll;
+  background-color: white;
 `;
 
 export const DebugViewHeader = styled.h3`

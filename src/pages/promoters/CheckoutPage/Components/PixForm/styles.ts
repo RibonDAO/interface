@@ -1,5 +1,6 @@
 import InputAutoComplete from "components/atomics/inputs/InputAutoComplete";
 import styled from "styled-components";
+import { defaultBodyXsRegular } from "styles/typography/default";
 
 export const Container = styled.div`
   padding-inline: ${({ theme }) => theme.spacing(16)};
@@ -27,3 +28,10 @@ export const DonateButtonContainer = styled.div`
 `;
 
 export const CountryInput = styled(InputAutoComplete)``;
+
+export const SmallTextInfo = styled.span`
+  display: flex;
+  ${defaultBodyXsRegular}
+
+  color: ${({ theme }) => theme.colors.neutral[500]};
+`;

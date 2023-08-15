@@ -150,6 +150,7 @@ function PixForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
         data-testid="name"
         required
       />
+      <S.SmallTextInfo>{t("pixReceiverText")}</S.SmallTextInfo>
       <S.DonateButtonContainer>
         <Button
           type="button"

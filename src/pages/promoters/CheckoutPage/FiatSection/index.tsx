@@ -4,7 +4,6 @@ import PixIcon from "assets/icons/pix-icon.svg";
 import usePayable from "hooks/usePayable";
 import usePaymentParams from "hooks/usePaymentParams";
 import { useTranslation } from "react-i18next";
-import RadioAccordion from "components/moleculars/accordions/RadioAccordion";
 import { Currencies, Offer, Cause, NonProfit } from "@ribon.io/shared/types";
 import { useOffers } from "@ribon.io/shared/hooks";
 import { useLocationSearch } from "hooks/useLocationSearch";
@@ -12,6 +11,9 @@ import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useModal } from "hooks/modalHooks/useModal";
 import { logEvent } from "lib/events";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
+import { theme } from "@ribon.io/shared/styles";
+import Icon from "components/atomics/Icon";
+import RadioAccordion from "components/moleculars/accordions/RadioAccordion";
 import PixSection from "../PixSection";
 import PriceSelection from "../Components/PriceSelection";
 import { PriceSelectionLoader } from "../Components/PriceSelection/loader";
@@ -25,13 +27,20 @@ export default function FiatSection() {
     keyPrefix: "promoters.checkoutPage",
   });
 
-  const { target, targetId, offer, currency, paymentMethodIndex } =
-    usePaymentParams();
+  const {
+    target,
+    targetId,
+    offer,
+    currency,
+    paymentMethodIndex,
+    subscription,
+  } = usePaymentParams();
   const hasAllParams = Boolean(target && targetId && offer && currency);
   const currentPayable = usePayable(target, targetId);
 
   const { setOfferId, setCurrentCoin, setCause, setNonProfit, setFlow } =
     usePaymentInformation();
+  const [isSubscription, setIsSubscription] = useState(subscription === "true");
 
   const {
     offers,
@@ -39,7 +48,7 @@ export default function FiatSection() {
     isLoading: isLoadingOffers,
   } = useOffers(
     Currencies[currency?.toUpperCase() as keyof typeof Currencies],
-    false,
+    isSubscription,
   );
 
   const [currentOffer, setCurrentOffer] = useState<Offer>();
@@ -51,7 +60,7 @@ export default function FiatSection() {
 
   useEffect(() => {
     refetchOffers();
-  }, [currency]);
+  }, [currency, isSubscription]);
 
   useEffect(() => {
     if (!isLoadingOffers && offers && offer) {
@@ -67,7 +76,7 @@ export default function FiatSection() {
 
       if (offers.length - 1 < Number(currentOfferIndex)) resetOffer();
     }
-  }, [offers, offer, isLoadingOffers]);
+  }, [offers, offer, isLoadingOffers, isSubscription]);
 
   const handleOfferChange = (offerItem: any) => {
     const offerChanged = offers?.find((item: any) => item.id === offerItem.id);
@@ -75,6 +84,15 @@ export default function FiatSection() {
       "offer",
       offerChanged?.priceCents.toString() || offers[0].priceCents.toString(),
     );
+  };
+
+  const onSubscriptionClick = () => {
+    setIsSubscription(!isSubscription);
+    updateLocationSearch("subscription", (!isSubscription).toString());
+    if (currentPayable)
+      logEvent("P23_changeRecurrence_click", {
+        receiver: currentPayable?.name,
+      });
   };
 
   const buttonOfferItems = offers?.map((offerItem: any) => ({
@@ -159,6 +177,32 @@ export default function FiatSection() {
       ) : (
         <PriceSelectionLoader />
       )}
+      <S.RecurrenceContainer>
+        <Icon
+          name={isSubscription ? "event_repeat" : "event_available"}
+          size="25px"
+          color={theme.colors.brand.primary[600]}
+        />
+        <S.RecurrenceTitle>
+          {isSubscription ? t("monthlyContribution") : t("uniqueContribution")}
+        </S.RecurrenceTitle>
+        <S.RecurrenceButton
+          outline
+          text={t("recurrenceButton")}
+          onClick={() => onSubscriptionClick()}
+          textColor={theme.colors.brand.primary[600]}
+          borderColor={theme.colors.brand.primary[600]}
+          style={{
+            height: "28px",
+            display: "flex",
+            alignItems: "center",
+            gap: "4px",
+            padding: "0 8px",
+            width: "fit-content",
+            borderRadius: "4px",
+          }}
+        />
+      </S.RecurrenceContainer>
 
       <S.PaymentMethods>
         <S.PaymentMethodsTitle>{t("payment")}</S.PaymentMethodsTitle>

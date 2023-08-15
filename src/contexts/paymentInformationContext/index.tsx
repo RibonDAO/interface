@@ -12,6 +12,8 @@ import {
 import { Currencies, Cause, NonProfit } from "@ribon.io/shared/types";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
+import useLocalStorageState from "hooks/useLocalStorageState";
+import { useTranslation } from "react-i18next";
 
 export interface IPaymentInformationContext {
   setCurrentCoin: (value: SetStateAction<Currencies>) => void;
@@ -53,6 +55,9 @@ export const CURRENT_COIN_KEY = "CURRENT_COIN_KEY";
 function PaymentInformationProvider({ children }: Props) {
   const { currentUser } = useCurrentUser();
   const { currentLang } = useLanguage();
+  const { t } = useTranslation("translation", {
+    keyPrefix: "promoters.checkoutPage",
+  });
 
   const defaultCoin = () =>
     (getLocalStorageItem(CURRENT_COIN_KEY) as Currencies) ||
@@ -66,17 +71,20 @@ function PaymentInformationProvider({ children }: Props) {
 
   const integrationId = useIntegrationId();
 
-  const [country, setCountry] = useState("");
-  const [state, setState] = useState("");
-  const [city, setCity] = useState("");
   const [taxId, setTaxId] = useState("");
   const [email, setEmail] = useState(currentUser?.email ?? "");
-  const [name, setName] = useState("");
   const [cryptoGiving, setCryptoGiving] = useState("");
   const [offerId, setOfferId] = useState(1);
   const [cause, setCause] = useState<Cause>();
   const [nonProfit, setNonProfit] = useState<NonProfit>();
   const [flow, setFlow] = useState<"nonProfit" | "cause">("nonProfit");
+  const [country, setCountry] = useLocalStorageState(
+    "COUNTRY",
+    t("brazilName"),
+  );
+  const [state, setState] = useLocalStorageState("STATE", "");
+  const [city, setCity] = useLocalStorageState("CITY", "");
+  const [name, setName] = useLocalStorageState("NAME", "");
 
   const paymentInformationObject: IPaymentInformationContext = useMemo(
     () => ({

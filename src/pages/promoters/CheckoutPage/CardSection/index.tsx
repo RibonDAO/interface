@@ -21,6 +21,7 @@ export default function CardSection({ currentOffer }: Props) {
         targetId,
         currency: currentOffer.currency,
         amount: currentOffer.priceValue,
+        paymentMethod: "card",
       });
 
     handleSubmit(PLATFORM);

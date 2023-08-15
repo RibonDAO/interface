@@ -11,6 +11,7 @@ export type Props = {
   textColor?: string;
   mask?: string;
   label?: Record<string, any>;
+  initialState?: string;
 };
 
 function InputAutoComplete({
@@ -23,11 +24,12 @@ function InputAutoComplete({
   textColor,
   mask,
   label,
+  initialState,
   ...props
 }: Props): JSX.Element {
   const [filteredSuggestions, setFilteredSuggestions] = useState(suggestions);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState(initialState || "");
 
   const maxInputsShowing = 4;
 

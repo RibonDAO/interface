@@ -13,12 +13,12 @@ export const Half = styled.div`
 
 export const DonateButtonContainer = styled.div`
   width: 100%;
+  margin-bottom: ${({ theme }) => theme.spacing(16)};
   padding: ${({ theme }) => theme.spacing(16)};
   position: fixed;
   bottom: 0;
   left: 0;
   background-color: ${({ theme }) => theme.colors.neutral10};
-  margin-bottom: ${({ theme }) => theme.spacing(16)};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     padding-inline: 0;
@@ -32,8 +32,9 @@ export const CountryInput = styled(InputAutoComplete)``;
 
 export const SmallTextInfo = styled.span`
   ${defaultBodyXsRegular}
-  color: ${({ theme }) => theme.colors.neutral[500]};
+
   margin-left: ${({ theme }) => theme.spacing(4)};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const SmallTextInfoContainer = styled.div`

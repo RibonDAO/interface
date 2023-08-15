@@ -9,6 +9,8 @@ export const Container = styled.div`
   bottom: 20px;
   z-index: 9999;
   background-color: white;
+  max-height: 60vh;
+  overflow-y: scroll;
 `;
 
 export const DebugViewHeader = styled.h3`
@@ -156,6 +158,7 @@ export const MonitoredEventsHeader = styled.h4`
 
 export const HorizontalScrollDiv = styled.div`
   max-width: 250px;
+  max-height: 80px;
   overflow-x: auto;
 `;
 

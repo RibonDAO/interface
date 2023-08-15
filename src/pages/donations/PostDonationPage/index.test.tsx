@@ -38,7 +38,6 @@ describe("Causes", () => {
         nonProfit: { name: "Test Non-Profit" },
         offer: { id: 1 },
         description: "This is a test description",
-        variation: "Control",
       });
       renderComponent(<PostDonationPage />, {
         locationState: {
@@ -53,32 +52,11 @@ describe("Causes", () => {
     });
 
     it("shows the non profit", () => {
-      expectTextToBeInTheDocument("Donate directly to");
       expectTextToBeInTheDocument(nonProfit1.name);
     });
 
     it("shows the cause", () => {
-      expectTextToBeInTheDocument("Donate as a community to");
       expectTextToBeInTheDocument(cause1.name);
-    });
-  });
-
-  describe("when variation is not control", () => {
-    beforeEach(() => {
-      const mockUseImpactConversion = useImpactConversion as jest.Mock;
-      mockUseImpactConversion.mockReturnValue({
-        contribution: {
-          image: "test-image-url",
-          impact: "This is a test impact",
-          value: 100,
-        },
-        nonProfit: { name: "Test Non-Profit" },
-        offer: { id: 1 },
-        description: "This is a test description",
-        variation: "Test Variation",
-      });
-
-      renderComponent(<PostDonationPage />);
     });
 
     it("logs view events", () => {

@@ -140,7 +140,8 @@ export default function FiatSection() {
       );
   }, [currentOffer]);
 
-  const showPix = () => currentOffer?.gateway === "stripe";
+  const showPix = () =>
+    currentOffer?.gateway === "stripe" && currentOffer?.currency === "brl";
 
   const CardAccordionItems: any = [
     {
@@ -154,7 +155,7 @@ export default function FiatSection() {
     showPix() && {
       title: t("paymentMethodSection.pix"),
       rightIcon: PixIcon,
-      children: <PixSection />,
+      children: <PixSection currentOffer={currentOffer} />,
       onClick: () => {
         logEvent("selectPix_click");
       },

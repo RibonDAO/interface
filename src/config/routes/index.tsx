@@ -30,6 +30,7 @@ import ReturnToIntegrationPage from "pages/donations/ReturnToIntegrationPage";
 import StripeProvider from "contexts/stripeContext";
 import PixPaymentInformationProvider from "contexts/pixPaymentInformationContext";
 import PaymentInformationProvider from "contexts/paymentInformationContext";
+import useQueryParams from "hooks/useQueryParams";
 import RecurrencePage from "pages/promoters/CheckoutPage/RecurrencePage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
@@ -42,6 +43,8 @@ function RoutesComponent(): JSX.Element {
 
     logPageView(urlName, search, state);
   }, [location]);
+
+  const params = useQueryParams();
 
   return (
     <Switch>
@@ -150,7 +153,9 @@ function RoutesComponent(): JSX.Element {
         <Suspense fallback={<div />}>
           <NetworkProvider>
             <WalletProvider>
-              <WalletLayout>
+              <WalletLayout
+                hideWallet={params.get("payment_method") !== "crypto"}
+              >
                 <PaymentInformationProvider>
                   <CardPaymentInformationProvider>
                     <CryptoPaymentProvider>
@@ -194,7 +199,7 @@ function RoutesComponent(): JSX.Element {
         <Suspense fallback={<div />}>
           <NetworkProvider>
             <WalletProvider>
-              <WalletLayout>
+              <WalletLayout hideWallet>
                 <PaymentInformationProvider>
                   <CardPaymentInformationProvider>
                     <CryptoPaymentProvider>
@@ -212,7 +217,10 @@ function RoutesComponent(): JSX.Element {
         <Suspense fallback={<div />}>
           <NetworkProvider>
             <WalletProvider>
-              <WalletLayout hideNavigation>
+              <WalletLayout
+                hideNavigation
+                hideWallet={params.get("currency") !== "USDC"}
+              >
                 <PaymentInformationProvider>
                   <CardPaymentInformationProvider>
                     <CryptoPaymentProvider>

@@ -54,26 +54,14 @@ export function expectPageToNavigateTo(
   pathname: string,
   { state, search }: expectPageToNavigateToType = {},
 ) {
-  const expectedNavigation = {
+  if (!state && !search)
+    return expect(mockNavigationFunction).toHaveBeenCalledWith(pathname);
+
+  return expect(mockNavigationFunction).toHaveBeenCalledWith({
     pathname,
     state,
     search,
-  };
-
-  if (!state && !search) {
-    return expect(mockNavigationFunction).toHaveBeenCalledWith(pathname);
-  }
-
-  if (!state && search) {
-    return expect(mockNavigationFunction).toHaveBeenCalledWith({
-      pathname,
-      search,
-    });
-  }
-
-  return expect(mockNavigationFunction).toHaveBeenCalledWith(
-    expectedNavigation,
-  );
+  });
 }
 
 export function expectPageToNavigateBack() {

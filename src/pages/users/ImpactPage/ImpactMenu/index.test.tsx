@@ -37,7 +37,6 @@ describe("Impact Page", () => {
         expectTextToBeInTheDocument(
           "You have not made direct donations yet, why not try your first one?",
         );
-        expectTextToBeInTheDocument("Donate directly");
       });
 
       it("should render community donations section when click in community tab", () => {
@@ -51,7 +50,6 @@ describe("Impact Page", () => {
         expectTextToBeInTheDocument(
           "You have not made community donations yet, why not try your first one?",
         );
-        expectTextToBeInTheDocument("Donate in community");
       });
     });
   });

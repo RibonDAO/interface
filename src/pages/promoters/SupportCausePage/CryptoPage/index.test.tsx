@@ -20,7 +20,9 @@ jest.mock("@ribon.io/shared/hooks", () => ({
 
 describe("SupportCausePage", () => {
   beforeEach(async () => {
-    renderComponent(<SupportCausePage />);
+    renderComponent(<SupportCausePage />, {
+      causesProviderValue: { causes: [mockCause, mockCause2] },
+    });
     await waitForPromises();
   });
 

@@ -17,6 +17,10 @@ function LoadingPage(): JSX.Element {
     isLoading: isLoadingIsFirstAccessToIntegration,
   } = useFirstAccessToIntegration(integrationId);
 
+  useEffect(() => {
+    if (integration) localStorage.setItem("integrationName", integration.name);
+  }, [integration]);
+
   const renderOnboardingPage = () => {
     if (isFirstAccessToIntegration) {
       navigateTo({

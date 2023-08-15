@@ -1,6 +1,4 @@
 import { useCurrentUser } from "contexts/currentUserContext";
-import { MODAL_TYPES } from "contexts/modalContext/helpers";
-import { useModal } from "hooks/modalHooks/useModal";
 import useNavigation from "hooks/useNavigation";
 import useToast from "hooks/useToast";
 import {
@@ -14,9 +12,6 @@ import {
 import { useTranslation } from "react-i18next";
 import { logEvent } from "lib/events";
 import { logError } from "services/crashReport";
-import GivingIcon from "assets/icons/giving-icon.svg";
-import Logo from "assets/icons/logo-background-icon.svg";
-import UserIcon from "assets/icons/user.svg";
 import {
   getLocalStorageItem,
   removeLocalStorageItem,
@@ -29,6 +24,7 @@ import { PLATFORM } from "utils/constants";
 import pixPaymentApi from "services/api/pixPaymentApi";
 import { useStripe } from "contexts/stripeContext";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
+import { useLoadingOverlay } from "contexts/loadingOverlayContext";
 
 export interface IPixPaymentInformationContext {
   setButtonDisabled: (value: SetStateAction<boolean>) => void;
@@ -82,6 +78,7 @@ function PixPaymentInformationProvider({ children }: Props) {
   const { signedIn, setCurrentUser } = useCurrentUser();
   const { integration } = useIntegration(integrationId);
   const { createSource } = useSources();
+  const { showLoadingOverlay, hideLoadingOverlay } = useLoadingOverlay();
 
   const login = async () => {
     if (!signedIn) {
@@ -113,24 +110,21 @@ function PixPaymentInformationProvider({ children }: Props) {
     });
   };
 
-  const { show: showAnimationModal, hide: closeAnimationModal } = useModal({
-    type: MODAL_TYPES.MODAL_ANIMATION,
-    props: {
-      text: t("modalAnimationTitle"),
-      iconOrigin: UserIcon,
-      textOrigin: t("modalAnimationFrom"),
-      iconDestiny: Logo,
-      textDestiny: t("modalAnimationTo"),
-      icon: GivingIcon,
-    },
-  });
-
   const confirmPixPayment = async () => {
     setButtonDisabled(true);
     try {
       const response = await stripe?.confirmPixPayment(clientSecret);
       if (response?.paymentIntent?.status === "succeeded") {
         handleConfirmation();
+      } else {
+        toast({
+          message: t("onErrorMessage"),
+          type: "info",
+        });
+
+        logEvent("toastNotification_view", {
+          status: "transactionFailed",
+        });
       }
     } catch (e) {
       logError(e);
@@ -147,9 +141,9 @@ function PixPaymentInformationProvider({ children }: Props) {
   }, [clientSecret, stripe]);
 
   const showAnimationPixPaymentModal = () => {
-    showAnimationModal();
+    showLoadingOverlay(t("modalAnimationTitle"));
     setTimeout(() => {
-      closeAnimationModal();
+      hideLoadingOverlay();
     }, 3000);
   };
 
@@ -173,9 +167,11 @@ function PixPaymentInformationProvider({ children }: Props) {
     try {
       const response = await pixPaymentApi.postPixPayment(paymentInformation);
       setClientSecret(response.data.clientSecret);
-      closeAnimationModal();
+      setTimeout(() => {
+        hideLoadingOverlay();
+      }, 500);
     } catch (error) {
-      closeAnimationModal();
+      hideLoadingOverlay();
       logError(error);
       toast({
         message: t("onErrorMessage"),

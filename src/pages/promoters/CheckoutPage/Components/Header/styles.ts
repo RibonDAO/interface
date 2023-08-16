@@ -8,7 +8,7 @@ export const Header = styled.div`
   justify-content: space-between;
 `;
 
-export const BackButton = styled.a`
+export const BackButton = styled.button`
   border: none;
   border-radius: 50%;
   display: flex;

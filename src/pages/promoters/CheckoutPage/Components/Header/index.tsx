@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useModal } from "hooks/modalHooks/useModal";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { Currencies } from "@ribon.io/shared/types";
+import useNavigation from "hooks/useNavigation";
 import ButtonSelectorTemplate from "../ButtonSelectorTemplate";
 import * as S from "./styles";
 
@@ -16,6 +17,7 @@ export default function Header() {
 
   const { currency, target } = usePaymentParams();
   const { updateLocationSearch } = useLocationSearch();
+  const { navigateBack } = useNavigation();
 
   const handleCurrencyChange = (currencyItem: Currencies) => {
     updateLocationSearch("currency", currencyItem);
@@ -52,17 +54,9 @@ export default function Header() {
     props: currencyModalProps,
   });
 
-  const handleBackButton = () => {
-    if (target === "non_profit") {
-      return "/promoters/support-non-profit";
-    } else {
-      return "/promoters/support-cause";
-    }
-  };
-
   return (
     <S.Header>
-      <S.BackButton href={handleBackButton()}>
+      <S.BackButton onClick={navigateBack}>
         <img src={ArrowLeftGreen} alt={t("back")} />
       </S.BackButton>
       <S.ChangeCurrencyButton onClick={() => showCurrencyModal()}>

@@ -148,7 +148,7 @@ function LayoutHeader({
                   <S.TicketsAmount
                     color={
                       canDonateAndHasVoucher
-                        ? primary[300]
+                        ? primary[600]
                         : theme.colors.neutral[500]
                     }
                   >

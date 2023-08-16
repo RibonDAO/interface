@@ -22,7 +22,7 @@ function MonthlyContributionsItem(): JSX.Element {
   };
 
   return (
-    <S.Container>
+    <S.Container onClick={handleClick}>
       <CardIconText
         text={t("monthlyContributionsText")}
         icon={contributionIcon}

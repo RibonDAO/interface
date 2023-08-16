@@ -45,18 +45,8 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
     setButtonDisabled,
   } = useCardPaymentInformation();
 
-  const {
-    country,
-    setCountry,
-    city,
-    setCity,
-    state,
-    setState,
-    taxId,
-    setTaxId,
-    email,
-    setEmail,
-  } = usePaymentInformation();
+  const { country, setCountry, taxId, setTaxId, email, setEmail } =
+    usePaymentInformation();
 
   const validTaxId = () => {
     if (!showFiscalFields) return true;
@@ -80,9 +70,7 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
   const { currentLang } = useLanguage();
 
   useEffect(() => {
-    const fiscalFields = showFiscalFields
-      ? city && state && country && validTaxId()
-      : true;
+    const fiscalFields = showFiscalFields ? country && validTaxId() : true;
 
     setButtonDisabled(
       !(
@@ -94,7 +82,7 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
         fiscalFields
       ),
     );
-  }, [number, name, expirationDate, cvv, country, state, city, taxId, email]);
+  }, [number, name, expirationDate, cvv, country, taxId, email]);
 
   return (
     <S.Container>
@@ -121,28 +109,6 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
             data-testid="country"
             required
           />
-
-          <S.Half>
-            <InputText
-              name="city"
-              label={{
-                text: field("city"),
-              }}
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              data-testid="city"
-              required
-            />
-
-            <InputText
-              name="state"
-              label={{ text: field("state") }}
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-              data-testid="state"
-              required
-            />
-          </S.Half>
 
           <InputText
             name={taxId}

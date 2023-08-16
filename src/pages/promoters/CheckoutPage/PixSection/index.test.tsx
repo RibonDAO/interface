@@ -6,7 +6,7 @@ import { nonProfitFactory } from "@ribon.io/shared/config";
 import { screen } from "@testing-library/react";
 import offerFactory from "config/testUtils/factories/offerFactory";
 import { clickOn, waitForPromises, renderComponent } from "config/testUtils";
-import FiatSection from ".";
+import PixSection from ".";
 
 jest.mock("hooks/usePaymentParams", () => ({
   __esModule: true,
@@ -36,42 +36,44 @@ jest.mock("@ribon.io/shared/hooks", () => ({
   }),
 }));
 
-describe("FiatSection", () => {
-  it("should render without error", () => {
-    renderComponent(<FiatSection />);
+describe("PixSection", () => {
+  const stripeMock = {
+    confirmPixPayment: jest.fn(),
+  } as any;
+  const mockSubmitFn = jest.fn();
 
-    expectTextToBeInTheDocument("Payment");
+  beforeEach(async () => {
+    renderComponent(<PixSection currentOffer={mockOffer} />, {
+      stripeProviderValue: {
+        stripe: stripeMock,
+      },
+      paymentProviderValue: {
+        country: "Brazil",
+        name: "John Doe",
+        city: "Brasilia",
+        state: "DF",
+        taxId: "123.456.789-10",
+        email: "john@doe.com",
+      },
+      pixPaymentProviderValue: {
+        handleSubmit: mockSubmitFn,
+      },
+    });
+    await waitForPromises();
+  });
+
+  it("should render without error", () => {
+    expectTextToBeInTheDocument("Generate QR Code");
   });
 
   describe("when the form is filled", () => {
-    const mockSubmitFn = jest.fn();
-    beforeEach(async () => {
-      renderComponent(<FiatSection />, {
-        paymentProviderValue: {
-          country: "Brasil",
-          city: "Brasilia",
-          state: "DF",
-          taxId: "12345678901",
-          email: "john@doe.com",
-        },
-        cardPaymentProviderValue: {
-          name: "John Doe",
-          number: "4111111111111111",
-          expirationDate: "05/2025",
-          cvv: "411",
-          handleSubmit: mockSubmitFn,
-        },
-      });
-      await waitForPromises();
-    });
-
     it("enables the submit button", () => {
-      expect(screen.getByText("Confirm payment")).toBeEnabled();
+      expect(screen.getByText("Generate QR Code")).toBeEnabled();
     });
 
     describe("when the submit button is clicked", () => {
       beforeEach(() => {
-        clickOn("Confirm payment");
+        clickOn("Generate QR Code");
       });
 
       it("calls the handle submit function", () => {
@@ -80,11 +82,11 @@ describe("FiatSection", () => {
 
       it("logs the confirmPaymentFormBtn_click", () => {
         expectLogEventToHaveBeenCalledWith("confirmPaymentFormBtn_click", {
-          targetId: `${mockCurrentPayable.id}`,
           target: "non_profit",
-          paymentMethod: "card",
+          targetId: "1",
           amount: 10,
           currency: "usd",
+          paymentMethod: "pix",
         });
       });
     });

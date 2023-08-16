@@ -76,6 +76,10 @@ import PixPaymentInformationProvider, {
   IPixPaymentInformationContext,
   PixPaymentInformationContext,
 } from "contexts/pixPaymentInformationContext";
+import StripeProvider, {
+  IStripeContext,
+  StripeContext,
+} from "contexts/stripeContext";
 
 export function renderWithTheme(children: React.ReactNode): RenderResult {
   return render(<ThemeProvider theme={theme}>{children}</ThemeProvider>);
@@ -135,6 +139,7 @@ export type RenderComponentProps = {
   networkProviderValue?: Partial<INetworkContext>;
   cryptoPaymentProviderValue?: Partial<ICryptoPaymentContext>;
   locationState?: Record<any, any>;
+  stripeProviderValue?: Partial<IStripeContext>;
 };
 export function renderComponent(
   component: JSX.Element,
@@ -156,6 +161,7 @@ export function renderComponent(
     networkProviderValue = {},
     cryptoPaymentProviderValue = {},
     pixPaymentProviderValue = {},
+    stripeProviderValue = {},
   }: RenderComponentProps = {},
 ): RenderWithContextResult {
   const historyObject = history;
@@ -224,10 +230,15 @@ export function renderComponent(
                                           CryptoPaymentContext,
                                           cryptoPaymentProviderValue,
                                           renderProvider(
-                                            PixPaymentInformationProvider,
-                                            PixPaymentInformationContext,
-                                            pixPaymentProviderValue,
-                                            component,
+                                            StripeProvider,
+                                            StripeContext,
+                                            stripeProviderValue,
+                                            renderProvider(
+                                              PixPaymentInformationProvider,
+                                              PixPaymentInformationContext,
+                                              pixPaymentProviderValue,
+                                              component,
+                                            ),
                                           ),
                                         ),
                                       ),

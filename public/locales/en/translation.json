@@ -380,6 +380,9 @@
       "uniqueDonationDescription": "Contribute once",
       "selectValue": "Select value"
     },
+    "monthlyContributionsPage": {
+      "title": "Monthly contributions"
+    },
     "checkoutPage": {
       "changeCurrency": "Change currency",
       "back": "Back",

@@ -379,6 +379,9 @@
       "uniqueDonationDescription": "Contribuir uma vez",
       "selectValue": "Selecione o valor"
     },
+    "monthlyContributionsPage": {
+      "title": "Contribuições mensais"
+    },
     "checkoutPage": {
       "changeCurrency": "Mudar moeda",
       "back": "Voltar",

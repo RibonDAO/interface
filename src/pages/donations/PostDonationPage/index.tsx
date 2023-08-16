@@ -12,7 +12,7 @@ import { formatPrice } from "lib/formatters/currencyFormatter";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useExperiment } from "@growthbook/growthbook-react";
 import { useCauseContributionContext } from "contexts/causeContributionContext";
-import { useCauses } from "@ribon.io/shared";
+import { useCausesContext } from "contexts/causesContext";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -35,7 +35,7 @@ function PostDonationPage(): JSX.Element {
   const { navigateTo } = useNavigation();
   const { contribution, offer } = useImpactConversion();
   const { setChosenCause, setChosenCauseIndex } = useCauseContributionContext();
-  const { causes } = useCauses();
+  const { causes } = useCausesContext();
 
   useEffect(() => {
     if (nonProfit === undefined) {

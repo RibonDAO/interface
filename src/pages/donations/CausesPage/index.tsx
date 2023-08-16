@@ -35,6 +35,7 @@ import ContributionNotification from "./ContributionNotification";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
 import ChooseCauseModal from "./ChooseCauseModal";
+import ContributionSection from "./ContributionSection";
 
 function CausesPage(): JSX.Element {
   const integrationId = useIntegrationId();
@@ -218,6 +219,7 @@ function CausesPage(): JSX.Element {
       )}
       <ChooseCauseModal visible={chooseCauseModalVisible} />
       <S.BodyContainer>
+        {!canDonate && <ContributionSection />}
         <S.TitleContainer>
           <S.Title>{t("pageTitle")}</S.Title>
 

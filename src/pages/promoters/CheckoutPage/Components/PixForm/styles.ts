@@ -2,9 +2,7 @@ import InputAutoComplete from "components/atomics/inputs/InputAutoComplete";
 import styled from "styled-components";
 import { defaultBodyXsRegular } from "styles/typography/default";
 
-export const Container = styled.div`
-  padding-inline: ${({ theme }) => theme.spacing(16)};
-`;
+export const Container = styled.div``;
 
 export const Half = styled.div`
   display: flex;

@@ -13,8 +13,8 @@ export const Half = styled.div`
 
 export const DonateButtonContainer = styled.div`
   width: 100%;
-  margin-bottom: ${({ theme }) => theme.spacing(16)};
   margin-top: ${({ theme }) => theme.spacing(16)};
+  margin-bottom: ${({ theme }) => theme.spacing(16)};
   bottom: 0;
   left: 0;
   background-color: ${({ theme }) => theme.colors.neutral10};

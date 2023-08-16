@@ -29,7 +29,6 @@ type LocationStateType = {
 function CardPage(): JSX.Element {
   const { navigateTo } = useNavigation();
   const [currentOffer, setCurrentOffer] = useState<Offer>(offerFactory());
-  const [currentOfferIndex, setCurrentOfferIndex] = useState(0);
   const { cause, setCause, setOfferId, setFlow } = usePaymentInformation();
   const { nonProfits } = useNonProfits();
   const { tertiary } = theme.colors.brand;
@@ -76,7 +75,7 @@ function CardPage(): JSX.Element {
     setFlow("nonProfit");
 
     const searchParams = new URLSearchParams({
-      offer: currentOfferIndex.toString(),
+      offer: currentOffer.priceCents.toString(),
       target: "non_profit",
       target_id: nonProfit.id.toString(),
       currency: currentOffer.currency.toUpperCase(),
@@ -84,7 +83,7 @@ function CardPage(): JSX.Element {
     });
 
     navigateTo({
-      pathname: "/promoters/checkout",
+      pathname: "/promoters/recurrence",
       search: searchParams.toString(),
     });
   };
@@ -93,9 +92,8 @@ function CardPage(): JSX.Element {
     navigateToCheckout(nonProfit);
   };
 
-  const handleOfferChange = (offer: Offer, index?: number) => {
+  const handleOfferChange = (offer: Offer) => {
     setCurrentOffer(offer);
-    setCurrentOfferIndex(index || 0);
     setOfferId(offer.id);
   };
 

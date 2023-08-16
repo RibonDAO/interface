@@ -1,9 +1,11 @@
 import styled from "styled-components";
+import Button from "components/atomics/buttons/Button";
 import {
   defaultBodyMdMedium,
   defaultBodyMdSemibold,
   defaultBodySmMedium,
   defaultBodySmSemibold,
+  defaultBodyXsSemibold,
 } from "styles/typography/default";
 
 export const Container = styled.div``;
@@ -16,6 +18,12 @@ export const Title = styled.h1`
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     ${defaultBodyMdMedium}
   }
+`;
+
+export const RecurrenceTitle = styled.h1`
+  ${defaultBodySmMedium}
+
+  color: ${({ theme }) => theme.colors.neutral[900]};
 `;
 
 export const PayableName = styled.span`
@@ -41,4 +49,17 @@ export const PaymentMethodsTitle = styled.h1`
 
   margin-top: ${({ theme }) => theme.spacing(24)};
   margin-bottom: ${({ theme }) => theme.spacing(16)};
+`;
+
+export const RecurrenceContainer = styled.div`
+  display: flex;
+  gap: ${({ theme }) => theme.spacing(8)};
+  align-items: center;
+`;
+
+export const RecurrenceButton = styled(Button)`
+  ${defaultBodyXsSemibold}
+
+  display: flex;
+  align-items: center;
 `;

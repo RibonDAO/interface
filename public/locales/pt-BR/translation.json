@@ -372,9 +372,19 @@
         "serviceFeesText": "Taxas de serviço:"
       }
     },
+    "recurrencePage": {
+      "title": "Recorrência",
+      "donatingTo": "Doando para ",
+      "recurrentDonationDescription": "Contribuir mensalmente",
+      "uniqueDonationDescription": "Contribuir uma vez",
+      "selectValue": "Selecione o valor"
+    },
     "checkoutPage": {
       "changeCurrency": "Mudar moeda",
       "back": "Voltar",
+      "monthlyContribution": "Contribuindo mensalmente",
+      "uniqueContribution": "Contribuindo uma vez",
+      "recurrenceButton": "Alterar",
       "donatingTo": "Doando para ",
       "netDonation": "Doação líquida: ",
       "serviceFees": "Taxas de serviço: ",
@@ -382,6 +392,7 @@
       "selectCurrency": "Selecione a moeda",
       "selectValue": "Selecione o valor",
       "additionalFeesText": "O pagamento é processado em dólar, o valor pode sofrer uma pequena variação de acordo com as taxas do seu banco.",
+      "pixReceiverText": "O destino do seu Pix será o <b>Stripe</b>, plataforma que processa os pagamentos da Ribon.",
       "brazilName": "Brasil",
       "paymentMethodSection": {
         "creditCard": "Cartão de crédito",
@@ -442,7 +453,7 @@
       "modalSuccessButton": "Ok",
       "modalAnimationFrom": "Você",
       "modalAnimationTo": "Ribon",
-      "modalAnimationTitle": "Realizando contribuição..."
+      "modalAnimationTitle": "Gerando QR code..."
     }
   },
   "impactNormalizer": {

@@ -373,9 +373,19 @@
         "serviceFeesText": "Service fees:"
       }
     },
+    "recurrencePage": {
+      "title": "Recurrence",
+      "donatingTo": "Donating to ",
+      "recurrentDonationDescription": "Contribute monthly",
+      "uniqueDonationDescription": "Contribute once",
+      "selectValue": "Select value"
+    },
     "checkoutPage": {
       "changeCurrency": "Change currency",
       "back": "Back",
+      "monthlyContribution": "Contributing monthly",
+      "uniqueContribution": "Contributing once",
+      "recurrenceButton": "Change",
       "donatingTo": "Donating to ",
       "netDonation": "Net donation: ",
       "serviceFees": "Service fees: ",
@@ -383,6 +393,7 @@
       "selectCurrency": "Select currency",
       "selectValue": "Select value",
       "additionalFeesText": "Payment is processed in USD, the amount may vary slightly according to your bank's fees.",
+      "pixReceiverText": "Your Pix will go to <b>Stripe</b>, the platform that processes Ribon payments.",
       "brazilName": "Brazil",
       "paymentMethodSection": {
         "creditCard": "Credit card",
@@ -443,7 +454,7 @@
       "modalSuccessButton": "Ok",
       "modalAnimationFrom": "You",
       "modalAnimationTo": "Ribon",
-      "modalAnimationTitle": "Processing giving..."
+      "modalAnimationTitle": "Generating QR code..."
     }
   },
   "impactNormalizer": {

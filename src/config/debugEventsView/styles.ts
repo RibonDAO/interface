@@ -2,12 +2,14 @@ import styled, { css, keyframes } from "styled-components";
 
 export const Container = styled.div`
   max-width: 550px;
+  max-height: 60vh;
   padding: 20px;
   border: 1px solid #ccc;
   position: fixed;
   right: 20px;
   bottom: 20px;
   z-index: 9999;
+  overflow-y: scroll;
   background-color: white;
 `;
 
@@ -156,6 +158,7 @@ export const MonitoredEventsHeader = styled.h4`
 
 export const HorizontalScrollDiv = styled.div`
   max-width: 250px;
+  max-height: 80px;
   overflow-x: auto;
 `;
 

@@ -113,6 +113,7 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
       {showFiscalFields && (
         <>
           <InputAutoComplete
+            initialState={country}
             name="country"
             suggestions={countryList(currentLang)}
             label={{ text: field("country") }}

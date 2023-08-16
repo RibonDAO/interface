@@ -1,4 +1,4 @@
-import ArrowLeftGreen from "assets/icons/arrow-left-green.svg";
+import ArrowLeftGreen from "assets/icons/arrow-left-dark-green.svg";
 import CurrencyExchange from "assets/icons/currency-exchange-icon.svg";
 import usePaymentParams from "hooks/usePaymentParams";
 import { useLocationSearch } from "hooks/useLocationSearch";

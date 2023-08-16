@@ -14,7 +14,6 @@ export interface ICauseContributionContext {
   chosenCauseIndex: number | undefined;
   setChosenCause: (cause: SetStateAction<Cause | undefined>) => void;
   setChosenCauseId: (id: SetStateAction<number | undefined>) => void;
-  setChosenCauseIndex: (id: SetStateAction<number | undefined>) => void;
 }
 
 export const CauseContributionContext =
@@ -36,6 +35,14 @@ function CauseContributionProvider({ children }: any) {
   }, [chosenCauseId]);
 
   useEffect(() => {
+    if (chosenCause) {
+      setChosenCauseIndex(
+        causes.findIndex((cause) => cause.id === chosenCause.id),
+      );
+    }
+  }, [chosenCause]);
+
+  useEffect(() => {
     if (causes) {
       setChosenCause(causes[0]);
     }
@@ -47,7 +54,6 @@ function CauseContributionProvider({ children }: any) {
       setChosenCause,
       setChosenCauseId,
       chosenCauseIndex,
-      setChosenCauseIndex,
     }),
     [
       chosenCause,

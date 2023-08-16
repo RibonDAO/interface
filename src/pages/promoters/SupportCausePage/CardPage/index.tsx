@@ -33,7 +33,7 @@ function SupportCausePage(): JSX.Element {
   const { cause, setCause, setOfferId, setFlow } = usePaymentInformation();
 
   const { causes, isLoading } = useCausesContext();
-  const { chosenCause, setChosenCause, chosenCauseIndex, setChosenCauseIndex } =
+  const { chosenCause, setChosenCause, chosenCauseIndex } =
     useCauseContributionContext();
 
   const { state, search } = useLocation<LocationStateType>();
@@ -56,12 +56,11 @@ function SupportCausePage(): JSX.Element {
     });
   }, [causes]);
 
-  const handleCauseClick = (causeClicked: Cause, index: number) => {
+  const handleCauseClick = (causeClicked: Cause) => {
     logEvent("treasureCauseSelection_click", {
       id: causeClicked?.id,
     });
     setCause(causeClicked);
-    setChosenCauseIndex(index);
     setChosenCause(causeClicked);
   };
 

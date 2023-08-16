@@ -26,7 +26,7 @@ function CryptoPage(): JSX.Element {
   const { secondary } = theme.colors.brand;
   const { navigateTo } = useNavigation();
   const { causes } = useCausesContext();
-  const { chosenCause, setChosenCause, chosenCauseIndex, setChosenCauseIndex } =
+  const { chosenCause, setChosenCause, chosenCauseIndex } =
     useCauseContributionContext();
 
   const { cause, setCause, nonProfit } = usePaymentInformation();
@@ -69,13 +69,12 @@ function CryptoPage(): JSX.Element {
     }
   }, [cause]);
 
-  const handleCauseClick = (causeClicked: Cause, index: number) => {
+  const handleCauseClick = (causeClicked: Cause) => {
     logEvent("supportCauseSelection_click", {
       id: causeClicked?.id,
     });
     setCause(causeClicked);
     setChosenCause(causeClicked);
-    setChosenCauseIndex(index);
   };
 
   const onDonationToContractSuccess = () => {

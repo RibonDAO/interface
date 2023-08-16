@@ -11,6 +11,7 @@ import { useImpactConversion } from "hooks/useImpactConversion";
 import { formatPrice } from "lib/formatters/currencyFormatter";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useExperiment } from "@growthbook/growthbook-react";
+import { useCauseContributionContext } from "contexts/causeContributionContext";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -32,6 +33,7 @@ function PostDonationPage(): JSX.Element {
 
   const { navigateTo } = useNavigation();
   const { contribution, offer } = useImpactConversion();
+  const { setChosenCause } = useCauseContributionContext();
 
   useEffect(() => {
     if (nonProfit === undefined) {
@@ -53,6 +55,7 @@ function PostDonationPage(): JSX.Element {
   }, [contribution]);
 
   const handleClickedDonationButton = (flow: string) => {
+    setChosenCause(nonProfit?.cause);
     logEvent(flow === "nonProfit" ? "giveNgoBtn_start" : "giveCauseBtn_start", {
       from: "givePostDonation_page",
       value: contribution?.value,
@@ -62,7 +65,9 @@ function PostDonationPage(): JSX.Element {
     });
 
     navigateTo({
-      pathname: "promoters/payment",
+      pathname: `promoters/${
+        flow === "nonProfit" ? "support-non-profit" : "support-cause"
+      }`,
       state: {
         offer,
         nonProfit,

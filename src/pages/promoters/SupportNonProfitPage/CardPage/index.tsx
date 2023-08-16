@@ -34,7 +34,7 @@ function CardPage(): JSX.Element {
   const { tertiary } = theme.colors.brand;
 
   const { causes } = useCausesContext();
-  const { chosenCause, setChosenCause, chosenCauseIndex, setChosenCauseIndex } =
+  const { chosenCause, setChosenCause, chosenCauseIndex } =
     useCauseContributionContext();
   const { state, search } = useLocation<LocationStateType>();
   const integrationId = extractUrlValue("integration_id", search);
@@ -56,12 +56,11 @@ function CardPage(): JSX.Element {
     });
   }, [nonProfits, causes]);
 
-  const handleCauseClick = (causeClicked: Cause, index: number) => {
+  const handleCauseClick = (causeClicked: Cause) => {
     logEvent("nonProfitCauseSelection_click", {
       id: causeClicked?.id,
     });
     setCause(causeClicked);
-    setChosenCauseIndex(index);
     setChosenCause(causeClicked);
   };
 

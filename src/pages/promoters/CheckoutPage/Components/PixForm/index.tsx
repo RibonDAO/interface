@@ -41,10 +41,6 @@ function PixForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
     setName,
     country,
     setCountry,
-    city,
-    setCity,
-    state,
-    setState,
     taxId,
     setTaxId,
     email,
@@ -73,12 +69,10 @@ function PixForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
   const { currentLang } = useLanguage();
 
   useEffect(() => {
-    const fiscalFields = showFiscalFields
-      ? city && state && country && validTaxId()
-      : true;
+    const fiscalFields = showFiscalFields ? country && validTaxId() : true;
 
     setButtonDisabled(!(name && email && fiscalFields));
-  }, [name, country, state, city, taxId, email]);
+  }, [name, country, taxId, email]);
 
   return (
     <S.Container>
@@ -105,28 +99,6 @@ function PixForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
             data-testid="country"
             required
           />
-
-          <S.Half>
-            <InputText
-              name="city"
-              label={{
-                text: field("city"),
-              }}
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              data-testid="city"
-              required
-            />
-
-            <InputText
-              name="state"
-              label={{ text: field("state") }}
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-              data-testid="state"
-              required
-            />
-          </S.Half>
 
           <InputText
             name={taxId}

@@ -416,7 +416,7 @@
           "city": "City",
           "taxId": "Tax ID",
           "cpf": "CPF",
-          "name": "Name"
+          "name": "Full name"
         }
       },
       "confirmPayment": "Confirm payment",

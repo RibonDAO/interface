@@ -381,7 +381,9 @@
       "selectValue": "Select value"
     },
     "monthlyContributionsPage": {
-      "title": "Monthly contributions"
+      "title": "Monthly contributions",
+      "to": "To ",
+      "nextContribution": "Next contribution in "
     },
     "checkoutPage": {
       "changeCurrency": "Change currency",

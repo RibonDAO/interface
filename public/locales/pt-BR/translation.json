@@ -380,7 +380,9 @@
       "selectValue": "Selecione o valor"
     },
     "monthlyContributionsPage": {
-      "title": "Contribuições mensais"
+      "title": "Contribuições mensais",
+      "to": "Para ",
+      "nextContribution": "Próxima contribuição em "
     },
     "checkoutPage": {
       "changeCurrency": "Mudar moeda",

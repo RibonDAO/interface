@@ -71,11 +71,11 @@ function MonthlyContributionPage(): JSX.Element {
           </S.IconTextContainer>
 
           <S.Text>
-            Para:{" "}
+            {t("to")}
             <S.HighlightedText>{personPayment.receiverName}</S.HighlightedText>
           </S.Text>
           <S.Text>
-            Próxima contribuição em:{" "}
+            {t("nextContribution")}
             <S.HighlightedText>{personPayment.paidDate}</S.HighlightedText>
           </S.Text>
         </S.PaymentContainer>

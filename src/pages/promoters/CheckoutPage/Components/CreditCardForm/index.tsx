@@ -127,7 +127,7 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
       )}
 
       <InputText
-        name="number"
+        name="cardNumber"
         label={{ text: field("number") }}
         value={number}
         mask="9999 9999 9999 9999"

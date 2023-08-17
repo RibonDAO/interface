@@ -1,4 +1,4 @@
-import { NonProfit, Offer } from "@ribon.io/shared/types";
+import { Currencies, NonProfit, Offer } from "@ribon.io/shared/types";
 import useNavigation from "hooks/useNavigation";
 import { logEvent } from "lib/events";
 import { formatPrice } from "lib/formatters/currencyFormatter";
@@ -45,13 +45,13 @@ function ContributionCard({
   const { currentLang } = useLanguage();
 
   const isTest = process.env.NODE_ENV === "test";
-  const [currency, setCurrency] = useState<string | undefined>();
+  const [currency, setCurrency] = useState<Currencies | undefined>();
 
   useEffect(() => {
     if (offer) {
-      setCurrency(offer.currency.toUpperCase());
+      setCurrency(offer?.currency === "brl" ? Currencies.BRL : Currencies.USD);
     } else {
-      setCurrency(currentLang === "pt-BR" ? "BRL" : "USD");
+      setCurrency(currentLang === "pt-BR" ? Currencies.BRL : Currencies.USD);
     }
   }, [currentLang, offer]);
 

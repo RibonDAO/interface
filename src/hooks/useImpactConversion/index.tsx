@@ -12,6 +12,11 @@ import { useEffect, useState } from "react";
 import { Contribution } from "types/entities/Contribution";
 
 export function useImpactConversion() {
+  // R$ 10,00 offer
+  const offerBrlId = 33;
+  // $ 10,00 offer
+  const offerUsdId = 7;
+
   const [contribution, setContribution] = useState<Contribution>();
   const [description, setDescription] = useState<
     string | JSX.Element | undefined
@@ -46,9 +51,9 @@ export function useImpactConversion() {
 
   useEffect(() => {
     if (currentLang === "pt-BR") {
-      setOffer(offersBrl?.find((o) => o.id === 33) ?? offersBrl?.[0]);
+      setOffer(offersBrl?.find((o) => o.id === offerBrlId) ?? offersBrl?.[0]);
     } else {
-      setOffer(offersUsd?.find((o) => o.id === 7) ?? offersUsd?.[0]);
+      setOffer(offersUsd?.find((o) => o.id === offerUsdId) ?? offersUsd?.[0]);
     }
   }, [offersBrl, offersUsd, currentLang]);
 

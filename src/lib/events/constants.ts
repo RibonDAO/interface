@@ -1,6 +1,6 @@
 const events: any = {
   pages: {
-    "/": "P1",
+    "/causes": "P26",
     "/promoters/support-cause": "P2",
     "/promoters/support-cause?payment_method=card": "P2",
     "/promoters/support-cause?payment_method=crypto": "P3",

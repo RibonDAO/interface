@@ -6,6 +6,7 @@ import Spinner from "components/atomics/Spinner";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import useNavigation from "hooks/useNavigation";
 import { useEffect } from "react";
+import { logEvent } from "lib/events";
 import * as S from "./styles";
 
 function LoadingPage(): JSX.Element {
@@ -18,7 +19,10 @@ function LoadingPage(): JSX.Element {
   } = useFirstAccessToIntegration(integrationId);
 
   useEffect(() => {
-    if (integration) localStorage.setItem("integrationName", integration.name);
+    if (integration) {
+      localStorage.setItem("integrationName", integration.name);
+      logEvent("P1_view");
+    }
   }, [integration]);
 
   const renderOnboardingPage = () => {

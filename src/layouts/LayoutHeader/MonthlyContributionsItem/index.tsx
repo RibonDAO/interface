@@ -14,6 +14,14 @@ function MonthlyContributionsItem(): JSX.Element {
 
   const handleClick = () => {
     logEvent("manageSubscription_click");
+    // const { useUserSubscriptions } = useSubscriptions();
+    // const { data: userSubscriptions, isLoading } = useUserSubscriptions();
+    // if (isLoading) return <Loader />;
+    // if (userSubscriptions?.length) {
+    //  navigateTo("/monthly-contributions");
+    // } else {
+    //  navigateTo("/promoters/support-cause");
+    // }
     navigateTo("/monthly-contributions");
 
     newLogEvent("click", "manageSubscription", {

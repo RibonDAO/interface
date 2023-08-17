@@ -5,7 +5,10 @@ export const Container = styled.div`
   padding: ${({ theme }) => theme.spacing(16)};
   flex-direction: column;
   justify-content: center;
-  background-color: ${({ theme }) => theme.colors.neutral10};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    padding: ${({ theme }) => theme.spacing(32)};
+  }
 `;
 
 export const Title = styled.h1`

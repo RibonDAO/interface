@@ -75,7 +75,7 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
     setButtonDisabled(
       !(
         number &&
-        name &&
+        name.length >= 3 &&
         email &&
         !expirationDate.includes("_") &&
         cvv.length >= 3 &&

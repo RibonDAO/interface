@@ -71,7 +71,7 @@ function PixForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
   useEffect(() => {
     const fiscalFields = showFiscalFields ? country && validTaxId() : true;
 
-    setButtonDisabled(!(name && email && fiscalFields));
+    setButtonDisabled(!(name.length >= 3 && email && fiscalFields));
   }, [name, country, taxId, email]);
 
   return (

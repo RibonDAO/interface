@@ -14,9 +14,9 @@ function ContributionSection(): JSX.Element {
   const { isMobile } = useBreakpoint();
   const contributionCard = () => (
     <>
+      <S.Title>{t("title", { nonProfitName: nonProfit?.name })}</S.Title>
       <S.Container>
         <S.ImageContainer>
-          <S.Title>{t("title", { nonProfitName: nonProfit?.name })}</S.Title>
           <S.NonProfitImage src={contribution?.image} />
         </S.ImageContainer>
         <ContributionCard
@@ -26,8 +26,7 @@ function ContributionSection(): JSX.Element {
           offer={offer}
           nonProfit={nonProfit}
           style={{
-            marginTop: isMobile ? "0" : "48px",
-            width: isMobile ? "110%" : "100%",
+            width: "100%",
             borderRadius: isMobile ? "0" : "8px",
           }}
           from="donateTickets_page"

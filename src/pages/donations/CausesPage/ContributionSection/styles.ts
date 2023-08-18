@@ -28,14 +28,18 @@ export const NonProfitImage = styled.img`
 `;
 
 export const ImageContainer = styled.div`
-  width: 100%;
-  margin-right: 0;
+  width: 110%;
+  margin: 0 -16px;
   flex-basis: 100%;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 100%;
     max-width: 432px;
     margin-right: ${({ theme }) => theme.spacing(40)};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-right: ${({ theme }) => theme.spacing(20)};
   }
 `;
 

@@ -26,7 +26,9 @@ function ContributionSection(): JSX.Element {
           offer={offer}
           nonProfit={nonProfit}
           style={{
-            width: "100%",
+            width: isMobile ? "110%" : "100%",
+            marginRight: isMobile ? "-16px" : "0",
+            marginLeft: isMobile ? "-16px" : "0",
             borderRadius: isMobile ? "0" : "8px",
           }}
           from="donateTickets_page"

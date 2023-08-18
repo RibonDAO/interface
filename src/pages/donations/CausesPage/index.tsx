@@ -221,7 +221,7 @@ function CausesPage(): JSX.Element {
       <S.BodyContainer>
         {!canDonate && <ContributionSection />}
         <S.TitleContainer>
-          <S.Title>{t("pageTitle")}</S.Title>
+          {canDonate && <S.Title>{t("pageTitle")}</S.Title>}
 
           {!isMobile && (
             <Tooltip

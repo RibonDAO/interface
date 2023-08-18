@@ -14,13 +14,14 @@ export const Container = styled.div`
 
 export const NonProfitImage = styled.img`
   width: 100%;
-  max-height: 220px;
+  max-height: 240px;
   border-radius: 0;
   position: relative;
   object-fit: cover;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 100%;
+    max-width: 432px;
     border-radius: 8px;
     left: initial;
   }
@@ -32,6 +33,8 @@ export const ImageContainer = styled.div`
   flex-basis: 100%;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: 100%;
+    max-width: 432px;
     margin-right: ${({ theme }) => theme.spacing(40)};
   }
 `;

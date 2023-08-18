@@ -21,25 +21,27 @@ export const NonProfitImage = styled.img`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 100%;
-    max-width: 432px;
     border-radius: 8px;
     left: initial;
   }
 `;
 
 export const ImageContainer = styled.div`
-  width: 110%;
-  margin: 0 -16px;
+  width: 100%;
   flex-basis: 100%;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    width: 100%;
     max-width: 432px;
     margin-right: ${({ theme }) => theme.spacing(40)};
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
     margin-right: ${({ theme }) => theme.spacing(20)};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: 110%;
+    margin: 0 -16px;
   }
 `;
 

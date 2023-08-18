@@ -80,7 +80,7 @@ function ContributionCard({
 
     if (currency) {
       const searchParams = new URLSearchParams({
-        offer: "0",
+        offer: offer ? offer.priceCents.toString() : "0",
         target: flow === "nonProfit" ? "non_profit" : "cause",
         target_id:
           (flow === "nonProfit"

@@ -39,7 +39,7 @@ describe("ContributionCard with no variation", () => {
     clickOn("Donate");
 
     expectPageToNavigateTo("/promoters/checkout", {
-      search: "offer=0&target=non_profit&target_id=1&currency=USD",
+      search: "offer=1000&target=non_profit&target_id=1&currency=USD",
     });
   });
 
@@ -74,7 +74,7 @@ describe("ContributionCard with no variation", () => {
     clickOn("Donate");
 
     expectPageToNavigateTo("/promoters/checkout", {
-      search: "offer=0&target=cause&target_id=1&currency=USD",
+      search: "offer=1000&target=cause&target_id=1&currency=USD",
     });
   });
 });
@@ -109,7 +109,7 @@ describe("ContributionCard with variation", () => {
     clickOn("Donate");
 
     expectPageToNavigateTo("/promoters/checkout", {
-      search: "offer=0&target=non_profit&target_id=1&currency=USD",
+      search: "offer=1000&target=non_profit&target_id=1&currency=USD",
     });
   });
 
@@ -145,7 +145,7 @@ describe("ContributionCard with variation", () => {
     clickOn("Donate");
 
     expectPageToNavigateTo("/promoters/checkout", {
-      search: "offer=0&target=cause&target_id=1&currency=USD",
+      search: "offer=1000&target=cause&target_id=1&currency=USD",
     });
   });
 });

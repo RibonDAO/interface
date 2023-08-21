@@ -13,7 +13,7 @@ export const Container = styled.div`
   padding: ${({ theme }) => theme.spacing(16)};
   flex-direction: column;
   justify-content: center;
-
+  color: ${({ theme }) => theme.colors.neutral[600]};
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     max-width: 100%;
     margin: 0 14%;
@@ -84,7 +84,7 @@ export const IconTextContainer = styled.div`
 export const Icon = styled.img`
   width: 28px;
   height: 28px;
-
+  cursor: pointer;
   &:hover {
     background-image: url(${DeleteButtonHover});
   }

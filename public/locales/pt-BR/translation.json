@@ -426,10 +426,6 @@
       },
       "confirmPayment": "Confirmar pagamento",
       "pixButtonText": "Gerar QR Code"
-    },
-    "contributionCanceledPage": {
-      "title": "Contribuição cancelada",
-      "description": "Sua contribuição de {{value}} para {{ngo}} foi cancelada"
     }
   },
   "contexts": {

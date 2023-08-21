@@ -427,10 +427,6 @@
       },
       "confirmPayment": "Confirm payment",
       "pixButtonText": "Generate QR Code"
-    },
-    "contributionCanceledPage": {
-      "title": "Contribution canceled",
-      "description": "Your monthly contribution of {{value}} to {{ngo}} was canceled"
     }
   },
   "contexts": {

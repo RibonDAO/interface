@@ -54,7 +54,7 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
     <>
       {t("impactOneLife")}{" "}
       {t("impactDescription", {
-        value: contribution?.impact,
+        value: nonProfit?.impactDescription.split(",")[0],
       })}
     </>
   );

@@ -32,6 +32,7 @@ import PixPaymentInformationProvider from "contexts/pixPaymentInformationContext
 import PaymentInformationProvider from "contexts/paymentInformationContext";
 import useQueryParams from "hooks/useQueryParams";
 import RecurrencePage from "pages/promoters/CheckoutPage/RecurrencePage";
+import ContributionCanceledPage from "pages/promoters/CancelPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -261,6 +262,11 @@ function RoutesComponent(): JSX.Element {
       <Route path="/delete_account" exact>
         <Suspense fallback={<div />}>
           <DeleteAccountPage />
+        </Suspense>
+      </Route>
+      <Route path="/contribution-canceled" exact>
+        <Suspense fallback={<div />}>
+          <ContributionCanceledPage />
         </Suspense>
       </Route>
     </Switch>

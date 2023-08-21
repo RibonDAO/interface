@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { NonProfit } from "@ribon.io/shared/types";
 import { useTranslation } from "react-i18next";
 import { theme } from "@ribon.io/shared/styles";
-import useFormattedImpactText from "hooks/useFormattedImpactText";
 import BackgroundShapes from "assets/images/background-shapes.svg";
 import { isValidEmail } from "lib/validators";
 import { logEvent } from "lib/events";
+import useFormattedImpactText from "hooks/useFormattedImpactText";
+import { useExperiment } from "@growthbook/growthbook-react";
 import * as S from "./styles";
 
 type Props = {
@@ -16,8 +17,10 @@ function EmailInputSection({ nonProfit, onContinue }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.confirmDonationPage.signInSection",
   });
-  const { formattedImpactText } = useFormattedImpactText();
+
   const [email, setEmail] = useState("");
+
+  const { formattedImpactText } = useFormattedImpactText();
 
   useEffect(() => {
     logEvent("P12_view", {
@@ -28,6 +31,24 @@ function EmailInputSection({ nonProfit, onContinue }: Props): JSX.Element {
   const handleButtonPress = () => {
     onContinue(email);
   };
+
+  const variation = useExperiment({
+    key: "progression-test-first-stage",
+    variations: [false, true],
+  });
+
+  const newImpactFormat = () => (
+    <S.NewImpactContainer>
+      <S.NewImpactTitle>{t("impactOneLife")}</S.NewImpactTitle>
+      <S.NewImpactDescription>
+        {t("impactDescription", {
+          value: nonProfit.impactDescription.split(",")[0],
+        })}
+      </S.NewImpactDescription>
+    </S.NewImpactContainer>
+  );
+  const oldImpactFormat = () =>
+    formattedImpactText(nonProfit, undefined, false, true);
 
   return (
     <S.Container>
@@ -40,7 +61,7 @@ function EmailInputSection({ nonProfit, onContinue }: Props): JSX.Element {
       <S.ContentContainer>
         <S.Title>{t("title")}</S.Title>
         <S.Description>
-          {formattedImpactText(nonProfit, undefined, false, true)}
+          {variation.value ? newImpactFormat() : oldImpactFormat()}
         </S.Description>
         <S.Input
           name="email"

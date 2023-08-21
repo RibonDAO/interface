@@ -59,7 +59,9 @@
         "titleContributionModal": "Você usou todos seus tickets",
         "descriptionContributionModal": "Que tal fazer uma doação paga?",
         "buttonContributionModal": "Doe {{value}}",
-        "textContributionModal": "Doe {{value}} para {{nonProfitName}}"
+        "textContributionModal": "Doe {{value}} para {{nonProfitName}}",
+        "impactOneLife": "Impacte 1 vida",
+        "impactDescription": "com {{value}}"
       },
       "promoterCta": {
         "title": "Seja promotor de uma causa Ribon",
@@ -97,7 +99,7 @@
       "thanksToYou": "Graças a você...",
       "lifeWasImpacted": "1 vida foi impactada",
       "livesWereImpacted": "{{value}} vidas foram impactadas",
-      "impactDescription":"com {{value}}",
+      "impactDescription": "com {{value}}",
       "titleSecondLine": "Você doou para",
       "youDonatedText": "Você doou",
       "button": "Terminar"
@@ -137,7 +139,9 @@
     "confirmDonationPage": {
       "signedInSection": {
         "title": "Sua doação",
-        "confirmText": "Confirmar doação"
+        "confirmText": "Confirmar doação",
+        "impactOneLife": "Impacte 1 vida",
+        "impactDescription": "com {{value}}"
       },
       "signInSection": {
         "title": "Insira seu e-mail para doar",
@@ -147,7 +151,9 @@
         "termsText": "Termos",
         "termsLink": "https://ribon.io/privacy-policy/#termos",
         "privacyPolicyText": "Política de Privacidade",
-        "privacyPolicyLink": "https://ribon.io/privacy-policy/#pol%C3%ADtica"
+        "privacyPolicyLink": "https://ribon.io/privacy-policy/#pol%C3%ADtica",
+        "impactOneLife": "Impacte 1 vida",
+        "impactDescription": "com {{value}}"
       }
     }
   },
@@ -420,6 +426,10 @@
       },
       "confirmPayment": "Confirmar pagamento",
       "pixButtonText": "Gerar QR Code"
+    },
+    "contributionCanceledPage": {
+      "title": "Contribuição cancelada",
+      "description": "Sua contribuição de {{value}} para {{ngo}} foi cancelada"
     }
   },
   "contexts": {
@@ -561,7 +571,7 @@
     "donate": "Doe {{value}}",
     "titleCard": "Faça ainda mais",
     "donateAndImpact": "Doe {{value}} e impacte",
-    "livesAmount":"+{{value}} vidas",
-    "impactDescription":"com {{value}}"
+    "livesAmount": "+{{value}} vidas",
+    "impactDescription": "com {{value}}"
   }
 }

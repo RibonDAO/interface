@@ -8,6 +8,7 @@ import { logEvent } from "lib/events";
 import useNavigation from "hooks/useNavigation";
 import { useLanguage } from "hooks/useLanguage";
 import { useModalContext } from "contexts/modalContext";
+import { useExperiment } from "@growthbook/growthbook-react";
 import { useModal } from "../useModal";
 
 export function useBlockedDonationContributionModal(initialState?: boolean) {
@@ -44,8 +45,21 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
       search: searchParams.toString(),
     });
   };
+  const variation = useExperiment({
+    key: "progression-test-first-stage",
+    variations: [false, true],
+  });
 
-  const highlightedText = (
+  const newImpactFormat = (
+    <>
+      {t("impactOneLife")}{" "}
+      {t("impactDescription", {
+        value: contribution?.impact,
+      })}
+    </>
+  );
+
+  const oldImpactFormat = (
     <>
       {description && <>{description} </>}
       {contribution?.impact && <b>{contribution?.impact}</b>}
@@ -61,7 +75,7 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
       description: t("descriptionContributionModal"),
       icon: "confirmation_number",
       iconColor: primary[500],
-      highlightedText,
+      highlightedText: variation.value ? newImpactFormat : oldImpactFormat,
       primaryButton: {
         text: t("buttonContributionModal", {
           value: formatPrice(

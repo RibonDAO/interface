@@ -1,10 +1,11 @@
 // import { PersonPayment } from "@ribon.io/shared";
 import ArrowLeft from "assets/icons/arrow-left-green.svg";
-// import Loader from "components/atomics/Loader";
+
 // import useSubscriptions from "hooks/apiHooks/useSubscriptions";
 import useNavigation from "hooks/useNavigation";
 import DeleteButton from "assets/icons/delete-icon.svg";
 import { useTranslation } from "react-i18next";
+import useSubscriptions from "hooks/apiHooks/useSubscriptions";
 import * as S from "./styles";
 
 function MonthlyContributionPage(): JSX.Element {
@@ -12,57 +13,11 @@ function MonthlyContributionPage(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.monthlyContributionsPage",
   });
-  // const { useUserSubscriptions } = useSubscriptions();
-  // const { data: userSubscriptions, isLoading } = useUserSubscriptions();
-  const userSubscriptions = [
-    {
-      id: 1,
-      personPayments: [
-        {
-          id: 1,
-          amountCents: 1000,
-          receiverName: "Saúde",
-          paidDate: "12/12/2012",
-        },
-      ],
-    },
-    {
-      id: 2,
-      personPayments: [
-        {
-          id: 3,
-          amountCents: 1000,
-          receiverName: "Against Malaria Foundation",
-          paidDate: "12/12/2012",
-        },
-      ],
-    },
-    {
-      id: 3,
-      personPayments: [
-        {
-          id: 1,
-          amountCents: 1000,
-          receiverName: "teste",
-          paidDate: "12/12/2012",
-        },
-      ],
-    },
-    {
-      id: 4,
-      personPayments: [
-        {
-          id: 3,
-          amountCents: 1000,
-          receiverName: "teste",
-          paidDate: "12/12/2012",
-        },
-      ],
-    },
-  ];
+  const { useUserSubscriptions } = useSubscriptions();
+  const { data: userSubscriptions } = useUserSubscriptions();
 
-  const personPaymentItems: JSX.Element[] = userSubscriptions.flatMap(
-    (subscription) =>
+  const personPaymentItems: JSX.Element[] | undefined =
+    userSubscriptions?.flatMap((subscription) =>
       subscription.personPayments.map((personPayment) => (
         <S.PaymentContainer key={personPayment.id}>
           <S.IconTextContainer>
@@ -72,7 +27,7 @@ function MonthlyContributionPage(): JSX.Element {
 
           <S.Text>
             {t("to")}
-            <S.HighlightedText>{personPayment.receiverName}</S.HighlightedText>
+            <S.HighlightedText>lala</S.HighlightedText>
           </S.Text>
           <S.Text>
             {t("nextContribution")}
@@ -80,7 +35,7 @@ function MonthlyContributionPage(): JSX.Element {
           </S.Text>
         </S.PaymentContainer>
       )),
-  );
+    );
   return (
     <S.Container>
       <S.BackArrowButton src={ArrowLeft} onClick={navigateBack} />

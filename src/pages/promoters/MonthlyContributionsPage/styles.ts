@@ -13,7 +13,7 @@ export const Container = styled.div`
   padding: ${({ theme }) => theme.spacing(16)};
   flex-direction: column;
   justify-content: center;
-  color: ${({ theme }) => theme.colors.neutral[600]};
+
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     max-width: 100%;
     margin: 0 14%;
@@ -64,9 +64,10 @@ export const PaymentContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(8)};
+  color: ${({ theme }) => theme.colors.neutral[600]};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    min-width: 328px;
+    min-width: 464px;
   }
 `;
 
@@ -97,5 +98,5 @@ export const Text = styled.p`
 export const HighlightedText = styled.span`
   ${defaultBodySmSemibold}
 
-  color: ${({ theme }) => theme.colors.brand.primary[800]};
+  color: ${({ theme }) => theme.colors.brand.primary[600]};
 `;

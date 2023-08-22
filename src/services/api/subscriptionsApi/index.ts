@@ -7,7 +7,7 @@ const subscriptionsApi = {
   getUserSubscriptions: (
     userId: number | string,
   ): Promise<AxiosResponse<Subscription[]>> =>
-    apiGet(`subscriptions_for_customer/${userId}`),
+    apiGet(`payments/subscriptions_for_customer/${userId}`),
 };
 
 export default subscriptionsApi;

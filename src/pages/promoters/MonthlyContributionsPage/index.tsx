@@ -21,13 +21,13 @@ function MonthlyContributionPage(): JSX.Element {
       subscription.personPayments.map((personPayment) => (
         <S.PaymentContainer key={personPayment.id}>
           <S.IconTextContainer>
-            <S.Amount>R$ {personPayment.amountCents}</S.Amount>
+            <S.Amount>{personPayment.offer.price}</S.Amount>
             <S.Icon src={DeleteButton} />
           </S.IconTextContainer>
 
           <S.Text>
             {t("to")}
-            <S.HighlightedText>lala</S.HighlightedText>
+            <S.HighlightedText>{personPayment.receiver.name}</S.HighlightedText>
           </S.Text>
           <S.Text>
             {t("nextContribution")}

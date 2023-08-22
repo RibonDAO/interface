@@ -34,12 +34,12 @@ describe("ContributionCard with no variation", () => {
 
     expectTextToBeInTheDocument("This is a test description");
     expectTextToBeInTheDocument("This is a test impact");
-    expectTextToBeInTheDocument("Donate R$ 100");
+    expectTextToBeInTheDocument("Donate $100");
 
     clickOn("Donate");
 
     expectPageToNavigateTo("/promoters/checkout", {
-      search: "offer=0&target=non_profit&target_id=1&currency=BRL",
+      search: "offer=1000&target=non_profit&target_id=1&currency=USD",
     });
   });
 
@@ -69,12 +69,12 @@ describe("ContributionCard with no variation", () => {
 
     expectTextToBeInTheDocument("This is a test description");
     expectTextToBeInTheDocument("This is a test impact");
-    expectTextToBeInTheDocument("Donate R$ 100");
+    expectTextToBeInTheDocument("Donate $100");
 
     clickOn("Donate");
 
     expectPageToNavigateTo("/promoters/checkout", {
-      search: "offer=0&target=cause&target_id=1&currency=BRL",
+      search: "offer=1000&target=cause&target_id=1&currency=USD",
     });
   });
 });
@@ -102,14 +102,14 @@ describe("ContributionCard with variation", () => {
       />,
     );
 
-    expectTextToBeInTheDocument("Donate R$ 10 and impact");
+    expectTextToBeInTheDocument("Donate $10 and impact");
     expectTextToBeInTheDocument("+20 lives");
     expectTextToBeInTheDocument("with Impact description");
 
     clickOn("Donate");
 
     expectPageToNavigateTo("/promoters/checkout", {
-      search: "offer=0&target=non_profit&target_id=1&currency=BRL",
+      search: "offer=1000&target=non_profit&target_id=1&currency=USD",
     });
   });
 
@@ -138,14 +138,14 @@ describe("ContributionCard with variation", () => {
       />,
     );
 
-    expectTextToBeInTheDocument("Donate R$ 10 and impact");
+    expectTextToBeInTheDocument("Donate $10 and impact");
     expectTextToBeInTheDocument("+20 lives");
     expectTextToBeInTheDocument("with Impact description");
 
     clickOn("Donate");
 
     expectPageToNavigateTo("/promoters/checkout", {
-      search: "offer=0&target=cause&target_id=1&currency=BRL",
+      search: "offer=1000&target=cause&target_id=1&currency=USD",
     });
   });
 });

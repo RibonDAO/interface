@@ -22,13 +22,16 @@ export type ThemeShades = {
 };
 
 export const Container = styled.div<{ colorTheme: ThemeShades }>`
-  max-width: 458px;
   padding: ${({ theme }) => theme.spacing(32)};
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   background-color: ${({ colorTheme }) => colorTheme[50]};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    max-width: 458px;
+  }
 `;
 
 export const Title = styled.h1<{ colorTheme: ThemeShades }>`

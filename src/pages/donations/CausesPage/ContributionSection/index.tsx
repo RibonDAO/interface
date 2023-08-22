@@ -38,6 +38,8 @@ function ContributionSection(): JSX.Element {
           nonProfit={nonProfit}
           style={{
             width: isMobile ? "110%" : "100%",
+            marginRight: isMobile ? "-16px" : "0",
+            marginLeft: isMobile ? "-16px" : "0",
             borderRadius: isMobile ? "0" : "8px",
           }}
           from="donateTickets_page"

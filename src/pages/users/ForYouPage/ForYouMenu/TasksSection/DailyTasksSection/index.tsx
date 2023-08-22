@@ -5,7 +5,9 @@ import { useTasks } from "utils/constants/Tasks";
 import { useEffect } from "react";
 import theme from "styles/theme";
 import Icon from "components/atomics/Icon";
+
 import * as S from "./styles";
+import IntegrationTasksSection from "../IntegrationTasksSection";
 
 function DailyTasksSection() {
   const { t } = useTranslation("translation", {
@@ -49,6 +51,7 @@ function DailyTasksSection() {
             </S.CheckboxContainer>
           ) : null,
         )}
+      <IntegrationTasksSection />
     </S.Container>
   );
 }

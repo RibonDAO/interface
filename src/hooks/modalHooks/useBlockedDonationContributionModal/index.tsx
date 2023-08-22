@@ -32,7 +32,7 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
     });
 
     const searchParams = new URLSearchParams({
-      offer: "0",
+      offer: offer?.priceCents.toString() ?? "0",
       target: "non_profit",
       target_id: nonProfit?.id?.toString() ?? "",
       currency: offer?.currency.toUpperCase() ?? currentCurrency,
@@ -40,7 +40,7 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
     hideModal();
 
     navigateTo({
-      pathname: "/promoters/checkout",
+      pathname: "/promoters/recurrence",
       search: searchParams.toString(),
     });
   };

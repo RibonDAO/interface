@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {
+  defaultBodyLgSemibold,
   defaultBodyMdRegular,
-  defaultBodyMdSemibold,
   defaultBodyXsBold,
 } from "styles/typography/default";
 import { stylizedDisplayXs } from "styles/typography/stylized";
@@ -79,7 +79,7 @@ export const Centered = styled.div`
 `;
 
 export const LifeAmount = styled.h4`
-  ${defaultBodyMdSemibold}
+  ${defaultBodyLgSemibold}
 
   margin-block: ${({ theme }) => theme.spacing(4)};
   display: flex;

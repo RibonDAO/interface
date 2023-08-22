@@ -3,8 +3,6 @@ import LeftArrow from "assets/icons/arrow-left-green.svg";
 import useNavigation from "hooks/useNavigation";
 import { useLocation } from "react-router-dom";
 import { NonProfit } from "@ribon.io/shared";
-import { useEffect } from "react";
-import { logEvent } from "lib/events";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import * as S from "./styles";
 import IllustrationMobile from "./assets/illustration-mobile.svg";
@@ -41,16 +39,6 @@ function AppDownloadPage() {
     }
   };
 
-  const handleOnClickFirstButton = () => {
-    if (comesFromPostDonation)
-      logEvent("downloadCTA_click", { from: "postDonation" });
-  };
-
-  useEffect(() => {
-    if (!comesFromPostDonation)
-      logEvent("downloadCTA_view", { from: "postDonation" });
-  }, []);
-
   useAvoidBackButton();
 
   return (
@@ -72,7 +60,6 @@ function AppDownloadPage() {
           description={t("description")}
           firstButton={{
             text: t("buttonDownloadApp"),
-            onClick: () => handleOnClickFirstButton(),
           }}
           secondButton={{
             text: nonProfit ? t("buttonSkip") : t("buttonBack"),

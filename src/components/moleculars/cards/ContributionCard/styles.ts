@@ -3,7 +3,6 @@ import {
   defaultBodyMdRegular,
   defaultBodyMdSemibold,
   defaultBodyXsBold,
-  defaultBodyXsRegular,
 } from "styles/typography/default";
 import { stylizedDisplayXs } from "styles/typography/stylized";
 import Button from "components/atomics/buttons/Button";
@@ -91,8 +90,8 @@ export const HeartIcon = styled.img`
 `;
 
 export const ImpactDescription = styled.p`
-  ${defaultBodyXsRegular}
+  ${defaultBodyMdRegular}
 
   margin-bottom: ${({ theme }) => theme.spacing(16)};
-  color: ${({ theme }) => theme.colors.neutral[500]};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;

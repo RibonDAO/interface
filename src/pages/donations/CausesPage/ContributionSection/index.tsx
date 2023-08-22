@@ -2,6 +2,7 @@ import ContributionCard from "components/moleculars/cards/ContributionCard";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useTranslation } from "react-i18next";
 import { useImpactConversion } from "hooks/useImpactConversion";
+import { useExperiment } from "@growthbook/growthbook-react";
 import * as S from "./styles";
 
 function ContributionSection(): JSX.Element {
@@ -11,12 +12,22 @@ function ContributionSection(): JSX.Element {
 
   const { contribution, nonProfit, offer, description } = useImpactConversion();
 
+  const variation = useExperiment({
+    key: "progression-test-first-stage",
+    variations: [false, true],
+  });
+
   const { isMobile } = useBreakpoint();
+
   const contributionCard = () => (
     <>
+      <S.Title>
+        {variation.value
+          ? t("titleNewImpact", { nonProfitName: nonProfit?.name })
+          : t("title", { nonProfitName: nonProfit?.name })}
+      </S.Title>
       <S.Container>
         <S.ImageContainer>
-          <S.Title>{t("title", { nonProfitName: nonProfit?.name })}</S.Title>
           <S.NonProfitImage src={contribution?.image} />
         </S.ImageContainer>
         <ContributionCard
@@ -26,7 +37,6 @@ function ContributionSection(): JSX.Element {
           offer={offer}
           nonProfit={nonProfit}
           style={{
-            marginTop: isMobile ? "0" : "48px",
             width: isMobile ? "110%" : "100%",
             borderRadius: isMobile ? "0" : "8px",
           }}

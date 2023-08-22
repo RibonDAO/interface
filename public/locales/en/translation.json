@@ -560,6 +560,7 @@
   },
   "contributionSection": {
     "title": "Amazing! Thank you for helping {{nonProfitName}}",
+    "titleNewImpact": "Thanks to you, {{nonProfitName}} will be able to impact 1 life. Thank you!",
     "titleCard": "Do even more",
     "nonProfits": "NGOs"
   },

@@ -16,7 +16,7 @@ function CauseImage({ name, coverImage, id, index }: Props) {
 
   const handleClick = () => {
     setChosenCauseId(id);
-    setChosenCauseIndex(index);
+    setChosenCauseIndex(index + 1);
     newLogEvent("click", "P1_causeCard", { causeId: id });
     setChooseCauseModalVisible(false);
   };

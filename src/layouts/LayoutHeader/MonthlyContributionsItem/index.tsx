@@ -2,9 +2,9 @@ import contributionIcon from "assets/icons/volunteer-activism-dark-green.svg";
 import CardIconText from "components/moleculars/cards/CardIconText";
 import { useTranslation } from "react-i18next";
 import ArrowRight from "assets/icons/arrow-right-blue-icon.svg";
-import { logEvent, newLogEvent } from "lib/events";
+import { logEvent } from "lib/events";
 import useNavigation from "hooks/useNavigation";
-import useSubscriptions from "hooks/apiHooks/useSubscriptions";
+import { useSubscriptions } from "@ribon.io/shared/hooks";
 import Loader from "components/atomics/Loader";
 import * as S from "./styles";
 
@@ -15,19 +15,21 @@ function MonthlyContributionsItem(): JSX.Element {
   const { navigateTo } = useNavigation();
 
   const handleClick = () => {
-    logEvent("manageSubscription_click");
-    const { useUserSubscriptions } = useSubscriptions();
-    const { data: userSubscriptions, isLoading } = useUserSubscriptions();
-    if (isLoading) return <Loader />;
-    if (userSubscriptions?.length) {
-      navigateTo("/monthly-contributions");
-    } else {
-      navigateTo("/promoters/support-cause");
-    }
-
-    newLogEvent("click", "manageSubscription", {
+    logEvent("manageSubscription_click", {
       from: "configPage",
     });
+
+    const { userSubscriptions } = useSubscriptions();
+
+    const { isLoading, subscriptions } = userSubscriptions();
+
+    if (isLoading) return <Loader />;
+
+    if (subscriptions?.length === 0 || !subscriptions) {
+      navigateTo("/promoters/support-cause");
+    } else {
+      navigateTo("/monthly-contributions");
+    }
 
     return navigateTo("/monthly-contributions");
   };
@@ -37,7 +39,9 @@ function MonthlyContributionsItem(): JSX.Element {
       <CardIconText
         text={t("monthlyContributionsText")}
         icon={contributionIcon}
-        rightComponent={<S.GoButton src={ArrowRight} onClick={handleClick} />}
+        rightComponent={
+          <S.GoButton src={ArrowRight} onClick={() => handleClick} />
+        }
       />
     </S.Container>
   );

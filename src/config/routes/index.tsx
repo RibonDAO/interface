@@ -265,7 +265,7 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
-      <Route path="/monthly-contributions">
+      <Route path="/monthly-contributions" exact>
         <Suspense fallback={<div />}>
           <MonthlyContributionsPage />
         </Suspense>

@@ -56,7 +56,7 @@ describe("useBlockedDonationContributionModal", () => {
       clickOn("Show");
       clickOn("Donate R$ 100");
 
-      expectPageToNavigateTo("/promoters/checkout", {
+      expectPageToNavigateTo("/promoters/recurrence", {
         search: "offer=0&target=non_profit&target_id=&currency=BRL",
       });
     });

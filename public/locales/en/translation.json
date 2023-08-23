@@ -59,7 +59,9 @@
         "titleContributionModal": "You used all your tickets",
         "descriptionContributionModal": "How about making a paid donation?",
         "buttonContributionModal": "Donate {{value}}",
-        "textContributionModal": "Donate {{value}} to {{nonProfitName}}"
+        "textContributionModal": "Donate {{value}} to {{nonProfitName}}",
+        "impactOneLife": "Impact 1 life",
+        "impactDescription": "with {{value}}"
       },
       "promoterCta": {
         "title": "Become a promoter of a Ribon cause",
@@ -97,7 +99,7 @@
       "thanksToYou": "Thanks to you...",
       "lifeWasImpacted": "1 life was impacted",
       "livesWereImpacted": "{{value}} lives were impacted",
-      "impactDescription":"with {{value}}",
+      "impactDescription": "with {{value}}",
       "titleSecondLine": "You have donated to",
       "youDonatedText": "You donated",
       "button": "Finish"
@@ -137,7 +139,9 @@
     "confirmDonationPage": {
       "signedInSection": {
         "title": "Your donation",
-        "confirmText": "Confirm donation"
+        "confirmText": "Confirm donation",
+        "impactOneLife": "Impact 1 life",
+        "impactDescription": "with {{value}}"
       },
       "signInSection": {
         "title": "Enter your e-mail to donate",
@@ -147,7 +151,9 @@
         "termsText": "Terms",
         "termsLink": "https://ribon.io/en/privacy-policy/#terms",
         "privacyPolicyText": "Privacy Policy",
-        "privacyPolicyLink": "https://ribon.io/en/privacy-policy/#privacy"
+        "privacyPolicyLink": "https://ribon.io/en/privacy-policy/#privacy",
+        "impactOneLife": "Impact 1 life",
+        "impactDescription": "with {{value}}"
       }
     }
   },
@@ -554,6 +560,7 @@
   },
   "contributionSection": {
     "title": "Amazing! Thank you for helping {{nonProfitName}}",
+    "titleNewImpact": "Thanks to you, {{nonProfitName}} will be able to impact 1 life. Thank you!",
     "titleCard": "Do even more",
     "nonProfits": "NGOs"
   },
@@ -561,8 +568,8 @@
     "button": "Donate",
     "donate": "Donate {{value}}",
     "donateAndImpact": "Donate {{value}} and impact",
-    "livesAmount":"+{{value}} lives",
-    "impactDescription":"with {{value}}",
+    "livesAmount": "+{{value}} lives",
+    "impactDescription": "with {{value}}",
     "titleCard": "Do even more"
   }
 }

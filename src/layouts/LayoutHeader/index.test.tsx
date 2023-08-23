@@ -71,7 +71,10 @@ describe("LayoutHeader", () => {
           impact: "This is a test impact",
           value: 100,
         },
-        nonProfit: { name: "Test Non-Profit" },
+        nonProfit: {
+          name: "Test Non-Profit",
+          impactDescription: "description",
+        },
         offer: { id: 1 },
         description: "This is a test description",
         variation: "Test Variation",
@@ -101,7 +104,10 @@ describe("LayoutHeader", () => {
           impact: "This is a test impact",
           value: 100,
         },
-        nonProfit: { name: "Test Non-Profit" },
+        nonProfit: {
+          name: "Test Non-Profit",
+          impactDescription: "description",
+        },
         offer: { id: 1 },
         description: "This is a test description",
         variation: "Test Variation",

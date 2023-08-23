@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import theme from "styles/theme";
 import Icon from "components/atomics/Icon";
 
+import { logEvent } from "lib/events";
 import * as S from "./styles";
 import IntegrationTasksSection from "../IntegrationTasksSection";
 
@@ -21,6 +22,11 @@ function DailyTasksSection() {
     setHasCompletedATask(false);
   }, []);
 
+  function downloadAppClick(taskId: string) {
+    if (taskId === "9177df10-8e93-4938-b2fb-e04b138127f7") {
+      logEvent("downloadCTA_click", { from: "tasks" });
+    }
+  }
   return (
     <S.Container>
       <S.TitleContainer>
@@ -37,6 +43,7 @@ function DailyTasksSection() {
             <S.CheckboxContainer key={task.id}>
               <CheckBox
                 key={task.id}
+                onClick={() => downloadAppClick(task.id)}
                 text={t(`tasks.${task?.title}`)}
                 sectionStyle={{ marginBottom: 8, paddingLeft: 4 }}
                 lineThroughOnChecked

@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import ArrowRight from "assets/icons/arrow-right-blue-icon.svg";
 import { logEvent } from "lib/events";
 import useNavigation from "hooks/useNavigation";
-import { useSubscriptions } from "@ribon.io/shared/hooks";
+import useSubscriptions from "@ribon.io/shared/hooks";
 import Loader from "components/atomics/Loader";
 import * as S from "./styles";
 
@@ -15,7 +15,7 @@ function MonthlyContributionsItem(): JSX.Element {
   const { navigateTo } = useNavigation();
 
   const handleClick = () => {
-    logEvent("manageSubscription_click", {
+    logEvent("manageSubs_click", {
       from: "configPage",
     });
 

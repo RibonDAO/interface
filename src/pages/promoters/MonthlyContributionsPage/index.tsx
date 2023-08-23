@@ -1,10 +1,11 @@
 import ArrowLeft from "assets/icons/arrow-left-green.svg";
 import useNavigation from "hooks/useNavigation";
 import DeleteButton from "assets/icons/delete-icon.svg";
+import useToast from "hooks/useToast";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { logEvent } from "lib/events";
-import { useSubscriptions } from "@ribon.io/shared/hooks";
+import useSubscriptions from "@ribon.io/shared/hooks";
 import { useCurrentUser } from "contexts/currentUserContext";
 import * as S from "./styles";
 
@@ -60,6 +61,13 @@ function MonthlyContributionPage(): JSX.Element {
       <S.BackArrowButton src={ArrowLeft} onClick={navigateBack} />
       <S.Title>{t("title")}</S.Title>
       <S.SubscriptionContainer>{personPaymentItems}</S.SubscriptionContainer>
+      <CancelSubscriptionModal
+        visible={cancelModalVisible}
+        onClose={() => closeCancelModal()}
+        sendCancelEmail={() => {
+          handleCancelSubscription();
+        }}
+      />
     </S.Container>
   );
 }

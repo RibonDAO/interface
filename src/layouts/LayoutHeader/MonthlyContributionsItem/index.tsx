@@ -3,8 +3,8 @@ import CardIconText from "components/moleculars/cards/CardIconText";
 import { useTranslation } from "react-i18next";
 import ArrowRight from "assets/icons/arrow-right-blue-icon.svg";
 import { logEvent } from "lib/events";
+import { useSubscriptions } from "@ribon.io/shared/hooks";
 import useNavigation from "hooks/useNavigation";
-import useSubscriptions from "@ribon.io/shared/hooks";
 import Loader from "components/atomics/Loader";
 import * as S from "./styles";
 
@@ -13,15 +13,14 @@ function MonthlyContributionsItem(): JSX.Element {
     keyPrefix: "layouts.layoutHeader.monthlyContributionsItem",
   });
   const { navigateTo } = useNavigation();
+  const { userSubscriptions } = useSubscriptions();
+
+  const { isLoading, subscriptions } = userSubscriptions();
 
   const handleClick = () => {
     logEvent("manageSubs_click", {
       from: "configPage",
     });
-
-    const { userSubscriptions } = useSubscriptions();
-
-    const { isLoading, subscriptions } = userSubscriptions();
 
     if (isLoading) return <Loader />;
 

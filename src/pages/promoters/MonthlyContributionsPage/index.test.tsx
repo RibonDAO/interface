@@ -6,6 +6,6 @@ describe("MonthlyContributionsPage", () => {
   it("should render without error", () => {
     renderComponent(<MonthlyContributionsPage />);
 
-    expectTextToBeInTheDocument("MonthlyContributionsPage");
+    expectTextToBeInTheDocument("Monthly contributions");
   });
 });

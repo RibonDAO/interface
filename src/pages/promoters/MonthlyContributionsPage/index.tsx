@@ -3,31 +3,63 @@ import useNavigation from "hooks/useNavigation";
 import DeleteButton from "assets/icons/delete-icon.svg";
 import useToast from "hooks/useToast";
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { logEvent } from "lib/events";
-import useSubscriptions from "@ribon.io/shared/hooks";
+import { useSubscriptions } from "@ribon.io/shared/hooks";
 import { useCurrentUser } from "contexts/currentUserContext";
+import CancelSubscriptionModal from "./CancelSubscriptionModal";
 import * as S from "./styles";
+import { logError } from "services/crashReport";
 
 function MonthlyContributionPage(): JSX.Element {
   const { navigateBack } = useNavigation();
   const { currentUser } = useCurrentUser();
+  const { userSubscriptions, cancelSubscription } = useSubscriptions();
+  const { subscriptions } = userSubscriptions(currentUser?.id);
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.monthlyContributionsPage",
   });
 
-  const { userSubscriptions, cancelSubscription } = useSubscriptions();
-  const { subscriptions } = userSubscriptions(currentUser?.id);
+  const toast = useToast();
+  const [cancelModalVisible, setCancelModalVisible] = useState(false);
+  const [cancelSubscriptionId, setSubscriptionId] = useState<string | number>(
+    "",
+  );
 
   useEffect(() => {
     logEvent("P25_view");
   });
 
-  const handleCancelSubscription = (subscriptionId?: string | number) => {
+  const openCancelModal = (subscriptionId: string | number) => {
+    setSubscriptionId(subscriptionId);
+    setCancelModalVisible(true);
+  };
+
+  const closeCancelModal = () => {
+    setSubscriptionId("");
+    setCancelModalVisible(false);
+  };
+
+  const handleCancelSubscription = async () => {
+    if (!cancelSubscriptionId) {
+      return;
+    }
+
     logEvent("cancelSubs_click");
-    if (subscriptionId) {
-      cancelSubscription(subscriptionId);
+    try {
+      const response = await cancelSubscription(cancelSubscriptionId);
+      console.log(response);
+      // toast({
+      //   type: "success",
+      //   message: t("cancelSubscriptionSuccess"),
+      //   icon: "check_circle",
+      //   position: "top-right",
+      // });
+    } catch (error) {
+      logError(error);
+    } finally {
+      closeCancelModal();
     }
   };
 
@@ -39,7 +71,7 @@ function MonthlyContributionPage(): JSX.Element {
             <S.Amount>{personPayment.offer.price}</S.Amount>
             <S.Icon
               src={DeleteButton}
-              onClick={() => handleCancelSubscription(subscription.id)}
+              onClick={() => openCancelModal(personPayment.subscriptionId)}
             />
           </S.IconTextContainer>
 

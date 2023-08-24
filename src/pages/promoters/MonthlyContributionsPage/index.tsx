@@ -14,7 +14,7 @@ import { logError } from "services/crashReport";
 function MonthlyContributionPage(): JSX.Element {
   const { navigateBack } = useNavigation();
   const { currentUser } = useCurrentUser();
-  const { userSubscriptions, cancelSubscription } = useSubscriptions();
+  const { userSubscriptions, sendCancelSubscriptionEmail } = useSubscriptions();
   const { subscriptions } = userSubscriptions(currentUser?.id);
 
   const { t } = useTranslation("translation", {
@@ -48,14 +48,15 @@ function MonthlyContributionPage(): JSX.Element {
 
     logEvent("cancelSubs_click");
     try {
-      const response = await cancelSubscription(cancelSubscriptionId);
-      console.log(response);
-      // toast({
-      //   type: "success",
-      //   message: t("cancelSubscriptionSuccess"),
-      //   icon: "check_circle",
-      //   position: "top-right",
-      // });
+      const response = await sendCancelSubscriptionEmail(cancelSubscriptionId);
+      if (response) {
+        toast({
+          type: "success",
+          message: t("cancelSubscriptionSuccess"),
+          icon: "check_circle",
+          position: "top-right",
+        });
+      }
     } catch (error) {
       logError(error);
     } finally {
@@ -63,42 +64,41 @@ function MonthlyContributionPage(): JSX.Element {
     }
   };
 
-  const personPaymentItems: JSX.Element[] | undefined = subscriptions?.flatMap(
-    (subscription: any) =>
-      subscription.personPayments.map((personPayment: any) => (
-        <S.PaymentContainer key={personPayment.id}>
-          <S.IconTextContainer>
-            <S.Amount>{personPayment.offer.price}</S.Amount>
-            <S.Icon
-              src={DeleteButton}
-              onClick={() => openCancelModal(personPayment.subscriptionId)}
-            />
-          </S.IconTextContainer>
+  const subscriptionItems: JSX.Element[] = [];
 
-          <S.Text>
-            {t("to")}
-            <S.HighlightedText>{personPayment.receiver.name}</S.HighlightedText>
-          </S.Text>
-          <S.Text>
-            {t("nextContribution")}
-            <S.HighlightedText>
-              {new Date(personPayment.paidDate).toLocaleDateString()}
-            </S.HighlightedText>
-          </S.Text>
-        </S.PaymentContainer>
-      )),
-  );
+  subscriptions?.forEach((subscription: any) => {
+    subscriptionItems.push(
+      <S.PaymentContainer key={subscription.id}>
+        <S.IconTextContainer>
+          <S.Amount>{subscription.offer.price}</S.Amount>
+          <S.Icon
+            src={DeleteButton}
+            onClick={() => openCancelModal(subscription.id)}
+          />
+        </S.IconTextContainer>
+        <S.Text>
+          {t("to")}
+          <S.HighlightedText>{subscription.receiver.name}</S.HighlightedText>
+        </S.Text>
+        <S.Text>
+          {t("nextContribution")}
+          <S.HighlightedText>
+            {new Date(subscription.paidDate).toLocaleDateString()}
+          </S.HighlightedText>
+        </S.Text>
+      </S.PaymentContainer>,
+    );
+  });
+
   return (
     <S.Container>
       <S.BackArrowButton src={ArrowLeft} onClick={navigateBack} />
       <S.Title>{t("title")}</S.Title>
-      <S.SubscriptionContainer>{personPaymentItems}</S.SubscriptionContainer>
+      <S.SubscriptionContainer>{subscriptionItems}</S.SubscriptionContainer>
       <CancelSubscriptionModal
         visible={cancelModalVisible}
-        onClose={() => closeCancelModal()}
-        sendCancelEmail={() => {
-          handleCancelSubscription();
-        }}
+        onClose={closeCancelModal}
+        sendCancelEmail={handleCancelSubscription}
       />
     </S.Container>
   );

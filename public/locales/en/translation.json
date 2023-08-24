@@ -383,7 +383,14 @@
     "monthlyContributionsPage": {
       "title": "Monthly contributions",
       "to": "To ",
-      "nextContribution": "Next contribution in "
+      "nextContribution": "Next contribution in ",
+      "cancelSubscriptionSuccess": "We sent you an e-mail",
+      "cancelSubscriptionModal": {
+        "title": "Cancel monthly contribution",
+        "description": "To finish this process, you'll need to confirm the cancelation request clicking in the link of the cancelation e-mail.",
+        "primaryButton": "Receive cancelation e-mail",
+        "secondaryButton": "Close"
+      }
     },
     "checkoutPage": {
       "changeCurrency": "Change currency",

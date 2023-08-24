@@ -382,8 +382,16 @@
     "monthlyContributionsPage": {
       "title": "Contribuições mensais",
       "to": "Para ",
-      "nextContribution": "Próxima contribuição em "
+      "nextContribution": "Próxima contribuição em ",
+      "cancelSubscriptionSuccess": "Enviamos um e-mail para você.",
+      "cancelSubscriptionModal": {
+        "title": "Cancelar contribuição mensal",
+        "description": "Para efetuar o processo, confirme o cancelamento da contribuição mensal pelo e-mail que enviaremos para você.",
+        "primaryButton": "Receber e-mail de cancelamento",
+        "secondaryButton": "Fechar"
+      }
     },
+    
     "checkoutPage": {
       "changeCurrency": "Mudar moeda",
       "back": "Voltar",

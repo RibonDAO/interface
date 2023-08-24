@@ -7,9 +7,9 @@ import { useEffect, useState } from "react";
 import { logEvent } from "lib/events";
 import { useSubscriptions } from "@ribon.io/shared/hooks";
 import { useCurrentUser } from "contexts/currentUserContext";
+import { logError } from "services/crashReport";
 import CancelSubscriptionModal from "./CancelSubscriptionModal";
 import * as S from "./styles";
-import { logError } from "services/crashReport";
 
 function MonthlyContributionPage(): JSX.Element {
   const { navigateBack } = useNavigation();

@@ -55,7 +55,7 @@ describe("FiatSection", () => {
 
       expectPageToNavigateTo("/promoters/checkout", {
         search:
-          "offer=500&target=non_profit&target_id=1&currency=USD&subscription=false",
+          "integration_id=1&offer=500&target=non_profit&target_id=1&currency=USD&subscription=false",
       });
     });
 
@@ -66,7 +66,7 @@ describe("FiatSection", () => {
 
       expectPageToNavigateTo("/promoters/checkout", {
         search:
-          "offer=500&target=non_profit&target_id=1&currency=USD&subscription=true",
+          "integration_id=1&offer=500&target=non_profit&target_id=1&currency=USD&subscription=true",
       });
     });
   });

@@ -12,6 +12,7 @@ import {
 } from "react";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "lib/events";
+import extractUrlValue from "lib/extractUrlValue";
 import { logError } from "services/crashReport";
 import creditCardPaymentApi from "services/api/creditCardPaymentApi";
 import GivingIcon from "assets/icons/giving-icon.svg";
@@ -70,7 +71,7 @@ function CardPaymentInformationProvider({ children }: Props) {
     keyPrefix: "contexts.cardPaymentInformation",
   });
 
-  const { navigateTo } = useNavigation();
+  const { history, navigateTo } = useNavigation();
 
   const toast = useToast();
   const { findOrCreateUser } = useUsers();
@@ -126,6 +127,15 @@ function CardPaymentInformationProvider({ children }: Props) {
     }, 3000);
   };
 
+  function getUTMFromLocationSearch() {
+    const utmSource = extractUrlValue("utm_source", history.location.search);
+    const utmMedium = extractUrlValue("utm_medium", history.location.search);
+    const utmCampaign = extractUrlValue("utm_campaign", history.location.search);
+    return { utmSource, utmMedium, utmCampaign };
+  }
+
+  const utmParams = getUTMFromLocationSearch();
+
   const handleSubmit = async (platform: string) => {
     showAnimationCreditCardPaymentModal();
 
@@ -149,6 +159,9 @@ function CardPaymentInformationProvider({ children }: Props) {
       causeId: cause?.id,
       nonProfitId: nonProfit?.id,
       platform: platform || PLATFORM,
+      utmSource: utmParams.utmSource,
+      utmMedium: utmParams.utmMedium,
+      utmCampaign: utmParams.utmCampaign,
     };
 
     try {

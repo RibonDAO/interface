@@ -34,6 +34,14 @@ function useDonationFlow() {
   function getExternalIdFromLocationSearch() {
     return extractUrlValue("external_id", history.location.search);
   }
+  
+  function getUTMFromLocationSearch() {
+    const utmSource = extractUrlValue("utm_source", history.location.search);
+    const utmMedium = extractUrlValue("utm_medium", history.location.search);
+    const utmCampaign = extractUrlValue("utm_campaign", history.location.search);
+    return { utmSource, utmMedium, utmCampaign };
+  }
+
   async function handleDonate({
     nonProfit,
     email,
@@ -45,6 +53,9 @@ function useDonationFlow() {
       if (integration) createSource(user.id, integration.id);
       setCurrentUser(user);
     }
+
+    const utmParams = getUTMFromLocationSearch();
+    
     if (integration) {
       try {
         await donate(
@@ -53,6 +64,9 @@ function useDonationFlow() {
           email,
           PLATFORM,
           getExternalIdFromLocationSearch(),
+          utmParams.utmSource,
+          utmParams.utmMedium,
+          utmParams.utmCampaign
         );
         destroyVoucher();
         if (onSuccess) onSuccess();

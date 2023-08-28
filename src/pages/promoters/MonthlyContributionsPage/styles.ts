@@ -3,7 +3,6 @@ import {
   stylizedDisplayLg,
   stylizedDisplaySm,
 } from "styles/typography/stylized";
-import DeleteButtonHover from "assets/icons/delete-icon-hover.svg";
 import {
   defaultBodySmMedium,
   defaultBodySmSemibold,
@@ -80,16 +79,6 @@ export const Amount = styled.p`
 export const IconTextContainer = styled.div`
   display: flex;
   justify-content: space-between;
-`;
-
-export const Icon = styled.img`
-  width: 28px;
-  height: 28px;
-  cursor: pointer;
-
-  &:hover {
-    background-image: url(${DeleteButtonHover});
-  }
 `;
 
 export const Text = styled.p`

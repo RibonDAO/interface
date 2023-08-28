@@ -1,6 +1,5 @@
 import ArrowLeft from "assets/icons/arrow-left-green.svg";
 import useNavigation from "hooks/useNavigation";
-import DeleteButton from "assets/icons/delete-icon.svg";
 import useToast from "hooks/useToast";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
@@ -8,6 +7,8 @@ import { logEvent } from "lib/events";
 import { useSubscriptions } from "@ribon.io/shared/hooks";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { logError } from "services/crashReport";
+import Icon from "components/atomics/Icon";
+import { theme } from "@ribon.io/shared";
 import CancelSubscriptionModal from "./CancelSubscriptionModal";
 import * as S from "./styles";
 
@@ -71,9 +72,12 @@ function MonthlyContributionPage(): JSX.Element {
       <S.PaymentContainer key={subscription.id}>
         <S.IconTextContainer>
           <S.Amount>{subscription.offer.price}</S.Amount>
-          <S.Icon
-            src={DeleteButton}
+          <Icon
+            name="delete"
             onClick={() => openCancelModal(subscription.id)}
+            backgroundColor={theme.colors.brand.secondary[600]}
+            hoveredBackgroundColor={theme.colors.brand.primary[600]}
+            color={theme.colors.neutral10}
           />
         </S.IconTextContainer>
         <S.Text>

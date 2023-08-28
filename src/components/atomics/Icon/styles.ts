@@ -5,6 +5,7 @@ export const Icon = styled.span<{
   size?: string;
   withCircle?: boolean;
   backgroundColor?: string;
+  hoveredBackgroundColor?: string;
 }>`
   font-size: ${(props) => props.size || props.theme.icons.xs};
   color: ${(props) => props.color || props.theme.colors.neutral[500]};
@@ -29,5 +30,9 @@ export const Icon = styled.span<{
     cursor: pointer;
     border-radius: 4px;
     padding: 4px;
+
+    &:hover {
+      background-color: ${props.hoveredBackgroundColor || props.backgroundColor}
+    }
   `}
 `;

@@ -1,5 +1,4 @@
 /* eslint-disable react/require-default-props */
-import { useState } from "react";
 import * as S from "./styles";
 
 export type IconProps = {
@@ -28,14 +27,12 @@ function Icon({
   alt,
   ...props
 }: IconProps): JSX.Element {
-  const [isHovered, setIsHovered] = useState(false);
-  const hoverBackground = hoveredBackgroundColor || backgroundColor;
-
   return (
     <S.Icon
       id={id}
       color={color}
-      backgroundColor={isHovered ? hoverBackground : backgroundColor}
+      backgroundColor={backgroundColor}
+      hoveredBackgroundColor={hoveredBackgroundColor}
       size={size}
       {...props}
       onClick={onClick}
@@ -43,8 +40,6 @@ function Icon({
       data-testid={`icon-${name}`}
       withCircle={withCircle}
       aria-label={alt}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       {name}
     </S.Icon>

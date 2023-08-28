@@ -33,6 +33,10 @@ function StoriesSection({
     if (onButtonClick) onButtonClick();
   }, [onButtonClick]);
 
+  const sortStories = nonProfit?.stories?.sort(
+    (a, b) => (a.position || a.id) - (b.position || b.id),
+  );
+
   useEffect(() => {
     document.body.style.overflow = visible ? "hidden" : "initial";
 
@@ -45,17 +49,19 @@ function StoriesSection({
     if (visible) {
       return (
         <S.Container visible={visible}>
-          <CardStories
-            stories={nonProfit.stories || []}
-            onAllStoriesEnd={() => setVisible(false)}
-            onCloseButtonClick={() => setVisible(false)}
-            profileData={profileData}
-            ctaData={{
-              text: t("ctaText"),
-              onClick: onClickButton,
-              visible: canDonateAndHasVoucher,
-            }}
-          />
+          {sortStories && (
+            <CardStories
+              stories={sortStories}
+              onAllStoriesEnd={() => setVisible(false)}
+              onCloseButtonClick={() => setVisible(false)}
+              profileData={profileData}
+              ctaData={{
+                text: t("ctaText"),
+                onClick: onClickButton,
+                visible: canDonateAndHasVoucher,
+              }}
+            />
+          )}
         </S.Container>
       );
     }

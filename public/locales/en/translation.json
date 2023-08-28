@@ -430,7 +430,7 @@
     },
     "contributionCanceledPage": {
       "title": "Contribution canceled",
-      "description": "Your monthly contribution of {{value}} to {{ngo}} was canceled"
+      "description": "Your monthly contribution of {{value}} to {{receiver}} was canceled"
     }
   },
   "contexts": {

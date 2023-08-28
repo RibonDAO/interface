@@ -429,7 +429,7 @@
     },
     "contributionCanceledPage": {
       "title": "Contribuição cancelada",
-      "description": "Sua contribuição de {{value}} para {{ngo}} foi cancelada"
+      "description": "Sua contribuição de {{value}} para {{receiver}} foi cancelada"
     }
   },
   "contexts": {

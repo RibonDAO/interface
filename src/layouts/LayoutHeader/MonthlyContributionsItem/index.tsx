@@ -6,6 +6,7 @@ import { logEvent } from "lib/events";
 import { useSubscriptions } from "@ribon.io/shared/hooks";
 import useNavigation from "hooks/useNavigation";
 import Loader from "components/atomics/Loader";
+import { useCurrentUser } from "contexts/currentUserContext";
 import * as S from "./styles";
 
 function MonthlyContributionsItem(): JSX.Element {
@@ -13,9 +14,9 @@ function MonthlyContributionsItem(): JSX.Element {
     keyPrefix: "layouts.layoutHeader.monthlyContributionsItem",
   });
   const { navigateTo } = useNavigation();
+  const { currentUser } = useCurrentUser();
   const { userSubscriptions } = useSubscriptions();
-
-  const { isLoading, subscriptions } = userSubscriptions();
+  const { isLoading, subscriptions } = userSubscriptions(currentUser?.id);
 
   const handleClick = () => {
     logEvent("manageSubs_click", {
@@ -25,12 +26,10 @@ function MonthlyContributionsItem(): JSX.Element {
     if (isLoading) return <Loader />;
 
     if (subscriptions?.length === 0 || !subscriptions) {
-      navigateTo("/promoters/support-cause");
+      return navigateTo("/promoters/support-cause");
     } else {
-      navigateTo("/monthly-contributions");
+      return navigateTo("/monthly-contributions");
     }
-
-    return navigateTo("/monthly-contributions");
   };
 
   return (

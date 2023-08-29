@@ -383,7 +383,7 @@
     "monthlyContributionsPage": {
       "title": "Monthly contributions",
       "to": "To ",
-      "nextContribution": "Next contribution in ",
+      "nextContribution": "Next contribution on ",
       "cancelSubscriptionSuccess": "We sent you an e-mail",
       "cancelSubscriptionModal": {
         "title": "Cancel monthly contribution",

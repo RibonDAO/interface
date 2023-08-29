@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { stylizedDisplayXs } from "styles/typography/stylized";
-import { defaultBodyMdSemibold } from "styles/typography/default";
+import {
+  defaultBodyLgBold,
+  defaultBodyMdMedium,
+  defaultBodyMdSemibold,
+} from "styles/typography/default";
 import ButtonComponent from "components/atomics/buttons/Button";
 
 export const Container = styled.div`
@@ -91,4 +95,20 @@ export const RightImage = styled.img`
     right: 0;
     display: block;
   }
+`;
+
+export const NewImpactContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.brand.primary[800]};
+`;
+
+export const NewImpactTitle = styled.h3`
+  ${defaultBodyLgBold}
+`;
+
+export const NewImpactDescription = styled.p`
+  ${defaultBodyMdMedium}
 `;

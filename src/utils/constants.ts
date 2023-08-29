@@ -18,7 +18,9 @@ export const PLATFORM = "web";
 
 export const APP_LINK = "https://donation.app.link/RibonApp";
 
-export const IOS_APP_LINK = "https://testflight.apple.com/join/UtOMP5Ie";
+export const ANDROID_APP_LINK =
+  "https://play.google.com/store/apps/details?id=com.app.ribon&hl=pt_BR&gl=US";
+export const IOS_APP_LINK = "https://apps.apple.com/br/app/ribon/id1337763424";
 
 export const DEBUG_EVENTS_ENABLED = process.env.REACT_APP_DEBUG_VIEW === "true";
 

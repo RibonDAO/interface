@@ -1,8 +1,9 @@
 import useBreakpoint from "hooks/useBreakpoint";
 import { useState } from "react";
-import { APP_LINK } from "utils/constants";
+import { APP_LINK, IOS_APP_LINK, ANDROID_APP_LINK } from "utils/constants";
 import { useTranslation } from "react-i18next";
 import { ButtonProps } from "components/atomics/buttons/Button";
+import { logEvent } from "lib/events";
 import AppleBadge from "./assets/apple-badge.png";
 import GoogleBadge from "./assets/google-badge.png";
 import QRCode from "./assets/qrcodeapp.svg";
@@ -36,14 +37,26 @@ function AppDownloadTemplate({
   const [isCopy, setIsCopy] = useState(false);
   const { isMobile } = useBreakpoint();
 
-  function handleReturnLinkDevice() {
-    return APP_LINK;
+  function handleMobileLink() {
+    logEvent("mobileDownloadBtn_click");
+    window.open(APP_LINK);
+  }
+
+  function handleIosLink() {
+    logEvent("appStoreBtn_click");
+    window.open(IOS_APP_LINK);
+  }
+
+  function handleAndroidLink() {
+    logEvent("gPlayBtn_click");
+    window.open(ANDROID_APP_LINK);
   }
 
   const copyText = () => {
     navigator.clipboard.writeText(APP_LINK);
     setCurrentText(t("copiedText"));
     setIsCopy(true);
+    logEvent("copyDownloadBtn_click");
   };
 
   const render = () => {
@@ -53,11 +66,10 @@ function AppDownloadTemplate({
           {description && <S.Description>{description}</S.Description>}
           <S.ButtonsContainer hasMenu={!hasBackButton}>
             <S.DownloadButton
-              href={handleReturnLinkDevice()}
+              onClick={() => handleMobileLink()}
               textColor={firstButton.textColor}
               backgroundColor={firstButton.backgroundColor}
               hasAnotherButton={!!secondButton}
-              onClick={firstButton.onClick}
             >
               {firstButton.text}
             </S.DownloadButton>
@@ -81,14 +93,13 @@ function AppDownloadTemplate({
               <S.DescriptionBadge>{t("chooseStore")}</S.DescriptionBadge>
               <S.BorderContainer>
                 <S.Link
-                  href={APP_LINK}
-                  target="_blank"
+                  onClick={() => handleAndroidLink()}
                   rel="noopener noreferrer"
                 >
                   <S.ImageBadge src={GoogleBadge} />
                 </S.Link>
                 <S.Link
-                  href={APP_LINK}
+                  onClick={() => handleIosLink()}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

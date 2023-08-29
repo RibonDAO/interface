@@ -2,14 +2,13 @@ import { useTasksContext } from "contexts/tasksContext";
 import { useTasks } from "utils/constants/Tasks";
 import { useCallback, useEffect } from "react";
 import ProgressBar from "components/atomics/ProgressBar";
-import { useIntegrationId } from "hooks/useIntegrationId";
-import { useIntegration, useTasksStatistics } from "@ribon.io/shared/hooks";
 import { useCountdown } from "hooks/useCountdown";
 import { nextDay } from "lib/dateUtils";
 import { formatCountdown } from "lib/formatters/countdownFormatter";
 import { useTranslation } from "react-i18next";
 import useBreakpoint from "hooks/useBreakpoint";
 import { logEvent } from "lib/events";
+import { useTasksStatistics } from "@ribon.io/shared/hooks";
 import * as S from "./styles";
 import DailyTasksSection from "./DailyTasksSection";
 import MonthlyTasksSection from "./MonthlyTasksSection";
@@ -43,13 +42,6 @@ function TasksSection() {
     setHasCompletedATask(false);
   }, []);
 
-  const donateTicketTask = dailyTasks.find(
-    (obj) => obj.title === "donate_ticket",
-  );
-
-  const integrationId = useIntegrationId();
-
-  const { integration } = useIntegration(integrationId);
   const { refetchTasksStatistics } = useTasksStatistics();
   const { isMobile } = useBreakpoint();
 
@@ -126,26 +118,6 @@ function TasksSection() {
         </>
       )}
 
-      {integration?.integrationTask &&
-        tasksState.find((obj) => obj.id === donateTicketTask?.id)?.done && (
-          <S.IntegrationContainer>
-            <S.RightContainer>
-              <S.Image src={integration?.logo} alt="logo" />
-            </S.RightContainer>
-            <S.LeftContainer>
-              <S.IntegrationTitle>
-                {integration?.integrationTask.description}
-              </S.IntegrationTitle>
-              <S.Link
-                href={integration?.integrationTask.linkAddress}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {integration?.integrationTask.link}
-              </S.Link>
-            </S.LeftContainer>
-          </S.IntegrationContainer>
-        )}
       <StatisticsCardsSection />
     </S.Container>
   );

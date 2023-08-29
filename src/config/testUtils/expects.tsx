@@ -56,7 +56,11 @@ export function expectPageToNavigateTo(
 ) {
   if (!state && !search)
     return expect(mockNavigationFunction).toHaveBeenCalledWith(pathname);
-
+  if (!state)
+    return expect(mockNavigationFunction).toHaveBeenCalledWith({
+      pathname,
+      search,
+    });
   return expect(mockNavigationFunction).toHaveBeenCalledWith({
     pathname,
     state,

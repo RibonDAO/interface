@@ -2,7 +2,7 @@ import CloseIconOrange from "assets/icons/close-icon-orange.svg";
 import theme from "styles/theme";
 import { useEffect, useState } from "react";
 import useBreakpoint from "hooks/useBreakpoint";
-import { newLogEvent } from "lib/events";
+import { logEvent } from "lib/events";
 import * as S from "./styles";
 
 export type Props = {
@@ -31,7 +31,7 @@ function ButtonToast({
 
   const handleClick = () => {
     if (isMobile && collapsed) return setCollapsed(true);
-    if (eventName && eventParams) newLogEvent("click", eventName, eventParams);
+    if (eventName && eventParams) logEvent(`${eventName}_click`, eventParams);
     return onClick();
   };
 
@@ -44,10 +44,10 @@ function ButtonToast({
     if (!eventName) return;
 
     if (isMobile && !collapsed) {
-      newLogEvent("view", eventName, eventParams);
+      logEvent(`${eventName}_view`, eventParams);
       setLogged(true);
     } else if (!isMobile) {
-      newLogEvent("view", eventName, eventParams);
+      logEvent(`${eventName}_view`, eventParams);
       setLogged(true);
     }
   }, [collapsed]);

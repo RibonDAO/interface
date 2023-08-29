@@ -45,18 +45,8 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
     setButtonDisabled,
   } = useCardPaymentInformation();
 
-  const {
-    country,
-    setCountry,
-    city,
-    setCity,
-    state,
-    setState,
-    taxId,
-    setTaxId,
-    email,
-    setEmail,
-  } = usePaymentInformation();
+  const { country, setCountry, taxId, setTaxId, email, setEmail } =
+    usePaymentInformation();
 
   const validTaxId = () => {
     if (!showFiscalFields) return true;
@@ -80,21 +70,19 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
   const { currentLang } = useLanguage();
 
   useEffect(() => {
-    const fiscalFields = showFiscalFields
-      ? city && state && country && validTaxId()
-      : true;
+    const fiscalFields = showFiscalFields ? country && validTaxId() : true;
 
     setButtonDisabled(
       !(
         number &&
-        name &&
+        name.length >= 3 &&
         email &&
         !expirationDate.includes("_") &&
         cvv.length >= 3 &&
         fiscalFields
       ),
     );
-  }, [number, name, expirationDate, cvv, country, state, city, taxId, email]);
+  }, [number, name, expirationDate, cvv, country, taxId, email]);
 
   return (
     <S.Container>
@@ -122,28 +110,6 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
             required
           />
 
-          <S.Half>
-            <InputText
-              name="city"
-              label={{
-                text: field("city"),
-              }}
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              data-testid="city"
-              required
-            />
-
-            <InputText
-              name="state"
-              label={{ text: field("state") }}
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-              data-testid="state"
-              required
-            />
-          </S.Half>
-
           <InputText
             name={taxId}
             mask={maskForTaxId(country, currentLang)}
@@ -161,7 +127,7 @@ function CreditCardForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
       )}
 
       <InputText
-        name="number"
+        name="cardNumber"
         label={{ text: field("number") }}
         value={number}
         mask="9999 9999 9999 9999"

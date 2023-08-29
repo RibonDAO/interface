@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import {
+  defaultBodyLgSemibold,
   defaultBodyMdRegular,
-  defaultBodyMdSemibold,
   defaultBodyXsBold,
-  defaultBodyXsRegular,
 } from "styles/typography/default";
 import { stylizedDisplayXs } from "styles/typography/stylized";
 import Button from "components/atomics/buttons/Button";
@@ -23,13 +22,16 @@ export type ThemeShades = {
 };
 
 export const Container = styled.div<{ colorTheme: ThemeShades }>`
-  max-width: 458px;
   padding: ${({ theme }) => theme.spacing(32)};
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   background-color: ${({ colorTheme }) => colorTheme[50]};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    max-width: 458px;
+  }
 `;
 
 export const Title = styled.h1<{ colorTheme: ThemeShades }>`
@@ -77,7 +79,7 @@ export const Centered = styled.div`
 `;
 
 export const LifeAmount = styled.h4`
-  ${defaultBodyMdSemibold}
+  ${defaultBodyLgSemibold}
 
   margin-block: ${({ theme }) => theme.spacing(4)};
   display: flex;
@@ -91,8 +93,8 @@ export const HeartIcon = styled.img`
 `;
 
 export const ImpactDescription = styled.p`
-  ${defaultBodyXsRegular}
+  ${defaultBodyMdRegular}
 
   margin-bottom: ${({ theme }) => theme.spacing(16)};
-  color: ${({ theme }) => theme.colors.neutral[500]};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;

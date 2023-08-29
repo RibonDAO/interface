@@ -5,7 +5,7 @@ export const Container = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing(48)};
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     flex-direction: row;
@@ -13,10 +13,11 @@ export const Container = styled.div`
 `;
 
 export const NonProfitImage = styled.img`
-  width: 110%;
+  width: 100%;
+  max-height: 240px;
   border-radius: 0;
   position: relative;
-  left: -16px;
+  object-fit: cover;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 100%;
@@ -26,12 +27,21 @@ export const NonProfitImage = styled.img`
 `;
 
 export const ImageContainer = styled.div`
-  margin-right: 0;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  flex-basis: 100%;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    max-width: 432px;
     margin-right: ${({ theme }) => theme.spacing(40)};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-right: ${({ theme }) => theme.spacing(20)};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: 110%;
+    margin: 0 -16px;
   }
 `;
 

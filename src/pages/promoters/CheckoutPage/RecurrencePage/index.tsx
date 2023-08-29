@@ -10,6 +10,7 @@ import usePaymentParams from "hooks/usePaymentParams";
 import { logEvent } from "lib/events";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useIntegrationId } from "hooks/useIntegrationId";
 import ButtonSelectorTemplate from "../Components/ButtonSelectorTemplate";
 import Header from "../Components/Header";
 import PriceSelection from "../Components/PriceSelection";
@@ -25,6 +26,7 @@ function RecurrencePage(): JSX.Element {
 
   const [currentOfferIndex, setCurrentOfferIndex] = useState(0);
   const { updateLocationSearch } = useLocationSearch();
+  const integrationId = useIntegrationId();
 
   const { target, targetId, offer, currency } = usePaymentParams();
   const hasAllParams = Boolean(target && targetId && offer && currency);
@@ -92,6 +94,7 @@ function RecurrencePage(): JSX.Element {
 
   const navigateToCheckout = (subscription: boolean) => {
     const searchParams = new URLSearchParams({
+      integration_id: integrationId?.toString() || "",
       offer: currentOffer?.priceCents.toString() ?? "0",
       target: target ?? "",
       target_id: targetId ?? "",

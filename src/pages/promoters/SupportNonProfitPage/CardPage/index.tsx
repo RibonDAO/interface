@@ -51,7 +51,7 @@ function CardPage(): JSX.Element {
       .flat(Infinity)
       .map((np: any) => np?.name)
       .join(", ");
-      return ordered;
+    return ordered;
   };
 
   useEffect(() => {

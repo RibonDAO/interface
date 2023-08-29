@@ -52,9 +52,11 @@ function CryptoPage(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    logEvent("contributionCardsOrder_view", {
-      causes: causes?.map((c) => c.name).join(", ") as any,
-    });
+    if (causes) {
+      logEvent("contributionCardsOrder_view", {
+        causes: causes?.map((c) => c.name).join(", ") as any,
+      });
+    }
   }, [causes]);
 
   useEffect(() => {

@@ -59,10 +59,12 @@ function CardPage(): JSX.Element {
   });
 
   useEffect(() => {
-    logEvent("contributionCardsOrder_view", {
-      nonProfits: orderedNonProfits() as any,
-      causes: causes?.map((c) => c.name).join(", ") as any,
-    });
+    if (nonProfits && causes) {
+      logEvent("contributionCardsOrder_view", {
+        nonProfits: orderedNonProfits() as any,
+        causes: causes?.map((c) => c.name).join(", ") as any,
+      });
+    }
   }, [nonProfits, causes]);
 
   const handleCauseClick = (causeClicked: Cause, index: number) => {

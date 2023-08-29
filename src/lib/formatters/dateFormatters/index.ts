@@ -9,10 +9,11 @@ export function add30DaysAndFormatDate(date: string, currentLang: Languages): st
   const newDate = new Date(originalDate);
   newDate.setDate(newDate.getDate() + 30);
 
-  const day = String(newDate.getDate()).padStart(2, "0");
-  const month = String(newDate.getMonth() + 1).padStart(2, "0");
-  const year = newDate.getFullYear();
+  const options: Intl.DateTimeFormatOptions = {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric"
+  };
 
-  if (currentLang === Languages.PT) return `${day}/${month}/${year}`;
-  return `${month}/${day}/${year}`;
+  return newDate.toLocaleDateString(currentLang, options);
 }

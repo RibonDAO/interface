@@ -19,7 +19,7 @@ function MonthlyContributionPage(): JSX.Element {
   const { navigateBack } = useNavigation();
   const { currentUser } = useCurrentUser();
   const { userSubscriptions, sendCancelSubscriptionEmail } = useSubscriptions();
-  const { subscriptions } = userSubscriptions(currentUser?.id);
+  const { subscriptions } = userSubscriptions();
   const { currentLang } = useLanguage();
 
   const { t } = useTranslation("translation", {

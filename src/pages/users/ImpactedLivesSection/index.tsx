@@ -9,7 +9,7 @@ function ImpactedLivesSection() {
       <S.CenterContainer>
         <UserAvatar level={20} />
         <ImpactedLivesCounter impactedLivesCount={160} />
-        <UserProgress currentPoints={100} totalPointsToNextLevel={200} />
+        <UserProgress currentPoints={180} totalPointsToNextLevel={200} />
       </S.CenterContainer>
     </S.Container>
   );

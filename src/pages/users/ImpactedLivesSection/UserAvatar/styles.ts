@@ -9,7 +9,6 @@ export const AvatarSection = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     flex-direction: row;

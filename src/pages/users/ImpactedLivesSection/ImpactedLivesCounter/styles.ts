@@ -9,6 +9,11 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
 `;
 export const HeartImage = styled.img`
   width: 24px;

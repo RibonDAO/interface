@@ -8,10 +8,12 @@ function ImpactedLivesSection() {
   return (
     <S.Container>
       <S.CenterContainer>
-        <S.AvatarContainer>
-          <S.Avatar src={Avatar} alt="user-avatar" />
-        </S.AvatarContainer>
-        <S.AvatarTitle>{currentUser?.email}</S.AvatarTitle>
+        <S.AvatarSection>
+          <S.AvatarContainer>
+            <S.Avatar src={Avatar} alt="user-avatar" />
+          </S.AvatarContainer>
+          <S.AvatarTitle>{currentUser?.email}</S.AvatarTitle>
+        </S.AvatarSection>
         <ImpactedLivesCounter impactedLivesCount={160} />
       </S.CenterContainer>
     </S.Container>

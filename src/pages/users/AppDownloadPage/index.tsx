@@ -30,7 +30,7 @@ function AppDownloadPage() {
       setNonProfit(state.nonProfit);
       setShowContribute(state.showContribute);
     }
-  });
+  }, []);
 
   const { navigateTo } = useNavigation();
 

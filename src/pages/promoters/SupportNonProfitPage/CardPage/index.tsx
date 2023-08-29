@@ -45,14 +45,23 @@ function CardPage(): JSX.Element {
     keyPrefix: "promoters.supportNonProfitPage",
   });
 
+  const orderedNonProfits = () => {
+    const ordered = causes
+      .map((c) => nonProfits?.filter((np) => np.cause.name === c?.name))
+      .flat(Infinity)
+      .map((np: any) => np?.name)
+      .join(", ");
+      return ordered;
+  };
+
   useEffect(() => {
     setCause(state?.causeDonated || causes[0]);
   });
 
   useEffect(() => {
     logEvent("contributionCardsOrder_view", {
-      nonProfits: nonProfits as any,
-      causes: causes as any,
+      nonProfits: orderedNonProfits() as any,
+      causes: causes?.map((c) => c.name).join(", ") as any,
     });
   }, [nonProfits, causes]);
 

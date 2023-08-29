@@ -121,8 +121,8 @@ function CausesPage(): JSX.Element {
 
   useEffect(() => {
     logEvent("donationCardsOrder_view", {
-      nonProfits: nonProfitsWithPoolBalance,
-      causes: causesWithPoolBalance,
+      nonProfits: nonProfitsWithPoolBalance?.map(nonProfit => nonProfit.name).join(", "),
+      causes: causesWithPoolBalance?.map(cause => cause.name).join(", "),
     });
   }, [nonProfitsWithPoolBalance, causesWithPoolBalance]);
 

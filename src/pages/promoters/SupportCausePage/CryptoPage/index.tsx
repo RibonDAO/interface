@@ -53,7 +53,7 @@ function CryptoPage(): JSX.Element {
 
   useEffect(() => {
     logEvent("contributionCardsOrder_view", {
-      causes: causes as any,
+      causes: causes?.map((c) => c.name).join(", ") as any,
     });
   }, [causes]);
 

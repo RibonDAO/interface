@@ -1,19 +1,12 @@
-import { useCurrentUser } from "contexts/currentUserContext";
+import UserAvatar from "./UserAvatar";
 import ImpactedLivesCounter from "./ImpactedLivesCounter";
 import * as S from "./styles";
-import Avatar from "./assets/avatar.svg";
 
 function ImpactedLivesSection() {
-  const { currentUser } = useCurrentUser();
   return (
     <S.Container>
       <S.CenterContainer>
-        <S.AvatarSection>
-          <S.AvatarContainer>
-            <S.Avatar src={Avatar} alt="user-avatar" />
-          </S.AvatarContainer>
-          <S.AvatarTitle>{currentUser?.email}</S.AvatarTitle>
-        </S.AvatarSection>
+        <UserAvatar />
         <ImpactedLivesCounter impactedLivesCount={160} />
       </S.CenterContainer>
     </S.Container>

@@ -5,6 +5,8 @@ import RightImage from "assets/images/top-right-shape.svg";
 import LogoRibon from "assets/images/logo-ribon.svg";
 import { useSubscriptions } from "@ribon.io/shared/hooks";
 import useQueryParams from "hooks/useQueryParams";
+import { useCallback, useEffect, useState } from "react";
+import Icon from "components/atomics/Icon";
 import * as S from "./styles";
 import Loader from "../CheckoutPage/FiatSection/loader";
 
@@ -14,15 +16,51 @@ function ContributionCanceledPage(): JSX.Element {
   });
 
   const queryParams = useQueryParams();
-  const contributionId = queryParams.get("contributionId");
+  const token = queryParams.get("token");
 
-  console.log(contributionId);
+  const [subscription, setSubscription] = useState<any>({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-  const { getSubscription } = useSubscriptions();
+  const { cancelSubscription } = useSubscriptions();
+  const { isLoading } = cancelSubscription(token);
 
-  const { isLoading, subscription } = getSubscription(contributionId ?? 0);
+  const callTheApi = useCallback(() => {
+    if (!token) return;
 
-  console.log(subscription);
+    cancelSubscription(token)
+      .then((currentSubscription) => {
+        setLoading(false);
+        setSubscription(currentSubscription);
+        if (!subscription) setError(true);
+      })
+      .catch(() => {
+        setLoading(false);
+        setError(true);
+      });
+  }, [token, cancelSubscription]);
+
+  useEffect(() => {
+    if (loading) callTheApi();
+  }, [callTheApi, loading]);
+
+  const renderLoader = () => (
+    <S.Container>
+      <S.Loader />
+      <p>{t("loading")}</p>
+    </S.Container>
+  );
+
+  const renderInvalidLink = () => (
+    <S.Container>
+      <Icon name="error" size="50px" />
+      <p>{t("invalidLink")}</p>
+    </S.Container>
+  );
+
+  if (!token) return renderInvalidLink();
+  if (error && !loading) return renderInvalidLink();
+  if (loading) return renderLoader();
 
   return isLoading ? (
     <Loader />

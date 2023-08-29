@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { defaultBodyMdSemibold } from "styles/typography/default";
 import { stylizedDisplayXs } from "styles/typography/stylized";
 
@@ -74,4 +74,24 @@ export const ContentContainer = styled.div`
     width: 328px;
     height: 380px;
   }
+`;
+
+const spinAnimation = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
+export const Loader = styled.div`
+  width: 30px;
+  height: 30px;
+  border: 4px solid green;
+  border-top-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  animation: ${spinAnimation} 0.6s linear infinite;
 `;

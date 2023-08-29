@@ -240,6 +240,9 @@
       "title": "Migramos seu impacto!",
       "description": "O seu histórico de doações feitas na plataforma antiga está na aba \"doações em ticket\".",
       "link": "Não mostrar novamente"
+    },
+    "impactedLivesSection": {
+      "impactedLives": "vidas impactadas"
     }
   },
   "promoters": {

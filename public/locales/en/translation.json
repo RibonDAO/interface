@@ -241,6 +241,9 @@
       "title": "We have imported your impact!",
       "description": "Your history of donations from the old platform are in the \"Ticket donations\" tab.",
       "link": "Don’t show this again"
+    },
+    "impactedLivesSection": {
+      "impactedLives": "impacted lives"
     }
   },
   "promoters": {

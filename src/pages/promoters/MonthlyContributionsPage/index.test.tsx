@@ -1,9 +1,9 @@
 import { renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import { screen } from "@testing-library/react";
-import MonthlyContributionsPage from ".";
 import offerFactory from "config/testUtils/factories/offerFactory";
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
+import MonthlyContributionsPage from ".";
 
 const mockSubscription = {
   id: 1,

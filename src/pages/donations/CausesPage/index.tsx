@@ -116,7 +116,7 @@ function CausesPage(): JSX.Element {
   }, [JSON.stringify(currentUser)]);
 
   useEffect(() => {
-    if (nonProfitsWithPoolBalance && causesWithPoolBalance) {
+    if (nonProfitsWithPoolBalance && causesWithPoolBalance?.length > 0) {
       logEvent("donationCardsOrder_view", {
         nonProfits: nonProfitsWithPoolBalance
           ?.map((nonProfit) => nonProfit.name)

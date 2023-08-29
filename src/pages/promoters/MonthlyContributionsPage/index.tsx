@@ -9,6 +9,7 @@ import { useCurrentUser } from "contexts/currentUserContext";
 import { logError } from "services/crashReport";
 import Icon from "components/atomics/Icon";
 import { theme } from "@ribon.io/shared";
+import { add30DaysAndFormatDate } from "lib/formatters/dateFormatters";
 import CancelSubscriptionModal from "./CancelSubscriptionModal";
 import * as S from "./styles";
 
@@ -87,7 +88,7 @@ function MonthlyContributionPage(): JSX.Element {
         <S.Text>
           {t("nextContribution")}
           <S.HighlightedText>
-            {new Date(subscription.paidDate).toLocaleDateString()}
+            {add30DaysAndFormatDate(subscription.createdAt)}
           </S.HighlightedText>
         </S.Text>
       </S.PaymentContainer>,

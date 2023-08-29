@@ -77,7 +77,6 @@ function MonthlyContributionPage(): JSX.Element {
         <S.IconTextContainer>
           <S.Amount>{subscription.offer.price}</S.Amount>
           <Icon
-            data-testid="cancel-subscription"
             name="delete"
             onClick={() => openCancelModal(subscription.id)}
             backgroundColor={theme.colors.brand.secondary[600]}

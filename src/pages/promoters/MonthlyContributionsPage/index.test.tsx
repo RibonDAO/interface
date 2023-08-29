@@ -37,7 +37,7 @@ describe("MonthlyContributionsPage", () => {
   it("should open modal cancel subscription modal", () => {
     renderComponent(<MonthlyContributionsPage />);
 
-    screen.getByTestId("cancel-subscription").click();
+    screen.getByTestId("icon-delete").click();
 
     expectTextToBeInTheDocument("Cancel monthly contribution");
   });

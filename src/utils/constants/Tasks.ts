@@ -4,6 +4,7 @@
  */
 
 import { beginningOfToday } from "lib/dateUtils";
+import { logEvent } from "lib/events";
 
 export interface Task {
   id: string;
@@ -41,8 +42,10 @@ export const TASKS = [
       const completedDay = lastCompletedAt < beginningOfToday();
 
       if (timesCompleted === 0 && !taskDone) {
+        logEvent("downloadCTA_view", { from: "tasks" });
         return true;
       } else if (timesCompleted === 1 && taskDone && !completedDay) {
+        logEvent("downloadCTA_view", { from: "tasks" });
         return true;
       }
 

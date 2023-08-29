@@ -93,7 +93,7 @@ describe("Events", () => {
   });
 
   describe("logPageView", () => {
-    const urlName = "/";
+    const urlName = "/causes";
     const translation = events.pages[urlName];
     it("sends an event to firebase", () => {
       logPageView(urlName);
@@ -116,7 +116,7 @@ describe("Events", () => {
   });
 
   describe("logPageView", () => {
-    const urlName = "/";
+    const urlName = "/causes";
     const translation = events.pages[urlName];
     it("sends an event to Mixpanel", () => {
       logPageView(urlName);

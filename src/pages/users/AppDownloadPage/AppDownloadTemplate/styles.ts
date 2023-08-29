@@ -156,7 +156,9 @@ export const ImageBadge = styled.img`
   padding-left: ${({ theme }) => theme.spacing(40)};
 `;
 
-export const Link = styled.a``;
+export const Link = styled.a`
+  cursor: pointer;
+`;
 
 export const DownloadButton = styled.a<{
   textColor?: string;

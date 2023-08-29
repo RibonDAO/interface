@@ -72,6 +72,7 @@ function MonthlyContributionPage(): JSX.Element {
         <S.IconTextContainer>
           <S.Amount>{subscription.offer.price}</S.Amount>
           <S.Icon
+            data-testid="cancel-subscription"
             src={DeleteButton}
             onClick={() => openCancelModal(subscription.id)}
           />
@@ -94,7 +95,9 @@ function MonthlyContributionPage(): JSX.Element {
     <S.Container>
       <S.BackArrowButton src={ArrowLeft} onClick={navigateBack} />
       <S.Title>{t("title")}</S.Title>
-      <S.SubscriptionContainer>{subscriptionItems}</S.SubscriptionContainer>
+      {subscriptions && (
+        <S.SubscriptionContainer>{subscriptionItems}</S.SubscriptionContainer>
+      )}
       <CancelSubscriptionModal
         visible={cancelModalVisible}
         onClose={closeCancelModal}

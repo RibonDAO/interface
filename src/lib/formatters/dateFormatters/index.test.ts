@@ -1,4 +1,5 @@
-import { stringToLocaleDateString } from ".";
+import { Languages } from "@ribon.io/shared";
+import { add30DaysAndFormatDate, stringToLocaleDateString } from ".";
 
 describe("#stringToLocaleDateString", () => {
   describe("when you have a date string", () => {
@@ -13,9 +14,9 @@ describe("#stringToLocaleDateString", () => {
 describe("#add30DaysAndFormatDate", () => {
   describe("when you have a date string", () => {
     it("formats returning dd/mm/yyyy and adding 30 days", () => {
-      expect(stringToLocaleDateString("2023-08-28 11:55:07 -0300")).toEqual(
-        "27/09/2023",
-      );
+      expect(
+        add30DaysAndFormatDate("2023-08-28 11:55:07 -0300", Languages.PT),
+      ).toEqual("27/09/2023");
     });
   });
 });

@@ -8,8 +8,10 @@ import { useSubscriptions } from "@ribon.io/shared/hooks";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { logError } from "services/crashReport";
 import Icon from "components/atomics/Icon";
-import { theme } from "@ribon.io/shared";
-import { add30DaysAndFormatDate } from "lib/formatters/dateFormatters";
+// import { theme } from "@ribon.io/shared";
+import theme from "styles/theme";
+import {  add30DaysAndFormatDate } from "lib/formatters/dateFormatters";
+import { useLanguage } from "hooks/useLanguage";
 import CancelSubscriptionModal from "./CancelSubscriptionModal";
 import * as S from "./styles";
 
@@ -18,6 +20,7 @@ function MonthlyContributionPage(): JSX.Element {
   const { currentUser } = useCurrentUser();
   const { userSubscriptions, sendCancelSubscriptionEmail } = useSubscriptions();
   const { subscriptions } = userSubscriptions(currentUser?.id);
+  const { currentLang } = useLanguage();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.monthlyContributionsPage",
@@ -88,7 +91,7 @@ function MonthlyContributionPage(): JSX.Element {
         <S.Text>
           {t("nextContribution")}
           <S.HighlightedText>
-            {add30DaysAndFormatDate(subscription.createdAt)}
+            {add30DaysAndFormatDate(subscription.createdAt, currentLang)}
           </S.HighlightedText>
         </S.Text>
       </S.PaymentContainer>,

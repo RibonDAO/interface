@@ -19,6 +19,7 @@ export const ContainerRight = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 `;
 
 export const Settings = styled.div`

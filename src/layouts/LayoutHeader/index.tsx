@@ -143,7 +143,7 @@ function LayoutHeader({
                     onClick={() => openMenu()}
                     size="24px"
                     color={
-                      outline
+                      outline && isInLifeBasedImpact
                         ? theme.colors.neutral10
                         : theme.colors.brand.primary[600]
                     }

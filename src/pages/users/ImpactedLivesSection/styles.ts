@@ -26,6 +26,7 @@ export const CenterContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     display: grid;
@@ -40,7 +41,10 @@ export const BackgroundShapeLeft = styled.img`
   left: 0;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    display: none;
+    left: 80px;
+    width: 450px;
+    height: 290px;
+    object-fit: cover;
   }
 `;
 
@@ -50,6 +54,9 @@ export const BackgroundShapeRight = styled.img`
   right: 0;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    display: none;
+    top: 0;
+    width: 280px;
+    height: 290px;
+    object-fit: cover;
   }
 `;

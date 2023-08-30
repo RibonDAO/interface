@@ -5,7 +5,12 @@ import ImpactedLivesCounter from "./ImpactedLivesCounter";
 import * as S from "./styles";
 
 function ImpactedLivesSection() {
-  const { userLevel, userExperience, experienceToNextLevel } = useUserLevel();
+  const {
+    userLevel,
+    userExperience,
+    nextLevelExperience,
+    percentageCompleted,
+  } = useUserLevel();
 
   return (
     <S.Container>
@@ -14,8 +19,9 @@ function ImpactedLivesSection() {
         <ImpactedLivesCounter impactedLivesCount={userExperience} />
         <UserProgress
           currentExperience={userExperience}
-          totalExperienceToNextLevel={experienceToNextLevel + userExperience}
+          totalExperienceToNextLevel={nextLevelExperience}
           nextLevel={userLevel + 1}
+          percentageCompleted={percentageCompleted}
         />
       </S.CenterContainer>
     </S.Container>

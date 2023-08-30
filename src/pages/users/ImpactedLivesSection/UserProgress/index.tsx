@@ -6,12 +6,14 @@ type Props = {
   currentExperience: number;
   totalExperienceToNextLevel: number;
   nextLevel: number;
+  percentageCompleted: number;
 };
 
 function UserProgress({
   currentExperience,
   totalExperienceToNextLevel,
   nextLevel,
+  percentageCompleted,
 }: Props) {
   const { t } = useTranslation("translation", {
     keyPrefix: "impactPage.impactedLivesSection",
@@ -20,10 +22,7 @@ function UserProgress({
 
   return (
     <S.ProgressBarContainer>
-      <S.ProgressFill
-        value={currentExperience}
-        max={totalExperienceToNextLevel}
-      />
+      <S.ProgressFill value={percentageCompleted} max={100} />
       <S.ProgressInfo>
         <S.LeftInfo>{`${currentExperience} / ${totalExperienceToNextLevel}`}</S.LeftInfo>
         <S.RightInfo>{`+${remainingExperience} ${t(

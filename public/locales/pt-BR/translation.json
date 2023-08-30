@@ -242,7 +242,9 @@
       "link": "Não mostrar novamente"
     },
     "impactedLivesSection": {
-      "impactedLives": "vidas impactadas"
+      "impactedLives": "vidas impactadas",
+      "livesForLevel": "vidas para nível",
+      "level": "Nv."
     }
   },
   "promoters": {

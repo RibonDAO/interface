@@ -1,21 +1,34 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import * as S from "./styles";
 
 type Props = {
-  currentPoints: number;
-  totalPointsToNextLevel: number;
+  currentExperience: number;
+  totalExperienceToNextLevel: number;
+  nextLevel: number;
 };
-function UserProgress({ currentPoints, totalPointsToNextLevel }: Props) {
-  const remainingPoints = totalPointsToNextLevel - currentPoints;
+
+function UserProgress({
+  currentExperience,
+  totalExperienceToNextLevel,
+  nextLevel,
+}: Props) {
+  const { t } = useTranslation("translation", {
+    keyPrefix: "impactPage.impactedLivesSection",
+  });
+  const remainingExperience = totalExperienceToNextLevel - currentExperience;
 
   return (
     <S.ProgressBarContainer>
-      <S.ProgressFill value={currentPoints} max={totalPointsToNextLevel} />
+      <S.ProgressFill
+        value={currentExperience}
+        max={totalExperienceToNextLevel}
+      />
       <S.ProgressInfo>
-        <S.LeftInfo>{`${currentPoints} / ${totalPointsToNextLevel}`}</S.LeftInfo>
-        <S.RightInfo>{`+${remainingPoints} for level ${Math.ceil(
-          remainingPoints / totalPointsToNextLevel,
-        )}`}</S.RightInfo>
+        <S.LeftInfo>{`${currentExperience} / ${totalExperienceToNextLevel}`}</S.LeftInfo>
+        <S.RightInfo>{`+${remainingExperience} ${t(
+          "livesForLevel",
+        )} ${nextLevel}`}</S.RightInfo>
       </S.ProgressInfo>
     </S.ProgressBarContainer>
   );

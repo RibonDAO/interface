@@ -31,6 +31,6 @@ export const CenterContainer = styled.div`
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     display: grid;
     grid-template-columns: 2fr 1fr 3fr;
-    column-gap: ${({ theme }) => theme.spacing(16)};
+    column-gap: ${({ theme }) => theme.spacing(40)};
   }
 `;

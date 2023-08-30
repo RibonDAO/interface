@@ -243,7 +243,9 @@
       "link": "Don’t show this again"
     },
     "impactedLivesSection": {
-      "impactedLives": "impacted lives"
+      "impactedLives": "impacted lives",
+      "livesForLevel": "lives for level",
+      "level": "Lv."
     }
   },
   "promoters": {

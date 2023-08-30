@@ -10,6 +10,7 @@ import { useWalletContext } from "contexts/walletContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useStatistics } from "@ribon.io/shared/hooks";
 import ImpactedLivesSection from "pages/users/ImpactedLivesSection";
+import { useExperiment } from "@growthbook/growthbook-react";
 import ImpactMenu from "./ImpactMenu";
 import TicketIcon from "./assets/ticket-icon.svg";
 import MoneyIcon from "./assets/money-icon.svg";
@@ -28,6 +29,10 @@ function ImpactPage(): JSX.Element {
     walletAddress: wallet!,
   });
   const { currentLang } = useLanguage();
+  const { value: isInLifeBasedImpact } = useExperiment({
+    key: "progression-test-first-stage",
+    variations: [false, true],
+  });
 
   useEffect(() => {
     logEvent("profile_view");
@@ -40,7 +45,7 @@ function ImpactPage(): JSX.Element {
   return (
     <S.Container>
       <DownloadAppToast />
-      <ImpactedLivesSection />
+      {isInLifeBasedImpact && <ImpactedLivesSection />}
       <S.Title>{t("title")}</S.Title>
       <S.CardsButtonContainer>
         <CardTopImage

@@ -41,7 +41,7 @@ export const BackgroundShapeLeft = styled.img`
   left: 0;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    width: 450px;
+    width: 300px;
     height: 290px;
     left: 80px;
     object-fit: cover;

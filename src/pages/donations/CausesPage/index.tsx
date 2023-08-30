@@ -119,7 +119,7 @@ function CausesPage(): JSX.Element {
     if (nonProfitsWithPoolBalance && causesWithPoolBalance?.length > 0) {
       logEvent("donationCardsOrder_view", {
         nonProfits: nonProfitsWithPoolBalance
-          ?.map((nonProfit) => nonProfit.name)
+          .map((nonProfit) => nonProfit.name)
           .join(", "),
         causes: causesWithPoolBalance?.map((cause) => cause.name).join(", "),
       });

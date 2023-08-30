@@ -53,7 +53,7 @@ function SupportCausePage(): JSX.Element {
   useEffect(() => {
     if (causes.length > 0) {
       logEvent("contributionCardsOrder_view", {
-        causes: causes?.map((c) => c.name).join(", ") as any,
+        causes: causes.map((c) => c.name).join(", ") as any,
       });
     }
   }, [causes]);

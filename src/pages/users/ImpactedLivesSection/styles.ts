@@ -17,6 +17,7 @@ export const Container = styled.div`
     min-height: 164px;
     margin: 0 calc(-28% - 80px) 32px -28%;
     padding-left: 28%;
+    padding-right: 28%;
     justify-content: flex-start;
   }
 `;
@@ -32,6 +33,14 @@ export const CenterContainer = styled.div`
     display: grid;
     grid-template-columns: 2fr 1fr 3fr;
     column-gap: ${({ theme }) => theme.spacing(40)};
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktopLarge}) {
+    grid-template-columns: 2fr 1fr 4fr;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktopExtraLarge}) {
+    grid-template-columns: 2fr 1fr 5fr;
   }
 `;
 

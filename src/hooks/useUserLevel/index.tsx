@@ -1,12 +1,16 @@
 import { useWalletContext } from "contexts/walletContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useStatistics } from "@ribon.io/shared/hooks";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 // TODO: Refactor this hook to get data from api after this is definitive
 function useUserLevel() {
   const [userLevel, setUserLevel] = useState(0);
   const [userExperience, setUserExperience] = useState(0);
+  const [experienceToNextLevel, setExperienceToNextLevel] = useState(0);
+  const [percentageCompleted, setPercentageCompleted] = useState(0);
+  const [nextLevelExperience, setNextLevelExperience] = useState(0);
+  const [currentLevelExperience, setCurrentLevelExperience] = useState(0);
 
   const { wallet } = useWalletContext();
   const { currentUser } = useCurrentUser();
@@ -34,29 +38,29 @@ function useUserLevel() {
     return 10 + Math.floor((experience - 70) / 20);
   }
 
-  const nextLevelExperience = useCallback(
-    () =>
-      userLevel < 10 ? thresholds[userLevel - 1] : (userLevel - 9) * 20 + 70,
-    [userLevel],
-  );
+  useEffect(() => {
+    const xpForNextNevel =
+      userLevel < 10 ? thresholds[userLevel - 1] : (userLevel - 9) * 20 + 70;
+    setNextLevelExperience(xpForNextNevel);
+  }, [userLevel]);
 
-  const currentLevelExperience = useCallback(
-    () =>
-      userLevel < 10 ? thresholds[userLevel - 2] : (userLevel - 10) * 20 + 70,
-    [userLevel],
-  );
+  useEffect(() => {
+    const currentLevelXp =
+      userLevel < 10 ? thresholds[userLevel - 2] : (userLevel - 10) * 20 + 70;
+    setCurrentLevelExperience(currentLevelXp);
+  }, [userLevel]);
 
-  function percentageCompleted() {
-    return (
-      ((userExperience - currentLevelExperience()) /
-        (nextLevelExperience() - currentLevelExperience())) *
-      100
-    );
-  }
+  useEffect(() => {
+    const completedPercentage =
+      ((userExperience - currentLevelExperience) /
+        (nextLevelExperience - currentLevelExperience)) *
+      100;
+    setPercentageCompleted(completedPercentage);
+  }, [userExperience, currentLevelExperience, nextLevelExperience]);
 
-  function experienceToNextLevel(experience: number): number {
-    return nextLevelExperience() - experience;
-  }
+  useEffect(() => {
+    setExperienceToNextLevel(nextLevelExperience - userExperience);
+  }, [nextLevelExperience, userExperience]);
 
   useEffect(() => {
     setUserLevel(levelByExperience(userExperience));
@@ -65,9 +69,9 @@ function useUserLevel() {
   return {
     userLevel,
     userExperience,
-    experienceToNextLevel: experienceToNextLevel(userExperience),
-    nextLevelExperience: nextLevelExperience(),
-    percentageCompleted: percentageCompleted(),
+    experienceToNextLevel,
+    nextLevelExperience,
+    percentageCompleted,
   };
 }
 

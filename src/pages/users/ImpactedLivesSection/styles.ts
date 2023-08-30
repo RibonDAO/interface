@@ -35,12 +35,16 @@ export const CenterContainer = styled.div`
     column-gap: ${({ theme }) => theme.spacing(40)};
   }
 
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    grid-template-columns: 2fr 2fr 4fr;
+  }
+
   @media (min-width: ${({ theme }) => theme.breakpoints.desktopLarge}) {
     grid-template-columns: 2fr 1fr 4fr;
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktopExtraLarge}) {
-    grid-template-columns: 2fr 1fr 5fr;
+    grid-template-columns: 3fr 2fr 7fr;
   }
 `;
 

@@ -10,7 +10,7 @@ export const AvatarSection = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktopLarge}) {
     flex-direction: row;
   }
 `;

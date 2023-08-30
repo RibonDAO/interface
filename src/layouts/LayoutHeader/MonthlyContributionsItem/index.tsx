@@ -16,7 +16,7 @@ function MonthlyContributionsItem(): JSX.Element {
   const { navigateTo } = useNavigation();
   const { currentUser } = useCurrentUser();
   const { userSubscriptions } = useSubscriptions();
-  const { isLoading, subscriptions } = userSubscriptions(currentUser?.id);
+  const { isLoading, subscriptions } = userSubscriptions();
 
   const handleClick = () => {
     logEvent("manageSubs_click", {

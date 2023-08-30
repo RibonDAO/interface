@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {
-  defaultBodyXsSemibold,
+  defaultBodySmMedium,
+  defaultHeadingSm,
   defaultHeadingXs,
 } from "styles/typography/default";
 
@@ -24,10 +25,14 @@ export const CounterText = styled.h1`
   ${defaultHeadingXs}
 
   color: ${({ theme }) => theme.colors.neutral[25]};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    ${defaultHeadingSm}
+  }
 `;
 
 export const ImpactedLivesText = styled.p`
-  ${defaultBodyXsSemibold}
+  ${defaultBodySmMedium}
 
   color: ${({ theme }) => theme.colors.neutral[25]};
 `;

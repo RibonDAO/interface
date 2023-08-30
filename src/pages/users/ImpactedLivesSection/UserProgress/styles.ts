@@ -1,8 +1,5 @@
 import styled from "styled-components";
-import {
-  defaultBodyXsMedium,
-  defaultBodyXsSemibold,
-} from "styles/typography/default";
+import { defaultBodySmMedium } from "styles/typography/default";
 
 export const ProgressBarContainer = styled.div`
   width: 100%;
@@ -45,13 +42,13 @@ export const ProgressInfo = styled.div`
 `;
 
 export const LeftInfo = styled.p`
-  ${defaultBodyXsSemibold}
+  ${defaultBodySmMedium}
 
   color: ${({ theme }) => theme.colors.neutral[25]};
 `;
 
 export const RightInfo = styled.p`
-  ${defaultBodyXsMedium}
+  ${defaultBodySmMedium}
 
   color: ${({ theme }) => theme.colors.neutral[25]};
 `;

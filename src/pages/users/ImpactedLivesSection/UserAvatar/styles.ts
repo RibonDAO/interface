@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {
+  defaultBodySmRegular,
   defaultBodyXsBold,
-  defaultBodyXsMedium,
 } from "styles/typography/default";
 
 export const AvatarSection = styled.div`
@@ -46,7 +46,7 @@ export const LevelLabel = styled.span`
 `;
 
 export const AvatarTitle = styled.p`
-  ${defaultBodyXsMedium}
+  ${defaultBodySmRegular}
 
   margin-top: ${({ theme }) => theme.spacing(8)};
   margin-bottom: ${({ theme }) => theme.spacing(16)};

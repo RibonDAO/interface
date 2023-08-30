@@ -3,8 +3,6 @@ import Header from "components/atomics/sections/Header";
 import { useIntegration, useCanDonate } from "@ribon.io/shared/hooks";
 import { useCurrentUser } from "contexts/currentUserContext";
 import cogIcon from "assets/icons/cog-icon.svg";
-import ticketOn from "assets/icons/ticket-icon-on.svg";
-import ticketOff from "assets/icons/ticket-icon-off.svg";
 import useVoucher from "hooks/useVoucher";
 import { useState } from "react";
 import { Divider } from "components/atomics/Divider/styles";
@@ -15,25 +13,27 @@ import useNavigation from "hooks/useNavigation";
 import { PLATFORM, RIBON_COMPANY_ID } from "utils/constants";
 import { logEvent, newLogEvent } from "lib/events";
 import extractUrlValue from "lib/extractUrlValue";
-import { useBlockedDonationContributionModal } from "hooks/modalHooks/useBlockedDonationContributionModal";
+import { useExperiment } from "@growthbook/growthbook-react";
+import TicketsCounter from "layouts/LayoutHeader/TicketsCounter";
 import ChangeLanguageItem from "./ChangeLanguageItem";
 import LogoutItem from "./LogoutItem";
 import * as S from "./styles";
 import UserSupportItem from "./UserSupportItem";
 import GetTheAppItem from "./GetTheAppItem";
+import ImpactedLivesCounter from "./ImpactedLivesCounter";
 
 export type Props = {
   rightComponent?: JSX.Element;
   hasBackButton?: boolean;
   hideWallet?: boolean;
+  outline?: boolean;
 };
-
-const { primary } = theme.colors.brand;
 
 function LayoutHeader({
   rightComponent,
   hasBackButton = false,
   hideWallet = false,
+  outline = false,
 }: Props): JSX.Element {
   const integrationId = useIntegrationId();
   const [menuVisible, setMenuVisible] = useState(false);
@@ -45,11 +45,12 @@ function LayoutHeader({
   const { canDonate } = useCanDonate(integrationId, PLATFORM, externalId);
 
   const { isVoucherAvailable } = useVoucher();
+  const { value: isInLifeBasedImpact } = useExperiment({
+    key: "progression-test-first-stage",
+    variations: [false, true],
+  });
 
   const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
-
-  const { showBlockedDonationContributionModal } =
-    useBlockedDonationContributionModal();
 
   if (!integrationId) return <div />;
 
@@ -60,16 +61,6 @@ function LayoutHeader({
 
   function closeMenu() {
     setMenuVisible(false);
-  }
-
-  function handleCounterClick() {
-    if (canDonateAndHasVoucher) {
-      newLogEvent("click", "ticketIcon", { ticketQtd: 1 });
-      navigateTo("/tickets");
-    } else {
-      newLogEvent("click", "ticketIcon", { ticketQtd: 0 });
-      showBlockedDonationContributionModal();
-    }
   }
 
   function renderSideLogo() {
@@ -94,7 +85,7 @@ function LayoutHeader({
     : undefined;
 
   return (
-    <S.Container>
+    <S.Container outline={outline && isInLifeBasedImpact}>
       <ModalBlank
         visible={menuVisible}
         onClose={() => closeMenu()}
@@ -141,20 +132,10 @@ function LayoutHeader({
             {rightComponent}
             {!hideWallet && (
               <S.ContainerButtons>
-                <S.CounterContainer onClick={() => handleCounterClick()}>
-                  <S.TicketsAmount
-                    color={
-                      canDonateAndHasVoucher
-                        ? primary[300]
-                        : theme.colors.neutral[500]
-                    }
-                  >
-                    {canDonateAndHasVoucher ? 1 : 0}
-                  </S.TicketsAmount>
-                  <S.CounterImage
-                    src={canDonateAndHasVoucher ? ticketOn : ticketOff}
-                  />
-                </S.CounterContainer>
+                {isInLifeBasedImpact && (
+                  <ImpactedLivesCounter outline={outline} />
+                )}
+                <TicketsCounter />
 
                 <S.Settings onClick={() => openMenu()} src={cogIcon} />
               </S.ContainerButtons>

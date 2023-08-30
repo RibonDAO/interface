@@ -7,8 +7,7 @@ import { logEvent } from "lib/events";
 import { useSubscriptions } from "@ribon.io/shared/hooks";
 import { logError } from "services/crashReport";
 import Icon from "components/atomics/Icon";
-// import { theme } from "@ribon.io/shared";
-import theme from "styles/theme";
+import { theme } from "@ribon.io/shared/styles";
 import { add30DaysAndFormatDate } from "lib/formatters/dateFormatters";
 import { useLanguage } from "hooks/useLanguage";
 import CancelSubscriptionModal from "./CancelSubscriptionModal";
@@ -16,7 +15,6 @@ import * as S from "./styles";
 
 function MonthlyContributionPage(): JSX.Element {
   const { navigateBack } = useNavigation();
-
   const { userSubscriptions, sendCancelSubscriptionEmail } = useSubscriptions();
   const { subscriptions } = userSubscriptions();
   const { currentLang } = useLanguage();

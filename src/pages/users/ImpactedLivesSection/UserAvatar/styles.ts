@@ -19,9 +19,9 @@ export const AvatarContainer = styled.div`
   width: 72px;
   height: 72px;
   padding: ${({ theme }) => theme.spacing(12)};
-  background-color: ${({ theme }) => theme.colors.neutral[25]};
   border-radius: 8px;
   position: relative;
+  background-color: ${({ theme }) => theme.colors.neutral[25]};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     margin-right: ${({ theme }) => theme.spacing(16)};
@@ -29,27 +29,29 @@ export const AvatarContainer = styled.div`
 `;
 
 export const LevelLabel = styled.span`
-  ${defaultBodyXsBold};
-  display: inline-flex;
-  padding: 4px 8px;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  border-radius: 100px;
-  background-color: ${({ theme }) => theme.colors.brand.tertiary[50]};
-  color: ${({ theme }) => theme.colors.brand.tertiary[800]};
-  position: absolute;
+  ${defaultBodyXsBold}
+
   min-width: 54px;
+  padding: 4px 8px;
+  border-radius: 100px;
+  position: absolute;
   top: -16px;
   right: -16px;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ theme }) => theme.colors.brand.tertiary[50]};
+  color: ${({ theme }) => theme.colors.brand.tertiary[800]};
 `;
 
 export const AvatarTitle = styled.p`
   ${defaultBodyXsMedium}
-  text-align: center;
-  color: ${({ theme }) => theme.colors.neutral[25]};
+
   margin-top: ${({ theme }) => theme.spacing(8)};
   margin-bottom: ${({ theme }) => theme.spacing(16)};
+  text-align: center;
+  color: ${({ theme }) => theme.colors.neutral[25]};
 `;
 
 export const Avatar = styled.img`

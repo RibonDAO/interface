@@ -22,10 +22,12 @@ export const HeartImage = styled.img`
 
 export const CounterText = styled.h1`
   ${defaultHeadingXs}
+
   color: ${({ theme }) => theme.colors.neutral[25]};
 `;
 
 export const ImpactedLivesText = styled.p`
   ${defaultBodyXsSemibold}
+
   color: ${({ theme }) => theme.colors.neutral[25]};
 `;

@@ -3,19 +3,19 @@ import Background from "./assets/background.svg";
 
 export const Container = styled.div`
   width: calc(100% + 32px);
-  margin-left: -16px;
+  min-height: 322px;
   margin-right: -16px;
   margin-bottom: 32px;
-  min-height: 322px;
-  flex-shrink: 0;
+  margin-left: -16px;
   border-radius: 8px;
-  background-color: ${({ theme }) => theme.colors.brand.primary[800]};
-  background-image: url(${Background});
-  background-repeat: no-repeat;
-  background-size: cover;
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
+  background-color: ${({ theme }) => theme.colors.brand.primary[800]};
+  background-image: url(${Background});
+  background-size: cover;
+  background-repeat: no-repeat;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     min-height: 164px;

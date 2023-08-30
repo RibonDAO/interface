@@ -169,6 +169,9 @@
       "getTheAppItem": {
         "getTheAppText": "Baixar app"
       },
+      "monthlyContributionsItem": {
+        "monthlyContributionsText": "Contribuições Mensais"
+      },
       "donationModalTitle": "Legal! Você tem 1 ticket para doar",
       "donationModalBody": "Você pode destiná-lo para qualquer projeto",
       "donationModalButtonText": "Vamos lá!",
@@ -382,6 +385,19 @@
       "uniqueDonationDescription": "Contribuir uma vez",
       "selectValue": "Selecione o valor"
     },
+    "monthlyContributionsPage": {
+      "title": "Contribuições mensais",
+      "to": "Para ",
+      "nextContribution": "Próxima contribuição em ",
+      "cancelSubscriptionSuccess": "Enviamos um e-mail para você.",
+      "cancelSubscriptionModal": {
+        "title": "Cancelar contribuição mensal",
+        "description": "Para efetuar o processo, confirme o cancelamento da contribuição mensal pelo e-mail que enviaremos para você.",
+        "primaryButton": "Receber e-mail de cancelamento",
+        "secondaryButton": "Fechar"
+      }
+    },
+
     "checkoutPage": {
       "changeCurrency": "Mudar moeda",
       "back": "Voltar",

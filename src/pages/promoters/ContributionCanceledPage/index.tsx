@@ -18,31 +18,30 @@ function ContributionCanceledPage(): JSX.Element {
   const queryParams = useQueryParams();
   const token = queryParams.get("token");
 
-  const [subscription, setSubscription] = useState<any>({});
+  const [subscription, setSubscription] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   const { cancelSubscription } = useSubscriptions();
-  const { isLoading } = cancelSubscription(token);
 
-  const callTheApi = useCallback(() => {
+  const handleCancelSubscription = useCallback(() => {
     if (!token) return;
 
     cancelSubscription(token)
       .then((currentSubscription) => {
-        setLoading(false);
+        if (!currentSubscription) setError(true);
         setSubscription(currentSubscription);
-        if (!subscription) setError(true);
+        setLoading(false);
       })
       .catch(() => {
         setLoading(false);
         setError(true);
       });
-  }, [token, cancelSubscription]);
+  }, []);
 
   useEffect(() => {
-    if (loading) callTheApi();
-  }, [callTheApi, loading]);
+    if (loading) handleCancelSubscription();
+  }, []);
 
   const renderLoader = () => (
     <S.Container>
@@ -62,7 +61,10 @@ function ContributionCanceledPage(): JSX.Element {
   if (error && !loading) return renderInvalidLink();
   if (loading) return renderLoader();
 
-  return isLoading ? (
+  const value = subscription?.offer.price;
+  const receiver = subscription?.receiver.name;
+
+  return loading && !!subscription ? (
     <Loader />
   ) : (
     <S.Container>
@@ -77,13 +79,7 @@ function ContributionCanceledPage(): JSX.Element {
           <S.TextContainer>
             <S.Title>{t("title")}</S.Title>
             <S.Description>
-              {
-                (t("description"),
-                {
-                  value: subscription.offer.price,
-                  receiver: subscription.receiver.name,
-                })
-              }
+              {t("description", { value, receiver })}
             </S.Description>
           </S.TextContainer>
         </S.ContentContainer>

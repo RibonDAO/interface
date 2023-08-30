@@ -17,8 +17,6 @@ function MonthlyContributionsItem(): JSX.Element {
 
   const { isLoading, subscriptions } = userSubscriptions();
 
-  const hasSubscription = subscriptions && subscriptions.length > 0;
-
   const handleClick = () => {
     logEvent("manageSubs_click", {
       from: "configPage",
@@ -26,10 +24,7 @@ function MonthlyContributionsItem(): JSX.Element {
 
     if (isLoading) return <Loader />;
 
-    console.log(subscriptions);
-
-    if (hasSubscription) {
-      console.log("navigate to /promoters/support-cause");
+    if (subscriptions?.length === 0 || !subscriptions) {
       navigateTo("/promoters/support-cause");
     } else {
       navigateTo("/monthly-contributions");

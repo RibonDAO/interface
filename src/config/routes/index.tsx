@@ -27,6 +27,7 @@ import ReceiveTicketPage from "pages/donations/ReceiveTicketPage";
 import LoadingPage from "pages/donations/LoadingPage";
 import ContributionStatsPage from "pages/users/ContributionStatsPage";
 import ReturnToIntegrationPage from "pages/donations/ReturnToIntegrationPage";
+import MonthlyContributionsPage from "pages/promoters/MonthlyContributionsPage";
 import StripeProvider from "contexts/stripeContext";
 import PixPaymentInformationProvider from "contexts/pixPaymentInformationContext";
 import PaymentInformationProvider from "contexts/paymentInformationContext";
@@ -264,9 +265,15 @@ function RoutesComponent(): JSX.Element {
           <DeleteAccountPage />
         </Suspense>
       </Route>
-      <Route path="/contribution-canceled/:contributionId" exact>
+      <Route path="/contribution-canceled" exact>
         <Suspense fallback={<div />}>
           <ContributionCanceledPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/monthly-contributions" exact>
+        <Suspense fallback={<div />}>
+          <MonthlyContributionsPage />
         </Suspense>
       </Route>
     </Switch>

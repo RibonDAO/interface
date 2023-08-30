@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { logEvent } from "lib/events";
 import { useSubscriptions } from "@ribon.io/shared/hooks";
-import { useCurrentUser } from "contexts/currentUserContext";
 import { logError } from "services/crashReport";
 import Icon from "components/atomics/Icon";
 // import { theme } from "@ribon.io/shared";
@@ -17,7 +16,7 @@ import * as S from "./styles";
 
 function MonthlyContributionPage(): JSX.Element {
   const { navigateBack } = useNavigation();
-  const { currentUser } = useCurrentUser();
+
   const { userSubscriptions, sendCancelSubscriptionEmail } = useSubscriptions();
   const { subscriptions } = userSubscriptions();
   const { currentLang } = useLanguage();

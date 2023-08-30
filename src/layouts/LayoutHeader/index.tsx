@@ -137,16 +137,18 @@ function LayoutHeader({
                 )}
                 <TicketsCounter outline={isInLifeBasedImpact && outline} />
 
-                <Icon
-                  name="settings"
-                  onClick={() => openMenu()}
-                  size="24px"
-                  color={
-                    outline
-                      ? theme.colors.neutral10
-                      : theme.colors.brand.primary[600]
-                  }
-                />
+                <S.Settings>
+                  <Icon
+                    name="settings"
+                    onClick={() => openMenu()}
+                    size="24px"
+                    color={
+                      outline
+                        ? theme.colors.neutral10
+                        : theme.colors.brand.primary[600]
+                    }
+                  />
+                </S.Settings>
               </S.ContainerButtons>
             )}
           </S.ContainerRight>

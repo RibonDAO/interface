@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: calc(100% + 32px);
   min-height: 322px;
-  margin: -24px -16px 32px;
+  margin: -26px -16px 32px;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
   display: flex;
@@ -14,6 +14,10 @@ export const Container = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     min-height: 164px;
+    margin: 0 calc(-28% - 80px) 32px -28%;
+    justify-content: flex-start;
+    padding-left: 28%;
+    width: calc(156% + 80px);
   }
 `;
 

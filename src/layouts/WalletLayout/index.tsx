@@ -53,30 +53,26 @@ function WalletLayout({
   return (
     <>
       {!hideNavigation && <Navigation />}
-
+      {!hideWallet && (
+        <LayoutHeader
+          hasBackButton={hasBackButton}
+          rightComponent={
+            <S.RightContainer>
+              <S.WalletButton
+                text={walletButtonText()}
+                onClick={handleWalletButtonClick}
+                outline
+                round
+                rightIcon={WalletIcon}
+                size="small"
+              />
+            </S.RightContainer>
+          }
+          hideWallet
+        />
+      )}
+      {hideWallet && <LayoutHeader hasBackButton={hasBackButton} hideWallet />}
       <S.Container>
-        {!hideWallet && (
-          <LayoutHeader
-            hasBackButton={hasBackButton}
-            rightComponent={
-              <S.RightContainer>
-                <S.WalletButton
-                  text={walletButtonText()}
-                  onClick={handleWalletButtonClick}
-                  outline
-                  round
-                  rightIcon={WalletIcon}
-                  size="small"
-                />
-              </S.RightContainer>
-            }
-            hideWallet
-          />
-        )}
-        {hideWallet && (
-          <LayoutHeader hasBackButton={hasBackButton} hideWallet />
-        )}
-
         <S.BodyContainer>{children}</S.BodyContainer>
       </S.Container>
     </>

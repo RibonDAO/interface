@@ -21,10 +21,10 @@ function MainLayout({
   return (
     <>
       {!isFirstAccess(signedIn) && <Navigation />}
+      {!hideHeader && (
+        <LayoutHeader hasBackButton={hasBackButton} outline={outline} />
+      )}
       <S.MainContainer>
-        {!hideHeader && (
-          <LayoutHeader hasBackButton={hasBackButton} outline={outline} />
-        )}
         <S.MainBodyContainer>{children}</S.MainBodyContainer>
       </S.MainContainer>
     </>

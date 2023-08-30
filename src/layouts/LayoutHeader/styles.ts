@@ -8,6 +8,10 @@ export const ContainerButtons = styled.div`
 export const Container = styled.div<{ outline: boolean }>`
   background-color: ${({ theme, outline }) =>
     outline ? theme.colors.brand.primary[800] : theme.colors.neutral10};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    padding: 0 14% 0 calc(14% + 80px);
+  }
 `;
 
 export const ContainerRight = styled.div`
@@ -17,6 +21,6 @@ export const ContainerRight = styled.div`
   justify-content: center;
 `;
 
-export const Settings = styled.img`
+export const Settings = styled.div`
   cursor: pointer;
 `;

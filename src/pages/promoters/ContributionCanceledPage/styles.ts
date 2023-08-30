@@ -87,8 +87,8 @@ const spinAnimation = keyframes`
 `;
 
 export const Loader = styled.div`
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border: 4px solid green;
   border-top-color: transparent;
   border-radius: 50%;

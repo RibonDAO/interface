@@ -445,7 +445,9 @@
     },
     "contributionCanceledPage": {
       "title": "Contribuição cancelada",
-      "description": "Sua contribuição de {{value}} para {{receiver}} foi cancelada"
+      "description": "Sua contribuição de {{value}} para {{receiver}} foi cancelada",
+      "loading": "Carregando...",
+      "invalidLink": "Link inválido"
     }
   },
   "contexts": {

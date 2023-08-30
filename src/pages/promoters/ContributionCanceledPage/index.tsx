@@ -7,6 +7,7 @@ import { useSubscriptions } from "@ribon.io/shared/hooks";
 import useQueryParams from "hooks/useQueryParams";
 import { useCallback, useEffect, useState } from "react";
 import Icon from "components/atomics/Icon";
+import { theme } from "@ribon.io/shared/styles";
 import * as S from "./styles";
 import Loader from "../CheckoutPage/FiatSection/loader";
 
@@ -46,14 +47,14 @@ function ContributionCanceledPage(): JSX.Element {
   const renderLoader = () => (
     <S.Container>
       <S.Loader />
-      <p>{t("loading")}</p>
+      <p style={{ paddingLeft: theme.spacing(8) }}>{t("loading")}</p>
     </S.Container>
   );
 
   const renderInvalidLink = () => (
     <S.Container>
-      <Icon name="error" size="50px" />
-      <p>{t("invalidLink")}</p>
+      <Icon name="error" size="50px" color={theme.colors.feedback.error[600]} />
+      <p style={{ paddingLeft: theme.spacing(8) }}>{t("invalidLink")}</p>
     </S.Container>
   );
 

@@ -6,16 +6,14 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { logEvent } from "lib/events";
 import { useSubscriptions } from "@ribon.io/shared/hooks";
-import { useCurrentUser } from "contexts/currentUserContext";
 import { logError } from "services/crashReport";
 import CancelSubscriptionModal from "./CancelSubscriptionModal";
 import * as S from "./styles";
 
 function MonthlyContributionPage(): JSX.Element {
   const { navigateBack } = useNavigation();
-  const { currentUser } = useCurrentUser();
   const { userSubscriptions, sendCancelSubscriptionEmail } = useSubscriptions();
-  const { subscriptions } = userSubscriptions(currentUser?.id);
+  const { subscriptions } = userSubscriptions();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.monthlyContributionsPage",

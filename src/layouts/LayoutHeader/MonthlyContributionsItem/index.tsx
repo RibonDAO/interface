@@ -6,15 +6,14 @@ import { logEvent } from "lib/events";
 import { useSubscriptions } from "@ribon.io/shared/hooks";
 import useNavigation from "hooks/useNavigation";
 import Loader from "components/atomics/Loader";
-import { useCurrentUser } from "contexts/currentUserContext";
 import * as S from "./styles";
 
 function MonthlyContributionsItem(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "layouts.layoutHeader.monthlyContributionsItem",
   });
+
   const { navigateTo } = useNavigation();
-  const { currentUser } = useCurrentUser();
   const { userSubscriptions } = useSubscriptions();
   const { isLoading, subscriptions } = userSubscriptions();
 

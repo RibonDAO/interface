@@ -11,7 +11,10 @@ import { useIntegrationId } from "hooks/useIntegrationId";
 import extractUrlValue from "lib/extractUrlValue";
 import * as S from "./styles";
 
-function TicketsCounter() {
+type Props = {
+  outline?: boolean;
+};
+function TicketsCounter({ outline = false }: Props): JSX.Element {
   const { navigateTo, history } = useNavigation();
   const { isVoucherAvailable } = useVoucher();
   const integrationId = useIntegrationId();
@@ -32,7 +35,7 @@ function TicketsCounter() {
   }
 
   return (
-    <S.CounterContainer onClick={() => handleCounterClick()}>
+    <S.CounterContainer onClick={() => handleCounterClick()} outline={outline}>
       <S.TicketsAmount
         color={
           canDonateAndHasVoucher

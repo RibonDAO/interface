@@ -2,7 +2,6 @@ import ModalBlank from "components/moleculars/modals/ModalBlank";
 import Header from "components/atomics/sections/Header";
 import { useIntegration, useCanDonate } from "@ribon.io/shared/hooks";
 import { useCurrentUser } from "contexts/currentUserContext";
-import cogIcon from "assets/icons/cog-icon.svg";
 import useVoucher from "hooks/useVoucher";
 import { useState } from "react";
 import { Divider } from "components/atomics/Divider/styles";
@@ -15,6 +14,7 @@ import { logEvent, newLogEvent } from "lib/events";
 import extractUrlValue from "lib/extractUrlValue";
 import { useExperiment } from "@growthbook/growthbook-react";
 import TicketsCounter from "layouts/LayoutHeader/TicketsCounter";
+import Icon from "components/atomics/Icon";
 import ChangeLanguageItem from "./ChangeLanguageItem";
 import LogoutItem from "./LogoutItem";
 import * as S from "./styles";
@@ -135,9 +135,18 @@ function LayoutHeader({
                 {isInLifeBasedImpact && (
                   <ImpactedLivesCounter outline={outline} />
                 )}
-                <TicketsCounter />
+                <TicketsCounter outline={isInLifeBasedImpact && outline} />
 
-                <S.Settings onClick={() => openMenu()} src={cogIcon} />
+                <Icon
+                  name="settings"
+                  onClick={() => openMenu()}
+                  size="24px"
+                  color={
+                    outline
+                      ? theme.colors.neutral10
+                      : theme.colors.brand.primary[600]
+                  }
+                />
               </S.ContainerButtons>
             )}
           </S.ContainerRight>

@@ -15,11 +15,11 @@ export const Container = styled.div<{ outline: boolean }>`
 `;
 
 export const ContainerRight = styled.div`
+  z-index: 1;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  z-index: 1;
 `;
 
 export const Settings = styled.div`

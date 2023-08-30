@@ -15,9 +15,9 @@ export const Container = styled.div`
 
 export const Logo = styled.img`
   height: 34px;
+  z-index: 1;
   object-fit: contain;
   cursor: ${({ onClick }) => (onClick ? "pointer" : "initial")};
-  z-index: 1;
 `;
 
 export const Divider = styled.span`

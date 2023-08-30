@@ -13,20 +13,20 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.brand.primary[800]};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: calc(156% + 80px);
     min-height: 164px;
     margin: 0 calc(-28% - 80px) 32px -28%;
-    justify-content: flex-start;
     padding-left: 28%;
-    width: calc(156% + 80px);
+    justify-content: flex-start;
   }
 `;
 
 export const CenterContainer = styled.div`
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 1;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     display: grid;
@@ -41,9 +41,9 @@ export const BackgroundShapeLeft = styled.img`
   left: 0;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    left: 80px;
     width: 450px;
     height: 290px;
+    left: 80px;
     object-fit: cover;
   }
 `;
@@ -54,9 +54,9 @@ export const BackgroundShapeRight = styled.img`
   right: 0;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    top: 0;
     width: 280px;
     height: 290px;
+    top: 0;
     object-fit: cover;
   }
 `;

@@ -6,7 +6,9 @@ export const ContainerButtons = styled.div`
   justify-content: flex-end;
 `;
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  background-color: ${({ theme }) => theme.colors.brand.primary[800]};
+`;
 
 export const ContainerRight = styled.div`
   display: flex;

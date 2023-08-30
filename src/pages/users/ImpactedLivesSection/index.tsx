@@ -1,5 +1,7 @@
 import UserProgress from "pages/users/ImpactedLivesSection/UserProgress";
 import useUserLevel from "hooks/useUserLevel";
+import BackgroundShapeLeft from "./assets/background-shape-left.svg";
+import BackgroundShapeRight from "./assets/background-shape-right.svg";
 import UserAvatar from "./UserAvatar";
 import ImpactedLivesCounter from "./ImpactedLivesCounter";
 import * as S from "./styles";
@@ -14,6 +16,8 @@ function ImpactedLivesSection() {
 
   return (
     <S.Container>
+      <S.BackgroundShapeLeft src={BackgroundShapeLeft} />
+      <S.BackgroundShapeRight src={BackgroundShapeRight} />
       <S.CenterContainer>
         <UserAvatar level={userLevel} />
         <ImpactedLivesCounter impactedLivesCount={userExperience} />

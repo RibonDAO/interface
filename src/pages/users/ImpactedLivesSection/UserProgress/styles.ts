@@ -7,31 +7,7 @@ export const ProgressBarContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-export const ProgressFill = styled.progress`
-  width: 100%;
   min-width: 312px;
-  height: 16px;
-  border-radius: 4px;
-  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.13);
-
-  ::-moz-progress-bar {
-    background-color: ${({ theme }) => theme.colors.brand.tertiary[300]};
-    transition: width 1.5s ease-in-out;
-  }
-
-  ::-webkit-progress-value {
-    border-radius: 4px;
-    background-color: ${({ theme }) => theme.colors.brand.tertiary[300]};
-    transition: width 1.5s ease-in-out;
-  }
-
-  ::-webkit-progress-bar {
-    padding: 2px;
-    border-radius: 4px;
-    background-color: ${({ theme }) => theme.colors.neutral[25]};
-  }
 `;
 
 export const ProgressInfo = styled.div`

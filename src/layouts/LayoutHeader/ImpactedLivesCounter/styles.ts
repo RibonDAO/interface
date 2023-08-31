@@ -13,6 +13,7 @@ export const Container = styled.div<{ outline: boolean }>`
   box-sizing: border-box;
   background: ${({ theme, outline }) =>
     outline ? theme.colors.brand.primary[900] : theme.colors.neutral10};
+
   &:hover {
     cursor: pointer;
   }
@@ -20,6 +21,7 @@ export const Container = styled.div<{ outline: boolean }>`
 
 export const LivesAmount = styled.p`
   ${defaultBodyXsSemibold}
+
   margin-right: ${({ theme }) => theme.spacing(4)};
   color: ${({ color }) => color};
 `;

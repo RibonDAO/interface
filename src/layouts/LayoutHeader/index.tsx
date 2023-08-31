@@ -13,7 +13,6 @@ import { PLATFORM, RIBON_COMPANY_ID } from "utils/constants";
 import { logEvent, newLogEvent } from "lib/events";
 import extractUrlValue from "lib/extractUrlValue";
 import TicketsCounter from "layouts/LayoutHeader/TicketsCounter";
-import Icon from "components/atomics/Icon";
 import ChangeLanguageItem from "./ChangeLanguageItem";
 import LogoutItem from "./LogoutItem";
 import * as S from "./styles";
@@ -128,18 +127,16 @@ function LayoutHeader({
               <S.ContainerButtons>
                 <TicketsCounter outline={outline} />
 
-                <S.Settings>
-                  <Icon
-                    name="settings"
-                    onClick={() => openMenu()}
-                    size="24px"
-                    color={
-                      outline
-                        ? theme.colors.neutral10
-                        : theme.colors.brand.primary[600]
-                    }
-                  />
-                </S.Settings>
+                <S.Settings
+                  name="settings"
+                  onClick={() => openMenu()}
+                  size="24px"
+                  color={
+                    outline
+                      ? theme.colors.neutral10
+                      : theme.colors.brand.primary[600]
+                  }
+                />
               </S.ContainerButtons>
             )}
           </S.ContainerRight>

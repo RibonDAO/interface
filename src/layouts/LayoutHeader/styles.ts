@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import Icon from "components/atomics/Icon";
 
 export const ContainerButtons = styled.div`
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 `;
 
 export const Container = styled.div<{ outline: boolean }>`
@@ -19,9 +21,8 @@ export const ContainerRight = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
 `;
 
-export const Settings = styled.div`
+export const Settings = styled(Icon)`
   cursor: pointer;
 `;

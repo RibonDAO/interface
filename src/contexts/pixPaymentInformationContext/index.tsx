@@ -151,7 +151,10 @@ function PixPaymentInformationProvider({ children }: Props) {
   function getUTMFromLocationSearch() {
     const utmSource = extractUrlValue("utm_source", history.location.search);
     const utmMedium = extractUrlValue("utm_medium", history.location.search);
-    const utmCampaign = extractUrlValue("utm_campaign", history.location.search);
+    const utmCampaign = extractUrlValue(
+      "utm_campaign",
+      history.location.search,
+    );
     return { utmSource, utmMedium, utmCampaign };
   }
 

@@ -6,7 +6,6 @@ const creditCardPaymentApi = {
   postCreditCardPayment: (
     paymentInformation: CreditCardPayment,
   ): Promise<AxiosResponse<CreditCardPayment>> => {
-    console.log(paymentInformation);
     return apiPost("payments/credit_cards", paymentInformation);
   }
 

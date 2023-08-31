@@ -1,49 +1,27 @@
 import styled from "styled-components";
-import { defaultBodyXsSemibold } from "styles/typography/default";
 
 export const ContainerButtons = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
 
-export const Container = styled.div``;
+export const Container = styled.div<{ outline: boolean }>`
+  background-color: ${({ theme, outline }) =>
+    outline ? theme.colors.brand.primary[800] : theme.colors.neutral10};
 
-export const ContainerRight = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const Settings = styled.img`
-  cursor: pointer;
-`;
-
-export const CounterImage = styled.img`
-  width: 12.5px;
-`;
-
-export const CounterContainer = styled.div`
-  margin-right: ${({ theme }) => theme.spacing(4)};
-  margin-left: ${({ theme }) => theme.spacing(8)};
-  padding: ${({ theme }) => theme.spacing(8)};
-  border: 1px solid ${({ theme }) => theme.colors.neutral[200]};
-  border-radius: 4px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  background: ${({ theme }) => theme.colors.neutral10};
-
-  &:hover {
-    cursor: pointer;
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    padding: 0 14% 0 calc(14% + 80px);
   }
 `;
 
-export const TicketsAmount = styled.p`
-  ${defaultBodyXsSemibold}
+export const ContainerRight = styled.div`
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
 
-  margin-right: ${({ theme }) => theme.spacing(4)};
-  color: ${({ color }) => color};
+export const Settings = styled.div`
+  cursor: pointer;
 `;

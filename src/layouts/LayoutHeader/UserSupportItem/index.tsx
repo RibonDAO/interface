@@ -25,11 +25,11 @@ function UserSupportItem(): JSX.Element {
   };
 
   return (
-    <S.Container>
+    <S.Container onClick={handleClick}>
       <CardIconText
         text={t("userSupportText")}
         icon={supportIcon}
-        rightComponent={<S.GoButton src={ArrowRight} onClick={handleClick} />}
+        rightComponent={<S.GoButton src={ArrowRight} />}
       />
     </S.Container>
   );

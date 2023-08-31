@@ -3,8 +3,8 @@ import Icon from "components/atomics/Icon";
 
 export const ContainerButtons = styled.div`
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: flex-end;
 `;
 
 export const Container = styled.div<{ outline: boolean }>`

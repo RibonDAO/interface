@@ -20,6 +20,7 @@ export const CounterContainer = styled.div<{ outline: boolean }>`
   box-sizing: border-box;
   background: ${({ theme, outline }) =>
     outline ? theme.colors.brand.primary[900] : theme.colors.neutral10};
+
   &:hover {
     cursor: pointer;
   }
@@ -27,6 +28,7 @@ export const CounterContainer = styled.div<{ outline: boolean }>`
 
 export const TicketsAmount = styled.p`
   ${defaultBodyXsSemibold}
+
   margin-right: ${({ theme }) => theme.spacing(4)};
   color: ${({ color }) => color};
 `;

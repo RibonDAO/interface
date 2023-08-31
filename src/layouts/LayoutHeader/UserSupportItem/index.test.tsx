@@ -27,7 +27,7 @@ describe("UserSupportItem component", () => {
       setLocalStorageItem(I18NEXTLNG, "pt-BR");
 
       renderComponent(<UserSupportItem />);
-      const button = screen.getByText("User Support");
+      const button = screen.getByText("User support");
 
       clickOn(button);
     });
@@ -45,7 +45,7 @@ describe("UserSupportItem component", () => {
       setLocalStorageItem(I18NEXTLNG, "en");
 
       renderComponent(<UserSupportItem />);
-      const button = screen.getByText("User Support");
+      const button = screen.getByText("User support");
 
       clickOn(button);
     });

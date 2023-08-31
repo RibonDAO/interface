@@ -30,13 +30,13 @@ describe("UserSupportBanner", () => {
         value: { language: "pt-BR" },
       });
       setLocalStorageItem(I18NEXTLNG, "pt-BR");
-      
+
       renderComponent(<UserSupportBanner from="test" />);
       const banner = screen.getByTestId("banner");
-      
+
       clickOn(banner);
     });
-    
+
     it("opens the support link", () => {
       expect(window.open).toHaveBeenCalled();
     });
@@ -52,16 +52,15 @@ describe("UserSupportBanner", () => {
         value: { language: "en" },
       });
       setLocalStorageItem(I18NEXTLNG, "en");
-  
+
       renderComponent(<UserSupportBanner from="test" />);
       const banner = screen.getByTestId("banner");
-  
+
       clickOn(banner);
     });
-  
+
     it("starts the support chat", () => {
       expect(startSupportChat).toHaveBeenCalled();
     });
   });
-  
 });

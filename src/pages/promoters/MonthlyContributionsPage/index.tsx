@@ -10,14 +10,21 @@ import Icon from "components/atomics/Icon";
 import { theme } from "@ribon.io/shared/styles";
 import { add30DaysAndFormatDate } from "lib/formatters/dateFormatters";
 import { useLanguage } from "hooks/useLanguage";
+import { useLocation } from "react-router-dom";
 import CancelSubscriptionModal from "./CancelSubscriptionModal";
 import * as S from "./styles";
 
+type LocationState = {
+  from: string;
+};
 function MonthlyContributionPage(): JSX.Element {
-  const { navigateBack } = useNavigation();
+  const { navigateBack, navigateTo } = useNavigation();
   const { userSubscriptions, sendCancelSubscriptionEmail } = useSubscriptions();
   const { subscriptions } = userSubscriptions();
   const { currentLang } = useLanguage();
+  const {
+    state: { from },
+  } = useLocation<LocationState>();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.monthlyContributionsPage",
@@ -97,7 +104,14 @@ function MonthlyContributionPage(): JSX.Element {
 
   return (
     <S.Container>
-      <S.BackArrowButton src={ArrowLeft} onClick={navigateBack} />
+      <S.BackArrowButton
+        src={ArrowLeft}
+        onClick={() =>
+          from === "donation-done-cause"
+            ? navigateTo("promoters/support-cause")
+            : navigateBack()
+        }
+      />
       <S.Title>{t("title")}</S.Title>
       {subscriptions && (
         <S.SubscriptionContainer>{subscriptionItems}</S.SubscriptionContainer>

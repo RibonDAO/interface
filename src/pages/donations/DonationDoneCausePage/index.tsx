@@ -130,7 +130,7 @@ function DonationDoneCausePage(): JSX.Element {
         pathname: offer?.subscription
           ? "monthly-contributions"
           : "/promoters/support-cause",
-        state: { nonProfit, cause },
+        state: { nonProfit, cause, from: "donation-done-cause" },
       });
     }
     if (flow === "nonProfit") {
@@ -145,7 +145,7 @@ function DonationDoneCausePage(): JSX.Element {
         pathname: offer?.subscription
           ? "monthly-contributions"
           : "/promoters/support-non-profit",
-        state: { nonProfit, cause },
+        state: { nonProfit, cause, from: "donation-done-cause" },
       });
     }
     if (!hasButton) {

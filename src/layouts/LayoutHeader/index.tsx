@@ -63,7 +63,7 @@ function LayoutHeader({
     : undefined;
 
   return (
-    <S.Container outline={outline}>
+    <S.Container outline={outline && isInLifeBasedImpact}>
       <Header
         hasBackButton={hasBackButton}
         onBackButtonClick={navigateBack}

@@ -9,7 +9,6 @@ describe("UserProgress", () => {
         nextLevel={10}
         totalExperienceToNextLevel={80}
         currentExperience={60}
-        percentageCompleted={20}
       />,
     );
   });

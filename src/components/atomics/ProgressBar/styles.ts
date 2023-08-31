@@ -4,13 +4,13 @@ import { defaultBodyXsSemibold } from "styles/typography/default";
 export const Container = styled.div`
   width: 100%;
   height: 20px;
+  padding: 2px;
   border-radius: 5px;
   position: relative;
   display: flex;
   align-items: flex-start;
   text-align: center;
   background-color: ${({ theme }) => theme.colors.neutral[50]};
-  padding: 2px;
 `;
 
 export const Text = styled.p`
@@ -18,8 +18,8 @@ export const Text = styled.p`
 
   width: 100%;
   position: absolute;
-  text-align: center;
   line-height: 18px;
+  text-align: center;
   color: ${({ color }) => color};
 `;
 

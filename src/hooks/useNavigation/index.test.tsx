@@ -98,7 +98,11 @@ describe("useNavigation", () => {
         await fireEvent.click(screen.getByText(GO_TO_PAGE_WITH_SEARCH_BTN));
       });
 
-      expect(screen.getByText(`?foo=bar&utm_source=undefined&utm_medium=undefined&utm_campaign=undefined`)).toBeInTheDocument();
+      expect(
+        screen.getByText(
+          "?foo=bar&utm_source=undefined&utm_medium=undefined&utm_campaign=undefined",
+        ),
+      ).toBeInTheDocument();
     });
 
     describe("when there is a search param", () => {
@@ -110,7 +114,11 @@ describe("useNavigation", () => {
         await act(async () => {
           await fireEvent.click(screen.getByText(GO_TO_PAGE_BTN));
         });
-        expect(screen.getByText(`?foo=bar&utm_source=undefined&utm_medium=undefined&utm_campaign=undefined`)).toBeInTheDocument();
+        expect(
+          screen.getByText(
+            "?foo=bar&utm_source=undefined&utm_medium=undefined&utm_campaign=undefined",
+          ),
+        ).toBeInTheDocument();
       });
     });
 
@@ -125,7 +133,11 @@ describe("useNavigation", () => {
           await fireEvent.click(screen.getByText(GO_TO_PAGE_WITH_SEARCH_BTN));
         });
 
-        expect(screen.getByText(`?foo=bar&utm_source=undefined&utm_medium=undefined&utm_campaign=undefined`)).toBeInTheDocument();
+        expect(
+          screen.getByText(
+            "?foo=bar&utm_source=undefined&utm_medium=undefined&utm_campaign=undefined",
+          ),
+        ).toBeInTheDocument();
       });
     });
 

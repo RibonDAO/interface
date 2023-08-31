@@ -7,6 +7,6 @@ import UserSupportItem from ".";
 describe("UserSupportItem component", () => {
   it("renders the correct text", () => {
     renderComponent(<UserSupportItem />);
-    expectTextToBeInTheDocument("User Support");
+    expectTextToBeInTheDocument("User support");
   });
 });

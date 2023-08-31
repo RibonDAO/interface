@@ -17,7 +17,6 @@ import { today } from "lib/dateTodayFormatter";
 import Spinner from "components/atomics/Spinner";
 import useVoucher from "hooks/useVoucher";
 import { useCausesContext } from "contexts/causesContext";
-import { logEvent, track } from "@amplitude/analytics-browser";
 import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
@@ -29,6 +28,7 @@ import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
 import { useNonProfitsContext } from "contexts/nonProfitsContext";
+import { logEvent } from "lib/events";
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import NonProfitsList from "./NonProfitsList";
@@ -116,14 +116,14 @@ function CausesPage(): JSX.Element {
   }, [JSON.stringify(currentUser)]);
 
   useEffect(() => {
-    track("Cause Page View");
-  }, []);
-
-  useEffect(() => {
-    logEvent("donationCardsOrder_view", {
-      nonProfits: nonProfitsWithPoolBalance,
-      causes: causesWithPoolBalance,
-    });
+    if (nonProfitsWithPoolBalance && causesWithPoolBalance?.length > 0) {
+      logEvent("donationCardsOrder_view", {
+        nonProfits: nonProfitsWithPoolBalance
+          .map((nonProfit) => nonProfit.name)
+          .join(", "),
+        causes: causesWithPoolBalance?.map((cause) => cause.name).join(", "),
+      });
+    }
   }, [nonProfitsWithPoolBalance, causesWithPoolBalance]);
 
   useEffect(() => {

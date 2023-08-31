@@ -4,6 +4,9 @@ import Button, { ButtonProps } from "components/atomics/buttons/Button";
 import theme from "styles/theme";
 import { newLogEvent } from "lib/events";
 import { useTranslation } from "react-i18next";
+import { useLanguage } from "hooks/useLanguage";
+import { Languages } from "@ribon.io/shared/types";
+import startSupportChat from "services/support";
 import * as S from "./styles";
 import { defaultCustomStyles } from "../defaultCustomStyles";
 
@@ -49,7 +52,7 @@ function ModalIcon({
   eventParams,
 }: Props): JSX.Element {
   const [logged, SetLogged] = useState(false);
-
+  const { currentLang } = useLanguage();
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage.modalForm",
   });
@@ -67,8 +70,11 @@ function ModalIcon({
   }
 
   const handleSupportButtonClick = () => {
-    window.open(t("userSupportLink"), "_blank");
-    newLogEvent("click", "supportBtn", { from: "error_modal" });
+    if (currentLang === Languages.PT) {
+      window.open(t("userSupportLink"), "_blank");
+    } else {
+      startSupportChat();
+    }
   };
 
   return (

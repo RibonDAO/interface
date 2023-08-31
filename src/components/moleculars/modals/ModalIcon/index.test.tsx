@@ -6,7 +6,15 @@ import {
 } from "config/testUtils/expects";
 import { screen } from "@testing-library/react";
 import { mockNewLogEventFunction } from "setupTests";
+import { setLocalStorageItem } from "lib/localStorage";
+import { I18NEXTLNG } from "lib/currentLanguage";
+import startSupportChat from "services/support";
 import ModalIcon from ".";
+
+jest.mock("services/support", () => ({
+  __esModule: true,
+  default: jest.fn(),
+}));
 
 describe("ModalIcon", () => {
   it("should render without error", () => {
@@ -104,6 +112,44 @@ describe("ModalIcon", () => {
         eventName,
         eventParams,
       );
+    });
+  });
+
+  describe("when the support button is clicked in portuguese", () => {
+    beforeEach(() => {
+      window.open = jest.fn();
+
+      Object.defineProperty(window, "navigator", {
+        value: { language: "pt-BR" },
+      });
+      setLocalStorageItem(I18NEXTLNG, "pt-BR");
+
+      renderComponent(<ModalIcon title="text" visible supportButton />);
+      const button = screen.getByText("Access user support");
+
+      clickOn(button);
+    });
+
+    it("opens the support link", () => {
+      expect(window.open).toHaveBeenCalled();
+    });
+  });
+
+  describe("when the support button is clicked in English", () => {
+    beforeEach(() => {
+      Object.defineProperty(window, "navigator", {
+        value: { language: "en" },
+      });
+      setLocalStorageItem(I18NEXTLNG, "en");
+
+      renderComponent(<ModalIcon title="text" visible supportButton />);
+      const button = screen.getByText("Access user support");
+
+      clickOn(button);
+    });
+
+    it("starts the support chat", () => {
+      expect(startSupportChat).toHaveBeenCalled();
     });
   });
 });

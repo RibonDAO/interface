@@ -1,3 +1,4 @@
+import extractUrlValue from "lib/extractUrlValue";
 import { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -10,8 +11,15 @@ export interface NavigationProps {
 export default function useNavigation() {
   const history = useHistory();
 
+  const utmSource = extractUrlValue("utm_source", history.location.search);
+  const utmMedium = extractUrlValue("utm_medium", history.location.search);
+  const utmCampaign = extractUrlValue("utm_campaign", history.location.search);
+  
+  const utmParams = `utm_source=${utmSource}&utm_medium=${utmMedium}&utm_campaign=${utmCampaign}`;
+
   const navigateTo = useCallback(
     (navigationProps: NavigationProps | string) => {
+      console.log(navigationProps);
       if (typeof navigationProps === "string") {
         history.push({
           pathname: navigationProps,
@@ -27,7 +35,7 @@ export default function useNavigation() {
         history.push({
           pathname,
           state,
-          search: search || history.location.search,
+          search: `${search}&${utmParams}` || history.location.search,
         });
       }
     },

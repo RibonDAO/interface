@@ -10,6 +10,7 @@ export const Container = styled.div<{ outline: boolean }>`
     outline ? theme.colors.brand.primary[800] : theme.colors.neutral10};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    margin-bottom: ${({ theme }) => theme.spacing(32)};
     padding: 0 14% 0 calc(14% + 80px);
   }
 `;

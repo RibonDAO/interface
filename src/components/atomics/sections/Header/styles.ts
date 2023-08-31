@@ -8,7 +8,7 @@ export const Container = styled.div`
   justify-content: space-between;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    height: 128px;
+    height: 96px;
     margin-left: ${({ theme }) => theme.spacing(0)};
   }
 `;
@@ -31,7 +31,6 @@ export const InsideContainer = styled.div`
   align-items: center;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    height: 128px;
     margin-left: ${({ theme }) => theme.spacing(0)};
     justify-content: center;
   }

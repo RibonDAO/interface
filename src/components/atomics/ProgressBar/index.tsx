@@ -27,7 +27,7 @@ function ProgressBar({
     <S.Container ref={wrapperRef}>
       <S.Progress progress={percentage} color={color} />
       <S.Text color={textColor}>
-        {showPercentageLabel ? `${percentage}%` : `${value}/${max}`}
+        {showPercentageLabel ? `${percentage.toFixed(0)}%` : `${value}/${max}`}
       </S.Text>
     </S.Container>
   );

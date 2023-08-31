@@ -39,13 +39,11 @@ function LayoutHeader({
   const integrationId = useIntegrationId();
   const [menuVisible, setMenuVisible] = useState(false);
   const { isMobile } = useBreakpoint();
-  const { signedIn } = useCurrentUser();
+  const { signedIn, currentUser } = useCurrentUser();
   const { navigateBack, history, navigateTo } = useNavigation();
   const { integration } = useIntegration(integrationId);
   const externalId = extractUrlValue("external_id", history.location.search);
   const { canDonate } = useCanDonate(integrationId, PLATFORM, externalId);
-
-  const hasDonated = localStorage.getItem("HAS_DONATED") === "true";
 
   const { isVoucherAvailable } = useVoucher();
 
@@ -124,7 +122,7 @@ function LayoutHeader({
         <UserSupportItem />
         <Divider color={theme.colors.neutral[200]} />
         <ChangeLanguageItem />
-        {hasDonated ? (
+        {currentUser?.lastDonationAt ? (
           <div>
             <Divider color={theme.colors.neutral[200]} />
             <MonthlyContributionsItem />

@@ -19,7 +19,6 @@ export default function useNavigation() {
 
   const navigateTo = useCallback(
     (navigationProps: NavigationProps | string) => {
-      console.log(navigationProps);
       if (typeof navigationProps === "string") {
         history.push({
           pathname: navigationProps,

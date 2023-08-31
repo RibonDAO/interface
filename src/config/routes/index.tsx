@@ -265,7 +265,7 @@ function RoutesComponent(): JSX.Element {
           <DeleteAccountPage />
         </Suspense>
       </Route>
-      <Route path="/contribution-canceled" exact>
+      <Route path="/monthly-contribution-canceled" exact>
         <Suspense fallback={<div />}>
           <ContributionCanceledPage />
         </Suspense>

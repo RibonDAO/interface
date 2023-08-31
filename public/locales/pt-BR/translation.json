@@ -170,7 +170,7 @@
         "getTheAppText": "Baixar app"
       },
       "monthlyContributionsItem": {
-        "monthlyContributionsText": "Contribuições Mensais"
+        "monthlyContributionsText": "Contribuições mensais"
       },
       "donationModalTitle": "Legal! Você tem 1 ticket para doar",
       "donationModalBody": "Você pode destiná-lo para qualquer projeto",
@@ -437,7 +437,7 @@
           "city": "Cidade",
           "taxId": "CPF",
           "cpf": "CPF",
-          "name": "Nome"
+          "name": "Nome completo"
         }
       },
       "confirmPayment": "Confirmar pagamento",
@@ -582,6 +582,7 @@
   "contributionSection": {
     "titleCard": "Faça ainda mais",
     "title": "Que incrível! Obrigado por ajudar {{nonProfitName}}",
+    "titleNewImpact": "Graças a você a {{nonProfitName}} poderá impactar 1 vida. Obrigado!",
     "nonProfits": "ONGs"
   },
   "contributionCard": {

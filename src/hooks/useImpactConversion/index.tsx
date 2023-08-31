@@ -12,6 +12,11 @@ import { useEffect, useState } from "react";
 import { Contribution } from "types/entities/Contribution";
 
 export function useImpactConversion() {
+  // R$ 10,00 offer
+  const offerBrlId = 33;
+  // $ 10,00 offer
+  const offerUsdId = 7;
+
   const [contribution, setContribution] = useState<Contribution>();
   const [description, setDescription] = useState<
     string | JSX.Element | undefined
@@ -24,7 +29,8 @@ export function useImpactConversion() {
   const { currentUser } = useCurrentUser();
 
   const { nonProfits } = useNonProfits();
-  const { offers } = useOffers(Currencies.BRL, false);
+  const { offers: offersBrl } = useOffers(Currencies.BRL, false);
+  const { offers: offersUsd } = useOffers(Currencies.USD, false);
   const { userStatistics } = useStatistics({
     userId: currentUser?.id ?? undefined,
   });
@@ -32,24 +38,24 @@ export function useImpactConversion() {
   const { nonProfitImpact } = useNonProfitImpact(
     nonProfit?.id,
     offer?.priceValue,
-    Currencies.BRL,
+    offer?.currency === "brl" ? Currencies.BRL : Currencies.USD,
   );
+
+  const { currentLang } = useLanguage();
 
   useEffect(() => {
     setNonProfit(
       nonProfits?.find((n) => n.id === userStatistics?.lastDonatedNonProfit),
     );
+  }, [nonProfits, userStatistics]);
 
-    if (!offers) return;
-
-    setOffer(
-      offers?.find((o) => o.id === contribution?.offerId) ?? offers?.[0],
-    );
-  }, [nonProfits, offers, userStatistics, contribution?.offerId]);
-
-  const { currentLang } = useLanguage();
-
-  const actualOfferId = currentLang === "pt-BR" ? 28 : 31;
+  useEffect(() => {
+    if (currentLang === "pt-BR") {
+      setOffer(offersBrl?.find((o) => o.id === offerBrlId) ?? offersBrl?.[0]);
+    } else {
+      setOffer(offersUsd?.find((o) => o.id === offerUsdId) ?? offersUsd?.[0]);
+    }
+  }, [offersBrl, offersUsd, currentLang]);
 
   useEffect(() => {
     if (!offer) return;
@@ -61,9 +67,9 @@ export function useImpactConversion() {
       image: nonProfit.mainImage,
       value: offer.priceValue ?? 0,
       communityValue: (offer.priceValue ?? 0) * 0.2,
-      offerId: offer.id ?? actualOfferId,
+      offerId: offer.id,
     });
-  }, [setContribution, nonProfit, offers, userStatistics, currentUser?.id]);
+  }, [setContribution, nonProfit, offer]);
 
   useEffect(() => {
     setDescription(

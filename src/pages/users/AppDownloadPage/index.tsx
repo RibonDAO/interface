@@ -3,9 +3,8 @@ import LeftArrow from "assets/icons/arrow-left-green.svg";
 import useNavigation from "hooks/useNavigation";
 import { useLocation } from "react-router-dom";
 import { NonProfit } from "@ribon.io/shared";
-import { useEffect } from "react";
-import { newLogEvent } from "lib/events";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
+import { useEffect, useState } from "react";
 import * as S from "./styles";
 import IllustrationMobile from "./assets/illustration-mobile.svg";
 import LeftImage from "./assets/left-image.svg";
@@ -13,8 +12,8 @@ import RightImage from "./assets/right-image.svg";
 import AppDownloadTemplate from "./AppDownloadTemplate";
 
 type LocationStateType = {
-  nonProfit: NonProfit;
-  showContribute: boolean;
+  nonProfit?: NonProfit;
+  showContribute?: boolean;
 };
 
 function AppDownloadPage() {
@@ -22,9 +21,16 @@ function AppDownloadPage() {
     keyPrefix: "appDownloadPage",
   });
 
-  const {
-    state: { nonProfit, showContribute },
-  } = useLocation<LocationStateType>();
+  const [nonProfit, setNonProfit] = useState<NonProfit | undefined>();
+  const [showContribute, setShowContribute] = useState<boolean | undefined>();
+
+  const { state } = useLocation<LocationStateType>();
+  useEffect(() => {
+    if (state) {
+      setNonProfit(state.nonProfit);
+      setShowContribute(state.showContribute);
+    }
+  }, []);
 
   const { navigateTo } = useNavigation();
 
@@ -40,16 +46,6 @@ function AppDownloadPage() {
       navigateTo("/causes");
     }
   };
-
-  const handleOnClickFirstButton = () => {
-    if (comesFromPostDonation)
-      newLogEvent("click", "webDwnldCta", { from: "postDonation" });
-  };
-
-  useEffect(() => {
-    if (comesFromPostDonation)
-      newLogEvent("view", "webDwnldCta", { from: "postDonation" });
-  }, []);
 
   useAvoidBackButton();
 
@@ -72,7 +68,6 @@ function AppDownloadPage() {
           description={t("description")}
           firstButton={{
             text: t("buttonDownloadApp"),
-            onClick: () => handleOnClickFirstButton(),
           }}
           secondButton={{
             text: nonProfit ? t("buttonSkip") : t("buttonBack"),

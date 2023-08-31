@@ -15,7 +15,6 @@ import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import { DONATION_TOAST_SEEN_AT_KEY } from "lib/localStorage/constants";
 import { today } from "lib/dateTodayFormatter";
 import Spinner from "components/atomics/Spinner";
-import GroupButtons from "components/moleculars/sections/GroupButtons";
 import useVoucher from "hooks/useVoucher";
 import { useCausesContext } from "contexts/causesContext";
 import { logEvent, track } from "@amplitude/analytics-browser";
@@ -36,6 +35,7 @@ import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
 import ChooseCauseModal from "./ChooseCauseModal";
 import ContributionSection from "./ContributionSection";
+import CausesSelectSection from "./CausesSelectSection";
 
 function CausesPage(): JSX.Element {
   const integrationId = useIntegrationId();
@@ -45,13 +45,7 @@ function CausesPage(): JSX.Element {
     useCausesContext();
   const { nonProfitsWithPoolBalance, isLoading: isLoadingNonProfits } =
     useNonProfitsContext();
-  const {
-    chosenCause,
-    setChosenCause,
-    chosenCauseIndex,
-    setChosenCauseIndex,
-    chooseCauseModalVisible,
-  } = useCauseDonationContext();
+  const { chosenCause, chooseCauseModalVisible } = useCauseDonationContext();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
@@ -189,26 +183,6 @@ function CausesPage(): JSX.Element {
     sortNonProfits();
   }, [chosenCause]);
 
-  const handleCauseChanged = (_element: any, index: number, event: any) => {
-    if (_element && event?.type === "click") {
-      const cause = _element;
-      setChosenCauseIndex(index);
-      if (cause.id !== 0) {
-        setChosenCause(cause);
-      } else {
-        setChosenCause(undefined);
-      }
-    }
-  };
-
-  const causesWithAllFilter = [
-    {
-      id: 0,
-      name: t("allCauses"),
-    },
-    ...(causesWithPoolBalance || []),
-  ];
-
   useAvoidBackButton();
 
   return (
@@ -221,7 +195,7 @@ function CausesPage(): JSX.Element {
       <S.BodyContainer>
         {!canDonate && <ContributionSection />}
         <S.TitleContainer>
-          <S.Title>{t("pageTitle")}</S.Title>
+          {canDonate && <S.Title>{t("pageTitle")}</S.Title>}
 
           {!isMobile && (
             <Tooltip
@@ -234,16 +208,7 @@ function CausesPage(): JSX.Element {
           )}
         </S.TitleContainer>
         <ContributionNotification />
-        {!isFirstAccess(signedIn) && (
-          <GroupButtons
-            elements={causesWithAllFilter}
-            indexSelected={chosenCauseIndex}
-            onChange={handleCauseChanged}
-            nameExtractor={(cause) => cause.name}
-            eventParams={(cause) => ({ causeId: cause.id })}
-            eventName="P1_causeTab"
-          />
-        )}
+        <CausesSelectSection />
 
         {isLoadingNonProfits ? (
           <Spinner size="26" />

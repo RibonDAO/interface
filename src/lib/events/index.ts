@@ -16,22 +16,22 @@ export function logEvent(
   eventName: string,
   eventParams: EventParams = {},
 ): void {
+  const convertedParams = eventParams;
+  convertedParams.anonymousId =
+      localStorage.getItem("installationId") ?? "false";
+  convertedParams.integrationName =
+      localStorage.getItem("integrationName") ?? "false";
+  convertedParams.hasDonated = localStorage.getItem("HAS_DONATED") ?? "false";
+  convertedParams.platform = "web";
+
   if (eventName.length > 32) {
     throw new EventNameTooLongError();
   } else if (process.env.NODE_ENV === "production") {
-    const convertedParams = eventParams;
-    convertedParams.anonymousId =
-      localStorage.getItem("installationId") ?? "false";
-    convertedParams.integrationName =
-      localStorage.getItem("integrationName") ?? "false";
-    convertedParams.hasDonated = localStorage.getItem("HAS_DONATED") ?? "false";
-    convertedParams.platform = "web";
-
     logFirebaseEvent(eventName, convertedParams);
     logMixpanelEvent(eventName, convertedParams);
   }
   if (DEBUG_EVENTS_ENABLED && logDebugEvent) {
-    logDebugEvent(eventName, eventParams);
+    logDebugEvent(eventName, convertedParams);
   }
 }
 

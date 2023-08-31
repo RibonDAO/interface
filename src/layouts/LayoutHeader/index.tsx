@@ -45,6 +45,8 @@ function LayoutHeader({
   const externalId = extractUrlValue("external_id", history.location.search);
   const { canDonate } = useCanDonate(integrationId, PLATFORM, externalId);
 
+  const hasDonated = localStorage.getItem("HAS_DONATED") === "true";
+
   const { isVoucherAvailable } = useVoucher();
 
   const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
@@ -122,8 +124,14 @@ function LayoutHeader({
         <UserSupportItem />
         <Divider color={theme.colors.neutral[200]} />
         <ChangeLanguageItem />
-        <Divider color={theme.colors.neutral[200]} />
-        <MonthlyContributionsItem />
+        {hasDonated ? (
+          <div>
+            <Divider color={theme.colors.neutral[200]} />
+            <MonthlyContributionsItem />
+          </div>
+        ) : (
+          <div />
+        )}
 
         {signedIn ? (
           <div>

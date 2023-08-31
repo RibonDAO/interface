@@ -28,7 +28,7 @@ describe("Impact Page", () => {
         });
 
         it("should navigate to causes page", () => {
-          expectPageToNavigateTo("/promoters/checkout", {
+          expectPageToNavigateTo("/promoters/recurrence", {
             search: "offer=0&target=cause&target_id=&currency=USD",
           });
         });

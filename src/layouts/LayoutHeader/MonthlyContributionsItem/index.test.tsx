@@ -5,6 +5,6 @@ import MonthlyContributionsItem from ".";
 describe("MonthlyContributionsItem component", () => {
   it("renders the correct text", () => {
     renderComponent(<MonthlyContributionsItem />);
-    expectTextToBeInTheDocument("Monthly Contributions");
+    expectTextToBeInTheDocument("Monthly contributions");
   });
 });

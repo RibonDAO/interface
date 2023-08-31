@@ -20,7 +20,7 @@ function DownloadAppToast(): JSX.Element {
       text={t("title")}
       leftIcon={DownloadIcon}
       onClick={handleClick}
-      eventName="webDwnldCta"
+      eventName="downloadCTA"
       eventParams={{ from: "floatingBtn" }}
     />
   );

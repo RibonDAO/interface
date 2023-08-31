@@ -5,6 +5,7 @@ import {
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
 import { screen } from "@testing-library/react";
+import offerFactory from "config/testUtils/factories/offerFactory";
 import ContributionSection from ".";
 
 jest.mock("hooks/useImpactConversion", () => ({
@@ -27,7 +28,7 @@ describe("ContributionSection", () => {
           value: 100,
         },
         nonProfit: { name: "Test Non-Profit" },
-        offer: { id: 1 },
+        offer: offerFactory(),
         description: "This is a test description",
         variation: "Test Variation",
       });
@@ -50,7 +51,7 @@ describe("ContributionSection", () => {
         mockUseImpactConversion.mockReturnValue({
           contribution: null,
           nonProfit: { name: "Test Non-Profit" },
-          offer: { id: 1 },
+          offer: offerFactory(),
           description: "This is a test description",
           variation: "Control",
         });
@@ -80,7 +81,7 @@ describe("ContributionSection", () => {
             value: 100,
           },
           nonProfit: { name: "Test Non-Profit" },
-          offer: { id: 1 },
+          offer: offerFactory(),
           description: "This is a test description",
           variation: "Test Variation",
         });
@@ -91,8 +92,7 @@ describe("ContributionSection", () => {
       it("renders isMobile is true", () => {
         const container = screen.getByTestId("contribution-section-container");
         expect(container).toHaveStyle({
-          marginTop: "0",
-          width: "110%",
+          borderRadius: "0",
         });
       });
     });
@@ -107,7 +107,7 @@ describe("ContributionSection", () => {
             value: 100,
           },
           nonProfit: { name: "Test Non-Profit" },
-          offer: { id: 1 },
+          offer: offerFactory(),
           description: "This is a test description",
           variation: "Test Variation",
         });
@@ -120,7 +120,6 @@ describe("ContributionSection", () => {
       it("when isMobile is false", () => {
         const container = screen.getByTestId("contribution-section-container");
         expect(container).toHaveStyle({
-          marginTop: "48px",
           width: "100%",
         });
       });

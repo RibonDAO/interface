@@ -10,6 +10,7 @@ export const Container = styled.div`
   align-items: flex-start;
   text-align: center;
   background-color: ${({ theme }) => theme.colors.neutral[50]};
+  padding: 2px;
 `;
 
 export const Text = styled.p`
@@ -18,13 +19,15 @@ export const Text = styled.p`
   width: 100%;
   position: absolute;
   text-align: center;
-  color: ${({ theme }) => theme.colors.neutral[800]};
+  line-height: 18px;
+  color: ${({ color }) => color};
 `;
 
 export const Progress = styled.div<{ progress: number }>`
   width: ${({ progress }) => progress}%;
-  height: 20px;
+  height: 16px;
   border-radius: 5px;
   position: absolute;
-  background-color: ${({ theme }) => theme.colors.brand.primary[300]};
+  background-color: ${({ color }) => color};
+  transition: width 1.5s ease-in-out;
 `;

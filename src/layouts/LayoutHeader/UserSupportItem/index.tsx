@@ -29,7 +29,7 @@ function UserSupportItem(): JSX.Element {
       <CardIconText
         text={t("userSupportText")}
         icon={supportIcon}
-        rightComponent={<S.GoButton src={ArrowRight} />}
+        rightComponent={<S.GoButton src={ArrowRight} onClick={handleClick} />}
       />
     </S.Container>
   );

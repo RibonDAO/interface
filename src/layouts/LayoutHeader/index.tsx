@@ -4,7 +4,7 @@ import useVoucher from "hooks/useVoucher";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import useNavigation from "hooks/useNavigation";
 import { PLATFORM, RIBON_COMPANY_ID } from "utils/constants";
-import { newLogEvent } from "lib/events";
+import { logEvent } from "lib/events";
 import extractUrlValue from "lib/extractUrlValue";
 import TicketsCounter from "layouts/LayoutHeader/TicketsCounter";
 import SettingsMenu from "layouts/LayoutHeader/SettingsMenu";
@@ -48,7 +48,7 @@ function LayoutHeader({
       return;
     }
 
-    newLogEvent("click", "backIntegration", { from: "header" });
+    logEvent("backIntegration_click", { from: "header" });
     window.open(integration.integrationTask.linkAddress);
   }
 

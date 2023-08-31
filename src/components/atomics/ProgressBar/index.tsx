@@ -12,9 +12,9 @@ export type Props = {
 };
 
 const { brand, neutral } = theme.colors;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ProgressBar({
   value,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   min,
   max,
   showPercentageLabel = false,

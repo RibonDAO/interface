@@ -5,10 +5,7 @@ import { apiPost } from "..";
 const creditCardPaymentApi = {
   postCreditCardPayment: (
     paymentInformation: CreditCardPayment,
-  ): Promise<AxiosResponse<CreditCardPayment>> => {
-    return apiPost("payments/credit_cards", paymentInformation);
-  }
-
+  ): Promise<AxiosResponse<CreditCardPayment>> => apiPost("payments/credit_cards", paymentInformation)
 };
 
 export default creditCardPaymentApi;

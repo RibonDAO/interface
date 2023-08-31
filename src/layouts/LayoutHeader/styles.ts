@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Icon from "components/atomics/Icon";
 
 export const ContainerButtons = styled.div`
   display: flex;
@@ -21,8 +20,4 @@ export const ContainerRight = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-`;
-
-export const Settings = styled(Icon)`
-  cursor: pointer;
 `;

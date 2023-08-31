@@ -8,7 +8,7 @@ export const CounterImage = styled.img`
 export const CounterContainer = styled.div<{ outline: boolean }>`
   margin-right: ${({ theme }) => theme.spacing(4)};
   margin-left: ${({ theme }) => theme.spacing(8)};
-  padding: ${({ theme }) => theme.spacing(0)} ${({ theme }) => theme.spacing(8)};
+  padding: ${({ theme }) => theme.spacing(4)} ${({ theme }) => theme.spacing(8)};
   border: 1px solid
     ${({ theme, outline }) =>
       outline ? theme.colors.brand.primary[300] : theme.colors.neutral[200]};

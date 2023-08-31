@@ -11,14 +11,15 @@ export type Props = {
   textColor?: string;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const { brand, neutral } = theme.colors;
 function ProgressBar({
   value,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   min,
   max,
   showPercentageLabel = false,
-  color = theme.colors.brand.primary[300],
-  textColor = theme.colors.neutral[800],
+  color = brand.primary[300],
+  textColor = neutral[800],
 }: Props): JSX.Element {
   const percentage = (value / max) * 100;
 

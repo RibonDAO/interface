@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const ContainerButtons = styled.div`
   display: flex;
+  align-items: center;
   justify-content: flex-end;
 `;
 
@@ -20,8 +21,4 @@ export const ContainerRight = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-`;
-
-export const Settings = styled.div`
-  cursor: pointer;
 `;

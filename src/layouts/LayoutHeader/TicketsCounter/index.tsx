@@ -1,7 +1,7 @@
 import { theme } from "@ribon.io/shared/styles";
 import ticketOn from "assets/icons/ticket-icon-on.svg";
 import ticketOff from "assets/icons/ticket-icon-off.svg";
-import { newLogEvent } from "lib/events";
+import { logEvent } from "lib/events";
 import { useCanDonate } from "@ribon.io/shared/hooks";
 import { PLATFORM } from "utils/constants";
 import useNavigation from "hooks/useNavigation";
@@ -26,10 +26,10 @@ function TicketsCounter({ outline = false }: Props): JSX.Element {
 
   function handleCounterClick() {
     if (canDonateAndHasVoucher) {
-      newLogEvent("click", "ticketIcon", { ticketQtd: 1 });
+      logEvent("ticketIcon_click", { ticketQtd: 1 });
       navigateTo("/tickets");
     } else {
-      newLogEvent("click", "ticketIcon", { ticketQtd: 0 });
+      logEvent("ticketIcon_click", { ticketQtd: 0 });
       showBlockedDonationContributionModal();
     }
   }

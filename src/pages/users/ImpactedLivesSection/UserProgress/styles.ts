@@ -8,6 +8,7 @@ export const ProgressBarContainer = styled.div`
   flex-direction: column;
   align-items: center;
   min-width: 312px;
+  overflow-x: hidden;
 `;
 
 export const ProgressInfo = styled.div`

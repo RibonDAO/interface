@@ -29,4 +29,5 @@ export const Progress = styled.div<{ progress: number }>`
   border-radius: 5px;
   position: absolute;
   background-color: ${({ color }) => color};
+  transition: width 1.5s ease-in-out;
 `;

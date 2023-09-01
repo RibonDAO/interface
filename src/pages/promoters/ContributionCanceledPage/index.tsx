@@ -8,6 +8,8 @@ import useQueryParams from "hooks/useQueryParams";
 import { useCallback, useEffect, useState } from "react";
 import Icon from "components/atomics/Icon";
 import { theme } from "@ribon.io/shared/styles";
+import { logEvent } from "lib/events";
+import Subscription from "@ribon.io/shared/types/entities/Subscription";
 import * as S from "./styles";
 import Loader from "../CheckoutPage/FiatSection/loader";
 
@@ -19,9 +21,9 @@ function ContributionCanceledPage(): JSX.Element {
   const queryParams = useQueryParams();
   const token = queryParams.get("token");
 
-  const [subscription, setSubscription] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [subscription, setSubscription] = useState<Subscription | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
 
   const { cancelSubscription } = useSubscriptions();
 
@@ -32,6 +34,7 @@ function ContributionCanceledPage(): JSX.Element {
       .then((currentSubscription) => {
         if (!currentSubscription) setError(true);
         setSubscription(currentSubscription);
+        logEvent("subsCanceledPage_view");
         setLoading(false);
       })
       .catch(() => {

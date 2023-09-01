@@ -13,6 +13,7 @@ import {
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import theme from "styles/theme";
 import { useLocation } from "react-router-dom";
+import { useExperiment } from "@growthbook/growthbook-react";
 import Intersection from "assets/images/intersection-image.svg";
 import extractUrlValue from "lib/extractUrlValue";
 import { useCausesContext } from "contexts/causesContext";
@@ -119,25 +120,41 @@ function SupportCausePage(): JSX.Element {
     setOfferId(offer.id);
   };
 
+  const variation = useExperiment({
+    key: "understanding-test",
+    variations: ["control", "product", "growth"],
+  });
+
   if (causes.length === 0) {
     return <div />;
   }
 
+  const oldTitle = () => <S.Title>{t("title")}</S.Title>;
+
+  const newTitle = () => (
+    <>
+      <S.Title>{t("donateWithRibonTitle")}</S.Title>
+      <S.Subtitle>{t("donateWithRibonSubtitle")}</S.Subtitle>
+    </>
+  );
+
   return (
     <S.Container>
       <DownloadAppToast />
-      <S.Title>{t("title")}</S.Title>
+      {variation.value === "growth" ? newTitle() : oldTitle()}
       {!isLoading && (
-        <GroupButtons
-          elements={causes}
-          onChange={handleCauseClick}
-          indexSelected={chosenCauseIndex}
-          nameExtractor={(element) => element.name}
-          backgroundColor={secondary[700]}
-          textColorOutline={secondary[700]}
-          borderColor={secondary[700]}
-          borderColorOutline={secondary[300]}
-        />
+        <S.GroupButtonsContainer>
+          <GroupButtons
+            elements={causes}
+            onChange={handleCauseClick}
+            indexSelected={chosenCauseIndex}
+            nameExtractor={(element) => element.name}
+            backgroundColor={secondary[700]}
+            textColorOutline={secondary[700]}
+            borderColor={secondary[700]}
+            borderColorOutline={secondary[300]}
+          />
+        </S.GroupButtonsContainer>
       )}
       {chosenCause && (
         <S.ContentContainer>

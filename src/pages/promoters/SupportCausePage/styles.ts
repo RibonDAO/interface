@@ -105,12 +105,15 @@ export const Title = styled.h1`
   ${stylizedDisplayXs}
 
   margin: ${({ theme }) => theme.spacing(4, 0)};
-  margin-bottom: ${({ theme }) => theme.spacing(24)};
   color: ${({ theme }) => theme.colors.neutral[800]};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     ${stylizedDisplayLg}
   }
+`;
+
+export const GroupButtonsContainer = styled.div`
+  margin-top: ${({ theme }) => theme.spacing(24)};
 `;
 
 export const SupportImage = styled.img`
@@ -150,5 +153,11 @@ export const RefundText = styled.p`
 
   margin-top: ${({ theme }) => theme.spacing(4)};
   text-align: center;
+  color: ${({ theme }) => theme.colors.neutral[500]};
+`;
+
+export const Subtitle = styled.small`
+  ${defaultBodyXsRegular}
+
   color: ${({ theme }) => theme.colors.neutral[500]};
 `;

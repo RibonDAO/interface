@@ -109,7 +109,9 @@
       "causesPageTitle": "Tickets",
       "forYouPageTitle": "For you",
       "givingPageTitle": "Giving",
+      "aboutPageTitle": "About",
       "communityMenuItem": "Community Donation",
+      "donateWithRibonMenuItem": "Donate with Ribon",
       "directDonationMenuItem": "Direct donation",
       "new": "New"
     },
@@ -270,6 +272,8 @@
     },
     "supportCausePage": {
       "title": "Donate with a community",
+      "donateWithRibonTitle": "Donate with Ribon",
+      "donateWithRibonSubtitle": "Be part of the chain of good by generating new donors and increasing the impact of your donation",  
       "communityAddText": "The Community will add",
       "communityAddButtonText": "How the community does it?",
       "donateButtonText": "Donate {{value}}",

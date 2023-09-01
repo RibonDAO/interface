@@ -22,10 +22,19 @@ export const LeftInfo = styled.p`
   ${defaultBodySmMedium}
 
   color: ${({ theme }) => theme.colors.neutral[25]};
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const RightInfo = styled.p`
   ${defaultBodySmMedium}
 
   color: ${({ theme }) => theme.colors.neutral[25]};
+`;
+
+export const Image = styled.img`
+  width: 20px;
+  height: 20px;
+  margin-right: ${({ theme }) => theme.spacing(4)};
 `;

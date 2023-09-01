@@ -3,7 +3,7 @@ import { defaultBodyXsSemibold } from "styles/typography/default";
 
 export const Container = styled.div<{ outline: boolean }>`
   margin-left: ${({ theme }) => theme.spacing(8)};
-  padding: ${({ theme }) => theme.spacing(0)} ${({ theme }) => theme.spacing(8)};
+  padding: ${({ theme }) => theme.spacing(4)} ${({ theme }) => theme.spacing(8)};
   border: 1px solid ${({ theme }) => theme.colors.brand.tertiary[300]};
   border-radius: 4px;
   display: flex;

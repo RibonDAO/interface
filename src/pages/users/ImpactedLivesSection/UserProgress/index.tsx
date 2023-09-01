@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import ProgressBar from "components/atomics/ProgressBar";
 import { theme } from "@ribon.io/shared/styles";
+import Heart from "assets/icons/heart.svg";
 import * as S from "./styles";
 
 type Props = {
@@ -31,7 +32,10 @@ function UserProgress({
         textColor={theme.colors.brand.tertiary[900]}
       />
       <S.ProgressInfo>
-        <S.LeftInfo>{`${currentExperience} / ${totalExperienceToNextLevel}`}</S.LeftInfo>
+        <S.LeftInfo>
+          <S.Image src={Heart} />
+          {`${currentExperience} / ${totalExperienceToNextLevel}`}
+        </S.LeftInfo>
         <S.RightInfo>{`+${remainingExperience} ${t(
           "livesForLevel",
         )} ${nextLevel}`}</S.RightInfo>

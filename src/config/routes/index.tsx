@@ -267,7 +267,7 @@ function RoutesComponent(): JSX.Element {
 
       <Route path="/about" exact>
         <Suspense fallback={<div />}>
-          <MainLayout hideHeader>
+          <MainLayout hideHeader fullSize>
             <AboutPage />
           </MainLayout>
         </Suspense>

@@ -25,7 +25,7 @@ import pixPaymentApi from "services/api/pixPaymentApi";
 import { useStripe } from "contexts/stripeContext";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
 import { useLoadingOverlay } from "contexts/loadingOverlayContext";
-import extractUrlValue from "lib/extractUrlValue";
+import getUTMFromLocationSearch from "lib/getUTMFromLocationSearch";
 
 export interface IPixPaymentInformationContext {
   setButtonDisabled: (value: SetStateAction<boolean>) => void;
@@ -148,17 +148,7 @@ function PixPaymentInformationProvider({ children }: Props) {
     }, 3000);
   };
 
-  function getUTMFromLocationSearch() {
-    const utmSource = extractUrlValue("utm_source", history.location.search);
-    const utmMedium = extractUrlValue("utm_medium", history.location.search);
-    const utmCampaign = extractUrlValue(
-      "utm_campaign",
-      history.location.search,
-    );
-    return { utmSource, utmMedium, utmCampaign };
-  }
-
-  const utmParams = getUTMFromLocationSearch();
+  const utmParams = getUTMFromLocationSearch(history.location.search);
 
   const handleSubmit = async () => {
     showAnimationPixPaymentModal();

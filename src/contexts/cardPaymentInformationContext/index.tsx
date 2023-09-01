@@ -12,7 +12,6 @@ import {
 } from "react";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "lib/events";
-import extractUrlValue from "lib/extractUrlValue";
 import { logError } from "services/crashReport";
 import creditCardPaymentApi from "services/api/creditCardPaymentApi";
 import GivingIcon from "assets/icons/giving-icon.svg";
@@ -24,6 +23,7 @@ import { normalizedLanguage } from "lib/currentLanguage";
 import { CONTRIBUTION_INLINE_NOTIFICATION } from "pages/donations/CausesPage/ContributionNotification";
 import { PLATFORM } from "utils/constants";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
+import getUTMFromLocationSearch from "lib/getUTMFromLocationSearch";
 
 export interface ICardPaymentInformationContext {
   setNumber: (value: SetStateAction<string>) => void;
@@ -127,17 +127,7 @@ function CardPaymentInformationProvider({ children }: Props) {
     }, 3000);
   };
 
-  function getUTMFromLocationSearch() {
-    const utmSource = extractUrlValue("utm_source", history.location.search);
-    const utmMedium = extractUrlValue("utm_medium", history.location.search);
-    const utmCampaign = extractUrlValue(
-      "utm_campaign",
-      history.location.search,
-    );
-    return { utmSource, utmMedium, utmCampaign };
-  }
-
-  const utmParams = getUTMFromLocationSearch();
+  const utmParams = getUTMFromLocationSearch(history.location.search);
 
   const handleSubmit = async (platform: string) => {
     showAnimationCreditCardPaymentModal();

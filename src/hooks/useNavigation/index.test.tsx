@@ -100,7 +100,7 @@ describe("useNavigation", () => {
 
       expect(
         screen.getByText(
-          "?foo=bar&utm_source=undefined&utm_medium=undefined&utm_campaign=undefined",
+          "?foo=bar&utm_source=organic&utm_medium=organic&utm_campaign=organic",
         ),
       ).toBeInTheDocument();
     });
@@ -116,7 +116,7 @@ describe("useNavigation", () => {
         });
         expect(
           screen.getByText(
-            "?foo=bar&utm_source=undefined&utm_medium=undefined&utm_campaign=undefined",
+            "?foo=bar&utm_source=organic&utm_medium=organic&utm_campaign=organic",
           ),
         ).toBeInTheDocument();
       });
@@ -135,7 +135,7 @@ describe("useNavigation", () => {
 
         expect(
           screen.getByText(
-            "?foo=bar&utm_source=undefined&utm_medium=undefined&utm_campaign=undefined",
+            "?foo=bar&utm_source=organic&utm_medium=organic&utm_campaign=organic",
           ),
         ).toBeInTheDocument();
       });

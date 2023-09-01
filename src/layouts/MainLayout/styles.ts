@@ -5,7 +5,7 @@ export const MainContainer = styled.div<{ isFullSize?: boolean }>`
     max-width: 100%;
     margin: ${({ theme, isFullSize }) =>
       isFullSize ? theme.spacing(0) : "0 14%"};
-    margin-left: ${({ theme, isFullSize }) =>
+    margin-left: ${({ isFullSize }) =>
       isFullSize ? "80px" : "calc(14% + 80px)"};
     display: flex;
     flex-direction: column;

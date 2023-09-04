@@ -78,13 +78,13 @@ export const Button = styled.button<{ copy?: boolean }>`
 
 export const Badges = styled.div`
   margin-top: ${({ theme }) => theme.spacing(12)};
+  padding: ${({ theme }) => theme.spacing(0, 24, 24, 24)};
+  border: 1px solid ${({ theme }) => theme.colors.neutral[200]};
+  border-radius: 8px;
   display: flex;
   flex-direction: row;
   align-items: start;
   justify-content: center;
-  border: 1px solid ${({ theme }) => theme.colors.neutral[200]};
-  border-radius: 8px;
-  padding: ${({ theme }) => theme.spacing(0, 24, 24, 24)};
 `;
 
 export const DescriptionBadge = styled(Description)`

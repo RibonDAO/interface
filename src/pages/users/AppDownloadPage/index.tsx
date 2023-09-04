@@ -19,6 +19,11 @@ type LocationStateType = {
 };
 
 function AppDownloadPage() {
+  const variation = useExperiment({
+    key: "understanding-test",
+    variations: ["control", "product", "growth"],
+  });
+
   const { t } = useTranslation("translation", {
     keyPrefix: "appDownloadPage",
   });
@@ -35,11 +40,6 @@ function AppDownloadPage() {
   }, []);
 
   const { navigateTo } = useNavigation();
-
-  const variation = useExperiment({
-    key: "understanding-test",
-    variations: ["control", "product", "growth"],
-  });
 
   const comesFromPostDonation = !!nonProfit;
 
@@ -71,11 +71,11 @@ function AppDownloadPage() {
         )}
         {variation.value === "product" ? (
           <NewAppDownloadTemplate
-            title={t("title")}
+            title={t("newTitle")}
             image={IllustrationMobile}
-            description={t("description")}
+            description={t("newDescription")}
             firstButton={{
-              text: t("buttonDownloadApp"),
+              text: t("newButtonDownloadApp"),
             }}
             secondButton={{
               text: nonProfit ? t("buttonSkip") : t("buttonBack"),

@@ -2,21 +2,6 @@ import usersApi from ".";
 import api from "..";
 
 describe("usersApi", () => {
-  describe("#postCreateUser", () => {
-    beforeEach(() => {
-      api.post = jest.fn();
-    });
-
-    it("expects to send a get request with the correct info: url, params and headers", () => {
-      usersApi.postCreateUser("user@test.com", "en");
-
-      expect(api.post).toHaveBeenCalledWith("/api/v1/users", {
-        email: "user@test.com",
-        language: "en",
-      });
-    });
-  });
-
   describe("#postSearchUser", () => {
     beforeEach(() => {
       api.post = jest.fn();

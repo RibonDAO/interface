@@ -172,6 +172,9 @@
         "getTheAppText": "Baixe app",
         "newGetTheAppText": "Ganhe mais tickets"
       },
+      "monthlyContributionsItem": {
+        "monthlyContributionsText": "Contribuições mensais"
+      },
       "donationModalTitle": "Legal! Você tem 1 ticket para doar",
       "donationModalBody": "Você pode destiná-lo para qualquer projeto",
       "donationModalButtonText": "Vamos lá!",
@@ -387,6 +390,19 @@
       "uniqueDonationDescription": "Contribuir uma vez",
       "selectValue": "Selecione o valor"
     },
+    "monthlyContributionsPage": {
+      "title": "Contribuições mensais",
+      "to": "Para ",
+      "nextContribution": "Próxima contribuição em ",
+      "cancelSubscriptionSuccess": "Enviamos um e-mail para você.",
+      "cancelSubscriptionModal": {
+        "title": "Cancelar contribuição mensal",
+        "description": "Para efetuar o processo, confirme o cancelamento da contribuição mensal pelo e-mail que enviaremos para você.",
+        "primaryButton": "Receber e-mail de cancelamento",
+        "secondaryButton": "Fechar"
+      }
+    },
+
     "checkoutPage": {
       "changeCurrency": "Mudar moeda",
       "back": "Voltar",
@@ -431,6 +447,12 @@
       },
       "confirmPayment": "Confirmar pagamento",
       "pixButtonText": "Gerar QR Code"
+    },
+    "contributionCanceledPage": {
+      "title": "Contribuição cancelada",
+      "description": "Sua contribuição de {{value}} para {{receiver}} foi cancelada",
+      "loading": "Carregando...",
+      "invalidLink": "Link inválido"
     }
   },
   "contexts": {
@@ -487,17 +509,11 @@
     "scanQrCode": "QR Code",
     "chooseStore": "Escolha a loja",
     "copyText": "Copiar link",
-    "copiedText": "Copiado!"
-  },
-  "newAppDownloadPage": {
-    "title": "Baixe o app da Ribon",
-    "description": "Baixe o app e receba um ticket extra",
-    "buttonDownload": "Baixar e receber ticket",
-    "buttonBack": "Voltar",
-    "buttonSkip": "Pular",
-    "buttonDownloadApp": "Baixar app",
-    "scanQrCode": "Use o QR Code",
-    "chooseStore": "Baixe aqui"
+    "copiedText": "Copiado!",
+    "newTitle": "Baixe o app da Ribon",
+    "newDescription": "Baixe o app e receba um ticket extra",
+    "newButtonDownloadApp": "Baixar e receber ticket",
+    "newScanQrCode": "Use o QR Code"
   },
   "downloadApp": {
     "floating": {

@@ -27,11 +27,12 @@ function NewsSection() {
       <S.Container>
         {variation.value === "product" ? (
           <NewAppDownloadTemplate
-            title={t("title")}
+            title={t("newTitle")}
             image={NewsImage}
             hasBackButton={false}
+            description={t("newDescription")}
             firstButton={{
-              text: t("getAppButtonText"),
+              text: t("newButtonDownloadApp"),
               backgroundColor: theme.colors.brand.primary[800],
               textColor: theme.colors.neutral10,
             }}

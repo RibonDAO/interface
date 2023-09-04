@@ -42,7 +42,7 @@ export const Wrapper = styled.div<{
   hasMenu?: boolean;
   hasMarginTop?: boolean;
 }>`
-  width: ${({ hasMenu }) => (hasMenu ? "100%" : "464px")};
+  width: ${({ hasMenu }) => (hasMenu ? "100%" : "328px")};
   margin: ${({ hasMenu }) => hasMenu === false && "0 auto"};
   margin-top: ${({ hasMenu }) => hasMenu && "30%"};
   margin-top: ${({ hasMarginTop, theme }) => hasMarginTop && theme.spacing(64)};
@@ -55,7 +55,7 @@ export const Wrapper = styled.div<{
   text-align: center;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    width: 320px;
+    width: 352px;
     margin: ${({ hasMenu }) => hasMenu && "15% auto 0 auto"};
     margin-top: ${({ hasMarginTop }) => hasMarginTop && "56px"};
   }
@@ -65,7 +65,6 @@ export const Button = styled.button<{ copy?: boolean }>`
   ${defaultBodyMdSemibold}
 
   width: 100%;
-  margin-top: ${({ theme }) => theme.spacing(40)};
   padding: ${({ theme }) => theme.spacing(12, 16)};
   border: ${({ theme, copy }) =>
     copy ? "none" : `1px solid ${theme.colors.brand.primary[600]}`};
@@ -77,6 +76,7 @@ export const Button = styled.button<{ copy?: boolean }>`
 `;
 
 export const Badges = styled.div`
+  width: 100%;
   margin-top: ${({ theme }) => theme.spacing(12)};
   padding: ${({ theme }) => theme.spacing(0, 24, 24, 24)};
   border: 1px solid ${({ theme }) => theme.colors.neutral[200]};
@@ -85,6 +85,7 @@ export const Badges = styled.div`
   flex-direction: row;
   align-items: start;
   justify-content: center;
+  margin-bottom: ${({ theme }) => theme.spacing(40)};
 `;
 
 export const DescriptionBadge = styled(Description)`

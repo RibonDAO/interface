@@ -529,7 +529,10 @@
     },
     "newsSection": {
       "title": "Get the app and check out what's new for you",
-      "getAppButtonText": "Get app"
+      "getAppButtonText": "Get app",
+      "newTitle": "Get a new ticket",
+      "newDescription": "Download the app and get an extra ticket",
+      "newButtonDownloadApp": "Download and get ticket"
     },
     "tasksSection": {
       "title": "Tasks",
@@ -540,6 +543,10 @@
         "donate_ticket": "Donate ticket",
         "new_download_app": "Get an extra ticket",
         "download_app": "Download app",
+        "newTitle": "Get a new ticket",
+        "newDescription": "Download the app and get an extra ticket",
+        "newButtonDownloadApp": "Download and get ticket",
+        "newScanQrCode": "Use QR Code",
         "make_contribution": "Make a paid donation",
         "start_contribution": "Understand what it means to be a promoter",
         "become_a_promoter": "Become a promoter of a cause"
@@ -560,7 +567,11 @@
   "downloadAppModalTemplate": {
     "title": "Get Ribon's mobile app",
     "description": "Get the best donation experience we can offer and access exclusive features!",
-    "button": "Download app"
+    "button": "Download app",
+    "newTitle": "Get a new ticket",
+    "newDescription": "Download the app and get an extra ticket",
+    "newButtonDownloadApp": "Download and get ticket",
+    "newScanQrCode": "Use QR Code"
   },
   "contributionStatsPage": {
     "title": "You donated <span>{{amount}}</span> for <span>{{cause}}</span>",

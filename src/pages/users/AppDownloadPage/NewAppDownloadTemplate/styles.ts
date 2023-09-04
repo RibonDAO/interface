@@ -78,6 +78,7 @@ export const Button = styled.button<{ copy?: boolean }>`
 export const Badges = styled.div`
   width: 100%;
   margin-top: ${({ theme }) => theme.spacing(12)};
+  margin-bottom: ${({ theme }) => theme.spacing(40)};
   padding: ${({ theme }) => theme.spacing(0, 24, 24, 24)};
   border: 1px solid ${({ theme }) => theme.colors.neutral[200]};
   border-radius: 8px;
@@ -85,7 +86,6 @@ export const Badges = styled.div`
   flex-direction: row;
   align-items: start;
   justify-content: center;
-  margin-bottom: ${({ theme }) => theme.spacing(40)};
 `;
 
 export const DescriptionBadge = styled(Description)`

@@ -5,7 +5,7 @@ import * as S from "./styles";
 
 const { colors } = theme;
 const { neutral10 } = colors;
-const { primary } = theme.colors.brand;
+const { primary } = colors.brand;
 
 export type Props = {
   leftText: string;
@@ -29,7 +29,7 @@ function ButtonSwitch({
   return (
     <S.Container>
       <S.BoxIcon>
-        <S.Text color={checked ? colors.neutral[500] : primary[300]}>
+        <S.Text color={checked ? colors.neutral[500] : primary[600]}>
           {leftText}
         </S.Text>
       </S.BoxIcon>
@@ -38,8 +38,8 @@ function ButtonSwitch({
           id="switch"
           onChange={handleChange}
           checked={checked}
-          offColor={primary[300]}
-          onColor={primary[300]}
+          offColor={primary[600]}
+          onColor={primary[600]}
           onHandleColor={neutral10}
           offHandleColor={neutral10}
           handleDiameter={15}
@@ -50,7 +50,7 @@ function ButtonSwitch({
         />
       </S.ContainerSwitch>
       <S.BoxIcon>
-        <S.Text color={checked ? primary[300] : colors.neutral[500]}>
+        <S.Text color={checked ? primary[600] : colors.neutral[500]}>
           {rightText}
         </S.Text>
       </S.BoxIcon>

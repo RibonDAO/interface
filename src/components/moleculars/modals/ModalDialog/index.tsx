@@ -20,6 +20,7 @@ export type Props = {
   children?: JSX.Element[] | JSX.Element | null;
   eventName?: string;
   eventParams?: Record<string, any>;
+
   onClose?: () => void;
 };
 
@@ -48,6 +49,9 @@ function ModalDialog({
   }
 
   const modalIcon = () => {
+    if (icon) {
+      return icon;
+    }
     switch (type) {
       case "error":
         return "report";

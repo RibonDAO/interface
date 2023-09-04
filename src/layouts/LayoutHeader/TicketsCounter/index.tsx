@@ -39,7 +39,7 @@ function TicketsCounter({ outline = false }: Props): JSX.Element {
       <S.TicketsAmount
         color={
           canDonateAndHasVoucher
-            ? theme.colors.brand.primary[300]
+            ? theme.colors.brand.primary[600]
             : theme.colors.neutral[500]
         }
       >

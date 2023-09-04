@@ -16,19 +16,22 @@ function GetTheAppItem(): JSX.Element {
 
   const { navigateTo } = useNavigation();
 
+  const variation = useExperiment({
+    key: "understanding-test",
+    variations: ["control", "product", "growth"],
+  });
+
   useEffect(() => {
-    logEvent("downloadCTA_view", { from: "config_page" });
+    logEvent("downloadCTA_view", {
+      from: "config_page",
+      variation: variation.value,
+    });
   }, []);
 
   const handleClick = () => {
     logEvent("downloadCTA_click", { from: "config_page" });
     navigateTo("/app-download");
   };
-
-  const variation = useExperiment({
-    key: "understanding-test",
-    variations: ["control", "product", "growth"],
-  });
 
   return (
     <S.Container onClick={handleClick}>

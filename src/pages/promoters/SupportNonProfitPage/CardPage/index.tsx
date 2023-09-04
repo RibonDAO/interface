@@ -76,12 +76,18 @@ function CardPage(): JSX.Element {
     setChosenCause(causeClicked);
   };
 
+  const variationUnderstanding = useExperiment({
+    key: "understanding-test",
+    variations: ["control", "product", "growth"],
+  });
+
   const navigateToCheckout = (nonProfit: NonProfit) => {
     logEvent("giveNgoBtn_start", {
       from: "giveNonProfit_page",
       nonProfitId: nonProfit.id,
       currency: currentOffer.currency,
       amount: currentOffer.priceValue,
+      variation: variationUnderstanding.value,
     });
     setFlow("nonProfit");
 

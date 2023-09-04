@@ -19,7 +19,9 @@ function NewsSection() {
   });
 
   useEffect(() => {
-    logEvent("P15_view");
+    logEvent("P15_view", {
+      variation: variation.value,
+    });
   }, []);
 
   function renderPage() {

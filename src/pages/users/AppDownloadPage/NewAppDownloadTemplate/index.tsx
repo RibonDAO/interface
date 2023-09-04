@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ButtonProps } from "components/atomics/buttons/Button";
 import { logEvent } from "lib/events";
 import { useExperiment } from "@growthbook/growthbook-react";
+import { useEffect } from "react";
 import AppleBadge from "../AppDownloadTemplate/assets/apple-badge.png";
 import GoogleBadge from "../AppDownloadTemplate/assets/google-badge.png";
 import QRCode from "../AppDownloadTemplate/assets/qrcodeapp.svg";
@@ -40,18 +41,30 @@ function AppDownloadTemplate({
     variations: ["control", "product", "growth"],
   });
 
+  useEffect(() => {
+    logEvent("P17_view", {
+      variation: variation.value,
+    });
+  });
+
   function handleMobileLink() {
-    logEvent("mobileDownloadBtn_click");
+    logEvent("mobileDownloadBtn_click", {
+      variation: variation.value,
+    });
     window.open(APP_LINK);
   }
 
   function handleIosLink() {
-    logEvent("appStoreBtn_click");
+    logEvent("appStoreBtn_click", {
+      variation: variation.value,
+    });
     window.open(IOS_APP_LINK);
   }
 
   function handleAndroidLink() {
-    logEvent("gPlayBtn_click");
+    logEvent("gPlayBtn_click", {
+      variation: variation.value,
+    });
     window.open(ANDROID_APP_LINK);
   }
 

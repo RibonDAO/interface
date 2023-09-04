@@ -1,9 +1,10 @@
 import useBreakpoint from "hooks/useBreakpoint";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { APP_LINK, IOS_APP_LINK, ANDROID_APP_LINK } from "utils/constants";
 import { useTranslation } from "react-i18next";
 import { ButtonProps } from "components/atomics/buttons/Button";
 import { logEvent } from "lib/events";
+import { useExperiment } from "@growthbook/growthbook-react";
 import AppleBadge from "./assets/apple-badge.png";
 import GoogleBadge from "./assets/google-badge.png";
 import QRCode from "./assets/qrcodeapp.svg";
@@ -37,6 +38,11 @@ function AppDownloadTemplate({
   const [isCopy, setIsCopy] = useState(false);
   const { isMobile } = useBreakpoint();
 
+  const variation = useExperiment({
+    key: "understanding-test",
+    variations: ["control", "product", "growth"],
+  });
+
   function handleMobileLink() {
     logEvent("mobileDownloadBtn_click");
     window.open(APP_LINK);
@@ -58,6 +64,12 @@ function AppDownloadTemplate({
     setIsCopy(true);
     logEvent("copyDownloadBtn_click");
   };
+
+  useEffect(() => {
+    logEvent("P17_view", {
+      variation: variation.value,
+    });
+  });
 
   const render = () => {
     if (isMobile) {

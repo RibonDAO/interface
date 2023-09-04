@@ -41,6 +41,11 @@ function SupportCausePage(): JSX.Element {
 
   const integrationId = extractUrlValue("integration_id", search);
 
+  const variationUnderstanding = useExperiment({
+    key: "understanding-test",
+    variations: ["control", "product", "growth"],
+  });
+
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportCausePage",
   });
@@ -74,6 +79,7 @@ function SupportCausePage(): JSX.Element {
       causeId: cause?.id,
       amount: currentOffer.priceValue,
       currency: currentOffer.currency,
+      variation: variationUnderstanding.value,
     });
     setFlow("nonProfit");
 

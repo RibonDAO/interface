@@ -14,6 +14,7 @@ import { useCausesContext } from "contexts/causesContext";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import { useCauseContributionContext } from "contexts/causeContributionContext";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
+import { useExperiment } from "@growthbook/growthbook-react";
 import SupportImage from "../assets/support-image.png";
 import * as S from "../styles";
 import SelectCryptoOfferSection from "./SelectCryptoOfferSection";
@@ -105,12 +106,18 @@ function CryptoPage(): JSX.Element {
       return;
     }
 
+    const variation = useExperiment({
+      key: "understanding-test",
+      variations: ["control", "product", "growth"],
+    });
+
     connectWallet();
     logEvent("giveCauseBtn_start", {
       from: "giveCauseCrypto_page",
       causeId: cause?.id,
       amount,
       currency: tokenSymbol,
+      variation: variation.value,
     });
   };
 

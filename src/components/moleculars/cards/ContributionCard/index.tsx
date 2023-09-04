@@ -47,6 +47,11 @@ function ContributionCard({
   const isTest = process.env.NODE_ENV === "test";
   const [currency, setCurrency] = useState<Currencies | undefined>();
 
+  const variationUnderstanding = useExperiment({
+    key: "understanding-test",
+    variations: ["control", "product", "growth"],
+  });
+
   useEffect(() => {
     if (offer) {
       setCurrency(offer?.currency === "brl" ? Currencies.BRL : Currencies.USD);
@@ -76,6 +81,7 @@ function ContributionCard({
       causeId: nonProfit?.cause?.id,
       offerId: offer?.id,
       platform: "web",
+      variation: variationUnderstanding.value,
     });
 
     if (currency) {

@@ -21,14 +21,12 @@ function ImpactedLivesSection() {
     refetchUserStatistics();
 
     const previousPercentageCompleted = percentageCompleted;
-    const timeout = setTimeout(() => {
+    setTimeout(() => {
       const completedPercentage = updatePercentageCompleted();
       if (previousPercentageCompleted !== 0 && completedPercentage === 0) {
         // level up
       }
     }, 500);
-
-    return () => clearTimeout(timeout);
   }, []);
 
   return (

@@ -62,7 +62,7 @@ function UserLevelProvider({ children }: Props) {
   useEffect(() => {
     const currentLevelXp =
       userLevel < 10 ? thresholds[userLevel - 2] : (userLevel - 10) * 20 + 70;
-    setCurrentLevelExperience(currentLevelXp);
+    setCurrentLevelExperience(currentLevelXp || 0);
   }, [userLevel]);
 
   useEffect(() => {

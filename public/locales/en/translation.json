@@ -168,7 +168,8 @@
       },
 
       "getTheAppItem": {
-        "getTheAppText": "Get the app"
+        "getTheAppText": "Get the app",
+        "newGetTheAppText": "Get more tickets"
       },
       "donationModalTitle": "Great! You got 1 ticket to donate",
       "donationModalBody": "You can assign the ticket to any project",
@@ -485,9 +486,20 @@
     "copyText": "Copy link",
     "copiedText": "Copied!"
   },
+  "newAppDownloadPage": {
+    "title": "Get a new ticket",
+    "description": "Download the app and get an extra ticket",
+    "buttonDownload": "Download and get ticket",
+    "buttonBack": "Go back",
+    "buttonSkip": "Skip",
+    "buttonDownloadApp": "Baixar app",
+    "scanQrCode": "Use QR Code",
+    "chooseStore": "Download here"
+  },
   "downloadApp": {
     "floating": {
-      "title": "Get app"
+      "title": "Get app",
+      "newTitle": "More tickets"
     }
   },
   "forYouPage": {
@@ -507,6 +519,7 @@
       "titleSuperTasks": "Super tasks",
       "tasks": {
         "donate_ticket": "Donate ticket",
+        "new_download_app": "Get an extra ticket",
         "download_app": "Download app",
         "make_contribution": "Make a paid donation",
         "start_contribution": "Understand what it means to be a promoter",

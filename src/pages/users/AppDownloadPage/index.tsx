@@ -10,6 +10,7 @@ import IllustrationMobile from "./assets/illustration-mobile.svg";
 import LeftImage from "./assets/left-image.svg";
 import RightImage from "./assets/right-image.svg";
 import AppDownloadTemplate from "./AppDownloadTemplate";
+import NewAppDownloadTemplate from "./NewAppDownloadTemplate";
 
 type LocationStateType = {
   nonProfit?: NonProfit;
@@ -62,7 +63,7 @@ function AppDownloadPage() {
             onClick={() => handleOnClickSecondButton()}
           />
         )}
-        <AppDownloadTemplate
+        <NewAppDownloadTemplate
           title={t("title")}
           image={IllustrationMobile}
           description={t("description")}

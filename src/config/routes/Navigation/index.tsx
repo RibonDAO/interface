@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { logEvent } from "lib/events";
 import { useTasksContext } from "contexts/tasksContext";
 import useContributionActivity from "hooks/useContributionActivity";
+import { useExperiment } from "@growthbook/growthbook-react";
 import CausesIconOn from "./assets/causesIconOn.svg";
 import CausesIconOff from "./assets/causesIconOff.svg";
 import ForYouIconOn from "./assets/forYouIconOn.svg";
@@ -11,6 +12,8 @@ import ImpactIconOn from "./assets/impactIconOn.svg";
 import ImpactIconOff from "./assets/impactIconOff.svg";
 import GivingIconOn from "./assets/givingIconOn.svg";
 import GivingIconOff from "./assets/givingIconOff.svg";
+import AboutIconOn from "./assets/aboutIconOn.svg";
+import AboutIconOff from "./assets/aboutIconOff.svg";
 import * as S from "./styles";
 import NavigationLink from "./NavigationLink";
 
@@ -25,6 +28,12 @@ function Navigation(): JSX.Element {
   const { search } = location;
   const { hasCompletedATask } = useTasksContext();
   const { newContributionActivity } = useContributionActivity();
+
+  const variation = useExperiment({
+    key: "understanding-test",
+    variations: ["control", "product", "growth"],
+  });
+
   function isInPath(route: any): boolean {
     const { menuOptions, path } = route;
 
@@ -37,7 +46,12 @@ function Navigation(): JSX.Element {
     return [path].includes(location.pathname);
   }
 
-  const routes = [
+  const communityDonationText =
+    variation.value === "growth"
+      ? t("donateWithRibonMenuItem")
+      : t("communityMenuItem");
+
+  let routes = [
     {
       path: "/causes",
       iconOn: CausesIconOn,
@@ -63,15 +77,15 @@ function Navigation(): JSX.Element {
       params: { from: "header" },
       menuOptions: [
         {
-          path: "/promoters/support-non-profit",
-          title: t("directDonationMenuItem"),
-          event: "giveNonProfitCard_click",
+          path: "/promoters/support-cause",
+          title: communityDonationText,
+          event: "giveCauseCard_click",
           params: { from: "subheader" },
         },
         {
-          path: "/promoters/support-cause",
-          title: t("communityMenuItem"),
-          event: "giveCauseCard_click",
+          path: "/promoters/support-non-profit",
+          title: t("directDonationMenuItem"),
+          event: "giveNonProfitCard_click",
           params: { from: "subheader" },
         },
       ],
@@ -85,6 +99,19 @@ function Navigation(): JSX.Element {
       showActivityIndicatorCircle: newContributionActivity,
     },
   ];
+
+  if (variation.value === "growth") {
+    routes = [
+      ...routes,
+      {
+        path: "/about",
+        iconOn: AboutIconOn,
+        iconOff: AboutIconOff,
+        title: t("aboutPageTitle"),
+        event: "aboutNavBtn_click",
+      },
+    ];
+  }
 
   const handleEvent = (event: string, params = {}) => {
     logEvent(event, params);

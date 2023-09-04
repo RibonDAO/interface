@@ -24,6 +24,7 @@ import AppInDevelopmentPage from "pages/users/AppDownloadPage";
 import ForYouPage from "pages/users/ForYouPage";
 import GiveTicketPage from "pages/donations/GiveTicketPage";
 import ReceiveTicketPage from "pages/donations/ReceiveTicketPage";
+import AboutPage from "pages/promoters/AboutPage";
 import LoadingPage from "pages/donations/LoadingPage";
 import ContributionStatsPage from "pages/users/ContributionStatsPage";
 import ReturnToIntegrationPage from "pages/donations/ReturnToIntegrationPage";
@@ -261,6 +262,14 @@ function RoutesComponent(): JSX.Element {
       <Route path="/delete_account" exact>
         <Suspense fallback={<div />}>
           <DeleteAccountPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/about" exact>
+        <Suspense fallback={<div />}>
+          <MainLayout hideHeader fullSize>
+            <AboutPage />
+          </MainLayout>
         </Suspense>
       </Route>
     </Switch>

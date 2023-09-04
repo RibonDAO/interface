@@ -7,6 +7,7 @@ import theme from "styles/theme";
 import Icon from "components/atomics/Icon";
 
 import { logEvent } from "lib/events";
+import { useExperiment } from "@growthbook/growthbook-react";
 import * as S from "./styles";
 import IntegrationTasksSection from "../IntegrationTasksSection";
 
@@ -27,6 +28,11 @@ function DailyTasksSection() {
       logEvent("downloadCTA_click", { from: "tasks" });
     }
   }
+
+  const variation = useExperiment({
+    key: "understanding-test",
+    variations: ["control", "product", "growth"],
+  });
   return (
     <S.Container>
       <S.TitleContainer>
@@ -44,7 +50,11 @@ function DailyTasksSection() {
               <CheckBox
                 key={task.id}
                 onClick={() => downloadAppClick(task.id)}
-                text={t(`tasks.${task?.title}`)}
+                text={
+                  variation.value === "product" && task.title === "download_app"
+                    ? t(`tasks.new_${task?.title}`)
+                    : t(`tasks.${task?.title}`)
+                }
                 sectionStyle={{ marginBottom: 8, paddingLeft: 4 }}
                 lineThroughOnChecked
                 navigationCallback={

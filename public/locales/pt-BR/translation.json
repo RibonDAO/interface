@@ -109,7 +109,9 @@
       "causesPageTitle": "Tickets",
       "forYouPageTitle": "Para você",
       "givingPageTitle": "Contribuir",
+      "aboutPageTitle": "Sobre",
       "communityMenuItem": "Doação em comunidade",
+      "donateWithRibonMenuItem": "Doe com a Ribon",
       "directDonationMenuItem": "Doação direta",
       "new": "Novo"
     },
@@ -270,6 +272,8 @@
     },
     "supportCausePage": {
       "title": "Doe com a comunidade",
+      "donateWithRibonTitle": "Doe com a Ribon",
+      "donateWithRibonSubtitle": "Faça parte da corrente do bem gerando novos doadores e aumentando o impacto de sua doação",
       "communityAddText": "A Comunidade adicionará",
       "communityAddButtonText": "Como a comunidade faz isso?",
       "donateButtonText": "Doar {{value}}",

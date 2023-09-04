@@ -7,16 +7,25 @@ import { useIntegrationId } from "hooks/useIntegrationId";
 import useNavigation from "hooks/useNavigation";
 import { useEffect } from "react";
 import { logEvent } from "lib/events";
+import { APP_INTEGRATION_LINK } from "utils/constants";
 import * as S from "./styles";
 
 function LoadingPage(): JSX.Element {
-  const { navigateTo } = useNavigation();
+  const { navigateTo, history } = useNavigation();
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
   const {
     isFirstAccessToIntegration,
     isLoading: isLoadingIsFirstAccessToIntegration,
   } = useFirstAccessToIntegration(integrationId);
+
+  useEffect(() => {
+    if (!history.location.search.includes("_branch_match_id"))
+      if (integrationId)
+        window.location.replace(
+          `${APP_INTEGRATION_LINK}?integration_id=${integrationId}`,
+        );
+  }, [integrationId]);
 
   useEffect(() => {
     if (integration) {
@@ -26,13 +35,14 @@ function LoadingPage(): JSX.Element {
   }, [integration]);
 
   const renderOnboardingPage = () => {
-    if (isFirstAccessToIntegration) {
-      navigateTo({
-        pathname: "/intro",
-      });
-    } else {
-      navigateTo("/causes");
-    }
+    if (history.location.search.includes("_branch_match_id"))
+      if (isFirstAccessToIntegration) {
+        navigateTo({
+          pathname: "/intro",
+        });
+      } else {
+        navigateTo("/causes");
+      }
   };
 
   useEffect(() => {

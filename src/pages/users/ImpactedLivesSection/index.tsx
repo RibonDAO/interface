@@ -1,6 +1,9 @@
 import UserProgress from "pages/users/ImpactedLivesSection/UserProgress";
 import { useUserLevel } from "contexts/userLevelContext";
 import { useEffect } from "react";
+import useToast from "hooks/useToast";
+import { useTranslation } from "react-i18next";
+import { theme } from "@ribon.io/shared/styles";
 import BackgroundShapeLeft from "./assets/background-shape-left.svg";
 import BackgroundShapeRight from "./assets/background-shape-right.svg";
 import UserAvatar from "./UserAvatar";
@@ -16,15 +19,28 @@ function ImpactedLivesSection() {
     updatePercentageCompleted,
     refetchUserStatistics,
   } = useUserLevel();
+  const toast = useToast();
+  const { t } = useTranslation("translation", {
+    keyPrefix: "impactPage.impactedLivesSection",
+  });
 
   useEffect(() => {
     refetchUserStatistics();
-
     const previousPercentageCompleted = percentageCompleted;
+
     setTimeout(() => {
       const completedPercentage = updatePercentageCompleted();
       if (previousPercentageCompleted !== 0 && completedPercentage === 0) {
-        // level up
+        toast({
+          message: t("onLevelUp"),
+          type: "custom",
+          backgroundColor: theme.colors.feedback.success[50],
+          borderColor: theme.colors.brand.primary[500],
+          textColor: theme.colors.brand.primary[900],
+          icon: "celebration",
+          iconColor: theme.colors.brand.primary[500],
+          position: "top-right",
+        });
       }
     }, 500);
   }, []);

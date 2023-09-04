@@ -244,7 +244,8 @@
     "impactedLivesSection": {
       "impactedLives": "vidas impactadas",
       "livesForLevel": "vidas para nível",
-      "level": "Nv."
+      "level": "Nv.",
+      "onLevelUp": "Parabéns! Você subiu de nível."
     }
   },
   "promoters": {

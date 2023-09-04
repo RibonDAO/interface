@@ -1,6 +1,6 @@
-import theme from "styles/theme";
+import { theme } from "@ribon.io/shared/styles";
 import Heart from "assets/icons/heart.svg";
-import useUserLevel from "hooks/useUserLevel";
+import { useUserLevel } from "contexts/userLevelContext";
 import * as S from "./styles";
 
 export type Props = {

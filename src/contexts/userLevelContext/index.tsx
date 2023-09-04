@@ -5,7 +5,6 @@ import { useStatistics } from "@ribon.io/shared/hooks";
 export interface IUserLevelContext {
   userLevel: number;
   userExperience: number;
-
   experienceToNextLevel: number;
   nextLevelExperience: number;
   percentageCompleted: number;

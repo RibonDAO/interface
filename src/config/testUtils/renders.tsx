@@ -56,6 +56,10 @@ import StripeProvider, {
   IStripeContext,
   StripeContext,
 } from "contexts/stripeContext";
+import UserLevelProvider, {
+  IUserLevelContext,
+  UserLevelContext,
+} from "contexts/userLevelContext";
 
 export interface RenderWithContextResult {
   component: RenderResult;
@@ -101,6 +105,7 @@ export type RenderComponentProps = {
   networkProviderValue?: Partial<INetworkContext>;
   tasksProviderValue?: Partial<ITasksContext>;
   stripeProviderValue?: Partial<IStripeContext>;
+  userLevelProviderValue?: Partial<IUserLevelContext>;
   locationState?: Record<any, any>;
 };
 
@@ -120,6 +125,7 @@ function renderAllProviders(
     networkProviderValue = {},
     tasksProviderValue = {},
     stripeProviderValue = {},
+    userLevelProviderValue = {},
   }: RenderComponentProps = {},
 ) {
   const historyObject = history;
@@ -175,7 +181,12 @@ function renderAllProviders(
                                     StripeProvider,
                                     StripeContext,
                                     stripeProviderValue,
-                                    children,
+                                    renderProvider(
+                                      UserLevelProvider,
+                                      UserLevelContext,
+                                      userLevelProviderValue,
+                                      children,
+                                    ),
                                   ),
                                 ),
                               ),

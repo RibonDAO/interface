@@ -7,10 +7,10 @@ import { PLATFORM, RIBON_COMPANY_ID } from "utils/constants";
 import { logEvent } from "lib/events";
 import extractUrlValue from "lib/extractUrlValue";
 import { useExperiment } from "@growthbook/growthbook-react";
-import * as S from "./styles";
-import ImpactedLivesCounter from "./ImpactedLivesCounter";
 import TicketsCounter from "./TicketsCounter";
 import SettingsMenu from "./SettingsMenu";
+import ImpactedLivesCounter from "./ImpactedLivesCounter";
+import * as S from "./styles";
 
 export type Props = {
   rightComponent?: JSX.Element;
@@ -31,11 +31,11 @@ function LayoutHeader({
   const externalId = extractUrlValue("external_id", history.location.search);
   const { canDonate } = useCanDonate(integrationId, PLATFORM, externalId);
 
-  const { isVoucherAvailable } = useVoucher();
   const { value: isInLifeBasedImpact } = useExperiment({
     key: "progression-test-first-stage",
     variations: [false, true],
   });
+  const { isVoucherAvailable } = useVoucher();
 
   const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
 

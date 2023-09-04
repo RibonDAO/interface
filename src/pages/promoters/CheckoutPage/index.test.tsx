@@ -20,6 +20,7 @@ describe("CheckoutPage", () => {
       offer: "",
       target: "",
       targetId: "",
+      variation: "control",
     });
   });
 });

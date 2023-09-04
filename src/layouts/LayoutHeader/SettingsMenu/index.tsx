@@ -10,6 +10,7 @@ import { logEvent } from "lib/events";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useCurrentUser } from "contexts/currentUserContext";
 import * as S from "./styles";
+import MonthlyContributionsItem from "../MonthlyContributionsItem";
 
 type Props = {
   outline?: boolean;
@@ -17,7 +18,7 @@ type Props = {
 function SettingsMenu({ outline = false }: Props) {
   const [menuVisible, setMenuVisible] = useState(false);
   const { isMobile } = useBreakpoint();
-  const { signedIn } = useCurrentUser();
+  const { signedIn, currentUser } = useCurrentUser();
 
   function openMenu() {
     logEvent("configButton_click");
@@ -56,6 +57,15 @@ function SettingsMenu({ outline = false }: Props) {
         <UserSupportItem />
         <Divider color={theme.colors.neutral[200]} />
         <ChangeLanguageItem />
+
+        {currentUser?.lastDonationAt ? (
+          <div>
+            <Divider color={theme.colors.neutral[200]} />
+            <MonthlyContributionsItem />
+          </div>
+        ) : (
+          <div />
+        )}
 
         {signedIn ? (
           <div>

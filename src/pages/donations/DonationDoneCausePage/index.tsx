@@ -127,8 +127,10 @@ function DonationDoneCausePage(): JSX.Element {
         causeId: cause.id,
       });
       navigateTo({
-        pathname: "/promoters/support-cause",
-        state: { nonProfit, cause },
+        pathname: offer?.subscription
+          ? "monthly-contributions"
+          : "/promoters/support-cause",
+        state: { nonProfit, cause, from: "donation-done-cause" },
       });
     }
     if (flow === "nonProfit") {
@@ -140,8 +142,10 @@ function DonationDoneCausePage(): JSX.Element {
         nonProfitId: nonProfit?.id,
       });
       navigateTo({
-        pathname: "/promoters/support-non-profit",
-        state: { nonProfit, cause },
+        pathname: offer?.subscription
+          ? "monthly-contributions"
+          : "/promoters/support-non-profit",
+        state: { nonProfit, cause, from: "donation-done-cause" },
       });
     }
     if (!hasButton) {

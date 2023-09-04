@@ -1,10 +1,26 @@
-import { useWalletContext } from "contexts/walletContext";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useStatistics } from "@ribon.io/shared/hooks";
-import { useEffect, useState } from "react";
 
-// TODO: Refactor this hook to get data from api after this is definitive
-function useUserLevel() {
+export interface IUserLevelContext {
+  userLevel: number;
+  userExperience: number;
+  experienceToNextLevel: number;
+  nextLevelExperience: number;
+  percentageCompleted: number;
+  refetchUserStatistics: () => void;
+  updatePercentageCompleted: () => number;
+}
+
+export type Props = {
+  children: JSX.Element[] | JSX.Element;
+};
+
+export const UserLevelContext = createContext<IUserLevelContext>(
+  {} as IUserLevelContext,
+);
+
+function UserLevelProvider({ children }: Props) {
   const [userLevel, setUserLevel] = useState(0);
   const [userExperience, setUserExperience] = useState(0);
   const [experienceToNextLevel, setExperienceToNextLevel] = useState(0);
@@ -12,11 +28,9 @@ function useUserLevel() {
   const [nextLevelExperience, setNextLevelExperience] = useState(0);
   const [currentLevelExperience, setCurrentLevelExperience] = useState(0);
 
-  const { wallet } = useWalletContext();
   const { currentUser } = useCurrentUser();
-  const { userStatistics } = useStatistics({
+  const { userStatistics, refetch: refetchUserStatistics } = useStatistics({
     userId: currentUser?.id,
-    walletAddress: wallet!,
   });
 
   const LIVES_PER_USD_CENT = 2;
@@ -47,16 +61,8 @@ function useUserLevel() {
   useEffect(() => {
     const currentLevelXp =
       userLevel < 10 ? thresholds[userLevel - 2] : (userLevel - 10) * 20 + 70;
-    setCurrentLevelExperience(currentLevelXp);
+    setCurrentLevelExperience(currentLevelXp || 0);
   }, [userLevel]);
-
-  useEffect(() => {
-    const completedPercentage =
-      ((userExperience - currentLevelExperience) /
-        (nextLevelExperience - currentLevelExperience)) *
-      100;
-    setPercentageCompleted(completedPercentage);
-  }, [userExperience, currentLevelExperience, nextLevelExperience]);
 
   useEffect(() => {
     setExperienceToNextLevel(nextLevelExperience - userExperience);
@@ -66,13 +72,50 @@ function useUserLevel() {
     setUserLevel(levelByExperience(userExperience));
   }, [userExperience]);
 
-  return {
-    userLevel,
-    userExperience,
-    experienceToNextLevel,
-    nextLevelExperience,
-    percentageCompleted,
-  };
+  function updatePercentageCompleted() {
+    const completedPercentage =
+      ((userExperience - currentLevelExperience) /
+        (nextLevelExperience - currentLevelExperience)) *
+      100;
+    setPercentageCompleted(completedPercentage);
+
+    return completedPercentage;
+  }
+
+  const userLevelObject: IUserLevelContext = useMemo(
+    () => ({
+      userLevel,
+      userExperience,
+      experienceToNextLevel,
+      nextLevelExperience,
+      percentageCompleted,
+      refetchUserStatistics,
+      updatePercentageCompleted,
+    }),
+    [
+      userLevel,
+      userExperience,
+      experienceToNextLevel,
+      nextLevelExperience,
+      percentageCompleted,
+    ],
+  );
+
+  return (
+    <UserLevelContext.Provider value={userLevelObject}>
+      {children}
+    </UserLevelContext.Provider>
+  );
 }
 
-export default useUserLevel;
+export default UserLevelProvider;
+
+export const useUserLevel = () => {
+  const context = useContext(UserLevelContext);
+
+  if (!context) {
+    throw new Error("useUserLevel must be used within UserLevelProvider");
+  }
+
+  return context;
+};

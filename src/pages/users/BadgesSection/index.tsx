@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import useUserBadges from "hooks/useUserBadges";
+import BadgeCard from "pages/users/BadgesSection/BadgeCard";
 import * as S from "./styles";
 
 function BadgesSection() {
@@ -13,9 +14,7 @@ function BadgesSection() {
       <S.Title>{t("title")}</S.Title>
       <S.BadgesContainer>
         {badges.map((badge) => (
-          <S.BadgeContainer achieved={badge.achieved}>
-            <S.BadgeImage src={badge.image} alt={badge.name} />
-          </S.BadgeContainer>
+          <BadgeCard badge={badge} key={badge.id} />
         ))}
       </S.BadgesContainer>
     </S.Container>

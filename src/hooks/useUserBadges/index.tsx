@@ -6,7 +6,7 @@ function useUserBadges() {
   const badges = [
     {
       id: 1,
-      name: "Level 5 Badge",
+      name: "Nível 5",
       description:
         "Parabéns! Você já impactou 21 vidas com as suas doações e liberou a conquista ‘Nível 5’.",
       image: "https://i.imgur.com/wv66Hlj.png",
@@ -15,7 +15,7 @@ function useUserBadges() {
     },
     {
       id: 2,
-      name: "Level 10 Badge",
+      name: "Nível 10",
       description:
         "Parabéns! Você já impactou 70 vidas com as suas doações e liberou a conquista ‘Nível 10’.",
       image: "https://i.imgur.com/5er0JE6.png",
@@ -24,7 +24,7 @@ function useUserBadges() {
     },
     {
       id: 3,
-      name: "Level 20 Badge",
+      name: "Nível 20",
       description:
         "Parabéns! Você já impactou 270 vidas com as suas doações e liberou a conquista ‘Nível 20’.",
       image: "https://i.imgur.com/Pgl7g0n.png",

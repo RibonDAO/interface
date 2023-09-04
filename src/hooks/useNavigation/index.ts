@@ -1,3 +1,4 @@
+import getUTMFromLocationSearch from "lib/getUTMFromLocationSearch";
 import { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -9,6 +10,10 @@ export interface NavigationProps {
 
 export default function useNavigation() {
   const history = useHistory();
+
+  const utmParams = getUTMFromLocationSearch(history.location.search);
+
+  const utmParamsString = `&utm_source=${utmParams.utmSource}&utm_medium=${utmParams.utmMedium}&utm_campaign=${utmParams.utmCampaign}`;
 
   const navigateTo = useCallback(
     (navigationProps: NavigationProps | string) => {
@@ -27,7 +32,7 @@ export default function useNavigation() {
         history.push({
           pathname,
           state,
-          search: search || history.location.search,
+          search: (search || history.location.search) + utmParamsString,
         });
       }
     },

@@ -14,6 +14,7 @@ import extractUrlValue from "lib/extractUrlValue";
 import useNavigation from "hooks/useNavigation";
 import useVoucher from "hooks/useVoucher";
 import { normalizedLanguage } from "lib/currentLanguage";
+import getUTMFromLocationSearch from "lib/getUTMFromLocationSearch";
 
 type HandleDonateProps = {
   nonProfit: NonProfit;
@@ -34,6 +35,7 @@ function useDonationFlow() {
   function getExternalIdFromLocationSearch() {
     return extractUrlValue("external_id", history.location.search);
   }
+
   async function handleDonate({
     nonProfit,
     email,
@@ -45,6 +47,9 @@ function useDonationFlow() {
       if (integration) createSource(user.id, integration.id);
       setCurrentUser(user);
     }
+
+    const utmParams = getUTMFromLocationSearch(history.location.search);
+
     if (integration) {
       try {
         await donate(
@@ -53,6 +58,9 @@ function useDonationFlow() {
           email,
           PLATFORM,
           getExternalIdFromLocationSearch(),
+          utmParams.utmSource,
+          utmParams.utmMedium,
+          utmParams.utmCampaign,
         );
         destroyVoucher();
         if (onSuccess) onSuccess();

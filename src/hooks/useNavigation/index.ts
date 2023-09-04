@@ -13,7 +13,7 @@ export default function useNavigation() {
 
   const utmParams = getUTMFromLocationSearch(history.location.search);
 
-  const utmParamsString = `utm_source=${utmParams.utmSource}&utm_medium=${utmParams.utmMedium}&utm_campaign=${utmParams.utmCampaign}`;
+  const utmParamsString = `&utm_source=${utmParams.utmSource}&utm_medium=${utmParams.utmMedium}&utm_campaign=${utmParams.utmCampaign}`;
 
   const navigateTo = useCallback(
     (navigationProps: NavigationProps | string) => {
@@ -32,7 +32,7 @@ export default function useNavigation() {
         history.push({
           pathname,
           state,
-          search: `${search}&${utmParamsString}` || history.location.search,
+          search: (search || history.location.search) + utmParamsString,
         });
       }
     },

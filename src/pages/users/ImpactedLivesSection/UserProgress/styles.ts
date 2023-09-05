@@ -9,6 +9,10 @@ export const ProgressBarContainer = styled.div`
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
+  
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    min-width: 192px;
+  }
 `;
 
 export const ProgressInfo = styled.div`

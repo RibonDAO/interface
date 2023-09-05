@@ -13,6 +13,15 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.brand.primary[800]};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: calc(133% + 80px);
+    min-height: 166px;
+    margin: 0 calc(-28% - 80px) 32px -28%;
+    padding-right: 14%;
+    padding-left: 28%;
+    justify-content: flex-start;
+  }
+  
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     width: calc(136% + 80px);
     min-height: 166px;
     margin: 0 calc(-28% - 80px) 32px -28%;

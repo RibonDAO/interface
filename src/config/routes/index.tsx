@@ -274,7 +274,7 @@ function RoutesComponent(): JSX.Element {
           </MainLayout>
         </Suspense>
       </Route>
-    
+
       <Route path="/monthly-contribution-canceled" exact>
         <Suspense fallback={<div />}>
           <ContributionCanceledPage />

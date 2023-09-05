@@ -12,7 +12,7 @@ describe("SettingsMenu", () => {
       clickOn(cogIcon);
 
       expectTextToBeInTheDocument("Change language");
-      expectTextToBeInTheDocument("User Support");
+      expectTextToBeInTheDocument("User support");
       expectTextToBeInTheDocument("Get the app");
     });
   });

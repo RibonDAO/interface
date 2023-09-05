@@ -23,6 +23,7 @@ import { normalizedLanguage } from "lib/currentLanguage";
 import { CONTRIBUTION_INLINE_NOTIFICATION } from "pages/donations/CausesPage/ContributionNotification";
 import { PLATFORM } from "utils/constants";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
+import getUTMFromLocationSearch from "lib/getUTMFromLocationSearch";
 
 export interface ICardPaymentInformationContext {
   setNumber: (value: SetStateAction<string>) => void;
@@ -70,7 +71,7 @@ function CardPaymentInformationProvider({ children }: Props) {
     keyPrefix: "contexts.cardPaymentInformation",
   });
 
-  const { navigateTo } = useNavigation();
+  const { history, navigateTo } = useNavigation();
 
   const toast = useToast();
   const { findOrCreateUser } = useUsers();
@@ -126,6 +127,8 @@ function CardPaymentInformationProvider({ children }: Props) {
     }, 3000);
   };
 
+  const utmParams = getUTMFromLocationSearch(history.location.search);
+
   const handleSubmit = async (platform: string) => {
     showAnimationCreditCardPaymentModal();
 
@@ -149,6 +152,9 @@ function CardPaymentInformationProvider({ children }: Props) {
       causeId: cause?.id,
       nonProfitId: nonProfit?.id,
       platform: platform || PLATFORM,
+      utmSource: utmParams.utmSource,
+      utmMedium: utmParams.utmMedium,
+      utmCampaign: utmParams.utmCampaign,
     };
 
     try {

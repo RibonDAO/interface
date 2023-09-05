@@ -28,11 +28,13 @@ import AboutPage from "pages/promoters/AboutPage";
 import LoadingPage from "pages/donations/LoadingPage";
 import ContributionStatsPage from "pages/users/ContributionStatsPage";
 import ReturnToIntegrationPage from "pages/donations/ReturnToIntegrationPage";
+import MonthlyContributionsPage from "pages/promoters/MonthlyContributionsPage";
 import StripeProvider from "contexts/stripeContext";
 import PixPaymentInformationProvider from "contexts/pixPaymentInformationContext";
 import PaymentInformationProvider from "contexts/paymentInformationContext";
 import useQueryParams from "hooks/useQueryParams";
 import RecurrencePage from "pages/promoters/CheckoutPage/RecurrencePage";
+import ContributionCanceledPage from "pages/promoters/ContributionCanceledPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -123,7 +125,7 @@ function RoutesComponent(): JSX.Element {
       <Route path="/impact" exact>
         <Suspense fallback={<div />}>
           <WalletProvider>
-            <MainLayout>
+            <MainLayout outline>
               <ImpactPage />
             </MainLayout>
           </WalletProvider>
@@ -270,6 +272,18 @@ function RoutesComponent(): JSX.Element {
           <MainLayout hideHeader fullSize>
             <AboutPage />
           </MainLayout>
+        </Suspense>
+      </Route>
+    
+      <Route path="/monthly-contribution-canceled" exact>
+        <Suspense fallback={<div />}>
+          <ContributionCanceledPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/monthly-contributions" exact>
+        <Suspense fallback={<div />}>
+          <MonthlyContributionsPage />
         </Suspense>
       </Route>
     </Switch>

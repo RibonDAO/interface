@@ -101,7 +101,7 @@ export const EmptyButton = styled(Button)`
 export const ImpactMenuContainer = styled.div`
   width: 100%;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktopLarge}) {
     width: 960px;
     padding-right: ${({ theme }) => theme.spacing(12)};
   }

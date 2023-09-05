@@ -1,5 +1,6 @@
 import ModalDialog from "components/moleculars/modals/ModalDialog";
 import { useState } from "react";
+import { logEvent } from "lib/events";
 import * as S from "../styles";
 
 type Props = {
@@ -21,6 +22,9 @@ function BadgeCard({ badge }: Props): JSX.Element {
       <S.BadgeContainer
         achieved={badge.achieved}
         onClick={() => {
+          logEvent("badgeCard_click", {
+            badgeId: badge?.id,
+          });
           setVisible(true);
         }}
       >

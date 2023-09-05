@@ -13,10 +13,10 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.brand.primary[800]};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    width: calc(156% + 80px);
-    min-height: 164px;
+    width: calc(136% + 80px);
+    min-height: 166px;
     margin: 0 calc(-28% - 80px) 32px -28%;
-    padding-right: calc(28% + 80px);
+    padding-right: 14%;
     padding-left: 28%;
     justify-content: flex-start;
   }
@@ -68,7 +68,7 @@ export const BackgroundShapeRight = styled.img`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 280px;
-    height: 290px;
+    height: 294px;
     top: 0;
     object-fit: cover;
   }

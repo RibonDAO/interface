@@ -249,6 +249,9 @@
       "livesForLevel": "vidas para nível",
       "level": "Nv.",
       "onLevelUp": "Parabéns! Você subiu de nível."
+    },
+    "badgesSection": {
+      "title": "Conquistas"
     }
   },
   "promoters": {

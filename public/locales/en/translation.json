@@ -250,6 +250,9 @@
       "livesForLevel": "lives for level",
       "level": "Lv.",
       "onLevelUp": "Congratulations! You just leveled up."
+    },
+    "badgesSection": {
+      "title": "Achievements"
     }
   },
   "promoters": {

@@ -30,7 +30,7 @@ describe("useUserLevel", () => {
   it("renders without error", () => {
     renderComponent(<UserLevelTestPage />);
 
-    expectTextToBeInTheDocument("Level: 6");
-    expectTextToBeInTheDocument("Experience: 30");
+    expectTextToBeInTheDocument("Level: 12");
+    expectTextToBeInTheDocument("Experience: 110");
   });
 });

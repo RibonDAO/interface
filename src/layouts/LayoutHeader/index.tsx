@@ -37,6 +37,8 @@ function LayoutHeader({
   });
   const { isVoucherAvailable } = useVoucher();
 
+  const isOutline = outline && isInLifeBasedImpact;
+
   const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
 
   if (!integrationId) return <div />;
@@ -63,7 +65,7 @@ function LayoutHeader({
     : undefined;
 
   return (
-    <S.Container outline={outline}>
+    <S.Container outline={isOutline}>
       <Header
         hasBackButton={hasBackButton}
         onBackButtonClick={navigateBack}
@@ -75,10 +77,10 @@ function LayoutHeader({
             {!hideWallet && (
               <S.ContainerButtons>
                 {isInLifeBasedImpact && (
-                  <ImpactedLivesCounter outline={outline} />
+                  <ImpactedLivesCounter outline={isOutline} />
                 )}
-                <TicketsCounter outline={outline} />
-                <SettingsMenu outline={outline} />
+                <TicketsCounter outline={isOutline} />
+                <SettingsMenu outline={isOutline} />
               </S.ContainerButtons>
             )}
           </S.ContainerRight>

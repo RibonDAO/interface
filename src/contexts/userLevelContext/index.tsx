@@ -39,7 +39,7 @@ function UserLevelProvider({ children }: Props) {
   useEffect(() => {
     const xpByTicket = userStatistics?.totalTickets ?? 0;
     const xpByMoney =
-      (userStatistics?.totalDonated?.usd || 0) * LIVES_PER_USD_CENT;
+      (userStatistics?.totalDonated?.brl || 0) * LIVES_PER_USD_CENT;
 
     setUserExperience(Math.round(xpByMoney + xpByTicket));
   }, [JSON.stringify(userStatistics)]);

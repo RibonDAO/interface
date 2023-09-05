@@ -1,6 +1,7 @@
 import { useUserLevel } from "contexts/userLevelContext";
 import { useTranslation } from "react-i18next";
 
+// TODO: get badges from the api
 function useUserBadges() {
   const { userLevel } = useUserLevel();
   const { t } = useTranslation("translation", {

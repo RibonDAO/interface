@@ -27,30 +27,29 @@ function LoadingPage(): JSX.Element {
   }, [integration]);
 
   const redirectToDeeplink = () => {
-    if (integrationId)
-      window.location.replace(
-        `${APP_INTEGRATION_LINK}?integration_id=${integrationId}`,
-      );
+    window.location.replace(
+      `${APP_INTEGRATION_LINK}?integration_id=${integrationId}`,
+    );
   };
   const renderOnboardingPage = () => {
-    if (integration && !isLoadingIsFirstAccessToIntegration)
-      if (isFirstAccessToIntegration) {
-        navigateTo({
-          pathname: "/intro",
-        });
-      } else {
-        navigateTo("/causes");
-      }
+    if (isFirstAccessToIntegration) {
+      navigateTo({
+        pathname: "/intro",
+      });
+    } else {
+      navigateTo("/causes");
+    }
   };
 
   useEffect(() => {
-    if (
-      history.location.search &&
-      history.location.search.includes("_branch_match_id")
-    )
+    if (!history.location.search?.includes("_branch_match_id") && integrationId)
+      redirectToDeeplink();
+  }, [integrationId]);
+
+  useEffect(() => {
+    if (integration && !isLoadingIsFirstAccessToIntegration)
       renderOnboardingPage();
-    else redirectToDeeplink();
-  }, [integrationId, isLoadingIsFirstAccessToIntegration, integrationId]);
+  }, [isLoadingIsFirstAccessToIntegration, integration]);
 
   return (
     <S.Container>

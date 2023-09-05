@@ -14,7 +14,7 @@ import extractUrlValue from "lib/extractUrlValue";
 import useNavigation from "hooks/useNavigation";
 import useVoucher from "hooks/useVoucher";
 import { normalizedLanguage } from "lib/currentLanguage";
-import getUTMFromLocationSearch from "lib/getUTMFromLocationSearch";
+import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
 
 type HandleDonateProps = {
   nonProfit: NonProfit;

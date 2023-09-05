@@ -1,32 +1,36 @@
 import { useUserLevel } from "contexts/userLevelContext";
+import { useTranslation } from "react-i18next";
 
 function useUserBadges() {
   const { userLevel } = useUserLevel();
+  const { t } = useTranslation("translation", {
+    keyPrefix: "impactPage.badgesSection",
+  });
 
   const badges = [
     {
       id: 1,
-      name: "Nível 5",
-      description:
-        "Parabéns! Você já impactou 21 vidas com as suas doações e liberou a conquista ‘Nível 5’.",
+      name: t("badgeData.name", { level: 5 }),
+      description: t("badgeData.description", { level: 5, impactedLives: 21 }),
       image: "https://i.imgur.com/wv66Hlj.png",
       category: "level",
       achieved: userLevel >= 5,
     },
     {
       id: 2,
-      name: "Nível 10",
-      description:
-        "Parabéns! Você já impactou 70 vidas com as suas doações e liberou a conquista ‘Nível 10’.",
+      name: t("badgeData.name", { level: 10 }),
+      description: t("badgeData.description", { level: 10, impactedLives: 70 }),
       image: "https://i.imgur.com/xnK6W9n.png",
       category: "level",
       achieved: userLevel >= 10,
     },
     {
       id: 3,
-      name: "Nível 20",
-      description:
-        "Parabéns! Você já impactou 270 vidas com as suas doações e liberou a conquista ‘Nível 20’.",
+      name: t("badgeData.name", { level: 20 }),
+      description: t("badgeData.description", {
+        level: 20,
+        impactedLives: 270,
+      }),
       image: "https://i.imgur.com/KZwcXXr.png",
       category: "level",
       achieved: userLevel >= 20,

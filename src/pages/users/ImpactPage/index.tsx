@@ -11,6 +11,7 @@ import { useCurrentUser } from "contexts/currentUserContext";
 import { useStatistics } from "@ribon.io/shared/hooks";
 import { useExperiment } from "@growthbook/growthbook-react";
 import ImpactedLivesSection from "pages/users/ImpactedLivesSection";
+import BadgesSection from "pages/users/BadgesSection";
 import ImpactMenu from "./ImpactMenu";
 import TicketIcon from "./assets/ticket-icon.svg";
 import MoneyIcon from "./assets/money-icon.svg";
@@ -46,6 +47,7 @@ function ImpactPage(): JSX.Element {
     <S.Container>
       <DownloadAppToast />
       {isInLifeBasedImpact && <ImpactedLivesSection />}
+      {isInLifeBasedImpact && <BadgesSection />}
       <S.Title>{t("title")}</S.Title>
       <S.CardsButtonContainer>
         <CardTopImage

@@ -251,7 +251,11 @@
       "onLevelUp": "Parabéns! Você subiu de nível."
     },
     "badgesSection": {
-      "title": "Conquistas"
+      "title": "Conquistas",
+      "badgeData": {
+        "name": "Nível {{level}}",
+        "description": "Parabéns! Você já impactou {{impactedLives}} vidas com as suas doações e liberou a conquista ‘Nível {{level}}’."
+      }
     }
   },
   "promoters": {

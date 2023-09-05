@@ -19,6 +19,7 @@ import DebugEventsView from "config/debugEventsView";
 import { debugEnabled } from "config/debugEventsView/helpers";
 import CauseDonationProvider from "contexts/causeDonationContext";
 import CauseContributionProvider from "contexts/causeContributionContext";
+import UserLevelProvider from "contexts/userLevelContext";
 import RoutesComponent from "./config/routes";
 import GlobalStyle from "./styles/globalStyle";
 import theme from "./styles/theme";
@@ -55,8 +56,10 @@ function App() {
                           <CausesProvider>
                             <CauseDonationProvider>
                               <CauseContributionProvider>
-                                <RoutesComponent />
-                                <Zendesk />
+                                <UserLevelProvider>
+                                  <RoutesComponent />
+                                  <Zendesk />
+                                </UserLevelProvider>
                               </CauseContributionProvider>
                             </CauseDonationProvider>
                           </CausesProvider>

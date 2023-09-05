@@ -161,7 +161,7 @@ function DonationDoneCausePage(): JSX.Element {
           pathname: "/post-donation",
           state: { nonProfit, cause },
         });
-      } else if (!isLoading && userStatistics) {
+      } else {
         navigateTo({
           pathname: "/causes",
           state: { cause },

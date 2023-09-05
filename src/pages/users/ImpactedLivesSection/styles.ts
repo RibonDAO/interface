@@ -16,8 +16,8 @@ export const Container = styled.div`
     width: calc(156% + 80px);
     min-height: 164px;
     margin: 0 calc(-28% - 80px) 32px -28%;
-    padding-left: 28%;
     padding-right: calc(28% + 80px);
+    padding-left: 28%;
     justify-content: flex-start;
   }
 `;

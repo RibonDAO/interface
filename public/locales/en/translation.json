@@ -253,6 +253,14 @@
       "livesForLevel": "lives for level",
       "level": "Lv.",
       "onLevelUp": "Congratulations! You just leveled up."
+    },
+    "badgesSection": {
+      "title": "Achievements",
+      "badgeData": {
+        "name": "Level {{level}}",
+        "description": "Congratulations! You have now impacted {{impactedLives}} lives with your donations and unlocked the achievement ‘Level {{level}}’.",
+        "notAchievedDescription": "Impact at least {{impactedLives}} with your donations at Ribon to unlock the achievement 'Level {{level}}'."
+      }
     }
   },
   "promoters": {

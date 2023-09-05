@@ -20,22 +20,20 @@ function LoadingPage(): JSX.Element {
   } = useFirstAccessToIntegration(integrationId);
 
   useEffect(() => {
-    if (!history.location.search.includes("_branch_match_id"))
-      if (integrationId)
-        window.location.replace(
-          `${APP_INTEGRATION_LINK}?integration_id=${integrationId}`,
-        );
-  }, [integrationId]);
-
-  useEffect(() => {
     if (integration) {
       localStorage.setItem("integrationName", integration.name);
       logEvent("P1_view");
     }
   }, [integration]);
 
+  const redirectToDeeplink = () => {
+    if (integrationId)
+      window.location.replace(
+        `${APP_INTEGRATION_LINK}?integration_id=${integrationId}`,
+      );
+  };
   const renderOnboardingPage = () => {
-    if (history.location.search.includes("_branch_match_id"))
+    if (integration && !isLoadingIsFirstAccessToIntegration)
       if (isFirstAccessToIntegration) {
         navigateTo({
           pathname: "/intro",
@@ -46,10 +44,13 @@ function LoadingPage(): JSX.Element {
   };
 
   useEffect(() => {
-    if (integration && !isLoadingIsFirstAccessToIntegration) {
+    if (
+      history.location.search &&
+      history.location.search.includes("_branch_match_id")
+    )
       renderOnboardingPage();
-    }
-  }, [integration, isLoadingIsFirstAccessToIntegration, integrationId]);
+    else redirectToDeeplink();
+  }, [integrationId, isLoadingIsFirstAccessToIntegration, integrationId]);
 
   return (
     <S.Container>

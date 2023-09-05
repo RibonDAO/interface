@@ -18,7 +18,7 @@ function useUserBadges() {
       name: "Nível 10",
       description:
         "Parabéns! Você já impactou 70 vidas com as suas doações e liberou a conquista ‘Nível 10’.",
-      image: "https://i.imgur.com/5er0JE6.png",
+      image: "https://i.imgur.com/xnK6W9n.png",
       category: "level",
       achieved: userLevel >= 10,
     },
@@ -27,7 +27,7 @@ function useUserBadges() {
       name: "Nível 20",
       description:
         "Parabéns! Você já impactou 270 vidas com as suas doações e liberou a conquista ‘Nível 20’.",
-      image: "https://i.imgur.com/Pgl7g0n.png",
+      image: "https://i.imgur.com/KZwcXXr.png",
       category: "level",
       achieved: userLevel >= 20,
     },

@@ -12,7 +12,12 @@ function useUserBadges() {
     {
       id: 1,
       name: t("badgeData.name", { level: 5 }),
-      description: t("badgeData.description", { level: 5, impactedLives: 21 }),
+      description: t(
+        userLevel >= 5
+          ? "badgeData.description"
+          : "badgeData.notAchievedDescription",
+        { level: 5, impactedLives: 21 },
+      ),
       image: "https://i.imgur.com/wv66Hlj.png",
       category: "level",
       achieved: userLevel >= 5,
@@ -20,7 +25,12 @@ function useUserBadges() {
     {
       id: 2,
       name: t("badgeData.name", { level: 10 }),
-      description: t("badgeData.description", { level: 10, impactedLives: 70 }),
+      description: t(
+        userLevel >= 10
+          ? "badgeData.description"
+          : "badgeData.notAchievedDescription",
+        { level: 10, impactedLives: 70 },
+      ),
       image: "https://i.imgur.com/xnK6W9n.png",
       category: "level",
       achieved: userLevel >= 10,
@@ -28,10 +38,15 @@ function useUserBadges() {
     {
       id: 3,
       name: t("badgeData.name", { level: 20 }),
-      description: t("badgeData.description", {
-        level: 20,
-        impactedLives: 270,
-      }),
+      description: t(
+        userLevel >= 20
+          ? "badgeData.description"
+          : "badgeData.notAchievedDescription",
+        {
+          level: 20,
+          impactedLives: 270,
+        },
+      ),
       image: "https://i.imgur.com/KZwcXXr.png",
       category: "level",
       achieved: userLevel >= 20,

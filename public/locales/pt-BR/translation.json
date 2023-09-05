@@ -254,7 +254,8 @@
       "title": "Conquistas",
       "badgeData": {
         "name": "Nível {{level}}",
-        "description": "Parabéns! Você já impactou {{impactedLives}} vidas com as suas doações e liberou a conquista ‘Nível {{level}}’."
+        "description": "Parabéns! Você já impactou {{impactedLives}} vidas com as suas doações e liberou a conquista ‘Nível {{level}}’.",
+        "notAchievedDescription": "Impacte pelo menos {{impactedLives}} vidas com as suas doações na Ribon para liberar a conquista ‘Nível {{level}}’."
       }
     }
   },

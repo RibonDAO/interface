@@ -12,7 +12,7 @@ export const BadgesContainer = styled.div`
 `;
 
 export const BadgeContainer = styled.div<{ achieved: boolean }>`
-  opacity: ${({ achieved }) => (achieved ? 1 : 0.5)};
+  opacity: ${({ achieved }) => (achieved ? 1 : 0.3)};
   cursor: pointer;
 `;
 

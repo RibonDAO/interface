@@ -25,6 +25,7 @@ import pixPaymentApi from "services/api/pixPaymentApi";
 import { useStripe } from "contexts/stripeContext";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
 import { useLoadingOverlay } from "contexts/loadingOverlayContext";
+import getUTMFromLocationSearch from "lib/getUTMFromLocationSearch";
 
 export interface IPixPaymentInformationContext {
   setButtonDisabled: (value: SetStateAction<boolean>) => void;
@@ -71,7 +72,7 @@ function PixPaymentInformationProvider({ children }: Props) {
     keyPrefix: "contexts.pixPaymentInformation",
   });
 
-  const { navigateTo } = useNavigation();
+  const { history, navigateTo } = useNavigation();
 
   const toast = useToast();
   const { findOrCreateUser } = useUsers();
@@ -147,6 +148,8 @@ function PixPaymentInformationProvider({ children }: Props) {
     }, 3000);
   };
 
+  const utmParams = getUTMFromLocationSearch(history.location.search);
+
   const handleSubmit = async () => {
     showAnimationPixPaymentModal();
 
@@ -162,6 +165,9 @@ function PixPaymentInformationProvider({ children }: Props) {
       causeId: cause?.id,
       nonProfitId: nonProfit?.id,
       platform: PLATFORM,
+      utmSource: utmParams.utmSource,
+      utmMedium: utmParams.utmMedium,
+      utmCampaign: utmParams.utmCampaign,
     };
 
     try {

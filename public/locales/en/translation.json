@@ -163,12 +163,15 @@
         "changeLanguageText": "Change language"
       },
       "userSupportItem": {
-        "userSupportText": "User Support",
+        "userSupportText": "User support",
         "userSupportLink": "https://api.whatsapp.com/send/?phone=554896605461&text=Hii+Ribon%2C+let’s+talk%3F+&type=phone_number&app_absent=0"
       },
 
       "getTheAppItem": {
         "getTheAppText": "Get the app"
+      },
+      "monthlyContributionsItem": {
+        "monthlyContributionsText": "Monthly contributions"
       },
       "donationModalTitle": "Great! You got 1 ticket to donate",
       "donationModalBody": "You can assign the ticket to any project",
@@ -392,6 +395,18 @@
       "uniqueDonationDescription": "Contribute once",
       "selectValue": "Select value"
     },
+    "monthlyContributionsPage": {
+      "title": "Monthly contributions",
+      "to": "To ",
+      "nextContribution": "Next contribution on ",
+      "cancelSubscriptionSuccess": "We sent you an e-mail",
+      "cancelSubscriptionModal": {
+        "title": "Cancel monthly contribution",
+        "description": "To finish this process, you'll need to confirm the cancelation request clicking in the link of the cancelation e-mail.",
+        "primaryButton": "Receive cancelation e-mail",
+        "secondaryButton": "Close"
+      }
+    },
     "checkoutPage": {
       "changeCurrency": "Change currency",
       "back": "Back",
@@ -436,6 +451,12 @@
       },
       "confirmPayment": "Confirm payment",
       "pixButtonText": "Generate QR Code"
+    },
+    "contributionCanceledPage": {
+      "title": "Contribution canceled",
+      "description": "Your monthly contribution of {{value}} to {{receiver}} was canceled",
+      "loading": "Loading...",
+      "invalidLink": "Invalid link"
     }
   },
   "contexts": {

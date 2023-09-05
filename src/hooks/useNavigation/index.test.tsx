@@ -98,7 +98,11 @@ describe("useNavigation", () => {
         await fireEvent.click(screen.getByText(GO_TO_PAGE_WITH_SEARCH_BTN));
       });
 
-      expect(screen.getByText(`?${SEARCH_PARAM}`)).toBeInTheDocument();
+      expect(
+        screen.getByText(
+          "?foo=bar&utm_source=organic&utm_medium=organic&utm_campaign=organic",
+        ),
+      ).toBeInTheDocument();
     });
 
     describe("when there is a search param", () => {
@@ -110,7 +114,11 @@ describe("useNavigation", () => {
         await act(async () => {
           await fireEvent.click(screen.getByText(GO_TO_PAGE_BTN));
         });
-        expect(screen.getByText(`?${SEARCH_PARAM}`)).toBeInTheDocument();
+        expect(
+          screen.getByText(
+            "?foo=bar&utm_source=organic&utm_medium=organic&utm_campaign=organic",
+          ),
+        ).toBeInTheDocument();
       });
     });
 
@@ -125,7 +133,11 @@ describe("useNavigation", () => {
           await fireEvent.click(screen.getByText(GO_TO_PAGE_WITH_SEARCH_BTN));
         });
 
-        expect(screen.getByText(`?${SEARCH_PARAM}`)).toBeInTheDocument();
+        expect(
+          screen.getByText(
+            "?foo=bar&utm_source=organic&utm_medium=organic&utm_campaign=organic",
+          ),
+        ).toBeInTheDocument();
       });
     });
 

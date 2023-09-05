@@ -138,6 +138,16 @@ function SupportCausePage(): JSX.Element {
     </>
   );
 
+  const addValueText =
+    variation.value === "growth"
+      ? t("chainOfGoodwillText")
+      : t("communityAddText");
+
+  const buttonText =
+    variation.value === "growth"
+      ? t("chainOfGoodwillButtonText")
+      : t("communityAddButtonText");
+
   return (
     <S.Container>
       <DownloadAppToast />
@@ -170,10 +180,10 @@ function SupportCausePage(): JSX.Element {
                 />
               </S.ContributionContainer>
               <S.CommunityAddContainer>
-                <S.CommunityAddText>{t("communityAddText")}</S.CommunityAddText>
+                <S.CommunityAddText>{addValueText}</S.CommunityAddText>
                 <S.CommunityAddValue>{communityAddText()}</S.CommunityAddValue>
                 <S.CommunityAddButton
-                  text={t("communityAddButtonText")}
+                  text={buttonText}
                   onClick={handleCommunityAddClick}
                   outline
                 />

@@ -273,9 +273,11 @@
     "supportCausePage": {
       "title": "Donate with a community",
       "donateWithRibonTitle": "Donate with Ribon",
-      "donateWithRibonSubtitle": "Be part of the chain of good by generating new donors and increasing the impact of your donation",  
+      "donateWithRibonSubtitle": "Be part of the chain of goodwill by generating new donors and increasing the impact of your donation",  
       "communityAddText": "The Community will add",
+      "chainOfGoodwillText": "The Ribon's chain of goodwill will add",
       "communityAddButtonText": "How the community does it?",
+      "chainOfGoodwillButtonText": "What is the chain of goodwill?",
       "donateButtonText": "Donate {{value}}",
       "selectOfferSection": {
         "causeText": "You'll donate to"

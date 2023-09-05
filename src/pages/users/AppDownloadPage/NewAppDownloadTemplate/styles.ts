@@ -15,8 +15,12 @@ export const Title = styled.p`
 export const Description = styled.p`
   ${defaultBodyMdBold}
 
-  margin-top: ${({ theme }) => theme.spacing(24)};
+  margin-top: ${({ theme }) => theme.spacing(8)};
   color: ${({ theme }) => theme.colors.neutral[500]};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    margin-top: ${({ theme }) => theme.spacing(24)};
+  }
 `;
 
 export const NewDescription = styled.p`

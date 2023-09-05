@@ -530,9 +530,9 @@
     "newsSection": {
       "title": "Get the app and check out what's new for you",
       "getAppButtonText": "Get app",
-      "newTitle": "Get a new ticket",
-      "newDescription": "Download the app and get an extra ticket",
-      "newButtonDownloadApp": "Download and get ticket"
+      "newTitle": "Read good news!",
+      "newDescription": "Download our app and check our selection of heart warming news",
+      "newButtonDownloadApp": "Download and read news"
     },
     "tasksSection": {
       "title": "Tasks",

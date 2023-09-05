@@ -109,7 +109,9 @@
       "causesPageTitle": "Tickets",
       "forYouPageTitle": "Para você",
       "givingPageTitle": "Contribuir",
+      "aboutPageTitle": "Sobre",
       "communityMenuItem": "Doação em comunidade",
+      "donateWithRibonMenuItem": "Doe com a Ribon",
       "directDonationMenuItem": "Doação direta",
       "new": "Novo"
     },
@@ -167,7 +169,8 @@
         "userSupportLink": "https://api.whatsapp.com/send/?phone=554896605461&text=Oii+Ribon%2C+vamos+conversar%3F+&type=phone_number&app_absent=0"
       },
       "getTheAppItem": {
-        "getTheAppText": "Baixar app"
+        "getTheAppText": "Baixe app",
+        "newGetTheAppText": "Ganhe mais tickets"
       },
       "monthlyContributionsItem": {
         "monthlyContributionsText": "Contribuições mensais"
@@ -278,8 +281,12 @@
     },
     "supportCausePage": {
       "title": "Doe com a comunidade",
+      "donateWithRibonTitle": "Doe com a Ribon",
+      "donateWithRibonSubtitle": "Faça parte da corrente do bem gerando novos doadores e aumentando o impacto de sua doação",
       "communityAddText": "A Comunidade adicionará",
+      "chainOfGoodwillText": "A corrente do bem da Ribon adicionará",
       "communityAddButtonText": "Como a comunidade faz isso?",
+      "chainOfGoodwillButtonText": "O que é a corrente do bem?",
       "donateButtonText": "Doar {{value}}",
       "selectOfferSection": {
         "causeText": "Você doará para"
@@ -510,11 +517,16 @@
     "scanQrCode": "QR Code",
     "chooseStore": "Escolha a loja",
     "copyText": "Copiar link",
-    "copiedText": "Copiado!"
+    "copiedText": "Copiado!",
+    "newTitle": "Baixou, ganhou!",
+    "newDescription": "Baixe o app e receba um ticket extra",
+    "newButtonDownloadApp": "Baixar e receber ticket",
+    "newScanQrCode": "Use o QR Code"
   },
   "downloadApp": {
     "floating": {
-      "title": "Baixar app"
+      "title": "Baixar app",
+      "newTitle": "Mais tickets"
     }
   },
   "forYouPage": {
@@ -525,7 +537,10 @@
     },
     "newsSection": {
       "title": "Baixe o app e veja novidades pra você",
-      "getAppButtonText": "Baixar app"
+      "getAppButtonText": "Baixar app",
+      "newTitle": "Só notícia boa!",
+      "newDescription": "Baixe nosso app e acesse uma seleção de notícias que vão aquecer seu coração",
+      "newButtonDownloadApp": "Baixe e veja as notícias"
     },
     "tasksSection": {
       "title": "Tarefas",
@@ -534,7 +549,12 @@
       "titleSuperTasks": "Super tarefas",
       "tasks": {
         "donate_ticket": "Doar ticket",
-        "download_app": "Baixar o app",
+        "download_app": "Baixar app",
+        "new_download_app": "Ganhe um ticket extra",
+        "newTitle": "Baixou, ganhou!",
+        "newDescription": "Baixe o app e receba um ticket extra",
+        "newButtonDownloadApp": "Baixar e receber ticket",
+        "newScanQrCode": "Use o QR Code",
         "make_contribution": "Fazer uma doação paga",
         "start_contribution": "Entenda o que é ser um promotor",
         "become_a_promoter": "Vire o promotor de uma causa"
@@ -555,7 +575,11 @@
   "downloadAppModalTemplate": {
     "title": "Tenha uma experiência completa usando o nosso App",
     "description": "Baixe o app e tenha acesso a todas as funcionalidades da Ribon",
-    "button": "Baixar o app"
+    "button": "Baixar o app",
+    "newTitle": "Baixou, ganhou!",
+    "newDescription": "Baixe o app e receba um ticket extra",
+    "newButtonDownloadApp": "Baixar e receber ticket",
+    "newScanQrCode": "Use o QR Code"
   },
   "contributionStatsPage": {
     "title": "Você doou <span>{{amount}}</span> para <span>{{cause}}</span>",

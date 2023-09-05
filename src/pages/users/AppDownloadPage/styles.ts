@@ -38,7 +38,6 @@ export const LeftArrow = styled.img`
   margin-top: ${({ theme }) => theme.spacing(16)};
   margin-right: ${({ theme }) => theme.spacing(16)};
   margin-bottom: 0;
-  margin-left: ${({ theme }) => theme.spacing(16)};
   cursor: pointer;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {

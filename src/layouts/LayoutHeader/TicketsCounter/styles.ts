@@ -11,7 +11,7 @@ export const CounterContainer = styled.div<{ outline: boolean }>`
   padding: ${({ theme }) => theme.spacing(4)} ${({ theme }) => theme.spacing(8)};
   border: 1px solid
     ${({ theme, outline }) =>
-      outline ? theme.colors.brand.primary[300] : theme.colors.neutral[200]};
+      outline ? theme.colors.brand.primary[600] : theme.colors.neutral[200]};
   border-radius: 4px;
   display: flex;
   flex-direction: row;

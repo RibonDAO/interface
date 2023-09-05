@@ -109,7 +109,9 @@
       "causesPageTitle": "Tickets",
       "forYouPageTitle": "For you",
       "givingPageTitle": "Giving",
+      "aboutPageTitle": "About",
       "communityMenuItem": "Community Donation",
+      "donateWithRibonMenuItem": "Donate with Ribon",
       "directDonationMenuItem": "Direct donation",
       "new": "New"
     },
@@ -168,7 +170,8 @@
       },
 
       "getTheAppItem": {
-        "getTheAppText": "Get the app"
+        "getTheAppText": "Get the app",
+        "newGetTheAppText": "Get more tickets"
       },
       "monthlyContributionsItem": {
         "monthlyContributionsText": "Monthly contributions"
@@ -279,8 +282,12 @@
     },
     "supportCausePage": {
       "title": "Donate with a community",
+      "donateWithRibonTitle": "Donate with Ribon",
+      "donateWithRibonSubtitle": "Be part of the chain of goodwill by generating new donors and increasing the impact of your donation",
       "communityAddText": "The Community will add",
+      "chainOfGoodwillText": "The Ribon's chain of goodwill will add",
       "communityAddButtonText": "How the community does it?",
+      "chainOfGoodwillButtonText": "What is the chain of goodwill?",
       "donateButtonText": "Donate {{value}}",
       "selectOfferSection": {
         "causeText": "You'll donate to"
@@ -510,11 +517,16 @@
     "scanQrCode": "Scan QR Code",
     "chooseStore": "Choose a store",
     "copyText": "Copy link",
-    "copiedText": "Copied!"
+    "copiedText": "Copied!",
+    "newTitle": "Get a new ticket",
+    "newDescription": "Download the app and get an extra ticket",
+    "newButtonDownloadApp": "Download and get ticket",
+    "newScanQrCode": "Use QR Code"
   },
   "downloadApp": {
     "floating": {
-      "title": "Get app"
+      "title": "Get app",
+      "newTitle": "More tickets"
     }
   },
   "forYouPage": {
@@ -525,7 +537,10 @@
     },
     "newsSection": {
       "title": "Get the app and check out what's new for you",
-      "getAppButtonText": "Get app"
+      "getAppButtonText": "Get app",
+      "newTitle": "Read good news!",
+      "newDescription": "Download our app and check our selection of heart warming news",
+      "newButtonDownloadApp": "Download and read news"
     },
     "tasksSection": {
       "title": "Tasks",
@@ -534,7 +549,12 @@
       "titleSuperTasks": "Super tasks",
       "tasks": {
         "donate_ticket": "Donate ticket",
+        "new_download_app": "Get an extra ticket",
         "download_app": "Download app",
+        "newTitle": "Get a new ticket",
+        "newDescription": "Download the app and get an extra ticket",
+        "newButtonDownloadApp": "Download and get ticket",
+        "newScanQrCode": "Use QR Code",
         "make_contribution": "Make a paid donation",
         "start_contribution": "Understand what it means to be a promoter",
         "become_a_promoter": "Become a promoter of a cause"
@@ -555,7 +575,11 @@
   "downloadAppModalTemplate": {
     "title": "Get Ribon's mobile app",
     "description": "Get the best donation experience we can offer and access exclusive features!",
-    "button": "Download app"
+    "button": "Download app",
+    "newTitle": "Get a new ticket",
+    "newDescription": "Download the app and get an extra ticket",
+    "newButtonDownloadApp": "Download and get ticket",
+    "newScanQrCode": "Use QR Code"
   },
   "contributionStatsPage": {
     "title": "You donated <span>{{amount}}</span> for <span>{{cause}}</span>",

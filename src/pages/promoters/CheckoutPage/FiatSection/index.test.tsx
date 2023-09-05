@@ -85,6 +85,7 @@ describe("FiatSection", () => {
           paymentMethod: "card",
           amount: 10,
           currency: "usd",
+          variation: "control",
         });
       });
     });

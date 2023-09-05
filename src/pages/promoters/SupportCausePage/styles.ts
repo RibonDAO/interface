@@ -67,6 +67,7 @@ export const CommunityAddContainer = styled.div`
 export const CommunityAddText = styled.p`
   ${defaultBodyXsRegular}
 
+  text-align: center;
   color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 

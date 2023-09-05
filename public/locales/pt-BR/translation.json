@@ -246,6 +246,12 @@
       "title": "Migramos seu impacto!",
       "description": "O seu histórico de doações feitas na plataforma antiga está na aba \"doações em ticket\".",
       "link": "Não mostrar novamente"
+    },
+    "impactedLivesSection": {
+      "impactedLives": "vidas impactadas",
+      "livesForLevel": "vidas para nível",
+      "level": "Nv.",
+      "onLevelUp": "Parabéns! Você subiu de nível."
     }
   },
   "promoters": {
@@ -278,7 +284,9 @@
       "donateWithRibonTitle": "Doe com a Ribon",
       "donateWithRibonSubtitle": "Faça parte da corrente do bem gerando novos doadores e aumentando o impacto de sua doação",
       "communityAddText": "A Comunidade adicionará",
+      "chainOfGoodwillText": "A corrente do bem da Ribon adicionará",
       "communityAddButtonText": "Como a comunidade faz isso?",
+      "chainOfGoodwillButtonText": "O que é a corrente do bem?",
       "donateButtonText": "Doar {{value}}",
       "selectOfferSection": {
         "causeText": "Você doará para"

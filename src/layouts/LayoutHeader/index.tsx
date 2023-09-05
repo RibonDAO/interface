@@ -6,8 +6,10 @@ import useNavigation from "hooks/useNavigation";
 import { PLATFORM, RIBON_COMPANY_ID } from "utils/constants";
 import { logEvent } from "lib/events";
 import extractUrlValue from "lib/extractUrlValue";
-import TicketsCounter from "layouts/LayoutHeader/TicketsCounter";
-import SettingsMenu from "layouts/LayoutHeader/SettingsMenu";
+import { useExperiment } from "@growthbook/growthbook-react";
+import TicketsCounter from "./TicketsCounter";
+import SettingsMenu from "./SettingsMenu";
+import ImpactedLivesCounter from "./ImpactedLivesCounter";
 import * as S from "./styles";
 
 export type Props = {
@@ -29,7 +31,13 @@ function LayoutHeader({
   const externalId = extractUrlValue("external_id", history.location.search);
   const { canDonate } = useCanDonate(integrationId, PLATFORM, externalId);
 
+  const { value: isInLifeBasedImpact } = useExperiment({
+    key: "progression-test-first-stage",
+    variations: [false, true],
+  });
   const { isVoucherAvailable } = useVoucher();
+
+  const isOutline = outline && isInLifeBasedImpact;
 
   const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
 
@@ -57,7 +65,7 @@ function LayoutHeader({
     : undefined;
 
   return (
-    <S.Container outline={outline}>
+    <S.Container outline={isOutline}>
       <Header
         hasBackButton={hasBackButton}
         onBackButtonClick={navigateBack}
@@ -68,8 +76,11 @@ function LayoutHeader({
             {rightComponent}
             {!hideWallet && (
               <S.ContainerButtons>
-                <TicketsCounter outline={outline} />
-                <SettingsMenu outline={outline} />
+                {isInLifeBasedImpact && (
+                  <ImpactedLivesCounter outline={isOutline} />
+                )}
+                <TicketsCounter outline={isOutline} />
+                <SettingsMenu outline={isOutline} />
               </S.ContainerButtons>
             )}
           </S.ContainerRight>

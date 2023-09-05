@@ -125,7 +125,7 @@ function RoutesComponent(): JSX.Element {
       <Route path="/impact" exact>
         <Suspense fallback={<div />}>
           <WalletProvider>
-            <MainLayout>
+            <MainLayout outline>
               <ImpactPage />
             </MainLayout>
           </WalletProvider>
@@ -274,6 +274,7 @@ function RoutesComponent(): JSX.Element {
           </MainLayout>
         </Suspense>
       </Route>
+
       <Route path="/monthly-contribution-canceled" exact>
         <Suspense fallback={<div />}>
           <ContributionCanceledPage />

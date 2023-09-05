@@ -12,13 +12,10 @@ export const BadgesContainer = styled.div`
 `;
 
 export const BadgeContainer = styled.div<{ achieved: boolean }>`
-  opacity: ${({ achieved }) => (achieved ? 1 : 0.3)};
-  cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+  opacity: ${({ achieved }) => (achieved ? 1 : 0.3)};
+  cursor: pointer;
   user-select: none;
 `;
 

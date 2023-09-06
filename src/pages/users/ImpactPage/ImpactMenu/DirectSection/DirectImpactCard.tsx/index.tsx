@@ -4,7 +4,7 @@ import { formatFee } from "lib/formatters/feeFormatter";
 import { formatNetDonation } from "lib/formatters/netDonationFormatter";
 import { useTranslation } from "react-i18next";
 import theme from "styles/theme";
-import parse from "html-react-parser";
+import { formatImpact } from "lib/formatters/impactFormatter";
 import * as S from "../../styles";
 
 type Props = {
@@ -27,12 +27,7 @@ function DirectImpactCard({ personPayment }: Props): JSX.Element {
       key={personPayment.id}
       title={personPayment.receiver.name}
       value={personPayment.offer.price}
-      text={
-        nonProfitImpact &&
-        parse(
-          `<b>${nonProfitImpact.formattedImpact[0]}</b> ${nonProfitImpact.formattedImpact[1]} <b>${nonProfitImpact.formattedImpact[2]}</b>`,
-        )
-      }
+      text={nonProfitImpact && formatImpact(nonProfitImpact.formattedImpact)}
       infoLeft={personPayment.paidDate
         .split(" ")[0]
         .split("-")

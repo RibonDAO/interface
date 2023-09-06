@@ -1,10 +1,10 @@
 import CardTooltip from "components/moleculars/cards/CardTooltip";
 import { useNonProfitImpact } from "@ribon.io/shared/hooks";
-import { useFormattedImpactText } from "hooks/useFormattedImpactText";
 import { formatFee } from "lib/formatters/feeFormatter";
 import { formatNetDonation } from "lib/formatters/netDonationFormatter";
 import { useTranslation } from "react-i18next";
 import theme from "styles/theme";
+import parse from "html-react-parser";
 import * as S from "../../styles";
 
 type Props = {
@@ -16,7 +16,6 @@ function DirectImpactCard({ personPayment }: Props): JSX.Element {
     keyPrefix: "impactPage.directSection",
   });
 
-  const { formattedImpactText } = useFormattedImpactText();
   const { nonProfitImpact } = useNonProfitImpact(
     personPayment.receiver.id,
     personPayment.offer.priceValue,
@@ -28,13 +27,12 @@ function DirectImpactCard({ personPayment }: Props): JSX.Element {
       key={personPayment.id}
       title={personPayment.receiver.name}
       value={personPayment.offer.price}
-      text={formattedImpactText(
-        personPayment.receiver,
-        undefined,
-        true,
-        true,
-        nonProfitImpact,
-      )}
+      text={
+        nonProfitImpact &&
+        parse(
+          `<b>${nonProfitImpact.formattedImpact[0]}</b> ${nonProfitImpact.formattedImpact[1]} <b>${nonProfitImpact.formattedImpact[2]}</b>`,
+        )
+      }
       infoLeft={personPayment.paidDate
         .split(" ")[0]
         .split("-")

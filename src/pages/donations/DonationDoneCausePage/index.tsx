@@ -162,7 +162,12 @@ function DonationDoneCausePage(): JSX.Element {
     if (!hasButton) {
       registerAction("donation_done_page_view");
 
-      if (shouldShowAppDownload()) {
+      if (variation.value) {
+        navigateTo({
+          pathname: "/impact",
+          state: { cause },
+        });
+      } else if (shouldShowAppDownload()) {
         navigateTo({
           pathname: "/app-download",
           state: { nonProfit, showContribute: shouldShowContribute() },
@@ -174,7 +179,7 @@ function DonationDoneCausePage(): JSX.Element {
         });
       } else {
         navigateTo({
-          pathname: variation.value ? "/impact" : "/causes",
+          pathname: "/causes",
           state: { cause },
         });
       }

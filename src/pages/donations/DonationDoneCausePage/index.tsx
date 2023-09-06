@@ -49,6 +49,10 @@ function DonationDoneCausePage(): JSX.Element {
     keyPrefix: "donations.donationDoneCausePage",
   });
   const { formattedImpactText } = useFormattedImpactText();
+  const variation = useExperiment({
+    key: "progression-test-first-stage",
+    variations: [false, true],
+  });
 
   const currency = Currencies.USD;
   const {
@@ -158,7 +162,9 @@ function DonationDoneCausePage(): JSX.Element {
     if (!hasButton) {
       registerAction("donation_done_page_view");
 
-      if (shouldShowAppDownload()) {
+      if (variation.value) {
+        navigateTo("/impact");
+      } else if (shouldShowAppDownload()) {
         navigateTo({
           pathname: "/app-download",
           state: { nonProfit, showContribute: shouldShowContribute() },
@@ -202,11 +208,6 @@ function DonationDoneCausePage(): JSX.Element {
   };
 
   const audio = getAudioFromStorage("donationDoneSound");
-
-  const variation = useExperiment({
-    key: "progression-test-first-stage",
-    variations: [false, true],
-  });
 
   const oldImpactFormat = () => (
     <>

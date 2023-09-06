@@ -37,6 +37,11 @@ function PostDonationPage(): JSX.Element {
   const { setChosenCause, setChosenCauseIndex } = useCauseContributionContext();
   const { causes } = useCausesContext();
 
+  const variation = useExperiment({
+    key: "progression-test-first-stage",
+    variations: [false, true],
+  });
+
   const variationUnderstanding = useExperiment({
     key: "understanding-test",
     variations: ["control", "product", "growth"],
@@ -98,17 +103,14 @@ function PostDonationPage(): JSX.Element {
   };
 
   const handleDonateLaterClick = () => {
+    const pathname = variation.value ? "/impact" : "/causes";
+
     navigateTo({
-      pathname: "/causes",
+      pathname,
     });
   };
 
   useAvoidBackButton();
-
-  const variation = useExperiment({
-    key: "progression-test-first-stage",
-    variations: [false, true],
-  });
 
   return (
     <S.Container>

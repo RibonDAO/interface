@@ -163,10 +163,7 @@ function DonationDoneCausePage(): JSX.Element {
       registerAction("donation_done_page_view");
 
       if (variation.value) {
-        navigateTo({
-          pathname: "/impact",
-          state: { cause },
-        });
+        navigateTo("/impact");
       } else if (shouldShowAppDownload()) {
         navigateTo({
           pathname: "/app-download",

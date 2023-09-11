@@ -75,7 +75,7 @@ export function useImpactConversion() {
     setDescription(
       formattedImpactText(nonProfit, undefined, true, true, nonProfitImpact),
     );
-  }, [contribution, nonProfit]);
+  }, [contribution, nonProfit, nonProfitImpact]);
 
   return {
     contribution,

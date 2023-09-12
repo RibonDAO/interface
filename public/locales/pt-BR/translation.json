@@ -1,7 +1,7 @@
 {
   "donations": {
     "causesPage": {
-      "impactOneLife": "Impacte 1 vida",
+      "impactOneLife": "Impacte 1 pessoa",
       "impactDescription": "com {{value}}",
       "donationModalTitle": "Você ganhou um ticket doação",
       "donationModalButtonText": "Receber ticket",
@@ -60,7 +60,7 @@
         "descriptionContributionModal": "Que tal fazer uma doação paga?",
         "buttonContributionModal": "Doe {{value}}",
         "textContributionModal": "Doe {{value}} para {{nonProfitName}}",
-        "impactOneLife": "Impacte 1 vida",
+        "impactOneLife": "Impacte 1 pessoa",
         "impactDescription": "com {{value}}"
       },
       "promoterCta": {
@@ -97,8 +97,8 @@
     "donationDoneCausePage": {
       "title": "Parabéns!",
       "thanksToYou": "Graças a você...",
-      "lifeWasImpacted": "1 vida foi impactada",
-      "livesWereImpacted": "{{value}} vidas foram impactadas",
+      "lifeWasImpacted": "1 pessoa foi impactada",
+      "livesWereImpacted": "{{value}} pessoas foram impactadas",
       "impactDescription": "com {{value}}",
       "titleSecondLine": "Você doou para",
       "youDonatedText": "Você doou",
@@ -142,7 +142,7 @@
       "signedInSection": {
         "title": "Sua doação",
         "confirmText": "Confirmar doação",
-        "impactOneLife": "Impacte 1 vida",
+        "impactOneLife": "Impacte 1 pessoa",
         "impactDescription": "com {{value}}"
       },
       "signInSection": {
@@ -154,7 +154,7 @@
         "termsLink": "https://ribon.io/privacy-policy/#termos",
         "privacyPolicyText": "Política de Privacidade",
         "privacyPolicyLink": "https://ribon.io/privacy-policy/#pol%C3%ADtica",
-        "impactOneLife": "Impacte 1 vida",
+        "impactOneLife": "Impacte 1 pessoa",
         "impactDescription": "com {{value}}"
       }
     }
@@ -248,8 +248,8 @@
       "link": "Não mostrar novamente"
     },
     "impactedLivesSection": {
-      "impactedLives": "vidas impactadas",
-      "livesForLevel": "vidas para nível",
+      "impactedLives": "pessoas impactadas",
+      "livesForLevel": "pessoas para nível",
       "level": "Nv.",
       "onLevelUp": "Parabéns! Você subiu de nível."
     },
@@ -257,8 +257,8 @@
       "title": "Conquistas",
       "badgeData": {
         "name": "Nível {{level}}",
-        "description": "Parabéns! Você já impactou {{impactedLives}} vidas com as suas doações e liberou a conquista ‘Nível {{level}}’.",
-        "notAchievedDescription": "Impacte pelo menos {{impactedLives}} vidas com as suas doações na Ribon para liberar a conquista ‘Nível {{level}}’."
+        "description": "Parabéns! Você já impactou {{impactedLives}} pessoas com as suas doações e liberou a conquista ‘Nível {{level}}’.",
+        "notAchievedDescription": "Impacte pelo menos {{impactedLives}} pessoas com as suas doações na Ribon para liberar a conquista ‘Nível {{level}}’."
       }
     }
   },
@@ -310,7 +310,7 @@
       "selectOfferSection": {
         "fundText": "geram",
         "impactText": "Impacte",
-        "livesAmount": "{{value}} vidas",
+        "livesAmount": "{{value}} pessoas",
         "impactDescription": "com {{value}}"
       },
       "tooltipImpact": "Como calculamos o impacto?",
@@ -620,7 +620,7 @@
   "contributionSection": {
     "titleCard": "Faça ainda mais",
     "title": "Que incrível! Obrigado por ajudar {{nonProfitName}}",
-    "titleNewImpact": "Graças a você a {{nonProfitName}} poderá impactar 1 vida. Obrigado!",
+    "titleNewImpact": "Graças a você a {{nonProfitName}} poderá impactar 1 pessoa. Obrigado!",
     "nonProfits": "ONGs"
   },
   "contributionCard": {
@@ -628,7 +628,7 @@
     "donate": "Doe {{value}}",
     "titleCard": "Faça ainda mais",
     "donateAndImpact": "Doe {{value}} e impacte",
-    "livesAmount": "+{{value}} vidas",
+    "livesAmount": "+{{value}} pessoas",
     "impactDescription": "com {{value}}"
   }
 }

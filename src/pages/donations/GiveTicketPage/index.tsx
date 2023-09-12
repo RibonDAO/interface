@@ -2,13 +2,15 @@ import { useTranslation } from "react-i18next";
 import ticketImage from "assets/images/ticket-image.svg";
 import LeftImage from "assets/images/bottom-left-shape-red.svg";
 import RightImage from "assets/images/top-right-shape.svg";
-import CenterImage from "assets/images/center-shape-background.svg";
 import useNavigation from "hooks/useNavigation";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useIntegration } from "@ribon.io/shared/hooks";
 import { RIBON_COMPANY_ID } from "utils/constants";
 import Tooltip from "components/moleculars/Tooltip";
 import { newLogEvent } from "lib/events";
+import RibonLogo from "assets/images/logo-ribon.svg";
+import RightImageIntegration from "./assets/right-image.svg";
+import LeftImageIntegration from "./assets/left-image.svg";
 import ArrowLeft from "./assets/arrow-left-dark-green.svg";
 import * as S from "./styles";
 
@@ -68,8 +70,20 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
           {isRibonIntegration ? (
             <S.DefaultImage src={ticketImage} />
           ) : (
-            <S.ImageContainer backgroundImage={CenterImage}>
-              <S.Image src={integration?.logo} />
+            <S.ImageContainer>
+              <S.LeftImageContainer
+                src={LeftImageIntegration}
+                alt="left-image"
+              />
+              <S.RightImageContainer
+                src={RightImageIntegration}
+                alt="right-image"
+              />
+              <S.ImageWrapper>
+                <img src={RibonLogo} alt="ribon-logo" />
+                <S.ImageContainerText>+</S.ImageContainerText>
+                <S.Image src={integration?.logo} />
+              </S.ImageWrapper>
             </S.ImageContainer>
           )}
           <S.TextContainer>

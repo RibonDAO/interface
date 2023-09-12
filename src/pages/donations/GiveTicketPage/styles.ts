@@ -1,5 +1,8 @@
 import styled from "styled-components";
-import { defaultBodyMdSemibold } from "styles/typography/default";
+import {
+  defaultBodyMdSemibold,
+  defaultHeadingLg,
+} from "styles/typography/default";
 import { stylizedDisplayXs } from "styles/typography/stylized";
 
 export const Title = styled.p`
@@ -70,24 +73,50 @@ export const RightImage = styled.img`
   }
 `;
 
+export const LeftImageContainer = styled.img`
+  float: left;
+  top: 208px;
+  left: 24px;
+  position: relative;
+  z-index: 1;
+`;
+export const RightImageContainer = styled.img`
+  float: right;
+  top: 72px;
+  right: 24px;
+  position: relative;
+  z-index: 1;
+`;
+
 export const Image = styled.img`
-  max-width: 144px;
-  padding: ${({ theme }) => theme.spacing(20)};
-  border: 1px solid ${({ theme }) => theme.colors.neutral[200]};
-  border-radius: ${({ theme }) => theme.spacing(8)};
-  background-color: ${({ theme }) => theme.colors.neutral10};
+  max-width: 101px;
+  padding: ${({ theme }) => theme.spacing(0, 8)};
 `;
 
 export const DefaultImage = styled.img``;
 
-export const ImageContainer = styled.div<{ backgroundImage: string }>`
-  min-width: 232px;
-  min-height: 208px;
+export const ImageWrapper = styled.div`
+  padding: ${({ theme }) => theme.spacing(24)};
+  border: 1px solid ${({ theme }) => theme.colors.neutral[200]};
+  border-radius: ${({ theme }) => theme.spacing(8)};
+  background-color: ${({ theme }) => theme.colors.neutral10};
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-image: url(${({ backgroundImage }) => backgroundImage});
-  background-size: cover;
+  width: 100%;
+  z-index: 2;
+  position: relative;
+`;
+
+export const ImageContainer = styled.div`
+  margin-bottom: ${({ theme }) => theme.spacing(24)};
+`;
+
+export const ImageContainerText = styled.p`
+  ${defaultHeadingLg}
+  padding: ${({ theme }) => theme.spacing(0, 8)};
+  color: ${({ theme }) => theme.colors.brand.primary[200]};
 `;
 
 export const ContentContainer = styled.div`

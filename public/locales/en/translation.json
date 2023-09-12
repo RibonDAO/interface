@@ -120,10 +120,10 @@
       "onboardingIntegrationTitle": "{{integrationName}} brought you here!",
       "onboardingSubtitle": "Your donation ticket is available",
       "onboardingButtonText": "Get my ticket",
-      "title": "You have 1 ticket!",
-      "integrationSubtitle": "Keep with {{integrationName}} and get new tickets",
+      "title": "You have 1 special ticket",
+      "integrationSubtitle": "{{integrationName}} gave you a ticket and you can donate it here at Ribon!",
       "subtitle": "Every day when you login in Ribon you get a new ticket.",
-      "buttonText": "Donate ticket",
+      "buttonText": "Donate my ticket",
       "tooltipTicketText": "Tickets are used to make donations and you get a new one everyday when you log in Ribon.",
       "tooltipTicket": "What is a ticket?"
     },

@@ -6,6 +6,7 @@ import { NonProfit } from "@ribon.io/shared";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useEffect, useState } from "react";
 import { useExperiment } from "@growthbook/growthbook-react";
+import { logEvent } from "@amplitude/analytics-browser";
 import * as S from "./styles";
 import IllustrationMobile from "./assets/illustration-mobile.svg";
 import LeftImage from "./assets/left-image.svg";
@@ -53,6 +54,12 @@ function AppDownloadPage() {
       navigateTo("/causes");
     }
   };
+
+  useEffect(() => {
+    logEvent("P17_view", {
+      variation: variation.value,
+    });
+  });
 
   useAvoidBackButton();
 

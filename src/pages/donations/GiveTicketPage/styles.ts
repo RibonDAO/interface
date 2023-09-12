@@ -74,18 +74,18 @@ export const RightImage = styled.img`
 `;
 
 export const LeftImageContainer = styled.img`
-  float: left;
+  position: relative;
   top: 208px;
   left: 24px;
-  position: relative;
   z-index: 1;
+  float: left;
 `;
 export const RightImageContainer = styled.img`
-  float: right;
+  position: relative;
   top: 72px;
   right: 24px;
-  position: relative;
   z-index: 1;
+  float: right;
 `;
 
 export const Image = styled.img`
@@ -96,17 +96,17 @@ export const Image = styled.img`
 export const DefaultImage = styled.img``;
 
 export const ImageWrapper = styled.div`
+  width: 100%;
   padding: ${({ theme }) => theme.spacing(24)};
   border: 1px solid ${({ theme }) => theme.colors.neutral[200]};
   border-radius: ${({ theme }) => theme.spacing(8)};
-  background-color: ${({ theme }) => theme.colors.neutral10};
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  z-index: 2;
-  position: relative;
+  background-color: ${({ theme }) => theme.colors.neutral10};
 `;
 
 export const ImageContainer = styled.div`
@@ -115,6 +115,7 @@ export const ImageContainer = styled.div`
 
 export const ImageContainerText = styled.p`
   ${defaultHeadingLg}
+
   padding: ${({ theme }) => theme.spacing(0, 8)};
   color: ${({ theme }) => theme.colors.brand.primary[200]};
 `;

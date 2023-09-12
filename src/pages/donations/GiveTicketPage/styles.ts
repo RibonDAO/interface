@@ -97,7 +97,7 @@ export const DefaultImage = styled.img``;
 
 export const ImageWrapper = styled.div`
   width: 100%;
-  min-height: 122px;
+  min-height: 130px;
   padding: ${({ theme }) => theme.spacing(24)};
   border: 1px solid ${({ theme }) => theme.colors.neutral[200]};
   border-radius: ${({ theme }) => theme.spacing(8)};

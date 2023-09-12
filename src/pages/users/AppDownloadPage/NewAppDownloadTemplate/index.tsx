@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { ButtonProps } from "components/atomics/buttons/Button";
 import { logEvent } from "lib/events";
 import { useExperiment } from "@growthbook/growthbook-react";
-import { useEffect } from "react";
 import AppleBadge from "../AppDownloadTemplate/assets/apple-badge.png";
 import GoogleBadge from "../AppDownloadTemplate/assets/google-badge.png";
 import QRCode from "../AppDownloadTemplate/assets/qrcodeapp.svg";
@@ -39,12 +38,6 @@ function AppDownloadTemplate({
   const variation = useExperiment({
     key: "understanding-test",
     variations: ["control", "product", "growth"],
-  });
-
-  useEffect(() => {
-    logEvent("P17_view", {
-      variation: variation.value,
-    });
   });
 
   function handleMobileLink() {

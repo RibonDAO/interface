@@ -17,6 +17,7 @@ function ImpactedLivesSection() {
     nextLevelExperience,
     percentageCompleted,
     updatePercentageCompleted,
+    currentLevelExperience,
     refetchUserStatistics,
   } = useUserLevel();
   const toast = useToast();
@@ -57,6 +58,7 @@ function ImpactedLivesSection() {
         <ImpactedLivesCounter impactedLivesCount={userExperience} />
         <UserProgress
           currentExperience={userExperience}
+          currentLevelExperience={currentLevelExperience}
           totalExperienceToNextLevel={nextLevelExperience}
           nextLevel={userLevel + 1}
           percentageCompleted={percentageCompleted}

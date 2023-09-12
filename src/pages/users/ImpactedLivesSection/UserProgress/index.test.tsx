@@ -8,6 +8,7 @@ describe("UserProgress", () => {
       <UserProgress
         nextLevel={10}
         totalExperienceToNextLevel={80}
+        currentLevelExperience={60}
         currentExperience={60}
         percentageCompleted={75}
       />,
@@ -15,7 +16,7 @@ describe("UserProgress", () => {
   });
 
   it("renders the experience indicator", () => {
-    expectTextToBeInTheDocument("60 / 80");
+    expectTextToBeInTheDocument("0 / 20");
   });
 
   it("renders the amount needed for next level", () => {

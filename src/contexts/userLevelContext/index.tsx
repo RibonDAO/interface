@@ -6,6 +6,7 @@ export interface IUserLevelContext {
   userLevel: number;
   userExperience: number;
   experienceToNextLevel: number;
+  currentLevelExperience: number;
   nextLevelExperience: number;
   percentageCompleted: number;
   refetchUserStatistics: () => void;
@@ -87,6 +88,7 @@ function UserLevelProvider({ children }: Props) {
       userLevel,
       userExperience,
       experienceToNextLevel,
+      currentLevelExperience,
       nextLevelExperience,
       percentageCompleted,
       refetchUserStatistics,
@@ -97,6 +99,7 @@ function UserLevelProvider({ children }: Props) {
       userExperience,
       experienceToNextLevel,
       nextLevelExperience,
+      currentLevelExperience,
       percentageCompleted,
     ],
   );

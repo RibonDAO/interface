@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { logEvent } from "lib/events";
 import { useTasksContext } from "contexts/tasksContext";
 import useContributionActivity from "hooks/useContributionActivity";
+import useAboutPageActivity from "hooks/useAboutPageActivity";
 import { useExperiment } from "@growthbook/growthbook-react";
 import CausesIconOn from "./assets/causesIconOn.svg";
 import CausesIconOff from "./assets/causesIconOff.svg";
@@ -28,6 +29,7 @@ function Navigation(): JSX.Element {
   const { search } = location;
   const { hasCompletedATask } = useTasksContext();
   const { newContributionActivity } = useContributionActivity();
+  const { hasSeenAboutPageToday } = useAboutPageActivity();
 
   const variation = useExperiment({
     key: "understanding-test",
@@ -109,6 +111,7 @@ function Navigation(): JSX.Element {
         iconOff: AboutIconOff,
         title: t("aboutPageTitle"),
         event: "aboutNavBtn_click",
+        showActivityIndicatorCircle: !hasSeenAboutPageToday,
       },
     ];
   }

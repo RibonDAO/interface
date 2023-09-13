@@ -6,7 +6,7 @@ function formatUTM(utm: string | undefined) {
     : utm;
 }
 
-function getUTMFromLocationSearch(search: string) {
+export function getUTMFromLocationSearch(search: string) {
   const source = extractUrlValue("utm_source", search);
   const medium = extractUrlValue("utm_medium", search);
   const campaign = extractUrlValue("utm_campaign", search);
@@ -20,4 +20,6 @@ function getUTMFromLocationSearch(search: string) {
   return { utmSource, utmMedium, utmCampaign };
 }
 
-export default getUTMFromLocationSearch;
+export function utmParamsToString(utmParams: any) {
+  return `&utm_source=${utmParams.utmSource}&utm_medium=${utmParams.utmMedium}&utm_campaign=${utmParams.utmCampaign}`;
+}

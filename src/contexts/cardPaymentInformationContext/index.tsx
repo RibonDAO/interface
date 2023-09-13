@@ -23,7 +23,7 @@ import { normalizedLanguage } from "lib/currentLanguage";
 import { CONTRIBUTION_INLINE_NOTIFICATION } from "pages/donations/CausesPage/ContributionNotification";
 import { PLATFORM } from "utils/constants";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
-import getUTMFromLocationSearch from "lib/getUTMFromLocationSearch";
+import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
 
 export interface ICardPaymentInformationContext {
   setNumber: (value: SetStateAction<string>) => void;

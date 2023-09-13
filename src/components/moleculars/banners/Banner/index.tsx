@@ -9,12 +9,10 @@ export type TitleProps = {
   text: string;
   size?: string;
   color?: string;
-  stylized?: boolean;
 };
 
 export type Props = {
   icon?: IconProps;
-  squareImage?: string;
   title?: TitleProps;
   subtitle?: TitleProps;
   text?: string;
@@ -28,7 +26,6 @@ export type Props = {
 
 function Banner({
   icon,
-  squareImage,
   title,
   subtitle,
   text,
@@ -60,22 +57,12 @@ function Banner({
               <Icon {...icon} />
             </S.IconContainer>
           )}
-            {squareImage && (
-              <S.SquareImageContainer>
-                <S.SquareImage src={squareImage} />
-              </S.SquareImageContainer>
-            )}
           <S.TitleContainer>
             {title && (
-              <S.Title
-              color={title.color}
-              size={title.size}
-              stylized={title.stylized}
-              >
+              <S.Title color={title.color} size={title.size}>
                 {title.text}
               </S.Title>
             )}
-        {text && <S.Text color={textColor}>{text}</S.Text>}
           </S.TitleContainer>
         </S.IconText>
         {subtitle && (
@@ -83,7 +70,7 @@ function Banner({
             {subtitle.text}
           </S.Subtitle>
         )}
-
+        {text && <S.Text color={textColor}>{text}</S.Text>}
         {children && <S.ChildrenContainer>{children}</S.ChildrenContainer>}
       </S.Content>
       {onArrowClick && (

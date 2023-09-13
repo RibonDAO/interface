@@ -5,7 +5,6 @@ import {
   defaultBodySmSemibold,
   defaultHeadingXxs,
 } from "styles/typography/default";
-import { stylizedDisplayXs } from "styles/typography/stylized";
 import { darken } from "polished";
 import Button from "../../../atomics/buttons/Button";
 
@@ -55,17 +54,6 @@ export const Content = styled.div`
   flex-direction: column;
 `;
 
-export const SquareImageContainer = styled.div`
-  display: inline-flex;
-  align-items: center;
-  margin-right:  ${({ theme }) => theme.spacing(8)};
-`;
-
-export const SquareImage = styled.img`
-  height: 84px;
-  width: 84px;
-`;
-
 export const IconContainer = styled.div`
   margin-right: ${({ theme }) => theme.spacing(8)};
   display: flex;
@@ -101,12 +89,6 @@ export const Title = styled.h3<{
     props.size === "medium" &&
     css`
       ${defaultBodyMdSemibold}
-    `}
-
-    ${(props) =>
-    props.stylized &&
-    css`
-      ${stylizedDisplayXs}
     `}
 
   color: ${({ theme, color }) => color || theme.colors.neutral10};

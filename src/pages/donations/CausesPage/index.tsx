@@ -29,7 +29,7 @@ import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
 import { useNonProfitsContext } from "contexts/nonProfitsContext";
 import { logEvent } from "lib/events";
-import InfoBanner from "components/moleculars/banners/InfoBanner";
+import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import NonProfitsList from "./NonProfitsList";
@@ -189,7 +189,9 @@ function CausesPage(): JSX.Element {
   return (
     <S.Container>
       {!isFirstAccess(signedIn) && <DownloadAppToast />}
-      <InfoBanner />
+      <IntegrationBanner
+        integration={{ name: "Qulture Rocks", image: "other" }}
+      />
       {!isLoadingCauses && (
         <ChooseCauseModal visible={chooseCauseModalVisible} />
       )}

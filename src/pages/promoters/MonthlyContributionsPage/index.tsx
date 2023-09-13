@@ -8,9 +8,12 @@ import { useSubscriptions } from "@ribon.io/shared/hooks";
 import { logError } from "services/crashReport";
 import Icon from "components/atomics/Icon";
 import { theme } from "@ribon.io/shared/styles";
-import { add30DaysAndFormatDate } from "lib/formatters/dateFormatters";
-import { useLanguage } from "hooks/useLanguage";
 import { useLocation } from "react-router-dom";
+import {
+  add30DaysAndFormatDate,
+  stringToLocaleDateString,
+} from "lib/formatters/dateFormatters";
+import { useLanguage } from "hooks/useLanguage";
 import CancelSubscriptionModal from "./CancelSubscriptionModal";
 import * as S from "./styles";
 
@@ -49,6 +52,11 @@ function MonthlyContributionPage(): JSX.Element {
     setSubscriptionId("");
     setCancelModalVisible(false);
   };
+
+  const nextPaymetAttempt = (subscription: any) =>
+    subscription.nextPaymentAttempt
+      ? stringToLocaleDateString(subscription.nextPaymentAttempt)
+      : add30DaysAndFormatDate(subscription.createdAt, currentLang);
 
   const handleCancelSubscription = async () => {
     if (!cancelSubscriptionId) {
@@ -95,7 +103,7 @@ function MonthlyContributionPage(): JSX.Element {
         <S.Text>
           {t("nextContribution")}
           <S.HighlightedText>
-            {add30DaysAndFormatDate(subscription.createdAt, currentLang)}
+            {nextPaymetAttempt(subscription)}
           </S.HighlightedText>
         </S.Text>
       </S.PaymentContainer>,

@@ -14,6 +14,7 @@ import {
   stringToLocaleDateString,
 } from "lib/formatters/dateFormatters";
 import { useLanguage } from "hooks/useLanguage";
+import Subscription from "@ribon.io/shared/types/entities/Subscription";
 import CancelSubscriptionModal from "./CancelSubscriptionModal";
 import * as S from "./styles";
 
@@ -53,7 +54,7 @@ function MonthlyContributionPage(): JSX.Element {
     setCancelModalVisible(false);
   };
 
-  const nextPaymetAttempt = (subscription: any) =>
+  const nextPaymetAttempt = (subscription: Subscription) =>
     subscription.nextPaymentAttempt
       ? stringToLocaleDateString(subscription.nextPaymentAttempt)
       : add30DaysAndFormatDate(subscription.createdAt, currentLang);

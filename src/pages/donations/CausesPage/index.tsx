@@ -29,6 +29,7 @@ import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
 import { useNonProfitsContext } from "contexts/nonProfitsContext";
 import { logEvent } from "lib/events";
+import InfoBanner from "components/moleculars/banners/InfoBanner";
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import NonProfitsList from "./NonProfitsList";
@@ -188,6 +189,7 @@ function CausesPage(): JSX.Element {
   return (
     <S.Container>
       {!isFirstAccess(signedIn) && <DownloadAppToast />}
+      <InfoBanner />
       {!isLoadingCauses && (
         <ChooseCauseModal visible={chooseCauseModalVisible} />
       )}

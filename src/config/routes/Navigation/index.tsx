@@ -15,12 +15,30 @@ import GivingIconOn from "./assets/givingIconOn.svg";
 import GivingIconOff from "./assets/givingIconOff.svg";
 import AboutIconOn from "./assets/aboutIconOn.svg";
 import AboutIconOff from "./assets/aboutIconOff.svg";
-import * as S from "./styles";
 import NavigationLink from "./NavigationLink";
+import * as S from "./styles";
 
 export type Props = {
   isImpactPage: boolean;
 };
+
+export type NavigationItem = {
+  path: string;
+  iconOn: string;
+  iconOff: string;
+  title: string;
+  event: string;
+  showNewLabel?: boolean;
+  showActivityIndicatorCircle?: boolean;
+  params?: any;
+  menuOptions?: {
+    path: string;
+    title: string;
+    event: string;
+    params?: any;
+  }[];
+};
+
 function Navigation(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.menu",
@@ -53,7 +71,7 @@ function Navigation(): JSX.Element {
       ? t("donateWithRibonMenuItem")
       : t("communityMenuItem");
 
-  let routes = [
+  let routes: NavigationItem[] = [
     {
       path: "/causes",
       iconOn: CausesIconOn,
@@ -111,7 +129,7 @@ function Navigation(): JSX.Element {
         iconOff: AboutIconOff,
         title: t("aboutPageTitle"),
         event: "aboutNavBtn_click",
-        showActivityIndicatorCircle: !hasSeenAboutPageToday,
+        showNewLabel: !hasSeenAboutPageToday,
       },
     ];
   }

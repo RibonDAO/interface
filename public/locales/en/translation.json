@@ -315,7 +315,11 @@
         "impactDescription": "with {{value}}"
       },
       "tooltipImpact": "How we calculate the impact?",
-      "tooltipImpactText": "The calculations are based on the minimum value needed for the project achieve good results. Ribon’s causes are part of the social moviment “Effective Altruism”, which aim to generate big impact at low cost."
+      "tooltipImpactText": "The calculations are based on the minimum value needed for the project achieve good results. Ribon’s causes are part of the social moviment “Effective Altruism”, which aim to generate big impact at low cost.",
+      "impactLivesSection": {
+        "title": "20 times more than a ticket!",
+        "subtitle": "With just R$10 you can change the lives of 20 people and raise your donor level!"
+      }
     },
     "supportTreasurePage": {
       "title": "Make a bigger impact",

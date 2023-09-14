@@ -31,13 +31,10 @@ export const Title = styled.h1`
 
 export const imageContainer = styled.div`
   width: 100%;
-  height: 216px;
-  border-radius: 4;
   border-radius: 4px;
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
   background-color: ${({ theme }) => theme.colors.neutral10};
   box-shadow: 0px 12px 20px 0px rgba(40, 36, 28, 0.15),
     0px 1px 8px 0px rgba(40, 36, 28, 0.05);
@@ -46,16 +43,14 @@ export const imageContainer = styled.div`
 export const Image = styled.img`
   width: 100%;
   height: 156px;
-  flex-grow: 1;
+  border-radius: 4px 4px 0px 0px;
 `;
-
-export const singleImage = styled.img``;
 
 export const containerFooter = styled.div`
   width: 100%;
   height: 44px;
-  margin-top: -3px;
   padding: ${({ theme }) => theme.spacing(0, 16)};
+  border-radius: 0px 0px 4px 4px;
   display: flex;
   flex-direction: row;
   align-items: center;

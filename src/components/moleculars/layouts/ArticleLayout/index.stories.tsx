@@ -24,7 +24,7 @@ Default.args = {
     visible: true,
     author: {
       id: 1,
-      name: "Ribon",
+      name: "Razões para Acreditar",
     },
     createdAt: "2021-01-01",
     updatedAt: "2021-01-01",

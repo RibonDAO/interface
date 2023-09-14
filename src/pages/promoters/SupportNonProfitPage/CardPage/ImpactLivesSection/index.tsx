@@ -3,6 +3,7 @@ import { useUserLevel } from "contexts/userLevelContext";
 import { useExperiment } from "@growthbook/growthbook-react";
 import { useTranslation } from "react-i18next";
 import BackgroundShape from "assets/images/background-right-shape-pink.svg";
+import { useEffect } from "react";
 import * as S from "./styles";
 
 function ImpactLivesSection() {
@@ -19,7 +20,12 @@ function ImpactLivesSection() {
     nextLevelExperience,
     userLevel,
     percentageCompleted,
+    updatePercentageCompleted,
   } = useUserLevel();
+
+  useEffect(() => {
+    updatePercentageCompleted();
+  }, []);
 
   if (!isInLifeBasedImpact) return null;
 
@@ -30,10 +36,10 @@ function ImpactLivesSection() {
       <S.BackgroundShape src={BackgroundShape} alt="background-shape" />
       <S.ProgressContainer>
         <UserProgress
-            currentExperience={userExperience}
-            totalExperienceToNextLevel={nextLevelExperience}
-            nextLevel={userLevel + 1}
-            percentageCompleted={percentageCompleted}
+          currentExperience={userExperience}
+          totalExperienceToNextLevel={nextLevelExperience}
+          nextLevel={userLevel + 1}
+          percentageCompleted={percentageCompleted}
         />
       </S.ProgressContainer>
     </S.Container>

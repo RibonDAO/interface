@@ -30,8 +30,7 @@ function ImpactedLivesSection() {
 
     setTimeout(() => {
       const completedPercentage = updatePercentageCompleted();
-      const levelUp =
-        previousPercentageCompleted !== 0 && completedPercentage === 0;
+      const levelUp = completedPercentage < previousPercentageCompleted;
 
       if (levelUp) {
         toast({

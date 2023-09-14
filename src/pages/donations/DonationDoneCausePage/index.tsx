@@ -152,12 +152,16 @@ function DonationDoneCausePage(): JSX.Element {
         nonProfitId: nonProfit?.id,
         variation: variationUnderstanding.value,
       });
-      navigateTo({
-        pathname: offer?.subscription
-          ? "monthly-contributions"
-          : "/promoters/support-non-profit",
-        state: { nonProfit, cause, from: "donation-done-cause" },
-      });
+      if (variation.value) {
+        navigateTo("/impact");
+      } else {
+        navigateTo({
+          pathname: offer?.subscription
+            ? "monthly-contributions"
+            : "/promoters/support-non-profit",
+          state: { nonProfit, cause, from: "donation-done-cause" },
+        });
+      }
     }
     if (!hasButton) {
       registerAction("donation_done_page_view");

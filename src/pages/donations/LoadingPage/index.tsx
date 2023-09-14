@@ -51,6 +51,7 @@ function LoadingPage(): JSX.Element {
   };
 
   useEffect(() => {
+    if (process.env.NODE_ENV !== "production") return;
     if (!history.location.search?.includes("_branch_match_id") && integrationId)
       redirectToDeeplink();
   }, [integrationId]);

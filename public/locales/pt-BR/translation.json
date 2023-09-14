@@ -314,7 +314,11 @@
         "impactDescription": "com {{value}}"
       },
       "tooltipImpact": "Como calculamos o impacto?",
-      "tooltipImpactText": "O cálculo é feito com base no valor mínimo necessário para que o projeto consiga bons resultados. As causas da Ribon fazem parte do movimento social “Altruísmo Eficaz”, e têm como objetivo gerar grande impacto a custo baixo."
+      "tooltipImpactText": "O cálculo é feito com base no valor mínimo necessário para que o projeto consiga bons resultados. As causas da Ribon fazem parte do movimento social “Altruísmo Eficaz”, e têm como objetivo gerar grande impacto a custo baixo.",
+      "impactLivesSection": {
+        "title": "20 vezes mais que um ticket!",
+        "subtitle": "Com apenas R$ 10 você pode mudar a vida de 20 pessoas e subir de nível de doador!"
+      }
     },
     "supportTreasurePage": {
       "title": "Gere mais impacto",

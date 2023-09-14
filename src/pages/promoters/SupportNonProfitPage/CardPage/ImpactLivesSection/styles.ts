@@ -49,8 +49,8 @@ export const BackgroundShape = styled.img`
   display: none;
   
   @media (min-width: ${({ theme }) => theme.breakpoints.desktopLarge}) {
-    display: block;
     position: absolute;
     right: 0;
+    display: block;
   }
 `

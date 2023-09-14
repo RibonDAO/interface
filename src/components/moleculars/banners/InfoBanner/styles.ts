@@ -50,6 +50,11 @@ export const Container = styled.div<{
       justify-content: space-between;
       cursor: pointer;
     `}
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: calc(100% + 32px);
+    margin-left: -16px;
+  }
 `;
 
 export const Content = styled.div`

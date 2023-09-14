@@ -6,7 +6,13 @@ describe("IntegrationBanner", () => {
   it("should render without error", () => {
     renderComponent(
       <IntegrationBanner
-        integration={{ name: "Qulture Rocks", image: "bla" }}
+        integration={{
+          id: 1,
+          status: "string",
+          ticketAvailabilityInMinutes: 10,
+          name: "Qulture Rocks",
+          logo: "other",
+        }}
       />,
     );
 

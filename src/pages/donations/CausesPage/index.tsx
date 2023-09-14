@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   useIntegration,
@@ -41,6 +41,7 @@ import CausesSelectSection from "./CausesSelectSection";
 function CausesPage(): JSX.Element {
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
+  const [shouldShowIntegrationBanner, setShouldShowIntegrationBanner] = useState<boolean | undefined>(false);
 
   const { causesWithPoolBalance, isLoading: isLoadingCauses } =
     useCausesContext();
@@ -144,6 +145,7 @@ function CausesPage(): JSX.Element {
         createVoucher();
       }
     }
+    setShouldShowIntegrationBanner(!integration?.name.toLowerCase().includes("ribon"))
   }, [integration, isFirstAccessToIntegration]);
 
   useEffect(() => {
@@ -189,9 +191,7 @@ function CausesPage(): JSX.Element {
   return (
     <S.Container>
       {!isFirstAccess(signedIn) && <DownloadAppToast />}
-      <IntegrationBanner
-        integration={{ name: "Qulture Rocks", image: "other" }}
-      />
+      {shouldShowIntegrationBanner &&  <IntegrationBanner integration={integration} />}
       {!isLoadingCauses && (
         <ChooseCauseModal visible={chooseCauseModalVisible} />
       )}

@@ -12,8 +12,11 @@ const Template: ComponentStory<typeof IntegrationBanner> = function (args: Props
 
 export const Default = Template.bind({});
 const integration = {
+  id: 1, 
+  status: "string",
+  ticketAvailabilityInMinutes: 10,
   name: "Qulture Rocks",
-  image: "other",
+  logo: "other",
 };
 
 Default.args = {

@@ -63,8 +63,8 @@ export const Content = styled.div`
 `;
 
 export const SquareImageContainer = styled.div`
-  display: inline-flex;
   margin-right:  ${({ theme }) => theme.spacing(16)};
+  display: inline-flex;
   align-items: center;
 `;
 
@@ -81,9 +81,9 @@ export const IconContainer = styled.div`
 `;
 
 export const IconText = styled.div`
+  margin: ${({ theme }) => theme.spacing(8, 0)};
   display: flex;
   flex-direction: row;
-  margin: ${({ theme }) => theme.spacing(8, 0)};
   align-items: center;
 `;
 

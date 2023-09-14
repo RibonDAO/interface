@@ -35,6 +35,8 @@ describe("useFormattedImpactText", () => {
     const nonProfitImpact = {
       roundedImpact: 10,
       impact: 1,
+      formattedImpact: ["1", "day of water", "10"],
+      measurementUnit: "day",
     };
     const { result } = renderHook(() => useFormattedImpactText());
 
@@ -68,6 +70,8 @@ describe("useFormattedImpactText", () => {
     const nonProfitImpact = {
       roundedImpact: 10,
       impact: 1,
+      formattedImpact: ["1", "day of water", "10"],
+      measurementUnit: "day",
     };
 
     const { result } = renderHook(() => useFormattedImpactText());

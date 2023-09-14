@@ -2692,10 +2692,10 @@
   resolved "https://registry.npmjs.org/@protobufjs/utf8/-/utf8-1.1.0.tgz"
   integrity sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==
 
-"@ribon.io/shared@^1.0.89":
-  version "1.0.89"
-  resolved "https://registry.yarnpkg.com/@ribon.io/shared/-/shared-1.0.89.tgz#fa491984d014620569a9de43f45f114e56868078"
-  integrity sha512-co04CJmM3uaxee6+hFzBT68p1FV2Y3g6g+a839sfeWthnt9cBRYf75m73slhoWg6Hg/d/AfFvFupXiQrTGocHw==
+"@ribon.io/shared@^1.0.91":
+  version "1.0.91"
+  resolved "https://registry.yarnpkg.com/@ribon.io/shared/-/shared-1.0.91.tgz#ecc8587ab9dab644064e64e40cc1441585ec3f59"
+  integrity sha512-6U5GsQb5Km9kOe3I+b9Stb6a1Ax+BcUvVI53G2SPNNbnWA2G8bdoMJT6KKcfQk89Xt3315Ag/eHf57ie7WLw4Q==
   dependencies:
     "@apollo/client" "^3.6.9"
     "@types/base-64" "^1.0.0"

@@ -20,6 +20,6 @@ describe("UserProgress", () => {
   });
 
   it("renders the amount needed for next level", () => {
-    expectTextToBeInTheDocument("+20 lives for level 10");
+    expectTextToBeInTheDocument("+20 people for level 10");
   });
 });

@@ -45,7 +45,7 @@ function ImpactedLivesSection() {
         });
       }
     }, 500);
-  }, []);
+  }, [updatePercentageCompleted]);
 
   return (
     <S.Container>

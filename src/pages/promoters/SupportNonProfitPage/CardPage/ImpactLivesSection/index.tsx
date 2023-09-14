@@ -25,7 +25,7 @@ function ImpactLivesSection() {
 
   useEffect(() => {
     updatePercentageCompleted();
-  }, []);
+  }, [updatePercentageCompleted]);
 
   if (!isInLifeBasedImpact) return null;
 

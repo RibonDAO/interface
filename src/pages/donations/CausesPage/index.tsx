@@ -148,8 +148,8 @@ function CausesPage(): JSX.Element {
     }
     setShouldShowIntegrationBanner(
       !integration?.name?.toLowerCase()?.includes("ribon") &&
-      hasAvailableDonation() &&
-      hasReceivedTicketToday(),
+        hasAvailableDonation() &&
+        hasReceivedTicketToday(),
     );
   }, [integration, isFirstAccessToIntegration]);
 

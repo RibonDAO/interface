@@ -102,7 +102,6 @@ function Banner({
 
 export default Banner;
 
-
 /* <Banner
       title={{
         text: t("title"),

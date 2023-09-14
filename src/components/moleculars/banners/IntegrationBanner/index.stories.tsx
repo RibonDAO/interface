@@ -6,13 +6,15 @@ export default {
   component: IntegrationBanner,
 } as ComponentMeta<typeof IntegrationBanner>;
 
-const Template: ComponentStory<typeof IntegrationBanner> = function (args: Props) {
+const Template: ComponentStory<typeof IntegrationBanner> = function (
+  args: Props,
+) {
   return <IntegrationBanner {...args} />;
 };
 
 export const Default = Template.bind({});
 const integration = {
-  id: 1, 
+  id: 1,
   status: "string",
   ticketAvailabilityInMinutes: 10,
   name: "Qulture Rocks",
@@ -20,5 +22,5 @@ const integration = {
 };
 
 Default.args = {
-  integration
+  integration,
 };

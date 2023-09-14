@@ -26,7 +26,7 @@ export type Props = {
   onArrowClick?: () => void;
 };
 
-function Banner({
+function InfoBanner({
   icon,
   squareImage,
   title,
@@ -51,7 +51,7 @@ function Banner({
       backgroundColor={backgroundColor}
       flexDirection={flexDirection}
       onClick={handleClick}
-      data-testid="banner"
+      data-testid="info-banner"
     >
       <S.Content>
         <S.IconText>
@@ -100,17 +100,4 @@ function Banner({
   );
 }
 
-export default Banner;
-
-/* <Banner
-      title={{
-        text: t("title"),
-        size: "large",
-        color: theme.colors.brand.primary[900],
-        stylized: true,
-      }}
-      squareImage="https://www.figma.com/file/2nXWdjQ4J4juSmHuGNLORL/Estrutura-de-integra%C3%A7%C3%A3o-no-app-nativo?type=design&node-id=653-9124&mode=design&t=9iV5Dj601W8e3GT8-4"
-      text={t("text")}
-      textColor={theme.colors.neutral[900]}
-      backgroundColor={theme.colors.brand.primary[50]}
-    /> */
+export default InfoBanner;

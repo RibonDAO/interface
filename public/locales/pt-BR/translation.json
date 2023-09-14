@@ -17,6 +17,7 @@
       "donateBlockedText": "Sem tickets",
       "impactPrefix": "Doe",
       "pageTitle": "Doe para um projeto",
+      "donationError": "Não foi possível doar.",
       "errorModalTitle": "Falha no processamento",
       "errorModalText": "A rede está instável e não foi possível registrar sua doação. Tente novamente, por favor.",
       "errorModalButtonText": "Ok",

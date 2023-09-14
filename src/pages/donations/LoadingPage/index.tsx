@@ -51,6 +51,7 @@ function LoadingPage(): JSX.Element {
   };
 
   useEffect(() => {
+    if (process.env.REACT_APP_DEBUG_VIEW) return;
     if (!history.location.search?.includes("_branch_match_id") && integrationId)
       redirectToDeeplink();
   }, [integrationId]);

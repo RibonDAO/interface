@@ -20,7 +20,7 @@ import SupportNonProfitPage from "pages/promoters/SupportNonProfitPage";
 import DeleteAccountPage from "pages/users/DeleteAccountPage";
 import { useLocation } from "react-router";
 import { logPageView } from "lib/events";
-import AppInDevelopmentPage from "pages/users/AppDownloadPage";
+import AppDownloadPage from "pages/users/AppDownloadPage";
 import ForYouPage from "pages/users/ForYouPage";
 import GiveTicketPage from "pages/donations/GiveTicketPage";
 import ReceiveTicketPage from "pages/donations/ReceiveTicketPage";
@@ -87,7 +87,7 @@ function RoutesComponent(): JSX.Element {
 
       <Route path="/app-download" exact>
         <Suspense fallback={<div />}>
-          <AppInDevelopmentPage />
+          <AppDownloadPage />
         </Suspense>
       </Route>
 

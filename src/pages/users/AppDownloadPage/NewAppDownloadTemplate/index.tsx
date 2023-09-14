@@ -3,7 +3,6 @@ import { APP_LINK, IOS_APP_LINK, ANDROID_APP_LINK } from "utils/constants";
 import { useTranslation } from "react-i18next";
 import { ButtonProps } from "components/atomics/buttons/Button";
 import { logEvent } from "lib/events";
-import { useExperiment } from "@growthbook/growthbook-react";
 import AppleBadge from "../AppDownloadTemplate/assets/apple-badge.png";
 import GoogleBadge from "../AppDownloadTemplate/assets/google-badge.png";
 import QRCode from "../AppDownloadTemplate/assets/qrcodeapp.svg";
@@ -35,66 +34,46 @@ function AppDownloadTemplate({
 
   const { isMobile } = useBreakpoint();
 
-  const variation = useExperiment({
-    key: "understanding-test",
-    variations: ["control", "product", "growth"],
-  });
-
   function handleMobileLink() {
-    logEvent("mobileDownloadBtn_click", {
-      variation: variation.value,
-    });
+    logEvent("mobileDownloadBtn_click");
     window.open(APP_LINK);
   }
 
   function handleIosLink() {
-    logEvent("appStoreBtn_click", {
-      variation: variation.value,
-    });
+    logEvent("appStoreBtn_click");
     window.open(IOS_APP_LINK);
   }
 
   function handleAndroidLink() {
-    logEvent("gPlayBtn_click", {
-      variation: variation.value,
-    });
+    logEvent("gPlayBtn_click");
     window.open(ANDROID_APP_LINK);
   }
 
   const render = () => {
     if (isMobile) {
       return (
-        <>
-          {description && variation.value !== "product" && (
-            <S.Description>{description}</S.Description>
+        <S.ButtonsContainer hasMenu={!hasBackButton}>
+          <S.DownloadButton
+            onClick={() => handleMobileLink()}
+            textColor={firstButton.textColor}
+            backgroundColor={firstButton.backgroundColor}
+            hasAnotherButton={!!secondButton}
+          >
+            {firstButton.text}
+          </S.DownloadButton>
+          {secondButton && (
+            <S.Button onClick={secondButton?.onClick}>
+              {secondButton?.text}
+            </S.Button>
           )}
-          <S.ButtonsContainer hasMenu={!hasBackButton}>
-            <S.DownloadButton
-              onClick={() => handleMobileLink()}
-              textColor={firstButton.textColor}
-              backgroundColor={firstButton.backgroundColor}
-              hasAnotherButton={!!secondButton}
-            >
-              {firstButton.text}
-            </S.DownloadButton>
-            {secondButton && (
-              <S.Button onClick={secondButton?.onClick}>
-                {secondButton?.text}
-              </S.Button>
-            )}
-          </S.ButtonsContainer>
-        </>
+        </S.ButtonsContainer>
       );
     } else {
       return (
         <>
           <S.Badges>
             <S.ImageContainer>
-              <S.Description>
-                {variation.value === "product"
-                  ? t("newScanQrCode")
-                  : t("ScanQrCode")}
-              </S.Description>
+              <S.Description>{t("newScanQrCode")}</S.Description>
               <S.QRCode src={QRCode} />
             </S.ImageContainer>
             <S.ImageContainer>
@@ -130,11 +109,7 @@ function AppDownloadTemplate({
     <S.Wrapper hasMenu={!hasBackButton} hasMarginTop={spacingTopDonationFlow}>
       <S.Image src={image} />
       <S.Title>{title}</S.Title>
-      {description && (
-        <S.Description>
-          {variation.value === "product" ? description : t("pasteLink")}
-        </S.Description>
-      )}
+      {description && <S.Description>{description}</S.Description>}
       {render()}
     </S.Wrapper>
   );

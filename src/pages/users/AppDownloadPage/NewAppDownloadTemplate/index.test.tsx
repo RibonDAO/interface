@@ -1,11 +1,11 @@
 import { renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
-import AppDownloadTemplate from ".";
+import NewAppDownloadTemplate from ".";
 
 describe("AppDownloadTemplate", () => {
   it("should render without error", () => {
     renderComponent(
-      <AppDownloadTemplate
+      <NewAppDownloadTemplate
         title="AppDownloadTemplate"
         image=""
         firstButton={{

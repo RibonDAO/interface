@@ -1,4 +1,3 @@
-import DownloadIcon from "assets/icons/download-app-icon-green.svg";
 import MoreTicketsIcon from "assets/icons/more-tickets-icon-green.svg";
 import CardIconText from "components/moleculars/cards/CardIconText";
 import { useTranslation } from "react-i18next";
@@ -6,7 +5,6 @@ import ArrowRight from "assets/icons/arrow-right-blue-icon.svg";
 import useNavigation from "hooks/useNavigation";
 import { useEffect } from "react";
 import { logEvent } from "lib/events";
-import { useExperiment } from "@growthbook/growthbook-react";
 import * as S from "./styles";
 
 function GetTheAppItem(): JSX.Element {
@@ -16,15 +14,9 @@ function GetTheAppItem(): JSX.Element {
 
   const { navigateTo } = useNavigation();
 
-  const variation = useExperiment({
-    key: "understanding-test",
-    variations: ["control", "product", "growth"],
-  });
-
   useEffect(() => {
     logEvent("downloadCTA_view", {
       from: "config_page",
-      variation: variation.value,
     });
   }, []);
 
@@ -36,12 +28,8 @@ function GetTheAppItem(): JSX.Element {
   return (
     <S.Container onClick={handleClick}>
       <CardIconText
-        text={
-          variation.value === "product"
-            ? t("newGetTheAppText")
-            : t("getTheAppText")
-        }
-        icon={variation.value === "product" ? MoreTicketsIcon : DownloadIcon}
+        text={t("getTheAppText")}
+        icon={MoreTicketsIcon}
         rightComponent={<S.GoButton src={ArrowRight} onClick={handleClick} />}
       />
     </S.Container>

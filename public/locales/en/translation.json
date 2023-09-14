@@ -170,8 +170,7 @@
       },
 
       "getTheAppItem": {
-        "getTheAppText": "Get the app",
-        "newGetTheAppText": "Get more tickets"
+        "getTheAppText": "Get more tickets"
       },
       "monthlyContributionsItem": {
         "monthlyContributionsText": "Monthly contributions"
@@ -533,8 +532,7 @@
   },
   "downloadApp": {
     "floating": {
-      "title": "Get app",
-      "newTitle": "More tickets"
+      "title": "More tickets"
     }
   },
   "forYouPage": {
@@ -557,8 +555,7 @@
       "titleSuperTasks": "Super tasks",
       "tasks": {
         "donate_ticket": "Donate ticket",
-        "new_download_app": "Get an extra ticket",
-        "download_app": "Download app",
+        "download_app": "Get an extra ticket",
         "newTitle": "Get a new ticket",
         "newDescription": "Download the app and get an extra ticket",
         "newButtonDownloadApp": "Download and get ticket",

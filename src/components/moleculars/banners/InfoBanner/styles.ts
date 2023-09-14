@@ -16,8 +16,8 @@ export const Container = styled.div<{
 }>`
   width: 100%;
   max-width: 472px;
-  padding: ${({ theme }) => theme.spacing(16, 16, 16)};
   margin-bottom: ${({ theme }) => theme.spacing(24)};
+  padding: ${({ theme }) => theme.spacing(16, 16, 16)};
   border-radius: 8px;
   display: flex;
   flex-direction: ${({ flexDirection }) => flexDirection};
@@ -64,13 +64,13 @@ export const Content = styled.div`
 
 export const SquareImageContainer = styled.div`
   display: inline-flex;
-  align-items: center;
   margin-right:  ${({ theme }) => theme.spacing(16)};
+  align-items: center;
 `;
 
 export const SquareImage = styled.img`
-  height: 84px;
   width: 84px;
+  height: 84px;
 `;
 
 export const IconContainer = styled.div`
@@ -83,8 +83,8 @@ export const IconContainer = styled.div`
 export const IconText = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
   margin: ${({ theme }) => theme.spacing(8, 0)};
+  align-items: center;
 `;
 
 export const TitleContainer = styled.div`

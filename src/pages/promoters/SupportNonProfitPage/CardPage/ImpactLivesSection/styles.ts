@@ -6,9 +6,8 @@ import {
 
 export const Container = styled.div`
   width: 100%;
-  height: 172px;
   margin-bottom: ${({ theme }) => theme.spacing(32)};
-  padding: ${({ theme }) => theme.spacing(0, 112, 0, 112)};
+  padding: ${({ theme }) => theme.spacing(16, 8, 16, 8)};
   border-radius: 8px;
   position: relative;
   display: flex;
@@ -16,6 +15,10 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   background-color: ${({ theme }) => theme.colors.brand.tertiary[25]};
+  
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    padding: ${({ theme }) => theme.spacing(24, 112, 24, 112)};
+  }
 `;
 
 export const Title = styled.h1`
@@ -43,6 +46,11 @@ export const ProgressContainer = styled.div`
 `;
 
 export const BackgroundShape = styled.img`
-  position: absolute;
-  right: 0;
+  display: none;
+  
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktopLarge}) {
+    display: block;
+    position: absolute;
+    right: 0;
+  }
 `

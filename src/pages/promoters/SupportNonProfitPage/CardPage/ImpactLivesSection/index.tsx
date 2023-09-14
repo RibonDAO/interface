@@ -31,9 +31,9 @@ function ImpactLivesSection() {
 
   return (
     <S.Container>
+      <S.BackgroundShape src={BackgroundShape} alt="background-shape" />
       <S.Title>{t("title")}</S.Title>
       <S.Subtitle>{t("subtitle")}</S.Subtitle>
-      <S.BackgroundShape src={BackgroundShape} alt="background-shape" />
       <S.ProgressContainer>
         <UserProgress
           currentExperience={userExperience}

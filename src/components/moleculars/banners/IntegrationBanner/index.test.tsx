@@ -16,7 +16,9 @@ describe("IntegrationBanner", () => {
       />,
     );
 
-    expectTextToBeInTheDocument("Here at Ribon you donate tickets gotten from Qulture Rocks");
+    expectTextToBeInTheDocument(
+      "Here at Ribon you donate tickets gotten from Qulture Rocks",
+    );
     expectTextToBeInTheDocument("Ribon + Qulture Rocks");
   });
 });

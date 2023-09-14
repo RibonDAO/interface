@@ -41,7 +41,8 @@ import CausesSelectSection from "./CausesSelectSection";
 function CausesPage(): JSX.Element {
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
-  const [shouldShowIntegrationBanner, setShouldShowIntegrationBanner] = useState<boolean | undefined>(false);
+  const [shouldShowIntegrationBanner, setShouldShowIntegrationBanner] =
+    useState<boolean | undefined>(false);
 
   const { causesWithPoolBalance, isLoading: isLoadingCauses } =
     useCausesContext();
@@ -145,7 +146,11 @@ function CausesPage(): JSX.Element {
         createVoucher();
       }
     }
-    setShouldShowIntegrationBanner(!integration?.name.toLowerCase().includes("ribon"))
+    setShouldShowIntegrationBanner(
+      !integration?.name?.toLowerCase()?.includes("ribon") &&
+      hasAvailableDonation() &&
+      hasReceivedTicketToday(),
+    );
   }, [integration, isFirstAccessToIntegration]);
 
   useEffect(() => {
@@ -191,7 +196,9 @@ function CausesPage(): JSX.Element {
   return (
     <S.Container>
       {!isFirstAccess(signedIn) && <DownloadAppToast />}
-      {shouldShowIntegrationBanner &&  <IntegrationBanner integration={integration} />}
+      {shouldShowIntegrationBanner && (
+        <IntegrationBanner integration={integration} />
+      )}
       {!isLoadingCauses && (
         <ChooseCauseModal visible={chooseCauseModalVisible} />
       )}

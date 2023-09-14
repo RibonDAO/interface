@@ -197,8 +197,8 @@
       "userSupportLink": "https://api.whatsapp.com/send/?phone=554896605461&text=Oii+Ribon%2C+vamos+conversar%3F+&type=phone_number&app_absent=0"
     },
     "integrationBanner": {
-      "title": "Ribon + Qulture Rocks",
-      "text": "Doe aqui na Ribon o ticket que você recebeu de Qulture Rocks."
+      "title":"Ribon + {{integrationName}}",
+      "text": "Doe aqui na Ribon o ticket que você recebeu de {{integrationName}}"
     }
   },
   "impactPage": {

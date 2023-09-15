@@ -8,6 +8,7 @@ import { useIntegrationId } from "hooks/useIntegrationId";
 import extractUrlValue from "lib/extractUrlValue";
 import { useLocation } from "react-router-dom";
 import { LocationStateType } from "pages/donations/CausesPage/LocationStateType";
+import { useEffect } from "react";
 import NonProfitsList from "../NonProfitsList";
 import * as S from "./styles";
 
@@ -46,6 +47,10 @@ function NonProfitsSection() {
     });
     return sorted;
   };
+
+  useEffect(() => {
+    sortNonProfits();
+  }, [chosenCause]);
 
   return (
     <S.Container>

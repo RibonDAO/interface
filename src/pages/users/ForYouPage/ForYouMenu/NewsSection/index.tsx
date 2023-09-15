@@ -2,7 +2,7 @@ import theme from "styles/theme";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { logEvent } from "lib/events";
-import NewAppDownloadTemplate from "pages/users/AppDownloadPage/NewAppDownloadTemplate";
+import AppDownloadTemplate from "pages/users/AppDownloadPage/AppDownloadTemplate";
 import NewsImage from "./assets/news-image.svg";
 import * as S from "./styles";
 
@@ -18,13 +18,13 @@ function NewsSection() {
   function renderPage() {
     return (
       <S.Container>
-        <NewAppDownloadTemplate
-          title={t("newTitle")}
+        <AppDownloadTemplate
+          title={t("title")}
           image={NewsImage}
           hasBackButton={false}
-          description={t("newDescription")}
+          description={t("description")}
           firstButton={{
-            text: t("newButtonDownloadApp"),
+            text: t("buttonDownloadApp"),
             backgroundColor: theme.colors.brand.primary[800],
             textColor: theme.colors.neutral10,
           }}

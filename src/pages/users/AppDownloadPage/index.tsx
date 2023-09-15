@@ -11,7 +11,7 @@ import * as S from "./styles";
 import IllustrationMobile from "./assets/illustration-mobile.svg";
 import LeftImage from "./assets/left-image.svg";
 import RightImage from "./assets/right-image.svg";
-import NewAppDownloadTemplate from "./NewAppDownloadTemplate";
+import AppDownloadTemplate from "./AppDownloadTemplate";
 
 type LocationStateType = {
   nonProfit?: NonProfit;
@@ -69,12 +69,12 @@ function AppDownloadPage() {
           />
         )}
 
-        <NewAppDownloadTemplate
-          title={t("newTitle")}
+        <AppDownloadTemplate
+          title={t("title")}
           image={IllustrationMobile}
-          description={t("newDescription")}
+          description={t("description")}
           firstButton={{
-            text: t("newButtonDownloadApp"),
+            text: t("buttonDownloadApp"),
             backgroundColor: theme.colors.brand.primary[600],
             textColor: theme.colors.neutral10,
           }}

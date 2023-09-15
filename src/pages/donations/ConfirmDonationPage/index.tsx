@@ -41,7 +41,7 @@ function ConfirmDonationPage(): JSX.Element {
 
   const variation = useExperiment({
     key: "understanding-test",
-    variations: ["control", "product", "growth"],
+    variations: ["control", "growth"],
   });
 
   const onAnimationEnd = useCallback(() => {

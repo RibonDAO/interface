@@ -31,7 +31,7 @@ function Navigation(): JSX.Element {
 
   const variation = useExperiment({
     key: "understanding-test",
-    variations: ["control", "product", "growth"],
+    variations: ["control", "growth"],
   });
 
   function isInPath(route: any): boolean {

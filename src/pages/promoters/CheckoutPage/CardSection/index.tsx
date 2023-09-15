@@ -16,7 +16,7 @@ export default function CardSection({ currentOffer }: Props) {
 
   const variation = useExperiment({
     key: "understanding-test",
-    variations: ["control", "product", "growth"],
+    variations: ["control", "growth"],
   });
 
   const handlePayment = () => {

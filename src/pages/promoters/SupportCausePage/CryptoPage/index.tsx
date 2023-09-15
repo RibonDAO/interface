@@ -108,7 +108,7 @@ function CryptoPage(): JSX.Element {
 
     const variation = useExperiment({
       key: "understanding-test",
-      variations: ["control", "product", "growth"],
+      variations: ["control", "growth"],
     });
 
     connectWallet();

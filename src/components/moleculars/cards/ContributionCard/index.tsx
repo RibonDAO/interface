@@ -49,7 +49,7 @@ function ContributionCard({
 
   const variationUnderstanding = useExperiment({
     key: "understanding-test",
-    variations: ["control", "product", "growth"],
+    variations: ["control", "growth"],
   });
 
   useEffect(() => {

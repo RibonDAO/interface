@@ -8,13 +8,11 @@ describe("DownloadAppModalTemplate", () => {
   });
 
   it("renders the title", () => {
-    expectTextToBeInTheDocument("Get Ribon's mobile app");
+    expectTextToBeInTheDocument("Get a new ticket");
   });
 
   it("renders the description", () => {
-    expectTextToBeInTheDocument(
-      "Get the best donation experience we can offer and access exclusive features!",
-    );
+    expectTextToBeInTheDocument("Download the app and get an extra ticket");
   });
 
   it("renders the download button", () => {

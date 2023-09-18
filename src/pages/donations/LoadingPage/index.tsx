@@ -36,6 +36,9 @@ function LoadingPage(): JSX.Element {
     const externalIdParam = externalId ? `&external_id=${externalId}` : "";
     const utmParams = getUTMFromLocationSearch(history.location.search);
     const utmParamsString = utmParamsToString(utmParams);
+
+    if (process.env.NODE_ENV !== "production") return;
+
     window.location.replace(
       `${APP_INTEGRATION_LINK}?integration_id=${integrationId}&${externalIdParam}${utmParamsString}`,
     );

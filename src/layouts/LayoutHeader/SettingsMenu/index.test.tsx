@@ -13,7 +13,7 @@ describe("SettingsMenu", () => {
 
       expectTextToBeInTheDocument("Change language");
       expectTextToBeInTheDocument("User support");
-      expectTextToBeInTheDocument("Get the app");
+      expectTextToBeInTheDocument("Get more tickets");
     });
   });
 });

@@ -170,8 +170,7 @@
         "userSupportLink": "https://api.whatsapp.com/send/?phone=554896605461&text=Oii+Ribon%2C+vamos+conversar%3F+&type=phone_number&app_absent=0"
       },
       "getTheAppItem": {
-        "getTheAppText": "Baixe app",
-        "newGetTheAppText": "Ganhe mais tickets"
+        "getTheAppText": "Ganhe mais tickets"
       },
       "monthlyContributionsItem": {
         "monthlyContributionsText": "Contribuições mensais"
@@ -523,27 +522,22 @@
     "of": "de"
   },
   "appDownloadPage": {
-    "title": "Baixe o app da Ribon",
-    "description": "Tenha a melhor experiência de doação e acesso a funcionalidades exclusivas",
     "buttonBack": "Voltar",
     "buttonSkip": "Pular",
     "buttonCopyLink": "Copiar link",
-    "buttonDownloadApp": "Baixar app",
     "buttonCopyLinkSuccess": "Copiado!",
     "pasteLink": "Cole este link no navegador do celular",
-    "scanQrCode": "QR Code",
     "chooseStore": "Escolha a loja",
     "copyText": "Copiar link",
     "copiedText": "Copiado!",
-    "newTitle": "Baixou, ganhou!",
-    "newDescription": "Baixe o app e receba um ticket extra",
-    "newButtonDownloadApp": "Baixar e receber ticket",
-    "newScanQrCode": "Use o QR Code"
+    "title": "Baixou, ganhou!",
+    "description": "Baixe o app e receba um ticket extra",
+    "buttonDownloadApp": "Baixar e receber ticket",
+    "scanQrCode": "Use o QR Code"
   },
   "downloadApp": {
     "floating": {
-      "title": "Baixar app",
-      "newTitle": "Mais tickets"
+      "title": "Mais tickets"
     }
   },
   "forYouPage": {
@@ -553,11 +547,10 @@
       "news": "Publicações"
     },
     "newsSection": {
-      "title": "Baixe o app e veja novidades pra você",
       "getAppButtonText": "Baixar app",
-      "newTitle": "Só notícia boa!",
-      "newDescription": "Baixe nosso app e acesse uma seleção de notícias que vão aquecer seu coração",
-      "newButtonDownloadApp": "Baixe e veja as notícias"
+      "title": "Só notícia boa!",
+      "description": "Baixe nosso app e acesse uma seleção de notícias que vão aquecer seu coração",
+      "buttonDownloadApp": "Baixe e veja as notícias"
     },
     "tasksSection": {
       "title": "Tarefas",
@@ -566,12 +559,11 @@
       "titleSuperTasks": "Super tarefas",
       "tasks": {
         "donate_ticket": "Doar ticket",
-        "download_app": "Baixar app",
-        "new_download_app": "Ganhe um ticket extra",
-        "newTitle": "Baixou, ganhou!",
-        "newDescription": "Baixe o app e receba um ticket extra",
-        "newButtonDownloadApp": "Baixar e receber ticket",
-        "newScanQrCode": "Use o QR Code",
+        "download_app": "Ganhe um ticket extra",
+        "title": "Baixou, ganhou!",
+        "description": "Baixe o app e receba um ticket extra",
+        "buttonDownloadApp": "Baixar e receber ticket",
+        "scanQrCode": "Use o QR Code",
         "make_contribution": "Fazer uma doação paga",
         "start_contribution": "Entenda o que é ser um promotor",
         "become_a_promoter": "Vire o promotor de uma causa"
@@ -590,13 +582,11 @@
     "accountDeletedText": "Para entrar novamente, você deverá criar uma nova conta sem acesso aos seus dados de impacto anteriores"
   },
   "downloadAppModalTemplate": {
-    "title": "Tenha uma experiência completa usando o nosso App",
-    "description": "Baixe o app e tenha acesso a todas as funcionalidades da Ribon",
     "button": "Baixar o app",
-    "newTitle": "Baixou, ganhou!",
-    "newDescription": "Baixe o app e receba um ticket extra",
-    "newButtonDownloadApp": "Baixar e receber ticket",
-    "newScanQrCode": "Use o QR Code"
+    "title": "Baixou, ganhou!",
+    "description": "Baixe o app e receba um ticket extra",
+    "buttonDownloadApp": "Baixar e receber ticket",
+    "scanQrCode": "Use o QR Code"
   },
   "contributionStatsPage": {
     "title": "Você doou <span>{{amount}}</span> para <span>{{cause}}</span>",

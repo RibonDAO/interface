@@ -78,7 +78,7 @@ function CardPage(): JSX.Element {
 
   const variationUnderstanding = useExperiment({
     key: "understanding-test",
-    variations: ["control", "growth"],
+    variations: ["control", "product", "growth"],
   });
 
   const navigateToCheckout = (nonProfit: NonProfit) => {

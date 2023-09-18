@@ -121,7 +121,7 @@ function DonationDoneCausePage(): JSX.Element {
 
   const variationUnderstanding = useExperiment({
     key: "understanding-test",
-    variations: ["control", "growth"],
+    variations: ["control", "product", "growth"],
   });
 
   function navigate() {

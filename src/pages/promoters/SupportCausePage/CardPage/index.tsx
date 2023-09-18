@@ -43,7 +43,7 @@ function SupportCausePage(): JSX.Element {
 
   const variationUnderstanding = useExperiment({
     key: "understanding-test",
-    variations: ["control", "growth"],
+    variations: ["control", "product", "growth"],
   });
 
   const { t } = useTranslation("translation", {
@@ -128,7 +128,7 @@ function SupportCausePage(): JSX.Element {
 
   const variation = useExperiment({
     key: "understanding-test",
-    variations: ["control", "growth"],
+    variations: ["control", "product", "growth"],
   });
 
   if (causes.length === 0) {

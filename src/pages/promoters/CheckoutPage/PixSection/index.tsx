@@ -17,7 +17,7 @@ export default function PixSection({ currentOffer }: Props) {
 
   const variation = useExperiment({
     key: "understanding-test",
-    variations: ["control", "growth"],
+    variations: ["control", "product", "growth"],
   });
 
   const handlePixButtonClick = () => {

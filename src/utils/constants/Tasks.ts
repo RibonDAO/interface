@@ -44,7 +44,7 @@ export const TASKS = [
 
       const variation = useExperiment({
         key: "understanding-test",
-        variations: ["control", "growth"],
+        variations: ["control", "product", "growth"],
       });
 
       if (timesCompleted === 0 && !taskDone) {

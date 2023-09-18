@@ -25,7 +25,7 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
 
   const variationUnderstanding = useExperiment({
     key: "understanding-test",
-    variations: ["control", "growth"],
+    variations: ["control", "product", "growth"],
   });
 
   const handleClickedDonationButton = () => {

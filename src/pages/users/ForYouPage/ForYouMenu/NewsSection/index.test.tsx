@@ -6,6 +6,8 @@ describe("NewsSection", () => {
   it("should render without error", () => {
     renderComponent(<NewsSection />);
 
-    expectTextToBeInTheDocument("Get the app and check out what's new for you");
+    expectTextToBeInTheDocument(
+      "Download our app and check our selection of heart warming news",
+    );
   });
 });

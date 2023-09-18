@@ -171,8 +171,7 @@
       },
 
       "getTheAppItem": {
-        "getTheAppText": "Get the app",
-        "newGetTheAppText": "Get more tickets"
+        "getTheAppText": "Get more tickets"
       },
       "monthlyContributionsItem": {
         "monthlyContributionsText": "Monthly contributions"
@@ -523,27 +522,22 @@
     "of": "of"
   },
   "appDownloadPage": {
-    "title": "Get Ribon's Beta mobile app",
-    "description": "Get the best donation experience we can offer and access exclusive features!",
     "buttonBack": "Go back",
     "buttonSkip": "Skip",
     "buttonCopyLink": "Copy link",
-    "buttonDownloadApp": "Download app",
     "buttonCopyLinkSuccess": "Copied!",
     "pasteLink": "Paste this link on your mobile browser",
-    "scanQrCode": "Scan QR Code",
     "chooseStore": "Choose a store",
     "copyText": "Copy link",
     "copiedText": "Copied!",
-    "newTitle": "Get a new ticket",
-    "newDescription": "Download the app and get an extra ticket",
-    "newButtonDownloadApp": "Download and get ticket",
-    "newScanQrCode": "Use QR Code"
+    "title": "Get a new ticket",
+    "description": "Download the app and get an extra ticket",
+    "buttonDownloadApp": "Download and get ticket",
+    "scanQrCode": "Use QR Code"
   },
   "downloadApp": {
     "floating": {
-      "title": "Get app",
-      "newTitle": "More tickets"
+      "title": "More tickets"
     }
   },
   "forYouPage": {
@@ -553,11 +547,10 @@
       "news": "Posts"
     },
     "newsSection": {
-      "title": "Get the app and check out what's new for you",
       "getAppButtonText": "Get app",
-      "newTitle": "Read good news!",
-      "newDescription": "Download our app and check our selection of heart warming news",
-      "newButtonDownloadApp": "Download and read news"
+      "title": "Read good news!",
+      "description": "Download our app and check our selection of heart warming news",
+      "buttonDownloadApp": "Download and read news"
     },
     "tasksSection": {
       "title": "Tasks",
@@ -566,12 +559,11 @@
       "titleSuperTasks": "Super tasks",
       "tasks": {
         "donate_ticket": "Donate ticket",
-        "new_download_app": "Get an extra ticket",
-        "download_app": "Download app",
-        "newTitle": "Get a new ticket",
-        "newDescription": "Download the app and get an extra ticket",
-        "newButtonDownloadApp": "Download and get ticket",
-        "newScanQrCode": "Use QR Code",
+        "download_app": "Get an extra ticket",
+        "title": "Get a new ticket",
+        "description": "Download the app and get an extra ticket",
+        "buttonDownloadApp": "Download and get ticket",
+        "scanQrCode": "Use QR Code",
         "make_contribution": "Make a paid donation",
         "start_contribution": "Understand what it means to be a promoter",
         "become_a_promoter": "Become a promoter of a cause"
@@ -590,13 +582,11 @@
     "accountDeletedText": "If you try to sign in, you will need to create a new account without access to your previous impact data"
   },
   "downloadAppModalTemplate": {
-    "title": "Get Ribon's mobile app",
-    "description": "Get the best donation experience we can offer and access exclusive features!",
     "button": "Download app",
-    "newTitle": "Get a new ticket",
-    "newDescription": "Download the app and get an extra ticket",
-    "newButtonDownloadApp": "Download and get ticket",
-    "newScanQrCode": "Use QR Code"
+    "title": "Get a new ticket",
+    "description": "Download the app and get an extra ticket",
+    "buttonDownloadApp": "Download and get ticket",
+    "scanQrCode": "Use QR Code"
   },
   "contributionStatsPage": {
     "title": "You donated <span>{{amount}}</span> for <span>{{cause}}</span>",

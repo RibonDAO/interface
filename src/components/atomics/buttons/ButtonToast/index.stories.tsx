@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import DownloadIcon from "assets/icons/download-app-icon-orange.svg";
+import MoreTicketsIcon from "assets/icons/more-tickets-icon-orange.svg";
 import ButtonToast, { Props } from ".";
 
 export default {
@@ -16,5 +16,5 @@ export const Default = Template.bind({});
 Default.args = {
   text: "Baixar aplicativo",
   onClick: () => {},
-  leftIcon: DownloadIcon,
+  leftIcon: MoreTicketsIcon,
 };

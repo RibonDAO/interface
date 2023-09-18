@@ -56,6 +56,9 @@ export const Content = styled.div`
 
 export const IconContainer = styled.div`
   margin-right: ${({ theme }) => theme.spacing(8)};
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
 `;
 
 export const IconText = styled.div`
@@ -72,6 +75,7 @@ export const TitleContainer = styled.div`
 export const Title = styled.h3<{
   size?: string;
   color?: string;
+  stylized?: boolean;
 }>`
   ${defaultHeadingXxs}
 

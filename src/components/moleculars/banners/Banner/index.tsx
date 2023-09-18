@@ -70,7 +70,6 @@ function Banner({
             {subtitle.text}
           </S.Subtitle>
         )}
-
         {text && <S.Text color={textColor}>{text}</S.Text>}
         {children && <S.ChildrenContainer>{children}</S.ChildrenContainer>}
       </S.Content>

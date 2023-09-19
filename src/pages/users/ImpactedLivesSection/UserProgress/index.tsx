@@ -8,6 +8,7 @@ import * as S from "./styles";
 type Props = {
   currentExperience: number;
   totalExperienceToNextLevel: number;
+  currentLevelExperience: number;
   nextLevel: number;
   percentageCompleted: number;
 };
@@ -15,6 +16,7 @@ type Props = {
 function UserProgress({
   currentExperience,
   totalExperienceToNextLevel,
+  currentLevelExperience,
   nextLevel,
   percentageCompleted,
 }: Props) {
@@ -36,7 +38,9 @@ function UserProgress({
       <S.ProgressInfo>
         <S.LeftInfo>
           <S.Image src={Heart} />
-          {`${currentExperience} / ${totalExperienceToNextLevel}`}
+          {`${currentExperience - currentLevelExperience} / ${
+            totalExperienceToNextLevel - currentLevelExperience
+          }`}
         </S.LeftInfo>
         <S.RightInfo>{`+${remainingExperience} ${t(
           "livesForLevel",

@@ -1,7 +1,7 @@
 {
   "donations": {
     "causesPage": {
-      "impactOneLife": "Impacte 1 vida",
+      "impactOneLife": "Impacte 1 pessoa",
       "impactDescription": "com {{value}}",
       "donationModalTitle": "Você ganhou um ticket doação",
       "donationModalButtonText": "Receber ticket",
@@ -17,6 +17,7 @@
       "donateBlockedText": "Sem tickets",
       "impactPrefix": "Doe",
       "pageTitle": "Doe para um projeto",
+      "donationError": "Não foi possível doar.",
       "errorModalTitle": "Falha no processamento",
       "errorModalText": "A rede está instável e não foi possível registrar sua doação. Tente novamente, por favor.",
       "errorModalButtonText": "Ok",
@@ -60,7 +61,7 @@
         "descriptionContributionModal": "Que tal fazer uma doação paga?",
         "buttonContributionModal": "Doe {{value}}",
         "textContributionModal": "Doe {{value}} para {{nonProfitName}}",
-        "impactOneLife": "Impacte 1 vida",
+        "impactOneLife": "Impacte 1 pessoa",
         "impactDescription": "com {{value}}"
       },
       "promoterCta": {
@@ -97,8 +98,8 @@
     "donationDoneCausePage": {
       "title": "Parabéns!",
       "thanksToYou": "Graças a você...",
-      "lifeWasImpacted": "1 vida foi impactada",
-      "livesWereImpacted": "{{value}} vidas foram impactadas",
+      "lifeWasImpacted": "1 pessoa foi impactada",
+      "livesWereImpacted": "{{value}} pessoas foram impactadas",
       "impactDescription": "com {{value}}",
       "titleSecondLine": "Você doou para",
       "youDonatedText": "Você doou",
@@ -142,7 +143,7 @@
       "signedInSection": {
         "title": "Sua doação",
         "confirmText": "Confirmar doação",
-        "impactOneLife": "Impacte 1 vida",
+        "impactOneLife": "Impacte 1 pessoa",
         "impactDescription": "com {{value}}"
       },
       "signInSection": {
@@ -154,7 +155,7 @@
         "termsLink": "https://ribon.io/privacy-policy/#termos",
         "privacyPolicyText": "Política de Privacidade",
         "privacyPolicyLink": "https://ribon.io/privacy-policy/#pol%C3%ADtica",
-        "impactOneLife": "Impacte 1 vida",
+        "impactOneLife": "Impacte 1 pessoa",
         "impactDescription": "com {{value}}"
       }
     }
@@ -169,8 +170,7 @@
         "userSupportLink": "https://api.whatsapp.com/send/?phone=554896605461&text=Oii+Ribon%2C+vamos+conversar%3F+&type=phone_number&app_absent=0"
       },
       "getTheAppItem": {
-        "getTheAppText": "Baixe app",
-        "newGetTheAppText": "Ganhe mais tickets"
+        "getTheAppText": "Ganhe mais tickets"
       },
       "monthlyContributionsItem": {
         "monthlyContributionsText": "Contribuições mensais"
@@ -195,6 +195,10 @@
       "title": "Suporte Ribon",
       "text": "Dúvidas, ideias, estornos sobre as doações!",
       "userSupportLink": "https://api.whatsapp.com/send/?phone=554896605461&text=Oii+Ribon%2C+vamos+conversar%3F+&type=phone_number&app_absent=0"
+    },
+    "integrationBanner": {
+      "title":"Ribon + {{integrationName}}",
+      "text": "Doe aqui na Ribon o ticket que você recebeu de {{integrationName}}"
     }
   },
   "impactPage": {
@@ -248,8 +252,8 @@
       "link": "Não mostrar novamente"
     },
     "impactedLivesSection": {
-      "impactedLives": "vidas impactadas",
-      "livesForLevel": "vidas para nível",
+      "impactedLives": "pessoas impactadas",
+      "livesForLevel": "pessoas para nível",
       "level": "Nv.",
       "onLevelUp": "Parabéns! Você subiu de nível."
     },
@@ -257,8 +261,8 @@
       "title": "Conquistas",
       "badgeData": {
         "name": "Nível {{level}}",
-        "description": "Parabéns! Você já impactou {{impactedLives}} vidas com as suas doações e liberou a conquista ‘Nível {{level}}’.",
-        "notAchievedDescription": "Impacte pelo menos {{impactedLives}} vidas com as suas doações na Ribon para liberar a conquista ‘Nível {{level}}’."
+        "description": "Parabéns! Você já impactou {{impactedLives}} pessoas com as suas doações e liberou a conquista ‘Nível {{level}}’.",
+        "notAchievedDescription": "Impacte pelo menos {{impactedLives}} pessoas com as suas doações na Ribon para liberar a conquista ‘Nível {{level}}’."
       }
     }
   },
@@ -310,11 +314,15 @@
       "selectOfferSection": {
         "fundText": "geram",
         "impactText": "Impacte",
-        "livesAmount": "{{value}} vidas",
+        "livesAmount": "{{value}} pessoas",
         "impactDescription": "com {{value}}"
       },
       "tooltipImpact": "Como calculamos o impacto?",
-      "tooltipImpactText": "O cálculo é feito com base no valor mínimo necessário para que o projeto consiga bons resultados. As causas da Ribon fazem parte do movimento social “Altruísmo Eficaz”, e têm como objetivo gerar grande impacto a custo baixo."
+      "tooltipImpactText": "O cálculo é feito com base no valor mínimo necessário para que o projeto consiga bons resultados. As causas da Ribon fazem parte do movimento social “Altruísmo Eficaz”, e têm como objetivo gerar grande impacto a custo baixo.",
+      "impactLivesSection": {
+        "title": "20 vezes mais que um ticket!",
+        "subtitle": "Com apenas R$ 10 você pode mudar a vida de 20 pessoas e subir de nível de doador!"
+      }
     },
     "supportTreasurePage": {
       "title": "Gere mais impacto",
@@ -514,27 +522,22 @@
     "of": "de"
   },
   "appDownloadPage": {
-    "title": "Baixe o app da Ribon",
-    "description": "Tenha a melhor experiência de doação e acesso a funcionalidades exclusivas",
     "buttonBack": "Voltar",
     "buttonSkip": "Pular",
     "buttonCopyLink": "Copiar link",
-    "buttonDownloadApp": "Baixar app",
     "buttonCopyLinkSuccess": "Copiado!",
     "pasteLink": "Cole este link no navegador do celular",
-    "scanQrCode": "QR Code",
     "chooseStore": "Escolha a loja",
     "copyText": "Copiar link",
     "copiedText": "Copiado!",
-    "newTitle": "Baixou, ganhou!",
-    "newDescription": "Baixe o app e receba um ticket extra",
-    "newButtonDownloadApp": "Baixar e receber ticket",
-    "newScanQrCode": "Use o QR Code"
+    "title": "Baixou, ganhou!",
+    "description": "Baixe o app e receba um ticket extra",
+    "buttonDownloadApp": "Baixar e receber ticket",
+    "scanQrCode": "Use o QR Code"
   },
   "downloadApp": {
     "floating": {
-      "title": "Baixar app",
-      "newTitle": "Mais tickets"
+      "title": "Mais tickets"
     }
   },
   "forYouPage": {
@@ -544,11 +547,10 @@
       "news": "Publicações"
     },
     "newsSection": {
-      "title": "Baixe o app e veja novidades pra você",
       "getAppButtonText": "Baixar app",
-      "newTitle": "Só notícia boa!",
-      "newDescription": "Baixe nosso app e acesse uma seleção de notícias que vão aquecer seu coração",
-      "newButtonDownloadApp": "Baixe e veja as notícias"
+      "title": "Só notícia boa!",
+      "description": "Baixe nosso app e acesse uma seleção de notícias que vão aquecer seu coração",
+      "buttonDownloadApp": "Baixe e veja as notícias"
     },
     "tasksSection": {
       "title": "Tarefas",
@@ -557,12 +559,11 @@
       "titleSuperTasks": "Super tarefas",
       "tasks": {
         "donate_ticket": "Doar ticket",
-        "download_app": "Baixar app",
-        "new_download_app": "Ganhe um ticket extra",
-        "newTitle": "Baixou, ganhou!",
-        "newDescription": "Baixe o app e receba um ticket extra",
-        "newButtonDownloadApp": "Baixar e receber ticket",
-        "newScanQrCode": "Use o QR Code",
+        "download_app": "Ganhe um ticket extra",
+        "title": "Baixou, ganhou!",
+        "description": "Baixe o app e receba um ticket extra",
+        "buttonDownloadApp": "Baixar e receber ticket",
+        "scanQrCode": "Use o QR Code",
         "make_contribution": "Fazer uma doação paga",
         "start_contribution": "Entenda o que é ser um promotor",
         "become_a_promoter": "Vire o promotor de uma causa",
@@ -582,13 +583,11 @@
     "accountDeletedText": "Para entrar novamente, você deverá criar uma nova conta sem acesso aos seus dados de impacto anteriores"
   },
   "downloadAppModalTemplate": {
-    "title": "Tenha uma experiência completa usando o nosso App",
-    "description": "Baixe o app e tenha acesso a todas as funcionalidades da Ribon",
     "button": "Baixar o app",
-    "newTitle": "Baixou, ganhou!",
-    "newDescription": "Baixe o app e receba um ticket extra",
-    "newButtonDownloadApp": "Baixar e receber ticket",
-    "newScanQrCode": "Use o QR Code"
+    "title": "Baixou, ganhou!",
+    "description": "Baixe o app e receba um ticket extra",
+    "buttonDownloadApp": "Baixar e receber ticket",
+    "scanQrCode": "Use o QR Code"
   },
   "contributionStatsPage": {
     "title": "Você doou <span>{{amount}}</span> para <span>{{cause}}</span>",
@@ -621,7 +620,7 @@
   "contributionSection": {
     "titleCard": "Faça ainda mais",
     "title": "Que incrível! Obrigado por ajudar {{nonProfitName}}",
-    "titleNewImpact": "Graças a você a {{nonProfitName}} poderá impactar 1 vida. Obrigado!",
+    "titleNewImpact": "Graças a você a {{nonProfitName}} poderá impactar 1 pessoa. Obrigado!",
     "nonProfits": "ONGs"
   },
   "contributionCard": {
@@ -629,7 +628,7 @@
     "donate": "Doe {{value}}",
     "titleCard": "Faça ainda mais",
     "donateAndImpact": "Doe {{value}} e impacte",
-    "livesAmount": "+{{value}} vidas",
+    "livesAmount": "+{{value}} pessoas",
     "impactDescription": "com {{value}}"
   }
 }

@@ -17,6 +17,7 @@ function ImpactedLivesSection() {
     nextLevelExperience,
     percentageCompleted,
     updatePercentageCompleted,
+    currentLevelExperience,
     refetchUserStatistics,
   } = useUserLevel();
   const toast = useToast();
@@ -30,8 +31,7 @@ function ImpactedLivesSection() {
 
     setTimeout(() => {
       const completedPercentage = updatePercentageCompleted();
-      const levelUp =
-        previousPercentageCompleted !== 0 && completedPercentage === 0;
+      const levelUp = completedPercentage < previousPercentageCompleted;
 
       if (levelUp) {
         toast({
@@ -46,7 +46,7 @@ function ImpactedLivesSection() {
         });
       }
     }, 500);
-  }, []);
+  }, [updatePercentageCompleted]);
 
   return (
     <S.Container>
@@ -57,6 +57,7 @@ function ImpactedLivesSection() {
         <ImpactedLivesCounter impactedLivesCount={userExperience} />
         <UserProgress
           currentExperience={userExperience}
+          currentLevelExperience={currentLevelExperience}
           totalExperienceToNextLevel={nextLevelExperience}
           nextLevel={userLevel + 1}
           percentageCompleted={percentageCompleted}

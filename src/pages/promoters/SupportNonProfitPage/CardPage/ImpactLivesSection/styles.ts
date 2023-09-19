@@ -15,7 +15,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   background-color: ${({ theme }) => theme.colors.brand.tertiary[25]};
-  
+
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     padding: ${({ theme }) => theme.spacing(24, 112, 24, 112)};
   }
@@ -47,10 +47,10 @@ export const ProgressContainer = styled.div`
 
 export const BackgroundShape = styled.img`
   display: none;
-  
+
   @media (min-width: ${({ theme }) => theme.breakpoints.desktopLarge}) {
     position: absolute;
     right: 0;
     display: block;
   }
-`
+`;

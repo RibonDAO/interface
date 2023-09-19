@@ -566,7 +566,8 @@
         "scanQrCode": "Use QR Code",
         "make_contribution": "Make a paid donation",
         "start_contribution": "Understand what it means to be a promoter",
-        "become_a_promoter": "Become a promoter of a cause"
+        "become_a_promoter": "Become a promoter of a cause",
+        "view_about_page": "Understand from where the tickets come"
       },
       "cardsStatisticsSection": {
         "dailyTasksTitle": "daily tasks completed",

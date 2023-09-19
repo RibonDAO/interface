@@ -11,6 +11,9 @@ import { logEvent } from "lib/events";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useIntegrationId } from "hooks/useIntegrationId";
+import { theme } from "@ribon.io/shared/styles";
+import Icon from "components/atomics/Icon";
+import StripeIcon from "assets/icons/stripe.svg";
 import ButtonSelectorTemplate from "../Components/ButtonSelectorTemplate";
 import Header from "../Components/Header";
 import PriceSelection from "../Components/PriceSelection";
@@ -156,6 +159,15 @@ function RecurrencePage(): JSX.Element {
         <S.PaymentTypesTitle>{t("title")}</S.PaymentTypesTitle>
         <LinkAccordion items={linksItems} />
       </S.PaymentTypes>
+      <S.Seal>
+        <Icon
+          name="verified_user"
+          size="25px"
+          color={theme.colors.brand.primary[600]}
+        />
+        <S.SealText>{t("sealText")}</S.SealText>
+        <S.SealImage src={StripeIcon} />
+      </S.Seal>
     </S.Container>
   ) : (
     <Loader />

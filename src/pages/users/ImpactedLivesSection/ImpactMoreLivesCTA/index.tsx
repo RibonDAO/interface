@@ -13,6 +13,7 @@ import { Currencies, NonProfit, Offer } from "@ribon.io/shared/types";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useUserLevel } from "contexts/userLevelContext";
 import { logEvent } from "lib/events";
+import HeartImage from "assets/icons/heart.svg";
 import * as S from "./styles";
 
 function ImpactMoreLivesCTA() {
@@ -73,6 +74,7 @@ function ImpactMoreLivesCTA() {
       </S.Subtitle>
       <CardLargeImage
         title={t("cardTitle", { value: currentOffer?.price })}
+        icon={<S.Icon src={HeartImage} alt="heart image" />}
         subtitle={t("cardSubtitle", {
           value: livesValue,
         })}

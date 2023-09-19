@@ -15,3 +15,9 @@ export const Subtitle = styled.h2`
   ${defaultBodySmRegular}
   margin-bottom: ${({ theme }) => theme.spacing(16)};
 `;
+
+export const Icon = styled.img`
+  height: 20px;
+  width: 20px;
+  margin-right: ${({ theme }) => theme.spacing(4)};
+`;

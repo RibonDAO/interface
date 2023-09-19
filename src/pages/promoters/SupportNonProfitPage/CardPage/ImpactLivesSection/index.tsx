@@ -19,6 +19,7 @@ function ImpactLivesSection() {
     userExperience,
     nextLevelExperience,
     userLevel,
+    currentLevelExperience,
     percentageCompleted,
     updatePercentageCompleted,
   } = useUserLevel();
@@ -37,6 +38,7 @@ function ImpactLivesSection() {
       <S.ProgressContainer>
         <UserProgress
           currentExperience={userExperience}
+          currentLevelExperience={currentLevelExperience}
           totalExperienceToNextLevel={nextLevelExperience}
           nextLevel={userLevel + 1}
           percentageCompleted={percentageCompleted}

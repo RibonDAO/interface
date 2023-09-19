@@ -9,18 +9,23 @@ import ThemeShades from "types/entities/ThemeShades";
 import { stylizedDisplayXs } from "styles/typography/stylized";
 
 export const Container = styled.div<{ colorTheme: ThemeShades }>`
-  width: 100%;
-  padding: ${({ theme }) => theme.spacing(24, 16)};
+  width: calc(100% + 32px);
+  padding: ${({ theme }) => theme.spacing(0, 16, 24, 16)};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: ${({ colorTheme }) => colorTheme[25]};
+  margin-left: -16px;
+  margin-right: -16px;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    width: 100%;
     padding: ${({ theme }) => theme.spacing(32)};
     display: flex;
     flex-direction: row;
+    margin-left: 0;
+    margin-right: 0;
   }
 `;
 
@@ -68,7 +73,7 @@ export const Image = styled.img`
   margin-left: -16px;
   object-fit: cover;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     width: 100%;
     max-height: 256px;
     margin: -32px 40px -32px -32px;

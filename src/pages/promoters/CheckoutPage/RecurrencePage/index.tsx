@@ -11,15 +11,13 @@ import { logEvent } from "lib/events";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useIntegrationId } from "hooks/useIntegrationId";
-import { theme } from "@ribon.io/shared/styles";
-import Icon from "components/atomics/Icon";
-import StripeIcon from "assets/icons/stripe.svg";
 import ButtonSelectorTemplate from "../Components/ButtonSelectorTemplate";
 import Header from "../Components/Header";
 import PriceSelection from "../Components/PriceSelection";
 import { PriceSelectionLoader } from "../Components/PriceSelection/loader";
 import Loader from "../FiatSection/loader";
 import * as S from "./styles";
+import TrustSeal from "../Components/TrustSeal";
 
 function RecurrencePage(): JSX.Element {
   const { t } = useTranslation("translation", {
@@ -159,15 +157,7 @@ function RecurrencePage(): JSX.Element {
         <S.PaymentTypesTitle>{t("title")}</S.PaymentTypesTitle>
         <LinkAccordion items={linksItems} />
       </S.PaymentTypes>
-      <S.Seal>
-        <Icon
-          name="verified_user"
-          size="25px"
-          color={theme.colors.brand.primary[600]}
-        />
-        <S.SealText>{t("sealText")}</S.SealText>
-        <S.SealImage src={StripeIcon} />
-      </S.Seal>
+      <TrustSeal />
     </S.Container>
   ) : (
     <Loader />

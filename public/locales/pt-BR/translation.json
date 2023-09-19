@@ -566,7 +566,8 @@
         "scanQrCode": "Use o QR Code",
         "make_contribution": "Fazer uma doação paga",
         "start_contribution": "Entenda o que é ser um promotor",
-        "become_a_promoter": "Vire o promotor de uma causa"
+        "become_a_promoter": "Vire o promotor de uma causa",
+        "view_about_page": "Entenda de onde vem os tickets"
       },
       "cardsStatisticsSection": {
         "dailyTasksTitle": "tarefas diárias completas",

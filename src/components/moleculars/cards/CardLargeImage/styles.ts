@@ -10,11 +10,11 @@ import { stylizedDisplayXs } from "styles/typography/stylized";
 
 export const Container = styled.div<{ colorTheme: ThemeShades }>`
   width: 100%;
+  padding: ${({ theme }) => theme.spacing(24, 16)};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: ${({ theme }) => theme.spacing(24, 16)};
   background-color: ${({ colorTheme }) => colorTheme[25]};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
@@ -43,6 +43,7 @@ export const Description = styled.p`
 
 export const Button = styled(ButtonComponent)<{ colorTheme: ThemeShades }>`
   ${defaultBodyMdSemibold}
+
   width: 100%;
   height: 48px;
   padding: ${({ theme }) => theme.spacing(12, 16)};
@@ -60,18 +61,18 @@ export const Title = styled.span<{ colorTheme: ThemeShades }>`
 `;
 
 export const Image = styled.img`
-  max-height: 192px;
   width: calc(100% + 32px);
-  object-fit: cover;
+  max-height: 192px;
+  margin-right: -16px;
   margin-bottom: ${({ theme }) => theme.spacing(24)};
   margin-left: -16px;
-  margin-right: -16px;
+  object-fit: cover;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 100%;
+    max-height: 256px;
     margin: -32px 40px -32px -32px;
     border-radius: 8px;
-    max-height: 256px;
   }
 `;
 

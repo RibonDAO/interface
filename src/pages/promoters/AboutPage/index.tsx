@@ -1,9 +1,16 @@
+import { useEffect } from "react";
 import { useLanguage } from "hooks/useLanguage";
+import useAboutPageActivity from "hooks/useAboutPageActivity";
 import * as S from "./styles";
 
 function AboutPage(): JSX.Element {
-  const { currentLang } = useLanguage();
+  const { setHasSeenToday } = useAboutPageActivity();
 
+  useEffect(() => {
+    setHasSeenToday();
+  }, []);
+
+  const { currentLang } = useLanguage();
   const pageSlug = currentLang === "pt-BR" ? "sobre" : "about";
 
   return (

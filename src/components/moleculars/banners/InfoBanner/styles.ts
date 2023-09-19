@@ -63,7 +63,7 @@ export const Content = styled.div`
 `;
 
 export const SquareImageContainer = styled.div`
-  margin-right:  ${({ theme }) => theme.spacing(16)};
+  margin-right: ${({ theme }) => theme.spacing(16)};
   display: inline-flex;
   align-items: center;
 `;

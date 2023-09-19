@@ -65,6 +65,38 @@ export const TASKS = [
     },
   },
   {
+    id: "2fd05af5-e67d-4640-b674-efe949ad5b51",
+    title: "view_about_page",
+    actions: ["about_page_view"],
+    type: "daily",
+    navigationCallback: "/about",
+    isVisible(this: Task, params?: any) {
+      const variation = useExperiment({
+        key: "understanding-test",
+        variations: ["control", "product", "growth"],
+      });
+
+      if (variation.value !== "growth") return false;
+      const taskState = params?.state.find((obj: any) => obj.id === this.id);
+
+      const lastCompletedAt = new Date(
+        taskState?.lastCompletedAt?.slice(0, 19),
+      );
+      const timesCompleted = taskState?.timesCompleted || 0;
+      const taskDone = taskState?.done;
+
+      const completedDay = lastCompletedAt < beginningOfToday();
+
+      if (timesCompleted === 0 && !taskDone) {
+        return true;
+      } else if (timesCompleted === 1 && taskDone && !completedDay) {
+        return true;
+      }
+
+      return false;
+    },
+  },
+  {
     id: "ed180aa8-e8e7-11ed-a05b-0242ac120003",
     title: "make_contribution",
     actions: ["contribution_done_page_view"],

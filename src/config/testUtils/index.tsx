@@ -80,6 +80,10 @@ import StripeProvider, {
   IStripeContext,
   StripeContext,
 } from "contexts/stripeContext";
+import UserLevelProvider, {
+  IUserLevelContext,
+  UserLevelContext,
+} from "contexts/userLevelContext";
 
 export function renderWithTheme(children: React.ReactNode): RenderResult {
   return render(<ThemeProvider theme={theme}>{children}</ThemeProvider>);
@@ -140,6 +144,7 @@ export type RenderComponentProps = {
   cryptoPaymentProviderValue?: Partial<ICryptoPaymentContext>;
   locationState?: Record<any, any>;
   stripeProviderValue?: Partial<IStripeContext>;
+  userLevelProviderValue?: Partial<IUserLevelContext>;
 };
 export function renderComponent(
   component: JSX.Element,
@@ -162,6 +167,7 @@ export function renderComponent(
     cryptoPaymentProviderValue = {},
     pixPaymentProviderValue = {},
     stripeProviderValue = {},
+    userLevelProviderValue = {},
   }: RenderComponentProps = {},
 ): RenderWithContextResult {
   const historyObject = history;
@@ -237,7 +243,12 @@ export function renderComponent(
                                               PixPaymentInformationProvider,
                                               PixPaymentInformationContext,
                                               pixPaymentProviderValue,
-                                              component,
+                                              renderProvider(
+                                                UserLevelProvider,
+                                                UserLevelContext,
+                                                userLevelProviderValue,
+                                                component,
+                                              ),
                                             ),
                                           ),
                                         ),

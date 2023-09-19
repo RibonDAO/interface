@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   useIntegration,
@@ -29,6 +29,7 @@ import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
 import { useNonProfitsContext } from "contexts/nonProfitsContext";
 import { logEvent } from "lib/events";
+import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import NonProfitsList from "./NonProfitsList";
@@ -40,6 +41,8 @@ import CausesSelectSection from "./CausesSelectSection";
 function CausesPage(): JSX.Element {
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
+  const [shouldShowIntegrationBanner, setShouldShowIntegrationBanner] =
+    useState<boolean | undefined>(false);
 
   const { causesWithPoolBalance, isLoading: isLoadingCauses } =
     useCausesContext();
@@ -143,6 +146,11 @@ function CausesPage(): JSX.Element {
         createVoucher();
       }
     }
+    setShouldShowIntegrationBanner(
+      !integration?.name?.toLowerCase()?.includes("ribon") &&
+        hasAvailableDonation() &&
+        hasReceivedTicketToday(),
+    );
   }, [integration, isFirstAccessToIntegration]);
 
   useEffect(() => {
@@ -188,6 +196,9 @@ function CausesPage(): JSX.Element {
   return (
     <S.Container>
       {!isFirstAccess(signedIn) && <DownloadAppToast />}
+      {shouldShowIntegrationBanner && (
+        <IntegrationBanner integration={integration} />
+      )}
       {!isLoadingCauses && (
         <ChooseCauseModal visible={chooseCauseModalVisible} />
       )}

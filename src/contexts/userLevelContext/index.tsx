@@ -1,4 +1,11 @@
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useStatistics } from "@ribon.io/shared/hooks";
 
@@ -6,6 +13,7 @@ export interface IUserLevelContext {
   userLevel: number;
   userExperience: number;
   experienceToNextLevel: number;
+  currentLevelExperience: number;
   nextLevelExperience: number;
   percentageCompleted: number;
   refetchUserStatistics: () => void;
@@ -72,7 +80,7 @@ function UserLevelProvider({ children }: Props) {
     setUserLevel(levelByExperience(userExperience));
   }, [userExperience]);
 
-  function updatePercentageCompleted() {
+  const updatePercentageCompleted = useCallback(() => {
     const completedPercentage =
       ((userExperience - currentLevelExperience) /
         (nextLevelExperience - currentLevelExperience)) *
@@ -80,13 +88,14 @@ function UserLevelProvider({ children }: Props) {
     setPercentageCompleted(completedPercentage);
 
     return completedPercentage;
-  }
+  }, [userExperience, currentLevelExperience, nextLevelExperience]);
 
   const userLevelObject: IUserLevelContext = useMemo(
     () => ({
       userLevel,
       userExperience,
       experienceToNextLevel,
+      currentLevelExperience,
       nextLevelExperience,
       percentageCompleted,
       refetchUserStatistics,
@@ -97,7 +106,9 @@ function UserLevelProvider({ children }: Props) {
       userExperience,
       experienceToNextLevel,
       nextLevelExperience,
+      currentLevelExperience,
       percentageCompleted,
+      updatePercentageCompleted,
     ],
   );
 

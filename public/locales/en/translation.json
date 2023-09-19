@@ -267,8 +267,10 @@
       }
     },
     "impactMoreLivesCTA": {
-      "title": "Donate {{value}} and impact",
-      "subtitle": "+{{value}} people",
+      "title": "You already helped {{lives}} people, congratulations!",
+      "subtitle": "With only {{value}} you can change the lives of {{lives}} people and upgrade your donor level!",
+      "cardTitle": "Donate {{value}} and impact",
+      "cardSubtitle": "+{{value}} people",
       "description": "with {{impact}}",
       "buttonText": "Donate {{value}}"
     }

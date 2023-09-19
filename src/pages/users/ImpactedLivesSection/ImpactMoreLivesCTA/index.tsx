@@ -11,6 +11,9 @@ import { coinByLanguage } from "lib/coinByLanguage";
 import { useLanguage } from "hooks/useLanguage";
 import { Currencies, NonProfit, Offer } from "@ribon.io/shared/types";
 import { useCurrentUser } from "contexts/currentUserContext";
+import { useUserLevel } from "contexts/userLevelContext";
+import { logEvent } from "lib/events";
+import * as S from "./styles";
 
 function ImpactMoreLivesCTA() {
   const { t } = useTranslation("translation", {
@@ -27,6 +30,7 @@ function ImpactMoreLivesCTA() {
     userId: currentUser?.id ?? undefined,
   });
   const { nonProfits } = useNonProfits();
+  const { userExperience: totalLivesImpacted } = useUserLevel();
 
   useEffect(() => {
     setCurrentCoin(coinByLanguage(currentLang));
@@ -43,6 +47,9 @@ function ImpactMoreLivesCTA() {
   }, [JSON.stringify(nonProfits), userStatistics?.lastDonatedNonProfit]);
 
   const onButtonClick = () => {
+    logEvent("impactMoreLivesCTA_click", {
+      from: "impactPage",
+    });
     if (currentOffer && userStatistics?.lastDonatedNonProfit)
       navigateToCheckout(
         "non_profit",
@@ -52,19 +59,31 @@ function ImpactMoreLivesCTA() {
       );
   };
 
+  const livesValue = Math.round(Number(currentOffer?.priceValue ?? 50) * 2);
+
   return (
-    <CardLargeImage
-      title={t("title", { value: currentOffer?.price })}
-      subtitle={t("subtitle", {
-        value: Math.round(Number(currentOffer?.priceValue ?? 50) * 2),
-      })}
-      image={currentNonProfit?.mainImage || ""}
-      buttonText={t("buttonText", { value: currentOffer?.price })}
-      description={t("description", {
-        impact: currentNonProfit?.impactDescription.split(",")[1],
-      })}
-      onButtonClick={onButtonClick}
-    />
+    <S.Container>
+      <S.Title>
+        {t("title", {
+          lives: totalLivesImpacted,
+        })}
+      </S.Title>
+      <S.Subtitle>
+        {t("subtitle", { value: currentOffer?.price, lives: livesValue })}
+      </S.Subtitle>
+      <CardLargeImage
+        title={t("cardTitle", { value: currentOffer?.price })}
+        subtitle={t("cardSubtitle", {
+          value: livesValue,
+        })}
+        image={currentNonProfit?.mainImage || ""}
+        buttonText={t("buttonText", { value: currentOffer?.price })}
+        description={t("description", {
+          impact: currentNonProfit?.impactDescription.split(",")[1],
+        })}
+        onButtonClick={onButtonClick}
+      />
+    </S.Container>
   );
 }
 

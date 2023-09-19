@@ -10,22 +10,22 @@ import { stylizedDisplayXs } from "styles/typography/stylized";
 
 export const Container = styled.div<{ colorTheme: ThemeShades }>`
   width: calc(100% + 32px);
+  margin-right: -16px;
+  margin-left: -16px;
   padding: ${({ theme }) => theme.spacing(0, 16, 24, 16)};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: ${({ colorTheme }) => colorTheme[25]};
-  margin-left: -16px;
-  margin-right: -16px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     width: 100%;
+    margin-right: 0;
+    margin-left: 0;
     padding: ${({ theme }) => theme.spacing(32)};
     display: flex;
     flex-direction: row;
-    margin-left: 0;
-    margin-right: 0;
   }
 `;
 

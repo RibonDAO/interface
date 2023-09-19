@@ -79,7 +79,13 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
 
   const newImpactFormat = (nonProfit: NonProfit) => (
     <div>
-      <h3>{t("impactOneLife")}</h3>
+      <h3>
+        {nonProfit.cause.name.toLowerCase().includes("animal")
+          ? t("impactOneLife")
+              .replace("pessoa", "animal")
+              .replace("person", "animal")
+          : t("impactOneLife")}
+      </h3>
       <p>
         {t("impactDescription", {
           value: nonProfit.impactDescription.split(",")[0],

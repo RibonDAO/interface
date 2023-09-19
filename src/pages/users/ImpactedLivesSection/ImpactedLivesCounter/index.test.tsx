@@ -7,6 +7,6 @@ describe("ImpactedLivesCounter", () => {
     renderComponent(<ImpactedLivesCounter impactedLivesCount={10} />);
 
     expectTextToBeInTheDocument("10");
-    expectTextToBeInTheDocument("impacted lives");
+    expectTextToBeInTheDocument("impacted people");
   });
 });

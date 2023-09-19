@@ -4,6 +4,7 @@ import * as S from "./styles";
 
 export type Props = {
   title: string;
+  image: string;
   icon?: JSX.Element;
   subtitle?: string;
   description?: string;
@@ -16,6 +17,7 @@ const { colors } = theme;
 
 function CardLargeImage({
   title,
+  image,
   subtitle,
   icon,
   description,
@@ -25,19 +27,22 @@ function CardLargeImage({
 }: Props): JSX.Element {
   return (
     <S.Container colorTheme={colorTheme}>
-      <S.Title colorTheme={colorTheme}>{title}</S.Title>
-      <S.Subtitle>
-        {icon}
-        {subtitle}
-      </S.Subtitle>
-      <S.Description>{description}</S.Description>
-      {buttonText && (
-        <S.Button
-          colorTheme={colorTheme}
-          onClick={onButtonClick}
-          text={buttonText}
-        />
-      )}
+      <S.Image src={image} alt={title} />
+      <S.RightContainer>
+        <S.Title colorTheme={colorTheme}>{title}</S.Title>
+        <S.Subtitle>
+          {icon}
+          {subtitle}
+        </S.Subtitle>
+        <S.Description>{description}</S.Description>
+        {buttonText && (
+          <S.Button
+            colorTheme={colorTheme}
+            onClick={onButtonClick}
+            text={buttonText}
+          />
+        )}
+      </S.RightContainer>
     </S.Container>
   );
 }

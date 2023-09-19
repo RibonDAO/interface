@@ -7,6 +7,7 @@ describe("CardLargeImage", () => {
     renderComponent(
       <CardLargeImage
         title="title"
+        image="image"
         subtitle="subtitle"
         description="description"
       />,
@@ -24,6 +25,7 @@ describe("CardLargeImage", () => {
       renderComponent(
         <CardLargeImage
           title="title"
+          image="image"
           subtitle="subtitle"
           description="description"
           buttonText="buttonText"

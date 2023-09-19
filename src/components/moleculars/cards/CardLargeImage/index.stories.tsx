@@ -17,4 +17,5 @@ Default.args = {
   subtitle: "+20 lives",
   description: "with water",
   buttonText: "Donate $10",
+  image: "https://picsum.photos/300/200",
 };

@@ -10,6 +10,7 @@ function AboutPage(): JSX.Element {
     <S.Container
       src={`https://projetos.ribon.io/${pageSlug}`}
       title="Sobre a Ribon"
+      data-testid="about-page"
     />
   );
 }

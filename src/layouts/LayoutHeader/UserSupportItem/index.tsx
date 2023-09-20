@@ -7,7 +7,6 @@ import { logEvent } from "lib/events";
 import { useLanguage } from "hooks/useLanguage";
 import { Languages } from "@ribon.io/shared/types";
 import startSupportChat from "services/support";
-import { useCurrentUser } from "contexts/currentUserContext";
 import * as S from "./styles";
 
 function UserSupportItem(): JSX.Element {
@@ -15,12 +14,9 @@ function UserSupportItem(): JSX.Element {
     keyPrefix: "layouts.layoutHeader.userSupportItem",
   });
   const { currentLang } = useLanguage();
-  const { currentUser } = useCurrentUser();
 
   const handleClick = () => {
-    logEvent("UserSupportBtn_click", {
-      email: currentUser?.email,
-    });
+    logEvent("UserSupportBtn_click");
     if (currentLang === Languages.PT) {
       window.open(t("userSupportLink"), "_blank");
     } else {

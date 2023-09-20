@@ -20,8 +20,11 @@ import * as S from "./styles";
 type Props = {
   from: string;
   showUserProgress?: boolean;
-}
-function ImpactMoreLivesCTA({ from, showUserProgress = false }: Props): JSX.Element {
+};
+function ImpactMoreLivesCTA({
+  from,
+  showUserProgress = false,
+}: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "impactPage.impactMoreLivesCTA",
   });
@@ -96,15 +99,19 @@ function ImpactMoreLivesCTA({ from, showUserProgress = false }: Props): JSX.Elem
         })}
         onButtonClick={onButtonClick}
       >
-        {showUserProgress ? <S.UserProgressContainer>
-          <UserProgress
+        {showUserProgress ? (
+          <S.UserProgressContainer>
+            <UserProgress
               currentExperience={totalLivesImpacted}
               totalExperienceToNextLevel={nextLevelExperience}
               currentLevelExperience={currentLevelExperience}
               nextLevel={userLevel + 1}
               percentageCompleted={percentageCompleted}
-          />
-        </S.UserProgressContainer> : <div />}
+            />
+          </S.UserProgressContainer>
+        ) : (
+          <div />
+        )}
       </CardLargeImage>
     </S.Container>
   );

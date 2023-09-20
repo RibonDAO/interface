@@ -29,20 +29,18 @@ function NewsSection() {
   }, []);
 
   function renderPage() {
-    
     return (
       <S.Container>
         <S.ArticlesContainer>
-
-        {articles &&
-          articles.map((article) => (
-            <ArticleLayout
-            key={article.id}
-            article={article}
-            readMoreText={t("openPostButtonText")}
-            />
+          {articles &&
+            articles.map((article) => (
+              <ArticleLayout
+                key={article.id}
+                article={article}
+                readMoreText={t("openPostButtonText")}
+              />
             ))}
-            </S.ArticlesContainer>
+        </S.ArticlesContainer>
       </S.Container>
     );
   }

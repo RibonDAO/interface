@@ -224,7 +224,7 @@ function CausesPage(): JSX.Element {
         </S.TitleContainer>
         {!canDonate && isInLifeBasedImpact && (
           <S.ImpactMoreLivesContainer>
-            <ImpactMoreLivesCTA />
+            <ImpactMoreLivesCTA from="causes_page" showUserProgress />
           </S.ImpactMoreLivesContainer>
         )}
         <ContributionNotification />

@@ -14,9 +14,14 @@ import { useCurrentUser } from "contexts/currentUserContext";
 import { useUserLevel } from "contexts/userLevelContext";
 import { logEvent } from "lib/events";
 import HeartImage from "assets/icons/heart.svg";
+import UserProgress from "pages/users/ImpactedLivesSection/UserProgress";
 import * as S from "./styles";
 
-function ImpactMoreLivesCTA() {
+type Props = {
+  from: string;
+  showUserProgress?: boolean;
+}
+function ImpactMoreLivesCTA({ from, showUserProgress = false }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "impactPage.impactMoreLivesCTA",
   });
@@ -31,7 +36,13 @@ function ImpactMoreLivesCTA() {
     userId: currentUser?.id ?? undefined,
   });
   const { nonProfits } = useNonProfits();
-  const { userExperience: totalLivesImpacted } = useUserLevel();
+  const {
+    userExperience: totalLivesImpacted,
+    currentLevelExperience,
+    userLevel,
+    nextLevelExperience,
+    percentageCompleted,
+  } = useUserLevel();
 
   useEffect(() => {
     setCurrentCoin(coinByLanguage(currentLang));
@@ -49,7 +60,7 @@ function ImpactMoreLivesCTA() {
 
   const onButtonClick = () => {
     logEvent("impactMoreLivesCTA_click", {
-      from: "impactPage",
+      from,
     });
     if (currentOffer && userStatistics?.lastDonatedNonProfit)
       navigateToCheckout(
@@ -84,7 +95,17 @@ function ImpactMoreLivesCTA() {
           impact: currentNonProfit?.impactDescription.split(",")[1],
         })}
         onButtonClick={onButtonClick}
-      />
+      >
+        {showUserProgress ? <S.UserProgressContainer>
+          <UserProgress
+              currentExperience={totalLivesImpacted}
+              totalExperienceToNextLevel={nextLevelExperience}
+              currentLevelExperience={currentLevelExperience}
+              nextLevel={userLevel + 1}
+              percentageCompleted={percentageCompleted}
+          />
+        </S.UserProgressContainer> : <div />}
+      </CardLargeImage>
     </S.Container>
   );
 }

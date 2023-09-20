@@ -48,7 +48,7 @@ function ImpactPage(): JSX.Element {
     <S.Container>
       <DownloadAppToast />
       {isInLifeBasedImpact && <ImpactedLivesSection />}
-      {isInLifeBasedImpact && <ImpactMoreLivesCTA />}
+      {isInLifeBasedImpact && <ImpactMoreLivesCTA from="impact_page" />}
       {isInLifeBasedImpact && <BadgesSection />}
       <S.Title>{t("title")}</S.Title>
       <S.CardsButtonContainer>

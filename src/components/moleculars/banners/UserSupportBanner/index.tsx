@@ -5,6 +5,7 @@ import { useLanguage } from "hooks/useLanguage";
 import { logEvent } from "lib/events";
 import { useTranslation } from "react-i18next";
 import startSupportChat from "services/support";
+import { useCurrentUser } from "contexts/currentUserContext";
 import CardBackground from "./assets/background.svg";
 
 type Props = {
@@ -14,11 +15,13 @@ function UserSupportBanner({ from }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "layouts.userSupportBanner",
   });
+  const { currentUser } = useCurrentUser();
   const { currentLang } = useLanguage();
 
   const handleClick = () => {
     logEvent("supportBtn_click", {
       from,
+      email: currentUser?.email,
     });
     if (currentLang === Languages.PT) {
       window.open(t("userSupportLink"), "_blank");

@@ -22,7 +22,7 @@ function useCheckoutNavigation() {
     });
 
     navigateTo({
-      pathname: "/promoters/checkout",
+      pathname: "/promoters/recurrence",
       search: searchParams.toString(),
     });
   };

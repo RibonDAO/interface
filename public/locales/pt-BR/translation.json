@@ -550,7 +550,8 @@
       "getAppButtonText": "Baixar app",
       "title": "Só notícia boa!",
       "description": "Baixe nosso app e acesse uma seleção de notícias que vão aquecer seu coração",
-      "buttonDownloadApp": "Baixe e veja as notícias"
+      "buttonDownloadApp": "Baixe e veja as notícias",
+      "openPostButtonText": "Ver publicação"
     },
     "tasksSection": {
       "title": "Tarefas",

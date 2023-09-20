@@ -550,7 +550,8 @@
       "getAppButtonText": "Get app",
       "title": "Read good news!",
       "description": "Download our app and check our selection of heart warming news",
-      "buttonDownloadApp": "Download and read news"
+      "buttonDownloadApp": "Download and read news",
+      "openPostButtonText": "See article"
     },
     "tasksSection": {
       "title": "Tasks",

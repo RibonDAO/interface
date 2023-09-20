@@ -265,6 +265,14 @@
         "description": "Congratulations! You have now impacted {{impactedLives}} people with your donations and unlocked the achievement ‘Level {{level}}’.",
         "notAchievedDescription": "Impact at least {{impactedLives}} people with your donations at Ribon to unlock the achievement 'Level {{level}}'."
       }
+    },
+    "impactMoreLivesCTA": {
+      "title": "You already helped {{lives}} people, congratulations!",
+      "subtitle": "With only {{value}} you can change the lives of {{lives}} people and upgrade your donor level!",
+      "cardTitle": "Donate {{value}} and impact",
+      "cardSubtitle": "+{{value}} people",
+      "description": "with {{impact}}",
+      "buttonText": "Donate {{value}}"
     }
   },
   "promoters": {

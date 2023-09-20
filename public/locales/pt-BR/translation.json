@@ -264,6 +264,14 @@
         "description": "Parabéns! Você já impactou {{impactedLives}} pessoas com as suas doações e liberou a conquista ‘Nível {{level}}’.",
         "notAchievedDescription": "Impacte pelo menos {{impactedLives}} pessoas com as suas doações na Ribon para liberar a conquista ‘Nível {{level}}’."
       }
+    },
+    "impactMoreLivesCTA": {
+      "title": "Você já ajudou {{lives}} vidas, parabéns!",
+      "subtitle": "Com apenas {{value}} você pode mudar a vida de {{lives}} pessoas e subir de nível de doador!",
+      "cardTitle": "Doe {{value}} e impacte",
+      "cardSubtitle": "+{{value}} pessoas",
+      "description": "com {{impact}}",
+      "buttonText": "Doar {{value}}"
     }
   },
   "promoters": {

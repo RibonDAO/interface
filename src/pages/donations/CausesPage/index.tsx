@@ -30,12 +30,13 @@ import { useCauseDonationContext } from "contexts/causeDonationContext";
 import { useNonProfitsContext } from "contexts/nonProfitsContext";
 import { logEvent } from "lib/events";
 import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
+import { useExperiment } from "@growthbook/growthbook-react";
+import ImpactMoreLivesCTA from "pages/users/ImpactedLivesSection/ImpactMoreLivesCTA";
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
 import ChooseCauseModal from "./ChooseCauseModal";
-import ContributionSection from "./ContributionSection";
 import CausesSelectSection from "./CausesSelectSection";
 
 function CausesPage(): JSX.Element {
@@ -54,6 +55,10 @@ function CausesPage(): JSX.Element {
     keyPrefix: "donations.causesPage",
   });
   const { state, search } = useLocation<LocationStateType>();
+  const { value: isInLifeBasedImpact } = useExperiment({
+    key: "progression-test-first-stage",
+    variations: [false, true],
+  });
 
   const { hide: closeWarningModal } = useModal(
     {
@@ -204,7 +209,6 @@ function CausesPage(): JSX.Element {
       )}
       <ChooseCauseModal visible={chooseCauseModalVisible} />
       <S.BodyContainer>
-        {!canDonate && <ContributionSection />}
         <S.TitleContainer>
           {canDonate && <S.Title>{t("pageTitle")}</S.Title>}
 
@@ -218,6 +222,11 @@ function CausesPage(): JSX.Element {
             />
           )}
         </S.TitleContainer>
+        {!canDonate && isInLifeBasedImpact && (
+          <S.ImpactMoreLivesContainer>
+            <ImpactMoreLivesCTA />
+          </S.ImpactMoreLivesContainer>
+        )}
         <ContributionNotification />
         <CausesSelectSection />
 

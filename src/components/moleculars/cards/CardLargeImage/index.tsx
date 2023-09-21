@@ -11,6 +11,7 @@ export type Props = {
   onButtonClick?: () => void;
   buttonText?: string;
   colorTheme?: ThemeShades;
+  children?: JSX.Element | JSX.Element[];
 };
 
 const { colors } = theme;
@@ -24,6 +25,7 @@ function CardLargeImage({
   buttonText,
   onButtonClick,
   colorTheme = colors.brand.tertiary,
+  children,
 }: Props): JSX.Element {
   return (
     <S.Container colorTheme={colorTheme}>
@@ -42,6 +44,7 @@ function CardLargeImage({
             text={buttonText}
           />
         )}
+        {children}
       </S.RightContainer>
     </S.Container>
   );

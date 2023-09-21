@@ -112,3 +112,11 @@ export const EmptyButton = styled(Button)`
   width: 196px;
   color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;
+
+export const ImpactMoreLivesContainer = styled.div`
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
+  
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-bottom: ${({ theme }) => theme.spacing(32)};
+  }
+`

@@ -13,11 +13,11 @@ function NewsSection() {
 
   const [articles, setArticles] = useState<Article[]>([]);
 
-  const { getArticles } = useArticles();
+  const { getUserArticles } = useArticles();
 
   useEffect(() => {
     const fetchArticles = async () => {
-      const currentArticles = await getArticles();
+      const currentArticles = await getUserArticles();
       setArticles(currentArticles);
     };
 

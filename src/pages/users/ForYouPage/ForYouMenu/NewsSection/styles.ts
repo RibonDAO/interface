@@ -10,6 +10,6 @@ export const ArticlesContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   gap: ${({ theme }) => theme.spacing(32)};
-  justify-content: center;
   align-items: flex-end;
+  justify-content: center;
 `;

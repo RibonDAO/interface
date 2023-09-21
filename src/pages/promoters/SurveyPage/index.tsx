@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLanguage } from "hooks/useLanguage";
 import { useTasksContext } from "contexts/tasksContext";
 import Spinner from "components/atomics/Spinner";
@@ -6,6 +6,7 @@ import Spinner from "components/atomics/Spinner";
 function SurveyPage(): JSX.Element {
   const { currentLang } = useLanguage();
   const { registerAction } = useTasksContext();
+  const [actionRegistered, setActionRegistered] = useState(false);
 
   const formURLs = {
     "pt-BR": "https://forms.gle/kPEgCDSZXpMVxWCYA",
@@ -16,8 +17,12 @@ function SurveyPage(): JSX.Element {
 
   useEffect(() => {
     registerAction("survey_form_view");
-    window.location.replace(currentUrl);
+    setActionRegistered(true);
   }, []);
+
+  useEffect(() => {
+    if (actionRegistered) window.location.replace(currentUrl);
+  }, [actionRegistered]);
 
   return (
     <div data-testid="survey-page">

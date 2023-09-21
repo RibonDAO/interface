@@ -12,7 +12,7 @@ jest.mock("hooks/useLanguage", () => ({
 describe("SurveyPage", () => {
   it("should render without error", () => {
     renderComponent(<SurveyPage />);
-    const bannerElement = screen.getByTestId("survey-page");
-    expect(bannerElement).toBeInTheDocument();
+    const container = screen.getByTestId("survey-page");
+    expect(container).toBeInTheDocument();
   });
 });

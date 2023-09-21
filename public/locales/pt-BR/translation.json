@@ -575,7 +575,8 @@
         "make_contribution": "Fazer uma doação paga",
         "start_contribution": "Entenda o que é ser um promotor",
         "become_a_promoter": "Vire o promotor de uma causa",
-        "view_about_page": "Entenda de onde vem os tickets"
+        "view_about_page": "Entenda de onde vem os tickets",
+        "survey_form": "Ganhe um ticket extra respondendo nossa pesquisa"
       },
       "cardsStatisticsSection": {
         "dailyTasksTitle": "tarefas diárias completas",

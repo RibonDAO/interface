@@ -12,7 +12,7 @@ import { useStatistics } from "@ribon.io/shared/hooks";
 import { useExperiment } from "@growthbook/growthbook-react";
 import ImpactedLivesSection from "pages/users/ImpactedLivesSection";
 import BadgesSection from "pages/users/BadgesSection";
-import ImpactMoreLivesCTA from "pages/users/ImpactedLivesSection/ImpactMoreLivesCTA";
+import ImpactMoreLivesCTA from "../ImpactedLivesSection/ImpactMoreLivesCTA";
 import ImpactMenu from "./ImpactMenu";
 import TicketIcon from "./assets/ticket-icon.svg";
 import MoneyIcon from "./assets/money-icon.svg";
@@ -48,7 +48,7 @@ function ImpactPage(): JSX.Element {
     <S.Container>
       <DownloadAppToast />
       {isInLifeBasedImpact && <ImpactedLivesSection />}
-      {isInLifeBasedImpact && <ImpactMoreLivesCTA />}
+      {isInLifeBasedImpact && <ImpactMoreLivesCTA from="impact_page" />}
       {isInLifeBasedImpact && <BadgesSection />}
       <S.Title>{t("title")}</S.Title>
       <S.CardsButtonContainer>

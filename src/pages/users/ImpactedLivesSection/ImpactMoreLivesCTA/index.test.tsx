@@ -4,7 +4,7 @@ import ImpactMoreLivesCTA from ".";
 
 describe("ImpactMoreLivesCTA", () => {
   it("renders without errors", () => {
-    renderComponent(<ImpactMoreLivesCTA />);
+    renderComponent(<ImpactMoreLivesCTA from="impact_page" />);
 
     expectTextToBeInTheDocument("Donate");
   });

@@ -15,8 +15,8 @@ function SurveyPage(): JSX.Element {
   const currentUrl = currentLang === "pt-BR" ? formURLs["pt-BR"] : formURLs.en;
 
   useEffect(() => {
+    registerAction("survey_form_view");
     window.location.replace(currentUrl);
-    registerAction("survey");
   }, []);
 
   return (

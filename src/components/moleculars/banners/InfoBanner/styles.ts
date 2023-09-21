@@ -70,7 +70,8 @@ export const SquareImageContainer = styled.div`
 
 export const SquareImage = styled.img`
   width: 84px;
-  height: 84px;
+  height: auto;
+  object-fit: cover;
 `;
 
 export const IconContainer = styled.div`

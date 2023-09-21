@@ -197,7 +197,7 @@
       "userSupportLink": "https://api.whatsapp.com/send/?phone=554896605461&text=Oii+Ribon%2C+vamos+conversar%3F+&type=phone_number&app_absent=0"
     },
     "integrationBanner": {
-      "title":"Ribon + {{integrationName}}",
+      "title": "Ribon + {{integrationName}}",
       "text": "Doe aqui na Ribon o ticket que você recebeu de {{integrationName}}"
     }
   },
@@ -420,7 +420,8 @@
       "donatingTo": "Doando para ",
       "recurrentDonationDescription": "Contribuir mensalmente",
       "uniqueDonationDescription": "Contribuir uma vez",
-      "selectValue": "Selecione o valor"
+      "selectValue": "Selecione o valor",
+      "sealText": "Transação segura processada por"
     },
     "monthlyContributionsPage": {
       "title": "Contribuições mensais",

@@ -17,6 +17,7 @@ import PriceSelection from "../Components/PriceSelection";
 import { PriceSelectionLoader } from "../Components/PriceSelection/loader";
 import Loader from "../FiatSection/loader";
 import * as S from "./styles";
+import TrustSeal from "../Components/TrustSeal";
 
 function RecurrencePage(): JSX.Element {
   const { t } = useTranslation("translation", {
@@ -156,6 +157,7 @@ function RecurrencePage(): JSX.Element {
         <S.PaymentTypesTitle>{t("title")}</S.PaymentTypesTitle>
         <LinkAccordion items={linksItems} />
       </S.PaymentTypes>
+      <TrustSeal />
     </S.Container>
   ) : (
     <Loader />

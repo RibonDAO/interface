@@ -21,6 +21,7 @@ import ButtonSelectorTemplate from "../Components/ButtonSelectorTemplate";
 import Loader from "./loader";
 import * as S from "./styles";
 import CardSection from "../CardSection";
+import TrustSeal from "../Components/TrustSeal";
 
 export default function FiatSection() {
   const { t } = useTranslation("translation", {
@@ -211,6 +212,7 @@ export default function FiatSection() {
           items={CardAccordionItems}
         />
       </S.PaymentMethods>
+      <TrustSeal />
     </div>
   ) : (
     <Loader />

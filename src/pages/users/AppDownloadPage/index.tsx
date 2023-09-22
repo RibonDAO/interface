@@ -5,14 +5,13 @@ import { useLocation } from "react-router-dom";
 import { NonProfit } from "@ribon.io/shared";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useEffect, useState } from "react";
-import { useExperiment } from "@growthbook/growthbook-react";
 import { logEvent } from "@amplitude/analytics-browser";
+import theme from "styles/theme";
 import * as S from "./styles";
 import IllustrationMobile from "./assets/illustration-mobile.svg";
 import LeftImage from "./assets/left-image.svg";
 import RightImage from "./assets/right-image.svg";
 import AppDownloadTemplate from "./AppDownloadTemplate";
-import NewAppDownloadTemplate from "./NewAppDownloadTemplate";
 
 type LocationStateType = {
   nonProfit?: NonProfit;
@@ -20,11 +19,6 @@ type LocationStateType = {
 };
 
 function AppDownloadPage() {
-  const variation = useExperiment({
-    key: "understanding-test",
-    variations: ["control", "product", "growth"],
-  });
-
   const { t } = useTranslation("translation", {
     keyPrefix: "appDownloadPage",
   });
@@ -56,9 +50,7 @@ function AppDownloadPage() {
   };
 
   useEffect(() => {
-    logEvent("P17_view", {
-      variation: variation.value,
-    });
+    logEvent("P17_view");
   });
 
   useAvoidBackButton();
@@ -76,37 +68,23 @@ function AppDownloadPage() {
             onClick={() => handleOnClickSecondButton()}
           />
         )}
-        {variation.value === "product" ? (
-          <NewAppDownloadTemplate
-            title={t("newTitle")}
-            image={IllustrationMobile}
-            description={t("newDescription")}
-            firstButton={{
-              text: t("newButtonDownloadApp"),
-            }}
-            secondButton={{
-              text: nonProfit ? t("buttonSkip") : t("buttonBack"),
-              onClick: () => handleOnClickSecondButton(),
-            }}
-            hasBackButton
-            spacingTopDonationFlow={comesFromPostDonation}
-          />
-        ) : (
-          <AppDownloadTemplate
-            title={t("title")}
-            image={IllustrationMobile}
-            description={t("description")}
-            firstButton={{
-              text: t("buttonDownloadApp"),
-            }}
-            secondButton={{
-              text: nonProfit ? t("buttonSkip") : t("buttonBack"),
-              onClick: () => handleOnClickSecondButton(),
-            }}
-            hasBackButton
-            spacingTopDonationFlow={comesFromPostDonation}
-          />
-        )}
+
+        <AppDownloadTemplate
+          title={t("title")}
+          image={IllustrationMobile}
+          description={t("description")}
+          firstButton={{
+            text: t("buttonDownloadApp"),
+            backgroundColor: theme.colors.brand.primary[600],
+            textColor: theme.colors.neutral10,
+          }}
+          secondButton={{
+            text: nonProfit ? t("buttonSkip") : t("buttonBack"),
+            onClick: () => handleOnClickSecondButton(),
+          }}
+          hasBackButton
+          spacingTopDonationFlow={comesFromPostDonation}
+        />
       </S.Container>
     </S.Container>
   );

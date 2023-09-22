@@ -10,7 +10,8 @@ export const Container = styled.div`
   display: flex;
   align-items: flex-start;
   text-align: center;
-  background-color: ${({ theme }) => theme.colors.neutral[50]};
+  background-color: ${({ theme }) => theme.colors.neutral[25]};
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.13);
 `;
 
 export const Text = styled.p`

@@ -1,6 +1,6 @@
 import { Languages } from "@ribon.io/shared/types";
 import { theme } from "@ribon.io/shared/styles";
-import Banner from "components/moleculars/cards/Banner";
+import Banner from "components/moleculars/banners/Banner";
 import { useLanguage } from "hooks/useLanguage";
 import { logEvent } from "lib/events";
 import { useTranslation } from "react-i18next";

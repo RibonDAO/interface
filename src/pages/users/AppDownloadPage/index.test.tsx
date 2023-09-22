@@ -13,11 +13,11 @@ describe("App Download Page", () => {
   });
 
   it("should render the app download page", () => {
-    expectTextToBeInTheDocument("Get Ribon's Beta mobile app");
+    expectTextToBeInTheDocument("Get a new ticket");
 
-    expectTextToBeInTheDocument("Scan QR Code");
+    expectTextToBeInTheDocument("Download the app and get an extra ticket");
+    expectTextToBeInTheDocument("Use QR Code");
     expectTextToBeInTheDocument("Choose a store");
-    expectTextToBeInTheDocument("Paste this link on your mobile browser");
     expectTextToBeInTheDocument("Go back");
   });
 

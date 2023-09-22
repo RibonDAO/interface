@@ -11,8 +11,7 @@ import { logEvent } from "lib/events";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useIntegrationId } from "hooks/useIntegrationId";
-import { setLocalStorageItem } from "lib/localStorage";
-import { I18NEXTLNG } from "lib/currentLanguage";
+import { useLanguage } from "hooks/useLanguage";
 import ButtonSelectorTemplate from "../Components/ButtonSelectorTemplate";
 import Header from "../Components/Header";
 import PriceSelection from "../Components/PriceSelection";
@@ -30,11 +29,10 @@ function RecurrencePage(): JSX.Element {
   const [currentOfferIndex, setCurrentOfferIndex] = useState(0);
   const { updateLocationSearch } = useLocationSearch();
   const integrationId = useIntegrationId();
+  const { setCurrentLang } = useLanguage();
 
   const { target, targetId, offer, currency, language } = usePaymentParams();
-  const hasAllParams = Boolean(
-    target && targetId && offer && currency && language,
-  );
+  const hasAllParams = Boolean(target && targetId && offer && currency);
   const currentPayable = usePayable(target, targetId);
   const { navigateTo } = useNavigation();
 
@@ -51,7 +49,7 @@ function RecurrencePage(): JSX.Element {
   }, [currency]);
 
   useEffect(() => {
-    setLocalStorageItem(I18NEXTLNG, language ?? Languages.PT);
+    setCurrentLang(language as Languages);
   });
 
   const resetOffer = () =>

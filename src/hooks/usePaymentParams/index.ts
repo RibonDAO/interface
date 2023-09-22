@@ -11,9 +11,7 @@ export default function usePaymentParams() {
   const subscription = queryParams.get("subscription");
   const language = queryParams.get("language");
 
-  const hasAllParams = Boolean(
-    target && targetId && currency && offer && language,
-  );
+  const hasAllParams = Boolean(target && targetId && currency && offer);
 
   return {
     target,

@@ -1,10 +1,8 @@
 import useBreakpoint from "hooks/useBreakpoint";
-import { useEffect, useState } from "react";
 import { APP_LINK, IOS_APP_LINK, ANDROID_APP_LINK } from "utils/constants";
 import { useTranslation } from "react-i18next";
 import { ButtonProps } from "components/atomics/buttons/Button";
 import { logEvent } from "lib/events";
-import { useExperiment } from "@growthbook/growthbook-react";
 import AppleBadge from "./assets/apple-badge.png";
 import GoogleBadge from "./assets/google-badge.png";
 import QRCode from "./assets/qrcodeapp.svg";
@@ -34,14 +32,7 @@ function AppDownloadTemplate({
     keyPrefix: "appDownloadPage",
   });
 
-  const [currentText, setCurrentText] = useState(t("copyText"));
-  const [isCopy, setIsCopy] = useState(false);
   const { isMobile } = useBreakpoint();
-
-  const variation = useExperiment({
-    key: "understanding-test",
-    variations: ["control", "product", "growth"],
-  });
 
   function handleMobileLink() {
     logEvent("mobileDownloadBtn_click");
@@ -58,40 +49,24 @@ function AppDownloadTemplate({
     window.open(ANDROID_APP_LINK);
   }
 
-  const copyText = () => {
-    navigator.clipboard.writeText(APP_LINK);
-    setCurrentText(t("copiedText"));
-    setIsCopy(true);
-    logEvent("copyDownloadBtn_click");
-  };
-
-  useEffect(() => {
-    logEvent("P17_view", {
-      variation: variation.value,
-    });
-  });
-
   const render = () => {
     if (isMobile) {
       return (
-        <>
-          {description && <S.Description>{description}</S.Description>}
-          <S.ButtonsContainer hasMenu={!hasBackButton}>
-            <S.DownloadButton
-              onClick={() => handleMobileLink()}
-              textColor={firstButton.textColor}
-              backgroundColor={firstButton.backgroundColor}
-              hasAnotherButton={!!secondButton}
-            >
-              {firstButton.text}
-            </S.DownloadButton>
-            {secondButton && (
-              <S.Button onClick={secondButton?.onClick}>
-                {secondButton?.text}
-              </S.Button>
-            )}
-          </S.ButtonsContainer>
-        </>
+        <S.ButtonsContainer hasMenu={!hasBackButton}>
+          <S.DownloadButton
+            onClick={() => handleMobileLink()}
+            textColor={firstButton.textColor}
+            backgroundColor={firstButton.backgroundColor}
+            hasAnotherButton={!!secondButton}
+          >
+            {firstButton.text}
+          </S.DownloadButton>
+          {secondButton && (
+            <S.Button onClick={secondButton?.onClick}>
+              {secondButton?.text}
+            </S.Button>
+          )}
+        </S.ButtonsContainer>
       );
     } else {
       return (
@@ -120,18 +95,10 @@ function AppDownloadTemplate({
               </S.BorderContainer>
             </S.ImageContainer>
           </S.Badges>
-
-          <S.Description>{t("pasteLink")}</S.Description>
-          <S.LinkContainer>
-            <S.InputLink value={APP_LINK} disabled />
-            <S.Button copy={isCopy} onClick={copyText}>
-              {currentText}
-            </S.Button>
-          </S.LinkContainer>
           {hasBackButton && (
-            <S.FilledButton onClick={secondButton?.onClick}>
+            <S.Button onClick={secondButton?.onClick}>
               {secondButton?.text}
-            </S.FilledButton>
+            </S.Button>
           )}
         </>
       );
@@ -142,6 +109,7 @@ function AppDownloadTemplate({
     <S.Wrapper hasMenu={!hasBackButton} hasMarginTop={spacingTopDonationFlow}>
       <S.Image src={image} />
       <S.Title>{title}</S.Title>
+      {description && <S.Description>{description}</S.Description>}
       {render()}
     </S.Wrapper>
   );

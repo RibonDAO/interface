@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   useIntegration,
@@ -29,17 +29,21 @@ import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
 import { useNonProfitsContext } from "contexts/nonProfitsContext";
 import { logEvent } from "lib/events";
+import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
+import { useExperiment } from "@growthbook/growthbook-react";
+import ImpactMoreLivesCTA from "pages/users/ImpactedLivesSection/ImpactMoreLivesCTA";
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
 import ChooseCauseModal from "./ChooseCauseModal";
-import ContributionSection from "./ContributionSection";
 import CausesSelectSection from "./CausesSelectSection";
 
 function CausesPage(): JSX.Element {
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
+  const [shouldShowIntegrationBanner, setShouldShowIntegrationBanner] =
+    useState<boolean | undefined>(false);
 
   const { causesWithPoolBalance, isLoading: isLoadingCauses } =
     useCausesContext();
@@ -51,6 +55,10 @@ function CausesPage(): JSX.Element {
     keyPrefix: "donations.causesPage",
   });
   const { state, search } = useLocation<LocationStateType>();
+  const { value: isInLifeBasedImpact } = useExperiment({
+    key: "progression-test-first-stage",
+    variations: [false, true],
+  });
 
   const { hide: closeWarningModal } = useModal(
     {
@@ -143,6 +151,11 @@ function CausesPage(): JSX.Element {
         createVoucher();
       }
     }
+    setShouldShowIntegrationBanner(
+      !integration?.name?.toLowerCase()?.includes("ribon") &&
+        hasAvailableDonation() &&
+        hasReceivedTicketToday(),
+    );
   }, [integration, isFirstAccessToIntegration]);
 
   useEffect(() => {
@@ -188,12 +201,14 @@ function CausesPage(): JSX.Element {
   return (
     <S.Container>
       {!isFirstAccess(signedIn) && <DownloadAppToast />}
+      {shouldShowIntegrationBanner && (
+        <IntegrationBanner integration={integration} />
+      )}
       {!isLoadingCauses && (
         <ChooseCauseModal visible={chooseCauseModalVisible} />
       )}
       <ChooseCauseModal visible={chooseCauseModalVisible} />
       <S.BodyContainer>
-        {!canDonate && <ContributionSection />}
         <S.TitleContainer>
           {canDonate && <S.Title>{t("pageTitle")}</S.Title>}
 
@@ -207,6 +222,11 @@ function CausesPage(): JSX.Element {
             />
           )}
         </S.TitleContainer>
+        {!canDonate && isInLifeBasedImpact && (
+          <S.ImpactMoreLivesContainer>
+            <ImpactMoreLivesCTA from="causes_page" showUserProgress />
+          </S.ImpactMoreLivesContainer>
+        )}
         <ContributionNotification />
         <CausesSelectSection />
 

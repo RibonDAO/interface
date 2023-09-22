@@ -6,6 +6,6 @@ import GetTheAppItem from ".";
 describe("GetTheAppItem component", () => {
   it("renders the correct text", () => {
     renderComponent(<GetTheAppItem />);
-    expectTextToBeInTheDocument("Get the app");
+    expectTextToBeInTheDocument("Get more tickets");
   });
 });

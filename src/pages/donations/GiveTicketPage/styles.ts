@@ -1,5 +1,8 @@
 import styled from "styled-components";
-import { defaultBodyMdSemibold } from "styles/typography/default";
+import {
+  defaultBodyMdSemibold,
+  defaultHeadingLg,
+} from "styles/typography/default";
 import { stylizedDisplayXs } from "styles/typography/stylized";
 
 export const Title = styled.p`
@@ -70,24 +73,52 @@ export const RightImage = styled.img`
   }
 `;
 
+export const LeftImageContainer = styled.img`
+  position: relative;
+  top: 208px;
+  left: 24px;
+  z-index: 1;
+  float: left;
+`;
+export const RightImageContainer = styled.img`
+  position: relative;
+  top: 72px;
+  right: 24px;
+  z-index: 1;
+  float: right;
+`;
+
 export const Image = styled.img`
-  max-width: 144px;
-  padding: ${({ theme }) => theme.spacing(20)};
-  border: 1px solid ${({ theme }) => theme.colors.neutral[200]};
-  border-radius: ${({ theme }) => theme.spacing(8)};
-  background-color: ${({ theme }) => theme.colors.neutral10};
+  max-width: 101px;
+  padding: ${({ theme }) => theme.spacing(0, 8)};
 `;
 
 export const DefaultImage = styled.img``;
 
-export const ImageContainer = styled.div<{ backgroundImage: string }>`
-  min-width: 232px;
-  min-height: 208px;
+export const ImageWrapper = styled.div`
+  width: 100%;
+  min-height: 130px;
+  padding: ${({ theme }) => theme.spacing(24)};
+  border: 1px solid ${({ theme }) => theme.colors.neutral[200]};
+  border-radius: ${({ theme }) => theme.spacing(8)};
+  position: relative;
+  z-index: 2;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-image: url(${({ backgroundImage }) => backgroundImage});
-  background-size: cover;
+  background-color: ${({ theme }) => theme.colors.neutral10};
+`;
+
+export const ImageContainer = styled.div`
+  margin-bottom: ${({ theme }) => theme.spacing(24)};
+`;
+
+export const ImageContainerText = styled.p`
+  ${defaultHeadingLg}
+
+  padding: ${({ theme }) => theme.spacing(0, 8)};
+  color: ${({ theme }) => theme.colors.brand.primary[200]};
 `;
 
 export const ContentContainer = styled.div`

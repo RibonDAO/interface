@@ -88,11 +88,11 @@ describe("GiveTicketPage", () => {
       });
 
       it("renders the Ribon integration with correct title", () => {
-        expectTextToBeInTheDocument("You have 1 ticket!");
+        expectTextToBeInTheDocument("You have 1 special ticket");
       });
 
       it("navigates to the causes page when the button is clicked", () => {
-        clickOn("Donate ticket");
+        clickOn("Donate my ticket");
         expectPageToNavigateTo("/causes");
       });
     });
@@ -165,7 +165,7 @@ describe("GiveTicketPage", () => {
       });
 
       it("renders the integration with correct title", () => {
-        expectTextToBeInTheDocument("You have 1 ticket!");
+        expectTextToBeInTheDocument("You have 1 special ticket");
       });
     });
   });

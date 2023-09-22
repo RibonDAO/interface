@@ -20,7 +20,7 @@ import SupportNonProfitPage from "pages/promoters/SupportNonProfitPage";
 import DeleteAccountPage from "pages/users/DeleteAccountPage";
 import { useLocation } from "react-router";
 import { logPageView } from "lib/events";
-import AppInDevelopmentPage from "pages/users/AppDownloadPage";
+import AppDownloadPage from "pages/users/AppDownloadPage";
 import ForYouPage from "pages/users/ForYouPage";
 import GiveTicketPage from "pages/donations/GiveTicketPage";
 import ReceiveTicketPage from "pages/donations/ReceiveTicketPage";
@@ -28,6 +28,7 @@ import AboutPage from "pages/promoters/AboutPage";
 import LoadingPage from "pages/donations/LoadingPage";
 import ContributionStatsPage from "pages/users/ContributionStatsPage";
 import ReturnToIntegrationPage from "pages/donations/ReturnToIntegrationPage";
+import SurveyPage from "pages/promoters/SurveyPage";
 import MonthlyContributionsPage from "pages/promoters/MonthlyContributionsPage";
 import StripeProvider from "contexts/stripeContext";
 import PixPaymentInformationProvider from "contexts/pixPaymentInformationContext";
@@ -87,7 +88,7 @@ function RoutesComponent(): JSX.Element {
 
       <Route path="/app-download" exact>
         <Suspense fallback={<div />}>
-          <AppInDevelopmentPage />
+          <AppDownloadPage />
         </Suspense>
       </Route>
 
@@ -284,6 +285,12 @@ function RoutesComponent(): JSX.Element {
       <Route path="/monthly-contributions" exact>
         <Suspense fallback={<div />}>
           <MonthlyContributionsPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/survey" exact>
+        <Suspense fallback={<div />}>
+          <SurveyPage />
         </Suspense>
       </Route>
     </Switch>

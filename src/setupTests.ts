@@ -8,6 +8,7 @@ export const mockLogEventFunction = jest.fn();
 export const mockNewLogEventFunction = jest.fn();
 export const mockLogPageViewFunction = jest.fn();
 export const mockLocationReload = jest.fn();
+export const mockLocationReplace = jest.fn();
 export const mockZendeskOpenChatFunction = jest.fn();
 
 export function setupMocks() {
@@ -34,7 +35,10 @@ export function setupMocks() {
     ZendeskOpenChat: mockZendeskOpenChatFunction,
   }));
   delete (window as any).location;
-  (window as any).location = { reload: mockLocationReload };
+  (window as any).location = {
+    reload: mockLocationReload,
+    replace: mockLocationReload,
+  };
 }
 
 setupMocks();

@@ -28,6 +28,7 @@ function NewsSection() {
     const fetchArticles = async () => {
       const currentArticles = await getUserArticles();
       setArticles(currentArticles);
+      console.log(articles)
     };
 
     fetchArticles();

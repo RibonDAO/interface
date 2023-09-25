@@ -20,6 +20,7 @@ import { debugEnabled } from "config/debugEventsView/helpers";
 import CauseDonationProvider from "contexts/causeDonationContext";
 import CauseContributionProvider from "contexts/causeContributionContext";
 import UserLevelProvider from "contexts/userLevelContext";
+import { DEBUG_EVENTS_ENABLED } from "utils/constants";
 import RoutesComponent from "./config/routes";
 import GlobalStyle from "./styles/globalStyle";
 import theme from "./styles/theme";
@@ -31,8 +32,11 @@ function App() {
     if (
       process.env.NODE_ENV === "development" ||
       process.env.NODE_ENV === "test"
-    )
-      return;
+    ) {
+      if (DEBUG_EVENTS_ENABLED) {
+        growthbookSetFeatures();
+      }
+    }
 
     growthbookSetFeatures();
     // eslint-disable-next-line no-console

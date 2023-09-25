@@ -36,6 +36,8 @@ import PaymentInformationProvider from "contexts/paymentInformationContext";
 import useQueryParams from "hooks/useQueryParams";
 import RecurrencePage from "pages/promoters/CheckoutPage/RecurrencePage";
 import ContributionCanceledPage from "pages/promoters/ContributionCanceledPage";
+import { growthbook } from "services/growthbook";
+import ExperimentRouteComponent from "services/growthbook/ExperimentRouteComponent";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -46,6 +48,7 @@ function RoutesComponent(): JSX.Element {
     const { search, state } = location;
 
     logPageView(urlName, search, state);
+    growthbook.setURL(window.location.href);
   }, [location]);
 
   const params = useQueryParams();
@@ -126,9 +129,14 @@ function RoutesComponent(): JSX.Element {
       <Route path="/impact" exact>
         <Suspense fallback={<div />}>
           <WalletProvider>
-            <MainLayout outline>
-              <ImpactPage />
-            </MainLayout>
+            <ExperimentRouteComponent
+              featureFlagId="impact-page-feature-flag"
+              source="https://projetos.ribon.io/sobre"
+            >
+              <MainLayout outline>
+                <ImpactPage />
+              </MainLayout>
+            </ExperimentRouteComponent>
           </WalletProvider>
         </Suspense>
       </Route>

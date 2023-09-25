@@ -2188,17 +2188,17 @@
   resolved "https://registry.npmjs.org/@graphql-typed-document-node/core/-/core-3.1.1.tgz"
   integrity sha512-NQ17ii0rK1b34VZonlmT2QMJFI70m0TRwbknO/ihlbatXyaktDhN/98vBiUU6kNBPljqGqyIrl2T4nY2RpFANg==
 
-"@growthbook/growthbook-react@^0.17.0":
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/@growthbook/growthbook-react/-/growthbook-react-0.17.0.tgz#e70b9cb252f24377cd33768bdd617ee847bc7660"
-  integrity sha512-od+bSg3RD9AXfi/TWFDSzRaB6RuJLkUX5eFOZz8u8wL8yDbgd5RF9cwu4lQIF9/tyG1WLu4qipV+SM2v5s4BcQ==
+"@growthbook/growthbook-react@^0.18.0":
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/@growthbook/growthbook-react/-/growthbook-react-0.18.0.tgz#f7359c27068175a9838f2152eca575a7b9c7dba7"
+  integrity sha512-Nuyn6j3nmSNN7hMcc4OEl0IhMH2nQ40zVXDYuw0q4IgfNN3gWvA8UrUeqK/p1vevBKtErXNZmETIRYe4iVoNeg==
   dependencies:
-    "@growthbook/growthbook" "^0.27.0"
+    "@growthbook/growthbook" "^0.28.0"
 
-"@growthbook/growthbook@^0.27.0":
-  version "0.27.0"
-  resolved "https://registry.yarnpkg.com/@growthbook/growthbook/-/growthbook-0.27.0.tgz#5dff4029de202d56ee270e3bf794dad2eda0c624"
-  integrity sha512-gt/DWXfgyudY3gXAUjzKm9kMjVfCzfRc8d0nQQiXCP523ow23jThrmBzkRKCN+zxYVxUKcHjP9yjU9EKJqP4Fw==
+"@growthbook/growthbook@^0.28.0":
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/@growthbook/growthbook/-/growthbook-0.28.0.tgz#c6cf7d46aa7465be120ed98c05adba01fdf4635c"
+  integrity sha512-RnrP29yHfL12nmAxtPbyHlY70BSB2f/LIOrYaBhqn2oBNdeuAxwGt9FO40dDJh0W+opaG5EbiPvZUxsy8J0aAw==
   dependencies:
     dom-mutator "^0.5.0"
 

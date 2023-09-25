@@ -30,7 +30,6 @@ describe("NewsSection", () => {
   });
 
   describe("when user has not donated", () => {
-
     it("renders blocked section", async () => {
       (useCanDonate as jest.Mock).mockReturnValue({ canDonate: true });
 

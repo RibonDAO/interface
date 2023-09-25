@@ -22,15 +22,6 @@ function NewsSection() {
 
   const { getUserArticles } = useArticles();
 
-  console.log(
-    "articles",
-    articles,
-    "currentUser",
-    currentUser,
-    "isOnboarding",
-    isOnboarding,
-  );
-
   useEffect(() => {
     const fetchArticles = async () => {
       const currentArticles = await getUserArticles();
@@ -67,25 +58,21 @@ function NewsSection() {
     fetchFirstTimeSeeingOnboarding();
   }, []);
 
-  function renderPage() {
-    return (
-      <S.Container>
-        <S.ArticlesContainer>
-          {isOnboarding && <RibonArticleOnboarding />}
-          {articles &&
-            articles.map((article) => (
-              <ArticleLayout
-                key={article.id}
-                article={article}
-                readMoreText={t("openPostButtonText")}
-              />
-            ))}
-        </S.ArticlesContainer>
-      </S.Container>
-    );
-  }
-
-  return renderPage();
+  return (
+    <S.Container>
+      <S.ArticlesContainer>
+        {isOnboarding && <RibonArticleOnboarding />}
+        {articles &&
+          articles.map((article) => (
+            <ArticleLayout
+              key={article.id}
+              article={article}
+              readMoreText={t("openPostButtonText")}
+            />
+          ))}
+      </S.ArticlesContainer>
+    </S.Container>
+  );
 }
 
 export default NewsSection;

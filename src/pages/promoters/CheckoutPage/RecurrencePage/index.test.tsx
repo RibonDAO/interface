@@ -15,6 +15,7 @@ jest.mock("hooks/usePaymentParams", () => ({
     targetId: "1",
     offer: "0",
     paymentMethodIndex: "0",
+    language: "en-US",
   }),
 }));
 

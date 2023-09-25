@@ -132,6 +132,16 @@ export const TASKS = [
       return true;
     },
   },
+  {
+    id: "ee397e16-de1b-11ed-b5ea-0242ac120002",
+    title: "check_daily_news",
+    actions: ["for_you_news_tab_view"],
+    type: "daily",
+    navigationCallback: "ForYouScreen",
+    isVisible(this: Task) {
+      return true;
+    },
+  },
 ];
 
 export const useTasks = (type: string) => {

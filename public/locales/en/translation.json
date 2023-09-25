@@ -577,7 +577,8 @@
         "start_contribution": "Understand what it means to be a promoter",
         "become_a_promoter": "Become a promoter of a cause",
         "view_about_page": "Understand from where the tickets come",
-        "survey_form": "Get an extra ticket responding our survey"
+        "survey_form": "Get an extra ticket responding our survey",
+        "check_daily_news": "Check daily posts"
       },
       "cardsStatisticsSection": {
         "dailyTasksTitle": "daily tasks completed",

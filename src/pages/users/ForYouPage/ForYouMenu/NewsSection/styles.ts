@@ -21,9 +21,13 @@ export const Image = styled.img``;
 export const Title = styled.p`
   ${stylizedDisplaySm}
 
-  margin-top: ${({ theme }) => theme.spacing(24)};
+  margin-top: 20px;
   text-align: center;
   color: ${({ theme }) => theme.colors.brand.primary[900]};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    margin-top: ${({ theme }) => theme.spacing(24)};
+  }
 `;
 
 export const Text = styled.h2`
@@ -45,19 +49,23 @@ export const Button = styled.button`
   ${defaultBodyMdSemibold}
 
   width: 328px;
-  margin-top: ${({ theme }) => theme.spacing(32)};
   padding: ${({ theme }) => theme.spacing(12, 16)};
   border: none;
   border-radius: ${({ theme }) => theme.spacing(4)};
   background-color: ${({ theme }) => theme.colors.brand.primary[600]};
   color: ${({ theme }) => theme.colors.neutral10};
+  margin-top: ${({ theme }) => theme.spacing(32)};
 `;
 
 export const BlockedContainer = styled.div`
   max-width: 328px;
-  margin-top: 56px;
+  margin-top: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
   align-self: center;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    margin-top: 56px;
+  }
 `;

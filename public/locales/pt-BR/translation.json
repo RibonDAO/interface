@@ -264,6 +264,14 @@
         "description": "Parabéns! Você já impactou {{impactedLives}} pessoas com as suas doações e liberou a conquista ‘Nível {{level}}’.",
         "notAchievedDescription": "Impacte pelo menos {{impactedLives}} pessoas com as suas doações na Ribon para liberar a conquista ‘Nível {{level}}’."
       }
+    },
+    "impactMoreLivesCTA": {
+      "title": "Você já ajudou {{lives}} vidas, parabéns!",
+      "subtitle": "Com apenas {{value}} você pode mudar a vida de {{lives}} pessoas e subir de nível de doador!",
+      "cardTitle": "Doe {{value}} e impacte",
+      "cardSubtitle": "+{{value}} pessoas",
+      "description": "com {{impact}}",
+      "buttonText": "Doar {{value}}"
     }
   },
   "promoters": {
@@ -412,7 +420,8 @@
       "donatingTo": "Doando para ",
       "recurrentDonationDescription": "Contribuir mensalmente",
       "uniqueDonationDescription": "Contribuir uma vez",
-      "selectValue": "Selecione o valor"
+      "selectValue": "Selecione o valor",
+      "sealText": "Transação segura processada por"
     },
     "monthlyContributionsPage": {
       "title": "Contribuições mensais",
@@ -568,7 +577,8 @@
         "make_contribution": "Fazer uma doação paga",
         "start_contribution": "Entenda o que é ser um promotor",
         "become_a_promoter": "Vire o promotor de uma causa",
-        "view_about_page": "Entenda de onde vem os tickets"
+        "view_about_page": "Entenda de onde vem os tickets",
+        "survey_form": "Ganhe um ticket extra respondendo nossa pesquisa"
       },
       "cardsStatisticsSection": {
         "dailyTasksTitle": "tarefas diárias completas",

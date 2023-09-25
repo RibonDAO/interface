@@ -16,7 +16,9 @@ function UserSupportItem(): JSX.Element {
   const { currentLang } = useLanguage();
 
   const handleClick = () => {
-    logEvent("UserSupportBtn_click");
+    logEvent("supportBtn_click", {
+      from: "config_page",
+    });
     if (currentLang === Languages.PT) {
       window.open(t("userSupportLink"), "_blank");
     } else {

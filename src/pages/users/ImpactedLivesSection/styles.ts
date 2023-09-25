@@ -24,7 +24,7 @@ export const Container = styled.div`
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     width: calc(136% + 80px);
     min-height: 166px;
-    margin: 0 calc(-28% - 80px) 32px -28%;
+    margin: 0 calc(-28% - 80px) 40px -28%;
     padding-right: 14%;
     padding-left: 28%;
     justify-content: flex-start;

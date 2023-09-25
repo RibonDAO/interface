@@ -37,7 +37,7 @@ export const PayableName = styled.span`
 `;
 
 export const PaymentMethods = styled.div`
-  margin-bottom: ${({ theme }) => theme.spacing(24)};
+  margin-bottom: ${({ theme }) => theme.spacing(12)};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     margin-bottom: ${({ theme }) => theme.spacing(0)};

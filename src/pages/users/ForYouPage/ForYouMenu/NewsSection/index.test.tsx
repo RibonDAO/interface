@@ -1,32 +1,27 @@
+import { useCanDonate } from "@ribon.io/shared";
 import { renderComponent, waitForPromises } from "config/testUtils";
 import {
   expectTextNotToBeInTheDocument,
+  expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
 import ArticleFactory from "config/testUtils/factories/articleFactory";
-// import { mockRequest } from "config/testUtils/test-helper";
 import NewsSection from ".";
 
 const mockArticle = ArticleFactory({ title: "Environment", id: 1 });
+
 jest.mock("@ribon.io/shared/hooks", () => ({
   __esModule: true,
   ...jest.requireActual("@ribon.io/shared/hooks"),
   useArticles: () => ({
     getUserArticles: () => [mockArticle],
   }),
+  useCanDonate: jest.fn(),
 }));
 
-// jest.mock("@ribon.io/shared/hooks", () => ({
-//   __esModule: true,
-//   ...jest.requireActual("@ribon.io/shared/hooks"),
-//   useCanDonate: () => ({
-//     canDonate: true,
-//   }),
-// }));
 describe("NewsSection", () => {
-
   describe("when user has donated", () => {
-
-    it("renders news", async() => {
+    it("renders news", async () => {
+      (useCanDonate as jest.Mock).mockReturnValue({ canDonate: false });
       renderComponent(<NewsSection />);
       await waitForPromises();
 
@@ -34,15 +29,14 @@ describe("NewsSection", () => {
     });
   });
 
-  // describe("when user can't donate", () => {
-  //   beforeEach(() => {
-      
-  //   });
+  describe("when user has not donated", () => {
+    it("renders blocked section", async () => {
+      (useCanDonate as jest.Mock).mockReturnValue({ canDonate: true });
 
-  //   it("renders blocked section", () => {
-  //     renderComponent(<NewsSection />);
+      renderComponent(<NewsSection />);
+      await waitForPromises();
 
-  //     expectTextToBeInTheDocument("Donate to read good news");
-  //   });
-  // });
+      expectTextToBeInTheDocument("Donate to read good news");
+    });
+  });
 });

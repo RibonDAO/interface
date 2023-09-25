@@ -49,12 +49,12 @@ export const Button = styled.button`
   ${defaultBodyMdSemibold}
 
   width: 328px;
+  margin-top: ${({ theme }) => theme.spacing(32)};
   padding: ${({ theme }) => theme.spacing(12, 16)};
   border: none;
   border-radius: ${({ theme }) => theme.spacing(4)};
   background-color: ${({ theme }) => theme.colors.brand.primary[600]};
   color: ${({ theme }) => theme.colors.neutral10};
-  margin-top: ${({ theme }) => theme.spacing(32)};
 `;
 
 export const BlockedContainer = styled.div`

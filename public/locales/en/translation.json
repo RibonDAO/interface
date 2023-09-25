@@ -198,7 +198,7 @@
       "userSupportLink": "https://api.whatsapp.com/send/?phone=554896605461&text=Hii+Ribon%2C+let’s+talk%3F+&type=phone_number&app_absent=0"
     },
     "integrationBanner": {
-      "title":"Ribon + {{integrationName}}",
+      "title": "Ribon + {{integrationName}}",
       "text": "Here at Ribon you donate tickets gotten from {{integrationName}}"
     }
   },
@@ -558,7 +558,12 @@
       "getAppButtonText": "Get app",
       "title": "Read good news!",
       "description": "Download our app and check our selection of heart warming news",
-      "buttonDownloadApp": "Download and read news"
+      "buttonDownloadApp": "Download and read news",
+      "openPostButtonText": "See article",
+      "onboarding": {
+        "title": "Welcome! Here you'll find what's new at Ribon and the good news that we selected to warm your heart.",
+        "publishedAt": "Now"
+      }
     },
     "tasksSection": {
       "title": "Tasks",

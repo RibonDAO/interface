@@ -197,7 +197,7 @@
       "userSupportLink": "https://api.whatsapp.com/send/?phone=554896605461&text=Oii+Ribon%2C+vamos+conversar%3F+&type=phone_number&app_absent=0"
     },
     "integrationBanner": {
-      "title":"Ribon + {{integrationName}}",
+      "title": "Ribon + {{integrationName}}",
       "text": "Doe aqui na Ribon o ticket que você recebeu de {{integrationName}}"
     }
   },
@@ -558,7 +558,12 @@
       "getAppButtonText": "Baixar app",
       "title": "Só notícia boa!",
       "description": "Baixe nosso app e acesse uma seleção de notícias que vão aquecer seu coração",
-      "buttonDownloadApp": "Baixe e veja as notícias"
+      "buttonDownloadApp": "Baixe e veja as notícias",
+      "openPostButtonText": "Ver publicação",
+      "onboarding": {
+        "publishedAt": "Agora",
+        "title": "Seja bem vindo! Aqui você vê as novidades da Ribon e boas notícias escolhidas pra aquecer seu coração."
+      }
     },
     "tasksSection": {
       "title": "Tarefas",

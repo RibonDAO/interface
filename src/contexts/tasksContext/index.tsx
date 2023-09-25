@@ -60,11 +60,7 @@ function TasksProvider({ children }: any) {
   const integrationId = useIntegrationId();
   const { search } = useLocation();
   const externalId = extractUrlValue("external_id", search);
-  const { donateApp, canDonate } = useCanDonate(
-    integrationId,
-    PLATFORM,
-    externalId,
-  );
+  const { donateApp } = useCanDonate(integrationId, PLATFORM, externalId);
 
   const toast = useToast();
 
@@ -206,19 +202,6 @@ function TasksProvider({ children }: any) {
       refetchTasksStatistics();
     }
   }, [buildTasksState, tasksState]);
-
-  useEffect(() => {
-    const taskDownloadApp = TASKS.filter(
-      (task) => task.title === "check_daily_news",
-    )[0];
-
-    const done = tasksState?.find(
-      (task) => task.id === taskDownloadApp.id,
-    )?.done;
-    if (!canDonate && !done) {
-      registerAction("for_you_news_tab_view");
-    }
-  }, []);
 
   const tasksObject: ITasksContext = useMemo(
     () => ({

@@ -12,6 +12,7 @@ export type Props = {
   disabled?: boolean;
   checked?: boolean;
   onClick?: (...args: any[]) => void;
+  state?: any;
 };
 
 function CheckBox({
@@ -21,6 +22,7 @@ function CheckBox({
   navigationCallback,
   disabled,
   checked = false,
+  state,
   onClick = () => {},
 }: Props): JSX.Element {
   const [isChecked, setChecked] = useState(checked);
@@ -53,7 +55,7 @@ function CheckBox({
         <S.NavigationButton
           onClick={() => {
             onClick();
-            navigateTo(navigationCallback);
+            navigateTo({ pathname: navigationCallback, state });
           }}
         >
           <Icon

@@ -6,7 +6,7 @@
     "@amplitude/analytics-browser": "^1.6.8",
     "@apollo/client": "^3.6.9",
     "@growthbook/growthbook-react": "^0.17.0",
-    "@ribon.io/shared": "^1.0.91",
+    "@ribon.io/shared": "^1.0.93",
     "@sentry/react": "^6.16.1",
     "@stripe/react-stripe-js": "^2.1.1",
     "@stripe/stripe-js": "^1.54.1",

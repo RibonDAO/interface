@@ -5,33 +5,18 @@ import {
 } from "config/testUtils/expects";
 import NewsSection from ".";
 
-const mockGetArticles = {
-  functions: {
-    getUserArticles: async () => [
-      {
-        id: 1,
-        title: "title",
-        author: {
-          id: 1,
-          name: "Ribon",
-        },
-        visible: true,
-        publishedAt: new Date().toISOString(),
-        publishedAtInWords: "text",
-        createdAt: "2021-09-01T00:00:00.000Z",
-        updatedAt: "2021-09-01T00:00:00.000Z",
-        imageUrl:
-          "https://i.pinimg.com/564x/59/19/d0/5919d00855a72ea34f9f67749779c55c.jpg",
-      },
-    ],
-  },
-};
+const mockArticle = ArticleFactory({ title: "Environment", id: 1 });
+  const data = [mockArticle];
+  const user = userFactory({ id: 1 });
+  mockRequest("/api/v1/news/articles_since_user_creation", {
+    method: "GET",
+    payload: {
+      mockArticle,
+    },
+  });
 
-jest.mock("@ribon.io/shared/hooks", () => ({
-  __esModule: true,
-  ...jest.requireActual("@ribon.io/shared/hooks"),
-  useArticles: () => mockGetArticles,
-}));
+  beforeEach(async () => {
+    articlesApi.getUserArticlesList = jest.fn(() => ({ data } as any));
 
 jest.mock("@ribon.io/shared/lib", () => ({
   __esModule: true,

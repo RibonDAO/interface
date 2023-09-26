@@ -14,7 +14,6 @@
       "confirmModalPrimaryButtonText": "Confirm",
       "confirmModalSecondaryButtonText": "Cancel",
       "donateText": "Donate ticket",
-      "doMore": "Do more and donate {{value}}",
       "donateBlockedText": "No tickets",
       "impactPrefix": "Donate",
       "pageTitle": "Donate to a project",
@@ -438,8 +437,6 @@
       }
     },
     "checkoutPage": {
-      "thankForContribute": "Thank you for contribute!",
-      "thankForContributeDescription": "You will receive your next free ticket within a few hours.",
       "changeCurrency": "Change currency",
       "back": "Back",
       "monthlyContribution": "Contributing monthly",

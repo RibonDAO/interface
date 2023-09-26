@@ -140,8 +140,8 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
                     }
                     onClickImage={() => handleImageClick(nonProfit)}
                     softDisabled={!canDonateAndHasVoucher}
-                    infoTextLeft={nonProfit.name}
-                    infoTextRight={nonProfit.cause?.name}
+                    infoTextTop={nonProfit.name}
+                    infoTextBottom={nonProfit.cause?.name}
                     infoText={
                       nonProfit.stories?.length ? t("learnMore") : undefined
                     }

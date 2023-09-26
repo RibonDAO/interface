@@ -131,7 +131,7 @@ function RoutesComponent(): JSX.Element {
           <WalletProvider>
             <ExperimentRouteComponent
               featureFlagId="impact-page-feature-flag"
-              source="https://projetos.ribon.io/sobre"
+              source="https://projetos.ribon.io/impact"
             >
               <MainLayout outline>
                 <ImpactPage />
@@ -165,17 +165,22 @@ function RoutesComponent(): JSX.Element {
         <Suspense fallback={<div />}>
           <NetworkProvider>
             <WalletProvider>
-              <WalletLayout
-                hideWallet={params.get("payment_method") !== "crypto"}
+              <ExperimentRouteComponent
+                featureFlagId="support-cause-page-feature-flag"
+                source="https://projetos.ribon.io/support-cause"
               >
-                <PaymentInformationProvider>
-                  <CardPaymentInformationProvider>
-                    <CryptoPaymentProvider>
-                      <SupportCausePage />
-                    </CryptoPaymentProvider>
-                  </CardPaymentInformationProvider>
-                </PaymentInformationProvider>
-              </WalletLayout>
+                <WalletLayout
+                  hideWallet={params.get("payment_method") !== "crypto"}
+                >
+                  <PaymentInformationProvider>
+                    <CardPaymentInformationProvider>
+                      <CryptoPaymentProvider>
+                        <SupportCausePage />
+                      </CryptoPaymentProvider>
+                    </CardPaymentInformationProvider>
+                  </PaymentInformationProvider>
+                </WalletLayout>
+              </ExperimentRouteComponent>
             </WalletProvider>
           </NetworkProvider>
         </Suspense>
@@ -211,15 +216,20 @@ function RoutesComponent(): JSX.Element {
         <Suspense fallback={<div />}>
           <NetworkProvider>
             <WalletProvider>
-              <WalletLayout hideWallet>
-                <PaymentInformationProvider>
-                  <CardPaymentInformationProvider>
-                    <CryptoPaymentProvider>
-                      <SupportNonProfitPage />
-                    </CryptoPaymentProvider>
-                  </CardPaymentInformationProvider>
-                </PaymentInformationProvider>
-              </WalletLayout>
+              <ExperimentRouteComponent
+                featureFlagId="giving-page-feature-flag"
+                source="https://projetos.ribon.io/support-non-profit"
+              >
+                <WalletLayout hideWallet>
+                  <PaymentInformationProvider>
+                    <CardPaymentInformationProvider>
+                      <CryptoPaymentProvider>
+                        <SupportNonProfitPage />
+                      </CryptoPaymentProvider>
+                    </CardPaymentInformationProvider>
+                  </PaymentInformationProvider>
+                </WalletLayout>
+              </ExperimentRouteComponent>
             </WalletProvider>
           </NetworkProvider>
         </Suspense>

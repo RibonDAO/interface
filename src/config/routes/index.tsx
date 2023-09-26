@@ -28,6 +28,7 @@ import AboutPage from "pages/promoters/AboutPage";
 import LoadingPage from "pages/donations/LoadingPage";
 import ContributionStatsPage from "pages/users/ContributionStatsPage";
 import ReturnToIntegrationPage from "pages/donations/ReturnToIntegrationPage";
+import SurveyPage from "pages/promoters/SurveyPage";
 import MonthlyContributionsPage from "pages/promoters/MonthlyContributionsPage";
 import StripeProvider from "contexts/stripeContext";
 import PixPaymentInformationProvider from "contexts/pixPaymentInformationContext";
@@ -284,6 +285,12 @@ function RoutesComponent(): JSX.Element {
       <Route path="/monthly-contributions" exact>
         <Suspense fallback={<div />}>
           <MonthlyContributionsPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/survey" exact>
+        <Suspense fallback={<div />}>
+          <SurveyPage />
         </Suspense>
       </Route>
     </Switch>

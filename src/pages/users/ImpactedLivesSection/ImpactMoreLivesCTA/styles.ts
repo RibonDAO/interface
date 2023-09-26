@@ -6,6 +6,15 @@ import {
 
 export const Container = styled.div``;
 
+export const UserProgressContainer = styled.div`
+  width: 100%;
+  margin-top: ${({ theme }) => theme.spacing(24)};
+  
+  p {
+    color: ${({ theme }) => theme.colors.neutral[800]};
+  }
+`;
+
 export const Title = styled.h1`
   ${defaultBodyMdSemibold}
 

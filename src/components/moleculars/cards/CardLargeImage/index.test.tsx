@@ -44,4 +44,16 @@ describe("CardLargeImage", () => {
       expect(mockFn).toHaveBeenCalled();
     });
   });
+
+  describe("when children is passed", () => {
+    it("renders children", () => {
+      renderComponent(
+        <CardLargeImage title="title" image="image">
+          <p>children</p>
+        </CardLargeImage>,
+      );
+
+      expectTextToBeInTheDocument("children");
+    });
+  });
 });

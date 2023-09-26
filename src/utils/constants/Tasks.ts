@@ -97,6 +97,32 @@ export const TASKS = [
     },
   },
   {
+    id: "cad1bf70-6728-4900-83b3-f41171145cf2",
+    title: "survey_form",
+    actions: ["survey_form_view"],
+    type: "daily",
+    navigationCallback: "/survey",
+    isVisible(this: Task, params?: any) {
+      const taskState = params?.state.find((obj: any) => obj.id === this.id);
+
+      const lastCompletedAt = new Date(
+        taskState?.lastCompletedAt?.slice(0, 19),
+      );
+      const timesCompleted = taskState?.timesCompleted || 0;
+      const taskDone = taskState?.done;
+
+      const completedDay = lastCompletedAt < beginningOfToday();
+
+      if (timesCompleted === 0 && !taskDone) {
+        return true;
+      } else if (timesCompleted === 1 && taskDone && !completedDay) {
+        return true;
+      }
+
+      return false;
+    },
+  },
+  {
     id: "ed180aa8-e8e7-11ed-a05b-0242ac120003",
     title: "make_contribution",
     actions: ["contribution_done_page_view"],

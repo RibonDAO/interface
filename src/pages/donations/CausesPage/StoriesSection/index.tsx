@@ -16,7 +16,6 @@ function StoriesSection({
   visible,
   setVisible,
 }: Props): JSX.Element {
-
   const profileData = {
     name: nonProfit.name,
     subtitle: nonProfit.cause.name,

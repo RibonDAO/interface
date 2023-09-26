@@ -1,7 +1,6 @@
 import CardStories from "components/moleculars/cards/CardStories";
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { NonProfit } from "@ribon.io/shared/types";
-import { useTranslation } from "react-i18next";
 import * as S from "./styles";
 
 export type Props = {
@@ -14,24 +13,15 @@ export type Props = {
 
 function StoriesSection({
   nonProfit,
-  canDonateAndHasVoucher,
   visible,
   setVisible,
-  onButtonClick,
 }: Props): JSX.Element {
-  const { t } = useTranslation("translation", {
-    keyPrefix: "donations.storiesPage",
-  });
 
   const profileData = {
     name: nonProfit.name,
     subtitle: nonProfit.cause.name,
     logo: nonProfit.logo,
   };
-
-  const onClickButton = useCallback(() => {
-    if (onButtonClick) onButtonClick();
-  }, [onButtonClick]);
 
   const sortStories = nonProfit?.stories?.sort(
     (a, b) => (a.position || a.id) - (b.position || b.id),
@@ -55,11 +45,6 @@ function StoriesSection({
               onAllStoriesEnd={() => setVisible(false)}
               onCloseButtonClick={() => setVisible(false)}
               profileData={profileData}
-              ctaData={{
-                text: t("ctaText"),
-                onClick: onClickButton,
-                visible: canDonateAndHasVoucher,
-              }}
             />
           )}
         </S.Container>

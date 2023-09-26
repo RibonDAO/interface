@@ -25,7 +25,6 @@ export type Props = {
 function CardStories({
   stories,
   profileData,
-  ctaData,
   onAllStoriesEnd,
   onCloseButtonClick,
 }: Props): JSX.Element {

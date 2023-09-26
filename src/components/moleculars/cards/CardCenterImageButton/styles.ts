@@ -1,6 +1,6 @@
 import { rgba } from "lib/hexToRgba";
 import styled from "styled-components";
-import { defaultBodyMdSemibold } from "styles/typography/default";
+import { defaultBodyMdSemibold, defaultBodySmSemibold, defaultBodyXsRegular } from "styles/typography/default";
 
 export const Container = styled.div<{ fullWidth: boolean }>`
   width: 100%;
@@ -106,11 +106,12 @@ export const ContentSection = styled.div`
 `;
 
 export const Info = styled.p`
+  ${defaultBodySmSemibold}
   text-align: center;
   color: ${({ theme }) => theme.colors.neutral[500]};
-
-  &:not(:first-child) {
-    margin-left: ${({ theme }) => theme.spacing(4)};
+  
+  &:last-child {
+    ${defaultBodyXsRegular}
   }
 `;
 
@@ -127,6 +128,13 @@ export const InfoContainer = styled.div`
   width: 100%;
   margin-bottom: ${({ theme }) => theme.spacing(16)};
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+export const InfoIcon = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export const ButtonContainer = styled.div`

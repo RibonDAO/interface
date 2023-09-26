@@ -560,7 +560,14 @@
       "title": "Donate to read good news",
       "text": "Donate your ticket and get access to our selection of heart warming news",
       "donateButtonText": "Donate now",
-      "openPostButtonText": "See article"
+
+      "description": "Download our app and check our selection of heart warming news",
+      "buttonDownloadApp": "Download and read news",
+      "openPostButtonText": "See article",
+      "onboarding": {
+        "title": "Welcome! Here you'll find what's new at Ribon and the good news that we selected to warm your heart.",
+        "publishedAt": "Now"
+      }
     },
     "tasksSection": {
       "title": "Tasks",

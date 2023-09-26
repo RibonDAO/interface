@@ -15,7 +15,6 @@
       "confirmModalSecondaryButtonText": "Cancelar",
       "donateText": "Doar ticket",
       "donateBlockedText": "Sem tickets",
-      "doMore": "Faça mais e doe {{value}}",
       "impactPrefix": "Doe",
       "pageTitle": "Doe para um projeto",
       "donationError": "Não foi possível doar.",
@@ -438,8 +437,6 @@
     },
 
     "checkoutPage": {
-      "thankForContribute": "Obrigado por contribuir!",
-      "thankForContributeDescription": "Você receberá seu próximo ticket grátis dentro de algumas horas.",
       "changeCurrency": "Mudar moeda",
       "back": "Voltar",
       "monthlyContribution": "Contribuindo mensalmente",
@@ -560,10 +557,9 @@
     },
     "newsSection": {
       "getAppButtonText": "Baixar app",
-      "title": "Doe e veja boas notícias",
-      "text": "Doe seu ticket e acesse nossa seleção de notícias que vão aquecer seu coração",
-      "donateButtonText": "Doar agora",
-      "openPostButtonText": "Ver publicação"
+      "title": "Só notícia boa!",
+      "description": "Baixe nosso app e acesse uma seleção de notícias que vão aquecer seu coração",
+      "buttonDownloadApp": "Baixe e veja as notícias"
     },
     "tasksSection": {
       "title": "Tarefas",

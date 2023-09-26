@@ -557,10 +557,16 @@
     },
     "newsSection": {
       "getAppButtonText": "Baixar app",
+      "description": "Baixe nosso app e acesse uma seleção de notícias que vão aquecer seu coração",
+      "buttonDownloadApp": "Baixe e veja as notícias",
+      "openPostButtonText": "Ver publicação",
       "title": "Doe e veja boas notícias",
       "text": "Doe seu ticket e acesse nossa seleção de notícias que vão aquecer seu coração",
       "donateButtonText": "Doar agora",
-      "openPostButtonText": "Ver publicação"
+      "onboarding": {
+        "publishedAt": "Agora",
+        "title": "Seja bem vindo! Aqui você vê as novidades da Ribon e boas notícias escolhidas pra aquecer seu coração."
+      }
     },
     "tasksSection": {
       "title": "Tarefas",

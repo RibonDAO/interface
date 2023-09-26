@@ -1,3 +1,4 @@
+import { setLocalStorageItem } from "@ribon.io/shared/lib";
 import { useCanDonate } from "@ribon.io/shared";
 import { renderComponent, waitForPromises } from "config/testUtils";
 import {
@@ -38,5 +39,24 @@ describe("NewsSection", () => {
 
       expectTextToBeInTheDocument("Donate to read good news");
     });
+  });
+
+  it("should render without show onboarding post", async () => {
+    (useCanDonate as jest.Mock).mockReturnValue({ canDonate: true });
+    setLocalStorageItem("IS_USER_ONBOARDING_1", "3");
+    renderComponent(<NewsSection />, {
+      currentUserProviderValue: {
+        currentUser: {
+          id: 1,
+          email: "email@gmail.com",
+        },
+      },
+    });
+
+    await waitForPromises();
+
+    expectTextNotToBeInTheDocument(
+      "Welcome! Here you'll find what's new at Ribon and the good news that we selected to warm your heart.",
+    );
   });
 });

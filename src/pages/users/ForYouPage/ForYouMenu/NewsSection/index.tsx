@@ -4,6 +4,8 @@ import { logEvent } from "lib/events";
 import ArticleLayout from "components/moleculars/layouts/ArticleLayout";
 import { useArticles, useCanDonate } from "@ribon.io/shared/hooks";
 import { Article } from "@ribon.io/shared/types";
+import { getLocalStorageItem, setLocalStorageItem } from "@ribon.io/shared/lib";
+import { useCurrentUser } from "contexts/currentUserContext";
 import useNavigation from "hooks/useNavigation";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import extractUrlValue from "lib/extractUrlValue";
@@ -11,13 +13,18 @@ import { PLATFORM } from "utils/constants";
 import { useTasksContext } from "contexts/tasksContext";
 import NewsImage from "./assets/news-image.svg";
 import * as S from "./styles";
+import RibonArticleOnboarding from "./RibonArticleComponent";
 
 function NewsSection() {
   const { t } = useTranslation("translation", {
     keyPrefix: "forYouPage.newsSection",
   });
 
+  const IS_USER_ONBOARDING = "IS_USER_ONBOARDING";
+
   const [articles, setArticles] = useState<Article[]>([]);
+  const [isOnboarding, setIsOnboarding] = useState(false);
+  const { currentUser } = useCurrentUser();
 
   const { getUserArticles } = useArticles();
   const integrationId = useIntegrationId();
@@ -40,6 +47,29 @@ function NewsSection() {
   }, []);
 
   useEffect(() => {
+    const fetchFirstTimeSeeingOnboarding = async () => {
+      const firstTimeSeeingOnboarding = await getLocalStorageItem(
+        `${IS_USER_ONBOARDING}_${currentUser?.id}`,
+      );
+
+      if (
+        firstTimeSeeingOnboarding === null ||
+        Number(firstTimeSeeingOnboarding) < 3
+      ) {
+        await setLocalStorageItem(
+          `${IS_USER_ONBOARDING}_${currentUser?.id}`,
+          String(Number(firstTimeSeeingOnboarding) + 1),
+        );
+        setIsOnboarding(true);
+      } else {
+        setIsOnboarding(false);
+      }
+    };
+
+    fetchFirstTimeSeeingOnboarding();
+  }, []);
+
+  useEffect(() => {
     if (!canDonate) {
       registerAction("for_you_news_tab_view");
     }
@@ -50,6 +80,7 @@ function NewsSection() {
       return (
         <S.Container>
           <S.ArticlesContainer>
+            {isOnboarding && <RibonArticleOnboarding />}
             {articles &&
               articles.map((article) => (
                 <ArticleLayout
@@ -80,7 +111,6 @@ function NewsSection() {
       </S.BlockedContainer>
     );
   }
-
   return renderPage();
 }
 

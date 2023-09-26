@@ -63,15 +63,6 @@ function CardStories({
           </S.ProfileInfo>
         </S.ProfileDataWrapper>
       )}
-      {ctaData && ctaData.visible && (
-        <S.CtaWrapper>
-          <S.CtaButton
-            size="small"
-            onClick={ctaData.onClick}
-            text={ctaData.text}
-          />
-        </S.CtaWrapper>
-      )}
       <S.CloseButton onClick={() => onCloseButtonClick()} src={closeIcon} />
     </S.Container>
   );

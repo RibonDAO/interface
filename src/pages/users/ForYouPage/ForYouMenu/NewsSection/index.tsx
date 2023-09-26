@@ -10,6 +10,7 @@ import useNavigation from "hooks/useNavigation";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import extractUrlValue from "lib/extractUrlValue";
 import { PLATFORM } from "utils/constants";
+import { useTasksContext } from "contexts/tasksContext";
 import NewsImage from "./assets/news-image.svg";
 import * as S from "./styles";
 import RibonArticleOnboarding from "./RibonArticleComponent";
@@ -30,6 +31,7 @@ function NewsSection() {
   const { history, navigateTo } = useNavigation();
   const externalId = extractUrlValue("external_id", history.location.search);
   const { canDonate } = useCanDonate(integrationId, PLATFORM, externalId);
+  const { registerAction } = useTasksContext();
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -66,6 +68,12 @@ function NewsSection() {
 
     fetchFirstTimeSeeingOnboarding();
   }, []);
+
+  useEffect(() => {
+    if (!canDonate) {
+      registerAction("for_you_news_tab_view");
+    }
+  }, [canDonate]);
 
   function renderPage() {
     if (!canDonate) {

@@ -42,6 +42,7 @@ describe("NewsSection", () => {
   });
 
   it("should render without show onboarding post", async () => {
+    (useCanDonate as jest.Mock).mockReturnValue({ canDonate: true });
     setLocalStorageItem("IS_USER_ONBOARDING_1", "3");
     renderComponent(<NewsSection />, {
       currentUserProviderValue: {

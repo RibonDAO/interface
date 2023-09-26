@@ -98,6 +98,11 @@ function MonthlyTasksSection() {
                     ? task?.navigationCallback
                     : undefined
                 }
+                state={
+                  !tasksState.find((obj) => obj.id === task.id)?.done
+                    ? task?.state
+                    : undefined
+                }
                 disabled
                 checked={tasksState.find((obj) => obj.id === task.id)?.done}
               />

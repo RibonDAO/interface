@@ -33,9 +33,8 @@ function App() {
       process.env.NODE_ENV === "development" ||
       process.env.NODE_ENV === "test"
     ) {
-      if (DEBUG_EVENTS_ENABLED) {
-        growthbookSetFeatures();
-      }
+      if (DEBUG_EVENTS_ENABLED) growthbookSetFeatures();
+      return;
     }
 
     growthbookSetFeatures();

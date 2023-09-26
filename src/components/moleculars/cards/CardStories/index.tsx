@@ -25,7 +25,6 @@ export type Props = {
 function CardStories({
   stories,
   profileData,
-  ctaData,
   onAllStoriesEnd,
   onCloseButtonClick,
 }: Props): JSX.Element {
@@ -62,15 +61,6 @@ function CardStories({
             <S.SmallInfo>{profileData.subtitle}</S.SmallInfo>
           </S.ProfileInfo>
         </S.ProfileDataWrapper>
-      )}
-      {ctaData && ctaData.visible && (
-        <S.CtaWrapper>
-          <S.CtaButton
-            size="small"
-            onClick={ctaData.onClick}
-            text={ctaData.text}
-          />
-        </S.CtaWrapper>
       )}
       <S.CloseButton onClick={() => onCloseButtonClick()} src={closeIcon} />
     </S.Container>

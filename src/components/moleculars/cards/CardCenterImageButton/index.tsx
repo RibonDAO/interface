@@ -53,7 +53,7 @@ function CardCenterImageButton({
               <S.Icon src={securityIcon} />
             </S.InfoIcon>
           )}
-          {infoTextRight && <S.Info>{infoTextRight.trim()}</S.Info>}
+          {infoTextRight && <S.Info>{infoTextRight}</S.Info>}
         </S.InfoContainer>
         <S.ButtonContainer>
           <Button

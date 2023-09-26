@@ -36,7 +36,6 @@ import PaymentInformationProvider from "contexts/paymentInformationContext";
 import useQueryParams from "hooks/useQueryParams";
 import RecurrencePage from "pages/promoters/CheckoutPage/RecurrencePage";
 import ContributionCanceledPage from "pages/promoters/ContributionCanceledPage";
-import { growthbook } from "services/growthbook";
 import ExperimentRouteComponent from "services/growthbook/ExperimentRouteComponent";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
@@ -48,7 +47,6 @@ function RoutesComponent(): JSX.Element {
     const { search, state } = location;
 
     logPageView(urlName, search, state);
-    growthbook.setURL(window.location.href);
   }, [location]);
 
   const params = useQueryParams();

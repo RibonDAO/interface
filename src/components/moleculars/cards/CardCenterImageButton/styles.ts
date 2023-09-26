@@ -107,9 +107,10 @@ export const ContentSection = styled.div`
 
 export const Info = styled.p`
   ${defaultBodySmSemibold}
+  
   text-align: center;
   color: ${({ theme }) => theme.colors.neutral[500]};
-  
+
   &:last-child {
     ${defaultBodyXsRegular}
   }

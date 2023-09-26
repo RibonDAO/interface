@@ -70,24 +70,6 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
   };
 
   function handleButtonClick(nonProfit: NonProfit, from: string) {
-    if (buttonVariation.value !== "control") {
-      const searchParams = new URLSearchParams({
-        integration_id: integrationId?.toString() || "",
-        offer: currentOffer()?.priceCents.toString() ?? "0",
-        target: "non_profit",
-        target_id: nonProfit.id.toString(),
-        currency: currentLang === "pt-BR" ? "BRL" : "USD",
-        subscription: "false",
-        from: "donations",
-      });
-
-      navigateTo({
-        pathname: "/promoters/checkout",
-        search: searchParams.toString(),
-      });
-      return;
-    }
-
     if (canDonateAndHasVoucher) {
       logEvent("donateTicketBtn_start", {
         nonProfitId: nonProfit.id,
@@ -95,6 +77,24 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
       });
       navigateTo({ pathname: "confirm-donation", state: { nonProfit } });
     } else {
+      if (buttonVariation.value !== "control") {
+        const searchParams = new URLSearchParams({
+          integration_id: integrationId?.toString() || "",
+          offer: currentOffer()?.priceCents.toString() ?? "0",
+          target: "non_profit",
+          target_id: nonProfit.id.toString(),
+          currency: currentLang === "pt-BR" ? "BRL" : "USD",
+          subscription: "false",
+          from: "donations",
+        });
+
+        navigateTo({
+          pathname: "/promoters/checkout",
+          search: searchParams.toString(),
+        });
+        return;
+      }
+
       newLogEvent("click", "P1_donateBlockedBtn", {
         nonProfitId: nonProfit.id,
       });

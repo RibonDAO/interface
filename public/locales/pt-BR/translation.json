@@ -15,7 +15,6 @@
       "confirmModalSecondaryButtonText": "Cancelar",
       "donateText": "Doar ticket",
       "donateBlockedText": "Sem tickets",
-      "doMore": "Faça mais e doe {{value}}",
       "impactPrefix": "Doe",
       "pageTitle": "Doe para um projeto",
       "donationError": "Não foi possível doar.",
@@ -438,8 +437,6 @@
     },
 
     "checkoutPage": {
-      "thankForContribute": "Obrigado por contribuir!",
-      "thankForContributeDescription": "Você receberá seu próximo ticket grátis dentro de algumas horas.",
       "changeCurrency": "Mudar moeda",
       "back": "Voltar",
       "monthlyContribution": "Contribuindo mensalmente",

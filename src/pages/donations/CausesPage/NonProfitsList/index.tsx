@@ -3,10 +3,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import useNavigation from "hooks/useNavigation";
 import { logEvent, newLogEvent } from "lib/events";
-import { Currencies, NonProfit } from "@ribon.io/shared/types";
-import { useOffers } from "@ribon.io/shared/hooks";
-import { useLanguage } from "hooks/useLanguage";
-import { useIntegrationId } from "hooks/useIntegrationId";
+import { NonProfit } from "@ribon.io/shared/types";
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
 import useVoucher from "hooks/useVoucher";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
@@ -29,11 +26,6 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
   });
   const { navigateTo } = useNavigation();
 
-  const buttonVariation = useExperiment({
-    key: "conversion-test-on-donate-btn",
-    variations: ["control", "button", "button_and_info"],
-  });
-
   const [currentNonProfitIndex, setCurrentNonProfitIndex] = useState(0);
 
   const { showBlockedDonationContributionModal } =
@@ -43,31 +35,6 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
   const { isVoucherAvailable } = useVoucher();
 
   const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
-
-  const { offers: offersBrl } = useOffers(Currencies.BRL, false);
-  const { offers: offersUsd } = useOffers(Currencies.USD, false);
-
-  const integrationId = useIntegrationId();
-
-  const { currentLang } = useLanguage();
-
-  const softDisabled = () => {
-    if (buttonVariation.value !== "control") return false;
-
-    return !canDonateAndHasVoucher;
-  };
-
-  const currentOffer = () =>
-    currentLang === "pt-BR" ? offersBrl?.[0] : offersUsd?.[0];
-
-  const buttonText = () => {
-    const text =
-      buttonVariation.value !== "control"
-        ? t("doMore", { value: currentOffer().price })
-        : t("donateBlockedText");
-
-    return canDonateAndHasVoucher ? t("donateText") : text;
-  };
 
   function handleButtonClick(nonProfit: NonProfit, from: string) {
     if (canDonateAndHasVoucher) {
@@ -181,14 +148,18 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
                         ? newImpactFormat(nonProfit)
                         : oldImpactFormat(nonProfit)
                     }
-                    buttonText={buttonText()}
+                    buttonText={
+                      canDonateAndHasVoucher
+                        ? t("donateText")
+                        : t("donateBlockedText")
+                    }
                     onClickButton={() =>
                       handleButtonClick(nonProfit, "nonProfitCard")
                     }
                     onClickImage={() => handleImageClick(nonProfit)}
-                    softDisabled={softDisabled()}
-                    infoTextLeft={nonProfit.name}
-                    infoTextRight={nonProfit.cause?.name}
+                    softDisabled={!canDonateAndHasVoucher}
+                    infoTextTop={nonProfit.name}
+                    infoTextBottom={nonProfit.cause?.name}
                     infoText={
                       nonProfit.stories?.length ? t("learnMore") : undefined
                     }

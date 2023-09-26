@@ -12,7 +12,11 @@ function ExperimentRouteComponent({ featureFlagId, children, source }: Props) {
 
   return showAlternativePage ? (
     <MainLayout hideHeader fullSize>
-      <S.Iframe src={source} title="alternative-page" />
+      <S.Iframe
+        src={source}
+        title="alternative-page"
+        data-testid="alternative-page"
+      />
     </MainLayout>
   ) : (
     children

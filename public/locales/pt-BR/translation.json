@@ -557,10 +557,9 @@
     },
     "newsSection": {
       "getAppButtonText": "Baixar app",
-      "title": "Doe e veja boas notícias",
-      "text": "Doe seu ticket e acesse nossa seleção de notícias que vão aquecer seu coração",
-      "donateButtonText": "Doar agora",
-      "openPostButtonText": "Ver publicação"
+      "title": "Só notícia boa!",
+      "description": "Baixe nosso app e acesse uma seleção de notícias que vão aquecer seu coração",
+      "buttonDownloadApp": "Baixe e veja as notícias"
     },
     "tasksSection": {
       "title": "Tarefas",

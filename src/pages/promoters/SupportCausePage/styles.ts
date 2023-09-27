@@ -119,7 +119,7 @@ export const GroupButtonsContainer = styled.div`
 
 export const SupportImage = styled.img`
   width: 100%;
-
+  max-height: 192px;
   position: relative;
   display: flex;
   flex-wrap: wrap;

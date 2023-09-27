@@ -12,8 +12,10 @@ import { useModal } from "hooks/modalHooks/useModal";
 import { logEvent } from "lib/events";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
 import { theme } from "@ribon.io/shared/styles";
+import { useExperiment } from "@growthbook/growthbook-react";
 import Icon from "components/atomics/Icon";
 import RadioAccordion from "components/moleculars/accordions/RadioAccordion";
+import InlineNotification from "components/moleculars/Toasts/InlineNotification";
 import PixSection from "../PixSection";
 import PriceSelection from "../Components/PriceSelection";
 import { PriceSelectionLoader } from "../Components/PriceSelection/loader";
@@ -35,6 +37,7 @@ export default function FiatSection() {
     currency,
     paymentMethodIndex,
     subscription,
+    from,
   } = usePaymentParams();
   const hasAllParams = Boolean(target && targetId && offer && currency);
   const currentPayable = usePayable(target, targetId);
@@ -42,6 +45,11 @@ export default function FiatSection() {
   const { setOfferId, setCurrentCoin, setCause, setNonProfit, setFlow } =
     usePaymentInformation();
   const [isSubscription, setIsSubscription] = useState(subscription === "true");
+
+  const variation = useExperiment({
+    key: "conversion-test-on-donate-btn",
+    variations: ["control", "button", "button_and_info"],
+  });
 
   const {
     offers,
@@ -163,8 +171,25 @@ export default function FiatSection() {
     },
   ].filter((item) => !!item);
 
+  const [inlineNotificationVisible, setInlineNotificationVisible] =
+    useState(true);
+
+  const closeNotification = () => setInlineNotificationVisible(false);
+
+  const canShowInlineNotification = () =>
+    variation.value === "button_and_info" && inlineNotificationVisible;
+
   return currentPayable && hasAllParams ? (
     <div>
+      {canShowInlineNotification() && from === "donations" && (
+        <InlineNotification
+          title={t("thankForContribute")}
+          description={t("thankForContributeDescription")}
+          type="success"
+          onCloseClick={closeNotification}
+        />
+      )}
+
       <S.Title>
         {t("donatingTo")}
         <S.PayableName>{currentPayable?.name}</S.PayableName>

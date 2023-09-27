@@ -20,6 +20,7 @@ describe("usePaymentParams", () => {
       hasAllParams: true,
       subscription: "subscription",
       language: "language",
+      from: "from",
     });
   });
 });

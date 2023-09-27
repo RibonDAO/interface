@@ -63,6 +63,7 @@ export const LeftContainer = styled.div`
 `;
 
 export const RightContainer = styled.div`
+  max-width: 20%;
   display: flex;
   flex-direction: row;
   align-items: flex-start;

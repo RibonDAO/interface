@@ -16,6 +16,7 @@
       "donateText": "Donate ticket",
       "donateBlockedText": "No tickets",
       "impactPrefix": "Donate",
+      "doMore": "Do more and donate {{value}}",
       "pageTitle": "Donate to a project",
       "donationError": "Unable to donate now",
       "errorModalTitle": "Processing failed",
@@ -437,6 +438,8 @@
       }
     },
     "checkoutPage": {
+      "thankForContribute": "Thank you for contribute!",
+      "thankForContributeDescription": "You will receive your next free ticket within a few hours.",
       "changeCurrency": "Change currency",
       "back": "Back",
       "monthlyContribution": "Contributing monthly",

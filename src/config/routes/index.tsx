@@ -215,7 +215,7 @@ function RoutesComponent(): JSX.Element {
           <NetworkProvider>
             <WalletProvider>
               <ExperimentRouteComponent
-                featureFlagId="giving-page-feature-flag"
+                featureFlagId="support-non-profit-page-feature-flag"
                 source="https://projetos.ribon.io/support-non-profit"
               >
                 <WalletLayout hideWallet>

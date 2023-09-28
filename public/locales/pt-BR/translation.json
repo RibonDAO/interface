@@ -101,6 +101,8 @@
       "thanksToYou": "Graças a você...",
       "lifeWasImpacted": "1 pessoa foi impactada",
       "livesWereImpacted": "{{value}} pessoas foram impactadas",
+      "ticketWasDonated": "1 ticket doado",
+      "ticketsWereDonated": "{{value}} tickets doados",
       "impactDescription": "com {{value}}",
       "titleSecondLine": "Você doou para",
       "youDonatedText": "Você doou",
@@ -319,18 +321,24 @@
     "supportNonProfitPage": {
       "title": "Faça uma doação direta",
       "impactMoreTitle": "Impacte mais",
+      "buyAndDonateTicketsTitle": "Compre e doe tickets",
       "donateButtonText": "Doar {{value}}",
       "selectOfferSection": {
         "fundText": "geram",
         "impactText": "Impacte",
+        "donateText": "Doe",
         "livesAmount": "{{value}} pessoas",
-        "impactDescription": "com {{value}}"
+        "impactDescription": "com {{value}}",
+        "altImpactDescription": "e ajude com {{value}}",
+        "ticketsAmount": "{{value}} tickets"
       },
       "tooltipImpact": "Como calculamos o impacto?",
       "tooltipImpactText": "O cálculo é feito com base no valor mínimo necessário para que o projeto consiga bons resultados. As causas da Ribon fazem parte do movimento social “Altruísmo Eficaz”, e têm como objetivo gerar grande impacto a custo baixo.",
       "impactLivesSection": {
         "title": "20 vezes mais que um ticket!",
-        "subtitle": "Com apenas R$ 10 você pode mudar a vida de 20 pessoas e subir de nível de doador!"
+        "subtitle": "Com apenas R$ 10 você pode mudar a vida de 20 pessoas e subir de nível de doador!",
+        "altTitle": "Compre e doe 20 tickets",
+        "altSubtitle": "Com apenas R$ 10, você doa 20 tickets e transforma a vida de 20 pessoas!"
       }
     },
     "supportTreasurePage": {
@@ -650,6 +658,7 @@
     "titleCard": "Faça ainda mais",
     "donateAndImpact": "Doe {{value}} e impacte",
     "livesAmount": "+{{value}} pessoas",
+    "ticketsAmount": "+{{value}} tickets",
     "impactDescription": "com {{value}}"
   }
 }

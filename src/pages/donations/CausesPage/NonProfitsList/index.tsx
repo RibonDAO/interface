@@ -70,7 +70,13 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
   };
 
   function handleButtonClick(nonProfit: NonProfit, from: string) {
-    if (buttonVariation.value !== "control") {
+    if (canDonateAndHasVoucher) {
+      logEvent("donateTicketBtn_start", {
+        nonProfitId: nonProfit.id,
+        from,
+      });
+      navigateTo({ pathname: "confirm-donation", state: { nonProfit } });
+    } else if (buttonVariation.value !== "control") {
       const searchParams = new URLSearchParams({
         integration_id: integrationId?.toString() || "",
         offer: currentOffer()?.priceCents?.toString() ?? "1000",
@@ -85,15 +91,6 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
         pathname: "/promoters/checkout",
         search: searchParams.toString(),
       });
-      return;
-    }
-
-    if (canDonateAndHasVoucher) {
-      logEvent("donateTicketBtn_start", {
-        nonProfitId: nonProfit.id,
-        from,
-      });
-      navigateTo({ pathname: "confirm-donation", state: { nonProfit } });
     } else {
       newLogEvent("click", "P1_donateBlockedBtn", {
         nonProfitId: nonProfit.id,

@@ -1,7 +1,7 @@
 import Button from "components/atomics/buttons/Button";
-import React from "react";
 import securityIcon from "assets/icons/security-mark-icon.svg";
 import infoIcon from "assets/icons/info-icon-white.svg";
+import { theme } from "@ribon.io/shared/styles";
 import * as S from "./styles";
 
 export type Props = {
@@ -12,8 +12,8 @@ export type Props = {
   onClickImage?: () => void;
   softDisabled?: boolean;
   disabled?: boolean;
-  infoTextLeft?: string;
-  infoTextRight?: string;
+  infoTextTop?: string;
+  infoTextBottom?: string;
   fullWidth?: boolean;
   infoText?: string;
 };
@@ -25,8 +25,8 @@ function CardCenterImageButton({
   onClickImage,
   disabled,
   softDisabled,
-  infoTextLeft,
-  infoTextRight,
+  infoTextTop,
+  infoTextBottom,
   fullWidth = false,
   infoText,
 }: Props): JSX.Element {
@@ -47,18 +47,13 @@ function CardCenterImageButton({
 
       <S.ContentSection>
         <S.InfoContainer>
-          {infoTextLeft && (
-            <>
-              <S.Info>{infoTextLeft}</S.Info>
+          {infoTextTop && (
+            <S.InfoIcon>
+              <S.Info>{infoTextTop}</S.Info>
               <S.Icon src={securityIcon} />
-            </>
+            </S.InfoIcon>
           )}
-          {infoTextRight && (
-            <>
-              <S.Bullet> • </S.Bullet>
-              <S.Info>{infoTextRight}</S.Info>
-            </>
-          )}
+          {infoTextBottom && <S.Info>{infoTextBottom}</S.Info>}
         </S.InfoContainer>
         <S.ButtonContainer>
           <Button
@@ -66,6 +61,7 @@ function CardCenterImageButton({
             text={buttonText}
             softDisabled={softDisabled}
             disabled={disabled}
+            backgroundColor={theme.colors.brand.primary[600]}
           />
         </S.ButtonContainer>
       </S.ContentSection>

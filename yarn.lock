@@ -2188,17 +2188,17 @@
   resolved "https://registry.npmjs.org/@graphql-typed-document-node/core/-/core-3.1.1.tgz"
   integrity sha512-NQ17ii0rK1b34VZonlmT2QMJFI70m0TRwbknO/ihlbatXyaktDhN/98vBiUU6kNBPljqGqyIrl2T4nY2RpFANg==
 
-"@growthbook/growthbook-react@^0.17.0":
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/@growthbook/growthbook-react/-/growthbook-react-0.17.0.tgz#e70b9cb252f24377cd33768bdd617ee847bc7660"
-  integrity sha512-od+bSg3RD9AXfi/TWFDSzRaB6RuJLkUX5eFOZz8u8wL8yDbgd5RF9cwu4lQIF9/tyG1WLu4qipV+SM2v5s4BcQ==
+"@growthbook/growthbook-react@^0.18.0":
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/@growthbook/growthbook-react/-/growthbook-react-0.18.0.tgz#f7359c27068175a9838f2152eca575a7b9c7dba7"
+  integrity sha512-Nuyn6j3nmSNN7hMcc4OEl0IhMH2nQ40zVXDYuw0q4IgfNN3gWvA8UrUeqK/p1vevBKtErXNZmETIRYe4iVoNeg==
   dependencies:
-    "@growthbook/growthbook" "^0.27.0"
+    "@growthbook/growthbook" "^0.28.0"
 
-"@growthbook/growthbook@^0.27.0":
-  version "0.27.0"
-  resolved "https://registry.yarnpkg.com/@growthbook/growthbook/-/growthbook-0.27.0.tgz#5dff4029de202d56ee270e3bf794dad2eda0c624"
-  integrity sha512-gt/DWXfgyudY3gXAUjzKm9kMjVfCzfRc8d0nQQiXCP523ow23jThrmBzkRKCN+zxYVxUKcHjP9yjU9EKJqP4Fw==
+"@growthbook/growthbook@^0.28.0":
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/@growthbook/growthbook/-/growthbook-0.28.0.tgz#c6cf7d46aa7465be120ed98c05adba01fdf4635c"
+  integrity sha512-RnrP29yHfL12nmAxtPbyHlY70BSB2f/LIOrYaBhqn2oBNdeuAxwGt9FO40dDJh0W+opaG5EbiPvZUxsy8J0aAw==
   dependencies:
     dom-mutator "^0.5.0"
 
@@ -2692,10 +2692,10 @@
   resolved "https://registry.npmjs.org/@protobufjs/utf8/-/utf8-1.1.0.tgz"
   integrity sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==
 
-"@ribon.io/shared@^1.0.91":
-  version "1.0.91"
-  resolved "https://registry.yarnpkg.com/@ribon.io/shared/-/shared-1.0.91.tgz#ecc8587ab9dab644064e64e40cc1441585ec3f59"
-  integrity sha512-6U5GsQb5Km9kOe3I+b9Stb6a1Ax+BcUvVI53G2SPNNbnWA2G8bdoMJT6KKcfQk89Xt3315Ag/eHf57ie7WLw4Q==
+"@ribon.io/shared@^1.0.94":
+  version "1.0.94"
+  resolved "https://registry.yarnpkg.com/@ribon.io/shared/-/shared-1.0.94.tgz#a4add5d6dce4c1eeeab0fa13e28602062366a472"
+  integrity sha512-+pjbRsPOspaf8FUT+grJkFMF+X1J+sEgHMRiYuT6AWj96wmfN3AS0WiglRuGZZ0UhYqGFFC7bfSjkgwgJ+1PPw==
   dependencies:
     "@apollo/client" "^3.6.9"
     "@types/base-64" "^1.0.0"

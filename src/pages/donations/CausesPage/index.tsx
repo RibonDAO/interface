@@ -31,12 +31,12 @@ import { logEvent } from "lib/events";
 import NonProfitsSection from "pages/donations/CausesPage/NonProfitsSection";
 import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
 import { useExperiment } from "@growthbook/growthbook-react";
-import ImpactMoreLivesCTA from "pages/users/ImpactedLivesSection/ImpactMoreLivesCTA";
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
 import ChooseCauseModal from "./ChooseCauseModal";
 import CausesSelectSection from "./CausesSelectSection";
+import ContributionSection from "./ContributionSection";
 
 function CausesPage(): JSX.Element {
   const integrationId = useIntegrationId();
@@ -52,10 +52,6 @@ function CausesPage(): JSX.Element {
     keyPrefix: "donations.causesPage",
   });
   const { state, search } = useLocation<LocationStateType>();
-  const { value: isInLifeBasedImpact } = useExperiment({
-    key: "progression-test-first-stage",
-    variations: [false, true],
-  });
 
   const { hide: closeWarningModal } = useModal(
     {
@@ -165,6 +161,13 @@ function CausesPage(): JSX.Element {
 
   useAvoidBackButton();
 
+  const buttonVariation = useExperiment({
+    key: "conversion-test-donate-btn",
+    variations: ["control", "button", "button_and_info"],
+  });
+
+  const isInButtonVariation = buttonVariation.value !== "control";
+
   return (
     <S.Container>
       {!isFirstAccess(signedIn) && <DownloadAppToast />}
@@ -189,12 +192,8 @@ function CausesPage(): JSX.Element {
             />
           )}
         </S.TitleContainer>
-        {!canDonate && isInLifeBasedImpact && (
-          <S.ImpactMoreLivesContainer>
-            <ImpactMoreLivesCTA from="causes_page" showUserProgress />
-          </S.ImpactMoreLivesContainer>
-        )}
         <ContributionNotification />
+        {!canDonate && !isInButtonVariation && <ContributionSection />}
         <CausesSelectSection />
         <NonProfitsSection />
         {isMobile && (

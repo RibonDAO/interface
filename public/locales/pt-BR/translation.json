@@ -16,6 +16,7 @@
       "donateText": "Doar ticket",
       "donateBlockedText": "Sem tickets",
       "impactPrefix": "Doe",
+      "doMore": "Faça mais e doe {{value}}",
       "pageTitle": "Doe para um projeto",
       "donationError": "Não foi possível doar.",
       "errorModalTitle": "Falha no processamento",
@@ -437,6 +438,8 @@
     },
 
     "checkoutPage": {
+      "thankForContribute": "Obrigado por contribuir!",
+      "thankForContributeDescription": "Você receberá seu próximo ticket grátis dentro de algumas horas.",
       "changeCurrency": "Mudar moeda",
       "back": "Voltar",
       "monthlyContribution": "Contribuindo mensalmente",
@@ -557,9 +560,16 @@
     },
     "newsSection": {
       "getAppButtonText": "Baixar app",
-      "title": "Só notícia boa!",
       "description": "Baixe nosso app e acesse uma seleção de notícias que vão aquecer seu coração",
-      "buttonDownloadApp": "Baixe e veja as notícias"
+      "buttonDownloadApp": "Baixe e veja as notícias",
+      "openPostButtonText": "Ver publicação",
+      "title": "Doe e veja boas notícias",
+      "text": "Doe seu ticket e acesse nossa seleção de notícias que vão aquecer seu coração",
+      "donateButtonText": "Doar agora",
+      "onboarding": {
+        "publishedAt": "Agora",
+        "title": "Seja bem vindo! Aqui você vê as novidades da Ribon e boas notícias escolhidas pra aquecer seu coração."
+      }
     },
     "tasksSection": {
       "title": "Tarefas",
@@ -577,7 +587,8 @@
         "start_contribution": "Entenda o que é ser um promotor",
         "become_a_promoter": "Vire o promotor de uma causa",
         "view_about_page": "Entenda de onde vem os tickets",
-        "survey_form": "Ganhe um ticket extra respondendo nossa pesquisa"
+        "survey_form": "Ganhe um ticket extra respondendo nossa pesquisa",
+        "check_daily_news": "Conferir publicações diárias"
       },
       "cardsStatisticsSection": {
         "dailyTasksTitle": "tarefas diárias completas",

@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+
 import ForYouMenu from "./ForYouMenu";
 import * as S from "./styles";
 

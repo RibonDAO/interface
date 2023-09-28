@@ -19,6 +19,8 @@ describe("usePaymentParams", () => {
       paymentMethodIndex: "paymentMethodIndex",
       hasAllParams: true,
       subscription: "subscription",
+      language: "language",
+      from: "from",
     });
   });
 });

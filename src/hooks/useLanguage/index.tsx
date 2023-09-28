@@ -26,5 +26,6 @@ export function useLanguage() {
   return {
     currentLang,
     handleSwitchLanguage,
+    setCurrentLang,
   };
 }

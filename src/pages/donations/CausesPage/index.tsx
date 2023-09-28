@@ -226,7 +226,7 @@ function CausesPage(): JSX.Element {
           )}
         </S.TitleContainer>
         <ContributionNotification />
-        {!canDonate && !isInButtonVariation && <ContributionSection/>}
+        {!canDonate && !isInButtonVariation && <ContributionSection />}
         <CausesSelectSection />
 
         {isLoadingNonProfits ? (

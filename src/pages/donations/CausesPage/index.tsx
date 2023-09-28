@@ -198,6 +198,13 @@ function CausesPage(): JSX.Element {
 
   useAvoidBackButton();
 
+  const buttonVariation = useExperiment({
+    key: "conversion-test-donate-btn",
+    variations: ["control", "button", "button_and_info"],
+  });
+
+  const isInButtonVariation = buttonVariation.value !== "control";
+
   return (
     <S.Container>
       {!isFirstAccess(signedIn) && <DownloadAppToast />}
@@ -222,7 +229,7 @@ function CausesPage(): JSX.Element {
             />
           )}
         </S.TitleContainer>
-        {!canDonate && isInLifeBasedImpact && (
+        {!canDonate && isInLifeBasedImpact && !isInButtonVariation && (
           <S.ImpactMoreLivesContainer>
             <ImpactMoreLivesCTA from="causes_page" showUserProgress />
           </S.ImpactMoreLivesContainer>

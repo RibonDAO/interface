@@ -199,7 +199,7 @@ function DonationDoneCausePage(): JSX.Element {
     setLocalStorageItem("HAS_DONATED", "true");
     const timeout = setTimeout(() => {
       navigate();
-    }, 90000);
+    }, 2500);
     setPageTimeout(timeout);
 
     return () => {

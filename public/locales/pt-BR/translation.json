@@ -275,6 +275,14 @@
       "cardSubtitle": "+{{value}} pessoas",
       "description": "com {{impact}}",
       "buttonText": "Doar {{value}}"
+    },
+    "buyMoreTicketsCTA": {
+      "title": "1 ticket = 1 pessoa impactada",
+      "subtitle": "Com apenas {{value}} você doa {{lives}} tickets e transforma a vida de {{lives}} pessoas!",
+      "cardTitle": "Doe {{value}} e compre",
+      "cardSubtitle": "+{{value}} tickets",
+      "description": "e ajude com {{impact}}",
+      "buttonText": "Doar {{value}} tickets"
     }
   },
   "promoters": {

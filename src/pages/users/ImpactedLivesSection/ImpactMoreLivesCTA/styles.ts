@@ -9,7 +9,7 @@ export const Container = styled.div``;
 export const UserProgressContainer = styled.div`
   width: 100%;
   margin-top: ${({ theme }) => theme.spacing(24)};
-  
+
   p {
     color: ${({ theme }) => theme.colors.neutral[800]};
   }
@@ -31,4 +31,8 @@ export const Icon = styled.img`
   width: 20px;
   height: 20px;
   margin-right: ${({ theme }) => theme.spacing(4)};
+`;
+
+export const Divider = styled.div`
+  margin-bottom: ${({ theme }) => theme.spacing(32)};
 `;

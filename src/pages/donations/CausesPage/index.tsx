@@ -60,6 +60,11 @@ function CausesPage(): JSX.Element {
     variations: [false, true],
   });
 
+  const { value: isTicketBasedImpact } = useExperiment({
+    key: "ticket-impact-test",
+    variations: [false, true],
+  });
+
   const { hide: closeWarningModal } = useModal(
     {
       type: MODAL_TYPES.MODAL_ICON,
@@ -229,11 +234,13 @@ function CausesPage(): JSX.Element {
             />
           )}
         </S.TitleContainer>
-        {!canDonate && isInLifeBasedImpact && !isInButtonVariation && (
-          <S.ImpactMoreLivesContainer>
-            <ImpactMoreLivesCTA from="causes_page" showUserProgress />
-          </S.ImpactMoreLivesContainer>
-        )}
+        {!canDonate &&
+          (isTicketBasedImpact || isInLifeBasedImpact) &&
+          !isInButtonVariation && (
+            <S.ImpactMoreLivesContainer>
+              <ImpactMoreLivesCTA from="causes_page" showUserProgress />
+            </S.ImpactMoreLivesContainer>
+          )}
         <ContributionNotification />
         <CausesSelectSection />
 

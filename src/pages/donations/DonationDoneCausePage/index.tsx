@@ -54,6 +54,11 @@ function DonationDoneCausePage(): JSX.Element {
     variations: [false, true],
   });
 
+  const ticketVariation = useExperiment({
+    key: "ticket-impact-test",
+    variations: [false, true],
+  });
+
   const currency = Currencies.USD;
   const {
     state: { nonProfit, offerId, cause, hasButton, flow },
@@ -194,7 +199,7 @@ function DonationDoneCausePage(): JSX.Element {
     setLocalStorageItem("HAS_DONATED", "true");
     const timeout = setTimeout(() => {
       navigate();
-    }, 2500);
+    }, 90000);
     setPageTimeout(timeout);
 
     return () => {
@@ -253,6 +258,43 @@ function DonationDoneCausePage(): JSX.Element {
     </>
   );
 
+  const newTicketFormat = () => (
+    <>
+      <S.DonationValue color={colorTheme.shade40}>
+        {offerId
+          ? t("ticketsWereDonated", {
+              value: Math.round((offer?.priceValue ?? 0) * 2),
+            })
+          : t("ticketWasDonated")}
+      </S.DonationValue>
+      <S.ThanksToYou>{t("thanksToYou")}</S.ThanksToYou>
+      <S.ImpactAmount color={colorTheme.shade40}>
+        {offerId
+          ? t("livesWereImpacted", {
+              value: Math.round((offer?.priceValue ?? 0) * 2),
+            })
+          : t("lifeWasImpacted")}
+      </S.ImpactAmount>
+      {nonProfit?.impactDescription && (
+        <S.ImpactDescription color={colorTheme.shade40} hasButton>
+          {t("impactDescription", {
+            value: nonProfit?.impactDescription.split(",")[0],
+          })}
+        </S.ImpactDescription>
+      )}
+    </>
+  );
+
+  const renderImpactValue = () => {
+    if (variation.value) {
+      return newImpactFormat();
+    } else if (ticketVariation.value) {
+      return newTicketFormat();
+    }
+
+    return oldImpactFormat();
+  };
+
   return (
     <S.Container>
       {audio && !hasButton && <ReactHowler src={audio} loop={false} playing />}
@@ -272,7 +314,7 @@ function DonationDoneCausePage(): JSX.Element {
           }
         />
       </S.ImageContainer>
-      {variation.value ? newImpactFormat() : oldImpactFormat()}
+      {renderImpactValue()}
       {hasButton && (
         <S.FinishButton
           text={t("button")}

@@ -55,10 +55,6 @@ function CausesPage(): JSX.Element {
     keyPrefix: "donations.causesPage",
   });
   const { state, search } = useLocation<LocationStateType>();
-  const { value: conversionTestDonateButton } = useExperiment({
-    key: "conversion-test-donate-btn",
-    variations: ["control", "button", "button_and_info"],
-  });
 
   const { hide: closeWarningModal } = useModal(
     {
@@ -198,6 +194,13 @@ function CausesPage(): JSX.Element {
 
   useAvoidBackButton();
 
+  const buttonVariation = useExperiment({
+    key: "conversion-test-donate-btn",
+    variations: ["control", "button", "button_and_info"],
+  });
+
+  const isInButtonVariation = buttonVariation.value !== "control";
+
   return (
     <S.Container>
       {!isFirstAccess(signedIn) && <DownloadAppToast />}
@@ -223,7 +226,7 @@ function CausesPage(): JSX.Element {
           )}
         </S.TitleContainer>
         <ContributionNotification />
-        {!canDonate && !conversionTestDonateButton && <ContributionSection/>}
+        {!canDonate && !isInButtonVariation && <ContributionSection/>}
         <CausesSelectSection />
 
         {isLoadingNonProfits ? (

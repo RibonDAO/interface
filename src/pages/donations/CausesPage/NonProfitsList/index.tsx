@@ -30,7 +30,7 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
   const { navigateTo } = useNavigation();
 
   const buttonVariation = useExperiment({
-    key: "conversion-test-on-donate-btn",
+    key: "conversion-test-donate-btn",
     variations: ["control", "button", "button_and_info"],
   });
 

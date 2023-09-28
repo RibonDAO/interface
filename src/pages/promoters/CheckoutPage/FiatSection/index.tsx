@@ -47,7 +47,7 @@ export default function FiatSection() {
   const [isSubscription, setIsSubscription] = useState(subscription === "true");
 
   const variation = useExperiment({
-    key: "conversion-test-on-donate-btn",
+    key: "conversion-test-donate-btn",
     variations: ["control", "button", "button_and_info"],
   });
 

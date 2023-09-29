@@ -278,7 +278,7 @@
       "buttonText": "Donate {{value}}"
     },
     "buyMoreTicketsCTA": {
-      "title": "1 ticket = 1 person impacted",
+      "title": "Buy and donate {{lives}} tickets",
       "subtitle": "With only {{value}} you can donate {{lives}} tickets and change the lives of {{lives}} people!",
       "cardTitle": "Donate {{value}} and buy",
       "cardSubtitle": "+{{value}} tickets",

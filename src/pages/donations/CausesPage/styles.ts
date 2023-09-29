@@ -61,8 +61,8 @@ export const CardWrapper = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     margin-inline: 12px;
-    margin-left: 0px;
     max-width: 256px;
+    margin-left: 0px;
 
     :nth-of-type(1) {
       margin-left: 0px;

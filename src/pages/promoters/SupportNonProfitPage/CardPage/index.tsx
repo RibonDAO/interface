@@ -128,11 +128,25 @@ function CardPage(): JSX.Element {
     variations: [false, true],
   });
 
+  const ticketVariation = useExperiment({
+    key: "ticket-impact-test",
+    variations: [false, true],
+  });
+
+  const renderCurrentTitle = () => {
+    if (variation.value) {
+      return t("impactMoreTitle");
+    } else if (ticketVariation.value) {
+      return t("buyAndDonateTicketsTitle");
+    }
+    return t("title");
+  };
+
   return (
     <S.Container>
       <DownloadAppToast />
       <S.TitleContainer>
-        <S.Title>{t(variation.value ? "impactMoreTitle" : "title")}</S.Title>
+        <S.Title>{renderCurrentTitle()}</S.Title>
         {!isMobile && (
           <Tooltip
             text={t("tooltipImpactText")}

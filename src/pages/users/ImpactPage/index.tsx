@@ -36,6 +36,11 @@ function ImpactPage(): JSX.Element {
     variations: [false, true],
   });
 
+  const { value: isTicketBasedImpact } = useExperiment({
+    key: "ticket-impact-test",
+    variations: [false, true],
+  });
+
   useEffect(() => {
     logEvent("profile_view");
   }, []);
@@ -48,7 +53,9 @@ function ImpactPage(): JSX.Element {
     <S.Container>
       <DownloadAppToast />
       {isInLifeBasedImpact && <ImpactedLivesSection />}
-      {isInLifeBasedImpact && <ImpactMoreLivesCTA from="impact_page" />}
+      {(isInLifeBasedImpact || isTicketBasedImpact) && (
+        <ImpactMoreLivesCTA from="impact_page" />
+      )}
       {isInLifeBasedImpact && <BadgesSection />}
       <S.Title>{t("title")}</S.Title>
       <S.CardsButtonContainer>

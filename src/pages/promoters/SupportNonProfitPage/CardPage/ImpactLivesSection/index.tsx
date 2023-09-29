@@ -11,6 +11,12 @@ function ImpactLivesSection() {
     key: "progression-test-first-stage",
     variations: [false, true],
   });
+
+  const { value: isTicketTest } = useExperiment({
+    key: "ticket-impact-test",
+    variations: [false, true],
+  });
+
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportNonProfitPage.impactLivesSection",
   });
@@ -28,22 +34,27 @@ function ImpactLivesSection() {
     updatePercentageCompleted();
   }, [updatePercentageCompleted]);
 
-  if (!isInLifeBasedImpact) return null;
+  if (!isInLifeBasedImpact && !isTicketTest) return null;
+
+  const title = isInLifeBasedImpact ? t("title") : t("altTitle");
+  const subtitle = isInLifeBasedImpact ? t("subtitle") : t("altSubtitle");
 
   return (
     <S.Container>
       <S.BackgroundShape src={BackgroundShape} alt="background-shape" />
-      <S.Title>{t("title")}</S.Title>
-      <S.Subtitle>{t("subtitle")}</S.Subtitle>
-      <S.ProgressContainer>
-        <UserProgress
-          currentExperience={userExperience}
-          currentLevelExperience={currentLevelExperience}
-          totalExperienceToNextLevel={nextLevelExperience}
-          nextLevel={userLevel + 1}
-          percentageCompleted={percentageCompleted}
-        />
-      </S.ProgressContainer>
+      <S.Title>{title}</S.Title>
+      <S.Subtitle>{subtitle}</S.Subtitle>
+      {isInLifeBasedImpact && (
+        <S.ProgressContainer>
+          <UserProgress
+            currentExperience={userExperience}
+            currentLevelExperience={currentLevelExperience}
+            totalExperienceToNextLevel={nextLevelExperience}
+            nextLevel={userLevel + 1}
+            percentageCompleted={percentageCompleted}
+          />
+        </S.ProgressContainer>
+      )}
     </S.Container>
   );
 }

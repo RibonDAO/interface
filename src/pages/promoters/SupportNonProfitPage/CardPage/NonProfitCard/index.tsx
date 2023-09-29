@@ -2,6 +2,7 @@ import { removeInsignificantZeros } from "lib/formatters/currencyFormatter";
 import { NonProfit, Offer } from "@ribon.io/shared/types";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { useExperiment } from "@growthbook/growthbook-react";
 import * as S from "../../styles";
 import SelectOfferSection from "../SelectOfferSection";
 
@@ -21,9 +22,27 @@ export default function NonProfitCard({
   });
   const [value, setValue] = useState("");
 
+  const { value: isTicketFormat } = useExperiment({
+    key: "ticket-impact-test",
+    variations: [false, true],
+  });
+
+  const { value: isLifeBasedImpact } = useExperiment({
+    key: "progression-test-first-stage",
+    variations: [false, true],
+  });
+
   const onOfferChange = (offer: Offer, index?: number) => {
     handleOfferChange(offer, index);
-    setValue(removeInsignificantZeros(offer.price));
+
+    const offerValue = removeInsignificantZeros(offer.price);
+    const ticketsAmount = Math.round(offer.priceValue * 2);
+    const currentValue =
+      isTicketFormat && !isLifeBasedImpact
+        ? `${ticketsAmount} tickets`
+        : offerValue;
+
+    setValue(currentValue.toString());
   };
 
   return (

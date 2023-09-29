@@ -12,6 +12,7 @@ import { useLanguage } from "hooks/useLanguage";
 import { Currencies, NonProfit, Offer } from "@ribon.io/shared/types";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useUserLevel } from "contexts/userLevelContext";
+import { useExperiment } from "@growthbook/growthbook-react";
 import { logEvent } from "lib/events";
 import HeartImage from "assets/icons/heart.svg";
 import UserProgress from "pages/users/ImpactedLivesSection/UserProgress";
@@ -25,9 +26,24 @@ function ImpactMoreLivesCTA({
   from,
   showUserProgress = false,
 }: Props): JSX.Element {
-  const { t } = useTranslation("translation", {
+  const { value: isProgressionEnabled } = useExperiment({
+    key: "progression-test-first-stage",
+    variations: [false, true],
+  });
+
+  const { value: isTicketBasedImpact } = useExperiment({
+    key: "ticket-impact-test",
+    variations: [false, true],
+  });
+
+  const { t: impactMoreLives } = useTranslation("translation", {
     keyPrefix: "impactPage.impactMoreLivesCTA",
   });
+
+  const { t: buyMoreTickets } = useTranslation("translation", {
+    keyPrefix: "impactPage.buyMoreTicketsCTA",
+  });
+
   const [currentCoin, setCurrentCoin] = useState(Currencies.BRL);
   const [currentOffer, setCurrentOffer] = useState<Offer>();
   const [currentNonProfit, setCurrentNonProfit] = useState<NonProfit>();
@@ -76,6 +92,10 @@ function ImpactMoreLivesCTA({
 
   const livesValue = Math.round(Number(currentOffer?.priceValue ?? 50) * 2);
 
+  const buttonValue = isProgressionEnabled ? currentOffer?.price : livesValue;
+  const t = isProgressionEnabled ? impactMoreLives : buyMoreTickets;
+  const showDivider = isTicketBasedImpact && !isProgressionEnabled;
+
   return (
     <S.Container>
       <S.Title>
@@ -93,13 +113,13 @@ function ImpactMoreLivesCTA({
           value: livesValue,
         })}
         image={currentNonProfit?.mainImage || ""}
-        buttonText={t("buttonText", { value: currentOffer?.price })}
+        buttonText={t("buttonText", { value: buttonValue })}
         description={t("description", {
           impact: currentNonProfit?.impactDescription.split(",")[1],
         })}
         onButtonClick={onButtonClick}
       >
-        {showUserProgress ? (
+        {showUserProgress && !isTicketBasedImpact ? (
           <S.UserProgressContainer>
             <UserProgress
               currentExperience={totalLivesImpacted}
@@ -113,6 +133,7 @@ function ImpactMoreLivesCTA({
           <div />
         )}
       </CardLargeImage>
+      {showDivider && <S.Divider />}
     </S.Container>
   );
 }

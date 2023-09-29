@@ -101,6 +101,8 @@
       "thanksToYou": "Thanks to you...",
       "lifeWasImpacted": "1 person was impacted",
       "livesWereImpacted": "{{value}} people were impacted",
+      "ticketWasDonated": "1 ticket was donated",
+      "ticketsWereDonated": "{{value}} tickets were donated", 
       "impactDescription": "with {{value}}",
       "titleSecondLine": "You have donated to",
       "youDonatedText": "You donated",
@@ -274,6 +276,14 @@
       "cardSubtitle": "+{{value}} people",
       "description": "with {{impact}}",
       "buttonText": "Donate {{value}}"
+    },
+    "buyMoreTicketsCTA": {
+      "title": "1 ticket = 1 person impacted",
+      "subtitle": "With only {{value}} you can donate {{lives}} tickets and change the lives of {{lives}} people!",
+      "cardTitle": "Donate {{value}} and buy",
+      "cardSubtitle": "+{{value}} tickets",
+      "description": "and help with {{impact}}",
+      "buttonText": "Donate {{value}} tickets"
     }
   },
   "promoters": {
@@ -320,18 +330,24 @@
     "supportNonProfitPage": {
       "title": "Make a direct donation",
       "impactMoreTitle": "Impact more",
+      "buyAndDonateTicketsTitle": "Buy and donate tickets",
       "donateButtonText": "Donate {{value}}",
       "selectOfferSection": {
         "fundText": "fund",
         "impactText": "Impact",
+        "donateText": "Donate",
         "livesAmount": "{{value}} people",
-        "impactDescription": "with {{value}}"
+        "impactDescription": "with {{value}}",
+        "altImpactDescription": "and help with {{value}}",
+        "ticketsAmount": "{{value}} tickets"
       },
       "tooltipImpact": "How we calculate the impact?",
       "tooltipImpactText": "The calculations are based on the minimum value needed for the project achieve good results. Ribon’s causes are part of the social moviment “Effective Altruism”, which aim to generate big impact at low cost.",
       "impactLivesSection": {
         "title": "20 times more than a ticket!",
-        "subtitle": "With just R$10 you can change the lives of 20 people and raise your donor level!"
+        "subtitle": "With just R$10 you can change the lives of 20 people and raise your donor level!",
+        "altTitle": "Buy and donate 20 tickets",
+        "altSubtitle": "With just R$10 you can donate 20 tickets and change the lives of 20 people!"
       }
     },
     "supportTreasurePage": {
@@ -650,6 +666,7 @@
     "donate": "Donate {{value}}",
     "donateAndImpact": "Donate {{value}} and impact",
     "livesAmount": "+{{value}} people",
+    "ticketsAmount": "+{{value}} tickets",
     "impactDescription": "with {{value}}",
     "titleCard": "Do even more"
   }

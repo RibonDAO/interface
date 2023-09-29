@@ -166,6 +166,7 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
           onCurrentSlideChange={(index) => setCurrentNonProfitIndex(index)}
           saveStateIdentifier="nonProfitsList"
           loop={nonProfits.length >= MINIMUM_NON_PROFITS_TO_LOOP + 1}
+          slideWidthOnDesktop={256}
         >
           {nonProfits.map(
             (nonProfit: any) =>

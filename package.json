@@ -99,7 +99,7 @@
     ]
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.0.3",
+    "@commitlint/cli": "^17.7.2",
     "@commitlint/config-conventional": "^16.0.0",
     "@craco/craco": "^7.0.0",
     "@storybook/addon-actions": "^6.5.10",

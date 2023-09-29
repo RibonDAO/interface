@@ -62,6 +62,7 @@ export const CardWrapper = styled.div`
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     margin-inline: 12px;
     margin-left: 0px;
+    max-width: 256px;
 
     :nth-of-type(1) {
       margin-left: 0px;
@@ -115,8 +116,8 @@ export const EmptyButton = styled(Button)`
 
 export const ImpactMoreLivesContainer = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing(8)};
-  
+
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     margin-bottom: ${({ theme }) => theme.spacing(32)};
   }
-`
+`;

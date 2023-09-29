@@ -277,7 +277,7 @@
       "buttonText": "Doar {{value}}"
     },
     "buyMoreTicketsCTA": {
-      "title": "Compre e doe 20 tickets",
+      "title": "Compre e doe {{lives}} tickets",
       "subtitle": "Com apenas {{value}} você doa {{lives}} tickets e transforma a vida de {{lives}} pessoas!",
       "cardTitle": "Doe {{value}} e compre",
       "cardSubtitle": "+{{value}} tickets",

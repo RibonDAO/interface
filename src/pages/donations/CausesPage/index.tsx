@@ -14,7 +14,6 @@ import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import { DONATION_TOAST_SEEN_AT_KEY } from "lib/localStorage/constants";
 import { today } from "lib/dateTodayFormatter";
-import Spinner from "components/atomics/Spinner";
 import useVoucher from "hooks/useVoucher";
 import { useCausesContext } from "contexts/causesContext";
 import Tooltip from "components/moleculars/Tooltip";
@@ -29,11 +28,11 @@ import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
 import { useNonProfitsContext } from "contexts/nonProfitsContext";
 import { logEvent } from "lib/events";
+import NonProfitsSection from "pages/donations/CausesPage/NonProfitsSection";
 import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
 import { useExperiment } from "@growthbook/growthbook-react";
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
-import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
 import ChooseCauseModal from "./ChooseCauseModal";
 import CausesSelectSection from "./CausesSelectSection";
@@ -44,12 +43,10 @@ function CausesPage(): JSX.Element {
   const { integration } = useIntegration(integrationId);
   const [shouldShowIntegrationBanner, setShouldShowIntegrationBanner] =
     useState<boolean | undefined>(false);
-
   const { causesWithPoolBalance, isLoading: isLoadingCauses } =
     useCausesContext();
-  const { nonProfitsWithPoolBalance, isLoading: isLoadingNonProfits } =
-    useNonProfitsContext();
-  const { chosenCause, chooseCauseModalVisible } = useCauseDonationContext();
+  const { nonProfitsWithPoolBalance } = useNonProfitsContext();
+  const { chooseCauseModalVisible } = useCauseDonationContext();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
@@ -162,36 +159,6 @@ function CausesPage(): JSX.Element {
     }
   }, [chooseCauseModalVisible]);
 
-  const nonProfitsFilter = () => {
-    if (chosenCause) {
-      return (
-        nonProfitsWithPoolBalance?.filter(
-          (nonProfit) => nonProfit.cause?.id === chosenCause.id,
-        ) || []
-      );
-    }
-    return nonProfitsWithPoolBalance || [];
-  };
-
-  const sortNonProfits = () => {
-    const filteredNonProfits = nonProfitsFilter();
-    const sorted = filteredNonProfits?.sort((a, b) => {
-      const causeAIndex = causesWithPoolBalance.findIndex(
-        (cause) => cause.id === a.cause.id,
-      );
-      const causeBIndex = causesWithPoolBalance.findIndex(
-        (cause) => cause.id === b.cause.id,
-      );
-
-      return causeAIndex - causeBIndex;
-    });
-    return sorted;
-  };
-
-  useEffect(() => {
-    sortNonProfits();
-  }, [chosenCause]);
-
   useAvoidBackButton();
 
   const buttonVariation = useExperiment({
@@ -228,19 +195,7 @@ function CausesPage(): JSX.Element {
         <ContributionNotification />
         {!canDonate && !isInButtonVariation && <ContributionSection />}
         <CausesSelectSection />
-
-        {isLoadingNonProfits ? (
-          <Spinner size="26" />
-        ) : (
-          nonProfitsWithPoolBalance && (
-            <S.NonProfitsContainer>
-              <NonProfitsList
-                nonProfits={sortNonProfits()}
-                canDonate={canDonate}
-              />
-            </S.NonProfitsContainer>
-          )
-        )}
+        <NonProfitsSection />
         {isMobile && (
           <S.TooltipSection>
             <Tooltip

@@ -15,7 +15,6 @@ import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import { DONATION_TOAST_SEEN_AT_KEY } from "lib/localStorage/constants";
 import { today } from "lib/dateTodayFormatter";
 import useVoucher from "hooks/useVoucher";
-import { useCausesContext } from "contexts/causesContext";
 import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
@@ -26,8 +25,6 @@ import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
-import { useNonProfitsContext } from "contexts/nonProfitsContext";
-import { logEvent } from "lib/events";
 import NonProfitsSection from "pages/donations/CausesPage/NonProfitsSection";
 import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
 import { useExperiment } from "@growthbook/growthbook-react";
@@ -43,9 +40,6 @@ function CausesPage(): JSX.Element {
   const { integration } = useIntegration(integrationId);
   const [shouldShowIntegrationBanner, setShouldShowIntegrationBanner] =
     useState<boolean | undefined>(false);
-  const { causesWithPoolBalance, isLoading: isLoadingCauses } =
-    useCausesContext();
-  const { nonProfitsWithPoolBalance } = useNonProfitsContext();
   const { chooseCauseModalVisible } = useCauseDonationContext();
 
   const { t } = useTranslation("translation", {
@@ -126,17 +120,6 @@ function CausesPage(): JSX.Element {
   }, [JSON.stringify(currentUser)]);
 
   useEffect(() => {
-    if (nonProfitsWithPoolBalance && causesWithPoolBalance?.length > 0) {
-      logEvent("donationCardsOrder_view", {
-        nonProfits: nonProfitsWithPoolBalance
-          .map((nonProfit) => nonProfit.name)
-          .join(", "),
-        causes: causesWithPoolBalance?.map((cause) => cause.name).join(", "),
-      });
-    }
-  }, [nonProfitsWithPoolBalance, causesWithPoolBalance]);
-
-  useEffect(() => {
     if (hasReceivedTicketToday() && hasAvailableDonation()) {
       createVoucher();
     } else if (
@@ -182,9 +165,6 @@ function CausesPage(): JSX.Element {
       {!isFirstAccess(signedIn) && <DownloadAppToast />}
       {shouldShowIntegrationBanner && (
         <IntegrationBanner integration={integration} />
-      )}
-      {!isLoadingCauses && (
-        <ChooseCauseModal visible={chooseCauseModalVisible} />
       )}
       <ChooseCauseModal visible={chooseCauseModalVisible} />
       <S.BodyContainer>

@@ -65,9 +65,6 @@ function SupportCausePage(): JSX.Element {
   }, [causes]);
 
   const handleCauseClick = (causeClicked: Cause, index: number) => {
-    logEvent("treasureCauseSelection_click", {
-      id: causeClicked?.id,
-    });
     setCause(causeClicked);
     setChosenCauseIndex(index);
     setChosenCause(causeClicked);

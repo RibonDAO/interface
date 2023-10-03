@@ -30,10 +30,6 @@ describe("SupportCausePage", () => {
     expectTextToBeInTheDocument("Donate with a community");
   });
 
-  it("logs the causeSupportScreen_view event", () => {
-    expectLogEventToHaveBeenCalledWith("causeSupportScreen_view");
-  });
-
   describe("when the button option is clicked", () => {
     it("logs the supportCauseSelection_click event", () => {
       clickOn("💊 Health");

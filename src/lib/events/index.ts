@@ -18,9 +18,9 @@ export function logEvent(
 ): void {
   const convertedParams = eventParams;
   convertedParams.anonymousId =
-      localStorage.getItem("installationId") ?? "false";
+    localStorage.getItem("installationId") ?? "false";
   convertedParams.integrationName =
-      localStorage.getItem("integrationName") ?? "false";
+    localStorage.getItem("integrationName") ?? "false";
   convertedParams.hasDonated = localStorage.getItem("HAS_DONATED") ?? "false";
   convertedParams.platform = "web";
 
@@ -33,14 +33,6 @@ export function logEvent(
   if (DEBUG_EVENTS_ENABLED && logDebugEvent) {
     logDebugEvent(eventName, convertedParams);
   }
-}
-
-export function newLogEvent(
-  action: string,
-  eventName: string,
-  eventParams: EventParams = {},
-): void {
-  logEvent(`${eventName}_${action}`, eventParams);
 }
 
 export function logPageView(

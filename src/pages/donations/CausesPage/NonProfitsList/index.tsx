@@ -2,7 +2,7 @@ import CardCenterImageButton from "components/moleculars/cards/CardCenterImageBu
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import useNavigation from "hooks/useNavigation";
-import { logEvent, newLogEvent } from "lib/events";
+import { logEvent } from "lib/events";
 import { Currencies, NonProfit } from "@ribon.io/shared/types";
 import { useOffers } from "@ribon.io/shared/hooks";
 import { useLanguage } from "hooks/useLanguage";
@@ -92,9 +92,6 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
         search: searchParams.toString(),
       });
     } else {
-      newLogEvent("click", "P1_donateBlockedBtn", {
-        nonProfitId: nonProfit.id,
-      });
       showBlockedDonationContributionModal();
     }
   }

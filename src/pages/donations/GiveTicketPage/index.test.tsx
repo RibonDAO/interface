@@ -7,14 +7,11 @@ import {
 import causeFactory from "config/testUtils/factories/causeFactory";
 
 import { mockRequest } from "config/testUtils/test-helper";
-import { mockNewLogEventFunction } from "setupTests";
 import GiveTicketPage from ".";
 
 describe("GiveTicketPage", () => {
   describe("when is the first access to ribon", () => {
     describe("when the integration is Ribon", () => {
-      const action = "view";
-
       const ribonIntegration = {
         id: 1,
         name: "Ribon",
@@ -36,11 +33,7 @@ describe("GiveTicketPage", () => {
 
       it("navigates to the receive ticket page when the button is clicked", () => {
         clickOn("Get my ticket");
-        expect(mockNewLogEventFunction).toHaveBeenCalledWith(
-          action,
-          "receiveTicket",
-          { from: "onboarding_page" },
-        );
+
         expectPageToNavigateTo("/receive-ticket");
       });
     });

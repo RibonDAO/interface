@@ -4,7 +4,7 @@ import {
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
 import logo from "assets/icons/logo.svg";
-import { mockNewLogEventFunction } from "setupTests";
+import { mockLogEventFunction } from "setupTests";
 import TicketWithTextAndImage from ".";
 
 describe("TicketWithTextAndImage", () => {
@@ -47,7 +47,7 @@ describe("TicketWithTextAndImage", () => {
     window.open = jest.fn();
 
     clickOn("subtitle");
-    expect(mockNewLogEventFunction).toHaveBeenCalledWith("click", "eventName", {
+    expect(mockLogEventFunction).toHaveBeenCalledWith("eventName", {
       eventParams: "eventParams",
     });
     expect(window.open).toHaveBeenCalledWith("https://example.com", "_blank");

@@ -1,4 +1,4 @@
-import { logEvent, newLogEvent, logPageView } from "lib/events";
+import { logEvent, logPageView } from "lib/events";
 import * as FirebaseEvents from "services/analytics/firebase";
 import * as MixpanelEvents from "services/analytics/mixpanel";
 import * as AmplitudeEvents from "services/analytics/amplitude";
@@ -81,17 +81,6 @@ describe("Events", () => {
     });
   });
 
-  describe("newLogEvent", () => {
-    const action = "view";
-    it("sends an event to firebase", () => {
-      newLogEvent(action, eventName);
-      expect(FirebaseEvents.logFirebaseEvent).toHaveBeenCalledWith(
-        `${eventName}_${action}`,
-        paramsDefault,
-      );
-    });
-  });
-
   describe("logPageView", () => {
     const urlName = "/causes";
     const translation = events.pages[urlName];
@@ -99,17 +88,6 @@ describe("Events", () => {
       logPageView(urlName);
       expect(FirebaseEvents.logFirebaseEvent).toHaveBeenCalledWith(
         `${translation}_view`,
-        paramsDefault,
-      );
-    });
-  });
-
-  describe("newLogEvent", () => {
-    const action = "view";
-    it("sends an event to Mixpanel", () => {
-      newLogEvent(action, eventName);
-      expect(MixpanelEvents.logMixpanelEvent).toHaveBeenCalledWith(
-        `${eventName}_${action}`,
         paramsDefault,
       );
     });

@@ -1,6 +1,6 @@
 import Button, { ButtonProps } from "components/atomics/buttons/Button";
 import LottieAnimation from "components/atomics/LottieAnimation";
-import { newLogEvent } from "lib/events";
+import { logEvent } from "lib/events";
 import { useState } from "react";
 import theme from "styles/theme";
 import { defaultCustomStyles } from "../defaultCustomStyles";
@@ -54,7 +54,7 @@ function ModalRows({
   const [logged, SetLogged] = useState(false);
 
   if (visible && eventName && !logged) {
-    newLogEvent("view", eventName, eventParams);
+    logEvent(eventName, eventParams);
     SetLogged(true);
   }
 

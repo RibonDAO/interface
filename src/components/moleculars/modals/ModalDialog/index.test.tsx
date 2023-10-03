@@ -4,7 +4,7 @@ import {
   expectTextNotToBeInTheDocument,
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
-import { mockNewLogEventFunction } from "setupTests";
+import { mockLogEventFunction } from "setupTests";
 import { fireEvent, screen } from "@testing-library/react";
 import { theme } from "@ribon.io/shared";
 import ModalDialog from ".";
@@ -155,15 +155,10 @@ describe("ModalDialog", () => {
 describe("when the modal is visible and has an eventName", () => {
   const eventName = "test";
   const eventParams = { test: "test" };
-  const action = "view";
   it("logs an event", () => {
     renderComponent(
       <ModalDialog visible eventName={eventName} eventParams={eventParams} />,
     );
-    expect(mockNewLogEventFunction).toHaveBeenCalledWith(
-      action,
-      eventName,
-      eventParams,
-    );
+    expect(mockLogEventFunction).toHaveBeenCalledWith(eventName, eventParams);
   });
 });

@@ -34,12 +34,10 @@ export function useDonationTicketModal(
       onClick: () => {
         showAnimationReceiveTicketModal();
       },
-      eventName: "P1_IntroModal",
     },
     onClose: () => showAnimationReceiveTicketModal(),
     leftImage: !isRibonIntegration ? integration?.logo : null,
     rightImage: RibonIcon,
-    eventName: "P1_IntroModal",
   };
 
   const { show, hide } = useModal({

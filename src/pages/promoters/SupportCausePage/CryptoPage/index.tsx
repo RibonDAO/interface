@@ -49,10 +49,6 @@ function CryptoPage(): JSX.Element {
   });
 
   useEffect(() => {
-    logEvent("causeSupportScreen_view");
-  }, []);
-
-  useEffect(() => {
     if (causes.length > 0) {
       logEvent("contributionCardsOrder_view", {
         causes: causes.map((c) => c.name).join(", ") as any,
@@ -82,10 +78,6 @@ function CryptoPage(): JSX.Element {
   };
 
   const onDonationToContractSuccess = () => {
-    logEvent("toastNotification_view", {
-      status: "transactionProcessed",
-    });
-
     navigateTo({
       pathname: "/donation-done-cause",
       state: {

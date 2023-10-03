@@ -1,7 +1,6 @@
 import CardTopImage from "components/moleculars/cards/CardTopImage";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { logEvent } from "lib/events";
 import { formatPriceWithZeros } from "lib/formatters/currencyFormatter";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import { useLanguage } from "hooks/useLanguage";
@@ -40,10 +39,6 @@ function ImpactPage(): JSX.Element {
     key: "ticket-impact-test",
     variations: [false, true],
   });
-
-  useEffect(() => {
-    logEvent("profile_view");
-  }, []);
 
   useEffect(() => {
     refetchStatistics();

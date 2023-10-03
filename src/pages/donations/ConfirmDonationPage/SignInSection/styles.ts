@@ -133,4 +133,9 @@ export const NewImpactDescription = styled.p`
   ${defaultBodyMdMedium}
 `;
 
+export const CheckboxLabel = styled.label`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+`;
 export const Checkbox = styled.input``;

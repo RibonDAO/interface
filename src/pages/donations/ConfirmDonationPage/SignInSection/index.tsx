@@ -74,10 +74,13 @@ function EmailInputSection({ nonProfit, onContinue }: Props): JSX.Element {
             setEmail(event.target.value);
           }}
         />
-        <S.Checkbox
-          type="checkbox"
-          onChange={(e) => setAllowedEmailMarketing(e.currentTarget.checked)}
-        />
+        <S.CheckboxLabel>
+          <S.Checkbox
+            type="checkbox"
+            onChange={(e) => setAllowedEmailMarketing(e.currentTarget.checked)}
+          />
+          {t("checkboxText")}
+        </S.CheckboxLabel>
         <S.Button
           text={t("confirmText")}
           onClick={handleButtonPress}

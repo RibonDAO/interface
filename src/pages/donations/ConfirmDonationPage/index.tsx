@@ -27,11 +27,12 @@ function ConfirmDonationPage(): JSX.Element {
   const { handleDonate } = useDonationFlow();
   const { navigateTo } = useNavigation();
 
-  const onContinue = async (email: string) => {
+  const onContinue = async (email: string, allowedEmailMarketing?: boolean) => {
     setDonationInProgress(true);
     await handleDonate({
       nonProfit,
       email,
+      allowedEmailMarketing,
       onSuccess: () => setDonationSucceeded(true),
       onError: () => {
         setDonationSucceeded(false);

@@ -11,7 +11,7 @@ import * as S from "./styles";
 
 type Props = {
   nonProfit: NonProfit;
-  onContinue: (email: string) => void;
+  onContinue: (email: string, allowedEmailMarketing?: boolean) => void;
 };
 function EmailInputSection({ nonProfit, onContinue }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
@@ -19,6 +19,7 @@ function EmailInputSection({ nonProfit, onContinue }: Props): JSX.Element {
   });
 
   const [email, setEmail] = useState("");
+  const [allowedEmailMarketing, setAllowedEmailMarketing] = useState(false);
 
   const { formattedImpactText } = useFormattedImpactText();
 
@@ -29,7 +30,7 @@ function EmailInputSection({ nonProfit, onContinue }: Props): JSX.Element {
   }, []);
 
   const handleButtonPress = () => {
-    onContinue(email);
+    onContinue(email, allowedEmailMarketing);
   };
 
   const variation = useExperiment({
@@ -72,6 +73,10 @@ function EmailInputSection({ nonProfit, onContinue }: Props): JSX.Element {
           onChange={(event) => {
             setEmail(event.target.value);
           }}
+        />
+        <S.Checkbox
+          type="checkbox"
+          onChange={(e) => setAllowedEmailMarketing(e.currentTarget.checked)}
         />
         <S.Button
           text={t("confirmText")}

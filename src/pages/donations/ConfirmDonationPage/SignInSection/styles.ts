@@ -132,3 +132,5 @@ export const NewImpactTitle = styled.h3`
 export const NewImpactDescription = styled.p`
   ${defaultBodyMdMedium}
 `;
+
+export const Checkbox = styled.input``;

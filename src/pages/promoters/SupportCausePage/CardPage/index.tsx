@@ -13,7 +13,6 @@ import {
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import theme from "styles/theme";
 import { useLocation } from "react-router-dom";
-import { useExperiment } from "@growthbook/growthbook-react";
 import Intersection from "assets/images/intersection-image.svg";
 import extractUrlValue from "lib/extractUrlValue";
 import { useCausesContext } from "contexts/causesContext";
@@ -120,38 +119,18 @@ function SupportCausePage(): JSX.Element {
     setOfferId(offer.id);
   };
 
-  const variation = useExperiment({
-    key: "understanding-test",
-    variations: ["control", "product", "growth"],
-  });
-
   if (causes.length === 0) {
     return <div />;
   }
 
-  const oldTitle = () => <S.Title>{t("title")}</S.Title>;
+  const addValueText = t("communityAddText");
 
-  const newTitle = () => (
-    <>
-      <S.Title>{t("donateWithRibonTitle")}</S.Title>
-      <S.Subtitle>{t("donateWithRibonSubtitle")}</S.Subtitle>
-    </>
-  );
-
-  const addValueText =
-    variation.value === "growth"
-      ? t("chainOfGoodwillText")
-      : t("communityAddText");
-
-  const buttonText =
-    variation.value === "growth"
-      ? t("chainOfGoodwillButtonText")
-      : t("communityAddButtonText");
+  const buttonText = t("communityAddButtonText");
 
   return (
     <S.Container>
       <DownloadAppToast />
-      {variation.value === "growth" ? newTitle() : oldTitle()}
+      <S.Title>{t("title")}</S.Title>
       {!isLoading && (
         <S.GroupButtonsContainer>
           <GroupButtons

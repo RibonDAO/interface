@@ -11,7 +11,6 @@ import useNavigation from "hooks/useNavigation";
 import SignInSection from "pages/donations/ConfirmDonationPage/SignInSection";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { logEvent } from "lib/events";
-import { useExperiment } from "@growthbook/growthbook-react";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -39,16 +38,10 @@ function ConfirmDonationPage(): JSX.Element {
     });
   };
 
-  const variation = useExperiment({
-    key: "understanding-test",
-    variations: ["control", "product", "growth"],
-  });
-
   const onAnimationEnd = useCallback(() => {
     if (donationSucceeded) {
       logEvent("ticketDonated_end", {
         nonProfitId: nonProfit.id,
-        variation: variation.value,
       });
       navigateTo({
         pathname: "/donation-done-cause",

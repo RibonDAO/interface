@@ -42,11 +42,6 @@ function PostDonationPage(): JSX.Element {
     variations: [false, true],
   });
 
-  const variationUnderstanding = useExperiment({
-    key: "understanding-test",
-    variations: ["control", "product", "growth"],
-  });
-
   useEffect(() => {
     if (nonProfit === undefined) {
       navigateTo({
@@ -78,7 +73,6 @@ function PostDonationPage(): JSX.Element {
       coin: offer?.currency,
       causeId: nonProfit?.cause?.id,
       platform: "web",
-      variation: variationUnderstanding.value,
     });
 
     navigateTo({

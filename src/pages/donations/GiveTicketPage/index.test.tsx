@@ -107,7 +107,7 @@ describe("GiveTicketPage", () => {
       const cause1 = causeFactory({
         id: 1,
         name: "cause1",
-        active: true,
+        status: "active",
       });
 
       mockRequest(`/api/v1/integrations/${otherIntegration.id}`, {

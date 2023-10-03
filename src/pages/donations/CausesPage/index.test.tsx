@@ -16,14 +16,14 @@ describe("Causes", () => {
   const cause1 = causeFactory({
     id: 1,
     name: "cause1",
-    active: true,
+    status: "active",
     withPoolBalance: true,
   });
 
   const cause2 = causeFactory({
     id: 2,
     name: "cause2",
-    active: false,
+    status: "inactive",
     withPoolBalance: false,
   });
 
@@ -105,7 +105,7 @@ describe("Causes", () => {
 
   it("shows the non profit if the cause is active and has pool balance", () => {
     nonProfitsWithPoolBalance.forEach((nonProfit) => {
-      if (nonProfit.cause?.active && nonProfit.cause?.withPoolBalance) {
+      if (nonProfit.cause?.status === "active" && nonProfit.cause?.withPoolBalance) {
         expectTextToBeInTheDocument(
           `Donate ${nonProfit.impactByTicket} ${nonProfit.impactDescription}`,
         );

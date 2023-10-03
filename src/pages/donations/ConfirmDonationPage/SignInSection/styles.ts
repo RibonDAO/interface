@@ -134,15 +134,15 @@ export const NewImpactDescription = styled.p`
 `;
 
 export const CheckboxLabel = styled.label`
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   cursor: pointer;
-  margin-bottom: ${({ theme }) => theme.spacing(8)};
 `;
 export const Checkbox = styled.input`
-  margin-right: ${({ theme }) => theme.spacing(8)};
-  margin-top: ${({ theme }) => theme.spacing(4)};
   width: 18px;
   height: 18px;
+  margin-top: ${({ theme }) => theme.spacing(4)};
+  margin-right: ${({ theme }) => theme.spacing(8)};
 `;

@@ -105,7 +105,10 @@ describe("Causes", () => {
 
   it("shows the non profit if the cause is active and has pool balance", () => {
     nonProfitsWithPoolBalance.forEach((nonProfit) => {
-      if (nonProfit.cause?.status === "active" && nonProfit.cause?.withPoolBalance) {
+      if (
+        nonProfit.cause?.status === "active" &&
+        nonProfit.cause?.withPoolBalance
+      ) {
         expectTextToBeInTheDocument(
           `Donate ${nonProfit.impactByTicket} ${nonProfit.impactDescription}`,
         );

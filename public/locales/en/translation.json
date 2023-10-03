@@ -102,7 +102,7 @@
       "lifeWasImpacted": "1 person was impacted",
       "livesWereImpacted": "{{value}} people were impacted",
       "ticketWasDonated": "1 ticket was donated",
-      "ticketsWereDonated": "{{value}} tickets were donated", 
+      "ticketsWereDonated": "{{value}} tickets were donated",
       "impactDescription": "with {{value}}",
       "titleSecondLine": "You have donated to",
       "youDonatedText": "You donated",
@@ -159,7 +159,8 @@
         "privacyPolicyText": "Privacy Policy",
         "privacyPolicyLink": "https://ribon.io/en/privacy-policy/#privacy",
         "impactOneLife": "Impact 1 person",
-        "impactDescription": "with {{value}}"
+        "impactDescription": "with {{value}}",
+        "checkboxText": "I agree to receive emails with information about my donations"
       }
     }
   },

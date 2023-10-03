@@ -159,7 +159,8 @@
         "privacyPolicyText": "Política de Privacidade",
         "privacyPolicyLink": "https://ribon.io/privacy-policy/#pol%C3%ADtica",
         "impactOneLife": "Impacte 1 pessoa",
-        "impactDescription": "com {{value}}"
+        "impactDescription": "com {{value}}",
+        "checkboxText": "Aceito receber e-mails com informações sobre minhas doações"
       }
     }
   },

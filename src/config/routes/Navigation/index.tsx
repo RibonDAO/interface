@@ -3,8 +3,6 @@ import { useLocation } from "react-router-dom";
 import { logEvent } from "lib/events";
 import { useTasksContext } from "contexts/tasksContext";
 import useContributionActivity from "hooks/useContributionActivity";
-import useAboutPageActivity from "hooks/useAboutPageActivity";
-import { useExperiment } from "@growthbook/growthbook-react";
 import CausesIconOn from "./assets/causesIconOn.svg";
 import CausesIconOff from "./assets/causesIconOff.svg";
 import ForYouIconOn from "./assets/forYouIconOn.svg";
@@ -13,8 +11,6 @@ import ImpactIconOn from "./assets/impactIconOn.svg";
 import ImpactIconOff from "./assets/impactIconOff.svg";
 import GivingIconOn from "./assets/givingIconOn.svg";
 import GivingIconOff from "./assets/givingIconOff.svg";
-import AboutIconOn from "./assets/aboutIconOn.svg";
-import AboutIconOff from "./assets/aboutIconOff.svg";
 import NavigationLink from "./NavigationLink";
 import * as S from "./styles";
 
@@ -47,12 +43,6 @@ function Navigation(): JSX.Element {
   const { search } = location;
   const { hasCompletedATask } = useTasksContext();
   const { newContributionActivity } = useContributionActivity();
-  const { hasSeenAboutPageToday } = useAboutPageActivity();
-
-  const variation = useExperiment({
-    key: "understanding-test",
-    variations: ["control", "product", "growth"],
-  });
 
   function isInPath(route: any): boolean {
     const { menuOptions, path } = route;
@@ -66,12 +56,9 @@ function Navigation(): JSX.Element {
     return [path].includes(location.pathname);
   }
 
-  const communityDonationText =
-    variation.value === "growth"
-      ? t("donateWithRibonMenuItem")
-      : t("communityMenuItem");
+  const communityDonationText = t("communityMenuItem");
 
-  let routes: NavigationItem[] = [
+  const routes: NavigationItem[] = [
     {
       path: "/causes",
       iconOn: CausesIconOn,
@@ -119,20 +106,6 @@ function Navigation(): JSX.Element {
       showActivityIndicatorCircle: newContributionActivity,
     },
   ];
-
-  if (variation.value === "growth") {
-    routes = [
-      ...routes,
-      {
-        path: "/about",
-        iconOn: AboutIconOn,
-        iconOff: AboutIconOff,
-        title: t("aboutPageTitle"),
-        event: "aboutNavBtn_click",
-        showNewLabel: !hasSeenAboutPageToday,
-      },
-    ];
-  }
 
   const handleEvent = (event: string, params = {}) => {
     logEvent(event, params);

@@ -4,7 +4,6 @@ import { usePixPaymentInformation } from "contexts/pixPaymentInformationContext"
 import { logEvent } from "lib/events";
 import usePaymentParams from "hooks/usePaymentParams";
 import { Offer } from "@ribon.io/shared/types";
-import { useExperiment } from "@growthbook/growthbook-react";
 
 type Props = {
   currentOffer?: Offer;
@@ -15,11 +14,6 @@ export default function PixSection({ currentOffer }: Props) {
   const { handleSubmit } = usePixPaymentInformation();
   const { target, targetId } = usePaymentParams();
 
-  const variation = useExperiment({
-    key: "understanding-test",
-    variations: ["control", "product", "growth"],
-  });
-
   const handlePixButtonClick = () => {
     if (!currentOffer) return;
     if (targetId)
@@ -29,7 +23,6 @@ export default function PixSection({ currentOffer }: Props) {
         currency: currentOffer.currency,
         amount: currentOffer.priceValue,
         paymentMethod: "pix",
-        variation: variation.value,
       });
 
     handleSubmit();

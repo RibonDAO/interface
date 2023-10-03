@@ -75,7 +75,7 @@ function ContributionCard({
       nonProfitId: nonProfit?.id,
       causeId: nonProfit?.cause?.id,
       offerId: offer?.id,
-      platform: "web"
+      platform: "web",
     });
 
     if (currency) {

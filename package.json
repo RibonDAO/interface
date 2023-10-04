@@ -138,7 +138,7 @@
     "lint-staged": "^13.0.3",
     "mrm": "4",
     "plop": "^3.1.1",
-    "postcss": "~8.4.6",
+    "postcss": "~8.4.31",
     "postcss-jsx": "^0.36.4",
     "postcss-scss": "^4.0.2",
     "postcss-syntax": "^0.36.2",

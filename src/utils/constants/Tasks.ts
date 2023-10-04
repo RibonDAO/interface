@@ -3,7 +3,6 @@
  * is completed. This will help us to split tasks or not between clients, and give us more freedom to set callbacks and more.
  */
 
-import { useExperiment } from "@growthbook/growthbook-react";
 import { beginningOfToday } from "lib/dateUtils";
 import { logEvent } from "lib/events";
 
@@ -42,21 +41,14 @@ export const TASKS = [
       );
       const completedDay = lastCompletedAt < beginningOfToday();
 
-      const variation = useExperiment({
-        key: "understanding-test",
-        variations: ["control", "product", "growth"],
-      });
-
       if (timesCompleted === 0 && !taskDone) {
         logEvent("downloadCTA_view", {
           from: "tasks",
-          variation: variation.value,
         });
         return true;
       } else if (timesCompleted === 1 && taskDone && !completedDay) {
         logEvent("downloadCTA_view", {
           from: "tasks",
-          variation: variation.value,
         });
         return true;
       }
@@ -71,12 +63,6 @@ export const TASKS = [
     type: "daily",
     navigationCallback: "/about",
     isVisible(this: Task, params?: any) {
-      const variation = useExperiment({
-        key: "understanding-test",
-        variations: ["control", "product", "growth"],
-      });
-
-      if (variation.value !== "growth") return false;
       const taskState = params?.state.find((obj: any) => obj.id === this.id);
 
       const lastCompletedAt = new Date(

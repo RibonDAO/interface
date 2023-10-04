@@ -3,7 +3,6 @@ import { useCardPaymentInformation } from "contexts/cardPaymentInformationContex
 import { PLATFORM } from "utils/constants";
 import { logEvent } from "lib/events";
 import { Offer } from "@ribon.io/shared/types";
-import { useExperiment } from "@growthbook/growthbook-react";
 import CreditCardForm from "../Components/CreditCardForm";
 
 type Props = {
@@ -14,11 +13,6 @@ export default function CardSection({ currentOffer }: Props) {
 
   const { handleSubmit } = useCardPaymentInformation();
 
-  const variation = useExperiment({
-    key: "understanding-test",
-    variations: ["control", "product", "growth"],
-  });
-
   const handlePayment = () => {
     if (!currentOffer) return;
     if (targetId)
@@ -28,7 +22,6 @@ export default function CardSection({ currentOffer }: Props) {
         currency: currentOffer.currency,
         amount: currentOffer.priceValue,
         paymentMethod: "card",
-        variation: variation.value,
       });
 
     handleSubmit(PLATFORM);

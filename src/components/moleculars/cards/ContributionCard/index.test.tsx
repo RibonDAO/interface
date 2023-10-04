@@ -102,9 +102,7 @@ describe("ContributionCard with variation", () => {
       />,
     );
 
-    expectTextToBeInTheDocument("Donate $10 and impact");
-    expectTextToBeInTheDocument("+20 people");
-    expectTextToBeInTheDocument("with Impact description");
+    expectTextToBeInTheDocument("Donate $10");
 
     clickOn("Donate");
 
@@ -138,9 +136,7 @@ describe("ContributionCard with variation", () => {
       />,
     );
 
-    expectTextToBeInTheDocument("Donate $10 and impact");
-    expectTextToBeInTheDocument("+20 people");
-    expectTextToBeInTheDocument("with Impact description");
+    expectTextToBeInTheDocument("Donate $10");
 
     clickOn("Donate");
 

@@ -13,7 +13,7 @@ describe("ImpactLivesSection", () => {
     renderComponent(<ImpactLivesSection />);
 
     expectTextToBeInTheDocument(
-      "With just R$10 you can change the lives of 20 people and raise your donor level!",
+      "With just R$10 you can donate 20 tickets and change the lives of 20 people!",
     );
   });
 });

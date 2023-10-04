@@ -9,7 +9,7 @@ import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
 import SupportNonProfit from ".";
 
 const mockCause = causeFactory();
-const mockCause2 = causeFactory({ name: "💊 Health", id: 2, active: true });
+const mockCause2 = causeFactory({ name: "💊 Health", id: 2, status: "active" });
 const mockNonProfit = nonProfitFactory({ cause: mockCause });
 const mockNonProfit2 = nonProfitFactory({
   cause: mockCause2,

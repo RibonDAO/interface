@@ -38,7 +38,7 @@ describe("SignInSection", () => {
     fillByPlaceholder("E-mail", "test@ribon.io");
     clickOn("Continue");
 
-    expect(onContinue).toHaveBeenCalledWith("test@ribon.io");
+    expect(onContinue).toHaveBeenCalledWith("test@ribon.io", false);
   });
 
   it("logs the P12_view event", () => {

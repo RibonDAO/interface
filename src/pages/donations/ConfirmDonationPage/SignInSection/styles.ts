@@ -132,3 +132,17 @@ export const NewImpactTitle = styled.h3`
 export const NewImpactDescription = styled.p`
   ${defaultBodyMdMedium}
 `;
+
+export const CheckboxLabel = styled.label`
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  cursor: pointer;
+`;
+export const Checkbox = styled.input`
+  width: 18px;
+  height: 18px;
+  margin-top: ${({ theme }) => theme.spacing(4)};
+  margin-right: ${({ theme }) => theme.spacing(8)};
+`;

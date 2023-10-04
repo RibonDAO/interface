@@ -25,18 +25,9 @@ function ImpactMoreLivesCTA({
   from,
   showUserProgress = false,
 }: Props): JSX.Element {
-  const { value: isProgressionEnabled } = useExperiment({
-    key: "progression-test-first-stage",
-    variations: [false, true],
-  });
-
   const { value: isTicketBasedImpact } = useExperiment({
     key: "ticket-impact-test",
     variations: [false, true],
-  });
-
-  const { t: impactMoreLives } = useTranslation("translation", {
-    keyPrefix: "impactPage.impactMoreLivesCTA",
   });
 
   const { t: buyMoreTickets } = useTranslation("translation", {
@@ -85,9 +76,9 @@ function ImpactMoreLivesCTA({
 
   const livesValue = Math.round(Number(currentOffer?.priceValue ?? 50) * 2);
 
-  const buttonValue = isProgressionEnabled ? currentOffer?.price : livesValue;
-  const t = isProgressionEnabled ? impactMoreLives : buyMoreTickets;
-  const showDivider = isTicketBasedImpact && !isProgressionEnabled;
+  const buttonValue = livesValue;
+  const t = buyMoreTickets;
+  const showDivider = isTicketBasedImpact;
 
   return (
     <S.Container>

@@ -19,12 +19,8 @@ import * as S from "./styles";
 
 type Props = {
   from: string;
-  showUserProgress?: boolean;
 };
-function ImpactMoreLivesCTA({
-  from,
-  showUserProgress = false,
-}: Props): JSX.Element {
+function ImpactMoreLivesCTA({ from }: Props): JSX.Element {
   const { value: isTicketBasedImpact } = useExperiment({
     key: "ticket-impact-test",
     variations: [false, true],

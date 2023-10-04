@@ -179,7 +179,7 @@ function CausesPage(): JSX.Element {
         </S.TitleContainer>
         {!canDonate && isTicketBasedImpact && !isInButtonVariation && (
           <S.ImpactMoreLivesContainer>
-            <ImpactMoreLivesCTA from="causes_page" showUserProgress />
+            <ImpactMoreLivesCTA from="causes_page" />
           </S.ImpactMoreLivesContainer>
         )}
         <ContributionNotification />

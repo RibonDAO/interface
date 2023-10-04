@@ -18,10 +18,6 @@ export type Props = {
   nonProfit?: NonProfit;
   from: string;
   flow?: string;
-  testVariation?: Record<
-    string,
-    any
-  > /* NOTE: Remove it at the end of AB testing */;
 };
 
 function ContributionCard({
@@ -34,7 +30,6 @@ function ContributionCard({
   from,
   flow,
   title,
-  testVariation = { value: false },
 }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "contributionCard",

@@ -30,11 +30,12 @@ function ConfirmDonationPage(): JSX.Element {
     keyPrefix: "donations.causesPage",
   });
 
-  const onContinue = async (email: string) => {
+  const onContinue = async (email: string, allowedEmailMarketing?: boolean) => {
     setDonationInProgress(true);
     await handleDonate({
       nonProfit,
       email,
+      allowedEmailMarketing,
       onSuccess: () => setDonationSucceeded(true),
       onError: () => {
         setDonationSucceeded(false);

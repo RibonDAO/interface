@@ -23,11 +23,6 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
 
   const currentCurrency = currentLang === "pt-BR" ? "BRL" : "USD";
 
-  const variationUnderstanding = useExperiment({
-    key: "understanding-test",
-    variations: ["control", "product", "growth"],
-  });
-
   const handleClickedDonationButton = () => {
     logEvent("giveNgoBtn_start", {
       from: "zeroTickets_modal",
@@ -35,7 +30,6 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
       coin: offer?.currency,
       causeId: nonProfit?.cause?.id,
       platform: "web",
-      variation: variationUnderstanding.value,
     });
 
     const searchParams = new URLSearchParams({

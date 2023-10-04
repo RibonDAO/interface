@@ -123,12 +123,6 @@ function DonationDoneCausePage(): JSX.Element {
     },
     [offerId],
   );
-
-  const variationUnderstanding = useExperiment({
-    key: "understanding-test",
-    variations: ["control", "product", "growth"],
-  });
-
   function navigate() {
     clearTimeout(pageTimeout);
     refetch();
@@ -139,7 +133,6 @@ function DonationDoneCausePage(): JSX.Element {
         currency: offer?.currency,
         amount: offer?.priceValue,
         causeId: cause.id,
-        variation: variationUnderstanding.value,
       });
       navigateTo({
         pathname: offer?.subscription
@@ -155,7 +148,6 @@ function DonationDoneCausePage(): JSX.Element {
         currency: offer?.currency,
         amount: offer?.priceValue,
         nonProfitId: nonProfit?.id,
-        variation: variationUnderstanding.value,
       });
       if (variation.value) {
         navigateTo("/impact");

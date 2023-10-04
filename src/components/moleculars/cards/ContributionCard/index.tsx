@@ -5,9 +5,7 @@ import { formatPrice } from "lib/formatters/currencyFormatter";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "hooks/useLanguage";
-import { useExperiment } from "@growthbook/growthbook-react";
 import { theme } from "@ribon.io/shared/styles";
-import HeartIcon from "assets/icons/heart.svg";
 import * as S from "./styles";
 
 export type Props = {
@@ -44,7 +42,6 @@ function ContributionCard({
   const { navigateTo } = useNavigation();
   const { currentLang } = useLanguage();
 
-  const isTest = process.env.NODE_ENV === "test";
   const [currency, setCurrency] = useState<Currencies | undefined>();
 
   useEffect(() => {
@@ -95,14 +92,7 @@ function ContributionCard({
     }
   };
 
-  const { primary, tertiary } = theme.colors.brand;
-
-  const variation = isTest
-    ? testVariation
-    : useExperiment({
-        key: "progression-test-first-stage",
-        variations: [false, true],
-      });
+  const { primary } = theme.colors.brand;
 
   const oldImpactFormat = () => (
     <>
@@ -125,41 +115,13 @@ function ContributionCard({
     </>
   );
 
-  const newImpactFormat = () => (
-    <S.Centered>
-      {currency && (
-        <S.Value colorTheme={tertiary}>
-          {t("donateAndImpact", {
-            value: formatPrice(value, currency.toLowerCase()),
-          })}
-        </S.Value>
-      )}
-      <S.LifeAmount>
-        <S.HeartIcon src={HeartIcon} aria-hidden alt="life icon" />
-        {t("livesAmount", {
-          value: Math.round(Number(offer?.priceValue ?? 50) * 2),
-        })}
-      </S.LifeAmount>
-      <S.ImpactDescription>
-        {t("impactDescription", {
-          value: nonProfit?.impactDescription.split(",")[0],
-        })}
-      </S.ImpactDescription>
-      <S.DonationButton
-        colorTheme={tertiary}
-        onClick={() => handleClickedDonationButton()}
-        text={t("button")}
-      />
-    </S.Centered>
-  );
-
   return (
     <S.Container
       style={style}
-      colorTheme={variation.value ? tertiary : primary}
+      colorTheme={primary}
       data-testid="contribution-section-container"
     >
-      {variation.value ? newImpactFormat() : oldImpactFormat()}
+      {oldImpactFormat()}
     </S.Container>
   );
 }

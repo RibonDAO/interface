@@ -16,7 +16,7 @@ describe("Causes", () => {
   const cause1 = causeFactory({
     id: 1,
     name: "cause1",
-    active: true,
+    status: "active",
   });
 
   const nonProfit1 = nonProfitFactory({

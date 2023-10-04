@@ -15,7 +15,6 @@ import { useUserLevel } from "contexts/userLevelContext";
 import { useExperiment } from "@growthbook/growthbook-react";
 import { logEvent } from "lib/events";
 import HeartImage from "assets/icons/heart.svg";
-import UserProgress from "pages/users/ImpactedLivesSection/UserProgress";
 import * as S from "./styles";
 
 type Props = {
@@ -55,13 +54,7 @@ function ImpactMoreLivesCTA({
     userId: currentUser?.id ?? undefined,
   });
   const { nonProfits } = useNonProfits();
-  const {
-    userExperience: totalLivesImpacted,
-    currentLevelExperience,
-    userLevel,
-    nextLevelExperience,
-    percentageCompleted,
-  } = useUserLevel();
+  const { userExperience: totalLivesImpacted } = useUserLevel();
 
   useEffect(() => {
     setCurrentCoin(coinByLanguage(currentLang));
@@ -118,21 +111,7 @@ function ImpactMoreLivesCTA({
           impact: currentNonProfit?.impactDescription.split(",")[1],
         })}
         onButtonClick={onButtonClick}
-      >
-        {showUserProgress && !isTicketBasedImpact ? (
-          <S.UserProgressContainer>
-            <UserProgress
-              currentExperience={totalLivesImpacted}
-              totalExperienceToNextLevel={nextLevelExperience}
-              currentLevelExperience={currentLevelExperience}
-              nextLevel={userLevel + 1}
-              percentageCompleted={percentageCompleted}
-            />
-          </S.UserProgressContainer>
-        ) : (
-          <div />
-        )}
-      </CardLargeImage>
+      />
       {showDivider && <S.Divider />}
     </S.Container>
   );

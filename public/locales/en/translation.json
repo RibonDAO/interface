@@ -663,7 +663,7 @@
     "nonProfits": "NGOs"
   },
   "contributionCard": {
-    "button": "Donate",
+    "button": "Participate in the campaign",
     "donate": "Donate basic health care",
     "donateAndImpact": "Donate {{value}} and impact",
     "livesAmount": "+{{value}} people",

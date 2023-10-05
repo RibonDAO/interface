@@ -33,7 +33,7 @@ function ContributionSection(): JSX.Element {
             marginLeft: isMobile ? "-16px" : "0",
             borderRadius: isMobile ? "0" : "8px",
           }}
-          from="donateTickets_page"
+          from="kidsCampaignCTA"
           flow="nonProfit"
         />
       </S.Container>

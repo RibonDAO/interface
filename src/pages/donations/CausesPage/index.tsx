@@ -30,6 +30,7 @@ import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
 import { useExperiment } from "@growthbook/growthbook-react";
 import ImpactMoreLivesCTA from "pages/users/ImpactedLivesSection/ImpactMoreLivesCTA";
 import ContributionSection from "pages/donations/CausesPage/ContributionSection";
+import { useLanguage } from "hooks/useLanguage";
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
@@ -42,6 +43,7 @@ function CausesPage(): JSX.Element {
   const [shouldShowIntegrationBanner, setShouldShowIntegrationBanner] =
     useState<boolean | undefined>(false);
   const { chooseCauseModalVisible } = useCauseDonationContext();
+  const { currentLang } = useLanguage();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
@@ -183,7 +185,9 @@ function CausesPage(): JSX.Element {
             <ImpactMoreLivesCTA from="causes_page" />
           </S.ImpactMoreLivesContainer>
         )}
-        {!canDonate && !isTicketBasedImpact && <ContributionSection />}
+        {!canDonate && !isTicketBasedImpact && currentLang === "pt-BR" && (
+          <ContributionSection />
+        )}
         <ContributionNotification />
         <CausesSelectSection />
         <NonProfitsSection />

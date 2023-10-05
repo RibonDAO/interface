@@ -2,6 +2,7 @@ import ContributionCard from "components/moleculars/cards/ContributionCard";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useTranslation } from "react-i18next";
 import { useImpactConversion } from "hooks/useImpactConversion";
+import KidsDayCampaignImage from "./assets/kids-day-campaign-image.png";
 import * as S from "./styles";
 
 function ContributionSection(): JSX.Element {
@@ -18,7 +19,7 @@ function ContributionSection(): JSX.Element {
       <S.Title>{t("title", { nonProfitName: nonProfit?.name })}</S.Title>
       <S.Container>
         <S.ImageContainer>
-          <S.NonProfitImage src={contribution?.image} />
+          <S.NonProfitImage src={KidsDayCampaignImage} />
         </S.ImageContainer>
         <ContributionCard
           description={description}

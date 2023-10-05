@@ -21,7 +21,9 @@ export type Props = {
 };
 
 function ContributionCard({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   description,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   impact,
   value,
   style,
@@ -99,9 +101,7 @@ function ContributionCard({
           })}
         </S.Value>
       )}
-      <S.Description>
-        {description} {impact && <b>{impact}</b>}
-      </S.Description>
+      <S.Description>{t("description")}</S.Description>
       <S.DonationButton
         colorTheme={primary}
         onClick={() => handleClickedDonationButton()}

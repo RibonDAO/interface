@@ -659,16 +659,17 @@
   "contributionSection": {
     "title": "Amazing! Thank you for helping {{nonProfitName}}",
     "titleNewImpact": "Thanks to you, {{nonProfitName}} will be able to impact 1 person. Thank you!",
-    "titleCard": "Do even more",
+    "titleCard": "CHILDREN’S DAY CAMPAIGN",
     "nonProfits": "NGOs"
   },
   "contributionCard": {
     "button": "Donate",
-    "donate": "Donate {{value}}",
+    "donate": "Donate basic health care",
     "donateAndImpact": "Donate {{value}} and impact",
     "livesAmount": "+{{value}} people",
     "ticketsAmount": "+{{value}} tickets",
     "impactDescription": "with {{value}}",
-    "titleCard": "Do even more"
+    "titleCard": "CHILDREN’S DAY CAMPAIGN",
+    "description": "And help a child live their first 5 years healthily"
   }
 }

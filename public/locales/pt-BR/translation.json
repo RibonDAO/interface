@@ -656,18 +656,19 @@
     "link": "Acompanhar doação"
   },
   "contributionSection": {
-    "titleCard": "Faça ainda mais",
+    "titleCard": "CAMPANHA DE DIA DAS CRIANÇAS",
     "title": "Que incrível! Obrigado por ajudar {{nonProfitName}}",
     "titleNewImpact": "Graças a você a {{nonProfitName}} poderá impactar 1 pessoa. Obrigado!",
     "nonProfits": "ONGs"
   },
   "contributionCard": {
     "button": "Doar",
-    "donate": "Doe {{value}}",
-    "titleCard": "Faça ainda mais",
+    "donate": "Doe cuidados de saúde básica",
+    "titleCard": "CAMPANHA DE DIA DAS CRIANÇAS",
     "donateAndImpact": "Doe {{value}} e impacte",
     "livesAmount": "+{{value}} pessoas",
     "ticketsAmount": "+{{value}} tickets",
-    "impactDescription": "com {{value}}"
+    "impactDescription": "com {{value}}",
+    "description": "E ajude uma criança a viver seus primeiros 5 anos com saúde"
   }
 }

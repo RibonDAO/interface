@@ -109,6 +109,10 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
     if (stories.length > 0) {
       setCurrentNonProfitWithStories(nonProfit);
       setStoriesSectionVisible(true);
+      logEvent("storiesBtn_click", {
+        nonProfitId: nonProfit.id,
+        from: "NGOCard",
+      });
     }
   };
 

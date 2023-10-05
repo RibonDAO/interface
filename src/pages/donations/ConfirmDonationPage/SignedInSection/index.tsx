@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { NonProfit } from "@ribon.io/shared/types";
 import { useTranslation } from "react-i18next";
 import { theme } from "@ribon.io/shared/styles";
@@ -6,7 +6,6 @@ import BackgroundShapes from "assets/images/background-shapes.svg";
 import { useCurrentUser } from "contexts/currentUserContext";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import { useExperiment } from "@growthbook/growthbook-react";
-import { logEvent } from "lib/events";
 import * as S from "./styles";
 
 type Props = {
@@ -21,10 +20,6 @@ function SignedInSection({ nonProfit, onContinue }: Props): JSX.Element {
   const { formattedImpactText } = useFormattedImpactText();
 
   const { currentUser } = useCurrentUser();
-
-  useEffect(() => {
-    logEvent("P13_view");
-  }, []);
 
   const handleButtonPress = () => {
     if (currentUser) onContinue(currentUser.email);

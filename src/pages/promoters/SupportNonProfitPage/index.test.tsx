@@ -1,6 +1,5 @@
 import { clickOn, renderComponent, waitForPromises } from "config/testUtils";
 import {
-  expectLogEventToHaveBeenCalledWith,
   expectTextNotToBeInTheDocument,
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
@@ -45,14 +44,6 @@ describe("SupportNonProfit", () => {
   });
 
   describe("when the button option is clicked", () => {
-    it("logs the nonProfitCauseSelection_click event", () => {
-      clickOn(mockCause2.name);
-
-      expectLogEventToHaveBeenCalledWith("nonProfitCauseSelection_click", {
-        id: 2,
-      });
-    });
-
     it("shows the non profits for that cause", () => {
       clickOn(mockCause.name);
 

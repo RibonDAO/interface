@@ -69,9 +69,6 @@ function CryptoPage(): JSX.Element {
   }, [cause]);
 
   const handleCauseClick = (causeClicked: Cause, index: number) => {
-    logEvent("supportCauseSelection_click", {
-      id: causeClicked?.id,
-    });
     setCause(causeClicked);
     setChosenCause(causeClicked);
     setChosenCauseIndex(index);

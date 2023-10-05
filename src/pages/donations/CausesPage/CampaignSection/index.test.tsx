@@ -39,8 +39,7 @@ describe("ContributionSection", () => {
       expectTextToBeInTheDocument(
         "Amazing! Thank you for helping Test Non-Profit",
       );
-      expectTextToBeInTheDocument("This is a test impact");
-      expectTextToBeInTheDocument("Donate $100");
+      expectTextToBeInTheDocument("Participate in the campaign");
     });
   });
 

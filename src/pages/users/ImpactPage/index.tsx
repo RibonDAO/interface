@@ -9,8 +9,7 @@ import { coinByLanguage } from "lib/coinByLanguage";
 import { useWalletContext } from "contexts/walletContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useStatistics } from "@ribon.io/shared/hooks";
-import { useExperiment } from "@growthbook/growthbook-react";
-import ImpactMoreLivesCTA from "../ImpactedLivesSection/ImpactMoreLivesCTA";
+import CampaignSection from "pages/donations/CausesPage/CampaignSection";
 import ImpactMenu from "./ImpactMenu";
 import TicketIcon from "./assets/ticket-icon.svg";
 import MoneyIcon from "./assets/money-icon.svg";
@@ -30,11 +29,6 @@ function ImpactPage(): JSX.Element {
   });
   const { currentLang } = useLanguage();
 
-  const { value: isTicketBasedImpact } = useExperiment({
-    key: "ticket-impact-test",
-    variations: [false, true],
-  });
-
   useEffect(() => {
     logEvent("profile_view");
   }, []);
@@ -46,7 +40,7 @@ function ImpactPage(): JSX.Element {
   return (
     <S.Container>
       <DownloadAppToast />
-      {isTicketBasedImpact && <ImpactMoreLivesCTA from="impact_page" />}
+      <CampaignSection />
       <S.Title>{t("title")}</S.Title>
       <S.CardsButtonContainer>
         <CardTopImage

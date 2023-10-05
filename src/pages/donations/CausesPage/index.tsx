@@ -27,8 +27,6 @@ import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
 import NonProfitsSection from "pages/donations/CausesPage/NonProfitsSection";
 import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
-import { useExperiment } from "@growthbook/growthbook-react";
-import ImpactMoreLivesCTA from "pages/users/ImpactedLivesSection/ImpactMoreLivesCTA";
 import { useLanguage } from "hooks/useLanguage";
 import CampaignSection from "pages/donations/CausesPage/CampaignSection";
 import * as S from "./styles";
@@ -49,11 +47,6 @@ function CausesPage(): JSX.Element {
     keyPrefix: "donations.causesPage",
   });
   const { state, search } = useLocation<LocationStateType>();
-
-  const { value: isTicketBasedImpact } = useExperiment({
-    key: "ticket-impact-test",
-    variations: [false, true],
-  });
 
   const { hide: closeWarningModal } = useModal(
     {
@@ -152,13 +145,6 @@ function CausesPage(): JSX.Element {
 
   useAvoidBackButton();
 
-  const buttonVariation = useExperiment({
-    key: "conversion-test-donate-btn",
-    variations: ["control", "button", "button_and_info"],
-  });
-
-  const isInButtonVariation = buttonVariation.value !== "control";
-
   return (
     <S.Container>
       {!isFirstAccess(signedIn) && <DownloadAppToast />}
@@ -180,14 +166,8 @@ function CausesPage(): JSX.Element {
             />
           )}
         </S.TitleContainer>
-        {!canDonate && isTicketBasedImpact && !isInButtonVariation && (
-          <S.ImpactMoreLivesContainer>
-            <ImpactMoreLivesCTA from="causes_page" />
-          </S.ImpactMoreLivesContainer>
-        )}
-        {!canDonate && !isTicketBasedImpact && currentLang === "pt-BR" && (
-          <CampaignSection />
-        )}
+
+        {!canDonate && currentLang === "pt-BR" && <CampaignSection />}
         <ContributionNotification />
         <CausesSelectSection />
         <NonProfitsSection />

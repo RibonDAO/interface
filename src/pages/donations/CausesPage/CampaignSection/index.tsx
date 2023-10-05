@@ -1,15 +1,16 @@
-import ContributionCard from "components/moleculars/cards/ContributionCard";
+import CardCampaign from "components/moleculars/cards/CardCampaign";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useTranslation } from "react-i18next";
 import { useImpactConversion } from "hooks/useImpactConversion";
+import KidsDayCampaignImage from "./assets/kids-day-campaign-image.png";
 import * as S from "./styles";
 
-function ContributionSection(): JSX.Element {
+function CampaignSection(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "contributionSection",
   });
 
-  const { contribution, nonProfit, offer, description } = useImpactConversion();
+  const { contribution, nonProfit, offer } = useImpactConversion();
 
   const { isMobile } = useBreakpoint();
 
@@ -18,11 +19,9 @@ function ContributionSection(): JSX.Element {
       <S.Title>{t("title", { nonProfitName: nonProfit?.name })}</S.Title>
       <S.Container>
         <S.ImageContainer>
-          <S.NonProfitImage src={contribution?.image} />
+          <S.NonProfitImage src={KidsDayCampaignImage} />
         </S.ImageContainer>
-        <ContributionCard
-          description={description}
-          impact={contribution?.impact}
+        <CardCampaign
           value={contribution?.value ?? 0}
           offer={offer}
           nonProfit={nonProfit}
@@ -32,7 +31,7 @@ function ContributionSection(): JSX.Element {
             marginLeft: isMobile ? "-16px" : "0",
             borderRadius: isMobile ? "0" : "8px",
           }}
-          from="donateTickets_page"
+          from="kidsCampaignCTA"
           flow="nonProfit"
         />
       </S.Container>
@@ -45,4 +44,4 @@ function ContributionSection(): JSX.Element {
   return <div />;
 }
 
-export default ContributionSection;
+export default CampaignSection;

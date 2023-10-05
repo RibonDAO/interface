@@ -29,8 +29,8 @@ import NonProfitsSection from "pages/donations/CausesPage/NonProfitsSection";
 import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
 import { useExperiment } from "@growthbook/growthbook-react";
 import ImpactMoreLivesCTA from "pages/users/ImpactedLivesSection/ImpactMoreLivesCTA";
-import ContributionSection from "pages/donations/CausesPage/ContributionSection";
 import { useLanguage } from "hooks/useLanguage";
+import CampaignSection from "pages/donations/CausesPage/CampaignSection";
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
@@ -186,7 +186,7 @@ function CausesPage(): JSX.Element {
           </S.ImpactMoreLivesContainer>
         )}
         {!canDonate && !isTicketBasedImpact && currentLang === "pt-BR" && (
-          <ContributionSection />
+          <CampaignSection />
         )}
         <ContributionNotification />
         <CausesSelectSection />

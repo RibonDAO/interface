@@ -10,8 +10,6 @@ import { useWalletContext } from "contexts/walletContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useStatistics } from "@ribon.io/shared/hooks";
 import { useExperiment } from "@growthbook/growthbook-react";
-import ImpactedLivesSection from "pages/users/ImpactedLivesSection";
-import BadgesSection from "pages/users/BadgesSection";
 import ImpactMoreLivesCTA from "../ImpactedLivesSection/ImpactMoreLivesCTA";
 import ImpactMenu from "./ImpactMenu";
 import TicketIcon from "./assets/ticket-icon.svg";
@@ -31,10 +29,6 @@ function ImpactPage(): JSX.Element {
     walletAddress: wallet!,
   });
   const { currentLang } = useLanguage();
-  const { value: isInLifeBasedImpact } = useExperiment({
-    key: "progression-test-first-stage",
-    variations: [false, true],
-  });
 
   const { value: isTicketBasedImpact } = useExperiment({
     key: "ticket-impact-test",
@@ -52,11 +46,7 @@ function ImpactPage(): JSX.Element {
   return (
     <S.Container>
       <DownloadAppToast />
-      {isInLifeBasedImpact && <ImpactedLivesSection />}
-      {(isInLifeBasedImpact || isTicketBasedImpact) && (
-        <ImpactMoreLivesCTA from="impact_page" />
-      )}
-      {isInLifeBasedImpact && <BadgesSection />}
+      {isTicketBasedImpact && <ImpactMoreLivesCTA from="impact_page" />}
       <S.Title>{t("title")}</S.Title>
       <S.CardsButtonContainer>
         <CardTopImage

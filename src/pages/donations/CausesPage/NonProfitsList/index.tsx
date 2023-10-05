@@ -125,28 +125,6 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
       t("impactPrefix"),
     );
 
-  const newImpactFormat = (nonProfit: NonProfit) => (
-    <div>
-      <h3>
-        {nonProfit.cause.name.toLowerCase().includes("animal")
-          ? t("impactOneLife")
-              .replace("pessoa", "animal")
-              .replace("person", "animal")
-          : t("impactOneLife")}
-      </h3>
-      <p>
-        {t("impactDescription", {
-          value: nonProfit.impactDescription.split(",")[0],
-        })}
-      </p>
-    </div>
-  );
-
-  const variation = useExperiment({
-    key: "progression-test-first-stage",
-    variations: [false, true],
-  });
-
   return (
     <S.NonProfitsListContainer>
       {currentNonProfitWithStories && (
@@ -174,11 +152,7 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
                 <S.CardWrapper key={nonProfit.id}>
                   <CardCenterImageButton
                     image={nonProfit.mainImage || nonProfit.cause?.mainImage}
-                    title={
-                      variation.value
-                        ? newImpactFormat(nonProfit)
-                        : oldImpactFormat(nonProfit)
-                    }
+                    title={oldImpactFormat(nonProfit)}
                     buttonText={buttonText()}
                     onClickButton={() =>
                       handleButtonClick(nonProfit, "nonProfitCard")

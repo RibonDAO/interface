@@ -1,4 +1,3 @@
-import UserProgress from "pages/users/ImpactedLivesSection/UserProgress";
 import { useUserLevel } from "contexts/userLevelContext";
 import { useExperiment } from "@growthbook/growthbook-react";
 import { useTranslation } from "react-i18next";
@@ -7,11 +6,6 @@ import { useEffect } from "react";
 import * as S from "./styles";
 
 function ImpactLivesSection() {
-  const { value: isInLifeBasedImpact } = useExperiment({
-    key: "progression-test-first-stage",
-    variations: [false, true],
-  });
-
   const { value: isTicketTest } = useExperiment({
     key: "ticket-impact-test",
     variations: [false, true],
@@ -21,40 +15,19 @@ function ImpactLivesSection() {
     keyPrefix: "promoters.supportNonProfitPage.impactLivesSection",
   });
 
-  const {
-    userExperience,
-    nextLevelExperience,
-    userLevel,
-    currentLevelExperience,
-    percentageCompleted,
-    updatePercentageCompleted,
-  } = useUserLevel();
+  const { updatePercentageCompleted } = useUserLevel();
 
   useEffect(() => {
     updatePercentageCompleted();
   }, [updatePercentageCompleted]);
 
-  if (!isInLifeBasedImpact && !isTicketTest) return null;
-
-  const title = isInLifeBasedImpact ? t("title") : t("altTitle");
-  const subtitle = isInLifeBasedImpact ? t("subtitle") : t("altSubtitle");
+  if (!isTicketTest) return null;
 
   return (
     <S.Container>
       <S.BackgroundShape src={BackgroundShape} alt="background-shape" />
-      <S.Title>{title}</S.Title>
-      <S.Subtitle>{subtitle}</S.Subtitle>
-      {isInLifeBasedImpact && (
-        <S.ProgressContainer>
-          <UserProgress
-            currentExperience={userExperience}
-            currentLevelExperience={currentLevelExperience}
-            totalExperienceToNextLevel={nextLevelExperience}
-            nextLevel={userLevel + 1}
-            percentageCompleted={percentageCompleted}
-          />
-        </S.ProgressContainer>
-      )}
+      <S.Title>{t("altTitle")}</S.Title>
+      <S.Subtitle>{t("altSubtitle")}</S.Subtitle>
     </S.Container>
   );
 }

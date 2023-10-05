@@ -15,29 +15,15 @@ import { useUserLevel } from "contexts/userLevelContext";
 import { useExperiment } from "@growthbook/growthbook-react";
 import { logEvent } from "lib/events";
 import HeartImage from "assets/icons/heart.svg";
-import UserProgress from "pages/users/ImpactedLivesSection/UserProgress";
 import * as S from "./styles";
 
 type Props = {
   from: string;
-  showUserProgress?: boolean;
 };
-function ImpactMoreLivesCTA({
-  from,
-  showUserProgress = false,
-}: Props): JSX.Element {
-  const { value: isProgressionEnabled } = useExperiment({
-    key: "progression-test-first-stage",
-    variations: [false, true],
-  });
-
+function ImpactMoreLivesCTA({ from }: Props): JSX.Element {
   const { value: isTicketBasedImpact } = useExperiment({
     key: "ticket-impact-test",
     variations: [false, true],
-  });
-
-  const { t: impactMoreLives } = useTranslation("translation", {
-    keyPrefix: "impactPage.impactMoreLivesCTA",
   });
 
   const { t: buyMoreTickets } = useTranslation("translation", {
@@ -55,13 +41,7 @@ function ImpactMoreLivesCTA({
     userId: currentUser?.id ?? undefined,
   });
   const { nonProfits } = useNonProfits();
-  const {
-    userExperience: totalLivesImpacted,
-    currentLevelExperience,
-    userLevel,
-    nextLevelExperience,
-    percentageCompleted,
-  } = useUserLevel();
+  const { userExperience: totalLivesImpacted } = useUserLevel();
 
   useEffect(() => {
     setCurrentCoin(coinByLanguage(currentLang));
@@ -92,9 +72,9 @@ function ImpactMoreLivesCTA({
 
   const livesValue = Math.round(Number(currentOffer?.priceValue ?? 50) * 2);
 
-  const buttonValue = isProgressionEnabled ? currentOffer?.price : livesValue;
-  const t = isProgressionEnabled ? impactMoreLives : buyMoreTickets;
-  const showDivider = isTicketBasedImpact && !isProgressionEnabled;
+  const buttonValue = livesValue;
+  const t = buyMoreTickets;
+  const showDivider = isTicketBasedImpact;
 
   return (
     <S.Container>
@@ -118,21 +98,7 @@ function ImpactMoreLivesCTA({
           impact: currentNonProfit?.impactDescription.split(",")[1],
         })}
         onButtonClick={onButtonClick}
-      >
-        {showUserProgress && !isTicketBasedImpact ? (
-          <S.UserProgressContainer>
-            <UserProgress
-              currentExperience={totalLivesImpacted}
-              totalExperienceToNextLevel={nextLevelExperience}
-              currentLevelExperience={currentLevelExperience}
-              nextLevel={userLevel + 1}
-              percentageCompleted={percentageCompleted}
-            />
-          </S.UserProgressContainer>
-        ) : (
-          <div />
-        )}
-      </CardLargeImage>
+      />
       {showDivider && <S.Divider />}
     </S.Container>
   );

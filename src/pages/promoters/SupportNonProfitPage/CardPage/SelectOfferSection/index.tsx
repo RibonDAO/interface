@@ -9,7 +9,6 @@ import { formatPrice } from "lib/formatters/currencyFormatter";
 import { setLocalStorageItem } from "lib/localStorage";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
 import { useExperiment } from "@growthbook/growthbook-react";
-import HeartIcon from "assets/icons/heart.svg";
 import PinkTicketIcon from "assets/icons/pink-ticket.svg";
 import * as S from "./styles";
 
@@ -75,11 +74,6 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
   const currentPrice = () =>
     currentOffer && formatPrice(currentOffer.priceValue, currentOffer.currency);
 
-  const variation = useExperiment({
-    key: "progression-test-first-stage",
-    variations: [false, true],
-  });
-
   const ticketVariation = useExperiment({
     key: "ticket-impact-test",
     variations: [false, true],
@@ -89,45 +83,10 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
     <S.CauseText>
       {currentPrice()} {t("fundText")}{" "}
       <S.CauseTextHighlight>
-        {variation &&
-          formattedImpactText(
-            nonProfit,
-            undefined,
-            true,
-            true,
-            nonProfitImpact,
-          )}
+        {formattedImpactText(nonProfit, undefined, true, true, nonProfitImpact)}
       </S.CauseTextHighlight>
     </S.CauseText>
   );
-
-  const newImpactFormat = () => (
-    <S.ImpactSection>
-      <S.ImpactText>{t("impactText")}</S.ImpactText>
-      <S.CurrentLifeAmount>
-        <S.HeartIcon src={HeartIcon} aria-hidden alt="life icon" />
-        {nonProfit?.cause.name.toLocaleLowerCase().includes("animal")
-          ? t("livesAmount", {
-              value: Math.round(Number(currentOffer?.priceValue ?? 50) * 2),
-            })
-              .replace("pessoas", "animais")
-              .replace("pessoa", "animal")
-              .replace("people", "animals")
-              .replace("person", "animal")
-          : t("livesAmount", {
-              value: Math.round(Number(currentOffer?.priceValue ?? 50) * 2),
-            })}
-      </S.CurrentLifeAmount>
-      {nonProfit?.impactDescription && (
-        <S.ImpactDescription>
-          {t("impactDescription", {
-            value: nonProfit?.impactDescription.split(",")[0] ?? 0,
-          })}
-        </S.ImpactDescription>
-      )}
-    </S.ImpactSection>
-  );
-
   const ticketImpactFormat = () => (
     <S.ImpactSection>
       <S.ImpactText>{t("donateText")}</S.ImpactText>
@@ -148,9 +107,7 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
   );
 
   const renderCurrentBlock = () => {
-    if (variation.value) {
-      return newImpactFormat();
-    } else if (ticketVariation.value) {
+    if (ticketVariation.value) {
       return ticketImpactFormat();
     }
 

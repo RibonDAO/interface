@@ -10,7 +10,6 @@ import { logEvent } from "lib/events";
 import { useImpactConversion } from "hooks/useImpactConversion";
 import { formatPrice } from "lib/formatters/currencyFormatter";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
-import { useExperiment } from "@growthbook/growthbook-react";
 import { useCauseContributionContext } from "contexts/causeContributionContext";
 import { useCausesContext } from "contexts/causesContext";
 import * as S from "./styles";
@@ -36,11 +35,6 @@ function PostDonationPage(): JSX.Element {
   const { contribution, offer } = useImpactConversion();
   const { setChosenCause, setChosenCauseIndex } = useCauseContributionContext();
   const { causes } = useCausesContext();
-
-  const variation = useExperiment({
-    key: "progression-test-first-stage",
-    variations: [false, true],
-  });
 
   useEffect(() => {
     if (nonProfit === undefined) {
@@ -97,7 +91,7 @@ function PostDonationPage(): JSX.Element {
   };
 
   const handleDonateLaterClick = () => {
-    const pathname = variation.value ? "/impact" : "/causes";
+    const pathname = "/causes";
 
     navigateTo({
       pathname,
@@ -114,30 +108,29 @@ function PostDonationPage(): JSX.Element {
       <S.Title>{t("title")}</S.Title>
       {nonProfit && (
         <>
-          {!variation.value && (
-            <S.Card
-              image={nonProfit.cause?.coverImage}
-              onClick={handleDonateWithCommunityClick}
-            >
-              <S.DarkOverlay />
-              <S.BoostedDonation>
-                <S.Rocket src={Rocket} />
-                {t("boostedDonation")}
-              </S.BoostedDonation>
-              <S.BottomContainer>
-                <S.Text hasButton>
-                  {t("donate", {
-                    value: formatPrice(
-                      contribution?.value ?? offer?.priceValue ?? 0,
-                      offer?.currency ?? currentCurrency,
-                    ),
-                  })}
-                </S.Text>
-                <S.CardMainText>{nonProfit.cause.name}</S.CardMainText>
-              </S.BottomContainer>
-              <S.InsideButton onClick={() => {}} text={t("donateNow")} />
-            </S.Card>
-          )}
+          <S.Card
+            image={nonProfit.cause?.coverImage}
+            onClick={handleDonateWithCommunityClick}
+          >
+            <S.DarkOverlay />
+            <S.BoostedDonation>
+              <S.Rocket src={Rocket} />
+              {t("boostedDonation")}
+            </S.BoostedDonation>
+            <S.BottomContainer>
+              <S.Text hasButton>
+                {t("donate", {
+                  value: formatPrice(
+                    contribution?.value ?? offer?.priceValue ?? 0,
+                    offer?.currency ?? currentCurrency,
+                  ),
+                })}
+              </S.Text>
+              <S.CardMainText>{nonProfit.cause.name}</S.CardMainText>
+            </S.BottomContainer>
+            <S.InsideButton onClick={() => {}} text={t("donateNow")} />
+          </S.Card>
+
           <S.Card
             image={nonProfit.mainImage}
             onClick={handleDonateDirectlyClick}

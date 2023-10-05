@@ -12,6 +12,6 @@ describe("ImpactMoreLivesCTA", () => {
   it("renders without errors", () => {
     renderComponent(<ImpactMoreLivesCTA from="impact_page" />);
 
-    expectTextToBeInTheDocument("Donate");
+    expectTextToBeInTheDocument("Donate 100 tickets");
   });
 });

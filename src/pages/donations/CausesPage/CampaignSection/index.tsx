@@ -10,9 +10,11 @@ function CampaignSection(): JSX.Element {
     keyPrefix: "contributionSection",
   });
 
-  const { contribution, nonProfit, offer } = useImpactConversion();
+  const { contribution, nonProfit } = useImpactConversion();
 
   const { isMobile } = useBreakpoint();
+  const campaignLink =
+    "https://projetos.ribon.io/dia-das-criancas?integration_id=9bee3412-6a49-4ddd-acfa-00e049fd3c99&offer=1000&target=non_profit&target_id=10&currency=BRL&subscription=false&utm_source=organic&utm_medium=organic&utm_campaign=organic&from=app_banners";
 
   const contributionCard = () => (
     <>
@@ -23,8 +25,6 @@ function CampaignSection(): JSX.Element {
         </S.ImageContainer>
         <CardCampaign
           value={contribution?.value ?? 0}
-          offer={offer}
-          nonProfit={nonProfit}
           style={{
             width: isMobile ? "110%" : "100%",
             marginRight: isMobile ? "-16px" : "0",
@@ -33,6 +33,7 @@ function CampaignSection(): JSX.Element {
           }}
           from="kidsCampaignCTA"
           flow="nonProfit"
+          campaignLink={campaignLink}
         />
       </S.Container>
       <S.NonProfitTitle>{t("nonProfits")}</S.NonProfitTitle>

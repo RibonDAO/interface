@@ -27,20 +27,14 @@ export default function NonProfitCard({
     variations: [false, true],
   });
 
-  const { value: isLifeBasedImpact } = useExperiment({
-    key: "progression-test-first-stage",
-    variations: [false, true],
-  });
-
   const onOfferChange = (offer: Offer, index?: number) => {
     handleOfferChange(offer, index);
 
     const offerValue = removeInsignificantZeros(offer.price);
     const ticketsAmount = Math.round(offer.priceValue * 2);
-    const currentValue =
-      isTicketFormat && !isLifeBasedImpact
-        ? `${ticketsAmount} tickets`
-        : offerValue;
+    const currentValue = isTicketFormat
+      ? `${ticketsAmount} tickets`
+      : offerValue;
 
     setValue(currentValue.toString());
   };

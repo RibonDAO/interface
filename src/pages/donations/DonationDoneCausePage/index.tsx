@@ -49,10 +49,6 @@ function DonationDoneCausePage(): JSX.Element {
     keyPrefix: "donations.donationDoneCausePage",
   });
   const { formattedImpactText } = useFormattedImpactText();
-  const variation = useExperiment({
-    key: "progression-test-first-stage",
-    variations: [false, true],
-  });
 
   const ticketVariation = useExperiment({
     key: "ticket-impact-test",
@@ -149,23 +145,17 @@ function DonationDoneCausePage(): JSX.Element {
         amount: offer?.priceValue,
         nonProfitId: nonProfit?.id,
       });
-      if (variation.value) {
-        navigateTo("/impact");
-      } else {
-        navigateTo({
-          pathname: offer?.subscription
-            ? "monthly-contributions"
-            : "/promoters/support-non-profit",
-          state: { nonProfit, cause, from: "donation-done-cause" },
-        });
-      }
+      navigateTo({
+        pathname: offer?.subscription
+          ? "monthly-contributions"
+          : "/promoters/support-non-profit",
+        state: { nonProfit, cause, from: "donation-done-cause" },
+      });
     }
     if (!hasButton) {
       registerAction("donation_done_page_view");
 
-      if (variation.value) {
-        navigateTo("/impact");
-      } else if (shouldShowAppDownload()) {
+      if (shouldShowAppDownload()) {
         navigateTo({
           pathname: "/app-download",
           state: { nonProfit, showContribute: shouldShowContribute() },
@@ -229,27 +219,6 @@ function DonationDoneCausePage(): JSX.Element {
     </>
   );
 
-  const newImpactFormat = () => (
-    <>
-      <S.DonationValue color={colorTheme.shade40}>{t("title")}</S.DonationValue>
-      <S.ThanksToYou>{t("thanksToYou")}</S.ThanksToYou>
-      <S.ImpactAmount color={colorTheme.shade40}>
-        {offerId
-          ? t("livesWereImpacted", {
-              value: Math.round((offer?.priceValue ?? 0) * 2),
-            })
-          : t("lifeWasImpacted")}
-      </S.ImpactAmount>
-      {nonProfit?.impactDescription && (
-        <S.ImpactDescription color={colorTheme.shade40} hasButton>
-          {t("impactDescription", {
-            value: nonProfit?.impactDescription.split(",")[0],
-          })}
-        </S.ImpactDescription>
-      )}
-    </>
-  );
-
   const newTicketFormat = () => (
     <>
       <S.DonationValue color={colorTheme.shade40}>
@@ -278,9 +247,7 @@ function DonationDoneCausePage(): JSX.Element {
   );
 
   const renderImpactValue = () => {
-    if (variation.value) {
-      return newImpactFormat();
-    } else if (ticketVariation.value) {
+    if (ticketVariation.value) {
       return newTicketFormat();
     }
 

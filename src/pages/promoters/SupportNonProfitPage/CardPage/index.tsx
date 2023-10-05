@@ -117,20 +117,13 @@ function CardPage(): JSX.Element {
     [cause, chosenCause, nonProfits],
   );
 
-  const variation = useExperiment({
-    key: "progression-test-first-stage",
-    variations: [false, true],
-  });
-
   const ticketVariation = useExperiment({
     key: "ticket-impact-test",
     variations: [false, true],
   });
 
   const renderCurrentTitle = () => {
-    if (variation.value) {
-      return t("impactMoreTitle");
-    } else if (ticketVariation.value) {
+    if (ticketVariation.value) {
       return t("buyAndDonateTicketsTitle");
     }
     return t("title");

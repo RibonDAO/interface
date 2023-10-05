@@ -6,7 +6,6 @@ import BackgroundShapes from "assets/images/background-shapes.svg";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { logEvent } from "lib/events";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
-import { useExperiment } from "@growthbook/growthbook-react";
 import * as S from "./styles";
 
 type Props = {
@@ -30,24 +29,8 @@ function SignedInSection({ nonProfit, onContinue }: Props): JSX.Element {
     if (currentUser) onContinue(currentUser.email);
   };
 
-  const variation = useExperiment({
-    key: "progression-test-first-stage",
-    variations: [false, true],
-  });
-
   const oldImpactFormat = () =>
     formattedImpactText(nonProfit, undefined, false, true);
-
-  const newImpactFormat = () => (
-    <S.NewImpactContainer>
-      <S.NewImpactTitle>{t("impactOneLife")}</S.NewImpactTitle>
-      <S.NewImpactDescription>
-        {t("impactDescription", {
-          value: nonProfit.impactDescription.split(",")[0],
-        })}
-      </S.NewImpactDescription>
-    </S.NewImpactContainer>
-  );
 
   return (
     <S.Container>
@@ -59,9 +42,7 @@ function SignedInSection({ nonProfit, onContinue }: Props): JSX.Element {
       </S.ImageContainer>
       <S.ContentContainer>
         <S.Title>{t("title")}</S.Title>
-        <S.Description>
-          {variation.value ? newImpactFormat() : oldImpactFormat()}
-        </S.Description>
+        <S.Description>{oldImpactFormat()}</S.Description>
         <S.Button
           text={t("confirmText")}
           onClick={handleButtonPress}

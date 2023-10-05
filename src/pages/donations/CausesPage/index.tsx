@@ -47,10 +47,6 @@ function CausesPage(): JSX.Element {
     keyPrefix: "donations.causesPage",
   });
   const { state, search } = useLocation<LocationStateType>();
-  const { value: isInLifeBasedImpact } = useExperiment({
-    key: "progression-test-first-stage",
-    variations: [false, true],
-  });
 
   const { value: isTicketBasedImpact } = useExperiment({
     key: "ticket-impact-test",
@@ -182,13 +178,11 @@ function CausesPage(): JSX.Element {
             />
           )}
         </S.TitleContainer>
-        {!canDonate &&
-          (isTicketBasedImpact || isInLifeBasedImpact) &&
-          !isInButtonVariation && (
-            <S.ImpactMoreLivesContainer>
-              <ImpactMoreLivesCTA from="causes_page" showUserProgress />
-            </S.ImpactMoreLivesContainer>
-          )}
+        {!canDonate && isTicketBasedImpact && !isInButtonVariation && (
+          <S.ImpactMoreLivesContainer>
+            <ImpactMoreLivesCTA from="causes_page" />
+          </S.ImpactMoreLivesContainer>
+        )}
         {!canDonate && !isTicketBasedImpact && <ContributionSection />}
         <ContributionNotification />
         <CausesSelectSection />

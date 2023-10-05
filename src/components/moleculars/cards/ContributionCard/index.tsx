@@ -1,5 +1,4 @@
 import { Currencies, NonProfit, Offer } from "@ribon.io/shared/types";
-import useNavigation from "hooks/useNavigation";
 import { logEvent } from "lib/events";
 import { formatPrice } from "lib/formatters/currencyFormatter";
 import { useEffect, useState } from "react";
@@ -36,7 +35,6 @@ function ContributionCard({
   const { t } = useTranslation("translation", {
     keyPrefix: "contributionCard",
   });
-  const { navigateTo } = useNavigation();
   const { currentLang } = useLanguage();
 
   const [currency, setCurrency] = useState<Currencies | undefined>();
@@ -72,21 +70,9 @@ function ContributionCard({
       platform: "web",
     });
 
-    if (currency) {
-      const searchParams = new URLSearchParams({
-        offer: offer ? offer.priceCents.toString() : "0",
-        target: flow === "nonProfit" ? "non_profit" : "cause",
-        target_id:
-          (flow === "nonProfit"
-            ? nonProfit?.id.toString()
-            : nonProfit?.cause?.id?.toString()) ?? "",
-        currency,
-      });
-      navigateTo({
-        pathname: "/promoters/recurrence",
-        search: searchParams.toString(),
-      });
-    }
+    const campaignUrl =
+      "https://projetos.ribon.io/dia-das-criancas?integration_id=9bee3412-6a49-4ddd-acfa-00e049fd3c99&offer=1000&target=non_profit&target_id=10&currency=BRL&subscription=false&utm_source=organic&utm_medium=organic&utm_campaign=organic&from=app_banners";
+    window.location.replace(campaignUrl);
   };
 
   const { primary } = theme.colors.brand;

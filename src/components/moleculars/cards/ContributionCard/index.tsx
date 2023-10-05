@@ -38,7 +38,6 @@ function ContributionCard({
   const { currentLang } = useLanguage();
 
   const [currency, setCurrency] = useState<Currencies | undefined>();
-
   useEffect(() => {
     if (offer) {
       setCurrency(offer?.currency === "brl" ? Currencies.BRL : Currencies.USD);
@@ -46,7 +45,6 @@ function ContributionCard({
       setCurrency(currentLang === "pt-BR" ? Currencies.BRL : Currencies.USD);
     }
   }, [currentLang, offer]);
-
   useEffect(() => {
     logEvent(
       flow === "nonProfit"
@@ -58,7 +56,6 @@ function ContributionCard({
       },
     );
   }, []);
-
   const handleClickedDonationButton = () => {
     logEvent(flow === "nonProfit" ? "giveNgoBtn_start" : "giveCauseBtn_start", {
       from,
@@ -88,7 +85,6 @@ function ContributionCard({
   };
 
   const { primary } = theme.colors.brand;
-
   const oldImpactFormat = () => (
     <>
       <S.Title colorTheme={primary}>{title || t("titleCard")}</S.Title>
@@ -109,7 +105,6 @@ function ContributionCard({
       />
     </>
   );
-
   return (
     <S.Container
       style={style}
@@ -120,5 +115,4 @@ function ContributionCard({
     </S.Container>
   );
 }
-
 export default ContributionCard;

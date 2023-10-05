@@ -670,5 +670,15 @@
     "ticketsAmount": "+{{value}} tickets",
     "impactDescription": "with {{value}}",
     "titleCard": "Do even more"
+  },
+  "campaignCard": {
+    "button": "Participate in the campaign",
+    "donate": "Donate basic health care",
+    "donateAndImpact": "Donate {{value}} and impact",
+    "livesAmount": "+{{value}} people",
+    "ticketsAmount": "+{{value}} tickets",
+    "impactDescription": "with {{value}}",
+    "titleCard": "CHILDREN’S DAY CAMPAIGN",
+    "description": "And help a child live their first 5 years healthily"
   }
 }

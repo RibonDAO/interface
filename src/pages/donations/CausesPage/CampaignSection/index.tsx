@@ -14,7 +14,7 @@ function CampaignSection(): JSX.Element {
 
   const { isMobile } = useBreakpoint();
   const campaignLink =
-    "https://projetos.ribon.io/dia-das-criancas?integration_id=9bee3412-6a49-4ddd-acfa-00e049fd3c99&offer=1000&target=non_profit&target_id=10&currency=BRL&subscription=false&utm_source=organic&utm_medium=organic&utm_campaign=organic&from=app_banners";
+    "https://projetos.ribon.io/dia-das-criancas?integration_id=9bee3412-6a49-4ddd-acfa-00e049fd3c99&offer=1000&target=non_profit&target_id=10&currency=BRL&subscription=false&utm_source=app&utm_medium=banners&utm_campaign=dia_das_criancas";
 
   const contributionCard = () => (
     <>

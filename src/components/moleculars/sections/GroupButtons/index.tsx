@@ -1,4 +1,4 @@
-import { newLogEvent } from "lib/events";
+import { logEvent } from "lib/events";
 import { useState } from "react";
 import theme from "styles/theme";
 import * as S from "./styles";
@@ -41,7 +41,7 @@ function GroupButtons({
   const handleElementClick = (index: number, element: any, event?: any) => {
     setSelectedButtonIndex(index);
     if (eventName && eventParams) {
-      newLogEvent("click", eventName, eventParams(element));
+      logEvent(eventName, eventParams(element));
     }
     if (onChange) onChange(element, index, event);
   };

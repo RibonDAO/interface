@@ -6,7 +6,7 @@ import {
 import theme from "styles/theme";
 import { screen } from "@testing-library/react";
 import SupportersIcon from "assets/icons/supporters.svg";
-import { mockNewLogEventFunction } from "setupTests";
+import { mockLogEventFunction } from "setupTests";
 import TransferAnimation from ".";
 
 describe("TransferAnimation", () => {
@@ -53,16 +53,11 @@ describe("TransferAnimation", () => {
   describe("when the modal is visible and has an eventName", () => {
     const eventName = "test";
     const eventParams = { test: "test" };
-    const action = "view";
     it("logs an event", () => {
       renderComponent(
         <TransferAnimation eventName={eventName} eventParams={eventParams} />,
       );
-      expect(mockNewLogEventFunction).toHaveBeenCalledWith(
-        action,
-        eventName,
-        eventParams,
-      );
+      expect(mockLogEventFunction).toHaveBeenCalledWith(eventName, eventParams);
     });
   });
 });

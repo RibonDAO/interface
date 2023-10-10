@@ -42,8 +42,6 @@ function CausesSelectSection(): JSX.Element {
       indexSelected={chosenCauseIndex}
       onChange={handleCauseChanged}
       nameExtractor={(cause) => cause.name}
-      eventParams={(cause) => ({ causeId: cause.id })}
-      eventName="P1_causeTab"
     />
   );
 }

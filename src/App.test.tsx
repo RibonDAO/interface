@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import { mockLogPageViewFunction, mockNewLogEventFunction } from "setupTests";
+import { mockLogPageViewFunction } from "setupTests";
 import {
   expectTextNotToBeInTheDocument,
   expectTextToBeInTheDocument,
@@ -14,7 +14,6 @@ const mockDebugEventsHelpers = DebugEventsHelpers as {
 jest.mock("lib/events", () => ({
   __esModule: true,
   logPageView: mockLogPageViewFunction,
-  newLogEvent: mockNewLogEventFunction,
 }));
 
 describe("App", () => {

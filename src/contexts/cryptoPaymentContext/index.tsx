@@ -19,7 +19,6 @@ import {
 } from "lib/web3Helpers/etherFormatters";
 import { logError } from "services/crashReport";
 import { stringToNumber } from "lib/formatters/stringToNumberFormatter";
-import { logEvent } from "lib/events";
 import { BigNumber, utils } from "ethers";
 import { PLATFORM } from "utils/constants";
 import { useWalletContext } from "../walletContext";
@@ -156,9 +155,6 @@ function CryptoPaymentProvider({ children }: Props) {
 
       if (onSuccess) onSuccess(hash, timestamp, utils.parseEther(amount));
     } catch (error) {
-      logEvent("toastNotification_view", {
-        status: "transactionFailed",
-      });
       logError(error);
     } finally {
       setLoading(false);

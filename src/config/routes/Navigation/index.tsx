@@ -79,20 +79,20 @@ function Navigation(): JSX.Element {
       iconOn: GivingIconOn,
       iconOff: GivingIconOff,
       title: t("givingPageTitle"),
-      event: "giveCauseCard_click",
+      event: "giveNonProfitNavBtn_click",
       showNewLabel: false,
       params: { from: "header" },
       menuOptions: [
         {
           path: "/promoters/support-cause",
           title: communityDonationText,
-          event: "giveCauseCard_click",
+          event: "giveCauseNavBtn_click",
           params: { from: "subheader" },
         },
         {
           path: "/promoters/support-non-profit",
           title: t("directDonationMenuItem"),
-          event: "giveNonProfitCard_click",
+          event: "giveNonProfitNavBtn_click",
           params: { from: "subheader" },
         },
       ],

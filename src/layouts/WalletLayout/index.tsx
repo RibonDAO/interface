@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { useWalletContext } from "contexts/walletContext";
 import { onAccountChange } from "lib/walletConnector";
 import WalletIcon from "assets/icons/wallet-icon.svg";
-import { logEvent } from "lib/events";
 import { walletTruncate } from "lib/formatters/walletTruncate";
 import * as S from "./styles";
 
@@ -38,9 +37,6 @@ function WalletLayout({
   }, []);
 
   const handleWalletButtonClick = () => {
-    logEvent("treasureConWalletBtn_click", {
-      from: "walletButton",
-    });
     connectWallet();
   };
 

@@ -4,7 +4,7 @@ import {
   expectTextNotToBeInTheDocument,
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
-import { mockNewLogEventFunction } from "setupTests";
+import { mockLogEventFunction } from "setupTests";
 import Ticket from "assets/images/ticket.svg";
 import { screen } from "@testing-library/react";
 import ModalForm from ".";
@@ -154,7 +154,6 @@ describe("ModalForm", () => {
   describe("when the modal is visible and has an eventName", () => {
     const eventName = "test";
     const eventParams = { test: "test" };
-    const action = "view";
     it("logs an event", () => {
       renderComponent(
         <ModalForm
@@ -175,11 +174,7 @@ describe("ModalForm", () => {
           eventParams={eventParams}
         />,
       );
-      expect(mockNewLogEventFunction).toHaveBeenCalledWith(
-        action,
-        eventName,
-        eventParams,
-      );
+      expect(mockLogEventFunction).toHaveBeenCalledWith(eventName, eventParams);
     });
   });
 });

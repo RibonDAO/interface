@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactModal from "react-modal";
 import Button, { ButtonProps } from "components/atomics/buttons/Button";
 import theme from "styles/theme";
-import { newLogEvent } from "lib/events";
+import { logEvent } from "lib/events";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "hooks/useLanguage";
 import { Languages } from "@ribon.io/shared/types";
@@ -58,7 +58,7 @@ function ModalIcon({
   });
 
   if (visible && eventName && !logged) {
-    newLogEvent("view", eventName, eventParams);
+    logEvent(eventName, eventParams);
     SetLogged(true);
   }
 

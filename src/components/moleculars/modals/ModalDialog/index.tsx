@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button, { ButtonProps } from "components/atomics/buttons/Button";
 import theme from "styles/theme";
-import { newLogEvent } from "lib/events";
+import { logEvent } from "lib/events";
 import Icon from "components/atomics/Icon";
 import useBreakpoint from "hooks/useBreakpoint";
 import * as S from "./styles";
@@ -44,7 +44,7 @@ function ModalDialog({
   const { isMobile } = useBreakpoint();
 
   if (visible && eventName && !logged) {
-    newLogEvent("view", eventName, eventParams);
+    logEvent(eventName, eventParams);
     setLogged(true);
   }
 

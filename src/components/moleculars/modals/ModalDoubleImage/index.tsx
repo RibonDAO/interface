@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactModal from "react-modal";
 import Button, { ButtonProps } from "components/atomics/buttons/Button";
-import { newLogEvent } from "lib/events";
+import { logEvent } from "lib/events";
 import * as S from "./styles";
 import { defaultCustomStyles } from "../defaultCustomStyles";
 
@@ -47,7 +47,7 @@ function ModalDoubleImage({
   const [logged, SetLogged] = useState(false);
 
   if (visible && eventName && !logged) {
-    newLogEvent("view", eventName, eventParams);
+    logEvent(eventName, eventParams);
     SetLogged(true);
   }
 

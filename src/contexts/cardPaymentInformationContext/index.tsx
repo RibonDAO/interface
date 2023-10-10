@@ -11,7 +11,6 @@ import {
   useMemo,
 } from "react";
 import { useTranslation } from "react-i18next";
-import { logEvent } from "lib/events";
 import { logError } from "services/crashReport";
 import creditCardPaymentApi from "services/api/creditCardPaymentApi";
 import GivingIcon from "assets/icons/giving-icon.svg";
@@ -167,10 +166,6 @@ function CardPaymentInformationProvider({ children }: Props) {
       toast({
         message: t("onErrorMessage"),
         type: "info",
-      });
-
-      logEvent("toastNotification_view", {
-        status: "transactionFailed",
       });
     }
   };

@@ -1,7 +1,7 @@
 import React, { ButtonHTMLAttributes } from "react";
 import { ReactComponent as RibonIcon } from "assets/icons/ribon.svg";
 import theme from "styles/theme";
-import { newLogEvent } from "lib/events";
+import { logEvent } from "lib/events";
 import * as S from "./styles";
 
 export type onClickType = () => void;
@@ -82,7 +82,7 @@ export default function Button({
   const handleClick = () => {
     if (onClick) onClick();
     if (eventName) {
-      newLogEvent("click", eventName, eventParams);
+      logEvent(eventName, eventParams);
     }
   };
 

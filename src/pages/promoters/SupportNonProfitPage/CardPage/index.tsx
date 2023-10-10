@@ -69,9 +69,6 @@ function CardPage(): JSX.Element {
   }, [nonProfits, causes]);
 
   const handleCauseClick = (causeClicked: Cause, index: number) => {
-    logEvent("nonProfitCauseSelection_click", {
-      id: causeClicked?.id,
-    });
     setCause(causeClicked);
     setChosenCauseIndex(index);
     setChosenCause(causeClicked);

@@ -1,4 +1,4 @@
-import { newLogEvent } from "lib/events";
+import { logEvent } from "lib/events";
 import { useState } from "react";
 import { Styles } from "react-modal";
 import { defaultCustomStyles } from "../defaultCustomStyles";
@@ -28,7 +28,7 @@ function ModalBlank({
   const [logged, SetLogged] = useState(false);
 
   if (visible && eventName && !logged) {
-    newLogEvent("view", eventName, eventParams);
+    logEvent(eventName, eventParams);
     SetLogged(true);
   }
 

@@ -3,7 +3,7 @@ import ReactModal from "react-modal";
 import Button, { ButtonProps } from "components/atomics/buttons/Button";
 import { useForm } from "hooks/useForm";
 import theme from "styles/theme";
-import { newLogEvent } from "lib/events";
+import { logEvent } from "lib/events";
 import * as S from "./styles";
 import { defaultCustomStyles } from "../defaultCustomStyles";
 
@@ -58,7 +58,7 @@ function ModalForm({
   const [logged, SetLogged] = useState(false);
 
   if (visible && eventName && !logged) {
-    newLogEvent("view", eventName, eventParams);
+    logEvent(eventName, eventParams);
     SetLogged(true);
   }
 

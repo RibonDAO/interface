@@ -1,8 +1,5 @@
-import { clickOn, renderComponent, waitForPromises } from "config/testUtils";
-import {
-  expectLogEventToHaveBeenCalledWith,
-  expectTextToBeInTheDocument,
-} from "config/testUtils/expects";
+import { renderComponent, waitForPromises } from "config/testUtils";
+import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import causeFactory from "config/testUtils/factories/causeFactory";
 import SupportCausePage from ".";
 
@@ -28,20 +25,6 @@ describe("SupportCausePage", () => {
 
   it("should render without error", () => {
     expectTextToBeInTheDocument("Donate with a community");
-  });
-
-  it("logs the causeSupportScreen_view event", () => {
-    expectLogEventToHaveBeenCalledWith("causeSupportScreen_view");
-  });
-
-  describe("when the button option is clicked", () => {
-    it("logs the supportCauseSelection_click event", () => {
-      clickOn("💊 Health");
-
-      expectLogEventToHaveBeenCalledWith("supportCauseSelection_click", {
-        id: 2,
-      });
-    });
   });
 
   describe("community add section", () => {

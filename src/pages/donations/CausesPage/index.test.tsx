@@ -27,7 +27,7 @@ describe("Causes", () => {
     withPoolBalance: false,
   });
 
-  const nonProfitsWithPoolBalance = [
+  const filteredNonProfits = [
     nonProfitFactory({
       id: 1,
       impactDescription: "days of impact",
@@ -82,7 +82,7 @@ describe("Causes", () => {
   beforeEach(async () => {
     renderComponent(<Causes />, {
       nonProfitsProviderValue: {
-        nonProfitsWithPoolBalance,
+        filteredNonProfits,
         nonProfits,
         isLoading: false,
       },
@@ -104,7 +104,7 @@ describe("Causes", () => {
   });
 
   it("shows the non profit if the cause is active and has pool balance", () => {
-    nonProfitsWithPoolBalance.forEach((nonProfit) => {
+    filteredNonProfits.forEach((nonProfit) => {
       if (
         nonProfit.cause?.status === "active" &&
         nonProfit.cause?.withPoolBalance

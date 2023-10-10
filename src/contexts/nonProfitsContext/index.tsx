@@ -1,10 +1,11 @@
 import { useNonProfits } from "@ribon.io/shared/hooks";
 import { createContext, useContext, useMemo } from "react";
 import { NonProfit } from "@ribon.io/shared/types";
+import { useCurrentUser } from "contexts/currentUserContext";
 
 export interface INonProfitsContext {
   nonProfits: NonProfit[] | undefined;
-  nonProfitsWithPoolBalance: NonProfit[] | undefined;
+  filteredNonProfits: NonProfit[] | undefined;
   refetch: () => void;
   isLoading: boolean;
 }
@@ -16,14 +17,21 @@ NonProfitsContext.displayName = "NonProfitsContext";
 
 function NonProfitsProvider({ children }: any) {
   const { nonProfits, refetch, isLoading } = useNonProfits();
-  const nonProfitsWithPoolBalance = nonProfits?.filter(
-    (nonProfit) => nonProfit.cause.withPoolBalance,
-  );
+  const { currentUser } = useCurrentUser();
+  const isRibonUser = currentUser?.email.includes("@ribon.io");
+
+  const filteredNonProfits = nonProfits?.filter((nonProfit) => {
+    if (isRibonUser) {
+      return nonProfit.status === "test" || nonProfit.cause.withPoolBalance;
+    } else {
+      return nonProfit.cause.withPoolBalance;
+    }
+  });
 
   const nonProfitsObject: INonProfitsContext = useMemo(
     () => ({
       nonProfits,
-      nonProfitsWithPoolBalance,
+      filteredNonProfits,
       refetch,
       isLoading,
     }),

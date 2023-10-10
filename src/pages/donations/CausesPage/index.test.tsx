@@ -88,7 +88,7 @@ describe("Causes", () => {
       },
       causesProviderValue: {
         causes: [cause1, cause2],
-        causesWithPoolBalance: [cause1],
+        filteredCauses: [cause1],
         isLoading: false,
       },
     });

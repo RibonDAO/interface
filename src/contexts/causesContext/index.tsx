@@ -1,10 +1,11 @@
 import { useCauses } from "@ribon.io/shared/hooks";
 import { createContext, useContext, useMemo } from "react";
 import { Cause } from "@ribon.io/shared/types";
+import { useCurrentUser } from "contexts/currentUserContext";
 
 export interface ICausesContext {
   causes: Cause[];
-  causesWithPoolBalance: Cause[];
+  filteredCauses: Cause[];
   refetch: () => void;
   isLoading: boolean;
 }
@@ -16,14 +17,21 @@ CausesContext.displayName = "CausesContext";
 
 function CausesProvider({ children }: any) {
   const { causes, refetch, isLoading } = useCauses();
-  const causesWithPoolBalance = causes?.filter(
-    (cause) => cause.withPoolBalance,
-  );
+  const { currentUser } = useCurrentUser();
+  const isRibonUser = currentUser?.email.includes("@ribon.io");
+
+  const filteredCauses = causes?.filter((cause) => {
+    if (isRibonUser) {
+      return cause.status === "test" || cause.withPoolBalance;
+    } else {
+      return cause.withPoolBalance;
+    }
+  });
 
   const causesObject: ICausesContext = useMemo(
     () => ({
       causes,
-      causesWithPoolBalance,
+      filteredCauses,
       refetch,
       isLoading,
     }),

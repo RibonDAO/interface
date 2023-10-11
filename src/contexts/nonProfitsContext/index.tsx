@@ -1,5 +1,5 @@
 import { useNonProfits } from "@ribon.io/shared/hooks";
-import { createContext, useContext, useMemo } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { NonProfit } from "@ribon.io/shared/types";
 import { useCurrentUser } from "contexts/currentUserContext";
 
@@ -19,6 +19,21 @@ function NonProfitsProvider({ children }: any) {
   const { nonProfits, refetch, isLoading } = useNonProfits();
   const { currentUser } = useCurrentUser();
   const isRibonUser = currentUser?.email.includes("@ribon.io");
+
+  const [userStatusChanged, setUserStatusChanged] = useState(false);
+
+  useEffect(() => {
+    if (isRibonUser) {
+      setUserStatusChanged(true);
+    }
+  }, [isRibonUser]);
+
+  useEffect(() => {
+    if (userStatusChanged) {
+      refetch();
+      setUserStatusChanged(false);
+    }
+  }, [userStatusChanged, refetch]);
 
   const filteredNonProfits = nonProfits?.filter((nonProfit) => {
     if (isRibonUser) {

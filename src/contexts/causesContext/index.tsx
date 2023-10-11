@@ -1,5 +1,5 @@
 import { useCauses } from "@ribon.io/shared/hooks";
-import { createContext, useContext, useMemo } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { Cause } from "@ribon.io/shared/types";
 import { useCurrentUser } from "contexts/currentUserContext";
 
@@ -19,6 +19,21 @@ function CausesProvider({ children }: any) {
   const { causes, refetch, isLoading } = useCauses();
   const { currentUser } = useCurrentUser();
   const isRibonUser = currentUser?.email.includes("@ribon.io");
+
+  const [userStatusChanged, setUserStatusChanged] = useState(false);
+
+  useEffect(() => {
+    if (isRibonUser) {
+      setUserStatusChanged(true);
+    }
+  }, [isRibonUser]);
+
+  useEffect(() => {
+    if (userStatusChanged) {
+      refetch();
+      setUserStatusChanged(false);
+    }
+  }, [userStatusChanged, refetch]);
 
   const filteredCauses = causes?.filter((cause) => {
     if (isRibonUser) {

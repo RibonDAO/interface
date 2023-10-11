@@ -18,7 +18,6 @@ import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import { useCausesContext } from "contexts/causesContext";
 import { useCauseContributionContext } from "contexts/causeContributionContext";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
-import { useExperiment } from "@growthbook/growthbook-react";
 import ImpactLivesSection from "pages/promoters/SupportNonProfitPage/CardPage/ImpactLivesSection";
 import * as S from "../styles";
 import NonProfitCard from "./NonProfitCard";
@@ -114,17 +113,7 @@ function CardPage(): JSX.Element {
     [cause, chosenCause, nonProfits],
   );
 
-  const ticketVariation = useExperiment({
-    key: "ticket-impact-test",
-    variations: [false, true],
-  });
-
-  const renderCurrentTitle = () => {
-    if (ticketVariation.value) {
-      return t("buyAndDonateTicketsTitle");
-    }
-    return t("title");
-  };
+  const renderCurrentTitle = () => t("title");
 
   return (
     <S.Container>

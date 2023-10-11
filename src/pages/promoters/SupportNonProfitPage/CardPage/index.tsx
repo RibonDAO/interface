@@ -18,7 +18,6 @@ import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import { useCausesContext } from "contexts/causesContext";
 import { useCauseContributionContext } from "contexts/causeContributionContext";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
-import ImpactLivesSection from "pages/promoters/SupportNonProfitPage/CardPage/ImpactLivesSection";
 import * as S from "../styles";
 import NonProfitCard from "./NonProfitCard";
 
@@ -131,7 +130,6 @@ function CardPage(): JSX.Element {
           />
         )}
       </S.TitleContainer>
-      <ImpactLivesSection />
 
       <GroupButtons
         elements={causes}

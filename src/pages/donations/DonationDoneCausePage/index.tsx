@@ -29,7 +29,6 @@ import { PLATFORM } from "utils/constants";
 import extractUrlValue from "lib/extractUrlValue";
 import { logEvent } from "lib/events";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
-import { useExperiment } from "@growthbook/growthbook-react";
 import * as S from "./styles";
 
 function DonationDoneCausePage(): JSX.Element {
@@ -49,11 +48,6 @@ function DonationDoneCausePage(): JSX.Element {
     keyPrefix: "donations.donationDoneCausePage",
   });
   const { formattedImpactText } = useFormattedImpactText();
-
-  const ticketVariation = useExperiment({
-    key: "ticket-impact-test",
-    variations: [false, true],
-  });
 
   const currency = Currencies.USD;
   const {
@@ -219,40 +213,7 @@ function DonationDoneCausePage(): JSX.Element {
     </>
   );
 
-  const newTicketFormat = () => (
-    <>
-      <S.DonationValue color={colorTheme.shade40}>
-        {offerId
-          ? t("ticketsWereDonated", {
-              value: Math.round((offer?.priceValue ?? 0) * 2),
-            })
-          : t("ticketWasDonated")}
-      </S.DonationValue>
-      <S.ThanksToYou>{t("thanksToYou")}</S.ThanksToYou>
-      <S.ImpactAmount color={colorTheme.shade40}>
-        {offerId
-          ? t("livesWereImpacted", {
-              value: Math.round((offer?.priceValue ?? 0) * 2),
-            })
-          : t("lifeWasImpacted")}
-      </S.ImpactAmount>
-      {nonProfit?.impactDescription && (
-        <S.ImpactDescription color={colorTheme.shade40} hasButton>
-          {t("impactDescription", {
-            value: nonProfit?.impactDescription.split(",")[0],
-          })}
-        </S.ImpactDescription>
-      )}
-    </>
-  );
-
-  const renderImpactValue = () => {
-    if (ticketVariation.value) {
-      return newTicketFormat();
-    }
-
-    return oldImpactFormat();
-  };
+  const renderImpactValue = () => oldImpactFormat();
 
   return (
     <S.Container>

@@ -8,8 +8,6 @@ import theme from "styles/theme";
 import { formatPrice } from "lib/formatters/currencyFormatter";
 import { setLocalStorageItem } from "lib/localStorage";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
-import { useExperiment } from "@growthbook/growthbook-react";
-import PinkTicketIcon from "assets/icons/pink-ticket.svg";
 import * as S from "./styles";
 
 const { tertiary } = theme.colors.brand;
@@ -74,11 +72,6 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
   const currentPrice = () =>
     currentOffer && formatPrice(currentOffer.priceValue, currentOffer.currency);
 
-  const ticketVariation = useExperiment({
-    key: "ticket-impact-test",
-    variations: [false, true],
-  });
-
   const oldImpactFormat = () => (
     <S.CauseText>
       {currentPrice()} {t("fundText")}{" "}
@@ -87,32 +80,7 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
       </S.CauseTextHighlight>
     </S.CauseText>
   );
-  const ticketImpactFormat = () => (
-    <S.ImpactSection>
-      <S.ImpactText>{t("donateText")}</S.ImpactText>
-      <S.CurrentLifeAmount>
-        <S.HeartIcon src={PinkTicketIcon} aria-hidden alt="life icon" />
-        {t("ticketsAmount", {
-          value: Math.round(Number(currentOffer?.priceValue ?? 50) * 2),
-        })}
-      </S.CurrentLifeAmount>
-      {nonProfit?.impactDescription && (
-        <S.ImpactDescription>
-          {t("altImpactDescription", {
-            value: nonProfit?.impactDescription.split(",")[0] ?? 0,
-          })}
-        </S.ImpactDescription>
-      )}
-    </S.ImpactSection>
-  );
-
-  const renderCurrentBlock = () => {
-    if (ticketVariation.value) {
-      return ticketImpactFormat();
-    }
-
-    return oldImpactFormat();
-  };
+  const renderCurrentBlock = () => oldImpactFormat();
 
   return (
     <S.Container>

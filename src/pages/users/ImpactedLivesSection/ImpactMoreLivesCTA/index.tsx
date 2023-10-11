@@ -12,7 +12,6 @@ import { useLanguage } from "hooks/useLanguage";
 import { Currencies, NonProfit, Offer } from "@ribon.io/shared/types";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useUserLevel } from "contexts/userLevelContext";
-import { useExperiment } from "@growthbook/growthbook-react";
 import { logEvent } from "lib/events";
 import HeartImage from "assets/icons/heart.svg";
 import * as S from "./styles";
@@ -21,11 +20,6 @@ type Props = {
   from: string;
 };
 function ImpactMoreLivesCTA({ from }: Props): JSX.Element {
-  const { value: isTicketBasedImpact } = useExperiment({
-    key: "ticket-impact-test",
-    variations: [false, true],
-  });
-
   const { t: buyMoreTickets } = useTranslation("translation", {
     keyPrefix: "impactPage.buyMoreTicketsCTA",
   });
@@ -74,7 +68,6 @@ function ImpactMoreLivesCTA({ from }: Props): JSX.Element {
 
   const buttonValue = livesValue;
   const t = buyMoreTickets;
-  const showDivider = isTicketBasedImpact;
 
   return (
     <S.Container>
@@ -99,7 +92,6 @@ function ImpactMoreLivesCTA({ from }: Props): JSX.Element {
         })}
         onButtonClick={onButtonClick}
       />
-      {showDivider && <S.Divider />}
     </S.Container>
   );
 }

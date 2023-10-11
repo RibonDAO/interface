@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import InputRange from "components/atomics/inputs/InputRange";
 import { useOffers, useNonProfitImpact } from "@ribon.io/shared/hooks";
-import useFormattedImpactText from "hooks/useFormattedImpactText";
 import { Offer, Currencies, NonProfit } from "@ribon.io/shared/types";
 import { useTranslation } from "react-i18next";
 import theme from "styles/theme";
 import { formatPrice } from "lib/formatters/currencyFormatter";
 import { setLocalStorageItem } from "lib/localStorage";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
+import { formatImpact } from "lib/formatters/impactFormatter";
 import * as S from "./styles";
 
 const { tertiary } = theme.colors.brand;
@@ -30,8 +30,6 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportNonProfitPage.selectOfferSection",
   });
-
-  const { formattedImpactText } = useFormattedImpactText();
 
   const { nonProfitImpact, refetch: refetchNonProfitImpact } =
     useNonProfitImpact(nonProfit?.id, currentOffer?.priceValue, currentCoin);
@@ -76,7 +74,7 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
     <S.CauseText>
       {currentPrice()} {t("fundText")}{" "}
       <S.CauseTextHighlight>
-        {formattedImpactText(nonProfit, undefined, true, true, nonProfitImpact)}
+        {nonProfitImpact && formatImpact(nonProfitImpact.formattedImpact)}
       </S.CauseTextHighlight>
     </S.CauseText>
   );

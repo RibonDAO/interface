@@ -43,10 +43,6 @@ function NewsSection() {
   }, []);
 
   useEffect(() => {
-    logEvent("P15_view");
-  }, []);
-
-  useEffect(() => {
     const fetchFirstTimeSeeingOnboarding = async () => {
       const firstTimeSeeingOnboarding = await getLocalStorageItem(
         `${IS_USER_ONBOARDING}_${currentUser?.id}`,
@@ -70,8 +66,17 @@ function NewsSection() {
   }, []);
 
   useEffect(() => {
+    if (isOnboarding) {
+      logEvent("P20_onboardingPost_view");
+    }
+  }, [isOnboarding]);
+
+  useEffect(() => {
     if (!canDonate) {
+      logEvent("P20_view");
       registerAction("for_you_news_tab_view");
+    } else {
+      logEvent("P16_view");
     }
   }, [canDonate]);
 

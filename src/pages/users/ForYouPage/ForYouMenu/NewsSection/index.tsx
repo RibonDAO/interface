@@ -43,7 +43,7 @@ function NewsSection() {
   }, []);
 
   useEffect(() => {
-    logEvent("P15_view");
+    logEvent("P20_view");
   }, []);
 
   useEffect(() => {

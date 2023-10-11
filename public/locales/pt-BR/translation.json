@@ -16,6 +16,7 @@
       "donateText": "Doar ticket",
       "donateBlockedText": "Sem tickets",
       "impactPrefix": "Doe",
+      "doMore": "Faça mais e doe {{value}}",
       "pageTitle": "Doe para um projeto",
       "donationError": "Não foi possível doar.",
       "errorModalTitle": "Falha no processamento",
@@ -100,6 +101,8 @@
       "thanksToYou": "Graças a você...",
       "lifeWasImpacted": "1 pessoa foi impactada",
       "livesWereImpacted": "{{value}} pessoas foram impactadas",
+      "ticketWasDonated": "1 ticket doado",
+      "ticketsWereDonated": "{{value}} tickets doados",
       "impactDescription": "com {{value}}",
       "titleSecondLine": "Você doou para",
       "youDonatedText": "Você doou",
@@ -111,7 +114,7 @@
       "forYouPageTitle": "Para você",
       "givingPageTitle": "Contribuir",
       "aboutPageTitle": "Sobre",
-      "communityMenuItem": "Doação em comunidade",
+      "communityMenuItem": "Dia das Crianças",
       "donateWithRibonMenuItem": "Doe com a Ribon",
       "directDonationMenuItem": "Doação direta",
       "new": "Novo"
@@ -156,7 +159,8 @@
         "privacyPolicyText": "Política de Privacidade",
         "privacyPolicyLink": "https://ribon.io/privacy-policy/#pol%C3%ADtica",
         "impactOneLife": "Impacte 1 pessoa",
-        "impactDescription": "com {{value}}"
+        "impactDescription": "com {{value}}",
+        "checkboxText": "Aceito receber e-mails com informações sobre minhas doações"
       }
     }
   },
@@ -272,6 +276,14 @@
       "cardSubtitle": "+{{value}} pessoas",
       "description": "com {{impact}}",
       "buttonText": "Doar {{value}}"
+    },
+    "buyMoreTicketsCTA": {
+      "title": "Compre e doe {{lives}} tickets",
+      "subtitle": "Com apenas {{value}} você doa {{lives}} tickets e transforma a vida de {{lives}} pessoas!",
+      "cardTitle": "Doe {{value}} e compre",
+      "cardSubtitle": "+{{value}} tickets",
+      "description": "e ajude com {{impact}}",
+      "buttonText": "Doar {{value}} tickets"
     }
   },
   "promoters": {
@@ -318,18 +330,24 @@
     "supportNonProfitPage": {
       "title": "Faça uma doação direta",
       "impactMoreTitle": "Impacte mais",
+      "buyAndDonateTicketsTitle": "Compre e doe tickets",
       "donateButtonText": "Doar {{value}}",
       "selectOfferSection": {
         "fundText": "geram",
         "impactText": "Impacte",
+        "donateText": "Doe",
         "livesAmount": "{{value}} pessoas",
-        "impactDescription": "com {{value}}"
+        "impactDescription": "com {{value}}",
+        "altImpactDescription": "e ajude com {{value}}",
+        "ticketsAmount": "{{value}} tickets"
       },
       "tooltipImpact": "Como calculamos o impacto?",
       "tooltipImpactText": "O cálculo é feito com base no valor mínimo necessário para que o projeto consiga bons resultados. As causas da Ribon fazem parte do movimento social “Altruísmo Eficaz”, e têm como objetivo gerar grande impacto a custo baixo.",
       "impactLivesSection": {
         "title": "20 vezes mais que um ticket!",
-        "subtitle": "Com apenas R$ 10 você pode mudar a vida de 20 pessoas e subir de nível de doador!"
+        "subtitle": "Com apenas R$ 10 você pode mudar a vida de 20 pessoas e subir de nível de doador!",
+        "altTitle": "Compre e doe 20 tickets",
+        "altSubtitle": "Com apenas R$ 10, você doa 20 tickets e transforma a vida de 20 pessoas!"
       }
     },
     "supportTreasurePage": {
@@ -437,6 +455,8 @@
     },
 
     "checkoutPage": {
+      "thankForContribute": "Obrigado por contribuir!",
+      "thankForContributeDescription": "Você receberá seu próximo ticket grátis dentro de algumas horas.",
       "changeCurrency": "Mudar moeda",
       "back": "Voltar",
       "monthlyContribution": "Contribuindo mensalmente",
@@ -557,9 +577,16 @@
     },
     "newsSection": {
       "getAppButtonText": "Baixar app",
-      "title": "Só notícia boa!",
       "description": "Baixe nosso app e acesse uma seleção de notícias que vão aquecer seu coração",
-      "buttonDownloadApp": "Baixe e veja as notícias"
+      "buttonDownloadApp": "Baixe e veja as notícias",
+      "openPostButtonText": "Ver publicação",
+      "title": "Doe e veja boas notícias",
+      "text": "Doe seu ticket e acesse nossa seleção de notícias que vão aquecer seu coração",
+      "donateButtonText": "Doar agora",
+      "onboarding": {
+        "publishedAt": "Agora",
+        "title": "Seja bem vindo! Aqui você vê as novidades da Ribon e boas notícias escolhidas pra aquecer seu coração."
+      }
     },
     "tasksSection": {
       "title": "Tarefas",
@@ -577,7 +604,9 @@
         "start_contribution": "Entenda o que é ser um promotor",
         "become_a_promoter": "Vire o promotor de uma causa",
         "view_about_page": "Entenda de onde vem os tickets",
-        "survey_form": "Ganhe um ticket extra respondendo nossa pesquisa"
+        "survey_form": "Ganhe um ticket extra respondendo nossa pesquisa",
+        "check_daily_news": "Conferir publicações diárias",
+        "check_campaign": "Participar da campanha de Dia das Crianças"
       },
       "cardsStatisticsSection": {
         "dailyTasksTitle": "tarefas diárias completas",
@@ -639,6 +668,17 @@
     "titleCard": "Faça ainda mais",
     "donateAndImpact": "Doe {{value}} e impacte",
     "livesAmount": "+{{value}} pessoas",
+    "ticketsAmount": "+{{value}} tickets",
     "impactDescription": "com {{value}}"
+  },
+  "campaignCard": {
+    "button": "Participar da campanha",
+    "donate": "Doe cuidados de saúde básica",
+    "titleCard": "CAMPANHA DE DIA DAS CRIANÇAS",
+    "donateAndImpact": "Doe {{value}} e impacte",
+    "livesAmount": "+{{value}} pessoas",
+    "ticketsAmount": "+{{value}} tickets",
+    "impactDescription": "com {{value}}",
+    "description": "E ajude uma criança a viver seus primeiros 5 anos com saúde"
   }
 }

@@ -16,18 +16,18 @@ describe("Causes", () => {
   const cause1 = causeFactory({
     id: 1,
     name: "cause1",
-    active: true,
+    status: "active",
     withPoolBalance: true,
   });
 
   const cause2 = causeFactory({
     id: 2,
     name: "cause2",
-    active: false,
+    status: "inactive",
     withPoolBalance: false,
   });
 
-  const nonProfitsWithPoolBalance = [
+  const filteredNonProfits = [
     nonProfitFactory({
       id: 1,
       impactDescription: "days of impact",
@@ -82,13 +82,13 @@ describe("Causes", () => {
   beforeEach(async () => {
     renderComponent(<Causes />, {
       nonProfitsProviderValue: {
-        nonProfitsWithPoolBalance,
+        filteredNonProfits,
         nonProfits,
         isLoading: false,
       },
       causesProviderValue: {
         causes: [cause1, cause2],
-        causesWithPoolBalance: [cause1],
+        filteredCauses: [cause1],
         isLoading: false,
       },
     });
@@ -104,8 +104,11 @@ describe("Causes", () => {
   });
 
   it("shows the non profit if the cause is active and has pool balance", () => {
-    nonProfitsWithPoolBalance.forEach((nonProfit) => {
-      if (nonProfit.cause?.active && nonProfit.cause?.withPoolBalance) {
+    filteredNonProfits.forEach((nonProfit) => {
+      if (
+        nonProfit.cause?.status === "active" &&
+        nonProfit.cause?.withPoolBalance
+      ) {
         expectTextToBeInTheDocument(
           `Donate ${nonProfit.impactByTicket} ${nonProfit.impactDescription}`,
         );

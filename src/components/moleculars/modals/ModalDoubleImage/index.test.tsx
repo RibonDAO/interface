@@ -5,7 +5,7 @@ import {
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
 import { screen } from "@testing-library/react";
-import { mockNewLogEventFunction } from "setupTests";
+import { mockLogEventFunction } from "setupTests";
 import ModalDoubleImage from ".";
 
 describe("ModalDoubleImage", () => {
@@ -92,7 +92,6 @@ describe("ModalDoubleImage", () => {
   describe("when the modal is visible and has an eventName", () => {
     const eventName = "test";
     const eventParams = { test: "test" };
-    const action = "view";
     it("logs an event", () => {
       renderComponent(
         <ModalDoubleImage
@@ -101,11 +100,7 @@ describe("ModalDoubleImage", () => {
           eventParams={eventParams}
         />,
       );
-      expect(mockNewLogEventFunction).toHaveBeenCalledWith(
-        action,
-        eventName,
-        eventParams,
-      );
+      expect(mockLogEventFunction).toHaveBeenCalledWith(eventName, eventParams);
     });
   });
 });

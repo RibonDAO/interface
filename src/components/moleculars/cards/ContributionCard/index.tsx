@@ -5,9 +5,7 @@ import { formatPrice } from "lib/formatters/currencyFormatter";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "hooks/useLanguage";
-import { useExperiment } from "@growthbook/growthbook-react";
 import { theme } from "@ribon.io/shared/styles";
-import HeartIcon from "assets/icons/heart.svg";
 import * as S from "./styles";
 
 export type Props = {
@@ -20,10 +18,6 @@ export type Props = {
   nonProfit?: NonProfit;
   from: string;
   flow?: string;
-  testVariation?: Record<
-    string,
-    any
-  > /* NOTE: Remove it at the end of AB testing */;
 };
 
 function ContributionCard({
@@ -36,7 +30,6 @@ function ContributionCard({
   from,
   flow,
   title,
-  testVariation = { value: false },
 }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "contributionCard",
@@ -44,14 +37,7 @@ function ContributionCard({
   const { navigateTo } = useNavigation();
   const { currentLang } = useLanguage();
 
-  const isTest = process.env.NODE_ENV === "test";
   const [currency, setCurrency] = useState<Currencies | undefined>();
-
-  const variationUnderstanding = useExperiment({
-    key: "understanding-test",
-    variations: ["control", "product", "growth"],
-  });
-
   useEffect(() => {
     if (offer) {
       setCurrency(offer?.currency === "brl" ? Currencies.BRL : Currencies.USD);
@@ -59,7 +45,6 @@ function ContributionCard({
       setCurrency(currentLang === "pt-BR" ? Currencies.BRL : Currencies.USD);
     }
   }, [currentLang, offer]);
-
   useEffect(() => {
     logEvent(
       flow === "nonProfit"
@@ -71,7 +56,6 @@ function ContributionCard({
       },
     );
   }, []);
-
   const handleClickedDonationButton = () => {
     logEvent(flow === "nonProfit" ? "giveNgoBtn_start" : "giveCauseBtn_start", {
       from,
@@ -81,7 +65,6 @@ function ContributionCard({
       causeId: nonProfit?.cause?.id,
       offerId: offer?.id,
       platform: "web",
-      variation: variationUnderstanding.value,
     });
 
     if (currency) {
@@ -101,15 +84,7 @@ function ContributionCard({
     }
   };
 
-  const { primary, tertiary } = theme.colors.brand;
-
-  const variation = isTest
-    ? testVariation
-    : useExperiment({
-        key: "progression-test-first-stage",
-        variations: [false, true],
-      });
-
+  const { primary } = theme.colors.brand;
   const oldImpactFormat = () => (
     <>
       <S.Title colorTheme={primary}>{title || t("titleCard")}</S.Title>
@@ -130,44 +105,14 @@ function ContributionCard({
       />
     </>
   );
-
-  const newImpactFormat = () => (
-    <S.Centered>
-      {currency && (
-        <S.Value colorTheme={tertiary}>
-          {t("donateAndImpact", {
-            value: formatPrice(value, currency.toLowerCase()),
-          })}
-        </S.Value>
-      )}
-      <S.LifeAmount>
-        <S.HeartIcon src={HeartIcon} aria-hidden alt="life icon" />
-        {t("livesAmount", {
-          value: Math.round(Number(offer?.priceValue ?? 50) * 2),
-        })}
-      </S.LifeAmount>
-      <S.ImpactDescription>
-        {t("impactDescription", {
-          value: nonProfit?.impactDescription.split(",")[0],
-        })}
-      </S.ImpactDescription>
-      <S.DonationButton
-        colorTheme={tertiary}
-        onClick={() => handleClickedDonationButton()}
-        text={t("button")}
-      />
-    </S.Centered>
-  );
-
   return (
     <S.Container
       style={style}
-      colorTheme={variation.value ? tertiary : primary}
+      colorTheme={primary}
       data-testid="contribution-section-container"
     >
-      {variation.value ? newImpactFormat() : oldImpactFormat()}
+      {oldImpactFormat()}
     </S.Container>
   );
 }
-
 export default ContributionCard;

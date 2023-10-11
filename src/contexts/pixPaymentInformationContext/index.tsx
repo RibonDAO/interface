@@ -10,7 +10,6 @@ import {
   useEffect,
 } from "react";
 import { useTranslation } from "react-i18next";
-import { logEvent } from "lib/events";
 import { logError } from "services/crashReport";
 import {
   getLocalStorageItem,
@@ -122,10 +121,6 @@ function PixPaymentInformationProvider({ children }: Props) {
           message: t("onErrorMessage"),
           type: "info",
         });
-
-        logEvent("toastNotification_view", {
-          status: "transactionFailed",
-        });
       }
     } catch (e) {
       logError(e);
@@ -182,10 +177,6 @@ function PixPaymentInformationProvider({ children }: Props) {
       toast({
         message: t("onErrorMessage"),
         type: "info",
-      });
-
-      logEvent("toastNotification_view", {
-        status: "transactionFailed",
       });
     }
   };

@@ -24,8 +24,6 @@ function DonatingSection({ nonProfit, onAnimationEnd }: Props): JSX.Element {
         textDestiny={t("donateAnimationModalDestiny")}
         icon={Ticket}
         isIconDestinyFullSize
-        eventName="P1_donateProgressModal"
-        eventParams={{ nonProfitId: nonProfit.id }}
         onAnimationEnd={onAnimationEnd}
       />
     </S.Container>

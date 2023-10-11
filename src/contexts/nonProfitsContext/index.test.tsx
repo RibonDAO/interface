@@ -6,7 +6,7 @@ import { useNonProfitsContext } from ".";
 const mockNonProfit = {
   id: 1,
   name: "Animal Cause",
-  active: true,
+  status: "active",
   pools: [],
 };
 

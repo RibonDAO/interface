@@ -5,7 +5,7 @@ import {
   expectTextToBeInTheDocument,
   expectTextNotToBeInTheDocument,
 } from "config/testUtils/expects";
-import { mockNewLogEventFunction } from "setupTests";
+import { mockLogEventFunction } from "setupTests";
 import ModalRows from ".";
 
 jest.mock(
@@ -175,16 +175,11 @@ describe("ModalRows", () => {
   describe("when the modal is visible and has an eventName", () => {
     const eventName = "test";
     const eventParams = { test: "test" };
-    const action = "view";
     it("logs an event", () => {
       renderComponent(
         <ModalRows visible eventName={eventName} eventParams={eventParams} />,
       );
-      expect(mockNewLogEventFunction).toHaveBeenCalledWith(
-        action,
-        eventName,
-        eventParams,
-      );
+      expect(mockLogEventFunction).toHaveBeenCalledWith(eventName, eventParams);
     });
   });
 });

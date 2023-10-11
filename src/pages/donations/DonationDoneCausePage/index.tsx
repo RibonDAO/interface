@@ -29,7 +29,6 @@ import { PLATFORM } from "utils/constants";
 import extractUrlValue from "lib/extractUrlValue";
 import { logEvent } from "lib/events";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
-import { useExperiment } from "@growthbook/growthbook-react";
 import * as S from "./styles";
 
 function DonationDoneCausePage(): JSX.Element {
@@ -49,10 +48,6 @@ function DonationDoneCausePage(): JSX.Element {
     keyPrefix: "donations.donationDoneCausePage",
   });
   const { formattedImpactText } = useFormattedImpactText();
-  const variation = useExperiment({
-    key: "progression-test-first-stage",
-    variations: [false, true],
-  });
 
   const currency = Currencies.USD;
   const {
@@ -118,12 +113,6 @@ function DonationDoneCausePage(): JSX.Element {
     },
     [offerId],
   );
-
-  const variationUnderstanding = useExperiment({
-    key: "understanding-test",
-    variations: ["control", "product", "growth"],
-  });
-
   function navigate() {
     clearTimeout(pageTimeout);
     refetch();
@@ -134,7 +123,6 @@ function DonationDoneCausePage(): JSX.Element {
         currency: offer?.currency,
         amount: offer?.priceValue,
         causeId: cause.id,
-        variation: variationUnderstanding.value,
       });
       navigateTo({
         pathname: offer?.subscription
@@ -150,25 +138,18 @@ function DonationDoneCausePage(): JSX.Element {
         currency: offer?.currency,
         amount: offer?.priceValue,
         nonProfitId: nonProfit?.id,
-        variation: variationUnderstanding.value,
       });
-      if (variation.value) {
-        navigateTo("/impact");
-      } else {
-        navigateTo({
-          pathname: offer?.subscription
-            ? "monthly-contributions"
-            : "/promoters/support-non-profit",
-          state: { nonProfit, cause, from: "donation-done-cause" },
-        });
-      }
+      navigateTo({
+        pathname: offer?.subscription
+          ? "monthly-contributions"
+          : "/promoters/support-non-profit",
+        state: { nonProfit, cause, from: "donation-done-cause" },
+      });
     }
     if (!hasButton) {
       registerAction("donation_done_page_view");
 
-      if (variation.value) {
-        navigateTo("/impact");
-      } else if (shouldShowAppDownload()) {
+      if (shouldShowAppDownload()) {
         navigateTo({
           pathname: "/app-download",
           state: { nonProfit, showContribute: shouldShowContribute() },
@@ -232,26 +213,7 @@ function DonationDoneCausePage(): JSX.Element {
     </>
   );
 
-  const newImpactFormat = () => (
-    <>
-      <S.DonationValue color={colorTheme.shade40}>{t("title")}</S.DonationValue>
-      <S.ThanksToYou>{t("thanksToYou")}</S.ThanksToYou>
-      <S.ImpactAmount color={colorTheme.shade40}>
-        {offerId
-          ? t("livesWereImpacted", {
-              value: Math.round((offer?.priceValue ?? 0) * 2),
-            })
-          : t("lifeWasImpacted")}
-      </S.ImpactAmount>
-      {nonProfit?.impactDescription && (
-        <S.ImpactDescription color={colorTheme.shade40} hasButton>
-          {t("impactDescription", {
-            value: nonProfit?.impactDescription.split(",")[0],
-          })}
-        </S.ImpactDescription>
-      )}
-    </>
-  );
+  const renderImpactValue = () => oldImpactFormat();
 
   return (
     <S.Container>
@@ -272,7 +234,7 @@ function DonationDoneCausePage(): JSX.Element {
           }
         />
       </S.ImageContainer>
-      {variation.value ? newImpactFormat() : oldImpactFormat()}
+      {renderImpactValue()}
       {hasButton && (
         <S.FinishButton
           text={t("button")}

@@ -6,6 +6,7 @@ import {
   useDonations,
   useIntegration,
   useSources,
+  useUserConfig,
   useUsers,
 } from "@ribon.io/shared/hooks";
 import { useIntegrationId } from "hooks/useIntegrationId";
@@ -20,6 +21,7 @@ import { useTranslation } from "react-i18next";
 type HandleDonateProps = {
   nonProfit: NonProfit;
   email: string;
+  allowedEmailMarketing?: boolean;
   onSuccess?: () => void;
   onError?: (error: any) => void;
 };
@@ -32,6 +34,7 @@ function useDonationFlow() {
   const { integration } = useIntegration(integrationId);
   const { history, navigateTo } = useNavigation();
   const { destroyVoucher } = useVoucher();
+  const { updateUserConfig } = useUserConfig();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
@@ -44,6 +47,7 @@ function useDonationFlow() {
   async function handleDonate({
     nonProfit,
     email,
+    allowedEmailMarketing,
     onError,
     onSuccess,
   }: HandleDonateProps) {
@@ -51,6 +55,9 @@ function useDonationFlow() {
       const user = await findOrCreateUser(email, normalizedLanguage());
       if (integration) createSource(user.id, integration.id);
       setCurrentUser(user);
+      if (allowedEmailMarketing) {
+        updateUserConfig(user.id, { allowedEmailMarketing });
+      }
     }
 
     const utmParams = getUTMFromLocationSearch(history.location.search);

@@ -7,7 +7,6 @@ import { useIntegrationId } from "hooks/useIntegrationId";
 import { useIntegration } from "@ribon.io/shared/hooks";
 import { RIBON_COMPANY_ID } from "utils/constants";
 import Tooltip from "components/moleculars/Tooltip";
-import { newLogEvent } from "lib/events";
 import RibonLogo from "assets/images/logo-ribon.svg";
 import RightImageIntegration from "./assets/right-image.svg";
 import LeftImageIntegration from "./assets/left-image.svg";
@@ -28,7 +27,6 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
 
   const handleClick = () => {
     if (isOnboarding) {
-      newLogEvent("view", "receiveTicket", { from: "onboarding_page" });
       navigateTo("/receive-ticket");
     } else {
       navigateTo("/causes");

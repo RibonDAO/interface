@@ -18,8 +18,6 @@ import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import { useCausesContext } from "contexts/causesContext";
 import { useCauseContributionContext } from "contexts/causeContributionContext";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
-import { useExperiment } from "@growthbook/growthbook-react";
-import ImpactLivesSection from "pages/promoters/SupportNonProfitPage/CardPage/ImpactLivesSection";
 import * as S from "../styles";
 import NonProfitCard from "./NonProfitCard";
 
@@ -69,18 +67,10 @@ function CardPage(): JSX.Element {
   }, [nonProfits, causes]);
 
   const handleCauseClick = (causeClicked: Cause, index: number) => {
-    logEvent("nonProfitCauseSelection_click", {
-      id: causeClicked?.id,
-    });
     setCause(causeClicked);
     setChosenCauseIndex(index);
     setChosenCause(causeClicked);
   };
-
-  const variationUnderstanding = useExperiment({
-    key: "understanding-test",
-    variations: ["control", "product", "growth"],
-  });
 
   const navigateToCheckout = (nonProfit: NonProfit) => {
     logEvent("giveNgoBtn_start", {
@@ -88,7 +78,6 @@ function CardPage(): JSX.Element {
       nonProfitId: nonProfit.id,
       currency: currentOffer.currency,
       amount: currentOffer.priceValue,
-      variation: variationUnderstanding.value,
     });
     setFlow("nonProfit");
 
@@ -123,16 +112,13 @@ function CardPage(): JSX.Element {
     [cause, chosenCause, nonProfits],
   );
 
-  const variation = useExperiment({
-    key: "progression-test-first-stage",
-    variations: [false, true],
-  });
+  const renderCurrentTitle = () => t("title");
 
   return (
     <S.Container>
       <DownloadAppToast />
       <S.TitleContainer>
-        <S.Title>{t(variation.value ? "impactMoreTitle" : "title")}</S.Title>
+        <S.Title>{renderCurrentTitle()}</S.Title>
         {!isMobile && (
           <Tooltip
             text={t("tooltipImpactText")}
@@ -144,7 +130,6 @@ function CardPage(): JSX.Element {
           />
         )}
       </S.TitleContainer>
-      <ImpactLivesSection />
 
       <GroupButtons
         elements={causes}

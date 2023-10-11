@@ -1,5 +1,4 @@
 import { useCauseDonationContext } from "contexts/causeDonationContext";
-import { newLogEvent } from "lib/events";
 import Intersection from "./assets/intersect.svg";
 import * as S from "./styles";
 
@@ -17,7 +16,6 @@ function CauseImage({ name, coverImage, id, index }: Props) {
   const handleClick = () => {
     setChosenCauseId(id);
     setChosenCauseIndex(index + 1);
-    newLogEvent("click", "P1_causeCard", { causeId: id });
     setChooseCauseModalVisible(false);
   };
 

@@ -10,6 +10,8 @@ import parse from "html-react-parser";
 import { theme } from "@ribon.io/shared/styles";
 import BannerBackground from "components/moleculars/banners/UserSupportBanner/assets/background.svg";
 import GiftCycleSection from "pages/users/ContributionStatsPage/GiftCycleSection";
+import { useLanguage } from "hooks/useLanguage";
+import { Languages } from "@ribon.io/shared/types";
 import EngagementSection from "./EngagementSection";
 import BoostSection from "./BoostSection";
 import * as S from "./styles";
@@ -20,6 +22,9 @@ function ContributionStatsPage(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "contributionStatsPage",
   });
+  const { currentLang } = useLanguage();
+  const ptEmbedId = "tJ9lY9npcNU";
+  const enEmbedId = "7hgatm9cq40";
 
   useEffect(() => {
     logEvent("P24_view ", {
@@ -48,7 +53,10 @@ function ContributionStatsPage(): JSX.Element {
           <BoostSection totalAmountToCause={data.stats.totalAmountToCause} />
         </S.ContainerItem>
         <S.ContainerItem>
-          <YoutubeEmbed embedId="tJ9lY9npcNU" title={parse(t("video.title"))} />
+          <YoutubeEmbed
+            embedId={currentLang === Languages.PT ? ptEmbedId : enEmbedId}
+            title={parse(t("video.title"))}
+          />
           <Banner
             icon={{
               name: "support_agent",

@@ -2,8 +2,11 @@ import CardCenterImageButton from "components/moleculars/cards/CardCenterImageBu
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import useNavigation from "hooks/useNavigation";
-import { logEvent, newLogEvent } from "lib/events";
-import { NonProfit } from "@ribon.io/shared/types";
+import { logEvent } from "lib/events";
+import { Currencies, NonProfit } from "@ribon.io/shared/types";
+import { useOffers } from "@ribon.io/shared/hooks";
+import { useLanguage } from "hooks/useLanguage";
+import { useIntegrationId } from "hooks/useIntegrationId";
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
 import useVoucher from "hooks/useVoucher";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
@@ -26,6 +29,11 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
   });
   const { navigateTo } = useNavigation();
 
+  const buttonVariation = useExperiment({
+    key: "conversion-test-donate-btn",
+    variations: ["control", "button", "button_and_info"],
+  });
+
   const [currentNonProfitIndex, setCurrentNonProfitIndex] = useState(0);
 
   const { showBlockedDonationContributionModal } =
@@ -36,6 +44,31 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
 
   const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
 
+  const { offers: offersBrl } = useOffers(Currencies.BRL, false);
+  const { offers: offersUsd } = useOffers(Currencies.USD, false);
+
+  const integrationId = useIntegrationId();
+
+  const { currentLang } = useLanguage();
+
+  const softDisabled = () => {
+    if (buttonVariation.value !== "control") return false;
+
+    return !canDonateAndHasVoucher;
+  };
+
+  const currentOffer = () =>
+    currentLang === "pt-BR" ? offersBrl?.[0] : offersUsd?.[0];
+
+  const buttonText = () => {
+    const text =
+      buttonVariation.value !== "control"
+        ? t("doMore", { value: currentOffer()?.price ?? "1000" })
+        : t("donateBlockedText");
+
+    return canDonateAndHasVoucher ? t("donateText") : text;
+  };
+
   function handleButtonClick(nonProfit: NonProfit, from: string) {
     if (canDonateAndHasVoucher) {
       logEvent("donateTicketBtn_start", {
@@ -43,10 +76,22 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
         from,
       });
       navigateTo({ pathname: "confirm-donation", state: { nonProfit } });
-    } else {
-      newLogEvent("click", "P1_donateBlockedBtn", {
-        nonProfitId: nonProfit.id,
+    } else if (buttonVariation.value !== "control") {
+      const searchParams = new URLSearchParams({
+        integration_id: integrationId?.toString() || "",
+        offer: currentOffer()?.priceCents?.toString() ?? "1000",
+        target: "non_profit",
+        target_id: nonProfit.id.toString(),
+        currency: currentLang === "pt-BR" ? "BRL" : "USD",
+        subscription: "false",
+        from: "donations",
       });
+
+      navigateTo({
+        pathname: "/promoters/checkout",
+        search: searchParams.toString(),
+      });
+    } else {
       showBlockedDonationContributionModal();
     }
   }
@@ -64,6 +109,10 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
     if (stories.length > 0) {
       setCurrentNonProfitWithStories(nonProfit);
       setStoriesSectionVisible(true);
+      logEvent("storiesBtn_click", {
+        nonProfitId: nonProfit.id,
+        from: "NGOCard",
+      });
     }
   };
 
@@ -76,28 +125,6 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
       undefined,
       t("impactPrefix"),
     );
-
-  const newImpactFormat = (nonProfit: NonProfit) => (
-    <div>
-      <h3>
-        {nonProfit.cause.name.toLowerCase().includes("animal")
-          ? t("impactOneLife")
-              .replace("pessoa", "animal")
-              .replace("person", "animal")
-          : t("impactOneLife")}
-      </h3>
-      <p>
-        {t("impactDescription", {
-          value: nonProfit.impactDescription.split(",")[0],
-        })}
-      </p>
-    </div>
-  );
-
-  const variation = useExperiment({
-    key: "progression-test-first-stage",
-    variations: [false, true],
-  });
 
   return (
     <S.NonProfitsListContainer>
@@ -118,6 +145,7 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
           onCurrentSlideChange={(index) => setCurrentNonProfitIndex(index)}
           saveStateIdentifier="nonProfitsList"
           loop={nonProfits.length >= MINIMUM_NON_PROFITS_TO_LOOP + 1}
+          slideWidthOnDesktop={256}
         >
           {nonProfits.map(
             (nonProfit: any) =>
@@ -125,23 +153,15 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
                 <S.CardWrapper key={nonProfit.id}>
                   <CardCenterImageButton
                     image={nonProfit.mainImage || nonProfit.cause?.mainImage}
-                    title={
-                      variation.value
-                        ? newImpactFormat(nonProfit)
-                        : oldImpactFormat(nonProfit)
-                    }
-                    buttonText={
-                      canDonateAndHasVoucher
-                        ? t("donateText")
-                        : t("donateBlockedText")
-                    }
+                    title={oldImpactFormat(nonProfit)}
+                    buttonText={buttonText()}
                     onClickButton={() =>
                       handleButtonClick(nonProfit, "nonProfitCard")
                     }
                     onClickImage={() => handleImageClick(nonProfit)}
-                    softDisabled={!canDonateAndHasVoucher}
-                    infoTextLeft={nonProfit.name}
-                    infoTextRight={nonProfit.cause?.name}
+                    softDisabled={softDisabled()}
+                    infoTextTop={nonProfit.name}
+                    infoTextBottom={nonProfit.cause?.name}
                     infoText={
                       nonProfit.stories?.length ? t("learnMore") : undefined
                     }

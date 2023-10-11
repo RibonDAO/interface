@@ -14,9 +14,7 @@ import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import { DONATION_TOAST_SEEN_AT_KEY } from "lib/localStorage/constants";
 import { today } from "lib/dateTodayFormatter";
-import Spinner from "components/atomics/Spinner";
 import useVoucher from "hooks/useVoucher";
-import { useCausesContext } from "contexts/causesContext";
 import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
@@ -27,14 +25,12 @@ import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
-import { useNonProfitsContext } from "contexts/nonProfitsContext";
-import { logEvent } from "lib/events";
+import NonProfitsSection from "pages/donations/CausesPage/NonProfitsSection";
 import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
-import { useExperiment } from "@growthbook/growthbook-react";
-import ImpactMoreLivesCTA from "pages/users/ImpactedLivesSection/ImpactMoreLivesCTA";
+import { useLanguage } from "hooks/useLanguage";
+import CampaignSection from "pages/donations/CausesPage/CampaignSection";
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
-import NonProfitsList from "./NonProfitsList";
 import { LocationStateType } from "./LocationStateType";
 import ChooseCauseModal from "./ChooseCauseModal";
 import CausesSelectSection from "./CausesSelectSection";
@@ -44,21 +40,13 @@ function CausesPage(): JSX.Element {
   const { integration } = useIntegration(integrationId);
   const [shouldShowIntegrationBanner, setShouldShowIntegrationBanner] =
     useState<boolean | undefined>(false);
-
-  const { causesWithPoolBalance, isLoading: isLoadingCauses } =
-    useCausesContext();
-  const { nonProfitsWithPoolBalance, isLoading: isLoadingNonProfits } =
-    useNonProfitsContext();
-  const { chosenCause, chooseCauseModalVisible } = useCauseDonationContext();
+  const { chooseCauseModalVisible } = useCauseDonationContext();
+  const { currentLang } = useLanguage();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
   const { state, search } = useLocation<LocationStateType>();
-  const { value: isInLifeBasedImpact } = useExperiment({
-    key: "progression-test-first-stage",
-    variations: [false, true],
-  });
 
   const { hide: closeWarningModal } = useModal(
     {
@@ -124,17 +112,6 @@ function CausesPage(): JSX.Element {
   }, [JSON.stringify(currentUser)]);
 
   useEffect(() => {
-    if (nonProfitsWithPoolBalance && causesWithPoolBalance?.length > 0) {
-      logEvent("donationCardsOrder_view", {
-        nonProfits: nonProfitsWithPoolBalance
-          .map((nonProfit) => nonProfit.name)
-          .join(", "),
-        causes: causesWithPoolBalance?.map((cause) => cause.name).join(", "),
-      });
-    }
-  }, [nonProfitsWithPoolBalance, causesWithPoolBalance]);
-
-  useEffect(() => {
     if (hasReceivedTicketToday() && hasAvailableDonation()) {
       createVoucher();
     } else if (
@@ -166,36 +143,6 @@ function CausesPage(): JSX.Element {
     }
   }, [chooseCauseModalVisible]);
 
-  const nonProfitsFilter = () => {
-    if (chosenCause) {
-      return (
-        nonProfitsWithPoolBalance?.filter(
-          (nonProfit) => nonProfit.cause?.id === chosenCause.id,
-        ) || []
-      );
-    }
-    return nonProfitsWithPoolBalance || [];
-  };
-
-  const sortNonProfits = () => {
-    const filteredNonProfits = nonProfitsFilter();
-    const sorted = filteredNonProfits?.sort((a, b) => {
-      const causeAIndex = causesWithPoolBalance.findIndex(
-        (cause) => cause.id === a.cause.id,
-      );
-      const causeBIndex = causesWithPoolBalance.findIndex(
-        (cause) => cause.id === b.cause.id,
-      );
-
-      return causeAIndex - causeBIndex;
-    });
-    return sorted;
-  };
-
-  useEffect(() => {
-    sortNonProfits();
-  }, [chosenCause]);
-
   useAvoidBackButton();
 
   return (
@@ -203,9 +150,6 @@ function CausesPage(): JSX.Element {
       {!isFirstAccess(signedIn) && <DownloadAppToast />}
       {shouldShowIntegrationBanner && (
         <IntegrationBanner integration={integration} />
-      )}
-      {!isLoadingCauses && (
-        <ChooseCauseModal visible={chooseCauseModalVisible} />
       )}
       <ChooseCauseModal visible={chooseCauseModalVisible} />
       <S.BodyContainer>
@@ -222,26 +166,11 @@ function CausesPage(): JSX.Element {
             />
           )}
         </S.TitleContainer>
-        {!canDonate && isInLifeBasedImpact && (
-          <S.ImpactMoreLivesContainer>
-            <ImpactMoreLivesCTA from="causes_page" showUserProgress />
-          </S.ImpactMoreLivesContainer>
-        )}
+
+        {!canDonate && currentLang === "pt-BR" && <CampaignSection />}
         <ContributionNotification />
         <CausesSelectSection />
-
-        {isLoadingNonProfits ? (
-          <Spinner size="26" />
-        ) : (
-          nonProfitsWithPoolBalance && (
-            <S.NonProfitsContainer>
-              <NonProfitsList
-                nonProfits={sortNonProfits()}
-                canDonate={canDonate}
-              />
-            </S.NonProfitsContainer>
-          )
-        )}
+        <NonProfitsSection />
         {isMobile && (
           <S.TooltipSection>
             <Tooltip

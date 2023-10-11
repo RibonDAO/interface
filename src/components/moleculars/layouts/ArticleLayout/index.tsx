@@ -1,6 +1,5 @@
 import { Article } from "@ribon.io/shared/types";
 import Icon from "components/atomics/Icon";
-import { useEffect } from "react";
 import { logEvent } from "lib/events";
 import { theme } from "@ribon.io/shared/styles";
 import VendorIcon from "./assets/VendorIcon";
@@ -61,10 +60,6 @@ export default function ArticleLayout({ article, readMoreText }: Props) {
       <Icon size="20px" name="arrow_right_alt" color={secondary[900]} />
     </S.containerFooter>
   );
-
-  useEffect(() => {
-    logEvent("P20_post_view", { idPost: article.id });
-  }, []);
 
   return (
     <S.Container onClick={handlePress}>

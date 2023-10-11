@@ -14,7 +14,7 @@ export function ChooseCauseModal({ visible }: Props): JSX.Element {
     keyPrefix: "donations.causesPage",
   });
 
-  const { causesWithPoolBalance: causes } = useCausesContext();
+  const { filteredCauses: causes } = useCausesContext();
 
   const causesList = useCallback(
     () =>
@@ -31,11 +31,7 @@ export function ChooseCauseModal({ visible }: Props): JSX.Element {
   );
 
   return (
-    <ModalRows
-      title={t("chooseCauseModalTitle")}
-      visible={visible}
-      eventName="P1_causeModal"
-    >
+    <ModalRows title={t("chooseCauseModalTitle")} visible={visible}>
       {causesList()}
     </ModalRows>
   );

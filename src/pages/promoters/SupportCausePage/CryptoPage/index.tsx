@@ -14,7 +14,6 @@ import { useCausesContext } from "contexts/causesContext";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import { useCauseContributionContext } from "contexts/causeContributionContext";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
-import { useExperiment } from "@growthbook/growthbook-react";
 import SupportImage from "../assets/support-image.png";
 import * as S from "../styles";
 import SelectCryptoOfferSection from "./SelectCryptoOfferSection";
@@ -49,10 +48,6 @@ function CryptoPage(): JSX.Element {
   });
 
   useEffect(() => {
-    logEvent("causeSupportScreen_view");
-  }, []);
-
-  useEffect(() => {
     if (causes.length > 0) {
       logEvent("contributionCardsOrder_view", {
         causes: causes.map((c) => c.name).join(", ") as any,
@@ -73,19 +68,12 @@ function CryptoPage(): JSX.Element {
   }, [cause]);
 
   const handleCauseClick = (causeClicked: Cause, index: number) => {
-    logEvent("supportCauseSelection_click", {
-      id: causeClicked?.id,
-    });
     setCause(causeClicked);
     setChosenCause(causeClicked);
     setChosenCauseIndex(index);
   };
 
   const onDonationToContractSuccess = () => {
-    logEvent("toastNotification_view", {
-      status: "transactionProcessed",
-    });
-
     navigateTo({
       pathname: "/donation-done-cause",
       state: {
@@ -106,18 +94,12 @@ function CryptoPage(): JSX.Element {
       return;
     }
 
-    const variation = useExperiment({
-      key: "understanding-test",
-      variations: ["control", "product", "growth"],
-    });
-
     connectWallet();
     logEvent("giveCauseBtn_start", {
       from: "giveCauseCrypto_page",
       causeId: cause?.id,
       amount,
       currency: tokenSymbol,
-      variation: variation.value,
     });
   };
 

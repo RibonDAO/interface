@@ -1,4 +1,4 @@
-import { newLogEvent } from "lib/events";
+import { logEvent } from "lib/events";
 import * as S from "./styles";
 
 export type Props = {
@@ -23,7 +23,7 @@ function TicketWithTextAndImage({
       window.open(link, "_blank");
     }
     if (eventName) {
-      newLogEvent("click", eventName, eventParams);
+      logEvent(eventName, eventParams);
     }
   };
   return (

@@ -8,7 +8,6 @@ import { logEvent } from "lib/events";
 import useNavigation from "hooks/useNavigation";
 import { useLanguage } from "hooks/useLanguage";
 import { useModalContext } from "contexts/modalContext";
-import { useExperiment } from "@growthbook/growthbook-react";
 import { useModal } from "../useModal";
 
 export function useBlockedDonationContributionModal(initialState?: boolean) {
@@ -23,11 +22,6 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
 
   const currentCurrency = currentLang === "pt-BR" ? "BRL" : "USD";
 
-  const variationUnderstanding = useExperiment({
-    key: "understanding-test",
-    variations: ["control", "product", "growth"],
-  });
-
   const handleClickedDonationButton = () => {
     logEvent("giveNgoBtn_start", {
       from: "zeroTickets_modal",
@@ -35,7 +29,6 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
       coin: offer?.currency,
       causeId: nonProfit?.cause?.id,
       platform: "web",
-      variation: variationUnderstanding.value,
     });
 
     const searchParams = new URLSearchParams({
@@ -51,19 +44,6 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
       search: searchParams.toString(),
     });
   };
-  const variation = useExperiment({
-    key: "progression-test-first-stage",
-    variations: [false, true],
-  });
-
-  const newImpactFormat = (
-    <>
-      {t("impactOneLife")}{" "}
-      {t("impactDescription", {
-        value: nonProfit?.impactDescription.split(",")[0],
-      })}
-    </>
-  );
 
   const oldImpactFormat = (
     <>
@@ -81,7 +61,7 @@ export function useBlockedDonationContributionModal(initialState?: boolean) {
       description: t("descriptionContributionModal"),
       icon: "confirmation_number",
       iconColor: primary[500],
-      highlightedText: variation.value ? newImpactFormat : oldImpactFormat,
+      highlightedText: oldImpactFormat,
       primaryButton: {
         text: t("buttonContributionModal", {
           value: formatPrice(

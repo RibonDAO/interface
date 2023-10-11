@@ -1,5 +1,5 @@
 import { useOffers } from "@ribon.io/shared/hooks";
-import { Currencies, Offer } from "@ribon.io/shared/types";
+import { Currencies, Languages, Offer } from "@ribon.io/shared/types";
 import LinkAccordion from "components/moleculars/accordions/LinkAccordion";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useModal } from "hooks/modalHooks/useModal";
@@ -11,6 +11,7 @@ import { logEvent } from "lib/events";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useIntegrationId } from "hooks/useIntegrationId";
+import { useLanguage } from "hooks/useLanguage";
 import ButtonSelectorTemplate from "../Components/ButtonSelectorTemplate";
 import Header from "../Components/Header";
 import PriceSelection from "../Components/PriceSelection";
@@ -28,8 +29,9 @@ function RecurrencePage(): JSX.Element {
   const [currentOfferIndex, setCurrentOfferIndex] = useState(0);
   const { updateLocationSearch } = useLocationSearch();
   const integrationId = useIntegrationId();
+  const { setCurrentLang } = useLanguage();
 
-  const { target, targetId, offer, currency } = usePaymentParams();
+  const { target, targetId, offer, currency, language } = usePaymentParams();
   const hasAllParams = Boolean(target && targetId && offer && currency);
   const currentPayable = usePayable(target, targetId);
   const { navigateTo } = useNavigation();
@@ -45,6 +47,10 @@ function RecurrencePage(): JSX.Element {
   useEffect(() => {
     refetchOffers();
   }, [currency]);
+
+  useEffect(() => {
+    setCurrentLang(language as Languages);
+  });
 
   const resetOffer = () =>
     updateLocationSearch("offer", offers[0].priceCents.toString());

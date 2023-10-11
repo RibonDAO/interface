@@ -1,4 +1,4 @@
-import { newLogEvent } from "lib/events";
+import { logEvent } from "lib/events";
 import React, { useState } from "react";
 import ReactModal from "react-modal";
 import theme from "styles/theme";
@@ -43,7 +43,7 @@ function ModalAnimation({
   const [logged, SetLogged] = useState(false);
 
   if (visible && eventName && !logged) {
-    newLogEvent("view", eventName, eventParams);
+    logEvent(eventName, eventParams);
     SetLogged(true);
   }
 

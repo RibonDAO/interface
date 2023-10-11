@@ -7,7 +7,7 @@ import {
 import { screen } from "@testing-library/react";
 import ribon from "assets/icons/ribon.svg";
 import theme from "styles/theme";
-import { mockNewLogEventFunction } from "setupTests";
+import { mockLogEventFunction } from "setupTests";
 import Button from ".";
 
 describe("<Button />", () => {
@@ -29,7 +29,6 @@ describe("<Button />", () => {
     const mockFunction = jest.fn();
     const eventName = "test";
     const eventParams = { test: "test" };
-    const action = "click";
 
     it("sends one event if it is clicked once", () => {
       renderComponent(
@@ -42,11 +41,7 @@ describe("<Button />", () => {
       );
       clickOn("button");
 
-      expect(mockNewLogEventFunction).toHaveBeenCalledWith(
-        action,
-        eventName,
-        eventParams,
-      );
+      expect(mockLogEventFunction).toHaveBeenCalledWith(eventName, eventParams);
     });
 
     it("sends 2 events if it is clicked twice", () => {
@@ -61,7 +56,7 @@ describe("<Button />", () => {
       clickOn("button");
       clickOn("button");
 
-      expect(mockNewLogEventFunction).toHaveBeenCalledTimes(2);
+      expect(mockLogEventFunction).toHaveBeenCalledTimes(2);
     });
   });
 

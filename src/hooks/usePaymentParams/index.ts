@@ -9,6 +9,8 @@ export default function usePaymentParams() {
   const offer = queryParams.get("offer");
   const paymentMethodIndex = queryParams.get("paymentMethodIndex");
   const subscription = queryParams.get("subscription");
+  const language = queryParams.get("language");
+  const from = queryParams.get("from");
 
   const hasAllParams = Boolean(target && targetId && currency && offer);
 
@@ -18,7 +20,9 @@ export default function usePaymentParams() {
     currency,
     offer,
     subscription,
+    language,
     hasAllParams,
     paymentMethodIndex,
+    from,
   };
 }

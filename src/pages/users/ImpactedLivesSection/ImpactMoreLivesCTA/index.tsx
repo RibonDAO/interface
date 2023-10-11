@@ -14,20 +14,16 @@ import { useCurrentUser } from "contexts/currentUserContext";
 import { useUserLevel } from "contexts/userLevelContext";
 import { logEvent } from "lib/events";
 import HeartImage from "assets/icons/heart.svg";
-import UserProgress from "pages/users/ImpactedLivesSection/UserProgress";
 import * as S from "./styles";
 
 type Props = {
   from: string;
-  showUserProgress?: boolean;
 };
-function ImpactMoreLivesCTA({
-  from,
-  showUserProgress = false,
-}: Props): JSX.Element {
-  const { t } = useTranslation("translation", {
-    keyPrefix: "impactPage.impactMoreLivesCTA",
+function ImpactMoreLivesCTA({ from }: Props): JSX.Element {
+  const { t: buyMoreTickets } = useTranslation("translation", {
+    keyPrefix: "impactPage.buyMoreTicketsCTA",
   });
+
   const [currentCoin, setCurrentCoin] = useState(Currencies.BRL);
   const [currentOffer, setCurrentOffer] = useState<Offer>();
   const [currentNonProfit, setCurrentNonProfit] = useState<NonProfit>();
@@ -39,13 +35,7 @@ function ImpactMoreLivesCTA({
     userId: currentUser?.id ?? undefined,
   });
   const { nonProfits } = useNonProfits();
-  const {
-    userExperience: totalLivesImpacted,
-    currentLevelExperience,
-    userLevel,
-    nextLevelExperience,
-    percentageCompleted,
-  } = useUserLevel();
+  const { userExperience: totalLivesImpacted } = useUserLevel();
 
   useEffect(() => {
     setCurrentCoin(coinByLanguage(currentLang));
@@ -76,6 +66,9 @@ function ImpactMoreLivesCTA({
 
   const livesValue = Math.round(Number(currentOffer?.priceValue ?? 50) * 2);
 
+  const buttonValue = livesValue;
+  const t = buyMoreTickets;
+
   return (
     <S.Container>
       <S.Title>
@@ -93,26 +86,12 @@ function ImpactMoreLivesCTA({
           value: livesValue,
         })}
         image={currentNonProfit?.mainImage || ""}
-        buttonText={t("buttonText", { value: currentOffer?.price })}
+        buttonText={t("buttonText", { value: buttonValue })}
         description={t("description", {
           impact: currentNonProfit?.impactDescription.split(",")[1],
         })}
         onButtonClick={onButtonClick}
-      >
-        {showUserProgress ? (
-          <S.UserProgressContainer>
-            <UserProgress
-              currentExperience={totalLivesImpacted}
-              totalExperienceToNextLevel={nextLevelExperience}
-              currentLevelExperience={currentLevelExperience}
-              nextLevel={userLevel + 1}
-              percentageCompleted={percentageCompleted}
-            />
-          </S.UserProgressContainer>
-        ) : (
-          <div />
-        )}
-      </CardLargeImage>
+      />
     </S.Container>
   );
 }

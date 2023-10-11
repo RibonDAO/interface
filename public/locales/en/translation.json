@@ -16,6 +16,7 @@
       "donateText": "Donate ticket",
       "donateBlockedText": "No tickets",
       "impactPrefix": "Donate",
+      "doMore": "Do more and donate {{value}}",
       "pageTitle": "Donate to a project",
       "donationError": "Unable to donate now",
       "errorModalTitle": "Processing failed",
@@ -100,6 +101,8 @@
       "thanksToYou": "Thanks to you...",
       "lifeWasImpacted": "1 person was impacted",
       "livesWereImpacted": "{{value}} people were impacted",
+      "ticketWasDonated": "1 ticket was donated",
+      "ticketsWereDonated": "{{value}} tickets were donated",
       "impactDescription": "with {{value}}",
       "titleSecondLine": "You have donated to",
       "youDonatedText": "You donated",
@@ -156,7 +159,8 @@
         "privacyPolicyText": "Privacy Policy",
         "privacyPolicyLink": "https://ribon.io/en/privacy-policy/#privacy",
         "impactOneLife": "Impact 1 person",
-        "impactDescription": "with {{value}}"
+        "impactDescription": "with {{value}}",
+        "checkboxText": "I agree to receive emails with information about my donations"
       }
     }
   },
@@ -273,6 +277,14 @@
       "cardSubtitle": "+{{value}} people",
       "description": "with {{impact}}",
       "buttonText": "Donate {{value}}"
+    },
+    "buyMoreTicketsCTA": {
+      "title": "Buy and donate {{lives}} tickets",
+      "subtitle": "With only {{value}} you can donate {{lives}} tickets and change the lives of {{lives}} people!",
+      "cardTitle": "Donate {{value}} and buy",
+      "cardSubtitle": "+{{value}} tickets",
+      "description": "and help with {{impact}}",
+      "buttonText": "Donate {{value}} tickets"
     }
   },
   "promoters": {
@@ -319,18 +331,24 @@
     "supportNonProfitPage": {
       "title": "Make a direct donation",
       "impactMoreTitle": "Impact more",
+      "buyAndDonateTicketsTitle": "Buy and donate tickets",
       "donateButtonText": "Donate {{value}}",
       "selectOfferSection": {
         "fundText": "fund",
         "impactText": "Impact",
+        "donateText": "Donate",
         "livesAmount": "{{value}} people",
-        "impactDescription": "with {{value}}"
+        "impactDescription": "with {{value}}",
+        "altImpactDescription": "and help with {{value}}",
+        "ticketsAmount": "{{value}} tickets"
       },
       "tooltipImpact": "How we calculate the impact?",
       "tooltipImpactText": "The calculations are based on the minimum value needed for the project achieve good results. Ribon’s causes are part of the social moviment “Effective Altruism”, which aim to generate big impact at low cost.",
       "impactLivesSection": {
         "title": "20 times more than a ticket!",
-        "subtitle": "With just R$10 you can change the lives of 20 people and raise your donor level!"
+        "subtitle": "With just R$10 you can change the lives of 20 people and raise your donor level!",
+        "altTitle": "Buy and donate 20 tickets",
+        "altSubtitle": "With just R$10 you can donate 20 tickets and change the lives of 20 people!"
       }
     },
     "supportTreasurePage": {
@@ -437,6 +455,8 @@
       }
     },
     "checkoutPage": {
+      "thankForContribute": "Thank you for contribute!",
+      "thankForContributeDescription": "You will receive your next free ticket within a few hours.",
       "changeCurrency": "Change currency",
       "back": "Back",
       "monthlyContribution": "Contributing monthly",
@@ -557,9 +577,17 @@
     },
     "newsSection": {
       "getAppButtonText": "Get app",
-      "title": "Read good news!",
+      "title": "Donate to read good news",
+      "text": "Donate your ticket and get access to our selection of heart warming news",
+      "donateButtonText": "Donate now",
+
       "description": "Download our app and check our selection of heart warming news",
-      "buttonDownloadApp": "Download and read news"
+      "buttonDownloadApp": "Download and read news",
+      "openPostButtonText": "See article",
+      "onboarding": {
+        "title": "Welcome! Here you'll find what's new at Ribon and the good news that we selected to warm your heart.",
+        "publishedAt": "Now"
+      }
     },
     "tasksSection": {
       "title": "Tasks",
@@ -577,7 +605,9 @@
         "start_contribution": "Understand what it means to be a promoter",
         "become_a_promoter": "Become a promoter of a cause",
         "view_about_page": "Understand from where the tickets come",
-        "survey_form": "Get an extra ticket responding our survey"
+        "survey_form": "Get an extra ticket responding our survey",
+        "check_daily_news": "Check daily posts",
+        "check_campaign": "Check campaigns"
       },
       "cardsStatisticsSection": {
         "dailyTasksTitle": "daily tasks completed",
@@ -638,7 +668,18 @@
     "donate": "Donate {{value}}",
     "donateAndImpact": "Donate {{value}} and impact",
     "livesAmount": "+{{value}} people",
+    "ticketsAmount": "+{{value}} tickets",
     "impactDescription": "with {{value}}",
     "titleCard": "Do even more"
+  },
+  "campaignCard": {
+    "button": "Participate in the campaign",
+    "donate": "Donate basic health care",
+    "donateAndImpact": "Donate {{value}} and impact",
+    "livesAmount": "+{{value}} people",
+    "ticketsAmount": "+{{value}} tickets",
+    "impactDescription": "with {{value}}",
+    "titleCard": "CHILDREN’S DAY CAMPAIGN",
+    "description": "And help a child live their first 5 years healthily"
   }
 }

@@ -1,6 +1,5 @@
 import { clickOn, renderComponent, waitForPromises } from "config/testUtils";
 import {
-  expectLogEventToHaveBeenCalledWith,
   expectTextNotToBeInTheDocument,
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
@@ -9,7 +8,7 @@ import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
 import SupportNonProfit from ".";
 
 const mockCause = causeFactory();
-const mockCause2 = causeFactory({ name: "💊 Health", id: 2, active: true });
+const mockCause2 = causeFactory({ name: "💊 Health", id: 2, status: "active" });
 const mockNonProfit = nonProfitFactory({ cause: mockCause });
 const mockNonProfit2 = nonProfitFactory({
   cause: mockCause2,
@@ -45,14 +44,6 @@ describe("SupportNonProfit", () => {
   });
 
   describe("when the button option is clicked", () => {
-    it("logs the nonProfitCauseSelection_click event", () => {
-      clickOn(mockCause2.name);
-
-      expectLogEventToHaveBeenCalledWith("nonProfitCauseSelection_click", {
-        id: 2,
-      });
-    });
-
     it("shows the non profits for that cause", () => {
       clickOn(mockCause.name);
 

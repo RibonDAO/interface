@@ -1,7 +1,6 @@
 import CardTopImage from "components/moleculars/cards/CardTopImage";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { logEvent } from "lib/events";
 import { formatPriceWithZeros } from "lib/formatters/currencyFormatter";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import { useLanguage } from "hooks/useLanguage";
@@ -9,10 +8,7 @@ import { coinByLanguage } from "lib/coinByLanguage";
 import { useWalletContext } from "contexts/walletContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useStatistics } from "@ribon.io/shared/hooks";
-import { useExperiment } from "@growthbook/growthbook-react";
-import ImpactedLivesSection from "pages/users/ImpactedLivesSection";
-import BadgesSection from "pages/users/BadgesSection";
-import ImpactMoreLivesCTA from "../ImpactedLivesSection/ImpactMoreLivesCTA";
+import CampaignSection from "pages/donations/CausesPage/CampaignSection";
 import ImpactMenu from "./ImpactMenu";
 import TicketIcon from "./assets/ticket-icon.svg";
 import MoneyIcon from "./assets/money-icon.svg";
@@ -31,14 +27,6 @@ function ImpactPage(): JSX.Element {
     walletAddress: wallet!,
   });
   const { currentLang } = useLanguage();
-  const { value: isInLifeBasedImpact } = useExperiment({
-    key: "progression-test-first-stage",
-    variations: [false, true],
-  });
-
-  useEffect(() => {
-    logEvent("profile_view");
-  }, []);
 
   useEffect(() => {
     refetchStatistics();
@@ -47,9 +35,7 @@ function ImpactPage(): JSX.Element {
   return (
     <S.Container>
       <DownloadAppToast />
-      {isInLifeBasedImpact && <ImpactedLivesSection />}
-      {isInLifeBasedImpact && <ImpactMoreLivesCTA from="impact_page" />}
-      {isInLifeBasedImpact && <BadgesSection />}
+      <CampaignSection />
       <S.Title>{t("title")}</S.Title>
       <S.CardsButtonContainer>
         <CardTopImage

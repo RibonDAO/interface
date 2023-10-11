@@ -36,6 +36,8 @@ import PaymentInformationProvider from "contexts/paymentInformationContext";
 import useQueryParams from "hooks/useQueryParams";
 import RecurrencePage from "pages/promoters/CheckoutPage/RecurrencePage";
 import ContributionCanceledPage from "pages/promoters/ContributionCanceledPage";
+import ExperimentRouteComponent from "services/growthbook/ExperimentRouteComponent";
+import CampaignPage from "pages/campaigns/CampaignPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -126,9 +128,14 @@ function RoutesComponent(): JSX.Element {
       <Route path="/impact" exact>
         <Suspense fallback={<div />}>
           <WalletProvider>
-            <MainLayout outline>
-              <ImpactPage />
-            </MainLayout>
+            <ExperimentRouteComponent
+              featureFlagId="impact-page-feature-flag"
+              source="https://projetos.ribon.io/impact"
+            >
+              <MainLayout>
+                <ImpactPage />
+              </MainLayout>
+            </ExperimentRouteComponent>
           </WalletProvider>
         </Suspense>
       </Route>
@@ -157,17 +164,22 @@ function RoutesComponent(): JSX.Element {
         <Suspense fallback={<div />}>
           <NetworkProvider>
             <WalletProvider>
-              <WalletLayout
-                hideWallet={params.get("payment_method") !== "crypto"}
+              <ExperimentRouteComponent
+                featureFlagId="support-cause-page-feature-flag"
+                source="https://projetos.ribon.io/support-cause"
               >
-                <PaymentInformationProvider>
-                  <CardPaymentInformationProvider>
-                    <CryptoPaymentProvider>
-                      <SupportCausePage />
-                    </CryptoPaymentProvider>
-                  </CardPaymentInformationProvider>
-                </PaymentInformationProvider>
-              </WalletLayout>
+                <WalletLayout
+                  hideWallet={params.get("payment_method") !== "crypto"}
+                >
+                  <PaymentInformationProvider>
+                    <CardPaymentInformationProvider>
+                      <CryptoPaymentProvider>
+                        <SupportCausePage />
+                      </CryptoPaymentProvider>
+                    </CardPaymentInformationProvider>
+                  </PaymentInformationProvider>
+                </WalletLayout>
+              </ExperimentRouteComponent>
             </WalletProvider>
           </NetworkProvider>
         </Suspense>
@@ -203,15 +215,20 @@ function RoutesComponent(): JSX.Element {
         <Suspense fallback={<div />}>
           <NetworkProvider>
             <WalletProvider>
-              <WalletLayout hideWallet>
-                <PaymentInformationProvider>
-                  <CardPaymentInformationProvider>
-                    <CryptoPaymentProvider>
-                      <SupportNonProfitPage />
-                    </CryptoPaymentProvider>
-                  </CardPaymentInformationProvider>
-                </PaymentInformationProvider>
-              </WalletLayout>
+              <ExperimentRouteComponent
+                featureFlagId="support-non-profit-page-feature-flag"
+                source="https://projetos.ribon.io/support-non-profit"
+              >
+                <WalletLayout hideWallet>
+                  <PaymentInformationProvider>
+                    <CardPaymentInformationProvider>
+                      <CryptoPaymentProvider>
+                        <SupportNonProfitPage />
+                      </CryptoPaymentProvider>
+                    </CardPaymentInformationProvider>
+                  </PaymentInformationProvider>
+                </WalletLayout>
+              </ExperimentRouteComponent>
             </WalletProvider>
           </NetworkProvider>
         </Suspense>
@@ -291,6 +308,12 @@ function RoutesComponent(): JSX.Element {
       <Route path="/survey" exact>
         <Suspense fallback={<div />}>
           <SurveyPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/campaign" exact>
+        <Suspense fallback={<div />}>
+          <CampaignPage />
         </Suspense>
       </Route>
     </Switch>

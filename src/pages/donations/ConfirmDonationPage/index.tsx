@@ -11,7 +11,7 @@ import useNavigation from "hooks/useNavigation";
 import SignInSection from "pages/donations/ConfirmDonationPage/SignInSection";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { logEvent } from "lib/events";
-import { useExperiment } from "@growthbook/growthbook-react";
+import { useTranslation } from "react-i18next";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -26,12 +26,16 @@ function ConfirmDonationPage(): JSX.Element {
   } = useLocation<LocationStateType>();
   const { handleDonate } = useDonationFlow();
   const { navigateTo } = useNavigation();
+  const { t } = useTranslation("translation", {
+    keyPrefix: "donations.causesPage",
+  });
 
-  const onContinue = async (email: string) => {
+  const onContinue = async (email: string, allowedEmailMarketing?: boolean) => {
     setDonationInProgress(true);
     await handleDonate({
       nonProfit,
       email,
+      allowedEmailMarketing,
       onSuccess: () => setDonationSucceeded(true),
       onError: () => {
         setDonationSucceeded(false);
@@ -39,16 +43,10 @@ function ConfirmDonationPage(): JSX.Element {
     });
   };
 
-  const variation = useExperiment({
-    key: "understanding-test",
-    variations: ["control", "product", "growth"],
-  });
-
   const onAnimationEnd = useCallback(() => {
     if (donationSucceeded) {
       logEvent("ticketDonated_end", {
         nonProfitId: nonProfit.id,
-        variation: variation.value,
       });
       navigateTo({
         pathname: "/donation-done-cause",
@@ -57,6 +55,12 @@ function ConfirmDonationPage(): JSX.Element {
           nonProfit,
         },
       });
+    } else {
+      const newState = {
+        failedDonation: true,
+        message: t("donationError"),
+      };
+      navigateTo({ pathname: "/causes", state: newState });
     }
   }, [donationSucceeded]);
 

@@ -23,7 +23,11 @@ export default function NonProfitCard({
 
   const onOfferChange = (offer: Offer, index?: number) => {
     handleOfferChange(offer, index);
-    setValue(removeInsignificantZeros(offer.price));
+
+    const offerValue = removeInsignificantZeros(offer.price);
+    const currentValue = offerValue;
+
+    setValue(currentValue.toString());
   };
 
   return (

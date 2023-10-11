@@ -1,4 +1,4 @@
-import { newLogEvent } from "lib/events";
+import { logEvent } from "lib/events";
 import React, { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 import theme from "styles/theme";
@@ -51,7 +51,7 @@ function TransferAnimation({
   }, [onAnimationEnd]);
 
   if (eventName && !logged) {
-    newLogEvent("view", eventName, eventParams);
+    logEvent(eventName, eventParams);
     setLogged(true);
   }
 

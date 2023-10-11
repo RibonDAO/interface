@@ -87,7 +87,6 @@ describe("PixSection", () => {
           amount: 10,
           currency: "usd",
           paymentMethod: "pix",
-          variation: "control",
         });
       });
     });

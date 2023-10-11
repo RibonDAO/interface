@@ -14,9 +14,9 @@ import NonProfitsList from "../NonProfitsList";
 import * as S from "./styles";
 
 function NonProfitsSection() {
-  const { nonProfitsWithPoolBalance, isLoading: isLoadingNonProfits } =
+  const { filteredNonProfits, isLoading: isLoadingNonProfits } =
     useNonProfitsContext();
-  const { causesWithPoolBalance } = useCausesContext();
+  const { filteredCauses } = useCausesContext();
   const { chosenCause } = useCauseDonationContext();
   const integrationId = useIntegrationId();
   const { search } = useLocation<LocationStateType>();
@@ -24,34 +24,34 @@ function NonProfitsSection() {
   const { canDonate } = useCanDonate(integrationId, PLATFORM, externalId);
 
   useEffect(() => {
-    if (nonProfitsWithPoolBalance && causesWithPoolBalance?.length > 0) {
+    if (filteredNonProfits && filteredCauses?.length > 0) {
       logEvent("donationCardsOrder_view", {
-        nonProfits: nonProfitsWithPoolBalance
+        nonProfits: filteredNonProfits
           .map((nonProfit) => nonProfit.name)
           .join(", "),
-        causes: causesWithPoolBalance?.map((cause) => cause.name).join(", "),
+        causes: filteredCauses?.map((cause) => cause.name).join(", "),
       });
     }
-  }, [nonProfitsWithPoolBalance, causesWithPoolBalance]);
+  }, [filteredNonProfits, filteredCauses]);
 
   const nonProfitsFilter = () => {
     if (chosenCause) {
       return (
-        nonProfitsWithPoolBalance?.filter(
+        filteredNonProfits?.filter(
           (nonProfit) => nonProfit.cause?.id === chosenCause.id,
         ) || []
       );
     }
-    return nonProfitsWithPoolBalance || [];
+    return filteredNonProfits || [];
   };
 
   const sortNonProfits = () => {
-    const filteredNonProfits = nonProfitsFilter();
-    const sorted = filteredNonProfits?.sort((a, b) => {
-      const causeAIndex = causesWithPoolBalance.findIndex(
+    const nonProfitsFiltered = nonProfitsFilter();
+    const sorted = nonProfitsFiltered?.sort((a, b) => {
+      const causeAIndex = filteredCauses.findIndex(
         (cause) => cause.id === a.cause.id,
       );
-      const causeBIndex = causesWithPoolBalance.findIndex(
+      const causeBIndex = filteredCauses.findIndex(
         (cause) => cause.id === b.cause.id,
       );
 
@@ -69,7 +69,7 @@ function NonProfitsSection() {
       {isLoadingNonProfits ? (
         <Spinner size="26" />
       ) : (
-        nonProfitsWithPoolBalance && (
+        filteredNonProfits && (
           <S.NonProfitsContainer>
             <NonProfitsList
               nonProfits={sortNonProfits()}

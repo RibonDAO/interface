@@ -15,7 +15,7 @@ describe("CausesSelectSection", () => {
       signedIn: true,
     },
     causesProviderValue: {
-      causesWithPoolBalance: [mockCause],
+      filteredCauses: [mockCause],
     },
   });
 

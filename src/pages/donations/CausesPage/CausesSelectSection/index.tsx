@@ -11,7 +11,7 @@ function CausesSelectSection(): JSX.Element {
   });
   const { setChosenCause, chosenCauseIndex, setChosenCauseIndex } =
     useCauseDonationContext();
-  const { causesWithPoolBalance } = useCausesContext();
+  const { filteredCauses } = useCausesContext();
   const { signedIn } = useCurrentUser();
 
   const handleCauseChanged = (_element: any, index: number, event: any) => {
@@ -31,7 +31,7 @@ function CausesSelectSection(): JSX.Element {
       id: 0,
       name: t("allCauses"),
     },
-    ...(causesWithPoolBalance || []),
+    ...(filteredCauses || []),
   ];
 
   if (isFirstAccess(signedIn)) return <div />;

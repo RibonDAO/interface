@@ -66,6 +66,12 @@ function NewsSection() {
   }, []);
 
   useEffect(() => {
+    if (isOnboarding) {
+      logEvent("P20_onboardingPost_view");
+    }
+  }, [isOnboarding]);
+
+  useEffect(() => {
     if (!canDonate) {
       logEvent("P20_view");
       registerAction("for_you_news_tab_view");

@@ -2,10 +2,6 @@ import { useTasksContext } from "contexts/tasksContext";
 import { useTasks } from "utils/constants/Tasks";
 import { useCallback, useEffect } from "react";
 import ProgressBar from "components/atomics/ProgressBar";
-import { useCountdown } from "hooks/useCountdown";
-import { nextDay } from "lib/dateUtils";
-import { formatCountdown } from "lib/formatters/countdownFormatter";
-import { useTranslation } from "react-i18next";
 import useBreakpoint from "hooks/useBreakpoint";
 import { logEvent } from "lib/events";
 import { useTasksStatistics } from "@ribon.io/shared/hooks";
@@ -13,11 +9,9 @@ import * as S from "./styles";
 import DailyTasksSection from "./DailyTasksSection";
 import MonthlyTasksSection from "./MonthlyTasksSection";
 import StatisticsCardsSection from "./StatisticsCardsSection";
+import CountdownSection from "./CountdownSection";
 
 function TasksSection() {
-  const { t } = useTranslation("translation", {
-    keyPrefix: "forYouPage.tasksSection",
-  });
   useEffect(() => {
     logEvent("P21_view");
   }, []);
@@ -73,26 +67,6 @@ function TasksSection() {
     reload();
   }, []);
 
-  const renderCountdown = () => {
-    const countdown = useCountdown(nextDay(), reload);
-
-    if (!tasksState) return null;
-    if (!tasksState.length) return null;
-    if (
-      tasksState.filter((obj) => obj.done === false && obj.type === "daily")
-        .length
-    )
-      return null;
-    if (countdown.reduce((a, b) => a + b, 0) <= 0) return null;
-
-    return (
-      <S.TimerWrapper>
-        <S.Countdown>{formatCountdown(countdown)}</S.Countdown>
-        <p>{t("countdown")}</p>
-      </S.TimerWrapper>
-    );
-  };
-
   return (
     <S.Container>
       <S.ProgressBar>
@@ -102,7 +76,8 @@ function TasksSection() {
           max={tasksCount() || dailyTasks.length}
         />
       </S.ProgressBar>
-      {renderCountdown()}
+
+      <CountdownSection />
 
       {!isMobile && (
         <S.TasksContainer>

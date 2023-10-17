@@ -10,6 +10,7 @@ import { setLocalStorageItem } from "lib/localStorage";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
 import { useExperiment } from "@growthbook/growthbook-react";
 import HeartIcon from "assets/icons/heart.svg";
+import { isConstructorDeclaration } from "typescript";
 import * as S from "./styles";
 
 const { tertiary } = theme.colors.brand;
@@ -78,6 +79,8 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
     key: "progression-test-first-stage",
     variations: [false, true],
   });
+
+  console.log(nonProfitImpact);
 
   const oldImpactFormat = () => (
     <S.CauseText>

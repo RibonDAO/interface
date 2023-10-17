@@ -163,17 +163,22 @@ function RoutesComponent(): JSX.Element {
         <Suspense fallback={<div />}>
           <NetworkProvider>
             <WalletProvider>
-              <WalletLayout
-                hideWallet={params.get("payment_method") !== "crypto"}
+              <ExperimentRouteComponent
+                featureFlagId="support-cause-page-feature-flag"
+                source="https://projetos.ribon.io/support-cause"
               >
-                <PaymentInformationProvider>
-                  <CardPaymentInformationProvider>
-                    <CryptoPaymentProvider>
-                      <SupportCausePage />
-                    </CryptoPaymentProvider>
-                  </CardPaymentInformationProvider>
-                </PaymentInformationProvider>
-              </WalletLayout>
+                <WalletLayout
+                  hideWallet={params.get("payment_method") !== "crypto"}
+                >
+                  <PaymentInformationProvider>
+                    <CardPaymentInformationProvider>
+                      <CryptoPaymentProvider>
+                        <SupportCausePage />
+                      </CryptoPaymentProvider>
+                    </CardPaymentInformationProvider>
+                  </PaymentInformationProvider>
+                </WalletLayout>
+              </ExperimentRouteComponent>
             </WalletProvider>
           </NetworkProvider>
         </Suspense>

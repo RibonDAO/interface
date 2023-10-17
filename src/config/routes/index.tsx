@@ -37,7 +37,6 @@ import useQueryParams from "hooks/useQueryParams";
 import RecurrencePage from "pages/promoters/CheckoutPage/RecurrencePage";
 import ContributionCanceledPage from "pages/promoters/ContributionCanceledPage";
 import ExperimentRouteComponent from "services/growthbook/ExperimentRouteComponent";
-import CampaignPage from "pages/campaigns/CampaignPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -308,12 +307,6 @@ function RoutesComponent(): JSX.Element {
       <Route path="/survey" exact>
         <Suspense fallback={<div />}>
           <SurveyPage />
-        </Suspense>
-      </Route>
-
-      <Route path="/campaign" exact>
-        <Suspense fallback={<div />}>
-          <CampaignPage />
         </Suspense>
       </Route>
     </Switch>

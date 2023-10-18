@@ -12,7 +12,7 @@ import useVoucher from "hooks/useVoucher";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import causeIllustration from "assets/images/direct-illustration.svg";
 import { useBlockedDonationContributionModal } from "hooks/modalHooks/useBlockedDonationContributionModal";
-import { useExperiment } from "@growthbook/growthbook-react";
+import useConversionTestDonateBtn from "hooks/abTestHooks/useConversionTestDonateBtn";
 import StoriesSection from "../StoriesSection";
 import * as S from "../styles";
 
@@ -29,10 +29,7 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
   });
   const { navigateTo } = useNavigation();
 
-  const buttonVariation = useExperiment({
-    key: "conversion-test-donate-btn",
-    variations: ["control", "button", "button_and_info"],
-  });
+  const { isInControlVariation } = useConversionTestDonateBtn();
 
   const [currentNonProfitIndex, setCurrentNonProfitIndex] = useState(0);
 
@@ -52,7 +49,7 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
   const { currentLang } = useLanguage();
 
   const softDisabled = () => {
-    if (buttonVariation.value !== "control") return false;
+    if (!isInControlVariation()) return false;
 
     return !canDonateAndHasVoucher;
   };
@@ -61,10 +58,9 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
     currentLang === "pt-BR" ? offersBrl?.[0] : offersUsd?.[0];
 
   const buttonText = () => {
-    const text =
-      buttonVariation.value !== "control"
-        ? t("doMore", { value: currentOffer()?.price ?? "1000" })
-        : t("donateBlockedText");
+    const text = !isInControlVariation()
+      ? t("doMore", { value: currentOffer()?.price ?? "1000" })
+      : t("donateBlockedText");
 
     return canDonateAndHasVoucher ? t("donateText") : text;
   };
@@ -76,7 +72,7 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
         from,
       });
       navigateTo({ pathname: "confirm-donation", state: { nonProfit } });
-    } else if (buttonVariation.value !== "control") {
+    } else if (!isInControlVariation()) {
       const searchParams = new URLSearchParams({
         integration_id: integrationId?.toString() || "",
         offer: currentOffer()?.priceCents?.toString() ?? "1000",

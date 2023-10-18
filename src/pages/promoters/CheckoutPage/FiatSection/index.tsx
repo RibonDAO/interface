@@ -12,10 +12,10 @@ import { useModal } from "hooks/modalHooks/useModal";
 import { logEvent } from "lib/events";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
 import { theme } from "@ribon.io/shared/styles";
-import { useExperiment } from "@growthbook/growthbook-react";
 import Icon from "components/atomics/Icon";
 import RadioAccordion from "components/moleculars/accordions/RadioAccordion";
 import InlineNotification from "components/moleculars/Toasts/InlineNotification";
+import useConversionTestDonateBtn from "hooks/abTestHooks/useConversionTestDonateBtn";
 import PixSection from "../PixSection";
 import PriceSelection from "../Components/PriceSelection";
 import { PriceSelectionLoader } from "../Components/PriceSelection/loader";
@@ -46,10 +46,7 @@ export default function FiatSection() {
     usePaymentInformation();
   const [isSubscription, setIsSubscription] = useState(subscription === "true");
 
-  const variation = useExperiment({
-    key: "conversion-test-donate-btn",
-    variations: ["control", "button", "button_and_info"],
-  });
+  const { isInButtonAndInfoVariation } = useConversionTestDonateBtn();
 
   const {
     offers,
@@ -177,7 +174,7 @@ export default function FiatSection() {
   const closeNotification = () => setInlineNotificationVisible(false);
 
   const canShowInlineNotification = () =>
-    variation.value === "button_and_info" && inlineNotificationVisible;
+    isInButtonAndInfoVariation() && inlineNotificationVisible;
 
   return currentPayable && hasAllParams ? (
     <div>

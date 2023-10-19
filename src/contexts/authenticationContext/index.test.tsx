@@ -2,9 +2,9 @@ import { renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import { useAuthentication } from ".";
 
-function AuthenticationTestPage(){
+function AuthenticationTestPage() {
   useAuthentication();
-  return <div>Authentication</div>
+  return <div>Authentication</div>;
 }
 
 describe("useAuthentication", () => {

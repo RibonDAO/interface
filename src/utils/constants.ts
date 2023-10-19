@@ -29,5 +29,5 @@ export const DEBUG_EVENTS_ENABLED = process.env.REACT_APP_DEBUG_VIEW === "true";
 export const STRIPE_PUBLISHABLE_KEY =
   process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY || "";
 
-export const TOKEN_KEY = "ACCESS_TOKEN_KEY";
+export const ACCESS_TOKEN_KEY = "ACCESS_TOKEN_KEY";
 export const REFRESH_TOKEN_KEY = "REFRESH_TOKEN_KEY";

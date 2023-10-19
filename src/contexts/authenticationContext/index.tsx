@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { REFRESH_TOKEN_KEY, TOKEN_KEY } from "utils/constants";
+import { REFRESH_TOKEN_KEY, ACCESS_TOKEN_KEY } from "utils/constants";
 import { getCookiesItem, removeCookiesItem } from "lib/cookies";
 
 // todo: create goggle, apple and magic link login
@@ -17,10 +17,10 @@ export const AuthenticationContext = createContext<IAuthenticationContext>(
 );
 
 function AuthenticationProvider({ children }: Props) {
-  const [accessToken] = useState(getCookiesItem(TOKEN_KEY));
+  const [accessToken] = useState(getCookiesItem(ACCESS_TOKEN_KEY));
 
   function logout() {
-    removeCookiesItem(TOKEN_KEY);
+    removeCookiesItem(ACCESS_TOKEN_KEY);
     removeCookiesItem(REFRESH_TOKEN_KEY);
     // todo: navigate to public page
   }

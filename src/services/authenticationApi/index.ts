@@ -9,7 +9,7 @@ import {
 } from "@ribon.io/shared/services";
 import { initializeHooks } from "@ribon.io/shared/hooks";
 import { normalizedLanguage } from "lib/currentLanguage";
-import { RIBON_API, TOKEN_KEY } from "utils/constants";
+import { RIBON_API, ACCESS_TOKEN_KEY } from "utils/constants";
 import { getCookiesItem } from "lib/cookies";
 
 export const baseURL = RIBON_API;
@@ -17,7 +17,7 @@ export function initializeApi() {
   const lang = normalizedLanguage();
   const authHeaders = {
     Language: lang,
-    Authorization: `Bearer ${getCookiesItem(TOKEN_KEY)}`,
+    Authorization: `Bearer ${getCookiesItem(ACCESS_TOKEN_KEY)}`,
   };
 
   initializeSharedApi({ url: baseURL, headers: authHeaders });

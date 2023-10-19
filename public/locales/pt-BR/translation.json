@@ -114,7 +114,7 @@
       "forYouPageTitle": "Para você",
       "givingPageTitle": "Contribuir",
       "aboutPageTitle": "Sobre",
-      "communityMenuItem": "Doe com a comunidade",
+      "communityMenuItem": "Dia das Crianças",
       "donateWithRibonMenuItem": "Doe com a Ribon",
       "directDonationMenuItem": "Doação direta",
       "new": "Novo"
@@ -605,7 +605,8 @@
         "become_a_promoter": "Vire o promotor de uma causa",
         "view_about_page": "Entenda de onde vem os tickets",
         "survey_form": "Ganhe um ticket extra respondendo nossa pesquisa",
-        "check_daily_news": "Conferir publicações diárias"
+        "check_daily_news": "Conferir publicações diárias",
+        "check_campaign": "Participar da campanha de Dia das Crianças"
       },
       "cardsStatisticsSection": {
         "dailyTasksTitle": "tarefas diárias completas",

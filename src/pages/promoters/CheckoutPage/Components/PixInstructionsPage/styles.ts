@@ -73,34 +73,36 @@ export const InstructionsContainer = styled.div`
 export const InstructionsInfo = styled.span`
   ${defaultBodySmRegular}
 
+  margin-bottom: ${({ theme }) => theme.spacing(20)};
   display: flex;
   flex-direction: row;
   color: ${({ theme }) => theme.colors.neutral[500]};
-  margin-bottom: ${({ theme }) => theme.spacing(20)};
 `;
 
 export const Number = styled.div`
   ${defaultBodyXsBold}
 
-  display: flex;
   width: 24px;
   height: 24px;
+  margin-right: ${({ theme }) => theme.spacing(8)};
   padding: 8px;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
   border-radius: 100px;
+  display: flex;
+
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+
   background: ${({ theme }) => theme.colors.brand.primary[50]};
   color: ${({ theme }) => theme.colors.brand.primary[500]};
-  margin-right: ${({ theme }) => theme.spacing(8)};
 `;
 
 export const ExpiresAt = styled.span`
   ${defaultBodyXsRegular}
 
-  color: ${({ theme }) => theme.colors.neutral[500]};
   margin-top: ${({ theme }) => theme.spacing(8)};
   margin-bottom: ${({ theme }) => theme.spacing(16)};
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
 export const QRCode = styled.img`
@@ -129,7 +131,6 @@ export const PayableName = styled.span`
 `;
 
 export const BackButton = styled.button`
-
   margin-bottom: ${({ theme }) => theme.spacing(24)};
   border: none;
   border-radius: 50%;

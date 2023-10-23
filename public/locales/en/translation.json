@@ -496,6 +496,17 @@
           "taxId": "Tax ID",
           "cpf": "CPF",
           "name": "Full name"
+        },
+        "pixInstructions": {
+          "pixCode": "Pix code",
+          "instructions": "Instructions",
+          "firstInfo": "1. Open your bank app",
+          "secondInfo": "2. Select the option to pay with Pix",
+          "thirdInfo": "3. Scan the QR Code",
+          "copyCode": "Copy code",
+          "copyCodeSuccess": "Code copied!",
+          "expiresAt": "Expires at",
+          "donatingTo": "Donating to "
         }
       },
       "confirmPayment": "Confirm payment",

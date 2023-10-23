@@ -20,10 +20,6 @@ function PixInstructionsPage(): JSX.Element {
     keyPrefix: "promoters.checkoutPage.paymentMethodSection.pixInstructions",
   });
 
-  const { t: field } = useTranslation("translation", {
-    keyPrefix: "promoters.checkoutPage.paymentMethodSection.pixFields",
-  });
-
   const { pixInstructions, verifyPayment } = usePixPaymentInformation();
   const { currency, target, targetId, offer: offerId } = usePaymentParams();
 
@@ -122,7 +118,7 @@ function PixInstructionsPage(): JSX.Element {
 
         <S.SmallTextInfoContainer>
           <Icon name="error" size="20px" />
-          <S.SmallTextInfo>{field("pixReceiverText")}</S.SmallTextInfo>
+          <S.SmallTextInfo>{t("pixReceiverText")}</S.SmallTextInfo>
         </S.SmallTextInfoContainer>
 
         <S.InstructionsContainer>

@@ -506,7 +506,8 @@
           "copyCode": "Copiar código",
           "copyCodeSuccess": "Code copied!",
           "expiresAt": "Expira em",
-          "donatingTo": "Doando para "
+          "donatingTo": "Doando para ",
+          "pixReceiverText": "O destino do seu Pix será o <b>Stripe</b>, plataforma que processa os pagamentos da Ribon."
         }
       },
       "confirmPayment": "Confirmar pagamento",

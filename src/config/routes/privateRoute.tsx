@@ -1,5 +1,5 @@
 import useNavigation from "hooks/useNavigation";
-import { getCookiesItem } from "lib/cookies";
+import { getCookiesItem } from "@ribon.io/shared/lib";
 import { ACCESS_TOKEN_KEY } from "utils/constants";
 
 function PrivateRoute({ children }: any) {

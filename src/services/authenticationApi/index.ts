@@ -10,7 +10,7 @@ import {
 import { initializeHooks } from "@ribon.io/shared/hooks";
 import { normalizedLanguage } from "lib/currentLanguage";
 import { RIBON_API, ACCESS_TOKEN_KEY } from "utils/constants";
-import { getCookiesItem } from "lib/cookies";
+import { getCookiesItem } from "@ribon.io/shared/lib";
 
 export const baseURL = RIBON_API;
 export function initializeApi() {

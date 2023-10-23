@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { REFRESH_TOKEN_KEY, ACCESS_TOKEN_KEY } from "utils/constants";
-import { getCookiesItem, removeCookiesItem } from "lib/cookies";
+import { getCookiesItem, removeCookiesItem } from "@ribon.io/shared/lib";
 
 // todo: create goggle, apple and magic link login
 export interface IAuthenticationContext {

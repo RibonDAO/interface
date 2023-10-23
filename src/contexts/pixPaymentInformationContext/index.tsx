@@ -100,7 +100,7 @@ function PixPaymentInformationProvider({ children }: Props) {
       }
     }
   };
-  const confirmPixPayment = async () => {
+  const generatePixPayment = async () => {
     setButtonDisabled(true);
     try {
       const response = await stripe?.confirmPixPayment(
@@ -178,7 +178,6 @@ function PixPaymentInformationProvider({ children }: Props) {
   useEffect(() => {
     if (clientSecret) {
       setLocalStorageItem(LAST_CLIENT_SECRET_KEY, clientSecret);
-      confirmPixPayment();
     }
   }, [clientSecret, stripe]);
 
@@ -217,6 +216,7 @@ function PixPaymentInformationProvider({ children }: Props) {
       setTimeout(() => {
         hideLoadingOverlay();
       }, 500);
+      generatePixPayment();
     } catch (error) {
       hideLoadingOverlay();
       logError(error);

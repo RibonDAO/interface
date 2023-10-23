@@ -67,7 +67,7 @@ function PixInstructionsPage(): JSX.Element {
         <S.InformationsContainer>
           <S.BackButton
             onClick={() => {
-              navigateTo("promoters/support-non-profit");
+              navigateTo({ pathname: "/promoters/support-non-profit" });
             }}
           >
             <img src={ArrowLeftGreen} alt={t("back")} />

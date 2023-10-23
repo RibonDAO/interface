@@ -2,6 +2,8 @@ import { useTranslation } from "react-i18next";
 import ArrowLeftGreen from "assets/icons/arrow-left-dark-green.svg";
 import { usePixPaymentInformation } from "contexts/pixPaymentInformationContext";
 import Icon from "components/atomics/Icon";
+import CopyIcon from "assets/icons/copy-icon.svg";
+import CheckIcon from "assets/icons/check-copied-icon.svg";
 import Button from "components/atomics/buttons/Button";
 import { theme } from "@ribon.io/shared/styles";
 import { useEffect, useState } from "react";
@@ -10,6 +12,7 @@ import usePayable from "hooks/usePayable";
 import { useOffers } from "@ribon.io/shared/hooks";
 import { Currencies, Offer } from "@ribon.io/shared";
 import useNavigation from "hooks/useNavigation";
+import parse from "html-react-parser";
 import * as S from "./styles";
 import TrustSeal from "../TrustSeal";
 import PriceSelection from "../PriceSelection";
@@ -112,13 +115,13 @@ function PixInstructionsPage(): JSX.Element {
           textColor={
             isCopy ? theme.colors.brand.primary[600] : theme.colors.neutral10
           }
-          leftIcon="content-copy"
-          onClick={() => copyToClipboard}
+          leftIcon={isCopy ? CheckIcon : CopyIcon}
+          onClick={copyToClipboard}
         />
 
         <S.SmallTextInfoContainer>
           <Icon name="error" size="20px" />
-          <S.SmallTextInfo>{t("pixReceiverText")}</S.SmallTextInfo>
+          <S.SmallTextInfo>{parse(t("pixReceiverText"))}</S.SmallTextInfo>
         </S.SmallTextInfoContainer>
 
         <S.InstructionsContainer>

@@ -4,7 +4,6 @@ import { setLocalStorageItem } from "lib/localStorage";
 import { SHOW_MENU, useCurrentUser } from "contexts/currentUserContext";
 import {
   useDonations,
-  useIntegration,
   useSources,
   useUserConfig,
   useUsers,
@@ -16,7 +15,6 @@ import useNavigation from "hooks/useNavigation";
 import useVoucher from "hooks/useVoucher";
 import { normalizedLanguage } from "lib/currentLanguage";
 import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
-import { useTranslation } from "react-i18next";
 
 type HandleDonateProps = {
   nonProfit: NonProfit;
@@ -31,14 +29,9 @@ function useDonationFlow() {
   const { createSource } = useSources();
   const { donate } = useDonations(currentUser?.id);
   const integrationId = useIntegrationId();
-  const { integration } = useIntegration(integrationId);
   const { history, navigateTo } = useNavigation();
   const { destroyVoucher } = useVoucher();
   const { updateUserConfig } = useUserConfig();
-
-  const { t } = useTranslation("translation", {
-    keyPrefix: "donations.causesPage",
-  });
 
   function getExternalIdFromLocationSearch() {
     return extractUrlValue("external_id", history.location.search);
@@ -53,7 +46,7 @@ function useDonationFlow() {
   }: HandleDonateProps) {
     if (!signedIn) {
       const user = await findOrCreateUser(email, normalizedLanguage());
-      if (integration) createSource(user.id, integration.id);
+      if (integrationId) createSource(user.id, integrationId);
       setCurrentUser(user);
       if (allowedEmailMarketing) {
         updateUserConfig(user.id, { allowedEmailMarketing });
@@ -62,31 +55,32 @@ function useDonationFlow() {
 
     const utmParams = getUTMFromLocationSearch(history.location.search);
 
-    try {
-      if (!integration) throw new Error(t("donationError"));
-      await donate(
-        integration?.id,
-        nonProfit.id,
-        email,
-        PLATFORM,
-        getExternalIdFromLocationSearch(),
-        utmParams.utmSource,
-        utmParams.utmMedium,
-        utmParams.utmCampaign,
-      );
-      destroyVoucher();
-      if (onSuccess) onSuccess();
-    } catch (e: any) {
-      logError(e);
-      if (onError) onError(e);
-      const failedKey =
-        e.response?.status === 403 ? "blockedDonation" : "failedDonation";
-      const newState = {
-        [failedKey]: true,
-        message: e.response?.data?.formatted_message || e.message,
-      };
-      navigateTo({ pathname: "/causes", state: newState });
-      window.location.reload();
+    if (integrationId) {
+      try {
+        await donate(
+          integrationId,
+          nonProfit.id,
+          email,
+          PLATFORM,
+          getExternalIdFromLocationSearch(),
+          utmParams.utmSource,
+          utmParams.utmMedium,
+          utmParams.utmCampaign,
+        );
+        destroyVoucher();
+        if (onSuccess) onSuccess();
+      } catch (e: any) {
+        logError(e);
+        if (onError) onError(e);
+        const failedKey =
+          e.response?.status === 403 ? "blockedDonation" : "failedDonation";
+        const newState = {
+          [failedKey]: true,
+          message: e.response?.data?.formatted_message || e.message,
+        };
+        navigateTo({ pathname: "/causes", state: newState });
+        window.location.reload();
+      }
     }
     setLocalStorageItem(SHOW_MENU, "true");
   }

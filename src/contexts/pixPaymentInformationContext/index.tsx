@@ -26,16 +26,12 @@ import { usePaymentInformation } from "contexts/paymentInformationContext";
 import { useLoadingOverlay } from "contexts/loadingOverlayContext";
 import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
 
-import PaymentIntent from "types/entities/PaymentIntent";
-import { PaymentIntent as PaymentIntentStripe } from "@stripe/stripe-js";
-
 export interface IPixPaymentInformationContext {
   setButtonDisabled: (value: SetStateAction<boolean>) => void;
   buttonDisabled: boolean;
   handleSubmit: () => void;
+  handleConfirmation: () => void;
   clientSecret: string;
-  pixInstructions?: PaymentIntent & PaymentIntentStripe;
-  verifyPayment: () => void;
 }
 
 export type Props = {
@@ -83,9 +79,6 @@ function PixPaymentInformationProvider({ children }: Props) {
   const { integration } = useIntegration(integrationId);
   const { createSource } = useSources();
   const { showLoadingOverlay, hideLoadingOverlay } = useLoadingOverlay();
-  const [pixInstructions, setPixInstructions] = useState<
-    PaymentIntent & PaymentIntentStripe
-  >();
 
   const login = async () => {
     if (!signedIn) {
@@ -100,37 +93,33 @@ function PixPaymentInformationProvider({ children }: Props) {
       }
     }
   };
-  const generatePixPayment = async () => {
+
+  const handleConfirmation = async () => {
+    setLocalStorageItem(CONTRIBUTION_INLINE_NOTIFICATION, "3");
+    removeLocalStorageItem(LAST_CLIENT_SECRET_KEY);
+    login();
+    navigateTo({
+      pathname: "/donation-done-cause",
+      state: {
+        hasButton: true,
+        offerId,
+        cause,
+        nonProfit,
+        flow,
+      },
+    });
+  };
+
+  const confirmPixPayment = async () => {
     setButtonDisabled(true);
     try {
-      const response = await stripe?.confirmPixPayment(
-        clientSecret,
-        {},
-        {
-          handleActions: false,
-        },
-      );
-
-      setPixInstructions(
-        response?.paymentIntent as PaymentIntent & PaymentIntentStripe,
-      );
-
-      if (response?.error) {
+      const response = await stripe?.confirmPixPayment(clientSecret);
+      if (response?.paymentIntent?.status === "succeeded") {
+        handleConfirmation();
+      } else {
         toast({
           message: t("onErrorMessage"),
           type: "info",
-        });
-      }
-
-      if (response?.paymentIntent?.status === "requires_action") {
-        navigateTo({
-          pathname: "/promoters/checkout/pix-instructions",
-          state: {
-            offerId,
-            cause,
-            nonProfit,
-            flow,
-          },
         });
       }
     } catch (e) {
@@ -140,44 +129,10 @@ function PixPaymentInformationProvider({ children }: Props) {
     }
   };
 
-  const verifyPixPayment = async () => {
-    const paymentIntentId = getLocalStorageItem(LAST_CLIENT_SECRET_KEY);
-
-    try {
-      await stripe
-        ?.retrievePaymentIntent(paymentIntentId ?? "")
-        .then((result) => {
-          if (result?.error) {
-            toast({
-              message: t("onErrorMessage"),
-              type: "info",
-            });
-          }
-
-          if (result?.paymentIntent?.status === "succeeded") {
-            setLocalStorageItem(CONTRIBUTION_INLINE_NOTIFICATION, "3");
-            removeLocalStorageItem(LAST_CLIENT_SECRET_KEY);
-            login();
-            navigateTo({
-              pathname: "/donation-done-cause",
-              state: {
-                hasButton: true,
-                offerId,
-                cause,
-                nonProfit,
-                flow,
-              },
-            });
-          }
-        });
-    } catch (e) {
-      logError(e);
-    }
-  };
-
   useEffect(() => {
     if (clientSecret) {
       setLocalStorageItem(LAST_CLIENT_SECRET_KEY, clientSecret);
+      confirmPixPayment();
     }
   }, [clientSecret, stripe]);
 
@@ -216,7 +171,6 @@ function PixPaymentInformationProvider({ children }: Props) {
       setTimeout(() => {
         hideLoadingOverlay();
       }, 500);
-      generatePixPayment();
     } catch (error) {
       hideLoadingOverlay();
       logError(error);
@@ -232,9 +186,8 @@ function PixPaymentInformationProvider({ children }: Props) {
       handleSubmit,
       buttonDisabled,
       setButtonDisabled,
+      handleConfirmation,
       clientSecret,
-      pixInstructions,
-      verifyPayment: verifyPixPayment,
     }),
     [buttonDisabled, clientSecret],
   );

@@ -38,7 +38,6 @@ import RecurrencePage from "pages/promoters/CheckoutPage/RecurrencePage";
 import ContributionCanceledPage from "pages/promoters/ContributionCanceledPage";
 import ExperimentRouteComponent from "services/growthbook/ExperimentRouteComponent";
 import CampaignPage from "pages/campaigns/CampaignPage";
-import PixInstructionsPage from "pages/promoters/CheckoutPage/Components/PixInstructionsPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -249,31 +248,6 @@ function RoutesComponent(): JSX.Element {
                       <StripeProvider>
                         <PixPaymentInformationProvider>
                           <CheckoutPage />
-                        </PixPaymentInformationProvider>
-                      </StripeProvider>
-                    </CryptoPaymentProvider>
-                  </CardPaymentInformationProvider>
-                </PaymentInformationProvider>
-              </WalletLayout>
-            </WalletProvider>
-          </NetworkProvider>
-        </Suspense>
-      </Route>
-
-      <Route path="/promoters/checkout/pix-instructions" exact>
-        <Suspense fallback={<div />}>
-          <NetworkProvider>
-            <WalletProvider>
-              <WalletLayout
-                hideNavigation
-                hideWallet={params.get("currency") !== "USDC"}
-              >
-                <PaymentInformationProvider>
-                  <CardPaymentInformationProvider>
-                    <CryptoPaymentProvider>
-                      <StripeProvider>
-                        <PixPaymentInformationProvider>
-                          <PixInstructionsPage />
                         </PixPaymentInformationProvider>
                       </StripeProvider>
                     </CryptoPaymentProvider>

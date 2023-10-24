@@ -10,7 +10,6 @@ export type Props = {
   priceValue?: string;
   onEditClick?: () => void;
   tokenSymbol?: string;
-  canEdit?: boolean;
 };
 
 function PriceSelection({
@@ -18,7 +17,6 @@ function PriceSelection({
   priceValue,
   onEditClick,
   tokenSymbol = "USDC",
-  canEdit = true,
 }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.checkoutPage",
@@ -54,11 +52,9 @@ function PriceSelection({
     <S.Container>
       <S.Offer>
         {price}
-        {canEdit && (
-          <S.EditButton onClick={onEditClick} type="button">
-            <img src={EditIcon} alt="Edit" />
-          </S.EditButton>
-        )}
+        <S.EditButton onClick={onEditClick} type="button">
+          <img src={EditIcon} alt="Edit" />
+        </S.EditButton>
       </S.Offer>
       {!isCrypto && renderGivingFees()}
       {isCrypto && <S.SmallTextInfo>{t("noRefundText")}</S.SmallTextInfo>}

@@ -505,7 +505,7 @@
           "thirdInfo": "3. Scan the QR Code",
           "copyCode": "Copy code",
           "copyCodeSuccess": "Code copied!",
-          "expiresAt": "Expires at",
+          "expiresAt": "Expires at <b> 30 minutes </b>",
           "donatingTo": "Donating to ",
           "pixReceiverText": "Your Pix will go to <b>Stripe</b>, the platform that processes Ribon payments."
         }

@@ -91,15 +91,7 @@ function PixInstructionsPage(): JSX.Element {
               pixInstructions?.next_action?.pix_display_qr_code?.image_url_svg
             }
           />
-          <S.ExpiresAt>
-            {t("expiresAt")}{" "}
-            <b>
-              {new Date(
-                pixInstructions?.next_action?.pix_display_qr_code?.expires_at ??
-                  "",
-              ).toLocaleString()}
-            </b>
-          </S.ExpiresAt>
+          <S.ExpiresAt>{parse(t("expiresAt"))}</S.ExpiresAt>
         </S.Wrapper>
         <S.PixCode
           id="pix-code"

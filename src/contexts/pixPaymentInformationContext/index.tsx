@@ -25,7 +25,6 @@ import { useStripe } from "contexts/stripeContext";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
 import { useLoadingOverlay } from "contexts/loadingOverlayContext";
 import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
-
 import PaymentIntent from "types/entities/PaymentIntent";
 import { PaymentIntent as PaymentIntentStripe } from "@stripe/stripe-js";
 
@@ -37,25 +36,19 @@ export interface IPixPaymentInformationContext {
   pixInstructions?: PaymentIntent & PaymentIntentStripe;
   verifyPayment: () => void;
 }
-
 export type Props = {
   children: JSX.Element[] | JSX.Element;
 };
-
 export const PixPaymentInformationContext =
   createContext<IPixPaymentInformationContext>(
     {} as IPixPaymentInformationContext,
   );
-
 const LAST_CLIENT_SECRET_KEY = "LAST_CLIENT_SECRET_KEY";
-
 function PixPaymentInformationProvider({ children }: Props) {
   const { stripe } = useStripe();
-
   const [clientSecret, setClientSecret] = useState<string>(
     getLocalStorageItem(LAST_CLIENT_SECRET_KEY) || "",
   );
-
   const {
     integrationId,
     flow,
@@ -70,13 +63,10 @@ function PixPaymentInformationProvider({ children }: Props) {
     name,
   } = usePaymentInformation();
   const [buttonDisabled, setButtonDisabled] = useState(false);
-
   const { t } = useTranslation("translation", {
     keyPrefix: "contexts.pixPaymentInformation",
   });
-
   const { history, navigateTo } = useNavigation();
-
   const toast = useToast();
   const { findOrCreateUser } = useUsers();
   const { signedIn, setCurrentUser } = useCurrentUser();
@@ -86,7 +76,6 @@ function PixPaymentInformationProvider({ children }: Props) {
   const [pixInstructions, setPixInstructions] = useState<
     PaymentIntent & PaymentIntentStripe
   >();
-
   const login = async () => {
     if (!signedIn) {
       try {
@@ -109,18 +98,15 @@ function PixPaymentInformationProvider({ children }: Props) {
           handleActions: false,
         },
       );
-
       setPixInstructions(
         response?.paymentIntent as PaymentIntent & PaymentIntentStripe,
       );
-
       if (response?.error) {
         toast({
           message: t("onErrorMessage"),
           type: "info",
         });
       }
-
       if (response?.paymentIntent?.status === "requires_action") {
         navigateTo({
           pathname: "/promoters/checkout/pix-instructions",
@@ -134,9 +120,10 @@ function PixPaymentInformationProvider({ children }: Props) {
       }
     } catch (e) {
       logError(e);
+    } finally {
+      setButtonDisabled(false);
     }
   };
-
   const verifyPixPayment = async () => {
     const paymentIntentId = getLocalStorageItem(LAST_CLIENT_SECRET_KEY);
 
@@ -156,7 +143,6 @@ function PixPaymentInformationProvider({ children }: Props) {
               type: "info",
             });
           }
-
           if (result?.paymentIntent?.status === "succeeded") {
             setLocalStorageItem(CONTRIBUTION_INLINE_NOTIFICATION, "3");
             removeLocalStorageItem(LAST_CLIENT_SECRET_KEY);
@@ -177,25 +163,20 @@ function PixPaymentInformationProvider({ children }: Props) {
       logError(e);
     }
   };
-
   useEffect(() => {
     if (clientSecret) {
       setLocalStorageItem(LAST_CLIENT_SECRET_KEY, clientSecret);
     }
   }, [clientSecret, stripe]);
-
   const showAnimationPixPaymentModal = () => {
     showLoadingOverlay(t("modalAnimationTitle"));
     setTimeout(() => {
       hideLoadingOverlay();
     }, 3000);
   };
-
   const utmParams = getUTMFromLocationSearch(history.location.search);
-
   const handleSubmit = async () => {
     showAnimationPixPaymentModal();
-
     const paymentInformation = {
       email,
       country,
@@ -231,7 +212,6 @@ function PixPaymentInformationProvider({ children }: Props) {
       });
     }
   };
-
   const pixPaymentInformationObject: IPixPaymentInformationContext = useMemo(
     () => ({
       handleSubmit,
@@ -243,24 +223,19 @@ function PixPaymentInformationProvider({ children }: Props) {
     }),
     [buttonDisabled, clientSecret],
   );
-
   return (
     <PixPaymentInformationContext.Provider value={pixPaymentInformationObject}>
       {children}
     </PixPaymentInformationContext.Provider>
   );
 }
-
 export default PixPaymentInformationProvider;
-
 export const usePixPaymentInformation = () => {
   const context = useContext(PixPaymentInformationContext);
-
   if (!context) {
     throw new Error(
       "usePixPaymentInformation must be used within PixPaymentInformationProvider",
     );
   }
-
   return context;
 };

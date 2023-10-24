@@ -101,7 +101,6 @@ function PixPaymentInformationProvider({ children }: Props) {
     }
   };
   const generatePixPayment = async () => {
-    setButtonDisabled(true);
     try {
       const response = await stripe?.confirmPixPayment(
         clientSecret,
@@ -145,7 +144,13 @@ function PixPaymentInformationProvider({ children }: Props) {
 
     try {
       await stripe
-        ?.retrievePaymentIntent(paymentIntentId ?? "")
+        ?.confirmPixPayment(
+          paymentIntentId ?? "",
+          {},
+          {
+            handleActions: false,
+          },
+        )
         .then((result) => {
           if (result?.error) {
             toast({
@@ -209,6 +214,8 @@ function PixPaymentInformationProvider({ children }: Props) {
       utmMedium: utmParams.utmMedium,
       utmCampaign: utmParams.utmCampaign,
     };
+
+    setButtonDisabled(true);
 
     try {
       const response = await pixPaymentApi.postPixPayment(paymentInformation);

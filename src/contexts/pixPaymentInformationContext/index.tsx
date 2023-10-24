@@ -134,8 +134,6 @@ function PixPaymentInformationProvider({ children }: Props) {
       }
     } catch (e) {
       logError(e);
-    } finally {
-      setButtonDisabled(false);
     }
   };
 

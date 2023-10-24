@@ -21,7 +21,7 @@ describe("UserSupportBanner", () => {
     renderComponent(<UserSupportBanner from="test" />);
 
     expectTextToBeInTheDocument("Access user support");
-    expectTextToBeInTheDocument("Questions, ideias, refunds. We’re here!");
+    expectTextToBeInTheDocument("Questions, ideas, refunds. We’re here!");
   });
 
   describe("when the banner is clicked in portuguese", () => {

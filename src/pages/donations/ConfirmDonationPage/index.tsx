@@ -11,7 +11,6 @@ import useNavigation from "hooks/useNavigation";
 import SignInSection from "pages/donations/ConfirmDonationPage/SignInSection";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { logEvent } from "lib/events";
-import { useTranslation } from "react-i18next";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -26,9 +25,6 @@ function ConfirmDonationPage(): JSX.Element {
   } = useLocation<LocationStateType>();
   const { handleDonate } = useDonationFlow();
   const { navigateTo } = useNavigation();
-  const { t } = useTranslation("translation", {
-    keyPrefix: "donations.causesPage",
-  });
 
   const onContinue = async (email: string, allowedEmailMarketing?: boolean) => {
     setDonationInProgress(true);
@@ -55,12 +51,6 @@ function ConfirmDonationPage(): JSX.Element {
           nonProfit,
         },
       });
-    } else {
-      const newState = {
-        failedDonation: true,
-        message: t("donationError"),
-      };
-      navigateTo({ pathname: "/causes", state: newState });
     }
   }, [donationSucceeded]);
 

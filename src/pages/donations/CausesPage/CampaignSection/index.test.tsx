@@ -6,14 +6,14 @@ import {
 } from "config/testUtils/expects";
 import { screen } from "@testing-library/react";
 import offerFactory from "config/testUtils/factories/offerFactory";
-import ContributionSection from ".";
+import CampaignSection from ".";
 
 jest.mock("hooks/useImpactConversion", () => ({
   __esModule: true,
   useImpactConversion: jest.fn(),
 }));
 
-describe("ContributionSection", () => {
+describe("CampaignSection", () => {
   afterEach(() => {
     jest.resetAllMocks();
   });
@@ -33,7 +33,7 @@ describe("ContributionSection", () => {
         variation: "Test Variation",
       });
 
-      renderComponent(<ContributionSection />);
+      renderComponent(<CampaignSection cardId="1" />);
     });
     it("renders contribution card ", () => {
       expectTextToBeInTheDocument(
@@ -55,7 +55,7 @@ describe("ContributionSection", () => {
           variation: "Control",
         });
 
-        renderComponent(<ContributionSection />);
+        renderComponent(<CampaignSection cardId="1" />);
       });
       it("do not renders contribution card", () => {
         expectTextNotToBeInTheDocument(
@@ -85,7 +85,7 @@ describe("ContributionSection", () => {
           variation: "Test Variation",
         });
 
-        renderComponent(<ContributionSection />);
+        renderComponent(<CampaignSection cardId="1" />);
       });
 
       it("renders isMobile is true", () => {
@@ -113,7 +113,7 @@ describe("ContributionSection", () => {
 
         Object.assign(global, { innerWidth: 1200 });
 
-        renderComponent(<ContributionSection />);
+        renderComponent(<CampaignSection cardId="1" />);
       });
 
       it("when isMobile is false", () => {

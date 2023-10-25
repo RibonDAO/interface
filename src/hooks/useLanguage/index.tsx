@@ -5,12 +5,11 @@ import { normalizedLanguage } from "lib/currentLanguage";
 import { setLocalStorageItem } from "lib/localStorage";
 
 export function useLanguage() {
-  const { i18n } = useTranslation();
   const [currentLang, setCurrentLang] = useState<Languages>(
     normalizedLanguage(),
   );
 
-  const { t } = useTranslation("translation", {
+  const { t, i18n } = useTranslation("translation", {
     keyPrefix: "promoters.checkoutPage",
   });
 

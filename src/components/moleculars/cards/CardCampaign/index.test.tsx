@@ -12,7 +12,14 @@ describe("CardCampaign", () => {
         value={value}
         from="kidsCampaignCTA"
         flow="nonProfit"
-        campaignLink="link"
+        cardData={{
+          headline: "headline",
+          description: "description",
+          title: "title",
+          ctaText: "Participate in the campaign",
+          ctaUrl: "link",
+          active: true,
+        }}
       />,
     );
 
@@ -27,7 +34,14 @@ describe("CardCampaign", () => {
         value={value}
         from="kidsCampaignCTA"
         flow="nonProfit"
-        campaignLink="link"
+        cardData={{
+          headline: "headline",
+          description: "description",
+          title: "title",
+          ctaText: "Participate in the campaign",
+          ctaUrl: "link",
+          active: true,
+        }}
       />,
     );
 

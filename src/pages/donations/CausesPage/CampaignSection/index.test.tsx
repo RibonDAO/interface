@@ -13,6 +13,23 @@ jest.mock("hooks/useImpactConversion", () => ({
   useImpactConversion: jest.fn(),
 }));
 
+jest.mock("hooks/useImpressionCards", () => ({
+  __esModule: true,
+  default: () => ({
+    getImpressionCard(id: string) {
+      return {
+        id,
+        headline: "Test Headline",
+        title: "Test Title",
+        description: "Test Description",
+        ctaText: "Participate in the campaign",
+        ctaUrl: "Test CTA Url",
+        active: true,
+      };
+    },
+  }),
+}));
+
 describe("CampaignSection", () => {
   afterEach(() => {
     jest.resetAllMocks();

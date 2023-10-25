@@ -2,7 +2,7 @@ import CardCampaign from "components/moleculars/cards/CardCampaign";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useTranslation } from "react-i18next";
 import { logError } from "services/crashReport";
-import useImpressionCards from "hooks/useImpressionCard";
+import useImpressionCards from "hooks/useImpressionCards";
 import { useCallback, useEffect, useState } from "react";
 import ImpressionCard from "types/entities/ImpressionCard";
 import { useImpactConversion } from "hooks/useImpactConversion";

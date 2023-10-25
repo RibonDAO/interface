@@ -167,7 +167,9 @@ function CausesPage(): JSX.Element {
           )}
         </S.TitleContainer>
 
-        {!canDonate && currentLang === "pt-BR" && <CampaignSection />}
+        {!canDonate && currentLang === "pt-BR" && (
+          <CampaignSection cardId="1" />
+        )}
         <ContributionNotification />
         <CausesSelectSection />
         <NonProfitsSection />

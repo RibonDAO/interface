@@ -35,7 +35,7 @@ function ImpactPage(): JSX.Element {
   return (
     <S.Container>
       <DownloadAppToast />
-      <CampaignSection />
+      <CampaignSection cardId="1" />
       <S.Title>{t("title")}</S.Title>
       <S.CardsButtonContainer>
         <CardTopImage

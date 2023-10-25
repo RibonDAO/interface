@@ -15,13 +15,14 @@ import useNavigation from "hooks/useNavigation";
 import parse from "html-react-parser";
 import { useLocation } from "react-router-dom";
 import PaymentIntent from "types/entities/PaymentIntent";
+import { PaymentIntent as PaymentIntentResult } from "@stripe/stripe-js";
 import * as S from "./styles";
 import TrustSeal from "../TrustSeal";
 import PriceSelection from "../PriceSelection";
 import { PriceSelectionLoader } from "../PriceSelection/loader";
 
 type LocationStateType = {
-  pixInstructions: PaymentIntent;
+  pixInstructions: PaymentIntent & PaymentIntentResult;
 };
 
 function PixInstructionsPage(): JSX.Element {
@@ -29,7 +30,7 @@ function PixInstructionsPage(): JSX.Element {
     keyPrefix: "promoters.checkoutPage.paymentMethodSection.pixInstructions",
   });
 
-  const { verifyPayment } = usePixPaymentInformation();
+  const { verifyPixPayment } = usePixPaymentInformation();
   const { currency, target, targetId, offer: offerId } = usePaymentParams();
 
   const currentPayable = usePayable(target, targetId);
@@ -51,19 +52,24 @@ function PixInstructionsPage(): JSX.Element {
   };
 
   useEffect(() => {
-    const totalTime = 5 * 60 * 1000;
-    const interval = 30 * 1000;
-    let elapsedTime = 0;
+    if (pixInstructions && pixInstructions.client_secret) {
+      const totalTime = 5 * 60 * 1000;
+      const interval = 30 * 1000;
+      let elapsedTime = 0;
 
-    const intervalId = setInterval(async () => {
-      await verifyPayment();
+      const intervalId = setInterval(async () => {
+        await verifyPixPayment(
+          pixInstructions.client_secret ?? "",
+          intervalId.toString(),
+        );
 
-      elapsedTime += interval;
-      if (elapsedTime >= totalTime) {
-        clearInterval(intervalId);
-      }
-    }, interval);
-  }, []);
+        elapsedTime += interval;
+        if (elapsedTime >= totalTime) {
+          clearInterval(intervalId);
+        }
+      }, interval);
+    }
+  }, [pixInstructions, offerId]);
 
   useEffect(() => {
     const offer = offers.find((o) => o.priceCents === Number(offerId));

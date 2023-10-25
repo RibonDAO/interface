@@ -8,5 +8,5 @@ export default interface ImpressionCard {
   ctaUrl: string;
   image?: any;
   active: boolean;
-  client: string;
+  client?: string;
 }

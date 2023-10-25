@@ -117,7 +117,7 @@ function PixPaymentInformationProvider({ children }: Props) {
       if (response?.paymentIntent?.status === "succeeded") {
         setLocalStorageItem(CONTRIBUTION_INLINE_NOTIFICATION, "3");
         removeLocalStorageItem(LAST_CLIENT_SECRET_KEY);
-        login();
+
         clearInterval(intervalId);
         navigateTo({
           pathname: "/donation-done-cause",
@@ -173,6 +173,7 @@ function PixPaymentInformationProvider({ children }: Props) {
   }, [pixInstructions]);
 
   const handleSubmit = async () => {
+    setButtonDisabled(true);
     removeLocalStorageItem(LAST_CLIENT_SECRET_KEY);
     showAnimationPixPaymentModal();
     const paymentInformation = {
@@ -192,12 +193,10 @@ function PixPaymentInformationProvider({ children }: Props) {
       utmCampaign: utmParams.utmCampaign,
     };
 
-    setButtonDisabled(true);
-
     try {
       const response = await pixPaymentApi.postPixPayment(paymentInformation);
       setClientSecret(response.data.clientSecret ?? "");
-
+      login();
       showLoadingOverlay(t("modalAnimationTitle"));
     } catch (error) {
       hideLoadingOverlay();
@@ -206,6 +205,8 @@ function PixPaymentInformationProvider({ children }: Props) {
         message: t("onErrorMessage"),
         type: "info",
       });
+    } finally {
+      setButtonDisabled(false);
     }
   };
   const pixPaymentInformationObject: IPixPaymentInformationContext = useMemo(

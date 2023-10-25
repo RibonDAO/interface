@@ -13,22 +13,31 @@ import { useOffers } from "@ribon.io/shared/hooks";
 import { Currencies, Offer } from "@ribon.io/shared";
 import useNavigation from "hooks/useNavigation";
 import parse from "html-react-parser";
+import { useLocation } from "react-router-dom";
+import PaymentIntent from "types/entities/PaymentIntent";
 import * as S from "./styles";
 import TrustSeal from "../TrustSeal";
 import PriceSelection from "../PriceSelection";
 import { PriceSelectionLoader } from "../PriceSelection/loader";
+
+type LocationStateType = {
+  pixInstructions: PaymentIntent;
+};
 
 function PixInstructionsPage(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.checkoutPage.paymentMethodSection.pixInstructions",
   });
 
-  const { pixInstructions, verifyPayment } = usePixPaymentInformation();
+  const { verifyPayment } = usePixPaymentInformation();
   const { currency, target, targetId, offer: offerId } = usePaymentParams();
 
   const currentPayable = usePayable(target, targetId);
   const [isCopy, setIsCopy] = useState(false);
   const [currentOffer, setCurrentOffer] = useState<Offer>();
+  const {
+    state: { pixInstructions },
+  } = useLocation<LocationStateType>();
 
   const { offers } = useOffers(currency as Currencies);
 

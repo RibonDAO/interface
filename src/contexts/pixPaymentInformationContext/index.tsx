@@ -33,7 +33,6 @@ export interface IPixPaymentInformationContext {
   buttonDisabled: boolean;
   handleSubmit: () => void;
   clientSecret: string;
-  pixInstructions?: PaymentIntent & PaymentIntentStripe;
   verifyPayment: () => void;
 }
 export type Props = {
@@ -73,9 +72,6 @@ function PixPaymentInformationProvider({ children }: Props) {
   const { integration } = useIntegration(integrationId);
   const { createSource } = useSources();
   const { showLoadingOverlay, hideLoadingOverlay } = useLoadingOverlay();
-  const [pixInstructions, setPixInstructions] = useState<
-    PaymentIntent & PaymentIntentStripe
-  >();
   const login = async () => {
     if (!signedIn) {
       try {
@@ -89,28 +85,48 @@ function PixPaymentInformationProvider({ children }: Props) {
       }
     }
   };
-  const generatePixPayment = async () => {
+  const generatePixPayment = async (secret: string) => {
     try {
-      const response = await stripe?.confirmPixPayment(
-        clientSecret,
-        {},
-        {
-          handleActions: false,
-        },
-      );
-      setPixInstructions(
-        response?.paymentIntent as PaymentIntent & PaymentIntentStripe,
-      );
-      if (response?.error) {
-        toast({
-          message: t("onErrorMessage"),
-          type: "info",
-        });
-      }
+      const response = await stripe?.retrievePaymentIntent(secret);
+
       if (response?.paymentIntent?.status === "requires_action") {
         navigateTo({
           pathname: "/promoters/checkout/pix-instructions",
           state: {
+            offerId,
+            cause,
+            nonProfit,
+            flow,
+            pixInstructions: response?.paymentIntent as PaymentIntent &
+              PaymentIntentStripe,
+          },
+        });
+      }
+    } catch (e) {
+      logError(e);
+      toast({
+        message: t("onErrorMessage"),
+        type: "info",
+      });
+    }
+  };
+
+  const verifyPixPayment = async () => {
+    try {
+      const response = await stripe?.confirmPixPayment(
+        clientSecret ?? "",
+        {},
+        { handleActions: false },
+      );
+
+      if (response?.paymentIntent?.status === "succeeded") {
+        setLocalStorageItem(CONTRIBUTION_INLINE_NOTIFICATION, "3");
+        removeLocalStorageItem(LAST_CLIENT_SECRET_KEY);
+        login();
+        navigateTo({
+          pathname: "/donation-done-cause",
+          state: {
+            hasButton: true,
             offerId,
             cause,
             nonProfit,
@@ -120,61 +136,28 @@ function PixPaymentInformationProvider({ children }: Props) {
       }
     } catch (e) {
       logError(e);
-    } finally {
-      setButtonDisabled(false);
+      toast({
+        message: t("onErrorMessage"),
+        type: "info",
+      });
     }
   };
-  const verifyPixPayment = async () => {
-    const paymentIntentId = getLocalStorageItem(LAST_CLIENT_SECRET_KEY);
 
-    try {
-      await stripe
-        ?.confirmPixPayment(
-          paymentIntentId ?? "",
-          {},
-          {
-            handleActions: false,
-          },
-        )
-        .then((result) => {
-          if (result?.error) {
-            toast({
-              message: t("onErrorMessage"),
-              type: "info",
-            });
-          }
-          if (result?.paymentIntent?.status === "succeeded") {
-            setLocalStorageItem(CONTRIBUTION_INLINE_NOTIFICATION, "3");
-            removeLocalStorageItem(LAST_CLIENT_SECRET_KEY);
-            login();
-            navigateTo({
-              pathname: "/donation-done-cause",
-              state: {
-                hasButton: true,
-                offerId,
-                cause,
-                nonProfit,
-                flow,
-              },
-            });
-          }
-        });
-    } catch (e) {
-      logError(e);
-    }
-  };
   useEffect(() => {
     if (clientSecret) {
       setLocalStorageItem(LAST_CLIENT_SECRET_KEY, clientSecret);
     }
   }, [clientSecret, stripe]);
+
   const showAnimationPixPaymentModal = () => {
     showLoadingOverlay(t("modalAnimationTitle"));
     setTimeout(() => {
       hideLoadingOverlay();
     }, 3000);
   };
+
   const utmParams = getUTMFromLocationSearch(history.location.search);
+
   const handleSubmit = async () => {
     showAnimationPixPaymentModal();
     const paymentInformation = {
@@ -202,7 +185,7 @@ function PixPaymentInformationProvider({ children }: Props) {
       setTimeout(() => {
         hideLoadingOverlay();
       }, 500);
-      generatePixPayment();
+      generatePixPayment(response.data.clientSecret);
     } catch (error) {
       hideLoadingOverlay();
       logError(error);
@@ -218,7 +201,6 @@ function PixPaymentInformationProvider({ children }: Props) {
       buttonDisabled,
       setButtonDisabled,
       clientSecret,
-      pixInstructions,
       verifyPayment: verifyPixPayment,
     }),
     [buttonDisabled, clientSecret],

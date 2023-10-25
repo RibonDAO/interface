@@ -16,6 +16,11 @@ export type Props = {
   infoTextBottom?: string;
   fullWidth?: boolean;
   infoText?: string;
+  secondButtonProps?: {
+    text: string;
+    onClick: () => void;
+    visible: boolean;
+  };
 };
 function CardCenterImageButton({
   image,
@@ -29,6 +34,7 @@ function CardCenterImageButton({
   infoTextBottom,
   fullWidth = false,
   infoText,
+  secondButtonProps,
 }: Props): JSX.Element {
   return (
     <S.Container fullWidth={fullWidth}>
@@ -63,6 +69,16 @@ function CardCenterImageButton({
             disabled={disabled}
             backgroundColor={theme.colors.brand.primary[600]}
           />
+          {secondButtonProps?.visible && (
+            <Button
+              onClick={secondButtonProps.onClick}
+              text={secondButtonProps.text}
+              backgroundColor={theme.colors.neutral10}
+              borderColor={theme.colors.brand.primary[600]}
+              textColor={theme.colors.brand.primary[600]}
+              outline
+            />
+          )}
         </S.ButtonContainer>
       </S.ContentSection>
     </S.Container>

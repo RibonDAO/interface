@@ -105,6 +105,8 @@ function PixPaymentInformationProvider({ children }: Props) {
         message: t("onErrorMessage"),
         type: "info",
       });
+    } finally {
+      setButtonDisabled(false);
     }
   };
 

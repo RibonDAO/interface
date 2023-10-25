@@ -1,28 +1,45 @@
 import CardCampaign from "components/moleculars/cards/CardCampaign";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useTranslation } from "react-i18next";
+import { logError } from "services/crashReport";
+import useImpressionCards from "hooks/useImpressionCard";
+import { useCallback, useEffect, useState } from "react";
+import ImpressionCard from "types/entities/ImpressionCard";
 import { useImpactConversion } from "hooks/useImpactConversion";
-import KidsDayCampaignImage from "./assets/kids-day-campaign-image.png";
 import * as S from "./styles";
 
-function CampaignSection(): JSX.Element {
+export type Props = {
+  cardId: number | string;
+};
+
+function CampaignSection({ cardId }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "contributionSection",
   });
 
   const { contribution, nonProfit } = useImpactConversion();
-
   const { isMobile } = useBreakpoint();
-  const campaignLink =
-    "https://projetos.ribon.io/dia-das-criancas?integration_id=9bee3412-6a49-4ddd-acfa-00e049fd3c99&offer=1000&target=non_profit&target_id=10&currency=BRL&subscription=false&utm_source=app&utm_medium=banners&utm_campaign=dia_das_criancas";
+  const [impressionCard, setImpressionCard] = useState<ImpressionCard | null>();
 
-  const contributionCard = () => (
+  const { getImpressionCard } = useImpressionCards();
+
+  const fetchImpressionCard = useCallback(async () => {
+    try {
+      const impressionCardData = await getImpressionCard(cardId);
+      setImpressionCard(impressionCardData);
+    } catch (e) {
+      logError(e);
+    }
+  }, [cardId]);
+
+  useEffect(() => {
+    fetchImpressionCard();
+  }, []);
+
+  return contribution && impressionCard ? (
     <>
       <S.Title>{t("title", { nonProfitName: nonProfit?.name })}</S.Title>
       <S.Container>
-        <S.ImageContainer>
-          <S.NonProfitImage src={KidsDayCampaignImage} />
-        </S.ImageContainer>
         <CardCampaign
           value={contribution?.value ?? 0}
           style={{
@@ -33,16 +50,14 @@ function CampaignSection(): JSX.Element {
           }}
           from="kidsCampaignCTA"
           flow="nonProfit"
-          campaignLink={campaignLink}
+          cardData={impressionCard}
         />
       </S.Container>
       <S.NonProfitTitle>{t("nonProfits")}</S.NonProfitTitle>
     </>
+  ) : (
+    <div />
   );
-
-  if (contribution) return contributionCard() ?? <div />;
-
-  return <div />;
 }
 
 export default CampaignSection;

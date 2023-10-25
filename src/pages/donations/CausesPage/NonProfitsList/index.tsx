@@ -9,6 +9,8 @@ import { useExperiment } from "@growthbook/growthbook-react";
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
 import useVoucher from "hooks/useVoucher";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
+import { isFirstAccess } from "lib/onboardingFirstAccess";
+import { useCurrentUser } from "contexts/currentUserContext";
 import causeIllustration from "assets/images/direct-illustration.svg";
 import { useBlockedDonationContributionModal } from "hooks/modalHooks/useBlockedDonationContributionModal";
 import { useIntegrationId } from "hooks/useIntegrationId";
@@ -114,11 +116,14 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
     });
   };
 
+  const { signedIn } = useCurrentUser();
+
   const isCheckoutButtonVisible = useCallback(() => {
     const isRibonIntegration = integrationId?.toString() === RIBON_COMPANY_ID;
     const isInTestGroup = variation.value;
+    const isNotFirstAccess = !isFirstAccess(signedIn);
 
-    return Boolean(isRibonIntegration && isInTestGroup);
+    return Boolean(isRibonIntegration && isInTestGroup && isNotFirstAccess);
   }, [integrationId, variation]);
 
   return (

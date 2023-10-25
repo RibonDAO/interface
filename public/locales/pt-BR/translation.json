@@ -496,6 +496,18 @@
           "taxId": "CPF",
           "cpf": "CPF",
           "name": "Nome completo"
+        },
+        "pixInstructions": {
+          "pixCode": " Código Pix",
+          "instructions": "Instruções",
+          "firstInfo": "No aplicativo de seu banco, escolha pagar com Pix",
+          "secondInfo": "Escaneie o QR Code ou copie e cole o código",
+          "thirdInfo": "Confirme sua doação",
+          "copyCode": "Copiar código",
+          "copyCodeSuccess": "Code copied!",
+          "expiresAt": "Expira em <b>30 minutos</b>",
+          "donatingTo": "Doando para ",
+          "pixReceiverText": "O destino do seu Pix será o <b>Stripe</b>, plataforma que processa os pagamentos da Ribon."
         }
       },
       "confirmPayment": "Confirmar pagamento",

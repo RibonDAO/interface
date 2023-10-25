@@ -60,13 +60,12 @@ function PixForm({ onSubmit, showFiscalFields }: Props): JSX.Element {
   function isBrazil(countryName: string) {
     return countryName === t("brazilName");
   }
+  const { currentLang } = useLanguage();
 
   const handleCountryChange = (value: string) => {
     setCountry(value);
     setBrazilFormatForTaxId(isBrazil(value));
   };
-
-  const { currentLang } = useLanguage();
 
   useEffect(() => {
     const fiscalFields = showFiscalFields ? country && validTaxId() : true;

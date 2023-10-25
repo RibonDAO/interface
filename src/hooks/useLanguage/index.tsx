@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Languages } from "@ribon.io/shared/types";
 import { normalizedLanguage } from "lib/currentLanguage";
+import { setLocalStorageItem } from "lib/localStorage";
 
 export function useLanguage() {
   const { i18n } = useTranslation();
@@ -9,13 +10,19 @@ export function useLanguage() {
     normalizedLanguage(),
   );
 
+  const { t } = useTranslation("translation", {
+    keyPrefix: "promoters.checkoutPage",
+  });
+
   useEffect(() => {
     i18n.changeLanguage(currentLang);
+    setLocalStorageItem("COUNTRY", t("brazilName"));
   }, [currentLang]);
 
   function handleSwitchLanguage() {
     if (currentLang === Languages.en) {
       setCurrentLang(Languages.PT);
+
       window.location.reload();
     } else if (currentLang === Languages.PT) {
       setCurrentLang(Languages.en);

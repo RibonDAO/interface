@@ -16,7 +16,7 @@
       "donateText": "Donate ticket",
       "donateBlockedText": "No tickets",
       "impactPrefix": "Donate",
-      "doMore": "Do more and donate {{value}}",
+      "doMore": "Donate {{value}}",
       "pageTitle": "Donate to a project",
       "donationError": "Unable to donate now",
       "errorModalTitle": "Processing failed",

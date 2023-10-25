@@ -16,7 +16,7 @@
       "donateText": "Doar ticket",
       "donateBlockedText": "Sem tickets",
       "impactPrefix": "Doe",
-      "doMore": "Faça mais e doe {{value}}",
+      "doMore": "Doe {{value}}",
       "pageTitle": "Doe para um projeto",
       "donationError": "Não foi possível doar.",
       "errorModalTitle": "Falha no processamento",

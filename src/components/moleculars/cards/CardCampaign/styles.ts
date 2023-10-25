@@ -21,7 +21,53 @@ export type ThemeShades = {
   900: string;
 };
 
-export const Container = styled.div<{ colorTheme: ThemeShades }>`
+export const Container = styled.div`
+  width: 100%;
+  margin-bottom: ${({ theme }) => theme.spacing(48)};
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: 100%;
+    flex-direction: row;
+  }
+`;
+
+export const ImageContainer = styled.div`
+  width: 100%;
+  flex-basis: 100%;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    max-width: 432px;
+    margin-right: ${({ theme }) => theme.spacing(40)};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-right: ${({ theme }) => theme.spacing(20)};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: 110%;
+    margin: 0 -16px;
+  }
+`;
+
+export const Image = styled.img`
+  width: 100%;
+  max-height: 240px;
+  border-radius: 0;
+  position: relative;
+  object-fit: cover;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: 100%;
+    border-radius: 8px;
+    left: initial;
+  }
+`;
+
+export const TextContainer = styled.div<{ colorTheme: ThemeShades }>`
   padding: ${({ theme }) => theme.spacing(32)};
   border-radius: 8px;
   display: flex;

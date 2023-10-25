@@ -1,16 +1,16 @@
 import { logEvent } from "lib/events";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import ImpressionCard from "types/entities/ImpressionCard";
 import { theme } from "@ribon.io/shared/styles";
 import * as S from "./styles";
 
 export type Props = {
-  title?: string;
   value: number;
   style?: React.CSSProperties;
   from: string;
   flow?: "nonProfit" | "cause";
-  campaignLink: string;
+  cardData?: ImpressionCard;
 };
 
 function CardCampaign({
@@ -18,8 +18,7 @@ function CardCampaign({
   style,
   from,
   flow,
-  title,
-  campaignLink,
+  cardData,
 }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "campaignCard",
@@ -38,31 +37,44 @@ function CardCampaign({
   }, []);
 
   const handleClickedDonationButton = () => {
+    if (!cardData) return;
+
     logEvent(flow === "nonProfit" ? "giveNgoBtn_start" : "giveCauseBtn_start", {
       from,
       value,
       platform: "web",
     });
-    window.location.replace(campaignLink);
+    window.location.replace(cardData.ctaUrl);
   };
 
   const { primary } = theme.colors.brand;
 
   return (
-    <S.Container
-      style={style}
-      colorTheme={primary}
-      data-testid="contribution-section-container"
-    >
-      <S.Title colorTheme={primary}>{title || t("titleCard")}</S.Title>
-      <S.Value colorTheme={primary}>{t("donate")}</S.Value>
-
-      <S.Description>{t("description")}</S.Description>
-      <S.DonationButton
+    <S.Container>
+      {cardData?.image && (
+        <S.ImageContainer>
+          <S.Image src={cardData?.image || ""} />
+        </S.ImageContainer>
+      )}
+      <S.TextContainer
+        style={style}
         colorTheme={primary}
-        onClick={() => handleClickedDonationButton()}
-        text={t("button")}
-      />
+        data-testid="contribution-section-container"
+      >
+        <S.Title colorTheme={primary}>
+          {cardData?.headline || t("titleCard")}
+        </S.Title>
+        <S.Value colorTheme={primary}>{cardData?.title || t("donate")}</S.Value>
+
+        <S.Description>
+          {cardData?.description || t("description")}
+        </S.Description>
+        <S.DonationButton
+          colorTheme={primary}
+          onClick={() => handleClickedDonationButton()}
+          text={cardData?.ctaText || t("button")}
+        />
+      </S.TextContainer>
     </S.Container>
   );
 }

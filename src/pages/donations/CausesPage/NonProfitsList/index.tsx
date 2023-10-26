@@ -5,7 +5,6 @@ import useNavigation from "hooks/useNavigation";
 import { RIBON_COMPANY_ID } from "utils/constants";
 import { logEvent } from "lib/events";
 import { Currencies, NonProfit } from "@ribon.io/shared/types";
-import { useExperiment } from "@growthbook/growthbook-react";
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
 import useVoucher from "hooks/useVoucher";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
@@ -84,11 +83,6 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
       t("impactPrefix"),
     );
 
-  const variation = useExperiment({
-    key: "two-buttons-on-ngo-card",
-    variations: [false, true],
-  });
-
   const { offers: offersBrl } = useOffers(Currencies.BRL, false);
   const { offers: offersUsd } = useOffers(Currencies.USD, false);
 
@@ -107,7 +101,7 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
       target_id: nonProfit.id.toString(),
       currency: currentLang === "pt-BR" ? "BRL" : "USD",
       subscription: "false",
-      from: "donations",
+      from: "DirectCardNgo",
     });
 
     navigateTo({
@@ -120,11 +114,10 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
 
   const isCheckoutButtonVisible = useCallback(() => {
     const isRibonIntegration = integrationId?.toString() === RIBON_COMPANY_ID;
-    const isInTestGroup = variation.value;
     const isNotFirstAccess = !isFirstAccess(signedIn);
 
-    return Boolean(isRibonIntegration && isInTestGroup && isNotFirstAccess);
-  }, [integrationId, variation]);
+    return Boolean(isRibonIntegration && isNotFirstAccess);
+  }, [integrationId]);
 
   return (
     <S.NonProfitsListContainer>

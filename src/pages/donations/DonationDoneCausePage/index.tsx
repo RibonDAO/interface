@@ -39,6 +39,7 @@ function DonationDoneCausePage(): JSX.Element {
     hasButton?: boolean;
     nonProfit?: NonProfit;
     flow?: "cause" | "nonProfit";
+    from?: string;
   };
 
   const { navigateTo } = useNavigation();
@@ -51,7 +52,7 @@ function DonationDoneCausePage(): JSX.Element {
 
   const currency = Currencies.USD;
   const {
-    state: { nonProfit, offerId, cause, hasButton, flow },
+    state: { nonProfit, offerId, cause, hasButton, flow, from },
   } = useLocation<LocationState>();
   const { getOffer } = useOffers(currency);
   const [offer, setOffer] = useState<Offer>();
@@ -138,6 +139,7 @@ function DonationDoneCausePage(): JSX.Element {
         currency: offer?.currency,
         amount: offer?.priceValue,
         nonProfitId: nonProfit?.id,
+        from,
       });
       navigateTo({
         pathname: offer?.subscription

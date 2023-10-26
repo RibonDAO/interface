@@ -55,6 +55,7 @@ function PixPaymentInformationProvider({ children }: Props) {
     nonProfit,
     email,
     name,
+    from,
   } = usePaymentInformation();
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const { t } = useTranslation("translation", {
@@ -127,6 +128,7 @@ function PixPaymentInformationProvider({ children }: Props) {
             cause,
             nonProfit,
             flow,
+            from,
           },
         });
       }

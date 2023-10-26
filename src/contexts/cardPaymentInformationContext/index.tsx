@@ -59,6 +59,7 @@ function CardPaymentInformationProvider({ children }: Props) {
     cause,
     nonProfit,
     email,
+    from,
   } = usePaymentInformation();
   const [number, setNumber] = useState("");
   const [name, setName] = useState("");
@@ -103,6 +104,7 @@ function CardPaymentInformationProvider({ children }: Props) {
         cause,
         nonProfit,
         flow,
+        from,
       },
     });
   };

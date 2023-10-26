@@ -42,8 +42,14 @@ export default function FiatSection() {
   const hasAllParams = Boolean(target && targetId && offer && currency);
   const currentPayable = usePayable(target, targetId);
 
-  const { setOfferId, setCurrentCoin, setCause, setNonProfit, setFlow } =
-    usePaymentInformation();
+  const {
+    setOfferId,
+    setCurrentCoin,
+    setCause,
+    setNonProfit,
+    setFlow,
+    setFrom,
+  } = usePaymentInformation();
   const [isSubscription, setIsSubscription] = useState(subscription === "true");
 
   const variation = useExperiment({
@@ -140,6 +146,7 @@ export default function FiatSection() {
       setCause((currentPayable as NonProfit).cause as Cause);
       setFlow("nonProfit");
     }
+    setFrom(from || "NormalPaymentFlow");
   }, [currentPayable]);
 
   useEffect(() => {

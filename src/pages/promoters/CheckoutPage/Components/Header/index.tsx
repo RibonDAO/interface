@@ -3,6 +3,7 @@ import CurrencyExchange from "assets/icons/currency-exchange-icon.svg";
 import usePaymentParams from "hooks/usePaymentParams";
 import { useLocationSearch } from "hooks/useLocationSearch";
 import { useTranslation } from "react-i18next";
+import { useExperiment } from "@growthbook/growthbook-react";
 import { useModal } from "hooks/modalHooks/useModal";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { Currencies } from "@ribon.io/shared/types";
@@ -13,6 +14,11 @@ import * as S from "./styles";
 export default function Header() {
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.checkoutPage",
+  });
+
+  const variation = useExperiment({
+    key: "payment-form",
+    variations: [false, true],
   });
 
   const { currency, target } = usePaymentParams();
@@ -59,10 +65,14 @@ export default function Header() {
       <S.BackButton onClick={navigateBack}>
         <img src={ArrowLeftGreen} alt={t("back")} />
       </S.BackButton>
-      <S.ChangeCurrencyButton onClick={() => showCurrencyModal()}>
-        <img src={CurrencyExchange} alt={t("changeCurrency")} />
-        <p>{t("changeCurrency")}</p>
-      </S.ChangeCurrencyButton>
+      {!variation.value ? (
+        <S.ChangeCurrencyButton onClick={() => showCurrencyModal()}>
+          <img src={CurrencyExchange} alt={t("changeCurrency")} />
+          <p>{t("changeCurrency")}</p>
+        </S.ChangeCurrencyButton>
+      ) : (
+        <div />
+      )}
     </S.Header>
   );
 }

@@ -149,10 +149,12 @@
         "impactOneLife": "Impact 1 person",
         "impactDescription": "with {{value}}"
       },
-      "signInSection": {
-        "title": "Enter your e-mail to donate",
-        "confirmText": "Continue",
-        "footerStartText": "By clicking Confirm I agree on Ribon’s",
+      "signInSection":{
+        "title": "you are donating",
+        "google": "Continue with Google",
+        "apple": "Continue with Apple",
+        "email": "Continue with e-mail",
+        "footerStartText": "By clicking 'Continue' I agree on Ribon’s",
         "footerEndText": " and",
         "termsText": "Terms",
         "termsLink": "https://ribon.io/en/privacy-policy/#terms",
@@ -161,6 +163,10 @@
         "impactOneLife": "Impact 1 person",
         "impactDescription": "with {{value}}",
         "checkboxText": "I agree to receive emails with information about my donations"
+      },
+      "MagicLinkSection": {
+        "title": "Enter your e-mail to donate",
+        "confirmText": "Continue"
       }
     }
   },

@@ -1,26 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { NonProfit } from "@ribon.io/shared/types";
+import Button from "components/atomics/buttons/Button";
 import { useTranslation } from "react-i18next";
 import { theme } from "@ribon.io/shared/styles";
 import BackgroundShapes from "assets/images/background-shapes.svg";
-import { isValidEmail } from "lib/validators";
 import { logEvent } from "lib/events";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
+import AppleIcon from "assets/icons/apple-icon.svg";
+import GoogleIcon from "assets/icons/google-icon.svg";
+import useNavigation from "hooks/useNavigation";
+import { useGoogleLogin } from "@react-oauth/google";
+import { useAuthentication } from "contexts/authenticationContext";
 import * as S from "./styles";
 
 type Props = {
   nonProfit: NonProfit;
   onContinue: (email: string, allowedEmailMarketing?: boolean) => void;
 };
-function EmailInputSection({ nonProfit, onContinue }: Props): JSX.Element {
+function SignInSection({ nonProfit, onContinue }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.confirmDonationPage.signInSection",
   });
 
-  const [email, setEmail] = useState("");
-  const [allowedEmailMarketing, setAllowedEmailMarketing] = useState(false);
-
   const { formattedImpactText } = useFormattedImpactText();
+  const [allowedEmailMarketing, setAllowedEmailMarketing] = useState(false);
+  const { navigateTo } = useNavigation();
+  const { signInWithGoogle } = useAuthentication();
 
   useEffect(() => {
     logEvent("P12_view", {
@@ -28,12 +33,21 @@ function EmailInputSection({ nonProfit, onContinue }: Props): JSX.Element {
     });
   }, []);
 
-  const handleButtonPress = () => {
-    onContinue(email, allowedEmailMarketing);
-  };
-
   const oldImpactFormat = () =>
     formattedImpactText(nonProfit, undefined, false, true);
+
+  const handleMagicLink = () => {
+    navigateTo({
+      pathname: "/donations/confirm-donation/magic-link",
+      state: { nonProfit, allowedEmailMarketing },
+    });
+  };
+
+  const handleGoogle = useGoogleLogin({
+    onSuccess: (tokenResponse) => {
+      signInWithGoogle(tokenResponse);
+    },
+  });
 
   return (
     <S.Container>
@@ -46,16 +60,30 @@ function EmailInputSection({ nonProfit, onContinue }: Props): JSX.Element {
       <S.ContentContainer>
         <S.Title>{t("title")}</S.Title>
         <S.Description>{oldImpactFormat()}</S.Description>
-        <S.Input
-          name="email"
-          id="email"
-          type="email"
-          placeholder="E-mail"
-          value={email}
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
-        />
+        <S.ButtonContainer>
+          <Button
+            text={t("google")}
+            textColor={theme.colors.neutral[600]}
+            backgroundColor="transparent"
+            borderColor={theme.colors.neutral[300]}
+            leftIcon={GoogleIcon}
+            onClick={() => handleGoogle()}
+          />
+          <Button
+            text={t("apple")}
+            textColor={theme.colors.neutral[600]}
+            backgroundColor="transparent"
+            borderColor={theme.colors.neutral[300]}
+            leftIcon={AppleIcon}
+          />
+          <Button
+            text={t("email")}
+            textColor={theme.colors.neutral[600]}
+            backgroundColor="transparent"
+            borderColor={theme.colors.neutral[300]}
+            onClick={() => handleMagicLink()}
+          />
+        </S.ButtonContainer>
         <S.CheckboxLabel>
           <S.Checkbox
             type="checkbox"
@@ -63,16 +91,7 @@ function EmailInputSection({ nonProfit, onContinue }: Props): JSX.Element {
           />
           {t("checkboxText")}
         </S.CheckboxLabel>
-        <S.Button
-          text={t("confirmText")}
-          onClick={handleButtonPress}
-          backgroundColor={theme.colors.brand.primary[600]}
-          borderColor={theme.colors.brand.primary[600]}
-          textColor={theme.colors.neutral[25]}
-          disabled={!isValidEmail(email)}
-          eventName="P12_continueBtn"
-          eventParams={{ nonProfitId: nonProfit.id }}
-        />
+
         <S.FooterText>
           {t("footerStartText")}{" "}
           <a href={t("termsLink")} target="_blank" rel="noreferrer">
@@ -88,4 +107,4 @@ function EmailInputSection({ nonProfit, onContinue }: Props): JSX.Element {
   );
 }
 
-export default EmailInputSection;
+export default SignInSection;

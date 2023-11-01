@@ -21,6 +21,8 @@ import CauseDonationProvider from "contexts/causeDonationContext";
 import CauseContributionProvider from "contexts/causeContributionContext";
 import UserLevelProvider from "contexts/userLevelContext";
 import { DEBUG_EVENTS_ENABLED } from "utils/constants";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import AuthenticationProvider from "contexts/authenticationContext";
 import RoutesComponent from "./config/routes";
 import GlobalStyle from "./styles/globalStyle";
 import theme from "./styles/theme";
@@ -49,30 +51,36 @@ function App() {
           <LoadingOverlayProvider>
             <ModalProvider>
               <GlobalStyle />
-              <BrowserRouter>
-                {debugEnabled() && <DebugEventsView />}
-                <ToastContextProvider>
-                  <CurrentUserProvider>
-                    <Suspense fallback={<div />}>
-                      <TasksProvider>
-                        <NonProfitsProvider>
-                          <CausesProvider>
-                            <CauseDonationProvider>
-                              <CauseContributionProvider>
-                                <UserLevelProvider>
-                                  <RoutesComponent />
-                                  <Zendesk />
-                                </UserLevelProvider>
-                              </CauseContributionProvider>
-                            </CauseDonationProvider>
-                          </CausesProvider>
-                        </NonProfitsProvider>
-                      </TasksProvider>
-                    </Suspense>
-                  </CurrentUserProvider>
-                  <Toast />
-                </ToastContextProvider>
-              </BrowserRouter>
+              <GoogleOAuthProvider
+                clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID!}
+              >
+                <AuthenticationProvider>
+                  <BrowserRouter>
+                    {debugEnabled() && <DebugEventsView />}
+                    <ToastContextProvider>
+                      <CurrentUserProvider>
+                        <Suspense fallback={<div />}>
+                          <TasksProvider>
+                            <NonProfitsProvider>
+                              <CausesProvider>
+                                <CauseDonationProvider>
+                                  <CauseContributionProvider>
+                                    <UserLevelProvider>
+                                      <RoutesComponent />
+                                      <Zendesk />
+                                    </UserLevelProvider>
+                                  </CauseContributionProvider>
+                                </CauseDonationProvider>
+                              </CausesProvider>
+                            </NonProfitsProvider>
+                          </TasksProvider>
+                        </Suspense>
+                      </CurrentUserProvider>
+                      <Toast />
+                    </ToastContextProvider>
+                  </BrowserRouter>
+                </AuthenticationProvider>
+              </GoogleOAuthProvider>
             </ModalProvider>
           </LoadingOverlayProvider>
         </ThemeProvider>

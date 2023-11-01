@@ -146,12 +146,3 @@ export const Checkbox = styled.input`
   margin-top: ${({ theme }) => theme.spacing(4)};
   margin-right: ${({ theme }) => theme.spacing(8)};
 `;
-
-export const ButtonContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing(8)};
-  align-items: center;
-  justify-content: center;
-`;

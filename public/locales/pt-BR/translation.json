@@ -16,7 +16,7 @@
       "donateText": "Doar ticket",
       "donateBlockedText": "Sem tickets",
       "impactPrefix": "Doe",
-      "doMore": "Faça mais e doe {{value}}",
+      "doMore": "Doe {{value}}",
       "pageTitle": "Doe para um projeto",
       "donationError": "Não foi possível doar.",
       "errorModalTitle": "Falha no processamento",
@@ -112,11 +112,11 @@
       "impactPageTitle": "Impacto",
       "causesPageTitle": "Tickets",
       "forYouPageTitle": "Para você",
-      "givingPageTitle": "Contribuir",
+      "givingPageTitle": "Ajudar",
       "aboutPageTitle": "Sobre",
-      "communityMenuItem": "Doe com a comunidade",
+      "communityMenuItem": "Causas",
       "donateWithRibonMenuItem": "Doe com a Ribon",
-      "directDonationMenuItem": "Doação direta",
+      "directDonationMenuItem": "Campanhas",
       "new": "Novo"
     },
     "giveTicketPage": {
@@ -496,6 +496,18 @@
           "taxId": "CPF",
           "cpf": "CPF",
           "name": "Nome completo"
+        },
+        "pixInstructions": {
+          "pixCode": " Código Pix",
+          "instructions": "Instruções",
+          "firstInfo": "No aplicativo de seu banco, escolha pagar com Pix",
+          "secondInfo": "Escaneie o QR Code ou copie e cole o código",
+          "thirdInfo": "Confirme sua doação",
+          "copyCode": "Copiar código",
+          "copyCodeSuccess": "Code copied!",
+          "expiresAt": "Expira em <b>30 minutos</b>",
+          "donatingTo": "Doando para ",
+          "pixReceiverText": "O destino do seu Pix será o <b>Stripe</b>, plataforma que processa os pagamentos da Ribon."
         }
       },
       "confirmPayment": "Confirmar pagamento",
@@ -605,7 +617,8 @@
         "become_a_promoter": "Vire o promotor de uma causa",
         "view_about_page": "Entenda de onde vem os tickets",
         "survey_form": "Ganhe um ticket extra respondendo nossa pesquisa",
-        "check_daily_news": "Conferir publicações diárias"
+        "check_daily_news": "Conferir publicações diárias",
+        "check_campaign": "Participar da campanha de Dia das Crianças"
       },
       "cardsStatisticsSection": {
         "dailyTasksTitle": "tarefas diárias completas",

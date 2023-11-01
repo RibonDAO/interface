@@ -1,18 +1,20 @@
 import CardCenterImageButton from "components/moleculars/cards/CardCenterImageButton";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import useNavigation from "hooks/useNavigation";
+import { RIBON_COMPANY_ID } from "utils/constants";
 import { logEvent } from "lib/events";
 import { Currencies, NonProfit } from "@ribon.io/shared/types";
-import { useOffers } from "@ribon.io/shared/hooks";
-import { useLanguage } from "hooks/useLanguage";
-import { useIntegrationId } from "hooks/useIntegrationId";
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
 import useVoucher from "hooks/useVoucher";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
+import { isFirstAccess } from "lib/onboardingFirstAccess";
+import { useCurrentUser } from "contexts/currentUserContext";
 import causeIllustration from "assets/images/direct-illustration.svg";
 import { useBlockedDonationContributionModal } from "hooks/modalHooks/useBlockedDonationContributionModal";
-import { useExperiment } from "@growthbook/growthbook-react";
+import { useIntegrationId } from "hooks/useIntegrationId";
+import { useOffers } from "@ribon.io/shared/hooks";
+import { useLanguage } from "hooks/useLanguage";
 import StoriesSection from "../StoriesSection";
 import * as S from "../styles";
 
@@ -29,11 +31,6 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
   });
   const { navigateTo } = useNavigation();
 
-  const buttonVariation = useExperiment({
-    key: "conversion-test-donate-btn",
-    variations: ["control", "button", "button_and_info"],
-  });
-
   const [currentNonProfitIndex, setCurrentNonProfitIndex] = useState(0);
 
   const { showBlockedDonationContributionModal } =
@@ -44,31 +41,6 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
 
   const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
 
-  const { offers: offersBrl } = useOffers(Currencies.BRL, false);
-  const { offers: offersUsd } = useOffers(Currencies.USD, false);
-
-  const integrationId = useIntegrationId();
-
-  const { currentLang } = useLanguage();
-
-  const softDisabled = () => {
-    if (buttonVariation.value !== "control") return false;
-
-    return !canDonateAndHasVoucher;
-  };
-
-  const currentOffer = () =>
-    currentLang === "pt-BR" ? offersBrl?.[0] : offersUsd?.[0];
-
-  const buttonText = () => {
-    const text =
-      buttonVariation.value !== "control"
-        ? t("doMore", { value: currentOffer()?.price ?? "1000" })
-        : t("donateBlockedText");
-
-    return canDonateAndHasVoucher ? t("donateText") : text;
-  };
-
   function handleButtonClick(nonProfit: NonProfit, from: string) {
     if (canDonateAndHasVoucher) {
       logEvent("donateTicketBtn_start", {
@@ -76,21 +48,6 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
         from,
       });
       navigateTo({ pathname: "confirm-donation", state: { nonProfit } });
-    } else if (buttonVariation.value !== "control") {
-      const searchParams = new URLSearchParams({
-        integration_id: integrationId?.toString() || "",
-        offer: currentOffer()?.priceCents?.toString() ?? "1000",
-        target: "non_profit",
-        target_id: nonProfit.id.toString(),
-        currency: currentLang === "pt-BR" ? "BRL" : "USD",
-        subscription: "false",
-        from: "donations",
-      });
-
-      navigateTo({
-        pathname: "/promoters/checkout",
-        search: searchParams.toString(),
-      });
     } else {
       showBlockedDonationContributionModal();
     }
@@ -126,6 +83,42 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
       t("impactPrefix"),
     );
 
+  const { offers: offersBrl } = useOffers(Currencies.BRL, false);
+  const { offers: offersUsd } = useOffers(Currencies.USD, false);
+
+  const { currentLang } = useLanguage();
+
+  const currentOffer = () =>
+    currentLang === "pt-BR" ? offersBrl?.[0] : offersUsd?.[0];
+
+  const integrationId = useIntegrationId();
+
+  const navigateToCheckout = (nonProfit: NonProfit) => {
+    const searchParams = new URLSearchParams({
+      integration_id: integrationId?.toString() || "",
+      offer: currentOffer()?.priceCents?.toString() ?? "1000",
+      target: "non_profit",
+      target_id: nonProfit.id.toString(),
+      currency: currentLang === "pt-BR" ? "BRL" : "USD",
+      subscription: "false",
+      from: "DirectCardNgo",
+    });
+
+    navigateTo({
+      pathname: "/promoters/checkout",
+      search: searchParams.toString(),
+    });
+  };
+
+  const { signedIn } = useCurrentUser();
+
+  const isCheckoutButtonVisible = useCallback(() => {
+    const isRibonIntegration = integrationId?.toString() === RIBON_COMPANY_ID;
+    const isNotFirstAccess = !isFirstAccess(signedIn);
+
+    return Boolean(isRibonIntegration && isNotFirstAccess);
+  }, [integrationId]);
+
   return (
     <S.NonProfitsListContainer>
       {currentNonProfitWithStories && (
@@ -154,17 +147,26 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
                   <CardCenterImageButton
                     image={nonProfit.mainImage || nonProfit.cause?.mainImage}
                     title={oldImpactFormat(nonProfit)}
-                    buttonText={buttonText()}
+                    buttonText={
+                      canDonateAndHasVoucher
+                        ? t("donateText")
+                        : t("donateBlockedText")
+                    }
                     onClickButton={() =>
                       handleButtonClick(nonProfit, "nonProfitCard")
                     }
                     onClickImage={() => handleImageClick(nonProfit)}
-                    softDisabled={softDisabled()}
+                    softDisabled={!canDonateAndHasVoucher}
                     infoTextTop={nonProfit.name}
                     infoTextBottom={nonProfit.cause?.name}
                     infoText={
                       nonProfit.stories?.length ? t("learnMore") : undefined
                     }
+                    secondButtonProps={{
+                      text: t("doMore", { value: currentOffer()?.price }),
+                      onClick: () => navigateToCheckout(nonProfit),
+                      visible: isCheckoutButtonVisible(),
+                    }}
                     fullWidth
                   />
                 </S.CardWrapper>

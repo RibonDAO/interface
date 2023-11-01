@@ -129,6 +129,16 @@ export const TASKS = [
       return true;
     },
   },
+  {
+    id: "a9d2d3bb-eae2-4c26-b77d-1bf364b66607",
+    title: "check_campaign",
+    actions: ["campaign_page_view"],
+    type: "daily",
+    navigationCallback: "/campaign",
+    isVisible(this: Task) {
+      return true;
+    },
+  },
 ];
 
 export const useTasks = (type: string) => {

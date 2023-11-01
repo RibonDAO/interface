@@ -27,11 +27,13 @@ import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
 import NonProfitsSection from "pages/donations/CausesPage/NonProfitsSection";
 import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
+import { useLanguage } from "hooks/useLanguage";
+import CampaignSection from "pages/donations/CausesPage/CampaignSection";
+import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
 import ChooseCauseModal from "./ChooseCauseModal";
 import CausesSelectSection from "./CausesSelectSection";
-import * as S from "./styles";
 
 function CausesPage(): JSX.Element {
   const integrationId = useIntegrationId();
@@ -39,6 +41,7 @@ function CausesPage(): JSX.Element {
   const [shouldShowIntegrationBanner, setShouldShowIntegrationBanner] =
     useState<boolean | undefined>(false);
   const { chooseCauseModalVisible } = useCauseDonationContext();
+  const { currentLang } = useLanguage();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
@@ -163,6 +166,10 @@ function CausesPage(): JSX.Element {
             />
           )}
         </S.TitleContainer>
+
+        {!canDonate && currentLang === "pt-BR" && (
+          <CampaignSection cardId="1" />
+        )}
         <ContributionNotification />
         <CausesSelectSection />
         <NonProfitsSection />

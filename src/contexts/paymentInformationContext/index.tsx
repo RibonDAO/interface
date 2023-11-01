@@ -25,6 +25,7 @@ export interface IPaymentInformationContext {
   setCryptoGiving: (value: SetStateAction<string>) => void;
   setOfferId: (value: SetStateAction<number>) => void;
   setFlow: (value: SetStateAction<"cause" | "nonProfit">) => void;
+  setFrom: (value: SetStateAction<string>) => void;
   currentCoin: Currencies;
   country: string;
   state: string;
@@ -41,6 +42,7 @@ export interface IPaymentInformationContext {
   setNonProfit: (value: SetStateAction<NonProfit | undefined>) => void;
   integrationId: string | number | null;
   flow: "cause" | "nonProfit";
+  from: string;
 }
 
 export type Props = {
@@ -85,6 +87,7 @@ function PaymentInformationProvider({ children }: Props) {
   const [state, setState] = useLocalStorageState("STATE", "");
   const [city, setCity] = useLocalStorageState("CITY", "");
   const [name, setName] = useLocalStorageState("NAME", "");
+  const [from, setFrom] = useState("");
 
   const paymentInformationObject: IPaymentInformationContext = useMemo(
     () => ({
@@ -113,6 +116,8 @@ function PaymentInformationProvider({ children }: Props) {
       flow,
       setFlow,
       integrationId,
+      from,
+      setFrom,
     }),
     [
       currentCoin,
@@ -127,6 +132,7 @@ function PaymentInformationProvider({ children }: Props) {
       nonProfit,
       flow,
       integrationId,
+      from,
     ],
   );
 

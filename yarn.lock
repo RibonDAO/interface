@@ -2692,10 +2692,10 @@
   resolved "https://registry.npmjs.org/@protobufjs/utf8/-/utf8-1.1.0.tgz"
   integrity sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==
 
-"@ribon.io/shared@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@ribon.io/shared/-/shared-1.1.1.tgz#99096f622692c760a47c226d2c269d2a93887674"
-  integrity sha512-47zCHwhsY0S4ipJhWbC3wQP5UbUXRpelGsgeVOHhdBThOn4YU/OQQgabZzjsPdRbTrDHioHDZ8Rze0gXKbJUVQ==
+"@ribon.io/shared@^1.1.4":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@ribon.io/shared/-/shared-1.1.4.tgz#c43b857077a37693ac6f39cf9d3004a960e319e4"
+  integrity sha512-lqQ2QuUpFcbjclHjptqo6/p2ssV0AfYnOLaW75cYlZPDgqqJSOIs4IpvJM7a2iIksYPlvr6y3C6D0yiw9xDr2w==
   dependencies:
     "@apollo/client" "^3.6.9"
     "@types/base-64" "^1.0.0"
@@ -2707,6 +2707,7 @@
     react-query "^3.34.8"
     snakecase-keys "^5.4.4"
     styled-components "^5.3.6"
+    universal-cookie "^6.1.1"
 
 "@rollup/plugin-babel@^5.2.0":
   version "5.3.0"
@@ -4131,6 +4132,11 @@
   integrity sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==
   dependencies:
     "@types/node" "*"
+
+"@types/cookie@^0.5.1":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@types/cookie/-/cookie-0.5.3.tgz#3f98076ede5e467783507284d3c19215327fff8f"
+  integrity sha512-SLg07AS9z1Ab2LU+QxzU8RCmzsja80ywjf/t5oqw+4NSH20gIGlhLOrBDm1L3PBWzPa4+wkgFQVZAjE6Ioj2ug==
 
 "@types/crypto-js@^4.1.1":
   version "4.1.1"
@@ -7280,6 +7286,11 @@ cookie@0.4.1:
   version "0.4.1"
   resolved "https://registry.npmjs.org/cookie/-/cookie-0.4.1.tgz"
   integrity sha512-ZwrFkGJxUR3EIoXtO+yVE69Eb7KlixbaeAWfBQB9vVsNn/o+Yw69gBWSSDK825hQNdN+wF8zELf3dFNl/kxkUA==
+
+cookie@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.5.0.tgz#d1f5d71adec6558c58f389987c366aa47e994f8b"
+  integrity sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==
 
 copy-concurrently@^1.0.0:
   version "1.0.5"

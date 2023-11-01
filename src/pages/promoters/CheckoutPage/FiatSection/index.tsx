@@ -8,14 +8,14 @@ import { Currencies, Offer, Cause, NonProfit } from "@ribon.io/shared/types";
 import { useOffers } from "@ribon.io/shared/hooks";
 import { useLocationSearch } from "hooks/useLocationSearch";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
+import { useExperiment } from "@growthbook/growthbook-react";
 import { useModal } from "hooks/modalHooks/useModal";
 import { logEvent } from "lib/events";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
+import CheckoutArtImage from "assets/images/checkout-art.png";
 import { theme } from "@ribon.io/shared/styles";
-import { useExperiment } from "@growthbook/growthbook-react";
 import Icon from "components/atomics/Icon";
 import RadioAccordion from "components/moleculars/accordions/RadioAccordion";
-import InlineNotification from "components/moleculars/Toasts/InlineNotification";
 import PixSection from "../PixSection";
 import PriceSelection from "../Components/PriceSelection";
 import { PriceSelectionLoader } from "../Components/PriceSelection/loader";
@@ -23,7 +23,6 @@ import ButtonSelectorTemplate from "../Components/ButtonSelectorTemplate";
 import Loader from "./loader";
 import * as S from "./styles";
 import CardSection from "../CardSection";
-import TrustSeal from "../Components/TrustSeal";
 
 export default function FiatSection() {
   const { t } = useTranslation("translation", {
@@ -51,11 +50,6 @@ export default function FiatSection() {
     setFrom,
   } = usePaymentInformation();
   const [isSubscription, setIsSubscription] = useState(subscription === "true");
-
-  const variation = useExperiment({
-    key: "conversion-test-donate-btn",
-    variations: ["control", "button", "button_and_info"],
-  });
 
   const {
     offers,
@@ -178,29 +172,24 @@ export default function FiatSection() {
     },
   ].filter((item) => !!item);
 
-  const [inlineNotificationVisible, setInlineNotificationVisible] =
-    useState(true);
-
-  const closeNotification = () => setInlineNotificationVisible(false);
-
-  const canShowInlineNotification = () =>
-    variation.value === "button_and_info" && inlineNotificationVisible;
+  const variation = useExperiment({
+    key: "payment-form",
+    variations: [false, true],
+  });
 
   return currentPayable && hasAllParams ? (
     <div>
-      {canShowInlineNotification() && from === "donations" && (
-        <InlineNotification
-          title={t("thankForContribute")}
-          description={t("thankForContributeDescription")}
-          type="success"
-          onCloseClick={closeNotification}
-        />
+      {variation.value && (
+        <S.MobileImageContainer>
+          <S.Image src={CheckoutArtImage} />
+        </S.MobileImageContainer>
       )}
 
       <S.Title>
         {t("donatingTo")}
         <S.PayableName>{currentPayable?.name}</S.PayableName>
       </S.Title>
+      {variation.value && <S.Headline>{t("headline")}</S.Headline>}
 
       {currentOffer ? (
         <PriceSelection
@@ -210,32 +199,36 @@ export default function FiatSection() {
       ) : (
         <PriceSelectionLoader />
       )}
-      <S.RecurrenceContainer>
-        <Icon
-          name={isSubscription ? "event_repeat" : "event_available"}
-          size="25px"
-          color={theme.colors.brand.primary[600]}
-        />
-        <S.RecurrenceTitle>
-          {isSubscription ? t("monthlyContribution") : t("uniqueContribution")}
-        </S.RecurrenceTitle>
-        <S.RecurrenceButton
-          outline
-          text={t("recurrenceButton")}
-          onClick={() => onSubscriptionClick()}
-          textColor={theme.colors.brand.primary[600]}
-          borderColor={theme.colors.brand.primary[600]}
-          style={{
-            height: "28px",
-            display: "flex",
-            alignItems: "center",
-            gap: "4px",
-            padding: "0 8px",
-            width: "fit-content",
-            borderRadius: "4px",
-          }}
-        />
-      </S.RecurrenceContainer>
+      {!variation.value && (
+        <S.RecurrenceContainer>
+          <Icon
+            name={isSubscription ? "event_repeat" : "event_available"}
+            size="25px"
+            color={theme.colors.brand.primary[600]}
+          />
+          <S.RecurrenceTitle>
+            {isSubscription
+              ? t("monthlyContribution")
+              : t("uniqueContribution")}
+          </S.RecurrenceTitle>
+          <S.RecurrenceButton
+            outline
+            text={t("recurrenceButton")}
+            onClick={() => onSubscriptionClick()}
+            textColor={theme.colors.brand.primary[600]}
+            borderColor={theme.colors.brand.primary[600]}
+            style={{
+              height: "28px",
+              display: "flex",
+              alignItems: "center",
+              gap: "4px",
+              padding: "0 8px",
+              width: "fit-content",
+              borderRadius: "4px",
+            }}
+          />
+        </S.RecurrenceContainer>
+      )}
 
       <S.PaymentMethods>
         <S.PaymentMethodsTitle>{t("payment")}</S.PaymentMethodsTitle>
@@ -244,7 +237,6 @@ export default function FiatSection() {
           items={CardAccordionItems}
         />
       </S.PaymentMethods>
-      <TrustSeal />
     </div>
   ) : (
     <Loader />

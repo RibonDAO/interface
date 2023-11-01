@@ -435,6 +435,7 @@
     },
     "recurrencePage": {
       "title": "Recorrência",
+      "headline": "Com pouco você muda a vida de alguém",
       "donatingTo": "Doando para ",
       "recurrentDonationDescription": "Contribuir mensalmente",
       "uniqueDonationDescription": "Contribuir uma vez",
@@ -458,6 +459,7 @@
       "thankForContribute": "Obrigado por contribuir!",
       "thankForContributeDescription": "Você receberá seu próximo ticket grátis dentro de algumas horas.",
       "changeCurrency": "Mudar moeda",
+      "headline": "Com pouco você muda a vida de alguém",
       "back": "Voltar",
       "monthlyContribution": "Contribuindo mensalmente",
       "uniqueContribution": "Contribuindo uma vez",

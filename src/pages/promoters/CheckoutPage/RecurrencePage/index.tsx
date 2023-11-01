@@ -5,6 +5,7 @@ import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useModal } from "hooks/modalHooks/useModal";
 import { useLocationSearch } from "hooks/useLocationSearch";
 import useNavigation from "hooks/useNavigation";
+import { useExperiment } from "@growthbook/growthbook-react";
 import usePayable from "hooks/usePayable";
 import usePaymentParams from "hooks/usePaymentParams";
 import { logEvent } from "lib/events";
@@ -12,13 +13,14 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useLanguage } from "hooks/useLanguage";
+import CheckoutArtImage from "assets/images/checkout-art.png";
 import ButtonSelectorTemplate from "../Components/ButtonSelectorTemplate";
 import Header from "../Components/Header";
 import PriceSelection from "../Components/PriceSelection";
 import { PriceSelectionLoader } from "../Components/PriceSelection/loader";
 import Loader from "../FiatSection/loader";
-import * as S from "./styles";
 import TrustSeal from "../Components/TrustSeal";
+import * as S from "./styles";
 
 function RecurrencePage(): JSX.Element {
   const { t } = useTranslation("translation", {
@@ -35,6 +37,11 @@ function RecurrencePage(): JSX.Element {
   const hasAllParams = Boolean(target && targetId && offer && currency);
   const currentPayable = usePayable(target, targetId);
   const { navigateTo } = useNavigation();
+
+  const variation = useExperiment({
+    key: "payment-form",
+    variations: [false, true],
+  });
 
   const {
     offers,
@@ -142,29 +149,42 @@ function RecurrencePage(): JSX.Element {
   }, [currentPayable]);
 
   return currentPayable && hasAllParams ? (
-    <S.Container>
-      <Header />
-      <div>
-        <S.Title>
-          {t("donatingTo")}
-          <S.PayableName>{currentPayable?.name}</S.PayableName>
-        </S.Title>
-
-        {currentOffer ? (
-          <PriceSelection
-            currentOffer={currentOffer}
-            onEditClick={() => showOffersModal()}
-          />
-        ) : (
-          <PriceSelectionLoader />
+    <S.MainContainer>
+      <S.Container>
+        <Header />
+        {variation.value && (
+          <S.MobileImageContainer>
+            <S.Image src={CheckoutArtImage} />
+          </S.MobileImageContainer>
         )}
-      </div>
-      <S.PaymentTypes>
-        <S.PaymentTypesTitle>{t("title")}</S.PaymentTypesTitle>
-        <LinkAccordion items={linksItems} />
-      </S.PaymentTypes>
-      <TrustSeal />
-    </S.Container>
+        <div>
+          <S.Title>
+            {t("donatingTo")}
+            <S.PayableName>{currentPayable?.name}</S.PayableName>
+          </S.Title>
+          {variation.value && <S.Headline>{t("headline")}</S.Headline>}
+
+          {currentOffer ? (
+            <PriceSelection
+              currentOffer={currentOffer}
+              onEditClick={() => showOffersModal()}
+            />
+          ) : (
+            <PriceSelectionLoader />
+          )}
+        </div>
+        <S.PaymentTypes>
+          <S.PaymentTypesTitle>{t("title")}</S.PaymentTypesTitle>
+          <LinkAccordion items={linksItems} />
+        </S.PaymentTypes>
+        {!variation.value && <TrustSeal />}
+      </S.Container>
+      {variation.value && (
+        <S.ImageContainer>
+          <S.Image src={CheckoutArtImage} />
+        </S.ImageContainer>
+      )}
+    </S.MainContainer>
   ) : (
     <Loader />
   );

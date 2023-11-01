@@ -1,6 +1,7 @@
 import { Currencies, Offer } from "@ribon.io/shared/types";
 import { useTranslation } from "react-i18next";
 import EditIcon from "assets/icons/edit-icon.svg";
+import { useExperiment } from "@growthbook/growthbook-react";
 import { useCardGivingFees } from "@ribon.io/shared/hooks";
 import { GivingFeesLoader } from "./loader";
 import * as S from "./styles";
@@ -22,6 +23,11 @@ function PriceSelection({
 }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.checkoutPage",
+  });
+
+  const variation = useExperiment({
+    key: "payment-form",
+    variations: [false, true],
   });
 
   const { cardGivingFees } = useCardGivingFees(
@@ -60,7 +66,7 @@ function PriceSelection({
           </S.EditButton>
         )}
       </S.Offer>
-      {!isCrypto && renderGivingFees()}
+      {!isCrypto && !variation.value && renderGivingFees()}
       {isCrypto && <S.SmallTextInfo>{t("noRefundText")}</S.SmallTextInfo>}
     </S.Container>
   );

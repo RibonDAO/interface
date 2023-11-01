@@ -7,6 +7,10 @@ import {
   defaultBodySmSemibold,
   defaultBodyXsSemibold,
 } from "styles/typography/default";
+import {
+  stylizedDisplayLg,
+  stylizedDisplayMd,
+} from "styles/typography/stylized";
 
 export const Container = styled.div``;
 
@@ -17,6 +21,33 @@ export const Title = styled.h1`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     ${defaultBodyMdMedium}
+  }
+`;
+
+export const MobileImageContainer = styled.div`
+  margin-bottom: ${({ theme }) => theme.spacing(24)};
+  margin-left: calc(-1 * ${({ theme }) => theme.spacing(24)});
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    display: none;
+  }
+`;
+
+export const Image = styled.img`
+  width: 100%;
+  height: auto;
+`;
+
+export const Headline = styled.h1`
+  ${stylizedDisplayMd}
+
+  margin-block: ${({ theme }) => theme.spacing(16)};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    ${stylizedDisplayLg}
   }
 `;
 

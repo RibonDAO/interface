@@ -161,7 +161,23 @@
         "impactOneLife": "Impacte 1 pessoa",
         "impactDescription": "com {{value}}",
         "checkboxText": "Aceito receber e-mails com informações sobre minhas doações"
+      },
+      "insertEmailAccountPage": {
+        "title": "Você está doando",
+        "emailLabel": "E-mail",
+        "confirmText": "Continuar",
+        "emailPlaceholder": "Seu e-mail"
       }
+    },
+    "extraTicketPage": {
+      "title": "Você ganhou um ticket extra",
+      "description": "Valide sua conta clicando no link enviado para {{email}} e receba seu ticket extra",
+      "buttonText": "Validar depois"
+    },
+    "receiveExtraTicketPage": {
+      "title": "Validar sua conta trouxe você aqui",
+      "description": "Seu tickey extra está disponível",
+      "buttonText": "Receber meu ticket"
     }
   },
   "layouts": {

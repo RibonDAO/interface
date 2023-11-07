@@ -452,6 +452,7 @@
     },
     "recurrencePage": {
       "title": "Recurrence",
+      "headline": "With little, you can change someone's life",
       "donatingTo": "Donating to ",
       "recurrentDonationDescription": "Contribute monthly",
       "uniqueDonationDescription": "Contribute once",
@@ -474,6 +475,7 @@
       "thankForContribute": "Thank you for contribute!",
       "thankForContributeDescription": "You will receive your next free ticket within a few hours.",
       "changeCurrency": "Change currency",
+      "headline": "With little, you can change someone's life",
       "back": "Back",
       "monthlyContribution": "Contributing monthly",
       "uniqueContribution": "Contributing once",

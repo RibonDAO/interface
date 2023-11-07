@@ -25,11 +25,11 @@ export const TextContainer = styled.div`
 export const Container = styled.div`
   width: 100%;
   height: 100vh;
+  padding: ${({ theme }) => theme.spacing(16)};
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  padding: ${({ theme }) => theme.spacing(16)};
 `;
 
 export const FilledButton = styled.button`
@@ -49,20 +49,20 @@ export const BackgroundShapes = styled.img`
 `;
 
 export const ImageBackground = styled.div`
+  rotate: 180deg;
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  rotate: 180deg;
 `;
 
 export const MainImage = styled.img`
   width: 150%;
   height: 100%;
-  object-fit: cover;
   border-radius: 8px;
   z-index: 1;
+  object-fit: cover;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 200%;

@@ -96,6 +96,6 @@ export const InputLabel = styled.label`
   ${defaultBodySmMedium}
 
   margin-bottom: ${({ theme }) => theme.spacing(4)};
-  color: ${({ theme }) => theme.colors.neutral[700]};
   align-self: flex-start;
+  color: ${({ theme }) => theme.colors.neutral[700]};
 `;

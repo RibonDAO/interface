@@ -17,6 +17,7 @@ import CausesProvider from "contexts/causesContext";
 import NonProfitsProvider from "contexts/nonProfitsContext";
 import DebugEventsView from "config/debugEventsView";
 import { debugEnabled } from "config/debugEventsView/helpers";
+import AuthenticationProvider from "contexts/authenticationContext";
 import CauseDonationProvider from "contexts/causeDonationContext";
 import CauseContributionProvider from "contexts/causeContributionContext";
 import UserLevelProvider from "contexts/userLevelContext";
@@ -49,30 +50,32 @@ function App() {
           <LoadingOverlayProvider>
             <ModalProvider>
               <GlobalStyle />
-              <BrowserRouter>
-                {debugEnabled() && <DebugEventsView />}
-                <ToastContextProvider>
-                  <CurrentUserProvider>
-                    <Suspense fallback={<div />}>
-                      <TasksProvider>
-                        <NonProfitsProvider>
-                          <CausesProvider>
-                            <CauseDonationProvider>
-                              <CauseContributionProvider>
-                                <UserLevelProvider>
-                                  <RoutesComponent />
-                                  <Zendesk />
-                                </UserLevelProvider>
-                              </CauseContributionProvider>
-                            </CauseDonationProvider>
-                          </CausesProvider>
-                        </NonProfitsProvider>
-                      </TasksProvider>
-                    </Suspense>
-                  </CurrentUserProvider>
-                  <Toast />
-                </ToastContextProvider>
-              </BrowserRouter>
+              <AuthenticationProvider>
+                <BrowserRouter>
+                  {debugEnabled() && <DebugEventsView />}
+                  <ToastContextProvider>
+                    <CurrentUserProvider>
+                      <Suspense fallback={<div />}>
+                        <TasksProvider>
+                          <NonProfitsProvider>
+                            <CausesProvider>
+                              <CauseDonationProvider>
+                                <CauseContributionProvider>
+                                  <UserLevelProvider>
+                                    <RoutesComponent />
+                                    <Zendesk />
+                                  </UserLevelProvider>
+                                </CauseContributionProvider>
+                              </CauseDonationProvider>
+                            </CausesProvider>
+                          </NonProfitsProvider>
+                        </TasksProvider>
+                      </Suspense>
+                    </CurrentUserProvider>
+                    <Toast />
+                  </ToastContextProvider>
+                </BrowserRouter>
+              </AuthenticationProvider>
             </ModalProvider>
           </LoadingOverlayProvider>
         </ThemeProvider>

@@ -7,8 +7,7 @@ import ReceiveExtraTicketPage from "pages/donations/ReceiveExtraTicketPage";
 
 function AuthPage(): JSX.Element {
   const { search } = useLocation();
-  const { signInByAuthToken, loading } =
-    useAuthentication();
+  const { signInByAuthToken, loading } = useAuthentication();
 
   useEffect(() => {
     async function authenticate() {
@@ -18,7 +17,7 @@ function AuthPage(): JSX.Element {
       if (id && authToken) {
         signInByAuthToken({
           authToken,
-          id
+          id,
         });
       }
     }
@@ -26,7 +25,7 @@ function AuthPage(): JSX.Element {
     authenticate();
   }, []);
 
-  return (loading) ? <Loader /> : <ReceiveExtraTicketPage/>;
+  return loading ? <Loader /> : <ReceiveExtraTicketPage />;
 }
 
 export default AuthPage;

@@ -71,7 +71,6 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
-
       <Route path="/causes" exact>
         <Suspense fallback={<div />}>
           <WalletProvider>

@@ -1,6 +1,10 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { REFRESH_TOKEN_KEY, ACCESS_TOKEN_KEY } from "utils/constants";
-import { getCookiesItem, removeCookiesItem, setCookiesItem } from "@ribon.io/shared/lib";
+import {
+  getCookiesItem,
+  removeCookiesItem,
+  setCookiesItem,
+} from "@ribon.io/shared/lib";
 import authApi from "services/api/authApi";
 import { logError } from "services/crashReport";
 
@@ -22,7 +26,9 @@ export interface IAuthenticationContext {
   loading: boolean;
   logout: () => void;
   signInByAuthToken: (signInByAuthTokenProps: authTokenProps) => void;
-  sendAuthenticationEmail: (sendAuthenticationEmailProps: authenticationEmailProps) => void;
+  sendAuthenticationEmail: (
+    sendAuthenticationEmailProps: authenticationEmailProps,
+  ) => void;
 }
 
 export type Props = {
@@ -34,7 +40,9 @@ export const AuthenticationContext = createContext<IAuthenticationContext>(
 );
 
 function AuthenticationProvider({ children }: Props) {
-  const [accessToken, setAccessToken] = useState(getCookiesItem(ACCESS_TOKEN_KEY));
+  const [accessToken, setAccessToken] = useState(
+    getCookiesItem(ACCESS_TOKEN_KEY),
+  );
   const [loading, setLoading] = useState(false);
 
   async function signInByAuthToken({

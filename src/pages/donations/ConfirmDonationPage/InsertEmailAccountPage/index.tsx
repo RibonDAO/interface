@@ -153,9 +153,3 @@ function InsertEmailAccountPage(): JSX.Element {
 }
 
 export default InsertEmailAccountPage;
-
-
-yarn prettier --write src/utils/constants.ts
-yarn prettier --write src/config/routes/index.tsx
-yarn prettier --write src/contexts/authenticationContext/index.tsx
-yarn prettier --write src/pages/users/AuthPage/index.tsx

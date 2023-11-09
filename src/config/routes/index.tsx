@@ -42,6 +42,7 @@ import PixInstructionsPage from "pages/promoters/CheckoutPage/Components/PixInst
 import InsertEmailAccountPage from "pages/donations/ConfirmDonationPage/InsertEmailAccountPage";
 import ExtraTicketPage from "pages/donations/ExtraTicketPage";
 import ReceiveExtraTicketPage from "pages/donations/ReceiveExtraTicketPage";
+import AuthPage from "pages/users/AuthPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -63,6 +64,13 @@ function RoutesComponent(): JSX.Element {
           <LoadingPage />
         </Suspense>
       </Route>
+
+      <Route path="/auth">
+        <Suspense fallback={<div />}>
+          <AuthPage />
+        </Suspense>
+      </Route>
+
 
       <Route path="/causes" exact>
         <Suspense fallback={<div />}>

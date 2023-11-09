@@ -119,8 +119,8 @@ export const CheckboxContainer = styled.div`
   margin-top: ${({ theme }) => theme.spacing(48)};
   margin-bottom: ${({ theme }) => theme.spacing(12)};
   padding: ${({ theme }) => theme.spacing(12)};
-  border-radius: 4px;
   border: 1px solid ${({ theme }) => theme.colors.neutral[300]};
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;

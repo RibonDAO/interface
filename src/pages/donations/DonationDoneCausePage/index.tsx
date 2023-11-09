@@ -257,6 +257,7 @@ function DonationDoneCausePage(): JSX.Element {
       <S.ContentContainer>
         {renderImpactValue()}
         {hasCheckbox && (
+          <S.CheckboxContainer>
           <S.CheckboxLabel>
             <S.Checkbox
               type="checkbox"
@@ -266,6 +267,7 @@ function DonationDoneCausePage(): JSX.Element {
             />
             {t("checkboxText")}
           </S.CheckboxLabel>
+          </S.CheckboxContainer>
         )}
         {hasButton && (
           <S.FinishButton

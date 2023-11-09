@@ -115,14 +115,18 @@ export const ImpactDescription = styled.p<{
 `;
 
 export const CheckboxContainer = styled.div`
+  width: 100%;
+  margin-top: ${({ theme }) => theme.spacing(48)};
+  margin-bottom: ${({ theme }) => theme.spacing(12)};
+  padding: ${({ theme }) => theme.spacing(12)};
+  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.colors.neutral[300]};
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 export const CheckboxLabel = styled.label`
-  margin-top: ${({ theme }) => theme.spacing(32)};
-  margin-bottom: ${({ theme }) => theme.spacing(8)};
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;

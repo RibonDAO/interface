@@ -60,8 +60,10 @@ import UserLevelProvider, {
   IUserLevelContext,
   UserLevelContext,
 } from "contexts/userLevelContext";
-import AuthenticationProvider, { AuthenticationContext, IAuthenticationContext } from "contexts/authenticationContext";
-
+import AuthenticationProvider, {
+  AuthenticationContext,
+  IAuthenticationContext,
+} from "contexts/authenticationContext";
 
 export interface RenderWithContextResult {
   component: RenderResult;

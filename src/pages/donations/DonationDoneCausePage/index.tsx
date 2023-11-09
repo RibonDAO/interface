@@ -258,15 +258,15 @@ function DonationDoneCausePage(): JSX.Element {
         {renderImpactValue()}
         {hasCheckbox && (
           <S.CheckboxContainer>
-          <S.CheckboxLabel>
-            <S.Checkbox
-              type="checkbox"
-              onChange={(e) =>
-                setAllowedEmailMarketing(e.currentTarget.checked)
-              }
-            />
-            {t("checkboxText")}
-          </S.CheckboxLabel>
+            <S.CheckboxLabel>
+              <S.Checkbox
+                type="checkbox"
+                onChange={(e) =>
+                  setAllowedEmailMarketing(e.currentTarget.checked)
+                }
+              />
+              {t("checkboxText")}
+            </S.CheckboxLabel>
           </S.CheckboxContainer>
         )}
         {hasButton && (

@@ -102,9 +102,6 @@ function InsertEmailAccountPage(): JSX.Element {
 
   useAvoidBackButton();
 
-  yarn prettier --write src/config/testUtils/renders.tsx
-  yarn prettier --write src/pages/donations/DonationDoneCausePage/index.tsx
-
   return (
     <>
       {nonProfit && (

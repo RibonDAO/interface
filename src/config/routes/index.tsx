@@ -39,6 +39,7 @@ import ContributionCanceledPage from "pages/promoters/ContributionCanceledPage";
 import ExperimentRouteComponent from "services/growthbook/ExperimentRouteComponent";
 import CampaignPage from "pages/campaigns/CampaignPage";
 import PixInstructionsPage from "pages/promoters/CheckoutPage/Components/PixInstructionsPage";
+import ExpiredLinkPage from "pages/users/ExpiredLinkPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -308,6 +309,12 @@ function RoutesComponent(): JSX.Element {
       <Route path="/delete_account" exact>
         <Suspense fallback={<div />}>
           <DeleteAccountPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/expired_link" exact>
+        <Suspense fallback={<div />}>
+          <ExpiredLinkPage />
         </Suspense>
       </Route>
 

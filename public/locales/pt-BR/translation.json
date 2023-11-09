@@ -635,6 +635,12 @@
     "accountDeleted": "Conta excluída",
     "accountDeletedText": "Para entrar novamente, você deverá criar uma nova conta sem acesso aos seus dados de impacto anteriores"
   },
+  "expiredLinkPage": {
+    "loading": "Carregando...",
+    "invalidLink": "Link inválido",
+    "expiredLink": "This link has expired",
+    "expiredLinkText": "Please, try signing in or creating a new account with your e-mail to get a new account validation link"
+  },
   "downloadAppModalTemplate": {
     "button": "Baixar o app",
     "title": "Baixou, ganhou!",

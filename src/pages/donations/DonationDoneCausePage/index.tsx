@@ -4,6 +4,7 @@ import {
   useOffers,
   useStatistics,
   useFirstAccessToIntegration,
+  // useUserConfig,
 } from "@ribon.io/shared/hooks";
 import VolunteerActivismPink from "assets/icons/volunteer-activism-pink.svg";
 import VolunteerActivismYellow from "assets/icons/volunteer-activism-yellow.svg";
@@ -37,8 +38,9 @@ function DonationDoneCausePage(): JSX.Element {
     offerId?: number;
     cause: Cause;
     hasButton?: boolean;
+    hasCheckbox?: boolean;
     nonProfit?: NonProfit;
-    flow?: "cause" | "nonProfit";
+    flow?: "cause" | "nonProfit" | "magicLink";
     from?: string;
   };
 
@@ -52,12 +54,14 @@ function DonationDoneCausePage(): JSX.Element {
 
   const currency = Currencies.USD;
   const {
-    state: { nonProfit, offerId, cause, hasButton, flow, from },
+    state: { nonProfit, offerId, cause, hasButton, flow, from, hasCheckbox },
   } = useLocation<LocationState>();
   const { getOffer } = useOffers(currency);
   const [offer, setOffer] = useState<Offer>();
+  const [allowedEmailMarketing, setAllowedEmailMarketing] = useState(false);
   const { currentUser } = useCurrentUser();
   const { registerAction } = useTasksContext();
+  // const { updateUserConfig } = useUserConfig();
   const {
     userStatistics,
     refetch: refetchStatistics,
@@ -115,7 +119,6 @@ function DonationDoneCausePage(): JSX.Element {
     [offerId],
   );
   function navigate() {
-    clearTimeout(pageTimeout);
     refetch();
     if (flow === "cause" && hasButton) {
       registerAction("contribution_done_page_view");
@@ -168,6 +171,12 @@ function DonationDoneCausePage(): JSX.Element {
         });
       }
     }
+    if (allowedEmailMarketing) {
+      // updateUserConfig(user.id, { allowedEmailMarketing });
+    }
+    if (flow === "magicLink") {
+      navigateTo("/extra-ticket");
+    }
   }
 
   useEffect(() => {
@@ -175,6 +184,9 @@ function DonationDoneCausePage(): JSX.Element {
       donationInfos(offerId);
     }
     setLocalStorageItem("HAS_DONATED", "true");
+  }, [currentUser, userStatistics]);
+
+  useEffect(() => {
     const timeout = setTimeout(() => {
       navigate();
     }, 2500);
@@ -183,7 +195,13 @@ function DonationDoneCausePage(): JSX.Element {
     return () => {
       clearTimeout(timeout);
     };
-  }, [currentUser, userStatistics]);
+  }, []);
+
+  useEffect(() => {
+    if (hasButton) {
+      clearTimeout(pageTimeout);
+    }
+  }, [pageTimeout]);
 
   const colorTheme = getThemeByFlow(flow || "free");
 
@@ -237,6 +255,15 @@ function DonationDoneCausePage(): JSX.Element {
         />
       </S.ImageContainer>
       {renderImpactValue()}
+      {hasCheckbox && (
+        <S.CheckboxLabel>
+          <S.Checkbox
+            type="checkbox"
+            onChange={(e) => setAllowedEmailMarketing(e.currentTarget.checked)}
+          />
+          {t("checkboxText")}
+        </S.CheckboxLabel>
+      )}
       {hasButton && (
         <S.FinishButton
           text={t("button")}

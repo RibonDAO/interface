@@ -1,17 +1,18 @@
 import { useTranslation } from "react-i18next";
 import ticketImage from "assets/images/ticket-ribon.svg";
 import BackgroundShapes from "assets/images/background-shapes.svg";
-import useNavigation from "hooks/useNavigation";
+import { INTEGRATION_AUTH_ID } from "utils/constants";
+import { useHistory } from "react-router-dom";
 import * as S from "./styles";
 
 function ReceiveExtraTicketPage(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.receiveExtraTicketPage",
   });
-  const { navigateTo } = useNavigation();
+  const history = useHistory();
 
   const handleClick = () => {
-    navigateTo("/causes");
+    history.push(`/receive-ticket?integrationId=${INTEGRATION_AUTH_ID}`);
   };
 
   return (

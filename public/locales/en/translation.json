@@ -106,7 +106,8 @@
       "impactDescription": "with {{value}}",
       "titleSecondLine": "You have donated to",
       "youDonatedText": "You donated",
-      "button": "Finish"
+      "button": "Finish",
+      "checkboxText": "I want to receive information about my donations by e-mail"
     },
     "menu": {
       "impactPageTitle": "Impact",

@@ -25,7 +25,7 @@ function ExtraTicketPage(): JSX.Element {
 
   const handleButtonPress = () => {
     navigateTo({
-      pathname: "receive-extra-ticket",
+      pathname: "/causes",
     });
   };
 

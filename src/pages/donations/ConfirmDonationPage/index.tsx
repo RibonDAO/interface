@@ -69,7 +69,7 @@ function ConfirmDonationPage(): JSX.Element {
       ) : signedIn ? (
         <SignedInSection nonProfit={nonProfit} onContinue={onContinue} />
       ) : (
-        <SignInSection nonProfit={nonProfit} onContinue={onContinue} />
+        <SignInSection nonProfit={nonProfit} />
       )}
     </S.Container>
   );

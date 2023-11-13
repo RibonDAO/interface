@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { NonProfit } from "@ribon.io/shared/types";
 import Button from "components/atomics/buttons/Button";
 import { useTranslation } from "react-i18next";
@@ -11,24 +11,59 @@ import GoogleIcon from "assets/icons/google-icon.svg";
 import useNavigation from "hooks/useNavigation";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useAuthentication } from "contexts/authenticationContext";
+import AppleLogin from "react-apple-login";
+import { APPLE_CLIENT_ID, APPLE_REDIRECT_URL } from "utils/constants";
+import useUserDonation from "hooks/useUserDonation";
 import * as S from "./styles";
+import DonatingSection from "../DonatingSection";
 
 type Props = {
   nonProfit: NonProfit;
-  onContinue: (email: string, allowedEmailMarketing?: boolean) => void;
 };
-function SignInSection({ nonProfit, onContinue }: Props): JSX.Element {
+function SignInSection({ nonProfit }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.confirmDonationPage.signInSection",
   });
 
   const { formattedImpactText } = useFormattedImpactText();
-  const [allowedEmailMarketing, setAllowedEmailMarketing] = useState(false);
   const { navigateTo } = useNavigation();
-  const { signInWithGoogle } = useAuthentication();
+  const { signInWithGoogle, signInWithApple } = useAuthentication();
+
+  const [donationInProgress, setDonationInProgress] = useState(false);
+  const [donationSucceeded, setDonationSucceeded] = useState(false);
+
+  const { handleDonate } = useUserDonation();
+
+  const onContinue = async () => {
+    setDonationInProgress(true);
+    await handleDonate({
+      nonProfit,
+      onSuccess: () => setDonationSucceeded(true),
+      onError: () => {
+        setDonationSucceeded(false);
+      },
+    });
+  };
+
+  const onAnimationEnd = useCallback(() => {
+    if (donationSucceeded) {
+      logEvent("ticketDonated_end", {
+        nonProfitId: nonProfit.id,
+      });
+      navigateTo({
+        pathname: "/donation-done-cause",
+        state: {
+          cause: nonProfit.cause,
+          nonProfit,
+          hasButton: true,
+          flow: "login",
+        },
+      });
+    }
+  }, [donationSucceeded]);
 
   useEffect(() => {
-    logEvent("P12_view", {
+    logEvent("P27_view", {
       nonProfitId: nonProfit.id,
     });
   }, []);
@@ -37,19 +72,41 @@ function SignInSection({ nonProfit, onContinue }: Props): JSX.Element {
     formattedImpactText(nonProfit, undefined, false, true);
 
   const handleMagicLink = () => {
+    logEvent("authEmailBtn_click", {
+      from: "donation_flow",
+    });
     navigateTo({
-      pathname: "/donations/confirm-donation/magic-link",
-      state: { nonProfit, allowedEmailMarketing },
+      pathname: `/donations/insert-email?nonProfitId=${nonProfit.id}`,
     });
   };
 
-  const handleGoogle = useGoogleLogin({
-    onSuccess: (tokenResponse) => {
-      signInWithGoogle(tokenResponse);
+  const loginGoogle = useGoogleLogin({
+    onSuccess: async (tokenResponse: any) => {
+      await signInWithGoogle(tokenResponse);
+      onContinue();
     },
   });
 
-  return (
+  function handleGoogle() {
+    logEvent("authGoogleBtn_click", {
+      from: "donation_flow",
+    });
+    loginGoogle();
+  }
+
+  const handleApple = async (response: any) => {
+    logEvent("authAppleBtn_click", {
+      from: "donation_flow",
+    });
+    if (!response.error) {
+      await signInWithApple(response);
+      onContinue();
+    }
+  };
+
+  return donationInProgress ? (
+    <DonatingSection nonProfit={nonProfit} onAnimationEnd={onAnimationEnd} />
+  ) : (
     <S.Container>
       <S.ImageContainer>
         <S.ImageBackground>
@@ -69,12 +126,23 @@ function SignInSection({ nonProfit, onContinue }: Props): JSX.Element {
             leftIcon={GoogleIcon}
             onClick={() => handleGoogle()}
           />
-          <Button
-            text={t("apple")}
-            textColor={theme.colors.neutral[600]}
-            backgroundColor="transparent"
-            borderColor={theme.colors.neutral[300]}
-            leftIcon={AppleIcon}
+          <AppleLogin
+            clientId={APPLE_CLIENT_ID}
+            redirectURI={APPLE_REDIRECT_URL}
+            usePopup
+            callback={handleApple}
+            responseMode="query"
+            scope="name email"
+            render={(renderProps) => (
+              <Button
+                text={t("apple")}
+                textColor={theme.colors.neutral[600]}
+                backgroundColor="transparent"
+                borderColor={theme.colors.neutral[300]}
+                leftIcon={AppleIcon}
+                onClick={renderProps.onClick}
+              />
+            )}
           />
           <Button
             text={t("email")}
@@ -84,13 +152,6 @@ function SignInSection({ nonProfit, onContinue }: Props): JSX.Element {
             onClick={() => handleMagicLink()}
           />
         </S.ButtonContainer>
-        <S.CheckboxLabel>
-          <S.Checkbox
-            type="checkbox"
-            onChange={(e) => setAllowedEmailMarketing(e.currentTarget.checked)}
-          />
-          {t("checkboxText")}
-        </S.CheckboxLabel>
 
         <S.FooterText>
           {t("footerStartText")}{" "}

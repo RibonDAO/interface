@@ -38,7 +38,7 @@ function DonationDoneCausePage(): JSX.Element {
     cause: Cause;
     hasButton?: boolean;
     nonProfit?: NonProfit;
-    flow?: "cause" | "nonProfit";
+    flow?: "cause" | "nonProfit" | "login";
     from?: string;
   };
 
@@ -132,6 +132,7 @@ function DonationDoneCausePage(): JSX.Element {
         state: { nonProfit, cause, from: "donation-done-cause" },
       });
     }
+
     if (flow === "nonProfit") {
       registerAction("contribution_done_page_view");
       logEvent("ngoGave_end", {
@@ -148,7 +149,7 @@ function DonationDoneCausePage(): JSX.Element {
         state: { nonProfit, cause, from: "donation-done-cause" },
       });
     }
-    if (!hasButton) {
+    if (!hasButton || flow === "login") {
       registerAction("donation_done_page_view");
 
       if (shouldShowAppDownload()) {

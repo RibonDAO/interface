@@ -1,14 +1,15 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { REFRESH_TOKEN_KEY, TOKEN_KEY } from "utils/constants";
+import { REFRESH_TOKEN_KEY, ACCESS_TOKEN_KEY } from "utils/constants";
 import {
   getCookiesItem,
   removeCookiesItem,
   setCookiesItem,
 } from "@ribon.io/shared/lib";
-import authApi from "services/api/authApi";
+import { userAuthenticationApi } from "@ribon.io/shared/services";
 
 export interface IAuthenticationContext {
   signInWithGoogle: (response: any) => void;
+  signInWithApple: (response: any) => void;
   accessToken: string | null;
   isAuthorized: (email: string) => boolean;
   user: any | undefined;
@@ -27,7 +28,9 @@ export const AuthenticationContext = createContext<IAuthenticationContext>(
 
 function AuthenticationProvider({ children }: Props) {
   const [user, setUser] = useState<any>();
-  const [accessToken, setAccessToken] = useState(getCookiesItem(TOKEN_KEY));
+  const [accessToken, setAccessToken] = useState(
+    getCookiesItem(ACCESS_TOKEN_KEY),
+  );
 
   function isAuthorized(email: string) {
     if (!email) return false;
@@ -38,15 +41,31 @@ function AuthenticationProvider({ children }: Props) {
 
   async function signInWithGoogle(response: any) {
     try {
-      console.log("response", response);
-      const authResponse = await authApi.authenticate(
+      const authResponse = await userAuthenticationApi.postAuthenticate(
         response.access_token,
-        "google_oauth2",
+        "google_oauth2_access",
       );
 
       const token = authResponse.headers["access-token"];
       const refreshToken = authResponse.headers["refresh-token"];
-      setCookiesItem(TOKEN_KEY, token);
+      setCookiesItem(ACCESS_TOKEN_KEY, token);
+      setCookiesItem(REFRESH_TOKEN_KEY, refreshToken);
+      setAccessToken(token);
+    } catch (error) {
+      throw new Error("google auth error");
+    }
+  }
+
+  async function signInWithApple(response: any) {
+    try {
+      const authResponse = await userAuthenticationApi.postAuthenticate(
+        response.authorization.id_token,
+        "apple",
+      );
+
+      const token = authResponse.headers["access-token"];
+      const refreshToken = authResponse.headers["refresh-token"];
+      setCookiesItem(ACCESS_TOKEN_KEY, token);
       setCookiesItem(REFRESH_TOKEN_KEY, refreshToken);
       setAccessToken(token);
     } catch (error) {
@@ -55,7 +74,7 @@ function AuthenticationProvider({ children }: Props) {
   }
 
   function logout() {
-    removeCookiesItem(TOKEN_KEY);
+    removeCookiesItem(ACCESS_TOKEN_KEY);
     removeCookiesItem(REFRESH_TOKEN_KEY);
     setUser(undefined);
   }
@@ -75,6 +94,7 @@ function AuthenticationProvider({ children }: Props) {
       logout,
       accessToken,
       signInWithGoogle,
+      signInWithApple,
     }),
     [user, allowed, accessToken],
   );

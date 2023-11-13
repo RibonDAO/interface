@@ -4,45 +4,23 @@ import {
   expectLogEventToHaveBeenCalledWith,
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
-import { clickOn, fillByPlaceholder } from "config/testUtils";
-import { screen } from "@testing-library/react";
 import SignInSection from ".";
 
 describe("SignInSection", () => {
   const nonProfit = nonProfitFactory();
-  const onContinue = jest.fn();
 
   beforeEach(() => {
-    renderComponent(
-      <SignInSection nonProfit={nonProfit} onContinue={onContinue} />,
-    );
+    renderComponent(<SignInSection nonProfit={nonProfit} />);
   });
 
   it("should render without error", () => {
-    expectTextToBeInTheDocument("Enter your e-mail to donate");
+    expectTextToBeInTheDocument("Continue with google");
+    expectTextToBeInTheDocument("Continue with apple");
+    expectTextToBeInTheDocument("Continue with e-mail");
   });
 
-  it("enables the continue button when email is filled", () => {
-    fillByPlaceholder("E-mail", "test@ribon.io");
-
-    expect(screen.getByText("Continue")).toBeEnabled();
-  });
-
-  it("disables the continue button when email is invalid", () => {
-    fillByPlaceholder("E-mail", "invalid");
-
-    expect(screen.getByText("Continue")).toBeDisabled();
-  });
-
-  it("calls the on continue function when continue button is pressed", () => {
-    fillByPlaceholder("E-mail", "test@ribon.io");
-    clickOn("Continue");
-
-    expect(onContinue).toHaveBeenCalledWith("test@ribon.io", false);
-  });
-
-  it("logs the P12_view event", () => {
-    expectLogEventToHaveBeenCalledWith("P12_view", {
+  it("logs the P27_view event", () => {
+    expectLogEventToHaveBeenCalledWith("P27_view", {
       nonProfitId: nonProfit.id,
     });
   });

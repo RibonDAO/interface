@@ -190,6 +190,12 @@
         "cancelModalButton": "Cancelar",
         "successModalTitle": "Você saiu da sua conta",
         "successModalButton": "Fechar"
+      },
+      "deleteAccountItem": {
+        "cancelModalButton": "Cancelar",
+        "deleteAccountModalButton": "Receive e-mail",
+        "deleteAccountModalTitle": "Confirm account deletion",
+        "deleteAccountModalDescription": "You will be signed out automatically and receive an account deletion e-mail to proceed with your request."
       }
     },
     "walletLayout": {

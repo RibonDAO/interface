@@ -11,6 +11,7 @@ import useBreakpoint from "hooks/useBreakpoint";
 import { useCurrentUser } from "contexts/currentUserContext";
 import * as S from "./styles";
 import MonthlyContributionsItem from "../MonthlyContributionsItem";
+import DeleteAccountItem from "../DeleteAccountItem";
 
 type Props = {
   outline?: boolean;
@@ -71,6 +72,14 @@ function SettingsMenu({ outline = false }: Props) {
           <div>
             <Divider color={theme.colors.neutral[200]} />
             <LogoutItem />
+          </div>
+        ) : (
+          <div />
+        )}
+        {signedIn ? (
+          <div>
+            <Divider color={theme.colors.neutral[200]} />
+            <DeleteAccountItem />
           </div>
         ) : (
           <div />

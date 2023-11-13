@@ -1,21 +1,16 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { NonProfit } from "@ribon.io/shared/types";
-import Button from "components/atomics/buttons/Button";
 import { useTranslation } from "react-i18next";
-import { theme } from "@ribon.io/shared/styles";
 import BackgroundShapes from "assets/images/background-shapes.svg";
 import { logEvent } from "lib/events";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
-import AppleIcon from "assets/icons/apple-icon.svg";
-import GoogleIcon from "assets/icons/google-icon.svg";
 import useNavigation from "hooks/useNavigation";
-import { useGoogleLogin } from "@react-oauth/google";
-import { useAuthentication } from "contexts/authenticationContext";
-import AppleLogin from "react-apple-login";
-import { APPLE_CLIENT_ID, APPLE_REDIRECT_URL } from "utils/constants";
 import useUserDonation from "hooks/useUserDonation";
 import * as S from "./styles";
 import DonatingSection from "../DonatingSection";
+import GoogleSection from "./GoogleSection";
+import AppleSection from "./AppleSection";
+import MagicLinkSection from "./MagicLinkSection";
 
 type Props = {
   nonProfit: NonProfit;
@@ -27,7 +22,6 @@ function SignInSection({ nonProfit }: Props): JSX.Element {
 
   const { formattedImpactText } = useFormattedImpactText();
   const { navigateTo } = useNavigation();
-  const { signInWithGoogle, signInWithApple } = useAuthentication();
 
   const [donationInProgress, setDonationInProgress] = useState(false);
   const [donationSucceeded, setDonationSucceeded] = useState(false);
@@ -56,6 +50,7 @@ function SignInSection({ nonProfit }: Props): JSX.Element {
           cause: nonProfit.cause,
           nonProfit,
           hasButton: true,
+          hasCheckbox: true,
           flow: "login",
         },
       });
@@ -71,39 +66,6 @@ function SignInSection({ nonProfit }: Props): JSX.Element {
   const oldImpactFormat = () =>
     formattedImpactText(nonProfit, undefined, false, true);
 
-  const handleMagicLink = () => {
-    logEvent("authEmailBtn_click", {
-      from: "donation_flow",
-    });
-    navigateTo({
-      pathname: `/donations/insert-email?nonProfitId=${nonProfit.id}`,
-    });
-  };
-
-  const loginGoogle = useGoogleLogin({
-    onSuccess: async (tokenResponse: any) => {
-      await signInWithGoogle(tokenResponse);
-      onContinue();
-    },
-  });
-
-  function handleGoogle() {
-    logEvent("authGoogleBtn_click", {
-      from: "donation_flow",
-    });
-    loginGoogle();
-  }
-
-  const handleApple = async (response: any) => {
-    logEvent("authAppleBtn_click", {
-      from: "donation_flow",
-    });
-    if (!response.error) {
-      await signInWithApple(response);
-      onContinue();
-    }
-  };
-
   return donationInProgress ? (
     <DonatingSection nonProfit={nonProfit} onAnimationEnd={onAnimationEnd} />
   ) : (
@@ -118,39 +80,9 @@ function SignInSection({ nonProfit }: Props): JSX.Element {
         <S.Title>{t("title")}</S.Title>
         <S.Description>{oldImpactFormat()}</S.Description>
         <S.ButtonContainer>
-          <Button
-            text={t("google")}
-            textColor={theme.colors.neutral[600]}
-            backgroundColor="transparent"
-            borderColor={theme.colors.neutral[300]}
-            leftIcon={GoogleIcon}
-            onClick={() => handleGoogle()}
-          />
-          <AppleLogin
-            clientId={APPLE_CLIENT_ID}
-            redirectURI={APPLE_REDIRECT_URL}
-            usePopup
-            callback={handleApple}
-            responseMode="query"
-            scope="name email"
-            render={(renderProps) => (
-              <Button
-                text={t("apple")}
-                textColor={theme.colors.neutral[600]}
-                backgroundColor="transparent"
-                borderColor={theme.colors.neutral[300]}
-                leftIcon={AppleIcon}
-                onClick={renderProps.onClick}
-              />
-            )}
-          />
-          <Button
-            text={t("email")}
-            textColor={theme.colors.neutral[600]}
-            backgroundColor="transparent"
-            borderColor={theme.colors.neutral[300]}
-            onClick={() => handleMagicLink()}
-          />
+          <GoogleSection onContinue={onContinue} />
+          <AppleSection onContinue={onContinue} />
+          <MagicLinkSection nonProfit={nonProfit} />
         </S.ButtonContainer>
 
         <S.FooterText>

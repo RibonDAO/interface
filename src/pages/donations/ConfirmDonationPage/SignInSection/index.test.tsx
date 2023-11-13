@@ -4,7 +4,20 @@ import {
   expectLogEventToHaveBeenCalledWith,
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
+import { waitForPromises } from "config/testUtils";
 import SignInSection from ".";
+
+jest.mock("@react-oauth/google", () => ({
+  useGoogleLogin: () => {},
+}));
+
+jest.mock(
+  "./AppleSection",
+  () =>
+    function () {
+      return <div />;
+    },
+);
 
 describe("SignInSection", () => {
   const nonProfit = nonProfitFactory();
@@ -14,12 +27,11 @@ describe("SignInSection", () => {
   });
 
   it("should render without error", () => {
-    expectTextToBeInTheDocument("Continue with google");
-    expectTextToBeInTheDocument("Continue with apple");
-    expectTextToBeInTheDocument("Continue with e-mail");
+    expectTextToBeInTheDocument("you are donating");
   });
 
-  it("logs the P27_view event", () => {
+  it("logs the P27_view event", async () => {
+    waitForPromises();
     expectLogEventToHaveBeenCalledWith("P27_view", {
       nonProfitId: nonProfit.id,
     });

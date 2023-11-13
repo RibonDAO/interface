@@ -2,7 +2,7 @@ import { PLATFORM } from "utils/constants";
 import { logError } from "services/crashReport";
 import { setLocalStorageItem } from "lib/localStorage";
 import { SHOW_MENU } from "contexts/currentUserContext";
-import { useUserDonations } from "@ribon.io/shared/hooks";
+import { useUserV1Donations } from "@ribon.io/shared/hooks";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { NonProfit } from "@ribon.io/shared/types";
 import extractUrlValue from "lib/extractUrlValue";
@@ -16,7 +16,7 @@ type HandleDonateProps = {
   onError?: (error: any) => void;
 };
 function useUserDonation() {
-  const { donate } = useUserDonations();
+  const { donate } = useUserV1Donations();
   const integrationId = useIntegrationId();
   const { history, navigateTo } = useNavigation();
   const { destroyVoucher } = useVoucher();

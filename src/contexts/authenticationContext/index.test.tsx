@@ -9,18 +9,6 @@ jest.mock("firebase/auth", () => ({
   signOut: () => Promise.resolve(),
 }));
 
-jest.mock("hooks/apiHooks/useUsers", () => ({
-  __esModule: true,
-  default: () => ({
-    findOrCreateUser: () => ({
-      email: "user@ribon.io",
-      id: 1,
-      createdAt: "teste",
-      updatedAt: "teste",
-    }),
-  }),
-}));
-
 function AuthenticationTestPage() {
   useAuthentication();
   return <div>Authentication</div>;

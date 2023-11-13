@@ -6,16 +6,34 @@ import {
   setCookiesItem,
 } from "@ribon.io/shared/lib";
 import { userAuthenticationApi } from "@ribon.io/shared/services";
+import { logError } from "services/crashReport";
 
+type authTokenProps = {
+  authToken: string;
+  id: string;
+  onSuccess?: () => void;
+  onError?: () => void;
+};
+
+type authenticationEmailProps = {
+  email: string;
+  onSuccess?: () => void;
+  onError?: () => void;
+};
 export interface IAuthenticationContext {
+  accessToken: string | null;
+  loading: boolean;
+  logout: () => void;
   signInWithGoogle: (response: any) => void;
   signInWithApple: (response: any) => void;
-  accessToken: string | null;
   isAuthorized: (email: string) => boolean;
   user: any | undefined;
   setUser: (user: any) => void;
   allowed: boolean;
-  logout: () => void;
+  signInByAuthToken: (signInByAuthTokenProps: authTokenProps) => void;
+  sendAuthenticationEmail: (
+    sendAuthenticationEmailProps: authenticationEmailProps,
+  ) => void;
 }
 
 export type Props = {
@@ -31,6 +49,7 @@ function AuthenticationProvider({ children }: Props) {
   const [accessToken, setAccessToken] = useState(
     getCookiesItem(ACCESS_TOKEN_KEY),
   );
+  const [loading, setLoading] = useState(false);
 
   function isAuthorized(email: string) {
     if (!email) return false;
@@ -73,10 +92,54 @@ function AuthenticationProvider({ children }: Props) {
     }
   }
 
+  async function signInByAuthToken({
+    authToken,
+    id,
+    onSuccess,
+    onError,
+  }: authTokenProps) {
+    setLoading(true);
+    try {
+      const response = await userAuthenticationApi.postAuthorizeFromAuthToken(
+        authToken,
+        id,
+      );
+      const token = response.headers["access-token"];
+      const refreshToken = response.headers["refresh-token"];
+
+      setCookiesItem(ACCESS_TOKEN_KEY, token);
+      setCookiesItem(REFRESH_TOKEN_KEY, refreshToken);
+      setAccessToken(token);
+
+      if (onSuccess) onSuccess();
+    } catch (error: any) {
+      logError(error);
+      if (onError) onError();
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function sendAuthenticationEmail({
+    email,
+    onSuccess,
+    onError,
+  }: authenticationEmailProps) {
+    setLoading(true);
+    try {
+      await userAuthenticationApi.postSendAuthenticationEmail(email);
+      if (onSuccess) onSuccess();
+    } catch (error: any) {
+      logError(error);
+      if (onError) onError();
+    }
+  }
+
   function logout() {
     removeCookiesItem(ACCESS_TOKEN_KEY);
     removeCookiesItem(REFRESH_TOKEN_KEY);
     setUser(undefined);
+    // todo: navigate to public page
   }
 
   useEffect(() => {
@@ -95,6 +158,9 @@ function AuthenticationProvider({ children }: Props) {
       accessToken,
       signInWithGoogle,
       signInWithApple,
+      signInByAuthToken,
+      sendAuthenticationEmail,
+      loading,
     }),
     [user, allowed, accessToken],
   );

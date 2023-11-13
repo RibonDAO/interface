@@ -106,7 +106,8 @@
       "impactDescription": "com {{value}}",
       "titleSecondLine": "Você doou para",
       "youDonatedText": "Você doou",
-      "button": "Terminar"
+      "button": "Terminar",
+      "checkboxText": "Aceito receber e-mails com informações sobre minhas doações"
     },
     "menu": {
       "impactPageTitle": "Impacto",
@@ -164,10 +165,22 @@
         "impactDescription": "com {{value}}",
         "checkboxText": "Aceito receber e-mails com informações sobre minhas doações"
       },
-      "MagicLinkSection": {
-        "title": "Insira seu e-mail para doar",
-        "confirmText": "Continuar"
+      "insertEmailAccountPage": {
+        "title": "Você está doando",
+        "emailLabel": "E-mail",
+        "confirmText": "Continuar",
+        "emailPlaceholder": "Seu e-mail"
       }
+    },
+    "extraTicketPage": {
+      "title": "Você ganhou um ticket extra",
+      "description": "Valide sua conta clicando no link enviado para {{email}} e receba seu ticket extra",
+      "buttonText": "Validar depois"
+    },
+    "receiveExtraTicketPage": {
+      "title": "Validar sua conta trouxe você aqui",
+      "description": "Seu tickey extra está disponível",
+      "buttonText": "Receber meu ticket"
     }
   },
   "layouts": {
@@ -441,6 +454,7 @@
     },
     "recurrencePage": {
       "title": "Recorrência",
+      "headline": "Com pouco você muda a vida de alguém",
       "donatingTo": "Doando para ",
       "recurrentDonationDescription": "Contribuir mensalmente",
       "uniqueDonationDescription": "Contribuir uma vez",
@@ -464,6 +478,7 @@
       "thankForContribute": "Obrigado por contribuir!",
       "thankForContributeDescription": "Você receberá seu próximo ticket grátis dentro de algumas horas.",
       "changeCurrency": "Mudar moeda",
+      "headline": "Com pouco você muda a vida de alguém",
       "back": "Voltar",
       "monthlyContribution": "Contribuindo mensalmente",
       "uniqueContribution": "Contribuindo uma vez",

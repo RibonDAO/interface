@@ -106,7 +106,8 @@
       "impactDescription": "with {{value}}",
       "titleSecondLine": "You have donated to",
       "youDonatedText": "You donated",
-      "button": "Finish"
+      "button": "Finish",
+      "checkboxText": "I agree to receive emails with information about my donations"
     },
     "menu": {
       "impactPageTitle": "Impact",
@@ -164,10 +165,22 @@
         "impactDescription": "with {{value}}",
         "checkboxText": "I agree to receive emails with information about my donations"
       },
-      "MagicLinkSection": {
-        "title": "Enter your e-mail to donate",
-        "confirmText": "Continue"
+      "insertEmailAccountPage": {
+        "title": "Choose an e-mail to donate",
+        "emailLabel": "E-mail",
+        "confirmText": "Continue",
+        "emailPlaceholder": "Your e-mail"
       }
+    },
+    "extraTicketPage": {
+      "title": "You won an extra ticket",
+      "description": "Validate your account clicking the link sent to {{email}} and get your extra ticket.",
+      "buttonText": "Validate later"
+    },
+    "receiveExtraTicketPage": {
+      "title": "Validating your account brought you here",
+      "description": "Your donation ticket is available",
+      "buttonText": "Get my ticket"
     }
   },
   "layouts": {
@@ -442,6 +455,7 @@
     },
     "recurrencePage": {
       "title": "Recurrence",
+      "headline": "With little, you can change someone's life",
       "donatingTo": "Donating to ",
       "recurrentDonationDescription": "Contribute monthly",
       "uniqueDonationDescription": "Contribute once",
@@ -464,6 +478,7 @@
       "thankForContribute": "Thank you for contribute!",
       "thankForContributeDescription": "You will receive your next free ticket within a few hours.",
       "changeCurrency": "Change currency",
+      "headline": "With little, you can change someone's life",
       "back": "Back",
       "monthlyContribution": "Contributing monthly",
       "uniqueContribution": "Contributing once",

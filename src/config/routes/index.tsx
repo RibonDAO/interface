@@ -39,6 +39,10 @@ import ContributionCanceledPage from "pages/promoters/ContributionCanceledPage";
 import ExperimentRouteComponent from "services/growthbook/ExperimentRouteComponent";
 import CampaignPage from "pages/campaigns/CampaignPage";
 import PixInstructionsPage from "pages/promoters/CheckoutPage/Components/PixInstructionsPage";
+import InsertEmailAccountPage from "pages/donations/ConfirmDonationPage/InsertEmailAccountPage";
+import ExtraTicketPage from "pages/donations/ExtraTicketPage";
+import ReceiveExtraTicketPage from "pages/donations/ReceiveExtraTicketPage";
+import AuthPage from "pages/users/AuthPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -58,6 +62,12 @@ function RoutesComponent(): JSX.Element {
       <Route path="/" exact>
         <Suspense fallback={<div />}>
           <LoadingPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/auth">
+        <Suspense fallback={<div />}>
+          <AuthPage />
         </Suspense>
       </Route>
 
@@ -105,6 +115,25 @@ function RoutesComponent(): JSX.Element {
         <Suspense fallback={<div />}>
           <NavigationBackHeader />
           <ConfirmDonationPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/insert-email" exact>
+        <Suspense fallback={<div />}>
+          <NavigationBackHeader />
+          <InsertEmailAccountPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/extra-ticket" exact>
+        <Suspense fallback={<div />}>
+          <ExtraTicketPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/receive-extra-ticket" exact>
+        <Suspense fallback={<div />}>
+          <ReceiveExtraTicketPage />
         </Suspense>
       </Route>
 

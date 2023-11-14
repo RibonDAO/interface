@@ -38,6 +38,7 @@ describe("SignInSection", () => {
     waitForPromises();
     expectLogEventToHaveBeenCalledWith("P27_view", {
       nonProfitId: nonProfit.id,
+      from: "donation_flow",
     });
   });
 });

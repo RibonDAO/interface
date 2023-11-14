@@ -23,7 +23,11 @@ describe("SignInSection", () => {
   const nonProfit = nonProfitFactory();
 
   beforeEach(() => {
-    renderComponent(<SignInSection nonProfit={nonProfit} />);
+    renderComponent(<SignInSection />, {
+      locationState: {
+        nonProfit,
+      },
+    });
   });
 
   it("should render without error", () => {

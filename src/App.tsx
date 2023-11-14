@@ -51,14 +51,14 @@ function App() {
           <LoadingOverlayProvider>
             <ModalProvider>
               <GlobalStyle />
-              <GoogleOAuthProvider
-                clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID!}
-              >
-                <AuthenticationProvider>
-                  <BrowserRouter>
-                    {debugEnabled() && <DebugEventsView />}
-                    <ToastContextProvider>
-                      <CurrentUserProvider>
+              <BrowserRouter>
+                {debugEnabled() && <DebugEventsView />}
+                <ToastContextProvider>
+                  <CurrentUserProvider>
+                    <GoogleOAuthProvider
+                      clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID!}
+                    >
+                      <AuthenticationProvider>
                         <Suspense fallback={<div />}>
                           <TasksProvider>
                             <NonProfitsProvider>
@@ -75,12 +75,12 @@ function App() {
                             </NonProfitsProvider>
                           </TasksProvider>
                         </Suspense>
-                      </CurrentUserProvider>
-                      <Toast />
-                    </ToastContextProvider>
-                  </BrowserRouter>
-                </AuthenticationProvider>
-              </GoogleOAuthProvider>
+                      </AuthenticationProvider>
+                    </GoogleOAuthProvider>
+                  </CurrentUserProvider>
+                  <Toast />
+                </ToastContextProvider>
+              </BrowserRouter>
             </ModalProvider>
           </LoadingOverlayProvider>
         </ThemeProvider>

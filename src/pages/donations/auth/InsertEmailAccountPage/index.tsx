@@ -9,7 +9,6 @@ import { logEvent } from "lib/events";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import useDonationFlow from "hooks/useDonationFlow";
 import useNavigation from "hooks/useNavigation";
-import useAvoidBackButton from "hooks/useAvoidBackButton";
 import useQueryParams from "hooks/useQueryParams";
 import { useNonProfitsContext } from "contexts/nonProfitsContext";
 import { useAuthentication } from "contexts/authenticationContext";
@@ -18,7 +17,7 @@ import DonatingSection from "../DonatingSection";
 
 function InsertEmailAccountPage(): JSX.Element {
   const { t } = useTranslation("translation", {
-    keyPrefix: "donations.confirmDonationPage.insertEmailAccountPage",
+    keyPrefix: "donations.auth.insertEmailAccountPage",
   });
 
   const [email, setEmail] = useState("");
@@ -99,8 +98,6 @@ function InsertEmailAccountPage(): JSX.Element {
 
   const oldImpactFormat = () =>
     formattedImpactText(nonProfit, undefined, false, true);
-
-  useAvoidBackButton();
 
   return (
     <>

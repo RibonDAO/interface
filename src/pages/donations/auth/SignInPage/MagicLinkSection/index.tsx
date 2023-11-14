@@ -11,7 +11,7 @@ type Props = {
 };
 function MagicLinkSection({ nonProfit }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
-    keyPrefix: "donations.confirmDonationPage.signInSection",
+    keyPrefix: "donations.auth.signInPage",
   });
 
   const { navigateTo } = useNavigation();

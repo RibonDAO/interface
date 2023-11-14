@@ -9,6 +9,7 @@ import ButtonComponent from "components/atomics/buttons/Button";
 
 export const Container = styled.div`
   padding: ${({ theme }) => theme.spacing(0, 16)};
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,27 +77,6 @@ export const BackgroundShapes = styled.img`
   height: 296px;
 `;
 
-export const LeftImage = styled.img`
-  display: none;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    display: block;
-  }
-`;
-export const RightImage = styled.img`
-  display: none;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: block;
-  }
-`;
-
 export const FooterText = styled.p`
   margin-top: ${({ theme }) => theme.spacing(8)};
   text-align: center;
@@ -154,4 +134,25 @@ export const ButtonContainer = styled.div`
   gap: ${({ theme }) => theme.spacing(8)};
   align-items: center;
   justify-content: center;
+`;
+
+export const LeftImage = styled.img`
+  display: none;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+  }
+`;
+export const RightImage = styled.img`
+  display: none;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+  }
 `;

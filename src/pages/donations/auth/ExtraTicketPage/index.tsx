@@ -12,7 +12,7 @@ import * as S from "./styles";
 
 function ExtraTicketPage(): JSX.Element {
   const { t } = useTranslation("translation", {
-    keyPrefix: "donations.extraTicketPage",
+    keyPrefix: "donations.auth.extraTicketPage",
   });
   const { currentUser } = useCurrentUser();
   const { navigateTo } = useNavigation();

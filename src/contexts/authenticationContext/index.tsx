@@ -7,6 +7,7 @@ import {
 } from "@ribon.io/shared/lib";
 import { userAuthenticationApi } from "@ribon.io/shared/services";
 import { logError } from "services/crashReport";
+import { useCurrentUser } from "contexts/currentUserContext";
 
 type authTokenProps = {
   authToken: string;
@@ -50,6 +51,7 @@ function AuthenticationProvider({ children }: Props) {
     getCookiesItem(ACCESS_TOKEN_KEY),
   );
   const [loading, setLoading] = useState(false);
+  const { setCurrentUser } = useCurrentUser();
 
   function isAuthorized(email: string) {
     if (!email) return false;
@@ -70,6 +72,7 @@ function AuthenticationProvider({ children }: Props) {
       setCookiesItem(ACCESS_TOKEN_KEY, token);
       setCookiesItem(REFRESH_TOKEN_KEY, refreshToken);
       setAccessToken(token);
+      setCurrentUser(authResponse.data.user);
     } catch (error) {
       throw new Error("google auth error");
     }
@@ -87,6 +90,7 @@ function AuthenticationProvider({ children }: Props) {
       setCookiesItem(ACCESS_TOKEN_KEY, token);
       setCookiesItem(REFRESH_TOKEN_KEY, refreshToken);
       setAccessToken(token);
+      setCurrentUser(authResponse.data.user);
     } catch (error) {
       throw new Error("google auth error");
     }
@@ -98,8 +102,8 @@ function AuthenticationProvider({ children }: Props) {
     onSuccess,
     onError,
   }: authTokenProps) {
-    setLoading(true);
     try {
+      setLoading(true);
       const response = await userAuthenticationApi.postAuthorizeFromAuthToken(
         authToken,
         id,
@@ -110,6 +114,7 @@ function AuthenticationProvider({ children }: Props) {
       setCookiesItem(ACCESS_TOKEN_KEY, token);
       setCookiesItem(REFRESH_TOKEN_KEY, refreshToken);
       setAccessToken(token);
+      setCurrentUser(response.data.user);
 
       if (onSuccess) onSuccess();
     } catch (error: any) {
@@ -162,7 +167,7 @@ function AuthenticationProvider({ children }: Props) {
       sendAuthenticationEmail,
       loading,
     }),
-    [user, allowed, accessToken],
+    [user, allowed, accessToken, loading],
   );
 
   return (

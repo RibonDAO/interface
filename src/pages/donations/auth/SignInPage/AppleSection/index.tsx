@@ -14,7 +14,7 @@ type Props = {
 };
 function AppleSection({ onContinue }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
-    keyPrefix: "donations.confirmDonationPage.signInSection",
+    keyPrefix: "donations.auth.signInPage",
   });
 
   const { signInWithApple } = useAuthentication();

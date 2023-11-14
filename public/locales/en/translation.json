@@ -143,14 +143,14 @@
       "returnButtonText": "Return to {{integrationName}}",
       "stayButtonText": "Stay in Ribon"
     },
-    "confirmDonationPage": {
-      "signedInSection": {
+    "auth": {
+      "signedInPage": {
         "title": "Your donation",
         "confirmText": "Confirm donation",
         "impactOneLife": "Impact 1 person",
         "impactDescription": "with {{value}}"
       },
-      "signInSection":{
+      "signInPage":{
         "title": "you are donating",
         "google": "Continue with Google",
         "apple": "Continue with Apple",
@@ -170,17 +170,17 @@
         "emailLabel": "E-mail",
         "confirmText": "Continue",
         "emailPlaceholder": "Your e-mail"
+      },
+      "extraTicketPage": {
+        "title": "You won an extra ticket",
+        "description": "Validate your account clicking the link sent to {{email}} and get your extra ticket.",
+        "buttonText": "Validate later"
+      },
+      "receiveExtraTicketPage": {
+        "title": "Validating your account brought you here",
+        "description": "Your donation ticket is available",
+        "buttonText": "Get my ticket"
       }
-    },
-    "extraTicketPage": {
-      "title": "You won an extra ticket",
-      "description": "Validate your account clicking the link sent to {{email}} and get your extra ticket.",
-      "buttonText": "Validate later"
-    },
-    "receiveExtraTicketPage": {
-      "title": "Validating your account brought you here",
-      "description": "Your donation ticket is available",
-      "buttonText": "Get my ticket"
     }
   },
   "layouts": {

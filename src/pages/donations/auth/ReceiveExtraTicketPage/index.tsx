@@ -7,7 +7,7 @@ import * as S from "./styles";
 
 function ReceiveExtraTicketPage(): JSX.Element {
   const { t } = useTranslation("translation", {
-    keyPrefix: "donations.receiveExtraTicketPage",
+    keyPrefix: "donations.auth.receiveExtraTicketPage",
   });
   const history = useHistory();
 

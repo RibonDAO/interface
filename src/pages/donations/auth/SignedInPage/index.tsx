@@ -1,37 +1,44 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { NonProfit } from "@ribon.io/shared/types";
 import { useTranslation } from "react-i18next";
+import { theme } from "@ribon.io/shared/styles";
 import BackgroundShapes from "assets/images/background-shapes.svg";
-import { logEvent } from "lib/events";
+import { useCurrentUser } from "contexts/currentUserContext";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
+import useDonationFlow from "hooks/useDonationFlow";
 import useNavigation from "hooks/useNavigation";
-import useUserDonation from "hooks/useUserDonation";
+import { logEvent } from "lib/events";
+import { useLocation } from "react-router";
 import * as S from "./styles";
 import DonatingSection from "../DonatingSection";
-import GoogleSection from "./GoogleSection";
-import AppleSection from "./AppleSection";
-import MagicLinkSection from "./MagicLinkSection";
 
-type Props = {
+type LocationStateType = {
   nonProfit: NonProfit;
 };
-function SignInSection({ nonProfit }: Props): JSX.Element {
+function SignedInPage(): JSX.Element {
   const { t } = useTranslation("translation", {
-    keyPrefix: "donations.confirmDonationPage.signInSection",
+    keyPrefix: "donations.auth.signedInPage",
   });
 
   const { formattedImpactText } = useFormattedImpactText();
-  const { navigateTo } = useNavigation();
-
   const [donationInProgress, setDonationInProgress] = useState(false);
   const [donationSucceeded, setDonationSucceeded] = useState(false);
+  const { currentUser } = useCurrentUser();
+  const { handleDonate } = useDonationFlow();
+  const { navigateTo } = useNavigation();
+  const {
+    state: { nonProfit },
+  } = useLocation<LocationStateType>();
 
-  const { handleDonate } = useUserDonation();
+  const oldImpactFormat = () =>
+    formattedImpactText(nonProfit, undefined, false, true);
 
-  const onContinue = async () => {
+  const onContinue = async (email: string, allowedEmailMarketing?: boolean) => {
     setDonationInProgress(true);
     await handleDonate({
       nonProfit,
+      email,
+      allowedEmailMarketing,
       onSuccess: () => setDonationSucceeded(true),
       onError: () => {
         setDonationSucceeded(false);
@@ -49,22 +56,14 @@ function SignInSection({ nonProfit }: Props): JSX.Element {
         state: {
           cause: nonProfit.cause,
           nonProfit,
-          hasButton: true,
-          hasCheckbox: true,
-          flow: "login",
         },
       });
     }
   }, [donationSucceeded]);
 
-  useEffect(() => {
-    logEvent("P27_view", {
-      nonProfitId: nonProfit.id,
-    });
-  }, []);
-
-  const oldImpactFormat = () =>
-    formattedImpactText(nonProfit, undefined, false, true);
+  const handleButtonPress = () => {
+    if (currentUser) onContinue(currentUser.email);
+  };
 
   return donationInProgress ? (
     <DonatingSection nonProfit={nonProfit} onAnimationEnd={onAnimationEnd} />
@@ -79,25 +78,16 @@ function SignInSection({ nonProfit }: Props): JSX.Element {
       <S.ContentContainer>
         <S.Title>{t("title")}</S.Title>
         <S.Description>{oldImpactFormat()}</S.Description>
-        <S.ButtonContainer>
-          <GoogleSection onContinue={onContinue} />
-          <AppleSection onContinue={onContinue} />
-          <MagicLinkSection nonProfit={nonProfit} />
-        </S.ButtonContainer>
-
-        <S.FooterText>
-          {t("footerStartText")}{" "}
-          <a href={t("termsLink")} target="_blank" rel="noreferrer">
-            {t("termsText")}
-          </a>
-          {t("footerEndText")}{" "}
-          <a href={t("privacyPolicyLink")} target="_blank" rel="noreferrer">
-            {t("privacyPolicyText")}
-          </a>
-        </S.FooterText>
+        <S.Button
+          text={t("confirmText")}
+          onClick={handleButtonPress}
+          backgroundColor={theme.colors.brand.primary[600]}
+          borderColor={theme.colors.brand.primary[600]}
+          textColor={theme.colors.neutral[25]}
+        />
       </S.ContentContainer>
     </S.Container>
   );
 }
 
-export default SignInSection;
+export default SignedInPage;

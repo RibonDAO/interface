@@ -143,14 +143,14 @@
       "returnButtonText": "Voltar para {{integrationName}}",
       "stayButtonText": "Continuar na Ribon"
     },
-    "confirmDonationPage": {
-      "signedInSection": {
+    "auth": {
+      "signedInPage": {
         "title": "Sua doação",
         "confirmText": "Confirmar doação",
         "impactOneLife": "Impacte 1 pessoa",
         "impactDescription": "com {{value}}"
       },
-      "signInSection":{
+      "signInPage":{
         "title": "Você está doando",
         "google": "Continuar com Google",
         "apple": "Continuar com Apple",
@@ -170,17 +170,17 @@
         "emailLabel": "E-mail",
         "confirmText": "Continuar",
         "emailPlaceholder": "Seu e-mail"
+      },
+      "extraTicketPage": {
+        "title": "Você ganhou um ticket extra",
+        "description": "Valide sua conta clicando no link enviado para {{email}} e receba seu ticket extra",
+        "buttonText": "Validar depois"
+      },
+      "receiveExtraTicketPage": {
+        "title": "Validar sua conta trouxe você aqui",
+        "description": "Seu ticket extra está disponível",
+        "buttonText": "Receber meu ticket"
       }
-    },
-    "extraTicketPage": {
-      "title": "Você ganhou um ticket extra",
-      "description": "Valide sua conta clicando no link enviado para {{email}} e receba seu ticket extra",
-      "buttonText": "Validar depois"
-    },
-    "receiveExtraTicketPage": {
-      "title": "Validar sua conta trouxe você aqui",
-      "description": "Seu tickey extra está disponível",
-      "buttonText": "Receber meu ticket"
     }
   },
   "layouts": {

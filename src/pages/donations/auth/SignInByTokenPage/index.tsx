@@ -3,9 +3,9 @@ import extractUrlValue from "lib/extractUrlValue";
 import { useLocation } from "react-router";
 import { useAuthentication } from "contexts/authenticationContext";
 import Loader from "components/atomics/Loader";
-import ReceiveExtraTicketPage from "pages/donations/ReceiveExtraTicketPage";
+import ReceiveExtraTicketPage from "pages/donations/auth/ReceiveExtraTicketPage";
 
-function AuthPage(): JSX.Element {
+function SignInByAuthToken(): JSX.Element {
   const { search } = useLocation();
   const { signInByAuthToken, loading } = useAuthentication();
 
@@ -28,4 +28,4 @@ function AuthPage(): JSX.Element {
   return loading ? <Loader /> : <ReceiveExtraTicketPage />;
 }
 
-export default AuthPage;
+export default SignInByAuthToken;

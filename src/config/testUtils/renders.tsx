@@ -144,17 +144,17 @@ function renderAllProviders(
           <I18nextProvider i18n={i18n}>
             <Router history={historyObject}>
               {renderProvider(
-                AuthenticationProvider,
-                AuthenticationContext,
-                authenticationProviderValue,
+                CurrentUserProvider,
+                CurrentUserContext,
+                currentUserProviderValue,
                 renderProvider(
-                  WalletProvider,
-                  WalletContext,
-                  walletProviderValue,
+                  AuthenticationProvider,
+                  AuthenticationContext,
+                  authenticationProviderValue,
                   renderProvider(
-                    CurrentUserProvider,
-                    CurrentUserContext,
-                    currentUserProviderValue,
+                    WalletProvider,
+                    WalletContext,
+                    walletProviderValue,
                     renderProvider(
                       CausesProvider,
                       CausesContext,

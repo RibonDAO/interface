@@ -22,7 +22,7 @@ function MagicLinkSection({ nonProfit }: Props): JSX.Element {
     });
     navigateTo({
       pathname: "/insert-email",
-      search: `nonProfitId=${nonProfit.id}`,
+      state: { nonProfit },
     });
   };
 

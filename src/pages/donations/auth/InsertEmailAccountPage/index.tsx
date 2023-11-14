@@ -9,11 +9,14 @@ import { logEvent } from "lib/events";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import useDonationFlow from "hooks/useDonationFlow";
 import useNavigation from "hooks/useNavigation";
-import useQueryParams from "hooks/useQueryParams";
-import { useNonProfitsContext } from "contexts/nonProfitsContext";
 import { useAuthentication } from "contexts/authenticationContext";
+import { useLocation } from "react-router";
 import * as S from "./styles";
 import DonatingSection from "../DonatingSection";
+
+type LocationStateType = {
+  nonProfit: NonProfit;
+};
 
 function InsertEmailAccountPage(): JSX.Element {
   const { t } = useTranslation("translation", {
@@ -26,43 +29,24 @@ function InsertEmailAccountPage(): JSX.Element {
   const { formattedImpactText } = useFormattedImpactText();
   const { handleDonate } = useDonationFlow();
   const { navigateTo } = useNavigation();
-  const queryParams = useQueryParams();
-  const nonProfitId = queryParams.get("nonProfitId");
-  const { nonProfits } = useNonProfitsContext();
-  const [nonProfit, setNonProfit] = useState<NonProfit>();
-  const { sendAuthenticationEmail } = useAuthentication();
 
-  useEffect(() => {
-    if (nonProfits) {
-      if (nonProfitId) {
-        const currentNonProfit = nonProfits.find(
-          (np: NonProfit) => np.id === Number(nonProfitId),
-        );
-        if (currentNonProfit) {
-          setNonProfit(currentNonProfit);
-        } else {
-          setNonProfit(nonProfits[0]);
-        }
-      } else {
-        setNonProfit(nonProfits[0]);
-      }
-    }
-  }, [nonProfits, nonProfitId]);
+  const {
+    state: { nonProfit },
+  } = useLocation<LocationStateType>();
+
+  const { sendAuthenticationEmail } = useAuthentication();
 
   const onContinue = async () => {
     setDonationInProgress(true);
-
-    if (nonProfit) {
-      sendAuthenticationEmail({ email });
-      await handleDonate({
-        nonProfit,
-        email,
-        onSuccess: () => setDonationSucceeded(true),
-        onError: () => {
-          setDonationSucceeded(false);
-        },
-      });
-    }
+    sendAuthenticationEmail({ email });
+    await handleDonate({
+      nonProfit,
+      email,
+      onSuccess: () => setDonationSucceeded(true),
+      onError: () => {
+        setDonationSucceeded(false);
+      },
+    });
   };
 
   const onAnimationEnd = useCallback(() => {
@@ -100,52 +84,47 @@ function InsertEmailAccountPage(): JSX.Element {
     formattedImpactText(nonProfit, undefined, false, true);
 
   return (
-    <>
-      {nonProfit && (
-        <S.Container>
-          <S.LeftImage src={LeftImage} />
-          <S.RightImage src={RightImage} />
-          {donationInProgress ? (
-            <DonatingSection
-              nonProfit={nonProfit}
-              onAnimationEnd={onAnimationEnd}
+    <S.Container>
+      <S.LeftImage src={LeftImage} />
+      <S.RightImage src={RightImage} />
+      {donationInProgress ? (
+        <DonatingSection
+          nonProfit={nonProfit}
+          onAnimationEnd={onAnimationEnd}
+        />
+      ) : (
+        <div>
+          <S.ImageContainer>
+            <S.MainImage src={nonProfit.mainImage} />
+          </S.ImageContainer>
+          <S.ContentContainer>
+            <S.Title>{t("title")}</S.Title>
+            <S.Description>{oldImpactFormat()}</S.Description>
+            <S.InputLabel htmlFor="email">{t("emailLabel")}</S.InputLabel>
+            <S.Input
+              name="email"
+              id="email"
+              type="email"
+              placeholder={t("emailPlaceholder")}
+              value={email}
+              onChange={(event) => {
+                setEmail(event.target.value);
+              }}
             />
-          ) : (
-            <div>
-              <S.ImageContainer>
-                <S.MainImage src={nonProfit.mainImage} />
-              </S.ImageContainer>
-              <S.ContentContainer>
-                <S.Title>{t("title")}</S.Title>
-                <S.Description>{oldImpactFormat()}</S.Description>
-                <S.InputLabel htmlFor="email">{t("emailLabel")}</S.InputLabel>
-                <S.Input
-                  name="email"
-                  id="email"
-                  type="email"
-                  placeholder={t("emailPlaceholder")}
-                  value={email}
-                  onChange={(event) => {
-                    setEmail(event.target.value);
-                  }}
-                />
-                <S.Button
-                  text={t("confirmText")}
-                  onClick={handleButtonPress}
-                  backgroundColor={theme.colors.brand.primary[600]}
-                  borderColor={theme.colors.brand.primary[600]}
-                  textColor={theme.colors.neutral[25]}
-                  disabled={!isValidEmail(email)}
-                  eventName="authEmailFormBtn_click"
-                  eventParams={{ from: "donation_flow" }}
-                />
-              </S.ContentContainer>
-            </div>
-          )}
-        </S.Container>
+            <S.Button
+              text={t("confirmText")}
+              onClick={handleButtonPress}
+              backgroundColor={theme.colors.brand.primary[600]}
+              borderColor={theme.colors.brand.primary[600]}
+              textColor={theme.colors.neutral[25]}
+              disabled={!isValidEmail(email)}
+              eventName="authEmailFormBtn_click"
+              eventParams={{ from: "donation_flow" }}
+            />
+          </S.ContentContainer>
+        </div>
       )}
-      : <div />
-    </>
+    </S.Container>
   );
 }
 

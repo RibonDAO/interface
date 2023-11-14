@@ -24,6 +24,9 @@ function ExtraTicketPage(): JSX.Element {
   }, []);
 
   const handleButtonPress = () => {
+    logEvent("authRewardSkipBtn_click", {
+      from: "donation_flow",
+    });
     navigateTo({
       pathname: "/causes",
     });

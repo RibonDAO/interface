@@ -65,6 +65,7 @@ function SignInPage(): JSX.Element {
   useEffect(() => {
     logEvent("P27_view", {
       nonProfitId: nonProfit.id,
+      from: "donation_flow",
     });
   }, []);
 

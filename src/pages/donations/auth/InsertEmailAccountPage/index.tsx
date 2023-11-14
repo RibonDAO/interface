@@ -77,6 +77,10 @@ function InsertEmailAccountPage(): JSX.Element {
   }, [nonProfit]);
 
   const handleButtonPress = () => {
+    logEvent("authEmailFormBtn_click", {
+      nonProfitId: nonProfit.id,
+      from: "donation_flow",
+    });
     onContinue();
   };
 

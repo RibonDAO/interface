@@ -173,6 +173,9 @@ function DonationDoneCausePage(): JSX.Element {
       }
     }
     if (allowedEmailMarketing) {
+      logEvent("acceptReceiveEmail_click", {
+        from: "confirmedDonation_page",
+      });
       updateUserConfig({ allowedEmailMarketing });
     }
     if (flow === "magicLink") {
@@ -203,6 +206,14 @@ function DonationDoneCausePage(): JSX.Element {
       clearTimeout(pageTimeout);
     }
   }, [pageTimeout]);
+
+  useEffect(() => {
+    if (hasCheckbox) {
+      logEvent("acceptReceiveEmail_view", {
+        from: "confirmedDonation_page",
+      });
+    }
+  }, [hasCheckbox]);
 
   const colorTheme = getThemeByFlow(flow || "free");
 

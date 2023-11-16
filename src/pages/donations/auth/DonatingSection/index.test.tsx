@@ -1,5 +1,5 @@
 import { renderComponent } from "config/testUtils";
-import DonatingSection from "pages/donations/ConfirmDonationPage/DonatingSection/index";
+import DonatingSection from "pages/donations/auth/DonatingSection/index";
 import { nonProfitFactory } from "@ribon.io/shared/config";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 

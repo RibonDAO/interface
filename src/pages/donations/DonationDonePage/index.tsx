@@ -22,6 +22,8 @@ type LocationStateType = {
   processing?: boolean;
 };
 
+// NOT BEING USED FOR THE MOMENT
+
 function DonationDonePage(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.donationDonePage",

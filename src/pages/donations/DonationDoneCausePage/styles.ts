@@ -11,6 +11,7 @@ import { stylizedDisplayLg } from "styles/typography/stylized";
 export const Container = styled.div`
   width: 100%;
   height: ${window.innerHeight}px;
+  padding: ${({ theme }) => theme.spacing(0, 16)};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,7 +68,6 @@ export const CauseName = styled.span<{
 `;
 
 export const FinishButton = styled(Button)<{ background: string }>`
-  max-width: 20.5em;
   margin-top: ${({ theme }) => theme.spacing(3)};
   margin-bottom: ${({ theme }) => theme.spacing(16)};
   border: 0px;
@@ -89,6 +89,19 @@ export const ImpactAmount = styled.h4<{ color: string }>`
   color: ${({ color }) => color};
 `;
 
+export const ContentContainer = styled.div`
+  width: 100%;
+  margin-top: ${({ theme }) => theme.spacing(24)};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: 368px;
+  }
+`;
+
 export const ImpactDescription = styled.p<{
   color: string;
   hasButton: boolean;
@@ -99,4 +112,30 @@ export const ImpactDescription = styled.p<{
     hasButton ? theme.spacing(16) : theme.spacing(8)};
 
   color: ${({ color }) => color};
+`;
+
+export const CheckboxContainer = styled.div`
+  width: 100%;
+  margin-top: ${({ theme }) => theme.spacing(48)};
+  margin-bottom: ${({ theme }) => theme.spacing(12)};
+  padding: ${({ theme }) => theme.spacing(12)};
+  border: 1px solid ${({ theme }) => theme.colors.neutral[300]};
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const CheckboxLabel = styled.label`
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  cursor: pointer;
+`;
+
+export const Checkbox = styled.input`
+  width: 18px;
+  height: 18px;
+  margin-top: ${({ theme }) => theme.spacing(4)};
+  margin-right: ${({ theme }) => theme.spacing(8)};
 `;

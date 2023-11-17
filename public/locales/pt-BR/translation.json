@@ -106,7 +106,8 @@
       "impactDescription": "com {{value}}",
       "titleSecondLine": "Você doou para",
       "youDonatedText": "Você doou",
-      "button": "Terminar"
+      "button": "Terminar",
+      "checkboxText": "Aceito receber e-mails com informações sobre minhas doações"
     },
     "menu": {
       "impactPageTitle": "Impacto",
@@ -142,17 +143,19 @@
       "returnButtonText": "Voltar para {{integrationName}}",
       "stayButtonText": "Continuar na Ribon"
     },
-    "confirmDonationPage": {
-      "signedInSection": {
+    "auth": {
+      "signedInPage": {
         "title": "Sua doação",
         "confirmText": "Confirmar doação",
         "impactOneLife": "Impacte 1 pessoa",
         "impactDescription": "com {{value}}"
       },
-      "signInSection": {
-        "title": "Insira seu e-mail para doar",
-        "confirmText": "Continuar",
-        "footerStartText": "Ao clicar em Confirmar, eu concordo com os",
+      "signInPage":{
+        "title": "Você está doando",
+        "google": "Continuar com Google",
+        "apple": "Continuar com Apple",
+        "email": "Continuar com e-mail",
+        "footerStartText": "Ao clicar em 'Continuar', eu concordo com os",
         "footerEndText": " e a",
         "termsText": "Termos",
         "termsLink": "https://ribon.io/privacy-policy/#termos",
@@ -161,6 +164,22 @@
         "impactOneLife": "Impacte 1 pessoa",
         "impactDescription": "com {{value}}",
         "checkboxText": "Aceito receber e-mails com informações sobre minhas doações"
+      },
+      "insertEmailAccountPage": {
+        "title": "Você está doando",
+        "emailLabel": "E-mail",
+        "confirmText": "Continuar",
+        "emailPlaceholder": "Seu e-mail"
+      },
+      "extraTicketPage": {
+        "title": "Você ganhou um ticket extra",
+        "description": "Valide sua conta clicando no link enviado para {{email}} e receba seu ticket extra",
+        "buttonText": "Validar depois"
+      },
+      "receiveExtraTicketPage": {
+        "title": "Validar sua conta trouxe você aqui",
+        "description": "Seu ticket extra está disponível",
+        "buttonText": "Receber meu ticket"
       }
     }
   },

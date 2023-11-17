@@ -2,7 +2,6 @@ import React, { Suspense, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import WalletProvider from "contexts/walletContext";
 import CausesPage from "pages/donations/CausesPage";
-import ConfirmDonationPage from "pages/donations/ConfirmDonationPage";
 import DonationDonePage from "pages/donations/DonationDonePage";
 import DonationDoneCausePage from "pages/donations/DonationDoneCausePage";
 import ImpactPage from "pages/users/ImpactPage";
@@ -40,6 +39,12 @@ import ExperimentRouteComponent from "services/growthbook/ExperimentRouteCompone
 import CampaignPage from "pages/campaigns/CampaignPage";
 import PixInstructionsPage from "pages/promoters/CheckoutPage/Components/PixInstructionsPage";
 import ExpiredLinkPage from "pages/users/ExpiredLinkPage";
+import InsertEmailAccountPage from "pages/donations/auth/InsertEmailAccountPage";
+import ExtraTicketPage from "pages/donations/auth/ExtraTicketPage";
+import ReceiveExtraTicketPage from "pages/donations/auth/ReceiveExtraTicketPage";
+import SignInByTokenPage from "pages/donations/auth/SignInByTokenPage";
+import SignInPage from "pages/donations/auth/SignInPage";
+import SignedInPage from "pages/donations/auth/SignedInPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -59,6 +64,12 @@ function RoutesComponent(): JSX.Element {
       <Route path="/" exact>
         <Suspense fallback={<div />}>
           <LoadingPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/auth">
+        <Suspense fallback={<div />}>
+          <SignInByTokenPage />
         </Suspense>
       </Route>
 
@@ -102,10 +113,36 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
-      <Route path="/confirm-donation" exact>
+      <Route path="/sign-in" exact>
         <Suspense fallback={<div />}>
           <NavigationBackHeader />
-          <ConfirmDonationPage />
+          <SignInPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/signed-in" exact>
+        <Suspense fallback={<div />}>
+          <NavigationBackHeader />
+          <SignedInPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/insert-email" exact>
+        <Suspense fallback={<div />}>
+          <NavigationBackHeader />
+          <InsertEmailAccountPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/extra-ticket" exact>
+        <Suspense fallback={<div />}>
+          <ExtraTicketPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/receive-extra-ticket" exact>
+        <Suspense fallback={<div />}>
+          <ReceiveExtraTicketPage />
         </Suspense>
       </Route>
 

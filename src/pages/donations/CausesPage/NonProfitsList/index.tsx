@@ -38,6 +38,7 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
 
   const { formattedImpactText } = useFormattedImpactText();
   const { isVoucherAvailable } = useVoucher();
+  const { signedIn } = useCurrentUser();
 
   const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
 
@@ -47,7 +48,11 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
         nonProfitId: nonProfit.id,
         from,
       });
-      navigateTo({ pathname: "confirm-donation", state: { nonProfit } });
+      if (signedIn) {
+        navigateTo({ pathname: "/signed-in", state: { nonProfit } });
+      } else {
+        navigateTo({ pathname: "/sign-in", state: { nonProfit } });
+      }
     } else {
       showBlockedDonationContributionModal();
     }
@@ -109,8 +114,6 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
       search: searchParams.toString(),
     });
   };
-
-  const { signedIn } = useCurrentUser();
 
   const isCheckoutButtonVisible = useCallback(() => {
     const isRibonIntegration = integrationId?.toString() === RIBON_COMPANY_ID;

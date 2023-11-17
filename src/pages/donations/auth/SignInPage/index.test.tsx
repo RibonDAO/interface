@@ -5,25 +5,25 @@ import {
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
 import { waitForPromises } from "config/testUtils";
-import SignInSection from ".";
+import SignInPage from ".";
 
 jest.mock("@react-oauth/google", () => ({
   useGoogleLogin: () => {},
 }));
 
 jest.mock(
-  "./AppleSection",
+  "components/moleculars/buttons/AppleLogin",
   () =>
     function () {
       return <div />;
     },
 );
 
-describe("SignInSection", () => {
+describe("SignInPage", () => {
   const nonProfit = nonProfitFactory();
 
   beforeEach(() => {
-    renderComponent(<SignInSection />, {
+    renderComponent(<SignInPage />, {
       locationState: {
         nonProfit,
       },

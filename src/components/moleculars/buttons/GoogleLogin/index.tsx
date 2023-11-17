@@ -12,7 +12,7 @@ import { useAuthentication } from "contexts/authenticationContext";
 type Props = {
   onContinue: () => void;
 };
-function GoogleSection({ onContinue }: Props): JSX.Element {
+function GoogleLogin({ onContinue }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.auth.signInPage",
   });
@@ -45,4 +45,4 @@ function GoogleSection({ onContinue }: Props): JSX.Element {
   );
 }
 
-export default GoogleSection;
+export default GoogleLogin;

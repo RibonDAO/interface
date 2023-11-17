@@ -9,7 +9,7 @@ import useNavigation from "hooks/useNavigation";
 type Props = {
   nonProfit: NonProfit;
 };
-function MagicLinkSection({ nonProfit }: Props): JSX.Element {
+function MagicLinkLogin({ nonProfit }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.auth.signInPage",
   });
@@ -37,4 +37,4 @@ function MagicLinkSection({ nonProfit }: Props): JSX.Element {
   );
 }
 
-export default MagicLinkSection;
+export default MagicLinkLogin;

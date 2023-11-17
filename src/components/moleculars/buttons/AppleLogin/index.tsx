@@ -6,13 +6,13 @@ import { logEvent } from "lib/events";
 import AppleIcon from "assets/icons/apple-icon.svg";
 
 import { useAuthentication } from "contexts/authenticationContext";
-import AppleLogin from "react-apple-login";
+import AppleLoginProvider from "react-apple-login";
 import { APPLE_CLIENT_ID, APPLE_REDIRECT_URL } from "utils/constants";
 
 type Props = {
   onContinue: () => void;
 };
-function AppleSection({ onContinue }: Props): JSX.Element {
+function AppleLogin({ onContinue }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.auth.signInPage",
   });
@@ -30,7 +30,7 @@ function AppleSection({ onContinue }: Props): JSX.Element {
   };
 
   return (
-    <AppleLogin
+    <AppleLoginProvider
       clientId={APPLE_CLIENT_ID}
       redirectURI={APPLE_REDIRECT_URL}
       usePopup
@@ -51,4 +51,4 @@ function AppleSection({ onContinue }: Props): JSX.Element {
   );
 }
 
-export default AppleSection;
+export default AppleLogin;

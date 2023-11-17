@@ -1,13 +1,13 @@
 import { renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import { nonProfitFactory } from "@ribon.io/shared/config";
-import MagicLinkSection from ".";
+import MagicLinkLogin from ".";
 
 const mockNonProfit = nonProfitFactory({ name: "🌳 Environment", id: 1 });
 
-describe("MagicLinkSection", () => {
+describe("MagicLinkLogin", () => {
   it("should render without error", () => {
-    renderComponent(<MagicLinkSection nonProfit={mockNonProfit} />);
+    renderComponent(<MagicLinkLogin nonProfit={mockNonProfit} />);
 
     expectTextToBeInTheDocument("Continue with e-mail");
   });

@@ -14,7 +14,7 @@ type Props = {
 };
 function AppleLogin({ onContinue }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
-    keyPrefix: "donations.auth.signInPage",
+    keyPrefix: "components.moleculars.buttons.AppleLogin",
   });
 
   const { signInWithApple } = useAuthentication();
@@ -39,7 +39,7 @@ function AppleLogin({ onContinue }: Props): JSX.Element {
       scope="name email"
       render={(renderProps) => (
         <Button
-          text={t("apple")}
+          text={t("buttonText")}
           textColor={theme.colors.neutral[600]}
           backgroundColor="transparent"
           borderColor={theme.colors.neutral[300]}

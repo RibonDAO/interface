@@ -713,5 +713,41 @@
     "ticketsAmount": "+{{value}} tickets",
     "impactDescription": "com {{value}}",
     "description": "E ajude uma criança a viver seus primeiros 5 anos com saúde"
+  },
+  "auth": {
+    "signInPage": {
+      "title": "Entre na sua conta",
+      "footerStartText": "Ao clicar em 'Continuar', eu concordo com os",
+      "footerEndText": "e",
+      "termsText": "Termos",
+      "termsLink": "https://ribon.io/en/privacy-policy/#terms",
+      "privacyPolicyText": "Política de Privacidade",
+      "privacyPolicyLink": "https://ribon.io/en/privacy-policy/#privacy"
+    },
+    "insertEmailPage": {
+      "title": "Entre com um e-mail",
+      "emailLabel": "E-mail",
+      "confirmText": "Continuar",
+      "emailPlaceholder": "Seu e-mail"
+    },
+    "sentMagicLinkEmailPage": {
+      "title": "Link de entrada enviado",
+      "text": "Clique no link enviado para {{email}} para entrar"
+    }
+  },
+  "components": {
+    "moleculars": {
+      "buttons": {
+        "AppleLogin": {
+          "buttonText": "Continue com Apple"
+        },
+        "GoogleLogin": {
+          "buttonText": "Continue com Google"
+        },
+        "MagicLinkLogin": {
+          "buttonText": "Continue com e-mail"
+        }
+      }
+    }
   }
 }

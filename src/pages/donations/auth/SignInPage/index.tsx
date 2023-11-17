@@ -44,6 +44,13 @@ function SignInPage(): JSX.Element {
     });
   };
 
+  const onContinueMagicLink = () => {
+    navigateTo({
+      pathname: "/insert-email",
+      state: { nonProfit },
+    });
+  };
+
   const onAnimationEnd = useCallback(() => {
     if (donationSucceeded) {
       logEvent("ticketDonated_end", {
@@ -88,7 +95,7 @@ function SignInPage(): JSX.Element {
           <S.ButtonContainer>
             <GoogleLogin onContinue={onContinue} />
             <AppleLogin onContinue={onContinue} />
-            <MagicLinkLogin nonProfit={nonProfit} />
+            <MagicLinkLogin onContinue={onContinueMagicLink} />
           </S.ButtonContainer>
 
           <S.FooterText>

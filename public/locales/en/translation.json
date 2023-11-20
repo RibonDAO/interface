@@ -150,7 +150,7 @@
         "impactOneLife": "Impact 1 person",
         "impactDescription": "with {{value}}"
       },
-      "signInPage":{
+      "signInPage": {
         "title": "you are donating",
         "google": "Continue with Google",
         "apple": "Continue with Apple",
@@ -185,6 +185,15 @@
   },
   "layouts": {
     "layoutHeader": {
+      "settingsMenu": {
+        "signInOrCreateAccount": "Sign in or create a new account",
+        "getTheApp": "Get more tickets",
+        "userSupport": {
+          "text": "User support",
+          "link": "https://api.whatsapp.com/send/?phone=554896605461&text=Hii+Ribon%2C+let’s+talk%3F+&type=phone_number&app_absent=0"
+        },
+        "monthlyContributions": "Monthly contributions"
+      },
       "changeLanguageItem": {
         "changeLanguageText": "Change language"
       },

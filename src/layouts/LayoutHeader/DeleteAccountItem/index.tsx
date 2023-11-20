@@ -7,6 +7,7 @@ import { useUsers, useUserV1Config } from "@ribon.io/shared/hooks";
 import ModalDialog from "components/moleculars/modals/ModalDialog";
 import { theme } from "@ribon.io/shared/styles";
 import { logEvent } from "lib/events";
+import { useAuthentication } from "contexts/authenticationContext";
 import * as S from "./styles";
 
 function DeleteAccountItem(): JSX.Element {
@@ -18,6 +19,7 @@ function DeleteAccountItem(): JSX.Element {
   const [emailSentModalVisible, setEmailSentModalVisible] = useState(false);
   const [deleteAccountModalVisible, setDeleteAccountModalVisible] =
     useState(false);
+  const { accessToken } = useAuthentication();
 
   const { sendDeleteAccountEmail } = useUserV1Config();
   const { sendDeleteAccountEmail: sendDeleteAccountEmailNotAuthenticate } =
@@ -31,7 +33,13 @@ function DeleteAccountItem(): JSX.Element {
     logEvent("deleteAccountConfirmBtn_click");
     setEmailSentModalVisible(true);
     setDeleteAccountModalVisible(false);
-    sendDeleteAccountEmail();
+
+    if (accessToken && signedIn) {
+      sendDeleteAccountEmail();
+    } else {
+      sendDeleteAccountEmailNotAuthenticate();
+    }
+
     logoutCurrentUser();
   }
 

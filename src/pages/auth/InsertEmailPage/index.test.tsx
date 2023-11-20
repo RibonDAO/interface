@@ -1,20 +1,17 @@
-import { nonProfitFactory } from "@ribon.io/shared/config";
-import { renderComponent, waitForPromises } from "config/testUtils";
+import { renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
-import InsertEmailAccountPage from ".";
-
-const mockNonProfit = nonProfitFactory({ name: "🌳 Environment", id: 1 });
+import InsertEmailPage from ".";
 
 describe("InsertEmailAccountPage", () => {
-  it("should render without error", async () => {
-    renderComponent(<InsertEmailAccountPage />, {
-      locationState: {
-        nonProfit: mockNonProfit,
-      },
-    });
-    await waitForPromises();
-    expectTextToBeInTheDocument("Choose an e-mail to donate");
-    expectTextToBeInTheDocument(mockNonProfit.impactByTicket.toString());
+  beforeEach(() => {
+    renderComponent(<InsertEmailPage />);
+  });
+
+  it("should render initail message", () => {
+    expectTextToBeInTheDocument("Sign in with an e-mail");
+  });
+
+  it("Continue button should be in the page", () => {
     expectTextToBeInTheDocument("Continue");
   });
 });

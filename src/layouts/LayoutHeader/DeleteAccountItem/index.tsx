@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useCurrentUser } from "contexts/currentUserContext";
 import ArrowRight from "assets/icons/arrow-right-blue-icon.svg";
 import CardIconText from "components/moleculars/cards/CardIconText";
-import { useUserV1Config } from "@ribon.io/shared/hooks";
+import { useUsers, useUserV1Config } from "@ribon.io/shared/hooks";
 import ModalDialog from "components/moleculars/modals/ModalDialog";
 import { theme } from "@ribon.io/shared/styles";
 import { logEvent } from "lib/events";
@@ -14,12 +14,14 @@ function DeleteAccountItem(): JSX.Element {
     keyPrefix: "layouts.layoutHeader.deleteAccountItem",
   });
 
-  const { logoutCurrentUser } = useCurrentUser();
+  const { logoutCurrentUser, signedIn } = useCurrentUser();
   const [emailSentModalVisible, setEmailSentModalVisible] = useState(false);
   const [deleteAccountModalVisible, setDeleteAccountModalVisible] =
     useState(false);
 
   const { sendDeleteAccountEmail } = useUserV1Config();
+  const { sendDeleteAccountEmail: sendDeleteAccountEmailNotAuthenticate } =
+    useUsers();
 
   function handleConfirmation() {
     setDeleteAccountModalVisible(true);
@@ -60,8 +62,8 @@ function DeleteAccountItem(): JSX.Element {
       />
       <ModalDialog
         visible={emailSentModalVisible}
-        title={t("emailSentModalTitle")}
-        description={t("emailSentModalDescription")}
+        title={t("emailSentTitle")}
+        description={t("emailSentDescription")}
         type="success"
         icon="check"
         iconColor={theme.colors.brand.primary[600]}

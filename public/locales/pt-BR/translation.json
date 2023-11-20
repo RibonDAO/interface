@@ -150,7 +150,7 @@
         "impactOneLife": "Impacte 1 pessoa",
         "impactDescription": "com {{value}}"
       },
-      "signInPage":{
+      "signInPage": {
         "title": "Você está doando",
         "google": "Continuar com Google",
         "apple": "Continuar com Apple",
@@ -658,7 +658,8 @@
     "loading": "Carregando...",
     "invalidLink": "Link inválido",
     "expiredLink": "This link has expired",
-    "expiredLinkText": "Please, try signing in or creating a new account with your e-mail to get a new account validation link"
+    "expiredLinkText": "Please, try signing in or creating a new account with your e-mail to get a new account validation link",
+    "buttonText": "Send me a new link"
   },
   "downloadAppModalTemplate": {
     "button": "Baixar o app",

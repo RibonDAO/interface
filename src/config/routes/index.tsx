@@ -349,7 +349,7 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
-      <Route path="/expired_link" exact>
+      <Route path="/expired-link" exact>
         <Suspense fallback={<div />}>
           <ExpiredLinkPage />
         </Suspense>

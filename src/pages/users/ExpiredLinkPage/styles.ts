@@ -10,6 +10,7 @@ export const Container = styled.div`
   grid-gap: 0;
   align-items: center;
   justify-content: center;
+  max-width: 350px;
 `;
 
 const spinAnimation = keyframes`
@@ -35,6 +36,7 @@ export const Loader = styled.div`
 export const Title = styled.h1`
   ${stylizedDisplayLg}
 
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
   margin-top: ${({ theme }) => theme.spacing(8)};
   position: relative;
   z-index: 2;
@@ -45,11 +47,12 @@ export const Description = styled.p`
   ${defaultBodyMdSemibold}
 
   max-width: 350px;
-  margin-top: ${({ theme }) => theme.spacing(8)};
+
   position: relative;
   z-index: 2;
   text-align: center;
   color: ${({ theme }) => theme.colors.neutral[500]};
+  margin-bottom: ${({ theme }) => theme.spacing(24)};
 `;
 
 export const Logo = styled.img`
@@ -63,21 +66,31 @@ export const Image = styled.img`
 `;
 
 export const TopRightShape = styled.img`
-  width: 50%;
-  max-width: 500px;
-  height: auto;
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 1;
+  display: none;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: 50%;
+    max-width: 500px;
+    height: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    display: block;
+  }
 `;
 
 export const BottomLeftShape = styled.img`
-  width: 50%;
-  max-width: 500px;
-  height: auto;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
+  display: none;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: 50%;
+    max-width: 500px;
+    height: auto;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    display: block;
+  }
 `;

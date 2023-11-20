@@ -47,6 +47,7 @@ import SignedInPage from "pages/donations/auth/SignedInPage";
 import SignInPage from "pages/auth/SignInPage";
 import InsertEmailPage from "pages/auth/InsertEmailPage";
 import SentMagicLinkEmailPage from "pages/auth/SentMagicLinkEmailPage";
+import TicketDonationDonePage from "pages/donations/TicketDonationDonePage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -103,6 +104,12 @@ function RoutesComponent(): JSX.Element {
               <CausesPage />
             </MainLayout>
           </WalletProvider>
+        </Suspense>
+      </Route>
+
+      <Route path="/ticket-donation-done" exact>
+        <Suspense fallback={<div />}>
+          <TicketDonationDonePage />
         </Suspense>
       </Route>
 

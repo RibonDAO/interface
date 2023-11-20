@@ -109,6 +109,12 @@
       "button": "Finish",
       "checkboxText": "I agree to receive emails with information about my donations"
     },
+    "ticketDonationDonePage": {
+      "title": "Thanks for donating!",
+      "description": "Thanks to you...",
+      "button": "Finish",
+      "checkboxText": "I want to receive information about my donations by e-mail"
+    },
     "menu": {
       "impactPageTitle": "Impact",
       "causesPageTitle": "Tickets",

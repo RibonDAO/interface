@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useCurrentUser } from "contexts/currentUserContext";
-import ArrowRight from "assets/icons/arrow-right-blue-icon.svg";
-import CardIconText from "components/moleculars/cards/CardIconText";
 import { useUsers } from "@ribon.io/shared/hooks";
 import ModalDialog from "components/moleculars/modals/ModalDialog";
 import { logEvent } from "lib/events";
 import * as S from "./styles";
+import Item from "../SettingsMenu/Item";
 
 function DeleteAccountItem(): JSX.Element {
   const { t } = useTranslation("translation", {
@@ -32,12 +31,10 @@ function DeleteAccountItem(): JSX.Element {
 
   return (
     <S.Container>
-      <CardIconText
+      <Item
         text={t("deleteAccount")}
         icon="delete_forever"
-        rightComponent={
-          <S.GoButton src={ArrowRight} onClick={() => handleConfirmation()} />
-        }
+        onClickHandler={() => handleConfirmation()}
       />
 
       <ModalDialog

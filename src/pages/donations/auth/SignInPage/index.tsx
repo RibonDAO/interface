@@ -8,11 +8,11 @@ import useUserDonation from "hooks/useUserDonation";
 import { useLocation } from "react-router";
 import LeftImage from "assets/images/bottom-left-shape.svg";
 import RightImage from "assets/images/top-right-shape.svg";
+import GoogleLogin from "components/moleculars/buttons/GoogleLogin";
+import AppleLogin from "components/moleculars/buttons/AppleLogin";
+import MagicLinkLogin from "components/moleculars/buttons/MagicLinkLogin";
 import * as S from "./styles";
 import DonatingSection from "../DonatingSection";
-import GoogleSection from "./GoogleSection";
-import AppleSection from "./AppleSection";
-import MagicLinkSection from "./MagicLinkSection";
 
 type LocationStateType = {
   nonProfit: NonProfit;
@@ -41,6 +41,13 @@ function SignInPage(): JSX.Element {
       onError: () => {
         setDonationSucceeded(false);
       },
+    });
+  };
+
+  const onContinueMagicLink = () => {
+    navigateTo({
+      pathname: "/insert-email",
+      state: { nonProfit },
     });
   };
 
@@ -86,9 +93,9 @@ function SignInPage(): JSX.Element {
           <S.Title>{t("title")}</S.Title>
           <S.Description>{oldImpactFormat()}</S.Description>
           <S.ButtonContainer>
-            <GoogleSection onContinue={onContinue} />
-            <AppleSection onContinue={onContinue} />
-            <MagicLinkSection nonProfit={nonProfit} />
+            <GoogleLogin onContinue={onContinue} />
+            <AppleLogin onContinue={onContinue} />
+            <MagicLinkLogin onContinue={onContinueMagicLink} />
           </S.ButtonContainer>
 
           <S.FooterText>

@@ -1,20 +1,23 @@
-import { clickOn, renderComponent } from "config/testUtils";
+import { screen } from "@testing-library/react";
+import { clickOn, renderComponent, waitForPromises } from "config/testUtils";
 import {
   expectTextToBeInTheDocument,
   expectPageToNavigateTo,
+  expectTextNotToBeInTheDocument,
 } from "config/testUtils/expects";
-import React from "react";
 import LogoutItem from ".";
+
+const closeMenu = jest.fn();
 
 describe("LogoutItem", () => {
   it("should render without errors", () => {
-    renderComponent(<LogoutItem />);
+    renderComponent(<LogoutItem closeMenu={closeMenu} />);
     expectTextToBeInTheDocument("Sign Out");
   });
 
   describe("when the sign out button is clicked", () => {
     beforeEach(() => {
-      renderComponent(<LogoutItem />, {
+      renderComponent(<LogoutItem closeMenu={closeMenu} />, {
         currentUserProviderValue: {
           currentUser: { email: "user@email.com", id: 1 },
         },
@@ -29,19 +32,19 @@ describe("LogoutItem", () => {
     });
 
     it("cancels sign out", () => {
-      renderComponent(<LogoutItem />);
       clickOn("Cancel");
       expectTextToBeInTheDocument("user@email.com");
     });
 
-    it("Confirms sign out", () => {
-      clickOn("Sign out");
-      expectTextToBeInTheDocument("Signed out successfully");
+    it("Confirms sign out", async () => {
+      const signoutButton = screen.getByTestId("DialogPrimaryButton");
+      clickOn(signoutButton);
+      waitForPromises();
+      expectTextNotToBeInTheDocument("user@email.com");
     });
 
     it("Signs out and returns to initial page", () => {
       clickOn("Sign out");
-      clickOn("Ok");
       expectPageToNavigateTo("/causes");
     });
   });

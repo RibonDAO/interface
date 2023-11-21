@@ -25,9 +25,9 @@ function SettingsMenu({ outline = false }: Props) {
     setMenuVisible(true);
   }
 
-  function closeMenu() {
+  const closeMenu = () => {
     setMenuVisible(false);
-  }
+  };
 
   return (
     <>
@@ -70,7 +70,7 @@ function SettingsMenu({ outline = false }: Props) {
         {signedIn ? (
           <div>
             <Divider color={theme.colors.neutral[200]} />
-            <LogoutItem />
+            <LogoutItem closeMenu={closeMenu} />
           </div>
         ) : (
           <div />

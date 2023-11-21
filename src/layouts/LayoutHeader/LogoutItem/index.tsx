@@ -11,7 +11,11 @@ import ModalDialog from "components/moleculars/modals/ModalDialog";
 import { logEvent } from "lib/events";
 import * as S from "./styles";
 
-function LogoutItem(): JSX.Element {
+type Props = {
+  closeMenu: () => void;
+};
+
+function LogoutItem({ closeMenu }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "layouts.layoutHeader.logoutItem",
   });
@@ -24,7 +28,6 @@ function LogoutItem(): JSX.Element {
   const { createVoucher } = useVoucher();
 
   const handleLogout = () => {
-    console.log("logout");
     logEvent("signoutConfirmBtn_click");
     logoutCurrentUser();
     createVoucher();
@@ -33,12 +36,13 @@ function LogoutItem(): JSX.Element {
   };
 
   const showModal = () => {
-    logEvent("signoutBtn_click");
     setWarningModalVisible(true);
+    logEvent("signoutBtn_click");
   };
 
   const closeModal = () => {
     setWarningModalVisible(false);
+    closeMenu();
   };
 
   useEffect(() => {
@@ -56,7 +60,7 @@ function LogoutItem(): JSX.Element {
           <S.LogoutButton
             outline
             text={t("logoutButton")}
-            onClick={() => showModal}
+            onClick={showModal}
             textColor={tertiary[400]}
             borderColor={tertiary[400]}
             round

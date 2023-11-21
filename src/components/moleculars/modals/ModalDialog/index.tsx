@@ -154,7 +154,6 @@ function ModalDialog({
           onClick={primaryButton.onClick}
           eventName={primaryButton.eventName}
           eventParams={primaryButton.eventParams}
-          data-testid="DialogPrimaryButton"
         />
       )}
       {secondaryButton && (

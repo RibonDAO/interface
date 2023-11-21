@@ -12,9 +12,9 @@ import { useAuthentication } from "contexts/authenticationContext";
 type Props = {
   onContinue: () => void;
 };
-function GoogleSection({ onContinue }: Props): JSX.Element {
+function GoogleLogin({ onContinue }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
-    keyPrefix: "donations.auth.signInPage",
+    keyPrefix: "components.moleculars.buttons.GoogleLogin",
   });
 
   const { signInWithGoogle } = useAuthentication();
@@ -35,7 +35,7 @@ function GoogleSection({ onContinue }: Props): JSX.Element {
 
   return (
     <Button
-      text={t("google")}
+      text={t("buttonText")}
       textColor={theme.colors.neutral[600]}
       backgroundColor="transparent"
       borderColor={theme.colors.neutral[300]}
@@ -45,4 +45,4 @@ function GoogleSection({ onContinue }: Props): JSX.Element {
   );
 }
 
-export default GoogleSection;
+export default GoogleLogin;

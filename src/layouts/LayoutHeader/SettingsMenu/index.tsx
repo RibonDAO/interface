@@ -1,21 +1,26 @@
 import theme from "styles/theme";
-import GetTheAppItem from "layouts/LayoutHeader/GetTheAppItem";
+import MoreTicketsIcon from "assets/icons/more-tickets-icon-green.svg";
 import { Divider } from "components/atomics/Divider/styles";
-import UserSupportItem from "layouts/LayoutHeader/UserSupportItem";
 import ChangeLanguageItem from "layouts/LayoutHeader/ChangeLanguageItem";
 import LogoutItem from "layouts/LayoutHeader/LogoutItem";
 import ModalBlank from "components/moleculars/modals/ModalBlank";
 import { useState } from "react";
 import { logEvent } from "lib/events";
 import useBreakpoint from "hooks/useBreakpoint";
+import useNavigation from "hooks/useNavigation";
+import { useTranslation } from "react-i18next";
 import { useCurrentUser } from "contexts/currentUserContext";
 import * as S from "./styles";
-import MonthlyContributionsItem from "../MonthlyContributionsItem";
+import Item from "./Item";
 
 type Props = {
   outline?: boolean;
 };
 function SettingsMenu({ outline = false }: Props) {
+  const { t } = useTranslation("translation", {
+    keyPrefix: "layouts.layoutHeader.settingsMenu",
+  });
+
   const [menuVisible, setMenuVisible] = useState(false);
   const { isMobile } = useBreakpoint();
   const { signedIn, currentUser } = useCurrentUser();
@@ -27,6 +32,12 @@ function SettingsMenu({ outline = false }: Props) {
 
   function closeMenu() {
     setMenuVisible(false);
+  }
+
+  const { navigateTo } = useNavigation();
+
+  function onClickHandlerSignIn() {
+    navigateTo("/auth/sign-in");
   }
 
   return (
@@ -52,20 +63,37 @@ function SettingsMenu({ outline = false }: Props) {
           },
         }}
       >
-        <GetTheAppItem />
-        <Divider color={theme.colors.neutral[200]} />
-        <UserSupportItem />
-        <Divider color={theme.colors.neutral[200]} />
-        <ChangeLanguageItem />
+        <Item
+          icon="account_circle"
+          text={t("signInOrCreateAccount")}
+          onClickHandler={() => onClickHandlerSignIn()}
+        />
+
+        <Item
+          customIcon={MoreTicketsIcon}
+          text={t("getTheApp")}
+          onClickHandler={() => onClickHandlerSignIn()}
+        />
+
+        <Item
+          icon="support_agent"
+          text={t("userSupport.text")}
+          onClickHandler={() => onClickHandlerSignIn()}
+        />
 
         {currentUser?.lastDonationAt ? (
           <div>
-            <Divider color={theme.colors.neutral[200]} />
-            <MonthlyContributionsItem />
+            <Item
+              icon="volunteer_activism"
+              text={t("monthlyContributions")}
+              onClickHandler={() => onClickHandlerSignIn()}
+            />
           </div>
         ) : (
           <div />
         )}
+
+        <ChangeLanguageItem />
 
         {signedIn ? (
           <div>

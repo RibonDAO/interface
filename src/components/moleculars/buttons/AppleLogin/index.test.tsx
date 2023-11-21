@@ -1,11 +1,11 @@
 import { renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
-import AppleSection from ".";
+import AppleLogin from ".";
 
 const onContinue = jest.fn();
-describe("AppleSection", () => {
+describe("AppleLogin", () => {
   it("should render without error", () => {
-    renderComponent(<AppleSection onContinue={onContinue} />);
+    renderComponent(<AppleLogin onContinue={onContinue} />);
 
     expectTextToBeInTheDocument("Continue with Apple");
   });

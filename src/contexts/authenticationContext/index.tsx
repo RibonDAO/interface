@@ -36,6 +36,7 @@ export interface IAuthenticationContext {
   sendAuthenticationEmail: (
     sendAuthenticationEmailProps: authenticationEmailProps,
   ) => void;
+  emailSent: string;
 }
 
 export type Props = {
@@ -52,6 +53,7 @@ function AuthenticationProvider({ children }: Props) {
     getCookiesItem(ACCESS_TOKEN_KEY),
   );
   const [loading, setLoading] = useState(false);
+  const [emailSent, setEmailSent] = useState("");
   const { setCurrentUser } = useCurrentUser();
 
   function isAuthorized(email: string) {
@@ -134,15 +136,17 @@ function AuthenticationProvider({ children }: Props) {
   }: authenticationEmailProps) {
     setLoading(true);
     try {
-      await userAuthenticationApi.postSendAuthenticationEmail(
+      const response = await userAuthenticationApi.postSendAuthenticationEmail(
         email ?? "",
         accountId ?? "",
       );
+      setEmailSent(response.data.user.email);
       if (onSuccess) onSuccess();
     } catch (error: any) {
       logError(error);
       if (onError) onError();
     }
+    return null;
   }
 
   function logout() {
@@ -171,6 +175,7 @@ function AuthenticationProvider({ children }: Props) {
       signInByAuthToken,
       sendAuthenticationEmail,
       loading,
+      emailSent,
     }),
     [user, allowed, accessToken, loading],
   );

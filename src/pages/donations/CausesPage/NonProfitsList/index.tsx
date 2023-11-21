@@ -51,7 +51,10 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
       if (signedIn) {
         navigateTo({ pathname: "/signed-in", state: { nonProfit } });
       } else {
-        navigateTo({ pathname: "/sign-in", state: { nonProfit } });
+        navigateTo({
+          pathname: "/donation/auth/sign-in",
+          state: { nonProfit },
+        });
       }
     } else {
       showBlockedDonationContributionModal();

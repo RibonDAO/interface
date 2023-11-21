@@ -8,6 +8,7 @@ import Button from "components/atomics/buttons/Button";
 import theme from "styles/theme";
 import { useAuthentication } from "contexts/authenticationContext";
 import { useLocation } from "react-router-dom";
+import useNavigation from "hooks/useNavigation";
 import ExpiredLinkLogo from "./assets/expired-link-logo.svg";
 import * as S from "./styles";
 
@@ -24,10 +25,19 @@ function ExpiredLinkPage() {
     state: { accountId },
   } = useLocation<LocationStateType>();
 
-  const { sendAuthenticationEmail } = useAuthentication();
+  const { sendAuthenticationEmail, emailSent } = useAuthentication();
+  const { navigateTo } = useNavigation();
 
   const handleSendMeLinkButton = () => {
-    sendAuthenticationEmail({ email: "", accountId });
+    sendAuthenticationEmail({
+      accountId,
+      onSuccess: () => {
+        navigateTo({
+          pathname: "/auth/sent-magic-link-email",
+          state: { email: emailSent },
+        });
+      },
+    });
   };
 
   return (

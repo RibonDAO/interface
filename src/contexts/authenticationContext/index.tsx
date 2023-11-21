@@ -137,8 +137,8 @@ function AuthenticationProvider({ children }: Props) {
     setLoading(true);
     try {
       const response = await userAuthenticationApi.postSendAuthenticationEmail(
-        email ?? "",
-        accountId ?? "",
+        email,
+        accountId,
       );
       setEmailSent(response.data.user.email);
       if (onSuccess) onSuccess();
@@ -146,7 +146,6 @@ function AuthenticationProvider({ children }: Props) {
       logError(error);
       if (onError) onError();
     }
-    return null;
   }
 
   function logout() {
@@ -177,7 +176,7 @@ function AuthenticationProvider({ children }: Props) {
       loading,
       emailSent,
     }),
-    [user, allowed, accessToken, loading],
+    [user, allowed, accessToken, loading, emailSent],
   );
 
   return (

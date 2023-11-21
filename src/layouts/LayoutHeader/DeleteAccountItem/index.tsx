@@ -3,10 +3,9 @@ import { useTranslation } from "react-i18next";
 import { useCurrentUser } from "contexts/currentUserContext";
 import ArrowRight from "assets/icons/arrow-right-blue-icon.svg";
 import CardIconText from "components/moleculars/cards/CardIconText";
-import { useUserV1Config } from "@ribon.io/shared/hooks";
+import { useUsers } from "@ribon.io/shared/hooks";
 import ModalDialog from "components/moleculars/modals/ModalDialog";
 import { logEvent } from "lib/events";
-import { useAuthentication } from "contexts/authenticationContext";
 import * as S from "./styles";
 
 function DeleteAccountItem(): JSX.Element {
@@ -18,9 +17,7 @@ function DeleteAccountItem(): JSX.Element {
   const [deleteAccountModalVisible, setDeleteAccountModalVisible] =
     useState(false);
 
-  const { accessToken } = useAuthentication();
-
-  const { deleteUser } = useUserV1Config();
+  const { sendDeleteAccountEmail } = useUsers();
 
   function handleConfirmation() {
     setDeleteAccountModalVisible(true);
@@ -29,7 +26,7 @@ function DeleteAccountItem(): JSX.Element {
   function handleDeleteAccount() {
     logEvent("deleteAccountConfirmBtn_click");
     setDeleteAccountModalVisible(false);
-    deleteUser(accessToken);
+    sendDeleteAccountEmail();
     logoutCurrentUser();
   }
 

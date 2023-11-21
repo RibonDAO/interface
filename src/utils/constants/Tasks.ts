@@ -136,7 +136,7 @@ export const TASKS = [
     type: "daily",
     navigationCallback: "/campaign",
     isVisible(this: Task) {
-      return true;
+      return false;
     },
   },
 ];

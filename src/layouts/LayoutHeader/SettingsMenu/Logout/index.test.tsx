@@ -6,9 +6,13 @@ import {
 import React from "react";
 import LogoutItem from ".";
 
-describe("LogoutItem", () => {
+describe("Logout", () => {
   it("should render without errors", () => {
-    renderComponent(<LogoutItem />);
+    renderComponent(<LogoutItem />, {
+      currentUserProviderValue: {
+        currentUser: { id: 1, email: "juju@ribon.io", lastDonationAt: "true" },
+      },
+    });
     expectTextToBeInTheDocument("Sign Out");
   });
 

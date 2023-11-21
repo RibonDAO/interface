@@ -12,7 +12,7 @@ import letterIcon from "assets/icons/letter-icon.svg";
 import theme from "styles/theme";
 import * as S from "./styles";
 
-function LogoutItem(): JSX.Element {
+function Logout(): JSX.Element | null {
   const { t } = useTranslation("translation", {
     keyPrefix: "layouts.layoutHeader.logoutItem",
   });
@@ -44,6 +44,8 @@ function LogoutItem(): JSX.Element {
       setEmail(currentUser.email);
     }
   }, [currentUser]);
+
+  if (!currentUser) return null;
 
   return (
     <S.Container>
@@ -88,4 +90,4 @@ function LogoutItem(): JSX.Element {
   );
 }
 
-export default LogoutItem;
+export default Logout;

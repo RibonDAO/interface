@@ -21,7 +21,7 @@ describe("App", () => {
     renderComponent(<App />);
     await waitForPromises();
 
-    expect(screen.queryAllByText("spinner.svg").length).toBeGreaterThan(0);
+    expect(screen.queryAllByTestId("spinner")).toHaveLength(1);
   });
 
   describe("when the debug events is enabled", () => {

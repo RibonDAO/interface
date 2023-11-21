@@ -1,10 +1,9 @@
 import Button from "components/atomics/buttons/Button";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {
   defaultBodyLgBold,
   defaultBodyMdRegular,
   defaultBodySmRegular,
-  defaultBodySmSemibold,
 } from "styles/typography/default";
 import { stylizedDisplayLg } from "styles/typography/stylized";
 
@@ -35,10 +34,10 @@ export const Icon = styled.img`
   top: 20px;
 `;
 
-export const DonationValue = styled.h1<{ color: string }>`
+export const DonationValue = styled.h1`
   ${stylizedDisplayLg}
 
-  color: ${({ color }) => color};
+  color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;
 
 export const PostDonationText = styled.p`
@@ -48,24 +47,13 @@ export const PostDonationText = styled.p`
   color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
-export const CauseName = styled.span<{
-  isGreen?: boolean;
-}>`
-  ${defaultBodySmSemibold}
-
-  color: ${(props) =>
-    props.isGreen
-      ? ({ theme }) => theme.colors.brand.primary[300]
-      : ({ color }) => color};
-`;
-
-export const FinishButton = styled(Button)<{ background: string }>`
+export const FinishButton = styled(Button)`
   margin-top: ${({ theme }) => theme.spacing(3)};
   margin-bottom: ${({ theme }) => theme.spacing(16)};
   border: 0px;
   display: block;
   justify-self: end;
-  background-color: ${({ background }) => background};
+  background-color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;
 
 export const ThanksToYou = styled.p`
@@ -94,16 +82,12 @@ export const ContentContainer = styled.div`
   }
 `;
 
-export const ImpactDescription = styled.p<{
-  color: string;
-  hasButton: boolean;
-}>`
+export const ImpactDescription = styled.p`
   ${defaultBodyMdRegular}
 
-  margin-bottom: ${({ theme, hasButton }) =>
-    hasButton ? theme.spacing(16) : theme.spacing(8)};
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
 
-  color: ${({ color }) => color};
+  color: ${({ theme }) => theme.colors.neutral[300]};
 `;
 
 export const CheckboxContainer = styled.div`
@@ -133,3 +117,42 @@ export const Checkbox = styled.input`
 `;
 
 export const Image = styled.img``;
+export type DiamondProps = {
+  bg?: string;
+};
+
+export const DiamondBackground = css<{ bg?: string }>`
+  width: 141%;
+  height: 141%;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  background-image: ${({ bg }) => `url(${bg})`};
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: translate(-50%, -50%) rotate(45deg);
+`;
+
+export const Diamond = styled.div<DiamondProps>`
+  width: 200px;
+  height: 200px;
+  border-radius: 10%;
+  position: relative;
+  z-index: ${({ theme }) => theme.zindex.above};
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  background-color: ${({ theme }) => theme.colors.neutral[300]};
+  transform: rotate(-45deg) scale(0.8);
+  transform-origin: center;
+
+  ::before {
+    ${({ bg }) => bg && DiamondBackground}
+  }
+
+  * {
+    transform: rotate(45deg);
+  }
+`;

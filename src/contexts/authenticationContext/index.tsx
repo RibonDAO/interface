@@ -17,7 +17,8 @@ type authTokenProps = {
 };
 
 type authenticationEmailProps = {
-  email: string;
+  email?: string;
+  accountId?: string;
   onSuccess?: () => void;
   onError?: () => void;
 };
@@ -127,12 +128,16 @@ function AuthenticationProvider({ children }: Props) {
 
   async function sendAuthenticationEmail({
     email,
+    accountId,
     onSuccess,
     onError,
   }: authenticationEmailProps) {
     setLoading(true);
     try {
-      await userAuthenticationApi.postSendAuthenticationEmail(email);
+      await userAuthenticationApi.postSendAuthenticationEmail(
+        email ?? "",
+        accountId ?? "",
+      );
       if (onSuccess) onSuccess();
     } catch (error: any) {
       logError(error);

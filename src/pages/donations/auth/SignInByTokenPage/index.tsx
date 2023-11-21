@@ -20,7 +20,12 @@ function SignInByAuthToken(): JSX.Element {
         authToken,
         id,
         onError: () => {
-          navigateTo("/expired-link");
+          navigateTo({
+            pathname: "/expired-link",
+            state: {
+              accountId: id,
+            },
+          });
         },
       });
     }

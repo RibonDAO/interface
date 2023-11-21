@@ -4,20 +4,30 @@ import BottomLeftShape from "assets/images/bottom-left-shape.svg";
 import { useTranslation } from "react-i18next";
 
 import Button from "components/atomics/buttons/Button";
-import useNavigation from "hooks/useNavigation";
+
 import theme from "styles/theme";
+import { useAuthentication } from "contexts/authenticationContext";
+import { useLocation } from "react-router-dom";
 import ExpiredLinkLogo from "./assets/expired-link-logo.svg";
 import * as S from "./styles";
+
+type LocationStateType = {
+  accountId: string;
+};
 
 function ExpiredLinkPage() {
   const { t } = useTranslation("translation", {
     keyPrefix: "expiredLinkPage",
   });
 
-  const { navigateTo } = useNavigation();
+  const {
+    state: { accountId },
+  } = useLocation<LocationStateType>();
+
+  const { sendAuthenticationEmail } = useAuthentication();
 
   const handleSendMeLinkButton = () => {
-    navigateTo("/users/sign-in");
+    sendAuthenticationEmail({ email: "", accountId });
   };
 
   return (

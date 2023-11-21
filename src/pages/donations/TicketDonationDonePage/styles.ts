@@ -2,7 +2,6 @@ import Button from "components/atomics/buttons/Button";
 import styled, { css } from "styled-components";
 import {
   defaultBodyLgBold,
-  defaultBodyMdRegular,
   defaultBodySmRegular,
 } from "styles/typography/default";
 import { stylizedDisplayLg } from "styles/typography/stylized";
@@ -20,27 +19,17 @@ export const Container = styled.div`
 
 export const ImageContainer = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing(40)};
-  transform: scale(1.3);
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    transform: scale(1.4);
-  }
 `;
 
-export const Icon = styled.img`
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  top: 20px;
-`;
-
-export const DonationValue = styled.h1`
+export const Title = styled.h1`
   ${stylizedDisplayLg}
 
   color: ${({ theme }) => theme.colors.brand.primary[800]};
+  margin-top: 12px;
+  margin-bottom: 8px;
 `;
 
-export const PostDonationText = styled.p`
+export const Subtitle = styled.p`
   ${defaultBodySmRegular}
 
   text-align: center;
@@ -54,19 +43,6 @@ export const FinishButton = styled(Button)`
   display: block;
   justify-self: end;
   background-color: ${({ theme }) => theme.colors.brand.primary[800]};
-`;
-
-export const ThanksToYou = styled.p`
-  ${defaultBodySmRegular}
-
-  margin-block: ${({ theme }) => theme.spacing(8)};
-  color: ${({ theme }) => theme.colors.neutral[500]};
-`;
-
-export const ImpactAmount = styled.h4<{ color: string }>`
-  ${defaultBodyLgBold}
-
-  color: ${({ color }) => color};
 `;
 
 export const ContentContainer = styled.div`
@@ -83,11 +59,11 @@ export const ContentContainer = styled.div`
 `;
 
 export const ImpactDescription = styled.p`
-  ${defaultBodyMdRegular}
+  ${defaultBodyLgBold}
 
   margin-bottom: ${({ theme }) => theme.spacing(8)};
 
-  color: ${({ theme }) => theme.colors.neutral[300]};
+  color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;
 
 export const CheckboxContainer = styled.div`
@@ -144,15 +120,11 @@ export const Diamond = styled.div<DiamondProps>`
   display: flex;
   justify-content: center;
   overflow: hidden;
-  background-color: ${({ theme }) => theme.colors.neutral[300]};
+  background-color: ${({ theme }) => theme.colors.brand.primary[800]};
   transform: rotate(-45deg) scale(0.8);
   transform-origin: center;
 
   ::before {
     ${({ bg }) => bg && DiamondBackground}
-  }
-
-  * {
-    transform: rotate(45deg);
   }
 `;

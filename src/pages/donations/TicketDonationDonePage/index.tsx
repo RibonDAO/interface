@@ -154,8 +154,8 @@ function ticketDonationDonePage(): JSX.Element {
 
   const oldImpactFormat = () => (
     <>
-      <S.DonationValue>{t("title")}</S.DonationValue>
-      <S.PostDonationText>{t("description")}</S.PostDonationText>
+      <S.Title>{t("title")}</S.Title>
+      <S.Subtitle>{t("description")}</S.Subtitle>
       <S.ImpactDescription>{bottomText}</S.ImpactDescription>
     </>
   );

@@ -4,6 +4,7 @@ import { useCurrentUser } from "contexts/currentUserContext";
 import { useUsers } from "@ribon.io/shared/hooks";
 import ModalDialog from "components/moleculars/modals/ModalDialog";
 import { logEvent } from "lib/events";
+import { theme } from "@ribon.io/shared/styles";
 import * as S from "./styles";
 import Item from "../SettingsMenu/Item";
 
@@ -15,6 +16,7 @@ function DeleteAccountItem(): JSX.Element {
   const { logoutCurrentUser } = useCurrentUser();
   const [deleteAccountModalVisible, setDeleteAccountModalVisible] =
     useState(false);
+  const [emailSentModalVisible, setEmailSentModalVisible] = useState(false);
 
   const { sendDeleteAccountEmail } = useUsers();
 
@@ -26,6 +28,7 @@ function DeleteAccountItem(): JSX.Element {
     logEvent("deleteAccountConfirmBtn_click");
     setDeleteAccountModalVisible(false);
     sendDeleteAccountEmail();
+    setEmailSentModalVisible(true);
     logoutCurrentUser();
   }
 
@@ -50,6 +53,19 @@ function DeleteAccountItem(): JSX.Element {
         secondaryButton={{
           text: t("cancelModalButton"),
           onClick: () => setDeleteAccountModalVisible(false),
+        }}
+      />
+
+      <ModalDialog
+        visible={emailSentModalVisible}
+        title={t("emailSentTitle")}
+        description={t("emailSentDescription")}
+        type="success"
+        icon="check"
+        iconColor={theme.colors.brand.primary[600]}
+        secondaryButton={{
+          text: t("cancelModalButton"),
+          onClick: () => setEmailSentModalVisible(false),
         }}
       />
     </S.Container>

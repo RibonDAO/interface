@@ -13,17 +13,16 @@ function SignInByAuthToken(): JSX.Element {
 
   useEffect(() => {
     async function authenticate() {
-      const authToken = extractUrlValue("authToken", search);
-      const id = extractUrlValue("id", search);
+      const authToken = extractUrlValue("authToken", search) ?? "";
+      const id = extractUrlValue("id", search) ?? "";
 
-      if (id && authToken) {
-        signInByAuthToken({
-          authToken,
-          id,
-        });
-      } else {
-        navigateTo("/expired-link");
-      }
+      signInByAuthToken({
+        authToken,
+        id,
+        onError: () => {
+          navigateTo("/expired-link");
+        },
+      });
     }
 
     authenticate();

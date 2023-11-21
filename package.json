@@ -202,6 +202,10 @@
     "moduleNameMapper": {
       "^react$": "<rootDir>/node_modules/react",
       "^react-dom$": "<rootDir>/node_modules/react-dom"
+    },
+    "transform": {
+      "^.+\\.(css|scss|sass|less)$": "jest-preview/transforms/css",
+      "^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)": "jest-preview/transforms/file"
     }
   }
 }

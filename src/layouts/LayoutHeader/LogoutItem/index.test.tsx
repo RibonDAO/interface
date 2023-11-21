@@ -3,7 +3,6 @@ import {
   expectTextToBeInTheDocument,
   expectPageToNavigateTo,
 } from "config/testUtils/expects";
-import { debug } from "jest-preview";
 import React from "react";
 import LogoutItem from ".";
 
@@ -42,7 +41,6 @@ describe("LogoutItem", () => {
 
     it("Signs out and returns to initial page", () => {
       clickOn("Sign out");
-      debug();
       clickOn("Ok");
       expectPageToNavigateTo("/causes");
     });

@@ -8,6 +8,7 @@ import { logEvent } from "lib/events";
 import GoogleIcon from "assets/icons/google-icon.svg";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useAuthentication } from "contexts/authenticationContext";
+// import ModalDialog from "components/moleculars/modals/ModalDialog";
 
 type Props = {
   onContinue: () => void;
@@ -18,11 +19,33 @@ function GoogleSection({ onContinue }: Props): JSX.Element {
   });
 
   const { signInWithGoogle } = useAuthentication();
+  // const renderModalWrongEmail = () => (
+  //   <ModalDialog
+  //     title={t("wrongEmailModal.title")}
+  //     description={t("wrongEmailModal.description")}
+  //     primaryButton={{
+  //       text: t("wrongEmailModal.tryAgain"),
+  //       onClick: () => {
+  //         console.log("clicked");
+  //       },
+  //     }}
+  //     secondaryButton={{
+  //       text: t("wrongEmailModal.contactSupport"),
+  //       onClick: () => {
+  //         console.log("clicked");
+  //       },
+  //     }}
+  //   />
+  // );
 
   const loginGoogle = useGoogleLogin({
     onSuccess: async (tokenResponse: any) => {
-      await signInWithGoogle(tokenResponse);
-      onContinue();
+      try {
+        await signInWithGoogle(tokenResponse);
+        onContinue();
+      } catch (error: any) {
+        // if (error === "Email does not match") renderModalWrongEmail();
+      }
     },
   });
 

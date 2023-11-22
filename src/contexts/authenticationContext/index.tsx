@@ -73,8 +73,8 @@ function AuthenticationProvider({ children }: Props) {
       setCookiesItem(REFRESH_TOKEN_KEY, refreshToken);
       setAccessToken(token);
       setCurrentUser(authResponse.data.user);
-    } catch (error) {
-      throw new Error("google auth error");
+    } catch (error: any) {
+      throw new Error(error.message);
     }
   }
 

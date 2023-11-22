@@ -49,8 +49,10 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
         from,
       });
       if (signedIn) {
+        // console.log("nonProfit1", nonProfit);
         navigateTo({ pathname: "/signed-in", state: { nonProfit } });
       } else {
+        // console.log("nonProfit2", nonProfit);
         navigateTo({ pathname: "/sign-in", state: { nonProfit } });
       }
     } else {

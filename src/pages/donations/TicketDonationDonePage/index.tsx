@@ -4,6 +4,9 @@ import {
   useFirstAccessToIntegration,
   useUserV1Config,
 } from "@ribon.io/shared/hooks";
+import ConfirmationNumberPink from "assets/icons/confirmation-number-pink.svg";
+import ConfirmationNumberYellow from "assets/icons/confirmation-number-yellow.svg";
+import ConfirmationNumberGreen from "assets/icons/confirmation-number-green.svg";
 import useNavigation from "hooks/useNavigation";
 import { setLocalStorageItem } from "lib/localStorage";
 import { useCallback, useEffect, useState } from "react";
@@ -20,6 +23,7 @@ import { PLATFORM } from "utils/constants";
 import extractUrlValue from "lib/extractUrlValue";
 import { logEvent } from "lib/events";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
+import IconsAroundImage from "components/atomics/sections/IconsAroundImage";
 import * as S from "./styles";
 
 function ticketDonationDonePage(): JSX.Element {
@@ -169,7 +173,13 @@ function ticketDonationDonePage(): JSX.Element {
     <S.Container>
       {audio && <ReactHowler src={audio} loop={false} playing />}
       <S.ImageContainer>
-        <S.Diamond bg={image} />
+        <IconsAroundImage
+          isInfiniteAnimation={false}
+          imageSrc={image}
+          iconAnimationYellow={ConfirmationNumberYellow}
+          iconAnimationPink={ConfirmationNumberPink}
+          iconAnimationGreen={ConfirmationNumberGreen}
+        />
       </S.ImageContainer>
       <S.ContentContainer>
         {renderImpactValue()}

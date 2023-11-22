@@ -1,5 +1,5 @@
 import Button from "components/atomics/buttons/Button";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import {
   defaultBodyLgBold,
   defaultBodySmRegular,
@@ -17,9 +17,7 @@ export const Container = styled.div`
   overflow-x: hidden;
 `;
 
-export const ImageContainer = styled.div`
-  margin-bottom: ${({ theme }) => theme.spacing(40)};
-`;
+export const ImageContainer = styled.div``;
 
 export const Title = styled.h1`
   ${stylizedDisplayLg}
@@ -42,7 +40,7 @@ export const FinishButton = styled(Button)`
   border: 0px;
   display: block;
   justify-self: end;
-  background-color: ${({ theme }) => theme.colors.brand.primary[800]};
+  background-color: ${({ theme }) => theme.colors.brand.primary[600]};
 `;
 
 export const ContentContainer = styled.div`
@@ -93,38 +91,3 @@ export const Checkbox = styled.input`
 `;
 
 export const Image = styled.img``;
-export type DiamondProps = {
-  bg?: string;
-};
-
-export const DiamondBackground = css<{ bg?: string }>`
-  width: 141%;
-  height: 141%;
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 0;
-  background-image: ${({ bg }) => `url(${bg})`};
-  background-size: cover;
-  background-repeat: no-repeat;
-  transform: translate(-50%, -50%) rotate(45deg);
-`;
-
-export const Diamond = styled.div<DiamondProps>`
-  width: 200px;
-  height: 200px;
-  border-radius: 10%;
-  position: relative;
-  z-index: ${({ theme }) => theme.zindex.above};
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-  background-color: ${({ theme }) => theme.colors.brand.primary[800]};
-  transform: rotate(-45deg) scale(0.8);
-  transform-origin: center;
-
-  ::before {
-    ${({ bg }) => bg && DiamondBackground}
-  }
-`;

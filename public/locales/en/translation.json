@@ -106,7 +106,8 @@
       "impactDescription": "with {{value}}",
       "titleSecondLine": "You have donated to",
       "youDonatedText": "You donated",
-      "button": "Finish"
+      "button": "Finish",
+      "checkboxText": "I agree to receive emails with information about my donations"
     },
     "menu": {
       "impactPageTitle": "Impact",
@@ -142,17 +143,19 @@
       "returnButtonText": "Return to {{integrationName}}",
       "stayButtonText": "Stay in Ribon"
     },
-    "confirmDonationPage": {
-      "signedInSection": {
+    "auth": {
+      "signedInPage": {
         "title": "Your donation",
         "confirmText": "Confirm donation",
         "impactOneLife": "Impact 1 person",
         "impactDescription": "with {{value}}"
       },
-      "signInSection": {
-        "title": "Enter your e-mail to donate",
-        "confirmText": "Continue",
-        "footerStartText": "By clicking Confirm I agree on Ribon’s",
+      "signInPage": {
+        "title": "you are donating",
+        "google": "Continue with Google",
+        "apple": "Continue with Apple",
+        "email": "Continue with e-mail",
+        "footerStartText": "By clicking 'Continue' I agree on Ribon’s",
         "footerEndText": " and",
         "termsText": "Terms",
         "termsLink": "https://ribon.io/en/privacy-policy/#terms",
@@ -161,11 +164,36 @@
         "impactOneLife": "Impact 1 person",
         "impactDescription": "with {{value}}",
         "checkboxText": "I agree to receive emails with information about my donations"
+      },
+      "insertEmailAccountPage": {
+        "title": "Choose an e-mail to donate",
+        "emailLabel": "E-mail",
+        "confirmText": "Continue",
+        "emailPlaceholder": "Your e-mail"
+      },
+      "extraTicketPage": {
+        "title": "You won an extra ticket",
+        "description": "Validate your account clicking the link sent to {{email}} and get your extra ticket.",
+        "buttonText": "Validate later"
+      },
+      "receiveExtraTicketPage": {
+        "title": "Validating your account brought you here",
+        "description": "Your donation ticket is available",
+        "buttonText": "Get my ticket"
       }
     }
   },
   "layouts": {
     "layoutHeader": {
+      "settingsMenu": {
+        "signInOrCreateAccount": "Sign in or create a new account",
+        "getTheApp": "Get more tickets",
+        "userSupport": {
+          "text": "User support",
+          "link": "https://api.whatsapp.com/send/?phone=554896605461&text=Hii+Ribon%2C+let’s+talk%3F+&type=phone_number&app_absent=0"
+        },
+        "monthlyContributions": "Monthly contributions"
+      },
       "changeLanguageItem": {
         "changeLanguageText": "Change language"
       },
@@ -695,5 +723,41 @@
     "impactDescription": "with {{value}}",
     "titleCard": "CHILDREN’S DAY CAMPAIGN",
     "description": "And help a child live their first 5 years healthily"
+  },
+  "auth": {
+    "signInPage": {
+      "title": "Sign in to your account",
+      "footerStartText": "By clicking 'Continue' I agree on Ribon’s",
+      "footerEndText": " and",
+      "termsText": "Terms",
+      "termsLink": "https://ribon.io/en/privacy-policy/#terms",
+      "privacyPolicyText": "Privacy Policy",
+      "privacyPolicyLink": "https://ribon.io/en/privacy-policy/#privacy"
+    },
+    "insertEmailPage": {
+      "title": "Sign in with an e-mail",
+      "emailLabel": "E-mail",
+      "confirmText": "Continue",
+      "emailPlaceholder": "Your e-mail"
+    },
+    "sentMagicLinkEmailPage": {
+      "title": "We sent you a sign in link",
+      "text": "Click the link sent to {{email}} to sign in"
+    }
+  },
+  "components": {
+    "moleculars": {
+      "buttons": {
+        "AppleLogin": {
+          "buttonText": "Continue with Apple"
+        },
+        "GoogleLogin": {
+          "buttonText": "Continue with Google"
+        },
+        "MagicLinkLogin": {
+          "buttonText": "Continue with e-mail"
+        }
+      }
+    }
   }
 }

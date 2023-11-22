@@ -16,7 +16,7 @@
       "donateText": "Doar ticket",
       "donateBlockedText": "Sem tickets",
       "impactPrefix": "Doe",
-      "doMore": "Doe {{value}}",
+      "doMore": "Faça mais e doe {{value}}",
       "pageTitle": "Doe para um projeto",
       "donationError": "Não foi possível doar.",
       "errorModalTitle": "Falha no processamento",
@@ -106,7 +106,8 @@
       "impactDescription": "com {{value}}",
       "titleSecondLine": "Você doou para",
       "youDonatedText": "Você doou",
-      "button": "Terminar"
+      "button": "Terminar",
+      "checkboxText": "Aceito receber e-mails com informações sobre minhas doações"
     },
     "menu": {
       "impactPageTitle": "Impacto",
@@ -116,7 +117,7 @@
       "aboutPageTitle": "Sobre",
       "communityMenuItem": "Causas",
       "donateWithRibonMenuItem": "Doe com a Ribon",
-      "directDonationMenuItem": "Campanhas",
+      "directDonationMenuItem": "ONGs",
       "new": "Novo"
     },
     "giveTicketPage": {
@@ -142,17 +143,19 @@
       "returnButtonText": "Voltar para {{integrationName}}",
       "stayButtonText": "Continuar na Ribon"
     },
-    "confirmDonationPage": {
-      "signedInSection": {
+    "auth": {
+      "signedInPage": {
         "title": "Sua doação",
         "confirmText": "Confirmar doação",
         "impactOneLife": "Impacte 1 pessoa",
         "impactDescription": "com {{value}}"
       },
-      "signInSection": {
-        "title": "Insira seu e-mail para doar",
-        "confirmText": "Continuar",
-        "footerStartText": "Ao clicar em Confirmar, eu concordo com os",
+      "signInPage": {
+        "title": "Você está doando",
+        "google": "Continuar com Google",
+        "apple": "Continuar com Apple",
+        "email": "Continuar com e-mail",
+        "footerStartText": "Ao clicar em 'Continuar', eu concordo com os",
         "footerEndText": " e a",
         "termsText": "Termos",
         "termsLink": "https://ribon.io/privacy-policy/#termos",
@@ -161,11 +164,36 @@
         "impactOneLife": "Impacte 1 pessoa",
         "impactDescription": "com {{value}}",
         "checkboxText": "Aceito receber e-mails com informações sobre minhas doações"
+      },
+      "insertEmailAccountPage": {
+        "title": "Você está doando",
+        "emailLabel": "E-mail",
+        "confirmText": "Continuar",
+        "emailPlaceholder": "Seu e-mail"
+      },
+      "extraTicketPage": {
+        "title": "Você ganhou um ticket extra",
+        "description": "Valide sua conta clicando no link enviado para {{email}} e receba seu ticket extra",
+        "buttonText": "Validar depois"
+      },
+      "receiveExtraTicketPage": {
+        "title": "Validar sua conta trouxe você aqui",
+        "description": "Seu ticket extra está disponível",
+        "buttonText": "Receber meu ticket"
       }
     }
   },
   "layouts": {
     "layoutHeader": {
+      "settingsMenu": {
+        "signInOrCreateAccount": "Entre ou crie uma nova conta",
+        "getTheApp": "Ganhe mais tickets",
+        "userSupport": {
+          "text": "Suporte ao usuário",
+          "link": "https://api.whatsapp.com/send/?phone=554896605461&text=Oii+Ribon%2C+vamos+conversar%3F+&type=phone_number&app_absent=0"
+        },
+        "monthlyContributions": "Contribuições mensais"
+      },
       "changeLanguageItem": {
         "changeLanguageText": "Alterar idioma"
       },
@@ -694,5 +722,41 @@
     "ticketsAmount": "+{{value}} tickets",
     "impactDescription": "com {{value}}",
     "description": "E ajude uma criança a viver seus primeiros 5 anos com saúde"
+  },
+  "auth": {
+    "signInPage": {
+      "title": "Entre na sua conta",
+      "footerStartText": "Ao clicar em 'Continuar', eu concordo com os",
+      "footerEndText": "e",
+      "termsText": "Termos",
+      "termsLink": "https://ribon.io/en/privacy-policy/#terms",
+      "privacyPolicyText": "Política de Privacidade",
+      "privacyPolicyLink": "https://ribon.io/en/privacy-policy/#privacy"
+    },
+    "insertEmailPage": {
+      "title": "Entre com um e-mail",
+      "emailLabel": "E-mail",
+      "confirmText": "Continuar",
+      "emailPlaceholder": "Seu e-mail"
+    },
+    "sentMagicLinkEmailPage": {
+      "title": "Link de entrada enviado",
+      "text": "Clique no link enviado para {{email}} para entrar"
+    }
+  },
+  "components": {
+    "moleculars": {
+      "buttons": {
+        "AppleLogin": {
+          "buttonText": "Continue com Apple"
+        },
+        "GoogleLogin": {
+          "buttonText": "Continue com Google"
+        },
+        "MagicLinkLogin": {
+          "buttonText": "Continue com e-mail"
+        }
+      }
+    }
   }
 }

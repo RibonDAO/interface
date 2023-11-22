@@ -56,7 +56,7 @@ function CampaignSection({ cardId }: Props): JSX.Element {
       <S.NonProfitTitle>{t("nonProfits")}</S.NonProfitTitle>
     </>
   ) : (
-    <div />
+    <S.NonProfitTitle>{t("nonProfits")}</S.NonProfitTitle>
   );
 }
 

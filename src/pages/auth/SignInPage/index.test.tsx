@@ -1,4 +1,3 @@
-import { nonProfitFactory } from "@ribon.io/shared/config";
 import { renderComponent } from "config/testUtils/renders";
 import {
   expectLogEventToHaveBeenCalledWith,
@@ -20,25 +19,18 @@ jest.mock(
 );
 
 describe("SignInPage", () => {
-  const nonProfit = nonProfitFactory();
-
   beforeEach(() => {
-    renderComponent(<SignInPage />, {
-      locationState: {
-        nonProfit,
-      },
-    });
+    renderComponent(<SignInPage />);
   });
 
   it("should render without error", () => {
-    expectTextToBeInTheDocument("you are donating");
+    expectTextToBeInTheDocument("Sign in to your account");
   });
 
   it("logs the P27_view event", async () => {
     waitForPromises();
     expectLogEventToHaveBeenCalledWith("P27_view", {
-      nonProfitId: nonProfit.id,
-      from: "donation_flow",
+      from: "menu",
     });
   });
 });

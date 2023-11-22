@@ -1,20 +1,17 @@
 import CardCenterImageButton from "components/moleculars/cards/CardCenterImageButton";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import useNavigation from "hooks/useNavigation";
-import { RIBON_COMPANY_ID } from "utils/constants";
 import { logEvent } from "lib/events";
 import { Currencies, NonProfit } from "@ribon.io/shared/types";
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
 import useVoucher from "hooks/useVoucher";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
-import { isFirstAccess } from "lib/onboardingFirstAccess";
-import { useCurrentUser } from "contexts/currentUserContext";
 import causeIllustration from "assets/images/direct-illustration.svg";
-import { useBlockedDonationContributionModal } from "hooks/modalHooks/useBlockedDonationContributionModal";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useOffers } from "@ribon.io/shared/hooks";
 import { useLanguage } from "hooks/useLanguage";
+import { useCurrentUser } from "contexts/currentUserContext";
 import StoriesSection from "../StoriesSection";
 import * as S from "../styles";
 
@@ -33,32 +30,12 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
 
   const [currentNonProfitIndex, setCurrentNonProfitIndex] = useState(0);
 
-  const { showBlockedDonationContributionModal } =
-    useBlockedDonationContributionModal();
-
   const { formattedImpactText } = useFormattedImpactText();
   const { isVoucherAvailable } = useVoucher();
   const { signedIn } = useCurrentUser();
 
   const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
 
-  function handleButtonClick(nonProfit: NonProfit, from: string) {
-    if (canDonateAndHasVoucher) {
-      logEvent("donateTicketBtn_start", {
-        nonProfitId: nonProfit.id,
-        from,
-      });
-      if (signedIn) {
-        // console.log("nonProfit1", nonProfit);
-        navigateTo({ pathname: "/signed-in", state: { nonProfit } });
-      } else {
-        // console.log("nonProfit2", nonProfit);
-        navigateTo({ pathname: "/sign-in", state: { nonProfit } });
-      }
-    } else {
-      showBlockedDonationContributionModal();
-    }
-  }
   const handleEmptyButtonClick = () => {
     navigateTo("/promoters/support-cause");
   };
@@ -117,12 +94,24 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
     });
   };
 
-  const isCheckoutButtonVisible = useCallback(() => {
-    const isRibonIntegration = integrationId?.toString() === RIBON_COMPANY_ID;
-    const isNotFirstAccess = !isFirstAccess(signedIn);
-
-    return Boolean(isRibonIntegration && isNotFirstAccess);
-  }, [integrationId]);
+  function handleButtonClick(nonProfit: NonProfit, from: string) {
+    if (canDonateAndHasVoucher) {
+      logEvent("donateTicketBtn_start", {
+        nonProfitId: nonProfit.id,
+        from,
+      });
+      if (signedIn) {
+        navigateTo({ pathname: "/signed-in", state: { nonProfit } });
+      } else {
+        navigateTo({
+          pathname: "/donation/auth/sign-in",
+          state: { nonProfit },
+        });
+      }
+    } else {
+      navigateToCheckout(nonProfit);
+    }
+  }
 
   return (
     <S.NonProfitsListContainer>
@@ -167,11 +156,6 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
                     infoText={
                       nonProfit.stories?.length ? t("learnMore") : undefined
                     }
-                    secondButtonProps={{
-                      text: t("doMore", { value: currentOffer()?.price }),
-                      onClick: () => navigateToCheckout(nonProfit),
-                      visible: isCheckoutButtonVisible(),
-                    }}
                     fullWidth
                   />
                 </S.CardWrapper>

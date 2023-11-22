@@ -42,8 +42,11 @@ import InsertEmailAccountPage from "pages/donations/auth/InsertEmailAccountPage"
 import ExtraTicketPage from "pages/donations/auth/ExtraTicketPage";
 import ReceiveExtraTicketPage from "pages/donations/auth/ReceiveExtraTicketPage";
 import SignInByTokenPage from "pages/donations/auth/SignInByTokenPage";
-import SignInPage from "pages/donations/auth/SignInPage";
+import DonationSignInPage from "pages/donations/auth/SignInPage";
 import SignedInPage from "pages/donations/auth/SignedInPage";
+import SignInPage from "pages/auth/SignInPage";
+import InsertEmailPage from "pages/auth/InsertEmailPage";
+import SentMagicLinkEmailPage from "pages/auth/SentMagicLinkEmailPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -63,6 +66,27 @@ function RoutesComponent(): JSX.Element {
       <Route path="/" exact>
         <Suspense fallback={<div />}>
           <LoadingPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/auth/sign-in" exact>
+        <Suspense fallback={<div />}>
+          <NavigationBackHeader />
+          <SignInPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/auth/insert-email" exact>
+        <Suspense fallback={<div />}>
+          <NavigationBackHeader />
+          <InsertEmailPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/auth/sent-magic-link-email" exact>
+        <Suspense fallback={<div />}>
+          <NavigationBackHeader />
+          <SentMagicLinkEmailPage />
         </Suspense>
       </Route>
 
@@ -112,10 +136,10 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
-      <Route path="/sign-in" exact>
+      <Route path="/donation/auth/sign-in" exact>
         <Suspense fallback={<div />}>
           <NavigationBackHeader />
-          <SignInPage />
+          <DonationSignInPage />
         </Suspense>
       </Route>
 

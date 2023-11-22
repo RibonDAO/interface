@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import WalletProvider from "contexts/walletContext";
 import CausesPage from "pages/donations/CausesPage";
 import DonationDonePage from "pages/donations/DonationDonePage";
-import DonationDoneCausePage from "pages/donations/DonationDoneCausePage";
+import DonationDoneCausePage from "pages/promoters/DonationDoneCausePage";
 import ImpactPage from "pages/users/ImpactPage";
 import MainLayout from "layouts/MainLayout";
 import CheckoutPage from "pages/promoters/CheckoutPage";

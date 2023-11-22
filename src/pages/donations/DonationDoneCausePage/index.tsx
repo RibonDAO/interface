@@ -28,6 +28,7 @@ import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { PLATFORM } from "utils/constants";
 import extractUrlValue from "lib/extractUrlValue";
+import { useAuthentication } from "contexts/authenticationContext";
 import { logEvent } from "lib/events";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import * as S from "./styles";
@@ -51,7 +52,7 @@ function DonationDoneCausePage(): JSX.Element {
     keyPrefix: "donations.donationDoneCausePage",
   });
   const { formattedImpactText } = useFormattedImpactText();
-
+  const { isAuthenticated } = useAuthentication();
   const currency = Currencies.USD;
   const {
     state: { nonProfit, offerId, cause, hasButton, flow, from, hasCheckbox },
@@ -69,6 +70,7 @@ function DonationDoneCausePage(): JSX.Element {
   } = useStatistics({
     userId: currentUser?.id,
   });
+  const isNotAuthenticated = !isAuthenticated;
 
   const integrationId = useIntegrationId();
   const { search } = useLocation();
@@ -165,7 +167,11 @@ function DonationDoneCausePage(): JSX.Element {
           pathname: "/post-donation",
           state: { nonProfit, cause },
         });
-      } else {
+      } else if (isNotAuthenticated){
+        navigateTo({
+          pathname: "/sign-in-extra-ticket",
+        });
+     } else {
         navigateTo({
           pathname: "/causes",
           state: { cause },

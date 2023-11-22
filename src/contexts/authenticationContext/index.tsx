@@ -27,10 +27,9 @@ export interface IAuthenticationContext {
   logout: () => void;
   signInWithGoogle: (response: any) => void;
   signInWithApple: (response: any) => void;
-  isAuthorized: (email: string) => boolean;
+  isAuthenticated: () => boolean;
   user: any | undefined;
   setUser: (user: any) => void;
-  allowed: boolean;
   signInByAuthToken: (signInByAuthTokenProps: authTokenProps) => void;
   sendAuthenticationEmail: (
     sendAuthenticationEmailProps: authenticationEmailProps,
@@ -53,12 +52,9 @@ function AuthenticationProvider({ children }: Props) {
   const [loading, setLoading] = useState(false);
   const { setCurrentUser } = useCurrentUser();
 
-  function isAuthorized(email: string) {
-    if (!email) return false;
-    return email.includes("@ribon.io");
+  function isAuthenticated() {
+    return !!accessToken;
   }
-
-  const allowed = useMemo(() => isAuthorized(user?.email ?? ""), [user]);
 
   async function signInWithGoogle(response: any) {
     try {
@@ -157,17 +153,16 @@ function AuthenticationProvider({ children }: Props) {
     () => ({
       user,
       setUser,
-      allowed,
-      isAuthorized,
       logout,
       accessToken,
       signInWithGoogle,
       signInWithApple,
       signInByAuthToken,
       sendAuthenticationEmail,
+      isAuthenticated,
       loading,
     }),
-    [user, allowed, accessToken, loading],
+    [user, accessToken, loading],
   );
 
   return (

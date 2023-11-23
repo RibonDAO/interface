@@ -11,7 +11,7 @@ import { setLocalStorageItem } from "lib/localStorage";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
-import { Cause, NonProfit } from "@ribon.io/shared/types";
+import { NonProfit } from "@ribon.io/shared/types";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import { getAudioFromStorage } from "lib/cachedAudio";
 import ReactHowler from "react-howler";
@@ -28,8 +28,6 @@ import * as S from "./styles";
 function TicketDonationDonePage(): JSX.Element {
   useAvoidBackButton();
   type LocationState = {
-    offerId?: number;
-    cause: Cause;
     nonProfit: NonProfit;
     flow?: "nonProfit" | "login" | "magicLink";
     from?: string;
@@ -137,7 +135,7 @@ function TicketDonationDonePage(): JSX.Element {
       <S.ImageContainer>
         <IconsAroundImage
           isInfiniteAnimation={false}
-          imageSrc={nonProfit.mainImage}
+          imageSrc={nonProfit?.mainImage}
           iconAnimationYellow={ConfirmationNumberYellow}
           iconAnimationPink={ConfirmationNumberPink}
           iconAnimationGreen={ConfirmationNumberGreen}

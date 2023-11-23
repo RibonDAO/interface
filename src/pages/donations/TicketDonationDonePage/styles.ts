@@ -22,9 +22,9 @@ export const ImageContainer = styled.div``;
 export const Title = styled.h1`
   ${stylizedDisplayMd}
 
-  color: ${({ theme }) => theme.colors.brand.primary[800]};
   margin-top: 12px;
   margin-bottom: 8px;
+  color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;
 
 export const Subtitle = styled.p`

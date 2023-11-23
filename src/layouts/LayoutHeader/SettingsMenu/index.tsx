@@ -23,9 +23,9 @@ function SettingsMenu({ outline = false }: Props) {
     setMenuVisible(true);
   }
 
-  function closeMenu() {
+  const closeMenu = () => {
     setMenuVisible(false);
-  }
+  };
 
   return (
     <>
@@ -54,7 +54,7 @@ function SettingsMenu({ outline = false }: Props) {
         <GetTheApp />
         <UserSupport />
         <ChangeLanguage />
-        <LogoutItem />
+        <LogoutItem closeMenu={closeMenu} />
         <DeleteAccountItem />
       </ModalBlank>
       <S.Settings

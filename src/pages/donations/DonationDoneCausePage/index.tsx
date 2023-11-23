@@ -167,11 +167,11 @@ function DonationDoneCausePage(): JSX.Element {
           pathname: "/post-donation",
           state: { nonProfit, cause },
         });
-      } else if (isNotAuthenticated){
+      } else if (isNotAuthenticated) {
         navigateTo({
           pathname: "/sign-in-extra-ticket",
         });
-     } else {
+      } else {
         navigateTo({
           pathname: "/causes",
           state: { cause },

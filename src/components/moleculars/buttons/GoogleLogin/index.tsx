@@ -27,25 +27,27 @@ function GoogleLogin({ onContinue }: Props): JSX.Element {
   const [modalVisible, setModalVisible] = useState(false);
 
   const renderModalWrongEmail = () => (
-      <ModalDialog
-        visible={modalVisible}
-        title={t("wrongEmailModal.title")}
-        description={t("wrongEmailModal.description", { email: currentUser?.email })}
-        primaryButton={{
-          text: t("wrongEmailModal.tryAgain"),
-          onClick: () => {
-            setModalVisible(false);
-          },
-        }}
-        secondaryButton={{
-          text: t("wrongEmailModal.contactSupport"),
-          onClick: () => {
-            contactSupport(currentLang);
-          },
-        }}
-        onClose={() => setModalVisible(false)}
-      />
-    );
+    <ModalDialog
+      visible={modalVisible}
+      title={t("wrongEmailModal.title")}
+      description={t("wrongEmailModal.description", {
+        email: currentUser?.email,
+      })}
+      primaryButton={{
+        text: t("wrongEmailModal.tryAgain"),
+        onClick: () => {
+          setModalVisible(false);
+        },
+      }}
+      secondaryButton={{
+        text: t("wrongEmailModal.contactSupport"),
+        onClick: () => {
+          contactSupport(currentLang);
+        },
+      }}
+      onClose={() => setModalVisible(false)}
+    />
+  );
 
   const loginGoogle = useGoogleLogin({
     onSuccess: async (tokenResponse: any) => {

@@ -57,55 +57,38 @@ function AuthenticationProvider({ children }: Props) {
     return !!accessToken;
   }
 
+  async function signInWithProvider(response: any, provider: string) {
+    try {
+      const authResponse = await userAuthenticationApi.postAuthenticate(
+        response.authorization?.id_token || response.access_token,
+        provider
+      );
+  
+      const token = authResponse.headers["access-token"];
+      const refreshToken = authResponse.headers["refresh-token"];
+      setCookiesItem(ACCESS_TOKEN_KEY, token);
+      setCookiesItem(REFRESH_TOKEN_KEY, refreshToken);
+      setAccessToken(token);
+      setCurrentUser(authResponse.data.user);
+    } catch (error: any) {
+      if (error.response) {
+        const apiErrorMessage =
+          error.response.data.formatted_message === emailDoesNotMatchMessage
+            ? emailDoesNotMatchMessage
+            : "Unknown error";
+        throw new Error(apiErrorMessage);
+      }
+      throw new Error(`${provider} auth error`);
+    }
+  }
+  
   async function signInWithGoogle(response: any) {
-    try {
-      const authResponse = await userAuthenticationApi.postAuthenticate(
-        response.access_token,
-        "google_oauth2_access",
-      );
-
-      const token = authResponse.headers["access-token"];
-      const refreshToken = authResponse.headers["refresh-token"];
-      setCookiesItem(ACCESS_TOKEN_KEY, token);
-      setCookiesItem(REFRESH_TOKEN_KEY, refreshToken);
-      setAccessToken(token);
-      setCurrentUser(authResponse.data.user);
-    } catch (error: any) {
-      if (error.response) {
-        const apiErrorMessage =
-          error.response.data.formatted_message === emailDoesNotMatchMessage
-            ? emailDoesNotMatchMessage
-            : "Unknown error";
-        throw new Error(apiErrorMessage);
-      }
-      throw new Error(error.message);
-    }
+    await signInWithProvider(response, "google_oauth2_access");
   }
-
+  
   async function signInWithApple(response: any) {
-    try {
-      const authResponse = await userAuthenticationApi.postAuthenticate(
-        response.authorization.id_token,
-        "apple",
-      );
-
-      const token = authResponse.headers["access-token"];
-      const refreshToken = authResponse.headers["refresh-token"];
-      setCookiesItem(ACCESS_TOKEN_KEY, token);
-      setCookiesItem(REFRESH_TOKEN_KEY, refreshToken);
-      setAccessToken(token);
-      setCurrentUser(authResponse.data.user);
-    } catch (error: any) {
-      if (error.response) {
-        const apiErrorMessage =
-          error.response.data.formatted_message === emailDoesNotMatchMessage
-            ? emailDoesNotMatchMessage
-            : "Unknown error";
-        throw new Error(apiErrorMessage);
-      }
-      throw new Error("apple auth error");
-    }
-  }
+    await signInWithProvider(response, "apple");
+  }  
 
   async function signInByAuthToken({
     authToken,

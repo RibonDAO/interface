@@ -21,9 +21,9 @@ function GoogleLogin({ onContinue }: Props): JSX.Element {
     keyPrefix: "components.moleculars.buttons.GoogleLogin",
   });
 
+  const { signInWithGoogle } = useAuthentication();
   const { currentLang } = useLanguage();
   const { currentUser } = useCurrentUser();
-  const { signInWithGoogle } = useAuthentication();
   const [modalVisible, setModalVisible] = useState(false);
 
   const renderModalWrongEmail = () => (

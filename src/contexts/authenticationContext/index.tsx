@@ -117,7 +117,7 @@ function AuthenticationProvider({ children }: Props) {
       setCookiesItem(ACCESS_TOKEN_KEY, token);
       setCookiesItem(REFRESH_TOKEN_KEY, refreshToken);
       setAccessToken(token);
-      setCurrentUser(response.data.email);
+      setCurrentUser(response.data.user);
 
       if (onSuccess) onSuccess();
     } catch (error: any) {
@@ -140,7 +140,7 @@ function AuthenticationProvider({ children }: Props) {
         email,
         accountId,
       );
-      setEmailSent(response.data.user.email);
+      setEmailSent(response.data.email);
       if (onSuccess) onSuccess();
     } catch (error: any) {
       logError(error);

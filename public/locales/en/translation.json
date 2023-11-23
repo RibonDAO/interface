@@ -754,7 +754,13 @@
     "moleculars": {
       "buttons": {
         "AppleLogin": {
-          "buttonText": "Continue with Apple"
+          "buttonText": "Continue with Apple",
+          "wrongEmailModal": {
+            "title": "Oops, incorrect e-mail",
+            "description": "To continue with Google or Apple, please choose {{email}} as your validation e-mail. If you don't recognize this e-mail, please contact our support.",
+            "tryAgain": "Try again",
+            "contactSupport": "Contact support"
+          }
         },
         "GoogleLogin": {
           "buttonText": "Continue with Google",

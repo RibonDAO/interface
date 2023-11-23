@@ -95,8 +95,15 @@ function AuthenticationProvider({ children }: Props) {
       setCookiesItem(REFRESH_TOKEN_KEY, refreshToken);
       setAccessToken(token);
       setCurrentUser(authResponse.data.user);
-    } catch (error) {
-      throw new Error("google auth error");
+    } catch (error: any) {
+      if (error.response) {
+        const apiErrorMessage =
+          error.response.data.formatted_message === emailDoesNotMatchMessage
+            ? emailDoesNotMatchMessage
+            : "Unknown error";
+        throw new Error(apiErrorMessage);
+      }
+      throw new Error("apple auth error");
     }
   }
 

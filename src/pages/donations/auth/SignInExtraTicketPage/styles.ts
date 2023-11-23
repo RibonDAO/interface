@@ -51,6 +51,15 @@ export const Button = styled(ButtonComponent)`
   height: 48px;
 `;
 
+export const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(8)};
+  align-items: center;
+  justify-content: center;
+`;
+
 export const LeftImage = styled.img`
   display: none;
 

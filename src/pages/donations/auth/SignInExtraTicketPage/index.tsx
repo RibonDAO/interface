@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { theme } from "@ribon.io/shared/styles";
 import LeftImage from "assets/images/bottom-left-shape.svg";
 import RightImage from "assets/images/top-right-shape.svg";
 import ticketImage from "assets/images/ticket-image.svg";
@@ -8,11 +7,14 @@ import { logEvent } from "lib/events";
 import useNavigation from "hooks/useNavigation";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useCurrentUser } from "contexts/currentUserContext";
+import GoogleLogin from "components/moleculars/buttons/GoogleLogin";
+import AppleLogin from "components/moleculars/buttons/AppleLogin";
+import MagicLinkLogin from "components/moleculars/buttons/MagicLinkLogin";
 import * as S from "./styles";
 
 function SignInExtraTicketPage(): JSX.Element {
   const { t } = useTranslation("translation", {
-    keyPrefix: "donations.auth.SignInExtraTicketPage",
+    keyPrefix: "donations.auth.signInExtraTicketPage",
   });
   const { currentUser } = useCurrentUser();
   const { navigateTo } = useNavigation();
@@ -23,12 +25,9 @@ function SignInExtraTicketPage(): JSX.Element {
     });
   }, []);
 
-  const handleButtonPress = () => {
-    logEvent("authRewardSkipBtn_click", {
-      from: "donation_flow",
-    });
+  const onContinue = (pathname: string) => {
     navigateTo({
-      pathname: "/causes",
+      pathname,
     });
   };
 
@@ -48,15 +47,14 @@ function SignInExtraTicketPage(): JSX.Element {
               {t("description", { email: currentUser?.email })}
             </S.Description>
           </S.TextContainer>
-          <S.Button
-            text={t("buttonText")}
-            onClick={handleButtonPress}
-            backgroundColor={theme.colors.neutral10}
-            borderColor={theme.colors.brand.primary[600]}
-            textColor={theme.colors.brand.primary[600]}
-            eventName="authRewardSkipBtn_click"
-            eventParams={{ from: "donation_flow" }}
-          />
+
+          <S.ButtonContainer>
+            <GoogleLogin onContinue={() => onContinue("/")} />
+            <AppleLogin onContinue={() => onContinue("/")} />
+            <MagicLinkLogin
+              onContinue={() => onContinue("/auth/insert-email")}
+            />
+          </S.ButtonContainer>
         </S.ContentContainer>
       </S.MainContainer>
     </S.Container>

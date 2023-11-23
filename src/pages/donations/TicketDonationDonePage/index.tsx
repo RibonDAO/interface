@@ -131,16 +131,13 @@ function TicketDonationDonePage(): JSX.Element {
 
   const renderImpactValue = () => oldImpactFormat();
 
-  const image =
-    "https://ribon-core-api-production.s3.amazonaws.com/utz4g50bsqvqg6q78p1e9metu96v?response-content-disposition=inline%3B%20filename%3D%22cardAMF.jpg%22%3B%20filename%2A%3DUTF-8%27%27cardAMF.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA42ZX7UC72NBLHNXM%2F20231121%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231121T185926Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=84db2749d41043f8134151085d04d73d11c53b2e4ae15ab6df464e68117deb87";
-
   return (
     <S.Container>
       {audio && <ReactHowler src={audio} loop={false} playing />}
       <S.ImageContainer>
         <IconsAroundImage
           isInfiniteAnimation={false}
-          imageSrc={image}
+          imageSrc={nonProfit.mainImage}
           iconAnimationYellow={ConfirmationNumberYellow}
           iconAnimationPink={ConfirmationNumberPink}
           iconAnimationGreen={ConfirmationNumberGreen}

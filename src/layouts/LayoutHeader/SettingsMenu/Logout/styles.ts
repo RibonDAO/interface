@@ -10,4 +10,8 @@ export const LogoutButton = styled(Button)`
   min-width: 76px;
   padding: ${({ theme }) => theme.spacing(4, 12)};
   background: ${({ theme }) => theme.colors.neutral10};
+
+  :not(:last-child) {
+    border-bottom: 2px solid ${({ theme }) => theme.colors.neutral[200]};
+  }
 `;

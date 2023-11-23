@@ -1,11 +1,11 @@
 import React from "react";
 import { renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
-import GetTheAppItem from ".";
+import SignInOrCreateAccount from ".";
 
 describe("GetTheAppItem component", () => {
   it("renders the correct text", () => {
-    renderComponent(<GetTheAppItem />);
-    expectTextToBeInTheDocument("Get more tickets");
+    renderComponent(<SignInOrCreateAccount />);
+    expectTextToBeInTheDocument("Sign in or create a new account");
   });
 });

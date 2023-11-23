@@ -26,6 +26,7 @@ export const ContentContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 368px;

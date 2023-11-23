@@ -57,32 +57,6 @@ export const TASKS = [
     },
   },
   {
-    id: "2fd05af5-e67d-4640-b674-efe949ad5b51",
-    title: "view_about_page",
-    actions: ["about_page_view"],
-    type: "daily",
-    navigationCallback: "/about",
-    isVisible(this: Task, params?: any) {
-      const taskState = params?.state.find((obj: any) => obj.id === this.id);
-
-      const lastCompletedAt = new Date(
-        taskState?.lastCompletedAt?.slice(0, 19),
-      );
-      const timesCompleted = taskState?.timesCompleted || 0;
-      const taskDone = taskState?.done;
-
-      const completedDay = lastCompletedAt < beginningOfToday();
-
-      if (timesCompleted === 0 && !taskDone) {
-        return true;
-      } else if (timesCompleted === 1 && taskDone && !completedDay) {
-        return true;
-      }
-
-      return false;
-    },
-  },
-  {
     id: "cad1bf70-6728-4900-83b3-f41171145cf2",
     title: "survey_form",
     actions: ["survey_form_view"],

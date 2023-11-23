@@ -3,6 +3,7 @@ import { defaultBodyMdSemibold } from "styles/typography/default";
 import { stylizedDisplayLg } from "styles/typography/stylized";
 
 export const Container = styled.div`
+  max-width: 350px;
   height: 100vh;
   margin: 0 auto;
   display: flex;
@@ -10,7 +11,6 @@ export const Container = styled.div`
   grid-gap: 0;
   align-items: center;
   justify-content: center;
-  max-width: 350px;
 `;
 
 const spinAnimation = keyframes`
@@ -36,8 +36,8 @@ export const Loader = styled.div`
 export const Title = styled.h1`
   ${stylizedDisplayLg}
 
-  margin-bottom: ${({ theme }) => theme.spacing(8)};
   margin-top: ${({ theme }) => theme.spacing(8)};
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
   position: relative;
   z-index: 2;
   color: ${({ theme }) => theme.colors.brand.primary[900]};
@@ -47,12 +47,11 @@ export const Description = styled.p`
   ${defaultBodyMdSemibold}
 
   max-width: 350px;
-
+  margin-bottom: ${({ theme }) => theme.spacing(24)};
   position: relative;
   z-index: 2;
   text-align: center;
   color: ${({ theme }) => theme.colors.neutral[500]};
-  margin-bottom: ${({ theme }) => theme.spacing(24)};
 `;
 
 export const Logo = styled.img`

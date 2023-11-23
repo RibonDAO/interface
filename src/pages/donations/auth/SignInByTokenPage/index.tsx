@@ -16,20 +16,21 @@ function SignInByAuthToken(): JSX.Element {
       const authToken = extractUrlValue("authToken", search) ?? "";
       const id = extractUrlValue("id", search) ?? "";
 
-      signInByAuthToken({
-        authToken,
-        id,
-        onError: () => {
-          navigateTo({
-            pathname: "/expired-link",
-            state: {
-              accountId: id,
-            },
-          });
-        },
-      });
+      if (id && authToken) {
+        signInByAuthToken({
+          authToken,
+          id,
+          onError: () => {
+            navigateTo({
+              pathname: "/expired-link",
+              state: {
+                accountId: id,
+              },
+            });
+          },
+        });
+      }
     }
-
     authenticate();
   }, []);
 

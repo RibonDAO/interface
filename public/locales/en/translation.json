@@ -180,6 +180,11 @@
         "title": "Validating your account brought you here",
         "description": "Your donation ticket is available",
         "buttonText": "Get my ticket"
+      },
+      "signInExtraTicketPage": {
+        "title": "You won an extra ticket",
+        "description": "Validate your account created with {{email}} to get your extra ticket",
+        "buttonText": "Validate later"
       }
     }
   },
@@ -752,7 +757,13 @@
           "buttonText": "Continue with Apple"
         },
         "GoogleLogin": {
-          "buttonText": "Continue with Google"
+          "buttonText": "Continue with Google",
+          "wrongEmailModal": {
+            "title": "Oops, incorrect e-mail",
+            "description": "To continue with Google or Apple, please choose {{email}} as your validation e-mail. If you don't recognize this e-mail, please contact our support.",
+            "tryAgain": "Try again",
+            "contactSupport": "Contact support"
+          }
         },
         "MagicLinkLogin": {
           "buttonText": "Continue with e-mail"

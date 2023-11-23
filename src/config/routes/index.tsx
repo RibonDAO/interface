@@ -40,6 +40,7 @@ import CampaignPage from "pages/campaigns/CampaignPage";
 import PixInstructionsPage from "pages/promoters/CheckoutPage/Components/PixInstructionsPage";
 import InsertEmailAccountPage from "pages/donations/auth/InsertEmailAccountPage";
 import ExtraTicketPage from "pages/donations/auth/ExtraTicketPage";
+import SignInExtraTicketPage from "pages/donations/auth/SignInExtraTicketPage";
 import ReceiveExtraTicketPage from "pages/donations/auth/ReceiveExtraTicketPage";
 import SignInByTokenPage from "pages/donations/auth/SignInByTokenPage";
 import DonationSignInPage from "pages/donations/auth/SignInPage";
@@ -160,6 +161,13 @@ function RoutesComponent(): JSX.Element {
       <Route path="/extra-ticket" exact>
         <Suspense fallback={<div />}>
           <ExtraTicketPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/donation/auth/sign-in-extra-ticket" exact>
+        <Suspense fallback={<div />}>
+          <NavigationBackHeader />
+          <SignInExtraTicketPage />
         </Suspense>
       </Route>
 

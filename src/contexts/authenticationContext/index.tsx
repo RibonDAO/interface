@@ -51,6 +51,7 @@ function AuthenticationProvider({ children }: Props) {
   );
   const [loading, setLoading] = useState(false);
   const { setCurrentUser } = useCurrentUser();
+  const emailDoesNotMatchMessage = "Email does not match";
 
   function isAuthenticated() {
     return !!accessToken;
@@ -70,6 +71,13 @@ function AuthenticationProvider({ children }: Props) {
       setAccessToken(token);
       setCurrentUser(authResponse.data.user);
     } catch (error: any) {
+      if (error.response) {
+        const apiErrorMessage =
+          error.response.data.formatted_message === emailDoesNotMatchMessage
+            ? emailDoesNotMatchMessage
+            : "Unknown error";
+        throw new Error(apiErrorMessage);
+      }
       throw new Error(error.message);
     }
   }

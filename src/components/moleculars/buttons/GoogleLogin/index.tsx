@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import Button from "components/atomics/buttons/Button";
 import { useTranslation } from "react-i18next";
 import { theme } from "@ribon.io/shared/styles";
@@ -9,6 +9,9 @@ import GoogleIcon from "assets/icons/google-icon.svg";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useAuthentication } from "contexts/authenticationContext";
 import ModalDialog from "components/moleculars/modals/ModalDialog";
+import { useCurrentUser } from "contexts/currentUserContext";
+import contactSupport from "lib/contactSupport";
+import { useLanguage } from "hooks/useLanguage";
 
 type Props = {
   onContinue: () => void;
@@ -18,25 +21,31 @@ function GoogleLogin({ onContinue }: Props): JSX.Element {
     keyPrefix: "components.moleculars.buttons.GoogleLogin",
   });
 
+  const { currentLang } = useLanguage();
+  const { currentUser } = useCurrentUser();
   const { signInWithGoogle } = useAuthentication();
+  const [modalVisible, setModalVisible] = useState(false);
+
   const renderModalWrongEmail = () => (
-    <ModalDialog
-      title={t("wrongEmailModal.title")}
-      description={t("wrongEmailModal.description")}
-      primaryButton={{
-        text: t("wrongEmailModal.tryAgain"),
-        onClick: () => {
-          console.log("clicked");
-        },
-      }}
-      secondaryButton={{
-        text: t("wrongEmailModal.contactSupport"),
-        onClick: () => {
-          console.log("clicked");
-        },
-      }}
-    />
-  );
+      <ModalDialog
+        visible={modalVisible}
+        title={t("wrongEmailModal.title")}
+        description={t("wrongEmailModal.description", { email: currentUser?.email })}
+        primaryButton={{
+          text: t("wrongEmailModal.tryAgain"),
+          onClick: () => {
+            setModalVisible(false);
+          },
+        }}
+        secondaryButton={{
+          text: t("wrongEmailModal.contactSupport"),
+          onClick: () => {
+            contactSupport(currentLang);
+          },
+        }}
+        onClose={() => setModalVisible(false)}
+      />
+    );
 
   const loginGoogle = useGoogleLogin({
     onSuccess: async (tokenResponse: any) => {
@@ -44,7 +53,9 @@ function GoogleLogin({ onContinue }: Props): JSX.Element {
         await signInWithGoogle(tokenResponse);
         onContinue();
       } catch (error: any) {
-        if (error === "Email does not match") renderModalWrongEmail();
+        if (error.message.includes("Email does not match")) {
+          setModalVisible(true);
+        }
       }
     },
   });
@@ -57,14 +68,17 @@ function GoogleLogin({ onContinue }: Props): JSX.Element {
   }
 
   return (
-    <Button
-      text={t("buttonText")}
-      textColor={theme.colors.neutral[600]}
-      backgroundColor="transparent"
-      borderColor={theme.colors.neutral[300]}
-      leftIcon={GoogleIcon}
-      onClick={() => handleGoogle()}
-    />
+    <>
+      <Button
+        text={t("buttonText")}
+        textColor={theme.colors.neutral[600]}
+        backgroundColor="transparent"
+        borderColor={theme.colors.neutral[300]}
+        leftIcon={GoogleIcon}
+        onClick={() => handleGoogle()}
+      />
+      {renderModalWrongEmail()}
+    </>
   );
 }
 

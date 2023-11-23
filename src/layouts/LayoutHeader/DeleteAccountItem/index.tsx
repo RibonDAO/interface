@@ -8,12 +8,12 @@ import { theme } from "@ribon.io/shared/styles";
 import * as S from "./styles";
 import Item from "../SettingsMenu/Item";
 
-function DeleteAccountItem(): JSX.Element {
+function DeleteAccountItem(): JSX.Element | null {
   const { t } = useTranslation("translation", {
     keyPrefix: "layouts.layoutHeader.deleteAccountItem",
   });
 
-  const { logoutCurrentUser } = useCurrentUser();
+  const { logoutCurrentUser, currentUser } = useCurrentUser();
   const [deleteAccountModalVisible, setDeleteAccountModalVisible] =
     useState(false);
   const [emailSentModalVisible, setEmailSentModalVisible] = useState(false);
@@ -32,6 +32,7 @@ function DeleteAccountItem(): JSX.Element {
     logoutCurrentUser();
   }
 
+  if (!currentUser) return null;
   return (
     <S.Container>
       <Item

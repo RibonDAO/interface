@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useLanguage } from "hooks/useLanguage";
 import useAboutPageActivity from "hooks/useAboutPageActivity";
 import * as S from "./styles";
 
@@ -10,13 +9,12 @@ function AboutPage(): JSX.Element {
     setHasSeenToday();
   }, []);
 
-  const { currentLang } = useLanguage();
-  const pageSlug = currentLang === "pt-BR" ? "sobre" : "about";
+  const pageSlug = "dia-de-doar";
 
   return (
     <S.Container
       src={`https://projetos.ribon.io/${pageSlug}`}
-      title="Sobre a Ribon"
+      title="Dia de doar"
       data-testid="about-page"
     />
   );

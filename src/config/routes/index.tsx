@@ -342,6 +342,14 @@ function RoutesComponent(): JSX.Element {
           <CampaignPage />
         </Suspense>
       </Route>
+
+      <Route path="/dia-de-doar" exact>
+        <Suspense fallback={<div />}>
+          <MainLayout hideHeader fullSize>
+            <AboutPage />
+          </MainLayout>
+        </Suspense>
+      </Route>
     </Switch>
   );
 }

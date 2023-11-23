@@ -111,7 +111,7 @@
     },
     "ticketDonationDonePage": {
       "title": "Thanks for donating!",
-      "description": "Thanks to you...",
+      "description": "You donated...",
       "button": "Finish",
       "checkboxText": "I want to receive information about my donations by e-mail"
     },

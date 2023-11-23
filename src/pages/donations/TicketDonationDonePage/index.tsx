@@ -1,5 +1,4 @@
 import {
-  useCanDonate,
   useStatistics,
   useFirstAccessToIntegration,
   useUserV1Config,
@@ -19,14 +18,14 @@ import ReactHowler from "react-howler";
 import { useTasksContext } from "contexts/tasksContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationId } from "hooks/useIntegrationId";
-import { PLATFORM } from "utils/constants";
-import extractUrlValue from "lib/extractUrlValue";
+import usePostTicketDonationNavigation from "hooks/usePostTicketDonationNavigation";
+
 import { logEvent } from "lib/events";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import IconsAroundImage from "components/atomics/sections/IconsAroundImage";
 import * as S from "./styles";
 
-function ticketDonationDonePage(): JSX.Element {
+function TicketDonationDonePage(): JSX.Element {
   useAvoidBackButton();
   type LocationState = {
     offerId?: number;
@@ -44,12 +43,14 @@ function ticketDonationDonePage(): JSX.Element {
   const { formattedImpactText } = useFormattedImpactText();
 
   const {
-    state: { nonProfit, cause, flow },
+    state: { nonProfit, flow },
   } = useLocation<LocationState>();
   const [allowedEmailMarketing, setAllowedEmailMarketing] = useState(false);
   const { currentUser } = useCurrentUser();
   const { registerAction } = useTasksContext();
   const { updateUserConfig } = useUserV1Config();
+  const { handleNavigate } = usePostTicketDonationNavigation();
+
   const {
     userStatistics,
     refetch: refetchStatistics,
@@ -59,35 +60,11 @@ function ticketDonationDonePage(): JSX.Element {
   });
 
   const integrationId = useIntegrationId();
-  const { search } = useLocation();
-  const externalId = extractUrlValue("external_id", search);
-  const { donateApp } = useCanDonate(integrationId, PLATFORM, externalId);
 
-  const quantityOfDonationsToShowDownload = 3;
-  const quantityOfDonationsToShowContribute = 5;
   const quantityOfDonationsToShowEmailCheckbox = 3;
   const firstDonation = 1;
 
   const { refetch } = useFirstAccessToIntegration(integrationId);
-
-  const shouldShowAppDownload = useCallback(() => {
-    if (donateApp) return false;
-    return (
-      Number(userStatistics?.totalTickets) %
-        quantityOfDonationsToShowDownload ===
-        0 || Number(userStatistics?.totalTickets) === firstDonation,
-      Number(userStatistics?.totalTickets) %
-        quantityOfDonationsToShowDownload ===
-        0 || Number(userStatistics?.totalTickets) === firstDonation
-    );
-  }, [userStatistics, donateApp]);
-  const shouldShowContribute = useCallback(
-    () =>
-      Number(userStatistics?.totalTickets) %
-        quantityOfDonationsToShowContribute ===
-        0 || Number(userStatistics?.totalTickets) === firstDonation,
-    [userStatistics],
-  );
 
   const shouldShowEmailCheckbox = useCallback(
     () =>
@@ -96,9 +73,7 @@ function ticketDonationDonePage(): JSX.Element {
       Number(userStatistics?.totalTickets) %
         quantityOfDonationsToShowEmailCheckbox ===
         0 ||
-      Number(userStatistics?.totalTickets) === firstDonation ||
-      // eslint-disable-next-line no-self-compare
-      1 === 1,
+      Number(userStatistics?.totalTickets) === firstDonation,
     [userStatistics],
   );
 
@@ -109,34 +84,24 @@ function ticketDonationDonePage(): JSX.Element {
   function navigate() {
     refetch();
 
-    if (flow === "login") {
-      registerAction("donation_done_page_view");
+    registerAction("donation_done_page_view");
 
-      if (shouldShowAppDownload()) {
-        navigateTo({
-          pathname: "/app-download",
-          state: { nonProfit, showContribute: shouldShowContribute() },
-        });
-      } else if (!isLoading && shouldShowContribute()) {
-        navigateTo({
-          pathname: "/post-donation",
-          state: { nonProfit, cause },
-        });
-      } else {
-        navigateTo({
-          pathname: "/causes",
-          state: { cause },
-        });
-      }
-    }
     if (allowedEmailMarketing) {
       logEvent("acceptReceiveEmail_click", {
         from: "confirmedDonation_page",
       });
       updateUserConfig({ allowedEmailMarketing });
     }
+
     if (flow === "magicLink") {
-      navigateTo("/extra-ticket");
+      navigateTo({
+        pathname: "/extra-ticket",
+        state: {
+          nonProfit,
+        },
+      });
+    } else if (!isLoading) {
+      handleNavigate(nonProfit);
     }
   }
 
@@ -207,4 +172,4 @@ function ticketDonationDonePage(): JSX.Element {
   );
 }
 
-export default ticketDonationDonePage;
+export default TicketDonationDonePage;

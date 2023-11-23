@@ -4,7 +4,7 @@ import {
   defaultBodyLgBold,
   defaultBodySmRegular,
 } from "styles/typography/default";
-import { stylizedDisplayLg } from "styles/typography/stylized";
+import { stylizedDisplayMd } from "styles/typography/stylized";
 
 export const Container = styled.div`
   width: 100%;
@@ -20,7 +20,7 @@ export const Container = styled.div`
 export const ImageContainer = styled.div``;
 
 export const Title = styled.h1`
-  ${stylizedDisplayLg}
+  ${stylizedDisplayMd}
 
   color: ${({ theme }) => theme.colors.brand.primary[800]};
   margin-top: 12px;
@@ -60,7 +60,7 @@ export const ImpactDescription = styled.p`
   ${defaultBodyLgBold}
 
   margin-bottom: ${({ theme }) => theme.spacing(8)};
-
+  text-align: center;
   color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;
 

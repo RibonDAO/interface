@@ -1,19 +1,13 @@
 import IconsAroundImage from "components/atomics/sections/IconsAroundImage";
 import {
-  useCanDonate,
   useOffers,
   useStatistics,
   useFirstAccessToIntegration,
-  useUserV1Config,
 } from "@ribon.io/shared/hooks";
 import VolunteerActivismPink from "assets/icons/volunteer-activism-pink.svg";
 import VolunteerActivismYellow from "assets/icons/volunteer-activism-yellow.svg";
 import VolunteerActivismGreen from "assets/icons/volunteer-activism-green.svg";
-import ConfirmationNumberPink from "assets/icons/confirmation-number-pink.svg";
-import ConfirmationNumberYellow from "assets/icons/confirmation-number-yellow.svg";
-import ConfirmationNumberGreen from "assets/icons/confirmation-number-green.svg";
 import useNavigation from "hooks/useNavigation";
-import { setLocalStorageItem } from "lib/localStorage";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
@@ -21,13 +15,9 @@ import { logError } from "services/crashReport";
 import { Cause, NonProfit, Offer, Currencies } from "@ribon.io/shared/types";
 import getThemeByFlow from "lib/themeByFlow";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
-import { getAudioFromStorage } from "lib/cachedAudio";
-import ReactHowler from "react-howler";
 import { useTasksContext } from "contexts/tasksContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationId } from "hooks/useIntegrationId";
-import { PLATFORM } from "utils/constants";
-import extractUrlValue from "lib/extractUrlValue";
 import { logEvent } from "lib/events";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import * as S from "./styles";
@@ -37,10 +27,8 @@ function DonationDoneCausePage(): JSX.Element {
   type LocationState = {
     offerId?: number;
     cause: Cause;
-    hasButton?: boolean;
-    hasCheckbox?: boolean;
     nonProfit?: NonProfit;
-    flow?: "cause" | "nonProfit" | "login" | "magicLink";
+    flow?: "cause" | "nonProfit";
     from?: string;
   };
 
@@ -54,52 +42,19 @@ function DonationDoneCausePage(): JSX.Element {
 
   const currency = Currencies.USD;
   const {
-    state: { nonProfit, offerId, cause, hasButton, flow, from, hasCheckbox },
+    state: { nonProfit, offerId, cause, flow, from },
   } = useLocation<LocationState>();
   const { getOffer } = useOffers(currency);
   const [offer, setOffer] = useState<Offer>();
-  const [allowedEmailMarketing, setAllowedEmailMarketing] = useState(false);
   const { currentUser } = useCurrentUser();
   const { registerAction } = useTasksContext();
-  const { updateUserConfig } = useUserV1Config();
-  const {
-    userStatistics,
-    refetch: refetchStatistics,
-    isLoading,
-  } = useStatistics({
+  const { userStatistics, refetch: refetchStatistics } = useStatistics({
     userId: currentUser?.id,
   });
 
   const integrationId = useIntegrationId();
-  const { search } = useLocation();
-  const externalId = extractUrlValue("external_id", search);
-  const { donateApp } = useCanDonate(integrationId, PLATFORM, externalId);
-
-  const quantityOfDonationsToShowDownload = 3;
-  const quantityOfDonationsToShowContribute = 5;
 
   const { refetch } = useFirstAccessToIntegration(integrationId);
-
-  const firstDonation = 1;
-
-  const shouldShowAppDownload = useCallback(() => {
-    if (donateApp) return false;
-    return (
-      Number(userStatistics?.totalTickets) %
-        quantityOfDonationsToShowDownload ===
-        0 || Number(userStatistics?.totalTickets) === firstDonation,
-      Number(userStatistics?.totalTickets) %
-        quantityOfDonationsToShowDownload ===
-        0 || Number(userStatistics?.totalTickets) === firstDonation
-    );
-  }, [userStatistics, donateApp]);
-  const shouldShowContribute = useCallback(
-    () =>
-      Number(userStatistics?.totalTickets) %
-        quantityOfDonationsToShowContribute ===
-        0 || Number(userStatistics?.totalTickets) === firstDonation,
-    [userStatistics],
-  );
 
   useEffect(() => {
     refetchStatistics();
@@ -120,7 +75,7 @@ function DonationDoneCausePage(): JSX.Element {
   );
   function navigate() {
     refetch();
-    if (flow === "cause" && hasButton) {
+    if (flow === "cause") {
       registerAction("contribution_done_page_view");
       logEvent("causeGave_end", {
         platform: "web",
@@ -152,42 +107,12 @@ function DonationDoneCausePage(): JSX.Element {
         state: { nonProfit, cause, from: "donation-done-cause" },
       });
     }
-    if (!hasButton || flow === "login") {
-      registerAction("donation_done_page_view");
-
-      if (shouldShowAppDownload()) {
-        navigateTo({
-          pathname: "/app-download",
-          state: { nonProfit, showContribute: shouldShowContribute() },
-        });
-      } else if (!isLoading && shouldShowContribute()) {
-        navigateTo({
-          pathname: "/post-donation",
-          state: { nonProfit, cause },
-        });
-      } else {
-        navigateTo({
-          pathname: "/causes",
-          state: { cause },
-        });
-      }
-    }
-    if (allowedEmailMarketing) {
-      logEvent("acceptReceiveEmail_click", {
-        from: "confirmedDonation_page",
-      });
-      updateUserConfig({ allowedEmailMarketing });
-    }
-    if (flow === "magicLink") {
-      navigateTo("/extra-ticket");
-    }
   }
 
   useEffect(() => {
     if (offerId) {
       donationInfos(offerId);
     }
-    setLocalStorageItem("HAS_DONATED", "true");
   }, [currentUser, userStatistics]);
 
   useEffect(() => {
@@ -202,45 +127,27 @@ function DonationDoneCausePage(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    if (hasButton) {
-      clearTimeout(pageTimeout);
-    }
+    clearTimeout(pageTimeout);
   }, [pageTimeout]);
-
-  useEffect(() => {
-    if (hasCheckbox) {
-      logEvent("acceptReceiveEmail_view", {
-        from: "confirmedDonation_page",
-      });
-    }
-  }, [hasCheckbox]);
 
   const colorTheme = getThemeByFlow(flow || "free");
 
   const bottomText = () => {
-    if (flow === "cause" && hasButton) return cause?.name;
-    if (flow === "nonProfit" && hasButton) return nonProfit?.name;
+    if (flow === "cause") return cause?.name;
+    if (flow === "nonProfit") return nonProfit?.name;
 
     return formattedImpactText(nonProfit);
   };
 
-  const audio = getAudioFromStorage("donationDoneSound");
-
   const oldImpactFormat = () => (
     <>
       <S.DonationValue color={colorTheme.shade20}>
-        {hasButton ? offer?.price : t("title")}
+        {offer?.price}
       </S.DonationValue>
-      {hasButton && <S.PostDonationText>{t("title")}</S.PostDonationText>}
+      <S.PostDonationText>{t("title")}</S.PostDonationText>
       <S.PostDonationText>
-        {hasButton ? t("titleSecondLine") : t("youDonatedText")}
-        <S.CauseName
-          isGreen={!!nonProfit && !hasButton}
-          color={colorTheme.shade20}
-        >
-          {" "}
-          {bottomText()}{" "}
-        </S.CauseName>
+        {t("titleSecondLine")}
+        <S.CauseName color={colorTheme.shade20}> {bottomText()} </S.CauseName>
       </S.PostDonationText>
     </>
   );
@@ -249,47 +156,26 @@ function DonationDoneCausePage(): JSX.Element {
 
   return (
     <S.Container>
-      {audio && !hasButton && <ReactHowler src={audio} loop={false} playing />}
       <S.ImageContainer>
         <IconsAroundImage
           imageSrc={
             flow === "cause" ? cause?.mainImage : nonProfit?.confirmationImage
           }
-          iconAnimationYellow={
-            hasButton ? VolunteerActivismYellow : ConfirmationNumberYellow
-          }
-          iconAnimationPink={
-            hasButton ? VolunteerActivismPink : ConfirmationNumberPink
-          }
-          iconAnimationGreen={
-            hasButton ? VolunteerActivismGreen : ConfirmationNumberGreen
-          }
+          iconAnimationYellow={VolunteerActivismYellow}
+          iconAnimationPink={VolunteerActivismPink}
+          iconAnimationGreen={VolunteerActivismGreen}
         />
       </S.ImageContainer>
       <S.ContentContainer>
         {renderImpactValue()}
-        {hasCheckbox && (
-          <S.CheckboxContainer>
-            <S.CheckboxLabel>
-              <S.Checkbox
-                type="checkbox"
-                onChange={(e) =>
-                  setAllowedEmailMarketing(e.currentTarget.checked)
-                }
-              />
-              {t("checkboxText")}
-            </S.CheckboxLabel>
-          </S.CheckboxContainer>
-        )}
-        {hasButton && (
-          <S.FinishButton
-            text={t("button")}
-            onClick={() => {
-              navigate();
-            }}
-            background={colorTheme.shade20}
-          />
-        )}
+
+        <S.FinishButton
+          text={t("button")}
+          onClick={() => {
+            navigate();
+          }}
+          background={colorTheme.shade20}
+        />
       </S.ContentContainer>
     </S.Container>
   );

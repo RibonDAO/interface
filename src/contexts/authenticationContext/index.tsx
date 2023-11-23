@@ -61,9 +61,9 @@ function AuthenticationProvider({ children }: Props) {
     try {
       const authResponse = await userAuthenticationApi.postAuthenticate(
         response.authorization?.id_token || response.access_token,
-        provider
+        provider,
       );
-  
+
       const token = authResponse.headers["access-token"];
       const refreshToken = authResponse.headers["refresh-token"];
       setCookiesItem(ACCESS_TOKEN_KEY, token);
@@ -81,14 +81,14 @@ function AuthenticationProvider({ children }: Props) {
       throw new Error(`${provider} auth error`);
     }
   }
-  
+
   async function signInWithGoogle(response: any) {
     await signInWithProvider(response, "google_oauth2_access");
   }
-  
+
   async function signInWithApple(response: any) {
     await signInWithProvider(response, "apple");
-  }  
+  }
 
   async function signInByAuthToken({
     authToken,

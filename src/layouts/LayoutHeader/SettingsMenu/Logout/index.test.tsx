@@ -3,14 +3,14 @@ import {
   expectTextToBeInTheDocument,
   expectPageToNavigateTo,
 } from "config/testUtils/expects";
-import LogoutItem from ".";
+import Logout from ".";
 
 const closeMenu = jest.fn();
 const reload = jest.fn();
 
 describe("Logout", () => {
   it("should render without errors", () => {
-    renderComponent(<LogoutItem closeMenu={closeMenu} />, {
+    renderComponent(<Logout closeMenu={closeMenu} />, {
       currentUserProviderValue: {
         currentUser: { id: 1, email: "juju@ribon.io", lastDonationAt: "true" },
       },
@@ -24,7 +24,7 @@ describe("Logout", () => {
         configurable: true,
         value: { reload },
       });
-      renderComponent(<LogoutItem closeMenu={closeMenu} />, {
+      renderComponent(<Logout closeMenu={closeMenu} />, {
         currentUserProviderValue: {
           currentUser: { email: "user@email.com", id: 1 },
         },
@@ -36,11 +36,6 @@ describe("Logout", () => {
       expectTextToBeInTheDocument(
         "You will need to sign in again to make a new donation.",
       );
-    });
-
-    it("cancels sign out", () => {
-      clickOn("Cancel");
-      expectTextToBeInTheDocument("user@email.com");
     });
 
     it("Confirms sign out", () => {

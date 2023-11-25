@@ -46,7 +46,11 @@ function TicketDonationDonePage(): JSX.Element {
   const [allowedEmailMarketing, setAllowedEmailMarketing] = useState(false);
   const { currentUser } = useCurrentUser();
   const { registerAction } = useTasksContext();
-  const { updateUserConfig } = useUserV1Config();
+  const {
+    updateUserConfig,
+    refetch: refetchUserConfig,
+    userConfig,
+  } = useUserV1Config();
   const { handleNavigate } = usePostTicketDonationNavigation();
 
   const {
@@ -66,17 +70,19 @@ function TicketDonationDonePage(): JSX.Element {
 
   const shouldShowEmailCheckbox = useCallback(
     () =>
-      Number(userStatistics?.totalTickets) <=
+      (Number(userStatistics?.totalTickets) <=
         quantityOfDonationsToShowEmailCheckbox ||
-      Number(userStatistics?.totalTickets) %
-        quantityOfDonationsToShowEmailCheckbox ===
-        0 ||
-      Number(userStatistics?.totalTickets) === firstDonation,
-    [userStatistics],
+        Number(userStatistics?.totalTickets) %
+          quantityOfDonationsToShowEmailCheckbox ===
+          0 ||
+        Number(userStatistics?.totalTickets) === firstDonation) &&
+      !userConfig?.allowedEmailMarketing,
+    [userStatistics, userConfig],
   );
 
   useEffect(() => {
     refetchStatistics();
+    refetchUserConfig();
   }, [currentUser]);
 
   function navigate() {

@@ -6,9 +6,9 @@ import ModalDialog from "components/moleculars/modals/ModalDialog";
 import { logEvent } from "lib/events";
 import { theme } from "@ribon.io/shared/styles";
 import * as S from "./styles";
-import Item from "../SettingsMenu/Item";
+import Item from "../Item";
 
-function DeleteAccountItem(): JSX.Element | null {
+function DeleteAccount(): JSX.Element | null {
   const { t } = useTranslation("translation", {
     keyPrefix: "layouts.layoutHeader.deleteAccountItem",
   });
@@ -37,7 +37,10 @@ function DeleteAccountItem(): JSX.Element | null {
     <S.Container>
       <Item
         text={t("deleteAccount")}
-        icon="delete_forever"
+        icon={{
+          name: "delete_forever",
+          color: theme.colors.feedback.error[600],
+        }}
         onClickHandler={() => handleConfirmation()}
       />
 
@@ -73,4 +76,4 @@ function DeleteAccountItem(): JSX.Element | null {
   );
 }
 
-export default DeleteAccountItem;
+export default DeleteAccount;

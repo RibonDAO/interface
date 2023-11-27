@@ -2,8 +2,12 @@ import Icon from "components/atomics/Icon";
 import theme from "styles/theme";
 import * as S from "./styles";
 
+type IconProps = {
+  name: string;
+  color?: string;
+};
 type Props = {
-  icon?: string;
+  icon?: IconProps;
   text: string;
   customIcon?: string;
   onClickHandler: () => void;
@@ -15,15 +19,19 @@ function Item({ icon, text, customIcon, onClickHandler }: Props): JSX.Element {
       <S.ContainerIcon>
         {icon ? (
           <Icon
-            name={icon ?? ""}
-            color={theme.colors.brand.primary[600]}
+            name={icon.name ?? ""}
+            color={icon.color ? icon.color : theme.colors.brand.primary[600]}
             size="24"
           />
         ) : null}
         {customIcon ? <S.CustomIcon src={customIcon} /> : null}
         <S.Text>{text}</S.Text>
       </S.ContainerIcon>
-      <Icon name="arrow_forward_ios" size="24" />
+      <Icon
+        name="arrow_forward_ios"
+        size="24"
+        color={icon?.color ? icon.color : ""}
+      />
     </S.Container>
   );
 }

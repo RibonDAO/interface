@@ -10,7 +10,7 @@ function AboutPage(): JSX.Element {
   }, []);
 
   const pageSlug =
-    "https://projetos.ribon.io/dia-de-doar?integration_id=6227d432-32ac-4a98-a14f-2f4a05c3ba4a&utm_source=ribon&utm_medium=navbar&utm_campaign=dia_de_doar";
+    "dia-de-doar?integration_id=6227d432-32ac-4a98-a14f-2f4a05c3ba4a&utm_source=ribon&utm_medium=navbar&utm_campaign=dia_de_doar";
 
   return (
     <S.Container

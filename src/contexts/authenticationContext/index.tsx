@@ -31,7 +31,7 @@ export interface IAuthenticationContext {
   user: any | undefined;
   setUser: (user: any) => void;
   allowed: boolean;
-  signInByAuthToken: (signInByAuthTokenProps: authTokenProps) => void;
+  signInByMagicLink: (signInByMagicLinkProps: authTokenProps) => void;
   sendAuthenticationEmail: (
     sendAuthenticationEmailProps: authenticationEmailProps,
   ) => void;
@@ -60,6 +60,16 @@ function AuthenticationProvider({ children }: Props) {
 
   const allowed = useMemo(() => isAuthorized(user?.email ?? ""), [user]);
 
+  function signIn(response: any) {
+    const token = response.headers["access-token"];
+    const refreshToken = response.headers["refresh-token"];
+
+    setCookiesItem(ACCESS_TOKEN_KEY, token);
+    setCookiesItem(REFRESH_TOKEN_KEY, refreshToken);
+    setAccessToken(token);
+    setCurrentUser(response.data.user);
+  }
+
   async function signInWithGoogle(response: any) {
     try {
       const authResponse = await userAuthenticationApi.postAuthenticate(
@@ -67,12 +77,7 @@ function AuthenticationProvider({ children }: Props) {
         "google_oauth2_access",
       );
 
-      const token = authResponse.headers["access-token"];
-      const refreshToken = authResponse.headers["refresh-token"];
-      setCookiesItem(ACCESS_TOKEN_KEY, token);
-      setCookiesItem(REFRESH_TOKEN_KEY, refreshToken);
-      setAccessToken(token);
-      setCurrentUser(authResponse.data.user);
+      signIn(authResponse);
     } catch (error) {
       throw new Error("google auth error");
     }
@@ -85,18 +90,13 @@ function AuthenticationProvider({ children }: Props) {
         "apple",
       );
 
-      const token = authResponse.headers["access-token"];
-      const refreshToken = authResponse.headers["refresh-token"];
-      setCookiesItem(ACCESS_TOKEN_KEY, token);
-      setCookiesItem(REFRESH_TOKEN_KEY, refreshToken);
-      setAccessToken(token);
-      setCurrentUser(authResponse.data.user);
+      signIn(authResponse);
     } catch (error) {
-      throw new Error("google auth error");
+      throw new Error("apple auth error");
     }
   }
 
-  async function signInByAuthToken({
+  async function signInByMagicLink({
     authToken,
     id,
     onSuccess,
@@ -108,13 +108,8 @@ function AuthenticationProvider({ children }: Props) {
         authToken,
         id,
       );
-      const token = response.headers["access-token"];
-      const refreshToken = response.headers["refresh-token"];
 
-      setCookiesItem(ACCESS_TOKEN_KEY, token);
-      setCookiesItem(REFRESH_TOKEN_KEY, refreshToken);
-      setAccessToken(token);
-      setCurrentUser(response.data.user);
+      signIn(response);
 
       if (onSuccess) onSuccess();
     } catch (error: any) {
@@ -163,7 +158,7 @@ function AuthenticationProvider({ children }: Props) {
       accessToken,
       signInWithGoogle,
       signInWithApple,
-      signInByAuthToken,
+      signInByMagicLink,
       sendAuthenticationEmail,
       loading,
     }),

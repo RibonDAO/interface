@@ -58,6 +58,7 @@ function DeleteAccount(): JSX.Element | null {
           text: t("cancelModalButton"),
           onClick: () => setDeleteAccountModalVisible(false),
         }}
+        onClose={() => setDeleteAccountModalVisible(false)}
       />
 
       <ModalDialog

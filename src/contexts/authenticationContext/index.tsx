@@ -30,7 +30,7 @@ export interface IAuthenticationContext {
   isAuthenticated: () => boolean;
   user: any | undefined;
   setUser: (user: any) => void;
-  signInByAuthToken: (signInByAuthTokenProps: authTokenProps) => void;
+  signInByMagicLink: (signInByMagicLinkProps: authTokenProps) => void;
   sendAuthenticationEmail: (
     sendAuthenticationEmailProps: authenticationEmailProps,
   ) => void;
@@ -57,19 +57,24 @@ function AuthenticationProvider({ children }: Props) {
     return !!accessToken;
   }
 
-  async function signInWithProvider(response: any, provider: string) {
+  function signIn(response: any) {
+    const token = response.headers["access-token"];
+    const refreshToken = response.headers["refresh-token"];
+
+    setCookiesItem(ACCESS_TOKEN_KEY, token);
+    setCookiesItem(REFRESH_TOKEN_KEY, refreshToken);
+    setAccessToken(token);
+    setCurrentUser(response.data.user);
+  }
+
+  async function signInWithGoogle(response: any) {
     try {
       const authResponse = await userAuthenticationApi.postAuthenticate(
         response.authorization?.id_token || response.access_token,
-        provider,
+        "google_oauth2_access",
       );
 
-      const token = authResponse.headers["access-token"];
-      const refreshToken = authResponse.headers["refresh-token"];
-      setCookiesItem(ACCESS_TOKEN_KEY, token);
-      setCookiesItem(REFRESH_TOKEN_KEY, refreshToken);
-      setAccessToken(token);
-      setCurrentUser(authResponse.data.user);
+      signIn(authResponse);
     } catch (error: any) {
       if (error.response) {
         const apiErrorMessage =
@@ -78,19 +83,31 @@ function AuthenticationProvider({ children }: Props) {
             : "Unknown error";
         throw new Error(apiErrorMessage);
       }
-      throw new Error(`${provider} auth error`);
+      throw new Error("google auth error");
     }
   }
 
-  async function signInWithGoogle(response: any) {
-    await signInWithProvider(response, "google_oauth2_access");
-  }
-
   async function signInWithApple(response: any) {
-    await signInWithProvider(response, "apple");
+    try {
+      const authResponse = await userAuthenticationApi.postAuthenticate(
+        response.authorization.id_token,
+        "apple",
+      );
+
+      signIn(authResponse);
+    } catch (error: any) {
+      if (error.response) {
+        const apiErrorMessage =
+          error.response.data.formatted_message === emailDoesNotMatchMessage
+            ? emailDoesNotMatchMessage
+            : "Unknown error";
+        throw new Error(apiErrorMessage);
+      }
+      throw new Error("apple auth error");
+    }
   }
 
-  async function signInByAuthToken({
+  async function signInByMagicLink({
     authToken,
     id,
     onSuccess,
@@ -102,13 +119,8 @@ function AuthenticationProvider({ children }: Props) {
         authToken,
         id,
       );
-      const token = response.headers["access-token"];
-      const refreshToken = response.headers["refresh-token"];
 
-      setCookiesItem(ACCESS_TOKEN_KEY, token);
-      setCookiesItem(REFRESH_TOKEN_KEY, refreshToken);
-      setAccessToken(token);
-      setCurrentUser(response.data.user);
+      signIn(response);
 
       if (onSuccess) onSuccess();
     } catch (error: any) {
@@ -155,7 +167,7 @@ function AuthenticationProvider({ children }: Props) {
       accessToken,
       signInWithGoogle,
       signInWithApple,
-      signInByAuthToken,
+      signInByMagicLink,
       sendAuthenticationEmail,
       isAuthenticated,
       loading,
@@ -169,17 +181,14 @@ function AuthenticationProvider({ children }: Props) {
     </AuthenticationContext.Provider>
   );
 }
-
 export default AuthenticationProvider;
 
 export const useAuthentication = () => {
   const context = useContext(AuthenticationContext);
-
   if (!context) {
     throw new Error(
       "useAuthentication must be used within AuthenticationProvider",
     );
   }
-
   return context;
 };

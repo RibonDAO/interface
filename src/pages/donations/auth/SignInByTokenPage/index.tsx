@@ -5,9 +5,9 @@ import { useAuthentication } from "contexts/authenticationContext";
 import Loader from "components/atomics/Loader";
 import ReceiveExtraTicketPage from "pages/donations/auth/ReceiveExtraTicketPage";
 
-function SignInByAuthToken(): JSX.Element {
+function SignInByMagicLink(): JSX.Element {
   const { search } = useLocation();
-  const { signInByAuthToken, loading } = useAuthentication();
+  const { signInByMagicLink, loading } = useAuthentication();
 
   useEffect(() => {
     async function authenticate() {
@@ -15,7 +15,7 @@ function SignInByAuthToken(): JSX.Element {
       const id = extractUrlValue("id", search);
 
       if (id && authToken) {
-        signInByAuthToken({
+        signInByMagicLink({
           authToken,
           id,
         });
@@ -28,4 +28,4 @@ function SignInByAuthToken(): JSX.Element {
   return loading ? <Loader /> : <ReceiveExtraTicketPage />;
 }
 
-export default SignInByAuthToken;
+export default SignInByMagicLink;

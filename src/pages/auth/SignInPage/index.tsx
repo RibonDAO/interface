@@ -40,8 +40,8 @@ function SignInPage(): JSX.Element {
         <S.ContentContainer>
           <S.Title>{t("title")}</S.Title>
           <S.ButtonContainer>
-            <GoogleLogin onContinue={() => onContinue("/")} />
-            <AppleLogin onContinue={() => onContinue("/")} />
+            <GoogleLogin onContinue={() => onContinue("/causes")} />
+            <AppleLogin onContinue={() => onContinue("/causes")} />
             <MagicLinkLogin
               onContinue={() => onContinue("/auth/insert-email")}
             />

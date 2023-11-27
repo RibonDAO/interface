@@ -666,9 +666,9 @@
   "expiredLinkPage": {
     "loading": "Carregando...",
     "invalidLink": "Link inválido",
-    "expiredLink": "This link has expired",
-    "expiredLinkText": "Please, try signing in or creating a new account with your e-mail to get a new account validation link",
-    "buttonText": "Send me a new link"
+    "expiredLink": "Este link expirou",
+    "expiredLinkText": "Por favor, tente entrar ou se cadastrar novamente para receber um novo link de validação de conta",
+    "buttonText": "Me mande outro link"
   },
   "downloadAppModalTemplate": {
     "button": "Baixar o app",

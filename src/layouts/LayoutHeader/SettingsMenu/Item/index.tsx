@@ -11,9 +11,16 @@ type Props = {
   text: string;
   customIcon?: string;
   onClickHandler: () => void;
+  customOnClick?: JSX.Element;
 };
 
-function Item({ icon, text, customIcon, onClickHandler }: Props): JSX.Element {
+function Item({
+  icon,
+  text,
+  customIcon,
+  onClickHandler,
+  customOnClick,
+}: Props): JSX.Element {
   return (
     <S.Container onClick={() => onClickHandler()}>
       <S.ContainerIcon>
@@ -32,6 +39,7 @@ function Item({ icon, text, customIcon, onClickHandler }: Props): JSX.Element {
         size="24"
         color={icon?.color ? icon.color : ""}
       />
+      {customOnClick ?? customOnClick}
     </S.Container>
   );
 }

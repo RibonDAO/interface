@@ -86,17 +86,7 @@
       "donateButton": "Donate {{value}}",
       "donateNow": "Donate now"
     },
-    "donationDonePage": {
-      "title": "Thank you for the donation!",
-      "button": "Check impact",
-      "ngoTitle": "About ",
-      "moreInfoButtonText": "More info",
-      "youDonatedText": "You donated",
-      "confirmButtonText": "Ok",
-      "donationSuccessfullTitle": "Giving successful",
-      "donationSuccessfullSubtitle": "It will be used to pay for various donations made in the app."
-    },
-    "donationDoneCausePage": {
+    "contributionDonePage": {
       "title": "Congratulations!",
       "thanksToYou": "Thanks to you...",
       "lifeWasImpacted": "1 person was impacted",

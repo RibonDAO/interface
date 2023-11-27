@@ -22,7 +22,7 @@ import { logEvent } from "lib/events";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import * as S from "./styles";
 
-function DonationDoneCausePage(): JSX.Element {
+function ContributionDonePage(): JSX.Element {
   useAvoidBackButton();
   type LocationState = {
     offerId?: number;
@@ -36,7 +36,7 @@ function DonationDoneCausePage(): JSX.Element {
   const [pageTimeout, setPageTimeout] = useState<any>(null);
 
   const { t } = useTranslation("translation", {
-    keyPrefix: "donations.donationDoneCausePage",
+    keyPrefix: "donations.contributionDonePage",
   });
   const { formattedImpactText } = useFormattedImpactText();
 
@@ -181,4 +181,4 @@ function DonationDoneCausePage(): JSX.Element {
   );
 }
 
-export default DonationDoneCausePage;
+export default ContributionDonePage;

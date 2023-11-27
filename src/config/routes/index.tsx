@@ -2,8 +2,7 @@ import React, { Suspense, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import WalletProvider from "contexts/walletContext";
 import CausesPage from "pages/donations/CausesPage";
-import DonationDonePage from "pages/donations/DonationDonePage";
-import DonationDoneCausePage from "pages/promoters/DonationDoneCausePage";
+import ContributionDonePage from "pages/promoters/ContributionDonePage";
 import ImpactPage from "pages/users/ImpactPage";
 import MainLayout from "layouts/MainLayout";
 import CheckoutPage from "pages/promoters/CheckoutPage";
@@ -176,15 +175,9 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
-      <Route path="/donation-done" exact>
+      <Route path="/contribution-done" exact>
         <Suspense fallback={<div />}>
-          <DonationDonePage />
-        </Suspense>
-      </Route>
-
-      <Route path="/donation-done-cause" exact>
-        <Suspense fallback={<div />}>
-          <DonationDoneCausePage />
+          <ContributionDonePage />
         </Suspense>
       </Route>
 

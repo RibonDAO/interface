@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { logEvent } from "lib/events";
 import * as S from "./styles";
 
-function ChangeLanguageItem(): JSX.Element {
+function ChangeLanguage(): JSX.Element {
   const { currentLang, handleSwitchLanguage } = useLanguage();
   const { t } = useTranslation("translation", {
     keyPrefix: "layouts.layoutHeader.changeLanguageItem",
@@ -35,4 +35,4 @@ function ChangeLanguageItem(): JSX.Element {
   );
 }
 
-export default ChangeLanguageItem;
+export default ChangeLanguage;

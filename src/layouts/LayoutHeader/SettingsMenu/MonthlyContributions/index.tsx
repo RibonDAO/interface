@@ -1,17 +1,14 @@
-import contributionIcon from "assets/icons/volunteer-activism-dark-green.svg";
-import CardIconText from "components/moleculars/cards/CardIconText";
 import { useTranslation } from "react-i18next";
-import ArrowRight from "assets/icons/arrow-right-blue-icon.svg";
 import { logEvent } from "lib/events";
 import { useSubscriptions } from "@ribon.io/shared/hooks";
 import useNavigation from "hooks/useNavigation";
 import Loader from "components/atomics/Loader";
 import { useCurrentUser } from "contexts/currentUserContext";
-import * as S from "./styles";
+import Item from "../Item";
 
-function MonthlyContributionsItem(): JSX.Element {
+function MonthlyContributions(): JSX.Element | null {
   const { t } = useTranslation("translation", {
-    keyPrefix: "layouts.layoutHeader.monthlyContributionsItem",
+    keyPrefix: "layouts.layoutHeader.settingsMenu",
   });
 
   const { navigateTo } = useNavigation();
@@ -35,17 +32,15 @@ function MonthlyContributionsItem(): JSX.Element {
     }
   };
 
+  if (!currentUser?.lastDonationAt) return null;
+
   return (
-    <S.Container onClick={handleClick}>
-      <CardIconText
-        text={t("monthlyContributionsText")}
-        icon={contributionIcon}
-        rightComponent={
-          <S.GoButton src={ArrowRight} onClick={() => handleClick} />
-        }
-      />
-    </S.Container>
+    <Item
+      icon="volunteer_activism"
+      text={t("monthlyContributions")}
+      onClickHandler={() => handleClick()}
+    />
   );
 }
 
-export default MonthlyContributionsItem;
+export default MonthlyContributions;

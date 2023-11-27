@@ -3,18 +3,28 @@ import {
   expectTextToBeInTheDocument,
   expectPageToNavigateTo,
 } from "config/testUtils/expects";
-import React from "react";
 import LogoutItem from ".";
 
-describe("LogoutItem", () => {
+const closeMenu = jest.fn();
+const reload = jest.fn();
+
+describe("Logout", () => {
   it("should render without errors", () => {
-    renderComponent(<LogoutItem />);
+    renderComponent(<LogoutItem closeMenu={closeMenu} />, {
+      currentUserProviderValue: {
+        currentUser: { id: 1, email: "juju@ribon.io", lastDonationAt: "true" },
+      },
+    });
     expectTextToBeInTheDocument("Sign Out");
   });
 
   describe("when the sign out button is clicked", () => {
     beforeEach(() => {
-      renderComponent(<LogoutItem />, {
+      Object.defineProperty(window, "location", {
+        configurable: true,
+        value: { reload },
+      });
+      renderComponent(<LogoutItem closeMenu={closeMenu} />, {
         currentUserProviderValue: {
           currentUser: { email: "user@email.com", id: 1 },
         },
@@ -29,19 +39,17 @@ describe("LogoutItem", () => {
     });
 
     it("cancels sign out", () => {
-      renderComponent(<LogoutItem />);
       clickOn("Cancel");
       expectTextToBeInTheDocument("user@email.com");
     });
 
     it("Confirms sign out", () => {
       clickOn("Sign out");
-      expectTextToBeInTheDocument("Signed out successfully");
+      expect(reload).toHaveBeenCalled();
     });
 
     it("Signs out and returns to initial page", () => {
       clickOn("Sign out");
-      clickOn("Ok");
       expectPageToNavigateTo("/causes");
     });
   });

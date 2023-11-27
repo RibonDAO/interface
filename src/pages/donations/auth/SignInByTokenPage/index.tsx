@@ -6,10 +6,10 @@ import Loader from "components/atomics/Loader";
 import ReceiveExtraTicketPage from "pages/donations/auth/ReceiveExtraTicketPage";
 import useNavigation from "hooks/useNavigation";
 
-function SignInByAuthToken(): JSX.Element {
+function SignInByMagicLink(): JSX.Element {
   const { search } = useLocation();
-  const { signInByAuthToken, loading } = useAuthentication();
   const { navigateTo } = useNavigation();
+  const { signInByMagicLink, loading } = useAuthentication();
 
   useEffect(() => {
     async function authenticate() {
@@ -17,7 +17,7 @@ function SignInByAuthToken(): JSX.Element {
       const id = extractUrlValue("id", search) ?? "";
 
       if (id && authToken) {
-        signInByAuthToken({
+        signInByMagicLink({
           authToken,
           id,
           onError: () => {
@@ -37,4 +37,4 @@ function SignInByAuthToken(): JSX.Element {
   return loading ? <Loader /> : <ReceiveExtraTicketPage />;
 }
 
-export default SignInByAuthToken;
+export default SignInByMagicLink;

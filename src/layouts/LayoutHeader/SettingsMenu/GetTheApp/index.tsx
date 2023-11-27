@@ -1,15 +1,13 @@
 import MoreTicketsIcon from "assets/icons/more-tickets-icon-green.svg";
-import CardIconText from "components/moleculars/cards/CardIconText";
 import { useTranslation } from "react-i18next";
-import ArrowRight from "assets/icons/arrow-right-blue-icon.svg";
 import useNavigation from "hooks/useNavigation";
 import { useEffect } from "react";
 import { logEvent } from "lib/events";
-import * as S from "./styles";
+import Item from "../Item";
 
-function GetTheAppItem(): JSX.Element {
+function GetTheApp(): JSX.Element {
   const { t } = useTranslation("translation", {
-    keyPrefix: "layouts.layoutHeader.getTheAppItem",
+    keyPrefix: "layouts.layoutHeader.settingsMenu",
   });
 
   const { navigateTo } = useNavigation();
@@ -26,14 +24,12 @@ function GetTheAppItem(): JSX.Element {
   };
 
   return (
-    <S.Container onClick={handleClick}>
-      <CardIconText
-        text={t("getTheAppText")}
-        icon={MoreTicketsIcon}
-        rightComponent={<S.GoButton src={ArrowRight} onClick={handleClick} />}
-      />
-    </S.Container>
+    <Item
+      customIcon={MoreTicketsIcon}
+      text={t("getTheApp")}
+      onClickHandler={() => handleClick()}
+    />
   );
 }
 
-export default GetTheAppItem;
+export default GetTheApp;

@@ -46,11 +46,8 @@ function TicketDonationDonePage(): JSX.Element {
   const [allowedEmailMarketing, setAllowedEmailMarketing] = useState(false);
   const { currentUser } = useCurrentUser();
   const { registerAction } = useTasksContext();
-  const {
-    updateUserConfig,
-    refetch: refetchUserConfig,
-    userConfig,
-  } = useUserV1Config();
+  const { userV1Config, updateUserConfig } = useUserV1Config();
+  const { refetch: refetchUserConfig, userConfig } = userV1Config();
   const { handleNavigate } = usePostTicketDonationNavigation();
 
   const {

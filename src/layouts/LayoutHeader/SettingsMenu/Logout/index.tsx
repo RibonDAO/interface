@@ -1,92 +1,69 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useCurrentUser } from "contexts/currentUserContext";
 import useNavigation from "hooks/useNavigation";
 import useVoucher from "hooks/useVoucher";
+import ModalDialog from "components/moleculars/modals/ModalDialog";
+import { logEvent } from "lib/events";
+import Item from "../Item";
 
-import CardIconText from "components/moleculars/cards/CardIconText";
-import ModalIcon from "components/moleculars/modals/ModalIcon";
-import warningIcon from "assets/icons/warning-icon.svg";
-import successIcon from "assets/icons/success-icon.svg";
-import letterIcon from "assets/icons/letter-icon.svg";
-import theme from "styles/theme";
-import * as S from "./styles";
+type Props = {
+  closeMenu: () => void;
+};
 
-function Logout(): JSX.Element | null {
+function Logout({ closeMenu }: Props): JSX.Element | null {
   const { t } = useTranslation("translation", {
     keyPrefix: "layouts.layoutHeader.logoutItem",
   });
-  const { tertiary } = theme.colors.brand;
 
   const { logoutCurrentUser, currentUser } = useCurrentUser();
-  const [email, setEmail] = useState("");
   const [warningModalVisible, setWarningModalVisible] = useState(false);
-  const [successLogoutModalVisible, setSuccessLogoutModalVisible] =
-    useState(false);
   const { navigateTo } = useNavigation();
   const { createVoucher } = useVoucher();
 
-  function handleConfirmation() {
-    setSuccessLogoutModalVisible(true);
-    setWarningModalVisible(false);
-  }
-
-  function handleLogout() {
+  const handleLogout = () => {
+    logEvent("signoutConfirmBtn_click");
     logoutCurrentUser();
     createVoucher();
     navigateTo("/causes");
-    setSuccessLogoutModalVisible(false);
     window.location.reload();
-  }
+  };
 
-  useEffect(() => {
-    if (currentUser) {
-      setEmail(currentUser.email);
-    }
-  }, [currentUser]);
+  const showModal = () => {
+    setWarningModalVisible(true);
+    logEvent("signoutBtn_click");
+  };
+
+  const closeModal = () => {
+    setWarningModalVisible(false);
+    closeMenu();
+  };
 
   if (!currentUser) return null;
 
   return (
-    <S.Container>
-      <CardIconText
-        text={email}
-        icon={letterIcon}
-        rightComponent={
-          <S.LogoutButton
-            outline
-            text={t("logoutButton")}
-            onClick={() => setWarningModalVisible(true)}
-            textColor={tertiary[400]}
-            borderColor={tertiary[400]}
-            round
-          />
-        }
+    <>
+      <Item
+        icon={{ name: "logout" }}
+        text={t("logoutButton")}
+        onClickHandler={() => showModal()}
       />
-      <ModalIcon
+      <ModalDialog
         visible={warningModalVisible}
         title={t("logoutModalTitle")}
-        body={t("logoutModalSubtitle")}
+        description={t("logoutModalSubtitle")}
         primaryButton={{
           text: t("confirmModalButton"),
-          onClick: handleConfirmation,
+          onClick: handleLogout,
         }}
         secondaryButton={{
           text: t("cancelModalButton"),
-          onClick: () => setWarningModalVisible(false),
+          onClick: closeModal,
         }}
-        icon={warningIcon}
+        type="info"
+        onClose={closeModal}
       />
-      <ModalIcon
-        visible={successLogoutModalVisible}
-        title={t("successModalTitle")}
-        primaryButton={{
-          text: t("successModalButton"),
-          onClick: handleLogout,
-        }}
-        icon={successIcon}
-      />
-    </S.Container>
+    </>
   );
 }
 

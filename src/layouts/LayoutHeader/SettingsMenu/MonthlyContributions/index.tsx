@@ -36,7 +36,7 @@ function MonthlyContributions(): JSX.Element | null {
 
   return (
     <Item
-      icon="volunteer_activism"
+      icon={{ name: "volunteer_activism" }}
       text={t("monthlyContributions")}
       onClickHandler={() => handleClick()}
     />

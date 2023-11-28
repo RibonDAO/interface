@@ -4,24 +4,33 @@ import { useLocation } from "react-router";
 import { useAuthentication } from "contexts/authenticationContext";
 import Loader from "components/atomics/Loader";
 import ReceiveExtraTicketPage from "pages/donations/auth/ReceiveExtraTicketPage";
+import useNavigation from "hooks/useNavigation";
 
 function SignInByMagicLink(): JSX.Element {
   const { search } = useLocation();
+  const { navigateTo } = useNavigation();
   const { signInByMagicLink, loading } = useAuthentication();
 
   useEffect(() => {
     async function authenticate() {
-      const authToken = extractUrlValue("authToken", search);
-      const id = extractUrlValue("id", search);
+      const authToken = extractUrlValue("authToken", search) ?? "";
+      const id = extractUrlValue("id", search) ?? "";
 
       if (id && authToken) {
         signInByMagicLink({
           authToken,
           id,
+          onError: () => {
+            navigateTo({
+              pathname: "/expired-link",
+              state: {
+                accountId: id,
+              },
+            });
+          },
         });
       }
     }
-
     authenticate();
   }, []);
 

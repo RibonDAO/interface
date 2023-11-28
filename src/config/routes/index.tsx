@@ -38,7 +38,7 @@ import ContributionCanceledPage from "pages/promoters/ContributionCanceledPage";
 import ExperimentRouteComponent from "services/growthbook/ExperimentRouteComponent";
 import CampaignPage from "pages/campaigns/CampaignPage";
 import PixInstructionsPage from "pages/promoters/CheckoutPage/Components/PixInstructionsPage";
-import ExpiredLinkPage from "pages/users/ExpiredLinkPage";
+import ExpiredLinkPage from "pages/auth/ExpiredLinkPage";
 import InsertEmailAccountPage from "pages/donations/auth/InsertEmailAccountPage";
 import ExtraTicketPage from "pages/donations/auth/ExtraTicketPage";
 import ReceiveExtraTicketPage from "pages/donations/auth/ReceiveExtraTicketPage";

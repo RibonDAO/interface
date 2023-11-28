@@ -86,17 +86,7 @@
       "donateButton": "Doe {{value}}",
       "donateNow": "Doar agora"
     },
-    "donationDonePage": {
-      "title": "Obrigada pela doação!",
-      "button": "Ver impacto",
-      "ngoTitle": "Sobre ",
-      "moreInfoButtonText": "Mais informações",
-      "youDonatedText": "Você doou",
-      "confirmButtonText": "Entendi",
-      "donationSuccessfullTitle": "Contribuição realizada",
-      "donationSuccessfullSubtitle": "Ela será usada para pagar diversas doações realizadas no aplicativo."
-    },
-    "donationDoneCausePage": {
+    "contributionDonePage": {
       "title": "Parabéns!",
       "thanksToYou": "Graças a você...",
       "lifeWasImpacted": "1 pessoa foi impactada",
@@ -108,6 +98,12 @@
       "youDonatedText": "Você doou",
       "button": "Terminar",
       "checkboxText": "Aceito receber e-mails com informações sobre minhas doações"
+    },
+    "ticketDonationDonePage": {
+      "title": "Obrigada pela doação!",
+      "description": "Você doou",
+      "button": "Finalizar",
+      "checkboxText": "Quero receber informações sobre minhas doações por e-mail"
     },
     "menu": {
       "impactPageTitle": "Impacto",

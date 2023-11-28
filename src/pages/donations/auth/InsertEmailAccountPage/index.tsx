@@ -55,7 +55,7 @@ function InsertEmailAccountPage(): JSX.Element {
         nonProfitId: nonProfit.id,
       });
       navigateTo({
-        pathname: "/donation-done-cause",
+        pathname: "/ticket-donation-done",
         state: {
           cause: nonProfit.cause,
           nonProfit,

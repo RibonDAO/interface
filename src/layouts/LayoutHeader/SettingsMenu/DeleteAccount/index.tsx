@@ -30,6 +30,7 @@ function DeleteAccount(): JSX.Element | null {
     sendDeleteAccountEmail();
     setEmailSentModalVisible(true);
     logoutCurrentUser();
+    window.location.reload();
   }
 
   if (!currentUser) return null;

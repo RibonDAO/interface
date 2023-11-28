@@ -21,11 +21,11 @@ export const AvatarSection = styled.div`
 export const AvatarContainer = styled.div`
   width: 72px;
   height: 72px;
+  margin-bottom: ${({ theme }) => theme.spacing(12)};
   padding: ${({ theme }) => theme.spacing(12)};
   border-radius: 8px;
   position: relative;
   background-color: ${({ theme }) => theme.colors.neutral[25]};
-  margin-bottom: ${({ theme }) => theme.spacing(12)};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     margin-right: ${({ theme }) => theme.spacing(16)};

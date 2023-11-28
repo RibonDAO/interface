@@ -37,6 +37,7 @@ import ContributionCanceledPage from "pages/promoters/ContributionCanceledPage";
 import ExperimentRouteComponent from "services/growthbook/ExperimentRouteComponent";
 import CampaignPage from "pages/campaigns/CampaignPage";
 import PixInstructionsPage from "pages/promoters/CheckoutPage/Components/PixInstructionsPage";
+import ExpiredLinkPage from "pages/auth/ExpiredLinkPage";
 import InsertEmailAccountPage from "pages/donations/auth/InsertEmailAccountPage";
 import ExtraTicketPage from "pages/donations/auth/ExtraTicketPage";
 import SignInExtraTicketPage from "pages/donations/auth/SignInExtraTicketPage";
@@ -377,6 +378,12 @@ function RoutesComponent(): JSX.Element {
       <Route path="/delete_account" exact>
         <Suspense fallback={<div />}>
           <DeleteAccountPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/expired-link" exact>
+        <Suspense fallback={<div />}>
+          <ExpiredLinkPage />
         </Suspense>
       </Route>
 

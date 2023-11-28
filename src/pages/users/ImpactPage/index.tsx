@@ -15,6 +15,7 @@ import MoneyIcon from "./assets/money-icon.svg";
 import NgoIcon from "./assets/ngo-icon.svg";
 import CausesIcon from "./assets/causes-icon.svg";
 import * as S from "./styles";
+import ImpactedLivesSection from "../ImpactedLivesSection";
 
 function ImpactPage(): JSX.Element {
   const { t } = useTranslation("translation", {
@@ -34,9 +35,11 @@ function ImpactPage(): JSX.Element {
 
   return (
     <S.Container>
+      <ImpactedLivesSection />
       <DownloadAppToast />
       <CampaignSection cardId="1" />
       <S.Title>{t("title")}</S.Title>
+
       <S.CardsButtonContainer>
         <CardTopImage
           text={t("donatedTickets")}

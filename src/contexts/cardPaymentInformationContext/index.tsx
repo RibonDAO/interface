@@ -97,7 +97,7 @@ function CardPaymentInformationProvider({ children }: Props) {
     setLocalStorageItem(CONTRIBUTION_INLINE_NOTIFICATION, "3");
     login();
     navigateTo({
-      pathname: "/donation-done-cause",
+      pathname: "/contribution-done",
       state: {
         hasButton: true,
         offerId,

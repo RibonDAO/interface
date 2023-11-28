@@ -86,17 +86,7 @@
       "donateButton": "Donate {{value}}",
       "donateNow": "Donate now"
     },
-    "donationDonePage": {
-      "title": "Thank you for the donation!",
-      "button": "Check impact",
-      "ngoTitle": "About ",
-      "moreInfoButtonText": "More info",
-      "youDonatedText": "You donated",
-      "confirmButtonText": "Ok",
-      "donationSuccessfullTitle": "Giving successful",
-      "donationSuccessfullSubtitle": "It will be used to pay for various donations made in the app."
-    },
-    "donationDoneCausePage": {
+    "contributionDonePage": {
       "title": "Congratulations!",
       "thanksToYou": "Thanks to you...",
       "lifeWasImpacted": "1 person was impacted",
@@ -108,6 +98,12 @@
       "youDonatedText": "You donated",
       "button": "Finish",
       "checkboxText": "I agree to receive emails with information about my donations"
+    },
+    "ticketDonationDonePage": {
+      "title": "Thanks for donating!",
+      "description": "You donated",
+      "button": "Finish",
+      "checkboxText": "I want to receive information about my donations by e-mail"
     },
     "menu": {
       "impactPageTitle": "Impact",
@@ -219,6 +215,15 @@
         "cancelModalButton": "Cancel",
         "successModalTitle": "Signed out successfully",
         "successModalButton": "Ok"
+      },
+      "deleteAccountItem": {
+        "cancelModalButton": "Cancel",
+        "deleteAccountModalButton": "Receive e-mail",
+        "deleteAccountModalTitle": "Confirm account deletion",
+        "deleteAccountModalDescription": "You will be signed out automatically and receive an account deletion e-mail to proceed with your request.",
+        "deleteAccount": "Delete account",
+        "emailSentTitle": "E-mail sent!",
+        "emailSentDescription": "We sent you an e-mail with instructions to delete your account. If you don't receive it, please check your promotions/spam folder."
       }
     },
     "walletLayout": {
@@ -666,6 +671,13 @@
     "invalidLink": "Invalid link",
     "accountDeleted": "Account deleted",
     "accountDeletedText": "If you try to sign in, you will need to create a new account without access to your previous impact data"
+  },
+  "expiredLinkPage": {
+    "loading": "Loading...",
+    "invalidLink": "Invalid link",
+    "expiredLink": "This link has expired",
+    "expiredLinkText": "Please, try signing in or creating a new account with your e-mail to get a new account validation link",
+    "buttonText": "Send me a new link"
   },
   "downloadAppModalTemplate": {
     "button": "Download app",

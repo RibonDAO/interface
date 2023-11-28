@@ -24,7 +24,9 @@ function signInOrCreateAccount(): JSX.Element | null {
 
   return (
     <Item
-      icon="account_circle"
+      icon={{
+        name: "account_circle",
+      }}
       text={t("signInOrCreateAccount")}
       onClickHandler={() => handleClick()}
     />

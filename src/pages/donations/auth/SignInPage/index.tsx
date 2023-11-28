@@ -57,7 +57,7 @@ function SignInPage(): JSX.Element {
         nonProfitId: nonProfit.id,
       });
       navigateTo({
-        pathname: "/donation-done-cause",
+        pathname: "/ticket-donation-done",
         state: {
           cause: nonProfit.cause,
           nonProfit,
@@ -84,8 +84,8 @@ function SignInPage(): JSX.Element {
   ) : (
     <>
       <S.RightImage src={RightImage} />
+      <S.LeftImage src={LeftImage} />
       <S.Container>
-        <S.LeftImage src={LeftImage} />
         <S.ImageContainer>
           <S.MainImage src={nonProfit.mainImage} />
         </S.ImageContainer>

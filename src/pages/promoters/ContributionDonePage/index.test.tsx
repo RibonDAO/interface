@@ -8,7 +8,7 @@ describe("DonationDoneCausePage", () => {
   it("should render without error", () => {
     renderComponent(<DonationDoneCausePage />);
 
-    expectTextToBeInTheDocument("You donated");
+    expectTextToBeInTheDocument("You have donated to");
   });
 
   it("shows the impact of the donation", () => {
@@ -32,7 +32,7 @@ describe("DonationDoneCausePage", () => {
       },
     });
 
-    expectTextToBeInTheDocument("You donated");
+    expectTextToBeInTheDocument("You have donated to");
     expectTextToBeInTheDocument("2 days of impact for 1 donor");
   });
 

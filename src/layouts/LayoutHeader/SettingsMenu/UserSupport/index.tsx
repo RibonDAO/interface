@@ -24,7 +24,9 @@ function UserSupport(): JSX.Element {
 
   return (
     <Item
-      icon="support_agent"
+      icon={{
+        name: "support_agent",
+      }}
       text={t("text")}
       onClickHandler={() => handleClick()}
     />

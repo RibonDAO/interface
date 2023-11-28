@@ -4,6 +4,7 @@ import LeftImage from "assets/images/bottom-left-shape.svg";
 import RightImage from "assets/images/top-right-shape.svg";
 import { logEvent } from "lib/events";
 import { useLocation } from "react-router-dom";
+import useAvoidBackButton from "hooks/useAvoidBackButton";
 import UserAvatar from "../assets/user-avatar.svg";
 import * as S from "./styles";
 
@@ -26,6 +27,7 @@ function SentMagicLinkEmailPage(): JSX.Element {
     state: { email },
   } = useLocation<LocationStateType>();
 
+  useAvoidBackButton();
   return (
     <S.Container>
       <S.LeftImage src={LeftImage} />

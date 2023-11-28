@@ -86,17 +86,7 @@
       "donateButton": "Doe {{value}}",
       "donateNow": "Doar agora"
     },
-    "donationDonePage": {
-      "title": "Obrigada pela doação!",
-      "button": "Ver impacto",
-      "ngoTitle": "Sobre ",
-      "moreInfoButtonText": "Mais informações",
-      "youDonatedText": "Você doou",
-      "confirmButtonText": "Entendi",
-      "donationSuccessfullTitle": "Contribuição realizada",
-      "donationSuccessfullSubtitle": "Ela será usada para pagar diversas doações realizadas no aplicativo."
-    },
-    "donationDoneCausePage": {
+    "contributionDonePage": {
       "title": "Parabéns!",
       "thanksToYou": "Graças a você...",
       "lifeWasImpacted": "1 pessoa foi impactada",
@@ -108,6 +98,12 @@
       "youDonatedText": "Você doou",
       "button": "Terminar",
       "checkboxText": "Aceito receber e-mails com informações sobre minhas doações"
+    },
+    "ticketDonationDonePage": {
+      "title": "Obrigada pela doação!",
+      "description": "Você doou",
+      "button": "Finalizar",
+      "checkboxText": "Quero receber informações sobre minhas doações por e-mail"
     },
     "menu": {
       "impactPageTitle": "Impacto",
@@ -218,6 +214,14 @@
         "cancelModalButton": "Cancelar",
         "successModalTitle": "Você saiu da sua conta",
         "successModalButton": "Fechar"
+      },
+      "deleteAccountItem": {
+        "cancelModalButton": "Cancelar",
+        "deleteAccountModalButton": "Receber e-mail",
+        "deleteAccountModalTitle": "Confirmar exclusão de conta",
+        "deleteAccountModalDescription": "Você sairá do app automaticamente e receberá um e-mail de exclusão de conta para continuar com o processo.",
+        "emailSentTitle": "E-mail enviado",
+        "emailSentDescription": "Você receberá um e-mail com o link para excluir sua conta em breve. Se você não receber, por favor, verifique sua caixa de promoções/spam."
       }
     },
     "walletLayout": {
@@ -665,6 +669,13 @@
     "invalidLink": "Link inválido",
     "accountDeleted": "Conta excluída",
     "accountDeletedText": "Para entrar novamente, você deverá criar uma nova conta sem acesso aos seus dados de impacto anteriores"
+  },
+  "expiredLinkPage": {
+    "loading": "Carregando...",
+    "invalidLink": "Link inválido",
+    "expiredLink": "Este link expirou",
+    "expiredLinkText": "Por favor, tente entrar ou se cadastrar novamente para receber um novo link de validação de conta",
+    "buttonText": "Me mande outro link"
   },
   "downloadAppModalTemplate": {
     "button": "Baixar o app",

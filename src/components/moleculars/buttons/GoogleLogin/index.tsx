@@ -8,10 +8,7 @@ import { logEvent } from "lib/events";
 import GoogleIcon from "assets/icons/google-icon.svg";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useAuthentication } from "contexts/authenticationContext";
-import ModalDialog from "components/moleculars/modals/ModalDialog";
-import { useCurrentUser } from "contexts/currentUserContext";
-import contactSupport from "lib/contactSupport";
-import { useLanguage } from "hooks/useLanguage";
+import ModalWrongEmail from "components/moleculars/modals/ModalWrongEmail";
 
 type Props = {
   onContinue: () => void;
@@ -22,32 +19,7 @@ function GoogleLogin({ onContinue }: Props): JSX.Element {
   });
 
   const { signInWithGoogle } = useAuthentication();
-  const { currentLang } = useLanguage();
-  const { currentUser } = useCurrentUser();
   const [modalVisible, setModalVisible] = useState(false);
-
-  const renderModalWrongEmail = () => (
-    <ModalDialog
-      visible={modalVisible}
-      title={t("wrongEmailModal.title")}
-      description={t("wrongEmailModal.description", {
-        email: currentUser?.email,
-      })}
-      primaryButton={{
-        text: t("wrongEmailModal.tryAgain"),
-        onClick: () => {
-          setModalVisible(false);
-        },
-      }}
-      secondaryButton={{
-        text: t("wrongEmailModal.contactSupport"),
-        onClick: () => {
-          contactSupport(currentLang);
-        },
-      }}
-      onClose={() => setModalVisible(false)}
-    />
-  );
 
   const loginGoogle = useGoogleLogin({
     onSuccess: async (tokenResponse: any) => {
@@ -79,7 +51,7 @@ function GoogleLogin({ onContinue }: Props): JSX.Element {
         leftIcon={GoogleIcon}
         onClick={() => handleGoogle()}
       />
-      {renderModalWrongEmail()}
+      <ModalWrongEmail visible={modalVisible} setVisible={setModalVisible} />
     </>
   );
 }

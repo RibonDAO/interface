@@ -8,10 +8,7 @@ import AppleIcon from "assets/icons/apple-icon.svg";
 import { useAuthentication } from "contexts/authenticationContext";
 import AppleLoginProvider from "react-apple-login";
 import { APPLE_CLIENT_ID, APPLE_REDIRECT_URL } from "utils/constants";
-import { useLanguage } from "hooks/useLanguage";
-import { useCurrentUser } from "contexts/currentUserContext";
-import contactSupport from "lib/contactSupport";
-import ModalDialog from "components/moleculars/modals/ModalDialog";
+import ModalWrongEmail from "components/moleculars/modals/ModalWrongEmail";
 
 type Props = {
   onContinue: () => void;
@@ -22,32 +19,7 @@ function AppleLogin({ onContinue }: Props): JSX.Element {
   });
 
   const { signInWithApple } = useAuthentication();
-  const { currentLang } = useLanguage();
-  const { currentUser } = useCurrentUser();
   const [modalVisible, setModalVisible] = useState(false);
-
-  const renderModalWrongEmail = () => (
-    <ModalDialog
-      visible={modalVisible}
-      title={t("wrongEmailModal.title")}
-      description={t("wrongEmailModal.description", {
-        email: currentUser?.email,
-      })}
-      primaryButton={{
-        text: t("wrongEmailModal.tryAgain"),
-        onClick: () => {
-          setModalVisible(false);
-        },
-      }}
-      secondaryButton={{
-        text: t("wrongEmailModal.contactSupport"),
-        onClick: () => {
-          contactSupport(currentLang);
-        },
-      }}
-      onClose={() => setModalVisible(false)}
-    />
-  );
 
   const handleApple = async (response: any) => {
     logEvent("authAppleBtn_click", {
@@ -85,7 +57,7 @@ function AppleLogin({ onContinue }: Props): JSX.Element {
           />
         )}
       />
-      {renderModalWrongEmail()}
+      <ModalWrongEmail visible={modalVisible} setVisible={setModalVisible} />
     </>
   );
 }

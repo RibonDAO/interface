@@ -1,16 +1,15 @@
 import theme from "styles/theme";
-import GetTheAppItem from "layouts/LayoutHeader/GetTheAppItem";
-import { Divider } from "components/atomics/Divider/styles";
-import UserSupportItem from "layouts/LayoutHeader/UserSupportItem";
-import ChangeLanguageItem from "layouts/LayoutHeader/ChangeLanguageItem";
-import LogoutItem from "layouts/LayoutHeader/LogoutItem";
+import ChangeLanguage from "layouts/LayoutHeader/SettingsMenu/ChangeLanguage";
+import Logout from "layouts/LayoutHeader/SettingsMenu/Logout";
 import ModalBlank from "components/moleculars/modals/ModalBlank";
 import { useState } from "react";
 import { logEvent } from "lib/events";
 import useBreakpoint from "hooks/useBreakpoint";
-import { useCurrentUser } from "contexts/currentUserContext";
 import * as S from "./styles";
-import MonthlyContributionsItem from "../MonthlyContributionsItem";
+import SignInOrCreateAccount from "./SignInOrCreateAccount";
+import GetTheApp from "./GetTheApp";
+import UserSupport from "./UserSupport";
+import DeleteAccount from "./DeleteAccount";
 
 type Props = {
   outline?: boolean;
@@ -18,16 +17,15 @@ type Props = {
 function SettingsMenu({ outline = false }: Props) {
   const [menuVisible, setMenuVisible] = useState(false);
   const { isMobile } = useBreakpoint();
-  const { signedIn, currentUser } = useCurrentUser();
 
   function openMenu() {
     logEvent("configButton_click");
     setMenuVisible(true);
   }
 
-  function closeMenu() {
+  const closeMenu = () => {
     setMenuVisible(false);
-  }
+  };
 
   return (
     <>
@@ -52,29 +50,12 @@ function SettingsMenu({ outline = false }: Props) {
           },
         }}
       >
-        <GetTheAppItem />
-        <Divider color={theme.colors.neutral[200]} />
-        <UserSupportItem />
-        <Divider color={theme.colors.neutral[200]} />
-        <ChangeLanguageItem />
-
-        {currentUser?.lastDonationAt ? (
-          <div>
-            <Divider color={theme.colors.neutral[200]} />
-            <MonthlyContributionsItem />
-          </div>
-        ) : (
-          <div />
-        )}
-
-        {signedIn ? (
-          <div>
-            <Divider color={theme.colors.neutral[200]} />
-            <LogoutItem />
-          </div>
-        ) : (
-          <div />
-        )}
+        <SignInOrCreateAccount />
+        <GetTheApp />
+        <UserSupport />
+        <ChangeLanguage />
+        <Logout closeMenu={closeMenu} />
+        <DeleteAccount />
       </ModalBlank>
       <S.Settings
         name="settings"

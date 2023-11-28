@@ -1,6 +1,7 @@
 import { theme } from "@ribon.io/shared/styles";
-import ticketOn from "assets/icons/ticket-icon-on.svg";
-import ticketOff from "assets/icons/ticket-icon-off.svg";
+import ticketIconOn from "assets/icons/ticket-icon-on.svg";
+import ticketIconOff from "assets/icons/ticket-icon-off.svg";
+import ticketIconOutline from "assets/icons/ticket-icon-outline.svg";
 import { logEvent } from "lib/events";
 import { useCanDonate } from "@ribon.io/shared/hooks";
 import { PLATFORM } from "utils/constants";
@@ -34,9 +35,12 @@ function TicketsCounter({ outline = false }: Props): JSX.Element {
     }
   }
 
+  const ticketIcon = canDonateAndHasVoucher ? ticketIconOn : ticketIconOff;
+
   return (
     <S.CounterContainer onClick={() => handleCounterClick()} outline={outline}>
       <S.TicketsAmount
+        outline={outline}
         color={
           canDonateAndHasVoucher
             ? theme.colors.brand.primary[600]
@@ -45,7 +49,7 @@ function TicketsCounter({ outline = false }: Props): JSX.Element {
       >
         {canDonateAndHasVoucher ? 1 : 0}
       </S.TicketsAmount>
-      <S.CounterImage src={canDonateAndHasVoucher ? ticketOn : ticketOff} />
+      <S.CounterImage src={outline ? ticketIconOutline : ticketIcon} />
     </S.CounterContainer>
   );
 }

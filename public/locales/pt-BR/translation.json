@@ -249,6 +249,9 @@
       "communityDonations": "Doações em comunidade",
       "directDonations": "Doações diretas"
     },
+    "profileSection": {
+      "userName": "Seu perfil"
+    },
     "ticketSection": {
       "emptyTitle": "Suas doações de tickets aparecerão aqui.",
       "emptyText": "Você ainda não fez doações gratuitas com tickets, que tal fazer a primeira?",

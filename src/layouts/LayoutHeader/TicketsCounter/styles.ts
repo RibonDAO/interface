@@ -11,7 +11,7 @@ export const CounterContainer = styled.div<{ outline: boolean }>`
   padding: ${({ theme }) => theme.spacing(4)} ${({ theme }) => theme.spacing(8)};
   border: 1px solid
     ${({ theme, outline }) =>
-      outline ? theme.colors.brand.primary[600] : theme.colors.neutral[200]};
+      outline ? theme.colors.neutral10 : theme.colors.neutral[200]};
   border-radius: 4px;
   display: flex;
   flex-direction: row;
@@ -26,9 +26,10 @@ export const CounterContainer = styled.div<{ outline: boolean }>`
   }
 `;
 
-export const TicketsAmount = styled.p`
+export const TicketsAmount = styled.p<{ outline: boolean }>`
   ${defaultBodyXsSemibold}
 
   margin-right: ${({ theme }) => theme.spacing(4)};
-  color: ${({ color }) => color};
+  color: ${({ theme, outline, color }) =>
+    outline ? theme.colors.neutral10 : color};
 `;

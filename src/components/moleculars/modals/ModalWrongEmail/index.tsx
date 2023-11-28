@@ -4,7 +4,7 @@ import { useLanguage } from "hooks/useLanguage";
 import contactSupport from "lib/contactSupport";
 import { useTranslation } from "react-i18next";
 
-type Props = {
+export type Props = {
   visible: boolean;
   setVisible: (visible: boolean) => void;
 };

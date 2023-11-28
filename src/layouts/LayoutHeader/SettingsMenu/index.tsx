@@ -1,6 +1,6 @@
 import theme from "styles/theme";
 import ChangeLanguage from "layouts/LayoutHeader/SettingsMenu/ChangeLanguage";
-import LogoutItem from "layouts/LayoutHeader/SettingsMenu/Logout";
+import Logout from "layouts/LayoutHeader/SettingsMenu/Logout";
 import ModalBlank from "components/moleculars/modals/ModalBlank";
 import { useState } from "react";
 import { logEvent } from "lib/events";
@@ -9,6 +9,7 @@ import * as S from "./styles";
 import SignInOrCreateAccount from "./SignInOrCreateAccount";
 import GetTheApp from "./GetTheApp";
 import UserSupport from "./UserSupport";
+import DeleteAccount from "./DeleteAccount";
 
 type Props = {
   outline?: boolean;
@@ -53,7 +54,8 @@ function SettingsMenu({ outline = false }: Props) {
         <GetTheApp />
         <UserSupport />
         <ChangeLanguage />
-        <LogoutItem closeMenu={closeMenu} />
+        <Logout closeMenu={closeMenu} />
+        <DeleteAccount />
       </ModalBlank>
       <S.Settings
         name="settings"

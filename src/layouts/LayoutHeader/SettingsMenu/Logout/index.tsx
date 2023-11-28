@@ -44,7 +44,7 @@ function Logout({ closeMenu }: Props): JSX.Element | null {
   return (
     <>
       <Item
-        icon="logout"
+        icon={{ name: "logout" }}
         text={t("logoutButton")}
         onClickHandler={() => showModal()}
       />
@@ -61,6 +61,7 @@ function Logout({ closeMenu }: Props): JSX.Element | null {
           onClick: closeModal,
         }}
         type="info"
+        onClose={closeModal}
       />
     </>
   );

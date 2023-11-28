@@ -218,6 +218,14 @@
         "cancelModalButton": "Cancelar",
         "successModalTitle": "Você saiu da sua conta",
         "successModalButton": "Fechar"
+      },
+      "deleteAccountItem": {
+        "cancelModalButton": "Cancelar",
+        "deleteAccountModalButton": "Receber e-mail",
+        "deleteAccountModalTitle": "Confirmar exclusão de conta",
+        "deleteAccountModalDescription": "Você sairá do app automaticamente e receberá um e-mail de exclusão de conta para continuar com o processo.",
+        "emailSentTitle": "E-mail enviado",
+        "emailSentDescription": "Você receberá um e-mail com o link para excluir sua conta em breve. Se você não receber, por favor, verifique sua caixa de promoções/spam."
       }
     },
     "walletLayout": {

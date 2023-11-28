@@ -219,6 +219,15 @@
         "cancelModalButton": "Cancel",
         "successModalTitle": "Signed out successfully",
         "successModalButton": "Ok"
+      },
+      "deleteAccountItem": {
+        "cancelModalButton": "Cancel",
+        "deleteAccountModalButton": "Receive e-mail",
+        "deleteAccountModalTitle": "Confirm account deletion",
+        "deleteAccountModalDescription": "You will be signed out automatically and receive an account deletion e-mail to proceed with your request.",
+        "deleteAccount": "Delete account",
+        "emailSentTitle": "E-mail sent!",
+        "emailSentDescription": "We sent you an e-mail with instructions to delete your account. If you don't receive it, please check your promotions/spam folder."
       }
     },
     "walletLayout": {

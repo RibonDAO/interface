@@ -4,9 +4,12 @@ import * as S from "./styles";
 import Avatar from "../assets/avatar.svg";
 
 type Props = {
-  level: number;
+  level?: number;
+  userAvatar?: string;
+  email?: string;
+  name?: string;
 };
-function UserAvatar({ level }: Props) {
+function UserAvatar({ level, userAvatar, email, name }: Props) {
   const { t } = useTranslation("translation", {
     keyPrefix: "impactPage.impactedLivesSection",
   });
@@ -15,10 +18,12 @@ function UserAvatar({ level }: Props) {
   return (
     <S.AvatarSection>
       <S.AvatarContainer>
-        <S.LevelLabel>
-          {t("level")} {level}
-        </S.LevelLabel>
-        <S.Avatar src={Avatar} alt="user-avatar" />
+        {level && (
+          <S.LevelLabel>
+            {t("level")} {level}
+          </S.LevelLabel>
+        )}
+        <S.Avatar src={userAvatar || Avatar} alt="user-avatar" />
       </S.AvatarContainer>
       <S.AvatarTitle>{currentUser?.email}</S.AvatarTitle>
     </S.AvatarSection>

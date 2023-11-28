@@ -2,8 +2,7 @@ import React, { Suspense, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import WalletProvider from "contexts/walletContext";
 import CausesPage from "pages/donations/CausesPage";
-import DonationDonePage from "pages/donations/DonationDonePage";
-import DonationDoneCausePage from "pages/donations/DonationDoneCausePage";
+import ContributionDonePage from "pages/promoters/ContributionDonePage";
 import ImpactPage from "pages/users/ImpactPage";
 import MainLayout from "layouts/MainLayout";
 import CheckoutPage from "pages/promoters/CheckoutPage";
@@ -41,6 +40,7 @@ import PixInstructionsPage from "pages/promoters/CheckoutPage/Components/PixInst
 import ExpiredLinkPage from "pages/auth/ExpiredLinkPage";
 import InsertEmailAccountPage from "pages/donations/auth/InsertEmailAccountPage";
 import ExtraTicketPage from "pages/donations/auth/ExtraTicketPage";
+import SignInExtraTicketPage from "pages/donations/auth/SignInExtraTicketPage";
 import ReceiveExtraTicketPage from "pages/donations/auth/ReceiveExtraTicketPage";
 import SignInByTokenPage from "pages/donations/auth/SignInByTokenPage";
 import DonationSignInPage from "pages/donations/auth/SignInPage";
@@ -48,6 +48,7 @@ import SignedInPage from "pages/donations/auth/SignedInPage";
 import SignInPage from "pages/auth/SignInPage";
 import InsertEmailPage from "pages/auth/InsertEmailPage";
 import SentMagicLinkEmailPage from "pages/auth/SentMagicLinkEmailPage";
+import TicketDonationDonePage from "pages/donations/TicketDonationDonePage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -104,6 +105,12 @@ function RoutesComponent(): JSX.Element {
               <CausesPage />
             </MainLayout>
           </WalletProvider>
+        </Suspense>
+      </Route>
+
+      <Route path="/ticket-donation-done" exact>
+        <Suspense fallback={<div />}>
+          <TicketDonationDonePage />
         </Suspense>
       </Route>
 
@@ -164,21 +171,22 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
+      <Route path="/donation/auth/sign-in-extra-ticket" exact>
+        <Suspense fallback={<div />}>
+          <NavigationBackHeader />
+          <SignInExtraTicketPage />
+        </Suspense>
+      </Route>
+
       <Route path="/receive-extra-ticket" exact>
         <Suspense fallback={<div />}>
           <ReceiveExtraTicketPage />
         </Suspense>
       </Route>
 
-      <Route path="/donation-done" exact>
+      <Route path="/contribution-done" exact>
         <Suspense fallback={<div />}>
-          <DonationDonePage />
-        </Suspense>
-      </Route>
-
-      <Route path="/donation-done-cause" exact>
-        <Suspense fallback={<div />}>
-          <DonationDoneCausePage />
+          <ContributionDonePage />
         </Suspense>
       </Route>
 

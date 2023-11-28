@@ -28,10 +28,9 @@ export interface IAuthenticationContext {
   logout: () => void;
   signInWithGoogle: (response: any) => void;
   signInWithApple: (response: any) => void;
-  isAuthorized: (email: string) => boolean;
+  isAuthenticated: () => boolean;
   user: any | undefined;
   setUser: (user: any) => void;
-  allowed: boolean;
   signInByMagicLink: (signInByMagicLinkProps: authTokenProps) => void;
   sendAuthenticationEmail: (
     sendAuthenticationEmailProps: authenticationEmailProps,
@@ -53,13 +52,11 @@ function AuthenticationProvider({ children }: Props) {
   );
   const [loading, setLoading] = useState(false);
   const { setCurrentUser } = useCurrentUser();
+  const emailDoesNotMatchMessage = "Email does not match";
 
-  function isAuthorized(email: string) {
-    if (!email) return false;
-    return email.includes("@ribon.io");
+  function isAuthenticated() {
+    return !!accessToken;
   }
-
-  const allowed = useMemo(() => isAuthorized(user?.email ?? ""), [user]);
 
   function signIn(response: any) {
     const token = response.headers["access-token"];
@@ -74,12 +71,19 @@ function AuthenticationProvider({ children }: Props) {
   async function signInWithGoogle(response: any) {
     try {
       const authResponse = await userAuthenticationApi.postAuthenticate(
-        response.access_token,
+        response.authorization?.id_token || response.access_token,
         "google_oauth2_access",
       );
 
       signIn(authResponse);
-    } catch (error) {
+    } catch (error: any) {
+      if (error.response) {
+        const apiErrorMessage =
+          error.response.data.formatted_message === emailDoesNotMatchMessage
+            ? emailDoesNotMatchMessage
+            : "Unknown error";
+        throw new Error(apiErrorMessage);
+      }
       throw new Error("google auth error");
     }
   }
@@ -92,7 +96,14 @@ function AuthenticationProvider({ children }: Props) {
       );
 
       signIn(authResponse);
-    } catch (error) {
+    } catch (error: any) {
+      if (error.response) {
+        const apiErrorMessage =
+          error.response.data.formatted_message === emailDoesNotMatchMessage
+            ? emailDoesNotMatchMessage
+            : "Unknown error";
+        throw new Error(apiErrorMessage);
+      }
       throw new Error("apple auth error");
     }
   }
@@ -161,17 +172,16 @@ function AuthenticationProvider({ children }: Props) {
     () => ({
       user,
       setUser,
-      allowed,
-      isAuthorized,
       logout,
       accessToken,
       signInWithGoogle,
       signInWithApple,
       signInByMagicLink,
       sendAuthenticationEmail,
+      isAuthenticated,
       loading,
     }),
-    [user, allowed, accessToken, loading],
+    [user, accessToken, loading],
   );
 
   return (
@@ -180,17 +190,14 @@ function AuthenticationProvider({ children }: Props) {
     </AuthenticationContext.Provider>
   );
 }
-
 export default AuthenticationProvider;
 
 export const useAuthentication = () => {
   const context = useContext(AuthenticationContext);
-
   if (!context) {
     throw new Error(
       "useAuthentication must be used within AuthenticationProvider",
     );
   }
-
   return context;
 };

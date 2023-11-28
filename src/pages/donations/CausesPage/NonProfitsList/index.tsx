@@ -85,7 +85,7 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
       target_id: nonProfit.id.toString(),
       currency: currentLang === "pt-BR" ? "BRL" : "USD",
       subscription: "false",
-      from: "CausesPage",
+      from: "DirectCardNgo",
     });
 
     navigateTo({
@@ -144,14 +144,13 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
                     buttonText={
                       canDonateAndHasVoucher
                         ? t("donateText")
-                        : t("doMore", {
-                            value: currentOffer()?.price ?? "1000",
-                          })
+                        : t("donateBlockedText")
                     }
                     onClickButton={() =>
                       handleButtonClick(nonProfit, "nonProfitCard")
                     }
                     onClickImage={() => handleImageClick(nonProfit)}
+                    softDisabled={!canDonateAndHasVoucher}
                     infoTextTop={nonProfit.name}
                     infoTextBottom={nonProfit.cause?.name}
                     infoText={

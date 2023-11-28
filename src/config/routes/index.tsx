@@ -2,8 +2,7 @@ import React, { Suspense, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import WalletProvider from "contexts/walletContext";
 import CausesPage from "pages/donations/CausesPage";
-import DonationDonePage from "pages/donations/DonationDonePage";
-import DonationDoneCausePage from "pages/donations/DonationDoneCausePage";
+import ContributionDonePage from "pages/promoters/ContributionDonePage";
 import ImpactPage from "pages/users/ImpactPage";
 import MainLayout from "layouts/MainLayout";
 import CheckoutPage from "pages/promoters/CheckoutPage";
@@ -48,6 +47,7 @@ import SignedInPage from "pages/donations/auth/SignedInPage";
 import SignInPage from "pages/auth/SignInPage";
 import InsertEmailPage from "pages/auth/InsertEmailPage";
 import SentMagicLinkEmailPage from "pages/auth/SentMagicLinkEmailPage";
+import TicketDonationDonePage from "pages/donations/TicketDonationDonePage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -104,6 +104,12 @@ function RoutesComponent(): JSX.Element {
               <CausesPage />
             </MainLayout>
           </WalletProvider>
+        </Suspense>
+      </Route>
+
+      <Route path="/ticket-donation-done" exact>
+        <Suspense fallback={<div />}>
+          <TicketDonationDonePage />
         </Suspense>
       </Route>
 
@@ -170,15 +176,9 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
-      <Route path="/donation-done" exact>
+      <Route path="/contribution-done" exact>
         <Suspense fallback={<div />}>
-          <DonationDonePage />
-        </Suspense>
-      </Route>
-
-      <Route path="/donation-done-cause" exact>
-        <Suspense fallback={<div />}>
-          <DonationDoneCausePage />
+          <ContributionDonePage />
         </Suspense>
       </Route>
 

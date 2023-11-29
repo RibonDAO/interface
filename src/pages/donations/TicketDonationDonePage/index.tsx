@@ -1,7 +1,7 @@
 import {
   useStatistics,
   useFirstAccessToIntegration,
-  useUserConfig
+  useUserConfig,
 } from "@ribon.io/shared/hooks";
 import ConfirmationNumberPink from "assets/icons/confirmation-number-pink.svg";
 import ConfirmationNumberYellow from "assets/icons/confirmation-number-yellow.svg";
@@ -89,7 +89,6 @@ function TicketDonationDonePage(): JSX.Element {
     refetch();
 
     registerAction("donation_done_page_view");
-
 
     if (allowedEmailMarketing && currentUser) {
       logEvent("acceptReceiveEmail_click", {

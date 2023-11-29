@@ -1,6 +1,7 @@
 import { theme } from "@ribon.io/shared/styles";
-import ticketOn from "assets/icons/ticket-icon-on.svg";
-import ticketOff from "assets/icons/ticket-icon-off.svg";
+import ticketIconOn from "assets/icons/ticket-icon-on.svg";
+import ticketIconOff from "assets/icons/ticket-icon-off.svg";
+import ticketIconOutline from "assets/icons/ticket-icon-outline.svg";
 import { logEvent } from "lib/events";
 import { useCanDonate } from "@ribon.io/shared/hooks";
 import { PLATFORM } from "utils/constants";
@@ -20,12 +21,12 @@ function TicketsCounter({ outline = false }: Props): JSX.Element {
   const integrationId = useIntegrationId();
   const externalId = extractUrlValue("external_id", history.location.search);
   const { canDonate } = useCanDonate(integrationId, PLATFORM, externalId);
-  const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
+  const canDonateAndHasTicket = canDonate && isVoucherAvailable();
   const { showBlockedDonationContributionModal } =
     useBlockedDonationContributionModal();
 
   function handleCounterClick() {
-    if (canDonateAndHasVoucher) {
+    if (canDonateAndHasTicket) {
       logEvent("ticketIcon_click", { ticketQtd: 1 });
       navigateTo("/tickets");
     } else {
@@ -34,18 +35,21 @@ function TicketsCounter({ outline = false }: Props): JSX.Element {
     }
   }
 
+  const ticketIcon = canDonateAndHasTicket ? ticketIconOn : ticketIconOff;
+
   return (
     <S.CounterContainer onClick={() => handleCounterClick()} outline={outline}>
       <S.TicketsAmount
+        outline={outline}
         color={
-          canDonateAndHasVoucher
+          canDonateAndHasTicket
             ? theme.colors.brand.primary[600]
             : theme.colors.neutral[500]
         }
       >
-        {canDonateAndHasVoucher ? 1 : 0}
+        {canDonateAndHasTicket ? 1 : 0}
       </S.TicketsAmount>
-      <S.CounterImage src={canDonateAndHasVoucher ? ticketOn : ticketOff} />
+      <S.CounterImage src={outline ? ticketIconOutline : ticketIcon} />
     </S.CounterContainer>
   );
 }

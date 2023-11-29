@@ -260,6 +260,9 @@
       "communityDonations": "Community donations",
       "directDonations": "Direct donations"
     },
+    "profileSection": {
+      "userName": "Your profile"
+    },
     "ticketSection": {
       "emptyTitle": "Your ticket donations will appear here.",
       "emptyText": "You have not made free donations using tickets yet, why not try your first one?",

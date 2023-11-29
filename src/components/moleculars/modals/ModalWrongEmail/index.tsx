@@ -26,7 +26,7 @@ function ModalWrongEmail({
   const { currentUser } = useCurrentUser();
 
   const handleContactSupport = () => {
-    logEvent("contactSupportBtn_click", {
+    logEvent("supportBtn_click", {
       from: "validation_flow",
     });
     contactSupport(currentLang);

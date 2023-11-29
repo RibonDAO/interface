@@ -25,6 +25,13 @@ function ModalWrongEmail({
   const { currentLang } = useLanguage();
   const { currentUser } = useCurrentUser();
 
+  const handleContactSupport = () => {
+    logEvent("contactSupportBtn_click", {
+      from: "validation_flow",
+    });
+    contactSupport(currentLang);
+  };
+
   useEffect(() => {
     if (visible === true) {
       logEvent(eventName, eventParams);
@@ -46,9 +53,7 @@ function ModalWrongEmail({
       }}
       secondaryButton={{
         text: t("contactSupport"),
-        onClick: () => {
-          contactSupport(currentLang);
-        },
+        onClick: () => {handleContactSupport()},
       }}
       onClose={() => setVisible(false)}
     />

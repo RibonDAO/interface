@@ -1,10 +1,9 @@
-import { Languages } from "@ribon.io/shared/types";
 import { theme } from "@ribon.io/shared/styles";
 import Banner from "components/moleculars/banners/Banner";
 import { useLanguage } from "hooks/useLanguage";
 import { logEvent } from "lib/events";
 import { useTranslation } from "react-i18next";
-import startSupportChat from "services/support";
+import contactSupport from "lib/contactSupport";
 import CardBackground from "./assets/background.svg";
 
 type Props = {
@@ -20,11 +19,7 @@ function UserSupportBanner({ from }: Props): JSX.Element {
     logEvent("supportBtn_click", {
       from,
     });
-    if (currentLang === Languages.PT) {
-      window.open(t("userSupportLink"), "_blank");
-    } else {
-      startSupportChat();
-    }
+    contactSupport(currentLang);
   };
 
   return (

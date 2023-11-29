@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "components/atomics/buttons/Button";
 import { useTranslation } from "react-i18next";
 import { theme } from "@ribon.io/shared/styles";
@@ -8,6 +8,7 @@ import AppleIcon from "assets/icons/apple-icon.svg";
 import { useAuthentication } from "contexts/authenticationContext";
 import AppleLoginProvider from "react-apple-login";
 import { APPLE_CLIENT_ID, APPLE_REDIRECT_URL } from "utils/constants";
+import ModalWrongEmail from "components/moleculars/modals/ModalWrongEmail";
 
 type Props = {
   onContinue: () => void;
@@ -18,36 +19,46 @@ function AppleLogin({ onContinue }: Props): JSX.Element {
   });
 
   const { signInWithApple } = useAuthentication();
+  const [modalVisible, setModalVisible] = useState(false);
 
   const handleApple = async (response: any) => {
     logEvent("authAppleBtn_click", {
       from: "donation_flow",
     });
     if (!response.error) {
-      await signInWithApple(response);
-      onContinue();
+      try {
+        await signInWithApple(response);
+        onContinue();
+      } catch (error: any) {
+        if (error.message.includes("Email does not match")) {
+          setModalVisible(true);
+        }
+      }
     }
   };
 
   return (
-    <AppleLoginProvider
-      clientId={APPLE_CLIENT_ID}
-      redirectURI={APPLE_REDIRECT_URL}
-      usePopup
-      callback={handleApple}
-      responseMode="query"
-      scope="name email"
-      render={(renderProps) => (
-        <Button
-          text={t("buttonText")}
-          textColor={theme.colors.neutral[600]}
-          backgroundColor="transparent"
-          borderColor={theme.colors.neutral[300]}
-          leftIcon={AppleIcon}
-          onClick={renderProps.onClick}
-        />
-      )}
-    />
+    <>
+      <AppleLoginProvider
+        clientId={APPLE_CLIENT_ID}
+        redirectURI={APPLE_REDIRECT_URL}
+        usePopup
+        callback={handleApple}
+        responseMode="query"
+        scope="name email"
+        render={(renderProps) => (
+          <Button
+            text={t("buttonText")}
+            textColor={theme.colors.neutral[600]}
+            backgroundColor="transparent"
+            borderColor={theme.colors.neutral[300]}
+            leftIcon={AppleIcon}
+            onClick={renderProps.onClick}
+          />
+        )}
+      />
+      <ModalWrongEmail visible={modalVisible} setVisible={setModalVisible} />
+    </>
   );
 }
 

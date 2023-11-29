@@ -176,6 +176,11 @@
         "title": "Validar sua conta trouxe você aqui",
         "description": "Seu ticket extra está disponível",
         "buttonText": "Receber meu ticket"
+      },
+      "signInExtraTicketPage": {
+        "title": "Você ganhou um ticket extra",
+        "description": "Valide sua conta criada com {{email}} e receba seu ticket extra",
+        "buttonText": "Validar depois"
       }
     }
   },
@@ -742,7 +747,13 @@
       "termsText": "Termos",
       "termsLink": "https://ribon.io/en/privacy-policy/#terms",
       "privacyPolicyText": "Política de Privacidade",
-      "privacyPolicyLink": "https://ribon.io/en/privacy-policy/#privacy"
+      "privacyPolicyLink": "https://ribon.io/en/privacy-policy/#privacy",
+      "modalWrongEmail": {
+        "title": "Opa, e-mail incorreto",
+        "description": "Para continuar com Google ou Apple, escolha {{email}} como seu e-mail de validação. Se não reconhecer este e-mail, por favor entre em contato com nosso suporte.",
+        "tryAgain": "Tentar novamente",
+        "contactSupport": "Falar com suporte"
+      }
     },
     "insertEmailPage": {
       "title": "Entre com um e-mail",
@@ -766,6 +777,14 @@
         },
         "MagicLinkLogin": {
           "buttonText": "Continue com e-mail"
+        }
+      },
+      "modals": {
+        "ModalWrongEmail": {
+          "title": "Opa, e-mail incorreto",
+          "description": "Para continuar com Google ou Apple, escolha {{email}} como seu e-mail de validação. Se não reconhecer este e-mail, por favor entre em contato com nosso suporte.",
+          "tryAgain": "Tentar novamente",
+          "contactSupport": "Falar com suporte"
         }
       }
     }

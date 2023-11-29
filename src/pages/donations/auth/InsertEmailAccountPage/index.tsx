@@ -38,7 +38,7 @@ function InsertEmailAccountPage(): JSX.Element {
 
   const onContinue = async () => {
     setDonationInProgress(true);
-    sendAuthenticationEmail({ email });
+    await sendAuthenticationEmail({ email });
     await handleDonate({
       nonProfit,
       email,

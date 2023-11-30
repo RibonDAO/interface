@@ -19,7 +19,7 @@ export const AvatarSection = styled.div`
 `;
 
 export const AvatarContainer = styled.div`
-  width: 72px;
+  min-width: 72px;
   height: 72px;
   margin-bottom: ${({ theme }) => theme.spacing(12)};
   border: 2px solid ${({ theme }) => theme.colors.neutral[25]};
@@ -65,7 +65,7 @@ export const Avatar = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 8px;
-  object-fit: contain;
+  object-fit: cover;
 `;
 
 export const ProfileSection = styled.div`

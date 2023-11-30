@@ -8,6 +8,7 @@ import UserIcon from "assets/icons/user-mono-icon.svg";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { isFirstAccess } from "lib/onboardingFirstAccess";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
+import { useUserProfile } from "@ribon.io/shared/hooks";
 import { useModal } from "../useModal";
 
 // This hook is not used in the project since the receive ticket modal was changed to a toast.
@@ -20,6 +21,8 @@ export function useAnimationReceiveTicketModal(initialState?: boolean) {
   const { signedIn } = useCurrentUser();
   const { chooseCauseModalVisible, setChooseCauseModalVisible } =
     useCauseDonationContext();
+  const { userProfile } = useUserProfile();
+  const { profile } = userProfile();
 
   const { show, hide } = useModal({
     type: MODAL_TYPES.MODAL_ANIMATION,
@@ -27,10 +30,11 @@ export function useAnimationReceiveTicketModal(initialState?: boolean) {
       text: t("receiveTicketAnimationModalTitle"),
       iconOrigin: SupportersIcon,
       textOrigin: t("receiveTicketAnimationModalOrigin"),
-      iconDestiny: UserIcon,
+      iconDestiny: profile?.photo ?? UserIcon,
       textDestiny: t("receiveTicketAnimationModalDestiny"),
       icon: Ticket,
       eventName: "P1_dailyTicketModal",
+      isIconDestinyFullSize: !!profile?.photo,
     },
   });
 

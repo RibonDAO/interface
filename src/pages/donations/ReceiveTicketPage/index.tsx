@@ -14,6 +14,7 @@ import { DONATION_TOAST_SEEN_AT_KEY } from "lib/localStorage/constants";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { isFirstAccess } from "lib/onboardingFirstAccess";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
+import { useUserProfile } from "@ribon.io/shared/hooks";
 import * as S from "./styles";
 
 function ReceiveTicketPage(): JSX.Element {
@@ -27,6 +28,8 @@ function ReceiveTicketPage(): JSX.Element {
   const { setChooseCauseModalVisible } = useCauseDonationContext();
   const { navigateTo } = useNavigation();
   const [iconLoaded, setIconLoaded] = useState(false);
+  const { userProfile } = useUserProfile();
+  const { profile } = userProfile();
 
   const renderDiamond = (isFullSize: boolean, image: string) =>
     isFullSize ? (
@@ -73,7 +76,8 @@ function ReceiveTicketPage(): JSX.Element {
           </S.ProgressBar>
         </S.AnimationContent>
         <S.AnimationContent>
-          {UserIcon && renderDiamond(false, UserIcon)}
+          {(profile?.photo ?? UserIcon) &&
+            renderDiamond(!!profile?.photo, profile?.photo ?? UserIcon)}
           <S.IconDescription>{t("textDestiny")}</S.IconDescription>
         </S.AnimationContent>
       </S.AnimationContainer>

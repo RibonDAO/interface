@@ -31,7 +31,9 @@ function Logout({ closeMenu }: Props): JSX.Element | null {
 
   const showModal = () => {
     setWarningModalVisible(true);
-    logEvent("signoutBtn_click");
+    logEvent("signoutBtn_click", {
+      from: "config_page",
+    });
   };
 
   const closeModal = () => {

@@ -2,6 +2,8 @@ import ModalDialog from "components/moleculars/modals/ModalDialog";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useLanguage } from "hooks/useLanguage";
 import contactSupport from "lib/contactSupport";
+import { logEvent } from "lib/events";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 type Props = {
@@ -15,6 +17,19 @@ function ModalWrongEmail({ visible = false, setVisible }: Props): JSX.Element {
   });
   const { currentLang } = useLanguage();
   const { currentUser } = useCurrentUser();
+
+  const handleSecondaryButton = () => {
+    logEvent("supportBtn_click", {
+      from: "validation_flow",
+    });
+    contactSupport(currentLang);
+  };
+
+  useEffect(() => {
+    logEvent("P27_emailErrorModal_view", {
+      from: "validation_flow",
+    });
+  }, []);
 
   return (
     <ModalDialog
@@ -32,7 +47,7 @@ function ModalWrongEmail({ visible = false, setVisible }: Props): JSX.Element {
       secondaryButton={{
         text: t("contactSupport"),
         onClick: () => {
-          contactSupport(currentLang);
+          handleSecondaryButton();
         },
       }}
       onClose={() => setVisible(false)}

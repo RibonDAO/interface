@@ -9,6 +9,8 @@ import theme from "styles/theme";
 import { useAuthentication } from "contexts/authenticationContext";
 import { useLocation } from "react-router-dom";
 import useNavigation from "hooks/useNavigation";
+import { useEffect } from "react";
+import { logEvent } from "lib/events";
 import ExpiredLinkLogo from "./assets/expired-link-logo.svg";
 import * as S from "./styles";
 
@@ -37,6 +39,10 @@ function ExpiredLinkPage() {
       state: { email },
     });
   };
+
+  useEffect(() => {
+    logEvent("P30_view");
+  }, []);
 
   return (
     <S.Container>

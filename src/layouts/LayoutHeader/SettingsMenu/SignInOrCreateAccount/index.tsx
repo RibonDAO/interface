@@ -14,8 +14,8 @@ function signInOrCreateAccount(): JSX.Element | null {
   const { currentUser } = useCurrentUser();
 
   const handleClick = () => {
-    logEvent("signInOrCreateAccount_click", {
-      from: "menu",
+    logEvent("openAuthBtn_click", {
+      from: "config_page",
     });
     navigateTo("/auth/sign-in");
   };

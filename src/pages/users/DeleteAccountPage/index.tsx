@@ -7,6 +7,7 @@ import BottomLeftShape from "assets/images/bottom-left-shape.svg";
 import { useUsers } from "@ribon.io/shared/hooks";
 import { useTranslation } from "react-i18next";
 import { useCallback, useEffect, useState } from "react";
+import { logEvent } from "lib/events";
 import * as S from "./styles";
 
 function DeleteAccountPage() {
@@ -38,6 +39,10 @@ function DeleteAccountPage() {
   useEffect(() => {
     if (loading) callTheApi();
   }, [callTheApi, loading]);
+
+  useEffect(() => {
+    logEvent("P31_view");
+  }, []);
 
   const renderLoader = () => (
     <S.Container>

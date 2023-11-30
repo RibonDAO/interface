@@ -788,6 +788,9 @@
           "description": "Para continuar com Google ou Apple, escolha {{email}} como seu e-mail de validação. Se não reconhecer este e-mail, por favor entre em contato com nosso suporte.",
           "tryAgain": "Tentar novamente",
           "contactSupport": "Falar com suporte"
+        },
+        "modalDialog": {
+          "accessUserSupport": "Acessar o suporte ao usuário"
         }
       }
     }

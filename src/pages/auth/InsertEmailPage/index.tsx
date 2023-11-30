@@ -26,8 +26,8 @@ function InsertEmailPage(): JSX.Element {
     });
   }, []);
 
-  const handleButtonPress = () => {
-    sendAuthenticationEmail({ email });
+  const handleButtonPress = async () => {
+    await sendAuthenticationEmail({ email });
     logEvent("authEmailFormBtn_click", {
       from: "sign_in",
     });

@@ -121,9 +121,9 @@ export const CardMainText = styled.h2`
 export const OutlineButton = styled(Button)`
   width: 100%;
   margin-top: ${({ theme }) => theme.spacing(16)};
-  border: solid 1px ${({ theme }) => theme.colors.brand.primary[300]};
+  border: solid 1px ${({ theme }) => theme.colors.brand.primary[600]};
   background-color: ${({ theme }) => theme.colors.neutral10};
-  color: ${({ theme }) => theme.colors.brand.primary[300]};
+  color: ${({ theme }) => theme.colors.brand.primary[600]};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     margin-top: ${({ theme }) => theme.spacing(24)};

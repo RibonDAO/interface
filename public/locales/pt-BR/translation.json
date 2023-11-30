@@ -222,6 +222,7 @@
       },
       "deleteAccountItem": {
         "cancelModalButton": "Cancelar",
+        "deleteAccount": "Excluir conta",
         "deleteAccountModalButton": "Receber e-mail",
         "deleteAccountModalTitle": "Confirmar exclusão de conta",
         "deleteAccountModalDescription": "Você sairá do app automaticamente e receberá um e-mail de exclusão de conta para continuar com o processo.",

@@ -32,8 +32,7 @@ export const STRIPE_PUBLISHABLE_KEY =
 export const ACCESS_TOKEN_KEY = "ACCESS_TOKEN_KEY";
 export const REFRESH_TOKEN_KEY = "REFRESH_TOKEN_KEY";
 export const APPLE_CLIENT_ID = "io.ribon.dapp";
-export const APPLE_REDIRECT_URL =
-  "https://0338-2804-1b2-b881-4e71-bc3f-ef46-a981-734e.ngrok-free.app/causes";
+export const APPLE_REDIRECT_URL = "https://dapp.ribon.io/causes";
 
 export const INTEGRATION_AUTH_ID =
   process.env.REACT_APP_INTEGRATION_AUTH_ID || "183";

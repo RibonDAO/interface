@@ -32,8 +32,8 @@ function SignInPage(): JSX.Element {
   return (
     <>
       <S.RightImage src={RightImage} />
+      <S.LeftImage src={LeftImage} />
       <S.Container>
-        <S.LeftImage src={LeftImage} />
         <S.ImageContainer>
           <S.MainImage src={UserAvatar} />
         </S.ImageContainer>

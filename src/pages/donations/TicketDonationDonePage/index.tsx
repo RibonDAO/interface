@@ -1,7 +1,7 @@
 import {
   useStatistics,
   useFirstAccessToIntegration,
-  useUserV1Config,
+  useUserConfig,
 } from "@ribon.io/shared/hooks";
 import ConfirmationNumberPink from "assets/icons/confirmation-number-pink.svg";
 import ConfirmationNumberYellow from "assets/icons/confirmation-number-yellow.svg";
@@ -49,8 +49,8 @@ function TicketDonationDonePage(): JSX.Element {
   const [allowedEmailMarketing, setAllowedEmailMarketing] = useState(false);
   const { currentUser } = useCurrentUser();
   const { registerAction } = useTasksContext();
-  const { userV1Config, updateUserConfig } = useUserV1Config();
-  const { refetch: refetchUserConfig, userConfig } = userV1Config();
+  const { userConfig, updateUserConfig } = useUserConfig();
+  const { refetch: refetchUserConfig, config } = userConfig();
   const { handleNavigate } = usePostTicketDonationNavigation();
   const isNotAuthenticated = !isAuthenticated();
 
@@ -71,17 +71,20 @@ function TicketDonationDonePage(): JSX.Element {
   const { isFirstAccessToIntegration: isFirstAccessToAuthIntegration } =
     useFirstAccessToIntegration(INTEGRATION_AUTH_ID);
 
-  const shouldShowEmailCheckbox = useCallback(
-    () =>
-      (Number(userStatistics?.totalTickets) <=
-        quantityOfDonationsToShowEmailCheckbox ||
-        Number(userStatistics?.totalTickets) %
-          quantityOfDonationsToShowEmailCheckbox ===
-          0 ||
-        Number(userStatistics?.totalTickets) === firstDonation) &&
-      !userConfig?.allowedEmailMarketing,
-    [userStatistics, userConfig],
-  );
+  const shouldShowEmailCheckbox = useCallback(() => {
+    if (userStatistics && config) {
+      return (
+        (Number(userStatistics.totalTickets) <=
+          quantityOfDonationsToShowEmailCheckbox ||
+          Number(userStatistics.totalTickets) %
+            quantityOfDonationsToShowEmailCheckbox ===
+            0 ||
+          Number(userStatistics.totalTickets) === firstDonation) &&
+        !config.allowedEmailMarketing
+      );
+    }
+    return false;
+  }, [userStatistics, config]);
 
   useEffect(() => {
     refetchStatistics();
@@ -93,11 +96,11 @@ function TicketDonationDonePage(): JSX.Element {
 
     registerAction("donation_done_page_view");
 
-    if (allowedEmailMarketing) {
+    if (allowedEmailMarketing && currentUser) {
       logEvent("acceptReceiveEmail_click", {
         from: "confirmedDonation_page",
       });
-      updateUserConfig({ allowedEmailMarketing });
+      updateUserConfig(currentUser.id, { allowedEmailMarketing });
     }
 
     if (flow === "magicLink") {

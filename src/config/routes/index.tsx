@@ -210,9 +210,7 @@ function RoutesComponent(): JSX.Element {
               featureFlagId="impact-page-feature-flag"
               source="https://projetos.ribon.io/impact"
             >
-              <MainLayout>
-                <ImpactPage />
-              </MainLayout>
+              <ImpactPage />
             </ExperimentRouteComponent>
           </WalletProvider>
         </Suspense>

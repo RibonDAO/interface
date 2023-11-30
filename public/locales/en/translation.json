@@ -260,6 +260,9 @@
       "communityDonations": "Community donations",
       "directDonations": "Direct donations"
     },
+    "profileSection": {
+      "userName": "Your profile"
+    },
     "ticketSection": {
       "emptyTitle": "Your ticket donations will appear here.",
       "emptyText": "You have not made free donations using tickets yet, why not try your first one?",
@@ -782,6 +785,9 @@
           "description": "To continue with Google or Apple, please choose {{email}} as your validation e-mail. If you don't recognize this e-mail, please contact our support.",
           "tryAgain": "Try again",
           "contactSupport": "Contact support"
+        },
+        "modalDialog": {
+          "accessUserSupport": "Access user support"
         }
       }
     }

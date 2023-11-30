@@ -22,7 +22,7 @@ export const AvatarContainer = styled.div`
   width: 72px;
   height: 72px;
   margin-bottom: ${({ theme }) => theme.spacing(12)};
-  padding: ${({ theme }) => theme.spacing(12)};
+  border: 2px solid ${({ theme }) => theme.colors.neutral[25]};
   border-radius: 8px;
   position: relative;
   background-color: ${({ theme }) => theme.colors.neutral[25]};
@@ -62,8 +62,9 @@ export const Email = styled.p`
 `;
 
 export const Avatar = styled.img`
-  width: 45px;
-  height: 45px;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
   object-fit: contain;
 `;
 

@@ -762,7 +762,10 @@
     },
     "sentMagicLinkEmailPage": {
       "title": "We sent you a sign in link",
-      "text": "Click the link sent to {{email}} to sign in"
+      "text": "Click the link sent to {{email}} to sign in",
+      "firstAccessTitle": "You won an extra ticket",
+      "firstAccessText": "Validate your account clicking the link sent to {{email}} and get your extra ticket."
+      
     }
   },
   "components": {

@@ -1,5 +1,9 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { REFRESH_TOKEN_KEY, ACCESS_TOKEN_KEY } from "utils/constants";
+import {
+  REFRESH_TOKEN_KEY,
+  ACCESS_TOKEN_KEY,
+  INTEGRATION_AUTH_ID,
+} from "utils/constants";
 import {
   getCookiesItem,
   removeCookiesItem,
@@ -143,6 +147,7 @@ function AuthenticationProvider({ children }: Props) {
       const response = await userAuthenticationApi.postSendAuthenticationEmail(
         email,
         accountId,
+        INTEGRATION_AUTH_ID,
       );
       if (onSuccess) onSuccess();
 

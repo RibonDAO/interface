@@ -18,11 +18,13 @@ import ReactHowler from "react-howler";
 import { useTasksContext } from "contexts/tasksContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationId } from "hooks/useIntegrationId";
+import { useAuthentication } from "contexts/authenticationContext";
+import useAvoidBackButton from "hooks/useAvoidBackButton";
 import usePostTicketDonationNavigation from "hooks/usePostTicketDonationNavigation";
 
 import { logEvent } from "lib/events";
-import useAvoidBackButton from "hooks/useAvoidBackButton";
 import IconsAroundImage from "components/atomics/sections/IconsAroundImage";
+import { INTEGRATION_AUTH_ID } from "utils/constants";
 import * as S from "./styles";
 
 function TicketDonationDonePage(): JSX.Element {
@@ -39,6 +41,7 @@ function TicketDonationDonePage(): JSX.Element {
     keyPrefix: "donations.ticketDonationDonePage",
   });
   const { formattedImpactText } = useFormattedImpactText();
+  const { isAuthenticated } = useAuthentication();
 
   const {
     state: { nonProfit, flow },
@@ -49,6 +52,7 @@ function TicketDonationDonePage(): JSX.Element {
   const { userV1Config, updateUserConfig } = useUserV1Config();
   const { refetch: refetchUserConfig, userConfig } = userV1Config();
   const { handleNavigate } = usePostTicketDonationNavigation();
+  const isNotAuthenticated = !isAuthenticated();
 
   const {
     userStatistics,
@@ -64,6 +68,8 @@ function TicketDonationDonePage(): JSX.Element {
   const firstDonation = 1;
 
   const { refetch } = useFirstAccessToIntegration(integrationId);
+  const { isFirstAccessToIntegration: isFirstAccessToAuthIntegration } =
+    useFirstAccessToIntegration(INTEGRATION_AUTH_ID);
 
   const shouldShowEmailCheckbox = useCallback(
     () =>
@@ -100,6 +106,10 @@ function TicketDonationDonePage(): JSX.Element {
         state: {
           nonProfit,
         },
+      });
+    } else if (isNotAuthenticated && isFirstAccessToAuthIntegration) {
+      navigateTo({
+        pathname: "/sign-in-extra-ticket",
       });
     } else if (!isLoading) {
       handleNavigate(nonProfit);

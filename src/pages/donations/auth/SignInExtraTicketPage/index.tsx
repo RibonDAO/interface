@@ -10,6 +10,9 @@ import { useCurrentUser } from "contexts/currentUserContext";
 import GoogleLogin from "components/moleculars/buttons/GoogleLogin";
 import AppleLogin from "components/moleculars/buttons/AppleLogin";
 import MagicLinkLogin from "components/moleculars/buttons/MagicLinkLogin";
+import { userAccountApi } from "@ribon.io/shared/services";
+import useToast from "hooks/useToast";
+import { useAuthentication } from "contexts/authenticationContext";
 import * as S from "./styles";
 
 function SignInExtraTicketPage(): JSX.Element {
@@ -18,6 +21,8 @@ function SignInExtraTicketPage(): JSX.Element {
   });
   const { currentUser } = useCurrentUser();
   const { navigateTo } = useNavigation();
+  const { sendAuthenticationEmail } = useAuthentication();
+  const toast = useToast();
 
   useEffect(() => {
     logEvent("P29_view", {
@@ -25,11 +30,24 @@ function SignInExtraTicketPage(): JSX.Element {
     });
   }, []);
 
-  const onContinue = (pathname: string) => {
+  const onContinue = async(pathname: string) => {
+    await userAccountApi.postSendValidatedEmail()
     navigateTo({
       pathname,
     });
+    // TODO add toast copy
+    toast({
+      message: t("toastDescription"),
+      type: "success",
+    });
   };
+
+  const onContinueMagicLink = (pathname: string) => {
+    sendAuthenticationEmail({ email: currentUser?.email });
+    navigateTo({
+      pathname,
+    });
+  }
 
   useAvoidBackButton();
 
@@ -52,7 +70,7 @@ function SignInExtraTicketPage(): JSX.Element {
             <GoogleLogin onContinue={() => onContinue("/")} />
             <AppleLogin onContinue={() => onContinue("/")} />
             <MagicLinkLogin
-              onContinue={() => onContinue("/auth/insert-email")}
+              onContinue={() => onContinueMagicLink("/auth/sent-magic-link-email")}
             />
           </S.ButtonContainer>
         </S.ContentContainer>

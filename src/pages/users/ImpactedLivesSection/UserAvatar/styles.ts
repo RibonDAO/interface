@@ -63,9 +63,9 @@ export const Email = styled.p`
 
 export const Avatar = styled.img`
   width: 100%;
+  border-radius: 8px;
   display: block;
   object-fit: cover;
-  border-radius: 8px;
 `;
 
 export const ProfileSection = styled.div`

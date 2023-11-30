@@ -22,7 +22,6 @@ export function useAnimationReceiveTicketModal(initialState?: boolean) {
   const { chooseCauseModalVisible, setChooseCauseModalVisible } =
     useCauseDonationContext();
   const { userProfile } = useUserProfile();
-
   const { profile } = userProfile();
 
   const { show, hide } = useModal({
@@ -35,6 +34,7 @@ export function useAnimationReceiveTicketModal(initialState?: boolean) {
       textDestiny: t("receiveTicketAnimationModalDestiny"),
       icon: Ticket,
       eventName: "P1_dailyTicketModal",
+      isIconDestinyFullSize: !!profile?.photo,
     },
   });
 

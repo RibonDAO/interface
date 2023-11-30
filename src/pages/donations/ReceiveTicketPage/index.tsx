@@ -76,7 +76,8 @@ function ReceiveTicketPage(): JSX.Element {
           </S.ProgressBar>
         </S.AnimationContent>
         <S.AnimationContent>
-          {(profile?.photo ?? UserIcon) && renderDiamond(false, UserIcon)}
+          {(profile?.photo ?? UserIcon) &&
+            renderDiamond(!!profile?.photo, UserIcon)}
           <S.IconDescription>{t("textDestiny")}</S.IconDescription>
         </S.AnimationContent>
       </S.AnimationContainer>

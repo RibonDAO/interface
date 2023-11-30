@@ -125,6 +125,7 @@ function CardPaymentInformationProvider({ children }: Props) {
       iconDestiny: Logo,
       textDestiny: t("modalAnimationTo"),
       icon: GivingIcon,
+      isIconOriginFullSize: !!profile?.photo,
     },
   });
 

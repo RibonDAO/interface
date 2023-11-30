@@ -28,6 +28,7 @@ function DonatingSection({ nonProfit, onAnimationEnd }: Props): JSX.Element {
         icon={Ticket}
         isIconDestinyFullSize
         onAnimationEnd={onAnimationEnd}
+        isIconOriginFullSize={!!profile?.photo}
       />
     </S.Container>
   );

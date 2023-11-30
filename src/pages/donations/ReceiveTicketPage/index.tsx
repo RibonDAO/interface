@@ -77,7 +77,7 @@ function ReceiveTicketPage(): JSX.Element {
         </S.AnimationContent>
         <S.AnimationContent>
           {(profile?.photo ?? UserIcon) &&
-            renderDiamond(!!profile?.photo, UserIcon)}
+            renderDiamond(!!profile?.photo, profile?.photo ?? UserIcon)}
           <S.IconDescription>{t("textDestiny")}</S.IconDescription>
         </S.AnimationContent>
       </S.AnimationContainer>

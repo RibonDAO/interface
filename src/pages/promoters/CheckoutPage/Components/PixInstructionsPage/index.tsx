@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import usePaymentParams from "hooks/usePaymentParams";
 import usePayable from "hooks/usePayable";
 import { useOffers } from "@ribon.io/shared/hooks";
-import { Currencies, Offer } from "@ribon.io/shared";
+import { Currencies, Offer } from "@ribon.io/shared/types";
 import useNavigation from "hooks/useNavigation";
 import parse from "html-react-parser";
 import { useLocation } from "react-router-dom";

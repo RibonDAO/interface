@@ -18,7 +18,6 @@ import useVoucher from "hooks/useVoucher";
 import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
-import WarningIcon from "assets/icons/warning-icon.svg";
 import extractUrlValue from "lib/extractUrlValue";
 import { PLATFORM } from "utils/constants";
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
@@ -50,18 +49,18 @@ function CausesPage(): JSX.Element {
 
   const { hide: closeWarningModal } = useModal(
     {
-      type: MODAL_TYPES.MODAL_ICON,
+      type: MODAL_TYPES.MODAL_DIALOG,
       props: {
         title: t("errorModalTitle"),
-        body: state?.message || t("errorModalText"),
+        description: state?.message || t("errorModalText"),
         primaryButton: {
           text: t("errorModalButtonText"),
           onClick: () => closeWarningModal(),
         },
         onClose: () => closeWarningModal(),
-        icon: WarningIcon,
-        supportButton: true,
         eventName: "P12_errorModal",
+        supportButton: true,
+        type: "error",
       },
     },
     state?.failedDonation,

@@ -11,8 +11,6 @@ import ImpactIconOn from "./assets/impactIconOn.svg";
 import ImpactIconOff from "./assets/impactIconOff.svg";
 import GivingIconOn from "./assets/givingIconOn.svg";
 import GivingIconOff from "./assets/givingIconOff.svg";
-import GivingDayIconOn from "./assets/givingDayIconOn.svg";
-import GivingDayIconOff from "./assets/givingDayIconOff.svg";
 import NavigationLink from "./NavigationLink";
 import * as S from "./styles";
 
@@ -106,14 +104,6 @@ function Navigation(): JSX.Element {
       title: t("impactPageTitle"),
       event: "impactNavBtn_click",
       showActivityIndicatorCircle: newContributionActivity,
-    },
-    {
-      path: "/dia-de-doar",
-      iconOn: GivingDayIconOn,
-      iconOff: GivingDayIconOff,
-      title: t("aboutPageTitle"),
-      event: "givingDayNavBtn_click",
-      showNewLabel: true,
     },
   ];
 

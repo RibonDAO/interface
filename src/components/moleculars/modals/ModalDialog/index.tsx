@@ -4,6 +4,9 @@ import theme from "styles/theme";
 import { logEvent } from "lib/events";
 import Icon from "components/atomics/Icon";
 import useBreakpoint from "hooks/useBreakpoint";
+import contactSupport from "lib/contactSupport";
+import { useLanguage } from "hooks/useLanguage";
+import { useTranslation } from "react-i18next";
 import * as S from "./styles";
 import { defaultCustomStyles } from "../defaultCustomStyles";
 
@@ -20,12 +23,13 @@ export type Props = {
   children?: JSX.Element[] | JSX.Element | null;
   eventName?: string;
   eventParams?: Record<string, any>;
-
   onClose?: () => void;
+  supportButton?: boolean;
 };
 
 function ModalDialog({
   visible = false,
+  supportButton = false,
   title = null,
   description = null,
   primaryButton = null,
@@ -39,9 +43,15 @@ function ModalDialog({
   iconColor,
   onClose = () => {},
 }: Props): JSX.Element {
+  const { t } = useTranslation("translation", {
+    keyPrefix: "components.moleculars.modals.modalDialog",
+  });
+
   const [logged, setLogged] = useState(false);
 
   const { isMobile } = useBreakpoint();
+
+  const { currentLang } = useLanguage();
 
   if (visible && eventName && !logged) {
     logEvent(eventName, eventParams);
@@ -145,6 +155,15 @@ function ModalDialog({
       {description && <S.Description>{description}</S.Description>}
       {highlightedText && (
         <S.HighlightedText>{highlightedText}</S.HighlightedText>
+      )}
+      {supportButton && (
+        <Button
+          text={t("accessUserSupport")}
+          onClick={() => contactSupport(currentLang)}
+          textColor={theme.colors.neutral[600]}
+          backgroundColor={theme.colors.neutral10}
+          borderColor={theme.colors.neutral[600]}
+        />
       )}
       {primaryButton && (
         <Button

@@ -1,14 +1,11 @@
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 import {
   REFRESH_TOKEN_KEY,
   ACCESS_TOKEN_KEY,
   INTEGRATION_AUTH_ID,
 } from "utils/constants";
-import {
-  getCookiesItem,
-  removeCookiesItem,
-  setCookiesItem,
-} from "@ribon.io/shared/lib";
+
+import { getCookiesItem, setCookiesItem } from "@ribon.io/shared/lib";
 import { userAuthenticationApi } from "@ribon.io/shared/services";
 import { logError } from "services/crashReport";
 import { useCurrentUser } from "contexts/currentUserContext";
@@ -27,9 +24,7 @@ type authenticationEmailProps = {
   onError?: () => void;
 };
 export interface IAuthenticationContext {
-  accessToken: string | null;
   loading: boolean;
-  logout: () => void;
   signInWithGoogle: (response: any) => void;
   signInWithApple: (response: any) => void;
   isAuthenticated: () => boolean;
@@ -51,15 +46,13 @@ export const AuthenticationContext = createContext<IAuthenticationContext>(
 
 function AuthenticationProvider({ children }: Props) {
   const [user, setUser] = useState<any>();
-  const [accessToken, setAccessToken] = useState(
-    getCookiesItem(ACCESS_TOKEN_KEY),
-  );
   const [loading, setLoading] = useState(false);
   const { setCurrentUser } = useCurrentUser();
   const emailDoesNotMatchMessage = "Email does not match";
 
   function isAuthenticated() {
-    return !!accessToken;
+    const token = getCookiesItem(ACCESS_TOKEN_KEY);
+    return !!token;
   }
 
   function signIn(response: any) {
@@ -68,7 +61,6 @@ function AuthenticationProvider({ children }: Props) {
 
     setCookiesItem(ACCESS_TOKEN_KEY, token);
     setCookiesItem(REFRESH_TOKEN_KEY, refreshToken);
-    setAccessToken(token);
     setCurrentUser(response.data.user);
   }
 
@@ -160,25 +152,10 @@ function AuthenticationProvider({ children }: Props) {
     return "";
   }
 
-  function logout() {
-    removeCookiesItem(ACCESS_TOKEN_KEY);
-    removeCookiesItem(REFRESH_TOKEN_KEY);
-    setUser(undefined);
-    // todo: navigate to public page
-  }
-
-  useEffect(() => {
-    if (!accessToken) {
-      logout();
-    }
-  }, [accessToken]);
-
   const authenticationObject: IAuthenticationContext = useMemo(
     () => ({
       user,
       setUser,
-      logout,
-      accessToken,
       signInWithGoogle,
       signInWithApple,
       signInByMagicLink,
@@ -186,7 +163,7 @@ function AuthenticationProvider({ children }: Props) {
       isAuthenticated,
       loading,
     }),
-    [user, accessToken, loading],
+    [user, loading],
   );
 
   return (

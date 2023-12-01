@@ -144,13 +144,14 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
                     buttonText={
                       canDonateAndHasVoucher
                         ? t("donateText")
-                        : t("donateBlockedText")
+                        : t("doMore", {
+                            value: currentOffer()?.price ?? "1000",
+                          })
                     }
                     onClickButton={() =>
                       handleButtonClick(nonProfit, "nonProfitCard")
                     }
                     onClickImage={() => handleImageClick(nonProfit)}
-                    softDisabled={!canDonateAndHasVoucher}
                     infoTextTop={nonProfit.name}
                     infoTextBottom={nonProfit.cause?.name}
                     infoText={

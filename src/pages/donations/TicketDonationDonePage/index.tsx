@@ -23,6 +23,7 @@ import usePostTicketDonationNavigation from "hooks/usePostTicketDonationNavigati
 import { logEvent } from "lib/events";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import IconsAroundImage from "components/atomics/sections/IconsAroundImage";
+import { INTEGRATION_AUTH_ID } from "utils/constants";
 import * as S from "./styles";
 
 function TicketDonationDonePage(): JSX.Element {
@@ -64,6 +65,8 @@ function TicketDonationDonePage(): JSX.Element {
   const firstDonation = 1;
 
   const { refetch } = useFirstAccessToIntegration(integrationId);
+  const isFirstAccessToAuthIntegration =
+    useFirstAccessToIntegration(INTEGRATION_AUTH_ID);
 
   const shouldShowEmailCheckbox = useCallback(() => {
     if (userStatistics && config) {
@@ -97,7 +100,7 @@ function TicketDonationDonePage(): JSX.Element {
       updateUserConfig(currentUser.id, { allowedEmailMarketing });
     }
 
-    if (flow === "magicLink") {
+    if (flow === "magicLink" && isFirstAccessToAuthIntegration) {
       navigateTo({
         pathname: "/extra-ticket",
         state: {

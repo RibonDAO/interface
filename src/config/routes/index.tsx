@@ -42,7 +42,7 @@ import InsertEmailAccountPage from "pages/donations/auth/InsertEmailAccountPage"
 import ExtraTicketPage from "pages/donations/auth/ExtraTicketPage";
 import SignInExtraTicketPage from "pages/donations/auth/SignInExtraTicketPage";
 import ReceiveExtraTicketPage from "pages/donations/auth/ReceiveExtraTicketPage";
-import SignInByTokenPage from "pages/donations/auth/SignInByTokenPage";
+import SignInByMagicLinkPage from "pages/donations/auth/SignInByMagicLinkPage";
 import DonationSignInPage from "pages/donations/auth/SignInPage";
 import SignedInPage from "pages/donations/auth/SignedInPage";
 import SignInPage from "pages/auth/SignInPage";
@@ -94,7 +94,7 @@ function RoutesComponent(): JSX.Element {
 
       <Route path="/auth">
         <Suspense fallback={<div />}>
-          <SignInByTokenPage />
+          <SignInByMagicLinkPage />
         </Suspense>
       </Route>
 

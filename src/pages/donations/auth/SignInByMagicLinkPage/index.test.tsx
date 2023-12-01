@@ -1,11 +1,11 @@
 import { renderComponent } from "config/testUtils";
 import { expectTextNotToBeInTheDocument } from "config/testUtils/expects";
-import AuthPage from ".";
+import SignInByMagicLinkPage from ".";
 
 describe("AuthPage", () => {
   it("should render without error", () => {
-    renderComponent(<AuthPage />);
+    renderComponent(<SignInByMagicLinkPage />);
 
-    expectTextNotToBeInTheDocument("AuthPage");
+    expectTextNotToBeInTheDocument("SignInByMagicLinkPage");
   });
 });

@@ -19,7 +19,7 @@ import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import extractUrlValue from "lib/extractUrlValue";
-import { PLATFORM } from "utils/constants";
+import { INTEGRATION_AUTH_ID, PLATFORM } from "utils/constants";
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
@@ -130,7 +130,8 @@ function CausesPage(): JSX.Element {
     setShouldShowIntegrationBanner(
       !integration?.name?.toLowerCase()?.includes("ribon") &&
         hasAvailableDonation() &&
-        hasReceivedTicketToday(),
+        hasReceivedTicketToday() &&
+        integration?.uniqueAddress !== INTEGRATION_AUTH_ID,
     );
   }, [integration, isFirstAccessToIntegration]);
 

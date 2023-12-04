@@ -49,10 +49,17 @@ function SignInExtraTicketPage(): JSX.Element {
           </S.TextContainer>
 
           <S.ButtonContainer>
-            <GoogleLogin onContinue={() => onContinue("/")} />
-            <AppleLogin onContinue={() => onContinue("/")} />
+            <GoogleLogin
+              onContinue={() => onContinue("/")}
+              from="donation_flow"
+            />
+            <AppleLogin
+              onContinue={() => onContinue("/")}
+              from="donation_flow"
+            />
             <MagicLinkLogin
               onContinue={() => onContinue("/auth/insert-email")}
+              from="donation_flow"
             />
           </S.ButtonContainer>
         </S.ContentContainer>

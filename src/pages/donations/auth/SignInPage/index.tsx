@@ -93,9 +93,12 @@ function SignInPage(): JSX.Element {
           <S.Title>{t("title")}</S.Title>
           <S.Description>{oldImpactFormat()}</S.Description>
           <S.ButtonContainer>
-            <GoogleLogin onContinue={onContinue} />
-            <AppleLogin onContinue={onContinue} />
-            <MagicLinkLogin onContinue={onContinueMagicLink} />
+            <GoogleLogin onContinue={onContinue} from="donation_flow" />
+            <AppleLogin onContinue={onContinue} from="donation_flow" />
+            <MagicLinkLogin
+              onContinue={onContinueMagicLink}
+              from="donation_flow"
+            />
           </S.ButtonContainer>
 
           <S.FooterText>

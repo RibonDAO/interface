@@ -22,8 +22,8 @@ function SentMagicLinkEmailPage(): JSX.Element {
     useFirstAccessToIntegration(INTEGRATION_AUTH_ID);
 
   useEffect(() => {
-    logEvent("P28_view", {
-      from: "sign_in",
+    logEvent("P29_view", {
+      from: "direct_flow",
     });
   }, []);
 

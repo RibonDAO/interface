@@ -39,6 +39,8 @@ jobs:
           REACT_APP_RIBON_GROWTHBOOK_URL: ${{ secrets.REACT_APP_RIBON_GROWTHBOOK_URL }}
           REACT_APP_STRIPE_PUBLISHABLE_KEY: ${{ secrets.REACT_APP_STRIPE_PUBLISHABLE_KEY }}
           REACT_APP_GOOGLE_CLIENT_ID: ${{ secrets.REACT_APP_GOOGLE_CLIENT_ID }}
+          REACT_APP_INTEGRATION_AUTH_ID: ${{ secrets.REACT_APP_INTEGRATION_AUTH_ID }}
+          REACT_APP_APPLE_REDIRECT_URL: ${{ secrets.REACT_APP_APPLE_REDIRECT_URL }}
         run: |
           yarn testCoverage
       - name: Report Coveralls

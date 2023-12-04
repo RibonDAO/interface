@@ -143,8 +143,8 @@ function AuthenticationProvider({ children }: Props) {
       );
       if (onSuccess) onSuccess();
 
-      const emailUser = response.data.email;
-      return emailUser;
+      setCurrentUser(response.data.user);
+      return response.data.user.email;
     } catch (error: any) {
       logError(error);
       if (onError) onError();

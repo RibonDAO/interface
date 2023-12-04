@@ -65,7 +65,7 @@ function TicketDonationDonePage(): JSX.Element {
   const firstDonation = 1;
 
   const { refetch } = useFirstAccessToIntegration(integrationId);
-  const isFirstAccessToAuthIntegration =
+  const { isFirstAccessToIntegration: isFirstAccessToAuthIntegration } =
     useFirstAccessToIntegration(INTEGRATION_AUTH_ID);
 
   const shouldShowEmailCheckbox = useCallback(() => {

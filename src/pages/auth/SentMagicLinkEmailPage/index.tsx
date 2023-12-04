@@ -18,7 +18,7 @@ function SentMagicLinkEmailPage(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "auth.sentMagicLinkEmailPage",
   });
-  const isFirstAccessToIntegration =
+  const { isFirstAccessToIntegration } =
     useFirstAccessToIntegration(INTEGRATION_AUTH_ID);
 
   useEffect(() => {

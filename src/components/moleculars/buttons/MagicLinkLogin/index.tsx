@@ -6,15 +6,16 @@ import { logEvent } from "lib/events";
 
 type Props = {
   onContinue: () => void;
+  from: string;
 };
-function MagicLinkLogin({ onContinue }: Props): JSX.Element {
+function MagicLinkLogin({ onContinue, from }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "components.moleculars.buttons.MagicLinkLogin",
   });
 
   const handleMagicLink = () => {
     logEvent("authEmailBtn_click", {
-      from: "donation_flow",
+      from,
     });
     onContinue();
   };

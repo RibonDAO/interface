@@ -5,7 +5,7 @@ import AppleLogin from ".";
 const onContinue = jest.fn();
 describe("AppleLogin", () => {
   it("should render without error", () => {
-    renderComponent(<AppleLogin onContinue={onContinue} />);
+    renderComponent(<AppleLogin onContinue={onContinue} from="direct_flow" />);
 
     expectTextToBeInTheDocument("Continue with Apple");
   });

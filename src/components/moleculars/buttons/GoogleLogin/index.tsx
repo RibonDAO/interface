@@ -12,8 +12,9 @@ import ModalWrongEmail from "components/moleculars/modals/ModalWrongEmail";
 
 type Props = {
   onContinue: () => void;
+  from: string;
 };
-function GoogleLogin({ onContinue }: Props): JSX.Element {
+function GoogleLogin({ onContinue, from }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "components.moleculars.buttons.GoogleLogin",
   });
@@ -36,7 +37,7 @@ function GoogleLogin({ onContinue }: Props): JSX.Element {
 
   function handleGoogle() {
     logEvent("authGoogleBtn_click", {
-      from: "donation_flow",
+      from,
     });
     loginGoogle();
   }

@@ -40,10 +40,17 @@ function SignInPage(): JSX.Element {
         <S.ContentContainer>
           <S.Title>{t("title")}</S.Title>
           <S.ButtonContainer>
-            <GoogleLogin onContinue={() => onContinue("/causes")} />
-            <AppleLogin onContinue={() => onContinue("/causes")} />
+            <GoogleLogin
+              onContinue={() => onContinue("/causes")}
+              from="direct_flow"
+            />
+            <AppleLogin
+              onContinue={() => onContinue("/causes")}
+              from="direct_flow"
+            />
             <MagicLinkLogin
               onContinue={() => onContinue("/auth/insert-email")}
+              from="direct_flow"
             />
           </S.ButtonContainer>
 

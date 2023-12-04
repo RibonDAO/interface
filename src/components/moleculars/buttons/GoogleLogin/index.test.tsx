@@ -9,7 +9,9 @@ jest.mock("@react-oauth/google", () => ({
 const onContinue = jest.fn();
 describe("GoogleSection", () => {
   it("should render without error", () => {
-    renderComponent(<GoogleSection onContinue={onContinue} />);
+    renderComponent(
+      <GoogleSection onContinue={onContinue} from="direct_flow" />,
+    );
 
     expectTextToBeInTheDocument("Continue with Google");
   });

@@ -14,7 +14,7 @@ function SignInByMagicLinkPage(): JSX.Element {
   const authToken = extractUrlValue("authToken", search) ?? "";
   const id = extractUrlValue("id", search) ?? "";
   const extraTicket = extractUrlValue("extra_ticket", search) ?? "";
-  const isFistAccessToAuthIntegration =
+  const isFirstAccessToAuthIntegration =
     useFirstAccessToIntegration(INTEGRATION_AUTH_ID);
 
   async function authenticate() {
@@ -23,7 +23,7 @@ function SignInByMagicLinkPage(): JSX.Element {
         authToken,
         id,
         onSuccess: () => {
-          if (extraTicket === "true" && isFistAccessToAuthIntegration) {
+          if (extraTicket === "true" && isFirstAccessToAuthIntegration) {
             navigateTo("/receive-extra-ticket");
           } else {
             navigateTo("/causes");

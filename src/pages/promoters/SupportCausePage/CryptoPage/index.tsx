@@ -75,7 +75,7 @@ function CryptoPage(): JSX.Element {
 
   const onDonationToContractSuccess = () => {
     navigateTo({
-      pathname: "/donation-done-cause",
+      pathname: "/contribution-done",
       state: {
         hasButton: true,
         cause,

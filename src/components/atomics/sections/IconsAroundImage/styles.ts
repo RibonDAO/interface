@@ -11,8 +11,12 @@ export const Container = styled.div`
   position: relative;
 `;
 
-export const Icon = styled.img<{ position: number; isStatic: boolean }>`
-  ${({ position, isStatic }) => {
+export const Icon = styled.img<{
+  position: number;
+  isStatic: boolean;
+  isInfinite: boolean;
+}>`
+  ${({ position, isStatic, isInfinite }) => {
     const angle = (base: number, mult: number) =>
       base + (360 / ICONS_COUNT) * mult;
 
@@ -29,7 +33,9 @@ export const Icon = styled.img<{ position: number; isStatic: boolean }>`
     }
 
     return `
-      animation: ${animationName} 4s cubic-bezier(0.1, 0.83, 1, 0.3) infinite;
+      animation: ${animationName} 4s cubic-bezier(0.1, 0.83, 1, 0.3) ${
+      isInfinite ? "infinite" : ""
+    };
 
       @keyframes ${animationName} {
         0% {

@@ -11,6 +11,7 @@ import causeIllustration from "assets/images/direct-illustration.svg";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useOffers } from "@ribon.io/shared/hooks";
 import { useLanguage } from "hooks/useLanguage";
+import { useCurrentUser } from "contexts/currentUserContext";
 import StoriesSection from "../StoriesSection";
 import * as S from "../styles";
 
@@ -31,6 +32,7 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
 
   const { formattedImpactText } = useFormattedImpactText();
   const { isVoucherAvailable } = useVoucher();
+  const { signedIn } = useCurrentUser();
 
   const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
 
@@ -83,7 +85,7 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
       target_id: nonProfit.id.toString(),
       currency: currentLang === "pt-BR" ? "BRL" : "USD",
       subscription: "false",
-      from: "CausesPage",
+      from: "DirectCardNgo",
     });
 
     navigateTo({
@@ -98,7 +100,14 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
         nonProfitId: nonProfit.id,
         from,
       });
-      navigateTo({ pathname: "confirm-donation", state: { nonProfit } });
+      if (signedIn) {
+        navigateTo({ pathname: "/signed-in", state: { nonProfit } });
+      } else {
+        navigateTo({
+          pathname: "/donation/auth/sign-in",
+          state: { nonProfit },
+        });
+      }
     } else {
       navigateToCheckout(nonProfit);
     }

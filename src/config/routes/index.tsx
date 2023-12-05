@@ -2,9 +2,7 @@ import React, { Suspense, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import WalletProvider from "contexts/walletContext";
 import CausesPage from "pages/donations/CausesPage";
-import ConfirmDonationPage from "pages/donations/ConfirmDonationPage";
-import DonationDonePage from "pages/donations/DonationDonePage";
-import DonationDoneCausePage from "pages/donations/DonationDoneCausePage";
+import ContributionDonePage from "pages/promoters/ContributionDonePage";
 import ImpactPage from "pages/users/ImpactPage";
 import MainLayout from "layouts/MainLayout";
 import CheckoutPage from "pages/promoters/CheckoutPage";
@@ -39,6 +37,18 @@ import ContributionCanceledPage from "pages/promoters/ContributionCanceledPage";
 import ExperimentRouteComponent from "services/growthbook/ExperimentRouteComponent";
 import CampaignPage from "pages/campaigns/CampaignPage";
 import PixInstructionsPage from "pages/promoters/CheckoutPage/Components/PixInstructionsPage";
+import ExpiredLinkPage from "pages/auth/ExpiredLinkPage";
+import InsertEmailAccountPage from "pages/donations/auth/InsertEmailAccountPage";
+import ExtraTicketPage from "pages/donations/auth/ExtraTicketPage";
+import SignInExtraTicketPage from "pages/donations/auth/SignInExtraTicketPage";
+import ReceiveExtraTicketPage from "pages/donations/auth/ReceiveExtraTicketPage";
+import SignInByMagicLinkPage from "pages/donations/auth/SignInByMagicLinkPage";
+import DonationSignInPage from "pages/donations/auth/SignInPage";
+import SignedInPage from "pages/donations/auth/SignedInPage";
+import SignInPage from "pages/auth/SignInPage";
+import InsertEmailPage from "pages/auth/InsertEmailPage";
+import SentMagicLinkEmailPage from "pages/auth/SentMagicLinkEmailPage";
+import TicketDonationDonePage from "pages/donations/TicketDonationDonePage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -61,6 +71,33 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
+      <Route path="/auth/sign-in" exact>
+        <Suspense fallback={<div />}>
+          <NavigationBackHeader />
+          <SignInPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/auth/insert-email" exact>
+        <Suspense fallback={<div />}>
+          <NavigationBackHeader />
+          <InsertEmailPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/auth/sent-magic-link-email" exact>
+        <Suspense fallback={<div />}>
+          <NavigationBackHeader />
+          <SentMagicLinkEmailPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/auth">
+        <Suspense fallback={<div />}>
+          <SignInByMagicLinkPage />
+        </Suspense>
+      </Route>
+
       <Route path="/causes" exact>
         <Suspense fallback={<div />}>
           <WalletProvider>
@@ -68,6 +105,12 @@ function RoutesComponent(): JSX.Element {
               <CausesPage />
             </MainLayout>
           </WalletProvider>
+        </Suspense>
+      </Route>
+
+      <Route path="/ticket-donation-done" exact>
+        <Suspense fallback={<div />}>
+          <TicketDonationDonePage />
         </Suspense>
       </Route>
 
@@ -101,22 +144,49 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
-      <Route path="/confirm-donation" exact>
+      <Route path="/donation/auth/sign-in" exact>
         <Suspense fallback={<div />}>
           <NavigationBackHeader />
-          <ConfirmDonationPage />
+          <DonationSignInPage />
         </Suspense>
       </Route>
 
-      <Route path="/donation-done" exact>
+      <Route path="/signed-in" exact>
         <Suspense fallback={<div />}>
-          <DonationDonePage />
+          <NavigationBackHeader />
+          <SignedInPage />
         </Suspense>
       </Route>
 
-      <Route path="/donation-done-cause" exact>
+      <Route path="/insert-email" exact>
         <Suspense fallback={<div />}>
-          <DonationDoneCausePage />
+          <NavigationBackHeader />
+          <InsertEmailAccountPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/extra-ticket" exact>
+        <Suspense fallback={<div />}>
+          <ExtraTicketPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/donation/auth/sign-in-extra-ticket" exact>
+        <Suspense fallback={<div />}>
+          <NavigationBackHeader />
+          <SignInExtraTicketPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/receive-extra-ticket" exact>
+        <Suspense fallback={<div />}>
+          <ReceiveExtraTicketPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/contribution-done" exact>
+        <Suspense fallback={<div />}>
+          <ContributionDonePage />
         </Suspense>
       </Route>
 
@@ -133,9 +203,7 @@ function RoutesComponent(): JSX.Element {
               featureFlagId="impact-page-feature-flag"
               source="https://projetos.ribon.io/impact"
             >
-              <MainLayout>
-                <ImpactPage />
-              </MainLayout>
+              <ImpactPage />
             </ExperimentRouteComponent>
           </WalletProvider>
         </Suspense>
@@ -308,6 +376,12 @@ function RoutesComponent(): JSX.Element {
       <Route path="/delete_account" exact>
         <Suspense fallback={<div />}>
           <DeleteAccountPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/expired-link" exact>
+        <Suspense fallback={<div />}>
+          <ExpiredLinkPage />
         </Suspense>
       </Route>
 

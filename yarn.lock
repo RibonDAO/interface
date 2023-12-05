@@ -2692,10 +2692,15 @@
   resolved "https://registry.npmjs.org/@protobufjs/utf8/-/utf8-1.1.0.tgz"
   integrity sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==
 
-"@ribon.io/shared@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@ribon.io/shared/-/shared-1.1.1.tgz#99096f622692c760a47c226d2c269d2a93887674"
-  integrity sha512-47zCHwhsY0S4ipJhWbC3wQP5UbUXRpelGsgeVOHhdBThOn4YU/OQQgabZzjsPdRbTrDHioHDZ8Rze0gXKbJUVQ==
+"@react-oauth/google@^0.11.1":
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/@react-oauth/google/-/google-0.11.1.tgz#f937c8d02bd37e3a6be7713b8212e9b9b9b3f914"
+  integrity sha512-tywZisXbsdaRBVbEu0VX6dRbOSL2I6DgY97woq5NMOOOz+xtDsm418vqq+Vx10KMtra3kdHMRMf0hXLWrk2RMg==
+
+"@ribon.io/shared@^1.1.13":
+  version "1.1.13"
+  resolved "https://registry.yarnpkg.com/@ribon.io/shared/-/shared-1.1.13.tgz#a59f51d99a1e32eeacc8c552fc6d6559b812606b"
+  integrity sha512-ai1r5QrfVW1/S3pVkn+sOXw7fDNEggq+gOyq7JGkYsNRtiXNpxvfTwgvBD/pFdW/RQLoWPqpJTi49k/t0Q8yUg==
   dependencies:
     "@apollo/client" "^3.6.9"
     "@types/base-64" "^1.0.0"
@@ -2707,6 +2712,7 @@
     react-query "^3.34.8"
     snakecase-keys "^5.4.4"
     styled-components "^5.3.6"
+    universal-cookie "^6.1.1"
 
 "@rollup/plugin-babel@^5.2.0":
   version "5.3.0"
@@ -4131,6 +4137,11 @@
   integrity sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==
   dependencies:
     "@types/node" "*"
+
+"@types/cookie@^0.5.1":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@types/cookie/-/cookie-0.5.3.tgz#3f98076ede5e467783507284d3c19215327fff8f"
+  integrity sha512-SLg07AS9z1Ab2LU+QxzU8RCmzsja80ywjf/t5oqw+4NSH20gIGlhLOrBDm1L3PBWzPa4+wkgFQVZAjE6Ioj2ug==
 
 "@types/crypto-js@^4.1.1":
   version "4.1.1"
@@ -7280,6 +7291,11 @@ cookie@0.4.1:
   version "0.4.1"
   resolved "https://registry.npmjs.org/cookie/-/cookie-0.4.1.tgz"
   integrity sha512-ZwrFkGJxUR3EIoXtO+yVE69Eb7KlixbaeAWfBQB9vVsNn/o+Yw69gBWSSDK825hQNdN+wF8zELf3dFNl/kxkUA==
+
+cookie@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.5.0.tgz#d1f5d71adec6558c58f389987c366aa47e994f8b"
+  integrity sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==
 
 copy-concurrently@^1.0.0:
   version "1.0.5"
@@ -15552,6 +15568,11 @@ react-app-polyfill@^3.0.0:
     regenerator-runtime "^0.13.9"
     whatwg-fetch "^3.6.2"
 
+react-apple-login@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/react-apple-login/-/react-apple-login-1.1.6.tgz#bea08cae70efebc966bf867cda50d9a2f8ca1a79"
+  integrity sha512-ySV6ax0aB+ksA7lKzhr4MvsgjwSH068VtdHJXS+7rL380IJnNQNl14SszR31k3UqB8q8C1H1oyjJFGq4MyO6tw==
+
 react-dev-utils@^12.0.1:
   version "12.0.1"
   resolved "https://registry.npmjs.org/react-dev-utils/-/react-dev-utils-12.0.1.tgz"
@@ -18541,6 +18562,14 @@ unist-util-visit@2.0.3, unist-util-visit@^2.0.0:
     "@types/unist" "^2.0.0"
     unist-util-is "^4.0.0"
     unist-util-visit-parents "^3.0.0"
+
+universal-cookie@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/universal-cookie/-/universal-cookie-6.1.1.tgz#2d619e21804c93b39ff0c77fe47dafd7a492346d"
+  integrity sha512-33S9x3CpdUnnjwTNs2Fgc41WGve2tdLtvaK2kPSbZRc5pGpz2vQFbRWMxlATsxNNe/Cy8SzmnmbuBM85jpZPtA==
+  dependencies:
+    "@types/cookie" "^0.5.1"
+    cookie "^0.5.0"
 
 universalify@^0.1.0, universalify@^0.1.2:
   version "0.1.2"

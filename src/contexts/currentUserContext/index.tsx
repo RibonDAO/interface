@@ -11,6 +11,8 @@ import { setUserId } from "services/analytics/firebase";
 import { setUserId as setUserIdInMixpanel } from "services/analytics/mixpanel";
 import { User } from "@ribon.io/shared/types";
 import { initializeApi } from "services/api";
+import { removeCookiesItem } from "@ribon.io/shared/lib";
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "utils/constants";
 
 export interface ICurrentUserContext {
   currentUser: User | undefined;
@@ -53,6 +55,8 @@ function CurrentUserProvider({ children }: Props) {
     setCurrentUser(undefined);
     localStorage.removeItem(CURRENT_USER_KEY);
     localStorage.removeItem(SHOW_MENU);
+    removeCookiesItem(ACCESS_TOKEN_KEY);
+    removeCookiesItem(REFRESH_TOKEN_KEY);
   }
 
   function setUserInLocalStorage() {

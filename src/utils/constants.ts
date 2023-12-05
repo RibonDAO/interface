@@ -28,3 +28,16 @@ export const DEBUG_EVENTS_ENABLED = process.env.REACT_APP_DEBUG_VIEW === "true";
 
 export const STRIPE_PUBLISHABLE_KEY =
   process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY || "";
+
+export const ACCESS_TOKEN_KEY = "ACCESS_TOKEN_KEY";
+export const REFRESH_TOKEN_KEY = "REFRESH_TOKEN_KEY";
+export const APPLE_CLIENT_ID = "io.ribon.dapp";
+export const APPLE_REDIRECT_URL =
+  process.env.REACT_APP_APPLE_REDIRECT_URL || "https://dapp.ribon.io/causes";
+
+export const INTEGRATION_AUTH_ID =
+  process.env.REACT_APP_INTEGRATION_AUTH_ID ||
+  "1a48c5ea-70ff-445d-91e6-5bd5cfacf7e5";
+
+export const USER_SUPPORT_LINK =
+  "https://api.whatsapp.com/send/?phone=554896605461&text=Oii+Ribon%2C+vamos+conversar%3F+&type=phone_number&app_absent=0";

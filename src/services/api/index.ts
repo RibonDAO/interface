@@ -5,6 +5,7 @@ import {
   apiPost,
   api,
   initializeApi as initializeSharedApi,
+  initializeAuthenticationApi,
   emptyRequest,
 } from "@ribon.io/shared/services";
 import { initializeHooks } from "@ribon.io/shared/hooks";
@@ -19,6 +20,7 @@ export function initializeApi() {
   const authHeaders = { Language: lang, Email: user?.email || "" };
 
   initializeSharedApi({ url: baseURL, headers: authHeaders });
+  initializeAuthenticationApi({ url: baseURL, headers: authHeaders });
 
   initializeHooks({
     initializeApiOptions: { url: baseURL, headers: authHeaders },

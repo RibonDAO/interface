@@ -121,7 +121,7 @@ function PixPaymentInformationProvider({ children }: Props) {
 
         clearInterval(intervalId);
         navigateTo({
-          pathname: "/donation-done-cause",
+          pathname: "/contribution-done",
           state: {
             hasButton: true,
             offerId,

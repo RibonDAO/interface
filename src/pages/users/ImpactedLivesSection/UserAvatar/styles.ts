@@ -19,7 +19,7 @@ export const AvatarSection = styled.div`
 `;
 
 export const AvatarContainer = styled.div`
-  min-width: 72px;
+  width: 72px;
   height: 72px;
   margin-bottom: ${({ theme }) => theme.spacing(12)};
   border: 2px solid ${({ theme }) => theme.colors.neutral[25]};

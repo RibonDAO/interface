@@ -42,8 +42,8 @@ function SignInByMagicLinkPage(): JSX.Element {
   }
 
   useEffect(() => {
-    authenticate();
-  }, []);
+    if (isFirstAccessToAuthIntegration !== undefined) authenticate();
+  }, [isFirstAccessToAuthIntegration]);
 
   return <Loader />;
 }

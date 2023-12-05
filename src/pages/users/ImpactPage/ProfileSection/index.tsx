@@ -25,7 +25,7 @@ function ProfileSection() {
         <UserAvatar
           userAvatar={profile?.photo}
           name={profile?.name ? profile.name : t("userName")}
-          email={profile?.user.email ? profile.user.email : currentUser?.email}
+          email={profile?.user?.email ? profile.user.email : currentUser?.email}
         />
       </S.CenterContainer>
     </S.Container>

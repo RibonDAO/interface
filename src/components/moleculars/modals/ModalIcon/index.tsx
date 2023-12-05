@@ -5,8 +5,7 @@ import theme from "styles/theme";
 import { logEvent } from "lib/events";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "hooks/useLanguage";
-import { Languages } from "@ribon.io/shared/types";
-import startSupportChat from "services/support";
+import contactSupport from "lib/contactSupport";
 import * as S from "./styles";
 import { defaultCustomStyles } from "../defaultCustomStyles";
 
@@ -69,14 +68,6 @@ function ModalIcon({
     return icon && <S.Icon src={icon} />;
   }
 
-  const handleSupportButtonClick = () => {
-    if (currentLang === Languages.PT) {
-      window.open(t("userSupportLink"), "_blank");
-    } else {
-      startSupportChat();
-    }
-  };
-
   return (
     <S.ModalWithIcon
       isOpen={visible}
@@ -98,7 +89,7 @@ function ModalIcon({
       {supportButton && (
         <S.SupportButton
           text={t("accessUserSupport")}
-          onClick={handleSupportButtonClick}
+          onClick={() => contactSupport(currentLang)}
         />
       )}
       {primaryButton && (

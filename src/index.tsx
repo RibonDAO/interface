@@ -5,6 +5,7 @@ import { initializeFirebase } from "services/analytics/firebase";
 import { initializeMixpanel } from "services/analytics/mixpanel";
 import { initializeSentry } from "services/analytics/sentry";
 import { initializeApi } from "services/api";
+import { initializeApi as initializeAuthApi } from "services/authenticationApi";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./i18n";
@@ -16,6 +17,7 @@ declare global {
 }
 
 initializeApi();
+initializeAuthApi();
 initializeAmplitude();
 initializeFirebase();
 initializeMixpanel();

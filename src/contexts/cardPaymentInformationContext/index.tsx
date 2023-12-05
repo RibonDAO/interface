@@ -17,7 +17,12 @@ import GivingIcon from "assets/icons/giving-icon.svg";
 import Logo from "assets/icons/logo-background-icon.svg";
 import UserIcon from "assets/icons/user.svg";
 import { setLocalStorageItem } from "lib/localStorage";
-import { useIntegration, useSources, useUsers } from "@ribon.io/shared/hooks";
+import {
+  useIntegration,
+  useSources,
+  useUserProfile,
+  useUsers,
+} from "@ribon.io/shared/hooks";
 import { normalizedLanguage } from "lib/currentLanguage";
 import { CONTRIBUTION_INLINE_NOTIFICATION } from "pages/donations/CausesPage/ContributionNotification";
 import { PLATFORM } from "utils/constants";
@@ -78,6 +83,8 @@ function CardPaymentInformationProvider({ children }: Props) {
   const { signedIn, setCurrentUser } = useCurrentUser();
   const { integration } = useIntegration(integrationId);
   const { createSource } = useSources();
+  const { userProfile } = useUserProfile();
+  const { profile } = userProfile();
 
   const login = async () => {
     if (!signedIn) {
@@ -97,7 +104,7 @@ function CardPaymentInformationProvider({ children }: Props) {
     setLocalStorageItem(CONTRIBUTION_INLINE_NOTIFICATION, "3");
     login();
     navigateTo({
-      pathname: "/donation-done-cause",
+      pathname: "/contribution-done",
       state: {
         hasButton: true,
         offerId,
@@ -113,11 +120,12 @@ function CardPaymentInformationProvider({ children }: Props) {
     type: MODAL_TYPES.MODAL_ANIMATION,
     props: {
       text: t("modalAnimationTitle"),
-      iconOrigin: UserIcon,
+      iconOrigin: profile?.photo ?? UserIcon,
       textOrigin: t("modalAnimationFrom"),
       iconDestiny: Logo,
       textDestiny: t("modalAnimationTo"),
       icon: GivingIcon,
+      isIconOriginFullSize: !!profile?.photo,
     },
   });
 

@@ -6,7 +6,9 @@ export default {
   component: ModalWrongEmail,
 } as ComponentMeta<typeof ModalWrongEmail>;
 
-const Template: ComponentStory<typeof ModalWrongEmail> = function (args: Props) {
+const Template: ComponentStory<typeof ModalWrongEmail> = function (
+  args: Props,
+) {
   return <ModalWrongEmail {...args} />;
 };
 

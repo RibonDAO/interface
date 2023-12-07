@@ -45,7 +45,7 @@ describe("Logout", () => {
 
     it("Signs out and returns to initial page", () => {
       clickOn("Sign out");
-      expectPageToNavigateTo("/causes");
+      expectPageToNavigateTo("/auth/sign-in");
     });
   });
 });

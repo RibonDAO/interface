@@ -170,7 +170,7 @@
       "extraTicketPage": {
         "title": "Você ganhou um ticket extra",
         "description": "Valide sua conta clicando no link enviado para {{email}} e receba seu ticket extra",
-        "buttonText": "Validar depois"
+        "buttonText": "Continuar sem ticket extra"
       },
       "receiveExtraTicketPage": {
         "title": "Validar sua conta trouxe você aqui",
@@ -180,7 +180,7 @@
       "signInExtraTicketPage": {
         "title": "Você ganhou um ticket extra",
         "description": "Valide sua conta criada com {{email}} e receba seu ticket extra",
-        "buttonText": "Validar depois"
+        "buttonText": "Continuar sem ticket extra"
       }
     }
   },

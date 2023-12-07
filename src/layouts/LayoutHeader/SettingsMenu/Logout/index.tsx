@@ -25,7 +25,7 @@ function Logout({ closeMenu }: Props): JSX.Element | null {
     logEvent("signoutConfirmBtn_click");
     logoutCurrentUser();
     createVoucher();
-    navigateTo("/causes");
+    navigateTo("/auth/sign-in");
     window.location.reload();
   };
 

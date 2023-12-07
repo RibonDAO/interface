@@ -25,8 +25,8 @@ function SignInExtraTicketPage(): JSX.Element {
   const toast = useToast();
 
   useEffect(() => {
-    logEvent("P29_view", {
-      from: "donation_flow",
+    logEvent("P27_view", {
+      from: "validation_flow",
     });
   }, []);
 
@@ -67,17 +67,17 @@ function SignInExtraTicketPage(): JSX.Element {
           <S.ButtonContainer>
             <GoogleLogin
               onContinue={() => onContinue("/")}
-              from="donation_flow"
+              from="validation_flow"
             />
             <AppleLogin
               onContinue={() => onContinue("/")}
-              from="donation_flow"
+              from="validation_flow"
             />
             <MagicLinkLogin
               onContinue={() =>
                 onContinueMagicLink("/auth/sent-magic-link-email")
               }
-              from="donation_flow"
+              from="validation_flow"
             />
           </S.ButtonContainer>
         </S.ContentContainer>

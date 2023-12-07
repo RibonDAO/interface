@@ -38,10 +38,11 @@ import ExperimentRouteComponent from "services/growthbook/ExperimentRouteCompone
 import CampaignPage from "pages/campaigns/CampaignPage";
 import PixInstructionsPage from "pages/promoters/CheckoutPage/Components/PixInstructionsPage";
 import ExpiredLinkPage from "pages/auth/ExpiredLinkPage";
+import ValidateExtraTicket from "pages/auth/ValidateExtraTicketPage";
 import InsertEmailAccountPage from "pages/donations/auth/InsertEmailAccountPage";
-import ExtraTicketPage from "pages/donations/auth/ExtraTicketPage";
-import SignInExtraTicketPage from "pages/donations/auth/SignInExtraTicketPage";
-import ReceiveExtraTicketPage from "pages/donations/auth/ReceiveExtraTicketPage";
+import ExtraTicketPage from "pages/auth/ExtraTicketPage";
+import SignInExtraTicketPage from "pages/auth/SignInExtraTicketPage";
+import ReceiveExtraTicketPage from "pages/auth/ReceiveExtraTicketPage";
 import SignInByMagicLinkPage from "pages/donations/auth/SignInByMagicLinkPage";
 import DonationSignInPage from "pages/donations/auth/SignInPage";
 import SignedInPage from "pages/donations/auth/SignedInPage";
@@ -171,7 +172,7 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
-      <Route path="/donation/auth/sign-in-extra-ticket" exact>
+      <Route path="/sign-in-extra-ticket" exact>
         <Suspense fallback={<div />}>
           <NavigationBackHeader />
           <SignInExtraTicketPage />
@@ -181,6 +182,12 @@ function RoutesComponent(): JSX.Element {
       <Route path="/receive-extra-ticket" exact>
         <Suspense fallback={<div />}>
           <ReceiveExtraTicketPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/validate-extra-ticket" exact>
+        <Suspense fallback={<div />}>
+          <ValidateExtraTicket />
         </Suspense>
       </Route>
 

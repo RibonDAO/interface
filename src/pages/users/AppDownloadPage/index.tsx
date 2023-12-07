@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import LeftArrow from "assets/icons/arrow-left-green.svg";
 import useNavigation from "hooks/useNavigation";
 import { useLocation } from "react-router-dom";
-import { NonProfit } from "@ribon.io/shared";
+import { NonProfit } from "@ribon.io/shared/types";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useEffect, useState } from "react";
 import { logEvent } from "@amplitude/analytics-browser";

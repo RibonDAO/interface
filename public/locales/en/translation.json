@@ -170,7 +170,7 @@
       "extraTicketPage": {
         "title": "You won an extra ticket",
         "description": "Validate your account clicking the link sent to {{email}} and get your extra ticket.",
-        "buttonText": "Validate later"
+        "buttonText": "Continue without extra ticket"
       },
       "receiveExtraTicketPage": {
         "title": "Validating your account brought you here",
@@ -180,7 +180,7 @@
       "signInExtraTicketPage": {
         "title": "You won an extra ticket",
         "description": "Validate your account created with {{email}} to get your extra ticket",
-        "buttonText": "Validate later",
+        "buttonText": "Continue without extra ticket",
         "toastDescription": "Your ticket was sent by e-mail"
       }
     }
@@ -767,7 +767,6 @@
       "text": "Click the link sent to {{email}} to sign in",
       "firstAccessTitle": "You won an extra ticket",
       "firstAccessText": "Validate your account clicking the link sent to {{email}} and get your extra ticket."
-      
     }
   },
   "components": {

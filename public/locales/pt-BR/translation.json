@@ -180,7 +180,8 @@
       "signInExtraTicketPage": {
         "title": "Você ganhou um ticket extra",
         "description": "Valide sua conta criada com {{email}} e receba seu ticket extra",
-        "buttonText": "Validar depois"
+        "buttonText": "Validar depois",
+        "toastDescription": "Seu ticket foi enviado por e-mail"
       }
     }
   },

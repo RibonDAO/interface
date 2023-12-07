@@ -32,18 +32,25 @@ function SignInPage(): JSX.Element {
   return (
     <>
       <S.RightImage src={RightImage} />
+      <S.LeftImage src={LeftImage} />
       <S.Container>
-        <S.LeftImage src={LeftImage} />
         <S.ImageContainer>
           <S.MainImage src={UserAvatar} />
         </S.ImageContainer>
         <S.ContentContainer>
           <S.Title>{t("title")}</S.Title>
           <S.ButtonContainer>
-            <GoogleLogin onContinue={() => onContinue("/causes")} />
-            <AppleLogin onContinue={() => onContinue("/causes")} />
+            <GoogleLogin
+              onContinue={() => onContinue("/causes")}
+              from="direct_flow"
+            />
+            <AppleLogin
+              onContinue={() => onContinue("/causes")}
+              from="direct_flow"
+            />
             <MagicLinkLogin
               onContinue={() => onContinue("/auth/insert-email")}
+              from="direct_flow"
             />
           </S.ButtonContainer>
 

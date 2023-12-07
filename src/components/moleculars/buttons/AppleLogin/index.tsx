@@ -12,8 +12,9 @@ import ModalWrongEmail from "components/moleculars/modals/ModalWrongEmail";
 
 type Props = {
   onContinue: () => void;
+  from: string;
 };
-function AppleLogin({ onContinue }: Props): JSX.Element {
+function AppleLogin({ onContinue, from }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "components.moleculars.buttons.AppleLogin",
   });
@@ -23,7 +24,7 @@ function AppleLogin({ onContinue }: Props): JSX.Element {
 
   const handleApple = async (response: any) => {
     logEvent("authAppleBtn_click", {
-      from: "donation_flow",
+      from,
     });
     if (!response.error) {
       try {

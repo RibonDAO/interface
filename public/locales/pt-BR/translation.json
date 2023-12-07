@@ -222,6 +222,7 @@
       },
       "deleteAccountItem": {
         "cancelModalButton": "Cancelar",
+        "deleteAccount": "Excluir conta",
         "deleteAccountModalButton": "Receber e-mail",
         "deleteAccountModalTitle": "Confirmar exclusão de conta",
         "deleteAccountModalDescription": "Você sairá do app automaticamente e receberá um e-mail de exclusão de conta para continuar com o processo.",
@@ -257,6 +258,9 @@
       "ticketDonations": "Doações em ticket",
       "communityDonations": "Doações em comunidade",
       "directDonations": "Doações diretas"
+    },
+    "profileSection": {
+      "userName": "Seu perfil"
     },
     "ticketSection": {
       "emptyTitle": "Suas doações de tickets aparecerão aqui.",
@@ -764,7 +768,9 @@
     },
     "sentMagicLinkEmailPage": {
       "title": "Link de entrada enviado",
-      "text": "Clique no link enviado para {{email}} para entrar"
+      "text": "Clique no link enviado para {{email}} para entrar",
+      "firstAccessTitle": "Você ganhou um ticket extra",
+      "firstAccessText": "Valide sua conta clicando no link enviado para {{email}} e receba seu ticket extra."
     }
   },
   "components": {
@@ -786,6 +792,9 @@
           "description": "Para continuar com Google ou Apple, escolha {{email}} como seu e-mail de validação. Se não reconhecer este e-mail, por favor entre em contato com nosso suporte.",
           "tryAgain": "Tentar novamente",
           "contactSupport": "Falar com suporte"
+        },
+        "modalDialog": {
+          "accessUserSupport": "Acessar o suporte ao usuário"
         }
       }
     }

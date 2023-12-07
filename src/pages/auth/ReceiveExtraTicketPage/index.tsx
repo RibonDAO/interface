@@ -12,7 +12,7 @@ function ReceiveExtraTicketPage(): JSX.Element {
   const history = useHistory();
 
   const handleClick = () => {
-    history.push(`/receive-ticket?integrationId=${INTEGRATION_AUTH_ID}`);
+    history.push(`/receive-ticket?integration_id=${INTEGRATION_AUTH_ID}`);
   };
 
   return (

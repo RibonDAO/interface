@@ -17,7 +17,6 @@ export const Container = styled.div`
 
 export const ImageContainer = styled.div`
   margin-top: ${({ theme }) => theme.spacing(24)};
-  padding: ${({ theme }) => theme.spacing(16, 64, 48)};
   position: relative;
   display: flex;
   flex-direction: column;

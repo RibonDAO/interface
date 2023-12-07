@@ -36,9 +36,8 @@ function SignInExtraTicketPage(): JSX.Element {
   return (
     <S.Container>
       <S.MainContainer>
-        <S.LeftImage src={LeftImage} />
         <S.RightImage src={RightImage} />
-
+        <S.LeftImage src={LeftImage} />
         <S.ContentContainer>
           <S.Image src={ticketImage} />
           <S.TextContainer>
@@ -49,10 +48,17 @@ function SignInExtraTicketPage(): JSX.Element {
           </S.TextContainer>
 
           <S.ButtonContainer>
-            <GoogleLogin onContinue={() => onContinue("/")} />
-            <AppleLogin onContinue={() => onContinue("/")} />
+            <GoogleLogin
+              onContinue={() => onContinue("/")}
+              from="donation_flow"
+            />
+            <AppleLogin
+              onContinue={() => onContinue("/")}
+              from="donation_flow"
+            />
             <MagicLinkLogin
               onContinue={() => onContinue("/auth/insert-email")}
+              from="donation_flow"
             />
           </S.ButtonContainer>
         </S.ContentContainer>

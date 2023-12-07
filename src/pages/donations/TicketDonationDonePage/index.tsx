@@ -1,7 +1,7 @@
 import {
   useStatistics,
   useFirstAccessToIntegration,
-  useUserV1Config,
+  useUserConfig,
 } from "@ribon.io/shared/hooks";
 import ConfirmationNumberPink from "assets/icons/confirmation-number-pink.svg";
 import ConfirmationNumberYellow from "assets/icons/confirmation-number-yellow.svg";
@@ -23,6 +23,8 @@ import usePostTicketDonationNavigation from "hooks/usePostTicketDonationNavigati
 import { logEvent } from "lib/events";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import IconsAroundImage from "components/atomics/sections/IconsAroundImage";
+import { INTEGRATION_AUTH_ID } from "utils/constants";
+import { useAuthentication } from "contexts/authenticationContext";
 import * as S from "./styles";
 
 function TicketDonationDonePage(): JSX.Element {
@@ -46,8 +48,8 @@ function TicketDonationDonePage(): JSX.Element {
   const [allowedEmailMarketing, setAllowedEmailMarketing] = useState(false);
   const { currentUser } = useCurrentUser();
   const { registerAction } = useTasksContext();
-  const { userV1Config, updateUserConfig } = useUserV1Config();
-  const { refetch: refetchUserConfig, userConfig } = userV1Config();
+  const { userConfig, updateUserConfig } = useUserConfig();
+  const { refetch: refetchUserConfig, config } = userConfig();
   const { handleNavigate } = usePostTicketDonationNavigation();
 
   const {
@@ -64,18 +66,24 @@ function TicketDonationDonePage(): JSX.Element {
   const firstDonation = 1;
 
   const { refetch } = useFirstAccessToIntegration(integrationId);
+  const { isFirstAccessToIntegration: isFirstAccessToAuthIntegration } =
+    useFirstAccessToIntegration(INTEGRATION_AUTH_ID);
+  const { isAuthenticated } = useAuthentication();
 
-  const shouldShowEmailCheckbox = useCallback(
-    () =>
-      (Number(userStatistics?.totalTickets) <=
-        quantityOfDonationsToShowEmailCheckbox ||
-        Number(userStatistics?.totalTickets) %
-          quantityOfDonationsToShowEmailCheckbox ===
-          0 ||
-        Number(userStatistics?.totalTickets) === firstDonation) &&
-      !userConfig?.allowedEmailMarketing,
-    [userStatistics, userConfig],
-  );
+  const shouldShowEmailCheckbox = useCallback(() => {
+    if (userStatistics && config) {
+      return (
+        (Number(userStatistics.totalTickets) <=
+          quantityOfDonationsToShowEmailCheckbox ||
+          Number(userStatistics.totalTickets) %
+            quantityOfDonationsToShowEmailCheckbox ===
+            0 ||
+          Number(userStatistics.totalTickets) === firstDonation) &&
+        !config.allowedEmailMarketing
+      );
+    }
+    return false;
+  }, [userStatistics, config]);
 
   useEffect(() => {
     refetchStatistics();
@@ -87,16 +95,23 @@ function TicketDonationDonePage(): JSX.Element {
 
     registerAction("donation_done_page_view");
 
-    if (allowedEmailMarketing) {
+    if (allowedEmailMarketing && currentUser) {
       logEvent("acceptReceiveEmail_click", {
         from: "confirmedDonation_page",
       });
-      updateUserConfig({ allowedEmailMarketing });
+      updateUserConfig(currentUser.id, { allowedEmailMarketing });
     }
 
-    if (flow === "magicLink") {
+    if (flow === "magicLink" && isFirstAccessToAuthIntegration) {
       navigateTo({
         pathname: "/extra-ticket",
+        state: {
+          nonProfit,
+        },
+      });
+    } else if (!isAuthenticated() && isFirstAccessToAuthIntegration) {
+      navigateTo({
+        pathname: "/sign-in-extra-ticket",
         state: {
           nonProfit,
         },

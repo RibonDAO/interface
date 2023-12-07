@@ -113,16 +113,6 @@ export const TASKS = [
       return false;
     },
   },
-  {
-    id: "a6a64a16-ebc8-448f-b725-45a35429d85d",
-    title: "about_page_view",
-    actions: ["about_page_view"],
-    type: "daily",
-    navigationCallback: "/dia-de-doar",
-    isVisible(this: Task) {
-      return true;
-    },
-  },
 ];
 
 export const useTasks = (type: string) => {

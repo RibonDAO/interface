@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useUsers } from "@ribon.io/shared/hooks";
@@ -32,6 +32,12 @@ function DeleteAccount(): JSX.Element | null {
     logoutCurrentUser();
     window.location.reload();
   }
+
+  useEffect(() => {
+    logEvent("deleteAccountBtn_click", {
+      from: "config_page",
+    });
+  }, []);
 
   if (!currentUser) return null;
   return (

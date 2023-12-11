@@ -1,4 +1,4 @@
-import { Cause, NonProfit } from "@ribon.io/shared";
+import { Cause, NonProfit } from "@ribon.io/shared/types";
 import { useCanDonate, useStatistics } from "@ribon.io/shared/hooks";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationId } from "hooks/useIntegrationId";

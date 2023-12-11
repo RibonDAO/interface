@@ -25,6 +25,7 @@ const GlobalStyle = createGlobalStyle`
 
     #root {
       display: block;
+      position: relative;
     }
 
     #launcher {

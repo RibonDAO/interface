@@ -10,6 +10,9 @@ import { useCurrentUser } from "contexts/currentUserContext";
 import GoogleLogin from "components/moleculars/buttons/GoogleLogin";
 import AppleLogin from "components/moleculars/buttons/AppleLogin";
 import MagicLinkLogin from "components/moleculars/buttons/MagicLinkLogin";
+import { userAccountApi } from "@ribon.io/shared/services";
+import useToast from "hooks/useToast";
+import { useAuthentication } from "contexts/authenticationContext";
 import * as S from "./styles";
 
 function SignInExtraTicketPage(): JSX.Element {
@@ -18,14 +21,28 @@ function SignInExtraTicketPage(): JSX.Element {
   });
   const { currentUser } = useCurrentUser();
   const { navigateTo } = useNavigation();
+  const { sendAuthenticationEmail } = useAuthentication();
+  const toast = useToast();
 
   useEffect(() => {
-    logEvent("P29_view", {
-      from: "donation_flow",
+    logEvent("P27_view", {
+      from: "validation_flow",
     });
   }, []);
 
-  const onContinue = (pathname: string) => {
+  const onContinue = async (pathname: string) => {
+    await userAccountApi.postSendValidatedEmail();
+    navigateTo({
+      pathname,
+    });
+    toast({
+      message: t("toastDescription"),
+      type: "success",
+    });
+  };
+
+  const onContinueMagicLink = (pathname: string) => {
+    sendAuthenticationEmail({ email: currentUser?.email });
     navigateTo({
       pathname,
     });
@@ -36,9 +53,8 @@ function SignInExtraTicketPage(): JSX.Element {
   return (
     <S.Container>
       <S.MainContainer>
-        <S.LeftImage src={LeftImage} />
         <S.RightImage src={RightImage} />
-
+        <S.LeftImage src={LeftImage} />
         <S.ContentContainer>
           <S.Image src={ticketImage} />
           <S.TextContainer>
@@ -51,15 +67,17 @@ function SignInExtraTicketPage(): JSX.Element {
           <S.ButtonContainer>
             <GoogleLogin
               onContinue={() => onContinue("/")}
-              from="donation_flow"
+              from="validation_flow"
             />
             <AppleLogin
               onContinue={() => onContinue("/")}
-              from="donation_flow"
+              from="validation_flow"
             />
             <MagicLinkLogin
-              onContinue={() => onContinue("/auth/insert-email")}
-              from="donation_flow"
+              onContinue={() =>
+                onContinueMagicLink("/auth/sent-magic-link-email")
+              }
+              from="validation_flow"
             />
           </S.ButtonContainer>
         </S.ContentContainer>

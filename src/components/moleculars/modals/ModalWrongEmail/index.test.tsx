@@ -5,6 +5,7 @@ import {
   expectLogEventToHaveBeenCalledWith,
   expectTextNotToBeInTheDocument,
 } from "config/testUtils/expects";
+import { mockLogEventFunction } from "setupTests";
 import ModalWrongEmail from ".";
 
 jest.mock("lib/contactSupport");
@@ -15,6 +16,8 @@ describe("ModalWrongEmail", () => {
     renderComponent(<ModalWrongEmail visible setVisible={setVisible} />);
 
     expectTextToBeInTheDocument("Oops, incorrect e-mail");
+    expectTextToBeInTheDocument("Try again");
+    expectTextToBeInTheDocument("Contact support");
   });
 
   it("should not show modal when visible is false", () => {
@@ -24,6 +27,22 @@ describe("ModalWrongEmail", () => {
     );
 
     expectTextNotToBeInTheDocument("Oops, incorrect e-mail");
+  });
+
+  describe("when the modal is visible and has an eventName", () => {
+    const eventName = "test";
+    const eventParams = { test: "test" };
+    it("logs an event", () => {
+      renderComponent(
+        <ModalWrongEmail
+          visible
+          setVisible={() => {}}
+          eventName={eventName}
+          eventParams={eventParams}
+        />,
+      );
+      expect(mockLogEventFunction).toHaveBeenCalledWith(eventName, eventParams);
+    });
   });
 
   describe("Button", () => {

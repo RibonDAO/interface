@@ -5,7 +5,7 @@ import { Web3Provider, JsonRpcProvider } from "@ethersproject/providers";
 import { logError } from "services/crashReport";
 import { useWalletContext } from "contexts/walletContext";
 import { decryptString } from "utils/encryption";
-import { Chain } from "@ribon.io/shared";
+import { Chain } from "@ribon.io/shared/types";
 
 type Props = {
   address?: string;

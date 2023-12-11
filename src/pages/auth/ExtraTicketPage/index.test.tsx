@@ -7,6 +7,6 @@ describe("ExtraTicketPage", () => {
     renderComponent(<ExtraTicketPage />);
 
     expectTextToBeInTheDocument("You won an extra ticket");
-    expectTextToBeInTheDocument("Validate later");
+    expectTextToBeInTheDocument("Continue without extra ticket");
   });
 });

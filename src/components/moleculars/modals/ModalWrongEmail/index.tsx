@@ -6,12 +6,19 @@ import { logEvent } from "lib/events";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-type Props = {
+export type Props = {
   visible: boolean;
   setVisible: (visible: boolean) => void;
+  eventName?: string;
+  eventParams?: Record<string, any>;
 };
 
-function ModalWrongEmail({ visible = false, setVisible }: Props): JSX.Element {
+function ModalWrongEmail({
+  visible = false,
+  setVisible,
+  eventName = "P27_emailErrorModal_view",
+  eventParams = { from: "validation_flow" },
+}: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "components.moleculars.modals.ModalWrongEmail",
   });
@@ -19,17 +26,15 @@ function ModalWrongEmail({ visible = false, setVisible }: Props): JSX.Element {
   const { currentUser } = useCurrentUser();
 
   const handleSecondaryButton = () => {
-    logEvent("supportBtn_click", {
-      from: "validation_flow",
-    });
+    logEvent("supportBtn_click", eventParams);
     contactSupport(currentLang);
   };
 
   useEffect(() => {
-    logEvent("P27_emailErrorModal_view", {
-      from: "validation_flow",
-    });
-  }, []);
+    if (visible === true) {
+      logEvent(eventName, eventParams);
+    }
+  }, [visible]);
 
   return (
     <ModalDialog

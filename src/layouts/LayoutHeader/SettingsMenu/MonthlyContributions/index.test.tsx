@@ -6,7 +6,7 @@ describe("MonthlyContributions component", () => {
   it("renders the correct text", () => {
     renderComponent(<MonthlyContributions />, {
       currentUserProviderValue: {
-        currentUser: { id: 1, email: "juju@ribon.io", lastDonationAt: "true" },
+        currentUser: { id: 1, email: "user@ribon.io", lastDonationAt: "true" },
       },
     });
     expectTextToBeInTheDocument("Monthly contributions");

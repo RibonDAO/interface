@@ -88,7 +88,7 @@ function MonthlyContributionPage(): JSX.Element {
     subscriptionItems.push(
       <S.PaymentContainer key={subscription.id}>
         <S.IconTextContainer>
-          <S.Amount>{subscription.offer.price}</S.Amount>
+          <S.Amount>{subscription.offer?.price}</S.Amount>
           <Icon
             name="delete"
             onClick={() => openCancelModal(subscription.id)}

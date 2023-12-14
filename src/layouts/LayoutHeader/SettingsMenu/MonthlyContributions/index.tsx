@@ -32,7 +32,7 @@ function MonthlyContributions(): JSX.Element | null {
     }
   };
 
-  if (!currentUser?.lastDonationAt) return null;
+  if (!currentUser) return null;
 
   return (
     <Item

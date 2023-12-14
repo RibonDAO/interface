@@ -50,6 +50,7 @@ import SignInPage from "pages/auth/SignInPage";
 import InsertEmailPage from "pages/auth/InsertEmailPage";
 import SentMagicLinkEmailPage from "pages/auth/SentMagicLinkEmailPage";
 import TicketDonationDonePage from "pages/donations/TicketDonationDonePage";
+import ChristmasCampaignPage from "pages/campaigns/ChristmasCampaign";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -421,6 +422,12 @@ function RoutesComponent(): JSX.Element {
       <Route path="/campaign" exact>
         <Suspense fallback={<div />}>
           <CampaignPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/christmas-campaign" exact>
+        <Suspense fallback={<div />}>
+          <ChristmasCampaignPage />
         </Suspense>
       </Route>
 

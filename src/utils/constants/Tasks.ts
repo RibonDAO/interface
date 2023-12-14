@@ -117,7 +117,7 @@ export const TASKS = [
     id: "eea82ea7-eaf2-4417-bdc4-11e10b5a7b72",
     title: "christmas_campaign",
     actions: ["contribution_done_christmas_campaign"],
-    type: "daily",
+    type: "monthly",
     navigationCallback: "/christmas-campaign",
     isVisible(this: Task) {
       return true;

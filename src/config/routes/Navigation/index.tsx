@@ -11,8 +11,6 @@ import ImpactIconOn from "./assets/impactIconOn.svg";
 import ImpactIconOff from "./assets/impactIconOff.svg";
 import GivingIconOn from "./assets/givingIconOn.svg";
 import GivingIconOff from "./assets/givingIconOff.svg";
-import ChristmasIconOn from "./assets/christmasIconOn.svg";
-import ChristmasIconOff from "./assets/christmasIconOff.svg";
 import NavigationLink from "./NavigationLink";
 import * as S from "./styles";
 
@@ -106,13 +104,6 @@ function Navigation(): JSX.Element {
       title: t("impactPageTitle"),
       event: "impactNavBtn_click",
       showActivityIndicatorCircle: newContributionActivity,
-    },
-    {
-      path: "/christmas-campaign",
-      iconOn: ChristmasIconOn,
-      iconOff: ChristmasIconOff,
-      title: t("christmasCampaignPageTitle"),
-      event: "christmasCampaignNavBtn_click",
     },
   ];
 

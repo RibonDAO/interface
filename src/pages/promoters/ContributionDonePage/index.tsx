@@ -20,7 +20,6 @@ import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { logEvent } from "lib/events";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
-import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
 import * as S from "./styles";
 
 function ContributionDonePage(): JSX.Element {
@@ -33,8 +32,7 @@ function ContributionDonePage(): JSX.Element {
     from?: string;
   };
 
-  const { navigateTo, history } = useNavigation();
-  const utmParams = getUTMFromLocationSearch(history.location.search);
+  const { navigateTo } = useNavigation();
   const [pageTimeout, setPageTimeout] = useState<any>(null);
 
   const { t } = useTranslation("translation", {
@@ -75,13 +73,6 @@ function ContributionDonePage(): JSX.Element {
     },
     [offerId],
   );
-
-  useEffect(() => {
-    const campaign = "natal";
-    if (utmParams.utmCampaign === campaign) {
-      registerAction("contribution_done_christmas_campaign");
-    }
-  }, []);
 
   function navigate() {
     refetch();

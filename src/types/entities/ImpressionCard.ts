@@ -2,7 +2,7 @@ export default interface ImpressionCard {
   id?: number;
   headline: string;
   title: string;
-  description: string;
+  description: string | JSX.Element;
   videoUrl?: string;
   ctaText: string;
   ctaUrl: string;

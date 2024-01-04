@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import ImpressionCard from "types/entities/ImpressionCard";
 import { theme } from "@ribon.io/shared/styles";
+import { useImpactConversion } from "hooks/useImpactConversion";
 import * as S from "./styles";
 
 export type Props = {
@@ -24,6 +25,8 @@ function CardCampaign({
     keyPrefix: "campaignCard",
   });
 
+  const { nonProfit } = useImpactConversion();
+
   useEffect(() => {
     logEvent(
       flow === "nonProfit"
@@ -36,6 +39,17 @@ function CardCampaign({
     );
   }, []);
 
+  const parsedCtaUrl = (ctaUrl: string) => {
+    const hasRecurrence = ctaUrl.includes("/recurrence");
+    const hasTargetId = ctaUrl.includes("target_id");
+
+    if (hasRecurrence && !hasTargetId) {
+      return `${ctaUrl}&target_id=${nonProfit?.id}`;
+    }
+
+    return ctaUrl;
+  };
+
   const handleClickedDonationButton = () => {
     if (!cardData) return;
 
@@ -44,7 +58,9 @@ function CardCampaign({
       value,
       platform: "web",
     });
-    window.location.replace(cardData.ctaUrl);
+
+    const url = parsedCtaUrl(cardData.ctaUrl);
+    window.location.replace(url);
   };
 
   const { primary } = theme.colors.brand;

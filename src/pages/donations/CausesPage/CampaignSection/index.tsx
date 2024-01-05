@@ -4,8 +4,11 @@ import { useTranslation } from "react-i18next";
 import { logError } from "services/crashReport";
 import useImpressionCards from "hooks/useImpressionCards";
 import { useCallback, useEffect, useState } from "react";
+import { useLanguage } from "hooks/useLanguage";
+import { Currencies } from "@ribon.io/shared/types";
 import ImpressionCard from "types/entities/ImpressionCard";
 import { useImpactConversion } from "hooks/useImpactConversion";
+import { formatPrice } from "lib/formatters/currencyFormatter";
 import * as S from "./styles";
 
 export type Props = {
@@ -17,9 +20,55 @@ function CampaignSection({ cardId }: Props): JSX.Element {
     keyPrefix: "contributionSection",
   });
 
-  const { contribution, nonProfit } = useImpactConversion();
+  const { contribution, nonProfit, offer, description } = useImpactConversion();
+  const { currentLang } = useLanguage();
+
+  const [currency, setCurrency] = useState<Currencies>(Currencies.BRL);
+
+  useEffect(() => {
+    if (offer) {
+      setCurrency(offer?.currency === "brl" ? Currencies.BRL : Currencies.USD);
+    } else {
+      setCurrency(currentLang === "pt-BR" ? Currencies.BRL : Currencies.USD);
+    }
+  }, [currentLang, offer]);
+
   const { isMobile } = useBreakpoint();
-  const [impressionCard, setImpressionCard] = useState<ImpressionCard | null>();
+
+  const checkoutLink = () => {
+    const nonProfitId = nonProfit?.id;
+    const baseRecurrenceUrl = "https://dapp.ribon.io/promoters/recurrence";
+    const baseRecurrenceParams = {
+      offer: String(offer?.priceCents) || "1000",
+      target: "non_profit",
+      utm_source: "organic",
+      utm_medium: "organic",
+      utm_campaign: "organic",
+      target_id: String(nonProfitId ?? 6),
+      currency,
+    };
+
+    const params = new URLSearchParams(baseRecurrenceParams).toString();
+
+    return `${baseRecurrenceUrl}?${params}`;
+  };
+
+  const defaultImpressionCard: ImpressionCard = {
+    headline: t("titleCard"),
+    title: t("donate", {
+      value: formatPrice(
+        (offer?.priceCents || 1000) / 100,
+        currency.toLowerCase(),
+      ),
+    }),
+    description: description || "",
+    ctaText: t("button"),
+    ctaUrl: checkoutLink(),
+    image: nonProfit?.mainImage || nonProfit?.cause?.mainImage,
+    active: true,
+  };
+
+  const [impressionCard, setImpressionCard] = useState<ImpressionCard>();
 
   const { getImpressionCard } = useImpressionCards();
 
@@ -36,7 +85,7 @@ function CampaignSection({ cardId }: Props): JSX.Element {
     fetchImpressionCard();
   }, []);
 
-  return contribution && impressionCard ? (
+  return contribution ? (
     <>
       <S.Title>{t("title", { nonProfitName: nonProfit?.name })}</S.Title>
       <S.Container>
@@ -48,9 +97,9 @@ function CampaignSection({ cardId }: Props): JSX.Element {
             marginLeft: isMobile ? "-16px" : "0",
             borderRadius: isMobile ? "0" : "8px",
           }}
-          from="kidsCampaignCTA"
+          from="organic"
           flow="nonProfit"
-          cardData={impressionCard}
+          cardData={impressionCard || defaultImpressionCard}
         />
       </S.Container>
       <S.NonProfitTitle>{t("nonProfits")}</S.NonProfitTitle>

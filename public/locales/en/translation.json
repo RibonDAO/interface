@@ -725,7 +725,9 @@
     "title": "Amazing! Thank you for helping {{nonProfitName}}",
     "titleNewImpact": "Thanks to you, {{nonProfitName}} will be able to impact 1 person. Thank you!",
     "titleCard": "Do even more",
-    "nonProfits": "NGOs"
+    "nonProfits": "NGOs",
+    "button": "Donate",
+    "donate": "Donate {{value}}"
   },
   "contributionCard": {
     "button": "Donate",

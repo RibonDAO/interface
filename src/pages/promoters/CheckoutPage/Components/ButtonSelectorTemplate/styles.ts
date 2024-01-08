@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
+  max-height: 75vh;
   margin-top: ${({ theme }) => theme.spacing(16)};
   display: flex;
   flex-direction: row;
@@ -10,7 +11,6 @@ export const Container = styled.div`
   gap: 10px;
   align-items: space-between;
   justify-content: space-between;
-  max-height: 75vh;
   overflow-y: auto;
 
   ::-webkit-scrollbar {

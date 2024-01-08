@@ -10,6 +10,12 @@ export const Container = styled.div`
   gap: 10px;
   align-items: space-between;
   justify-content: space-between;
+  max-height: 75vh;
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const SelectButton = styled(Button)<{ selected?: boolean }>`

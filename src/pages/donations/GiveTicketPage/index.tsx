@@ -56,6 +56,11 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
 
   const buttonText = isOnboarding ? t("onboardingButtonText") : t("buttonText");
 
+  const handleHasAccount = () => {
+    logEvent("openAuthBtn_click", { from: "onboarding_page" });
+    navigateTo("/auth/sign-in");
+  };
+
   return (
     <S.Container>
       {!isOnboarding && (
@@ -101,7 +106,7 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
               backgroundColor="transparent"
               borderColor={theme.colors.neutral[300]}
               borderRadius="4px"
-              onClick={() => navigateTo("/auth/sign-in")}
+              onClick={handleHasAccount}
             />
           )}
           {!isOnboarding && (

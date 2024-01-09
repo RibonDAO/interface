@@ -94,14 +94,16 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
             <S.Description>{subtitle}</S.Description>
           </S.TextContainer>
           <S.FilledButton onClick={handleClick}>{buttonText}</S.FilledButton>
-          <Button
-            text={t("hasAccountButton")}
-            textColor={theme.colors.neutral[600]}
-            backgroundColor="transparent"
-            borderColor={theme.colors.neutral[300]}
-            borderRadius="4px"
-            onClick={() => navigateTo("/auth/sign-in")}
-          />
+          {isOnboarding && (
+            <Button
+              text={t("hasAccountButton")}
+              textColor={theme.colors.neutral[600]}
+              backgroundColor="transparent"
+              borderColor={theme.colors.neutral[300]}
+              borderRadius="4px"
+              onClick={() => navigateTo("/auth/sign-in")}
+            />
+          )}
           {!isOnboarding && (
             <S.TooltipSection>
               <Tooltip

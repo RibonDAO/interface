@@ -7,8 +7,10 @@ import { useIntegrationId } from "hooks/useIntegrationId";
 import { useIntegration } from "@ribon.io/shared/hooks";
 import { RIBON_COMPANY_ID } from "utils/constants";
 import Tooltip from "components/moleculars/Tooltip";
+import Button from "components/atomics/buttons/Button";
 import RibonLogo from "assets/images/logo-ribon.svg";
 import { logEvent } from "lib/events";
+import { theme } from "@ribon.io/shared/styles";
 import RightImageIntegration from "./assets/right-image.svg";
 import LeftImageIntegration from "./assets/left-image.svg";
 import ArrowLeft from "./assets/arrow-left-dark-green.svg";
@@ -92,6 +94,14 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
             <S.Description>{subtitle}</S.Description>
           </S.TextContainer>
           <S.FilledButton onClick={handleClick}>{buttonText}</S.FilledButton>
+          <Button
+            text={t("hasAccountButton")}
+            textColor={theme.colors.neutral[600]}
+            backgroundColor="transparent"
+            borderColor={theme.colors.neutral[300]}
+            borderRadius="4px"
+            onClick={() => navigateTo("/auth/sign-in")}
+          />
           {!isOnboarding && (
             <S.TooltipSection>
               <Tooltip

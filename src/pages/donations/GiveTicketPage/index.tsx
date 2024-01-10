@@ -7,8 +7,10 @@ import { useIntegrationId } from "hooks/useIntegrationId";
 import { useIntegration } from "@ribon.io/shared/hooks";
 import { RIBON_COMPANY_ID } from "utils/constants";
 import Tooltip from "components/moleculars/Tooltip";
+import Button from "components/atomics/buttons/Button";
 import RibonLogo from "assets/images/logo-ribon.svg";
 import { logEvent } from "lib/events";
+import { theme } from "@ribon.io/shared/styles";
 import RightImageIntegration from "./assets/right-image.svg";
 import LeftImageIntegration from "./assets/left-image.svg";
 import ArrowLeft from "./assets/arrow-left-dark-green.svg";
@@ -54,6 +56,11 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
 
   const buttonText = isOnboarding ? t("onboardingButtonText") : t("buttonText");
 
+  const handleHasAccount = () => {
+    logEvent("openAuthBtn_click", { from: "onboarding_page" });
+    navigateTo("/auth/sign-in");
+  };
+
   return (
     <S.Container>
       {!isOnboarding && (
@@ -91,7 +98,19 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
             <S.Title>{isOnboarding ? titleOnboarding : t("title")}</S.Title>
             <S.Description>{subtitle}</S.Description>
           </S.TextContainer>
-          <S.FilledButton onClick={handleClick}>{buttonText}</S.FilledButton>
+          <S.ButtonContainer>
+            <S.FilledButton onClick={handleClick}>{buttonText}</S.FilledButton>
+            {isOnboarding && (
+              <Button
+                text={t("hasAccountButton")}
+                textColor={theme.colors.neutral[600]}
+                backgroundColor="transparent"
+                borderColor={theme.colors.neutral[300]}
+                borderRadius="4px"
+                onClick={handleHasAccount}
+              />
+            )}
+          </S.ButtonContainer>
           {!isOnboarding && (
             <S.TooltipSection>
               <Tooltip

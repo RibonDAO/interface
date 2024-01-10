@@ -52,6 +52,13 @@ export const FilledButton = styled.button`
   color: ${({ theme }) => theme.colors.neutral10};
 `;
 
+export const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(8)};
+`;
+
 export const LeftImage = styled.img`
   display: none;
 

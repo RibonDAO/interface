@@ -12,6 +12,7 @@ export type ButtonProps = {
   backgroundColor?: string;
   softDisabled?: boolean;
   borderColor?: string;
+  borderRadius?: string;
   ribons?: boolean;
   ribonsColor?: string;
   leftIcon?: string;
@@ -35,6 +36,7 @@ export default function Button({
   backgroundColor = primary[300],
   softDisabled = false,
   borderColor = "",
+  borderRadius,
   ribons = false,
   ribonsColor = primary[300],
   leftIcon,
@@ -73,10 +75,10 @@ export default function Button({
     return borderColor;
   }
 
-  function borderRadius() {
+  function findBorderRadius() {
     if (round) return "80px";
 
-    return "8px";
+    return borderRadius || "8px";
   }
 
   const handleClick = () => {
@@ -95,7 +97,7 @@ export default function Button({
       onClick={handleClick}
       leftIcon={leftIcon}
       disabled={disabled}
-      borderRadius={borderRadius()}
+      borderRadius={findBorderRadius()}
       size={size}
       {...props}
     >

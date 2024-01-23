@@ -777,6 +777,9 @@
       "firstAccessText": "Valide sua conta clicando no link enviado para {{email}} e receba seu ticket extra."
     }
   },
+  "extraTicketPage": {
+    "error": "Link inválido"
+  },
   "components": {
     "moleculars": {
       "buttons": {

@@ -12,7 +12,7 @@ function ValidateExtraTicket(): JSX.Element {
 
   async function validateExtraTicket() {
     try {
-      const token = extractUrlValue("token", search) ?? "";
+      const token = extractUrlValue("extra-ticket-token", search) ?? "";
       await userAccountApi.postValidateExtraTicket(token);
 
       navigateTo({

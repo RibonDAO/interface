@@ -3,30 +3,30 @@ import ticketIconOn from "assets/icons/ticket-icon-on.svg";
 import ticketIconOff from "assets/icons/ticket-icon-off.svg";
 import ticketIconOutline from "assets/icons/ticket-icon-outline.svg";
 import { logEvent } from "lib/events";
-import { useCanDonate } from "@ribon.io/shared/hooks";
-import { PLATFORM } from "utils/constants";
+import { useUserTickets } from "@ribon.io/shared/hooks";
+
 import useNavigation from "hooks/useNavigation";
+
 import { useBlockedDonationContributionModal } from "hooks/modalHooks/useBlockedDonationContributionModal";
-import useVoucher from "hooks/useVoucher";
-import { useIntegrationId } from "hooks/useIntegrationId";
-import extractUrlValue from "lib/extractUrlValue";
+import { useEffect, useState } from "react";
 import * as S from "./styles";
 
 type Props = {
   outline?: boolean;
 };
 function TicketsCounter({ outline = false }: Props): JSX.Element {
-  const { navigateTo, history } = useNavigation();
-  const { isVoucherAvailable } = useVoucher();
-  const integrationId = useIntegrationId();
-  const externalId = extractUrlValue("external_id", history.location.search);
-  const { canDonate } = useCanDonate(integrationId, PLATFORM, externalId);
-  const canDonateAndHasTicket = canDonate && isVoucherAvailable();
+  const { navigateTo } = useNavigation();
+
+  const { ticketsAvailable } = useUserTickets();
+  const { tickets, refetch } = ticketsAvailable();
   const { showBlockedDonationContributionModal } =
     useBlockedDonationContributionModal();
+  const [ticketsCounter, setTicketsCounter] = useState(0);
+
+  const hasTicket = ticketsCounter > 0;
 
   function handleCounterClick() {
-    if (canDonateAndHasTicket) {
+    if (hasTicket) {
       logEvent("ticketIcon_click", { ticketQtd: 1 });
       navigateTo("/tickets");
     } else {
@@ -35,21 +35,26 @@ function TicketsCounter({ outline = false }: Props): JSX.Element {
     }
   }
 
-  const ticketIcon = canDonateAndHasTicket ? ticketIconOn : ticketIconOff;
+  useEffect(() => {
+    refetch();
+
+    setTicketsCounter(tickets ?? 1);
+  }, [tickets]);
+
+  const ticketIcon = ticketsCounter > 0 ? ticketIconOn : ticketIconOff;
 
   return (
-    <S.CounterContainer onClick={() => handleCounterClick()} outline={outline}>
+    <S.CounterContainer onClick={() => handleCounterClick()}>
+      <S.CounterImage src={outline ? ticketIconOutline : ticketIcon} />
       <S.TicketsAmount
-        outline={outline}
         color={
-          canDonateAndHasTicket
+          hasTicket
             ? theme.colors.brand.primary[600]
             : theme.colors.neutral[500]
         }
       >
-        {canDonateAndHasTicket ? 1 : 0}
+        {ticketsCounter}
       </S.TicketsAmount>
-      <S.CounterImage src={outline ? ticketIconOutline : ticketIcon} />
     </S.CounterContainer>
   );
 }

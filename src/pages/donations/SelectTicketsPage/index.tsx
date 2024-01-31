@@ -33,7 +33,7 @@ export default function SelectTicketsPage() {
 
   const [donationInProgress, setDonationInProgress] = useState(false);
   const [donationSucceeded, setDonationSucceeded] = useState(true);
-  const [ticketsQuantity] = useState(1);
+  const [ticketsQuantity, setTicketsQuantity] = useState(1);
   const {
     state: { nonProfit },
   } = useLocation<LocationStateType>();
@@ -108,7 +108,8 @@ export default function SelectTicketsPage() {
         <S.Subtitle>
           {formattedImpactText(nonProfit, undefined, false, true)}
         </S.Subtitle>
-        <SliderButton rangeSize={10} setValue={() => {}} />
+        <p>{ticketsQuantity}</p>
+        <SliderButton rangeSize={10} setValue={setTicketsQuantity} />
         <S.Button
           text={t("button")}
           textColor={theme.colors.neutral10}

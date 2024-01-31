@@ -22,6 +22,7 @@ export const CounterContainer = styled.div`
 
 export const TicketsAmount = styled.p`
   ${defaultBodyMdBold}
+
   margin-right: ${({ theme }) => theme.spacing(8)};
   color: ${({ color }) => color};
 `;

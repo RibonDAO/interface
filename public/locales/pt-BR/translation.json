@@ -184,6 +184,10 @@
         "buttonText": "Continuar sem ticket extra",
         "toastDescription": "Seu ticket foi enviado por e-mail"
       }
+    },
+    "selectTicketsPage": {
+      "title": "Escolha o tamanho da sua ajuda",
+      "button": "Continuar"
     }
   },
   "layouts": {

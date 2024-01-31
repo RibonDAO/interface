@@ -5,7 +5,6 @@ import useNavigation from "hooks/useNavigation";
 import { logEvent } from "lib/events";
 import { Currencies, NonProfit } from "@ribon.io/shared/types";
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
-import useVoucher from "hooks/useVoucher";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import causeIllustration from "assets/images/direct-illustration.svg";
 import { useIntegrationId } from "hooks/useIntegrationId";
@@ -31,10 +30,9 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
   const [currentNonProfitIndex, setCurrentNonProfitIndex] = useState(0);
 
   const { formattedImpactText } = useFormattedImpactText();
-  const { isVoucherAvailable } = useVoucher();
   const { signedIn } = useCurrentUser();
 
-  const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
+  const canDonateAndHasVoucher = canDonate;
 
   const handleEmptyButtonClick = () => {
     navigateTo("/promoters/support-cause");

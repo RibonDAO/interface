@@ -3,12 +3,11 @@ import ticketIconOn from "assets/icons/ticket-icon-on.svg";
 import ticketIconOff from "assets/icons/ticket-icon-off.svg";
 import ticketIconOutline from "assets/icons/ticket-icon-outline.svg";
 import { logEvent } from "lib/events";
-import { useUserTickets } from "@ribon.io/shared/hooks";
 
 import useNavigation from "hooks/useNavigation";
 
 import { useBlockedDonationContributionModal } from "hooks/modalHooks/useBlockedDonationContributionModal";
-import { useEffect, useState } from "react";
+import { useTickets } from "contexts/ticketsContext";
 import * as S from "./styles";
 
 type Props = {
@@ -16,12 +15,9 @@ type Props = {
 };
 function TicketsCounter({ outline = false }: Props): JSX.Element {
   const { navigateTo } = useNavigation();
-
-  const { ticketsAvailable } = useUserTickets();
-  const { tickets, refetch } = ticketsAvailable();
+  const { ticketsCounter } = useTickets();
   const { showBlockedDonationContributionModal } =
     useBlockedDonationContributionModal();
-  const [ticketsCounter, setTicketsCounter] = useState(0);
 
   const hasTicket = ticketsCounter > 0;
 
@@ -34,12 +30,6 @@ function TicketsCounter({ outline = false }: Props): JSX.Element {
       showBlockedDonationContributionModal();
     }
   }
-
-  useEffect(() => {
-    refetch();
-
-    setTicketsCounter(tickets ?? 1);
-  }, [tickets]);
 
   const ticketIcon = ticketsCounter > 0 ? ticketIconOn : ticketIconOff;
 

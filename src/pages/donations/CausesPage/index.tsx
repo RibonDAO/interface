@@ -4,6 +4,7 @@ import {
   useIntegration,
   useCanDonate,
   useFirstAccessToIntegration,
+  useTickets,
 } from "@ribon.io/shared/hooks";
 import { useLocation } from "react-router-dom";
 import { useCurrentUser } from "contexts/currentUserContext";
@@ -12,14 +13,20 @@ import { isFirstAccess } from "lib/onboardingFirstAccess";
 import { useModal } from "hooks/modalHooks/useModal";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
-import { DONATION_TOAST_SEEN_AT_KEY } from "lib/localStorage/constants";
+import {
+  DONATION_TOAST_INTEGRATION,
+  DONATION_TOAST_SEEN_AT_KEY,
+} from "lib/localStorage/constants";
 import { today } from "lib/dateTodayFormatter";
-import useVoucher from "hooks/useVoucher";
 import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import extractUrlValue from "lib/extractUrlValue";
-import { INTEGRATION_AUTH_ID, PLATFORM } from "utils/constants";
+import {
+  INTEGRATION_AUTH_ID,
+  PLATFORM,
+  RIBON_COMPANY_ID,
+} from "utils/constants";
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
@@ -28,6 +35,7 @@ import NonProfitsSection from "pages/donations/CausesPage/NonProfitsSection";
 import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
 import { useLanguage } from "hooks/useLanguage";
 import CampaignSection from "pages/donations/CausesPage/CampaignSection";
+import { useAuthentication } from "contexts/authenticationContext";
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
@@ -41,7 +49,7 @@ function CausesPage(): JSX.Element {
     useState<boolean | undefined>(false);
   const { chooseCauseModalVisible } = useCauseDonationContext();
   const { currentLang } = useLanguage();
-
+  const { isAuthenticated } = useAuthentication();
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
@@ -66,26 +74,20 @@ function CausesPage(): JSX.Element {
     state?.failedDonation,
   );
 
-  const hasSeenDonationToast = !!getLocalStorageItem(
-    DONATION_TOAST_SEEN_AT_KEY,
-  );
-
   const hasSeenChooseCauseModal = useRef(false);
 
   const { showReceiveTicketToast } = useReceiveTicketToast();
   const { signedIn, currentUser } = useCurrentUser();
-
+  const { canCollectByIntegration, collectByIntegration } = useTickets();
   const externalId = extractUrlValue("external_id", search);
   const { canDonate, refetch: refetchCanDonate } = useCanDonate(
     integrationId,
     PLATFORM,
     externalId,
   );
-  const { createVoucher } = useVoucher();
-  const {
-    isFirstAccessToIntegration,
-    isLoading: isLoadingIsFirstAccessToIntegration,
-  } = useFirstAccessToIntegration(integration?.id || integrationId);
+  const { isFirstAccessToIntegration } = useFirstAccessToIntegration(
+    integration?.id || integrationId,
+  );
 
   const { isMobile } = useBreakpoint();
 
@@ -93,8 +95,11 @@ function CausesPage(): JSX.Element {
     const donationToastSeenAtKey = getLocalStorageItem(
       DONATION_TOAST_SEEN_AT_KEY,
     );
+    const donationToastIntegration = getLocalStorageItem(
+      DONATION_TOAST_INTEGRATION,
+    );
 
-    if (donationToastSeenAtKey) {
+    if (donationToastSeenAtKey && donationToastIntegration === integrationId) {
       const dateUserSawToast = new Date(parseInt(donationToastSeenAtKey, 10));
       return dateUserSawToast.toLocaleDateString() === today();
     }
@@ -106,27 +111,41 @@ function CausesPage(): JSX.Element {
     [state?.blockedDonation, canDonate],
   );
 
+  async function receiveTicket() {
+    const { canCollect } = await canCollectByIntegration(
+      integrationId ?? "",
+      currentUser?.email ?? "",
+      PLATFORM,
+    );
+
+    if (canCollect && !hasReceivedTicketToday()) {
+      if (isAuthenticated()) {
+        await collectByIntegration(
+          integrationId ?? "",
+          currentUser?.email ?? "",
+          PLATFORM,
+        );
+      }
+      setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());
+      setLocalStorageItem(
+        DONATION_TOAST_INTEGRATION,
+        integrationId?.toLocaleString() ?? RIBON_COMPANY_ID,
+      );
+      showReceiveTicketToast();
+    }
+  }
+
   useEffect(() => {
     refetchCanDonate();
   }, [JSON.stringify(currentUser)]);
 
   useEffect(() => {
-    if (hasReceivedTicketToday() && hasAvailableDonation()) {
-      createVoucher();
-    } else if (
-      !hasReceivedTicketToday() ||
-      (hasAvailableDonation() && !hasSeenDonationToast)
-    ) {
-      if (
-        integration &&
-        !isFirstAccessToIntegration &&
-        !isLoadingIsFirstAccessToIntegration
-      ) {
-        setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());
-        showReceiveTicketToast();
-        createVoucher();
-      }
+    if (isFirstAccessToIntegration !== undefined) {
+      receiveTicket();
     }
+  }, [isFirstAccessToIntegration, integrationId]);
+
+  useEffect(() => {
     setShouldShowIntegrationBanner(
       !integration?.name?.toLowerCase()?.includes("ribon") &&
         hasAvailableDonation() &&

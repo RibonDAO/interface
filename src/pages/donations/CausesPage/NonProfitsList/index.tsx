@@ -99,7 +99,8 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
         from,
       });
       if (signedIn) {
-        navigateTo({ pathname: "/signed-in", state: { nonProfit } });
+        //         navigateTo({ pathname: "/signed-in", state: { nonProfit } });
+        navigateTo({ pathname: "/select-tickets", state: { nonProfit } });
       } else {
         navigateTo({
           pathname: "/donation/auth/sign-in",

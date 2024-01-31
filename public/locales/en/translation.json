@@ -184,6 +184,10 @@
         "buttonText": "Continue without extra ticket",
         "toastDescription": "Your ticket was sent by e-mail"
       }
+    },
+    "selectTicketsPage": {
+      "title": "Choose the size of your aid",
+      "button": "Continue"
     }
   },
   "layouts": {

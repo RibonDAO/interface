@@ -6,8 +6,6 @@ export const CounterImage = styled.img`
 `;
 
 export const CounterContainer = styled.div`
-  margin-right: ${({ theme }) => theme.spacing(8)};
-  border-right: 1px solid ${({ theme }) => theme.colors.neutral[200]};
   display: flex;
   flex-direction: row;
   align-items: center;

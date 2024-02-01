@@ -23,10 +23,10 @@ export const SliderContainer = styled.div`
 `;
 
 export const Button = styled.button`
-  width: 40px;
-  height: 40px;
+  width: ${({ theme }) => theme.spacing(40)};
+  height: ${({ theme }) => theme.spacing(40)};
   border: 1px solid ${({ theme }) => theme.colors.brand.primary[600]};
-  border-radius: 4px;
+  border-radius: ${({ theme }) => theme.spacing(4)};
   display: flex;
   align-items: center;
   justify-content: center;

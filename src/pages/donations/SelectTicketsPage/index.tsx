@@ -11,7 +11,6 @@ import useNavigation from "hooks/useNavigation";
 import { PLATFORM } from "utils/constants";
 import { useLocation } from "react-router";
 import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
-import useToast from "hooks/useToast";
 import { NonProfit } from "@ribon.io/shared/types";
 import { useTicketsContext } from "contexts/ticketsContext";
 import DonatingSection from "../auth/DonatingSection";
@@ -33,7 +32,6 @@ export default function SelectTicketsPage() {
   const { signedIn } = useCurrentUser();
   const { donate } = useUserTickets();
   const { history, navigateTo } = useNavigation();
-  const toast = useToast();
   const { ticketsCounter } = useTicketsContext();
   const [donationInProgress, setDonationInProgress] = useState(false);
   const [donationSucceeded, setDonationSucceeded] = useState(true);
@@ -56,17 +54,12 @@ export default function SelectTicketsPage() {
       [failedKey]: true,
       message: error.response?.data?.formatted_message || error.message,
     };
-    navigateTo({ pathname: "/causes", state: newState });
     setDonationSucceeded(false);
-    toast({
-      type: "error",
-      message: error?.response?.data?.formatted_message || t("donationError"),
-    });
+    navigateTo({ pathname: "/causes", state: newState });
   };
 
   const handleButtonPress = async () => {
     if (!signedIn) return;
-
     setDonationInProgress(true);
 
     try {
@@ -95,10 +88,11 @@ export default function SelectTicketsPage() {
           flow: "signedIn",
           cause: nonProfit.cause,
           nonProfit,
+          impact: currentImpact,
         },
       });
     }
-  }, [donationSucceeded]);
+  }, [donationSucceeded, currentImpact]);
 
   useEffect(() => {
     setCurrentImpact(

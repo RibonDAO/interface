@@ -623,7 +623,8 @@
   },
   "downloadApp": {
     "floating": {
-      "title": "More tickets"
+      "title": "Get the app and earn tickets!",
+      "cta": "Get app"
     }
   },
   "forYouPage": {

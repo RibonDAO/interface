@@ -37,6 +37,19 @@ function SliderButton({ rangeSize, setValue }: Props): JSX.Element {
     ? theme.colors.neutral[400]
     : theme.colors.brand.primary[600];
 
+  const customStyles = {
+    rail: { backgroundColor: theme.colors.neutral[200] },
+    track: { backgroundColor: theme.colors.brand.primary[600] },
+    handle: {
+      border: `2px solid ${theme.colors.neutral10}`,
+      backgroundColor: theme.colors.brand.primary[600],
+      boxShadow: "none",
+      opacity: "1",
+      width: "16px",
+      height: "16px",
+    },
+  };
+
   return (
     <S.Container>
       <S.Button
@@ -60,9 +73,7 @@ function SliderButton({ rangeSize, setValue }: Props): JSX.Element {
           min={rangeSize === 1 ? 0 : 1}
           max={rangeSize}
           step={1}
-          railStyle={{ backgroundColor: theme.colors.neutral[200] }}
-          trackStyle={{ backgroundColor: theme.colors.brand.primary[600] }}
-          handleStyle={{ borderColor: theme.colors.brand.primary[600] }}
+          styles={customStyles}
           value={sliderValue}
           onChange={handleSliderChange}
           disabled={rangeSize === 1}

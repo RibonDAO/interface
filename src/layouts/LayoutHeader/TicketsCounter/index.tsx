@@ -6,13 +6,13 @@ import { logEvent } from "lib/events";
 import useNavigation from "hooks/useNavigation";
 
 import { useBlockedDonationContributionModal } from "hooks/modalHooks/useBlockedDonationContributionModal";
-import { useTickets } from "contexts/ticketsContext";
+import { useTicketsContext } from "contexts/ticketsContext";
 import { useEffect } from "react";
 import * as S from "./styles";
 
 function TicketsCounter(): JSX.Element {
   const { navigateTo } = useNavigation();
-  const { ticketsCounter, refetchTickets } = useTickets();
+  const { ticketsCounter, refetchTickets } = useTicketsContext();
   const { showBlockedDonationContributionModal } =
     useBlockedDonationContributionModal();
 

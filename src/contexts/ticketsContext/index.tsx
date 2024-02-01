@@ -34,22 +34,24 @@ function TicketsProvider({ children }: Props) {
 
   const hasTickets = ticketsCounter > 0;
 
-  useEffect(() => {
-    refetch();
-
+  async function hasTicketToCollect() {
+    const { canCollect } = await canCollectByIntegration(
+      integrationId ?? "",
+      currentUser?.email ?? "",
+      PLATFORM,
+    );
     if (!isAuthenticated()) {
-      if (
-        !canCollectByIntegration(
-          integrationId ?? "",
-          currentUser?.email ?? "",
-          PLATFORM,
-        )
-      ) {
+      if (!canCollect) {
         setTicketsCounter(0);
       } else {
         setTicketsCounter(1);
       }
     }
+  }
+
+  useEffect(() => {
+    refetch();
+    hasTicketToCollect();
   }, [isAuthenticated, integrationId, currentUser]);
 
   useEffect(() => {
@@ -77,7 +79,7 @@ function TicketsProvider({ children }: Props) {
 
 export default TicketsProvider;
 
-export const useTickets = () => {
+export const useTicketsContext = () => {
   const context = useContext(TicketsContext);
 
   if (!context) {

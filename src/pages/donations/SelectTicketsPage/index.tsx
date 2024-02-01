@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { theme } from "@ribon.io/shared/styles";
 import SliderButton from "components/moleculars/sliders/SliderButton";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useUserTickets } from "@ribon.io/shared/hooks";
 import { logEvent } from "@amplitude/analytics-browser";
@@ -12,7 +12,7 @@ import { useLocation } from "react-router";
 import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
 import useToast from "hooks/useToast";
 import { NonProfit } from "@ribon.io/shared/types";
-import { useTickets } from "contexts/ticketsContext";
+import { useTicketsContext } from "contexts/ticketsContext";
 import TicketsCounter from "layouts/LayoutHeader/TicketsCounter";
 import DonatingSection from "../auth/DonatingSection";
 import * as S from "./styles";
@@ -25,20 +25,22 @@ export default function SelectTicketsPage() {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.selectTicketsPage",
   });
+  const {
+    state: { nonProfit },
+  } = useLocation<LocationStateType>();
 
   const { formattedImpactText } = useFormattedImpactText();
   const { signedIn } = useCurrentUser();
   const { donate } = useUserTickets();
-
   const { history, navigateTo } = useNavigation();
   const toast = useToast();
-  const { ticketsCounter } = useTickets();
+  const { ticketsCounter } = useTicketsContext();
   const [donationInProgress, setDonationInProgress] = useState(false);
   const [donationSucceeded, setDonationSucceeded] = useState(true);
   const [ticketsQuantity, setTicketsQuantity] = useState(1);
-  const {
-    state: { nonProfit },
-  } = useLocation<LocationStateType>();
+  const [currentImpact, setCurrentImpact] = useState(
+    nonProfit?.impactByTicket || undefined,
+  );
 
   const utmParams = getUTMFromLocationSearch(history.location.search);
 
@@ -98,6 +100,14 @@ export default function SelectTicketsPage() {
     }
   }, [donationSucceeded]);
 
+  useEffect(() => {
+    setCurrentImpact(
+      nonProfit?.impactByTicket
+        ? nonProfit.impactByTicket * ticketsQuantity
+        : undefined,
+    );
+  }, [nonProfit, ticketsQuantity]);
+
   return donationInProgress ? (
     <DonatingSection nonProfit={nonProfit} onAnimationEnd={onAnimationEnd} />
   ) : (
@@ -108,7 +118,7 @@ export default function SelectTicketsPage() {
       <S.ContentContainer>
         <S.Title>{t("title")}</S.Title>
         <S.Subtitle>
-          {formattedImpactText(nonProfit, undefined, false, true)}
+          {formattedImpactText(nonProfit, currentImpact, false, true)}
         </S.Subtitle>
         <TicketsCounter />
         <SliderButton

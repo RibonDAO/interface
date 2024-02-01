@@ -5,6 +5,7 @@ import ButtonComponent from "components/atomics/buttons/Button";
 
 export const Title = styled.p`
   ${stylizedDisplayXs}
+
   margin-bottom: ${({ theme }) => theme.spacing(8)};
   color: ${({ theme }) => theme.colors.brand.primary[900]};
 `;
@@ -45,7 +46,10 @@ export const ContentContainer = styled.div`
 
 export const Subtitle = styled.p`
   ${defaultBodyMdSemibold}
-  margin-bottom: ${({ theme }) => theme.spacing(24)};
+
+  min-height: 48px;
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
+  text-align: center;
   color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 

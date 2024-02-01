@@ -36,6 +36,7 @@ import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
 import { useLanguage } from "hooks/useLanguage";
 import CampaignSection from "pages/donations/CausesPage/CampaignSection";
 import { useAuthentication } from "contexts/authenticationContext";
+import { useTicketsContext } from "contexts/ticketsContext";
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
@@ -79,6 +80,7 @@ function CausesPage(): JSX.Element {
   const { showReceiveTicketToast } = useReceiveTicketToast();
   const { signedIn, currentUser } = useCurrentUser();
   const { canCollectByIntegration, collectByIntegration } = useTickets();
+  const { refetchTickets } = useTicketsContext();
   const externalId = extractUrlValue("external_id", search);
   const { canDonate, refetch: refetchCanDonate } = useCanDonate(
     integrationId,
@@ -99,7 +101,10 @@ function CausesPage(): JSX.Element {
       DONATION_TOAST_INTEGRATION,
     );
 
-    if (donationToastSeenAtKey && donationToastIntegration === integrationId) {
+    if (
+      donationToastSeenAtKey &&
+      donationToastIntegration === integrationId?.toLocaleString()
+    ) {
       const dateUserSawToast = new Date(parseInt(donationToastSeenAtKey, 10));
       return dateUserSawToast.toLocaleDateString() === today();
     }
@@ -117,7 +122,6 @@ function CausesPage(): JSX.Element {
       currentUser?.email ?? "",
       PLATFORM,
     );
-
     if (canCollect && !hasReceivedTicketToday()) {
       if (isAuthenticated()) {
         await collectByIntegration(
@@ -131,6 +135,7 @@ function CausesPage(): JSX.Element {
         DONATION_TOAST_INTEGRATION,
         integrationId?.toLocaleString() ?? RIBON_COMPANY_ID,
       );
+      refetchTickets();
       showReceiveTicketToast();
     }
   }

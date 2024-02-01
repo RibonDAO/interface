@@ -11,7 +11,6 @@ export const CounterContainer = styled.div`
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  background: ${({ theme }) => theme.colors.neutral10};
 
   &:hover {
     cursor: pointer;
@@ -20,6 +19,7 @@ export const CounterContainer = styled.div`
 
 export const TicketsAmount = styled.p`
   ${defaultBodyMdBold}
+
   margin-right: ${({ theme }) => theme.spacing(8)};
   color: ${({ color }) => color};
 `;

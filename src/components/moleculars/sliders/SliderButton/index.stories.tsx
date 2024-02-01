@@ -14,5 +14,5 @@ export const Default = Template.bind({});
 
 Default.args = {
   rangeSize: 10,
-  setValue: (value: number) => console.log(value),
+  setValue: () => {},
 };

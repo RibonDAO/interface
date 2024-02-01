@@ -88,6 +88,10 @@ import AuthenticationProvider, {
   IAuthenticationContext,
   AuthenticationContext,
 } from "contexts/authenticationContext";
+import TicketsProvider, {
+  ITicketsContext,
+  TicketsContext,
+} from "contexts/ticketsContext";
 
 export function renderWithTheme(children: React.ReactNode): RenderResult {
   return render(<ThemeProvider theme={theme}>{children}</ThemeProvider>);
@@ -150,6 +154,7 @@ export type RenderComponentProps = {
   stripeProviderValue?: Partial<IStripeContext>;
   userLevelProviderValue?: Partial<IUserLevelContext>;
   authenticationProviderValue?: Partial<IAuthenticationContext>;
+  ticketsProviderValue?: Partial<ITicketsContext>;
 };
 export function renderComponent(
   component: JSX.Element,
@@ -174,6 +179,7 @@ export function renderComponent(
     stripeProviderValue = {},
     userLevelProviderValue = {},
     authenticationProviderValue = {},
+    ticketsProviderValue = {},
   }: RenderComponentProps = {},
 ): RenderWithContextResult {
   const historyObject = history;
@@ -257,7 +263,12 @@ export function renderComponent(
                                                   AuthenticationProvider,
                                                   AuthenticationContext,
                                                   authenticationProviderValue,
-                                                  component,
+                                                  renderProvider(
+                                                    TicketsProvider,
+                                                    TicketsContext,
+                                                    ticketsProviderValue,
+                                                    component,
+                                                  ),
                                                 ),
                                               ),
                                             ),

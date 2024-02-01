@@ -9,28 +9,28 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-size: 24px;
-  color: ${({ theme }) => theme.colors.brand.primary[900]};
   margin-top: ${({ theme }) => theme.spacing(8)};
   margin-bottom: ${({ theme }) => theme.spacing(8)};
   position: relative;
   z-index: 2;
+  font-size: 24px;
+  color: ${({ theme }) => theme.colors.brand.primary[900]};
 `;
 
 export const SliderContainer = styled.div`
-  flex: 2;
   padding: 0 ${({ theme }) => theme.spacing(16)};
+  flex: 2;
 `;
 
 export const Button = styled.button`
-  display: flex;
   width: 40px;
   height: 40px;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
   border: 1px solid ${({ theme }) => theme.colors.brand.primary[600]};
   border-radius: 4px;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   background-color: ${({ theme }) => theme.colors.neutral10};
+  cursor: pointer;
 `;

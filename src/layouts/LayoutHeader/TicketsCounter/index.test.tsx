@@ -6,6 +6,6 @@ describe("TicketsCounter", () => {
   it("renders without error", () => {
     renderComponent(<TicketsCounter />);
 
-    expectTextToBeInTheDocument("0");
+    expectTextToBeInTheDocument("1");
   });
 });

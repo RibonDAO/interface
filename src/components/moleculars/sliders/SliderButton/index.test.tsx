@@ -6,6 +6,7 @@ describe("SliderButton", () => {
   it("should render without error", () => {
     renderComponent(<SliderButton rangeSize={10} setValue={() => {}} />);
 
-    expectTextToBeInTheDocument("1");
+    expectTextToBeInTheDocument("add");
+    expectTextToBeInTheDocument("remove");
   });
 });

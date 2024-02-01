@@ -66,16 +66,19 @@ function AppDownloadTemplate({
 
   function handleMobileLink() {
     logEvent("mobileDownloadBtn_click");
+    logEvent("downloadCTA_click", { from: "downloadPageBtn" });
     window.open(APP_LINK);
   }
 
   function handleIosLink() {
     logEvent("appStoreBtn_click");
+    logEvent("downloadCTA_click", { from: "appStoreBtn" });
     window.open(IOS_APP_LINK);
   }
 
   function handleAndroidLink() {
     logEvent("gPlayBtn_click");
+    logEvent("downloadCTA_click", { from: "gPlayBtn" });
     window.open(ANDROID_APP_LINK);
   }
 

@@ -50,7 +50,10 @@ function AppDownloadPage() {
   };
 
   useEffect(() => {
+    const from = comesFromPostDonation ? "postDonation" : "downloadPage";
     logEvent("P17_view");
+
+    logEvent("downloadCTA_view", { from });
   });
 
   useAvoidBackButton();

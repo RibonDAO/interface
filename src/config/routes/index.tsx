@@ -194,7 +194,7 @@ function RoutesComponent(): JSX.Element {
 
       <Route path="/select-tickets" exact>
         <Suspense fallback={<div />}>
-          <NavigationBackHeader />
+          <NavigationBackHeader hasTicketCounter />
           <SelectTicketsPage />
         </Suspense>
       </Route>

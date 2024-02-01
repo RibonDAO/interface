@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { theme } from "@ribon.io/shared/styles";
+import TicketIconText from "components/moleculars/TicketIconText";
 import SliderButton from "components/moleculars/sliders/SliderButton";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import { useCallback, useEffect, useState } from "react";
@@ -13,7 +14,6 @@ import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
 import useToast from "hooks/useToast";
 import { NonProfit } from "@ribon.io/shared/types";
 import { useTicketsContext } from "contexts/ticketsContext";
-import TicketsCounter from "layouts/LayoutHeader/TicketsCounter";
 import DonatingSection from "../auth/DonatingSection";
 import * as S from "./styles";
 
@@ -120,7 +120,7 @@ export default function SelectTicketsPage() {
         <S.Subtitle>
           {formattedImpactText(nonProfit, currentImpact, false, true)}
         </S.Subtitle>
-        <TicketsCounter />
+        <TicketIconText quantity={ticketsQuantity} buttonDisabled />
         <SliderButton
           rangeSize={ticketsCounter}
           setValue={setTicketsQuantity}

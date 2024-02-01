@@ -32,8 +32,6 @@ function BottomBanner({
     if (eventName && eventParams)
       logEvent(`${eventName}_click`, parsedEventParams);
 
-    console.log("clicked");
-    console.log("params", parsedEventParams);
     return onClick();
   };
 

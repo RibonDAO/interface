@@ -9,7 +9,7 @@ const getReturnValues = (countDown: any) => {
 
   const arr = [];
   if (hours > 0) arr.push(hours);
-  if (minutes > 0 && hours === 0) arr.push(minutes);
+  arr.push(minutes);
   arr.push(seconds);
 
   return arr;

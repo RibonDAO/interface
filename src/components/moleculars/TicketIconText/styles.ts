@@ -5,7 +5,7 @@ export const CounterImage = styled.img`
   margin-right: ${({ theme }) => theme.spacing(4)};
 `;
 
-export const CounterContainer = styled.div`
+export const CounterContainer = styled.div<{ disabled?: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -13,7 +13,7 @@ export const CounterContainer = styled.div`
   box-sizing: border-box;
 
   &:hover {
-    cursor: pointer;
+    cursor: ${(props) => (props.disabled ? "" : "pointer")};
   }
 `;
 

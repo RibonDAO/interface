@@ -14,7 +14,6 @@ import useNavigation from "hooks/useNavigation";
 import useVoucher from "hooks/useVoucher";
 import { normalizedLanguage } from "lib/currentLanguage";
 import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
-import { useTicketsContext } from "contexts/ticketsContext";
 
 type HandleDonateProps = {
   nonProfit: NonProfit;
@@ -32,7 +31,6 @@ function useDonationFlow() {
   const { destroyVoucher } = useVoucher();
   const { updateUserConfig } = useUserConfig();
   const { collectAndDonateByIntegration } = useTickets();
-  const { refetchTickets } = useTicketsContext();
 
   async function handleDonate({
     nonProfit,
@@ -64,7 +62,6 @@ function useDonationFlow() {
           utmParams.utmCampaign,
         );
         destroyVoucher();
-        refetchTickets();
         if (onSuccess) onSuccess();
       } catch (e: any) {
         logError(e);

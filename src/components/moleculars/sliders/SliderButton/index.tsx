@@ -45,8 +45,8 @@ function SliderButton({ rangeSize, setValue }: Props): JSX.Element {
       backgroundColor: theme.colors.brand.primary[600],
       boxShadow: "none",
       opacity: "1",
-      width: "16px",
-      height: "16px",
+      width: theme.spacing(16),
+      height: theme.spacing(16),
     },
   };
 

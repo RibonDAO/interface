@@ -12,6 +12,7 @@ import { useOffers } from "@ribon.io/shared/hooks";
 import { useLanguage } from "hooks/useLanguage";
 import { useAuthentication } from "contexts/authenticationContext";
 import { useCurrentUser } from "contexts/currentUserContext";
+import { useTicketsContext } from "contexts/ticketsContext";
 import StoriesSection from "../StoriesSection";
 import * as S from "../styles";
 
@@ -27,6 +28,7 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
     keyPrefix: "donations.causesPage",
   });
   const { navigateTo } = useNavigation();
+  const { hasTickets } = useTicketsContext();
 
   const [currentNonProfitIndex, setCurrentNonProfitIndex] = useState(0);
 
@@ -34,7 +36,7 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
   const { signedIn } = useCurrentUser();
   const { isAuthenticated } = useAuthentication();
 
-  const canDonateAndHasVoucher = canDonate;
+  const canDonateAndHasVoucher = canDonate || hasTickets;
 
   const handleEmptyButtonClick = () => {
     navigateTo("/promoters/support-cause");

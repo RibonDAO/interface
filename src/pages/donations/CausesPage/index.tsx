@@ -37,6 +37,7 @@ import { useLanguage } from "hooks/useLanguage";
 import CampaignSection from "pages/donations/CausesPage/CampaignSection";
 import { useAuthentication } from "contexts/authenticationContext";
 import { useTicketsContext } from "contexts/ticketsContext";
+
 import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
@@ -80,7 +81,7 @@ function CausesPage(): JSX.Element {
   const { showReceiveTicketToast } = useReceiveTicketToast();
   const { signedIn, currentUser } = useCurrentUser();
   const { canCollectByIntegration, collectByIntegration } = useTickets();
-  const { refetchTickets } = useTicketsContext();
+  const { refetchTickets, ticketsCounter } = useTicketsContext();
   const externalId = extractUrlValue("external_id", search);
   const { canDonate, refetch: refetchCanDonate } = useCanDonate(
     integrationId,
@@ -135,8 +136,8 @@ function CausesPage(): JSX.Element {
         DONATION_TOAST_INTEGRATION,
         integrationId?.toLocaleString() ?? RIBON_COMPANY_ID,
       );
-      refetchTickets();
       showReceiveTicketToast();
+      refetchTickets();
     }
   }
 
@@ -146,7 +147,7 @@ function CausesPage(): JSX.Element {
 
   useEffect(() => {
     refetchTickets();
-  }, []);
+  }, [ticketsCounter, currentUser, isAuthenticated, integrationId]);
 
   useEffect(() => {
     if (isFirstAccessToIntegration !== undefined) {

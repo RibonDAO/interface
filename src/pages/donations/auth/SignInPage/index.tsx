@@ -27,8 +27,8 @@ function SignInPage(): JSX.Element {
 
   const [donationInProgress, setDonationInProgress] = useState(false);
   const [donationSucceeded, setDonationSucceeded] = useState(false);
-
   const { handleDonate } = useUserDonation();
+
   const {
     state: { nonProfit },
   } = useLocation<LocationStateType>();

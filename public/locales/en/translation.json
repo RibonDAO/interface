@@ -608,7 +608,7 @@
     "of": "of"
   },
   "appDownloadPage": {
-    "buttonBack": "Go back",
+    "buttonBack": "Stay in browser",
     "buttonSkip": "Skip",
     "buttonCopyLink": "Copy link",
     "buttonCopyLinkSuccess": "Copied!",
@@ -616,14 +616,16 @@
     "chooseStore": "Choose a store",
     "copyText": "Copy link",
     "copiedText": "Copied!",
-    "title": "Get a new ticket",
+    "title": "Grab your reward! Win an extra ticket by downloading our app.",
     "description": "Download the app and get an extra ticket",
-    "buttonDownloadApp": "Download and get ticket",
-    "scanQrCode": "Use QR Code"
+    "buttonDownloadApp": "Download to get ticket",
+    "scanQrCode": "Use QR Code",
+    "offerExpiresIn": "Offer expires in {{time}}"
   },
   "downloadApp": {
     "floating": {
-      "title": "More tickets"
+      "title": "Get the app and earn tickets!",
+      "cta": "Get app"
     }
   },
   "forYouPage": {

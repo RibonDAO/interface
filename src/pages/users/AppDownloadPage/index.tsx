@@ -7,8 +7,8 @@ import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useEffect, useState } from "react";
 import { logEvent } from "@amplitude/analytics-browser";
 import theme from "styles/theme";
+import IllustrationMobile from "assets/images/extra-ticket.svg";
 import * as S from "./styles";
-import IllustrationMobile from "./assets/illustration-mobile.svg";
 import LeftImage from "./assets/left-image.svg";
 import RightImage from "./assets/right-image.svg";
 import AppDownloadTemplate from "./AppDownloadTemplate";
@@ -50,7 +50,10 @@ function AppDownloadPage() {
   };
 
   useEffect(() => {
+    const from = comesFromPostDonation ? "postDonation" : "downloadPage";
     logEvent("P17_view");
+
+    logEvent("downloadCTA_view", { from });
   });
 
   useAvoidBackButton();
@@ -72,7 +75,6 @@ function AppDownloadPage() {
         <AppDownloadTemplate
           title={t("title")}
           image={IllustrationMobile}
-          description={t("description")}
           firstButton={{
             text: t("buttonDownloadApp"),
             backgroundColor: theme.colors.brand.primary[600],

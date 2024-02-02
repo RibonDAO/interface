@@ -5,6 +5,7 @@ import useNavigation from "hooks/useNavigation";
 import { PLATFORM, RIBON_COMPANY_ID } from "utils/constants";
 import { logEvent } from "lib/events";
 import extractUrlValue from "lib/extractUrlValue";
+import useVoucher from "hooks/useVoucher";
 import TicketsCounter from "./TicketsCounter";
 import SettingsMenu from "./SettingsMenu";
 import * as S from "./styles";
@@ -24,10 +25,11 @@ function LayoutHeader({
 }: Props): JSX.Element {
   const integrationId = useIntegrationId();
   const { navigateBack, history, navigateTo } = useNavigation();
+  const { isVoucherAvailable } = useVoucher();
   const { integration } = useIntegration(integrationId);
   const externalId = extractUrlValue("external_id", history.location.search);
   const { canDonate } = useCanDonate(integrationId, PLATFORM, externalId);
-  const canDonateAndHasVoucher = canDonate;
+  const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
 
   if (!integrationId) return <div />;
 

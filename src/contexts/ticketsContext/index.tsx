@@ -7,6 +7,7 @@ import { useAuthentication } from "contexts/authenticationContext";
 import { PLATFORM } from "utils/constants";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useCurrentUser } from "contexts/currentUserContext";
+import { logError } from "services/crashReport";
 
 export interface ITicketsContext {
   ticketsCounter: number;
@@ -30,22 +31,27 @@ function TicketsProvider({ children }: Props) {
   const { isAuthenticated } = useAuthentication();
   const { currentUser } = useCurrentUser();
   const [ticketsCounter, setTicketsCounter] = useState<number>(1);
+
   const { canCollectByIntegration } = useTicketsHook();
 
   const hasTickets = ticketsCounter > 0;
 
   async function hasTicketToCollect() {
-    const { canCollect } = await canCollectByIntegration(
-      integrationId ?? "",
-      currentUser?.email ?? "",
-      PLATFORM,
-    );
-    if (!isAuthenticated()) {
-      if (!canCollect) {
-        setTicketsCounter(0);
-      } else {
-        setTicketsCounter(1);
+    try {
+      const { canCollect } = await canCollectByIntegration(
+        integrationId ?? "",
+        currentUser?.email ?? "",
+        PLATFORM,
+      );
+      if (!isAuthenticated()) {
+        if (!canCollect) {
+          setTicketsCounter(0);
+        } else {
+          setTicketsCounter(1);
+        }
       }
+    } catch (error) {
+      logError(error);
     }
   }
 

@@ -20,7 +20,7 @@ function TicketsCounter(): JSX.Element {
 
   useEffect(() => {
     refetchTickets();
-  }, []);
+  }, [ticketsCounter]);
 
   function handleCounterClick() {
     if (hasTicket) {

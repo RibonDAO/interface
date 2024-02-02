@@ -145,6 +145,10 @@ function CausesPage(): JSX.Element {
   }, [JSON.stringify(currentUser)]);
 
   useEffect(() => {
+    refetchTickets();
+  }, []);
+
+  useEffect(() => {
     if (isFirstAccessToIntegration !== undefined) {
       receiveTicket();
     }

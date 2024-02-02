@@ -3,18 +3,18 @@ import { logError } from "services/crashReport";
 import { setLocalStorageItem } from "lib/localStorage";
 import { SHOW_MENU, useCurrentUser } from "contexts/currentUserContext";
 import {
-  useDonations,
   useSources,
+  useTickets,
   useUserConfig,
   useUsers,
 } from "@ribon.io/shared/hooks";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { NonProfit } from "@ribon.io/shared/types";
-import extractUrlValue from "lib/extractUrlValue";
 import useNavigation from "hooks/useNavigation";
 import useVoucher from "hooks/useVoucher";
 import { normalizedLanguage } from "lib/currentLanguage";
 import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
+import { useTicketsContext } from "contexts/ticketsContext";
 
 type HandleDonateProps = {
   nonProfit: NonProfit;
@@ -24,18 +24,15 @@ type HandleDonateProps = {
   onError?: (error: any) => void;
 };
 function useDonationFlow() {
-  const { currentUser, signedIn, setCurrentUser } = useCurrentUser();
+  const { signedIn, setCurrentUser } = useCurrentUser();
   const { findOrCreateUser } = useUsers();
   const { createSource } = useSources();
-  const { donate } = useDonations(currentUser?.id);
   const integrationId = useIntegrationId();
   const { history, navigateTo } = useNavigation();
   const { destroyVoucher } = useVoucher();
   const { updateUserConfig } = useUserConfig();
-
-  function getExternalIdFromLocationSearch() {
-    return extractUrlValue("external_id", history.location.search);
-  }
+  const { collectAndDonateByIntegration } = useTickets();
+  const { refetchTickets } = useTicketsContext();
 
   async function handleDonate({
     nonProfit,
@@ -57,17 +54,17 @@ function useDonationFlow() {
 
     if (integrationId) {
       try {
-        await donate(
+        await collectAndDonateByIntegration(
           integrationId,
           nonProfit.id,
           email,
           PLATFORM,
-          getExternalIdFromLocationSearch(),
           utmParams.utmSource,
           utmParams.utmMedium,
           utmParams.utmCampaign,
         );
         destroyVoucher();
+        refetchTickets();
         if (onSuccess) onSuccess();
       } catch (e: any) {
         logError(e);

@@ -612,7 +612,7 @@
     "of": "de"
   },
   "appDownloadPage": {
-    "buttonBack": "Voltar",
+    "buttonBack": "Ficar no navegador",
     "buttonSkip": "Pular",
     "buttonCopyLink": "Copiar link",
     "buttonCopyLinkSuccess": "Copiado!",
@@ -620,14 +620,16 @@
     "chooseStore": "Escolha a loja",
     "copyText": "Copiar link",
     "copiedText": "Copiado!",
-    "title": "Baixou, ganhou!",
+    "title": "Baixou, ganhou! Receba um ticket extra ao baixar nosso app.",
     "description": "Baixe o app e receba um ticket extra",
-    "buttonDownloadApp": "Baixar e receber ticket",
-    "scanQrCode": "Use o QR Code"
+    "buttonDownloadApp": "Baixar app",
+    "scanQrCode": "Use o QR Code",
+    "offerExpiresIn": "Oferta expira em {{time}}"
   },
   "downloadApp": {
     "floating": {
-      "title": "Mais tickets"
+      "title": "Ganhe mais tickets! Baixe o app.",
+      "cta": "Baixar"
     }
   },
   "forYouPage": {

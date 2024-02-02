@@ -9,7 +9,6 @@ import {
 import { useLocation } from "react-router-dom";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationId } from "hooks/useIntegrationId";
-import { isFirstAccess } from "lib/onboardingFirstAccess";
 import { useModal } from "hooks/modalHooks/useModal";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
@@ -37,12 +36,11 @@ import { useLanguage } from "hooks/useLanguage";
 import CampaignSection from "pages/donations/CausesPage/CampaignSection";
 import { useAuthentication } from "contexts/authenticationContext";
 import { useTicketsContext } from "contexts/ticketsContext";
-
-import * as S from "./styles";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
 import ChooseCauseModal from "./ChooseCauseModal";
 import CausesSelectSection from "./CausesSelectSection";
+import * as S from "./styles";
 
 function CausesPage(): JSX.Element {
   const integrationId = useIntegrationId();
@@ -79,9 +77,10 @@ function CausesPage(): JSX.Element {
   const hasSeenChooseCauseModal = useRef(false);
 
   const { showReceiveTicketToast } = useReceiveTicketToast();
-  const { signedIn, currentUser } = useCurrentUser();
   const { canCollectByIntegration, collectByIntegration } = useTickets();
   const { refetchTickets, ticketsCounter } = useTicketsContext();
+  const { currentUser } = useCurrentUser();
+
   const externalId = extractUrlValue("external_id", search);
   const { canDonate, refetch: refetchCanDonate } = useCanDonate(
     integrationId,
@@ -176,7 +175,7 @@ function CausesPage(): JSX.Element {
 
   return (
     <S.Container>
-      {!isFirstAccess(signedIn) && <DownloadAppToast />}
+      <DownloadAppToast />
       {shouldShowIntegrationBanner && (
         <IntegrationBanner integration={integration} />
       )}

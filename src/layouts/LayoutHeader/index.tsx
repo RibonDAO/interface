@@ -66,7 +66,7 @@ function LayoutHeader({
             {rightComponent}
             {!hideWallet && (
               <S.ContainerButtons>
-                <TicketsCounter />
+                <TicketsCounter outline={outline} />
                 <SettingsMenu outline={outline} />
               </S.ContainerButtons>
             )}

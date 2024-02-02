@@ -5,7 +5,11 @@ import { useBlockedDonationContributionModal } from "hooks/modalHooks/useBlocked
 import { useTicketsContext } from "contexts/ticketsContext";
 import { useEffect } from "react";
 
-function TicketsCounter(): JSX.Element {
+type Props = {
+  outline?: boolean;
+};
+
+function TicketsCounter({ outline = false }: Props): JSX.Element {
   const { navigateTo } = useNavigation();
   const { ticketsCounter, refetchTickets } = useTicketsContext();
   const { showBlockedDonationContributionModal } =
@@ -28,7 +32,11 @@ function TicketsCounter(): JSX.Element {
   };
 
   return (
-    <TicketIconText onClick={handleCounterClick} quantity={ticketsCounter} />
+    <TicketIconText
+      onClick={handleCounterClick}
+      quantity={ticketsCounter}
+      outline={outline}
+    />
   );
 }
 

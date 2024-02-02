@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-
+import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import ForYouMenu from "./ForYouMenu";
 import * as S from "./styles";
 
@@ -10,6 +10,7 @@ function ForYouPage(): JSX.Element {
 
   return (
     <S.Container>
+      <DownloadAppToast />
       <S.Title>{t("title")}</S.Title>
       <ForYouMenu />
     </S.Container>

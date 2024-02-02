@@ -2,7 +2,6 @@ import { useTranslation } from "react-i18next";
 import { useCallback, useEffect, useState, Fragment } from "react";
 import { logEvent } from "lib/events";
 import { useNonProfits } from "@ribon.io/shared/hooks";
-import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import { Cause, Offer, NonProfit } from "@ribon.io/shared/types";
 import IntersectBackground from "assets/images/intersect-background.svg";
 import useNavigation from "hooks/useNavigation";
@@ -116,7 +115,6 @@ function CardPage(): JSX.Element {
 
   return (
     <S.Container>
-      <DownloadAppToast />
       <S.TitleContainer>
         <S.Title>{renderCurrentTitle()}</S.Title>
         {!isMobile && (

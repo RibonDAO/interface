@@ -39,7 +39,9 @@ export default function RedirectPage() {
 
   function redirectUrlWithUTM() {
     const url = new URL(
-      decodeURIComponent(isValidUrl(redirectUrl) ? redirectUrl : DAPP_URL),
+      decodeURIComponent(
+        isValidUrl(decodeURIComponent(redirectUrl)) ? redirectUrl : DAPP_URL,
+      ),
     );
     url.searchParams.append("utm_source", utmParams.utmSource);
     url.searchParams.append("utm_medium", utmParams.utmMedium);

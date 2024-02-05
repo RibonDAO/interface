@@ -13,12 +13,10 @@ describe("App Download Page", () => {
   });
 
   it("should render the app download page", () => {
-    expectTextToBeInTheDocument("Get a new ticket");
-
-    expectTextToBeInTheDocument("Download the app and get an extra ticket");
-    expectTextToBeInTheDocument("Use QR Code");
-    expectTextToBeInTheDocument("Choose a store");
-    expectTextToBeInTheDocument("Go back");
+    expectTextToBeInTheDocument(
+      "Grab your reward! Win an extra ticket by downloading our app.",
+    );
+    expectTextToBeInTheDocument("Stay in browser");
   });
 
   it("should go back when click in arrow", () => {

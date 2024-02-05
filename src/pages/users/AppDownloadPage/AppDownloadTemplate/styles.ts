@@ -1,14 +1,16 @@
 import styled from "styled-components";
 import {
+  defaultBodyLgSemibold,
   defaultBodyMdBold,
   defaultBodyMdSemibold,
+  defaultHeadingXxs,
 } from "styles/typography/default";
-import { stylizedDisplayMd } from "styles/typography/stylized";
 
 export const Title = styled.p`
-  ${stylizedDisplayMd}
+  ${defaultHeadingXxs}
 
-  margin-top: ${({ theme }) => theme.spacing(20)};
+  margin-top: ${({ theme }) => theme.spacing(24)};
+  text-align: center;
   color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;
 
@@ -81,14 +83,11 @@ export const Button = styled.button<{ copy?: boolean }>`
 
 export const Badges = styled.div`
   width: 100%;
-  margin-top: ${({ theme }) => theme.spacing(12)};
-  margin-bottom: ${({ theme }) => theme.spacing(40)};
-  padding: ${({ theme }) => theme.spacing(0, 24, 24, 24)};
-  border: 1px solid ${({ theme }) => theme.colors.neutral[200]};
-  border-radius: 8px;
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
   display: flex;
   flex-direction: row;
-  align-items: start;
+  gap: ${({ theme }) => theme.spacing(8)};
+  align-items: center;
   justify-content: center;
 `;
 
@@ -156,10 +155,11 @@ export const ButtonsContainer = styled.div<{
 export const Image = styled.img``;
 
 export const ImageBadge = styled.img`
-  padding-left: ${({ theme }) => theme.spacing(40)};
+  width: 100%;
 `;
 
 export const Link = styled.a`
+  width: 50%;
   cursor: pointer;
 `;
 
@@ -172,7 +172,7 @@ export const DownloadButton = styled.a<{
 
   width: 100%;
   margin-bottom: ${({ theme, hasAnotherButton }) =>
-    hasAnotherButton ? theme.spacing(16) : theme.spacing(32)};
+    hasAnotherButton ? theme.spacing(8) : theme.spacing(16)};
   padding: ${({ theme }) => theme.spacing(12, 16)};
   border-radius: 8px;
   position: relative;
@@ -199,4 +199,21 @@ export const DownloadButton = styled.a<{
     color: ${({ theme, textColor }) =>
       textColor || theme.colors.brand.primary[900]};
   }
+`;
+
+export const CountdownContainer = styled.div`
+  ${defaultBodyLgSemibold}
+
+  padding-block: ${({ theme }) => theme.spacing(8)};
+  padding-inline: ${({ theme }) => theme.spacing(12)};
+  margin-top: ${({ theme }) => theme.spacing(24)};
+  margin-bottom: ${({ theme }) => theme.spacing(32)};
+  border: solid 1px ${({ theme }) => theme.colors.neutral[300]};
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  gap: ${({ theme }) => theme.spacing(4)};
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;

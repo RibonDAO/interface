@@ -42,6 +42,7 @@ import ValidateExtraTicket from "pages/auth/ValidateExtraTicketPage";
 import InsertEmailAccountPage from "pages/donations/auth/InsertEmailAccountPage";
 import ExtraTicketPage from "pages/auth/ExtraTicketPage";
 import SignInExtraTicketPage from "pages/auth/SignInExtraTicketPage";
+import RedirectPage from "pages/campaigns/redirectPage";
 import ReceiveExtraTicketPage from "pages/auth/ReceiveExtraTicketPage";
 import SignInByMagicLinkPage from "pages/donations/auth/SignInByMagicLinkPage";
 import DonationSignInPage from "pages/donations/auth/SignInPage";
@@ -54,7 +55,6 @@ import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
   const location = useLocation();
-
   useEffect(() => {
     const urlName = location.pathname.replace(/\/\d+/, "");
     const { search, state } = location;
@@ -90,6 +90,12 @@ function RoutesComponent(): JSX.Element {
         <Suspense fallback={<div />}>
           <NavigationBackHeader />
           <SentMagicLinkEmailPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/redirect">
+        <Suspense fallback={<div />}>
+          <RedirectPage />
         </Suspense>
       </Route>
 

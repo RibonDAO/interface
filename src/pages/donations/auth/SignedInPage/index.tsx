@@ -25,7 +25,7 @@ function SignedInPage(): JSX.Element {
   const [donationInProgress, setDonationInProgress] = useState(false);
   const [donationSucceeded, setDonationSucceeded] = useState(false);
   const { currentUser } = useCurrentUser();
-  const { handleDonate } = useDonationFlow();
+  const { handleCollectAndDonate } = useDonationFlow();
   const { setTicketsCounter } = useTicketsContext();
   const { navigateTo } = useNavigation();
   const {
@@ -35,12 +35,11 @@ function SignedInPage(): JSX.Element {
   const oldImpactFormat = () =>
     formattedImpactText(nonProfit, undefined, false, true);
 
-  const onContinue = async (email: string, allowedEmailMarketing?: boolean) => {
+  const onContinue = async (email: string) => {
     setDonationInProgress(true);
-    await handleDonate({
+    await handleCollectAndDonate({
       nonProfit,
       email,
-      allowedEmailMarketing,
       onSuccess: () => setDonationSucceeded(true),
       onError: () => {
         setDonationSucceeded(false);

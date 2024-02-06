@@ -36,7 +36,7 @@ function TicketsProvider({ children }: Props) {
 
   const hasTickets = ticketsCounter > 0;
 
-  async function hasTicketToCollect() {
+  async function updateTicketsCounter() {
     try {
       const { canCollect } = await canCollectByIntegration(
         integrationId ?? "",
@@ -57,7 +57,7 @@ function TicketsProvider({ children }: Props) {
 
   useEffect(() => {
     refetch();
-    hasTicketToCollect();
+    updateTicketsCounter();
   }, [isAuthenticated, integrationId, currentUser]);
 
   useEffect(() => {

@@ -9,8 +9,6 @@ import {
 import { useLocation } from "react-router-dom";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationId } from "hooks/useIntegrationId";
-import { useModal } from "hooks/modalHooks/useModal";
-import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import {
   DONATION_TOAST_INTEGRATION,
@@ -36,6 +34,8 @@ import { useLanguage } from "hooks/useLanguage";
 import CampaignSection from "pages/donations/CausesPage/CampaignSection";
 import { useAuthentication } from "contexts/authenticationContext";
 import { useTicketsContext } from "contexts/ticketsContext";
+import { useModal } from "hooks/modalHooks/useModal";
+import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
 import ChooseCauseModal from "./ChooseCauseModal";

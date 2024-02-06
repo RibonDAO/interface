@@ -5,14 +5,12 @@ import SliderButton from "components/moleculars/sliders/SliderButton";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import { useCallback, useEffect, useState } from "react";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { useUserTickets } from "@ribon.io/shared/hooks";
 import { logEvent } from "@amplitude/analytics-browser";
 import useNavigation from "hooks/useNavigation";
-import { PLATFORM } from "utils/constants";
 import { useLocation } from "react-router";
-import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
 import { NonProfit } from "@ribon.io/shared/types";
 import { useTicketsContext } from "contexts/ticketsContext";
+import useDonationFlow from "hooks/useDonationFlow";
 import DonatingSection from "../auth/DonatingSection";
 import * as S from "./styles";
 
@@ -30,8 +28,8 @@ export default function SelectTicketsPage() {
 
   const { formattedImpactText } = useFormattedImpactText();
   const { signedIn } = useCurrentUser();
-  const { donate } = useUserTickets();
-  const { history, navigateTo } = useNavigation();
+  const { handleDonate } = useDonationFlow();
+  const { navigateTo } = useNavigation();
   const { ticketsCounter } = useTicketsContext();
   const [donationInProgress, setDonationInProgress] = useState(false);
   const [donationSucceeded, setDonationSucceeded] = useState(true);
@@ -39,8 +37,6 @@ export default function SelectTicketsPage() {
   const [currentImpact, setCurrentImpact] = useState(
     nonProfit?.impactByTicket || undefined,
   );
-
-  const utmParams = getUTMFromLocationSearch(history.location.search);
 
   const onDonationSuccess = () => {
     setDonationSucceeded(true);
@@ -63,14 +59,7 @@ export default function SelectTicketsPage() {
     setDonationInProgress(true);
 
     try {
-      await donate(
-        nonProfit.id,
-        ticketsQuantity,
-        PLATFORM,
-        utmParams.utmSource,
-        utmParams.utmMedium,
-        utmParams.utmCampaign,
-      );
+      await handleDonate({ nonProfit, ticketsQuantity });
       onDonationSuccess();
     } catch (error: any) {
       onDonationFail(error);

@@ -28,7 +28,7 @@ function InsertEmailAccountPage(): JSX.Element {
   const [donationInProgress, setDonationInProgress] = useState(false);
   const [donationSucceeded, setDonationSucceeded] = useState(false);
   const { formattedImpactText } = useFormattedImpactText();
-  const { handleDonate } = useDonationFlow();
+  const { handleCollectAndDonate } = useDonationFlow();
   const { navigateTo } = useNavigation();
   const { setTicketsCounter } = useTicketsContext();
   const {
@@ -40,7 +40,7 @@ function InsertEmailAccountPage(): JSX.Element {
   const onContinue = async () => {
     setDonationInProgress(true);
     await sendAuthenticationEmail({ email });
-    await handleDonate({
+    await handleCollectAndDonate({
       nonProfit,
       email,
       onSuccess: () => setDonationSucceeded(true),

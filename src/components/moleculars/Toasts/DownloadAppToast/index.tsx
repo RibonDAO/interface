@@ -2,15 +2,22 @@ import React from "react";
 import useNavigation from "hooks/useNavigation";
 import BottomBanner from "components/atomics/BottomBanner";
 import { useTranslation } from "react-i18next";
+import useBreakpoint from "hooks/useBreakpoint";
+import { APP_LINK } from "utils/constants";
 
 function DownloadAppToast(): JSX.Element {
   const { navigateTo } = useNavigation();
+  const { isMobile } = useBreakpoint();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "downloadApp.floating",
   });
 
   const handleClick = () => {
+    if (isMobile) {
+      window.open(APP_LINK);
+      return;
+    }
     navigateTo("/app-download");
   };
 

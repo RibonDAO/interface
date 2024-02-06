@@ -11,7 +11,6 @@ import GoogleLogin from "components/moleculars/buttons/GoogleLogin";
 import AppleLogin from "components/moleculars/buttons/AppleLogin";
 import MagicLinkLogin from "components/moleculars/buttons/MagicLinkLogin";
 import useDonationFlow from "hooks/useDonationFlow";
-import { useCurrentUser } from "contexts/currentUserContext";
 import * as S from "./styles";
 import DonatingSection from "../DonatingSection";
 
@@ -28,8 +27,7 @@ function SignInPage(): JSX.Element {
 
   const [donationInProgress, setDonationInProgress] = useState(false);
   const [donationSucceeded, setDonationSucceeded] = useState(false);
-  const { handleCollectAndDonate } = useDonationFlow();
-  const { currentUser } = useCurrentUser();
+  const { handleDonate } = useDonationFlow();
 
   const {
     state: { nonProfit },
@@ -37,9 +35,9 @@ function SignInPage(): JSX.Element {
 
   const onContinue = async () => {
     setDonationInProgress(true);
-    await handleCollectAndDonate({
+    await handleDonate({
       nonProfit,
-      email: currentUser?.email || "",
+      ticketsQuantity: 1,
       onSuccess: () => setDonationSucceeded(true),
       onError: () => {
         setDonationSucceeded(false);

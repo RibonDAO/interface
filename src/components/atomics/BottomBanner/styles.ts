@@ -12,7 +12,7 @@ export const Container = styled.div<{ isNavigationVisible: boolean }>`
   right: 0;
   bottom: ${({ isNavigationVisible }) =>
     isNavigationVisible ? "76px" : "0px"};
-  z-index: ${({ theme }) => theme.zindex.navigator};
+  z-index: ${({ theme }) => theme.zindex.navbar};
   display: flex;
   flex-direction: row;
   gap: ${({ theme }) => theme.spacing(16)};

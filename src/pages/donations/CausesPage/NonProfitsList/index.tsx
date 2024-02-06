@@ -5,13 +5,14 @@ import useNavigation from "hooks/useNavigation";
 import { logEvent } from "lib/events";
 import { Currencies, NonProfit } from "@ribon.io/shared/types";
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
-import useVoucher from "hooks/useVoucher";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import causeIllustration from "assets/images/direct-illustration.svg";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useOffers } from "@ribon.io/shared/hooks";
 import { useLanguage } from "hooks/useLanguage";
+import { useAuthentication } from "contexts/authenticationContext";
 import { useCurrentUser } from "contexts/currentUserContext";
+import { useTicketsContext } from "contexts/ticketsContext";
 import StoriesSection from "../StoriesSection";
 import * as S from "../styles";
 
@@ -27,14 +28,15 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
     keyPrefix: "donations.causesPage",
   });
   const { navigateTo } = useNavigation();
+  const { hasTickets } = useTicketsContext();
 
   const [currentNonProfitIndex, setCurrentNonProfitIndex] = useState(0);
 
   const { formattedImpactText } = useFormattedImpactText();
-  const { isVoucherAvailable } = useVoucher();
   const { signedIn } = useCurrentUser();
+  const { isAuthenticated } = useAuthentication();
 
-  const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
+  const canDonateAndHasVoucher = canDonate || hasTickets;
 
   const handleEmptyButtonClick = () => {
     navigateTo("/promoters/support-cause");
@@ -100,7 +102,9 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
         nonProfitId: nonProfit.id,
         from,
       });
-      if (signedIn) {
+      if (isAuthenticated()) {
+        navigateTo({ pathname: "/select-tickets", state: { nonProfit } });
+      } else if (signedIn) {
         navigateTo({ pathname: "/signed-in", state: { nonProfit } });
       } else {
         navigateTo({

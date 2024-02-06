@@ -121,7 +121,8 @@
       "onboardingIntegrationTitle": "{{integrationName}} te trouxe aqui",
       "onboardingSubtitle": "Seu ticket doação está disponível",
       "onboardingButtonText": "Receber meu ticket",
-      "title": "Você tem 1 ticket especial",
+      "title": "Você tem 1 ticket",
+      "titlePlural": "Você tem {{ticketsCounter}} tickets",
       "integrationSubtitle": "{{integrationName}} te deu um ticket para você doar aqui na Ribon!",
       "subtitle": "Você recebe um novo ticket sempre que entra na Ribon pela primeira vez no dia",
       "buttonText": "Doar meu ticket",
@@ -184,6 +185,10 @@
         "buttonText": "Continuar sem ticket extra",
         "toastDescription": "Seu ticket foi enviado por e-mail"
       }
+    },
+    "selectTicketsPage": {
+      "title": "Escolha o tamanho da sua ajuda",
+      "button": "Continuar"
     }
   },
   "layouts": {

@@ -11,6 +11,7 @@ import Button from "components/atomics/buttons/Button";
 import RibonLogo from "assets/images/logo-ribon.svg";
 import { logEvent } from "lib/events";
 import { theme } from "@ribon.io/shared/styles";
+import { useTicketsContext } from "contexts/ticketsContext";
 import RightImageIntegration from "./assets/right-image.svg";
 import LeftImageIntegration from "./assets/left-image.svg";
 import ArrowLeft from "./assets/arrow-left-dark-green.svg";
@@ -27,6 +28,7 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
   const { navigateTo, navigateBack } = useNavigation();
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
+  const { ticketsCounter } = useTicketsContext();
 
   const handleClick = () => {
     logEvent("P10_getTicketBtn_click");
@@ -55,6 +57,8 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
   const subtitle = isOnboarding ? t("onboardingSubtitle") : handleSubtitle;
 
   const buttonText = isOnboarding ? t("onboardingButtonText") : t("buttonText");
+
+  const title = isOnboarding ? titleOnboarding : t("title");
 
   const handleHasAccount = () => {
     logEvent("openAuthBtn_click", { from: "onboarding_page" });
@@ -95,7 +99,11 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
             </S.ImageContainer>
           )}
           <S.TextContainer>
-            <S.Title>{isOnboarding ? titleOnboarding : t("title")}</S.Title>
+            <S.Title>
+              {ticketsCounter > 1
+                ? t("titlePlural", { ticketsCounter })
+                : title}
+            </S.Title>
             <S.Description>{subtitle}</S.Description>
           </S.TextContainer>
           <S.ButtonContainer>

@@ -62,6 +62,10 @@ describe("LayoutHeader", () => {
       payload: { canDonate: false },
       method: "POST",
     });
+    mockRequest("/api/v1/tickets/can_collect_by_integration", {
+      payload: { canCollect: false },
+      method: "POST",
+    });
 
     beforeEach(() => {
       const mockUseImpactConversion = useImpactConversion as jest.Mock;

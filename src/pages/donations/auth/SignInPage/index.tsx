@@ -4,13 +4,13 @@ import { useTranslation } from "react-i18next";
 import { logEvent } from "lib/events";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import useNavigation from "hooks/useNavigation";
-import useUserDonation from "hooks/useUserDonation";
 import { useLocation } from "react-router";
 import LeftImage from "assets/images/bottom-left-shape.svg";
 import RightImage from "assets/images/top-right-shape.svg";
 import GoogleLogin from "components/moleculars/buttons/GoogleLogin";
 import AppleLogin from "components/moleculars/buttons/AppleLogin";
 import MagicLinkLogin from "components/moleculars/buttons/MagicLinkLogin";
+import useDonationFlow from "hooks/useDonationFlow";
 import * as S from "./styles";
 import DonatingSection from "../DonatingSection";
 
@@ -27,8 +27,8 @@ function SignInPage(): JSX.Element {
 
   const [donationInProgress, setDonationInProgress] = useState(false);
   const [donationSucceeded, setDonationSucceeded] = useState(false);
+  const { handleDonate } = useDonationFlow();
 
-  const { handleDonate } = useUserDonation();
   const {
     state: { nonProfit },
   } = useLocation<LocationStateType>();
@@ -37,6 +37,7 @@ function SignInPage(): JSX.Element {
     setDonationInProgress(true);
     await handleDonate({
       nonProfit,
+      ticketsQuantity: 1,
       onSuccess: () => setDonationSucceeded(true),
       onError: () => {
         setDonationSucceeded(false);

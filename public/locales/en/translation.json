@@ -122,6 +122,7 @@
       "onboardingSubtitle": "Your donation ticket is available",
       "onboardingButtonText": "Get my ticket",
       "title": "You have 1 special ticket",
+      "titlePlural": "You have {{ticketsCounter}} ticket",
       "integrationSubtitle": "{{integrationName}} gave you a ticket and you can donate it here at Ribon!",
       "subtitle": "Every day when you login in Ribon you get a new ticket.",
       "buttonText": "Donate my ticket",
@@ -184,6 +185,10 @@
         "buttonText": "Continue without extra ticket",
         "toastDescription": "Your ticket was sent by e-mail"
       }
+    },
+    "selectTicketsPage": {
+      "title": "Choose the size of your aid",
+      "button": "Continue"
     }
   },
   "layouts": {

@@ -33,6 +33,7 @@ function TicketDonationDonePage(): JSX.Element {
     nonProfit: NonProfit;
     flow?: "nonProfit" | "login" | "magicLink";
     from?: string;
+    impact?: number;
   };
 
   const { navigateTo } = useNavigation();
@@ -43,7 +44,7 @@ function TicketDonationDonePage(): JSX.Element {
   const { formattedImpactText } = useFormattedImpactText();
 
   const {
-    state: { nonProfit, flow },
+    state: { nonProfit, flow, impact },
   } = useLocation<LocationState>();
   const [allowedEmailMarketing, setAllowedEmailMarketing] = useState(false);
   const { currentUser } = useCurrentUser();
@@ -130,7 +131,7 @@ function TicketDonationDonePage(): JSX.Element {
     }
   }, []);
 
-  const bottomText = formattedImpactText(nonProfit);
+  const bottomText = formattedImpactText(nonProfit, impact);
 
   const audio = getAudioFromStorage("donationDoneSound");
 

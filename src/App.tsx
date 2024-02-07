@@ -60,8 +60,8 @@ function App() {
                       clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID!}
                     >
                       <AuthenticationProvider>
-                        <TicketsProvider>
-                          <Suspense fallback={<div />}>
+                        <Suspense fallback={<div />}>
+                          <TicketsProvider>
                             <TasksProvider>
                               <NonProfitsProvider>
                                 <CausesProvider>
@@ -76,8 +76,8 @@ function App() {
                                 </CausesProvider>
                               </NonProfitsProvider>
                             </TasksProvider>
-                          </Suspense>
-                        </TicketsProvider>
+                          </TicketsProvider>
+                        </Suspense>
                       </AuthenticationProvider>
                     </GoogleOAuthProvider>
                   </CurrentUserProvider>

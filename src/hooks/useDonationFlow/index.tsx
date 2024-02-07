@@ -14,6 +14,8 @@ import useNavigation from "hooks/useNavigation";
 import useVoucher from "hooks/useVoucher";
 import { normalizedLanguage } from "lib/currentLanguage";
 import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
+import extractUrlValue from "lib/extractUrlValue";
+import { useLocation } from "react-router-dom";
 
 type HandleCollectAndDonateProps = {
   nonProfit: NonProfit;
@@ -36,8 +38,13 @@ function useDonationFlow() {
   const integrationId = useIntegrationId();
   const { history, navigateTo } = useNavigation();
   const { destroyVoucher } = useVoucher();
-  const { collectAndDonateByIntegration } = useTickets();
+  const { collectAndDonateByIntegration, collectAndDonateByExternalIds } =
+    useTickets();
   const utmParams = getUTMFromLocationSearch(history.location.search);
+  const { search } = useLocation();
+  const externalId = extractUrlValue("external_id", search);
+
+  const externalIds = externalId?.split(",");
 
   async function handleCollectAndDonate({
     nonProfit,
@@ -53,15 +60,28 @@ function useDonationFlow() {
 
     if (integrationId) {
       try {
-        await collectAndDonateByIntegration(
-          integrationId,
-          nonProfit.id,
-          PLATFORM,
-          email,
-          utmParams.utmSource,
-          utmParams.utmMedium,
-          utmParams.utmCampaign,
-        );
+        if (externalIds && externalIds.length > 0) {
+          await collectAndDonateByExternalIds(
+            integrationId,
+            nonProfit.id,
+            PLATFORM,
+            externalIds,
+            email,
+            utmParams.utmSource,
+            utmParams.utmMedium,
+            utmParams.utmCampaign,
+          );
+        } else {
+          await collectAndDonateByIntegration(
+            integrationId,
+            nonProfit.id,
+            PLATFORM,
+            email,
+            utmParams.utmSource,
+            utmParams.utmMedium,
+            utmParams.utmCampaign,
+          );
+        }
         destroyVoucher();
         if (onSuccess) onSuccess();
       } catch (e: any) {

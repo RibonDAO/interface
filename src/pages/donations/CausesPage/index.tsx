@@ -4,27 +4,17 @@ import {
   useIntegration,
   useCanDonate,
   useFirstAccessToIntegration,
-  useTickets,
 } from "@ribon.io/shared/hooks";
 import { useLocation } from "react-router-dom";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationId } from "hooks/useIntegrationId";
-import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
-import {
-  DONATION_TOAST_INTEGRATION,
-  DONATION_TOAST_SEEN_AT_KEY,
-} from "lib/localStorage/constants";
-import { today } from "lib/dateTodayFormatter";
+
 import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import extractUrlValue from "lib/extractUrlValue";
-import {
-  INTEGRATION_AUTH_ID,
-  PLATFORM,
-  RIBON_COMPANY_ID,
-} from "utils/constants";
-import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
+import { INTEGRATION_AUTH_ID, PLATFORM } from "utils/constants";
+
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
@@ -36,6 +26,7 @@ import { useAuthentication } from "contexts/authenticationContext";
 import { useTicketsContext } from "contexts/ticketsContext";
 import { useModal } from "hooks/modalHooks/useModal";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
+import { useTickets } from "hooks/useTickets";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
 import ChooseCauseModal from "./ChooseCauseModal";
@@ -76,8 +67,6 @@ function CausesPage(): JSX.Element {
 
   const hasSeenChooseCauseModal = useRef(false);
 
-  const { showReceiveTicketToast } = useReceiveTicketToast();
-  const { canCollectByIntegration, collectByIntegration } = useTickets();
   const { refetchTickets, ticketsCounter } = useTicketsContext();
   const { currentUser } = useCurrentUser();
 
@@ -93,52 +82,12 @@ function CausesPage(): JSX.Element {
 
   const { isMobile } = useBreakpoint();
 
-  function hasReceivedTicketToday() {
-    const donationToastSeenAtKey = getLocalStorageItem(
-      DONATION_TOAST_SEEN_AT_KEY,
-    );
-    const donationToastIntegration = getLocalStorageItem(
-      DONATION_TOAST_INTEGRATION,
-    );
-
-    if (
-      donationToastSeenAtKey &&
-      donationToastIntegration === integrationId?.toLocaleString()
-    ) {
-      const dateUserSawToast = new Date(parseInt(donationToastSeenAtKey, 10));
-      return dateUserSawToast.toLocaleDateString() === today();
-    }
-    return false;
-  }
+  const { receiveTicket, hasReceivedTicketToday } = useTickets();
 
   const hasAvailableDonation = useCallback(
     () => !state?.blockedDonation && canDonate,
     [state?.blockedDonation, canDonate],
   );
-
-  async function receiveTicket() {
-    const { canCollect } = await canCollectByIntegration(
-      integrationId ?? "",
-      currentUser?.email ?? "",
-      PLATFORM,
-    );
-    if (canCollect && !hasReceivedTicketToday()) {
-      if (isAuthenticated()) {
-        await collectByIntegration(
-          integrationId ?? "",
-          currentUser?.email ?? "",
-          PLATFORM,
-        );
-      }
-      setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());
-      setLocalStorageItem(
-        DONATION_TOAST_INTEGRATION,
-        integrationId?.toLocaleString() ?? RIBON_COMPANY_ID,
-      );
-      showReceiveTicketToast();
-      refetchTickets();
-    }
-  }
 
   useEffect(() => {
     refetchCanDonate();
@@ -152,6 +101,7 @@ function CausesPage(): JSX.Element {
     if (isFirstAccessToIntegration !== undefined) {
       receiveTicket();
     }
+    refetchTickets();
   }, [isFirstAccessToIntegration, integrationId]);
 
   useEffect(() => {

@@ -86,16 +86,18 @@ export function useTickets() {
   async function receiveTicket() {
     const canCollect = await handleCanCollect();
 
-    if (canCollect && !hasReceivedTicketToday()) {
+    if (canCollect) {
       if (isAuthenticated()) {
         await handleCollect();
       }
+    }
+    if (canCollect && !hasReceivedTicketToday()) {
+      showReceiveTicketToast();
       setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());
       setLocalStorageItem(
         DONATION_TOAST_INTEGRATION,
         integrationId?.toLocaleString() ?? RIBON_COMPANY_ID,
       );
-      showReceiveTicketToast();
     }
   }
 

@@ -5,7 +5,6 @@ import * as S from "./styles";
 
 export type Props = {
   nonProfit: NonProfit;
-  canDonateAndHasVoucher: boolean;
   visible: boolean;
   setVisible: (visible: boolean) => void;
   onButtonClick?: () => void;

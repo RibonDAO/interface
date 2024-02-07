@@ -22,6 +22,9 @@
       "errorModalTitle": "Falha no processamento",
       "errorModalText": "A rede está instável e não foi possível registrar sua doação. Tente novamente, por favor.",
       "errorModalButtonText": "Ok",
+      "unauthorizedModalTitle": "Conta não validada",
+      "unauthorizedModalText": "Para completar a sua doação com segurança é necessário que você valide sua conta.",
+      "unauthorizedModalButtonText": "Prosseguir para validação",
       "receiveTicketAnimationModalTitle": "Recebendo ticket...",
       "receiveTicketAnimationModalOrigin": "Comunidade",
       "receiveTicketAnimationModalDestiny": "Você",
@@ -184,6 +187,10 @@
         "description": "Valide sua conta criada com {{email}} e receba seu ticket extra",
         "buttonText": "Continuar sem ticket extra",
         "toastDescription": "Seu ticket foi enviado por e-mail"
+      },
+      "validateAccountPage": {
+        "title": "Valide sua conta",
+        "description": "Valide sua conta criada com {{email}} para completar sua doação."
       }
     },
     "selectTicketsPage": {

@@ -10,7 +10,6 @@ import causeIllustration from "assets/images/direct-illustration.svg";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useOffers } from "@ribon.io/shared/hooks";
 import { useLanguage } from "hooks/useLanguage";
-import { useAuthentication } from "contexts/authenticationContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useTicketsContext } from "contexts/ticketsContext";
 import StoriesSection from "../StoriesSection";
@@ -34,7 +33,6 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
 
   const { formattedImpactText } = useFormattedImpactText();
   const { signedIn } = useCurrentUser();
-  const { isAuthenticated } = useAuthentication();
 
   const canDonateAndHasVoucher = canDonate || hasTickets;
 
@@ -102,10 +100,8 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
         nonProfitId: nonProfit.id,
         from,
       });
-      if (isAuthenticated()) {
+      if (signedIn) {
         navigateTo({ pathname: "/select-tickets", state: { nonProfit } });
-      } else if (signedIn) {
-        navigateTo({ pathname: "/signed-in", state: { nonProfit } });
       } else {
         navigateTo({
           pathname: "/donation/auth/sign-in",

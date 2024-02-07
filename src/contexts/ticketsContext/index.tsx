@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { useUserTickets } from "@ribon.io/shared/hooks";
-import { useAuthentication } from "contexts/authenticationContext";
+import { useTickets as useTicketsShared } from "@ribon.io/shared/hooks";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { logError } from "services/crashReport";
@@ -22,11 +21,10 @@ export const TicketsContext = createContext<ITicketsContext>(
 );
 
 function TicketsProvider({ children }: Props) {
-  const { ticketsAvailable } = useUserTickets();
+  const { ticketsAvailable } = useTicketsShared();
   const { tickets: userTickets, refetch } = ticketsAvailable();
   const integrationId = useIntegrationId();
-  const { isAuthenticated } = useAuthentication();
-  const { currentUser } = useCurrentUser();
+  const { signedIn } = useCurrentUser();
   const [ticketsCounter, setTicketsCounter] = useState<number>(1);
 
   const { handleCanCollect } = useTickets();
@@ -36,7 +34,7 @@ function TicketsProvider({ children }: Props) {
     try {
       const canCollect = await handleCanCollect();
 
-      if (!isAuthenticated()) {
+      if (!signedIn) {
         if (!canCollect) {
           setTicketsCounter(0);
         } else {
@@ -51,7 +49,7 @@ function TicketsProvider({ children }: Props) {
   useEffect(() => {
     refetch();
     updateTicketsCounter();
-  }, [isAuthenticated, integrationId, currentUser]);
+  }, [integrationId, signedIn]);
 
   useEffect(() => {
     if (userTickets !== undefined) {

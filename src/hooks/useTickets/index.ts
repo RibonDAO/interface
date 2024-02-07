@@ -13,12 +13,10 @@ import {
 } from "lib/localStorage/constants";
 import { today } from "lib/dateTodayFormatter";
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
-import { useAuthentication } from "contexts/authenticationContext";
 import { getLocalStorageItem, setLocalStorageItem } from "@ribon.io/shared/lib";
 
 export function useTickets() {
   const { currentUser } = useCurrentUser();
-  const { isAuthenticated } = useAuthentication();
   const {
     canCollectByExternalIds,
     canCollectByIntegration,
@@ -87,7 +85,7 @@ export function useTickets() {
     const canCollect = await handleCanCollect();
 
     if (canCollect && !hasReceivedTicketToday()) {
-      if (isAuthenticated()) {
+      if (currentUser) {
         await handleCollect();
       }
       setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());

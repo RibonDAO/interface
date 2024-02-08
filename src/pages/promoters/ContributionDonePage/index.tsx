@@ -44,7 +44,7 @@ function ContributionDonePage(): JSX.Element {
   const {
     state: { nonProfit, offerId, cause, flow, from },
   } = useLocation<LocationState>();
-  const { getOffer } = useOffers(currency, false);
+  const { getOffer } = useOffers(currency);
   const [offer, setOffer] = useState<Offer>();
   const { currentUser } = useCurrentUser();
   const { registerAction } = useTasksContext();

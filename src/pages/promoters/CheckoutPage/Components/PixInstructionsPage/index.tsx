@@ -40,7 +40,7 @@ function PixInstructionsPage(): JSX.Element {
     state: { pixInstructions },
   } = useLocation<LocationStateType>();
 
-  const { offers } = useOffers(currency as Currencies, false);
+  const { offers } = useOffers(currency as Currencies);
 
   const { navigateTo } = useNavigation();
 

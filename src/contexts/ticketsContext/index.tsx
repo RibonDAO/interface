@@ -24,17 +24,22 @@ function TicketsProvider({ children }: Props) {
   const { ticketsAvailable } = useTicketsShared();
   const { tickets: userTickets, refetch } = ticketsAvailable();
   const integrationId = useIntegrationId();
-  const { signedIn } = useCurrentUser();
+  const { currentUser } = useCurrentUser();
   const [ticketsCounter, setTicketsCounter] = useState<number>(1);
 
   const { handleCanCollect } = useTickets();
   const hasTickets = ticketsCounter > 0;
 
-  async function updateTicketsCounter() {
-    try {
-      const canCollect = await handleCanCollect();
+  function updateTicketsCounterForLoggedInUser() {
+    if (userTickets !== undefined) {
+      setTicketsCounter(userTickets);
+    }
+  }
 
-      if (!signedIn) {
+  async function updateTicketsCounterForNotLoggedInUser() {
+    try {
+      if (!currentUser) {
+        const canCollect = await handleCanCollect();
         if (!canCollect) {
           setTicketsCounter(0);
         } else {
@@ -46,27 +51,21 @@ function TicketsProvider({ children }: Props) {
     }
   }
 
-  async function refetchTickets() {
-    refetch();
-    updateTicketsCounter();
-  }
-
   useEffect(() => {
-    refetchTickets();
-  }, [integrationId, signedIn]);
-
-  useEffect(() => {
-    if (userTickets !== undefined) {
-      setTicketsCounter(userTickets);
-    }
+    updateTicketsCounterForLoggedInUser();
   }, [userTickets]);
+
+  useEffect(() => {
+    refetch();
+    updateTicketsCounterForNotLoggedInUser();
+  }, [integrationId, currentUser]);
 
   const ticketsObject: ITicketsContext = useMemo(
     () => ({
       ticketsCounter,
       setTicketsCounter,
       hasTickets,
-      refetchTickets,
+      refetchTickets: refetch,
     }),
     [ticketsCounter],
   );

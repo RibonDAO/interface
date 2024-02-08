@@ -57,7 +57,7 @@ function CausesPage(): JSX.Element {
 
   const hasSeenChooseCauseModal = useRef(false);
 
-  const { refetchTickets, ticketsCounter } = useTicketsContext();
+  const { refetchTickets } = useTicketsContext();
   const { currentUser } = useCurrentUser();
 
   const externalId = extractUrlValue("external_id", search);
@@ -88,25 +88,22 @@ function CausesPage(): JSX.Element {
     if (canCollect) {
       await handleCollect();
       refetchTickets();
-    }
-
-    if (canCollect && !hasReceivedTicketToday()) {
-      showReceiveTicketToast();
-      setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());
-      setLocalStorageItem(
-        DONATION_TOAST_INTEGRATION,
-        integrationId?.toLocaleString() ?? RIBON_COMPANY_ID,
-      );
+      if (!hasReceivedTicketToday()) {
+        showReceiveTicketToast();
+        setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());
+        setLocalStorageItem(
+          DONATION_TOAST_INTEGRATION,
+          integrationId?.toLocaleString() ?? RIBON_COMPANY_ID,
+        );
+      }
+    } else {
+      refetchTickets();
     }
   }
 
   useEffect(() => {
     refetchCanDonate();
   }, [JSON.stringify(currentUser)]);
-
-  useEffect(() => {
-    refetchTickets();
-  }, [ticketsCounter, currentUser, integrationId]);
 
   useEffect(() => {
     if (isFirstAccessToIntegration !== undefined) {

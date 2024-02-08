@@ -111,6 +111,7 @@ function CausesPage(): JSX.Element {
         refetchTickets();
       }
     }
+
     if (canCollect && !hasReceivedTicketToday()) {
       showReceiveTicketToast();
       setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());

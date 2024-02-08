@@ -17,7 +17,11 @@ export const baseURL = RIBON_API;
 export function initializeApi() {
   const lang = normalizedLanguage();
   const user = currentUserFromStorage();
-  const authHeaders = { Language: lang, Email: user?.email || "" };
+  const authHeaders = {
+    Language: lang,
+    Email: user?.email || "",
+    platform: "web",
+  };
 
   initializeSharedApi({ url: baseURL, headers: authHeaders });
   initializeAuthenticationApi({ url: baseURL, headers: authHeaders });

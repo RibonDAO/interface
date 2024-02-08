@@ -9,7 +9,6 @@ import extractUrlValue from "lib/extractUrlValue";
 import { useLocation } from "react-router-dom";
 import { LocationStateType } from "pages/donations/CausesPage/LocationStateType";
 import { useEffect } from "react";
-import { logEvent } from "lib/events";
 import NonProfitsList from "../NonProfitsList";
 import * as S from "./styles";
 
@@ -22,17 +21,6 @@ function NonProfitsSection() {
   const { search } = useLocation<LocationStateType>();
   const externalId = extractUrlValue("external_id", search);
   const { canDonate } = useCanDonate(integrationId, PLATFORM, externalId);
-
-  useEffect(() => {
-    if (filteredNonProfits && filteredCauses?.length > 0) {
-      logEvent("donationCardsOrder_view", {
-        nonProfits: filteredNonProfits
-          .map((nonProfit) => nonProfit.name)
-          .join(", "),
-        causes: filteredCauses?.map((cause) => cause.name).join(", "),
-      });
-    }
-  }, [filteredNonProfits, filteredCauses]);
 
   const nonProfitsFilter = () => {
     if (chosenCause) {

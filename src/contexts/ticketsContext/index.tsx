@@ -1,13 +1,10 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import {
-  useUserTickets,
-  useTickets as useTicketsHook,
-} from "@ribon.io/shared/hooks";
+import { useUserTickets } from "@ribon.io/shared/hooks";
 import { useAuthentication } from "contexts/authenticationContext";
-import { PLATFORM } from "utils/constants";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { logError } from "services/crashReport";
+import { useTickets } from "hooks/useTickets";
 
 export interface ITicketsContext {
   ticketsCounter: number;
@@ -32,17 +29,13 @@ function TicketsProvider({ children }: Props) {
   const { currentUser } = useCurrentUser();
   const [ticketsCounter, setTicketsCounter] = useState<number>(1);
 
-  const { canCollectByIntegration } = useTicketsHook();
-
+  const { handleCanCollect } = useTickets();
   const hasTickets = ticketsCounter > 0;
 
   async function updateTicketsCounter() {
     try {
-      const { canCollect } = await canCollectByIntegration(
-        integrationId ?? "",
-        currentUser?.email ?? "",
-        PLATFORM,
-      );
+      const canCollect = await handleCanCollect();
+
       if (!isAuthenticated()) {
         if (!canCollect) {
           setTicketsCounter(0);
@@ -55,9 +48,13 @@ function TicketsProvider({ children }: Props) {
     }
   }
 
-  useEffect(() => {
+  async function refetchTickets() {
     refetch();
     updateTicketsCounter();
+  }
+
+  useEffect(() => {
+    refetchTickets();
   }, [isAuthenticated, integrationId, currentUser]);
 
   useEffect(() => {
@@ -71,7 +68,7 @@ function TicketsProvider({ children }: Props) {
       ticketsCounter,
       setTicketsCounter,
       hasTickets,
-      refetchTickets: refetch,
+      refetchTickets,
     }),
     [ticketsCounter],
   );
@@ -89,7 +86,7 @@ export const useTicketsContext = () => {
   const context = useContext(TicketsContext);
 
   if (!context) {
-    throw new Error("useTickets must be used within TicketsProvider");
+    throw new Error("useTicketsContext must be used within TicketsProvider");
   }
 
   return context;

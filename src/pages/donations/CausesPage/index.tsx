@@ -4,17 +4,11 @@ import {
   useIntegration,
   useCanDonate,
   useFirstAccessToIntegration,
-  useTickets,
 } from "@ribon.io/shared/hooks";
 import { useLocation } from "react-router-dom";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationId } from "hooks/useIntegrationId";
-import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
-import {
-  DONATION_TOAST_INTEGRATION,
-  DONATION_TOAST_SEEN_AT_KEY,
-} from "lib/localStorage/constants";
-import { today } from "lib/dateTodayFormatter";
+
 import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
@@ -24,7 +18,7 @@ import {
   PLATFORM,
   RIBON_COMPANY_ID,
 } from "utils/constants";
-import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
+
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
@@ -36,6 +30,13 @@ import { useAuthentication } from "contexts/authenticationContext";
 import { useTicketsContext } from "contexts/ticketsContext";
 import { useModal } from "hooks/modalHooks/useModal";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
+import { useTickets } from "hooks/useTickets";
+import {
+  DONATION_TOAST_INTEGRATION,
+  DONATION_TOAST_SEEN_AT_KEY,
+} from "lib/localStorage/constants";
+import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
+import { setLocalStorageItem } from "lib/localStorage";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
 import ChooseCauseModal from "./ChooseCauseModal";
@@ -76,8 +77,6 @@ function CausesPage(): JSX.Element {
 
   const hasSeenChooseCauseModal = useRef(false);
 
-  const { showReceiveTicketToast } = useReceiveTicketToast();
-  const { canCollectByIntegration, collectByIntegration } = useTickets();
   const { refetchTickets, ticketsCounter } = useTicketsContext();
   const { currentUser } = useCurrentUser();
 
@@ -93,23 +92,10 @@ function CausesPage(): JSX.Element {
 
   const { isMobile } = useBreakpoint();
 
-  function hasReceivedTicketToday() {
-    const donationToastSeenAtKey = getLocalStorageItem(
-      DONATION_TOAST_SEEN_AT_KEY,
-    );
-    const donationToastIntegration = getLocalStorageItem(
-      DONATION_TOAST_INTEGRATION,
-    );
+  const { handleCanCollect, handleCollect, hasReceivedTicketToday } =
+    useTickets();
 
-    if (
-      donationToastSeenAtKey &&
-      donationToastIntegration === integrationId?.toLocaleString()
-    ) {
-      const dateUserSawToast = new Date(parseInt(donationToastSeenAtKey, 10));
-      return dateUserSawToast.toLocaleDateString() === today();
-    }
-    return false;
-  }
+  const { showReceiveTicketToast } = useReceiveTicketToast();
 
   const hasAvailableDonation = useCallback(
     () => !state?.blockedDonation && canDonate,
@@ -117,26 +103,22 @@ function CausesPage(): JSX.Element {
   );
 
   async function receiveTicket() {
-    const { canCollect } = await canCollectByIntegration(
-      integrationId ?? "",
-      currentUser?.email ?? "",
-      PLATFORM,
-    );
-    if (canCollect && !hasReceivedTicketToday()) {
+    const canCollect = await handleCanCollect();
+
+    if (canCollect) {
       if (isAuthenticated()) {
-        await collectByIntegration(
-          integrationId ?? "",
-          currentUser?.email ?? "",
-          PLATFORM,
-        );
+        await handleCollect();
+        refetchTickets();
       }
+    }
+
+    if (canCollect && !hasReceivedTicketToday()) {
+      showReceiveTicketToast();
       setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());
       setLocalStorageItem(
         DONATION_TOAST_INTEGRATION,
         integrationId?.toLocaleString() ?? RIBON_COMPANY_ID,
       );
-      showReceiveTicketToast();
-      refetchTickets();
     }
   }
 
@@ -152,7 +134,7 @@ function CausesPage(): JSX.Element {
     if (isFirstAccessToIntegration !== undefined) {
       receiveTicket();
     }
-  }, [isFirstAccessToIntegration, integrationId]);
+  }, [isFirstAccessToIntegration, externalId]);
 
   useEffect(() => {
     setShouldShowIntegrationBanner(

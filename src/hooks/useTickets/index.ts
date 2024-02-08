@@ -1,4 +1,4 @@
-import { PLATFORM, RIBON_COMPANY_ID } from "utils/constants";
+import { PLATFORM } from "utils/constants";
 
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useTickets as useTicketShared } from "@ribon.io/shared/hooks";
@@ -12,11 +12,12 @@ import {
   DONATION_TOAST_SEEN_AT_KEY,
 } from "lib/localStorage/constants";
 import { today } from "lib/dateTodayFormatter";
-import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
-import { getLocalStorageItem, setLocalStorageItem } from "@ribon.io/shared/lib";
+
+import { getLocalStorageItem } from "lib/localStorage";
 
 export function useTickets() {
   const { currentUser } = useCurrentUser();
+
   const {
     canCollectByExternalIds,
     canCollectByIntegration,
@@ -28,7 +29,6 @@ export function useTickets() {
   const externalId = extractUrlValue("external_id", search);
   const integrationId = useIntegrationId();
   const externalIds = externalId?.split(",");
-  const { showReceiveTicketToast } = useReceiveTicketToast();
 
   function hasReceivedTicketToday() {
     const donationToastSeenAtKey = getLocalStorageItem(
@@ -40,8 +40,7 @@ export function useTickets() {
 
     if (
       donationToastSeenAtKey &&
-      donationToastIntegration === integrationId?.toLocaleString() &&
-      externalIds?.length === 0
+      donationToastIntegration === integrationId?.toLocaleString()
     ) {
       const dateUserSawToast = new Date(parseInt(donationToastSeenAtKey, 10));
       return dateUserSawToast.toLocaleDateString() === today();
@@ -81,26 +80,9 @@ export function useTickets() {
     }
   }
 
-  async function receiveTicket() {
-    const canCollect = await handleCanCollect();
-
-    if (canCollect && !hasReceivedTicketToday()) {
-      if (currentUser) {
-        await handleCollect();
-      }
-      setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());
-      setLocalStorageItem(
-        DONATION_TOAST_INTEGRATION,
-        integrationId?.toLocaleString() ?? RIBON_COMPANY_ID,
-      );
-      showReceiveTicketToast();
-    }
-  }
-
   return {
     handleCanCollect,
     handleCollect,
-    receiveTicket,
     hasReceivedTicketToday,
   };
 }

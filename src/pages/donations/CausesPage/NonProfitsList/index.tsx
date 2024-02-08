@@ -17,12 +17,11 @@ import * as S from "../styles";
 
 type Props = {
   nonProfits: NonProfit[];
-  canDonate: boolean;
 };
 
 const MINIMUM_NON_PROFITS_TO_LOOP = 3;
 
-function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
+function NonProfitsList({ nonProfits }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
@@ -33,8 +32,6 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
 
   const { formattedImpactText } = useFormattedImpactText();
   const { signedIn } = useCurrentUser();
-
-  const canDonateAndHasVoucher = canDonate || hasTickets;
 
   const handleEmptyButtonClick = () => {
     navigateTo("/promoters/support-cause");
@@ -95,7 +92,7 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
   };
 
   function handleButtonClick(nonProfit: NonProfit, from: string) {
-    if (canDonateAndHasVoucher) {
+    if (hasTickets) {
       logEvent("donateTicketBtn_start", {
         nonProfitId: nonProfit.id,
         from,
@@ -120,7 +117,6 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
           nonProfit={currentNonProfitWithStories}
           visible={storiesSectionVisible}
           setVisible={setStoriesSectionVisible}
-          canDonateAndHasVoucher={Boolean(canDonateAndHasVoucher)}
           onButtonClick={() =>
             handleButtonClick(currentNonProfitWithStories, "stories")
           }
@@ -142,7 +138,7 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
                     image={nonProfit.mainImage || nonProfit.cause?.mainImage}
                     title={oldImpactFormat(nonProfit)}
                     buttonText={
-                      canDonateAndHasVoucher
+                      hasTickets
                         ? t("donateText")
                         : t("doMore", {
                             value: currentOffer()?.price ?? "1000",

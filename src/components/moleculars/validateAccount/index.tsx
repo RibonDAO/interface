@@ -9,8 +9,8 @@ import * as S from "./styles";
 export type Props = {
   title: string;
   description: string;
-  onContinue: (path: string) => void;
-  onContinueMagicLink: (path: string) => void;
+  onContinue: () => void;
+  onContinueMagicLink: () => void;
 };
 
 function ValidateAccount({
@@ -32,10 +32,10 @@ function ValidateAccount({
           </S.TextContainer>
 
           <S.ButtonContainer>
-            <GoogleLogin onContinue={() => onContinue} from="validation_flow" />
-            <AppleLogin onContinue={() => onContinue} from="validation_flow" />
+            <GoogleLogin onContinue={onContinue} from="validation_flow" />
+            <AppleLogin onContinue={onContinue} from="validation_flow" />
             <MagicLinkLogin
-              onContinue={() => onContinueMagicLink}
+              onContinue={onContinueMagicLink}
               from="validation_flow"
             />
           </S.ButtonContainer>

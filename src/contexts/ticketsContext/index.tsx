@@ -46,9 +46,13 @@ function TicketsProvider({ children }: Props) {
     }
   }
 
-  useEffect(() => {
+  async function refetchTickets() {
     refetch();
     updateTicketsCounter();
+  }
+
+  useEffect(() => {
+    refetchTickets();
   }, [integrationId, signedIn]);
 
   useEffect(() => {
@@ -62,7 +66,7 @@ function TicketsProvider({ children }: Props) {
       ticketsCounter,
       setTicketsCounter,
       hasTickets,
-      refetchTickets: refetch,
+      refetchTickets,
     }),
     [ticketsCounter],
   );

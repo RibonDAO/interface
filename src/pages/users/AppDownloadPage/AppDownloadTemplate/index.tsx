@@ -8,8 +8,9 @@ import Icon from "components/atomics/Icon";
 import theme from "styles/theme";
 import { ButtonProps } from "components/atomics/buttons/Button";
 import { logEvent } from "lib/events";
-import AppleBadge from "./assets/apple-badge.png";
-import GoogleBadge from "./assets/google-badge.png";
+import AppleBadge from "./assets/apple-badge-sm.png";
+import GoogleBadge from "./assets/google-badge-sm.png";
+import QRCode from "./assets/qrcodeapp.svg";
 
 import * as S from "./styles";
 
@@ -105,19 +106,26 @@ function AppDownloadTemplate({
       return (
         <>
           <S.Badges>
-            <S.Link
-              onClick={() => handleAndroidLink()}
-              rel="noopener noreferrer"
-            >
-              <S.ImageBadge src={GoogleBadge} />
-            </S.Link>
-            <S.Link
-              onClick={() => handleIosLink()}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <S.ImageBadge src={AppleBadge} />
-            </S.Link>
+            <S.ImageContainer>
+              <S.QRCode src={QRCode} />
+            </S.ImageContainer>
+            <S.ImageContainer>
+              <S.BorderContainer>
+                <S.Link
+                  onClick={() => handleAndroidLink()}
+                  rel="noopener noreferrer"
+                >
+                  <S.ImageBadge src={GoogleBadge} />
+                </S.Link>
+                <S.Link
+                  onClick={() => handleIosLink()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <S.ImageBadge src={AppleBadge} />
+                </S.Link>
+              </S.BorderContainer>
+            </S.ImageContainer>
           </S.Badges>
           {hasBackButton && (
             <S.Button onClick={secondButton?.onClick}>

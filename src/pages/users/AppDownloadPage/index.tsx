@@ -16,6 +16,7 @@ import AppDownloadTemplate from "./AppDownloadTemplate";
 type LocationStateType = {
   nonProfit?: NonProfit;
   showContribute?: boolean;
+  cameFrom?: string;
 };
 
 function AppDownloadPage() {
@@ -38,6 +39,12 @@ function AppDownloadPage() {
 
   const comesFromPostDonation = !!nonProfit;
 
+  const handleBackNavigation = () => {
+    const path = state?.cameFrom === "intro" ? "/intro" : "/causes";
+
+    navigateTo(path);
+  };
+
   const handleOnClickSecondButton = () => {
     if (comesFromPostDonation && showContribute) {
       navigateTo({
@@ -45,7 +52,7 @@ function AppDownloadPage() {
         state: { nonProfit },
       });
     } else {
-      navigateTo("/causes");
+      handleBackNavigation();
     }
   };
 

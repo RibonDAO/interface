@@ -9,12 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import { coinByLanguage } from "lib/coinByLanguage";
 import { useLanguage } from "hooks/useLanguage";
-import {
-  Categories,
-  Currencies,
-  NonProfit,
-  Offer,
-} from "@ribon.io/shared/types";
+import { Currencies, NonProfit, Offer } from "@ribon.io/shared/types";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useUserLevel } from "contexts/userLevelContext";
 import { logEvent } from "lib/events";
@@ -33,11 +28,7 @@ function ImpactMoreLivesCTA({ from }: Props): JSX.Element {
   const [currentOffer, setCurrentOffer] = useState<Offer>();
   const [currentNonProfit, setCurrentNonProfit] = useState<NonProfit>();
   const { navigateToCheckout } = useCheckoutNavigation();
-  const { offers } = useOffers(
-    currentCoin,
-    false,
-    Categories.DIRECT_CONTRIBUTION,
-  );
+  const { offers } = useOffers(currentCoin, false);
   const { currentLang } = useLanguage();
   const { currentUser } = useCurrentUser();
   const { userStatistics } = useStatistics({

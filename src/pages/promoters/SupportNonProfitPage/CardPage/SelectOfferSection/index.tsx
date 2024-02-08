@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react";
 import InputRange from "components/atomics/inputs/InputRange";
 import { useOffers, useNonProfitImpact } from "@ribon.io/shared/hooks";
-import {
-  Offer,
-  Currencies,
-  NonProfit,
-  Categories,
-} from "@ribon.io/shared/types";
+import { Offer, Currencies, NonProfit } from "@ribon.io/shared/types";
 import { useTranslation } from "react-i18next";
 import theme from "styles/theme";
 import { formatPrice } from "lib/formatters/currencyFormatter";
@@ -30,11 +25,7 @@ function SelectOfferPage({ nonProfit, onOfferChange }: Props): JSX.Element {
   const [currentOfferIndex, setCurrentOfferIndex] = useState(0);
   const [currentOffer, setCurrentOffer] = useState<Offer>();
   const { currentCoin, setCurrentCoin } = usePaymentInformation();
-  const { offers, refetch: refetchOffers } = useOffers(
-    currentCoin,
-    false,
-    Categories.DIRECT_CONTRIBUTION,
-  );
+  const { offers, refetch: refetchOffers } = useOffers(currentCoin, false);
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportNonProfitPage.selectOfferSection",

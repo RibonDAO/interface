@@ -12,13 +12,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { logError } from "services/crashReport";
-import {
-  Cause,
-  NonProfit,
-  Offer,
-  Currencies,
-  Categories,
-} from "@ribon.io/shared/types";
+import { Cause, NonProfit, Offer, Currencies } from "@ribon.io/shared/types";
 import getThemeByFlow from "lib/themeByFlow";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import { useTasksContext } from "contexts/tasksContext";
@@ -50,11 +44,7 @@ function ContributionDonePage(): JSX.Element {
   const {
     state: { nonProfit, offerId, cause, flow, from },
   } = useLocation<LocationState>();
-  const { getOffer } = useOffers(
-    currency,
-    false,
-    Categories.DIRECT_CONTRIBUTION,
-  );
+  const { getOffer } = useOffers(currency, false);
   const [offer, setOffer] = useState<Offer>();
   const { currentUser } = useCurrentUser();
   const { registerAction } = useTasksContext();

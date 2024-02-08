@@ -4,13 +4,7 @@ import PixIcon from "assets/icons/pix-icon.svg";
 import usePayable from "hooks/usePayable";
 import usePaymentParams from "hooks/usePaymentParams";
 import { useTranslation } from "react-i18next";
-import {
-  Currencies,
-  Offer,
-  Cause,
-  NonProfit,
-  Categories,
-} from "@ribon.io/shared/types";
+import { Currencies, Offer, Cause, NonProfit } from "@ribon.io/shared/types";
 import { useOffers } from "@ribon.io/shared/hooks";
 import { useLocationSearch } from "hooks/useLocationSearch";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
@@ -65,7 +59,6 @@ export default function FiatSection() {
   } = useOffers(
     Currencies[currency?.toUpperCase() as keyof typeof Currencies],
     isSubscription,
-    Categories.DIRECT_CONTRIBUTION,
   );
 
   const [currentOffer, setCurrentOffer] = useState<Offer>();

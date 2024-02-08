@@ -4,7 +4,12 @@ import {
   useOffers,
   useStatistics,
 } from "@ribon.io/shared/hooks";
-import { Currencies, NonProfit, Offer } from "@ribon.io/shared/types";
+import {
+  Categories,
+  Currencies,
+  NonProfit,
+  Offer,
+} from "@ribon.io/shared/types";
 import { useCurrentUser } from "contexts/currentUserContext";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import { useLanguage } from "hooks/useLanguage";
@@ -29,8 +34,16 @@ export function useImpactConversion() {
   const { currentUser } = useCurrentUser();
 
   const { nonProfits } = useNonProfits();
-  const { offers: offersBrl } = useOffers(Currencies.BRL, false);
-  const { offers: offersUsd } = useOffers(Currencies.USD, false);
+  const { offers: offersBrl } = useOffers(
+    Currencies.BRL,
+    false,
+    Categories.DIRECT_CONTRIBUTION,
+  );
+  const { offers: offersUsd } = useOffers(
+    Currencies.USD,
+    false,
+    Categories.DIRECT_CONTRIBUTION,
+  );
   const { userStatistics } = useStatistics({
     userId: currentUser?.id ?? undefined,
   });

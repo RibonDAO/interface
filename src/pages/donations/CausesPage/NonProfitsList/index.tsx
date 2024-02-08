@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import useNavigation from "hooks/useNavigation";
 import { logEvent } from "lib/events";
-import { Currencies, NonProfit } from "@ribon.io/shared/types";
+import { Categories, Currencies, NonProfit } from "@ribon.io/shared/types";
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
 import useVoucher from "hooks/useVoucher";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
@@ -67,8 +67,16 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
       t("impactPrefix"),
     );
 
-  const { offers: offersBrl } = useOffers(Currencies.BRL, false);
-  const { offers: offersUsd } = useOffers(Currencies.USD, false);
+  const { offers: offersBrl } = useOffers(
+    Currencies.BRL,
+    false,
+    Categories.DIRECT_CONTRIBUTION,
+  );
+  const { offers: offersUsd } = useOffers(
+    Currencies.USD,
+    false,
+    Categories.DIRECT_CONTRIBUTION,
+  );
 
   const { currentLang } = useLanguage();
 

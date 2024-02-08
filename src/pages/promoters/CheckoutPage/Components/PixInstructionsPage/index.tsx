@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import usePaymentParams from "hooks/usePaymentParams";
 import usePayable from "hooks/usePayable";
 import { useOffers } from "@ribon.io/shared/hooks";
-import { Currencies, Offer } from "@ribon.io/shared/types";
+import { Categories, Currencies, Offer } from "@ribon.io/shared/types";
 import useNavigation from "hooks/useNavigation";
 import parse from "html-react-parser";
 import { useLocation } from "react-router-dom";
@@ -40,7 +40,11 @@ function PixInstructionsPage(): JSX.Element {
     state: { pixInstructions },
   } = useLocation<LocationStateType>();
 
-  const { offers } = useOffers(currency as Currencies);
+  const { offers } = useOffers(
+    currency as Currencies,
+    false,
+    Categories.DIRECT_CONTRIBUTION,
+  );
 
   const { navigateTo } = useNavigation();
 

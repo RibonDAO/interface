@@ -1,5 +1,10 @@
 import { useOffers } from "@ribon.io/shared/hooks";
-import { Currencies, Languages, Offer } from "@ribon.io/shared/types";
+import {
+  Categories,
+  Currencies,
+  Languages,
+  Offer,
+} from "@ribon.io/shared/types";
 import LinkAccordion from "components/moleculars/accordions/LinkAccordion";
 import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useModal } from "hooks/modalHooks/useModal";
@@ -50,6 +55,7 @@ function RecurrencePage(): JSX.Element {
   } = useOffers(
     Currencies[currency?.toUpperCase() as keyof typeof Currencies],
     false,
+    Categories.DIRECT_CONTRIBUTION,
   );
   useEffect(() => {
     refetchOffers();

@@ -1,10 +1,11 @@
-import { Offer } from "@ribon.io/shared/types";
+import { Categories, Offer } from "@ribon.io/shared/types";
 
 function offerFactory(params: Partial<Offer> = {}): Offer {
   const defaultValues: Offer = {
     id: 1,
     active: true,
     currency: "usd",
+    category: Categories.DIRECT_CONTRIBUTION,
     positionOrder: 0,
     price: "$10.00",
     priceCents: 1000,

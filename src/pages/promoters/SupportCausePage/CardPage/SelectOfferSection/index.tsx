@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import InputRange from "components/atomics/inputs/InputRange";
 import { useOffers } from "@ribon.io/shared/hooks";
-import { Offer, Cause, Currencies } from "@ribon.io/shared/types";
+import { Offer, Cause, Currencies, Categories } from "@ribon.io/shared/types";
 import { useTranslation } from "react-i18next";
 import theme from "styles/theme";
 import { formatPrice } from "lib/formatters/currencyFormatter";
@@ -35,7 +35,11 @@ function SelectOfferPage({ cause, onOfferChange }: Props): JSX.Element {
   );
   const [currentOffer, setCurrentOffer] = useState<Offer>();
   const { currentCoin, setCurrentCoin } = usePaymentInformation();
-  const { offers, refetch: refetchOffers } = useOffers(currentCoin, false);
+  const { offers, refetch: refetchOffers } = useOffers(
+    currentCoin,
+    false,
+    Categories.DIRECT_CONTRIBUTION,
+  );
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportCausePage.selectOfferSection",
   });

@@ -1,4 +1,4 @@
-import { PromoterCardGiving } from "@ribon.io/shared/types";
+import { Categories, PromoterCardGiving } from "@ribon.io/shared/types";
 
 function promoterCardGivingFactory(
   params: Partial<PromoterCardGiving> = {},
@@ -10,6 +10,7 @@ function promoterCardGivingFactory(
       active: true,
       createdAt: "2022-06-28 16:38:29 UTC",
       currency: "usd",
+      category: Categories.DIRECT_CONTRIBUTION,
       id: 5,
       price: "$10.00",
       priceCents: 1000,

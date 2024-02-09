@@ -39,6 +39,7 @@ function SignInExtraTicketPage(): JSX.Element {
     sendAuthenticationEmail({ email: currentUser?.email });
     navigateTo({
       pathname,
+      state: { email: currentUser?.email },
     });
   };
 

@@ -1,19 +1,18 @@
 import { useTranslation } from "react-i18next";
-import ticketImage from "assets/images/ticket-image.svg";
 import LeftImage from "assets/images/bottom-left-shape-red.svg";
 import RightImage from "assets/images/top-right-shape.svg";
 import useNavigation from "hooks/useNavigation";
+import useBreakpoint from "hooks/useBreakpoint";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useIntegration } from "@ribon.io/shared/hooks";
-import { RIBON_COMPANY_ID } from "utils/constants";
+import { APP_LINK, RIBON_COMPANY_ID } from "utils/constants";
 import Tooltip from "components/moleculars/Tooltip";
 import Button from "components/atomics/buttons/Button";
-import RibonLogo from "assets/images/logo-ribon.svg";
 import { logEvent } from "lib/events";
 import { theme } from "@ribon.io/shared/styles";
-import RightImageIntegration from "./assets/right-image.svg";
-import LeftImageIntegration from "./assets/left-image.svg";
+import RibonLogo from "assets/images/logo-ribon.svg";
 import ArrowLeft from "./assets/arrow-left-dark-green.svg";
+import Envelope from "./assets/envelope.svg";
 import * as S from "./styles";
 
 export type Props = {
@@ -27,6 +26,7 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
   const { navigateTo, navigateBack } = useNavigation();
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
+  const { isMobile } = useBreakpoint();
 
   const handleClick = () => {
     logEvent("P10_getTicketBtn_click");
@@ -54,11 +54,22 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
 
   const subtitle = isOnboarding ? t("onboardingSubtitle") : handleSubtitle;
 
-  const buttonText = isOnboarding ? t("onboardingButtonText") : t("buttonText");
-
   const handleHasAccount = () => {
     logEvent("openAuthBtn_click", { from: "onboarding_page" });
     navigateTo("/auth/sign-in");
+  };
+
+  const handleDownload = () => {
+    logEvent("downloadCTA_click", { from: "firstScreen" });
+
+    if (isMobile) {
+      window.open(APP_LINK);
+      return;
+    }
+    navigateTo({
+      pathname: "/app-download",
+      state: { cameFrom: "intro" },
+    });
   };
 
   return (
@@ -75,40 +86,42 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
         <S.RightImage src={RightImage} />
 
         <S.ContentContainer>
-          {isRibonIntegration ? (
-            <S.DefaultImage src={ticketImage} />
-          ) : (
-            <S.ImageContainer>
-              <S.LeftImageContainer
-                src={LeftImageIntegration}
-                alt="left-image"
-              />
-              <S.RightImageContainer
-                src={RightImageIntegration}
-                alt="right-image"
-              />
-              <S.ImageWrapper>
-                <img src={RibonLogo} alt="ribon-logo" />
-                <S.ImageContainerText>+</S.ImageContainerText>
-                <S.Image src={integration?.logo} />
-              </S.ImageWrapper>
-            </S.ImageContainer>
-          )}
+          <S.Header>
+            <S.LogosWrapper>
+              <S.Logo src={RibonLogo} alt="ribon-logo" />
+              {!isRibonIntegration && (
+                <>
+                  <S.ImageContainerText>+</S.ImageContainerText>
+                  <S.Logo src={integration?.logo} alt="integration-logo" />
+                </>
+              )}
+            </S.LogosWrapper>
+          </S.Header>
           <S.TextContainer>
+            <S.DefaultImage src={Envelope} />
             <S.Title>{isOnboarding ? titleOnboarding : t("title")}</S.Title>
             <S.Description>{subtitle}</S.Description>
           </S.TextContainer>
           <S.ButtonContainer>
-            <S.FilledButton onClick={handleClick}>{buttonText}</S.FilledButton>
+            <S.FilledButton onClick={handleDownload}>
+              {t("downloadAppButton")}
+            </S.FilledButton>
+            <Button
+              text={t("stayInBrowserButton")}
+              textColor={theme.colors.brand.primary[600]}
+              backgroundColor="transparent"
+              borderColor={theme.colors.brand.primary[500]}
+              borderRadius="4px"
+              onClick={handleClick}
+            />
+
             {isOnboarding && (
-              <Button
-                text={t("hasAccountButton")}
-                textColor={theme.colors.neutral[600]}
-                backgroundColor="transparent"
-                borderColor={theme.colors.neutral[300]}
-                borderRadius="4px"
-                onClick={handleHasAccount}
-              />
+              <S.Footer>
+                <S.MutedText>{t("haveAnAccount")}</S.MutedText>
+                <S.ClickableText onClick={handleHasAccount}>
+                  {t("signIn")}
+                </S.ClickableText>
+              </S.Footer>
             )}
           </S.ButtonContainer>
           {!isOnboarding && (

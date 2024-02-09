@@ -1,16 +1,22 @@
 import { useState } from "react";
 import useBreakpoint from "hooks/useBreakpoint";
-import { APP_LINK, IOS_APP_LINK, ANDROID_APP_LINK } from "utils/constants";
+import {
+  APP_LINK,
+  IOS_APP_LINK,
+  ANDROID_APP_LINK,
+  DAPP_URL,
+} from "utils/constants";
 import { useTranslation } from "react-i18next";
 import { formatCountdown } from "lib/formatters/countdownFormatter";
 import { useCountdown } from "hooks/useCountdown";
+import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
+import { QRCodeSVG } from "qrcode.react";
 import Icon from "components/atomics/Icon";
 import theme from "styles/theme";
 import { ButtonProps } from "components/atomics/buttons/Button";
 import { logEvent } from "lib/events";
-import AppleBadge from "./assets/apple-badge.png";
-import GoogleBadge from "./assets/google-badge.png";
-
+import AppleBadge from "./assets/apple-badge-sm.png";
+import GoogleBadge from "./assets/google-badge-sm.png";
 import * as S from "./styles";
 
 export type Props = {
@@ -82,6 +88,22 @@ function AppDownloadTemplate({
     window.open(ANDROID_APP_LINK);
   }
 
+  const buildLink = () => {
+    const utmParams = getUTMFromLocationSearch(window.location.search);
+    const queryParams = new URLSearchParams({
+      utm_source: utmParams.utmSource,
+      utm_medium: utmParams.utmMedium,
+      utm_campaign: utmParams.utmCampaign,
+    });
+
+    const redirectParams = new URLSearchParams({
+      redirect_url: APP_LINK,
+      event: "qrCodeButton_click",
+    });
+
+    return `${DAPP_URL}redirect?${queryParams.toString()}&${redirectParams.toString()}`;
+  };
+
   const render = () => {
     if (isMobile) {
       return (
@@ -105,19 +127,26 @@ function AppDownloadTemplate({
       return (
         <>
           <S.Badges>
-            <S.Link
-              onClick={() => handleAndroidLink()}
-              rel="noopener noreferrer"
-            >
-              <S.ImageBadge src={GoogleBadge} />
-            </S.Link>
-            <S.Link
-              onClick={() => handleIosLink()}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <S.ImageBadge src={AppleBadge} />
-            </S.Link>
+            <S.ImageContainer>
+              <QRCodeSVG value={buildLink()} size={120} />
+            </S.ImageContainer>
+            <S.ImageContainer>
+              <S.BorderContainer>
+                <S.Link
+                  onClick={() => handleAndroidLink()}
+                  rel="noopener noreferrer"
+                >
+                  <S.ImageBadge src={GoogleBadge} />
+                </S.Link>
+                <S.Link
+                  onClick={() => handleIosLink()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <S.ImageBadge src={AppleBadge} />
+                </S.Link>
+              </S.BorderContainer>
+            </S.ImageContainer>
           </S.Badges>
           {hasBackButton && (
             <S.Button onClick={secondButton?.onClick}>

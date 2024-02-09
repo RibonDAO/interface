@@ -4,6 +4,7 @@ import useNavigation from "hooks/useNavigation";
 import { useLocation } from "react-router-dom";
 import { NonProfit } from "@ribon.io/shared/types";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
+import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
 import { useEffect, useState } from "react";
 import { logEvent } from "@amplitude/analytics-browser";
 import theme from "styles/theme";
@@ -59,8 +60,14 @@ function AppDownloadPage() {
   useEffect(() => {
     const from = comesFromPostDonation ? "postDonation" : "downloadPage";
     logEvent("P17_view");
+    const utmParams = getUTMFromLocationSearch(window.location.search);
 
-    logEvent("downloadCTA_view", { from });
+    logEvent("downloadCTA_view", {
+      from,
+      utm_source: utmParams.utmSource,
+      utm_medium: utmParams.utmMedium,
+      utm_campaign: utmParams.utmCampaign,
+    });
   });
 
   useAvoidBackButton();

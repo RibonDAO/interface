@@ -190,7 +190,8 @@
       },
       "validateAccountPage": {
         "title": "Valide sua conta",
-        "description": "Valide sua conta criada com {{email}} para completar sua doação."
+        "description": "Valide sua conta criada com {{email}} para completar sua doação.",
+        "toastDescription": "Email enviado"
       }
     },
     "selectTicketsPage": {

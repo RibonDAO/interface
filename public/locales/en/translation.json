@@ -190,7 +190,8 @@
       },
       "validateAccountPage": {
         "title": "Validate your account",
-        "description": "Validate your account created with {{email}} to complete your donation."
+        "description": "Validate your account created with {{email}} to complete your donation.",
+        "toastDescription": "Email sent"
       }
     },
     "selectTicketsPage": {

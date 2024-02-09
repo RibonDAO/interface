@@ -26,10 +26,7 @@ import NonProfitsSection from "pages/donations/CausesPage/NonProfitsSection";
 import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
 import { useLanguage } from "hooks/useLanguage";
 import CampaignSection from "pages/donations/CausesPage/CampaignSection";
-import { useAuthentication } from "contexts/authenticationContext";
 import { useTicketsContext } from "contexts/ticketsContext";
-import { useModal } from "hooks/modalHooks/useModal";
-import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useTickets } from "hooks/useTickets";
 import {
   DONATION_TOAST_INTEGRATION,
@@ -43,6 +40,8 @@ import ChooseCauseModal from "./ChooseCauseModal";
 import CausesSelectSection from "./CausesSelectSection";
 import * as S from "./styles";
 
+import showErrorModal from "./errorModal";
+
 function CausesPage(): JSX.Element {
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
@@ -50,34 +49,15 @@ function CausesPage(): JSX.Element {
     useState<boolean | undefined>(false);
   const { chooseCauseModalVisible } = useCauseDonationContext();
   const { currentLang } = useLanguage();
-  const { isAuthenticated } = useAuthentication();
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
   const { state, search } = useLocation<LocationStateType>();
-
-  const { hide: closeWarningModal } = useModal(
-    {
-      type: MODAL_TYPES.MODAL_DIALOG,
-      props: {
-        title: t("errorModalTitle"),
-        description: state?.message || t("errorModalText"),
-        primaryButton: {
-          text: t("errorModalButtonText"),
-          onClick: () => closeWarningModal(),
-        },
-        onClose: () => closeWarningModal(),
-        eventName: "P12_errorModal",
-        supportButton: true,
-        type: "error",
-      },
-    },
-    state?.failedDonation,
-  );
+  showErrorModal(state);
 
   const hasSeenChooseCauseModal = useRef(false);
 
-  const { refetchTickets, ticketsCounter } = useTicketsContext();
+  const { refetchTickets } = useTicketsContext();
   const { currentUser } = useCurrentUser();
 
   const externalId = extractUrlValue("external_id", search);
@@ -106,29 +86,24 @@ function CausesPage(): JSX.Element {
     const canCollect = await handleCanCollect();
 
     if (canCollect) {
-      if (isAuthenticated()) {
-        await handleCollect();
-        refetchTickets();
+      await handleCollect();
+      refetchTickets();
+      if (!hasReceivedTicketToday()) {
+        showReceiveTicketToast();
+        setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());
+        setLocalStorageItem(
+          DONATION_TOAST_INTEGRATION,
+          integrationId?.toLocaleString() ?? RIBON_COMPANY_ID,
+        );
       }
-    }
-
-    if (canCollect && !hasReceivedTicketToday()) {
-      showReceiveTicketToast();
-      setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());
-      setLocalStorageItem(
-        DONATION_TOAST_INTEGRATION,
-        integrationId?.toLocaleString() ?? RIBON_COMPANY_ID,
-      );
+    } else {
+      refetchTickets();
     }
   }
 
   useEffect(() => {
     refetchCanDonate();
   }, [JSON.stringify(currentUser)]);
-
-  useEffect(() => {
-    refetchTickets();
-  }, [ticketsCounter, currentUser, isAuthenticated, integrationId]);
 
   useEffect(() => {
     if (isFirstAccessToIntegration !== undefined) {

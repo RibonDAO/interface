@@ -52,6 +52,7 @@ import InsertEmailPage from "pages/auth/InsertEmailPage";
 import SentMagicLinkEmailPage from "pages/auth/SentMagicLinkEmailPage";
 import TicketDonationDonePage from "pages/donations/TicketDonationDonePage";
 import SelectTicketsPage from "pages/donations/SelectTicketsPage";
+import ValidateAccountPage from "pages/auth/ValidateAccountPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -202,6 +203,12 @@ function RoutesComponent(): JSX.Element {
         <Suspense fallback={<div />}>
           <NavigationBackHeader hasTicketCounter />
           <SelectTicketsPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/validate-account" exact>
+        <Suspense fallback={<div />}>
+          <ValidateAccountPage />
         </Suspense>
       </Route>
 

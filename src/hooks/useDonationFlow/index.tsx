@@ -43,7 +43,6 @@ function useDonationFlow() {
   const utmParams = getUTMFromLocationSearch(history.location.search);
   const { search } = useLocation();
   const externalId = extractUrlValue("external_id", search);
-
   const externalIds = externalId?.split(",");
 
   async function handleCollectAndDonate({
@@ -109,7 +108,7 @@ function useDonationFlow() {
     const { donate } = useUserTickets();
 
     try {
-      await donate(
+      const result = await donate(
         nonProfit.id,
         ticketsQuantity,
         PLATFORM,
@@ -117,7 +116,11 @@ function useDonationFlow() {
         utmParams.utmMedium,
         utmParams.utmCampaign,
       );
-      if (onSuccess) onSuccess();
+      if (result.status === 200 && onSuccess) onSuccess();
+      if (result.status === 401 && onError)
+        onError({
+          reponse: { status: 401 },
+        });
     } catch (e: any) {
       logError(e);
       if (onError) onError(e);

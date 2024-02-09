@@ -22,6 +22,9 @@
       "errorModalTitle": "Processing failed",
       "errorModalText": "The network is unstable and it was not possible to process your donation. Try again shortly.",
       "errorModalButtonText": "Ok",
+      "unauthorizedModalTitle": "Email not validated",
+      "unauthorizedModalText": "To securely complete your donation, it is necessary for you to validate your email.",
+      "unauthorizedModalButtonText": "Proceed to validation",
       "receiveTicketAnimationModalTitle": "Receiving Ticket...",
       "receiveTicketAnimationModalOrigin": "Community",
       "receiveTicketAnimationModalDestiny": "You",
@@ -184,6 +187,10 @@
         "description": "Validate your account created with {{email}} to get your extra ticket",
         "buttonText": "Continue without extra ticket",
         "toastDescription": "Your ticket was sent by e-mail"
+      },
+      "validateAccountPage": {
+        "title": "Validate your account",
+        "description": "Validate your account created with {{email}} to complete your donation."
       }
     },
     "selectTicketsPage": {

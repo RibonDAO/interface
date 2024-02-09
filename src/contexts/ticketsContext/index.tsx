@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { useUserTickets } from "@ribon.io/shared/hooks";
-import { useAuthentication } from "contexts/authenticationContext";
+import { useTickets as useTicketsShared } from "@ribon.io/shared/hooks";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { logError } from "services/crashReport";
@@ -22,21 +21,25 @@ export const TicketsContext = createContext<ITicketsContext>(
 );
 
 function TicketsProvider({ children }: Props) {
-  const { ticketsAvailable } = useUserTickets();
+  const { ticketsAvailable } = useTicketsShared();
   const { tickets: userTickets, refetch } = ticketsAvailable();
   const integrationId = useIntegrationId();
-  const { isAuthenticated } = useAuthentication();
   const { currentUser } = useCurrentUser();
   const [ticketsCounter, setTicketsCounter] = useState<number>(1);
 
   const { handleCanCollect } = useTickets();
   const hasTickets = ticketsCounter > 0;
 
-  async function updateTicketsCounter() {
-    try {
-      const canCollect = await handleCanCollect();
+  function updateTicketsCounterForLoggedInUser() {
+    if (userTickets !== undefined) {
+      setTicketsCounter(userTickets);
+    }
+  }
 
-      if (!isAuthenticated()) {
+  async function updateTicketsCounterForNotLoggedInUser() {
+    try {
+      if (!currentUser) {
+        const canCollect = await handleCanCollect();
         if (!canCollect) {
           setTicketsCounter(0);
         } else {
@@ -48,27 +51,21 @@ function TicketsProvider({ children }: Props) {
     }
   }
 
-  async function refetchTickets() {
-    refetch();
-    updateTicketsCounter();
-  }
-
   useEffect(() => {
-    refetchTickets();
-  }, [isAuthenticated, integrationId, currentUser]);
-
-  useEffect(() => {
-    if (userTickets !== undefined) {
-      setTicketsCounter(userTickets);
-    }
+    updateTicketsCounterForLoggedInUser();
   }, [userTickets]);
+
+  useEffect(() => {
+    refetch();
+    updateTicketsCounterForNotLoggedInUser();
+  }, [integrationId, currentUser]);
 
   const ticketsObject: ITicketsContext = useMemo(
     () => ({
       ticketsCounter,
       setTicketsCounter,
       hasTickets,
-      refetchTickets,
+      refetchTickets: refetch,
     }),
     [ticketsCounter],
   );

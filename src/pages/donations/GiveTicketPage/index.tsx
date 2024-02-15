@@ -63,7 +63,7 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
     logEvent("downloadCTA_click", { from: "firstScreen" });
 
     if (isMobile) {
-      window.open(APP_LINK);
+      window.open(`${APP_LINK}?integration_id=${integrationId}`);
       return;
     }
     navigateTo({

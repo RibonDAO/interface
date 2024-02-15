@@ -1,5 +1,5 @@
 import { setLocalStorageItem } from "@ribon.io/shared/lib";
-import { useCanDonate } from "@ribon.io/shared";
+import { useDonatedToday } from "@ribon.io/shared";
 import { renderComponent, waitForPromises } from "config/testUtils";
 import {
   expectTextNotToBeInTheDocument,
@@ -16,13 +16,13 @@ jest.mock("@ribon.io/shared/hooks", () => ({
   useArticles: () => ({
     getUserArticles: () => [mockArticle],
   }),
-  useCanDonate: jest.fn(),
+  useDonatedToday: jest.fn(),
 }));
 
 describe("NewsSection", () => {
-  describe("when user has donated", () => {
+  describe("when user has not donated", () => {
     it("renders news", async () => {
-      (useCanDonate as jest.Mock).mockReturnValue({ canDonate: false });
+      (useDonatedToday as jest.Mock).mockReturnValue({ donatedToday: false });
       renderComponent(<NewsSection />);
       await waitForPromises();
 
@@ -30,9 +30,9 @@ describe("NewsSection", () => {
     });
   });
 
-  describe("when user has not donated", () => {
+  describe("when user has donated", () => {
     it("renders blocked section", async () => {
-      (useCanDonate as jest.Mock).mockReturnValue({ canDonate: true });
+      (useDonatedToday as jest.Mock).mockReturnValue({ donatedToday: true });
 
       renderComponent(<NewsSection />);
       await waitForPromises();
@@ -42,7 +42,7 @@ describe("NewsSection", () => {
   });
 
   it("should render without show onboarding post", async () => {
-    (useCanDonate as jest.Mock).mockReturnValue({ canDonate: true });
+    (useDonatedToday as jest.Mock).mockReturnValue({ donatedToday: true });
     setLocalStorageItem("IS_USER_ONBOARDING_1", "3");
     renderComponent(<NewsSection />, {
       currentUserProviderValue: {

@@ -6,6 +6,6 @@ describe("SelectTicketsPage", () => {
   it("should render without error", () => {
     renderComponent(<SelectTicketsPage />);
 
-    expectTextToBeInTheDocument("Choose the size of your aid");
+    expectTextToBeInTheDocument("Choose the size of your help");
   });
 });

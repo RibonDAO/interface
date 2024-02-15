@@ -29,7 +29,6 @@ import {
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import { setLocalStorageItem } from "lib/localStorage";
 import { useLanguage } from "hooks/useLanguage";
-import { useAuthentication } from "contexts/authenticationContext";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
 import ChooseCauseModal from "./ChooseCauseModal";
@@ -45,7 +44,6 @@ function CausesPage(): JSX.Element {
     useState<boolean | undefined>(false);
   const { chooseCauseModalVisible } = useCauseDonationContext();
   const { currentLang } = useLanguage();
-  const { isAuthenticated } = useAuthentication();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
@@ -54,7 +52,7 @@ function CausesPage(): JSX.Element {
   showErrorModal(state);
 
   const hasSeenChooseCauseModal = useRef(false);
-  const { refetchTickets, ticketsCounter, hasTickets } = useTicketsContext();
+  const { refetchTickets, hasTickets } = useTicketsContext();
   const { currentUser } = useCurrentUser();
   const externalId = extractUrlValue("external_id", search);
   const { isFirstAccessToIntegration } = useFirstAccessToIntegration(
@@ -88,10 +86,6 @@ function CausesPage(): JSX.Element {
       refetchTickets();
     }
   }
-
-  useEffect(() => {
-    refetchTickets();
-  }, [ticketsCounter, currentUser, isAuthenticated, integrationId]);
 
   useEffect(() => {
     if (isFirstAccessToIntegration !== undefined) {

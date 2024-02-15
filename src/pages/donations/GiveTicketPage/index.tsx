@@ -14,6 +14,7 @@ import { useTicketsContext } from "contexts/ticketsContext";
 import RibonLogo from "assets/images/logo-ribon.svg";
 import ArrowLeft from "./assets/arrow-left-dark-green.svg";
 import * as S from "./styles";
+import Envelope from "./assets/envelope.svg";
 
 export type Props = {
   isOnboarding?: boolean;
@@ -101,6 +102,7 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
             </S.LogosWrapper>
           </S.Header>
           <S.TextContainer>
+            <S.DefaultImage src={Envelope} />
             <S.Title>
               {ticketsCounter > 1
                 ? t("titlePlural", { ticketsCounter })

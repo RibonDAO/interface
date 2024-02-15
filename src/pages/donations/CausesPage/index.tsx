@@ -28,7 +28,6 @@ import {
 } from "lib/localStorage/constants";
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import { setLocalStorageItem } from "lib/localStorage";
-import { useLanguage } from "hooks/useLanguage";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
 import ChooseCauseModal from "./ChooseCauseModal";
@@ -43,7 +42,6 @@ function CausesPage(): JSX.Element {
   const [shouldShowIntegrationBanner, setShouldShowIntegrationBanner] =
     useState<boolean | undefined>(false);
   const { chooseCauseModalVisible } = useCauseDonationContext();
-  const { currentLang } = useLanguage();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
@@ -133,9 +131,7 @@ function CausesPage(): JSX.Element {
           )}
         </S.TitleContainer>
 
-        {!hasTickets && currentLang === "pt-BR" && (
-          <CampaignSection cardId="1" />
-        )}
+        <CampaignSection cardId="1" />
 
         <ContributionNotification />
         <CausesSelectSection />

@@ -20,7 +20,6 @@ import { useCauseDonationContext } from "contexts/causeDonationContext";
 import { useTickets, useUserProfile } from "@ribon.io/shared/hooks";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { PLATFORM, RIBON_COMPANY_ID } from "utils/constants";
-import { useAuthentication } from "contexts/authenticationContext";
 import * as S from "./styles";
 
 function ReceiveTicketPage(): JSX.Element {
@@ -38,7 +37,6 @@ function ReceiveTicketPage(): JSX.Element {
   const { profile } = userProfile();
 
   const { currentUser } = useCurrentUser();
-  const { isAuthenticated } = useAuthentication();
   const integrationId = useIntegrationId();
   const { collectByIntegration } = useTickets();
 
@@ -54,13 +52,11 @@ function ReceiveTicketPage(): JSX.Element {
   const navigate = () => {
     setTimeout(() => {
       createVoucher();
-      if (isAuthenticated()) {
-        collectByIntegration(
-          integrationId ?? "",
-          currentUser?.email ?? "",
-          PLATFORM,
-        );
-      }
+      collectByIntegration(
+        integrationId ?? "",
+        currentUser?.email ?? "",
+        PLATFORM,
+      );
       setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());
       setLocalStorageItem(
         DONATION_TOAST_INTEGRATION,

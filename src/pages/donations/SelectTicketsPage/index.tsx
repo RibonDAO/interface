@@ -43,9 +43,22 @@ export default function SelectTicketsPage() {
     logEvent("ticketDonated_end", { nonProfitId: nonProfit.id });
   };
 
+  const errorType = (type: number) => {
+    switch (type) {
+      case 403: {
+        return "blockedDonation";
+      }
+      case 401: {
+        return "unauthorizedDonation";
+      }
+      default: {
+        return "failedDonation";
+      }
+    }
+  };
+
   const onDonationFail = (error: any) => {
-    const failedKey =
-      error.response?.status === 403 ? "blockedDonation" : "failedDonation";
+    const failedKey = errorType(error.response?.status);
     const newState = {
       [failedKey]: true,
       message: error.response?.data?.formatted_message || error.message,
@@ -58,12 +71,12 @@ export default function SelectTicketsPage() {
     if (!signedIn) return;
     setDonationInProgress(true);
 
-    try {
-      await handleDonate({ nonProfit, ticketsQuantity });
-      onDonationSuccess();
-    } catch (error: any) {
-      onDonationFail(error);
-    }
+    await handleDonate({
+      nonProfit,
+      ticketsQuantity,
+      onError: (error) => onDonationFail(error),
+      onSuccess: onDonationSuccess,
+    });
   };
 
   const onAnimationEnd = useCallback(() => {

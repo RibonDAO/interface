@@ -9,7 +9,6 @@ import useDonationFlow from "hooks/useDonationFlow";
 import useNavigation from "hooks/useNavigation";
 import { logEvent } from "lib/events";
 import { useLocation } from "react-router";
-import { useTicketsContext } from "contexts/ticketsContext";
 import * as S from "./styles";
 import DonatingSection from "../DonatingSection";
 
@@ -26,7 +25,6 @@ function SignedInPage(): JSX.Element {
   const [donationSucceeded, setDonationSucceeded] = useState(false);
   const { currentUser } = useCurrentUser();
   const { handleCollectAndDonate } = useDonationFlow();
-  const { setTicketsCounter } = useTicketsContext();
   const { navigateTo } = useNavigation();
   const {
     state: { nonProfit },
@@ -49,7 +47,6 @@ function SignedInPage(): JSX.Element {
 
   const onAnimationEnd = useCallback(() => {
     if (donationSucceeded) {
-      setTicketsCounter(0);
       logEvent("ticketDonated_end", {
         nonProfitId: nonProfit.id,
       });

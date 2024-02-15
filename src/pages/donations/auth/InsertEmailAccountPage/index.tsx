@@ -11,7 +11,6 @@ import useDonationFlow from "hooks/useDonationFlow";
 import useNavigation from "hooks/useNavigation";
 import { useAuthentication } from "contexts/authenticationContext";
 import { useLocation } from "react-router";
-import { useTicketsContext } from "contexts/ticketsContext";
 import * as S from "./styles";
 import DonatingSection from "../DonatingSection";
 
@@ -30,7 +29,6 @@ function InsertEmailAccountPage(): JSX.Element {
   const { formattedImpactText } = useFormattedImpactText();
   const { handleCollectAndDonate } = useDonationFlow();
   const { navigateTo } = useNavigation();
-  const { setTicketsCounter } = useTicketsContext();
   const {
     state: { nonProfit },
   } = useLocation<LocationStateType>();
@@ -52,7 +50,6 @@ function InsertEmailAccountPage(): JSX.Element {
 
   const onAnimationEnd = useCallback(() => {
     if (donationSucceeded && nonProfit) {
-      setTicketsCounter(0);
       logEvent("ticketDonated_end", {
         nonProfitId: nonProfit.id,
       });

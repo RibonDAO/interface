@@ -20,10 +20,7 @@ import { useCauseDonationContext } from "contexts/causeDonationContext";
 import NonProfitsSection from "pages/donations/CausesPage/NonProfitsSection";
 import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
 import CampaignSection from "pages/donations/CausesPage/CampaignSection";
-import { useAuthentication } from "contexts/authenticationContext";
 import { useTicketsContext } from "contexts/ticketsContext";
-import { useModal } from "hooks/modalHooks/useModal";
-import { MODAL_TYPES } from "contexts/modalContext/helpers";
 import { useTickets } from "hooks/useTickets";
 import {
   DONATION_TOAST_INTEGRATION,
@@ -32,11 +29,14 @@ import {
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import { setLocalStorageItem } from "lib/localStorage";
 import { useLanguage } from "hooks/useLanguage";
+import { useAuthentication } from "contexts/authenticationContext";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
 import ChooseCauseModal from "./ChooseCauseModal";
 import CausesSelectSection from "./CausesSelectSection";
 import * as S from "./styles";
+
+import showErrorModal from "./errorModal";
 
 function CausesPage(): JSX.Element {
   const integrationId = useIntegrationId();
@@ -51,25 +51,7 @@ function CausesPage(): JSX.Element {
     keyPrefix: "donations.causesPage",
   });
   const { state, search } = useLocation<LocationStateType>();
-
-  const { hide: closeWarningModal } = useModal(
-    {
-      type: MODAL_TYPES.MODAL_DIALOG,
-      props: {
-        title: t("errorModalTitle"),
-        description: state?.message || t("errorModalText"),
-        primaryButton: {
-          text: t("errorModalButtonText"),
-          onClick: () => closeWarningModal(),
-        },
-        onClose: () => closeWarningModal(),
-        eventName: "P12_errorModal",
-        supportButton: true,
-        type: "error",
-      },
-    },
-    state?.failedDonation,
-  );
+  showErrorModal(state);
 
   const hasSeenChooseCauseModal = useRef(false);
   const { refetchTickets, ticketsCounter, hasTickets } = useTicketsContext();
@@ -90,19 +72,20 @@ function CausesPage(): JSX.Element {
     const canCollect = await handleCanCollect();
 
     if (canCollect) {
-      if (isAuthenticated()) {
+      if (currentUser) {
         await handleCollect();
         refetchTickets();
       }
-    }
-
-    if (canCollect && !hasReceivedTicketToday()) {
-      showReceiveTicketToast();
-      setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());
-      setLocalStorageItem(
-        DONATION_TOAST_INTEGRATION,
-        integrationId?.toLocaleString() ?? RIBON_COMPANY_ID,
-      );
+      if (!hasReceivedTicketToday()) {
+        showReceiveTicketToast();
+        setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());
+        setLocalStorageItem(
+          DONATION_TOAST_INTEGRATION,
+          integrationId?.toLocaleString() ?? RIBON_COMPANY_ID,
+        );
+      }
+    } else {
+      refetchTickets();
     }
   }
 

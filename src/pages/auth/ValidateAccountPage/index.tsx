@@ -9,9 +9,9 @@ import useToast from "hooks/useToast";
 import { useAuthentication } from "contexts/authenticationContext";
 import ValidateAccount from "components/moleculars/validateAccount";
 
-function SignInExtraTicketPage(): JSX.Element {
+function ValidateAccountPage(): JSX.Element {
   const { t } = useTranslation("translation", {
-    keyPrefix: "donations.auth.signInExtraTicketPage",
+    keyPrefix: "donations.auth.validateAccountPage",
   });
   const { currentUser } = useCurrentUser();
   const { navigateTo } = useNavigation();
@@ -57,4 +57,4 @@ function SignInExtraTicketPage(): JSX.Element {
   );
 }
 
-export default SignInExtraTicketPage;
+export default ValidateAccountPage;

@@ -83,7 +83,6 @@ export function useTickets() {
   return {
     handleCanCollect,
     handleCollect,
-
     hasReceivedTicketToday,
   };
 }

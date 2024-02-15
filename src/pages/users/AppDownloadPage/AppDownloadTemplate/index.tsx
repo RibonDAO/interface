@@ -1,6 +1,11 @@
 import { useState } from "react";
 import useBreakpoint from "hooks/useBreakpoint";
-import { APP_LINK, DAPP_URL } from "utils/constants";
+import {
+  ANDROID_APP_LINK,
+  APP_LINK,
+  DAPP_URL,
+  IOS_APP_LINK,
+} from "utils/constants";
 import { useTranslation } from "react-i18next";
 import { formatCountdown } from "lib/formatters/countdownFormatter";
 import { useCountdown } from "hooks/useCountdown";
@@ -76,13 +81,13 @@ function AppDownloadTemplate({
   function handleIosLink() {
     logEvent("appStoreBtn_click");
     logEvent("downloadCTA_click", { from: "appStoreBtn" });
-    window.open(`${APP_LINK}?integration_id=${integrationId}`);
+    window.open(IOS_APP_LINK);
   }
 
   function handleAndroidLink() {
     logEvent("gPlayBtn_click");
     logEvent("downloadCTA_click", { from: "gPlayBtn" });
-    window.open(`${APP_LINK}?integration_id=${integrationId}`);
+    window.open(ANDROID_APP_LINK);
   }
 
   const buildLink = () => {

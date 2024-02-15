@@ -26,7 +26,7 @@ describe("NewsSection", () => {
       renderComponent(<NewsSection />);
       await waitForPromises();
 
-      expectTextNotToBeInTheDocument("Donate to read good news");
+      expectTextToBeInTheDocument("Donate to read good news");
     });
   });
 
@@ -37,7 +37,7 @@ describe("NewsSection", () => {
       renderComponent(<NewsSection />);
       await waitForPromises();
 
-      expectTextToBeInTheDocument("Donate to read good news");
+      expectTextNotToBeInTheDocument("Donate to read good news");
     });
   });
 

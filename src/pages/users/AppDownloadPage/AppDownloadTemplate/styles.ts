@@ -81,13 +81,23 @@ export const Button = styled.button<{ copy?: boolean }>`
     copy ? theme.colors.neutral10 : theme.colors.brand.primary[900]};
 `;
 
-export const Badges = styled.div`
+export const FlexRow = styled.div`
   width: 100%;
-  margin-bottom: ${({ theme }) => theme.spacing(8)};
   display: flex;
   flex-direction: row;
-  gap: ${({ theme }) => theme.spacing(8)};
   align-items: center;
+  justify-content: center;
+`;
+
+export const Badges = styled.div`
+  padding-inline: ${({ theme }) => theme.spacing(24)};
+  width: 100%;
+  margin-top: ${({ theme }) => theme.spacing(12)};
+  margin-bottom: ${({ theme }) => theme.spacing(40)};
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
   justify-content: center;
 `;
 
@@ -98,7 +108,6 @@ export const DescriptionBadge = styled(Description)`
 export const QRCode = styled.img`
   width: 120px;
   height: 120px;
-  margin-top: ${({ theme }) => theme.spacing(12)};
 `;
 
 export const InputLink = styled.input`
@@ -122,7 +131,7 @@ export const ImageContainer = styled.div`
 `;
 
 export const BorderContainer = styled.div`
-  margin-top: ${({ theme }) => theme.spacing(32)};
+  margin-top: 20px;
   border-left: 1px solid #bfbcb5;
 `;
 
@@ -155,11 +164,10 @@ export const ButtonsContainer = styled.div<{
 export const Image = styled.img``;
 
 export const ImageBadge = styled.img`
-  width: 100%;
+  padding-left: ${({ theme }) => theme.spacing(40)};
 `;
 
 export const Link = styled.a`
-  width: 50%;
   cursor: pointer;
 `;
 

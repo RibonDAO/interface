@@ -121,8 +121,8 @@
     },
     "giveTicketPage": {
       "onboardingRibonTitle": "Welcome to Ribon!",
-      "onboardingIntegrationTitle": "{{integrationName}} brought you here!",
-      "onboardingSubtitle": "Your donation ticket is available",
+      "onboardingIntegrationTitle": "{{integrationName}} invited you to use Ribon's app!",
+      "onboardingSubtitle": "Download the app and get free tickets to donate to awesome charities!",
       "onboardingButtonText": "Get my ticket",
       "title": "You have 1 special ticket",
       "titlePlural": "You have {{ticketsCounter}} ticket",
@@ -131,7 +131,11 @@
       "buttonText": "Donate my ticket",
       "tooltipTicketText": "Tickets are used to make donations and you get a new one everyday when you log in Ribon.",
       "tooltipTicket": "What is a ticket?",
-      "hasAccountButton": "I have an account"
+      "hasAccountButton": "I have an account",
+      "downloadAppButton": "Get ticket in Ribon's app",
+      "stayInBrowserButton": "Stay in browser",
+      "haveAnAccount": "Have an account?",
+      "signIn": "Sign in to your account"
     },
     "receiveTicketPage": {
       "textOrigin": "Community",

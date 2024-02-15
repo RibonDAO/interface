@@ -86,8 +86,10 @@ function CausesPage(): JSX.Element {
     const canCollect = await handleCanCollect();
 
     if (canCollect) {
-      await handleCollect();
-      refetchTickets();
+      if (currentUser) {
+        await handleCollect();
+        refetchTickets();
+      }
       if (!hasReceivedTicketToday()) {
         showReceiveTicketToast();
         setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());

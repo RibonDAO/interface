@@ -13,7 +13,6 @@ import { theme } from "@ribon.io/shared/styles";
 import { useTicketsContext } from "contexts/ticketsContext";
 import RibonLogo from "assets/images/logo-ribon.svg";
 import ArrowLeft from "./assets/arrow-left-dark-green.svg";
-import Envelope from "./assets/envelope.svg";
 import * as S from "./styles";
 
 export type Props = {
@@ -55,8 +54,6 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
       });
 
   const subtitle = isOnboarding ? t("onboardingSubtitle") : handleSubtitle;
-
-  const buttonText = isOnboarding ? t("onboardingButtonText") : t("buttonText");
 
   const title = isOnboarding ? titleOnboarding : t("title");
 

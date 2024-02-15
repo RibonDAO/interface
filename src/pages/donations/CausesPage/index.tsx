@@ -31,12 +31,12 @@ import {
 } from "lib/localStorage/constants";
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import { setLocalStorageItem } from "lib/localStorage";
+import { useLanguage } from "hooks/useLanguage";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
 import ChooseCauseModal from "./ChooseCauseModal";
 import CausesSelectSection from "./CausesSelectSection";
 import * as S from "./styles";
-import { useLanguage } from "hooks/useLanguage";
 
 function CausesPage(): JSX.Element {
   const integrationId = useIntegrationId();
@@ -159,7 +159,7 @@ function CausesPage(): JSX.Element {
         {!hasTickets && currentLang === "pt-BR" && (
           <CampaignSection cardId="1" />
         )}
-       
+
         <ContributionNotification />
         <CausesSelectSection />
         <NonProfitsSection />

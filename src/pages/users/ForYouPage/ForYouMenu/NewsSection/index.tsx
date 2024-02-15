@@ -79,7 +79,7 @@ function NewsSection() {
   }, [donatedToday]);
 
   function renderPage() {
-    if (!donatedToday) {
+    if (donatedToday) {
       return (
         <S.Container>
           <S.ArticlesContainer>

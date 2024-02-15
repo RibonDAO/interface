@@ -1,5 +1,4 @@
 import { renderComponent, waitForPromises } from "config/testUtils";
-import { mockRequest } from "config/testUtils/test-helper";
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import causeFactory from "config/testUtils/factories/causeFactory";
@@ -73,11 +72,6 @@ describe("Causes", () => {
       cause: cause2,
     }),
   ];
-
-  mockRequest("/api/v1/users/can_donate", {
-    payload: { canDonate: true },
-    method: "POST",
-  });
 
   beforeEach(async () => {
     renderComponent(<Causes />, {

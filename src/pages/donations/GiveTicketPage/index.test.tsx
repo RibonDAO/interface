@@ -111,11 +111,6 @@ describe("GiveTicketPage", () => {
         payload: [cause1],
       });
 
-      mockRequest("/api/v1/users/can_donate", {
-        payload: { canDonate: true },
-        method: "POST",
-      });
-
       const mockChain = {
         name: "Mumbai Testnet",
         ribonContractAddress: "0xF02a09B21267EDB53B459ddC802C60245dEfbE34",

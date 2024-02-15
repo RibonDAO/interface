@@ -1,4 +1,4 @@
-import { Offer } from "@ribon.io/shared/types";
+import { Categories, Offer } from "@ribon.io/shared/types";
 
 function offerFactory(params: Partial<Offer> = {}): Offer {
   const defaultValues: Offer = {
@@ -15,6 +15,7 @@ function offerFactory(params: Partial<Offer> = {}): Offer {
     updatedAt: "2022-06-27 19:31:48 UTC",
     gateway: "stripe",
     externalId: "price_1J5Z2nJZ6j4Z2nJZ6j4Z2nJZ",
+    category: Categories.DIRECT_CONTRIBUTION,
   };
   return Object.assign(defaultValues, params) as Offer;
 }

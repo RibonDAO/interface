@@ -31,8 +31,15 @@ describe("GiveTicketPage", () => {
         expectTextToBeInTheDocument("Welcome to Ribon!");
       });
 
+      it("navigates to the app download page when the button is clicked", () => {
+        clickOn("Get ticket in Ribon's app");
+        expectPageToNavigateTo("/app-download", {
+          state: { cameFrom: "intro" },
+        });
+      });
+
       it("navigates to the receive ticket page when the button is clicked", () => {
-        clickOn("Get my ticket");
+        clickOn("Stay in browser");
 
         expectPageToNavigateTo("/receive-ticket");
       });
@@ -45,7 +52,7 @@ describe("GiveTicketPage", () => {
       });
 
       it("renders the integration with correct title", () => {
-        expectTextToBeInTheDocument("brought you here!");
+        expectTextToBeInTheDocument("invited you to use Ribon's app!");
       });
     });
   });
@@ -84,8 +91,15 @@ describe("GiveTicketPage", () => {
         expectTextToBeInTheDocument("You have 1 special ticket");
       });
 
+      it("navigates to the app download page when the button is clicked", () => {
+        clickOn("Get ticket in Ribon's app");
+        expectPageToNavigateTo("/app-download", {
+          state: { cameFrom: "intro" },
+        });
+      });
+
       it("navigates to the causes page when the button is clicked", () => {
-        clickOn("Donate my ticket");
+        clickOn("Stay in browser");
         expectPageToNavigateTo("/causes");
       });
     });

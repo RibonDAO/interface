@@ -4,7 +4,6 @@ import { useCausesContext } from "contexts/causesContext";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
 
 import { useEffect } from "react";
-import { logEvent } from "lib/events";
 import NonProfitsList from "../NonProfitsList";
 import * as S from "./styles";
 
@@ -13,17 +12,6 @@ function NonProfitsSection() {
     useNonProfitsContext();
   const { filteredCauses } = useCausesContext();
   const { chosenCause } = useCauseDonationContext();
-
-  useEffect(() => {
-    if (filteredNonProfits && filteredCauses?.length > 0) {
-      logEvent("donationCardsOrder_view", {
-        nonProfits: filteredNonProfits
-          .map((nonProfit) => nonProfit.name)
-          .join(", "),
-        causes: filteredCauses?.map((cause) => cause.name).join(", "),
-      });
-    }
-  }, [filteredNonProfits, filteredCauses]);
 
   const nonProfitsFilter = () => {
     if (chosenCause) {

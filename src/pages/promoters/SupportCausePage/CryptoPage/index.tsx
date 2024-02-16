@@ -74,6 +74,21 @@ function CryptoPage(): JSX.Element {
   };
 
   const onDonationToContractSuccess = () => {
+    if (nonProfit?.id) {
+      logEvent("ngoGave_end", {
+        platform: "web",
+        nonProfit: nonProfit?.id,
+        amount,
+        source: "crypto",
+      });
+    } else {
+      logEvent("causeGave_end", {
+        platform: "web",
+        causeId: cause?.id,
+        amount,
+        source: "crypto",
+      });
+    }
     navigateTo({
       pathname: "/contribution-done",
       state: {

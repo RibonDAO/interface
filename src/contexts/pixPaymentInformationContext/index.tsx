@@ -23,6 +23,7 @@ import { useLoadingOverlay } from "contexts/loadingOverlayContext";
 import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
 import PaymentIntent from "types/entities/PaymentIntent";
 import { PaymentIntent as PaymentIntentStripe } from "@stripe/stripe-js";
+import { logEvent } from "lib/events";
 
 export interface IPixPaymentInformationContext {
   setButtonDisabled: (value: SetStateAction<boolean>) => void;
@@ -120,6 +121,23 @@ function PixPaymentInformationProvider({ children }: Props) {
         removeLocalStorageItem(LAST_CLIENT_SECRET_KEY);
 
         clearInterval(intervalId);
+
+        if (flow === "nonProfit") {
+          logEvent("ngoGave_end", {
+            platform: "web",
+            nonProfit: nonProfit?.id,
+            offerId,
+            source: "pix",
+          });
+        } else {
+          logEvent("causeGave_end", {
+            platform: "web",
+            causeId: cause?.id,
+            offerId,
+            source: "pix",
+          });
+        }
+
         navigateTo({
           pathname: "/contribution-done",
           state: {

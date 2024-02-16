@@ -28,6 +28,7 @@ import { CONTRIBUTION_INLINE_NOTIFICATION } from "pages/donations/CausesPage/Con
 import { PLATFORM } from "utils/constants";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
 import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
+import { logEvent } from "lib/events";
 
 export interface ICardPaymentInformationContext {
   setNumber: (value: SetStateAction<string>) => void;
@@ -103,6 +104,23 @@ function CardPaymentInformationProvider({ children }: Props) {
   const handleConfirmation = async () => {
     setLocalStorageItem(CONTRIBUTION_INLINE_NOTIFICATION, "3");
     login();
+
+    if (flow === "nonProfit") {
+      logEvent("ngoGave_end", {
+        platform: "web",
+        nonProfit: nonProfit?.id,
+        offerId,
+        source: "creditCard",
+      });
+    } else {
+      logEvent("causeGave_end", {
+        platform: "web",
+        causeId: cause?.id,
+        offerId,
+        source: "creditCard",
+      });
+    }
+
     navigateTo({
       pathname: "/contribution-done",
       state: {

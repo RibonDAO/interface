@@ -18,7 +18,6 @@ import useFormattedImpactText from "hooks/useFormattedImpactText";
 import { useTasksContext } from "contexts/tasksContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationId } from "hooks/useIntegrationId";
-import { logEvent } from "lib/events";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import * as S from "./styles";
 
@@ -42,7 +41,7 @@ function ContributionDonePage(): JSX.Element {
 
   const currency = Currencies.USD;
   const {
-    state: { nonProfit, offerId, cause, flow, from },
+    state: { nonProfit, offerId, cause, flow },
   } = useLocation<LocationState>();
   const { getOffer } = useOffers(currency);
   const [offer, setOffer] = useState<Offer>();
@@ -78,12 +77,6 @@ function ContributionDonePage(): JSX.Element {
     refetch();
     if (flow === "cause") {
       registerAction("contribution_done_page_view");
-      logEvent("causeGave_end", {
-        platform: "web",
-        currency: offer?.currency,
-        amount: offer?.priceValue,
-        causeId: cause.id,
-      });
       navigateTo({
         pathname: offer?.subscription
           ? "monthly-contributions"
@@ -94,13 +87,6 @@ function ContributionDonePage(): JSX.Element {
 
     if (flow === "nonProfit") {
       registerAction("contribution_done_page_view");
-      logEvent("ngoGave_end", {
-        platform: "web",
-        currency: offer?.currency,
-        amount: offer?.priceValue,
-        nonProfitId: nonProfit?.id,
-        from,
-      });
 
       navigateTo({
         pathname: offer?.subscription

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import useBreakpoint from "hooks/useBreakpoint";
 import {
-  APP_LINK,
-  IOS_APP_LINK,
   ANDROID_APP_LINK,
+  APP_LINK,
   DAPP_URL,
+  IOS_APP_LINK,
 } from "utils/constants";
 import { useTranslation } from "react-i18next";
 import { formatCountdown } from "lib/formatters/countdownFormatter";
@@ -15,6 +15,7 @@ import Icon from "components/atomics/Icon";
 import theme from "styles/theme";
 import { ButtonProps } from "components/atomics/buttons/Button";
 import { logEvent } from "lib/events";
+import { useIntegrationId } from "hooks/useIntegrationId";
 import AppleBadge from "./assets/apple-badge-sm.png";
 import GoogleBadge from "./assets/google-badge-sm.png";
 import * as S from "./styles";
@@ -42,6 +43,7 @@ function AppDownloadTemplate({
 
   const [now] = useState(new Date().getTime());
   const [countdownVisible, setCountdownVisible] = useState(true);
+  const integrationId = useIntegrationId();
 
   const renderCountDown = () => {
     const nowPlus5min = now + 5 * 60 * 1000;
@@ -73,7 +75,7 @@ function AppDownloadTemplate({
   function handleMobileLink() {
     logEvent("mobileDownloadBtn_click");
     logEvent("downloadCTA_click", { from: "downloadPageBtn" });
-    window.open(APP_LINK);
+    window.open(`${APP_LINK}?integration_id=${integrationId}`);
   }
 
   function handleIosLink() {

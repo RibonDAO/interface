@@ -10,12 +10,12 @@ describe("DownloadAppToast", () => {
   it("should render without error", () => {
     renderComponent(<DownloadAppToast />);
 
-    expectTextToBeInTheDocument("More tickets");
+    expectTextToBeInTheDocument("Get app");
   });
 
   it("navigates to the correct page when clicked", () => {
     renderComponent(<DownloadAppToast />);
-    clickOn("More tickets");
+    clickOn("Get app");
 
     expectPageToNavigateTo("/app-download");
   });

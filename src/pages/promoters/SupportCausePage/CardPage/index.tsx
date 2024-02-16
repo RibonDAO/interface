@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { logEvent } from "lib/events";
-import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import { Cause, Offer } from "@ribon.io/shared/types";
 import IntersectBackground from "assets/images/intersect-background.svg";
 import useNavigation from "hooks/useNavigation";
@@ -49,14 +48,6 @@ function SupportCausePage(): JSX.Element {
       setCause(state?.causeDonated || chosenCause);
     }
   });
-
-  useEffect(() => {
-    if (causes.length > 0) {
-      logEvent("contributionCardsOrder_view", {
-        causes: causes.map((c) => c.name).join(", ") as any,
-      });
-    }
-  }, [causes]);
 
   const handleCauseClick = (causeClicked: Cause, index: number) => {
     setCause(causeClicked);
@@ -126,7 +117,6 @@ function SupportCausePage(): JSX.Element {
 
   return (
     <S.Container>
-      <DownloadAppToast />
       <S.Title>{t("title")}</S.Title>
       {!isLoading && (
         <S.GroupButtonsContainer>

@@ -2,7 +2,6 @@ import { useTranslation } from "react-i18next";
 import { useCallback, useEffect, useState, Fragment } from "react";
 import { logEvent } from "lib/events";
 import { useNonProfits } from "@ribon.io/shared/hooks";
-import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import { Cause, Offer, NonProfit } from "@ribon.io/shared/types";
 import IntersectBackground from "assets/images/intersect-background.svg";
 import useNavigation from "hooks/useNavigation";
@@ -44,27 +43,9 @@ function CardPage(): JSX.Element {
     keyPrefix: "promoters.supportNonProfitPage",
   });
 
-  const orderedNonProfits = () => {
-    const ordered = causes
-      .map((c) => nonProfits?.filter((np) => np.cause.name === c?.name))
-      .flat(Infinity)
-      .map((np: any) => np?.name)
-      .join(", ");
-    return ordered;
-  };
-
   useEffect(() => {
     setCause(state?.causeDonated || causes[0]);
   });
-
-  useEffect(() => {
-    if (nonProfits && causes.length > 0) {
-      logEvent("contributionCardsOrder_view", {
-        nonProfits: orderedNonProfits() as any,
-        causes: causes.map((c) => c.name).join(", ") as any,
-      });
-    }
-  }, [nonProfits, causes]);
 
   const handleCauseClick = (causeClicked: Cause, index: number) => {
     setCause(causeClicked);
@@ -116,7 +97,6 @@ function CardPage(): JSX.Element {
 
   return (
     <S.Container>
-      <DownloadAppToast />
       <S.TitleContainer>
         <S.Title>{renderCurrentTitle()}</S.Title>
         {!isMobile && (

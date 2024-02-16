@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import {
+  defaultBodyMdMedium,
+  defaultBodyMdRegular,
   defaultBodyMdSemibold,
   defaultHeadingLg,
 } from "styles/typography/default";
@@ -13,7 +15,7 @@ export const Title = styled.p`
 `;
 
 export const Description = styled.p`
-  ${defaultBodyMdSemibold}
+  ${defaultBodyMdMedium}
 
   color: ${({ theme }) => theme.colors.neutral[500]};
 `;
@@ -159,4 +161,46 @@ export const BackArrowButton = styled.img`
 export const TooltipSection = styled.div`
   display: flex;
   justify-content: center;
+`;
+
+export const Header = styled.div`
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const LogosWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: ${({ theme }) => theme.spacing(8)};
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Logo = styled.img`
+  height: 100%;
+  max-height: 32px;
+`;
+
+export const Footer = styled.div`
+  margin-top: ${({ theme }) => theme.spacing(16)};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const MutedText = styled.p`
+  ${defaultBodyMdRegular}
+
+  color: ${({ theme }) => theme.colors.neutral[500]};
+`;
+
+export const ClickableText = styled.p`
+  ${defaultBodyMdSemibold}
+
+  text-decoration: underline;
+  color: ${({ theme }) => theme.colors.brand.primary[600]};
+  cursor: pointer;
 `;

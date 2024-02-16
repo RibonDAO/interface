@@ -1,14 +1,16 @@
 import styled from "styled-components";
 import {
+  defaultBodyLgSemibold,
   defaultBodyMdBold,
   defaultBodyMdSemibold,
+  defaultHeadingXxs,
 } from "styles/typography/default";
-import { stylizedDisplayMd } from "styles/typography/stylized";
 
 export const Title = styled.p`
-  ${stylizedDisplayMd}
+  ${defaultHeadingXxs}
 
-  margin-top: ${({ theme }) => theme.spacing(20)};
+  margin-top: ${({ theme }) => theme.spacing(24)};
+  text-align: center;
   color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;
 
@@ -79,12 +81,19 @@ export const Button = styled.button<{ copy?: boolean }>`
     copy ? theme.colors.neutral10 : theme.colors.brand.primary[900]};
 `;
 
+export const FlexRow = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const Badges = styled.div`
+  padding-inline: ${({ theme }) => theme.spacing(24)};
   width: 100%;
   margin-top: ${({ theme }) => theme.spacing(12)};
   margin-bottom: ${({ theme }) => theme.spacing(40)};
-  padding: ${({ theme }) => theme.spacing(0, 24, 24, 24)};
-  border: 1px solid ${({ theme }) => theme.colors.neutral[200]};
   border-radius: 8px;
   display: flex;
   flex-direction: row;
@@ -99,7 +108,6 @@ export const DescriptionBadge = styled(Description)`
 export const QRCode = styled.img`
   width: 120px;
   height: 120px;
-  margin-top: ${({ theme }) => theme.spacing(12)};
 `;
 
 export const InputLink = styled.input`
@@ -123,7 +131,7 @@ export const ImageContainer = styled.div`
 `;
 
 export const BorderContainer = styled.div`
-  margin-top: ${({ theme }) => theme.spacing(32)};
+  margin-top: 20px;
   border-left: 1px solid #bfbcb5;
 `;
 
@@ -172,7 +180,7 @@ export const DownloadButton = styled.a<{
 
   width: 100%;
   margin-bottom: ${({ theme, hasAnotherButton }) =>
-    hasAnotherButton ? theme.spacing(16) : theme.spacing(32)};
+    hasAnotherButton ? theme.spacing(8) : theme.spacing(16)};
   padding: ${({ theme }) => theme.spacing(12, 16)};
   border-radius: 8px;
   position: relative;
@@ -199,4 +207,21 @@ export const DownloadButton = styled.a<{
     color: ${({ theme, textColor }) =>
       textColor || theme.colors.brand.primary[900]};
   }
+`;
+
+export const CountdownContainer = styled.div`
+  ${defaultBodyLgSemibold}
+
+  padding-block: ${({ theme }) => theme.spacing(8)};
+  padding-inline: ${({ theme }) => theme.spacing(12)};
+  margin-top: ${({ theme }) => theme.spacing(24)};
+  margin-bottom: ${({ theme }) => theme.spacing(32)};
+  border: solid 1px ${({ theme }) => theme.colors.neutral[300]};
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  gap: ${({ theme }) => theme.spacing(4)};
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.neutral[500]};
 `;

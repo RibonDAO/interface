@@ -1,18 +1,28 @@
+import { useState } from "react";
 import useBreakpoint from "hooks/useBreakpoint";
-import { APP_LINK, IOS_APP_LINK, ANDROID_APP_LINK } from "utils/constants";
+import {
+  ANDROID_APP_LINK,
+  APP_LINK,
+  DAPP_URL,
+  IOS_APP_LINK,
+} from "utils/constants";
 import { useTranslation } from "react-i18next";
+import { formatCountdown } from "lib/formatters/countdownFormatter";
+import { useCountdown } from "hooks/useCountdown";
+import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
+import { QRCodeSVG } from "qrcode.react";
+import Icon from "components/atomics/Icon";
+import theme from "styles/theme";
 import { ButtonProps } from "components/atomics/buttons/Button";
 import { logEvent } from "lib/events";
-import AppleBadge from "./assets/apple-badge.png";
-import GoogleBadge from "./assets/google-badge.png";
-import QRCode from "./assets/qrcodeapp.svg";
-
+import { useIntegrationId } from "hooks/useIntegrationId";
+import AppleBadge from "./assets/apple-badge-sm.png";
+import GoogleBadge from "./assets/google-badge-sm.png";
 import * as S from "./styles";
 
 export type Props = {
   title: string;
   image: string;
-  description?: string;
   hasBackButton?: boolean;
   firstButton: ButtonProps;
   secondButton?: ButtonProps;
@@ -22,7 +32,6 @@ export type Props = {
 function AppDownloadTemplate({
   title,
   image,
-  description,
   hasBackButton,
   firstButton,
   secondButton,
@@ -32,22 +41,70 @@ function AppDownloadTemplate({
     keyPrefix: "appDownloadPage",
   });
 
+  const [now] = useState(new Date().getTime());
+  const [countdownVisible, setCountdownVisible] = useState(true);
+  const integrationId = useIntegrationId();
+
+  const renderCountDown = () => {
+    const nowPlus5min = now + 5 * 60 * 1000;
+
+    const countdown = useCountdown(nowPlus5min, () =>
+      setCountdownVisible(false),
+    );
+
+    if (!countdownVisible) return null;
+
+    return (
+      <S.CountdownContainer>
+        <Icon
+          name="nest_clock_farsight_analog"
+          color={theme.colors.neutral[500]}
+          size="20px"
+        />{" "}
+        {
+          t("offerExpiresIn", {
+            time: formatCountdown(countdown),
+          }) as string
+        }
+      </S.CountdownContainer>
+    );
+  };
+
   const { isMobile } = useBreakpoint();
 
   function handleMobileLink() {
     logEvent("mobileDownloadBtn_click");
-    window.open(APP_LINK);
+    logEvent("downloadCTA_click", { from: "downloadPageBtn" });
+    window.open(`${APP_LINK}?integration_id=${integrationId}`);
   }
 
   function handleIosLink() {
     logEvent("appStoreBtn_click");
+    logEvent("downloadCTA_click", { from: "appStoreBtn" });
     window.open(IOS_APP_LINK);
   }
 
   function handleAndroidLink() {
     logEvent("gPlayBtn_click");
+    logEvent("downloadCTA_click", { from: "gPlayBtn" });
     window.open(ANDROID_APP_LINK);
   }
+
+  const buildLink = () => {
+    const utmParams = getUTMFromLocationSearch(window.location.search);
+    const queryParams = new URLSearchParams({
+      utm_source: utmParams.utmSource,
+      utm_medium: utmParams.utmMedium,
+      utm_campaign: utmParams.utmCampaign,
+    });
+
+    const redirectParams = new URLSearchParams({
+      redirect_url: APP_LINK,
+      event: "qrCodeButton_click",
+    });
+
+    return `${DAPP_URL}redirect?${queryParams.toString()}&${redirectParams.toString()}`;
+  };
 
   const render = () => {
     if (isMobile) {
@@ -73,11 +130,9 @@ function AppDownloadTemplate({
         <>
           <S.Badges>
             <S.ImageContainer>
-              <S.Description>{t("scanQrCode")}</S.Description>
-              <S.QRCode src={QRCode} />
+              <QRCodeSVG value={buildLink()} size={120} />
             </S.ImageContainer>
             <S.ImageContainer>
-              <S.DescriptionBadge>{t("chooseStore")}</S.DescriptionBadge>
               <S.BorderContainer>
                 <S.Link
                   onClick={() => handleAndroidLink()}
@@ -109,7 +164,7 @@ function AppDownloadTemplate({
     <S.Wrapper hasMenu={!hasBackButton} hasMarginTop={spacingTopDonationFlow}>
       <S.Image src={image} />
       <S.Title>{title}</S.Title>
-      {description && <S.Description>{description}</S.Description>}
+      {renderCountDown()}
       {render()}
     </S.Wrapper>
   );

@@ -4,11 +4,12 @@ import useNavigation from "hooks/useNavigation";
 import { useLocation } from "react-router-dom";
 import { NonProfit } from "@ribon.io/shared/types";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
+import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
 import { useEffect, useState } from "react";
 import { logEvent } from "@amplitude/analytics-browser";
 import theme from "styles/theme";
+import IllustrationMobile from "assets/images/extra-ticket.svg";
 import * as S from "./styles";
-import IllustrationMobile from "./assets/illustration-mobile.svg";
 import LeftImage from "./assets/left-image.svg";
 import RightImage from "./assets/right-image.svg";
 import AppDownloadTemplate from "./AppDownloadTemplate";
@@ -16,6 +17,7 @@ import AppDownloadTemplate from "./AppDownloadTemplate";
 type LocationStateType = {
   nonProfit?: NonProfit;
   showContribute?: boolean;
+  cameFrom?: string;
 };
 
 function AppDownloadPage() {
@@ -38,6 +40,12 @@ function AppDownloadPage() {
 
   const comesFromPostDonation = !!nonProfit;
 
+  const handleBackNavigation = () => {
+    const path = state?.cameFrom === "intro" ? "/intro" : "/causes";
+
+    navigateTo(path);
+  };
+
   const handleOnClickSecondButton = () => {
     if (comesFromPostDonation && showContribute) {
       navigateTo({
@@ -45,12 +53,21 @@ function AppDownloadPage() {
         state: { nonProfit },
       });
     } else {
-      navigateTo("/causes");
+      handleBackNavigation();
     }
   };
 
   useEffect(() => {
+    const from = comesFromPostDonation ? "postDonation" : "downloadPage";
     logEvent("P17_view");
+    const utmParams = getUTMFromLocationSearch(window.location.search);
+
+    logEvent("downloadCTA_view", {
+      from,
+      utm_source: utmParams.utmSource,
+      utm_medium: utmParams.utmMedium,
+      utm_campaign: utmParams.utmCampaign,
+    });
   });
 
   useAvoidBackButton();
@@ -72,7 +89,6 @@ function AppDownloadPage() {
         <AppDownloadTemplate
           title={t("title")}
           image={IllustrationMobile}
-          description={t("description")}
           firstButton={{
             text: t("buttonDownloadApp"),
             backgroundColor: theme.colors.brand.primary[600],

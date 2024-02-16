@@ -40,3 +40,5 @@ export const INTEGRATION_AUTH_ID =
 
 export const USER_SUPPORT_LINK =
   "https://api.whatsapp.com/send/?phone=554896605461&text=Oii+Ribon%2C+vamos+conversar%3F+&type=phone_number&app_absent=0";
+
+export const DAPP_URL = "https://dapp.ribon.io/";

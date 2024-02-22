@@ -75,16 +75,19 @@ export const Image = styled.img<{
 
 export const Text = styled.p<{
   textColor?: string;
+  isLocked?: boolean;
 }>`
   ${defaultBodyXsRegular}
 
   margin-top: ${({ theme }) => theme.spacing(8)};
   color: ${({ theme, textColor }) => textColor || theme.colors.neutral[500]};
+  filter: ${({ isLocked }) => isLocked && "blur(5px)"};
 `;
 
 export const Title = styled.span<{
   size?: string;
   titleColor?: string;
+  isLocked?: boolean;
 }>`
   ${(props) =>
     props.size === "small" &&
@@ -102,9 +105,12 @@ export const Title = styled.span<{
       ${defaultBodySmRegular}
     `}
 
+  -webkit-touch-callout: none;
   margin-top: ${({ theme }) => theme.spacing(8)};
   color: ${({ theme, titleColor }) =>
     titleColor || theme.colors.brand.primary[800]};
+  filter: ${({ isLocked }) => isLocked && "blur(5px)"};
+  user-select: none;
 `;
 
 export const Label = styled.span`

@@ -41,7 +41,7 @@ function AppDownloadPage() {
   const comesFromPostDonation = !!nonProfit;
 
   const handleBackNavigation = () => {
-    const path = state?.cameFrom === "intro" ? "/intro" : "/causes";
+    const path = state?.cameFrom === "intro" ? "/intro" : "/impact";
 
     navigateTo(path);
   };

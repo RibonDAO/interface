@@ -41,6 +41,7 @@ function TicketSection() {
               }
               icon={item.nonProfit.logo}
               size="large"
+              isTextLocked
             />
           ))}
           {legacyUserImpact?.map((item: any) => (
@@ -51,6 +52,7 @@ function TicketSection() {
               icon={item.legacyNonProfit.logoUrl}
               size="large"
               label={t("migrated")}
+              isTextLocked
             />
           ))}
         </S.CardsContainer>

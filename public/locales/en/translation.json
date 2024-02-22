@@ -632,6 +632,11 @@
       "cta": "Get app"
     }
   },
+  "downloadAppBanner": {
+    "title": "Check your unlocked profile in Ribon‘s app",
+    "subtitle": "Download now and keep up with you beautiful donation journey!",
+    "cta":"Get the app ->"
+  },
   "forYouPage": {
     "title": "For you",
     "forYouMenu": {

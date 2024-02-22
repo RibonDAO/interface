@@ -25,7 +25,7 @@ describe("ReturnToIntegrationPage", () => {
 
     it("should navigate to the causes page", () => {
       clickOn("Stay in Ribon");
-      expectPageToNavigateTo("/causes");
+      expectPageToNavigateTo("/impact");
     });
   });
 

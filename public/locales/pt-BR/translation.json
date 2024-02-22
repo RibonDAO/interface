@@ -632,6 +632,11 @@
       "cta": "Baixar"
     }
   },
+  "downloadAppBanner": {
+    "title": "Veja seu perfil liberado no app da Ribon",
+    "subtitle": "Baixe já e acompanhe no app a sua linda jornada de doação!",
+    "cta":"Baixar app da Ribon ->"
+  },
   "forYouPage": {
     "title": "Para você",
     "forYouMenu": {

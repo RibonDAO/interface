@@ -8,7 +8,7 @@ import { coinByLanguage } from "lib/coinByLanguage";
 import { useWalletContext } from "contexts/walletContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useStatistics } from "@ribon.io/shared/hooks";
-import CampaignSection from "pages/donations/CausesPage/CampaignSection";
+import DownlaodAppBanner from "components/moleculars/banners/DownloadAppBanner";
 import MainLayout from "layouts/MainLayout";
 import ImpactMenu from "./ImpactMenu";
 import TicketIcon from "./assets/ticket-icon.svg";
@@ -39,7 +39,7 @@ function ImpactPage(): JSX.Element {
       <S.Container>
         <DownloadAppToast />
         {currentUser && <ProfileSection />}
-        <CampaignSection cardId="1" />
+        <DownlaodAppBanner />
         <S.Title>{t("title")}</S.Title>
 
         <S.CardsButtonContainer>
@@ -48,6 +48,7 @@ function ImpactPage(): JSX.Element {
             icon={TicketIcon}
             title={userStatistics?.totalTickets ?? 0}
             size="small"
+            isTitleLocked
           />
           <CardTopImage
             text={t("donatedMoney")}
@@ -60,18 +61,21 @@ function ImpactPage(): JSX.Element {
               coinByLanguage(currentLang),
               currentLang,
             )}
+            isTitleLocked
           />
           <CardTopImage
             text={t("supportedNgos")}
             icon={NgoIcon}
             title={userStatistics?.totalNonProfits ?? 0}
             size="small"
+            isTitleLocked
           />
           <CardTopImage
             text={t("supporterCauses")}
             icon={CausesIcon}
             title={userStatistics?.totalCauses ?? 0}
             size="small"
+            isTitleLocked
           />
         </S.CardsButtonContainer>
 

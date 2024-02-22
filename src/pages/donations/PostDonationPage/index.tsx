@@ -39,7 +39,7 @@ function PostDonationPage(): JSX.Element {
   useEffect(() => {
     if (nonProfit === undefined) {
       navigateTo({
-        pathname: "/causes",
+        pathname: "/impact",
       });
     }
   }, []);
@@ -91,7 +91,7 @@ function PostDonationPage(): JSX.Element {
   };
 
   const handleDonateLaterClick = () => {
-    const pathname = "/causes";
+    const pathname = "/impact";
 
     navigateTo({
       pathname,

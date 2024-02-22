@@ -18,7 +18,7 @@ function ReturnToIntegrationPage(): JSX.Element {
   const { integration } = useIntegration(integrationId);
 
   const handleStayButtonClick = () => {
-    navigateTo("/causes");
+    navigateTo("/impact");
   };
 
   const handleReturnButtonClick = () => {

@@ -1,11 +1,18 @@
+import * as Constants from "utils/constants";
 import { generateUrlSignature, verifyUrlSignature } from ".";
 
 const URL = "www.google.com";
 const VALID_SIG =
-  "191347bfe55d0ca9a574db77bc8648275ce258461450e793528e0cc6d2dcf8f5";
+  "81889decdc257c3865cd188db821fbccdb8347c0e3ffc55ee37d25a498d00778";
 const INVALID_SIG = "invalid_sig";
 
+const mockConstants = Constants as { URL_SIGNATURE_KEY: string };
+
 describe("urlSignature", () => {
+  beforeEach(() => {
+    mockConstants.URL_SIGNATURE_KEY = "mock_key";
+  });
+
   describe("generateUrlSignature", () => {
     it("generates a valid signture", () => {
       const sig = generateUrlSignature(URL);

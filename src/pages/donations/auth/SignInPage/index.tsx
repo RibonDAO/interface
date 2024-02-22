@@ -11,8 +11,9 @@ import GoogleLogin from "components/moleculars/buttons/GoogleLogin";
 import AppleLogin from "components/moleculars/buttons/AppleLogin";
 import MagicLinkLogin from "components/moleculars/buttons/MagicLinkLogin";
 import useDonationFlow from "hooks/useDonationFlow";
-import * as S from "./styles";
+import { useTickets } from "hooks/useTickets";
 import DonatingSection from "../DonatingSection";
+import * as S from "./styles";
 
 type LocationStateType = {
   nonProfit: NonProfit;
@@ -28,6 +29,7 @@ function SignInPage(): JSX.Element {
   const [donationInProgress, setDonationInProgress] = useState(false);
   const [donationSucceeded, setDonationSucceeded] = useState(false);
   const { handleDonate } = useDonationFlow();
+  const { handleCollect } = useTickets();
 
   const {
     state: { nonProfit },
@@ -35,6 +37,7 @@ function SignInPage(): JSX.Element {
 
   const onContinue = async () => {
     setDonationInProgress(true);
+    await handleCollect();
     await handleDonate({
       nonProfit,
       ticketsQuantity: 1,

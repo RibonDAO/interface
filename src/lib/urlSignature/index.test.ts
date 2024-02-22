@@ -7,7 +7,7 @@ const INVALID_SIG = "invalid_sig";
 
 const originalEnv = process.env;
 
-describe("Events", () => {
+describe("urlSignature", () => {
   beforeEach(() => {
     jest.resetModules();
     process.env = {

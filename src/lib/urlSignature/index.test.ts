@@ -5,12 +5,19 @@ const VALID_SIG =
   "23e566e8a66b01df7753ed27d917fa63d8890ccb32c69301de407d7f963bb1ac";
 const INVALID_SIG = "invalid_sig";
 
+const originalEnv = process.env;
+
 describe("Events", () => {
   beforeEach(() => {
-    Object.defineProperty(process.env, "URL_SIGNATURE_KEY", {
-      value: "mock_key",
-      writable: true,
-    });
+    jest.resetModules();
+    process.env = {
+      ...originalEnv,
+      URL_SIGNATURE_KEY: "mock_key",
+    };
+  });
+
+  afterEach(() => {
+    process.env = originalEnv;
   });
 
   describe("generateUrlSignature", () => {

@@ -1,9 +1,8 @@
 import { renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import { screen } from "@testing-library/react";
-
-import GroupCardsCheckbox from ".";
 import { theme } from "@ribon.io/shared/styles";
+import GroupCardsCheckbox from ".";
 
 describe("GroupCardsCheckbox", () => {
   const elements = [

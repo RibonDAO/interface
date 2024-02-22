@@ -1,20 +1,19 @@
 import { renderComponent } from "config/testUtils";
 import { screen } from "@testing-library/react";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
-import CardCheckbox from ".";
 import { theme } from "@ribon.io/shared";
-import React from "react";
+import CardCheckbox from ".";
 
 describe("CardCheckbox", () => {
   it("should render without error", () => {
     renderComponent(
       <CardCheckbox
-        firstDescription={"CardCheckbox"}
-        firstIconName={"confirmation_number"}
-        secondDescription={"secondDescription"}
-        secondIconName={"box"}
-        value={"R$10,00"}
-        recurrence={"month"}
+        firstDescription="CardCheckbox"
+        firstIconName="confirmation_number"
+        secondDescription="secondDescription"
+        secondIconName="box"
+        value="R$10,00"
+        recurrence="month"
       />,
     );
 
@@ -28,13 +27,13 @@ describe("CardCheckbox", () => {
     it("should render tagText", () => {
       renderComponent(
         <CardCheckbox
-          firstDescription={"CardCheckbox"}
-          firstIconName={"confirmation_number"}
-          secondDescription={"secondDescription"}
-          secondIconName={"box"}
-          value={"R$10,00"}
-          recurrence={"month"}
-          tagText={"Most popular"}
+          firstDescription="CardCheckbox"
+          firstIconName="confirmation_number"
+          secondDescription="secondDescription"
+          secondIconName="box"
+          value="R$10,00"
+          recurrence="month"
+          tagText="Most popular"
         />,
       );
 
@@ -46,12 +45,12 @@ describe("CardCheckbox", () => {
     it("should render checked", () => {
       renderComponent(
         <CardCheckbox
-          firstDescription={"CardCheckbox"}
-          firstIconName={"confirmation_number"}
-          secondDescription={"secondDescription"}
-          secondIconName={"box"}
-          value={"R$10,00"}
-          recurrence={"month"}
+          firstDescription="CardCheckbox"
+          firstIconName="confirmation_number"
+          secondDescription="secondDescription"
+          secondIconName="box"
+          value="R$10,00"
+          recurrence="month"
           checked
         />,
       );
@@ -68,12 +67,12 @@ describe("CardCheckbox", () => {
     beforeEach(() => {
       renderComponent(
         <CardCheckbox
-          firstDescription={"CardCheckbox"}
-          firstIconName={"confirmation_number"}
-          secondDescription={"secondDescription"}
-          secondIconName={"box"}
-          value={"R$10,00"}
-          recurrence={"month"}
+          firstDescription="CardCheckbox"
+          firstIconName="confirmation_number"
+          secondDescription="secondDescription"
+          secondIconName="box"
+          value="R$10,00"
+          recurrence="month"
           onClick={onClick}
         />,
       );
@@ -88,12 +87,12 @@ describe("CardCheckbox", () => {
     beforeEach(async () => {
       renderComponent(
         <CardCheckbox
-          firstDescription={"CardCheckbox"}
-          firstIconName={"confirmation_number"}
-          secondDescription={"secondDescription"}
-          secondIconName={"box"}
-          value={"R$10,00"}
-          recurrence={"month"}
+          firstDescription="CardCheckbox"
+          firstIconName="confirmation_number"
+          secondDescription="secondDescription"
+          secondIconName="box"
+          value="R$10,00"
+          recurrence="month"
         />,
       );
 

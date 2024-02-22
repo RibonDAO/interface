@@ -2,7 +2,7 @@ import { generateUrlSignature, verifyUrlSignature } from ".";
 
 const URL = "www.google.com";
 const VALID_SIG =
-  "23e566e8a66b01df7753ed27d917fa63d8890ccb32c69301de407d7f963bb1ac";
+  "191347bfe55d0ca9a574db77bc8648275ce258461450e793528e0cc6d2dcf8f5";
 const INVALID_SIG = "invalid_sig";
 
 describe("urlSignature", () => {

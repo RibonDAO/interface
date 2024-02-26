@@ -54,8 +54,8 @@ function ReceiveTicketPage(): JSX.Element {
       createVoucher();
       collectByIntegration(
         integrationId ?? "",
-        currentUser?.email ?? "",
         PLATFORM,
+        currentUser?.email ?? "",
       );
       setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());
       setLocalStorageItem(

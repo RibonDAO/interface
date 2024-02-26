@@ -3,70 +3,84 @@ import { logError } from "services/crashReport";
 import { setLocalStorageItem } from "lib/localStorage";
 import { SHOW_MENU, useCurrentUser } from "contexts/currentUserContext";
 import {
-  useDonations,
   useSources,
-  useUserConfig,
+  useTickets,
   useUsers,
+  useUserTickets,
 } from "@ribon.io/shared/hooks";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { NonProfit } from "@ribon.io/shared/types";
-import extractUrlValue from "lib/extractUrlValue";
 import useNavigation from "hooks/useNavigation";
 import useVoucher from "hooks/useVoucher";
 import { normalizedLanguage } from "lib/currentLanguage";
 import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
+import extractUrlValue from "lib/extractUrlValue";
+import { useLocation } from "react-router-dom";
 
-type HandleDonateProps = {
+type HandleCollectAndDonateProps = {
   nonProfit: NonProfit;
   email: string;
-  allowedEmailMarketing?: boolean;
   onSuccess?: () => void;
   onError?: (error: any) => void;
 };
+
+type HandleDonateProps = {
+  nonProfit: NonProfit;
+  ticketsQuantity: number;
+  onSuccess?: () => void;
+  onError?: (error: any) => void;
+};
+
 function useDonationFlow() {
-  const { currentUser, signedIn, setCurrentUser } = useCurrentUser();
+  const { signedIn, setCurrentUser } = useCurrentUser();
   const { findOrCreateUser } = useUsers();
   const { createSource } = useSources();
-  const { donate } = useDonations(currentUser?.id);
   const integrationId = useIntegrationId();
   const { history, navigateTo } = useNavigation();
   const { destroyVoucher } = useVoucher();
-  const { updateUserConfig } = useUserConfig();
+  const { collectAndDonateByIntegration, collectAndDonateByExternalIds } =
+    useTickets();
+  const utmParams = getUTMFromLocationSearch(history.location.search);
+  const { search } = useLocation();
+  const externalId = extractUrlValue("external_id", search);
+  const externalIds = externalId?.split(",");
 
-  function getExternalIdFromLocationSearch() {
-    return extractUrlValue("external_id", history.location.search);
-  }
-
-  async function handleDonate({
+  async function handleCollectAndDonate({
     nonProfit,
     email,
-    allowedEmailMarketing,
     onError,
     onSuccess,
-  }: HandleDonateProps) {
+  }: HandleCollectAndDonateProps) {
     if (!signedIn) {
       const user = await findOrCreateUser(email, normalizedLanguage());
       if (integrationId) createSource(user.id, integrationId);
       setCurrentUser(user);
-      if (allowedEmailMarketing) {
-        updateUserConfig(user.id, { allowedEmailMarketing });
-      }
     }
-
-    const utmParams = getUTMFromLocationSearch(history.location.search);
 
     if (integrationId) {
       try {
-        await donate(
-          integrationId,
-          nonProfit.id,
-          email,
-          PLATFORM,
-          getExternalIdFromLocationSearch(),
-          utmParams.utmSource,
-          utmParams.utmMedium,
-          utmParams.utmCampaign,
-        );
+        if (externalIds && externalIds.length > 0) {
+          await collectAndDonateByExternalIds(
+            integrationId,
+            nonProfit.id,
+            PLATFORM,
+            externalIds,
+            email,
+            utmParams.utmSource,
+            utmParams.utmMedium,
+            utmParams.utmCampaign,
+          );
+        } else {
+          await collectAndDonateByIntegration(
+            integrationId,
+            nonProfit.id,
+            PLATFORM,
+            email,
+            utmParams.utmSource,
+            utmParams.utmMedium,
+            utmParams.utmCampaign,
+          );
+        }
         destroyVoucher();
         if (onSuccess) onSuccess();
       } catch (e: any) {
@@ -85,7 +99,35 @@ function useDonationFlow() {
     setLocalStorageItem(SHOW_MENU, "true");
   }
 
-  return { handleDonate };
+  async function handleDonate({
+    nonProfit,
+    ticketsQuantity,
+    onError,
+    onSuccess,
+  }: HandleDonateProps) {
+    const { donate } = useUserTickets();
+
+    try {
+      const result = await donate(
+        nonProfit.id,
+        ticketsQuantity,
+        PLATFORM,
+        utmParams.utmSource,
+        utmParams.utmMedium,
+        utmParams.utmCampaign,
+      );
+      if (result.status === 200 && onSuccess) onSuccess();
+      if (result.status === 401 && onError)
+        onError({
+          reponse: { status: 401 },
+        });
+    } catch (e: any) {
+      logError(e);
+      if (onError) onError(e);
+    }
+  }
+
+  return { handleCollectAndDonate, handleDonate };
 }
 
 export default useDonationFlow;

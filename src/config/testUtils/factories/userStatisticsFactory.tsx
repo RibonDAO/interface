@@ -10,7 +10,7 @@ function userStatisticsFactory(
       brl: 15,
       usd: 3,
     },
-    totalTickets: 1,
+    totalTickets: 10,
   };
   return Object.assign(defaultValues, params) as UserStatistics;
 }

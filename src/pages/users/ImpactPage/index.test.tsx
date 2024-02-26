@@ -10,6 +10,12 @@ import userStatisticsFactory from "config/testUtils/factories/userStatisticsFact
 import Impact from ".";
 
 describe("Impact Page", () => {
+  const impact = [
+    impactFactory({
+      nonProfit: nonProfitFactory({ id: 1 }),
+      impact: "1",
+    }),
+  ];
   describe("Total Impact Cards", () => {
     const user = userFactory({ id: 1 });
     const userStatistics = userStatisticsFactory();
@@ -27,6 +33,13 @@ describe("Impact Page", () => {
           method: "POST",
           payload: {
             streak: 1,
+          },
+        });
+
+        mockRequest("/api/v1/tickets/can_collect_by_integration", {
+          method: "POST",
+          payload: {
+            canCollect: false,
           },
         });
       });
@@ -69,7 +82,6 @@ describe("Impact Page", () => {
     });
 
     const user = userFactory({ id: 1 });
-    const impact = [impactFactory({ nonProfit: nonProfitFactory({ id: 1 }) })];
 
     describe("when there are cards to show", () => {
       beforeEach(() => {

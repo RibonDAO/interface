@@ -1,11 +1,10 @@
 import Header from "components/atomics/sections/Header";
-import { useIntegration, useCanDonate } from "@ribon.io/shared/hooks";
-import useVoucher from "hooks/useVoucher";
+import { useIntegration } from "@ribon.io/shared/hooks";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import useNavigation from "hooks/useNavigation";
-import { PLATFORM, RIBON_COMPANY_ID } from "utils/constants";
+import { RIBON_COMPANY_ID } from "utils/constants";
 import { logEvent } from "lib/events";
-import extractUrlValue from "lib/extractUrlValue";
+import { useTicketsContext } from "contexts/ticketsContext";
 import TicketsCounter from "./TicketsCounter";
 import SettingsMenu from "./SettingsMenu";
 import * as S from "./styles";
@@ -24,13 +23,11 @@ function LayoutHeader({
   outline = false,
 }: Props): JSX.Element {
   const integrationId = useIntegrationId();
-  const { navigateBack, history, navigateTo } = useNavigation();
-  const { integration } = useIntegration(integrationId);
-  const externalId = extractUrlValue("external_id", history.location.search);
-  const { canDonate } = useCanDonate(integrationId, PLATFORM, externalId);
-  const { isVoucherAvailable } = useVoucher();
+  const { navigateBack, navigateTo } = useNavigation();
 
-  const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
+  const { integration } = useIntegration(integrationId);
+
+  const { hasTickets } = useTicketsContext();
 
   if (!integrationId) return <div />;
 
@@ -42,7 +39,7 @@ function LayoutHeader({
 
   function handleSideLogoClick() {
     if (!integration?.integrationTask?.linkAddress) return;
-    if (canDonateAndHasVoucher) {
+    if (hasTickets) {
       navigateTo("return-to-integration");
       return;
     }

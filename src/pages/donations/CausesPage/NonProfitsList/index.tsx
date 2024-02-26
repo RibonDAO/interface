@@ -5,36 +5,33 @@ import useNavigation from "hooks/useNavigation";
 import { logEvent } from "lib/events";
 import { Currencies, NonProfit } from "@ribon.io/shared/types";
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
-import useVoucher from "hooks/useVoucher";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import causeIllustration from "assets/images/direct-illustration.svg";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useOffers } from "@ribon.io/shared/hooks";
 import { useLanguage } from "hooks/useLanguage";
 import { useCurrentUser } from "contexts/currentUserContext";
+import { useTicketsContext } from "contexts/ticketsContext";
 import StoriesSection from "../StoriesSection";
 import * as S from "../styles";
 
 type Props = {
   nonProfits: NonProfit[];
-  canDonate: boolean;
 };
 
 const MINIMUM_NON_PROFITS_TO_LOOP = 3;
 
-function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
+function NonProfitsList({ nonProfits }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
   const { navigateTo } = useNavigation();
+  const { hasTickets } = useTicketsContext();
 
   const [currentNonProfitIndex, setCurrentNonProfitIndex] = useState(0);
 
   const { formattedImpactText } = useFormattedImpactText();
-  const { isVoucherAvailable } = useVoucher();
   const { signedIn } = useCurrentUser();
-
-  const canDonateAndHasVoucher = canDonate && isVoucherAvailable();
 
   const handleEmptyButtonClick = () => {
     navigateTo("/promoters/support-cause");
@@ -95,13 +92,13 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
   };
 
   function handleButtonClick(nonProfit: NonProfit, from: string) {
-    if (canDonateAndHasVoucher) {
+    if (hasTickets) {
       logEvent("donateTicketBtn_start", {
         nonProfitId: nonProfit.id,
         from,
       });
       if (signedIn) {
-        navigateTo({ pathname: "/signed-in", state: { nonProfit } });
+        navigateTo({ pathname: "/select-tickets", state: { nonProfit } });
       } else {
         navigateTo({
           pathname: "/donation/auth/sign-in",
@@ -120,7 +117,6 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
           nonProfit={currentNonProfitWithStories}
           visible={storiesSectionVisible}
           setVisible={setStoriesSectionVisible}
-          canDonateAndHasVoucher={Boolean(canDonateAndHasVoucher)}
           onButtonClick={() =>
             handleButtonClick(currentNonProfitWithStories, "stories")
           }
@@ -142,7 +138,7 @@ function NonProfitsList({ nonProfits, canDonate }: Props): JSX.Element {
                     image={nonProfit.mainImage || nonProfit.cause?.mainImage}
                     title={oldImpactFormat(nonProfit)}
                     buttonText={
-                      canDonateAndHasVoucher
+                      hasTickets
                         ? t("donateText")
                         : t("doMore", {
                             value: currentOffer()?.price ?? "1000",

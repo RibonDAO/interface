@@ -22,6 +22,9 @@
       "errorModalTitle": "Falha no processamento",
       "errorModalText": "A rede está instável e não foi possível registrar sua doação. Tente novamente, por favor.",
       "errorModalButtonText": "Ok",
+      "unauthorizedModalTitle": "Conta não validada",
+      "unauthorizedModalText": "Para completar a sua doação com segurança é necessário que você valide sua conta.",
+      "unauthorizedModalButtonText": "Prosseguir para validação",
       "receiveTicketAnimationModalTitle": "Recebendo ticket...",
       "receiveTicketAnimationModalOrigin": "Comunidade",
       "receiveTicketAnimationModalDestiny": "Você",
@@ -121,7 +124,8 @@
       "onboardingIntegrationTitle": "{{integrationName}} te convidou para o app da Ribon!",
       "onboardingSubtitle": "Baixe o app e ganhe tickets para doar para projetos sociais incríveis!",
       "onboardingButtonText": "Receber meu ticket",
-      "title": "Você tem 1 ticket especial",
+      "title": "Você tem 1 ticket",
+      "titlePlural": "Você tem {{ticketsCounter}} tickets",
       "integrationSubtitle": "{{integrationName}} te deu um ticket para você doar aqui na Ribon!",
       "subtitle": "Você recebe um novo ticket sempre que entra na Ribon pela primeira vez no dia",
       "buttonText": "Doar meu ticket",
@@ -187,7 +191,16 @@
         "description": "Valide sua conta criada com {{email}} e receba seu ticket extra",
         "buttonText": "Continuar sem ticket extra",
         "toastDescription": "Seu ticket foi enviado por e-mail"
+      },
+      "validateAccountPage": {
+        "title": "Valide sua conta",
+        "description": "Valide sua conta criada com {{email}} para completar sua doação.",
+        "toastDescription": "Email enviado"
       }
+    },
+    "selectTicketsPage": {
+      "title": "Escolha o tamanho da sua ajuda",
+      "button": "Continuar"
     }
   },
   "layouts": {

@@ -38,11 +38,6 @@ jest.mock("hooks/useImpactConversion", () => ({
 
 describe("LayoutHeader", () => {
   describe("when user can donate", () => {
-    mockRequest("/api/v1/users/can_donate", {
-      payload: { canDonate: true },
-      method: "POST",
-    });
-
     beforeEach(async () => {
       const mockUseImpactConversion = useImpactConversion as jest.Mock;
       mockUseImpactConversion.mockReturnValue({});
@@ -58,8 +53,8 @@ describe("LayoutHeader", () => {
   });
 
   describe("when user can't donate", () => {
-    mockRequest("/api/v1/users/can_donate", {
-      payload: { canDonate: false },
+    mockRequest("/api/v1/tickets/can_collect_by_integration", {
+      payload: { canCollect: false },
       method: "POST",
     });
 
@@ -132,7 +127,9 @@ describe("LayoutHeader", () => {
       beforeEach(() => {
         global.open = jest.fn();
         removeLocalStorageItem(HAS_AN_AVAILABLE_VOUCHER);
-        renderComponent(<LayoutHeader />);
+        renderComponent(<LayoutHeader />, {
+          ticketsProviderValue: { hasTickets: false },
+        });
 
         const sideLogo = screen.getByAltText("side-logo");
         clickOn(sideLogo);

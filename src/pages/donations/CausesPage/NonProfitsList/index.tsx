@@ -121,19 +121,19 @@ function NonProfitsList({ nonProfits }: Props): JSX.Element {
     );
 
   const sortedNonProfits = () => {
-    const hasMoreThanOneCause = nonProfits.some(
+    const isSingleCause = nonProfits.some(
       (nonProfit, index, self) =>
-        index === self.findIndex((tn) => tn.cause.id === nonProfit.cause.id),
+        index === self.findIndex((tn) => tn.cause.id !== nonProfit.cause.id),
     );
 
-    if (!hasMoreThanOneCause) return nonProfits;
+    if (isSingleCause) return nonProfits;
 
-    const otherNonProfits = nonProfits.filter(
+    const lastNonProfits = nonProfits.filter(
       (nonProfit, index, self) =>
         index !== self.findIndex((tn) => tn.cause.id === nonProfit.cause.id),
     );
 
-    return [...firstNonProfitOfEachCause, ...otherNonProfits];
+    return [...firstNonProfitOfEachCause, ...lastNonProfits];
   };
 
   return (

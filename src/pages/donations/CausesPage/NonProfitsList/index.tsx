@@ -128,17 +128,12 @@ function NonProfitsList({ nonProfits }: Props): JSX.Element {
 
     if (!hasMoreThanOneCause) return nonProfits;
 
-    const firstNonProfits = nonProfits.filter(
-      (nonProfit, index, self) =>
-        index === self.findIndex((tn) => tn.cause.id === nonProfit.cause.id),
-    );
-
     const otherNonProfits = nonProfits.filter(
       (nonProfit, index, self) =>
         index !== self.findIndex((tn) => tn.cause.id === nonProfit.cause.id),
     );
 
-    return [...firstNonProfits, ...otherNonProfits];
+    return [...firstNonProfitOfEachCause, ...otherNonProfits];
   };
 
   return (

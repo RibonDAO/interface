@@ -8,8 +8,10 @@ import {
 
 export const Container = styled.div<{ fullWidth: boolean }>`
   width: 100%;
-  border: 1px solid ${({ theme }) => theme.colors.neutral10};
   border-radius: 12px;
+
+  position: relative;
+  overflow: hidden;
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.colors.neutral10};
   box-shadow: 0 8px 24px ${({ theme }) => theme.colors.defaultShadow};
@@ -18,6 +20,41 @@ export const Container = styled.div<{ fullWidth: boolean }>`
     width: ${({ fullWidth }) => (fullWidth ? "100%" : "286px")};
     border-right: 1px solid ${({ theme }) => theme.colors.neutral10};
   }
+`;
+
+export const Overlay = styled.div`
+  backdrop-filter: blur(10px);
+  width: 100%;
+  height: 100%;
+  padding: ${({ theme }) => theme.spacing(16)};
+  border-radius: 12px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: ${({ theme }) => theme.zindex.dropdown};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ theme }) =>
+    rgba(theme.colors.brand.primary[600], 0.6)};
+`;
+
+export const OverlayText = styled.h4`
+  ${defaultBodyMdSemibold}
+
+  margin-block: ${({ theme }) => theme.spacing(8)};
+  text-align: center;
+  color: ${({ theme }) => theme.colors.neutral10};
+`;
+
+export const StoreImage = styled.img`
+  width: 100%;
+  max-width: 140px;
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
+  border: 1px solid ${({ theme }) => theme.colors.neutral10};
+  border-radius: 12px;
+  cursor: pointer;
 `;
 
 export const ImageSection = styled.div`

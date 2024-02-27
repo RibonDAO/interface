@@ -110,6 +110,37 @@ function NonProfitsList({ nonProfits }: Props): JSX.Element {
     }
   }
 
+  const firstNonProfitOfEachCause = nonProfits.filter(
+    (nonProfit, index, self) =>
+      index === self.findIndex((tn) => tn.cause.id === nonProfit.cause.id),
+  );
+
+  const isLocked = (nonProfit: NonProfit) =>
+    !firstNonProfitOfEachCause.some(
+      (firstNonProfit) => firstNonProfit.id === nonProfit.id,
+    );
+
+  const sortedNonProfits = () => {
+    const hasMoreThanOneCause = nonProfits.some(
+      (nonProfit, index, self) =>
+        index === self.findIndex((tn) => tn.cause.id === nonProfit.cause.id),
+    );
+
+    if (!hasMoreThanOneCause) return nonProfits;
+
+    const firstNonProfits = nonProfits.filter(
+      (nonProfit, index, self) =>
+        index === self.findIndex((tn) => tn.cause.id === nonProfit.cause.id),
+    );
+
+    const otherNonProfits = nonProfits.filter(
+      (nonProfit, index, self) =>
+        index !== self.findIndex((tn) => tn.cause.id === nonProfit.cause.id),
+    );
+
+    return [...firstNonProfits, ...otherNonProfits];
+  };
+
   return (
     <S.NonProfitsListContainer>
       {currentNonProfitWithStories && (
@@ -130,11 +161,12 @@ function NonProfitsList({ nonProfits }: Props): JSX.Element {
           loop={nonProfits.length >= MINIMUM_NON_PROFITS_TO_LOOP + 1}
           slideWidthOnDesktop={256}
         >
-          {nonProfits.map(
+          {sortedNonProfits().map(
             (nonProfit: any) =>
               nonProfit && (
                 <S.CardWrapper key={nonProfit.id}>
                   <CardCenterImageButton
+                    isLocked={isLocked(nonProfit)}
                     image={nonProfit.mainImage || nonProfit.cause?.mainImage}
                     title={oldImpactFormat(nonProfit)}
                     buttonText={

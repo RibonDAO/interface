@@ -17,7 +17,7 @@ function AboutPage(): JSX.Element {
   return (
     <S.Container
       src={`https://projetos.ribon.io/${pageSlug}`}
-      title="Dia de doar"
+      title="Benefícios download"
       data-testid="about-page"
     />
   );

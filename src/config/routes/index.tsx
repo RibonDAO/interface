@@ -413,7 +413,7 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
-      <Route path="/about" exact>
+      <Route path="/benefits" exact>
         <Suspense fallback={<div />}>
           <MainLayout hideHeader fullSize>
             <AboutPage />

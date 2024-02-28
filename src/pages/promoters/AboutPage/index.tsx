@@ -1,20 +1,23 @@
-import { useEffect } from "react";
-import useAboutPageActivity from "hooks/useAboutPageActivity";
+// import { useEffect } from "react";
+// import useAboutPageActivity from "hooks/useAboutPageActivity";
+import { useLanguage } from "hooks/useLanguage";
 import * as S from "./styles";
 
 function AboutPage(): JSX.Element {
-  const { setHasSeenToday } = useAboutPageActivity();
+  // const { setHasSeenToday } = useAboutPageActivity();
 
-  useEffect(() => {
-    setHasSeenToday();
-  }, []);
+  // useEffect(() => {
+  //   setHasSeenToday();
+  // }, []);
 
-  const pageSlug = "dia-de-doar";
+  const { currentLang } = useLanguage();
+
+  const pageSlug = currentLang === "pt-BR" ? "beneficios" : "benefits";
 
   return (
     <S.Container
       src={`https://projetos.ribon.io/${pageSlug}`}
-      title="Dia de doar"
+      title="Benefícios download"
       data-testid="about-page"
     />
   );

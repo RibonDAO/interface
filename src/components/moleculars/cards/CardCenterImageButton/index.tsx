@@ -1,7 +1,15 @@
 import Button from "components/atomics/buttons/Button";
+import { useTranslation } from "react-i18next";
+import Icon from "components/atomics/Icon";
 import securityIcon from "assets/icons/security-mark-icon.svg";
 import infoIcon from "assets/icons/info-icon-white.svg";
 import { theme } from "@ribon.io/shared/styles";
+import useBreakpoint from "hooks/useBreakpoint";
+import { logEvent } from "lib/events";
+import { ANDROID_APP_LINK, APP_LINK, IOS_APP_LINK } from "utils/constants";
+import { useIntegrationId } from "hooks/useIntegrationId";
+import AppleBadge from "assets/images/apple-badge.png";
+import GoogleBadge from "assets/images/google-badge.png";
 import * as S from "./styles";
 
 export type Props = {
@@ -21,6 +29,7 @@ export type Props = {
     onClick: () => void;
     visible: boolean;
   };
+  isLocked?: boolean;
 };
 function CardCenterImageButton({
   image,
@@ -35,9 +44,66 @@ function CardCenterImageButton({
   fullWidth = false,
   infoText,
   secondButtonProps,
+  isLocked = false,
 }: Props): JSX.Element {
+  const { t } = useTranslation("translation", {
+    keyPrefix: "unlockNonProfitBanner",
+  });
+
+  const { isMobile } = useBreakpoint();
+  const integrationId = useIntegrationId();
+
+  function handleMobileLink() {
+    logEvent("mobileDownloadBtn_click", { from: "unlockNonProfitBanner" });
+    logEvent("downloadCTA_click", { from: "unlockNonProfitBanner" });
+    window.open(`${APP_LINK}?integration_id=${integrationId}`);
+  }
+
+  function handleIosLink() {
+    logEvent("appStoreBtn_click", { from: "unlockNonProfitBanner" });
+    logEvent("downloadCTA_click", { from: "appStoreBtn" });
+    window.open(IOS_APP_LINK);
+  }
+
+  function handleAndroidLink() {
+    logEvent("gPlayBtn_click", { from: "unlockNonProfitBanner" });
+    logEvent("downloadCTA_click", { from: "gPlayBtn" });
+    window.open(ANDROID_APP_LINK);
+  }
+
+  const renderMobileButton = () => (
+    <Button
+      onClick={() => handleMobileLink()}
+      text={t("cta")}
+      backgroundColor={theme.colors.neutral10}
+      textColor={theme.colors.brand.primary[600]}
+    />
+  );
+
+  const renderStoreButtons = () => (
+    <>
+      <S.StoreImage
+        src={AppleBadge}
+        alt="Apple Store"
+        onClick={() => handleIosLink()}
+      />
+      <S.StoreImage
+        src={GoogleBadge}
+        alt="Google Play"
+        onClick={() => handleAndroidLink()}
+      />
+    </>
+  );
+
   return (
     <S.Container fullWidth={fullWidth}>
+      {isLocked && (
+        <S.Overlay>
+          <Icon name="lock" size="40" color={theme.colors.neutral10} />
+          <S.OverlayText>{t("title")}</S.OverlayText>
+          {isMobile ? renderMobileButton() : renderStoreButtons()}
+        </S.Overlay>
+      )}
       <S.ImageSection onClick={onClickImage}>
         {infoText && (
           <S.InfoText>

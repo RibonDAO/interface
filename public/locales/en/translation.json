@@ -113,7 +113,7 @@
       "causesPageTitle": "Tickets",
       "forYouPageTitle": "For you",
       "givingPageTitle": "Giving",
-      "aboutPageTitle": "Giving day",
+      "aboutPageTitle": "Benefits",
       "communityMenuItem": "Community Donation",
       "donateWithRibonMenuItem": "Donate with Ribon",
       "directDonationMenuItem": "Direct donation",
@@ -649,6 +649,10 @@
     "title": "Check your unlocked profile in Ribon‘s app",
     "subtitle": "Download now and keep up with you beautiful donation journey!",
     "cta":"Get the app ->"
+  },
+  "unlockNonProfitBanner": {
+    "title": "Get the app to unlock this nonprofit",
+    "cta": "Get app ->"
   },
   "forYouPage": {
     "title": "For you",

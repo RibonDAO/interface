@@ -11,6 +11,8 @@ import ImpactIconOn from "./assets/impactIconOn.svg";
 import ImpactIconOff from "./assets/impactIconOff.svg";
 import GivingIconOn from "./assets/givingIconOn.svg";
 import GivingIconOff from "./assets/givingIconOff.svg";
+import RibonIconOn from "./assets/ribonIconOn.svg";
+import RibonIconOff from "./assets/ribonIconOff.svg";
 import NavigationLink from "./NavigationLink";
 import * as S from "./styles";
 
@@ -104,6 +106,14 @@ function Navigation(): JSX.Element {
       title: t("impactPageTitle"),
       event: "impactNavBtn_click",
       showActivityIndicatorCircle: newContributionActivity,
+    },
+    {
+      path: "/benefits",
+      iconOn: RibonIconOn,
+      iconOff: RibonIconOff,
+      title: t("aboutPageTitle"),
+      event: "benefitsNavBtn_click",
+      showNewLabel: true,
     },
   ];
 

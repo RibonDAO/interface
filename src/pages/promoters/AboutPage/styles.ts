@@ -11,7 +11,7 @@ export const Container = styled.iframe`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
-    height: calc(${window.innerHeight} - 76px);
+    height: calc(${window.innerHeight}px - 76px);
     min-height: unset;
   }
 `;

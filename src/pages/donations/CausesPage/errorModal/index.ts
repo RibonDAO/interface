@@ -46,7 +46,7 @@ export default function showErrorModal(state: LocationStateType) {
         onClose: () => closeUnauthorizedModal(),
         eventName: "P12_unauthorizedModal",
         supportButton: false,
-        type: "error",
+        type: "success",
       },
     },
     state?.unauthorizedDonation,

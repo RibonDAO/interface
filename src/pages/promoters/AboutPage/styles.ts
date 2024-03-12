@@ -9,4 +9,9 @@ export const Container = styled.iframe`
   ::-webkit-scrollbar {
     display: none;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
+    height: calc(${window.innerHeight}px - 76px);
+    min-height: unset;
+  }
 `;

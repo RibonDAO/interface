@@ -51,6 +51,8 @@ import SignInPage from "pages/auth/SignInPage";
 import InsertEmailPage from "pages/auth/InsertEmailPage";
 import SentMagicLinkEmailPage from "pages/auth/SentMagicLinkEmailPage";
 import TicketDonationDonePage from "pages/donations/TicketDonationDonePage";
+import SelectTicketsPage from "pages/donations/SelectTicketsPage";
+import ValidateAccountPage from "pages/auth/ValidateAccountPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -194,6 +196,19 @@ function RoutesComponent(): JSX.Element {
       <Route path="/validate-extra-ticket" exact>
         <Suspense fallback={<div />}>
           <ValidateExtraTicket />
+        </Suspense>
+      </Route>
+
+      <Route path="/select-tickets" exact>
+        <Suspense fallback={<div />}>
+          <NavigationBackHeader hasTicketCounter />
+          <SelectTicketsPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/validate-account" exact>
+        <Suspense fallback={<div />}>
+          <ValidateAccountPage />
         </Suspense>
       </Route>
 
@@ -398,7 +413,7 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
-      <Route path="/about" exact>
+      <Route path="/benefits" exact>
         <Suspense fallback={<div />}>
           <MainLayout hideHeader fullSize>
             <AboutPage />

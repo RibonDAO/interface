@@ -10,10 +10,11 @@ import Tooltip from "components/moleculars/Tooltip";
 import Button from "components/atomics/buttons/Button";
 import { logEvent } from "lib/events";
 import { theme } from "@ribon.io/shared/styles";
+import { useTicketsContext } from "contexts/ticketsContext";
 import RibonLogo from "assets/images/logo-ribon.svg";
 import ArrowLeft from "./assets/arrow-left-dark-green.svg";
-import Envelope from "./assets/envelope.svg";
 import * as S from "./styles";
+import Envelope from "./assets/envelope.svg";
 
 export type Props = {
   isOnboarding?: boolean;
@@ -26,6 +27,7 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
   const { navigateTo, navigateBack } = useNavigation();
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
+  const { ticketsCounter } = useTicketsContext();
   const { isMobile } = useBreakpoint();
 
   const handleClick = () => {
@@ -53,6 +55,8 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
       });
 
   const subtitle = isOnboarding ? t("onboardingSubtitle") : handleSubtitle;
+
+  const title = isOnboarding ? titleOnboarding : t("title");
 
   const handleHasAccount = () => {
     logEvent("openAuthBtn_click", { from: "onboarding_page" });
@@ -99,7 +103,11 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
           </S.Header>
           <S.TextContainer>
             <S.DefaultImage src={Envelope} />
-            <S.Title>{isOnboarding ? titleOnboarding : t("title")}</S.Title>
+            <S.Title>
+              {ticketsCounter > 1
+                ? t("titlePlural", { ticketsCounter })
+                : title}
+            </S.Title>
             <S.Description>{subtitle}</S.Description>
           </S.TextContainer>
           <S.ButtonContainer>

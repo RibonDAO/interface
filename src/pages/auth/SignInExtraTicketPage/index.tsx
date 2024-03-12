@@ -1,19 +1,13 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import LeftImage from "assets/images/bottom-left-shape.svg";
-import RightImage from "assets/images/top-right-shape.svg";
-import ticketImage from "assets/images/ticket-image.svg";
 import { logEvent } from "lib/events";
 import useNavigation from "hooks/useNavigation";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useCurrentUser } from "contexts/currentUserContext";
-import GoogleLogin from "components/moleculars/buttons/GoogleLogin";
-import AppleLogin from "components/moleculars/buttons/AppleLogin";
-import MagicLinkLogin from "components/moleculars/buttons/MagicLinkLogin";
 import { userAccountApi } from "@ribon.io/shared/services";
 import useToast from "hooks/useToast";
 import { useAuthentication } from "contexts/authenticationContext";
-import * as S from "./styles";
+import ValidateAccount from "components/moleculars/validateAccount";
 
 function SignInExtraTicketPage(): JSX.Element {
   const { t } = useTranslation("translation", {
@@ -45,44 +39,21 @@ function SignInExtraTicketPage(): JSX.Element {
     sendAuthenticationEmail({ email: currentUser?.email });
     navigateTo({
       pathname,
+      state: { email: currentUser?.email },
     });
   };
 
   useAvoidBackButton();
 
   return (
-    <S.Container>
-      <S.MainContainer>
-        <S.RightImage src={RightImage} />
-        <S.LeftImage src={LeftImage} />
-        <S.ContentContainer>
-          <S.Image src={ticketImage} />
-          <S.TextContainer>
-            <S.Title>{t("title")}</S.Title>
-            <S.Description>
-              {t("description", { email: currentUser?.email })}
-            </S.Description>
-          </S.TextContainer>
-
-          <S.ButtonContainer>
-            <GoogleLogin
-              onContinue={() => onContinue("/")}
-              from="validation_flow"
-            />
-            <AppleLogin
-              onContinue={() => onContinue("/")}
-              from="validation_flow"
-            />
-            <MagicLinkLogin
-              onContinue={() =>
-                onContinueMagicLink("/auth/sent-magic-link-email")
-              }
-              from="validation_flow"
-            />
-          </S.ButtonContainer>
-        </S.ContentContainer>
-      </S.MainContainer>
-    </S.Container>
+    <ValidateAccount
+      title={t("title")}
+      description={t("description", { email: currentUser?.email })}
+      onContinue={() => onContinue("/")}
+      onContinueMagicLink={() =>
+        onContinueMagicLink("/auth/sent-magic-link-email")
+      }
+    />
   );
 }
 

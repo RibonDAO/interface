@@ -10,11 +10,16 @@ import { theme } from "@ribon.io/shared/styles";
 import useVoucher from "hooks/useVoucher";
 import useNavigation from "hooks/useNavigation";
 import { setLocalStorageItem } from "lib/localStorage";
-import { DONATION_TOAST_SEEN_AT_KEY } from "lib/localStorage/constants";
+import {
+  DONATION_TOAST_INTEGRATION,
+  DONATION_TOAST_SEEN_AT_KEY,
+} from "lib/localStorage/constants";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { isFirstAccess } from "lib/onboardingFirstAccess";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
-import { useUserProfile } from "@ribon.io/shared/hooks";
+import { useTickets, useUserProfile } from "@ribon.io/shared/hooks";
+import { useIntegrationId } from "hooks/useIntegrationId";
+import { PLATFORM, RIBON_COMPANY_ID } from "utils/constants";
 import * as S from "./styles";
 
 function ReceiveTicketPage(): JSX.Element {
@@ -31,6 +36,10 @@ function ReceiveTicketPage(): JSX.Element {
   const { userProfile } = useUserProfile();
   const { profile } = userProfile();
 
+  const { currentUser } = useCurrentUser();
+  const integrationId = useIntegrationId();
+  const { collectByIntegration } = useTickets();
+
   const renderDiamond = (isFullSize: boolean, image: string) =>
     isFullSize ? (
       <S.Diamond bg={image} mainColor={primary[300]} />
@@ -43,7 +52,16 @@ function ReceiveTicketPage(): JSX.Element {
   const navigate = () => {
     setTimeout(() => {
       createVoucher();
+      collectByIntegration(
+        integrationId ?? "",
+        PLATFORM,
+        currentUser?.email ?? "",
+      );
       setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());
+      setLocalStorageItem(
+        DONATION_TOAST_INTEGRATION,
+        (integrationId ?? RIBON_COMPANY_ID).toString(),
+      );
       navigateTo({
         pathname: "/causes",
       });

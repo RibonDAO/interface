@@ -23,6 +23,7 @@ import CauseContributionProvider from "contexts/causeContributionContext";
 import UserLevelProvider from "contexts/userLevelContext";
 import { DEBUG_EVENTS_ENABLED } from "utils/constants";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import TicketsProvider from "contexts/ticketsContext";
 import RoutesComponent from "./config/routes";
 import GlobalStyle from "./styles/globalStyle";
 import theme from "./styles/theme";
@@ -60,20 +61,22 @@ function App() {
                     >
                       <AuthenticationProvider>
                         <Suspense fallback={<div />}>
-                          <TasksProvider>
-                            <NonProfitsProvider>
-                              <CausesProvider>
-                                <CauseDonationProvider>
-                                  <CauseContributionProvider>
-                                    <UserLevelProvider>
-                                      <RoutesComponent />
-                                      <Zendesk />
-                                    </UserLevelProvider>
-                                  </CauseContributionProvider>
-                                </CauseDonationProvider>
-                              </CausesProvider>
-                            </NonProfitsProvider>
-                          </TasksProvider>
+                          <TicketsProvider>
+                            <TasksProvider>
+                              <NonProfitsProvider>
+                                <CausesProvider>
+                                  <CauseDonationProvider>
+                                    <CauseContributionProvider>
+                                      <UserLevelProvider>
+                                        <RoutesComponent />
+                                        <Zendesk />
+                                      </UserLevelProvider>
+                                    </CauseContributionProvider>
+                                  </CauseDonationProvider>
+                                </CausesProvider>
+                              </NonProfitsProvider>
+                            </TasksProvider>
+                          </TicketsProvider>
                         </Suspense>
                       </AuthenticationProvider>
                     </GoogleOAuthProvider>

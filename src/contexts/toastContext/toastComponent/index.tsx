@@ -51,9 +51,9 @@ function Toast() {
         return { bottom: 0, left: 0 };
       case "bottom-right":
         return { bottom: 0, right: 0 };
-      case "center-top":
+      case "top-center":
         return { top: 0, left: "50%", transform: "translateX(-50%)" };
-      case "center-bottom":
+      case "bottom-center":
         return { bottom: 0, left: "50%", transform: "translateX(-50%)" };
       case "bottom":
         return { bottom: 70 };

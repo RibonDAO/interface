@@ -24,3 +24,12 @@ export function nextMonth() {
   nextMonthDate.setHours(0, 0, 0, 0);
   return nextMonthDate;
 }
+
+export function isToday(date: any) {
+  const today = new Date();
+  return (
+    date.getDate() === today.getDate() &&
+    date.getMonth() === today.getMonth() &&
+    date.getFullYear() === today.getFullYear()
+  );
+}

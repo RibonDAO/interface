@@ -106,7 +106,7 @@ export default function Button({
       {rightIcon && (
         <img id="right-icon" src={rightIcon} alt={altRightIconText} />
       )}
-      {ribons && <RibonIcon />}
+      {ribons && <RibonIcon data-testid="ribonIcon" />}
     </S.Container>
   );
 }

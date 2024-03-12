@@ -1,5 +1,7 @@
 import "@testing-library/jest-dom";
 import "jest-canvas-mock";
+import { jestPreviewConfigure } from "jest-preview";
+import "./styles/globalStyle";
 
 export const mockNavigationFunction = jest.fn();
 export const mockNavigateBackFunction = jest.fn();
@@ -40,3 +42,8 @@ export function setupMocks() {
 }
 
 setupMocks();
+
+jestPreviewConfigure({
+  // Opt-in to automatic mode to preview failed test case automatically.
+  autoPreview: false,
+});

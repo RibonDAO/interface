@@ -63,7 +63,7 @@ describe("<Button />", () => {
   describe("when has ribons", () => {
     it("renders ribons icon when ribons is passed", () => {
       renderComponent(<Button text="button" onClick={() => {}} ribons />);
-      expectTextToBeInTheDocument("ribon.svg");
+      expect(screen.queryAllByTestId("ribonIcon")).toHaveLength(1);
     });
   });
 

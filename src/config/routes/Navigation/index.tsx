@@ -9,8 +9,6 @@ import ForYouIconOn from "./assets/forYouIconOn.svg";
 import ForYouIconOff from "./assets/forYouIconOff.svg";
 import ImpactIconOn from "./assets/impactIconOn.svg";
 import ImpactIconOff from "./assets/impactIconOff.svg";
-import GivingIconOn from "./assets/givingIconOn.svg";
-import GivingIconOff from "./assets/givingIconOff.svg";
 import RibonIconOn from "./assets/ribonIconOn.svg";
 import RibonIconOff from "./assets/ribonIconOff.svg";
 import NavigationLink from "./NavigationLink";
@@ -58,8 +56,6 @@ function Navigation(): JSX.Element {
     return [path].includes(location.pathname);
   }
 
-  const communityDonationText = t("communityMenuItem");
-
   const routes: NavigationItem[] = [
     {
       path: "/causes",
@@ -75,29 +71,6 @@ function Navigation(): JSX.Element {
       title: t("forYouPageTitle"),
       event: "forYouNavBtn_click",
       showActivityIndicatorCircle: hasCompletedATask,
-    },
-    {
-      path: "/promoters/support-non-profit",
-      iconOn: GivingIconOn,
-      iconOff: GivingIconOff,
-      title: t("givingPageTitle"),
-      event: "giveNonProfitNavBtn_click",
-      showNewLabel: false,
-      params: { from: "header" },
-      menuOptions: [
-        {
-          path: "/promoters/support-cause",
-          title: communityDonationText,
-          event: "giveCauseNavBtn_click",
-          params: { from: "subheader" },
-        },
-        {
-          path: "/promoters/support-non-profit",
-          title: t("directDonationMenuItem"),
-          event: "giveNonProfitNavBtn_click",
-          params: { from: "subheader" },
-        },
-      ],
     },
     {
       path: "/impact",

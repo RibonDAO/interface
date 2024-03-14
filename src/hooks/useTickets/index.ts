@@ -1,19 +1,21 @@
 import { PLATFORM } from "utils/constants";
-
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useTickets as useTicketShared } from "@ribon.io/shared/hooks";
 import { useIntegrationId } from "hooks/useIntegrationId";
-
 import extractUrlValue from "lib/extractUrlValue";
 import { useLocation } from "react-router-dom";
-
 import {
   DONATION_TOAST_INTEGRATION,
   DONATION_TOAST_SEEN_AT_KEY,
 } from "lib/localStorage/constants";
 import { today } from "lib/dateTodayFormatter";
-
 import { getLocalStorageItem } from "lib/localStorage";
+import { logError } from "services/crashReport";
+
+type HandleCollectProps = {
+  onSuccess?: () => void;
+  onError?: (error: any) => void;
+};
 
 export function useTickets() {
   const { currentUser } = useCurrentUser();
@@ -63,20 +65,27 @@ export function useTickets() {
     }
   }
 
-  async function handleCollect() {
-    if (externalIds && externalIds.length > 0 && integrationId) {
-      await collectByExternalIds(
-        externalIds,
-        integrationId ?? "",
-        PLATFORM,
-        currentUser?.email ?? "",
-      );
-    } else if (integrationId) {
-      await collectByIntegration(
-        integrationId,
-        PLATFORM,
-        currentUser?.email ?? "",
-      );
+  async function handleCollect({ onError, onSuccess }: HandleCollectProps) {
+    try {
+      if (externalIds && externalIds.length > 0 && integrationId) {
+        await collectByExternalIds(
+          externalIds,
+          integrationId ?? "",
+          PLATFORM,
+          currentUser?.email ?? "",
+        );
+        if (onSuccess) onSuccess();
+      } else if (integrationId) {
+        await collectByIntegration(
+          integrationId,
+          PLATFORM,
+          currentUser?.email ?? "",
+        );
+        if (onSuccess) onSuccess();
+      }
+    } catch (e: any) {
+      logError(e);
+      if (onError) onError(e);
     }
   }
 

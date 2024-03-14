@@ -116,8 +116,8 @@ function useDonationFlow() {
         utmParams.utmMedium,
         utmParams.utmCampaign,
       );
-      if (result.status === 200 && onSuccess) onSuccess();
-      if (result.status === 401 && onError)
+      if (result?.status === 200 && onSuccess) onSuccess();
+      if (result?.status === 401 && onError)
         onError({
           reponse: { status: 401 },
         });

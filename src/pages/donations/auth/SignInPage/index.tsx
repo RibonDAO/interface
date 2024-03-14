@@ -37,7 +37,14 @@ function SignInPage(): JSX.Element {
 
   const onContinue = async () => {
     setDonationInProgress(true);
-    await handleCollect();
+    await handleCollect({
+      onSuccess: () => {
+        logEvent("ticketCollected", { from: "collect" });
+      },
+      onError: () => {
+        setDonationSucceeded(false);
+      },
+    });
     await handleDonate({
       nonProfit,
       ticketsQuantity: 1,

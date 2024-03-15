@@ -22,6 +22,7 @@ import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
 import CampaignSection from "pages/donations/CausesPage/CampaignSection";
 import { useTicketsContext } from "contexts/ticketsContext";
 import { useTickets } from "hooks/useTickets";
+import { logEvent } from "lib/events";
 import {
   DONATION_TOAST_INTEGRATION,
   DONATION_TOAST_SEEN_AT_KEY,
@@ -69,7 +70,11 @@ function CausesPage(): JSX.Element {
 
     if (canCollect) {
       if (currentUser) {
-        await handleCollect();
+        await handleCollect({
+          onSuccess: () => {
+            logEvent("ticketCollected", { from: "collect" });
+          },
+        });
         refetchTickets();
       }
       if (!hasReceivedTicketToday()) {

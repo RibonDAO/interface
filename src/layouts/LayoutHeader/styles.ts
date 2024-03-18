@@ -6,11 +6,16 @@ export const ContainerButtons = styled.div`
   justify-content: flex-end;
 `;
 
-export const Container = styled.div<{ outline: boolean; member: boolean }>`
+interface ContainerProps {
+  outline: boolean;
+  member: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
   background-color: ${({ theme, outline, member }) => {
     if (outline && member) {
       return theme.colors.brand.tertiary[600];
-    } else if (outline && !member) {
+    } else if (outline && member === false) {
       return theme.colors.brand.primary[800];
     } else {
       return theme.colors.neutral10;

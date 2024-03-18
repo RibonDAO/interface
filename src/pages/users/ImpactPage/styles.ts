@@ -9,11 +9,11 @@ import { stylizedDisplayLg } from "styles/typography/stylized";
 
 export const Container = styled.div``;
 export const MainContainer = styled.div`
+  padding: ${({ theme }) => theme.spacing(24, 16, 16)};
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   text-align: left;
-  padding: ${({ theme }) => theme.spacing(24, 16, 16)};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     margin: 0 14%;

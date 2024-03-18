@@ -13,8 +13,8 @@ export const AvatarSection = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     flex-direction: row;
-    text-align: left;
     align-items: flex-start;
+    text-align: left;
   }
 `;
 
@@ -61,23 +61,24 @@ export const ProfileSection = styled.div`
 `;
 
 export const TagContainer = styled.div`
+  margin-top: ${({ theme }) => theme.spacing(16)};
   display: flex;
   flex-direction: row;
   gap: ${({ theme }) => theme.spacing(8)};
-  margin-top: ${({ theme }) => theme.spacing(16)};
   align-items: center;
 `;
 
 export const ClubTag = styled.div`
-  display: flex;
   padding: ${({ theme }) => theme.spacing(0, 8)};
   border-radius: 30px;
+  display: flex;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.brand.tertiary[50]};
 `;
 
 export const TagText = styled.p`
   ${defaultBodyXsMedium}
+
   color:  ${({ theme }) => theme.colors.brand.tertiary[600]};
 `;
 
@@ -86,11 +87,11 @@ export const VerifiedIcon = styled.img``;
 export const LeftSparkle = styled.img`
   position: absolute;
   bottom: 0;
-  left: -${({ theme }) => theme.spacing(16)};
+  left: -16px;
 `;
 
 export const RightSparkle = styled.img`
   position: absolute;
   top: 0;
-  right: -${({ theme }) => theme.spacing(16)};
+  right: -$16px;
 `;

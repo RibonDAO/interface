@@ -4,8 +4,8 @@ import UserAvatar from ".";
 
 describe("UserAvatar", () => {
   it("renders without error", () => {
-    renderComponent(<UserAvatar level={5} />);
+    renderComponent(<UserAvatar isMember />);
 
-    expectTextToBeInTheDocument("Lv. 5");
+    expectTextToBeInTheDocument("Ribon Club");
   });
 });

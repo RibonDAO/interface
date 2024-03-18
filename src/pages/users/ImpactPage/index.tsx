@@ -7,7 +7,7 @@ import { useLanguage } from "hooks/useLanguage";
 import { coinByLanguage } from "lib/coinByLanguage";
 import { useWalletContext } from "contexts/walletContext";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { useStatistics } from "@ribon.io/shared/hooks";
+import { useStatistics, useSubscriptions } from "@ribon.io/shared/hooks";
 import DownlaodAppBanner from "components/moleculars/banners/DownloadAppBanner";
 import MainLayout from "layouts/MainLayout";
 import ImpactMenu from "./ImpactMenu";
@@ -29,59 +29,67 @@ function ImpactPage(): JSX.Element {
     walletAddress: wallet!,
   });
   const { currentLang } = useLanguage();
+  const { userIsMember } = useSubscriptions();
+  const { isMember, refetch: refetchIsMember } = userIsMember();
+
+  useEffect(() => {
+    refetchIsMember();
+  }, [currentUser]);
 
   useEffect(() => {
     refetchStatistics();
   }, [wallet, currentUser?.id]);
 
   return (
-    <MainLayout outline={!!currentUser}>
+    <MainLayout outline={!!currentUser} member={isMember} fullSize>
       <S.Container>
         <DownloadAppToast />
         {currentUser && <ProfileSection />}
-        <DownlaodAppBanner />
-        <S.Title>{t("title")}</S.Title>
+        <S.MainContainer>
+          <DownlaodAppBanner />
+          <S.Title>{t("title")}</S.Title>
 
-        <S.CardsButtonContainer>
-          <CardTopImage
-            text={t("donatedTickets")}
-            icon={TicketIcon}
-            title={userStatistics?.totalTickets ?? 0}
-            size="small"
-            isTitleLocked
-          />
-          <CardTopImage
-            text={t("donatedMoney")}
-            icon={MoneyIcon}
-            size="small"
-            title={formatPriceWithZeros(
-              currentLang === "pt-BR"
-                ? userStatistics?.totalDonated?.brl ?? 0
-                : userStatistics?.totalDonated?.usd ?? 0,
-              coinByLanguage(currentLang),
-              currentLang,
-            )}
-            isTitleLocked
-          />
-          <CardTopImage
-            text={t("supportedNgos")}
-            icon={NgoIcon}
-            title={userStatistics?.totalNonProfits ?? 0}
-            size="small"
-            isTitleLocked
-          />
-          <CardTopImage
-            text={t("supporterCauses")}
-            icon={CausesIcon}
-            title={userStatistics?.totalCauses ?? 0}
-            size="small"
-            isTitleLocked
-          />
-        </S.CardsButtonContainer>
+          <S.CardsButtonContainer>
+            <CardTopImage
+              text={t("donatedTickets")}
+              icon={TicketIcon}
+              title={userStatistics?.totalTickets ?? 0}
+              size="small"
+              isTitleLocked
+            />
+            <CardTopImage
+              text={t("donatedMoney")}
+              icon={MoneyIcon}
+              size="small"
+              title={formatPriceWithZeros(
+                currentLang === "pt-BR"
+                  ? userStatistics?.totalDonated?.brl ?? 0
+                  : userStatistics?.totalDonated?.usd ?? 0,
+                coinByLanguage(currentLang),
+                currentLang,
+              )}
+              isTitleLocked
+            />
+            <CardTopImage
+              text={t("supportedNgos")}
+              icon={NgoIcon}
+              title={userStatistics?.totalNonProfits ?? 0}
+              size="small"
+              isTitleLocked
+            />
+            <CardTopImage
+              text={t("supporterCauses")}
+              icon={CausesIcon}
+              title={userStatistics?.totalCauses ?? 0}
+              size="small"
+              isTitleLocked
+            />
+          </S.CardsButtonContainer>
 
-        <S.ImpactMenuContainer>
-          <ImpactMenu />
-        </S.ImpactMenuContainer>
+          <S.ImpactMenuContainer>
+            <ImpactMenu />
+          </S.ImpactMenuContainer>
+        </S.MainContainer>
       </S.Container>
     </MainLayout>
   );

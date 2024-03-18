@@ -280,7 +280,8 @@
       "directDonations": "Direct donations"
     },
     "profileSection": {
-      "userName": "Your profile"
+      "userName": "Your profile",
+      "clubTagText": "Ribon Club"
     },
     "ticketSection": {
       "emptyTitle": "Your ticket donations will appear here.",
@@ -648,7 +649,7 @@
   "downloadAppBanner": {
     "title": "Check your unlocked profile in Ribon‘s app",
     "subtitle": "Download now and keep up with you beautiful donation journey!",
-    "cta":"Get the app ->"
+    "cta": "Get the app ->"
   },
   "unlockNonProfitBanner": {
     "title": "Get the app to unlock this nonprofit",

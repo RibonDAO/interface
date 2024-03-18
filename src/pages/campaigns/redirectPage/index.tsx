@@ -18,10 +18,11 @@ export default function RedirectPage() {
   const param = (p: string) => extractUrlValue(p, search) || "";
 
   const utmParams = getUTMFromLocationSearch(search);
-  const redirectUrl = param("redirect_url");
   const event = param("event");
   const from = param("from");
   const signature = param("signature");
+  const encodedUrl = param("redirect_url");
+  const redirectUrl = decodeURIComponent(encodedUrl);
 
   const { userAgent } = navigator;
 
@@ -34,25 +35,17 @@ export default function RedirectPage() {
     from,
   });
 
-  function redirectUrlWithUTMs() {
-    const valid = isValidUrl(redirectUrl);
-
-    const urlWithProtocol = redirectUrl.startsWith("https")
-      ? redirectUrl
-      : `https://${redirectUrl}/`;
-
-    const url = new URL(valid ? urlWithProtocol : DAPP_URL);
-
-    url.searchParams.append("utm_source", utmParams.utmSource);
-    url.searchParams.append("utm_medium", utmParams.utmMedium);
-    url.searchParams.append("utm_campaign", utmParams.utmCampaign);
-
-    return url.href;
-  }
+  const redirectUrlWithUTMs = () => {
+    const url = isValidUrl(redirectUrl) ? redirectUrl : DAPP_URL;
+    const newUrl = new URL(url);
+    newUrl.searchParams.append("utm_source", utmParams.utmSource);
+    newUrl.searchParams.append("utm_medium", utmParams.utmMedium);
+    newUrl.searchParams.append("utm_campaign", utmParams.utmCampaign);
+    return newUrl.href;
+  };
 
   const handleRedirect = () => {
     if (event) logEvent(event, parsedEventParams());
-
     window.location.href = redirectUrlWithUTMs();
   };
 
@@ -61,12 +54,16 @@ export default function RedirectPage() {
   };
 
   useEffect(() => {
-    const isValidSignature = verifyUrlSignature(redirectUrl, signature || "");
-    setVerifiedSignature(isValidSignature);
-  }, []);
+    if (encodedUrl && signature) {
+      const isValidSignature = verifyUrlSignature(encodedUrl, signature);
+      setVerifiedSignature(isValidSignature);
+    } else {
+      handleBack();
+    }
+  }, [encodedUrl, signature]);
 
   useEffect(() => {
-    if (redirectUrl && verifiedSignature === true) {
+    if (redirectUrl && verifiedSignature) {
       handleRedirect();
     } else if (verifiedSignature === false) {
       handleBack();

@@ -8,8 +8,6 @@ import Icon from "components/atomics/Icon";
 import Tag from "components/atomics/Tag";
 import { beginningOfToday } from "lib/dateUtils";
 import useBreakpoint from "hooks/useBreakpoint";
-import { useImpactConversion } from "hooks/useImpactConversion";
-import ContributionCard from "components/moleculars/cards/ContributionCard";
 import * as S from "./styles";
 
 function MonthlyTasksSection() {
@@ -20,8 +18,6 @@ function MonthlyTasksSection() {
   const monthlyTasks = useTasks("monthly");
   const { tasksState, tasksStatistics, registerAction } = useTasksContext();
   const { isMobile } = useBreakpoint();
-
-  const { description, contribution, offer, nonProfit } = useImpactConversion();
 
   const showTagNew = () =>
     !(
@@ -45,23 +41,6 @@ function MonthlyTasksSection() {
       registerAction("contribution_done_page_view");
     }
   }, []);
-
-  const contributionCardProps = () => ({
-    description,
-    impact: contribution?.impact ?? "",
-    value: contribution?.value ?? offer?.priceValue ?? 0,
-    offer,
-    nonProfit,
-    style: {
-      marginTop: isMobile ? "0" : "16px",
-      width: isMobile ? "110%" : "100%",
-      borderRadius: isMobile ? "0" : "8px",
-      position: "relative",
-      left: isMobile ? "-16px" : "0",
-    } as React.CSSProperties,
-    from: "tasks_page",
-    flow: "nonProfit",
-  });
 
   return (
     <S.Container isMobile={isMobile}>
@@ -109,7 +88,6 @@ function MonthlyTasksSection() {
             </S.CheckboxContainer>
           ) : null,
         )}
-      {!!contribution && <ContributionCard {...contributionCardProps()} />}
     </S.Container>
   );
 }

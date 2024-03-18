@@ -41,7 +41,10 @@ function InsertEmailAccountPage(): JSX.Element {
     await handleCollectAndDonate({
       nonProfit,
       email,
-      onSuccess: () => setDonationSucceeded(true),
+      onSuccess: () => {
+        logEvent("ticketCollected", { from: "collectAndDonate" });
+        setDonationSucceeded(true);
+      },
       onError: () => {
         setDonationSucceeded(false);
       },

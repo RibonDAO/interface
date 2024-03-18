@@ -35,15 +35,46 @@ function SignInPage(): JSX.Element {
     state: { nonProfit },
   } = useLocation<LocationStateType>();
 
+  const errorType = (type: number) => {
+    switch (type) {
+      case 403: {
+        return "blockedDonation";
+      }
+      case 401: {
+        return "unauthorizedDonation";
+      }
+      default: {
+        return "failedDonation";
+      }
+    }
+  };
+
+  const onDonationFail = (error: any) => {
+    const failedKey = errorType(error.response?.status);
+    const newState = {
+      [failedKey]: true,
+      message: error.response?.data?.formatted_message || error.message,
+    };
+    setDonationSucceeded(false);
+    navigateTo({ pathname: "/causes", state: newState });
+  };
+
   const onContinue = async () => {
     setDonationInProgress(true);
-    await handleCollect();
+    await handleCollect({
+      onSuccess: () => {
+        logEvent("ticketCollected", { from: "collect" });
+      },
+      onError: () => {
+        setDonationSucceeded(false);
+      },
+    });
     await handleDonate({
       nonProfit,
       ticketsQuantity: 1,
       onSuccess: () => setDonationSucceeded(true),
-      onError: () => {
-        setDonationSucceeded(false);
+      onError: (error) => {
+        onDonationFail(error);
       },
     });
   };

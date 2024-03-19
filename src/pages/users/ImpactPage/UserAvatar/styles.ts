@@ -93,5 +93,5 @@ export const LeftSparkle = styled.img`
 export const RightSparkle = styled.img`
   position: absolute;
   top: 0;
-  right: -$16px;
+  right: -16px;
 `;

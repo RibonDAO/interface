@@ -577,6 +577,8 @@
     },
     "contributionCanceledPage": {
       "title": "Contribuição cancelada",
+      "titleClub": "Clube cancelado",
+      "descriptionClub": "Seu Clube Ribon de {{value}} foi cancelado com sucesso.",
       "description": "Sua contribuição de {{value}} para {{receiver}} foi cancelada",
       "loading": "Carregando...",
       "invalidLink": "Link inválido"
@@ -648,11 +650,11 @@
   "downloadAppBanner": {
     "title": "Veja seu perfil liberado no app da Ribon",
     "subtitle": "Baixe já e acompanhe no app a sua linda jornada de doação!",
-    "cta":"Baixar app da Ribon ->"
+    "cta": "Baixar app da Ribon ->"
   },
   "unlockNonProfitBanner": {
     "title": "Baixe o app para desbloquear esta ONG",
-    "cta":"Baixar app ->"
+    "cta": "Baixar app ->"
   },
   "forYouPage": {
     "title": "Para você",

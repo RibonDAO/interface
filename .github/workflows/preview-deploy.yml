@@ -24,6 +24,7 @@ env:
   REACT_APP_INTEGRATION_AUTH_ID: ${{ secrets.REACT_APP_INTEGRATION_AUTH_ID }}
   REACT_APP_APPLE_REDIRECT_URL: ${{ secrets.REACT_APP_APPLE_REDIRECT_URL }}
   REACT_APP_GROWTHBOOK_DEV_MODE: true
+  REACT_APP_URL_SIGNATURE_KEY: ${{ secrets.REACT_APP_URL_SIGNATURE_KEY }}
 jobs:
   build_and_preview:
     environment: development

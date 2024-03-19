@@ -68,6 +68,8 @@ function ContributionCanceledPage(): JSX.Element {
   const value = subscription?.offer.price;
   const receiver = subscription?.receiver.name;
 
+  const isClub = subscription?.offer?.category === "club";
+
   return loading && !!subscription ? (
     <Loader />
   ) : (
@@ -81,9 +83,11 @@ function ContributionCanceledPage(): JSX.Element {
           <S.DefaultImage src={Illustration} />
 
           <S.TextContainer>
-            <S.Title>{t("title")}</S.Title>
+            <S.Title>{isClub ? t("titleClub") : t("title")}</S.Title>
             <S.Description>
-              {t("description", { value, receiver })}
+              {isClub
+                ? t("descriptionClub", { value })
+                : t("description", { value, receiver })}
             </S.Description>
           </S.TextContainer>
         </S.ContentContainer>

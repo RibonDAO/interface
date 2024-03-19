@@ -578,6 +578,8 @@
     },
     "contributionCanceledPage": {
       "title": "Contribuição cancelada",
+      "titleClub": "Clube cancelado",
+      "descriptionClub": "Seu Clube Ribon de {{value}} foi cancelado com sucesso.",
       "description": "Sua contribuição de {{value}} para {{receiver}} foi cancelada",
       "loading": "Carregando...",
       "invalidLink": "Link inválido"

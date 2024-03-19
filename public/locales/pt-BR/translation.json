@@ -279,7 +279,8 @@
       "directDonations": "Doações diretas"
     },
     "profileSection": {
-      "userName": "Seu perfil"
+      "userName": "Seu perfil",
+      "clubTagText": "Clube ribon"
     },
     "ticketSection": {
       "emptyTitle": "Suas doações de tickets aparecerão aqui.",
@@ -648,11 +649,11 @@
   "downloadAppBanner": {
     "title": "Veja seu perfil liberado no app da Ribon",
     "subtitle": "Baixe já e acompanhe no app a sua linda jornada de doação!",
-    "cta":"Baixar app da Ribon ->"
+    "cta": "Baixar app da Ribon ->"
   },
   "unlockNonProfitBanner": {
     "title": "Baixe o app para desbloquear esta ONG",
-    "cta":"Baixar app ->"
+    "cta": "Baixar app ->"
   },
   "forYouPage": {
     "title": "Para você",

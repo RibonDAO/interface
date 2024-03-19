@@ -1,84 +1,75 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  width: calc(100% + 32px);
-  min-height: 322px;
-  margin: -26px -16px 32px;
-  border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 8px;
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  background-color: ${({ theme }) => theme.colors.brand.primary[800]};
+export const Container = styled.div<{
+  member?: boolean;
+}>`
+  width: 100%;
+  height: 100%;
+  border-radius: ${({ theme }) => theme.spacing(0, 0, 8, 8)};
+  position: relative;
+  top: -1px;
+  background-color: ${({ theme, member }) =>
+    member
+      ? theme.colors.brand.tertiary[600]
+      : theme.colors.brand.primary[800]};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    width: calc(133% + 80px);
-    min-height: 166px;
-    margin: 0 calc(-28% - 80px) 32px -28%;
-    padding-right: 14%;
-    padding-left: 28%;
-    justify-content: flex-start;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    width: calc(136% + 80px);
-    min-height: 166px;
-    margin: 0 calc(-28% - 80px) 40px -28%;
-    padding-right: 14%;
-    padding-left: 28%;
-    justify-content: flex-start;
+    min-height: 120px;
+    position: static;
   }
 `;
 
 export const CenterContainer = styled.div`
-  z-index: 1;
+  position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
   justify-content: center;
+  overflow: hidden;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    display: grid;
-    grid-template-columns: 2fr 1fr 3fr;
-    column-gap: ${({ theme }) => theme.spacing(40)};
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    grid-template-columns: 2fr 2fr 4fr;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktopLarge}) {
-    grid-template-columns: 2fr 1fr 4fr;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktopExtraLarge}) {
-    grid-template-columns: 3fr 2fr 7fr;
+    padding-left: calc(14% + 12px);
+    position: static;
+    justify-content: flex-start;
   }
 `;
 
 export const BackgroundShapeLeft = styled.img`
+  width: 140px;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: -56px;
+  left: -8%;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    width: 300px;
-    height: 290px;
-    left: 80px;
-    object-fit: cover;
+    width: auto;
+    top: 0;
+    left: 5%;
   }
 `;
 
 export const BackgroundShapeRight = styled.img`
+  width: 130px;
+  height: 180px;
   position: absolute;
-  top: 56px;
   right: 0;
+  bottom: -40px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    width: 280px;
-    height: 294px;
+    width: auto;
+    height: auto;
     top: 0;
-    object-fit: cover;
   }
+`;
+
+export const UserInfo = styled.div`
+  margin-bottom: 40px;
+  position: relative;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    margin-bottom: 0;
+  }
+`;
+
+export const AvatarContainer = styled.div`
+  position: relative;
+  display: inline-block;
 `;

@@ -7,14 +7,17 @@ import {
 } from "styles/typography/default";
 import { stylizedDisplayLg } from "styles/typography/stylized";
 
-export const Container = styled.div`
+export const Container = styled.div``;
+export const MainContainer = styled.div`
+  padding: ${({ theme }) => theme.spacing(24, 16, 16)};
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   text-align: left;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    padding: ${({ theme }) => theme.spacing(0)};
+    margin: 0 14%;
+    margin-left: 14%;
   }
 `;
 

@@ -40,6 +40,7 @@ jobs:
           REACT_APP_GOOGLE_CLIENT_ID: ${{ secrets.REACT_APP_GOOGLE_CLIENT_ID }}
           REACT_APP_INTEGRATION_AUTH_ID: ${{ secrets.REACT_APP_INTEGRATION_AUTH_ID }}
           REACT_APP_APPLE_REDIRECT_URL: ${{ secrets.REACT_APP_APPLE_REDIRECT_URL }}
+          REACT_APP_URL_SIGNATURE_KEY: ${{ secrets.REACT_APP_URL_SIGNATURE_KEY }}
         run: |
           yarn testCoverage
       - name: Report Coveralls

@@ -81,9 +81,6 @@ export default function SelectTicketsPage() {
 
   const onAnimationEnd = useCallback(() => {
     if (donationSucceeded) {
-      logEvent("ticketDonated_end", {
-        nonProfitId: nonProfit.id,
-      });
       navigateTo({
         pathname: "/ticket-donation-done",
         state: {

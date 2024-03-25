@@ -4,6 +4,7 @@ import useToast from "hooks/useToast";
 import useBreakpoint from "hooks/useBreakpoint";
 import { theme } from "@ribon.io/shared/styles";
 import { Integration } from "@ribon.io/shared/types";
+import { logEvent } from "lib/events";
 
 export function useReceiveTicketToast(
   initialState?: boolean,
@@ -17,6 +18,7 @@ export function useReceiveTicketToast(
   const { isMobile } = useBreakpoint();
 
   const showReceiveTicketToast = () => {
+    logEvent("receiveTicket_view", { from: "receivedTickets_toast" });
     toast({
       type: "custom",
       message: t("ticketToast"),

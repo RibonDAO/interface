@@ -5,6 +5,7 @@ import useNavigation from "hooks/useNavigation";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useIntegration } from "@ribon.io/shared/hooks";
+import { useEffect } from "react";
 import { APP_LINK, RIBON_COMPANY_ID } from "utils/constants";
 import Tooltip from "components/moleculars/Tooltip";
 import Button from "components/atomics/buttons/Button";
@@ -75,6 +76,10 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
       state: { cameFrom: "intro" },
     });
   };
+
+  useEffect(() => {
+    logEvent("P10_view");
+  }, []);
 
   return (
     <S.Container>

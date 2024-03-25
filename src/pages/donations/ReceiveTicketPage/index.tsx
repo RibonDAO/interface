@@ -6,6 +6,7 @@ import TopImage from "assets/images/top-center-shape.svg";
 import LeftImage from "assets/images/bottom-left-shape-red.svg";
 import RightImage from "assets/images/top-right-shape.svg";
 import { useEffect, useState } from "react";
+import { logEvent } from "@amplitude/analytics-browser";
 import { theme } from "@ribon.io/shared/styles";
 import useVoucher from "hooks/useVoucher";
 import useNavigation from "hooks/useNavigation";
@@ -62,6 +63,7 @@ function ReceiveTicketPage(): JSX.Element {
         DONATION_TOAST_INTEGRATION,
         (integrationId ?? RIBON_COMPANY_ID).toString(),
       );
+      logEvent("receiveTicket_view", { from: "onboarding_page" });
       navigateTo({
         pathname: "/causes",
       });

@@ -31,7 +31,7 @@ export default function FileUpload({ onChange, value, labels }: Props) {
       </S.LabelContainer>
       <S.Box>
         {value ? (
-          <S.Logo src={value} alt="Company Logo" />
+          <S.Logo src={value} alt="Logo" />
         ) : (
           <>
             <img src={UploadIcon} alt="Upload" />

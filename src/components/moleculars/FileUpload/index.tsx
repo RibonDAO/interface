@@ -1,9 +1,9 @@
 import UploadIcon from "assets/icons/upload-icon.svg";
 import * as S from "./styles";
 
-type Props = {
+export type Props = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  value: string;
+  value?: string;
   labels: {
     main: string;
     uploadBox: string;

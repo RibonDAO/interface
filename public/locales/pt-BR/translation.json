@@ -642,6 +642,24 @@
     "scanQrCode": "Use o QR Code",
     "offerExpiresIn": "Oferta expira em {{time}}"
   },
+  "customLinkCreatedPage": {
+    "title": "Parabéns, seu link foi criado com sucesso!",
+    "description": "Lembre-se de incluir esse link ao seu produto para recompensar seus clientes.",
+    "copyLink": "Copiar link",
+    "copiedLink": "Link copiado!",
+    "backToApp": "Voltar para o app",
+    "instructionsTitle": "Adicione seu link de doação ao seu produto",
+    "instruction1": {
+      "emoji": "👏🏼",
+      "title": "Escolha uma ação para recompensar",
+      "description": "Pense em uma ação já realizada pelos seus clientes no site ou app da sua empresa, que você gostaria de incentivar oferecendo tickets de doação."
+    },
+    "instruction2": {
+      "emoji": "✅",
+      "title": "Inclua o link no seu produto",
+      "description": "Escolha onde incluir seu link para acesso dos seus clientes. Você pode colocá-lo em um botão, compartilhá-lo por e-mail ou através de um banner. A escolha é sua!"
+    }
+  },
   "downloadApp": {
     "floating": {
       "title": "Ganhe mais tickets! Baixe o app.",

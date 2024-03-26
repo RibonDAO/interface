@@ -15,11 +15,7 @@ function usePostTicketDonationNavigation() {
   const { donateApp } = useCanDonate(integrationId, PLATFORM, externalId);
   const { currentUser } = useCurrentUser();
   const { navigateTo } = useNavigation();
-  const {
-    userStatistics,
-    refetch: refetchStatistics,
-    isLoading,
-  } = useStatistics({
+  const { userStatistics, refetch: refetchStatistics } = useStatistics({
     userId: currentUser?.id,
   });
 
@@ -55,11 +51,6 @@ function usePostTicketDonationNavigation() {
       return navigateTo({
         pathname: "/app-download",
         state: { nonProfit, showContribute: shouldShowContribute() },
-      });
-    } else if (!isLoading && shouldShowContribute()) {
-      return navigateTo({
-        pathname: "/post-donation",
-        state: { nonProfit, cause },
       });
     } else {
       return navigateTo({

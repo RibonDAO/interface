@@ -642,6 +642,23 @@
     "scanQrCode": "Use QR Code",
     "offerExpiresIn": "Offer expires in {{time}}"
   },
+  "customLinkPage": {
+    "title": "Create your donation link",
+    "business": {
+      "companysInfo": "Company's information",
+      "companysName": "Company's name",
+      "companysLogo": "Company's logo",
+      "uploadLogoDescription": "Click here to add the company's logo",
+      "uploadMaxSize": "Maximum size: 500kb",
+      "adminInfo": "Link administrator's information",
+      "adminName": "Name",
+      "adminLinkedIn": "LinkedIn profile",
+      "adminEmail": "Corporate e-mail",
+      "adminPhone": "Phone (WhatsApp)",
+      "optIn": "I confirm that I have an employment relationship with this company and that I have it's authorization to create and use the link created.",
+      "submit": "Create company's link"
+    }
+  },
   "customLinkCreatedPage": {
     "title": "Awesome! Your link was created successfully.",
     "description": "Remember to add this link to your product to reward your customers.",

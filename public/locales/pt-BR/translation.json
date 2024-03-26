@@ -642,6 +642,23 @@
     "scanQrCode": "Use o QR Code",
     "offerExpiresIn": "Oferta expira em {{time}}"
   },
+  "customLinkPage": {
+    "title": "Crie seu link de doação",
+    "business": {
+      "companysInfo": "Informações da empresa",
+      "companysName": "Nome da empresa",
+      "companysLogo": "Logo da empresa",
+      "uploadLogoDescription": "Clique para incluir a logo da empresa",
+      "uploadMaxSize": "Tamanho máximo: 500 kb",
+      "adminInfo": "Informações do responsável pelo link",
+      "adminName": "Nome",
+      "adminLinkedIn": "Perfil no LinkedIn",
+      "adminEmail": "E-mail corporativo",
+      "adminPhone": "Telefone (Whatsapp)",
+      "optIn": "Confirmo que tenho vínculo empregatício com esta empresa e que tenho a autorização para a criação e uso do link gerado.",
+      "submit": "Criar link da empresa"
+    }
+  },
   "customLinkCreatedPage": {
     "title": "Parabéns, seu link foi criado com sucesso!",
     "description": "Lembre-se de incluir esse link ao seu produto para recompensar seus clientes.",

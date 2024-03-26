@@ -12,6 +12,7 @@ export type Props = {
   disabled?: boolean;
   checked?: boolean;
   onClick?: (...args: any[]) => void;
+  onCheck?: (...args: any[]) => void;
   state?: any;
 };
 
@@ -24,6 +25,7 @@ function CheckBox({
   checked = false,
   state,
   onClick = () => {},
+  onCheck = () => {},
 }: Props): JSX.Element {
   const [isChecked, setChecked] = useState(checked);
 
@@ -32,6 +34,7 @@ function CheckBox({
   const onPressHandler = () => {
     if (!disabled) {
       setChecked(!isChecked);
+      onCheck();
     }
   };
 

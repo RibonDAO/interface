@@ -11,7 +11,7 @@ export const Container = styled.div`
 export const CheckboxContainer = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 export const Paragraph = styled.p<{ isChecked: boolean }>`
@@ -23,13 +23,14 @@ export const Paragraph = styled.p<{ isChecked: boolean }>`
 
 export const Checkbox = styled.div<{ isChecked: boolean }>`
   width: 20px;
+  min-width: 20px;
   height: 20px;
+  min-height: 20px;
+  margin-top: 2px;
   margin-right: ${({ theme }) => theme.spacing(8)};
   border: solid 2px
     ${({ theme, isChecked }) =>
-      isChecked
-        ? theme.colors.brand.primary[900]
-        : theme.colors.brand.primary[300]};
+      isChecked ? theme.colors.brand.primary[900] : theme.colors.neutral[300]};
   border-radius: 2px;
   display: flex;
   align-items: center;

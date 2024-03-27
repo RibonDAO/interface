@@ -90,7 +90,7 @@ function CustomLinkPage(): JSX.Element {
   };
 
   const handleSubmit = () => {
-    console.log(formObject);
+    // console.log(formObject);
   };
 
   useEffect(() => {

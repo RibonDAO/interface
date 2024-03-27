@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import useNavigation from "hooks/useNavigation";
 import InputText from "components/atomics/inputs/InputText";
 import CheckBox from "components/atomics/inputs/Checkbox";
 import FileUpload from "components/moleculars/FileUpload";
 import Button from "components/atomics/buttons/Button";
+import { useAuthentication } from "contexts/authenticationContext";
 import theme from "styles/theme";
 import * as S from "./styles";
 
@@ -24,6 +26,15 @@ function CustomLinkPage(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "customLinkPage",
   });
+
+  const { isAuthenticated } = useAuthentication();
+  const { navigateTo } = useNavigation();
+
+  useEffect(() => {
+    if (!isAuthenticated()) {
+      navigateTo("/sign-in-custom-link");
+    }
+  }, []);
 
   const [logo, setLogo] = useState<string>("");
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);

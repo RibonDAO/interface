@@ -192,6 +192,12 @@
         "buttonText": "Continue without extra ticket",
         "toastDescription": "Your ticket was sent by e-mail"
       },
+      "signInCustomLinkPage": {
+        "title": "Sign in to proceed",
+        "description": "Sign in to your account to create your custom link",
+        "buttonText": "Sign in",
+        "toastDescription": "Signed in successfully"
+      },
       "validateAccountPage": {
         "title": "Validate your account",
         "description": "Validate your account created with {{email}} to complete your donation.",

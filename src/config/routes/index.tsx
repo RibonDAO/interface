@@ -49,6 +49,7 @@ import CustomLinkCreatedPage from "pages/users/CustomLinkCreatedPage";
 import SignInByMagicLinkPage from "pages/donations/auth/SignInByMagicLinkPage";
 import DonationSignInPage from "pages/donations/auth/SignInPage";
 import SignedInPage from "pages/donations/auth/SignedInPage";
+import SignInCustomLinkPage from "pages/auth/SignInCustomLinkPage";
 import SignInPage from "pages/auth/SignInPage";
 import InsertEmailPage from "pages/auth/InsertEmailPage";
 import SentMagicLinkEmailPage from "pages/auth/SentMagicLinkEmailPage";
@@ -186,6 +187,13 @@ function RoutesComponent(): JSX.Element {
         <Suspense fallback={<div />}>
           <NavigationBackHeader />
           <SignInExtraTicketPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/sign-in-custom-link" exact>
+        <Suspense fallback={<div />}>
+          <NavigationBackHeader />
+          <SignInCustomLinkPage />
         </Suspense>
       </Route>
 

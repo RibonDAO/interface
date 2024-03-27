@@ -192,6 +192,12 @@
         "buttonText": "Continuar sem ticket extra",
         "toastDescription": "Seu ticket foi enviado por e-mail"
       },
+      "signInCustomLinkPage": {
+        "title": "Faça login para continuar",
+        "description": "Crie um acesse sua conta para criar um link de doação personalizado",
+        "buttonText": "Fazer login",
+        "toastDescription": "Login feito com sucesso"
+      },
       "validateAccountPage": {
         "title": "Valide sua conta",
         "description": "Valide sua conta criada com {{email}} para completar sua doação.",

@@ -10,6 +10,8 @@ describe("SignInCustomLinkPage", () => {
   it("should render without error", () => {
     renderComponent(<SignInCustomLinkPage />);
 
-    expectTextToBeInTheDocument("You won an extra ticket");
+    expectTextToBeInTheDocument(
+      "Sign in to your account to create your custom link",
+    );
   });
 });

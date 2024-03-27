@@ -11,6 +11,7 @@ export type Props = {
   description: string;
   onContinue: () => void;
   onContinueMagicLink: () => void;
+  hideMagicLink?: boolean;
 };
 
 function ValidateAccount({
@@ -18,6 +19,7 @@ function ValidateAccount({
   description,
   onContinue,
   onContinueMagicLink,
+  hideMagicLink = false,
 }: Props): JSX.Element {
   return (
     <S.Container>
@@ -34,10 +36,12 @@ function ValidateAccount({
           <S.ButtonContainer>
             <GoogleLogin onContinue={onContinue} from="validation_flow" />
             <AppleLogin onContinue={onContinue} from="validation_flow" />
-            <MagicLinkLogin
-              onContinue={onContinueMagicLink}
-              from="validation_flow"
-            />
+            {!hideMagicLink && (
+              <MagicLinkLogin
+                onContinue={onContinueMagicLink}
+                from="validation_flow"
+              />
+            )}
           </S.ButtonContainer>
         </S.ContentContainer>
       </S.MainContainer>

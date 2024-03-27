@@ -192,6 +192,12 @@
         "buttonText": "Continuar sem ticket extra",
         "toastDescription": "Seu ticket foi enviado por e-mail"
       },
+      "signInCustomLinkPage": {
+        "title": "Faça login para continuar",
+        "description": "Crie um acesse sua conta para criar um link de doação personalizado",
+        "buttonText": "Fazer login",
+        "toastDescription": "Login feito com sucesso"
+      },
       "validateAccountPage": {
         "title": "Valide sua conta",
         "description": "Valide sua conta criada com {{email}} para completar sua doação.",
@@ -641,6 +647,41 @@
     "buttonDownloadApp": "Baixar app",
     "scanQrCode": "Use o QR Code",
     "offerExpiresIn": "Oferta expira em {{time}}"
+  },
+  "customLinkPage": {
+    "title": "Crie seu link de doação",
+    "business": {
+      "companysInfo": "Informações da empresa",
+      "companysName": "Nome da empresa",
+      "companysLogo": "Logo da empresa",
+      "uploadLogoDescription": "Clique para incluir a logo da empresa",
+      "uploadMaxSize": "Tamanho máximo: 500 kb",
+      "adminInfo": "Informações do responsável pelo link",
+      "adminName": "Nome",
+      "adminLinkedIn": "Perfil no LinkedIn",
+      "adminEmail": "E-mail corporativo",
+      "adminPhone": "Telefone (Whatsapp)",
+      "optIn": "Confirmo que tenho vínculo empregatício com esta empresa e que tenho a autorização para a criação e uso do link gerado.",
+      "submit": "Criar link da empresa"
+    }
+  },
+  "customLinkCreatedPage": {
+    "title": "Parabéns, seu link foi criado com sucesso!",
+    "description": "Lembre-se de incluir esse link ao seu produto para recompensar seus clientes.",
+    "copyLink": "Copiar link",
+    "copiedLink": "Link copiado!",
+    "backToApp": "Voltar para o app",
+    "instructionsTitle": "Adicione seu link de doação ao seu produto",
+    "instruction1": {
+      "emoji": "👏🏼",
+      "title": "Escolha uma ação para recompensar",
+      "description": "Pense em uma ação já realizada pelos seus clientes no site ou app da sua empresa, que você gostaria de incentivar oferecendo tickets de doação."
+    },
+    "instruction2": {
+      "emoji": "✅",
+      "title": "Inclua o link no seu produto",
+      "description": "Escolha onde incluir seu link para acesso dos seus clientes. Você pode colocá-lo em um botão, compartilhá-lo por e-mail ou através de um banner. A escolha é sua!"
+    }
   },
   "downloadApp": {
     "floating": {

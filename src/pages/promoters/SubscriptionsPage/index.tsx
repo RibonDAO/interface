@@ -95,13 +95,15 @@ function SubscriptionsPage(): JSX.Element {
       <S.PaymentContainer key={subscription.id}>
         <S.IconTextContainer>
           <S.Amount>{subscription.offer?.price}</S.Amount>
-          <Icon
-            name="delete"
-            onClick={() => openCancelModal(subscription.id)}
-            backgroundColor={theme.colors.brand.secondary[600]}
-            hoveredBackgroundColor={theme.colors.brand.primary[600]}
-            color={theme.colors.neutral10}
-          />
+          {!isPix(subscription) && (
+            <Icon
+              name="delete"
+              onClick={() => openCancelModal(subscription.id)}
+              backgroundColor={theme.colors.brand.secondary[600]}
+              hoveredBackgroundColor={theme.colors.brand.primary[600]}
+              color={theme.colors.neutral10}
+            />
+          )}
         </S.IconTextContainer>
         <S.Text>
           {!isClub(subscription) && t("to")}

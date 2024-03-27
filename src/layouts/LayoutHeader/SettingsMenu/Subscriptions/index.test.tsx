@@ -9,6 +9,6 @@ describe("Subscriptions component", () => {
         currentUser: { id: 1, email: "user@ribon.io", lastDonationAt: "true" },
       },
     });
-    expectTextToBeInTheDocument("Monthly contributions");
+    expectTextToBeInTheDocument("Subscriptions");
   });
 });

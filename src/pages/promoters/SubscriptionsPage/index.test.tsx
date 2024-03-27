@@ -10,6 +10,7 @@ const mockSubscription = {
   status: "active",
   offer: offerFactory(),
   receiver: nonProfitFactory(),
+  personPayments: [],
 };
 
 jest.mock("@ribon.io/shared/hooks", () => ({
@@ -25,7 +26,7 @@ describe("SubscriptionsPage", () => {
   it("should render without error", () => {
     renderComponent(<SubscriptionsPage />);
 
-    expectTextToBeInTheDocument("Monthly contributions");
+    expectTextToBeInTheDocument("Subscriptions");
   });
 
   it("should have offer price", () => {
@@ -39,6 +40,6 @@ describe("SubscriptionsPage", () => {
 
     screen.getByTestId("icon-delete").click();
 
-    expectTextToBeInTheDocument("Cancel monthly contribution");
+    expectTextToBeInTheDocument("Cancel subscription");
   });
 });

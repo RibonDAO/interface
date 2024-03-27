@@ -21,7 +21,7 @@ import * as S from "./styles";
 type LocationState = {
   from: string;
 };
-function MonthlyContributionPage(): JSX.Element {
+function SubscriptionsPage(): JSX.Element {
   const { navigateBack, navigateTo } = useNavigation();
   const { userSubscriptions, sendCancelSubscriptionEmail } = useSubscriptions();
   const { subscriptions } = userSubscriptions();
@@ -31,7 +31,7 @@ function MonthlyContributionPage(): JSX.Element {
   } = useLocation<LocationState>();
 
   const { t } = useTranslation("translation", {
-    keyPrefix: "promoters.monthlyContributionsPage",
+    keyPrefix: "promoters.subscriptionsPage",
   });
 
   const toast = useToast();
@@ -43,6 +43,12 @@ function MonthlyContributionPage(): JSX.Element {
   useEffect(() => {
     logEvent("P25_view");
   });
+
+  const isClub = (subscription: Subscription) =>
+    subscription.offer?.category === "club";
+  const isPix = (subscription: Subscription) =>
+    subscription.personPayments[subscription.personPayments.length - 1]
+      ?.paymentMethod === "pix";
 
   const openCancelModal = (subscriptionId: string | number) => {
     setSubscriptionId(subscriptionId);
@@ -98,14 +104,21 @@ function MonthlyContributionPage(): JSX.Element {
           />
         </S.IconTextContainer>
         <S.Text>
-          {t("to")}
-          <S.HighlightedText>{subscription.receiver.name}</S.HighlightedText>
+          {!isClub(subscription) && t("to")}
+          <S.HighlightedText>
+            {isClub(subscription)
+              ? t("ribonClubTag")
+              : subscription.receiver.name}
+          </S.HighlightedText>
         </S.Text>
         <S.Text>
-          {t("nextContribution")}
-          <S.HighlightedText>
-            {nextPaymetAttempt(subscription)}
-          </S.HighlightedText>
+          {isPix(subscription) && <S.Text>{t("pixPayment")}</S.Text>}
+          <S.Text>
+            {isPix(subscription) ? t("perksExpiration") : t("nextPayment")}
+            <S.HighlightedText>
+              {nextPaymetAttempt(subscription)}
+            </S.HighlightedText>
+          </S.Text>
         </S.Text>
       </S.PaymentContainer>,
     );
@@ -134,4 +147,4 @@ function MonthlyContributionPage(): JSX.Element {
   );
 }
 
-export default MonthlyContributionPage;
+export default SubscriptionsPage;

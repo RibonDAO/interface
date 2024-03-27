@@ -212,7 +212,7 @@
           "text": "User support",
           "link": "https://api.whatsapp.com/send/?phone=554896605461&text=Hii+Ribon%2C+let’s+talk%3F+&type=phone_number&app_absent=0"
         },
-        "monthlyContributions": "Monthly contributions"
+        "subscriptions": "Subscriptions"
       },
       "changeLanguageItem": {
         "changeLanguageText": "Change language"
@@ -225,8 +225,8 @@
       "getTheAppItem": {
         "getTheAppText": "Get more tickets"
       },
-      "monthlyContributionsItem": {
-        "monthlyContributionsText": "Monthly contributions"
+      "subscriptions": {
+        "subscriptionsText": "Subscriptions"
       },
       "donationModalTitle": "Great! You got 1 ticket to donate",
       "donationModalBody": "You can assign the ticket to any project",
@@ -504,17 +504,20 @@
       "selectValue": "Select value",
       "sealText": "Safe transaction by"
     },
-    "monthlyContributionsPage": {
-      "title": "Monthly contributions",
+    "subscriptionsPage": {
+      "title": "Subscriptions",
       "to": "To ",
-      "nextContribution": "Next contribution on ",
+      "nextPayment": "Next payment on ",
       "cancelSubscriptionSuccess": "We sent you an e-mail",
       "cancelSubscriptionModal": {
-        "title": "Cancel monthly contribution",
+        "title": "Cancel subscription",
         "description": "To finish this process, you'll need to confirm the cancelation request clicking in the link of the cancelation e-mail.",
         "primaryButton": "Receive cancelation e-mail",
         "secondaryButton": "Close"
-      }
+      },
+      "ribonClubTag": "Ribon Club",
+      "pixPayment": "Single purchase via PIX",
+      "perksExpiration": "Perks expire at: "
     },
     "checkoutPage": {
       "thankForContribute": "Thank you for contribute!",

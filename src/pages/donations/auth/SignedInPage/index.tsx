@@ -40,6 +40,10 @@ function SignedInPage(): JSX.Element {
       email,
       onSuccess: () => {
         logEvent("ticketCollected", { from: "collectAndDonate" });
+        logEvent("ticketDonated_end", {
+          nonProfitId: nonProfit.id,
+          quantity: 1,
+        });
         setDonationSucceeded(true);
       },
       onError: () => {
@@ -50,9 +54,6 @@ function SignedInPage(): JSX.Element {
 
   const onAnimationEnd = useCallback(() => {
     if (donationSucceeded) {
-      logEvent("ticketDonated_end", {
-        nonProfitId: nonProfit.id,
-      });
       navigateTo({
         pathname: "/ticket-donation-done",
         state: {

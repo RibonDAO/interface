@@ -2704,13 +2704,14 @@
   resolved "https://registry.yarnpkg.com/@react-oauth/google/-/google-0.11.1.tgz#f937c8d02bd37e3a6be7713b8212e9b9b9b3f914"
   integrity sha512-tywZisXbsdaRBVbEu0VX6dRbOSL2I6DgY97woq5NMOOOz+xtDsm418vqq+Vx10KMtra3kdHMRMf0hXLWrk2RMg==
 
-"@ribon.io/shared@^1.1.28":
-  version "1.1.35"
-  resolved "https://registry.yarnpkg.com/@ribon.io/shared/-/shared-1.1.35.tgz#8359712f6e3b03e729c2550598ac87ad52b0b743"
-  integrity sha512-oiwbUrfTJsAEGhFqbrlKxVb8kCPy+6T8QjgKcCt3y53uAKt6Dx3q7wbT/IBKiWeBx7mKO+Y3flb8sIhSdScz1g==
+"@ribon.io/shared@^1.1.38":
+  version "1.1.38"
+  resolved "https://registry.yarnpkg.com/@ribon.io/shared/-/shared-1.1.38.tgz#7cf372c88ca94bc8c34246445c81d43dc3c7cd45"
+  integrity sha512-pX5AcQi8Ri+2GdmQTfWwFy/l4B/5R1lcsiIfP+iy1j50a/cckh9fsWxYqIACerf7l/RixZBBf6WwoaZv3clAiQ==
   dependencies:
     "@apollo/client" "^3.6.9"
     "@types/base-64" "^1.0.0"
+    activestorage "^5.2.8-1"
     axios "^0.27.2"
     camelcase-keys "^7.0.2"
     cross-fetch "^3.1.5"
@@ -5204,6 +5205,13 @@ acorn@^8.2.4, acorn@^8.4.1, acorn@^8.7.1, acorn@^8.8.0, acorn@^8.8.2:
   version "8.9.0"
   resolved "https://registry.npmjs.org/acorn/-/acorn-8.9.0.tgz"
   integrity sha512-jaVNAFBHNLXspO543WnNNPZFRtavh3skAkITqD0/2aeMkKZTN+254PyhwxFYrk3vQ1xfY+2wbesJMs/JC8/PwQ==
+
+activestorage@^5.2.8-1:
+  version "5.2.8-1"
+  resolved "https://registry.yarnpkg.com/activestorage/-/activestorage-5.2.8-1.tgz#18cca0d7f81da42ebaf3ec04b393209d740f4fa0"
+  integrity sha512-SJRKEZDF4Qyuq3RTvtsp4KRMqHV/dEujoxo7X0fiijJPpCjISsYfAWtTlH1WjMNEY9opFCGmlhakoW4XDHstQQ==
+  dependencies:
+    spark-md5 "^3.0.0"
 
 address@^1.0.1, address@^1.1.2:
   version "1.1.2"
@@ -17073,6 +17081,11 @@ space-separated-tokens@^1.0.0:
   version "1.1.5"
   resolved "https://registry.npmjs.org/space-separated-tokens/-/space-separated-tokens-1.1.5.tgz"
   integrity sha512-q/JSVd1Lptzhf5bkYm4ob4iWPjx0KiRe3sRFBNrVqbJkFaBm5vbbowy1mymoPNLRa52+oadOhJ+K49wsSeSjTA==
+
+spark-md5@^3.0.0:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/spark-md5/-/spark-md5-3.0.2.tgz#7952c4a30784347abcee73268e473b9c0167e3fc"
+  integrity sha512-wcFzz9cDfbuqe0FZzfi2or1sgyIrsDwmPwfZC4hiNidPdPINjeUwNfv5kldczoEAcjl9Y1L3SM7Uz2PUEQzxQw==
 
 spdx-correct@^3.0.0:
   version "3.1.1"

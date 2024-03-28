@@ -13,7 +13,7 @@ export function CancelSubscriptionModal({
   sendCancelEmail,
 }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
-    keyPrefix: "promoters.monthlyContributionsPage.cancelSubscriptionModal",
+    keyPrefix: "promoters.subscriptionsPage.cancelSubscriptionModal",
   });
 
   return (

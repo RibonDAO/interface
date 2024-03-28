@@ -72,7 +72,13 @@ function SignInPage(): JSX.Element {
     await handleDonate({
       nonProfit,
       ticketsQuantity: 1,
-      onSuccess: () => setDonationSucceeded(true),
+      onSuccess: () => {
+        logEvent("ticketDonated_end", {
+          nonProfitId: nonProfit.id,
+          quantity: 1,
+        });
+        setDonationSucceeded(true);
+      },
       onError: (error) => {
         onDonationFail(error);
       },
@@ -88,9 +94,6 @@ function SignInPage(): JSX.Element {
 
   const onAnimationEnd = useCallback(() => {
     if (donationSucceeded) {
-      logEvent("ticketDonated_end", {
-        nonProfitId: nonProfit.id,
-      });
       navigateTo({
         pathname: "/ticket-donation-done",
         state: {

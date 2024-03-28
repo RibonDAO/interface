@@ -650,6 +650,7 @@
   },
   "customLinkPage": {
     "title": "Crie seu link de doação",
+    "onErrorMessage": "Erro ao criar link",
     "business": {
       "companysInfo": "Informações da empresa",
       "companysName": "Nome da empresa",
@@ -662,7 +663,8 @@
       "adminEmail": "E-mail corporativo",
       "adminPhone": "Telefone (Whatsapp)",
       "optIn": "Confirmo que tenho vínculo empregatício com esta empresa e que tenho a autorização para a criação e uso do link gerado.",
-      "submit": "Criar link da empresa"
+      "submit": "Criar link da empresa",
+      "loading": "Criando link..."
     }
   },
   "customLinkCreatedPage": {

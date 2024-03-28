@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import LeftImage from "assets/images/bottom-left-shape-red.svg";
 import RightImage from "assets/images/top-right-shape.svg";
 import InputText from "components/atomics/inputs/InputText";
@@ -6,6 +6,11 @@ import Button from "components/atomics/buttons/Button";
 import theme from "styles/theme";
 import useNavigation from "hooks/useNavigation";
 import { useTranslation } from "react-i18next";
+import { useUserIntegration } from "@ribon.io/shared/hooks";
+import { Integration } from "@ribon.io/shared/types";
+import { logError } from "services/crashReport";
+import { useAuthentication } from "contexts/authenticationContext";
+import { APP_LINK } from "utils/constants";
 import Link from "./assets/link.svg";
 import * as S from "./styles";
 
@@ -22,15 +27,46 @@ function CustomLinkCreatedPage(): JSX.Element {
   const { navigateTo } = useNavigation();
 
   const [copied, setCopied] = useState<boolean>(false);
+  const [integration, setIntegration] = useState<Integration | null>(null);
 
-  // TODO:
-  // - Fetch user created integration
-  // - Fetch logo and put it in front of link image
-  // - Fix horizontal scroll on instructions list
-  // - put back to app button in the bottom of the page (mobile only)
+  const { getUserIntegration } = useUserIntegration();
+  const { isAuthenticated } = useAuthentication();
+
+  useEffect(() => {
+    if (!isAuthenticated()) {
+      navigateTo("/sign-in-custom-link");
+    } else {
+      getUserIntegration().then((userIntegration) => {
+        if (!userIntegration) {
+          navigateTo("/custom-link");
+        }
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    const fetchUserIntegration = async () => {
+      try {
+        const userIntegration = await getUserIntegration();
+        setIntegration(userIntegration);
+      } catch (error) {
+        logError(error);
+        navigateTo("/custom-link");
+      }
+    };
+
+    fetchUserIntegration();
+  }, []);
+
+  const finalLink = useCallback(() => {
+    if (!integration) return "";
+
+    return `${APP_LINK}?integration_id=${integration.uniqueAddress}`;
+  }, [integration]);
 
   const copyTextToClipboard = () => {
-    navigator.clipboard.writeText("teste");
+    const text = finalLink();
+    navigator.clipboard.writeText(text);
     setCopied(true);
   };
 
@@ -68,9 +104,10 @@ function CustomLinkCreatedPage(): JSX.Element {
         <S.ContentContainer>
           <S.TextContainer>
             <S.DefaultImage src={Link} />
+            {integration && <S.LogoImage src={integration.logo} />}
             <S.Title>{t("title")}</S.Title>
             <S.Description>{t("description")}</S.Description>
-            <InputText name="integration_link" value="teste" disabled />
+            <InputText name="integration_link" value={finalLink()} disabled />
             <Button
               type="button"
               onClick={copyTextToClipboard}

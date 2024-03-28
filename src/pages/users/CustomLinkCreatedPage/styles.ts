@@ -185,3 +185,13 @@ export const ScrollableContainer = styled.div`
   justify-content: center;
   overflow-x: auto;
 `;
+
+export const LogoImage = styled.img`
+  margin-inline: auto;
+  width: 80px;
+  height: 80px;
+  margin-top: -64px;
+  border: solid 4px ${({ theme }) => theme.colors.neutral10};
+  border-radius: 16px;
+  background-color: ${({ theme }) => theme.colors.neutral[100]};
+`;

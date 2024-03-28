@@ -6,19 +6,25 @@ import CheckBox from "components/atomics/inputs/Checkbox";
 import FileUpload from "components/moleculars/FileUpload";
 import Button from "components/atomics/buttons/Button";
 import { useAuthentication } from "contexts/authenticationContext";
+import { useUserIntegration } from "@ribon.io/shared/hooks";
+import { useCurrentUser } from "contexts/currentUserContext";
 import theme from "styles/theme";
+import { logError } from "services/crashReport";
+import useToast from "hooks/useToast";
 import * as S from "./styles";
 
 interface BusinessFormObject {
   name: string;
   logo: File | undefined;
-  active: boolean;
+  ticketAvailabilityInMinutes: null;
+  status: string;
   metadata: {
     ownerName: string;
     linkedinProfile: string;
     corporateEmail: string;
     phone: string;
     optIn: boolean;
+    userId?: number;
   };
 }
 
@@ -27,33 +33,53 @@ function CustomLinkPage(): JSX.Element {
     keyPrefix: "customLinkPage",
   });
 
-  const { isAuthenticated } = useAuthentication();
-  const { navigateTo } = useNavigation();
+  const { createUserIntegration, getUserIntegration } = useUserIntegration();
 
-  useEffect(() => {
-    if (!isAuthenticated()) {
-      navigateTo("/sign-in-custom-link");
-    }
-  }, []);
+  const { currentUser } = useCurrentUser();
+  const toast = useToast();
 
   const [logo, setLogo] = useState<string>("");
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
+
   const [formObject, setFormObject] = useState<BusinessFormObject>({
     name: "",
     logo: undefined,
-    active: true,
+    ticketAvailabilityInMinutes: null,
+    status: "active",
     metadata: {
       ownerName: "",
       linkedinProfile: "",
       corporateEmail: "",
       phone: "",
       optIn: false,
+      userId: currentUser?.id,
     },
   });
 
+  const { isAuthenticated } = useAuthentication();
+  const { navigateTo } = useNavigation();
+
+  useEffect(() => {
+    if (!isAuthenticated()) {
+      navigateTo("/sign-in-custom-link");
+    } else {
+      getUserIntegration().then((integration) => {
+        if (integration) {
+          navigateTo("/custom-link-created");
+        }
+      });
+    }
+  }, []);
+
   const checkForEmptyFields = () => {
     const fields = Object.values(formObject);
-    const hasEmpty = fields.some(
+
+    const filtered = fields.filter(
+      (field) => field !== formObject.ticketAvailabilityInMinutes,
+    );
+
+    const hasEmpty = filtered.some(
       (field) => field === "" || field === undefined || field === null,
     );
 
@@ -89,8 +115,30 @@ function CustomLinkPage(): JSX.Element {
     });
   };
 
-  const handleSubmit = () => {
-    // console.log(formObject);
+  const handleSubmit = async () => {
+    try {
+      await createUserIntegration(formObject, logo);
+      setLoading(true);
+      setTimeout(() => {
+        getUserIntegration().then((integration) => {
+          if (integration) {
+            navigateTo("/custom-link-created");
+          } else {
+            toast({
+              message: t("onErrorMessage"),
+              type: "info",
+            });
+          }
+          setLoading(false);
+        });
+      }, 5000);
+    } catch (error) {
+      logError(error);
+      toast({
+        message: t("onErrorMessage"),
+        type: "info",
+      });
+    }
   };
 
   useEffect(() => {
@@ -158,9 +206,9 @@ function CustomLinkPage(): JSX.Element {
           <Button
             type="button"
             onClick={handleSubmit}
-            text={t("business.submit")}
-            softDisabled={buttonDisabled}
-            disabled={buttonDisabled}
+            text={loading ? t("business.loading") : t("business.submit")}
+            softDisabled={buttonDisabled || loading}
+            disabled={buttonDisabled || loading}
             backgroundColor={theme.colors.brand.primary[600]}
             data-testid="confirmCustomLink"
           />

@@ -650,6 +650,7 @@
   },
   "customLinkPage": {
     "title": "Create your donation link",
+    "onErrorMessage": "Error creating custom link",
     "business": {
       "companysInfo": "Company's information",
       "companysName": "Company's name",
@@ -662,7 +663,8 @@
       "adminEmail": "Corporate e-mail",
       "adminPhone": "Phone (WhatsApp)",
       "optIn": "I confirm that I have an employment relationship with this company and that I have it's authorization to create and use the link created.",
-      "submit": "Create company's link"
+      "submit": "Create company's link",
+      "loading": "Creating your custom link..."
     }
   },
   "customLinkCreatedPage": {

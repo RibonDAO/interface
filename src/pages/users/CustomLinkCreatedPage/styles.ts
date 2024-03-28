@@ -5,6 +5,7 @@ import {
   defaultHeadingXl,
 } from "styles/typography/default";
 import { stylizedDisplayXs } from "styles/typography/stylized";
+import Spark from "./assets/spark.svg";
 
 export const Title = styled.p`
   ${stylizedDisplayXs}
@@ -102,14 +103,24 @@ export const ContentContainer = styled.div`
 
 export const InstructionsContainer = styled.div`
   width: 100%;
+  margin-top: ${({ theme }) => theme.spacing(24)};
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(24)};
   align-items: center;
   justify-content: center;
+  background-color: ${({ theme }) => theme.colors.brand.primary[800]};
+  background-image: url(${Spark});
+  background-position: top center;
+  background-size: contain;
+  background-repeat: no-repeat;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 700px;
+    margin-top: ${({ theme }) => theme.spacing(8)};
+    background-color: transparent;
+    background-image: none;
   }
 `;
 
@@ -131,8 +142,13 @@ export const Divider = styled.div`
   width: 180px;
   height: 2px;
   margin-top: ${({ theme }) => theme.spacing(24)};
+  display: none;
   align-self: center;
   background-color: ${({ theme }) => theme.colors.neutral[200]};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    display: block;
+  }
 `;
 
 export const Instruction = styled.div`
@@ -158,7 +174,11 @@ export const InstructionsTitle = styled.p`
   padding-inline: ${({ theme }) => theme.spacing(16)};
   margin-top: ${({ theme }) => theme.spacing(20)};
   text-align: center;
-  color: ${({ theme }) => theme.colors.brand.primary[800]};
+  color: ${({ theme }) => theme.colors.neutral10};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    color: ${({ theme }) => theme.colors.brand.primary[800]};
+  }
 `;
 
 export const InstructionDescription = styled.p`
@@ -170,19 +190,16 @@ export const InstructionDescription = styled.p`
 `;
 
 export const InstructionsList = styled.div`
+  padding-inline: ${({ theme }) => theme.spacing(16)};
   display: flex;
   flex-direction: row;
-  gap: ${({ theme }) => theme.spacing(24)};
+  gap: ${({ theme }) => theme.spacing(16)};
 `;
 
 export const ScrollableContainer = styled.div`
   width: 100%;
   margin-bottom: ${({ theme }) => theme.spacing(24)};
-  position: relative;
-  z-index: 1;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
   overflow-x: auto;
 `;
 

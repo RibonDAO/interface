@@ -650,7 +650,7 @@
   },
   "customLinkPage": {
     "title": "Crie seu link de doação",
-    "onErrorMessage": "Erro ao criar link",
+    "onErrorMessage": "Falha ao criar o link. Por favor, tente novamente.",
     "business": {
       "companysInfo": "Informações da empresa",
       "companysName": "Nome da empresa",

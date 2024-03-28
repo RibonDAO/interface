@@ -126,7 +126,7 @@ function CustomLinkPage(): JSX.Element {
           } else {
             toast({
               message: t("onErrorMessage"),
-              type: "info",
+              type: "error",
             });
           }
           setLoading(false);
@@ -136,7 +136,7 @@ function CustomLinkPage(): JSX.Element {
       logError(error);
       toast({
         message: t("onErrorMessage"),
-        type: "info",
+        type: "error",
       });
     }
   };

@@ -650,7 +650,7 @@
   },
   "customLinkPage": {
     "title": "Create your donation link",
-    "onErrorMessage": "Error creating custom link",
+    "onErrorMessage": "Failed to create link. Please, try again.",
     "business": {
       "companysInfo": "Company's information",
       "companysName": "Company's name",

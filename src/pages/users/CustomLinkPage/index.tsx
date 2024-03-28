@@ -7,6 +7,7 @@ import FileUpload from "components/moleculars/FileUpload";
 import Button from "components/atomics/buttons/Button";
 import { useAuthentication } from "contexts/authenticationContext";
 import { useUserIntegration } from "@ribon.io/shared/hooks";
+import Spinner from "components/atomics/Spinner";
 import { useCurrentUser } from "contexts/currentUserContext";
 import theme from "styles/theme";
 import { logError } from "services/crashReport";
@@ -151,6 +152,7 @@ function CustomLinkPage(): JSX.Element {
         <S.Title>{t("title")}</S.Title>
 
         <S.Form>
+          {loading && <S.Overlay />}
           <S.Subtitle>{t("business.companysInfo")}</S.Subtitle>
           <S.FieldSet>
             <InputText
@@ -158,6 +160,7 @@ function CustomLinkPage(): JSX.Element {
               label={{ text: t("business.companysName") }}
               value={formObject.name}
               onChange={(e) => setField("name", e)}
+              required
             />
             <FileUpload
               onChange={handleMainImageChange}
@@ -177,24 +180,30 @@ function CustomLinkPage(): JSX.Element {
               label={{ text: t("business.adminName") }}
               value={formObject.metadata.ownerName}
               onChange={(e) => setMetadataField("ownerName", e)}
+              required
             />
             <InputText
               name="admin_linkedin"
               label={{ text: t("business.adminLinkedIn") }}
               value={formObject.metadata.linkedinProfile}
               onChange={(e) => setMetadataField("linkedinProfile", e)}
+              required
             />
             <InputText
               name="admin_email"
               label={{ text: t("business.adminEmail") }}
               value={formObject.metadata.corporateEmail}
               onChange={(e) => setMetadataField("corporateEmail", e)}
+              type="email"
+              required
             />
             <InputText
               name="admin_phone"
               label={{ text: t("business.adminPhone") }}
               value={formObject.metadata.phone}
               onChange={(e) => setMetadataField("phone", e)}
+              mask="(99) 99999-9999"
+              required
             />
             <CheckBox
               text={t("business.optIn")}
@@ -203,15 +212,25 @@ function CustomLinkPage(): JSX.Element {
             />
           </S.FieldSet>
 
-          <Button
-            type="button"
-            onClick={handleSubmit}
-            text={loading ? t("business.loading") : t("business.submit")}
-            softDisabled={buttonDisabled || loading}
-            disabled={buttonDisabled || loading}
-            backgroundColor={theme.colors.brand.primary[600]}
-            data-testid="confirmCustomLink"
-          />
+          {loading ? (
+            <S.LoaderContainer>
+              <Spinner
+                size="24"
+                strokeColor={theme.colors.brand.primary[600]}
+              />
+              <p>{t("business.loading")}</p>
+            </S.LoaderContainer>
+          ) : (
+            <Button
+              type="button"
+              onClick={handleSubmit}
+              text={t("business.submit")}
+              softDisabled={buttonDisabled || loading}
+              disabled={buttonDisabled || loading}
+              backgroundColor={theme.colors.brand.primary[600]}
+              data-testid="confirmCustomLink"
+            />
+          )}
         </S.Form>
       </S.Container>
     </S.MainContainer>

@@ -14,6 +14,7 @@ export const MainContainer = styled.div`
 
 export const Container = styled.div`
   width: 100%;
+  overflow: hidden;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 100%;
@@ -23,6 +24,15 @@ export const Container = styled.div`
     background-color: ${({ theme }) => theme.colors.neutral10};
     box-shadow: 0 4px 12px ${({ theme }) => theme.colors.defaultShadow10};
   }
+`;
+
+export const Overlay = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 `;
 
 export const Title = styled.h1`
@@ -36,6 +46,8 @@ export const Form = styled.div`
   padding: ${({ theme }) => theme.spacing(16)};
   border: 1px solid ${({ theme }) => theme.colors.neutral[100]};
   border-radius: 8px;
+  position: relative;
+  overflow: hidden;
 `;
 
 export const Subtitle = styled.h2`
@@ -50,4 +62,16 @@ export const FieldSet = styled.fieldset`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(8)};
+`;
+
+export const LoaderContainer = styled.div`
+  width: 100%;
+  height: 50px;
+  border: 1px solid ${({ theme }) => theme.colors.neutral[200]};
+  border-radius: 8px;
+  display: flex;
+  gap: ${({ theme }) => theme.spacing(16)};
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 `;

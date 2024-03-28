@@ -3,13 +3,14 @@ import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import { screen } from "@testing-library/react";
 import offerFactory from "config/testUtils/factories/offerFactory";
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
-import MonthlyContributionsPage from ".";
+import SubscriptionsPage from ".";
 
 const mockSubscription = {
   id: 1,
   status: "active",
   offer: offerFactory(),
   receiver: nonProfitFactory(),
+  personPayments: [],
 };
 
 jest.mock("@ribon.io/shared/hooks", () => ({
@@ -21,24 +22,24 @@ jest.mock("@ribon.io/shared/hooks", () => ({
   }),
 }));
 
-describe("MonthlyContributionsPage", () => {
+describe("SubscriptionsPage", () => {
   it("should render without error", () => {
-    renderComponent(<MonthlyContributionsPage />);
+    renderComponent(<SubscriptionsPage />);
 
-    expectTextToBeInTheDocument("Monthly contributions");
+    expectTextToBeInTheDocument("Subscriptions");
   });
 
   it("should have offer price", () => {
-    renderComponent(<MonthlyContributionsPage />);
+    renderComponent(<SubscriptionsPage />);
 
     expectTextToBeInTheDocument(mockSubscription.offer.price);
   });
 
   it("should open modal cancel subscription modal", () => {
-    renderComponent(<MonthlyContributionsPage />);
+    renderComponent(<SubscriptionsPage />);
 
     screen.getByTestId("icon-delete").click();
 
-    expectTextToBeInTheDocument("Cancel monthly contribution");
+    expectTextToBeInTheDocument("Cancel subscription");
   });
 });

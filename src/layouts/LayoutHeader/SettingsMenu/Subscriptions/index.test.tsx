@@ -1,14 +1,14 @@
 import { renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
-import MonthlyContributions from ".";
+import Subscriptions from ".";
 
-describe("MonthlyContributions component", () => {
+describe("Subscriptions component", () => {
   it("renders the correct text", () => {
-    renderComponent(<MonthlyContributions />, {
+    renderComponent(<Subscriptions />, {
       currentUserProviderValue: {
         currentUser: { id: 1, email: "user@ribon.io", lastDonationAt: "true" },
       },
     });
-    expectTextToBeInTheDocument("Monthly contributions");
+    expectTextToBeInTheDocument("Subscriptions");
   });
 });

@@ -218,7 +218,7 @@
           "text": "Suporte ao usuário",
           "link": "https://api.whatsapp.com/send/?phone=554896605461&text=Oii+Ribon%2C+vamos+conversar%3F+&type=phone_number&app_absent=0"
         },
-        "monthlyContributions": "Contribuições mensais"
+        "subscriptions": "Assinaturas"
       },
       "changeLanguageItem": {
         "changeLanguageText": "Alterar idioma"
@@ -230,8 +230,8 @@
       "getTheAppItem": {
         "getTheAppText": "Ganhe mais tickets"
       },
-      "monthlyContributionsItem": {
-        "monthlyContributionsText": "Contribuições mensais"
+      "subscriptionsItem": {
+        "subscriptionsText": "Assinaturas"
       },
       "donationModalTitle": "Legal! Você tem 1 ticket para doar",
       "donationModalBody": "Você pode destiná-lo para qualquer projeto",
@@ -509,17 +509,20 @@
       "selectValue": "Selecione o valor",
       "sealText": "Transação segura processada por"
     },
-    "monthlyContributionsPage": {
-      "title": "Contribuições mensais",
+    "subscriptionsPage": {
+      "title": "Assinaturas",
       "to": "Para ",
-      "nextContribution": "Próxima contribuição em ",
       "cancelSubscriptionSuccess": "Enviamos um e-mail para você.",
       "cancelSubscriptionModal": {
-        "title": "Cancelar contribuição mensal",
-        "description": "Para efetuar o processo, confirme o cancelamento da contribuição mensal pelo e-mail que enviaremos para você.",
+        "title": "Cancelar assinatura",
+        "description": "Para efetuar o processo, confirme o cancelamento da assinatura pelo e-mail que enviaremos para você.",
         "primaryButton": "Receber e-mail de cancelamento",
         "secondaryButton": "Fechar"
-      }
+      },
+      "nextPayment": "Próximo pagamento em ",
+      "ribonClubTag": "Clube Ribon",
+      "pixPayment": "Compra única por PIX",
+      "perksExpiration": "Benefícios expiram: "
     },
 
     "checkoutPage": {

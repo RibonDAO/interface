@@ -27,7 +27,6 @@ import LoadingPage from "pages/donations/LoadingPage";
 import ContributionStatsPage from "pages/users/ContributionStatsPage";
 import ReturnToIntegrationPage from "pages/donations/ReturnToIntegrationPage";
 import SurveyPage from "pages/promoters/SurveyPage";
-import MonthlyContributionsPage from "pages/promoters/MonthlyContributionsPage";
 import StripeProvider from "contexts/stripeContext";
 import PixPaymentInformationProvider from "contexts/pixPaymentInformationContext";
 import PaymentInformationProvider from "contexts/paymentInformationContext";
@@ -56,6 +55,7 @@ import SentMagicLinkEmailPage from "pages/auth/SentMagicLinkEmailPage";
 import TicketDonationDonePage from "pages/donations/TicketDonationDonePage";
 import SelectTicketsPage from "pages/donations/SelectTicketsPage";
 import ValidateAccountPage from "pages/auth/ValidateAccountPage";
+import SubscriptionsPage from "pages/promoters/SubscriptionsPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -439,7 +439,7 @@ function RoutesComponent(): JSX.Element {
 
       <Route path="/monthly-contributions" exact>
         <Suspense fallback={<div />}>
-          <MonthlyContributionsPage />
+          <SubscriptionsPage />
         </Suspense>
       </Route>
 

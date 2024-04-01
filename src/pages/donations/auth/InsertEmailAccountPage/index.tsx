@@ -43,6 +43,10 @@ function InsertEmailAccountPage(): JSX.Element {
       email,
       onSuccess: () => {
         logEvent("ticketCollected", { from: "collectAndDonate" });
+        logEvent("ticketDonated_end", {
+          nonProfitId: nonProfit.id,
+          quantity: 1,
+        });
         setDonationSucceeded(true);
       },
       onError: () => {
@@ -53,9 +57,6 @@ function InsertEmailAccountPage(): JSX.Element {
 
   const onAnimationEnd = useCallback(() => {
     if (donationSucceeded && nonProfit) {
-      logEvent("ticketDonated_end", {
-        nonProfitId: nonProfit.id,
-      });
       navigateTo({
         pathname: "/ticket-donation-done",
         state: {

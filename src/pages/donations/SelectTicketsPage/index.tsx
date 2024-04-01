@@ -40,7 +40,10 @@ export default function SelectTicketsPage() {
 
   const onDonationSuccess = () => {
     setDonationSucceeded(true);
-    logEvent("ticketDonated_end", { nonProfitId: nonProfit.id });
+    logEvent("ticketDonated_end", {
+      nonProfitId: nonProfit.id,
+      quantity: ticketsQuantity,
+    });
   };
 
   const errorType = (type: number) => {

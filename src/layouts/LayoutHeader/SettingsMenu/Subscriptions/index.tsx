@@ -6,7 +6,7 @@ import Loader from "components/atomics/Loader";
 import { useCurrentUser } from "contexts/currentUserContext";
 import Item from "../Item";
 
-function MonthlyContributions(): JSX.Element | null {
+function Subscriptions(): JSX.Element | null {
   const { t } = useTranslation("translation", {
     keyPrefix: "layouts.layoutHeader.settingsMenu",
   });
@@ -37,10 +37,10 @@ function MonthlyContributions(): JSX.Element | null {
   return (
     <Item
       icon={{ name: "volunteer_activism" }}
-      text={t("monthlyContributions")}
+      text={t("subscriptions")}
       onClickHandler={() => handleClick()}
     />
   );
 }
 
-export default MonthlyContributions;
+export default Subscriptions;

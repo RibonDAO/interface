@@ -6,7 +6,7 @@ import CheckBox from "components/atomics/inputs/Checkbox";
 import FileUpload from "components/moleculars/FileUpload";
 import Button from "components/atomics/buttons/Button";
 import { useAuthentication } from "contexts/authenticationContext";
-import { useUserIntegration } from "@ribon.io/shared/hooks";
+import useUserIntegration from "hooks/userHooks/useUserIntegration";
 import Spinner from "components/atomics/Spinner";
 import { useCurrentUser } from "contexts/currentUserContext";
 import theme from "styles/theme";

@@ -2704,14 +2704,13 @@
   resolved "https://registry.yarnpkg.com/@react-oauth/google/-/google-0.11.1.tgz#f937c8d02bd37e3a6be7713b8212e9b9b9b3f914"
   integrity sha512-tywZisXbsdaRBVbEu0VX6dRbOSL2I6DgY97woq5NMOOOz+xtDsm418vqq+Vx10KMtra3kdHMRMf0hXLWrk2RMg==
 
-"@ribon.io/shared@^1.1.39":
-  version "1.1.39"
-  resolved "https://registry.yarnpkg.com/@ribon.io/shared/-/shared-1.1.39.tgz#d13d078a92596f048d48b1585365560abfed8701"
-  integrity sha512-Vf0vy6BXYfw91b8kGiNpBpyWtrFPTcjzA1zY0HbWkwPNxJTfCuUGHI0lta0dlchNm6q/41e9h9Ja90XU1I4QYQ==
+"@ribon.io/shared@^1.1.41":
+  version "1.1.41"
+  resolved "https://registry.yarnpkg.com/@ribon.io/shared/-/shared-1.1.41.tgz#4a39a8bcdd70f8b3ca5e75bdef6ad4809a446133"
+  integrity sha512-xpWNDoVg8lPzStntTVJK0feVYYV0qdkGxAKNYRj2uJGzF1tMeQKh0pFigPIkC40UYwyxoW6TvXxE9RkhDamN7w==
   dependencies:
     "@apollo/client" "^3.6.9"
     "@types/base-64" "^1.0.0"
-    activestorage "^5.2.8-1"
     axios "^0.27.2"
     camelcase-keys "^7.0.2"
     cross-fetch "^3.1.5"
@@ -4072,6 +4071,11 @@
   version "1.0.2"
   resolved "https://registry.npmjs.org/@tsconfig/node16/-/node16-1.0.2.tgz"
   integrity sha512-eZxlbI8GZscaGS7kkc/trHTT5xgrjH3/1n2JDwusC9iahPKWMRvRjJSAN5mCXviuTGQ/lHnhvv8Q1YTpnfz9gA==
+
+"@types/activestorage@^5.2.7":
+  version "5.2.7"
+  resolved "https://registry.yarnpkg.com/@types/activestorage/-/activestorage-5.2.7.tgz#9c2140103e7b9e3360cc59dbe08fd682a15c0a97"
+  integrity sha512-bNMWEULJXPAhu2l+kZjvZj+1VfsnEp+uIurM4aCUGOXGFteqeBlHhtwtZdr6cdYwmc9VxiwkZJNno0DIAzKbPQ==
 
 "@types/aria-query@^4.2.0":
   version "4.2.2"

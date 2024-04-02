@@ -92,7 +92,7 @@ function CardPaymentInformationProvider({ children }: Props) {
       try {
         const user = await findOrCreateUser(email, normalizedLanguage());
         if (integration) {
-          createSource(user.id, integration.id);
+          createSource(user.id, integration?.id as number);
         }
         setCurrentUser(user);
       } catch (e) {

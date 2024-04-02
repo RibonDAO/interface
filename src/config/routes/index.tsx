@@ -43,9 +43,12 @@ import ExtraTicketPage from "pages/auth/ExtraTicketPage";
 import SignInExtraTicketPage from "pages/auth/SignInExtraTicketPage";
 import RedirectPage from "pages/campaigns/redirectPage";
 import ReceiveExtraTicketPage from "pages/auth/ReceiveExtraTicketPage";
+import CustomLinkPage from "pages/users/CustomLinkPage";
+import CustomLinkCreatedPage from "pages/users/CustomLinkCreatedPage";
 import SignInByMagicLinkPage from "pages/donations/auth/SignInByMagicLinkPage";
 import DonationSignInPage from "pages/donations/auth/SignInPage";
 import SignedInPage from "pages/donations/auth/SignedInPage";
+import SignInCustomLinkPage from "pages/auth/SignInCustomLinkPage";
 import SignInPage from "pages/auth/SignInPage";
 import InsertEmailPage from "pages/auth/InsertEmailPage";
 import SentMagicLinkEmailPage from "pages/auth/SentMagicLinkEmailPage";
@@ -184,6 +187,13 @@ function RoutesComponent(): JSX.Element {
         <Suspense fallback={<div />}>
           <NavigationBackHeader />
           <SignInExtraTicketPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/sign-in-custom-link" exact>
+        <Suspense fallback={<div />}>
+          <NavigationBackHeader />
+          <SignInCustomLinkPage />
         </Suspense>
       </Route>
 
@@ -450,6 +460,20 @@ function RoutesComponent(): JSX.Element {
           <MainLayout hideHeader fullSize>
             <AboutPage />
           </MainLayout>
+        </Suspense>
+      </Route>
+
+      <Route path="/custom-link" exact>
+        <Suspense fallback={<div />}>
+          <MainLayout hideHeader>
+            <CustomLinkPage />
+          </MainLayout>
+        </Suspense>
+      </Route>
+
+      <Route path="/custom-link-created" exact>
+        <Suspense fallback={<div />}>
+          <CustomLinkCreatedPage />
         </Suspense>
       </Route>
     </Switch>

@@ -192,6 +192,12 @@
         "buttonText": "Continue without extra ticket",
         "toastDescription": "Your ticket was sent by e-mail"
       },
+      "signInCustomLinkPage": {
+        "title": "Sign in to proceed",
+        "description": "Sign in to your account to create your custom link",
+        "buttonText": "Sign in",
+        "toastDescription": "Signed in successfully"
+      },
       "validateAccountPage": {
         "title": "Validate your account",
         "description": "Validate your account created with {{email}} to complete your donation.",
@@ -644,6 +650,43 @@
     "buttonDownloadApp": "Download to get ticket",
     "scanQrCode": "Use QR Code",
     "offerExpiresIn": "Offer expires in {{time}}"
+  },
+  "customLinkPage": {
+    "title": "Create your donation link",
+    "onErrorMessage": "Failed to create link. Please, try again.",
+    "business": {
+      "companysInfo": "Company's information",
+      "companysName": "Company's name",
+      "companysLogo": "Company's logo",
+      "uploadLogoDescription": "Click here to add the company's logo",
+      "uploadMaxSize": "Maximum size: 500kb",
+      "adminInfo": "Link administrator's information",
+      "adminName": "Name",
+      "adminLinkedIn": "LinkedIn profile",
+      "adminEmail": "Corporate e-mail",
+      "adminPhone": "Phone (WhatsApp)",
+      "optIn": "I confirm that I have an employment relationship with this company and that I have it's authorization to create and use the link created.",
+      "submit": "Create company's link",
+      "loading": "Creating your custom link..."
+    }
+  },
+  "customLinkCreatedPage": {
+    "title": "Awesome! Your link was created successfully.",
+    "description": "Remember to add this link to your product to reward your customers.",
+    "copyLink": "Copy link",
+    "copiedLink": "Copied!",
+    "backToApp": "Back to app",
+    "instructionsTitle": "Add your donation link to your product",
+    "instruction1": {
+      "emoji": "👏🏼",
+      "title": "Choose an action to be rewarded",
+      "description": "Think of an action that your customers already do in your company's site or app that you'd like to incentivize by offering donation tickets."
+    },
+    "instruction2": {
+      "emoji": "✅",
+      "title": "Add your link to your product",
+      "description": "Choose where to add your link so your customers can access it. You can add it to a button, share it via email ou through a banner on your platform. The choice is yours to make!"
+    }
   },
   "downloadApp": {
     "floating": {

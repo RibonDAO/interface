@@ -110,7 +110,7 @@ export default function SelectTicketsPage() {
     const impacts = nonProfit?.nonProfitImpacts || [];
     const nonProfitsImpactsLength = impacts.length;
     const lastImpact = impacts[nonProfitsImpactsLength - 1];
-    if (lastImpact.minimumNumberOfTickets) {
+    if (lastImpact?.minimumNumberOfTickets) {
       setStep(lastImpact.minimumNumberOfTickets);
       setTicketsQuantity(lastImpact.minimumNumberOfTickets);
     }

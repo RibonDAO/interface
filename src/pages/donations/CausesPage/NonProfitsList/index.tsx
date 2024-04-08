@@ -157,44 +157,40 @@ function NonProfitsList({ nonProfits }: Props): JSX.Element {
           loop={nonProfits.length >= MINIMUM_NON_PROFITS_TO_LOOP + 1}
           slideWidthOnDesktop={256}
         >
-          {sortedNonProfits().map(
-            (nonProfit: any) => {
-              const minNumberOfTickets =
-                nonProfit?.nonProfitImpacts?.[0]?.minimumNumberOfTickets ?? 0;
-              const hasEnoughTickets =
-                hasTickets && ticketsCounter >= minNumberOfTickets;
+          {sortedNonProfits().map((nonProfit: any) => {
+            const minNumberOfTickets =
+              nonProfit?.nonProfitImpacts?.[0]?.minimumNumberOfTickets ?? 0;
+            const hasEnoughTickets =
+              hasTickets && ticketsCounter >= minNumberOfTickets;
 
-              return (
-                <S.CardWrapper key={nonProfit.id}>
-                  <CardCenterImageButton
-                    isLocked={isLocked(nonProfit)}
-                    image={nonProfit.mainImage || nonProfit.cause?.mainImage}
-                    title={oldImpactFormat(nonProfit)}
-                    buttonText={
-                      hasEnoughTickets
-                      ? t("donateText")
-                      : t("notEnoughTickets")
-                    }
-                    onClickButton={() =>
-                      handleButtonClick(nonProfit, "nonProfitCard")
-                    }
-                    onClickImage={() => handleImageClick(nonProfit)}
-                    infoTextTop={nonProfit.name}
-                    infoText={
-                      nonProfit.stories?.length ? t("learnMore") : undefined
-                    }
-                    iconSubtitle={{
-                      icon: ticketIcon,
-                      boldText: String(minNumberOfTickets),
-                      text: t("iconText"),
-                    }}
-                    disabled={!hasEnoughTickets}
-                    fullWidth
-                    />
-                </S.CardWrapper>
-              )
-            }
-          )}
+            return (
+              <S.CardWrapper key={nonProfit.id}>
+                <CardCenterImageButton
+                  isLocked={isLocked(nonProfit)}
+                  image={nonProfit.mainImage || nonProfit.cause?.mainImage}
+                  title={oldImpactFormat(nonProfit)}
+                  buttonText={
+                    hasEnoughTickets ? t("donateText") : t("notEnoughTickets")
+                  }
+                  onClickButton={() =>
+                    handleButtonClick(nonProfit, "nonProfitCard")
+                  }
+                  onClickImage={() => handleImageClick(nonProfit)}
+                  infoTextTop={nonProfit.name}
+                  infoText={
+                    nonProfit.stories?.length ? t("learnMore") : undefined
+                  }
+                  iconSubtitle={{
+                    icon: ticketIcon,
+                    boldText: String(minNumberOfTickets),
+                    text: t("iconText"),
+                  }}
+                  disabled={!hasEnoughTickets}
+                  fullWidth
+                />
+              </S.CardWrapper>
+            );
+          })}
         </SliderCardsEnhanced>
       ) : (
         <S.EmptySectionContainer>

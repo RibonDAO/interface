@@ -196,10 +196,9 @@ export const IconSubtitleContainer = styled.div`
   align-items: center;
   justify-content: center;
   color: ${({ theme }) => theme.colors.brand.primary[800]};
-  `;
-
-export const IconSubtitleText = styled.p`
 `;
+
+export const IconSubtitleText = styled.p``;
 
 export const BoldText = styled.span`
   ${defaultBodySmSemibold}

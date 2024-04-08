@@ -15,7 +15,7 @@ describe("useFormattedImpactText", () => {
     };
     const { result } = renderHook(() => useFormattedImpactText());
     expect(result.current.formattedImpactText(nonProfit)).toEqual(
-      " 1 Impact description",
+      "1 Impact description for 1 Donor recipient",
     );
   });
 
@@ -25,7 +25,7 @@ describe("useFormattedImpactText", () => {
     });
     const { result } = renderHook(() => useFormattedImpactText());
     expect(result.current.formattedImpactText(nonProfit)).toEqual(
-      " 1 Impact description",
+      "1 Impact description for 1 Donor recipient",
     );
   });
   it("when isRoundedImpact is true and nonProfitImpact is provided", () => {
@@ -48,7 +48,7 @@ describe("useFormattedImpactText", () => {
         false,
         nonProfitImpact,
       ),
-    ).toEqual("10 Impact description");
+    ).toEqual("10 Impact description for 1 Donor recipient");
   });
 
   it("when the isHighlighted is true and last impact has donorRecipient", () => {

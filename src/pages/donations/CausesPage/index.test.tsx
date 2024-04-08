@@ -4,6 +4,8 @@ import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import causeFactory from "config/testUtils/factories/causeFactory";
 
 import Causes from ".";
+import NonProfitImpactFactory from "config/testUtils/factories/nonProfitImpactFactory";
+import nonProfitImpactFactory from "config/testUtils/factories/nonProfitImpactFactory";
 
 jest.mock("hooks/useImpactConversion", () => ({
   useImpactConversion: () => ({
@@ -32,12 +34,18 @@ describe("Causes", () => {
       impactDescription: "days of impact",
       impactByTicket: 2,
       cause: cause1,
+      nonProfitImpacts: [
+        nonProfitImpactFactory(),
+      ],
     }),
     nonProfitFactory({
       id: 3,
       impactDescription: "days of impact",
       impactByTicket: 4,
       cause: cause1,
+      nonProfitImpacts: [
+        nonProfitImpactFactory(),
+      ],
     }),
   ];
   const nonProfits = [
@@ -104,9 +112,14 @@ describe("Causes", () => {
         nonProfit.cause?.withPoolBalance
       ) {
         expectTextToBeInTheDocument(
-          `Donate ${nonProfit.impactByTicket} ${nonProfit.impactDescription}`,
+          `${nonProfit.impactByTicket} ${nonProfit.impactDescription}`,
         );
       }
     });
+  });
+
+  it("shows the minimumNumberOfTickets", () => {
+    expectTextToBeInTheDocument("minimum");
+    expectTextToBeInTheDocument("2 days of impact");
   });
 });

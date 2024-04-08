@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import {
   useIntegration,
   useFirstAccessToIntegration,
+  useDonatedToday,
 } from "@ribon.io/shared/hooks";
 import { useLocation } from "react-router-dom";
 import { useCurrentUser } from "contexts/currentUserContext";
@@ -21,6 +22,7 @@ import NonProfitsSection from "pages/donations/CausesPage/NonProfitsSection";
 import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
 import CampaignSection from "pages/donations/CausesPage/CampaignSection";
 import { useTicketsContext } from "contexts/ticketsContext";
+import { useLanguage } from "hooks/useLanguage";
 import { useTickets } from "hooks/useTickets";
 import { logEvent } from "lib/events";
 import {
@@ -59,6 +61,9 @@ function CausesPage(): JSX.Element {
   );
 
   const { isMobile } = useBreakpoint();
+
+  const { currentLang } = useLanguage();
+  const { donatedToday } = useDonatedToday();
 
   const { handleCanCollect, handleCollect, hasReceivedTicketToday } =
     useTickets();
@@ -136,7 +141,9 @@ function CausesPage(): JSX.Element {
           )}
         </S.TitleContainer>
 
-        <CampaignSection cardId="1" />
+        {!donatedToday && currentLang === "pt-BR" && (
+          <CampaignSection cardId="1" />
+        )}
 
         <ContributionNotification />
         <CausesSelectSection />

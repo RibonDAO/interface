@@ -12,6 +12,7 @@ import { useOffers } from "@ribon.io/shared/hooks";
 import { useLanguage } from "hooks/useLanguage";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useTicketsContext } from "contexts/ticketsContext";
+import ticketIcon from "assets/icons/ticket-icon-on.svg";
 import StoriesSection from "../StoriesSection";
 import * as S from "../styles";
 
@@ -26,7 +27,7 @@ function NonProfitsList({ nonProfits }: Props): JSX.Element {
     keyPrefix: "donations.causesPage",
   });
   const { navigateTo } = useNavigation();
-  const { hasTickets } = useTicketsContext();
+  const { hasTickets, ticketsCounter } = useTicketsContext();
 
   const [currentNonProfitIndex, setCurrentNonProfitIndex] = useState(0);
 
@@ -157,33 +158,42 @@ function NonProfitsList({ nonProfits }: Props): JSX.Element {
           slideWidthOnDesktop={256}
         >
           {sortedNonProfits().map(
-            (nonProfit: any) =>
-              nonProfit && (
+            (nonProfit: any) => {
+              const minNumberOfTickets =
+                nonProfit?.nonProfitImpacts?.[0]?.minimumNumberOfTickets ?? 0;
+              const hasEnoughTickets =
+                hasTickets && ticketsCounter >= minNumberOfTickets;
+
+              return (
                 <S.CardWrapper key={nonProfit.id}>
                   <CardCenterImageButton
                     isLocked={isLocked(nonProfit)}
                     image={nonProfit.mainImage || nonProfit.cause?.mainImage}
                     title={oldImpactFormat(nonProfit)}
                     buttonText={
-                      hasTickets
-                        ? t("donateText")
-                        : t("doMore", {
-                            value: currentOffer()?.price ?? "1000",
-                          })
+                      hasEnoughTickets
+                      ? t("donateText")
+                      : t("notEnoughTickets")
                     }
                     onClickButton={() =>
                       handleButtonClick(nonProfit, "nonProfitCard")
                     }
                     onClickImage={() => handleImageClick(nonProfit)}
                     infoTextTop={nonProfit.name}
-                    infoTextBottom={nonProfit.cause?.name}
                     infoText={
                       nonProfit.stories?.length ? t("learnMore") : undefined
                     }
+                    iconSubtitle={{
+                      icon: ticketIcon,
+                      boldText: String(minNumberOfTickets),
+                      text: t("iconText"),
+                    }}
+                    disabled={!hasEnoughTickets}
                     fullWidth
-                  />
+                    />
                 </S.CardWrapper>
-              ),
+              )
+            }
           )}
         </SliderCardsEnhanced>
       ) : (

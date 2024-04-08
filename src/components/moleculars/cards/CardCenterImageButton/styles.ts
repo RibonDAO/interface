@@ -168,7 +168,7 @@ export const Bullet = styled.h6`
 
 export const InfoContainer = styled.div`
   width: 100%;
-  margin-bottom: ${({ theme }) => theme.spacing(16)};
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -189,4 +189,22 @@ export const ButtonContainer = styled.div`
 
 export const Icon = styled.img`
   margin-left: ${({ theme }) => theme.spacing(4)};
+`;
+
+export const IconSubtitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.brand.primary[800]};
+  `;
+
+export const IconSubtitleText = styled.p`
+`;
+
+export const BoldText = styled.span`
+  ${defaultBodySmSemibold}
+`;
+
+export const SubtitleIcon = styled.img`
+  margin-right: ${({ theme }) => theme.spacing(4)};
 `;

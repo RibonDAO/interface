@@ -141,7 +141,7 @@ function CausesPage(): JSX.Element {
           )}
         </S.TitleContainer>
 
-        {!donatedToday && currentLang === "pt-BR" && (
+        {donatedToday && currentLang === "pt-BR" && (
           <CampaignSection cardId="1" />
         )}
 

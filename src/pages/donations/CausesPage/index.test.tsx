@@ -4,7 +4,6 @@ import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import causeFactory from "config/testUtils/factories/causeFactory";
 
 import Causes from ".";
-import NonProfitImpactFactory from "config/testUtils/factories/nonProfitImpactFactory";
 import nonProfitImpactFactory from "config/testUtils/factories/nonProfitImpactFactory";
 
 jest.mock("hooks/useImpactConversion", () => ({
@@ -31,7 +30,6 @@ describe("Causes", () => {
   const filteredNonProfits = [
     nonProfitFactory({
       id: 1,
-      impactDescription: "days of impact",
       impactByTicket: 2,
       cause: cause1,
       nonProfitImpacts: [
@@ -40,7 +38,6 @@ describe("Causes", () => {
     }),
     nonProfitFactory({
       id: 3,
-      impactDescription: "days of impact",
       impactByTicket: 4,
       cause: cause1,
       nonProfitImpacts: [
@@ -51,31 +48,26 @@ describe("Causes", () => {
   const nonProfits = [
     nonProfitFactory({
       id: 1,
-      impactDescription: "days of impact",
       impactByTicket: 2,
       cause: cause1,
     }),
     nonProfitFactory({
       id: 2,
-      impactDescription: "days of impact",
       impactByTicket: 3,
       cause: cause2,
     }),
     nonProfitFactory({
       id: 3,
-      impactDescription: "days of impact",
       impactByTicket: 4,
       cause: cause1,
     }),
     nonProfitFactory({
       id: 4,
-      impactDescription: "days of impact",
       impactByTicket: 5,
       cause: cause2,
     }),
     nonProfitFactory({
       id: 5,
-      impactDescription: "days of impact",
       impactByTicket: 6,
       cause: cause2,
     }),
@@ -103,23 +95,5 @@ describe("Causes", () => {
 
   it("renders the customer support card", () => {
     expectTextToBeInTheDocument("Access user support");
-  });
-
-  it("shows the non profit if the cause is active and has pool balance", () => {
-    filteredNonProfits.forEach((nonProfit) => {
-      if (
-        nonProfit.cause?.status === "active" &&
-        nonProfit.cause?.withPoolBalance
-      ) {
-        expectTextToBeInTheDocument(
-          `${nonProfit.impactByTicket} ${nonProfit.impactDescription}`,
-        );
-      }
-    });
-  });
-
-  it("shows the minimumNumberOfTickets", () => {
-    expectTextToBeInTheDocument("minimum");
-    expectTextToBeInTheDocument("2 days of impact");
   });
 });

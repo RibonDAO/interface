@@ -28,7 +28,7 @@ export function useFormattedImpactText() {
   ) {
     if (!nonProfit) return "";
     if (!nonProfit.nonProfitImpacts || nonProfit.nonProfitImpacts.length === 0)
-      return "1";
+      return "";
 
     const impacts = nonProfit?.nonProfitImpacts || [];
     const nonProfitsImpactsLength = impacts.length;

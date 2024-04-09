@@ -9,8 +9,8 @@ function nonProfitImpactFactory(
     startDate: "2022-02-15 18:15:23 UTC",
     usdCentsToOneImpactUnit: "100",
     measurementUnit: "days",
-    impactDescription: "Impact description",
-    donorRecipient: "donor",
+    impactDescription: "impact description",
+    donorRecipient: "recipient",
     minimumNumberOfTickets: 1,
   };
   return Object.assign(defaultValues, params) as NonProfitImpact;

@@ -20,6 +20,7 @@ export const Container = styled.div`
   justify-content: space-around;
   background: ${({ theme }) => theme.colors.neutral10};
   box-shadow: 0 -2px 4px ${({ theme }) => theme.colors.defaultShadow};
+  text-align: center;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     max-width: 80px;

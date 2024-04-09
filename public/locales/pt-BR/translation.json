@@ -109,9 +109,9 @@
       "checkboxText": "Quero receber informações sobre minhas doações por e-mail"
     },
     "menu": {
-      "impactPageTitle": "Impacto",
-      "causesPageTitle": "Tickets",
-      "forYouPageTitle": "Para você",
+      "myImpactPageTitle": "Meu impacto",
+      "donateTicketsPageTitle": "Doe tickets",
+      "earnTicketsPageTitle": "Ganhe tickets",
       "givingPageTitle": "Ajudar",
       "aboutPageTitle": "Benefícios",
       "communityMenuItem": "Causas",

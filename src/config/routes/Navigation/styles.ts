@@ -45,7 +45,7 @@ export const Title = styled.p`
 `;
 
 export const StyledLinkContainer = styled.div`
-  padding: ${({ theme }) => theme.spacing(8, 0)};
+  padding: ${({ theme }) => theme.spacing(8)};
   display: flex;
   flex-direction: column;
 `;

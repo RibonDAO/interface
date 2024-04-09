@@ -18,9 +18,9 @@ export const Container = styled.div`
   gap: 8px;
   align-self: flex-end;
   justify-content: space-around;
+  text-align: center;
   background: ${({ theme }) => theme.colors.neutral10};
   box-shadow: 0 -2px 4px ${({ theme }) => theme.colors.defaultShadow};
-  text-align: center;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     max-width: 80px;

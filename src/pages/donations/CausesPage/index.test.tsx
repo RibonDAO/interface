@@ -2,9 +2,8 @@ import { renderComponent, waitForPromises } from "config/testUtils";
 import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import causeFactory from "config/testUtils/factories/causeFactory";
-
-import Causes from ".";
 import nonProfitImpactFactory from "config/testUtils/factories/nonProfitImpactFactory";
+import Causes from ".";
 
 jest.mock("hooks/useImpactConversion", () => ({
   useImpactConversion: () => ({
@@ -32,17 +31,13 @@ describe("Causes", () => {
       id: 1,
       impactByTicket: 2,
       cause: cause1,
-      nonProfitImpacts: [
-        nonProfitImpactFactory(),
-      ],
+      nonProfitImpacts: [nonProfitImpactFactory()],
     }),
     nonProfitFactory({
       id: 3,
       impactByTicket: 4,
       cause: cause1,
-      nonProfitImpacts: [
-        nonProfitImpactFactory(),
-      ],
+      nonProfitImpacts: [nonProfitImpactFactory()],
     }),
   ];
   const nonProfits = [

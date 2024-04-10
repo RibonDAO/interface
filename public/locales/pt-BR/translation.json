@@ -121,7 +121,7 @@
     },
     "giveTicketPage": {
       "onboardingRibonTitle": "Boas vindas à Ribon!",
-      "onboardingIntegrationTitle": "{{integrationName}} te convidou para o app da Ribon!",
+      "onboardingIntegrationTitle": "{{integrationName}} te convida para a Ribon!",
       "onboardingSubtitle": "Baixe o app e ganhe tickets para doar para projetos sociais incríveis!",
       "onboardingButtonText": "Receber meu ticket",
       "title": "Você tem 1 ticket",

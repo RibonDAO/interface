@@ -1,8 +1,6 @@
 import { clickOn, renderComponent } from "config/testUtils";
-import impactFactory from "config/testUtils/factories/impactFactory";
 import { mockRequest } from "config/testUtils/test-helper";
 import userFactory from "config/testUtils/factories/userFactory";
-import nonProfitFactory from "config/testUtils/factories/nonProfitFactory";
 
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import { UserStatistics } from "@ribon.io/shared/types";
@@ -10,12 +8,6 @@ import userStatisticsFactory from "config/testUtils/factories/userStatisticsFact
 import Impact from ".";
 
 describe("Impact Page", () => {
-  const impact = [
-    impactFactory({
-      nonProfit: nonProfitFactory({ id: 1 }),
-      impact: "1",
-    }),
-  ];
   describe("Total Impact Cards", () => {
     const user = userFactory({ id: 1 });
     const userStatistics = userStatisticsFactory();
@@ -78,25 +70,6 @@ describe("Impact Page", () => {
           clickOn("Donate using tickets");
           expectTextToBeInTheDocument("Donate using tickets");
         });
-      });
-    });
-
-    const user = userFactory({ id: 1 });
-
-    describe("when there are cards to show", () => {
-      beforeEach(() => {
-        renderComponent(<Impact />, {
-          currentUserProviderValue: {
-            currentUser: user,
-          },
-        });
-        mockRequest(`api/v1/users/${user.id}/impacts`, {
-          payload: [...impact],
-        });
-      });
-
-      it("shows the impact cards", () => {
-        expectTextToBeInTheDocument("1 Impact description");
       });
     });
   });

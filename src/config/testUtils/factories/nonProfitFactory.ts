@@ -1,4 +1,5 @@
 import { Cause, NonProfit } from "@ribon.io/shared/types";
+import nonProfitImpactFactory from "./nonProfitImpactFactory";
 
 function nonProfitFactory(params: Partial<NonProfit> = {}): NonProfit {
   const defaultValues: NonProfit = {
@@ -14,7 +15,7 @@ function nonProfitFactory(params: Partial<NonProfit> = {}): NonProfit {
     coverImage: "",
     mainImage: "",
     cause: {} as Cause,
-    nonProfitImpacts: [],
+    nonProfitImpacts: [nonProfitImpactFactory()],
     confirmationImage: "",
     backgroundImageDescription: "",
     confirmationImageDescription: "",

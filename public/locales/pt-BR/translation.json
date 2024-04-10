@@ -120,9 +120,9 @@
       "new": "Novo"
     },
     "giveTicketPage": {
-      "onboardingRibonTitle": "Boas vindas à Ribon!",
+      "onboardingRibonTitle": "Vem com a Ribon!",
       "onboardingIntegrationTitle": "{{integrationName}} te convida para a Ribon!",
-      "onboardingSubtitle": "Baixe o app e ganhe tickets para doar para projetos sociais incríveis!",
+      "onboardingSubtitle": "Baixe o app e ganhe tickets para ajudar projetos sociais todos os dias de graça!",
       "onboardingButtonText": "Receber meu ticket",
       "title": "Você tem 1 ticket",
       "titlePlural": "Você tem {{ticketsCounter}} tickets",
@@ -132,7 +132,7 @@
       "tooltipTicketText": "Os tickets servem para fazer doações e você recebe um a cada dia que entrar aqui na Ribon.",
       "tooltipTicket": "O que é um ticket?",
       "hasAccountButton": "Já tenho uma conta",
-      "downloadAppButton": "Receber um ticket no app",
+      "downloadAppButton": "Coletar ticket no app",
       "stayInBrowserButton": "Ficar no navegador",
       "haveAnAccount": "Já tem uma conta?",
       "signIn": "Entrar com sua conta"

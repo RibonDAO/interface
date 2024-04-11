@@ -17,6 +17,7 @@ import {
   formatFromDecimals,
   formatToDecimals,
 } from "lib/web3Helpers/etherFormatters";
+import { NonProfit } from "@ribon.io/shared";
 import { logError } from "services/crashReport";
 import { stringToNumber } from "lib/formatters/stringToNumberFormatter";
 import { BigNumber, utils } from "ethers";
@@ -35,6 +36,7 @@ export interface ICryptoPaymentContext {
   handleDonationToContract: (
     causeId: number,
     onSuccess?: onDonationToContractSuccessProps,
+    nonProfit?: NonProfit,
   ) => Promise<void>;
   disableButton: () => boolean;
   amount: string;
@@ -95,12 +97,21 @@ function CryptoPaymentProvider({ children }: Props) {
       },
     );
 
-  const donateToContract = async () =>
-    contract?.functions.addPoolBalance(
-      currentPool,
-      formatToDecimals(amount, tokenDecimals).toString(),
-      true,
-    );
+  const donateToContract = async (nonProfit?: NonProfit) => {
+    if (nonProfit) {
+      return contract?.functions.contributeToNonProfit(
+        currentPool,
+        nonProfit.walletAddress,
+        formatToDecimals(amount, tokenDecimals).toString(),
+      );
+    } else {
+      return contract?.functions.addPoolBalance(
+        currentPool,
+        formatToDecimals(amount, tokenDecimals).toString(),
+        true,
+      );
+    }
+  };
 
   const fetchUsdcUserBalance = useCallback(async () => {
     try {
@@ -132,6 +143,7 @@ function CryptoPaymentProvider({ children }: Props) {
   const handleDonationToContract = async (
     causeId: number,
     onSuccess?: onDonationToContractSuccessProps,
+    nonProfit?: NonProfit,
   ) => {
     setLoading(true);
     showLoadingOverlay(t("tokenAmountTransferMessage"));
@@ -139,8 +151,7 @@ function CryptoPaymentProvider({ children }: Props) {
       const approval = await approveAmount();
       await approval.wait();
       showLoadingOverlay(t("contractTransferMessage"));
-      const response = await donateToContract();
-
+      const response = await donateToContract(nonProfit);
       const { hash } = response;
       const timestamp = Math.floor(new Date().getTime() / 1000);
 
@@ -151,6 +162,7 @@ function CryptoPaymentProvider({ children }: Props) {
         integrationId ?? 1,
         causeId ?? 1,
         PLATFORM,
+        nonProfit?.id,
       );
 
       if (onSuccess) onSuccess(hash, timestamp, utils.parseEther(amount));

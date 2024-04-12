@@ -594,6 +594,13 @@
       "invalidLink": "Invalid link"
     }
   },
+  "onboarding": {
+    "secondPage": {
+      "title": "Here at Ribon, everything revolves around doing good!",
+      "subtitle": "Donation tickets give you that power, and you've just received your first one!",
+      "button": "Next"
+    }
+  },
   "contexts": {
     "walletContext": {
       "ethereumNotFoundMessage": "Install Metamask to continue",

@@ -51,11 +51,11 @@ export const ButtonContainer = styled.div`
   gap: ${({ theme }) => theme.spacing(8)};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
+    padding: ${({ theme }) => theme.spacing(16)};
     position: absolute;
     bottom: 0;
     left: 0;
     display: block;
-    padding: ${({ theme }) => theme.spacing(16)};
   }
 `;
 
@@ -152,9 +152,9 @@ export const ContentContainer = styled.div`
 export const BackArrowButton = styled.img`
   width: 24px;
   height: 24px;
+  align-self: flex-start;
 
   cursor: pointer;
-  align-self: flex-start;
 `;
 
 export const Header = styled.div`

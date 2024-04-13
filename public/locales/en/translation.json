@@ -137,6 +137,14 @@
       "haveAnAccount": "Have an account?",
       "signIn": "Sign in to your account"
     },
+    "giveTicketV2Page": {
+      "title": "You won 1 ticket!",
+      "integrationTitle": "{{integrationName}} gave you 1 ticket!",
+      "integrationTitlePlural": "{{integrationName}} gave you tickets!",
+      "subtitle": "Use your ticket to do good!",
+      "downloadAppButton": "Collect ticket on app",
+      "stayInBrowserButton": "Stay in the browser"
+    },
     "receiveTicketPage": {
       "textOrigin": "Community",
       "textDestiny": "You",

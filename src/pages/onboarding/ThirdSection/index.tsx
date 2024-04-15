@@ -23,7 +23,7 @@ function ThirdSection(): JSX.Element {
           withCircle: true,
           color: theme.colors.brand.secondary[800],
           size: "20px",
-          backgroundColor: "transparent"
+          backgroundColor: "transparent",
         }}
         title={t("cardTitle1")}
         titleColor={theme.colors.neutral[800]}
@@ -38,7 +38,7 @@ function ThirdSection(): JSX.Element {
           withCircle: true,
           color: theme.colors.brand.quaternary[600],
           size: "20px",
-          backgroundColor: "transparent"
+          backgroundColor: "transparent",
         }}
         title={t("cardTitle2")}
         titleColor={theme.colors.neutral[800]}
@@ -53,7 +53,7 @@ function ThirdSection(): JSX.Element {
           withCircle: true,
           color: theme.colors.brand.primary[800],
           size: "20px",
-          backgroundColor: "transparent"
+          backgroundColor: "transparent",
         }}
         title={t("cardTitle3")}
         titleColor={theme.colors.neutral[800]}

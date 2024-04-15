@@ -109,9 +109,9 @@
       "checkboxText": "Quero receber informações sobre minhas doações por e-mail"
     },
     "menu": {
-      "impactPageTitle": "Impacto",
-      "causesPageTitle": "Tickets",
-      "forYouPageTitle": "Para você",
+      "myImpactPageTitle": "Meu impacto",
+      "donateTicketsPageTitle": "Doe tickets",
+      "earnTicketsPageTitle": "Ganhe tickets",
       "givingPageTitle": "Ajudar",
       "aboutPageTitle": "Benefícios",
       "communityMenuItem": "Causas",
@@ -120,9 +120,9 @@
       "new": "Novo"
     },
     "giveTicketPage": {
-      "onboardingRibonTitle": "Boas vindas à Ribon!",
-      "onboardingIntegrationTitle": "{{integrationName}} te convidou para o app da Ribon!",
-      "onboardingSubtitle": "Baixe o app e ganhe tickets para doar para projetos sociais incríveis!",
+      "onboardingRibonTitle": "Vem com a Ribon!",
+      "onboardingIntegrationTitle": "{{integrationName}} te convida para a Ribon!",
+      "onboardingSubtitle": "Baixe o app e ganhe tickets para ajudar projetos sociais todos os dias de graça!",
       "onboardingButtonText": "Receber meu ticket",
       "title": "Você tem 1 ticket",
       "titlePlural": "Você tem {{ticketsCounter}} tickets",
@@ -132,7 +132,7 @@
       "tooltipTicketText": "Os tickets servem para fazer doações e você recebe um a cada dia que entrar aqui na Ribon.",
       "tooltipTicket": "O que é um ticket?",
       "hasAccountButton": "Já tenho uma conta",
-      "downloadAppButton": "Receber um ticket no app",
+      "downloadAppButton": "Coletar ticket no app",
       "stayInBrowserButton": "Ficar no navegador",
       "haveAnAccount": "Já tem uma conta?",
       "signIn": "Entrar com sua conta"
@@ -351,6 +351,13 @@
       "cardSubtitle": "+{{value}} tickets",
       "description": "e ajude com {{impact}}",
       "buttonText": "Doar {{value}} tickets"
+    }
+  },
+  "onboarding": {
+    "secondPage": {
+      "title": "Aqui na Ribon tudo gira em torno de fazer o bem!",
+      "subtitle": "Os tickets de doação te dão esse poder, e você acaba de receber seu primeiro!",
+      "button": "Próximo"
     }
   },
   "promoters": {

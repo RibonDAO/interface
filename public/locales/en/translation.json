@@ -109,9 +109,9 @@
       "checkboxText": "I want to receive information about my donations by e-mail"
     },
     "menu": {
-      "impactPageTitle": "Impact",
-      "causesPageTitle": "Tickets",
-      "forYouPageTitle": "For you",
+      "myImpactPageTitle": "My impact",
+      "donateTicketsPageTitle": "Donate tickets",
+      "earnTicketsPageTitle": "Earn tickets",
       "givingPageTitle": "Giving",
       "aboutPageTitle": "Benefits",
       "communityMenuItem": "Community Donation",
@@ -592,6 +592,13 @@
       "description": "Your monthly contribution of {{value}} to {{receiver}} was canceled",
       "loading": "Loading...",
       "invalidLink": "Invalid link"
+    }
+  },
+  "onboarding": {
+    "secondPage": {
+      "title": "Here at Ribon, everything revolves around doing good!",
+      "subtitle": "Donation tickets give you that power, and you've just received your first one!",
+      "button": "Next"
     }
   },
   "contexts": {

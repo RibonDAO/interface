@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import LeftImage from "assets/images/bottom-left-shape-red.svg";
-import RightImage from "assets/images/top-right-shape.svg";
+import LeftImage from "assets/images/bottom-left-shape.svg";
+import RightImage from "assets/images/top-right-sun-shape.svg";
 import useNavigation from "hooks/useNavigation";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useIntegration } from "@ribon.io/shared/hooks";

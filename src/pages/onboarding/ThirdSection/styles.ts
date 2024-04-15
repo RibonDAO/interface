@@ -4,25 +4,27 @@ import { defaultBodySmSemibold } from "styles/typography/default";
 import { stylizedDisplayXs } from "styles/typography/stylized";
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: ${theme.spacing(16)};
-  position: relative;
   width: 100%;
   height: 100%;
+  margin-top: ${({theme}) => theme.spacing(48)};
+  padding: ${({theme}) => theme.spacing(16)};
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: ${({theme}) => theme.spacing(16)};
   align-items: center;
-  gap: ${theme.spacing(16)};
-  margin-top: ${theme.spacing(48)};
 `;
 
 export const Title = styled.p`
   ${stylizedDisplayXs}
-  color: ${theme.colors.brand.primary[800]};
-  margin-bottom: ${theme.spacing(8)};
+  
+  margin-bottom: ${({theme}) => theme.spacing(8)};
   text-align: center;
+  color: ${({theme}) => theme.colors.brand.primary[800]};
 `;
 
 export const Description = styled.p`
   ${defaultBodySmSemibold}
-  color: ${theme.colors.neutral10};
+
+  color: ${({theme}) => theme.colors.neutral10};
 `;

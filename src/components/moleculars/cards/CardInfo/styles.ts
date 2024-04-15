@@ -7,7 +7,7 @@ import {
 
 export const InnerCardContainer = styled.div`
   width: 100%;
-  padding: ${theme.spacing(16)};
+  padding: ${({theme}) => theme.spacing(16)};
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -21,9 +21,9 @@ export const InnerCardContainer = styled.div`
 export const SubtitleContainer = styled.div`
   display: flex;
   flex-direction: row;
+  gap: ${({theme}) => theme.spacing(16)};
   align-items: "flex-start";
   justify-content: "flex-start";
-  gap: ${theme.spacing(16)};
 `;
 
 export const IconContainer = styled.div`
@@ -39,12 +39,14 @@ export const IconContainer = styled.div`
 
 
 export const Title = styled.p`
-  ${defaultBodyMdSemibold};
+  ${defaultBodyMdSemibold}
+
   color: ${(props: { titleColor: string }) =>
     props.titleColor || theme.colors.neutral[800]};
 `;
 
 export const ChildrenContainer = styled.p`
-  ${defaultBodySmRegular};
-  color: ${theme.colors.neutral[700]};
+  ${defaultBodySmRegular}
+  
+  color: ${({theme}) => theme.colors.neutral[700]};
 `;

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { theme } from "@ribon.io/shared/styles";
 import { defaultBodySmSemibold } from "styles/typography/default";
 import { stylizedDisplayXs } from "styles/typography/stylized";
 

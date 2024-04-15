@@ -1,4 +1,4 @@
-import { theme } from "@ribon.io/shared/styles";
+import { theme as themeShared } from "@ribon.io/shared/styles";
 import styled from "styled-components";
 import {
   defaultBodyMdSemibold,
@@ -7,13 +7,13 @@ import {
 
 export const InnerCardContainer = styled.div`
   width: 100%;
-  padding: ${({theme}) => theme.spacing(16)};
+  padding: ${({ theme }) => theme.spacing(16)};
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 
-  @media (min-width: ${theme.breakpoints.pad}) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     padding: 0;
   }
 `;
@@ -21,7 +21,7 @@ export const InnerCardContainer = styled.div`
 export const SubtitleContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap: ${({theme}) => theme.spacing(16)};
+  gap: ${({ theme }) => theme.spacing(16)};
   align-items: "flex-start";
   justify-content: "flex-start";
 `;
@@ -34,19 +34,18 @@ export const IconContainer = styled.div`
   align-items: center;
   justify-content: center;
   background-color: ${(props: { iconBackgroundColor: string }) =>
-    props.iconBackgroundColor || theme.colors.neutral[100]};
+    props.iconBackgroundColor || themeShared.colors.neutral[100]};
 `;
-
 
 export const Title = styled.p`
   ${defaultBodyMdSemibold}
 
   color: ${(props: { titleColor: string }) =>
-    props.titleColor || theme.colors.neutral[800]};
+    props.titleColor || themeShared.colors.neutral[800]};
 `;
 
 export const ChildrenContainer = styled.p`
   ${defaultBodySmRegular}
-  
-  color: ${({theme}) => theme.colors.neutral[700]};
+
+  color: ${({ theme }) => theme.colors.neutral[700]};
 `;

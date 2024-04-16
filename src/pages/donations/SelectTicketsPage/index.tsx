@@ -38,6 +38,8 @@ export default function SelectTicketsPage() {
     nonProfit?.impactByTicket || undefined,
   );
 
+  const [step, setStep] = useState<number | undefined>(undefined);
+
   const onDonationSuccess = () => {
     setDonationSucceeded(true);
     logEvent("ticketDonated_end", {
@@ -104,6 +106,16 @@ export default function SelectTicketsPage() {
     );
   }, [nonProfit, ticketsQuantity]);
 
+  useEffect(() => {
+    const impacts = nonProfit?.nonProfitImpacts || [];
+    const nonProfitsImpactsLength = impacts.length;
+    const lastImpact = impacts[nonProfitsImpactsLength - 1];
+    if (lastImpact?.minimumNumberOfTickets) {
+      setStep(lastImpact.minimumNumberOfTickets);
+      setTicketsQuantity(lastImpact.minimumNumberOfTickets);
+    }
+  }, [nonProfit]);
+
   return donationInProgress ? (
     <DonatingSection nonProfit={nonProfit} onAnimationEnd={onAnimationEnd} />
   ) : (
@@ -117,10 +129,13 @@ export default function SelectTicketsPage() {
           {formattedImpactText(nonProfit, currentImpact, false, true)}
         </S.Subtitle>
         <TicketIconText quantity={ticketsQuantity} buttonDisabled />
-        <SliderButton
-          rangeSize={ticketsCounter}
-          setValue={setTicketsQuantity}
-        />
+        {step && (
+          <SliderButton
+            rangeSize={ticketsCounter}
+            setValue={setTicketsQuantity}
+            step={step}
+          />
+        )}
         <S.Button
           text={t("button")}
           textColor={theme.colors.neutral10}

@@ -143,7 +143,8 @@
       "integrationTitlePlural": "{{integrationName}} te deu tickets!",
       "subtitle": "Use o seu ticket para fazer o bem!",
       "downloadAppButton": "Coletar ticket no app",
-      "stayInBrowserButton": "Ficar no navegador"
+      "stayInBrowserButton": "Ficar no navegador",
+      "nextButton": "Próximo"
     },
     "receiveTicketPage": {
       "textOrigin": "Comunidade",

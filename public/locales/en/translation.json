@@ -142,8 +142,9 @@
       "integrationTitle": "{{integrationName}} gave you 1 ticket!",
       "integrationTitlePlural": "{{integrationName}} gave you tickets!",
       "subtitle": "Use your ticket to do good!",
-      "downloadAppButton": "Collect ticket on app",
-      "stayInBrowserButton": "Stay in the browser"
+      "downloadAppButton": "Get ticket on app",
+      "stayInBrowserButton": "Stay in browser",
+      "nextButton": "Next"
     },
     "receiveTicketPage": {
       "textOrigin": "Community",

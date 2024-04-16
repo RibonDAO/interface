@@ -6,6 +6,8 @@ import {
 } from "styles/typography/default";
 import { stylizedDisplayXs } from "styles/typography/stylized";
 import Dropdown from "components/atomics/Dropdown";
+import InputText from "components/atomics/inputs/InputText";
+import ButtonComponent from "components/atomics/buttons/Button";
 
 export const Container = styled.div`
   display: flex;
@@ -26,6 +28,20 @@ export const ValueText = styled.p`
   margin-right: ${({ theme }) => theme.spacing(8)};
   color: ${({ theme }) => theme.colors.brand.tertiary[200]};
 `;
+
+export const ValueInputContainer = styled.div`
+  margin-right: ${({ theme }) => theme.spacing(8)};
+
+  input {
+    height: 40px;
+    margin-bottom: ${({ theme }) => theme.spacing(0)};
+    border: 1px solid ${({ theme }) => theme.colors.brand.secondary[700]};
+    border-radius: 4px;
+    color: ${({ theme }) => theme.colors.brand.secondary[700]};
+  }
+`;
+
+export const ValueInput = styled(InputText)``;
 
 export const CauseText = styled.p`
   ${defaultBodyXsRegular}
@@ -94,4 +110,29 @@ export const ImpactDescription = styled.p`
   ${defaultBodyXsRegular}
 
   color: ${({ theme }) => theme.colors.neutral[500]};
+`;
+
+export const UserBalanceText = styled.p`
+  ${defaultBodySmSemibold}
+
+  margin-bottom: ${({ theme }) => theme.spacing(4)};
+  text-align: center;
+  color: ${({ theme }) => theme.colors.neutral[500]};
+`;
+
+export const UserBalanceTextHighlight = styled.span`
+  ${defaultBodySmSemibold}
+
+  color: ${({ theme }) => theme.colors.brand.secondary[400]};
+`;
+
+export const DonateButton = styled(ButtonComponent)`
+  border-color: ${({ theme }) => theme.colors.brand.tertiary[200]};
+  font-weight: 600;
+  background-color: ${({ theme }) => theme.colors.brand.tertiary[200]};
+  color: ${({ theme }) => theme.colors.brand.secondary[700]};
+`;
+
+export const Slider = styled.div`
+  margin-bottom: ${({ theme }) => theme.spacing(40)};
 `;

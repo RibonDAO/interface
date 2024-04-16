@@ -8,10 +8,11 @@ import * as S from "./styles";
 export type Props = {
   rangeSize: number;
   setValue: (value: number) => void;
+  step: number;
 };
 
-function SliderButton({ rangeSize, setValue }: Props): JSX.Element {
-  const [sliderValue, setSliderValue] = useState<number>(1);
+function SliderButton({ rangeSize, setValue, step }: Props): JSX.Element {
+  const [sliderValue, setSliderValue] = useState<number>(step);
 
   const handleSliderChange = (value: number | number[]) => {
     const newValue = Array.isArray(value) ? value[0] : value;
@@ -26,8 +27,8 @@ function SliderButton({ rangeSize, setValue }: Props): JSX.Element {
     setValue(newValue);
   };
 
-  const minusDisabled = sliderValue <= 1;
-  const plusDisabled = sliderValue >= rangeSize;
+  const minusDisabled = sliderValue <= step;
+  const plusDisabled = sliderValue + step > rangeSize;
 
   const minusBorderColor = minusDisabled
     ? theme.colors.neutral[400]
@@ -53,7 +54,7 @@ function SliderButton({ rangeSize, setValue }: Props): JSX.Element {
   return (
     <S.Container>
       <S.Button
-        onClick={() => handleButtonClick(-1)}
+        onClick={() => handleButtonClick(-step)}
         disabled={minusDisabled}
         style={{ borderColor: minusBorderColor }}
         data-testid="removeButton"
@@ -70,9 +71,9 @@ function SliderButton({ rangeSize, setValue }: Props): JSX.Element {
       </S.Button>
       <S.SliderContainer>
         <Slider
-          min={rangeSize === 1 ? 0 : 1}
-          max={rangeSize}
-          step={1}
+          min={rangeSize < 2 * step ? 0 : step}
+          max={rangeSize < 2 * step ? step : rangeSize}
+          step={step}
           styles={customStyles}
           value={sliderValue}
           onChange={handleSliderChange}
@@ -81,7 +82,7 @@ function SliderButton({ rangeSize, setValue }: Props): JSX.Element {
       </S.SliderContainer>
       <S.Button
         data-testid="addButton"
-        onClick={() => handleButtonClick(1)}
+        onClick={() => handleButtonClick(step)}
         disabled={plusDisabled}
         style={{ borderColor: plusBorderColor }}
       >

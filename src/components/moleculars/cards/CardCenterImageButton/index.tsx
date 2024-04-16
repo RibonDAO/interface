@@ -21,13 +21,17 @@ export type Props = {
   softDisabled?: boolean;
   disabled?: boolean;
   infoTextTop?: string;
-  infoTextBottom?: string;
   fullWidth?: boolean;
   infoText?: string;
   secondButtonProps?: {
     text: string;
     onClick: () => void;
     visible: boolean;
+  };
+  iconSubtitle?: {
+    icon: string;
+    boldText: string;
+    text: string;
   };
   isLocked?: boolean;
 };
@@ -40,10 +44,10 @@ function CardCenterImageButton({
   disabled,
   softDisabled,
   infoTextTop,
-  infoTextBottom,
   fullWidth = false,
   infoText,
   secondButtonProps,
+  iconSubtitle,
   isLocked = false,
 }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
@@ -125,7 +129,15 @@ function CardCenterImageButton({
               <S.Icon src={securityIcon} />
             </S.InfoIcon>
           )}
-          {infoTextBottom && <S.Info>{infoTextBottom}</S.Info>}
+          {iconSubtitle && (
+            <S.IconSubtitleContainer>
+              <S.SubtitleIcon src={iconSubtitle.icon} />
+              <S.IconSubtitleText>
+                <S.BoldText>{iconSubtitle.boldText}</S.BoldText>
+                {iconSubtitle.text}
+              </S.IconSubtitleText>
+            </S.IconSubtitleContainer>
+          )}
         </S.InfoContainer>
         <S.ButtonContainer>
           <Button

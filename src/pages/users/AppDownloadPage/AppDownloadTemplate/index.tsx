@@ -12,6 +12,7 @@ import { useCountdown } from "hooks/useCountdown";
 import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
 import { QRCodeSVG } from "qrcode.react";
 import Icon from "components/atomics/Icon";
+import { useLanguage } from "hooks/useLanguage";
 import theme from "styles/theme";
 import { ButtonProps } from "components/atomics/buttons/Button";
 import { logEvent } from "lib/events";
@@ -71,22 +72,38 @@ function AppDownloadTemplate({
   };
 
   const { isMobile } = useBreakpoint();
+  const { currentLang } = useLanguage();
+
+  const utmParamsFor = (campaign: string) => ({
+    utmSource: currentLang === "pt-BR" ? "ribonweb_pt" : "ribonweb_en",
+    utmMedium: "download_cta_screen",
+    utmCampaign: campaign,
+  });
 
   function handleMobileLink() {
-    logEvent("mobileDownloadBtn_click");
-    logEvent("downloadCTA_click", { from: "downloadPageBtn" });
+    logEvent("mobileDownloadBtn_click", { ...utmParamsFor("mobile") });
+    logEvent("downloadCTA_click", {
+      from: "downloadPageBtn",
+      ...utmParamsFor("mobile"),
+    });
     window.open(`${APP_LINK}?integration_id=${integrationId}`);
   }
 
   function handleIosLink() {
-    logEvent("appStoreBtn_click");
-    logEvent("downloadCTA_click", { from: "appStoreBtn" });
+    logEvent("appStoreBtn_click", { ...utmParamsFor("desktop_ios") });
+    logEvent("downloadCTA_click", {
+      from: "appStoreBtn",
+      ...utmParamsFor("desktop_ios"),
+    });
     window.open(IOS_APP_LINK);
   }
 
   function handleAndroidLink() {
-    logEvent("gPlayBtn_click");
-    logEvent("downloadCTA_click", { from: "gPlayBtn" });
+    logEvent("gPlayBtn_click", { ...utmParamsFor("desktop_android") });
+    logEvent("downloadCTA_click", {
+      from: "gPlayBtn",
+      ...utmParamsFor("desktop_android"),
+    });
     window.open(ANDROID_APP_LINK);
   }
 

@@ -4,6 +4,7 @@ import { isFirstAccess } from "lib/onboardingFirstAccess";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useLanguage } from "hooks/useLanguage";
 import useBreakpoint from "hooks/useBreakpoint";
+import { getMobileOS } from "lib/getMobileOS";
 import * as S from "./styles";
 
 export type Props = {
@@ -31,7 +32,7 @@ function BottomBanner({
     path: window.location.pathname,
     utmSource: currentLang === "pt-BR" ? "ribonweb_pt" : "ribonweb_en",
     utmMedium: "floating_btn",
-    utmCampaign: isMobile ? "mobile" : "desktop",
+    utmCampaign: isMobile ? "mobile" : `desktop_${getMobileOS()}`,
   };
 
   useEffect(() => {

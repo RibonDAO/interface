@@ -5,6 +5,7 @@ import useNavigation from "hooks/useNavigation";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useLanguage } from "hooks/useLanguage";
+import { getMobileOS } from "lib/getMobileOS";
 import { useIntegration } from "@ribon.io/shared/hooks";
 import { useEffect } from "react";
 import { APP_LINK, RIBON_COMPANY_ID } from "utils/constants";
@@ -71,7 +72,7 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
       from: "firstScreen",
       utmSource: currentLang === "pt-BR" ? "ribonweb_pt" : "ribonweb_en",
       utmMedium: "first_screen",
-      utmCampaign: isMobile ? "mobile" : "desktop",
+      utmCampaign: isMobile ? "mobile" : `desktop_${getMobileOS()}`,
     });
 
     if (isMobile) {

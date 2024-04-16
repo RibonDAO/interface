@@ -4,6 +4,7 @@ import { logEvent } from "lib/events";
 import { useTasksContext } from "contexts/tasksContext";
 import useContributionActivity from "hooks/useContributionActivity";
 import { useLanguage } from "hooks/useLanguage";
+import { getMobileOS } from "lib/getMobileOS";
 import useBreakpoint from "hooks/useBreakpoint";
 import CausesIconOn from "./assets/causesIconOn.svg";
 import CausesIconOff from "./assets/causesIconOff.svg";
@@ -94,7 +95,7 @@ function Navigation(): JSX.Element {
       params: {
         utmSource: currentLang === "pt-BR" ? "ribonweb_pt" : "ribonweb_en",
         utmMedium: "feature_toggle",
-        utmCampaign: isMobile ? "mobile" : "desktop",
+        utmCampaign: isMobile ? "mobile" : `desktop_${getMobileOS()}`,
       },
     },
   ];

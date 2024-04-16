@@ -4,6 +4,7 @@ import RightImage from "assets/images/top-right-shape.svg";
 import useNavigation from "hooks/useNavigation";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useIntegrationId } from "hooks/useIntegrationId";
+import { useLanguage } from "hooks/useLanguage";
 import { useIntegration } from "@ribon.io/shared/hooks";
 import { useEffect } from "react";
 import { APP_LINK, RIBON_COMPANY_ID } from "utils/constants";
@@ -30,6 +31,7 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
   const { integration } = useIntegration(integrationId);
   const { ticketsCounter } = useTicketsContext();
   const { isMobile } = useBreakpoint();
+  const { currentLang } = useLanguage();
 
   const handleClick = () => {
     logEvent("P10_getTicketBtn_click");
@@ -65,7 +67,12 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
   };
 
   const handleDownload = () => {
-    logEvent("downloadCTA_click", { from: "firstScreen" });
+    logEvent("downloadCTA_click", {
+      from: "firstScreen",
+      utmSource: currentLang === "pt-BR" ? "ribonweb_pt" : "ribonweb_en",
+      utmMedium: "first_screen",
+      utmCampaign: isMobile ? "mobile" : "desktop",
+    });
 
     if (isMobile) {
       window.open(`${APP_LINK}?integration_id=${integrationId}`);

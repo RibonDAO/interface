@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import ImpressionCard from "types/entities/ImpressionCard";
 import { theme } from "@ribon.io/shared/styles";
 import { useImpactConversion } from "hooks/useImpactConversion";
+import useBreakpoint from "hooks/useBreakpoint";
+import { useLanguage } from "hooks/useLanguage";
 import * as S from "./styles";
 
 export type Props = {
@@ -26,6 +28,8 @@ function CardCampaign({
   });
 
   const { nonProfit } = useImpactConversion();
+  const { currentLang } = useLanguage();
+  const { isMobile } = useBreakpoint();
 
   useEffect(() => {
     logEvent(
@@ -53,10 +57,17 @@ function CardCampaign({
   const handleClickedDonationButton = () => {
     if (!cardData) return;
 
+    const utmParams = {
+      utmSource: currentLang === "pt-BR" ? "ribonweb_pt" : "ribonweb_en",
+      utmMedium: "banner_home",
+      utmCampaign: isMobile ? "mobile" : "desktop",
+    };
+
     logEvent(flow === "nonProfit" ? "giveNgoBtn_start" : "giveCauseBtn_start", {
       from,
       value,
       platform: "web",
+      ...utmParams,
     });
 
     const url = parsedCtaUrl(cardData.ctaUrl);

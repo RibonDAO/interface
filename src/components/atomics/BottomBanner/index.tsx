@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { logEvent } from "lib/events";
 import { isFirstAccess } from "lib/onboardingFirstAccess";
 import { useCurrentUser } from "contexts/currentUserContext";
+import { useLanguage } from "hooks/useLanguage";
+import useBreakpoint from "hooks/useBreakpoint";
 import * as S from "./styles";
 
 export type Props = {
@@ -21,7 +23,16 @@ function BottomBanner({
 }: Props): JSX.Element {
   const { signedIn } = useCurrentUser();
 
-  const parsedEventParams = { ...eventParams, path: window.location.pathname };
+  const { currentLang } = useLanguage();
+  const { isMobile } = useBreakpoint();
+
+  const parsedEventParams = {
+    ...eventParams,
+    path: window.location.pathname,
+    utmSource: currentLang === "pt-BR" ? "ribonweb_pt" : "ribonweb_en",
+    utmMedium: "floating_btn",
+    utmCampaign: isMobile ? "mobile" : "desktop",
+  };
 
   useEffect(() => {
     if (eventName && eventParams)

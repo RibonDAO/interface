@@ -4,6 +4,7 @@ import {
   defaultBodyMdSemibold,
   defaultBodySmRegular,
 } from "styles/typography/default";
+import Card from "../Card";
 
 export const InnerCardContainer = styled.div`
   width: 100%;
@@ -18,6 +19,12 @@ export const InnerCardContainer = styled.div`
   }
 `;
 
+export const CardComponent = styled(Card)`
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    padding: ${({ theme }) => theme.spacing(16)};
+  }
+`;
+
 export const SubtitleContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -27,14 +34,22 @@ export const SubtitleContainer = styled.div`
 `;
 
 export const IconContainer = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: ${(props: { iconBackgroundColor: string }) =>
     props.iconBackgroundColor || themeShared.colors.neutral[100]};
+  flex-shrink: 0;
+`;
+
+export const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: ${({ theme }) => theme.spacing(4)};
 `;
 
 export const Title = styled.p`

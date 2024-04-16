@@ -11,12 +11,14 @@ function Card({
   border,
   backgroundColor,
   borderRadius,
+  ...props
 }: Props): JSX.Element {
   return (
     <S.Container
       backgroundColor={backgroundColor}
       border={border}
       borderRadius={borderRadius}
+      {...props}
     >
       {children}
     </S.Container>

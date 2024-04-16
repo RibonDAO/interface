@@ -1,6 +1,5 @@
 import { theme } from "@ribon.io/shared/styles";
 import Icon, { IconProps } from "../../../atomics/Icon";
-import Card from "../Card";
 import * as S from "./styles";
 
 export type Props = {
@@ -23,19 +22,23 @@ function CardInfo({
   iconBackgroundColor = brand.primary[25],
 }: Props): JSX.Element {
   return (
-    <Card border={false} backgroundColor={backgroundColor} borderRadius={16}>
+    <S.CardComponent
+      border={false}
+      backgroundColor={backgroundColor}
+      borderRadius={16}
+    >
       <S.InnerCardContainer>
         <S.SubtitleContainer>
           <S.IconContainer iconBackgroundColor={iconBackgroundColor}>
             <Icon {...icon} />
           </S.IconContainer>
-          <div style={{ flexShrink: 1, gap: 4 }}>
+          <S.TextContainer>
             <S.Title titleColor={titleColor}>{title}</S.Title>
             <S.ChildrenContainer>{children}</S.ChildrenContainer>
-          </div>
+          </S.TextContainer>
         </S.SubtitleContainer>
       </S.InnerCardContainer>
-    </Card>
+    </S.CardComponent>
   );
 }
 

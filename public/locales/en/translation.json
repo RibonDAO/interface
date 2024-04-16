@@ -599,6 +599,16 @@
       "title": "Here at Ribon, everything revolves around doing good!",
       "subtitle": "Donation tickets give you that power, and you've just received your first one!",
       "button": "Next"
+    },
+    "thirdPage": {
+      "title": "Before donating your ticket, here's a quick summary...",
+      "cardTitle1": "What are tickets?",
+      "cardDescription1": "Real money, but it's exclusively valid for donations to social projects within Ribon.",
+      "cardTitle2": "Who pays the tickets?",
+      "cardDescription2": "Companies, big donors, and members of the Ribon community fund the tickets with one goal in mind: to change lives for the better through the collective power of donation.",
+      "cardTitle3": "How to earn more tickets?",
+      "cardDescription3": "You earn and accumulate tickets by accessing the app daily.",
+      "button": "Start"
     }
   },
   "contexts": {
@@ -883,17 +893,6 @@
           "accessUserSupport": "Access user support"
         }
       }
-    }
-  },
-  "onboarding": {
-    "thirdSection": {
-      "title": "Before donating your ticket, here's a quick summary...",
-      "cardTitle1": "What are tickets?",
-      "cardDescription1": "Real money, but it's exclusively valid for donations to social projects within Ribon.",
-      "cardTitle2": "Who pays the tickets?",
-      "cardDescription2": "Companies, big donors, and members of the Ribon community fund the tickets with one goal in mind: to change lives for the better through the collective power of donation.",
-      "cardTitle3": "How to earn more tickets?",
-      "cardDescription3": "You earn and accumulate tickets by accessing the app daily."
     }
   }
 }

@@ -408,7 +408,10 @@
         "livesAmount": "{{value}} people",
         "impactDescription": "with {{value}}",
         "altImpactDescription": "and help with {{value}}",
-        "ticketsAmount": "{{value}} tickets"
+        "ticketsAmount": "{{value}} tickets",
+        "connectWalletButtonText": "Connect wallet",
+        "userBalanceText": "Your balance: ",
+        "donateButtonText": "Donate {{value}}"
       },
       "tooltipImpact": "How we calculate the impact?",
       "tooltipImpactText": "The calculations are based on the minimum value needed for the project achieve good results. Ribon’s causes are part of the social moviment “Effective Altruism”, which aim to generate big impact at low cost.",

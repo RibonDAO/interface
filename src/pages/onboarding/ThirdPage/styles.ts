@@ -34,8 +34,8 @@ export const Title = styled.p`
   ${stylizedDisplayXs}
 
   margin-right: ${({ theme }) => theme.spacing(16)};
-  margin-left: ${({ theme }) => theme.spacing(16)};
   margin-bottom: ${({ theme }) => theme.spacing(24)};
+  margin-left: ${({ theme }) => theme.spacing(16)};
   text-align: center;
   color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;

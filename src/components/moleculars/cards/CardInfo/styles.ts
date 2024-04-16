@@ -38,18 +38,18 @@ export const IconContainer = styled.div`
   height: 36px;
   border-radius: 50%;
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   background-color: ${(props: { iconBackgroundColor: string }) =>
     props.iconBackgroundColor || themeShared.colors.neutral[100]};
-  flex-shrink: 0;
 `;
 
 export const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: ${({ theme }) => theme.spacing(4)};
+  justify-content: center;
 `;
 
 export const Title = styled.p`

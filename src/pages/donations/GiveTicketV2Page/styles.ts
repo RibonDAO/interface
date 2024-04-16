@@ -130,4 +130,10 @@ export const FilledButton = styled.button`
   border-radius: 4px;
   background-color: ${({ theme }) => theme.colors.brand.primary[600]};
   color: ${({ theme }) => theme.colors.neutral10};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    max-width: 328px;
+    height: 100%;
+    justify-content: space-between;
+  }
 `;

@@ -3,6 +3,9 @@ import { useLocation } from "react-router-dom";
 import { logEvent } from "lib/events";
 import { useTasksContext } from "contexts/tasksContext";
 import useContributionActivity from "hooks/useContributionActivity";
+import { useLanguage } from "hooks/useLanguage";
+import { getMobileOS } from "lib/getMobileOS";
+import useBreakpoint from "hooks/useBreakpoint";
 import CausesIconOn from "./assets/causesIconOn.svg";
 import CausesIconOff from "./assets/causesIconOff.svg";
 import ForYouIconOn from "./assets/forYouIconOn.svg";
@@ -43,6 +46,8 @@ function Navigation(): JSX.Element {
   const { search } = location;
   const { hasCompletedATask } = useTasksContext();
   const { newContributionActivity } = useContributionActivity();
+  const { currentLang } = useLanguage();
+  const { isMobile } = useBreakpoint();
 
   function isInPath(route: any): boolean {
     const { menuOptions, path } = route;
@@ -87,6 +92,11 @@ function Navigation(): JSX.Element {
       title: t("aboutPageTitle"),
       event: "benefitsNavBtn_click",
       showNewLabel: true,
+      params: {
+        utmSource: currentLang === "pt-BR" ? "ribonweb_pt" : "ribonweb_en",
+        utmMedium: "feature_toggle",
+        utmCampaign: isMobile ? "mobile" : `desktop_${getMobileOS()}`,
+      },
     },
   ];
 

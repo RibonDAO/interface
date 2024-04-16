@@ -361,6 +361,13 @@
       "buttonText": "Doar {{value}} tickets"
     }
   },
+  "onboarding": {
+    "secondPage": {
+      "title": "Aqui na Ribon tudo gira em torno de fazer o bem!",
+      "subtitle": "Os tickets de doação te dão esse poder, e você acaba de receber seu primeiro!",
+      "button": "Próximo"
+    }
+  },
   "promoters": {
     "treasurePage": {
       "title": "Tesouro de doação",

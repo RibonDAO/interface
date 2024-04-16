@@ -57,6 +57,7 @@ import SelectTicketsPage from "pages/donations/SelectTicketsPage";
 import ValidateAccountPage from "pages/auth/ValidateAccountPage";
 import SubscriptionsPage from "pages/promoters/SubscriptionsPage";
 import GiveTicketV2Page from "pages/donations/GiveTicketV2Page";
+import SecondPage from "pages/onboarding/SecondPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -481,6 +482,12 @@ function RoutesComponent(): JSX.Element {
       <Route path="/custom-link-created" exact>
         <Suspense fallback={<div />}>
           <CustomLinkCreatedPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/onboarding/second-page" exact>
+        <Suspense fallback={<div />}>
+          <SecondPage />
         </Suspense>
       </Route>
     </Switch>

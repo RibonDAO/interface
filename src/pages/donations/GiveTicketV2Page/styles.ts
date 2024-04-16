@@ -51,11 +51,11 @@ export const MainContainer = styled.div`
 
 export const ContentContainer = styled.div`
   width: 100%;
+  max-width: 360px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 360px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
     height: 100%;
@@ -84,9 +84,10 @@ export const Logo = styled.img`
 
 export const ImageContainerText = styled.p`
   ${defaultHeadingSm}
-  align-content: center;
+
   max-height: 24px;
   padding: ${({ theme }) => theme.spacing(0, 16)};
+  align-content: center;
   color: ${({ theme }) => theme.colors.brand.primary[200]};
 `;
 
@@ -112,19 +113,21 @@ export const Title = styled.p`
 
 export const Description = styled.p`
   ${defaultBodyMdRegular}
+
   color: ${({ theme }) => theme.colors.neutral[600]};
 `;
 
 export const ButtonContainer = styled.div`
   width: 100%;
+  margin-top: ${({ theme }) => theme.spacing(24)};
   display: flex;
   flex-direction: column;
-  margin-top: ${({ theme }) => theme.spacing(24)};
   gap: ${({ theme }) => theme.spacing(8)};
 `;
 
 export const FilledButton = styled.button`
   ${defaultBodyMdSemibold}
+  
   padding: ${({ theme }) => theme.spacing(12, 16)};
   border: 1px solid ${({ theme }) => theme.colors.brand.primary[600]};
   border-radius: 4px;

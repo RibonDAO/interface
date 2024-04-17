@@ -20,6 +20,8 @@ export const InnerCardContainer = styled.div`
 `;
 
 export const CardComponent = styled(Card)`
+  margin-bottom: ${({ theme }) => theme.spacing(16)};
+  
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     padding: ${({ theme }) => theme.spacing(16)};
   }

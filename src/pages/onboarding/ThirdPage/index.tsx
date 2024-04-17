@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { logEvent } from "lib/events";
 import { theme } from "@ribon.io/shared/styles";
 import ArrowLeft from "assets/icons/arrow-left-green.svg";
+import LeftImage from "assets/images/bottom-left-shape.svg";
+import RightImage from "assets/images/top-right-sun-shape.svg";
 import CardInfo from "components/moleculars/cards/CardInfo";
 import useNavigation from "hooks/useNavigation";
 import * as S from "./styles";
@@ -23,9 +25,11 @@ function ThirdPage(): JSX.Element {
 
   return (
     <S.Container>
-      <S.BackArrowButton src={ArrowLeft} onClick={() => navigateBack()} />
-
+      <S.LeftImage src={LeftImage} />
+      <S.RightImage src={RightImage} />
       <S.ContentContainer>
+        <S.BackArrowButton src={ArrowLeft} onClick={() => navigateBack()} />
+
         <S.Title>{t("title")}</S.Title>
         <CardInfo
           icon={{

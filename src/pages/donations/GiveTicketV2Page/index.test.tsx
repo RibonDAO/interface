@@ -59,9 +59,9 @@ describe("GiveTicketV2Page", () => {
       renderComponent(<GiveTicketV2Page />);
     });
 
-    it("should navigates to page second screen onboarding", () => {
+    it("should navigates to page second causes", () => {
       clickOn("Stay in browser");
-      expectPageToNavigateTo("/onboarding/second-page");
+      expectPageToNavigateTo("/causes");
     });
 
     it("should navigates to page app download", () => {

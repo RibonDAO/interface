@@ -27,6 +27,8 @@ function GiveTicketV2Page(): JSX.Element {
   const { integration } = useIntegration(integrationId);
   const { isMobile } = useBreakpoint();
 
+  const isRibonIntegration = integration?.id === parseInt(RIBON_COMPANY_ID, 10);
+
   useEffect(() => {
     logEvent("P35_view", { from: integration?.id });
   }, []);
@@ -49,7 +51,7 @@ function GiveTicketV2Page(): JSX.Element {
 
   const handleStayBrowser = () => {
     logEvent("P35_getTicketBtn_click");
-    navigateTo("/onboarding/second-page");
+    navigateTo("/causes");
   };
 
   const title = () => {
@@ -58,9 +60,6 @@ function GiveTicketV2Page(): JSX.Element {
     const integrationName = integration.name;
 
     if (externalId) return t("integrationTitlePlural", { integrationName });
-
-    const isRibonIntegration =
-      integration.id === parseInt(RIBON_COMPANY_ID, 10);
 
     if (isRibonIntegration) return t("title");
 
@@ -76,7 +75,7 @@ function GiveTicketV2Page(): JSX.Element {
           <S.Header>
             <S.LogosWrapper>
               <S.Logo src={RibonLogo} alt="ribon-logo" />
-              {integration && (
+              {integration && !isRibonIntegration && (
                 <>
                   <S.ImageContainerText>+</S.ImageContainerText>
                   <S.Logo src={integration.logo} alt="integration-logo" />

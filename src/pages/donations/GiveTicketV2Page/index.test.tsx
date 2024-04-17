@@ -68,7 +68,7 @@ describe("GiveTicketV2Page", () => {
       clickOn("Get ticket on app");
       expectPageToNavigateTo("/app-download", {
         state: {
-          cameFrom: "intro",
+          cameFrom: "tickets-v2",
         },
       });
     });

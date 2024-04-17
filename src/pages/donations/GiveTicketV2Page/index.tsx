@@ -44,7 +44,7 @@ function GiveTicketV2Page(): JSX.Element {
     navigateTo({
       pathname: "/app-download",
       state: {
-        cameFrom: "intro",
+        cameFrom: "tickets-v2",
       },
     });
   };

@@ -60,8 +60,17 @@ describe("GiveTicketV2Page", () => {
     });
 
     it("should navigates to page second screen onboarding", () => {
-      clickOn("Next");
+      clickOn("Stay in browser");
       expectPageToNavigateTo("/onboarding/second-page");
+    });
+
+    it("should navigates to page app download", () => {
+      clickOn("Get ticket on app");
+      expectPageToNavigateTo("/app-download", {
+        state: {
+          cameFrom: "intro",
+        },
+      });
     });
   });
 });

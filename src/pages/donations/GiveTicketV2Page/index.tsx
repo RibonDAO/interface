@@ -91,25 +91,17 @@ function GiveTicketV2Page(): JSX.Element {
           </S.Header>
 
           <S.ButtonContainer>
-            {isMobile ? (
-              <>
-                <S.FilledButton onClick={handleDownload}>
-                  {t("downloadAppButton")}
-                </S.FilledButton>
-                <Button
-                  text={t("stayInBrowserButton")}
-                  textColor={theme.colors.brand.primary[600]}
-                  backgroundColor="transparent"
-                  borderColor={theme.colors.brand.primary[600]}
-                  borderRadius="4px"
-                  onClick={handleStayBrowser}
-                />
-              </>
-            ) : (
-              <S.FilledButton onClick={handleStayBrowser}>
-                {t("nextButton")}
-              </S.FilledButton>
-            )}
+            <S.FilledButton onClick={handleDownload}>
+              {t("downloadAppButton")}
+            </S.FilledButton>
+            <Button
+              text={t("stayInBrowserButton")}
+              textColor={theme.colors.brand.primary[600]}
+              backgroundColor="transparent"
+              borderColor={theme.colors.brand.primary[600]}
+              borderRadius="4px"
+              onClick={handleStayBrowser}
+            />
           </S.ButtonContainer>
         </S.ContentContainer>
       </S.MainContainer>

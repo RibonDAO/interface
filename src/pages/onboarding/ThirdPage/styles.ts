@@ -1,17 +1,46 @@
 import styled from "styled-components";
-import { defaultBodySmSemibold } from "styles/typography/default";
 import { stylizedDisplayXs } from "styles/typography/stylized";
-import Button from "components/atomics/buttons/Button";
 
 export const Container = styled.div`
   width: 100%;
   height: 100vh;
-  padding: ${({ theme }) => theme.spacing(48, 16, 0)};
   position: relative;
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(16)};
   align-items: center;
+`;
+
+export const LeftBackgroundImage = styled.img`
+  display: none;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+  }
+`;
+
+export const RightBackgroundImage = styled.img`
+  display: none;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+  }
+`;
+
+export const ContentContainer = styled.div`
+  width: 100%;
+  padding: ${({ theme }) => theme.spacing(16)};
+  z-index: ${({ theme }) => theme.zindex.above};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    width: 328px;
+  }
 `;
 
 export const BackArrowButton = styled.img`
@@ -20,14 +49,6 @@ export const BackArrowButton = styled.img`
   margin-bottom: ${({ theme }) => theme.spacing(8)};
   align-self: flex-start;
   cursor: pointer;
-`;
-
-export const ContentContainer = styled.div`
-  width: 100%;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    width: 328px;
-  }
 `;
 
 export const Title = styled.p`
@@ -40,33 +61,14 @@ export const Title = styled.p`
   color: ${({ theme }) => theme.colors.brand.primary[800]};
 `;
 
-export const Description = styled.p`
-  ${defaultBodySmSemibold}
+export const ButtonContainer = styled.div`
+  width: 100%;
+  margin-top: ${({ theme }) => theme.spacing(24)};
 
-  color: ${({ theme }) => theme.colors.neutral10};
-`;
-
-export const ButtonComponent = styled(Button)`
-  margin-top: ${({ theme }) => theme.spacing(32)};
-`;
-
-export const LeftImage = styled.img`
-  display: none;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
+    padding: ${({ theme }) => theme.spacing(24, 16, 16)};
     position: absolute;
     bottom: 0;
     left: 0;
-    display: block;
-  }
-`;
-export const RightImage = styled.img`
-  display: none;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: block;
   }
 `;

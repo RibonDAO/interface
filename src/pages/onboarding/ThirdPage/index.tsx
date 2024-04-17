@@ -7,6 +7,7 @@ import LeftImage from "assets/images/bottom-left-shape.svg";
 import RightImage from "assets/images/top-right-sun-shape.svg";
 import CardInfo from "components/moleculars/cards/CardInfo";
 import useNavigation from "hooks/useNavigation";
+import Button from "components/atomics/buttons/Button";
 import * as S from "./styles";
 
 function ThirdPage(): JSX.Element {
@@ -25,8 +26,8 @@ function ThirdPage(): JSX.Element {
 
   return (
     <S.Container>
-      <S.LeftImage src={LeftImage} />
-      <S.RightImage src={RightImage} />
+      <S.LeftBackgroundImage src={LeftImage} />
+      <S.RightBackgroundImage src={RightImage} />
       <S.ContentContainer>
         <S.BackArrowButton src={ArrowLeft} onClick={() => navigateBack()} />
 
@@ -76,14 +77,15 @@ function ThirdPage(): JSX.Element {
         >
           {t("cardDescription3")}
         </CardInfo>
-
-        <S.ButtonComponent
-          text={t("button")}
-          backgroundColor={theme.colors.brand.primary[600]}
-          borderColor={theme.colors.brand.primary[600]}
-          borderRadius="4px"
-          onClick={handleClick}
-        />
+        <S.ButtonContainer>
+          <Button
+            text={t("button")}
+            backgroundColor={theme.colors.brand.primary[600]}
+            borderColor={theme.colors.brand.primary[600]}
+            borderRadius="4px"
+            onClick={handleClick}
+          />
+        </S.ButtonContainer>
       </S.ContentContainer>
     </S.Container>
   );

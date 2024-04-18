@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "hooks/useLanguage";
+import { logEvent } from "lib/events";
 import HandShake from "./assets/handshake.svg";
 import BrazilianBrands from "./assets/br-brands.svg";
 import * as S from "./styles";
@@ -12,6 +13,7 @@ function CardPartners(): JSX.Element {
   const { currentLang } = useLanguage();
 
   const handleClick = () => {
+    logEvent("partnersPage_click");
     window.open(t("ctaLink"), "_blank");
   };
 

@@ -1,5 +1,6 @@
 import { clickOn, renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
+import { mockLogEventFunction } from "setupTests";
 import CardPartners from ".";
 
 describe("CardLargeImage", () => {
@@ -14,6 +15,8 @@ describe("CardLargeImage", () => {
     renderComponent(<CardPartners />);
 
     clickOn("I want to help ->");
+
+    expect(mockLogEventFunction).toHaveBeenCalledWith("partnersPage_click");
 
     expect(mockWindowOpen).toBeCalledWith(
       "https://projetos.ribon.io/partners",

@@ -3,9 +3,10 @@ import styled, { css } from "styled-components";
 export const Container = styled.div<{
   backgroundColor: string;
   border: boolean;
+  borderRadius?: number;
 }>`
   margin-bottom: ${({ theme }) => theme.spacing(40)};
-  border-radius: 8px;
+  border-radius: ${(props) => props.borderRadius || 8}px;
   background: ${(props) =>
     props.backgroundColor || props.theme.colors.neutral10};
 

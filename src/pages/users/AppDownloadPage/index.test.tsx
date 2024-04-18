@@ -16,7 +16,7 @@ describe("App Download Page", () => {
     expectTextToBeInTheDocument(
       "Grab your reward! Win an extra ticket by downloading our app.",
     );
-    expectTextToBeInTheDocument("Stay in browser");
+    expectTextToBeInTheDocument("Skip");
   });
 
   it("should go back when click in arrow", () => {

@@ -799,6 +799,12 @@
     "description": "Acompanhe o aumento de sua doação na aba de Impacto, em Doações em comunidade.",
     "link": "Acompanhar doação"
   },
+  "cardPartners": {
+    "title": "Parceiros Ribon",
+    "subtitle": "Ganhe tickets extras ao completar ações de nossos parceiros",
+    "ctaText": "Coletar tickets dos parceiros ->",
+    "ctaLink": "https://projetos.ribon.io/parceiros"
+  },
   "contributionSection": {
     "titleCard": "Faça ainda mais",
     "title": "Que incrível! Obrigado por ajudar {{nonProfitName}}",

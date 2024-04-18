@@ -8,11 +8,6 @@ import { screen } from "@testing-library/react";
 import { I18NEXTLNG } from "lib/currentLanguage";
 import IntegrationSupportBanner from ".";
 
-jest.mock("services/support", () => ({
-  __esModule: true,
-  default: jest.fn(),
-}));
-
 describe("IntegrationSupportBanner", () => {
   window.open = jest.fn();
 

@@ -80,16 +80,6 @@
     "storiesPage": {
       "ctaText": "Doar ticket"
     },
-    "postDonationPage": {
-      "title": "Se quiser, você pode fazer mais",
-      "donateAsCommunity": "Doar em comunidade para",
-      "donateDirectly": "Doar diretamente para",
-      "donateLater": "Doar depois",
-      "boostedDonation": "Doação impulsionada",
-      "donate": "Doe {{value}} para",
-      "donateButton": "Doe {{value}}",
-      "donateNow": "Doar agora"
-    },
     "contributionDonePage": {
       "title": "Parabéns!",
       "thanksToYou": "Graças a você...",

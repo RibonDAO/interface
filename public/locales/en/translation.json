@@ -80,16 +80,6 @@
     "storiesPage": {
       "ctaText": "Donate ticket"
     },
-    "postDonationPage": {
-      "title": "If you wish, you can do more",
-      "donateAsCommunity": "Donate as a community to",
-      "donateDirectly": "Donate directly to",
-      "donateLater": "Donate later",
-      "boostedDonation": "Boosted donation",
-      "donate": "Donate {{value}} to",
-      "donateButton": "Donate {{value}}",
-      "donateNow": "Donate now"
-    },
     "contributionDonePage": {
       "title": "Congratulations!",
       "thanksToYou": "Thanks to you...",

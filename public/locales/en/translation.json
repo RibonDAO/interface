@@ -157,7 +157,7 @@
         "impactDescription": "with {{value}}"
       },
       "signInPage": {
-        "title": "you are donating",
+        "title": "You are donating",
         "google": "Continue with Google",
         "apple": "Continue with Apple",
         "email": "Continue with e-mail",
@@ -169,7 +169,9 @@
         "privacyPolicyLink": "https://ribon.io/en/privacy-policy/#privacy",
         "impactOneLife": "Impact 1 person",
         "impactDescription": "with {{value}}",
-        "checkboxText": "I agree to receive emails with information about my donations"
+        "checkboxText": "I agree to receive emails with information about my donations",
+        "signInTitle": "Have an account?",
+        "signInButton": "Sign in to your account"
       },
       "insertEmailAccountPage": {
         "title": "Choose an e-mail to donate",

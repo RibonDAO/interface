@@ -169,7 +169,9 @@
         "privacyPolicyLink": "https://ribon.io/privacy-policy/#pol%C3%ADtica",
         "impactOneLife": "Impacte 1 pessoa",
         "impactDescription": "com {{value}}",
-        "checkboxText": "Aceito receber e-mails com informações sobre minhas doações"
+        "checkboxText": "Aceito receber e-mails com informações sobre minhas doações",
+        "signInTitle": "Já tem uma conta?",
+        "signInButton": "Entrar com a sua conta"
       },
       "insertEmailAccountPage": {
         "title": "Você está doando",

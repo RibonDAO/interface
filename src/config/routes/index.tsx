@@ -478,7 +478,7 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
-      <Route path="/onboarding/second-page" exact>
+      <Route path="/intro/step-2" exact>
         <Suspense fallback={<div />}>
           <SecondPage />
         </Suspense>

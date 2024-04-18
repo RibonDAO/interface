@@ -35,7 +35,7 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
     logEvent("P10_getTicketBtn_click");
 
     if (isOnboarding) {
-      navigateTo("/receive-ticket");
+      navigateTo("/intro/step-2");
     } else {
       navigateTo("/causes");
     }

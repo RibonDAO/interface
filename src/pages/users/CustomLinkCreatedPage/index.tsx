@@ -3,6 +3,7 @@ import LeftImage from "assets/images/bottom-left-shape-red.svg";
 import RightImage from "assets/images/top-right-shape.svg";
 import InputText from "components/atomics/inputs/InputText";
 import Button from "components/atomics/buttons/Button";
+import IntegrationSupportBanner from "components/moleculars/banners/IntegrationSupportBanner";
 import theme from "styles/theme";
 import useNavigation from "hooks/useNavigation";
 import { useLanguage } from "hooks/useLanguage";
@@ -143,6 +144,9 @@ function CustomLinkCreatedPage(): JSX.Element {
             </S.InstructionsList>
           </S.ScrollableContainer>
         </S.InstructionsContainer>
+        <S.HelpContainer>
+          <IntegrationSupportBanner />
+        </S.HelpContainer>
 
         <S.ContentContainer>
           <Button

@@ -265,6 +265,11 @@
       "text": "Questions, ideas, refunds. We’re here!",
       "userSupportLink": "https://api.whatsapp.com/send/?phone=554896605461&text=Hii+Ribon%2C+let’s+talk%3F+&type=phone_number&app_absent=0"
     },
+    "integrationSupportBanner": {
+      "title": "Need help?",
+      "text": "Click here and schedule a meeting with our team",
+      "link": "https://meetings.hubspot.com/julia-ribon/30"
+    },
     "integrationBanner": {
       "title": "Ribon + {{integrationName}}",
       "text": "Here at Ribon you donate tickets gotten from {{integrationName}}"

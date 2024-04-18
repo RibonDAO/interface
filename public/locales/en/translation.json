@@ -668,7 +668,7 @@
       "adminName": "Name",
       "adminLinkedIn": "LinkedIn profile",
       "adminEmail": "Corporate e-mail",
-      "adminPhone": "Phone (WhatsApp)",
+      "adminPhone": "Phone",
       "optIn": "I confirm that I have an employment relationship with this company and that I have it's authorization to create and use the link created.",
       "submit": "Create company's link",
       "loading": "Creating your custom link..."

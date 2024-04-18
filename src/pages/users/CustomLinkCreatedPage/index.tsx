@@ -5,6 +5,7 @@ import InputText from "components/atomics/inputs/InputText";
 import Button from "components/atomics/buttons/Button";
 import theme from "styles/theme";
 import useNavigation from "hooks/useNavigation";
+import { useLanguage } from "hooks/useLanguage";
 import { useTranslation } from "react-i18next";
 import { Integration } from "@ribon.io/shared/types";
 import { logError } from "services/crashReport";
@@ -31,6 +32,7 @@ function CustomLinkCreatedPage(): JSX.Element {
 
   const { getUserIntegration } = useUserIntegration();
   const { isAuthenticated } = useAuthentication();
+  const { currentLang } = useLanguage();
 
   useEffect(() => {
     if (!isAuthenticated()) {
@@ -61,7 +63,14 @@ function CustomLinkCreatedPage(): JSX.Element {
   const finalLink = useCallback(() => {
     if (!integration) return "";
 
-    return `${APP_LINK}?integration_id=${integration.uniqueAddress}`;
+    const params = new URLSearchParams({
+      integration_id: integration.uniqueAddress || "1",
+      utm_source: currentLang === "pt-BR" ? "integration_pt" : "integration_en",
+      utm_medium: integration.name || "Ribon",
+      utm_campaign: "selfservice",
+    });
+
+    return `${APP_LINK}?${params.toString()}`;
   }, [integration]);
 
   const copyTextToClipboard = () => {

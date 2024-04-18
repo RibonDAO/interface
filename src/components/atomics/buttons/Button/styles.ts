@@ -43,7 +43,7 @@ export const Container = styled.button<{
   width: 100%;
   border: 1px solid #000;
   border-color: ${(props) => props.borderColor || props.backgroundColor};
-  border-radius: ${(props) => props.borderRadius || "8px"};
+  border-radius: ${(props) => props.borderRadius || "12px"};
   position: relative;
   display: flex;
   align-items: center;

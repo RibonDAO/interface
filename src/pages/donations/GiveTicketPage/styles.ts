@@ -60,8 +60,8 @@ export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   align-self: center;
+  justify-content: center;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
     height: 100%;

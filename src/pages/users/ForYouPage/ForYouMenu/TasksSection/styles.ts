@@ -30,5 +30,21 @@ export const Countdown = styled.p`
 
 export const TasksContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(32)};
+
+  @media (min-width: 768px) {
+    max-width: 900px;
+    flex-direction: row;
+  }
+`;
+
+export const TaskColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(32)};
+
+  @media (min-width: 768px) {
+    width: 50%;
+  }
 `;

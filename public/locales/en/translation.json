@@ -803,6 +803,12 @@
     "description": "Track the increase in your donation on the Impact tab, in Community Donations.",
     "link": "Follow donation!"
   },
+  "cardPartners": {
+    "title": "Ribon partners",
+    "subtitle": "Refer other companies or engage your own in ticket distribution, and earn rewards while being recognized as a proactive business.",
+    "ctaText": "I want to help ->",
+    "ctaLink": "https://projetos.ribon.io/partners"
+  },
   "contributionSection": {
     "title": "Amazing! Thank you for helping {{nonProfitName}}",
     "titleNewImpact": "Thanks to you, {{nonProfitName}} will be able to impact 1 person. Thank you!",

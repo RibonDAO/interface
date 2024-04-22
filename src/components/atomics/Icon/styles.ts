@@ -17,7 +17,7 @@ export const Icon = styled.span<{
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    background-color: ${props.theme.colors.neutral10};
+    background-color: ${props.backgroundColor || props.theme.colors.neutral10};
     padding: 0.20rem;
     `}
 

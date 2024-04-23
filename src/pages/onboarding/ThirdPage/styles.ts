@@ -40,11 +40,11 @@ export const ContentContainer = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 328px;
-    align-items: center;
-    justify-content: center;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    align-items: center;
+    justify-content: center;
   }
 `;
 

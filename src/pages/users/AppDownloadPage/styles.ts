@@ -14,6 +14,7 @@ export const Container = styled.div`
 
 export const MainContainer = styled.div`
   margin-top: ${({ theme }) => theme.spacing(16)};
+
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     margin-top: ${({ theme }) => theme.spacing(64)};
   }

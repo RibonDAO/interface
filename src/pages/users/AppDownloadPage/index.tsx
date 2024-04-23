@@ -31,7 +31,7 @@ function AppDownloadPage() {
   const { isMobile } = useBreakpoint();
 
   const handleBackNavigation = () => {
-    const path = state?.cameFrom ?? "/impact";
+    const path = state?.cameFrom === "intro" ? "/intro" : "/impact";
     navigateTo(path);
   };
 
@@ -39,8 +39,10 @@ function AppDownloadPage() {
     handleBackNavigation();
   };
 
+  const cameFromPostDonation = state?.cameFrom === "/post-donation";
+
   useEffect(() => {
-    const from = "downloadPage";
+    const from = cameFromPostDonation ? "postDonation" : "downloadPage";
     logEvent("P17_view");
     const utmParams = getUTMFromLocationSearch(window.location.search);
 
@@ -59,12 +61,14 @@ function AppDownloadPage() {
       <S.LeftImage src={LeftImage} />
       <S.RightImage src={RightImage} />
 
-      <S.Container>
-        <S.LeftArrow
-          src={LeftArrow}
-          alt="back-arrow-button"
-          onClick={() => handleOnClickSecondButton()}
-        />
+      <S.MainContainer>
+        {!cameFromPostDonation && (
+          <S.LeftArrow
+            src={LeftArrow}
+            alt="back-arrow-button"
+            onClick={() => handleOnClickSecondButton()}
+          />
+        )}
 
         <AppDownloadTemplate
           title={t("title")}
@@ -80,7 +84,7 @@ function AppDownloadPage() {
           }}
           hasBackButton
         />
-      </S.Container>
+      </S.MainContainer>
     </S.Container>
   );
 }

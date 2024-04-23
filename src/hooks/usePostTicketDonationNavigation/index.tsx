@@ -53,7 +53,7 @@ function usePostTicketDonationNavigation() {
         state: {
           nonProfit,
           showContribute: shouldShowContribute(),
-          cameFrom: "postDonation",
+          cameFrom: "/post-donation",
         },
       });
     } else {

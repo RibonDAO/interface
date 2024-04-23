@@ -40,6 +40,11 @@ export const ContentContainer = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 328px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 `;
 
@@ -47,6 +52,7 @@ export const BackArrowButton = styled.img`
   width: 24px;
   height: 24px;
   margin-bottom: ${({ theme }) => theme.spacing(8)};
+
   align-self: flex-start;
   cursor: pointer;
 `;

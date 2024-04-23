@@ -6,8 +6,8 @@ import { useCountdown } from "hooks/useCountdown";
 import { nextDay } from "lib/dateUtils";
 import { formatCountdown } from "lib/formatters/countdownFormatter";
 import { useTranslation } from "react-i18next";
-import useBreakpoint from "hooks/useBreakpoint";
 import { logEvent } from "lib/events";
+import CardPartners from "components/moleculars/cards/CardPartners";
 import { useTasksStatistics } from "@ribon.io/shared/hooks";
 import * as S from "./styles";
 import DailyTasksSection from "./DailyTasksSection";
@@ -43,7 +43,6 @@ function TasksSection() {
   }, []);
 
   const { refetchTasksStatistics } = useTasksStatistics();
-  const { isMobile } = useBreakpoint();
 
   const progressBarValue = () => {
     const tasks = dailyTasks.map((visibleTask: any) => {
@@ -104,19 +103,15 @@ function TasksSection() {
       </S.ProgressBar>
       {renderCountdown()}
 
-      {!isMobile && (
-        <S.TasksContainer>
+      <S.TasksContainer>
+        <S.TaskColumn>
           <DailyTasksSection />
+          <CardPartners />
+        </S.TaskColumn>
+        <S.TaskColumn>
           {showMonthlyTasks() && <MonthlyTasksSection />}
-        </S.TasksContainer>
-      )}
-
-      {isMobile && (
-        <>
-          <DailyTasksSection />
-          {showMonthlyTasks() && <MonthlyTasksSection />}
-        </>
-      )}
+        </S.TaskColumn>
+      </S.TasksContainer>
 
       <StatisticsCardsSection />
     </S.Container>

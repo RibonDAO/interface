@@ -100,9 +100,9 @@
       "checkboxText": "I want to receive information about my donations by e-mail"
     },
     "menu": {
-      "impactPageTitle": "Impact",
-      "causesPageTitle": "Tickets",
-      "forYouPageTitle": "For you",
+      "myImpactPageTitle": "My impact",
+      "donateTicketsPageTitle": "Donate tickets",
+      "earnTicketsPageTitle": "Earn tickets",
       "givingPageTitle": "Giving",
       "aboutPageTitle": "Benefits",
       "communityMenuItem": "Community Donation",
@@ -127,6 +127,15 @@
       "stayInBrowserButton": "Stay in browser",
       "haveAnAccount": "Have an account?",
       "signIn": "Sign in to your account"
+    },
+    "giveTicketV2Page": {
+      "title": "You won 1 ticket!",
+      "integrationTitle": "{{integrationName}} gave you 1 ticket!",
+      "integrationTitlePlural": "{{integrationName}} gave you tickets!",
+      "subtitle": "Use your ticket to do good!",
+      "downloadAppButton": "Get ticket on app",
+      "stayInBrowserButton": "Stay in browser",
+      "nextButton": "Next"
     },
     "receiveTicketPage": {
       "textOrigin": "Community",
@@ -254,6 +263,11 @@
       "title": "Access user support",
       "text": "Questions, ideas, refunds. We’re here!",
       "userSupportLink": "https://api.whatsapp.com/send/?phone=554896605461&text=Hii+Ribon%2C+let’s+talk%3F+&type=phone_number&app_absent=0"
+    },
+    "integrationSupportBanner": {
+      "title": "Need help?",
+      "text": "Click here and schedule a meeting with our team",
+      "link": "https://meetings.hubspot.com/julia-ribon/30"
     },
     "integrationBanner": {
       "title": "Ribon + {{integrationName}}",
@@ -588,6 +602,23 @@
       "invalidLink": "Invalid link"
     }
   },
+  "onboarding": {
+    "secondPage": {
+      "title": "Here at Ribon, everything revolves around doing good!",
+      "subtitle": "Donation tickets give you that power, and you've just received your first one!",
+      "button": "Next"
+    },
+    "thirdPage": {
+      "title": "Before donating your ticket, here's a quick summary...",
+      "cardTitle1": "What are tickets?",
+      "cardDescription1": "Real money, but it's exclusively valid for donations to social projects within Ribon.",
+      "cardTitle2": "Who pays the tickets?",
+      "cardDescription2": "Companies, big donors, and members of the Ribon community fund the tickets with one goal in mind: to change lives for the better through the collective power of donation.",
+      "cardTitle3": "How to earn more tickets?",
+      "cardDescription3": "You earn and accumulate tickets by accessing the app daily.",
+      "button": "Start"
+    }
+  },
   "contexts": {
     "walletContext": {
       "ethereumNotFoundMessage": "Install Metamask to continue",
@@ -658,7 +689,7 @@
       "adminName": "Name",
       "adminLinkedIn": "LinkedIn profile",
       "adminEmail": "Corporate e-mail",
-      "adminPhone": "Phone (WhatsApp)",
+      "adminPhone": "Phone",
       "optIn": "I confirm that I have an employment relationship with this company and that I have it's authorization to create and use the link created.",
       "submit": "Create company's link",
       "loading": "Creating your custom link..."
@@ -792,6 +823,12 @@
     "title": "Thanks for the donation!",
     "description": "Track the increase in your donation on the Impact tab, in Community Donations.",
     "link": "Follow donation!"
+  },
+  "cardPartners": {
+    "title": "Ribon partners",
+    "subtitle": "Refer other companies or engage your own in ticket distribution, and earn rewards while being recognized as a proactive business.",
+    "ctaText": "I want to help ->",
+    "ctaLink": "https://projetos.ribon.io/partners"
   },
   "contributionSection": {
     "title": "Amazing! Thank you for helping {{nonProfitName}}",

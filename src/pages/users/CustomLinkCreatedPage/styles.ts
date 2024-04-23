@@ -212,3 +212,12 @@ export const LogoImage = styled.img`
   border-radius: 16px;
   background-color: ${({ theme }) => theme.colors.neutral[100]};
 `;
+
+export const HelpContainer = styled.div`
+  width: 100%;
+  padding: ${({ theme }) => theme.spacing(16)};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;

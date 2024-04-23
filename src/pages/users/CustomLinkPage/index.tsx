@@ -202,7 +202,6 @@ function CustomLinkPage(): JSX.Element {
               label={{ text: t("business.adminPhone") }}
               value={formObject.metadata.phone}
               onChange={(e) => setMetadataField("phone", e)}
-              mask="(99) 99999-9999"
               required
             />
             <CheckBox

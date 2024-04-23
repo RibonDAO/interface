@@ -55,6 +55,9 @@ import TicketDonationDonePage from "pages/donations/TicketDonationDonePage";
 import SelectTicketsPage from "pages/donations/SelectTicketsPage";
 import ValidateAccountPage from "pages/auth/ValidateAccountPage";
 import SubscriptionsPage from "pages/promoters/SubscriptionsPage";
+import GiveTicketV2Page from "pages/donations/GiveTicketV2Page";
+import SecondPage from "pages/onboarding/SecondPage";
+import ThirdPage from "pages/onboarding/ThirdPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -134,6 +137,12 @@ function RoutesComponent(): JSX.Element {
       <Route path="/tickets" exact>
         <Suspense fallback={<div />}>
           <GiveTicketPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/tickets-v2" exact>
+        <Suspense fallback={<div />}>
+          <GiveTicketV2Page />
         </Suspense>
       </Route>
 
@@ -467,6 +476,18 @@ function RoutesComponent(): JSX.Element {
       <Route path="/custom-link-created" exact>
         <Suspense fallback={<div />}>
           <CustomLinkCreatedPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/onboarding/second-page" exact>
+        <Suspense fallback={<div />}>
+          <SecondPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/onboarding/third-page" exact>
+        <Suspense fallback={<div />}>
+          <ThirdPage />
         </Suspense>
       </Route>
     </Switch>

@@ -3,7 +3,7 @@ import { stylizedDisplayXs } from "styles/typography/stylized";
 
 export const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -53,10 +53,13 @@ export const ContentContainer = styled.div`
 export const BackArrowButton = styled.img`
   width: 24px;
   height: 24px;
-  margin-bottom: ${({ theme }) => theme.spacing(8)};
-
+  margin: ${({ theme }) => theme.spacing(8, 0)};
   align-self: flex-start;
   cursor: pointer;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    margin: ${({ theme }) => theme.spacing(8, 0)};
+  }
 `;
 
 export const Title = styled.p`

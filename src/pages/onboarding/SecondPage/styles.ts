@@ -27,7 +27,7 @@ export const TextContainer = styled.div`
 
 export const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
@@ -46,6 +46,7 @@ export const MainContainer = styled.div`
 
 export const ButtonContainer = styled.div`
   width: 100%;
+  margin-top: ${({ theme }) => theme.spacing(24)};
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(8)};

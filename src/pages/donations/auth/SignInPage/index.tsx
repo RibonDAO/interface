@@ -140,7 +140,8 @@ function SignInPage(): JSX.Element {
           </S.ButtonContainer>
 
           <S.FooterText>
-            {t("footerStartText")}{" "}
+            {t("footerStartText")}
+            {"  "}
             <a href={t("termsLink")} target="_blank" rel="noreferrer">
               {t("termsText")}
             </a>

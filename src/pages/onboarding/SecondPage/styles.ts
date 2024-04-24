@@ -141,7 +141,6 @@ export const ContentContainer = styled.div`
   padding-bottom: ${({ theme }) => theme.spacing(80)};
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing(24)};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 328px;
@@ -160,7 +159,7 @@ export const BackArrowButton = styled.img`
 `;
 
 export const Header = styled.div`
-  margin-bottom: ${({ theme }) => theme.spacing(8)};
+  margin-bottom: ${({ theme }) => theme.spacing(24)};
   display: flex;
   align-items: center;
   justify-content: center;

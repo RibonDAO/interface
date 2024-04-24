@@ -137,6 +137,7 @@ export const ContentContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(24)};
   align-items: center;
   justify-content: center;
 

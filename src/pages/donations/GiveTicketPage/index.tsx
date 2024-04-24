@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { useIntegrationId } from "hooks/useIntegrationId";
+import { useLanguage } from "hooks/useLanguage";
+import { getMobileOS } from "lib/getMobileOS";
 import { useIntegration } from "@ribon.io/shared/hooks";
 import useNavigation from "hooks/useNavigation";
 import { logEvent } from "lib/events";
@@ -35,6 +37,7 @@ function GiveTicketPage(): JSX.Element {
   const { isMobile } = useBreakpoint();
   const { handleCollect } = useTickets();
   const { refetchTickets } = useTicketsContext();
+  const { currentLang } = useLanguage();
 
   const isRibonIntegration = integration?.id === parseInt(RIBON_COMPANY_ID, 10);
 
@@ -43,7 +46,12 @@ function GiveTicketPage(): JSX.Element {
   }, []);
 
   const handleDownload = () => {
-    logEvent("downloadCTA_click", { from: "firstScreen" });
+    logEvent("downloadCTA_click", {
+      from: "firstScreen",
+      utmSource: currentLang === "pt-BR" ? "ribonweb_pt" : "ribonweb_en",
+      utmMedium: "first_screen",
+      utmCampaign: isMobile ? "mobile" : `desktop_${getMobileOS()}`,
+    });
 
     if (isMobile) {
       window.open(`${APP_LINK}?integration_id=${integrationId}`);

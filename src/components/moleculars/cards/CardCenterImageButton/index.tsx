@@ -6,6 +6,7 @@ import infoIcon from "assets/icons/info-icon-white.svg";
 import { theme } from "@ribon.io/shared/styles";
 import useBreakpoint from "hooks/useBreakpoint";
 import { logEvent } from "lib/events";
+import { useLanguage } from "hooks/useLanguage";
 import { ANDROID_APP_LINK, APP_LINK, IOS_APP_LINK } from "utils/constants";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import AppleBadge from "assets/images/apple-badge.png";
@@ -21,13 +22,17 @@ export type Props = {
   softDisabled?: boolean;
   disabled?: boolean;
   infoTextTop?: string;
-  infoTextBottom?: string;
   fullWidth?: boolean;
   infoText?: string;
   secondButtonProps?: {
     text: string;
     onClick: () => void;
     visible: boolean;
+  };
+  iconSubtitle?: {
+    icon: string;
+    boldText: string;
+    text: string;
   };
   isLocked?: boolean;
 };
@@ -40,10 +45,10 @@ function CardCenterImageButton({
   disabled,
   softDisabled,
   infoTextTop,
-  infoTextBottom,
   fullWidth = false,
   infoText,
   secondButtonProps,
+  iconSubtitle,
   isLocked = false,
 }: Props): JSX.Element {
   const { t } = useTranslation("translation", {
@@ -52,22 +57,47 @@ function CardCenterImageButton({
 
   const { isMobile } = useBreakpoint();
   const integrationId = useIntegrationId();
+  const { currentLang } = useLanguage();
+
+  const utmParamsFor = (campaign: string) => ({
+    utmSource: currentLang === "pt-BR" ? "ribonweb_pt" : "ribonweb_en",
+    utmMedium: "blocked_nonprofit",
+    utmCampaign: campaign,
+  });
 
   function handleMobileLink() {
-    logEvent("mobileDownloadBtn_click", { from: "unlockNonProfitBanner" });
-    logEvent("downloadCTA_click", { from: "unlockNonProfitBanner" });
+    logEvent("mobileDownloadBtn_click", {
+      from: "unlockNonProfitBanner",
+      ...utmParamsFor("mobile"),
+    });
+    logEvent("downloadCTA_click", {
+      from: "unlockNonProfitBanner",
+      ...utmParamsFor("mobile"),
+    });
     window.open(`${APP_LINK}?integration_id=${integrationId}`);
   }
 
   function handleIosLink() {
-    logEvent("appStoreBtn_click", { from: "unlockNonProfitBanner" });
-    logEvent("downloadCTA_click", { from: "appStoreBtn" });
+    logEvent("appStoreBtn_click", {
+      from: "unlockNonProfitBanner",
+      ...utmParamsFor("desktop_ios"),
+    });
+    logEvent("downloadCTA_click", {
+      from: "appStoreBtn",
+      ...utmParamsFor("desktop_ios"),
+    });
     window.open(IOS_APP_LINK);
   }
 
   function handleAndroidLink() {
-    logEvent("gPlayBtn_click", { from: "unlockNonProfitBanner" });
-    logEvent("downloadCTA_click", { from: "gPlayBtn" });
+    logEvent("gPlayBtn_click", {
+      from: "unlockNonProfitBanner",
+      ...utmParamsFor("desktop_android"),
+    });
+    logEvent("downloadCTA_click", {
+      from: "gPlayBtn",
+      ...utmParamsFor("desktop_android"),
+    });
     window.open(ANDROID_APP_LINK);
   }
 
@@ -125,7 +155,15 @@ function CardCenterImageButton({
               <S.Icon src={securityIcon} />
             </S.InfoIcon>
           )}
-          {infoTextBottom && <S.Info>{infoTextBottom}</S.Info>}
+          {iconSubtitle && (
+            <S.IconSubtitleContainer>
+              <S.SubtitleIcon src={iconSubtitle.icon} />
+              <S.IconSubtitleText>
+                <S.BoldText>{iconSubtitle.boldText}</S.BoldText>
+                {iconSubtitle.text}
+              </S.IconSubtitleText>
+            </S.IconSubtitleContainer>
+          )}
         </S.InfoContainer>
         <S.ButtonContainer>
           <Button

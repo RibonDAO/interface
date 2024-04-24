@@ -16,15 +16,8 @@ jest.mock("@ribon.io/shared/hooks", () => ({
 }));
 
 describe("OfferSelectionSection", () => {
-  const mockFn = jest.fn();
-
   beforeEach(() => {
-    renderComponent(
-      <OfferSelectionSection
-        nonProfit={nonProfitFactory()}
-        onOfferChange={mockFn}
-      />,
-    );
+    renderComponent(<OfferSelectionSection nonProfit={nonProfitFactory()} />);
   });
 
   it("show the first offer", () => {

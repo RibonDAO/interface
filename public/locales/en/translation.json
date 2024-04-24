@@ -16,7 +16,8 @@
       "donateText": "Donate ticket",
       "donateBlockedText": "No tickets",
       "impactPrefix": "Donate",
-      "doMore": "Donate {{value}}",
+      "notEnoughTickets": "Not enough tickets",
+      "iconText": " (minimum)",
       "pageTitle": "Donate to a project",
       "donationError": "Unable to donate now",
       "errorModalTitle": "Processing failed",
@@ -246,6 +247,11 @@
       "text": "Questions, ideas, refunds. We’re here!",
       "userSupportLink": "https://api.whatsapp.com/send/?phone=554896605461&text=Hii+Ribon%2C+let’s+talk%3F+&type=phone_number&app_absent=0"
     },
+    "integrationSupportBanner": {
+      "title": "Need help?",
+      "text": "Click here and schedule a meeting with our team",
+      "link": "https://meetings.hubspot.com/julia-ribon/30"
+    },
     "integrationBanner": {
       "title": "Ribon + {{integrationName}}",
       "text": "Here at Ribon you donate tickets gotten from {{integrationName}}"
@@ -389,7 +395,10 @@
         "livesAmount": "{{value}} people",
         "impactDescription": "with {{value}}",
         "altImpactDescription": "and help with {{value}}",
-        "ticketsAmount": "{{value}} tickets"
+        "ticketsAmount": "{{value}} tickets",
+        "connectWalletButtonText": "Connect wallet",
+        "userBalanceText": "Your balance: ",
+        "donateButtonText": "Donate {{value}}"
       },
       "tooltipImpact": "How we calculate the impact?",
       "tooltipImpactText": "The calculations are based on the minimum value needed for the project achieve good results. Ribon’s causes are part of the social moviment “Effective Altruism”, which aim to generate big impact at low cost.",
@@ -691,7 +700,7 @@
       "adminName": "Name",
       "adminLinkedIn": "LinkedIn profile",
       "adminEmail": "Corporate e-mail",
-      "adminPhone": "Phone (WhatsApp)",
+      "adminPhone": "Phone",
       "optIn": "I confirm that I have an employment relationship with this company and that I have it's authorization to create and use the link created.",
       "submit": "Create company's link",
       "loading": "Creating your custom link..."
@@ -825,6 +834,12 @@
     "title": "Thanks for the donation!",
     "description": "Track the increase in your donation on the Impact tab, in Community Donations.",
     "link": "Follow donation!"
+  },
+  "cardPartners": {
+    "title": "Ribon partners",
+    "subtitle": "Refer other companies or engage your own in ticket distribution, and earn rewards while being recognized as a proactive business.",
+    "ctaText": "I want to help ->",
+    "ctaLink": "https://projetos.ribon.io/partners"
   },
   "contributionSection": {
     "title": "Amazing! Thank you for helping {{nonProfitName}}",

@@ -27,10 +27,20 @@ export function useFormattedImpactText() {
     prefix?: string,
   ) {
     if (!nonProfit) return "";
+    if (!nonProfit.nonProfitImpacts || nonProfit.nonProfitImpacts.length === 0)
+      return "";
+
     const impacts = nonProfit?.nonProfitImpacts || [];
     const nonProfitsImpactsLength = impacts.length;
+    const impactByMinimumNumberOfTickets =
+      nonProfit.impactByTicket * (nonProfitImpact?.minimumNumberOfTickets || 1);
+
     const roundedImpact =
-      impact || nonProfitImpact?.roundedImpact || nonProfit?.impactByTicket;
+      impact ||
+      nonProfitImpact?.roundedImpact ||
+      impactByMinimumNumberOfTickets ||
+      1;
+
     const prefixText = prefix ? `${prefix} ` : "";
 
     if (nonProfit && roundedImpact && impacts && nonProfitsImpactsLength) {

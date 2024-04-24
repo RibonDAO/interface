@@ -1,68 +1,46 @@
-import { useTranslation } from "react-i18next";
-import LeftImage from "assets/images/bottom-left-shape-red.svg";
-import RightImage from "assets/images/top-right-shape.svg";
-import useNavigation from "hooks/useNavigation";
-import useBreakpoint from "hooks/useBreakpoint";
+import { useEffect } from "react";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useIntegration } from "@ribon.io/shared/hooks";
-import { useEffect } from "react";
-import { APP_LINK, RIBON_COMPANY_ID } from "utils/constants";
-import Tooltip from "components/moleculars/Tooltip";
-import Button from "components/atomics/buttons/Button";
+import useNavigation from "hooks/useNavigation";
 import { logEvent } from "lib/events";
-import { theme } from "@ribon.io/shared/styles";
-import { useTicketsContext } from "contexts/ticketsContext";
 import RibonLogo from "assets/images/logo-ribon.svg";
-import ArrowLeft from "./assets/arrow-left-dark-green.svg";
+import LeftImage from "assets/images/bottom-left-shape.svg";
+import RightImage from "assets/images/top-right-sun-shape.svg";
+import Button from "components/atomics/buttons/Button";
+import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router";
+import { APP_LINK, RIBON_COMPANY_ID } from "utils/constants";
+import extractUrlValue from "lib/extractUrlValue";
+import useBreakpoint from "hooks/useBreakpoint";
+import theme from "styles/theme";
+import { useTickets } from "hooks/useTickets";
+import { useTicketsContext } from "contexts/ticketsContext";
+import { setLocalStorageItem } from "lib/localStorage";
+import {
+  RECEIVED_TICKET_AT_KEY,
+  RECEIVED_TICKET_FROM_INTEGRATION,
+} from "lib/localStorage/constants";
 import * as S from "./styles";
-import Envelope from "./assets/envelope.svg";
+import Ticket from "./assets/ticket.svg";
 
-export type Props = {
-  isOnboarding?: boolean;
-};
-
-function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
+function GiveTicketPage(): JSX.Element {
   const { t } = useTranslation("translation", {
-    keyPrefix: "donations.giveTicketPage",
+    keyPrefix: "onboarding.giveTicketPage",
   });
-  const { navigateTo, navigateBack } = useNavigation();
+  const { navigateTo } = useNavigation();
   const integrationId = useIntegrationId();
+  const { search } = useLocation();
+  const externalId = extractUrlValue("external_id", search);
   const { integration } = useIntegration(integrationId);
-  const { ticketsCounter } = useTicketsContext();
   const { isMobile } = useBreakpoint();
-
-  const handleClick = () => {
-    logEvent("P10_getTicketBtn_click");
-
-    if (isOnboarding) {
-      navigateTo("/receive-ticket");
-    } else {
-      navigateTo("/causes");
-    }
-  };
+  const { handleCollect } = useTickets();
+  const { refetchTickets } = useTicketsContext();
 
   const isRibonIntegration = integration?.id === parseInt(RIBON_COMPANY_ID, 10);
 
-  const titleOnboarding = isRibonIntegration
-    ? t("onboardingRibonTitle")
-    : t("onboardingIntegrationTitle", {
-        integrationName: integration?.name,
-      });
-
-  const handleSubtitle = isRibonIntegration
-    ? t("subtitle")
-    : t("integrationSubtitle", {
-        integrationName: integration?.name,
-      });
-
-  const subtitle = isOnboarding ? t("onboardingSubtitle") : handleSubtitle;
-
-  const title = isOnboarding ? titleOnboarding : t("title");
-
-  const handleHasAccount = () => {
-    logEvent("openAuthBtn_click", { from: "onboarding_page" });
-    navigateTo("/auth/sign-in");
-  };
+  useEffect(() => {
+    logEvent("P35_view", { from: integration?.id });
+  }, []);
 
   const handleDownload = () => {
     logEvent("downloadCTA_click", { from: "firstScreen" });
@@ -71,84 +49,86 @@ function GiveTicketPage({ isOnboarding = false }: Props): JSX.Element {
       window.open(`${APP_LINK}?integration_id=${integrationId}`);
       return;
     }
+
     navigateTo({
       pathname: "/app-download",
-      state: { cameFrom: "intro" },
+      state: {
+        cameFrom: "tickets",
+      },
     });
   };
 
-  useEffect(() => {
-    logEvent("P10_view");
-  }, []);
+  const handleReceiveTicket = async () => {
+    await handleCollect({
+      onSuccess: () => {
+        setLocalStorageItem(RECEIVED_TICKET_AT_KEY, Date.now().toString());
+        setLocalStorageItem(
+          RECEIVED_TICKET_FROM_INTEGRATION,
+          integrationId?.toString() ?? RIBON_COMPANY_ID,
+        );
+      },
+    });
+    refetchTickets();
+    logEvent("P35_getTicketBtn_click");
+    navigateTo("/causes");
+  };
+
+  const title = () => {
+    if (!integration) return t("title");
+
+    const integrationName = integration.name;
+
+    if (externalId) return t("integrationTitlePlural", { integrationName });
+
+    if (isRibonIntegration) return t("title");
+
+    return t("integrationTitle", { integrationName });
+  };
 
   return (
     <S.Container>
-      {!isOnboarding && (
-        <S.BackArrowButton
-          src={ArrowLeft}
-          onClick={navigateBack}
-          alt="back-arrow-button"
-        />
-      )}
+      <S.LeftImage src={LeftImage} />
+      <S.RightImage src={RightImage} />
       <S.MainContainer>
-        <S.LeftImage src={LeftImage} />
-        <S.RightImage src={RightImage} />
-
-        <S.ContentContainer>
-          <S.Header>
-            <S.LogosWrapper>
-              <S.Logo src={RibonLogo} alt="ribon-logo" />
-              {!isRibonIntegration && (
-                <>
-                  <S.ImageContainerText>+</S.ImageContainerText>
-                  <S.Logo src={integration?.logo} alt="integration-logo" />
-                </>
-              )}
-            </S.LogosWrapper>
-          </S.Header>
-          <S.TextContainer>
-            <S.DefaultImage src={Envelope} />
-            <S.Title>
-              {ticketsCounter > 1
-                ? t("titlePlural", { ticketsCounter })
-                : title}
-            </S.Title>
-            <S.Description>{subtitle}</S.Description>
-          </S.TextContainer>
-          <S.ButtonContainer>
-            <S.FilledButton onClick={handleDownload}>
-              {t("downloadAppButton")}
-            </S.FilledButton>
-            <Button
-              text={t("stayInBrowserButton")}
-              textColor={theme.colors.brand.primary[600]}
-              backgroundColor="transparent"
-              borderColor={theme.colors.brand.primary[500]}
-              borderRadius="4px"
-              onClick={handleClick}
-            />
-
-            {isOnboarding && (
-              <S.Footer>
-                <S.MutedText>{t("haveAnAccount")}</S.MutedText>
-                <S.ClickableText onClick={handleHasAccount}>
-                  {t("signIn")}
-                </S.ClickableText>
-              </S.Footer>
+        <S.Header>
+          <S.LogosWrapper>
+            <S.Logo src={RibonLogo} alt="ribon-logo" />
+            {integration && !isRibonIntegration && (
+              <>
+                <S.ImageContainerText>+</S.ImageContainerText>
+                <S.Logo src={integration.logo} alt="integration-logo" />
+              </>
             )}
-          </S.ButtonContainer>
-          {!isOnboarding && (
-            <S.TooltipSection>
-              <Tooltip
-                text={t("tooltipTicketText")}
-                symbol="?"
-                textRight={t("tooltipTicket")}
-                place="bottom"
-                idTooltip="tooltipTicket"
-              />
-            </S.TooltipSection>
-          )}
+          </S.LogosWrapper>
+        </S.Header>
+        <S.ContentContainer>
+          <S.DefaultImage src={Ticket} />
+          <S.TextContainer>
+            <S.Title>{title()}</S.Title>
+            <S.Description>{t("subtitle")}</S.Description>
+          </S.TextContainer>
         </S.ContentContainer>
+        <S.ButtonContainer>
+          {isMobile ? (
+            <>
+              <S.FilledButton onClick={handleDownload}>
+                {t("downloadAppButton")}
+              </S.FilledButton>
+              <Button
+                text={t("stayInBrowserButton")}
+                textColor={theme.colors.brand.primary[600]}
+                backgroundColor="transparent"
+                borderColor={theme.colors.brand.primary[600]}
+                borderRadius="4px"
+                onClick={handleReceiveTicket}
+              />
+            </>
+          ) : (
+            <S.FilledButton onClick={handleReceiveTicket}>
+              {t("nextButton")}
+            </S.FilledButton>
+          )}
+        </S.ButtonContainer>
       </S.MainContainer>
     </S.Container>
   );

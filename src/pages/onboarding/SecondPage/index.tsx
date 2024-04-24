@@ -22,7 +22,7 @@ function SecondPage(): JSX.Element {
   const { integration } = useIntegration(integrationId);
 
   const handleClick = () => {
-    navigateTo("/causes");
+    navigateTo("/intro/step-3");
   };
 
   const isRibonIntegration = integration?.id === parseInt(RIBON_COMPANY_ID, 10);

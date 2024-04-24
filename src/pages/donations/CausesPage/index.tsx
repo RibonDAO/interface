@@ -26,11 +26,12 @@ import { useLanguage } from "hooks/useLanguage";
 import { useTickets } from "hooks/useTickets";
 import { logEvent } from "lib/events";
 import {
-  DONATION_TOAST_INTEGRATION,
-  DONATION_TOAST_SEEN_AT_KEY,
+  RECEIVED_TICKET_AT_KEY,
+  RECEIVED_TICKET_FROM_INTEGRATION,
 } from "lib/localStorage/constants";
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import { setLocalStorageItem } from "lib/localStorage";
+import useNavigation from "hooks/useNavigation";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
 import ChooseCauseModal from "./ChooseCauseModal";
@@ -64,31 +65,36 @@ function CausesPage(): JSX.Element {
 
   const { currentLang } = useLanguage();
   const { donatedToday } = useDonatedToday();
+  const { navigateTo } = useNavigation();
 
   const { handleCanCollect, handleCollect, hasReceivedTicketToday } =
     useTickets();
 
   const { showReceiveTicketToast } = useReceiveTicketToast();
+  const isRibonIntegration =
+    integrationId?.toString() === RIBON_COMPANY_ID.toString();
 
   async function receiveTicket() {
     const canCollect = await handleCanCollect();
-
     if (canCollect) {
-      if (currentUser) {
-        await handleCollect({
-          onSuccess: () => {
-            logEvent("ticketCollected", { from: "collect" });
-          },
-        });
-        refetchTickets();
-      }
-      if (!hasReceivedTicketToday()) {
-        showReceiveTicketToast();
-        setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());
-        setLocalStorageItem(
-          DONATION_TOAST_INTEGRATION,
-          integrationId?.toLocaleString() ?? RIBON_COMPANY_ID,
-        );
+      if (currentUser && !hasReceivedTicketToday()) {
+        if (isRibonIntegration) {
+          await handleCollect({
+            onSuccess: () => {
+              logEvent("ticketCollected", { from: "collect" });
+            },
+          });
+          refetchTickets();
+
+          showReceiveTicketToast();
+          setLocalStorageItem(RECEIVED_TICKET_AT_KEY, Date.now().toString());
+          setLocalStorageItem(
+            RECEIVED_TICKET_FROM_INTEGRATION,
+            integrationId?.toLocaleString() ?? RIBON_COMPANY_ID,
+          );
+        } else {
+          navigateTo("/intro/receive-tickets");
+        }
       }
     } else {
       refetchTickets();

@@ -29,10 +29,14 @@ export const TextContainer = styled.div`
 
 export const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   display: flex;
-  align-items: center;
   justify-content: center;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    height: 100vh;
+    align-items: center;
+  }
 `;
 
 export const MainContainer = styled.div`

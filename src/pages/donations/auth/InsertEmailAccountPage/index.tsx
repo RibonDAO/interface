@@ -100,7 +100,7 @@ function InsertEmailAccountPage(): JSX.Element {
           onAnimationEnd={onAnimationEnd}
         />
       ) : (
-        <div>
+        <>
           <S.ImageContainer>
             <S.MainImage src={nonProfit.mainImage} />
           </S.ImageContainer>
@@ -129,7 +129,7 @@ function InsertEmailAccountPage(): JSX.Element {
               eventParams={{ from: "donation_flow" }}
             />
           </S.ContentContainer>
-        </div>
+        </>
       )}
     </S.Container>
   );

@@ -49,10 +49,11 @@ export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(8)};
+  background-color: ${({ theme }) => theme.colors.neutral10};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
     padding: ${({ theme }) => theme.spacing(16)};
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     display: block;
@@ -137,6 +138,7 @@ export const ImageContainerText = styled.p`
 
 export const ContentContainer = styled.div`
   width: 100%;
+  padding-bottom: ${({ theme }) => theme.spacing(80)};
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(24)};

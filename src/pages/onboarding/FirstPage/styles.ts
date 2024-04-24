@@ -135,14 +135,15 @@ export const ImageContainerText = styled.p`
 
 export const ContentContainer = styled.div`
   width: 100%;
+
+  padding-top: ${({ theme }) => theme.spacing(16)};
+  padding-bottom: ${({ theme }) => theme.spacing(24)};
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(24)};
   align-items: center;
   justify-content: center;
 
-  padding-top: ${({ theme }) => theme.spacing(16)};
-  padding-bottom: ${({ theme }) => theme.spacing(24)};
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 328px;
     height: 380px;

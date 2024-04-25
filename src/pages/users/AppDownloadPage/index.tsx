@@ -5,10 +5,11 @@ import { useLocation } from "react-router-dom";
 import { NonProfit } from "@ribon.io/shared/types";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { logEvent } from "@amplitude/analytics-browser";
 import theme from "styles/theme";
 import IllustrationMobile from "assets/images/extra-ticket.svg";
+import useBreakpoint from "hooks/useBreakpoint";
 import * as S from "./styles";
 import LeftImage from "./assets/left-image.svg";
 import RightImage from "./assets/right-image.svg";
@@ -25,40 +26,22 @@ function AppDownloadPage() {
     keyPrefix: "appDownloadPage",
   });
 
-  const [nonProfit, setNonProfit] = useState<NonProfit | undefined>();
-  const [showContribute, setShowContribute] = useState<boolean | undefined>();
-
   const { state } = useLocation<LocationStateType>();
-  useEffect(() => {
-    if (state) {
-      setNonProfit(state.nonProfit);
-      setShowContribute(state.showContribute);
-    }
-  }, []);
-
   const { navigateTo } = useNavigation();
-
-  const comesFromPostDonation = !!nonProfit;
+  const { isMobile } = useBreakpoint();
 
   const handleBackNavigation = () => {
-    const path = state?.cameFrom === "intro" ? "/intro" : "/impact";
-
-    navigateTo(path);
+    navigateTo("/impact");
   };
 
   const handleOnClickSecondButton = () => {
-    if (comesFromPostDonation && showContribute) {
-      navigateTo({
-        pathname: "/post-donation",
-        state: { nonProfit },
-      });
-    } else {
-      handleBackNavigation();
-    }
+    handleBackNavigation();
   };
 
+  const cameFromPostDonation = state?.cameFrom === "/post-donation";
+
   useEffect(() => {
-    const from = comesFromPostDonation ? "postDonation" : "downloadPage";
+    const from = cameFromPostDonation ? "postDonation" : "downloadPage";
     logEvent("P17_view");
     const utmParams = getUTMFromLocationSearch(window.location.search);
 
@@ -77,8 +60,8 @@ function AppDownloadPage() {
       <S.LeftImage src={LeftImage} />
       <S.RightImage src={RightImage} />
 
-      <S.Container>
-        {!comesFromPostDonation && (
+      <S.MainContainer>
+        {!cameFromPostDonation && (
           <S.LeftArrow
             src={LeftArrow}
             alt="back-arrow-button"
@@ -95,13 +78,12 @@ function AppDownloadPage() {
             textColor: theme.colors.neutral10,
           }}
           secondButton={{
-            text: nonProfit ? t("buttonSkip") : t("buttonBack"),
+            text: isMobile ? t("buttonBack") : t("buttonSkip"),
             onClick: () => handleOnClickSecondButton(),
           }}
           hasBackButton
-          spacingTopDonationFlow={comesFromPostDonation}
         />
-      </S.Container>
+      </S.MainContainer>
     </S.Container>
   );
 }

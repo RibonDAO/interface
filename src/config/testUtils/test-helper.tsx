@@ -1,7 +1,6 @@
 import MockAdapter from "axios-mock-adapter";
 import api from "services/api";
 import TestUtils from "react-dom/test-utils";
-import { client } from "services/apiTheGraph";
 
 const mockApi = new MockAdapter(api);
 
@@ -38,33 +37,6 @@ export const changeInputValue = (element: any, value: any) => {
   /* eslint-enable no-param-reassign */
 
   TestUtils.Simulate.change(element);
-};
-
-type MockGraphqlOptions = {
-  loading?: boolean;
-  networkStatus?: number;
-};
-export const mockGraphqlRequest = (
-  queryName: string,
-  responseData: any,
-  { loading = false, networkStatus = 1 }: MockGraphqlOptions = {},
-) => {
-  const querySpy = jest.spyOn(client, "query");
-
-  return querySpy.mockImplementationOnce((queryArg): any => {
-    const queryNameFromArgs = (queryArg.query.definitions[0] as any).name
-      ?.value;
-
-    if (queryNameFromArgs === queryName) {
-      return Promise.resolve({
-        loading,
-        networkStatus,
-        data: responseData,
-      });
-    }
-
-    return null;
-  });
 };
 
 export const mockEnv = (envVars: Record<any, any>) => {

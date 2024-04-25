@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   useIntegration,
@@ -8,16 +8,13 @@ import {
 import { useLocation } from "react-router-dom";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationId } from "hooks/useIntegrationId";
-
 import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import extractUrlValue from "lib/extractUrlValue";
 import { INTEGRATION_AUTH_ID, RIBON_COMPANY_ID } from "utils/constants";
-
 import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
-import { useCauseDonationContext } from "contexts/causeDonationContext";
 import NonProfitsSection from "pages/donations/CausesPage/NonProfitsSection";
 import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
 import CampaignSection from "pages/donations/CausesPage/CampaignSection";
@@ -25,14 +22,14 @@ import { useTicketsContext } from "contexts/ticketsContext";
 import { useTickets } from "hooks/useTickets";
 import { logEvent } from "lib/events";
 import {
-  DONATION_TOAST_INTEGRATION,
-  DONATION_TOAST_SEEN_AT_KEY,
+  RECEIVED_TICKET_AT_KEY,
+  RECEIVED_TICKET_FROM_INTEGRATION,
 } from "lib/localStorage/constants";
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import { setLocalStorageItem } from "lib/localStorage";
+import useNavigation from "hooks/useNavigation";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
-import ChooseCauseModal from "./ChooseCauseModal";
 import CausesSelectSection from "./CausesSelectSection";
 import * as S from "./styles";
 
@@ -43,7 +40,6 @@ function CausesPage(): JSX.Element {
   const { integration } = useIntegration(integrationId);
   const [shouldShowIntegrationBanner, setShouldShowIntegrationBanner] =
     useState<boolean | undefined>(false);
-  const { chooseCauseModalVisible } = useCauseDonationContext();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
@@ -51,7 +47,6 @@ function CausesPage(): JSX.Element {
   const { state, search } = useLocation<LocationStateType>();
   showErrorModal(state);
 
-  const hasSeenChooseCauseModal = useRef(false);
   const { refetchTickets, hasTickets } = useTicketsContext();
   const { currentUser } = useCurrentUser();
   const externalId = extractUrlValue("external_id", search);
@@ -61,31 +56,36 @@ function CausesPage(): JSX.Element {
 
   const { isMobile } = useBreakpoint();
   const { donatedToday } = useDonatedToday();
+  const { navigateTo } = useNavigation();
 
   const { handleCanCollect, handleCollect, hasReceivedTicketToday } =
     useTickets();
 
   const { showReceiveTicketToast } = useReceiveTicketToast();
+  const isRibonIntegration =
+    integrationId?.toString() === RIBON_COMPANY_ID.toString();
 
   async function receiveTicket() {
     const canCollect = await handleCanCollect();
-
     if (canCollect) {
-      if (currentUser) {
-        await handleCollect({
-          onSuccess: () => {
-            logEvent("ticketCollected", { from: "collect" });
-          },
-        });
-        refetchTickets();
-      }
-      if (!hasReceivedTicketToday()) {
-        showReceiveTicketToast();
-        setLocalStorageItem(DONATION_TOAST_SEEN_AT_KEY, Date.now().toString());
-        setLocalStorageItem(
-          DONATION_TOAST_INTEGRATION,
-          integrationId?.toLocaleString() ?? RIBON_COMPANY_ID,
-        );
+      if (currentUser && !hasReceivedTicketToday()) {
+        if (isRibonIntegration) {
+          await handleCollect({
+            onSuccess: () => {
+              logEvent("ticketCollected", { from: "collect" });
+            },
+          });
+          refetchTickets();
+
+          showReceiveTicketToast();
+          setLocalStorageItem(RECEIVED_TICKET_AT_KEY, Date.now().toString());
+          setLocalStorageItem(
+            RECEIVED_TICKET_FROM_INTEGRATION,
+            integrationId?.toLocaleString() ?? RIBON_COMPANY_ID,
+          );
+        } else {
+          navigateTo("/intro/receive-tickets");
+        }
       }
     } else {
       refetchTickets();
@@ -106,14 +106,6 @@ function CausesPage(): JSX.Element {
     );
   }, [integration, isFirstAccessToIntegration]);
 
-  useEffect(() => {
-    if (chooseCauseModalVisible && !hasSeenChooseCauseModal.current) {
-      hasSeenChooseCauseModal.current = true;
-    } else if (!chooseCauseModalVisible && hasSeenChooseCauseModal.current) {
-      hasSeenChooseCauseModal.current = false;
-    }
-  }, [chooseCauseModalVisible]);
-
   useAvoidBackButton();
 
   return (
@@ -122,7 +114,6 @@ function CausesPage(): JSX.Element {
       {shouldShowIntegrationBanner && (
         <IntegrationBanner integration={integration} />
       )}
-      <ChooseCauseModal visible={chooseCauseModalVisible} />
       <S.BodyContainer>
         <S.TitleContainer>
           {hasTickets && <S.Title>{t("pageTitle")}</S.Title>}

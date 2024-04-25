@@ -5,6 +5,7 @@ import {
   defaultBodySmMedium,
 } from "styles/typography/default";
 import ButtonComponent from "components/atomics/buttons/Button";
+import InputText from "components/atomics/inputs/InputText";
 
 export const Container = styled.div`
   padding: ${({ theme }) => theme.spacing(0, 16)};
@@ -83,7 +84,7 @@ export const RightImage = styled.img`
   }
 `;
 
-export const Input = styled.input`
+export const Input = styled(InputText)`
   width: 100%;
   height: 48px;
   margin-bottom: ${({ theme }) => theme.spacing(8)};

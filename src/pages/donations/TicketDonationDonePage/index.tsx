@@ -6,7 +6,6 @@ import {
 import ConfirmationNumberPink from "assets/icons/confirmation-number-pink.svg";
 import ConfirmationNumberYellow from "assets/icons/confirmation-number-yellow.svg";
 import ConfirmationNumberGreen from "assets/icons/confirmation-number-green.svg";
-import useNavigation from "hooks/useNavigation";
 import { setLocalStorageItem } from "lib/localStorage";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -18,13 +17,11 @@ import ReactHowler from "react-howler";
 import { useTasksContext } from "contexts/tasksContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationId } from "hooks/useIntegrationId";
-import { useAuthentication } from "contexts/authenticationContext";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import usePostTicketDonationNavigation from "hooks/usePostTicketDonationNavigation";
 
 import { logEvent } from "lib/events";
 import IconsAroundImage from "components/atomics/sections/IconsAroundImage";
-import { INTEGRATION_AUTH_ID } from "utils/constants";
 import * as S from "./styles";
 
 function TicketDonationDonePage(): JSX.Element {
@@ -36,15 +33,13 @@ function TicketDonationDonePage(): JSX.Element {
     impact?: number;
   };
 
-  const { navigateTo } = useNavigation();
-
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.ticketDonationDonePage",
   });
   const { formattedImpactText } = useFormattedImpactText();
 
   const {
-    state: { nonProfit, flow, impact },
+    state: { nonProfit, impact },
   } = useLocation<LocationState>();
   const [allowedEmailMarketing, setAllowedEmailMarketing] = useState(false);
   const { currentUser } = useCurrentUser();
@@ -67,9 +62,6 @@ function TicketDonationDonePage(): JSX.Element {
   const firstDonation = 1;
 
   const { refetch } = useFirstAccessToIntegration(integrationId);
-  const { isFirstAccessToIntegration: isFirstAccessToAuthIntegration } =
-    useFirstAccessToIntegration(INTEGRATION_AUTH_ID);
-  const { isAuthenticated } = useAuthentication();
 
   const shouldShowEmailCheckbox = useCallback(() => {
     if (userStatistics && config) {
@@ -103,18 +95,7 @@ function TicketDonationDonePage(): JSX.Element {
       updateUserConfig(currentUser.id, { allowedEmailMarketing });
     }
 
-    if (flow === "magicLink" && isFirstAccessToAuthIntegration) {
-      navigateTo({
-        pathname: "/extra-ticket",
-        state: {
-          nonProfit,
-        },
-      });
-    } else if (!isAuthenticated() && isFirstAccessToAuthIntegration) {
-      navigateTo({
-        pathname: "/sign-in-extra-ticket",
-      });
-    } else if (!isLoading) {
+    if (!isLoading) {
       handleNavigate(nonProfit);
     }
   }

@@ -80,16 +80,6 @@
     "storiesPage": {
       "ctaText": "Doar ticket"
     },
-    "postDonationPage": {
-      "title": "Se quiser, você pode fazer mais",
-      "donateAsCommunity": "Doar em comunidade para",
-      "donateDirectly": "Doar diretamente para",
-      "donateLater": "Doar depois",
-      "boostedDonation": "Doação impulsionada",
-      "donate": "Doe {{value}} para",
-      "donateButton": "Doe {{value}}",
-      "donateNow": "Doar agora"
-    },
     "contributionDonePage": {
       "title": "Parabéns!",
       "thanksToYou": "Graças a você...",
@@ -110,33 +100,15 @@
       "checkboxText": "Quero receber informações sobre minhas doações por e-mail"
     },
     "menu": {
-      "impactPageTitle": "Impacto",
-      "causesPageTitle": "Tickets",
-      "forYouPageTitle": "Para você",
+      "myImpactPageTitle": "Meu impacto",
+      "donateTicketsPageTitle": "Doe tickets",
+      "earnTicketsPageTitle": "Ganhe tickets",
       "givingPageTitle": "Ajudar",
       "aboutPageTitle": "Benefícios",
       "communityMenuItem": "Causas",
       "donateWithRibonMenuItem": "Doe com a Ribon",
       "directDonationMenuItem": "ONGs",
       "new": "Novo"
-    },
-    "giveTicketPage": {
-      "onboardingRibonTitle": "Boas vindas à Ribon!",
-      "onboardingIntegrationTitle": "{{integrationName}} te convidou para o app da Ribon!",
-      "onboardingSubtitle": "Baixe o app e ganhe tickets para doar para projetos sociais incríveis!",
-      "onboardingButtonText": "Receber meu ticket",
-      "title": "Você tem 1 ticket",
-      "titlePlural": "Você tem {{ticketsCounter}} tickets",
-      "integrationSubtitle": "{{integrationName}} te deu um ticket para você doar aqui na Ribon!",
-      "subtitle": "Você recebe um novo ticket sempre que entra na Ribon pela primeira vez no dia",
-      "buttonText": "Doar meu ticket",
-      "tooltipTicketText": "Os tickets servem para fazer doações e você recebe um a cada dia que entrar aqui na Ribon.",
-      "tooltipTicket": "O que é um ticket?",
-      "hasAccountButton": "Já tenho uma conta",
-      "downloadAppButton": "Receber um ticket no app",
-      "stayInBrowserButton": "Ficar no navegador",
-      "haveAnAccount": "Já tem uma conta?",
-      "signIn": "Entrar com sua conta"
     },
     "receiveTicketPage": {
       "textOrigin": "Comunidade",
@@ -357,6 +329,51 @@
       "cardSubtitle": "+{{value}} tickets",
       "description": "e ajude com {{impact}}",
       "buttonText": "Doar {{value}} tickets"
+    }
+  },
+  "onboarding": {
+    "firstPage": {
+      "onboardingRibonTitle": "Vem com a Ribon!",
+      "onboardingIntegrationTitle": "{{integrationName}} te convida para a Ribon!",
+      "onboardingSubtitle": "Baixe o app e ganhe tickets para ajudar projetos sociais todos os dias de graça!",
+      "onboardingButtonText": "Receber meu ticket",
+      "title": "Você tem 1 ticket",
+      "titlePlural": "Você tem {{ticketsCounter}} tickets",
+      "integrationSubtitle": "{{integrationName}} te deu um ticket para você doar aqui na Ribon!",
+      "subtitle": "Você recebe um novo ticket sempre que entra na Ribon pela primeira vez no dia",
+      "buttonText": "Doar meu ticket",
+      "tooltipTicketText": "Os tickets servem para fazer doações e você recebe um a cada dia que entrar aqui na Ribon.",
+      "tooltipTicket": "O que é um ticket?",
+      "hasAccountButton": "Já tenho uma conta",
+      "downloadAppButton": "Coletar ticket no app",
+      "stayInBrowserButton": "Ficar no navegador",
+      "haveAnAccount": "Já tem uma conta?",
+      "signIn": "Entrar com sua conta"
+    },
+
+    "secondPage": {
+      "title": "Aqui na Ribon tudo gira em torno de fazer o bem!",
+      "subtitle": "Os tickets de doação te dão esse poder, e você acaba de receber seu primeiro!",
+      "button": "Próximo"
+    },
+    "thirdPage": {
+      "title": "Antes de doar seu ticket, vai aqui um resuminho...",
+      "cardTitle1": "O que são tickets?",
+      "cardDescription1": "Dinheiro de verdade, mas que vale exclusivamente para doações para  projetos sociais dentro da Ribon",
+      "cardTitle2": "Quem paga os tickets?",
+      "cardDescription2": "Empresas, grandes doadores e membros da comunidade Ribon financiam os tickets com um único objetivo: mudar vidas para melhor através do poder coletivo da doação",
+      "cardTitle3": "Como ganho mais tickets?",
+      "cardDescription3": "Você ganha e acumula tickets acessando o app diariamente.",
+      "button": "Começar"
+    },
+    "giveTicketPage": {
+      "title": "Você ganhou 1 ticket!",
+      "integrationTitle": "{{integrationName}} te deu 1 ticket!",
+      "integrationTitlePlural": "{{integrationName}} te deu tickets!",
+      "subtitle": "Use o seu ticket para fazer o bem!",
+      "downloadAppButton": "Coletar ticket no app",
+      "stayInBrowserButton": "Ficar no navegador",
+      "nextButton": "Próximo"
     }
   },
   "promoters": {
@@ -842,7 +859,7 @@
       "title": "Entre na sua conta",
       "footerStartText": "Ao clicar em 'Continuar', eu concordo com os",
       "footerEndText": "e",
-      "termsText": "Termos",
+      "termsText": "Termos ",
       "termsLink": "https://ribon.io/en/privacy-policy/#terms",
       "privacyPolicyText": "Política de Privacidade",
       "privacyPolicyLink": "https://ribon.io/en/privacy-policy/#privacy",

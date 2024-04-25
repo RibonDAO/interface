@@ -1,8 +1,6 @@
-import { isFirstAccess } from "lib/onboardingFirstAccess";
 import GroupButtons from "components/moleculars/sections/GroupButtons";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
 import { useCausesContext } from "contexts/causesContext";
-import { useCurrentUser } from "contexts/currentUserContext";
 import { useTranslation } from "react-i18next";
 
 function CausesSelectSection(): JSX.Element {
@@ -12,7 +10,6 @@ function CausesSelectSection(): JSX.Element {
   const { setChosenCause, chosenCauseIndex, setChosenCauseIndex } =
     useCauseDonationContext();
   const { filteredCauses } = useCausesContext();
-  const { signedIn } = useCurrentUser();
 
   const handleCauseChanged = (_element: any, index: number, event: any) => {
     if (_element && event?.type === "click") {
@@ -33,8 +30,6 @@ function CausesSelectSection(): JSX.Element {
     },
     ...(filteredCauses || []),
   ];
-
-  if (isFirstAccess(signedIn)) return <div />;
 
   return (
     <GroupButtons

@@ -12,7 +12,6 @@ import WalletLayout from "layouts/WalletLayout";
 import CardPaymentInformationProvider from "contexts/cardPaymentInformationContext";
 import NetworkProvider from "contexts/networkContext";
 import CommunityAddPage from "pages/promoters/SupportCausePage/CommunityAddPage";
-import PostDonationPage from "pages/donations/PostDonationPage";
 import CryptoPaymentProvider from "contexts/cryptoPaymentContext";
 import SupportNonProfitPage from "pages/promoters/SupportNonProfitPage";
 import DeleteAccountPage from "pages/users/DeleteAccountPage";
@@ -20,7 +19,6 @@ import { useLocation } from "react-router";
 import { logPageView } from "lib/events";
 import AppDownloadPage from "pages/users/AppDownloadPage";
 import ForYouPage from "pages/users/ForYouPage";
-import GiveTicketPage from "pages/donations/GiveTicketPage";
 import ReceiveTicketPage from "pages/donations/ReceiveTicketPage";
 import AboutPage from "pages/promoters/AboutPage";
 import LoadingPage from "pages/donations/LoadingPage";
@@ -56,6 +54,10 @@ import TicketDonationDonePage from "pages/donations/TicketDonationDonePage";
 import SelectTicketsPage from "pages/donations/SelectTicketsPage";
 import ValidateAccountPage from "pages/auth/ValidateAccountPage";
 import SubscriptionsPage from "pages/promoters/SubscriptionsPage";
+import GiveTicketPage from "pages/donations/GiveTicketPage";
+import SecondPage from "pages/onboarding/SecondPage";
+import ThirdPage from "pages/onboarding/ThirdPage";
+import FirstPage from "pages/onboarding/FirstPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -128,13 +130,19 @@ function RoutesComponent(): JSX.Element {
 
       <Route path="/intro" exact>
         <Suspense fallback={<div />}>
-          <GiveTicketPage isOnboarding />
+          <FirstPage isOnboarding />
+        </Suspense>
+      </Route>
+
+      <Route path="/intro/receive-tickets" exact>
+        <Suspense fallback={<div />}>
+          <GiveTicketPage />
         </Suspense>
       </Route>
 
       <Route path="/tickets" exact>
         <Suspense fallback={<div />}>
-          <GiveTicketPage />
+          <FirstPage />
         </Suspense>
       </Route>
 
@@ -225,12 +233,6 @@ function RoutesComponent(): JSX.Element {
       <Route path="/contribution-done" exact>
         <Suspense fallback={<div />}>
           <ContributionDonePage />
-        </Suspense>
-      </Route>
-
-      <Route path="/post-donation" exact>
-        <Suspense fallback={<div />}>
-          <PostDonationPage />
         </Suspense>
       </Route>
 
@@ -474,6 +476,18 @@ function RoutesComponent(): JSX.Element {
       <Route path="/custom-link-created" exact>
         <Suspense fallback={<div />}>
           <CustomLinkCreatedPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/intro/step-2" exact>
+        <Suspense fallback={<div />}>
+          <SecondPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/intro/step-3" exact>
+        <Suspense fallback={<div />}>
+          <ThirdPage />
         </Suspense>
       </Route>
     </Switch>

@@ -50,7 +50,11 @@ function usePostTicketDonationNavigation() {
     if (shouldShowAppDownload()) {
       return navigateTo({
         pathname: "/app-download",
-        state: { nonProfit, showContribute: shouldShowContribute() },
+        state: {
+          nonProfit,
+          showContribute: shouldShowContribute(),
+          cameFrom: "/post-donation",
+        },
       });
     } else {
       return navigateTo({

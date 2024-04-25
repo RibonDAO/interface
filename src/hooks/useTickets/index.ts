@@ -5,8 +5,8 @@ import { useIntegrationId } from "hooks/useIntegrationId";
 import extractUrlValue from "lib/extractUrlValue";
 import { useLocation } from "react-router-dom";
 import {
-  DONATION_TOAST_INTEGRATION,
-  DONATION_TOAST_SEEN_AT_KEY,
+  RECEIVED_TICKET_AT_KEY,
+  RECEIVED_TICKET_FROM_INTEGRATION,
 } from "lib/localStorage/constants";
 import { today } from "lib/dateTodayFormatter";
 import { getLocalStorageItem } from "lib/localStorage";
@@ -33,18 +33,16 @@ export function useTickets() {
   const externalIds = externalId?.split(",");
 
   function hasReceivedTicketToday() {
-    const donationToastSeenAtKey = getLocalStorageItem(
-      DONATION_TOAST_SEEN_AT_KEY,
-    );
-    const donationToastIntegration = getLocalStorageItem(
-      DONATION_TOAST_INTEGRATION,
+    const receivedTicketAtKey = getLocalStorageItem(RECEIVED_TICKET_AT_KEY);
+    const receivedTickedFromIntegrationKey = getLocalStorageItem(
+      RECEIVED_TICKET_FROM_INTEGRATION,
     );
 
     if (
-      donationToastSeenAtKey &&
-      donationToastIntegration === integrationId?.toLocaleString()
+      receivedTicketAtKey &&
+      receivedTickedFromIntegrationKey === integrationId?.toLocaleString()
     ) {
-      const dateUserSawToast = new Date(parseInt(donationToastSeenAtKey, 10));
+      const dateUserSawToast = new Date(parseInt(receivedTicketAtKey, 10));
       return dateUserSawToast.toLocaleDateString() === today();
     }
     return false;

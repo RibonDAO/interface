@@ -31,8 +31,7 @@ function AppDownloadPage() {
   const { isMobile } = useBreakpoint();
 
   const handleBackNavigation = () => {
-    const path = state?.cameFrom === "intro" ? "/intro" : "/impact";
-    navigateTo(path);
+    navigateTo("/impact");
   };
 
   const handleOnClickSecondButton = () => {

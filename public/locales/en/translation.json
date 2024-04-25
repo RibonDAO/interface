@@ -110,33 +110,6 @@
       "directDonationMenuItem": "Direct donation",
       "new": "New"
     },
-    "giveTicketPage": {
-      "onboardingRibonTitle": "Welcome to Ribon!",
-      "onboardingIntegrationTitle": "{{integrationName}} invited you to use Ribon's app!",
-      "onboardingSubtitle": "Download the app and get free tickets to donate to awesome charities!",
-      "onboardingButtonText": "Get my ticket",
-      "title": "You have 1 special ticket",
-      "titlePlural": "You have {{ticketsCounter}} ticket",
-      "integrationSubtitle": "{{integrationName}} gave you a ticket and you can donate it here at Ribon!",
-      "subtitle": "Every day when you login in Ribon you get a new ticket.",
-      "buttonText": "Donate my ticket",
-      "tooltipTicketText": "Tickets are used to make donations and you get a new one everyday when you log in Ribon.",
-      "tooltipTicket": "What is a ticket?",
-      "hasAccountButton": "I have an account",
-      "downloadAppButton": "Get ticket in Ribon's app",
-      "stayInBrowserButton": "Stay in browser",
-      "haveAnAccount": "Have an account?",
-      "signIn": "Sign in to your account"
-    },
-    "giveTicketV2Page": {
-      "title": "You won 1 ticket!",
-      "integrationTitle": "{{integrationName}} gave you 1 ticket!",
-      "integrationTitlePlural": "{{integrationName}} gave you tickets!",
-      "subtitle": "Use your ticket to do good!",
-      "downloadAppButton": "Get ticket on app",
-      "stayInBrowserButton": "Stay in browser",
-      "nextButton": "Next"
-    },
     "receiveTicketPage": {
       "textOrigin": "Community",
       "textDestiny": "You",
@@ -603,6 +576,25 @@
     }
   },
   "onboarding": {
+    "firstPage": {
+      "onboardingRibonTitle": "Welcome to Ribon!",
+      "onboardingIntegrationTitle": "{{integrationName}} invited you to use Ribon's app!",
+      "onboardingSubtitle": "Download the app and get free tickets to donate to awesome charities!",
+      "onboardingButtonText": "Get my ticket",
+      "title": "You have 1 special ticket",
+      "titlePlural": "You have {{ticketsCounter}} ticket",
+      "integrationSubtitle": "{{integrationName}} gave you a ticket and you can donate it here at Ribon!",
+      "subtitle": "Every day when you login in Ribon you get a new ticket.",
+      "buttonText": "Donate my ticket",
+      "tooltipTicketText": "Tickets are used to make donations and you get a new one everyday when you log in Ribon.",
+      "tooltipTicket": "What is a ticket?",
+      "hasAccountButton": "I have an account",
+      "downloadAppButton": "Get ticket in Ribon's app",
+      "stayInBrowserButton": "Stay in browser",
+      "haveAnAccount": "Have an account?",
+      "signIn": "Sign in to your account"
+    },
+
     "secondPage": {
       "title": "Here at Ribon, everything revolves around doing good!",
       "subtitle": "Donation tickets give you that power, and you've just received your first one!",
@@ -617,6 +609,15 @@
       "cardTitle3": "How to earn more tickets?",
       "cardDescription3": "You earn and accumulate tickets by accessing the app daily.",
       "button": "Start"
+    },
+    "giveTicketPage": {
+      "title": "You won 1 ticket!",
+      "integrationTitle": "{{integrationName}} gave you 1 ticket!",
+      "integrationTitlePlural": "{{integrationName}} gave you tickets!",
+      "subtitle": "Use your ticket to do good!",
+      "downloadAppButton": "Get ticket on app",
+      "stayInBrowserButton": "Stay in browser",
+      "nextButton": "Next"
     }
   },
   "contexts": {

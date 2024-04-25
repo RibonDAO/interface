@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import {
   defaultBodyMdMedium,
+  defaultBodyMdRegular,
+  defaultBodyMdSemibold,
   defaultHeadingLg,
 } from "styles/typography/default";
 import { stylizedDisplayXs } from "styles/typography/stylized";
@@ -29,10 +31,10 @@ export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
   display: flex;
+  justify-content: center;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     align-items: center;
-    justify-content: center;
   }
 `;
 
@@ -44,21 +46,22 @@ export const MainContainer = styled.div`
   align-items: center;
 `;
 
+export const FilledButton = styled.button`
+  ${defaultBodyMdSemibold}
+
+  width: 100%;
+  padding: ${({ theme }) => theme.spacing(12, 16)};
+  border: 1px solid ${({ theme }) => theme.colors.brand.primary[600]};
+  border-radius: 4px;
+  background-color: ${({ theme }) => theme.colors.brand.primary[600]};
+  color: ${({ theme }) => theme.colors.neutral10};
+`;
+
 export const ButtonContainer = styled.div`
   width: 100%;
-  margin-top: ${({ theme }) => theme.spacing(24)};
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(8)};
-  background-color: ${({ theme }) => theme.colors.neutral10};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
-    padding: ${({ theme }) => theme.spacing(16)};
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    display: block;
-  }
 `;
 
 export const LeftImage = styled.img`
@@ -97,19 +100,12 @@ export const RightImageContainer = styled.img`
   float: right;
 `;
 
-export const DefaultImage = styled.img`
-  width: 200px;
-  height: 200px;
-  align-self: center;
+export const Image = styled.img`
+  max-width: 101px;
+  padding: ${({ theme }) => theme.spacing(0, 8)};
 `;
 
-export const ArrowContainer = styled.div`
-  margin-left: ${({ theme }) => theme.spacing(16)};
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-self: center;
-`;
+export const DefaultImage = styled.img``;
 
 export const ImageWrapper = styled.div`
   width: 100%;
@@ -139,28 +135,42 @@ export const ImageContainerText = styled.p`
 
 export const ContentContainer = styled.div`
   width: 100%;
-  padding-bottom: ${({ theme }) => theme.spacing(80)};
+
+  padding-top: ${({ theme }) => theme.spacing(16)};
+  padding-bottom: ${({ theme }) => theme.spacing(24)};
   display: flex;
   flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(24)};
+  align-items: center;
+  justify-content: center;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 328px;
     height: 380px;
-    align-items: center;
-    justify-content: center;
   }
 `;
 
 export const BackArrowButton = styled.img`
   width: 24px;
   height: 24px;
-  align-self: flex-start;
+  position: absolute;
+  top: ${({ theme }) => theme.spacing(40)};
+  left: ${({ theme }) => theme.spacing(16)};
 
   cursor: pointer;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    left: 168px;
+  }
+`;
+
+export const TooltipSection = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export const Header = styled.div`
-  margin-bottom: ${({ theme }) => theme.spacing(24)};
+  margin-bottom: ${({ theme }) => theme.spacing(8)};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -177,4 +187,26 @@ export const LogosWrapper = styled.div`
 export const Logo = styled.img`
   height: 100%;
   max-height: 32px;
+`;
+
+export const Footer = styled.div`
+  margin-top: ${({ theme }) => theme.spacing(16)};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const MutedText = styled.p`
+  ${defaultBodyMdRegular}
+
+  color: ${({ theme }) => theme.colors.neutral[500]};
+`;
+
+export const ClickableText = styled.p`
+  ${defaultBodyMdSemibold}
+
+  text-decoration: underline;
+  color: ${({ theme }) => theme.colors.brand.primary[600]};
+  cursor: pointer;
 `;

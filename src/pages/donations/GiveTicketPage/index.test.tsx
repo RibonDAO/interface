@@ -1,174 +1,65 @@
-import { Integration } from "@ribon.io/shared/types";
-import { clickOn, renderComponent, waitForPromises } from "config/testUtils";
-import {
-  expectPageToNavigateTo,
-  expectTextToBeInTheDocument,
-} from "config/testUtils/expects";
-import causeFactory from "config/testUtils/factories/causeFactory";
-
-import { mockRequest } from "config/testUtils/test-helper";
+import { useIntegration } from "@ribon.io/shared";
+import { renderComponent } from "config/testUtils";
+import { expectTextToBeInTheDocument } from "config/testUtils/expects";
 import GiveTicketPage from ".";
 
+jest.mock("@ribon.io/shared/hooks", () => ({
+  __esModule: true,
+  ...jest.requireActual("@ribon.io/shared/hooks"),
+  useIntegration: jest.fn(),
+}));
+
 describe("GiveTicketPage", () => {
-  describe("when is the first access to ribon", () => {
-    describe("when the integration is Ribon", () => {
-      const ribonIntegration = {
-        id: 1,
-        name: "Ribon",
-        logo: "https://ribon.io/logo.png",
-      } as Integration;
-
-      mockRequest(`/api/v1/integrations/${ribonIntegration.id}`, {
-        payload: ribonIntegration,
+  describe("when the integration is Ribon", () => {
+    beforeEach(() => {
+      (useIntegration as jest.Mock).mockReturnValue({
+        integration: { id: 1, name: "Ribon" },
       });
-
-      beforeEach(() => {
-        renderComponent(<GiveTicketPage isOnboarding />);
-        waitForPromises();
-      });
-
-      it("renders the Ribon integration with correct title", () => {
-        expectTextToBeInTheDocument("Welcome to Ribon!");
-      });
-
-      it("navigates to the app download page when the button is clicked", () => {
-        clickOn("Get ticket in Ribon's app");
-        expectPageToNavigateTo("/app-download", {
-          state: { cameFrom: "intro" },
-        });
-      });
-
-      it("navigates to the receive ticket page when the button is clicked", () => {
-        clickOn("Stay in browser");
-
-        expectPageToNavigateTo("/receive-ticket");
-      });
+      renderComponent(<GiveTicketPage />);
     });
 
-    describe("when the integration is not Ribon", () => {
-      beforeEach(() => {
-        renderComponent(<GiveTicketPage isOnboarding />);
-        waitForPromises();
-      });
-
-      it("renders the integration with correct title", () => {
-        expectTextToBeInTheDocument("invited you to use Ribon's app!");
-      });
+    it("should renders correct title", () => {
+      expectTextToBeInTheDocument("You won 1 ticket!");
     });
   });
-  describe("when is not the first access to ribon", () => {
-    describe("when the integration is Ribon", () => {
-      const ribonIntegration = {
-        id: 3,
-        name: "Ribon",
-        logo: "https://ribon.io/logo.png",
-      } as Integration;
 
-      mockRequest(`/api/v1/integrations/${ribonIntegration.id}`, {
-        payload: ribonIntegration,
+  describe("should when the integration is not Ribon", () => {
+    beforeEach(() => {
+      (useIntegration as jest.Mock).mockReturnValue({
+        integration: { id: 2, name: "Spacex" },
       });
-
-      const userTasksStatistics = {
-        firstCompletedAllTasksAt: null,
-        streak: 0,
-        contributor: false,
-      };
-
-      mockRequest("/api/v1/users/tasks_statistics", {
-        method: "GET",
-        payload: {
-          userTasksStatistics,
-        },
-      });
-
-      beforeEach(() => {
-        renderComponent(<GiveTicketPage />);
-
-        waitForPromises();
-      });
-
-      it("renders the Ribon integration with correct title", () => {
-        expectTextToBeInTheDocument("You have 1 special ticket");
-      });
-
-      it("navigates to the app download page when the button is clicked", () => {
-        clickOn("Get ticket in Ribon's app");
-        expectPageToNavigateTo("/app-download", {
-          state: { cameFrom: "intro" },
-        });
-      });
-
-      it("navigates to the causes page when the button is clicked", () => {
-        clickOn("Stay in browser");
-        expectPageToNavigateTo("/causes");
-      });
+      renderComponent(<GiveTicketPage />);
     });
 
-    describe("when the integration is not Ribon", () => {
-      const otherIntegration = {
-        id: 2,
-        name: "Other",
-        logo: "https://other.io/logo.png",
-      } as Integration;
+    it("should render the correct title", () => {
+      expectTextToBeInTheDocument("Spacex gave you 1 ticket!");
+    });
+  });
 
-      const cause1 = causeFactory({
-        id: 1,
-        name: "cause1",
-        status: "active",
+  describe("should when there is no integration", () => {
+    beforeEach(() => {
+      (useIntegration as jest.Mock).mockReturnValue({
+        integration: null,
       });
+      renderComponent(<GiveTicketPage />);
+    });
+    it("render correct title", () => {
+      expectTextToBeInTheDocument("You won 1 ticket!");
+    });
+  });
 
-      mockRequest(`/api/v1/integrations/${otherIntegration.id}`, {
-        payload: otherIntegration,
+  describe("render button to download app", () => {
+    beforeEach(() => {
+      Object.assign(global, { innerWidth: 500 });
+      (useIntegration as jest.Mock).mockReturnValue({
+        integration: { id: 1, name: "Ribon" },
       });
+      renderComponent(<GiveTicketPage />);
+    });
 
-      mockRequest("/api/v1/free_donation_causes/", {
-        payload: [cause1],
-      });
-
-      const mockChain = {
-        name: "Mumbai Testnet",
-        ribonContractAddress: "0xF02a09B21267EDB53B459ddC802C60245dEfbE34",
-        donationTokenContractAddress:
-          "0xfe4F5145f6e09952a5ba9e956ED0C25e3Fa4c7F1",
-        chainId: 0x13881,
-        rpcUrls: "https://rpc-mumbai.maticvigil.com",
-        nodeUrl:
-          "https://polygon-mumbai.g.alchemy.com/v2/1fEWpdSHuohPveNBGvlozE6qv9P1uAks",
-        symbolName: "MATIC",
-        currencyName: "Matic",
-        blockExplorerUrls: "https://mumbai.polygonscan.com/",
-        defaultPoolAddress: "0x9B00b1a3C4ea8BFbBE984360513f7bE7e971e431",
-      };
-
-      mockRequest("/api/v1/chains", {
-        payload: [mockChain],
-      });
-
-      mockRequest("/api/v1/integrations/2", {
-        payload: otherIntegration,
-      });
-
-      const userTasksStatistics = {
-        firstCompletedAllTasksAt: null,
-        streak: 0,
-        contributor: false,
-      };
-
-      mockRequest("/api/v1/users/tasks_statistics", {
-        method: "GET",
-        payload: {
-          userTasksStatistics,
-        },
-      });
-
-      beforeEach(() => {
-        renderComponent(<GiveTicketPage />);
-        waitForPromises();
-      });
-
-      it("renders the integration with correct title", () => {
-        expectTextToBeInTheDocument("You have 1 special ticket");
-      });
+    it("should render button to download app and stay in browser", () => {
+      expectTextToBeInTheDocument("Get ticket on app");
+      expectTextToBeInTheDocument("Stay in browser");
     });
   });
 });

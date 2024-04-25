@@ -4,6 +4,8 @@ import {
   defaultBodyLgBold,
   defaultBodyMdMedium,
   defaultBodyMdSemibold,
+  defaultBodySmRegular,
+  defaultBodySmSemibold,
 } from "styles/typography/default";
 import ButtonComponent from "components/atomics/buttons/Button";
 
@@ -154,4 +156,26 @@ export const RightImage = styled.img`
     right: 0;
     display: block;
   }
+`;
+
+export const SignInContainer = styled.div`
+  width: 100%;
+  margin-top: ${({ theme }) => theme.spacing(24)};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const SignInTitle = styled.p`
+  ${defaultBodySmRegular}
+
+  color: ${({ theme }) => theme.colors.neutral[600]};
+`;
+
+export const SignInButton = styled.a`
+  ${defaultBodySmSemibold}
+
+  text-decoration-line: underline;
+  color: ${({ theme }) => theme.colors.brand.primary[600]};
+  cursor: pointer;
 `;

@@ -82,8 +82,7 @@ export const FooterText = styled.p`
   color: ${({ theme }) => theme.colors.neutral[500]};
 
   a {
-    text-decoration: none;
-    color: ${({ theme }) => theme.colors.brand.primary[300]};
+    color: ${({ theme }) => theme.colors.brand.primary[600]};
   }
 `;
 

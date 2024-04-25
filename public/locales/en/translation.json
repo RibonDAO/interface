@@ -862,7 +862,7 @@
     "sentMagicLinkEmailPage": {
       "title": "We sent you a sign in link",
       "firstText": "Click the link sent to",
-      "secondText": "to sign in to your account "
+      "secondText": "to sign in to your account in this device"
     }
   },
   "extraTicketPage": {

@@ -74,11 +74,11 @@ export const Button = styled.button<{ copy?: boolean }>`
   padding: ${({ theme }) => theme.spacing(12, 16)};
   border: ${({ theme, copy }) =>
     copy ? "none" : `1px solid ${theme.colors.brand.primary[600]}`};
-  border-radius: 8px;
+  border-radius: 12px;
   background-color: ${({ theme, copy }) =>
-    copy ? theme.colors.brand.primary[900] : theme.colors.neutral10};
+    copy ? theme.colors.brand.primary[600] : theme.colors.neutral10};
   color: ${({ theme, copy }) =>
-    copy ? theme.colors.neutral10 : theme.colors.brand.primary[900]};
+    copy ? theme.colors.neutral10 : theme.colors.brand.primary[600]};
 `;
 
 export const FlexRow = styled.div`

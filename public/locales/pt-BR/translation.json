@@ -862,10 +862,9 @@
       "emailPlaceholder": "Seu e-mail"
     },
     "sentMagicLinkEmailPage": {
-      "title": "Link de entrada enviado",
-      "text": "Clique no link enviado para {{email}} para entrar",
-      "firstAccessTitle": "Você ganhou um ticket extra",
-      "firstAccessText": "Valide sua conta clicando no link enviado para {{email}} e receba seu ticket extra."
+      "title": "Enviamos um link para você",
+      "firstText": "Clique no link enviado para",
+      "secondText": "e entre na sua conta neste dispositivo"
     }
   },
   "extraTicketPage": {

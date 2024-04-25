@@ -81,11 +81,10 @@ export const BackgroundShapes = styled.img`
 export const FooterText = styled.p`
   margin-top: ${({ theme }) => theme.spacing(8)};
   text-align: center;
-  color: ${({ theme }) => theme.colors.neutral[500]};
+  color: ${({ theme }) => theme.colors.neutral[600]};
 
   a {
-    text-decoration: none;
-    color: ${({ theme }) => theme.colors.brand.primary[300]};
+    color: ${({ theme }) => theme.colors.brand.primary[600]};
   }
 `;
 

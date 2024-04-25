@@ -78,6 +78,7 @@ export const BackgroundShapes = styled.img`
 
 export const FooterText = styled.p`
   margin-top: ${({ theme }) => theme.spacing(8)};
+  margin-bottom: ${({ theme }) => theme.spacing(24)};
   text-align: center;
   color: ${({ theme }) => theme.colors.neutral[500]};
 

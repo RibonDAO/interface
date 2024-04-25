@@ -23,7 +23,7 @@ export function useReceiveTicketToast(
       type: "custom",
       message: t("ticketToast"),
       position: isMobile ? "bottom" : "top-center",
-      navigate: "/tickets",
+      navigate: "/intro/receive-tickets",
       icon: "confirmation_number",
       backgroundColor: theme.colors.brand.primary[50],
       iconColor: theme.colors.brand.primary[600],

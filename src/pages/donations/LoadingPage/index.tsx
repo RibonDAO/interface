@@ -1,7 +1,4 @@
-import {
-  useFirstAccessToIntegration,
-  useIntegration,
-} from "@ribon.io/shared/hooks";
+import { useIntegration } from "@ribon.io/shared/hooks";
 import Spinner from "components/atomics/Spinner";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import useNavigation from "hooks/useNavigation";
@@ -13,17 +10,15 @@ import {
   getUTMFromLocationSearch,
   utmParamsToString,
 } from "lib/getUTMFromLocationSearch";
+import { useCurrentUser } from "contexts/currentUserContext";
 import * as S from "./styles";
 
 function LoadingPage(): JSX.Element {
   const { navigateTo, history } = useNavigation();
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
-  const {
-    isFirstAccessToIntegration,
-    isLoading: isLoadingIsFirstAccessToIntegration,
-  } = useFirstAccessToIntegration(integrationId);
   const externalId = extractUrlValue("external_id", history.location.search);
+  const { currentUser } = useCurrentUser();
 
   useEffect(() => {
     if (integration) {
@@ -41,7 +36,7 @@ function LoadingPage(): JSX.Element {
     );
   };
   const renderOnboardingPage = () => {
-    if (isFirstAccessToIntegration) {
+    if (!currentUser) {
       navigateTo({
         pathname: "/intro",
       });
@@ -57,9 +52,8 @@ function LoadingPage(): JSX.Element {
   }, [integrationId]);
 
   useEffect(() => {
-    if (integration && !isLoadingIsFirstAccessToIntegration)
-      renderOnboardingPage();
-  }, [isLoadingIsFirstAccessToIntegration, integration]);
+    if (integration) renderOnboardingPage();
+  }, [integration]);
 
   return (
     <S.Container>

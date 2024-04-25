@@ -18,6 +18,7 @@ export const Container = styled.div`
   gap: 8px;
   align-self: flex-end;
   justify-content: space-around;
+  text-align: center;
   background: ${({ theme }) => theme.colors.neutral10};
   box-shadow: 0 -2px 4px ${({ theme }) => theme.colors.defaultShadow};
 
@@ -44,7 +45,7 @@ export const Title = styled.p`
 `;
 
 export const StyledLinkContainer = styled.div`
-  padding: ${({ theme }) => theme.spacing(8, 0)};
+  padding: ${({ theme }) => theme.spacing(8)};
   display: flex;
   flex-direction: column;
 `;

@@ -50,7 +50,6 @@ function InsertEmailPage(): JSX.Element {
           <S.InputLabel htmlFor="email">{t("emailLabel")}</S.InputLabel>
           <S.Input
             name="email"
-            id="email"
             type="email"
             placeholder={t("emailPlaceholder")}
             value={email}

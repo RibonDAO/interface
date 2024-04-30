@@ -1,8 +1,5 @@
 import { createContext, useContext, useMemo, useState } from "react";
-import {
-  REFRESH_TOKEN_KEY,
-  ACCESS_TOKEN_KEY,
-} from "utils/constants";
+import { REFRESH_TOKEN_KEY, ACCESS_TOKEN_KEY } from "utils/constants";
 
 import { getCookiesItem, setCookiesItem } from "@ribon.io/shared/lib";
 import { userAuthenticationApi } from "@ribon.io/shared/services";

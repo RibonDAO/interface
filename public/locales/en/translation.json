@@ -725,6 +725,12 @@
     "subtitle": "Download now and keep up with you beautiful donation journey!",
     "cta": "Get the app ->"
   },
+  "referralBanner": {
+    "title": "Invite your friends",
+    "subtitle": "Whoever enters using your invite gets 1 extra ticket to start donating!",
+    "cta": "Copy invite link ->",
+    "ctaSuccess": "Copied!"
+  },
   "unlockNonProfitBanner": {
     "title": "Get the app to unlock this nonprofit",
     "cta": "Get app ->"

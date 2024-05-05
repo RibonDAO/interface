@@ -577,6 +577,7 @@
   },
   "onboarding": {
     "firstPage": {
+      "yourFriend": "Your friend",
       "onboardingRibonTitle": "Welcome to Ribon!",
       "onboardingIntegrationTitle": "{{integrationName}} invited you to use Ribon's app!",
       "onboardingSubtitle": "Download the app and get free tickets to donate to awesome charities!",

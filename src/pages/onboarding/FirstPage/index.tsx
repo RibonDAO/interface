@@ -14,8 +14,9 @@ import { theme } from "@ribon.io/shared/styles";
 import { useTicketsContext } from "contexts/ticketsContext";
 import RibonLogo from "assets/images/logo-ribon.svg";
 import ArrowLeft from "./assets/arrow-left-dark-green.svg";
-import * as S from "./styles";
 import Envelope from "./assets/envelope.svg";
+import Avatar from "./assets/avatar.svg";
+import * as S from "./styles";
 
 export type Props = {
   isOnboarding?: boolean;
@@ -41,12 +42,14 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
     }
   };
 
+  const isReferral = integration?.name?.includes("user::");
+
   const isRibonIntegration = integration?.id === parseInt(RIBON_COMPANY_ID, 10);
 
   const titleOnboarding = isRibonIntegration
     ? t("onboardingRibonTitle")
     : t("onboardingIntegrationTitle", {
-        integrationName: integration?.name,
+        integrationName: isReferral ? t("yourFriend") : integration?.name,
       });
 
   const handleSubtitle = isRibonIntegration
@@ -101,7 +104,10 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
               {!isRibonIntegration && (
                 <>
                   <S.ImageContainerText>+</S.ImageContainerText>
-                  <S.Logo src={integration?.logo} alt="integration-logo" />
+                  <S.Logo
+                    src={integration?.logo || Avatar}
+                    alt="integration-logo"
+                  />
                 </>
               )}
             </S.LogosWrapper>

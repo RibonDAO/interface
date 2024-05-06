@@ -3,6 +3,7 @@ import useUserIntegration from "hooks/userHooks/useUserIntegration";
 import { useEffect, useState } from "react";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { Integration } from "@ribon.io/shared/types";
+import { useUserProfile } from "@ribon.io/shared/hooks";
 import { useLanguage } from "hooks/useLanguage";
 import useBreakpoint from "hooks/useBreakpoint";
 import { logEvent } from "lib/events";
@@ -18,6 +19,7 @@ interface ReferralIntegration {
   metadata: {
     branch: "referral";
     userId?: number;
+    profilePhoto?: string;
   };
 }
 
@@ -28,22 +30,13 @@ export default function ReferralBanner() {
 
   const { createUserIntegration, getUserIntegration } = useUserIntegration();
   const { currentUser } = useCurrentUser();
+  const { userProfile } = useUserProfile();
+  const { profile } = userProfile();
   const { currentLang } = useLanguage();
   const { isMobile } = useBreakpoint();
 
   const [integration, setIntegration] = useState<any>();
   const [copied, setCopied] = useState<boolean>(false);
-
-  const [formObject] = useState<ReferralIntegration>({
-    name: `user::${currentUser?.id}`,
-    logo: undefined,
-    ticketAvailabilityInMinutes: null,
-    status: "active",
-    metadata: {
-      branch: "referral",
-      userId: currentUser?.id,
-    },
-  });
 
   const fetchIntegration = () => {
     getUserIntegration().then((integrationResponse) => {
@@ -76,7 +69,19 @@ export default function ReferralBanner() {
     logEvent("referralBtn_click");
 
     if (!integration) {
-      createUserIntegration(formObject, "").then((response) => {
+      const payload: ReferralIntegration = {
+        name: profile?.name || "User",
+        logo: undefined,
+        ticketAvailabilityInMinutes: null,
+        status: "active",
+        metadata: {
+          branch: "referral",
+          userId: currentUser?.id,
+          profilePhoto: profile?.photo,
+        },
+      };
+
+      createUserIntegration(payload, "").then((response) => {
         setIntegration(response?.data);
         copyTextToClipboard(response?.data);
       });
@@ -95,6 +100,8 @@ export default function ReferralBanner() {
     logEvent("referralBtn_view");
     fetchIntegration();
   }, []);
+
+  if (!profile) return null;
 
   return (
     <S.Container>

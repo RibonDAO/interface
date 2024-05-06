@@ -42,14 +42,12 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
     }
   };
 
-  const isReferral = integration?.name?.includes("user::");
-
   const isRibonIntegration = integration?.id === parseInt(RIBON_COMPANY_ID, 10);
 
   const titleOnboarding = isRibonIntegration
     ? t("onboardingRibonTitle")
     : t("onboardingIntegrationTitle", {
-        integrationName: isReferral ? t("yourFriend") : integration?.name,
+        integrationName: integration?.name,
       });
 
   const handleSubtitle = isRibonIntegration

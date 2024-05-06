@@ -60,7 +60,13 @@ export const TextContainer = styled.div`
 export const Title = styled.h2`
   ${defaultHeadingXs}
 
+  margin-inline: auto;
   color: #235174;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-inline: 0;
+    text-align: left;
+  }
 `;
 
 export const Text = styled.h5`

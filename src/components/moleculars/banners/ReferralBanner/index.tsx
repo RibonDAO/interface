@@ -1,9 +1,7 @@
 import { useTranslation } from "react-i18next";
 import useUserIntegration from "hooks/userHooks/useUserIntegration";
-import { logError } from "services/crashReport";
 import { useEffect, useState } from "react";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { useUserProfile } from "@ribon.io/shared/hooks";
 import { Integration } from "@ribon.io/shared/types";
 import { useLanguage } from "hooks/useLanguage";
 import useBreakpoint from "hooks/useBreakpoint";
@@ -30,16 +28,13 @@ export default function ReferralBanner() {
 
   const { createUserIntegration, getUserIntegration } = useUserIntegration();
   const { currentUser } = useCurrentUser();
-  const { userProfile } = useUserProfile();
-  const { profile } = userProfile();
   const { currentLang } = useLanguage();
   const { isMobile } = useBreakpoint();
 
-  const [logoUrl, setLogoUrl] = useState<string>("");
   const [integration, setIntegration] = useState<any>();
   const [copied, setCopied] = useState<boolean>(false);
 
-  const [formObject, setFormObject] = useState<ReferralIntegration>({
+  const [formObject] = useState<ReferralIntegration>({
     name: `user::${currentUser?.id}`,
     logo: undefined,
     ticketAvailabilityInMinutes: null,
@@ -55,19 +50,6 @@ export default function ReferralBanner() {
       if (integrationResponse) setIntegration(integrationResponse);
     });
   };
-
-  useEffect(() => {
-    if (!profile) return;
-
-    fetch(profile.photo)
-      .then((response) => response.blob())
-      .then((blob) => {
-        const logoFile = new File([blob], "logo.png", { type: "image/png" });
-        setLogoUrl(URL.createObjectURL(logoFile));
-        setFormObject((prev) => ({ ...prev, logo: logoFile }));
-      })
-      .catch(logError);
-  }, [profile]);
 
   const finalLink = (data?: Integration) => {
     const integrationData = data || integration;
@@ -94,7 +76,7 @@ export default function ReferralBanner() {
     logEvent("referralBtn_click");
 
     if (!integration) {
-      createUserIntegration(formObject, logoUrl).then((response) => {
+      createUserIntegration(formObject, "").then((response) => {
         setIntegration(response?.data);
         copyTextToClipboard(response?.data);
       });

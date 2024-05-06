@@ -1,9 +1,10 @@
 import { useTranslation } from "react-i18next";
 import useUserIntegration from "hooks/userHooks/useUserIntegration";
 import { logError } from "services/crashReport";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useUserProfile } from "@ribon.io/shared/hooks";
+import { Integration } from "@ribon.io/shared/types";
 import { useLanguage } from "hooks/useLanguage";
 import useBreakpoint from "hooks/useBreakpoint";
 import { logEvent } from "lib/events";
@@ -68,21 +69,23 @@ export default function ReferralBanner() {
       .catch(logError);
   }, [profile]);
 
-  const finalLink = useCallback(() => {
-    if (!integration) return "";
+  const finalLink = (data?: Integration) => {
+    const integrationData = data || integration;
+
+    if (!integrationData) return "";
 
     const params = new URLSearchParams({
-      integration_id: integration.uniqueAddress,
+      integration_id: integrationData.uniqueAddress,
       utm_source: currentLang === "pt-BR" ? "ribonweb_pt" : "ribonweb_en",
       utm_medium: "referral",
       utm_campaign: isMobile ? "mobile" : "desktop",
     });
 
     return `${APP_LINK}?${params.toString()}`;
-  }, [integration]);
+  };
 
-  const copyTextToClipboard = () => {
-    const text = finalLink();
+  const copyTextToClipboard = (data?: Integration) => {
+    const text = finalLink(data);
     navigator.clipboard.writeText(text);
     setCopied(true);
   };
@@ -91,13 +94,10 @@ export default function ReferralBanner() {
     logEvent("referralBtn_click");
 
     if (!integration) {
-      createUserIntegration(formObject, logoUrl)
-        .then(() => {
-          fetchIntegration();
-        })
-        .then(() => {
-          copyTextToClipboard();
-        });
+      createUserIntegration(formObject, logoUrl).then((response) => {
+        setIntegration(response?.data);
+        copyTextToClipboard(response?.data);
+      });
     } else {
       copyTextToClipboard();
     }

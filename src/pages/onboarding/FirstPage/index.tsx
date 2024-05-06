@@ -13,9 +13,9 @@ import { logEvent } from "lib/events";
 import { theme } from "@ribon.io/shared/styles";
 import { useTicketsContext } from "contexts/ticketsContext";
 import RibonLogo from "assets/images/logo-ribon.svg";
+import Avatar from "assets/images/avatar.svg";
 import ArrowLeft from "./assets/arrow-left-dark-green.svg";
 import Envelope from "./assets/envelope.svg";
-import Avatar from "./assets/avatar.svg";
 import * as S from "./styles";
 
 export type Props = {

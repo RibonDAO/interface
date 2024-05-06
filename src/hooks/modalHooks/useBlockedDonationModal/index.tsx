@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { Integration } from "@ribon.io/shared/types";
 import TicketWithTextAndImage from "components/atomics/TicketWithTextAndImage";
 import { RIBON_COMPANY_ID } from "utils/constants";
+import Avatar from "assets/images/avatar.svg";
 import { useModal } from "../useModal";
 
 export function useBlockedDonationModal(
@@ -30,7 +31,7 @@ export function useBlockedDonationModal(
           <TicketWithTextAndImage
             title={integration?.integrationTask.description}
             subtitle={integration?.integrationTask.link}
-            image={integration?.logo}
+            image={integration?.logo || Avatar}
             link={integration?.integrationTask.linkAddress}
             eventName="ticketModalWinBtn"
             eventParams={{ ticketQtd: 0 }}

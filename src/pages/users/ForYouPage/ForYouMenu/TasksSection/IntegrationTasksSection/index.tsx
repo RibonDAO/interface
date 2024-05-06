@@ -2,6 +2,7 @@ import { useIntegration } from "@ribon.io/shared/hooks";
 import { useTasksContext } from "contexts/tasksContext";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useTasks } from "utils/constants/Tasks";
+import Avatar from "assets/images/avatar.svg";
 import * as S from "./styles";
 
 function IntegrationTasksSection() {
@@ -19,7 +20,7 @@ function IntegrationTasksSection() {
         tasksState.find((obj) => obj.id === donateTicketTask?.id)?.done && (
           <S.IntegrationContainer>
             <S.RightContainer>
-              <S.Image src={integration?.logo} alt="logo" />
+              <S.Image src={integration?.logo || Avatar} alt="logo" />
             </S.RightContainer>
             <S.LeftContainer>
               <S.IntegrationTitle>

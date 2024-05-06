@@ -31,7 +31,7 @@ describe("SignInPage", () => {
   });
 
   it("should render without error", () => {
-    expectTextToBeInTheDocument("you are donating");
+    expectTextToBeInTheDocument("You are donating");
   });
 
   it("logs the P27_view event", async () => {

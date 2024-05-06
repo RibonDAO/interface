@@ -1,9 +1,5 @@
 import { createContext, useContext, useMemo, useState } from "react";
-import {
-  REFRESH_TOKEN_KEY,
-  ACCESS_TOKEN_KEY,
-  INTEGRATION_AUTH_ID,
-} from "utils/constants";
+import { REFRESH_TOKEN_KEY, ACCESS_TOKEN_KEY } from "utils/constants";
 
 import { getCookiesItem, setCookiesItem } from "@ribon.io/shared/lib";
 import { userAuthenticationApi } from "@ribon.io/shared/services";
@@ -139,7 +135,6 @@ function AuthenticationProvider({ children }: Props) {
       const response = await userAuthenticationApi.postSendAuthenticationEmail(
         email,
         accountId,
-        INTEGRATION_AUTH_ID,
       );
       if (onSuccess) onSuccess();
 

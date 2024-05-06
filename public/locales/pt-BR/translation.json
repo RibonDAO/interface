@@ -141,7 +141,9 @@
         "privacyPolicyLink": "https://ribon.io/privacy-policy/#pol%C3%ADtica",
         "impactOneLife": "Impacte 1 pessoa",
         "impactDescription": "com {{value}}",
-        "checkboxText": "Aceito receber e-mails com informações sobre minhas doações"
+        "checkboxText": "Aceito receber e-mails com informações sobre minhas doações",
+        "signInTitle": "Já tem uma conta?",
+        "signInButton": "Entrar com a sua conta"
       },
       "insertEmailAccountPage": {
         "title": "Você está doando",
@@ -877,10 +879,9 @@
       "emailPlaceholder": "Seu e-mail"
     },
     "sentMagicLinkEmailPage": {
-      "title": "Link de entrada enviado",
-      "text": "Clique no link enviado para {{email}} para entrar",
-      "firstAccessTitle": "Você ganhou um ticket extra",
-      "firstAccessText": "Valide sua conta clicando no link enviado para {{email}} e receba seu ticket extra."
+      "title": "Enviamos um link para você",
+      "firstText": "Clique no link enviado para",
+      "secondText": "e entre na sua conta neste dispositivo"
     }
   },
   "extraTicketPage": {

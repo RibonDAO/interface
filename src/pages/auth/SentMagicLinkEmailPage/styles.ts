@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { stylizedDisplayXs } from "styles/typography/stylized";
-import { defaultBodyMdSemibold } from "styles/typography/default";
+import {
+  defaultBodyMdBold,
+  defaultBodyMdMedium,
+} from "styles/typography/default";
 
 export const Container = styled.div`
   padding: ${({ theme }) => theme.spacing(0, 16)};
@@ -49,10 +52,15 @@ export const Title = styled.h1`
 `;
 
 export const Text = styled.p`
-  ${defaultBodyMdSemibold}
+  ${defaultBodyMdMedium}
 
-  margin-bottom: ${({ theme }) => theme.spacing(24)};
-  color: ${({ theme }) => theme.colors.neutral[500]};
+  color: ${({ theme }) => theme.colors.neutral[600]};
+`;
+
+export const EmailText = styled.p`
+  ${defaultBodyMdBold}
+  
+  color: ${({ theme }) => theme.colors.neutral[600]};
 `;
 
 export const LeftImage = styled.img`

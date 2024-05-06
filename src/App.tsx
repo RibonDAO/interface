@@ -50,16 +50,16 @@ function App() {
       <GrowthBookProvider growthbook={growthbook}>
         <ThemeProvider theme={theme}>
           <LoadingOverlayProvider>
-            <ModalProvider>
-              <GlobalStyle />
-              <BrowserRouter>
-                {debugEnabled() && <DebugEventsView />}
-                <ToastContextProvider>
-                  <CurrentUserProvider>
-                    <GoogleOAuthProvider
-                      clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID!}
-                    >
-                      <AuthenticationProvider>
+            <GlobalStyle />
+            <BrowserRouter>
+              {debugEnabled() && <DebugEventsView />}
+              <ToastContextProvider>
+                <CurrentUserProvider>
+                  <GoogleOAuthProvider
+                    clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID!}
+                  >
+                    <AuthenticationProvider>
+                      <ModalProvider>
                         <Suspense fallback={<div />}>
                           <TicketsProvider>
                             <TasksProvider>
@@ -78,13 +78,13 @@ function App() {
                             </TasksProvider>
                           </TicketsProvider>
                         </Suspense>
-                      </AuthenticationProvider>
-                    </GoogleOAuthProvider>
-                  </CurrentUserProvider>
-                  <Toast />
-                </ToastContextProvider>
-              </BrowserRouter>
-            </ModalProvider>
+                      </ModalProvider>
+                    </AuthenticationProvider>
+                  </GoogleOAuthProvider>
+                </CurrentUserProvider>
+                <Toast />
+              </ToastContextProvider>
+            </BrowserRouter>
           </LoadingOverlayProvider>
         </ThemeProvider>
       </GrowthBookProvider>

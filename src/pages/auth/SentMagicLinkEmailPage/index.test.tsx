@@ -12,9 +12,6 @@ jest.mock("@ribon.io/shared/hooks", () => ({
   useAuthentication: () => ({
     signInWithMagicLink: jest.fn(),
   }),
-  useFirstAccessToIntegration: () => ({
-    isFirstAccessToIntegration: false,
-  }),
 }));
 
 describe("SignInMagicLinkEmailPage", () => {
@@ -23,7 +20,8 @@ describe("SignInMagicLinkEmailPage", () => {
     await waitForPromises();
 
     expectTextToBeInTheDocument("We sent you a sign in link");
-    expectTextToBeInTheDocument("Click the link sent to to sign in");
+    expectTextToBeInTheDocument("Click the link sent to");
+    expectTextToBeInTheDocument("to sign in to your account in this device");
   });
 
   it("should call logEvent with correct params", async () => {

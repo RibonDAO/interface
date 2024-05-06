@@ -23,8 +23,8 @@
       "errorModalTitle": "Processing failed",
       "errorModalText": "The network is unstable and it was not possible to process your donation. Try again shortly.",
       "errorModalButtonText": "Ok",
-      "unauthorizedModalTitle": "Validate your e-mail",
-      "unauthorizedModalText": "Please, validate your e-mail to ensure your donation arrives safely.",
+      "unauthorizedModalTitle": "Sign in to continue donating",
+      "unauthorizedModalText": "Please, sign in to your account created with {{email}} to continue your donation.",
       "unauthorizedModalButtonText": "validate my account",
       "receiveTicketAnimationModalTitle": "Receiving Ticket...",
       "receiveTicketAnimationModalOrigin": "Community",
@@ -129,7 +129,7 @@
         "impactDescription": "with {{value}}"
       },
       "signInPage": {
-        "title": "you are donating",
+        "title": "You are donating",
         "google": "Continue with Google",
         "apple": "Continue with Apple",
         "email": "Continue with e-mail",
@@ -141,7 +141,9 @@
         "privacyPolicyLink": "https://ribon.io/en/privacy-policy/#privacy",
         "impactOneLife": "Impact 1 person",
         "impactDescription": "with {{value}}",
-        "checkboxText": "I agree to receive emails with information about my donations"
+        "checkboxText": "I agree to receive emails with information about my donations",
+        "signInTitle": "Have an account?",
+        "signInButton": "Sign in to your account"
       },
       "insertEmailAccountPage": {
         "title": "Choose an e-mail to donate",
@@ -876,9 +878,8 @@
     },
     "sentMagicLinkEmailPage": {
       "title": "We sent you a sign in link",
-      "text": "Click the link sent to {{email}} to sign in",
-      "firstAccessTitle": "You won an extra ticket",
-      "firstAccessText": "Validate your account clicking the link sent to {{email}} and get your extra ticket."
+      "firstText": "Click the link sent to",
+      "secondText": "to sign in to your account in this device"
     }
   },
   "extraTicketPage": {

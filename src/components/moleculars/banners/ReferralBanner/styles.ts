@@ -78,7 +78,7 @@ export const Text = styled.h5`
 
 export const CtaButton = styled(Button)`
   width: 100% !important;
-  border-color: ${({ theme }) => theme.colors.neutral10};
+  border: none;
   background-color: #235174;
   color: ${({ theme }) => theme.colors.neutral10};
 `;

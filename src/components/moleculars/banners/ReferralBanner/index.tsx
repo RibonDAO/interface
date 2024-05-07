@@ -39,7 +39,7 @@ export default function ReferralBanner() {
   const [copied, setCopied] = useState<boolean>(false);
 
   const fetchIntegration = () => {
-    getUserIntegration().then((integrationResponse) => {
+    getUserIntegration("referral").then((integrationResponse) => {
       if (integrationResponse) setIntegration(integrationResponse);
     });
   };

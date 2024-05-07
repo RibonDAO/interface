@@ -2,9 +2,13 @@ import { Integration } from "@ribon.io/shared/types/entities";
 import { userIntegrationsApi } from "@ribon.io/shared/services";
 import { useUploadFile } from "../useUploadFile";
 
+type Branch = "partners" | "referral";
+
 function useUserIntegration() {
-  async function getUserIntegration() {
-    const { data: integration } = await userIntegrationsApi.getIntegration();
+  async function getUserIntegration(branch: Branch) {
+    const { data: integration } = await userIntegrationsApi.getIntegration(
+      branch as string,
+    );
 
     return integration;
   }

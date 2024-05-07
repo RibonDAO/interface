@@ -23,6 +23,8 @@ function nonProfitFactory(params: Partial<NonProfit> = {}): NonProfit {
     status: "active",
     causeId: 1,
     logoDescription: "",
+    impactTitle: "",
+    coverImageDescription: "",
   };
   return Object.assign(defaultValues, params) as NonProfit;
 }

@@ -5,6 +5,7 @@ import useNavigation from "hooks/useNavigation";
 import { RIBON_COMPANY_ID } from "utils/constants";
 import { logEvent } from "lib/events";
 import { useTicketsContext } from "contexts/ticketsContext";
+import Avatar from "assets/images/avatar.svg";
 import TicketsCounter from "./TicketsCounter";
 import SettingsMenu from "./SettingsMenu";
 import * as S from "./styles";
@@ -36,7 +37,7 @@ function LayoutHeader({
   function renderSideLogo() {
     if (integrationId?.toString() === RIBON_COMPANY_ID) return undefined;
 
-    return integration?.logo;
+    return integration?.logo || Avatar;
   }
 
   function handleSideLogoClick() {

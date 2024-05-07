@@ -724,6 +724,12 @@
     "subtitle": "Baixe já e acompanhe no app a sua linda jornada de doação!",
     "cta": "Baixar app da Ribon ->"
   },
+  "referralBanner": {
+    "title": "Convide seus amigos",
+    "subtitle": "Quem entrar pelo seu convite recebe 1 ticket extra para começar a doar!",
+    "cta": "Copiar link de convite ->",
+    "ctaSuccess": "Copiado!"
+  },
   "unlockNonProfitBanner": {
     "title": "Baixe o app para desbloquear esta ONG",
     "cta": "Baixar app ->"

@@ -39,7 +39,7 @@ function CustomLinkCreatedPage(): JSX.Element {
     if (!isAuthenticated()) {
       navigateTo("/sign-in-custom-link");
     } else {
-      getUserIntegration().then((userIntegration) => {
+      getUserIntegration("partners").then((userIntegration) => {
         if (!userIntegration) {
           navigateTo("/custom-link");
         }
@@ -50,7 +50,7 @@ function CustomLinkCreatedPage(): JSX.Element {
   useEffect(() => {
     const fetchUserIntegration = async () => {
       try {
-        const userIntegration = await getUserIntegration();
+        const userIntegration = await getUserIntegration("partners");
         setIntegration(userIntegration);
       } catch (error) {
         logError(error);

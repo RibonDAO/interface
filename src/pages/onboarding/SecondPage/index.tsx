@@ -10,8 +10,9 @@ import Button from "components/atomics/buttons/Button";
 import { theme } from "@ribon.io/shared/styles";
 import RibonLogo from "assets/images/logo-ribon.svg";
 import ArrowLeft from "assets/icons/arrow-left-green.svg";
-import * as S from "./styles";
+import Avatar from "assets/images/avatar.svg";
 import TicketIllustration from "./assets/ticket-illustration.svg";
+import * as S from "./styles";
 
 function SecondPage(): JSX.Element {
   const { t } = useTranslation("translation", {
@@ -41,7 +42,10 @@ function SecondPage(): JSX.Element {
               {!isRibonIntegration && (
                 <>
                   <S.ImageContainerText>+</S.ImageContainerText>
-                  <S.Logo src={integration?.logo} alt="integration-logo" />
+                  <S.Logo
+                    src={integration?.logo || Avatar}
+                    alt="integration-logo"
+                  />
                 </>
               )}
             </S.LogosWrapper>

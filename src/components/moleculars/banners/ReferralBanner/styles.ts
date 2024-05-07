@@ -76,9 +76,10 @@ export const Text = styled.h5`
   color: #235174;
 `;
 
-export const CtaButton = styled(Button)`
+export const CtaButton = styled(Button)<{ copied: boolean }>`
   width: 100% !important;
   border: none;
-  background-color: #235174;
+  background-color: ${({ copied, theme }) =>
+    copied ? theme.colors.brand.primary[700] : "#235174"};
   color: ${({ theme }) => theme.colors.neutral10};
 `;

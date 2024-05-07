@@ -111,6 +111,7 @@ export default function ReferralBanner() {
         <S.CtaButton
           onClick={handleClick}
           text={copied ? t("ctaSuccess") : t("cta")}
+          copied={copied}
         />
       </S.TextContainer>
       <S.ImageContainer>

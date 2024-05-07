@@ -151,22 +151,6 @@
         "confirmText": "Continue",
         "emailPlaceholder": "Your e-mail"
       },
-      "extraTicketPage": {
-        "title": "You won an extra ticket",
-        "description": "Validate your account clicking the link sent to {{email}} and get your extra ticket.",
-        "buttonText": "Continue without extra ticket"
-      },
-      "receiveExtraTicketPage": {
-        "title": "Validating your account brought you here",
-        "description": "Your donation ticket is available",
-        "buttonText": "Get my ticket"
-      },
-      "signInExtraTicketPage": {
-        "title": "You won an extra ticket",
-        "description": "Validate your account created with {{email}} to get your extra ticket",
-        "buttonText": "Continue without extra ticket",
-        "toastDescription": "Your ticket was sent by e-mail"
-      },
       "signInCustomLinkPage": {
         "title": "Sign in to proceed",
         "description": "Sign in to your account to create your custom link",
@@ -881,9 +865,6 @@
       "firstText": "Click the link sent to",
       "secondText": "to sign in to your account in this device"
     }
-  },
-  "extraTicketPage": {
-    "error": "Invalid link"
   },
   "components": {
     "moleculars": {

@@ -151,22 +151,6 @@
         "confirmText": "Continuar",
         "emailPlaceholder": "Seu e-mail"
       },
-      "extraTicketPage": {
-        "title": "Você ganhou um ticket extra",
-        "description": "Valide sua conta clicando no link enviado para {{email}} e receba seu ticket extra",
-        "buttonText": "Continuar sem ticket extra"
-      },
-      "receiveExtraTicketPage": {
-        "title": "Validar sua conta trouxe você aqui",
-        "description": "Seu ticket extra está disponível",
-        "buttonText": "Receber meu ticket"
-      },
-      "signInExtraTicketPage": {
-        "title": "Você ganhou um ticket extra",
-        "description": "Valide sua conta criada com {{email}} e receba seu ticket extra",
-        "buttonText": "Continuar sem ticket extra",
-        "toastDescription": "Seu ticket foi enviado por e-mail"
-      },
       "signInCustomLinkPage": {
         "title": "Faça login para continuar",
         "description": "Crie um acesse sua conta para criar um link de doação personalizado",
@@ -883,9 +867,6 @@
       "firstText": "Clique no link enviado para",
       "secondText": "e entre na sua conta neste dispositivo"
     }
-  },
-  "extraTicketPage": {
-    "error": "Link inválido"
   },
   "components": {
     "moleculars": {

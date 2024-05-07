@@ -20,6 +20,7 @@ interface BusinessFormObject {
   ticketAvailabilityInMinutes: null;
   status: string;
   metadata: {
+    branch: "partners";
     ownerName: string;
     linkedinProfile: string;
     corporateEmail: string;
@@ -49,6 +50,7 @@ function CustomLinkPage(): JSX.Element {
     ticketAvailabilityInMinutes: null,
     status: "active",
     metadata: {
+      branch: "partners",
       ownerName: "",
       linkedinProfile: "",
       corporateEmail: "",
@@ -65,7 +67,7 @@ function CustomLinkPage(): JSX.Element {
     if (!isAuthenticated()) {
       navigateTo("/sign-in-custom-link");
     } else {
-      getUserIntegration().then((integration) => {
+      getUserIntegration("partners").then((integration) => {
         if (integration) {
           navigateTo("/custom-link-created");
         }
@@ -121,7 +123,7 @@ function CustomLinkPage(): JSX.Element {
       await createUserIntegration(formObject, logo);
       setLoading(true);
       setTimeout(() => {
-        getUserIntegration().then((integration) => {
+        getUserIntegration("partners").then((integration) => {
           if (integration) {
             navigateTo("/custom-link-created");
           } else {

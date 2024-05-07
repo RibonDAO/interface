@@ -13,9 +13,10 @@ import { logEvent } from "lib/events";
 import { theme } from "@ribon.io/shared/styles";
 import { useTicketsContext } from "contexts/ticketsContext";
 import RibonLogo from "assets/images/logo-ribon.svg";
+import Avatar from "assets/images/avatar.svg";
 import ArrowLeft from "./assets/arrow-left-dark-green.svg";
-import * as S from "./styles";
 import Envelope from "./assets/envelope.svg";
+import * as S from "./styles";
 
 export type Props = {
   isOnboarding?: boolean;
@@ -101,7 +102,10 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
               {!isRibonIntegration && (
                 <>
                   <S.ImageContainerText>+</S.ImageContainerText>
-                  <S.Logo src={integration?.logo} alt="integration-logo" />
+                  <S.Logo
+                    src={integration?.logo || Avatar}
+                    alt="integration-logo"
+                  />
                 </>
               )}
             </S.LogosWrapper>

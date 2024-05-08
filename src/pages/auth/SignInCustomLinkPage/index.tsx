@@ -4,7 +4,6 @@ import { logEvent } from "lib/events";
 import useNavigation from "hooks/useNavigation";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { userAccountApi } from "@ribon.io/shared/services";
 import useToast from "hooks/useToast";
 import { useAuthentication } from "contexts/authenticationContext";
 import ValidateAccount from "components/moleculars/validateAccount";
@@ -25,7 +24,6 @@ function SignInCustomLinkPage(): JSX.Element {
   }, []);
 
   const onContinue = async (pathname: string) => {
-    await userAccountApi.postSendValidatedEmail();
     navigateTo({
       pathname,
     });

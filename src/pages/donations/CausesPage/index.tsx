@@ -28,6 +28,9 @@ import {
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import { setLocalStorageItem } from "lib/localStorage";
 import useNavigation from "hooks/useNavigation";
+import CardCampaign from "components/moleculars/cards/CardCampaign";
+import RsFloodCampaignImage from "assets/temp/rs-flood-campaign.png";
+import { useLanguage } from "hooks/useLanguage";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
 import CausesSelectSection from "./CausesSelectSection";
@@ -108,6 +111,8 @@ function CausesPage(): JSX.Element {
 
   useAvoidBackButton();
 
+  const { currentLang } = useLanguage();
+
   return (
     <S.Container>
       <DownloadAppToast />
@@ -129,7 +134,33 @@ function CausesPage(): JSX.Element {
           )}
         </S.TitleContainer>
 
-        {donatedToday && <CampaignSection cardId="1" />}
+        {currentLang === "pt-BR" && (
+          <CardCampaign
+            value={0}
+            style={{
+              width: isMobile ? "110%" : "100%",
+              marginRight: isMobile ? "-16px" : "0",
+              marginLeft: isMobile ? "-16px" : "0",
+              borderRadius: isMobile ? "0" : "8px",
+            }}
+            from="organic"
+            flow="nonProfit"
+            cardData={{
+              headline: "AJUDE AGORA",
+              title: "Juntos pelo Rio Grande do Sul",
+              description:
+                "Listamos as formas mais seguras para você ajudar as vítimas das enchentes do RS",
+              ctaText: "Saiba como ajudar",
+              ctaUrl: "https://projetos.ribon.io/juntos-pelo-rs",
+              image: RsFloodCampaignImage,
+              active: true,
+            }}
+          />
+        )}
+
+        {donatedToday && currentLang !== "pt-BR" && (
+          <CampaignSection cardId="1" />
+        )}
 
         <ContributionNotification />
         <CausesSelectSection />

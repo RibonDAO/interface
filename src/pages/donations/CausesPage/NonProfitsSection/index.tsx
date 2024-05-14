@@ -54,7 +54,6 @@ function NonProfitsSection() {
   - lorem ipsum dot
   - lorem ipsum do
   `;
-  
 
   return (
     <S.Container>
@@ -64,10 +63,8 @@ function NonProfitsSection() {
         filteredNonProfits && (
           <S.NonProfitsContainer>
             <NonProfitsList nonProfits={sortNonProfits()} />
-            <CardNonProfitStories markdownText={markdownTest}/>
-            <CardNonProfitStories 
-              backgroundImage="https://s3-alpha-sig.figma.com/img/e39a/c72c/54240517005b965849596281519d3edd?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QJSHOmm9kdLb6nqMIeEGCHqgwDl4sXPDD9ye7qmG4zKLShV9ZvSP9ADydgwwLRqx5COr4olScIEVpV5UMMJ87gawPQ-xq8RDaRXwiGGa2JrCqnPO66nLxwOQaW3JlI6nUtPxrdmoSLQfGtFxg0WcJU~yyT3u6eD~ni2UcH-BXp0z79G9xpsLBA1xxr8VbGISUfbRzrCK7bbKlM2s7AjHXGQRIJJHXUOXVOlIRajCSxymY2HwEUlpLRM86X0oPfv2VEhuHQlgRB8CCTWJS87-nam~v0jYnutLdIqsO0O08To95hhO~t87iGgdEp4dzEk4OE8IPcCbnjqzu~hDy1hQrg__"
-            />
+            <CardNonProfitStories markdownText={markdownTest} />
+            <CardNonProfitStories backgroundImage="https://s3-alpha-sig.figma.com/img/e39a/c72c/54240517005b965849596281519d3edd?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QJSHOmm9kdLb6nqMIeEGCHqgwDl4sXPDD9ye7qmG4zKLShV9ZvSP9ADydgwwLRqx5COr4olScIEVpV5UMMJ87gawPQ-xq8RDaRXwiGGa2JrCqnPO66nLxwOQaW3JlI6nUtPxrdmoSLQfGtFxg0WcJU~yyT3u6eD~ni2UcH-BXp0z79G9xpsLBA1xxr8VbGISUfbRzrCK7bbKlM2s7AjHXGQRIJJHXUOXVOlIRajCSxymY2HwEUlpLRM86X0oPfv2VEhuHQlgRB8CCTWJS87-nam~v0jYnutLdIqsO0O08To95hhO~t87iGgdEp4dzEk4OE8IPcCbnjqzu~hDy1hQrg__" />
           </S.NonProfitsContainer>
         )
       )}

@@ -1,4 +1,4 @@
-import Markdown from "react-markdown"
+import Markdown from "react-markdown";
 import DefaultBackground from "./assets/DefaultBackground";
 import * as S from "./styles";
 
@@ -29,7 +29,7 @@ function ImageBackgroundComponent({ markdownText, backgroundImage }: Props) {
   return (
     <S.Container>
       <S.ImageBackground
-        style = {{
+        style={{
           backgroundImage: `url(${backgroundImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",

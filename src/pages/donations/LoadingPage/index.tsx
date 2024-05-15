@@ -4,6 +4,7 @@ import { useIntegrationId } from "hooks/useIntegrationId";
 import useNavigation from "hooks/useNavigation";
 import { useEffect } from "react";
 import { logEvent } from "lib/events";
+import { useCouponContext } from "contexts/couponContext";
 import { APP_INTEGRATION_LINK } from "utils/constants";
 import extractUrlValue from "lib/extractUrlValue";
 import {
@@ -17,7 +18,9 @@ function LoadingPage(): JSX.Element {
   const { navigateTo, history } = useNavigation();
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
+  const { setCouponId } = useCouponContext();
   const externalId = extractUrlValue("external_id", history.location.search);
+  const couponId = extractUrlValue("coupon_id", history.location.search);
   const { currentUser } = useCurrentUser();
 
   useEffect(() => {
@@ -29,10 +32,11 @@ function LoadingPage(): JSX.Element {
 
   const redirectToDeeplink = () => {
     const externalIdParam = externalId ? `&external_id=${externalId}` : "";
+    const couponIdParam = couponId ? `&coupon_id=${couponId}` : "";
     const utmParams = getUTMFromLocationSearch(history.location.search);
     const utmParamsString = utmParamsToString(utmParams);
     window.location.replace(
-      `${APP_INTEGRATION_LINK}?integration_id=${integrationId}&${externalIdParam}${utmParamsString}`,
+      `${APP_INTEGRATION_LINK}?integration_id=${integrationId}&${externalIdParam}&${couponIdParam}${utmParamsString}`,
     );
   };
   const renderOnboardingPage = () => {
@@ -45,6 +49,14 @@ function LoadingPage(): JSX.Element {
     }
   };
 
+  const renderReceiveCouponPage = () => {
+    if (!currentUser) {
+      navigateTo("/sign-in-coupon");
+    } else {
+      navigateTo("/give-ticket-coupon");
+    }
+  };
+
   useEffect(() => {
     if (process.env.REACT_APP_DEBUG_VIEW) return;
     if (!history.location.search?.includes("_branch_match_id") && integrationId)
@@ -52,8 +64,12 @@ function LoadingPage(): JSX.Element {
   }, [integrationId]);
 
   useEffect(() => {
+    if (couponId) {
+      setCouponId(couponId);
+      renderReceiveCouponPage();
+    }
     if (integration) renderOnboardingPage();
-  }, [integration]);
+  }, [integration, couponId]);
 
   return (
     <S.Container>

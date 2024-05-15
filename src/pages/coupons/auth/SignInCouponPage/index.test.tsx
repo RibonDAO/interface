@@ -4,20 +4,27 @@ import {
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
 import { waitForPromises } from "config/testUtils";
-import SignInCouponScreen from ".";
+import SignInCouponPage from ".";
 
-jest.mock("services/googleSignIn", () => ({
-  signIn: () => {},
+jest.mock("@react-oauth/google", () => ({
+  useGoogleLogin: () => {},
 }));
 
-describe("SignInCouponScreen", () => {
+jest.mock(
+  "components/moleculars/buttons/AppleLogin",
+  () =>
+    function () {
+      return <div />;
+    },
+);
+describe("SignInCouponPage", () => {
   beforeEach(() => {
-    renderComponent(<SignInCouponScreen />);
+    renderComponent(<SignInCouponPage />);
   });
 
   it("should render without error", () => {
     expectTextToBeInTheDocument(
-      "Log in to the account you want to receive tickets",
+      "Sign in the account where you want to receive the tickets",
     );
   });
 

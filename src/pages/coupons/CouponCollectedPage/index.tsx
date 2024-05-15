@@ -1,6 +1,8 @@
 import RibonLogo from "assets/images/logo-ribon.svg";
 import { useTranslation } from "react-i18next";
 import useNavigation from "hooks/useNavigation";
+import { APP_LINK } from "utils/constants";
+import useBreakpoint from "hooks/useBreakpoint";
 import Ticket from "../../donations/GiveTicketPage/assets/ticket.svg";
 import * as S from "./styles";
 
@@ -10,6 +12,15 @@ function CouponCollectedPage(): JSX.Element {
   });
 
   const { navigateTo } = useNavigation();
+  const { isMobile } = useBreakpoint();
+
+  const handleClick = () => {
+    if (isMobile) {
+      window.open(APP_LINK);
+      return;
+    }
+    navigateTo("/app-download");
+  };
 
   return (
     <S.Container>
@@ -27,13 +38,7 @@ function CouponCollectedPage(): JSX.Element {
           <S.TextContainer>
             <S.Description>{t("description")}</S.Description>
           </S.TextContainer>
-          <S.Link
-            onClick={() => {
-              navigateTo("/app-download");
-            }}
-          >
-            {t("buttonText")}
-          </S.Link>
+          <S.Link onClick={handleClick}>{t("buttonText")}</S.Link>
         </S.ButtonContainer>
       </S.MainContainer>
     </S.Container>

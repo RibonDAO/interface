@@ -171,7 +171,7 @@
   "coupons": {
     "auth": {
       "signInPage": {
-        "title": "Entre na conta que deseja receber os tickets",
+        "title": "Sign in the account where you want to receive the tickets",
         "footerStartText": "By clicking 'Continue' I agree on Ribon’s",
         "footerEndText": " and",
         "termsText": "Terms",
@@ -181,14 +181,14 @@
       }
     },
     "giveTicketCouponPage": {
-      "title": "Você ganhou um ticket!",
-      "buttonText": "Coletar tickets",
-      "titlePlural": "Você ganhou {{numberOfTickets}} tickets!"
+      "title": "You won 1 ticket!",
+      "buttonText": "Collect tickets",
+      "titlePlural": "You’ve won {{numberOfTickets}} tickets"
     },
     "couponCollectedPage": {
-      "title": "Seus tickets foram recebidos! Volte no app para usá-los",
-      "description": "Caso não tenha o aplicativo da Ribon, baixe-o para usar seus tickets!",
-      "buttonText": "Baixar app →"
+      "title": "Your tickets have been received! Return to the app to use them",
+      "description": "If you don't have the Ribon app, download it to use your tickets!",
+      "buttonText": "Get Ribon app →"
     },
     "expiredCouponPage": {
       "title": "Unavailable ticket",

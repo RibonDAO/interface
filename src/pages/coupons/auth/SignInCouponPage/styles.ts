@@ -8,13 +8,13 @@ import {
 import ButtonComponent from "components/atomics/buttons/Button";
 
 export const Container = styled.div`
+  height: 100vh;
   padding: ${({ theme }) => theme.spacing(0, 16)};
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
 `;
 
 export const ImageContainer = styled.div`

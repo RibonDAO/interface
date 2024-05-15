@@ -21,8 +21,8 @@ export const MainContainer = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     max-width: 360px;
-    justify-content: center;
     height: 100%;
+    justify-content: center;
   }
 `;
 
@@ -57,10 +57,10 @@ export const DefaultImage = styled.img`
 
 export const TextContainer = styled.div`
   width: 328px;
-  align-self: center;
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(12)};
+  align-self: center;
   text-align: center;
 `;
 
@@ -74,16 +74,16 @@ export const Title = styled.p`
 export const Description = styled.p`
   ${defaultBodyMdRegular}
 
-  color: ${({ theme }) => theme.colors.neutral[600]};
   text-align: center;
+  color: ${({ theme }) => theme.colors.neutral[600]};
 `;
 
 export const ButtonContainer = styled.div`
   width: 100%;
+  padding-bottom: ${({ theme }) => theme.spacing(16)};
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(8)};
-  padding-bottom: ${({ theme }) => theme.spacing(16)};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     padding-top: ${({ theme }) => theme.spacing(24)};

@@ -114,9 +114,9 @@ export const FilledButton = styled.button`
   border: 1px solid ${({ theme }) => theme.colors.brand.primary[600]};
   border-radius: 4px;
   display: flex;
+  gap: ${({ theme }) => theme.spacing(8)};
   align-items: center;
   justify-content: center;
-  gap: ${({ theme }) => theme.spacing(8)};
   background-color: ${({ theme }) => theme.colors.brand.primary[600]};
   color: ${({ theme }) => theme.colors.neutral10};
 `;

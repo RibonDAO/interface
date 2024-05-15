@@ -61,11 +61,11 @@ export const DefaultImage = styled.img`
 `;
 
 export const TextContainer = styled.div`
+  margin-top: ${({ theme }) => theme.spacing(12)};
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(12)};
   text-align: center;
-  margin-top: ${({ theme }) => theme.spacing(12)};
 `;
 
 export const Title = styled.p`
@@ -77,6 +77,7 @@ export const Title = styled.p`
 
 export const Description = styled.p`
   ${defaultBodyMdRegular}
+
   padding: ${({ theme }) => theme.spacing(0, 16)};
   color: ${({ theme }) => theme.colors.neutral[600]};
 `;
@@ -96,9 +97,9 @@ export const FilledButton = styled.button`
   border: 1px solid ${({ theme }) => theme.colors.brand.primary[600]};
   border-radius: 12px;
   display: flex;
+  gap: ${({ theme }) => theme.spacing(8)};
   align-items: center;
   justify-content: center;
-  gap: ${({ theme }) => theme.spacing(8)};
   background-color: ${({ theme }) => theme.colors.brand.primary[600]};
   color: ${({ theme }) => theme.colors.neutral10};
 `;

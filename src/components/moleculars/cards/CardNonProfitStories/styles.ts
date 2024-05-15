@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 296px;
   height: 432px;
-  border-radius: ${({ theme }) => theme.spacing(16)};
+  border-radius: 16px;
   position: relative;
   display: flex;
   align-items: center;
@@ -22,26 +22,26 @@ export const BackgroundContainer = styled.div`
 
 export const MarkdownContainer = styled.div`
   width: 100%;
-  padding: ${({ theme }) => theme.spacing(48, 24)};
+  padding: 48px 24px;
   position: absolute;
-  z-index: ${({ theme }) => theme.zindex.above};
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing(12)};
+  gap: 12px;
 
   ul {
     margin-top: -12px;
-    padding-left: ${({ theme }) => theme.spacing(24)};
-    line-height: ${({ theme }) => theme.spacing(24)};
+    padding-left: 24px;
+    line-height: 24px;
   }
 
   p {
-    line-height: ${({ theme }) => theme.spacing(24)};
+    line-height: 24px;
   }
 `;
 
 export const ImageBackground = styled.image`
   width: 100%;
   height: 100%;
-  border-radius: ${({ theme }) => theme.spacing(16)};
+  border-radius: 16px;
 `;

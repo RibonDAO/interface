@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { theme } from "@ribon.io/shared/styles";
+import styled from "styled-components";
 
 export const Container = styled.div`
   width: 296px;
@@ -28,12 +28,12 @@ export const MarkdownContainer = styled.div`
   z-index: ${theme.zindex.above};
   display: flex;
   flex-direction: column;
-  gap: ${theme.spacing(12)};  
+  gap: ${theme.spacing(12)};
 
   ul {
-    line-height: ${theme.spacing(24)};
-    padding-left: ${theme.spacing(24)};
     margin-top: -${theme.spacing(12)};
+    padding-left: ${theme.spacing(24)};
+    line-height: ${theme.spacing(24)};
   }
 
   p {

@@ -51,9 +51,9 @@ function LoadingPage(): JSX.Element {
 
   const renderReceiveCouponPage = () => {
     if (!currentUser) {
-      navigateTo("/sign-in-coupon");
+      navigateTo("/coupons/sign-in");
     } else {
-      navigateTo("/give-ticket-coupon");
+      navigateTo("/coupons/give-ticket-coupon");
     }
   };
 

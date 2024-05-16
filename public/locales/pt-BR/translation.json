@@ -178,6 +178,12 @@
         "termsLink": "https://ribon.io/pt/privacy-policy/#terms",
         "privacyPolicyText": "Política de Privacidade",
         "privacyPolicyLink": "https://ribon.io/pt/privacy-policy/#privacy"
+      },
+      "insertEmailCouponPage": {
+        "title": "Insira seu e-mail para receber os tickets",
+        "emailLabel": "E-mail",
+        "confirmText": "Continuar",
+        "emailPlaceholder": "Seu e-mail"
       }
     },
     "giveTicketCouponPage": {

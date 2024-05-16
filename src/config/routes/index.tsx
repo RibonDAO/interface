@@ -58,6 +58,7 @@ import SignInCouponPage from "pages/coupons/auth/SignInCouponPage";
 import GiveTicketCouponPage from "pages/coupons/GiveTicketCouponPage";
 import CouponCollectedPage from "pages/coupons/CouponCollectedPage";
 import ExpiredCouponPage from "pages/coupons/ExpiredCouponPage";
+import InsertEmailCouponPage from "pages/coupons/auth/InsertEmailCouponPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -112,13 +113,20 @@ function RoutesComponent(): JSX.Element {
         </Suspense>
       </Route>
 
-      <Route path="/sign-in-coupon" exact>
+      <Route path="/coupons/sign-in" exact>
         <Suspense fallback={<div />}>
           <SignInCouponPage />
         </Suspense>
       </Route>
 
-      <Route path="/give-ticket-coupon" exact>
+      <Route path="/coupons/insert-email" exact>
+        <Suspense fallback={<div />}>
+          <NavigationBackHeader />
+          <InsertEmailCouponPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/coupons/give-ticket" exact>
         <Suspense fallback={<div />}>
           <GiveTicketCouponPage />
         </Suspense>

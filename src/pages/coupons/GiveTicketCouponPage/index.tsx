@@ -45,7 +45,7 @@ function GiveTicketCouponPage(): JSX.Element {
     } else {
       navigateTo("/sign-in-coupon");
     }
-  }, []);
+  }, [currentUser]);
 
   async function receiveTicket() {
     logEvent("P37_getTicketBtn_click");

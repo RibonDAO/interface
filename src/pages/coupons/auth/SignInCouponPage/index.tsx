@@ -36,11 +36,11 @@ function SignInCouponPage() {
         <S.Title>{t("title")}</S.Title>
         <S.ButtonContainer>
           <GoogleLogin
-            onContinue={() => onContinue("/coupons/give-ticket-coupon")}
+            onContinue={() => onContinue("/coupons/give-ticket")}
             from="coupon_flow"
           />
           <AppleLogin
-            onContinue={() => onContinue("/coupons/give-ticket-coupon")}
+            onContinue={() => onContinue("/coupons/give-ticket")}
             from="coupon_flow"
           />
           <MagicLinkLogin

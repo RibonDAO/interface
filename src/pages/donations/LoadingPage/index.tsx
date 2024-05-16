@@ -53,7 +53,7 @@ function LoadingPage(): JSX.Element {
     if (!currentUser) {
       navigateTo("/coupons/sign-in");
     } else {
-      navigateTo("/coupons/give-ticket-coupon");
+      navigateTo("/coupons/give-ticket");
     }
   };
 

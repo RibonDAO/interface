@@ -45,8 +45,8 @@ export const MainImage = styled.img`
 export const Title = styled.h1`
   ${stylizedDisplayXs}
 
-  text-align: center;
   margin-bottom: ${({ theme }) => theme.spacing(8)};
+  text-align: center;
   color: ${({ theme }) => theme.colors.brand.primary[900]};
 `;
 

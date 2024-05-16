@@ -22,6 +22,6 @@ describe("App Download Page", () => {
   it("should go back when click in arrow", () => {
     clickOn(screen.getByAltText("back-arrow-button"));
 
-    expectPageToNavigateTo("/impact");
+    expectPageToNavigateTo("/causes");
   });
 });

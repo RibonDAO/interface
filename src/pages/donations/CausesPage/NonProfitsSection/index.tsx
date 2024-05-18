@@ -4,7 +4,7 @@ import { useCausesContext } from "contexts/causesContext";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
 
 import { useEffect } from "react";
-import NonProfitsList from "../NonProfitsList";
+import FirstCard from "components/moleculars/FirstCard";
 import * as S from "./styles";
 
 function NonProfitsSection() {
@@ -50,7 +50,12 @@ function NonProfitsSection() {
       ) : (
         filteredNonProfits && (
           <S.NonProfitsContainer>
-            <NonProfitsList nonProfits={sortNonProfits()} />
+            <FirstCard
+              nonProfit={sortNonProfits()[0]}
+              buttonOnClick={() => {}}
+              buttonDisabled={false}
+              ticketsQuantity={10}
+            />
           </S.NonProfitsContainer>
         )
       )}

@@ -3,6 +3,7 @@ import { NonProfit } from "@ribon.io/shared/types";
 import Button from "components/atomics/buttons/Button";
 import TicketIconText from "components/moleculars/TicketIconText";
 import { useTranslation } from "react-i18next";
+import theme from "styles/theme";
 import * as S from "./styles";
 
 type Props = {
@@ -33,6 +34,7 @@ export default function FirstCard({
           text={t("textButton")}
           onClick={buttonOnClick}
           disabled={buttonDisabled}
+          backgroundColor={theme.colors.brand.primary[600]}
         />
       </S.ButtonContainer>
     </S.Container>

@@ -10,24 +10,25 @@ export const Container = styled.div<{
 }>`
   width: 296px;
   height: 432px;
-  background-size: cover;
-  background-repeat: no-repeat;
   padding: 24px;
+  border-radius: 16px;
   display: flex;
   flex-direction: column;
-  border-radius: 16px;
-  background-color: #ffe7fb;
+  background-size: cover;
+  background-repeat: no-repeat;
 `;
 
 export const NgoName = styled.p`
-  ${defaultBodySmMedium};
+  ${defaultBodySmMedium}
+
   color: ${theme.colors.neutral[600]};
 `;
 
 export const ImpactTitle = styled.p`
-  ${defaultHeadingXs};
-  color: ${theme.colors.neutral[800]};
+  ${defaultHeadingXs}
+
   word-wrap: break-word;
+  color: ${theme.colors.neutral[800]};
 `;
 
 export const TicketsContainer = styled.div`
@@ -35,8 +36,8 @@ export const TicketsContainer = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
+width: 100%;
+display: flex;
   flex: 1;
-  display: flex;
   align-items: flex-end;
-  width: 100%;
 `;

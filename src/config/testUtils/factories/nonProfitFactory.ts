@@ -14,6 +14,8 @@ function nonProfitFactory(params: Partial<NonProfit> = {}): NonProfit {
     backgroundImage: "",
     coverImage: "",
     mainImage: "",
+    icon: "",
+    iconDescription: "",
     cause: {} as Cause,
     nonProfitImpacts: [nonProfitImpactFactory()],
     confirmationImage: "",

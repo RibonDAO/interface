@@ -2704,10 +2704,10 @@
   resolved "https://registry.yarnpkg.com/@react-oauth/google/-/google-0.11.1.tgz#f937c8d02bd37e3a6be7713b8212e9b9b9b3f914"
   integrity sha512-tywZisXbsdaRBVbEu0VX6dRbOSL2I6DgY97woq5NMOOOz+xtDsm418vqq+Vx10KMtra3kdHMRMf0hXLWrk2RMg==
 
-"@ribon.io/shared@^1.1.51":
-  version "1.1.51"
-  resolved "https://registry.yarnpkg.com/@ribon.io/shared/-/shared-1.1.51.tgz#e2f86b24671d4c16215221693e2ed54cb56a9932"
-  integrity sha512-bAhJej/1R/gszIInOl2WLzW0xmeJAsCH43QUr+rH5GNwlAv7co4SVqs9yCsURp1FeUK2TbLY/G5NipcZbnvcnQ==
+"@ribon.io/shared@^1.1.57":
+  version "1.1.57"
+  resolved "https://registry.yarnpkg.com/@ribon.io/shared/-/shared-1.1.57.tgz#a51c5c8378072998f485cb430815a8ee01190e4f"
+  integrity sha512-bjqFjaXfRLcRmGqgkmpuNoYDnFTdDXAyXRNUeTk2wkxbr00LRvQM3f6jpjN6TVfG4KyBaqzorlp7pWmzPRYK8Q==
   dependencies:
     "@apollo/client" "^3.6.9"
     "@types/base-64" "^1.0.0"

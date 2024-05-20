@@ -14,6 +14,7 @@ export const Container = styled.div<{
   border-radius: 16px;
   display: flex;
   flex-direction: column;
+  background-image: ${({ image }) => `url(${image})`};
   background-size: cover;
   background-repeat: no-repeat;
 `;

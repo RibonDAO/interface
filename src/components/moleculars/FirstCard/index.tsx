@@ -22,9 +22,9 @@ export default function FirstCard({
     keyPrefix: "components.moleculars.firstCard",
   });
   return (
-    <S.Container image={nonProfit.backgroundImage}>
+    <S.Container image={nonProfit.coverImage}>
       <S.NgoName>{nonProfit.name}</S.NgoName>
-      <S.ImpactTitle>aaaaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaa</S.ImpactTitle>
+      <S.ImpactTitle>{nonProfit.impactTitle}</S.ImpactTitle>
       <S.TicketsContainer>
         <TicketIconText quantity={ticketsQuantity} buttonDisabled />
       </S.TicketsContainer>

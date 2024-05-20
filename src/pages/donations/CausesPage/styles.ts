@@ -71,6 +71,24 @@ export const CardWrapper = styled.div`
   }
 `;
 
+export const NonProfitCardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: ${({ theme }) => theme.spacing(32)};
+  margin-left: ${({ theme }) => theme.spacing(16)};
+  overflow: visible;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    margin-inline: 12px;
+    max-width: 256px;
+    margin-left: 0px;
+
+    :nth-of-type(1) {
+      margin-left: 0px;
+    }
+  }
+`;
+
 export const TooltipSection = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing(32)};
   display: flex;

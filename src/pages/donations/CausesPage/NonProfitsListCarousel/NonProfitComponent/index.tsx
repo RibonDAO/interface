@@ -15,7 +15,7 @@ interface Props {
 
 function NonProfitComponent({ nonProfit, onButtonClick }: Props): ReactElement {
   const { t } = useTranslation("translation", {
-    keyPrefix: "donations.causesPage.nonProfitComponent",
+    keyPrefix: "donations.causesPage",
   });
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const { hasTickets, ticketsCounter } = useTicketsContext();
@@ -52,13 +52,16 @@ function NonProfitComponent({ nonProfit, onButtonClick }: Props): ReactElement {
             key="first-card"
             nonProfit={nonProfit}
             buttonOnClick={() => onButtonClick(nonProfit, "stories")}
+            buttonText={hasEnoughTickets ? t("donateText") : t("notEnoughTickets")}
             buttonDisabled={!hasEnoughTickets}
             ticketsQuantity={minNumberOfTickets}
           />,
           ...storyElements,
           <CardMarginButtonImage
             key="last-card"
-            firstButtonText={t("firstButton")}
+            firstButtonText={
+              hasEnoughTickets ? t("donateText") : t("notEnoughTickets")
+            }
             secondButtonText={t("secondButton")}
             onFirstButtonClick={() => onButtonClick(nonProfit, "firstCard")}
             firstButtonDisabled={!hasEnoughTickets}

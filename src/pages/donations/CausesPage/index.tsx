@@ -28,6 +28,7 @@ import {
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import { setLocalStorageItem } from "lib/localStorage";
 import useNavigation from "hooks/useNavigation";
+import ReportsSection from "./ReportsSection";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
 import CausesSelectSection from "./CausesSelectSection";
@@ -146,6 +147,7 @@ function CausesPage(): JSX.Element {
           </S.TooltipSection>
         )}
         <UserSupportBanner from="donateTickets_page" />
+        <ReportsSection />
       </S.BodyContainer>
     </S.Container>
   );

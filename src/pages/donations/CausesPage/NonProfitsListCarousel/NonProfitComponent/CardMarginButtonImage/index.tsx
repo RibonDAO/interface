@@ -11,6 +11,7 @@ export type Props = {
   topImage: string;
   bottomImage: string;
   description: string;
+  firstButtonDisabled?: boolean;
 };
 function CardMarginButtonImage({
   firstButtonText,
@@ -20,6 +21,7 @@ function CardMarginButtonImage({
   topImage,
   bottomImage,
   description,
+  firstButtonDisabled,
 }: Props): JSX.Element {
   const mainColor = theme.colors.brand.primary[600];
   return (
@@ -32,6 +34,7 @@ function CardMarginButtonImage({
           text={firstButtonText}
           onClick={onFirstButtonClick}
           backgroundColor={mainColor}
+          disabled={firstButtonDisabled}
         />
         <Button
           text={secondButtonText}

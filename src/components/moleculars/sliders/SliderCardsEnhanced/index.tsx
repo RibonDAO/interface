@@ -36,7 +36,7 @@ export default function SliderCardsEnhanced({
   };
 
   const getSlidesPerView = () => {
-    if (isMobile) return 1.2;
+    if (isMobile) return 3.1;
 
     return calculateSlidesPerViewOnDesktop();
   };

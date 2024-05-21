@@ -54,6 +54,11 @@ import GiveTicketPage from "pages/donations/GiveTicketPage";
 import SecondPage from "pages/onboarding/SecondPage";
 import ThirdPage from "pages/onboarding/ThirdPage";
 import FirstPage from "pages/onboarding/FirstPage";
+import SignInCouponPage from "pages/coupons/auth/SignInCouponPage";
+import GiveTicketCouponPage from "pages/coupons/GiveTicketCouponPage";
+import CouponCollectedPage from "pages/coupons/CouponCollectedPage";
+import ExpiredCouponPage from "pages/coupons/ExpiredCouponPage";
+import InsertEmailCouponPage from "pages/coupons/auth/InsertEmailCouponPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -105,6 +110,37 @@ function RoutesComponent(): JSX.Element {
       <Route path="/auth">
         <Suspense fallback={<div />}>
           <SignInByMagicLinkPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/coupons/sign-in" exact>
+        <Suspense fallback={<div />}>
+          <SignInCouponPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/coupons/insert-email" exact>
+        <Suspense fallback={<div />}>
+          <NavigationBackHeader />
+          <InsertEmailCouponPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/coupons/give-ticket" exact>
+        <Suspense fallback={<div />}>
+          <GiveTicketCouponPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/coupons/coupon-collected" exact>
+        <Suspense fallback={<div />}>
+          <CouponCollectedPage />
+        </Suspense>
+      </Route>
+
+      <Route path="/coupons/expired-coupon" exact>
+        <Suspense fallback={<div />}>
+          <ExpiredCouponPage />
         </Suspense>
       </Route>
 

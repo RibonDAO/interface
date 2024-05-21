@@ -19,7 +19,6 @@ export default function FirstCard({
   buttonDisabled,
   ticketsQuantity,
 }: Props) {
-  
   return (
     <S.Container image={nonProfit.coverImage}>
       <S.NgoName>{nonProfit.name}</S.NgoName>

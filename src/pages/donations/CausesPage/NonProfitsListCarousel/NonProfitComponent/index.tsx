@@ -52,7 +52,9 @@ function NonProfitComponent({ nonProfit, onButtonClick }: Props): ReactElement {
             key="first-card"
             nonProfit={nonProfit}
             buttonOnClick={() => onButtonClick(nonProfit, "stories")}
-            buttonText={hasEnoughTickets ? t("donateText") : t("notEnoughTickets")}
+            buttonText={
+              hasEnoughTickets ? t("donateText") : t("notEnoughTickets")
+            }
             buttonDisabled={!hasEnoughTickets}
             ticketsQuantity={minNumberOfTickets}
           />,

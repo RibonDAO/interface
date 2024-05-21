@@ -921,9 +921,6 @@
           "buttonText": "Continue com e-mail"
         }
       },
-      "firstCard": {
-        "textButton": "Doar tickets"
-      },
       "modals": {
         "ModalWrongEmail": {
           "title": "Opa, e-mail incorreto",

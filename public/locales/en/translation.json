@@ -919,9 +919,6 @@
           "buttonText": "Continue with e-mail"
         }
       },
-      "firstCard": {
-        "textButton": "Donate tickets"
-      },
       "modals": {
         "ModalWrongEmail": {
           "title": "Oops, incorrect e-mail",

@@ -3,6 +3,7 @@ import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanc
 import FirstCard from "pages/donations/CausesPage/NonProfitsListCarousel/NonProfitComponent/FirstCard";
 import { useState, ReactElement } from "react";
 import StoriesSection from "../../StoriesSection";
+import CardMarginButtonImage from "./CardMarginButtonImage";
 import CardNonProfitStories from "./CardNonProfitStories";
 import * as S from "./styles";
 
@@ -59,6 +60,16 @@ function NonProfitComponent({
             ticketsQuantity={10}
           />,
           ...storyElements,
+          <CardMarginButtonImage
+            key="last-card"
+            firstButtonText={"Doar tickets"}
+            secondButtonText={"Doar dinheiro"}
+            onFirstButtonClick={() => {}}
+            onSecondButtonClick={() => {}}
+            topImage={nonProfit.logo}
+            bottomImage={nonProfit.icon}
+            description={nonProfit.name}
+          />
         ]}
       </SliderCardsEnhanced>
     </S.Container>

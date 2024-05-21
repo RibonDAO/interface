@@ -78,22 +78,18 @@ function NonProfitsListCarousel({ nonProfits }: Props): JSX.Element {
     [hasTickets, signedIn],
   );
 
-  
   return (
     <S.NonProfitsListContainer>
       {nonProfits.length > 0 ? (
         <div>
-          {nonProfits.map((nonProfit: any) => {
-            console.log("nonProfit", nonProfit);
-            return (
-              <S.NonProfitCardWrapper key={nonProfit.id}>
-                <NonProfitComponent
-                  nonProfit={nonProfit}
-                  onButtonClick={handleButtonClick}
-                />
-              </S.NonProfitCardWrapper>
-            );
-          })}
+          {nonProfits.map((nonProfit: any) => (
+            <S.NonProfitCardWrapper key={nonProfit.id}>
+              <NonProfitComponent
+                nonProfit={nonProfit}
+                onButtonClick={handleButtonClick}
+              />
+            </S.NonProfitCardWrapper>
+          ))}
         </div>
       ) : (
         <S.EmptySectionContainer>

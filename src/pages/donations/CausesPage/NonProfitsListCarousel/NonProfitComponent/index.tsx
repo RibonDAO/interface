@@ -21,18 +21,19 @@ function NonProfitComponent({
   const [storiesSectionVisible, setStoriesSectionVisible] = useState(false);
 
   const storiesNumber = nonProfit?.stories?.length || 0;
-  const MINIMUM_CARDS_TO_LOOP = 3;
+  const MINIMUM_CARDS_TO_LOOP = 2;
+  const nonProfitStories = nonProfit?.stories || [];
 
-  const storyElements =
-    nonProfit.stories?.map((story) => (
-      <div key={story.id}>
-      <CardNonProfitStories
-        key={story.id}
-        markdownText={story.description}
-        // backgroundImage={story.image}
-      />
-      </div>
-    )) || [];
+  const storyElements: JSX.Element[] = nonProfitStories.flatMap((story) => [
+    <CardNonProfitStories
+      key={`${story.id}-text`}
+      markdownText={story.description}
+    />,
+    <CardNonProfitStories
+      key={`${story.id}-image`}
+      backgroundImage={story.image}
+    />,
+  ]);
 
   return (
     <S.Container>
@@ -49,18 +50,16 @@ function NonProfitComponent({
         loop={storiesNumber >= MINIMUM_CARDS_TO_LOOP + 1}
         slideWidthOnDesktop={306}
       >
-        <FirstCard
-          nonProfit={nonProfit}
-          buttonOnClick={onButtonClick}
-          buttonDisabled={false}
-          ticketsQuantity={10}
-        />
-        {/* {storyElements.length > 0 ? (
-            storyElements
-          ) : (
-            <div>No stories available</div>
-          )} */}
-          <p>No stories available</p>
+        {[
+          <FirstCard
+            key="first-card"
+            nonProfit={nonProfit}
+            buttonOnClick={onButtonClick}
+            buttonDisabled={false}
+            ticketsQuantity={10}
+          />,
+          ...storyElements,
+        ]}
       </SliderCardsEnhanced>
     </S.Container>
   );

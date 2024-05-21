@@ -75,6 +75,10 @@
         "listItem2": "Real-time monitoring",
         "label": "New",
         "ctaButtonText": "Meet this feature"
+      },
+      "nonProfitComponent": {
+        "firstButton": "Donate tickets",
+        "secondButton": "Donate money"
       }
     },
     "storiesPage": {

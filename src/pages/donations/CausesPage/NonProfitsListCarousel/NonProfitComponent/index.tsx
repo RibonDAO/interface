@@ -2,6 +2,7 @@ import { NonProfit } from "@ribon.io/shared";
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
 import FirstCard from "pages/donations/CausesPage/NonProfitsListCarousel/NonProfitComponent/FirstCard";
 import { useState, ReactElement } from "react";
+import { useTranslation } from "react-i18next";
 import StoriesSection from "../../StoriesSection";
 import CardMarginButtonImage from "./CardMarginButtonImage";
 import CardNonProfitStories from "./CardNonProfitStories";
@@ -18,6 +19,9 @@ function NonProfitComponent({
   onButtonClick,
   onClickImage,
 }: Props): ReactElement {
+  const { t } = useTranslation("translation", {
+    keyPrefix: "donations.causesPage.nonProfitComponent",
+  });
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [storiesSectionVisible, setStoriesSectionVisible] = useState(false);
 
@@ -62,8 +66,8 @@ function NonProfitComponent({
           ...storyElements,
           <CardMarginButtonImage
             key="last-card"
-            firstButtonText={"Doar tickets"}
-            secondButtonText={"Doar dinheiro"}
+            firstButtonText={t("firstButton")}
+            secondButtonText={t("secondButton")}
             onFirstButtonClick={() => {}}
             onSecondButtonClick={() => {}}
             topImage={nonProfit.logo}

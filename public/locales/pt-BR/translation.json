@@ -75,6 +75,10 @@
         "listItem2": "Acompanhamento em tempo real",
         "label": "Novo",
         "ctaButtonText": "Conhecer funcionalidade"
+      },
+      "nonProfitComponent": {
+        "firstButton": "Doar tickets",
+        "secondButton": "Doar dinheiro"
       }
     },
     "storiesPage": {

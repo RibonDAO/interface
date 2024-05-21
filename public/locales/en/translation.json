@@ -77,6 +77,10 @@
         "ctaButtonText": "Meet this feature"
       }
     },
+    "reportsSection": {
+      "title": "Check out the transfer reports",
+      "subtitle": "Monthly, Ribon transfers the total value of donated tickets to the nonprofits."
+    },
     "storiesPage": {
       "ctaText": "Donate ticket"
     },

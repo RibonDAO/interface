@@ -72,10 +72,10 @@ export const CardWrapper = styled.div`
 `;
 
 export const NonProfitCardWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
   margin-bottom: ${({ theme }) => theme.spacing(32)};
   margin-left: ${({ theme }) => theme.spacing(16)};
+  display: flex;
+  flex-direction: column;
   overflow: visible;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {

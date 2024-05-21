@@ -92,6 +92,10 @@ import TicketsProvider, {
   ITicketsContext,
   TicketsContext,
 } from "contexts/ticketsContext";
+import CouponProvider, {
+  CouponContext,
+  ICouponContext,
+} from "contexts/couponContext";
 
 export function renderWithTheme(children: React.ReactNode): RenderResult {
   return render(<ThemeProvider theme={theme}>{children}</ThemeProvider>);
@@ -155,6 +159,7 @@ export type RenderComponentProps = {
   userLevelProviderValue?: Partial<IUserLevelContext>;
   authenticationProviderValue?: Partial<IAuthenticationContext>;
   ticketsProviderValue?: Partial<ITicketsContext>;
+  couponProviderValue?: Partial<ICouponContext>;
 };
 export function renderComponent(
   component: JSX.Element,
@@ -180,6 +185,7 @@ export function renderComponent(
     userLevelProviderValue = {},
     authenticationProviderValue = {},
     ticketsProviderValue = {},
+    couponProviderValue = {},
   }: RenderComponentProps = {},
 ): RenderWithContextResult {
   const historyObject = history;
@@ -267,7 +273,12 @@ export function renderComponent(
                                                     TicketsProvider,
                                                     TicketsContext,
                                                     ticketsProviderValue,
-                                                    component,
+                                                    renderProvider(
+                                                      CouponProvider,
+                                                      CouponContext,
+                                                      couponProviderValue,
+                                                      component,
+                                                    ),
                                                   ),
                                                 ),
                                               ),

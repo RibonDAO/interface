@@ -17,6 +17,7 @@ import CauseContributionProvider from "contexts/causeContributionContext";
 import UserLevelProvider from "contexts/userLevelContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import TicketsProvider from "contexts/ticketsContext";
+import CouponProvider from "contexts/couponContext";
 import RoutesComponent from "./config/routes";
 import GlobalStyle from "./styles/globalStyle";
 import theme from "./styles/theme";
@@ -56,18 +57,20 @@ function App() {
                       <Suspense fallback={<div />}>
                         <TicketsProvider>
                           <TasksProvider>
-                            <NonProfitsProvider>
-                              <CausesProvider>
-                                <CauseDonationProvider>
-                                  <CauseContributionProvider>
-                                    <UserLevelProvider>
-                                      <RoutesComponent />
-                                      <Zendesk />
-                                    </UserLevelProvider>
-                                  </CauseContributionProvider>
-                                </CauseDonationProvider>
-                              </CausesProvider>
-                            </NonProfitsProvider>
+                            <CouponProvider>
+                              <NonProfitsProvider>
+                                <CausesProvider>
+                                  <CauseDonationProvider>
+                                    <CauseContributionProvider>
+                                      <UserLevelProvider>
+                                        <RoutesComponent />
+                                        <Zendesk />
+                                      </UserLevelProvider>
+                                    </CauseContributionProvider>
+                                  </CauseDonationProvider>
+                                </CausesProvider>
+                              </NonProfitsProvider>
+                            </CouponProvider>
                           </TasksProvider>
                         </TicketsProvider>
                       </Suspense>

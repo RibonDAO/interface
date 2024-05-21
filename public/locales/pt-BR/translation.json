@@ -168,6 +168,40 @@
       "button": "Continuar"
     }
   },
+  "coupons": {
+    "auth": {
+      "signInPage": {
+        "title": "Entre na conta que deseja receber os tickets",
+        "footerStartText": "Ao clicar em 'Continuar', eu concordo com os",
+        "footerEndText": "e",
+        "termsText": "Termos ",
+        "termsLink": "https://ribon.io/pt/privacy-policy/#terms",
+        "privacyPolicyText": "Política de Privacidade",
+        "privacyPolicyLink": "https://ribon.io/pt/privacy-policy/#privacy"
+      },
+      "insertEmailCouponPage": {
+        "title": "Insira seu e-mail para receber os tickets",
+        "emailLabel": "E-mail",
+        "confirmText": "Continuar",
+        "emailPlaceholder": "Seu e-mail"
+      }
+    },
+    "giveTicketCouponPage": {
+      "title": "Você ganhou um ticket!",
+      "buttonText": "Coletar tickets",
+      "titlePlural": "Você ganhou {{numberOfTickets}} tickets!"
+    },
+    "couponCollectedPage": {
+      "title": "Seus tickets foram recebidos! Volte no app para usá-los",
+      "description": "Caso não tenha o aplicativo da Ribon, baixe-o para usar seus tickets!",
+      "buttonText": "Baixar app →"
+    },
+    "expiredCouponPage": {
+      "title": "Ticket indisponível",
+      "subtitle": "O tempo de coleta expirou ou você já coletou esse ticket.",
+      "button": "Voltar para tela inicial"
+    }
+  },
   "layouts": {
     "layoutHeader": {
       "settingsMenu": {

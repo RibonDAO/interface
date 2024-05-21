@@ -49,7 +49,7 @@ function CausesPage(): JSX.Element {
   showErrorModal(state);
 
   const { refetchTickets, hasTickets } = useTicketsContext();
-  const { currentUser } = useCurrentUser();
+  const { currentUser, signedIn } = useCurrentUser();
   const externalId = extractUrlValue("external_id", search);
   const { isFirstAccessToIntegration } = useFirstAccessToIntegration(
     integration?.id || integrationId,
@@ -147,7 +147,7 @@ function CausesPage(): JSX.Element {
           </S.TooltipSection>
         )}
         <UserSupportBanner from="donateTickets_page" />
-        <ReportsSection />
+        {signedIn && !isFirstAccessToIntegration && <ReportsSection />}
       </S.BodyContainer>
     </S.Container>
   );

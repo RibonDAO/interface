@@ -28,6 +28,7 @@ import {
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import { setLocalStorageItem } from "lib/localStorage";
 import useNavigation from "hooks/useNavigation";
+import ReportsSection from "./ReportsSection";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
 import CausesSelectSection from "./CausesSelectSection";
@@ -48,7 +49,7 @@ function CausesPage(): JSX.Element {
   showErrorModal(state);
 
   const { refetchTickets, hasTickets } = useTicketsContext();
-  const { currentUser } = useCurrentUser();
+  const { currentUser, signedIn } = useCurrentUser();
   const externalId = extractUrlValue("external_id", search);
   const { isFirstAccessToIntegration } = useFirstAccessToIntegration(
     integration?.id || integrationId,
@@ -146,6 +147,7 @@ function CausesPage(): JSX.Element {
           </S.TooltipSection>
         )}
         <UserSupportBanner from="donateTickets_page" />
+        {signedIn && !isFirstAccessToIntegration && <ReportsSection />}
       </S.BodyContainer>
     </S.Container>
   );

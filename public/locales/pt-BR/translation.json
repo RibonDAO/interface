@@ -77,6 +77,10 @@
         "ctaButtonText": "Conhecer funcionalidade"
       }
     },
+    "reportsSection": {
+      "title": "Confira os relatórios de repasse",
+      "subtitle": "Mensalmente, a Ribon repassa o valor total dos tickets doados para as ONGs."
+    },
     "storiesPage": {
       "ctaText": "Doar ticket"
     },

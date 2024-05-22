@@ -15,7 +15,7 @@ import { APP_LINK, RIBON_COMPANY_ID } from "utils/constants";
 import extractUrlValue from "lib/extractUrlValue";
 import useBreakpoint from "hooks/useBreakpoint";
 import theme from "styles/theme";
-import { useTickets } from "hooks/useTickets";
+import { useCollectTickets } from "hooks/useCollectTickets";
 import { useTicketsContext } from "contexts/ticketsContext";
 import { setLocalStorageItem } from "lib/localStorage";
 import {
@@ -35,7 +35,7 @@ function GiveTicketPage(): JSX.Element {
   const externalId = extractUrlValue("external_id", search);
   const { integration } = useIntegration(integrationId);
   const { isMobile } = useBreakpoint();
-  const { handleCollect } = useTickets();
+  const { handleCollect } = useCollectTickets();
   const { refetchTickets } = useTicketsContext();
   const { currentLang } = useLanguage();
 

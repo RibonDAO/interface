@@ -16,6 +16,8 @@ import { normalizedLanguage } from "lib/currentLanguage";
 import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
 import extractUrlValue from "lib/extractUrlValue";
 import { useLocation } from "react-router-dom";
+import useDonateTickets from "hooks/apiHooks/useDonateTickets";
+import { useAuthentication } from "contexts/authenticationContext";
 
 type HandleCollectAndDonateProps = {
   nonProfit: NonProfit;
@@ -33,6 +35,7 @@ type HandleDonateProps = {
 
 function useDonationFlow() {
   const { signedIn, setCurrentUser } = useCurrentUser();
+  const { isAuthenticated } = useAuthentication();
   const { findOrCreateUser } = useUsers();
   const { createSource } = useSources();
   const integrationId = useIntegrationId();
@@ -105,22 +108,31 @@ function useDonationFlow() {
     onError,
     onSuccess,
   }: HandleDonateProps) {
-    const { donate } = useUserTickets();
+    const { donate: userDonate } = useUserTickets();
+    const { donate: apiDonate } = useDonateTickets();
 
     try {
-      const result = await donate(
-        nonProfit.id,
-        ticketsQuantity,
-        PLATFORM,
-        utmParams.utmSource,
-        utmParams.utmMedium,
-        utmParams.utmCampaign,
-      );
-      if (result?.status === 200 && onSuccess) onSuccess();
-      if (result?.status === 401 && onError)
-        onError({
-          reponse: { status: 401 },
-        });
+      if (isAuthenticated()) {
+        const result = await userDonate(
+          nonProfit.id,
+          ticketsQuantity,
+          PLATFORM,
+          utmParams.utmSource,
+          utmParams.utmMedium,
+          utmParams.utmCampaign,
+        );
+        if (result?.status === 200 && onSuccess) onSuccess();
+      } else {
+        const result = await apiDonate(
+          nonProfit.id,
+          ticketsQuantity,
+          PLATFORM,
+          utmParams.utmSource,
+          utmParams.utmMedium,
+          utmParams.utmCampaign,
+        );
+        if (result?.status === 200 && onSuccess) onSuccess();
+      }
     } catch (e: any) {
       logError(e);
       if (onError) onError(e);

@@ -3,7 +3,7 @@ import { useTickets as useTicketsShared } from "@ribon.io/shared/hooks";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { logError } from "services/crashReport";
-import { useTickets } from "hooks/useTickets";
+import { useCollectTickets } from "hooks/useCollectTickets";
 
 export interface ITicketsContext {
   ticketsCounter: number;
@@ -27,7 +27,7 @@ function TicketsProvider({ children }: Props) {
   const { currentUser } = useCurrentUser();
   const [ticketsCounter, setTicketsCounter] = useState<number>(1);
 
-  const { handleCanCollect } = useTickets();
+  const { handleCanCollect } = useCollectTickets();
   const hasTickets = ticketsCounter > 0;
 
   function updateTicketsCounterForLoggedInUser() {

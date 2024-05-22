@@ -34,7 +34,7 @@ function NonProfitComponent({ nonProfit, onButtonClick }: Props): ReactElement {
   ]);
 
   return (
-    <S.Container data-testID="container-slider">
+    <S.Container>
       <SliderCardsEnhanced
         currentSlide={currentCardIndex}
         onCurrentSlideChange={(index) => setCurrentCardIndex(index)}

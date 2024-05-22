@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const NavigationWrapper = styled.div`
-  width: 960px;
+  width: 100%;
+  max-width: 900px;
   position: relative;
 `;
 

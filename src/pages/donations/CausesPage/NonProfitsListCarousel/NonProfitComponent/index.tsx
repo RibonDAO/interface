@@ -20,8 +20,6 @@ function NonProfitComponent({ nonProfit, onButtonClick }: Props): ReactElement {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const { hasTickets, ticketsCounter } = useTicketsContext();
 
-  const storiesNumber = nonProfit?.stories?.length || 0;
-  const MINIMUM_CARDS_TO_LOOP = 2;
   const nonProfitStories = nonProfit?.stories || [];
   const minNumberOfTickets =
     nonProfit?.nonProfitImpacts?.[0]?.minimumNumberOfTickets ?? 0;
@@ -39,12 +37,11 @@ function NonProfitComponent({ nonProfit, onButtonClick }: Props): ReactElement {
   ]);
 
   return (
-    <S.Container>
+    <S.Container data-testID="container-slider">
       <SliderCardsEnhanced
         currentSlide={currentCardIndex}
         onCurrentSlideChange={(index) => setCurrentCardIndex(index)}
         saveStateIdentifier="nonProfitsList"
-        loop={storiesNumber >= MINIMUM_CARDS_TO_LOOP + 1}
         slideWidthOnDesktop={306}
       >
         {[

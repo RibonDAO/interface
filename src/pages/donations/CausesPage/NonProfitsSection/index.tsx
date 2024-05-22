@@ -4,7 +4,6 @@ import { useCausesContext } from "contexts/causesContext";
 import { useCauseDonationContext } from "contexts/causeDonationContext";
 
 import { useEffect } from "react";
-import NonProfitsList from "../NonProfitsList";
 import NonProfitsListCarousel from "../NonProfitsListCarousel";
 import * as S from "./styles";
 
@@ -51,7 +50,6 @@ function NonProfitsSection() {
       ) : (
         filteredNonProfits && (
           <S.NonProfitsContainer>
-            <NonProfitsList nonProfits={sortNonProfits()} />
             <NonProfitsListCarousel nonProfits={sortNonProfits()} />
           </S.NonProfitsContainer>
         )

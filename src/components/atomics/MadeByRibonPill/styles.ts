@@ -9,6 +9,12 @@ export const Pill = styled.div<{ backgroundColor: string }>`
   gap: ${({ theme }) => theme.spacing(4)};
   align-items: center;
   background-color: ${({ backgroundColor }) => backgroundColor};
+  transition: transform 0.2s;
+
+  :hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
 `;
 
 export const Text = styled.p`

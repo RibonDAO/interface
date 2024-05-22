@@ -27,11 +27,8 @@ function NonProfitComponent({ nonProfit, onButtonClick }: Props): ReactElement {
 
   const storyElements: JSX.Element[] = nonProfitStories.flatMap((story) => [
     <CardNonProfitStories
-      key={`${story.id}-text`}
+      key={`${story.id}-card-story`}
       markdownText={story.description}
-    />,
-    <CardNonProfitStories
-      key={`${story.id}-image`}
       backgroundImage={story.image}
     />,
   ]);

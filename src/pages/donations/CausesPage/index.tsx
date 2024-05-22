@@ -13,7 +13,6 @@ import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import extractUrlValue from "lib/extractUrlValue";
 import { INTEGRATION_AUTH_ID, RIBON_COMPANY_ID } from "utils/constants";
-import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import NonProfitsSection from "pages/donations/CausesPage/NonProfitsSection";
 import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
@@ -35,6 +34,7 @@ import CausesSelectSection from "./CausesSelectSection";
 import * as S from "./styles";
 
 import showErrorModal from "./errorModal";
+import MadeByRibonSection from "./MadeByRibonSection";
 
 function CausesPage(): JSX.Element {
   const integrationId = useIntegrationId();
@@ -146,8 +146,8 @@ function CausesPage(): JSX.Element {
             />
           </S.TooltipSection>
         )}
-        <UserSupportBanner from="donateTickets_page" />
         {signedIn && !isFirstAccessToIntegration && <ReportsSection />}
+        <MadeByRibonSection />
       </S.BodyContainer>
     </S.Container>
   );

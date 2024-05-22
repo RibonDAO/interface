@@ -81,6 +81,9 @@
       "title": "Confira os relatórios de repasse",
       "subtitle": "Mensalmente, a Ribon repassa o valor total dos tickets doados para as ONGs."
     },
+    "madeByRibonSection": {
+      "title": "Feito por"
+    },
     "storiesPage": {
       "ctaText": "Doar ticket"
     },

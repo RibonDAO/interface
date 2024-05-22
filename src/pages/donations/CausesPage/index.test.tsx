@@ -88,7 +88,7 @@ describe("Causes", () => {
     expectTextToBeInTheDocument("Donate to a project");
   });
 
-  it("renders the customer support card", () => {
-    expectTextToBeInTheDocument("Access user support");
+  it("renders the Made by Ribon card", () => {
+    expectTextToBeInTheDocument("Made by");
   });
 });

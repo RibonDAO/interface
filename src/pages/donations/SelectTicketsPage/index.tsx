@@ -53,9 +53,6 @@ export default function SelectTicketsPage() {
       case 403: {
         return "blockedDonation";
       }
-      case 401: {
-        return "unauthorizedDonation";
-      }
       default: {
         return "failedDonation";
       }

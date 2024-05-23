@@ -10,10 +10,11 @@ import * as S from "./styles";
 
 interface Props {
   nonProfit: NonProfit;
-  onButtonClick: (nonProfit: NonProfit, from: string) => void;
+  onFirstButtonClick: (nonProfit: NonProfit, from: string) => void;
+  onSecondButtonClick: (nonProfit: NonProfit) => void;
 }
 
-function NonProfitComponent({ nonProfit, onButtonClick }: Props): ReactElement {
+function NonProfitComponent({ nonProfit, onFirstButtonClick, onSecondButtonClick }: Props): ReactElement {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
@@ -45,7 +46,7 @@ function NonProfitComponent({ nonProfit, onButtonClick }: Props): ReactElement {
           <FirstCard
             key="first-card"
             nonProfit={nonProfit}
-            buttonOnClick={() => onButtonClick(nonProfit, "stories")}
+            buttonOnClick={() => onFirstButtonClick(nonProfit, "stories")}
             buttonText={
               hasEnoughTickets ? t("donateText") : t("notEnoughTickets")
             }
@@ -59,9 +60,9 @@ function NonProfitComponent({ nonProfit, onButtonClick }: Props): ReactElement {
               hasEnoughTickets ? t("donateText") : t("notEnoughTickets")
             }
             secondButtonText={t("donateCash")}
-            onFirstButtonClick={() => onButtonClick(nonProfit, "firstCard")}
+            onFirstButtonClick={() => onFirstButtonClick(nonProfit, "firstCard")}
             firstButtonDisabled={!hasEnoughTickets}
-            onSecondButtonClick={() => {}}
+            onSecondButtonClick={() => onSecondButtonClick(nonProfit)}
             topImage={nonProfit.logo}
             bottomImage={nonProfit.icon}
             description={nonProfit.name}

@@ -85,7 +85,8 @@ function NonProfitsListCarousel({ nonProfits }: Props): JSX.Element {
           {nonProfits.map((nonProfit: any) => (
             <NonProfitComponent
               nonProfit={nonProfit}
-              onButtonClick={handleButtonClick}
+              onFirstButtonClick={handleButtonClick}
+              onSecondButtonClick={navigateToCheckout}
             />
           ))}
         </div>

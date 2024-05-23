@@ -81,6 +81,10 @@
       "title": "Check out the transfer reports",
       "subtitle": "Monthly, Ribon transfers the total value of donated tickets to the nonprofits."
     },
+    "madeByRibonSection": {
+      "title": "Made by",
+      "link": " https://projetos.ribon.io/atntgrtnen"
+    },
     "storiesPage": {
       "ctaText": "Donate ticket"
     },

@@ -57,11 +57,11 @@ export const Card = styled.div`
   gap: ${({ theme }) => theme.spacing(8)};
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.colors.brand.primary[100]};
+  background-color: ${({ theme }) => theme.colors.brand.primary[50]};
   user-select: none;
 
   :hover {
-    background-color: ${({ theme }) => theme.colors.brand.primary[200]};
+    background-color: ${({ theme }) => theme.colors.brand.primary[100]};
     cursor: pointer;
   }
 `;

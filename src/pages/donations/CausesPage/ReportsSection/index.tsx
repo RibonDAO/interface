@@ -6,16 +6,16 @@ import ArrowImage from "./assets/arrow-right-dark-green.svg";
 import * as S from "./styles";
 
 export default function ReportsSection() {
+  const { t } = useTranslation("translation", {
+    keyPrefix: "donations.reportsSection",
+  });
+
   const { reports, isLoading } = useReports();
 
   const handleReportClick = (link: string) => {
     logEvent("reportCard_click", { link });
     window.open(link, "_blank");
   };
-
-  const { t } = useTranslation("translation", {
-    keyPrefix: "donations.reportsSection",
-  });
 
   if (isLoading) return null;
 

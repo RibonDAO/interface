@@ -14,7 +14,7 @@
       "confirmModalPrimaryButtonText": "Confirm",
       "confirmModalSecondaryButtonText": "Cancel",
       "donateText": "Donate ticket",
-      "donateMoney": "Doar dinheiro",
+      "donateCash": "Donate in cash",
       "donateBlockedText": "No tickets",
       "impactPrefix": "Donate",
       "notEnoughTickets": "Not enough tickets",

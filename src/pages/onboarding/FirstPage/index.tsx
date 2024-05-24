@@ -5,6 +5,7 @@ import useNavigation from "hooks/useNavigation";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useIntegration } from "@ribon.io/shared/hooks";
+import { useLanguage } from "hooks/useLanguage";
 import { useEffect } from "react";
 import { APP_LINK, RIBON_COMPANY_ID } from "utils/constants";
 import Tooltip from "components/moleculars/Tooltip";
@@ -31,6 +32,7 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
   const { integration } = useIntegration(integrationId);
   const { ticketsCounter } = useTicketsContext();
   const { isMobile } = useBreakpoint();
+  const { currentLang } = useLanguage();
 
   const handleClick = () => {
     logEvent("P10_getTicketBtn_click");
@@ -68,12 +70,20 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
   const handleDownload = () => {
     logEvent("downloadCTA_click", { from: "firstScreen" });
 
+    const queryParams = new URLSearchParams({
+      integration_id: integrationId as string,
+      utm_source: currentLang === "pt-BR" ? "ribonweb_pt" : "ribonweb_en",
+      utm_medium: "first_screen",
+      utm_campaign: isMobile ? "mobile" : "desktop",
+    });
+
     if (isMobile) {
-      window.open(`${APP_LINK}?integration_id=${integrationId}`);
+      window.open(`${APP_LINK}?${queryParams}`);
       return;
     }
     navigateTo({
       pathname: "/app-download",
+      search: queryParams.toString(),
       state: { cameFrom: "intro" },
     });
   };

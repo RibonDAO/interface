@@ -17,6 +17,9 @@ describe("DownloadAppToast", () => {
     renderComponent(<DownloadAppToast />);
     clickOn("Get app");
 
-    expectPageToNavigateTo("/app-download");
+    expectPageToNavigateTo("/app-download", {
+      search:
+        "utm_source=ribonweb_en&utm_medium=floating_btn&utm_campaign=desktop",
+    });
   });
 });

@@ -34,6 +34,8 @@ describe("FirstPage", () => {
       it("navigates to the app download page when the button is clicked", () => {
         clickOn("Get ticket in Ribon's app");
         expectPageToNavigateTo("/app-download", {
+          search:
+            "integration_id=1&utm_source=ribonweb_en&utm_medium=first_screen&utm_campaign=desktop",
           state: { cameFrom: "intro" },
         });
       });
@@ -94,6 +96,8 @@ describe("FirstPage", () => {
       it("navigates to the app download page when the button is clicked", () => {
         clickOn("Get ticket in Ribon's app");
         expectPageToNavigateTo("/app-download", {
+          search:
+            "integration_id=1&utm_source=ribonweb_en&utm_medium=first_screen&utm_campaign=desktop",
           state: { cameFrom: "intro" },
         });
       });

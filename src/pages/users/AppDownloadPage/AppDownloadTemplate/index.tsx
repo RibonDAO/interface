@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import { formatCountdown } from "lib/formatters/countdownFormatter";
 import { useCountdown } from "hooks/useCountdown";
 import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
+import { generateUrlSignature } from "lib/urlSignature";
 import { QRCodeSVG } from "qrcode.react";
 import Icon from "components/atomics/Icon";
 import { useLanguage } from "hooks/useLanguage";
@@ -77,7 +78,7 @@ function AppDownloadTemplate({
   const utmParamsFor = (campaign: string) => ({
     utmSource: currentLang === "pt-BR" ? "ribonweb_pt" : "ribonweb_en",
     utmMedium: "download_cta_screen",
-    utmCampaign: campaign,
+    utmCampaign: campaign as string,
   });
 
   function handleMobileLink() {
@@ -86,7 +87,13 @@ function AppDownloadTemplate({
       from: "downloadPageBtn",
       ...utmParamsFor("mobile"),
     });
-    window.open(`${APP_LINK}?integration_id=${integrationId}`);
+
+    const params = new URLSearchParams({
+      integration_id: integrationId as string,
+      ...utmParamsFor("mobile"),
+    });
+
+    window.open(`${APP_LINK}?${params.toString()}`);
   }
 
   function handleIosLink() {
@@ -109,18 +116,18 @@ function AppDownloadTemplate({
 
   const buildLink = () => {
     const utmParams = getUTMFromLocationSearch(window.location.search);
-    const queryParams = new URLSearchParams({
-      utm_source: utmParams.utmSource,
-      utm_medium: utmParams.utmMedium,
-      utm_campaign: utmParams.utmCampaign,
-    });
+    const baseUrl = `${DAPP_URL}redirect/`;
 
     const redirectParams = new URLSearchParams({
-      redirect_url: APP_LINK,
+      utm_medium: utmParams.utmMedium,
+      utm_source: utmParams.utmSource,
+      utm_campaign: utmParams.utmCampaign,
       event: "qrCodeButton_click",
+      redirect_url: APP_LINK,
+      signature: generateUrlSignature(encodeURIComponent(APP_LINK)),
     });
 
-    return `${DAPP_URL}redirect?${queryParams.toString()}&${redirectParams.toString()}`;
+    return `${baseUrl}?${redirectParams.toString()}`;
   };
 
   const render = () => {

@@ -32,6 +32,7 @@ export const Container = styled.div`
   min-height: 100vh;
   display: flex;
   justify-content: center;
+  overflow-x: hidden;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     align-items: center;

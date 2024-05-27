@@ -18,7 +18,7 @@ import NonProfitsSection from "pages/donations/CausesPage/NonProfitsSection";
 import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
 import CampaignSection from "pages/donations/CausesPage/CampaignSection";
 import { useTicketsContext } from "contexts/ticketsContext";
-import { useTickets } from "hooks/useTickets";
+import { useCollectTickets } from "hooks/useCollectTickets";
 import { logEvent } from "lib/events";
 import {
   RECEIVED_TICKET_AT_KEY,
@@ -60,7 +60,7 @@ function CausesPage(): JSX.Element {
   const { navigateTo } = useNavigation();
 
   const { handleCanCollect, handleCollect, hasReceivedTicketToday } =
-    useTickets();
+    useCollectTickets();
 
   const { showReceiveTicketToast } = useReceiveTicketToast();
   const isRibonIntegration =

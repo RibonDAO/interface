@@ -1,9 +1,10 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { useTickets as useTicketsShared } from "@ribon.io/shared/hooks";
+import { useTickets } from "@ribon.io/shared/hooks";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { logError } from "services/crashReport";
-import { useTickets } from "hooks/useTickets";
+import { useAuthentication } from "contexts/authenticationContext";
+import { useCollectTickets } from "hooks/useCollectTickets";
 
 export interface ITicketsContext {
   ticketsCounter: number;
@@ -21,19 +22,27 @@ export const TicketsContext = createContext<ITicketsContext>(
 );
 
 function TicketsProvider({ children }: Props) {
-  const { ticketsAvailable } = useTicketsShared();
-  const { tickets: userTickets, refetch } = ticketsAvailable();
+  const { ticketsAvailable } = useTickets();
+  const {
+    tickets: userTickets,
+    integrationTickets: userIntegrationTickets,
+    refetch,
+  } = ticketsAvailable();
   const integrationId = useIntegrationId();
   const { currentUser } = useCurrentUser();
+  const { isAuthenticated } = useAuthentication();
   const [ticketsCounter, setTicketsCounter] = useState<number>(1);
 
-  const { handleCanCollect } = useTickets();
+  const { handleCanCollect } = useCollectTickets();
   const hasTickets = ticketsCounter > 0;
 
   function updateTicketsCounterForLoggedInUser() {
-    if (userTickets !== undefined) {
-      setTicketsCounter(userTickets);
-    }
+    if (userIntegrationTickets !== undefined)
+      setTicketsCounter(userIntegrationTickets);
+  }
+
+  function updateTicketsCounterForAuthenticatedUser() {
+    if (userTickets !== undefined) setTicketsCounter(userTickets);
   }
 
   async function updateTicketsCounterForNotLoggedInUser() {
@@ -52,8 +61,12 @@ function TicketsProvider({ children }: Props) {
   }
 
   useEffect(() => {
-    updateTicketsCounterForLoggedInUser();
-  }, [userTickets]);
+    if (isAuthenticated()) {
+      updateTicketsCounterForAuthenticatedUser();
+    } else {
+      updateTicketsCounterForLoggedInUser();
+    }
+  }, [userTickets, userIntegrationTickets, currentUser]);
 
   useEffect(() => {
     refetch();

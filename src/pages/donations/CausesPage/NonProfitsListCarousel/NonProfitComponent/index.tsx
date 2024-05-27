@@ -44,7 +44,6 @@ function NonProfitComponent({
         currentSlide={currentCardIndex}
         onCurrentSlideChange={(index) => setCurrentCardIndex(index)}
         saveStateIdentifier="nonProfitsList"
-        slideWidthOnDesktop={306}
       >
         {[
           <FirstCard

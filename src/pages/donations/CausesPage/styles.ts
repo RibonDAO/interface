@@ -37,8 +37,6 @@ export const NonProfitsContainer = styled.div`
 export const CausesCardContainer = styled.div``;
 
 export const NonProfitsListContainer = styled.div`
-  margin-inline: -16px;
-
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     margin-inline: 0;
     max-width: 900px;

@@ -42,7 +42,7 @@ export const ContentContainer = styled.div`
   z-index: ${({ theme }) => theme.zindex.above};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    width: 508px;
+    width: 480px;
     height: 100%;
     display: flex;
     flex-direction: column;

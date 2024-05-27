@@ -108,6 +108,7 @@ export const Image = styled.img`
 
 export const DefaultImage = styled.img`
   max-width: 100%;
+  transform: scale(1.3);
 `;
 
 export const ImageWrapper = styled.div`
@@ -173,7 +174,7 @@ export const TooltipSection = styled.div`
 `;
 
 export const Header = styled.div`
-  margin-bottom: ${({ theme }) => theme.spacing(8)};
+  margin-bottom: ${({ theme }) => theme.spacing(40)};
   display: flex;
   align-items: center;
   justify-content: center;

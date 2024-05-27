@@ -14,7 +14,11 @@ interface Props {
   onSecondButtonClick: (nonProfit: NonProfit) => void;
 }
 
-function NonProfitComponent({ nonProfit, onFirstButtonClick, onSecondButtonClick }: Props): ReactElement {
+function NonProfitComponent({
+  nonProfit,
+  onFirstButtonClick,
+  onSecondButtonClick,
+}: Props): ReactElement {
   const { t } = useTranslation("translation", {
     keyPrefix: "donations.causesPage",
   });
@@ -60,7 +64,9 @@ function NonProfitComponent({ nonProfit, onFirstButtonClick, onSecondButtonClick
               hasEnoughTickets ? t("donateText") : t("notEnoughTickets")
             }
             secondButtonText={t("donateCash")}
-            onFirstButtonClick={() => onFirstButtonClick(nonProfit, "firstCard")}
+            onFirstButtonClick={() =>
+              onFirstButtonClick(nonProfit, "firstCard")
+            }
             firstButtonDisabled={!hasEnoughTickets}
             onSecondButtonClick={() => onSecondButtonClick(nonProfit)}
             topImage={nonProfit.logo}

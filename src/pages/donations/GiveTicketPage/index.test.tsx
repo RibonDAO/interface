@@ -57,9 +57,9 @@ describe("GiveTicketPage", () => {
       renderComponent(<GiveTicketPage />);
     });
 
-    it("should render button to See how it works and Skip", () => {
-      expectTextToBeInTheDocument("See how it works");
-      expectTextToBeInTheDocument("Skip");
+    it("should render button to download app and stay in browser", () => {
+      expectTextToBeInTheDocument("Get ticket on app");
+      expectTextToBeInTheDocument("Stay in browser");
     });
   });
 });

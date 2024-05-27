@@ -1,6 +1,6 @@
 import { PLATFORM } from "utils/constants";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { useTickets as useTicketShared } from "@ribon.io/shared/hooks";
+import { useTickets } from "@ribon.io/shared/hooks";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import extractUrlValue from "lib/extractUrlValue";
 import { useLocation } from "react-router-dom";
@@ -17,7 +17,7 @@ type HandleCollectProps = {
   onError?: (error: any) => void;
 };
 
-export function useTickets() {
+export function useCollectTickets() {
   const { currentUser } = useCurrentUser();
 
   const {
@@ -25,7 +25,7 @@ export function useTickets() {
     canCollectByIntegration,
     collectByExternalIds,
     collectByIntegration,
-  } = useTicketShared();
+  } = useTickets();
 
   const { search } = useLocation();
   const externalId = extractUrlValue("external_id", search);

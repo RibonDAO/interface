@@ -9,6 +9,7 @@ export const Container = styled.div`
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(16)};
   align-items: center;
+  justify-content: center;
 `;
 
 export const LeftBackgroundImage = styled.img`
@@ -41,7 +42,7 @@ export const ContentContainer = styled.div`
   z-index: ${({ theme }) => theme.zindex.above};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    width: 328px;
+    width: 508px;
     height: 100%;
     display: flex;
     flex-direction: column;

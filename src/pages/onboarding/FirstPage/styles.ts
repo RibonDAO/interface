@@ -106,7 +106,9 @@ export const Image = styled.img`
   padding: ${({ theme }) => theme.spacing(0, 8)};
 `;
 
-export const DefaultImage = styled.img``;
+export const DefaultImage = styled.img`
+  max-width: 100%;
+`;
 
 export const ImageWrapper = styled.div`
   width: 100%;

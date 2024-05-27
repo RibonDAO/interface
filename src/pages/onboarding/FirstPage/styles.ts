@@ -210,3 +210,27 @@ export const ClickableText = styled.p`
   color: ${({ theme }) => theme.colors.brand.primary[600]};
   cursor: pointer;
 `;
+
+export const IntegrationWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const IntegrationLogoWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const IntegrationLogo = styled.img`
+  width: 100%;
+  max-width: 101px;
+`;

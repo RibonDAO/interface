@@ -9,6 +9,11 @@ import {
 export const Container = styled.div`
   display: flex;
   align-items: left;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.neutral[50]};
+  }
 `;
 
 export const TooltipContainer = styled.div`

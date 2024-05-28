@@ -32,6 +32,7 @@ export const Container = styled.div`
   min-height: 100vh;
   display: flex;
   justify-content: center;
+  overflow-x: hidden;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     align-items: center;
@@ -105,7 +106,10 @@ export const Image = styled.img`
   padding: ${({ theme }) => theme.spacing(0, 8)};
 `;
 
-export const DefaultImage = styled.img``;
+export const DefaultImage = styled.img`
+  max-width: 100%;
+  transform: scale(1.3);
+`;
 
 export const ImageWrapper = styled.div`
   width: 100%;
@@ -170,7 +174,7 @@ export const TooltipSection = styled.div`
 `;
 
 export const Header = styled.div`
-  margin-bottom: ${({ theme }) => theme.spacing(8)};
+  margin-bottom: ${({ theme }) => theme.spacing(40)};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -209,4 +213,28 @@ export const ClickableText = styled.p`
   text-decoration: underline;
   color: ${({ theme }) => theme.colors.brand.primary[600]};
   cursor: pointer;
+`;
+
+export const IntegrationWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const IntegrationLogoWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const IntegrationLogo = styled.img`
+  width: 100%;
+  max-width: 101px;
 `;

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { defaultBodyLgSemibold } from "styles/typography/default";
 
 export const Container = styled.div`
+  max-width: 900px;
   margin-bottom: ${({ theme }) => theme.spacing(48)};
   display: flex;
   flex-direction: column;

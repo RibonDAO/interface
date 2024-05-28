@@ -10,6 +10,7 @@ export type Props = {
   tooltipPosition?: "center" | "left" | "right";
   children?: JSX.Element;
   idTooltip: string;
+  onClick?: () => void;
 };
 function Tooltip({
   text,
@@ -20,13 +21,21 @@ function Tooltip({
   children,
   tooltipPosition = "center",
   idTooltip,
+  onClick,
 }: Props): JSX.Element {
   function handleTooltipPosition() {
     return tooltipPosition === "right" ? "4.5%" : theme.spacing(0);
   }
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    }
+  };
+
   return (
     <S.Container>
-      <S.TooltipContainer id={idTooltip}>
+      <S.TooltipContainer id={idTooltip} onClick={handleClick}>
         <S.LeftContainer>
           <S.IconCircle>
             <S.Symbol>{symbol}</S.Symbol>

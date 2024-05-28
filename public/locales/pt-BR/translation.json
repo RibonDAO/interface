@@ -373,10 +373,11 @@
       "tooltipTicketText": "Os tickets servem para fazer doações e você recebe um a cada dia que entrar aqui na Ribon.",
       "tooltipTicket": "O que é um ticket?",
       "hasAccountButton": "Já tenho uma conta",
-      "downloadAppButton": "Coletar ticket no app",
-      "stayInBrowserButton": "Ficar no navegador",
+      "howItWorksButton": "Ver como funciona",
+      "skipButton": "Pular",
       "haveAnAccount": "Já tem uma conta?",
-      "signIn": "Entrar com sua conta"
+      "signIn": "Entrar",
+      "madeBy": "Feito por"
     },
 
     "secondPage": {
@@ -389,10 +390,10 @@
       "cardTitle1": "O que são tickets?",
       "cardDescription1": "Dinheiro de verdade, mas que vale exclusivamente para doações para  projetos sociais dentro da Ribon",
       "cardTitle2": "Quem paga os tickets?",
-      "cardDescription2": "Empresas, grandes doadores e membros da comunidade Ribon financiam os tickets com um único objetivo: mudar vidas para melhor através do poder coletivo da doação",
-      "cardTitle3": "Como ganho mais tickets?",
-      "cardDescription3": "Você ganha e acumula tickets acessando o app diariamente.",
-      "button": "Começar"
+      "cardDescription2": "ONGs, empresas e filantropos financiam tickets com um único objetivo: mudar vidas para melhor através do poder coletivo da doação ",
+      "cardTitle3": "O que é a Ribon?",
+      "cardDescription3": "Somos um app que te dá tickets diários para doar a projetos sociais da sua escolha.",
+      "button": "Escolher projeto"
     },
     "giveTicketPage": {
       "title": "Você ganhou 1 ticket!",

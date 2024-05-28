@@ -14,14 +14,14 @@ export const Container = styled.div<{
   flexDirection?: string;
   backgroundColor?: string;
 }>`
+  margin-block: ${({ theme }) => theme.spacing(24)};
   width: 100%;
-  max-width: 472px;
-  margin-bottom: ${({ theme }) => theme.spacing(24)};
+  max-width: 900px;
   padding: ${({ theme }) => theme.spacing(16, 16, 16)};
   border-radius: 8px;
   display: flex;
   flex-direction: ${({ flexDirection }) => flexDirection};
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   box-sizing: border-box;
   background-color: ${({ backgroundColor }) => backgroundColor};

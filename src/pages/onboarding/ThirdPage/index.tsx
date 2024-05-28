@@ -17,6 +17,8 @@ function ThirdPage(): JSX.Element {
   const { navigateBack, navigateTo } = useNavigation();
 
   const handleClick = () => {
+    logEvent("p34_click");
+
     navigateTo("/causes");
   };
 

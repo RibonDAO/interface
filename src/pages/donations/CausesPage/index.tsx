@@ -107,25 +107,26 @@ function CausesPage(): JSX.Element {
     );
   }, [integration, isFirstAccessToIntegration]);
 
+  const handleInfoClick = () => {
+    navigateTo("/intro/step-3");
+  };
+
   useAvoidBackButton();
 
   return (
     <S.Container>
       <DownloadAppToast />
-      {shouldShowIntegrationBanner && (
-        <IntegrationBanner integration={integration} />
-      )}
       <S.BodyContainer>
         <S.TitleContainer>
           {hasTickets && <S.Title>{t("pageTitle")}</S.Title>}
 
           {!isMobile && (
             <Tooltip
-              text={t("tooltipTicketText")}
-              symbol="?"
               textRight={t("tooltipTicket")}
+              symbol="?"
               place="top"
               idTooltip="tooltipTicket"
+              onClick={handleInfoClick}
             />
           )}
         </S.TitleContainer>
@@ -138,14 +139,19 @@ function CausesPage(): JSX.Element {
         {isMobile && (
           <S.TooltipSection>
             <Tooltip
-              text={t("tooltipTicketText")}
-              symbol="?"
               textRight={t("tooltipTicket")}
-              place="bottom"
+              symbol="?"
+              place="top"
               idTooltip="tooltipTicket"
+              onClick={handleInfoClick}
             />
           </S.TooltipSection>
         )}
+
+        {shouldShowIntegrationBanner && (
+          <IntegrationBanner integration={integration} />
+        )}
+
         {signedIn && !isFirstAccessToIntegration && <ReportsSection />}
         <MadeByRibonSection />
       </S.BodyContainer>

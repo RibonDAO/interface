@@ -12,6 +12,7 @@ import MadeByRibonPill from "components/atomics/MadeByRibonPill";
 import { logEvent } from "lib/events";
 import { theme } from "@ribon.io/shared/styles";
 import { useTicketsContext } from "contexts/ticketsContext";
+import LogoBackgroundIcon from "assets/icons/logo-background-icon.svg";
 import ArrowLeft from "./assets/arrow-left-dark-green.svg";
 import Wrapper from "./assets/wrapper.svg";
 import * as S from "./styles";
@@ -92,7 +93,9 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
             <S.IntegrationWrapper>
               <S.DefaultImage src={Wrapper} />
               <S.IntegrationLogoWrapper>
-                <S.IntegrationLogo src={integration?.logo} />
+                <S.IntegrationLogo
+                  src={integration?.logo || LogoBackgroundIcon}
+                />
               </S.IntegrationLogoWrapper>
             </S.IntegrationWrapper>
             <S.Title>

@@ -17,7 +17,7 @@ import {
 } from "lib/localStorage/constants";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { isFirstAccess } from "lib/onboardingFirstAccess";
-import { useCauseDonationContext } from "contexts/causeDonationContext";
+import { useTagDonationContext } from "contexts/tagDonationContext";
 import { useTickets, useUserProfile } from "@ribon.io/shared/hooks";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { PLATFORM, RIBON_COMPANY_ID } from "utils/constants";
@@ -31,7 +31,7 @@ function ReceiveTicketPage(): JSX.Element {
   const { primary } = theme.colors.brand;
   const { createVoucher } = useVoucher();
   const { signedIn } = useCurrentUser();
-  const { setChooseCauseModalVisible } = useCauseDonationContext();
+  const { setChooseTagModalVisible } = useTagDonationContext();
   const { navigateTo } = useNavigation();
   const [iconLoaded, setIconLoaded] = useState(false);
   const { userProfile } = useUserProfile();
@@ -71,7 +71,7 @@ function ReceiveTicketPage(): JSX.Element {
   };
 
   useEffect(() => {
-    if (isFirstAccess(signedIn)) setChooseCauseModalVisible(true);
+    if (isFirstAccess(signedIn)) setChooseTagModalVisible(true);
     navigate();
   }, []);
 

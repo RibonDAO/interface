@@ -13,7 +13,6 @@ import { useLanguage } from "hooks/useLanguage";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useTicketsContext } from "contexts/ticketsContext";
 import ticketIcon from "assets/icons/ticket-icon-on.svg";
-import StoriesSection from "../StoriesSection";
 import * as S from "../styles";
 
 type Props = {
@@ -36,23 +35,6 @@ function NonProfitsList({ nonProfits }: Props): JSX.Element {
 
   const handleEmptyButtonClick = () => {
     navigateTo("/promoters/support-cause");
-  };
-
-  const [currentNonProfitWithStories, setCurrentNonProfitWithStories] =
-    useState(nonProfits[0]);
-  const [storiesSectionVisible, setStoriesSectionVisible] = useState(false);
-
-  const handleImageClick = (nonProfit: NonProfit) => {
-    const stories = nonProfit.stories || [];
-
-    if (stories.length > 0) {
-      setCurrentNonProfitWithStories(nonProfit);
-      setStoriesSectionVisible(true);
-      logEvent("storiesBtn_click", {
-        nonProfitId: nonProfit.id,
-        from: "NGOCard",
-      });
-    }
   };
 
   const oldImpactFormat = (nonProfit: NonProfit) =>
@@ -113,16 +95,6 @@ function NonProfitsList({ nonProfits }: Props): JSX.Element {
 
   return (
     <S.NonProfitsListContainer>
-      {currentNonProfitWithStories && (
-        <StoriesSection
-          nonProfit={currentNonProfitWithStories}
-          visible={storiesSectionVisible}
-          setVisible={setStoriesSectionVisible}
-          onButtonClick={() =>
-            handleButtonClick(currentNonProfitWithStories, "stories")
-          }
-        />
-      )}
       {nonProfits.length > 0 ? (
         <SliderCardsEnhanced
           currentSlide={currentNonProfitIndex}
@@ -148,11 +120,7 @@ function NonProfitsList({ nonProfits }: Props): JSX.Element {
                   onClickButton={() =>
                     handleButtonClick(nonProfit, "nonProfitCard")
                   }
-                  onClickImage={() => handleImageClick(nonProfit)}
                   infoTextTop={nonProfit.name}
-                  infoText={
-                    nonProfit.stories?.length ? t("learnMore") : undefined
-                  }
                   iconSubtitle={{
                     icon: ticketIcon,
                     boldText: String(minNumberOfTickets),

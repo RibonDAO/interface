@@ -65,7 +65,6 @@ export const ImageSection = styled.div`
   flex-direction: column;
   align-items: flex-end;
   object-fit: cover;
-  cursor: pointer;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     height: 267px;

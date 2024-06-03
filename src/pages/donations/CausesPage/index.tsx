@@ -13,13 +13,12 @@ import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import extractUrlValue from "lib/extractUrlValue";
 import { INTEGRATION_AUTH_ID, RIBON_COMPANY_ID } from "utils/constants";
-import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import NonProfitsSection from "pages/donations/CausesPage/NonProfitsSection";
 import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
 import CampaignSection from "pages/donations/CausesPage/CampaignSection";
 import { useTicketsContext } from "contexts/ticketsContext";
-import { useTickets } from "hooks/useTickets";
+import { useCollectTickets } from "hooks/useCollectTickets";
 import { logEvent } from "lib/events";
 import {
   RECEIVED_TICKET_AT_KEY,
@@ -31,10 +30,11 @@ import useNavigation from "hooks/useNavigation";
 import ReportsSection from "./ReportsSection";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
-import CausesSelectSection from "./CausesSelectSection";
+import TagsSelectSection from "./TagsSelectSection";
 import * as S from "./styles";
 
 import showErrorModal from "./errorModal";
+import MadeByRibonSection from "./MadeByRibonSection";
 
 function CausesPage(): JSX.Element {
   const integrationId = useIntegrationId();
@@ -60,7 +60,7 @@ function CausesPage(): JSX.Element {
   const { navigateTo } = useNavigation();
 
   const { handleCanCollect, handleCollect, hasReceivedTicketToday } =
-    useTickets();
+    useCollectTickets();
 
   const { showReceiveTicketToast } = useReceiveTicketToast();
   const isRibonIntegration =
@@ -133,7 +133,7 @@ function CausesPage(): JSX.Element {
         {donatedToday && <CampaignSection cardId="1" />}
 
         <ContributionNotification />
-        <CausesSelectSection />
+        <TagsSelectSection />
         <NonProfitsSection />
         {isMobile && (
           <S.TooltipSection>
@@ -146,8 +146,8 @@ function CausesPage(): JSX.Element {
             />
           </S.TooltipSection>
         )}
-        <UserSupportBanner from="donateTickets_page" />
         {signedIn && !isFirstAccessToIntegration && <ReportsSection />}
+        <MadeByRibonSection />
       </S.BodyContainer>
     </S.Container>
   );

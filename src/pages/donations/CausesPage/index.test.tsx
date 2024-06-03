@@ -87,8 +87,4 @@ describe("Causes", () => {
   it("renders the title", () => {
     expectTextToBeInTheDocument("Donate to a project");
   });
-
-  it("renders the customer support card", () => {
-    expectTextToBeInTheDocument("Access user support");
-  });
 });

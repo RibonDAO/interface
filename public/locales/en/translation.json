@@ -34,7 +34,7 @@
       "donateAnimationModalOrigin": "You",
       "donateAnimationModalDestiny": "Project",
       "chooseCauseModalTitle": "Choose a cause",
-      "allCauses": "All",
+      "allTags": "All",
       "learnMore": "Learn more",
       "tooltipTicketText": "Tickets are used to make donations and you get a new one everyday when you log in Ribon.",
       "tooltipTicket": "What is a ticket?",
@@ -80,6 +80,10 @@
     "reportsSection": {
       "title": "Check out the transfer reports",
       "subtitle": "Monthly, Ribon transfers the total value of donated tickets to the nonprofits."
+    },
+    "madeByRibonSection": {
+      "title": "Made by",
+      "link": " https://projetos.ribon.io/atntgrtnen"
     },
     "storiesPage": {
       "ctaText": "Donate ticket"

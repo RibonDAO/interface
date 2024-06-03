@@ -34,7 +34,7 @@
       "donateAnimationModalOrigin": "Você",
       "donateAnimationModalDestiny": "Projeto",
       "chooseCauseModalTitle": "Escolha uma causa",
-      "allCauses": "Todas",
+      "allTags": "Todas",
       "learnMore": "Saiba mais",
       "tooltipTicketText": "Os tickets servem para fazer doações e você recebe um a cada dia que entrar aqui na Ribon.",
       "tooltipTicket": "O que é um ticket?",
@@ -80,6 +80,10 @@
     "reportsSection": {
       "title": "Confira os relatórios de repasse",
       "subtitle": "Mensalmente, a Ribon repassa o valor total dos tickets doados para as ONGs."
+    },
+    "madeByRibonSection": {
+      "title": "Feito por",
+      "link": " https://projetos.ribon.io/atntgrtn"
     },
     "storiesPage": {
       "ctaText": "Doar ticket"

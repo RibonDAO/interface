@@ -10,13 +10,11 @@ type Props = {
 };
 
 function CauseImage({ name, coverImage, id, index }: Props) {
-  const { setChosenTagId, setChooseTagModalVisible, setChosenTagIndex } =
-    useTagDonationContext();
+  const { setChosenTagId, setChosenTagIndex } = useTagDonationContext();
 
   const handleClick = () => {
     setChosenTagId(id);
     setChosenTagIndex(index + 1);
-    setChooseTagModalVisible(false);
   };
 
   return (

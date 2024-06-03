@@ -13,8 +13,6 @@ export interface ITagDonationContext {
   chosenTag: Tag | undefined;
   chosenTagIndex: number | undefined;
   setChosenTag: (tag: SetStateAction<Tag | undefined>) => void;
-  chooseTagModalVisible: boolean;
-  setChooseTagModalVisible: (visible: SetStateAction<boolean>) => void;
   setChosenTagId: (id: SetStateAction<number | undefined>) => void;
   setChosenTagIndex: (id: SetStateAction<number | undefined>) => void;
 }
@@ -26,7 +24,7 @@ TagDonationContext.displayName = "TagDonationContext";
 
 function TagDonationProvider({ children }: any) {
   const { tags } = useTagsContext();
-  const [chooseTagModalVisible, setChooseTagModalVisible] = useState(false);
+
   const [chosenTag, setChosenTag] = useState<Tag | undefined>();
   const [chosenTagId, setChosenTagId] = useState<number | undefined>();
   const [chosenTagIndex, setChosenTagIndex] = useState<number | undefined>(0);
@@ -41,8 +39,7 @@ function TagDonationProvider({ children }: any) {
     () => ({
       chosenTag,
       setChosenTag,
-      chooseTagModalVisible,
-      setChooseTagModalVisible,
+
       setChosenTagId,
       chosenTagIndex,
       setChosenTagIndex,
@@ -50,8 +47,6 @@ function TagDonationProvider({ children }: any) {
     [
       chosenTag,
       setChosenTag,
-      chooseTagModalVisible,
-      setChooseTagModalVisible,
       setChosenTagId,
       chosenTagIndex,
       setChosenTagIndex,

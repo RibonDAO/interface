@@ -179,7 +179,6 @@ function CryptoPaymentProvider({ children }: Props) {
       const contractSymbol = await donationTokenContract?.functions.symbol();
       if (contractSymbol) setTokenSymbol(contractSymbol);
     } catch (error) {
-      logError(error);
       setTokenSymbol("USDC");
     }
   }, [donationTokenContract]);

@@ -2,7 +2,6 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useTickets } from "@ribon.io/shared/hooks";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { logError } from "services/crashReport";
 import { useAuthentication } from "contexts/authenticationContext";
 import { useCollectTickets } from "hooks/useCollectTickets";
 
@@ -46,17 +45,13 @@ function TicketsProvider({ children }: Props) {
   }
 
   async function updateTicketsCounterForNotLoggedInUser() {
-    try {
-      if (!currentUser) {
-        const canCollect = await handleCanCollect();
-        if (!canCollect) {
-          setTicketsCounter(0);
-        } else {
-          setTicketsCounter(1);
-        }
+    if (!currentUser) {
+      const canCollect = await handleCanCollect();
+      if (!canCollect) {
+        setTicketsCounter(0);
+      } else {
+        setTicketsCounter(1);
       }
-    } catch (error) {
-      logError(error);
     }
   }
 

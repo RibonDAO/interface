@@ -47,10 +47,9 @@ export const ImageBackground = styled.div`
   left: 0;
 `;
 
-export const MainImage = styled.img`
-  width: 200px;
-  height: 200px;
-  border-radius: 8px;
+export const Icon = styled.img`
+  width: 128px;
+  height: 128px;
   z-index: 1;
   object-fit: cover;
 `;

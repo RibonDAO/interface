@@ -118,7 +118,7 @@ export default function SelectTicketsPage() {
   ) : (
     <S.Container>
       <S.ImageContainer>
-        <S.Image src={nonProfit?.mainImage} />
+        <S.Icon src={nonProfit?.icon} />
       </S.ImageContainer>
       <S.ContentContainer>
         <S.Title>{t("title")}</S.Title>

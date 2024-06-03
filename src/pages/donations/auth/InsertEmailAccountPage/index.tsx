@@ -102,7 +102,7 @@ function InsertEmailAccountPage(): JSX.Element {
       ) : (
         <>
           <S.ImageContainer>
-            <S.MainImage src={nonProfit.mainImage} />
+            <S.Icon src={nonProfit.icon} />
           </S.ImageContainer>
           <S.ContentContainer>
             <S.Title>{t("title")}</S.Title>

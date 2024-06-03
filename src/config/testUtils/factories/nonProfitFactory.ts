@@ -14,6 +14,8 @@ function nonProfitFactory(params: Partial<NonProfit> = {}): NonProfit {
     backgroundImage: "",
     coverImage: "",
     mainImage: "",
+    icon: "",
+    iconDescription: "",
     cause: {} as Cause,
     nonProfitImpacts: [nonProfitImpactFactory()],
     confirmationImage: "",
@@ -25,8 +27,6 @@ function nonProfitFactory(params: Partial<NonProfit> = {}): NonProfit {
     logoDescription: "",
     impactTitle: "",
     coverImageDescription: "",
-    icon: "",
-    iconDescription: "",
   };
   return Object.assign(defaultValues, params) as NonProfit;
 }

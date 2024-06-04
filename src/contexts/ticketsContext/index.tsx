@@ -45,13 +45,17 @@ function TicketsProvider({ children }: Props) {
   }
 
   async function updateTicketsCounterForNotLoggedInUser() {
-    if (!currentUser) {
-      const canCollect = await handleCanCollect();
-      if (!canCollect) {
-        setTicketsCounter(0);
-      } else {
-        setTicketsCounter(1);
+    try {
+      if (!currentUser) {
+        const canCollect = await handleCanCollect();
+        if (!canCollect) {
+          setTicketsCounter(0);
+        } else {
+          setTicketsCounter(1);
+        }
       }
+    } catch {
+      setTicketsCounter(0);
     }
   }
 

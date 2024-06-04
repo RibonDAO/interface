@@ -31,17 +31,15 @@ describe("FirstPage", () => {
         expectTextToBeInTheDocument("Welcome to Ribon!");
       });
 
-      it("navigates to the app download page when the button is clicked", () => {
-        clickOn("Get ticket in Ribon's app");
-        expectPageToNavigateTo("/app-download", {
-          state: { cameFrom: "intro" },
-        });
+      it("navigates to the step 3 page when the button is clicked", () => {
+        clickOn("See how it works");
+        expectPageToNavigateTo("/intro/step-3");
       });
 
-      it("navigates to the receive ticket page when the button is clicked", () => {
-        clickOn("Stay in browser");
+      it("navigates to the causes page when the button is clicked", () => {
+        clickOn("Skip");
 
-        expectPageToNavigateTo("/intro/step-2");
+        expectPageToNavigateTo("/causes");
       });
     });
 
@@ -91,15 +89,13 @@ describe("FirstPage", () => {
         expectTextToBeInTheDocument("You have 1 special ticket");
       });
 
-      it("navigates to the app download page when the button is clicked", () => {
-        clickOn("Get ticket in Ribon's app");
-        expectPageToNavigateTo("/app-download", {
-          state: { cameFrom: "intro" },
-        });
+      it("navigates to the step 3 page when the button is clicked", () => {
+        clickOn("See how it works");
+        expectPageToNavigateTo("/intro/step-3");
       });
 
       it("navigates to the causes page when the button is clicked", () => {
-        clickOn("Stay in browser");
+        clickOn("Skip");
         expectPageToNavigateTo("/causes");
       });
     });

@@ -31,21 +31,13 @@ export const Container = styled.div`
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 100%;
     flex-direction: row;
+    gap: ${({ theme }) => theme.spacing(40)};
   }
 `;
 
 export const ImageContainer = styled.div`
   width: 100%;
   flex-basis: 100%;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    max-width: 432px;
-    margin-right: ${({ theme }) => theme.spacing(40)};
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    margin-right: ${({ theme }) => theme.spacing(20)};
-  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 110%;
@@ -55,7 +47,7 @@ export const ImageContainer = styled.div`
 
 export const Image = styled.img`
   width: 100%;
-  max-height: 240px;
+  height: 240px;
   border-radius: 0;
   position: relative;
   object-fit: cover;
@@ -68,11 +60,13 @@ export const Image = styled.img`
 `;
 
 export const TextContainer = styled.div<{ colorTheme: ThemeShades }>`
+  height: 240px;
   padding: ${({ theme }) => theme.spacing(32)};
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: center;
   background-color: ${({ colorTheme }) => colorTheme[50]};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {

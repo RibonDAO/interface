@@ -14,8 +14,8 @@ describe("onboarding - ThirdPage", () => {
     );
     expectTextToBeInTheDocument("What are tickets?");
     expectTextToBeInTheDocument("Who pays the tickets?");
-    expectTextToBeInTheDocument("How to earn more tickets?");
-    expectTextToBeInTheDocument("Start");
+    expectTextToBeInTheDocument("What is Ribon?");
+    expectTextToBeInTheDocument("Choose project");
   });
 
   describe("when the user clicks on the start button", () => {
@@ -24,7 +24,7 @@ describe("onboarding - ThirdPage", () => {
     });
 
     it("should navigate to the causes page", () => {
-      clickOn("Start");
+      clickOn("Choose project");
       expectPageToNavigateTo("/causes");
     });
   });

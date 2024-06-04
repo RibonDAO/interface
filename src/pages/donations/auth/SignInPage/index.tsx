@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { NonProfit } from "@ribon.io/shared/types";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "lib/events";
@@ -9,8 +9,9 @@ import LeftImage from "assets/images/bottom-left-shape.svg";
 import RightImage from "assets/images/top-right-shape.svg";
 import GoogleLogin from "components/moleculars/buttons/GoogleLogin";
 import AppleLogin from "components/moleculars/buttons/AppleLogin";
+import MagicLinkLogin from "components/moleculars/buttons/MagicLinkLogin";
 import useDonationFlow from "hooks/useDonationFlow";
-import { useTickets } from "hooks/useTickets";
+import { useCollectTickets } from "hooks/useCollectTickets";
 import DonatingSection from "../DonatingSection";
 import * as S from "./styles";
 
@@ -28,7 +29,7 @@ function SignInPage(): JSX.Element {
   const [donationInProgress, setDonationInProgress] = useState(false);
   const [donationSucceeded, setDonationSucceeded] = useState(false);
   const { handleDonate } = useDonationFlow();
-  const { handleCollect } = useTickets();
+  const { handleCollect } = useCollectTickets();
 
   const {
     state: { nonProfit },
@@ -38,9 +39,6 @@ function SignInPage(): JSX.Element {
     switch (type) {
       case 403: {
         return "blockedDonation";
-      }
-      case 401: {
-        return "unauthorizedDonation";
       }
       default: {
         return "failedDonation";
@@ -84,9 +82,9 @@ function SignInPage(): JSX.Element {
     });
   };
 
-  const onContinueSignInPage = () => {
+  const onContinueMagicLink = () => {
     navigateTo({
-      pathname: "/auth/sign-in",
+      pathname: "/insert-email",
       state: { nonProfit },
     });
   };
@@ -132,6 +130,10 @@ function SignInPage(): JSX.Element {
           <S.ButtonContainer>
             <GoogleLogin onContinue={onContinue} from="donation_flow" />
             <AppleLogin onContinue={onContinue} from="donation_flow" />
+            <MagicLinkLogin
+              onContinue={onContinueMagicLink}
+              from="donation_flow"
+            />
           </S.ButtonContainer>
           <S.FooterText>
             {t("footerStartText")}
@@ -144,12 +146,6 @@ function SignInPage(): JSX.Element {
               {t("privacyPolicyText")}
             </a>
           </S.FooterText>
-          <S.SignInContainer>
-            <S.SignInTitle>{t("signInTitle")}</S.SignInTitle>
-            <S.SignInButton onClick={onContinueSignInPage}>
-              {t("signInButton")}
-            </S.SignInButton>
-          </S.SignInContainer>
         </S.ContentContainer>
       </S.Container>
     </>

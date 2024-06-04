@@ -30,7 +30,7 @@ import useNavigation from "hooks/useNavigation";
 import ReportsSection from "./ReportsSection";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
-import CausesSelectSection from "./CausesSelectSection";
+import TagsSelectSection from "./TagsSelectSection";
 import * as S from "./styles";
 
 import showErrorModal from "./errorModal";
@@ -134,7 +134,7 @@ function CausesPage(): JSX.Element {
         {donatedToday && <CampaignSection cardId="1" />}
 
         <ContributionNotification />
-        <CausesSelectSection />
+        <TagsSelectSection />
         <NonProfitsSection />
         {isMobile && (
           <S.TooltipSection>

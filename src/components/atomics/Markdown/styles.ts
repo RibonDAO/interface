@@ -19,7 +19,7 @@ export const MarkdownContainer = styled.div`
     line-height: 24px;
   }
 
-  h1, h2, h3, h4, h5, h6, p, th, tr, td, table {
-    /* margin: 12px; */
-  }
+  /* h1, h2, h3, h4, h5, h6, p, th, tr, td, table {
+    margin: 12px;
+  } */
 `;

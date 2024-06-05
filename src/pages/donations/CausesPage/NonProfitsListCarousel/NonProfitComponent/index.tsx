@@ -1,8 +1,10 @@
-import { NonProfit } from "@ribon.io/shared";
+import { NonProfit, Story } from "@ribon.io/shared/types";
+import { useStories } from "@ribon.io/shared/hooks";
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
 import { useTicketsContext } from "contexts/ticketsContext";
+import { logError } from "services/crashReport";
 import FirstCard from "pages/donations/CausesPage/NonProfitsListCarousel/NonProfitComponent/FirstCard";
-import { useState, ReactElement } from "react";
+import { useState, ReactElement, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import CardMarginButtonImage from "./CardMarginButtonImage";
 import CardNonProfitStories from "./CardNonProfitStories";
@@ -23,9 +25,10 @@ function NonProfitComponent({
     keyPrefix: "donations.causesPage",
   });
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
+  const [nonProfitStories, setNonProfitStories] = useState<Story[]>([]);
   const { hasTickets, ticketsCounter } = useTicketsContext();
+  const { fetchNonProfitStories } = useStories();
 
-  const nonProfitStories = nonProfit?.stories || [];
   const minNumberOfTickets =
     nonProfit?.nonProfitImpacts?.[0]?.minimumNumberOfTickets ?? 0;
   const hasEnoughTickets = hasTickets && ticketsCounter >= minNumberOfTickets;
@@ -37,6 +40,20 @@ function NonProfitComponent({
       backgroundImage={story.image}
     />,
   ]);
+
+  const loadStories = async () => {
+    try {
+      const stories = await fetchNonProfitStories(nonProfit.id);
+      if (stories.length === 0) return;
+      setNonProfitStories(stories);
+    } catch (e) {
+      logError(e);
+    }
+  };
+
+  useEffect(() => {
+    loadStories();
+  }, [nonProfit]);
 
   return (
     <S.Container>

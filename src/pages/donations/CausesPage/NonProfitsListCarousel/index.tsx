@@ -82,6 +82,7 @@ function NonProfitsListCarousel({ nonProfits }: Props): JSX.Element {
     <S.NonProfitsListContainer>
       {nonProfits.length > 0 ? (
         <div>
+          {console.log("nonProfits", nonProfits)}
           {nonProfits.map((nonProfit: any) => (
             <NonProfitComponent
               key={nonProfit.id}

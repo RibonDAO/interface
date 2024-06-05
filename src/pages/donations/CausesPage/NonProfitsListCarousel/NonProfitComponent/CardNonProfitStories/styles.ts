@@ -40,8 +40,11 @@ export const MarkdownContainer = styled.div`
   }
 `;
 
-export const ImageBackground = styled.image`
+export const ImageBackground = styled.div<{ imageUrl: string | undefined }>`
   width: 100%;
   height: 100%;
   border-radius: 16px;
+  background-size: cover;
+  background-position: center;
+  background-image: ${({ imageUrl }) => `url(${imageUrl})`};
 `;

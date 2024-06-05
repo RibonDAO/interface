@@ -29,11 +29,7 @@ function ImageBackgroundComponent({ markdownText, backgroundImage }: Props) {
   return (
     <S.Container>
       <S.ImageBackground
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        imageUrl={backgroundImage}
         data-testid="image-background"
       >
         <S.MarkdownContainer>

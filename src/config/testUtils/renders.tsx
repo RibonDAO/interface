@@ -40,10 +40,10 @@ import NetworkProvider, {
   NetworkContext,
 } from "contexts/networkContext";
 import { QueryClientComponent } from "@ribon.io/shared/hooks";
-import CauseDonationProvider, {
-  CauseDonationContext,
-  ICauseDonationContext,
-} from "contexts/causeDonationContext";
+import TagDonationProvider, {
+  TagDonationContext,
+  ITagDonationContext,
+} from "contexts/tagDonationContext";
 import TasksProvider, {
   ITasksContext,
   TasksContext,
@@ -72,6 +72,7 @@ import CouponProvider, {
   CouponContext,
   ICouponContext,
 } from "contexts/couponContext";
+import TagsProvider, { ITagsContext, TagsContext } from "contexts/tagsContext";
 
 export interface RenderWithContextResult {
   component: RenderResult;
@@ -111,7 +112,8 @@ export type RenderComponentProps = {
   couponProviderValue?: Partial<ICouponContext>;
   walletProviderValue?: Partial<IWalletContext>;
   causesProviderValue?: Partial<ICausesContext>;
-  causeDonationProviderValue?: Partial<ICauseDonationContext>;
+  tagDonationProviderValue?: Partial<ITagDonationContext>;
+  tagsProviderValue?: Partial<ITagsContext>;
   causeContributionProviderValue?: Partial<ICauseContributionContext>;
   currentUserProviderValue?: Partial<ICurrentUserContext>;
   toastProviderValue?: Partial<IToastContext>;
@@ -133,7 +135,8 @@ function renderAllProviders(
     couponProviderValue = {},
     walletProviderValue = {},
     causesProviderValue = {},
-    causeDonationProviderValue = {},
+    tagDonationProviderValue = {},
+    tagsProviderValue = {},
     causeContributionProviderValue = {},
     currentUserProviderValue = {},
     toastProviderValue = {},
@@ -171,52 +174,56 @@ function renderAllProviders(
                       CouponProvider,
                       CouponContext,
                       couponProviderValue,
-
                       renderProvider(
-                        WalletProvider,
-                        WalletContext,
-                        walletProviderValue,
+                        TagsProvider,
+                        TagsContext,
+                        tagsProviderValue,
                         renderProvider(
-                          CausesProvider,
-                          CausesContext,
-                          causesProviderValue,
+                          WalletProvider,
+                          WalletContext,
+                          walletProviderValue,
                           renderProvider(
-                            CauseDonationProvider,
-                            CauseDonationContext,
-                            causeDonationProviderValue,
+                            CausesProvider,
+                            CausesContext,
+                            causesProviderValue,
                             renderProvider(
-                              CauseContributionProvider,
-                              CauseContributionContext,
-                              causeContributionProviderValue,
+                              TagDonationProvider,
+                              TagDonationContext,
+                              tagDonationProviderValue,
                               renderProvider(
-                                ToastContextProvider,
-                                ToastContext,
-                                toastProviderValue,
+                                CauseContributionProvider,
+                                CauseContributionContext,
+                                causeContributionProviderValue,
                                 renderProvider(
-                                  LoadingOverlayProvider,
-                                  LoadingOverlayContext,
-                                  loadingOverlayValue,
+                                  ToastContextProvider,
+                                  ToastContext,
+                                  toastProviderValue,
                                   renderProvider(
-                                    ModalProvider,
-                                    ModalContext,
-                                    modalProviderValue,
+                                    LoadingOverlayProvider,
+                                    LoadingOverlayContext,
+                                    loadingOverlayValue,
                                     renderProvider(
-                                      NetworkProvider,
-                                      NetworkContext,
-                                      networkProviderValue,
+                                      ModalProvider,
+                                      ModalContext,
+                                      modalProviderValue,
                                       renderProvider(
-                                        TasksProvider,
-                                        TasksContext,
-                                        tasksProviderValue,
+                                        NetworkProvider,
+                                        NetworkContext,
+                                        networkProviderValue,
                                         renderProvider(
-                                          StripeProvider,
-                                          StripeContext,
-                                          stripeProviderValue,
+                                          TasksProvider,
+                                          TasksContext,
+                                          tasksProviderValue,
                                           renderProvider(
-                                            UserLevelProvider,
-                                            UserLevelContext,
-                                            userLevelProviderValue,
-                                            children,
+                                            StripeProvider,
+                                            StripeContext,
+                                            stripeProviderValue,
+                                            renderProvider(
+                                              UserLevelProvider,
+                                              UserLevelContext,
+                                              userLevelProviderValue,
+                                              children,
+                                            ),
                                           ),
                                         ),
                                       ),

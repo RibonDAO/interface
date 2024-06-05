@@ -10,7 +10,7 @@ export const Container = styled.div``;
 
 export const BodyContainer = styled.div`
   width: 100%;
-  padding-bottom: ${({ theme }) => theme.spacing(112)};
+  padding-bottom: ${({ theme }) => theme.spacing(48)};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
     display: flex;

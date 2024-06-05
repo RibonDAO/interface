@@ -13,13 +13,12 @@ import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
 import extractUrlValue from "lib/extractUrlValue";
 import { INTEGRATION_AUTH_ID, RIBON_COMPANY_ID } from "utils/constants";
-import UserSupportBanner from "components/moleculars/banners/UserSupportBanner";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import NonProfitsSection from "pages/donations/CausesPage/NonProfitsSection";
 import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
 import CampaignSection from "pages/donations/CausesPage/CampaignSection";
 import { useTicketsContext } from "contexts/ticketsContext";
-import { useTickets } from "hooks/useTickets";
+import { useCollectTickets } from "hooks/useCollectTickets";
 import { logEvent } from "lib/events";
 import {
   RECEIVED_TICKET_AT_KEY,
@@ -28,12 +27,14 @@ import {
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import { setLocalStorageItem } from "lib/localStorage";
 import useNavigation from "hooks/useNavigation";
+import ReportsSection from "./ReportsSection";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
-import CausesSelectSection from "./CausesSelectSection";
+import TagsSelectSection from "./TagsSelectSection";
 import * as S from "./styles";
 
 import showErrorModal from "./errorModal";
+import MadeByRibonSection from "./MadeByRibonSection";
 
 function CausesPage(): JSX.Element {
   const integrationId = useIntegrationId();
@@ -48,7 +49,7 @@ function CausesPage(): JSX.Element {
   showErrorModal(state);
 
   const { refetchTickets, hasTickets } = useTicketsContext();
-  const { currentUser } = useCurrentUser();
+  const { currentUser, signedIn } = useCurrentUser();
   const externalId = extractUrlValue("external_id", search);
   const { isFirstAccessToIntegration } = useFirstAccessToIntegration(
     integration?.id || integrationId,
@@ -59,7 +60,7 @@ function CausesPage(): JSX.Element {
   const { navigateTo } = useNavigation();
 
   const { handleCanCollect, handleCollect, hasReceivedTicketToday } =
-    useTickets();
+    useCollectTickets();
 
   const { showReceiveTicketToast } = useReceiveTicketToast();
   const isRibonIntegration =
@@ -106,25 +107,26 @@ function CausesPage(): JSX.Element {
     );
   }, [integration, isFirstAccessToIntegration]);
 
+  const handleInfoClick = () => {
+    navigateTo("/intro/step-3");
+  };
+
   useAvoidBackButton();
 
   return (
     <S.Container>
       <DownloadAppToast />
-      {shouldShowIntegrationBanner && (
-        <IntegrationBanner integration={integration} />
-      )}
       <S.BodyContainer>
         <S.TitleContainer>
           {hasTickets && <S.Title>{t("pageTitle")}</S.Title>}
 
           {!isMobile && (
             <Tooltip
-              text={t("tooltipTicketText")}
-              symbol="?"
               textRight={t("tooltipTicket")}
+              symbol="?"
               place="top"
               idTooltip="tooltipTicket"
+              onClick={handleInfoClick}
             />
           )}
         </S.TitleContainer>
@@ -132,20 +134,26 @@ function CausesPage(): JSX.Element {
         {donatedToday && <CampaignSection cardId="1" />}
 
         <ContributionNotification />
-        <CausesSelectSection />
+        <TagsSelectSection />
         <NonProfitsSection />
         {isMobile && (
           <S.TooltipSection>
             <Tooltip
-              text={t("tooltipTicketText")}
-              symbol="?"
               textRight={t("tooltipTicket")}
-              place="bottom"
+              symbol="?"
+              place="top"
               idTooltip="tooltipTicket"
+              onClick={handleInfoClick}
             />
           </S.TooltipSection>
         )}
-        <UserSupportBanner from="donateTickets_page" />
+
+        {shouldShowIntegrationBanner && (
+          <IntegrationBanner integration={integration} />
+        )}
+
+        {signedIn && !isFirstAccessToIntegration && <ReportsSection />}
+        <MadeByRibonSection />
       </S.BodyContainer>
     </S.Container>
   );

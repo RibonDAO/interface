@@ -74,7 +74,13 @@ function CardCenterImageButton({
       from: "unlockNonProfitBanner",
       ...utmParamsFor("mobile"),
     });
-    window.open(`${APP_LINK}?integration_id=${integrationId}`);
+
+    const queryParams = new URLSearchParams({
+      integration_id: integrationId as string,
+      ...utmParamsFor("mobile"),
+    });
+
+    window.open(`${APP_LINK}?${queryParams}`);
   }
 
   function handleIosLink() {

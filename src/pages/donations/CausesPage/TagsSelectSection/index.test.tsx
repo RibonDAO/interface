@@ -1,26 +1,31 @@
 import { renderComponent } from "config/testUtils";
 import { expectTextToBeInTheDocument } from "config/testUtils/expects";
-import { causeFactory } from "@ribon.io/shared/config";
-import CausesSelectSection from ".";
+
+import TagsSelectSection from ".";
 
 jest.mock("lib/onboardingFirstAccess", () => ({
   isFirstAccess: jest.fn(() => false),
 }));
 
-describe("CausesSelectSection", () => {
-  const mockCause = causeFactory({ name: "Cause 1" });
+describe("TagsSelectSection", () => {
+  const mockTag = {
+    id: 1,
+    name: "Tag 1",
+    status: "active",
+    nonProfits: [],
+  };
 
-  renderComponent(<CausesSelectSection />, {
+  renderComponent(<TagsSelectSection />, {
     currentUserProviderValue: {
       signedIn: true,
     },
-    causesProviderValue: {
-      filteredCauses: [mockCause],
+    tagsProviderValue: {
+      tags: [mockTag],
     },
   });
 
   it("renders all the select options", () => {
     expectTextToBeInTheDocument("All");
-    expectTextToBeInTheDocument("Cause 1");
+    expectTextToBeInTheDocument("Tag 1");
   });
 });

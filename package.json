@@ -34,6 +34,7 @@
     "i18next-http-backend": "^1.4.1",
     "keen-slider": "^6.8.6",
     "lottie-colorify": "^0.8.0",
+    "markdown-to-jsx": "^7.4.7",
     "mixpanel-browser": "^2.45.0",
     "polished": "^4.2.2",
     "qrcode.react": "^3.1.0",

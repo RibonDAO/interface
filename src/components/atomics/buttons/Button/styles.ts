@@ -50,7 +50,7 @@ export const Container = styled.button<{
   justify-content: center;
   background-color: ${(props) => props.backgroundColor};
   color: ${(props) => props.textColor};
-  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
+  opacity: 1;
   cursor: pointer;
 
   #left-icon {

@@ -68,4 +68,8 @@ export const Container = styled.button<{
       fill: ${(props) => props.ribonsColor};
     }
   }
+
+  &:hover {
+    cursor: ${(props) => props.disabled ? "default" : "pointer"};
+  }
 `;

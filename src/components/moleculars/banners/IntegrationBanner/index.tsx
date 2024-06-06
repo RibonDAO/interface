@@ -13,16 +13,26 @@ function IntegrationBanner({ integration }: Props): JSX.Element {
     keyPrefix: "layouts.integrationBanner",
   });
   const integrationName = integration?.name;
+  const hasCustomBanner =
+    integration?.bannerTitle && integration?.bannerDescription;
+
+  const title = hasCustomBanner
+    ? integration?.bannerTitle
+    : t("title", { integrationName });
+  const description = hasCustomBanner
+    ? integration?.bannerDescription
+    : t("text", { integrationName });
+
   return (
     <InfoBanner
       title={{
-        text: t("title", { integrationName }),
+        text: title as string,
         size: "large",
         color: theme.colors.brand.primary[900],
         stylized: true,
       }}
       squareImage={integration?.logo || Avatar}
-      text={t("text", { integrationName })}
+      text={description}
       textColor={theme.colors.neutral[900]}
       backgroundColor={theme.colors.brand.primary[50]}
     />

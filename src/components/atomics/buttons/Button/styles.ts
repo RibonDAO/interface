@@ -51,7 +51,7 @@ export const Container = styled.button<{
   background-color: ${(props) => props.backgroundColor};
   color: ${(props) => props.textColor};
   opacity: 1;
-  cursor: pointer;
+  cursor: ${(props) => props.disabled ? "default" : "pointer"};
 
   #left-icon {
     margin-right: ${({ theme }) => theme.spacing(4)};

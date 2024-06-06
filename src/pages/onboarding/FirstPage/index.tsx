@@ -69,6 +69,29 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
     logEvent("P10_view");
   }, []);
 
+  const hasCustomOnboarding =
+    integration?.onboardingTitle && integration?.onboardingDescription;
+
+  const renderCustomOnboarding = () => (
+    <>
+      <S.Title>{integration?.onboardingTitle}</S.Title>
+      <S.Description>{integration?.onboardingDescription}</S.Description>
+    </>
+  );
+
+  const renderFallbackOnboarding = () => (
+    <>
+      <S.Title>
+        {integration?.onboardingTitle || ticketsCounter > 1
+          ? t("titlePlural", { ticketsCounter })
+          : title}
+      </S.Title>
+      <S.Description>
+        {integration?.onboardingDescription || subtitle}
+      </S.Description>
+    </>
+  );
+
   return (
     <S.Container>
       {!isOnboarding && (
@@ -91,19 +114,18 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
           </S.Header>
           <S.TextContainer>
             <S.IntegrationWrapper>
-              <S.DefaultImage src={Wrapper} />
-              <S.IntegrationLogoWrapper>
-                <S.IntegrationLogo
-                  src={integration?.logo || LogoBackgroundIcon}
-                />
-              </S.IntegrationLogoWrapper>
+              <S.DefaultImage src={integration?.onboardingImage || Wrapper} />
+              {!integration?.onboardingImage && (
+                <S.IntegrationLogoWrapper>
+                  <S.IntegrationLogo
+                    src={integration?.logo || LogoBackgroundIcon}
+                  />
+                </S.IntegrationLogoWrapper>
+              )}
             </S.IntegrationWrapper>
-            <S.Title>
-              {ticketsCounter > 1
-                ? t("titlePlural", { ticketsCounter })
-                : title}
-            </S.Title>
-            <S.Description>{subtitle}</S.Description>
+            {hasCustomOnboarding
+              ? renderCustomOnboarding()
+              : renderFallbackOnboarding()}
           </S.TextContainer>
           <S.ButtonContainer>
             <S.FilledButton onClick={handleClick}>

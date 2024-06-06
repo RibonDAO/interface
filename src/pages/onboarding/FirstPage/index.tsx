@@ -82,13 +82,9 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
   const renderFallbackOnboarding = () => (
     <>
       <S.Title>
-        {integration?.onboardingTitle || ticketsCounter > 1
-          ? t("titlePlural", { ticketsCounter })
-          : title}
+        {ticketsCounter > 1 ? t("titlePlural", { ticketsCounter }) : title}
       </S.Title>
-      <S.Description>
-        {integration?.onboardingDescription || subtitle}
-      </S.Description>
+      <S.Description>{subtitle}</S.Description>
     </>
   );
 

@@ -2,7 +2,7 @@ import Spinner from "components/atomics/Spinner";
 import { useNonProfitsContext } from "contexts/nonProfitsContext";
 import { useTagDonationContext } from "contexts/tagDonationContext";
 
-import NonProfitsList from "../NonProfitsList";
+import NonProfitsListCarousel from "../NonProfitsListCarousel";
 import * as S from "./styles";
 
 function NonProfitsSection() {
@@ -24,7 +24,7 @@ function NonProfitsSection() {
       ) : (
         filteredNonProfits && (
           <S.NonProfitsContainer>
-            <NonProfitsList nonProfits={nonProfitsFilter()} />
+            <NonProfitsListCarousel nonProfits={nonProfitsFilter()} />
           </S.NonProfitsContainer>
         )
       )}

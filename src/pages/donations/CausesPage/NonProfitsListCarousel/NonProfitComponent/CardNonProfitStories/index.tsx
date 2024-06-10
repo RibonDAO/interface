@@ -1,4 +1,4 @@
-import Markdown from "react-markdown";
+import Markdown from "components/atomics/Markdown";
 import DefaultBackground from "./assets/DefaultBackground";
 import * as S from "./styles";
 
@@ -18,9 +18,7 @@ function DefaultBackgroundComponent({
         <DefaultBackground />
       </S.BackgroundContainer>
 
-      <S.MarkdownContainer>
-        <Markdown>{markdownText}</Markdown>
-      </S.MarkdownContainer>
+      {markdownText && <Markdown markdownText={markdownText} />}
     </S.Container>
   );
 }
@@ -29,16 +27,10 @@ function ImageBackgroundComponent({ markdownText, backgroundImage }: Props) {
   return (
     <S.Container>
       <S.ImageBackground
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        imageUrl={backgroundImage}
         data-testid="image-background"
       >
-        <S.MarkdownContainer>
-          <Markdown>{markdownText}</Markdown>
-        </S.MarkdownContainer>
+        {markdownText && <Markdown markdownText={markdownText} />}
       </S.ImageBackground>
     </S.Container>
   );

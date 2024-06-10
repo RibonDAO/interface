@@ -37,8 +37,8 @@ export const TicketsContainer = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-width: 100%;
-display: flex;
+  width: 100%;
+  display: flex;
   flex: 1;
   align-items: flex-end;
 `;

@@ -18,6 +18,7 @@ describe("FirstCard Component", () => {
       <FirstCard
         nonProfit={mockNonProfit}
         buttonOnClick={buttonOnClick}
+        buttonText="Donate tickets"
         buttonDisabled={false}
         ticketsQuantity={2}
       />,
@@ -28,6 +29,7 @@ describe("FirstCard Component", () => {
     expectTextToBeInTheDocument("Non Profit Test");
     expectTextToBeInTheDocument("Impact title test");
     expectTextToBeInTheDocument("2");
+    expectTextToBeInTheDocument("Donate tickets");
   });
 
   it("should call a function when click on button", () => {

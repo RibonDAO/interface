@@ -14,6 +14,7 @@
       "confirmModalPrimaryButtonText": "Confirmar",
       "confirmModalSecondaryButtonText": "Cancelar",
       "donateText": "Doar ticket",
+      "donateCash": "Doar dinheiro",
       "donateBlockedText": "Sem tickets",
       "impactPrefix": "Doe",
       "notEnoughTickets": "Tickets insuficientes",
@@ -929,9 +930,6 @@
         "MagicLinkLogin": {
           "buttonText": "Continue com e-mail"
         }
-      },
-      "firstCard": {
-        "textButton": "Doar tickets"
       },
       "modals": {
         "ModalWrongEmail": {

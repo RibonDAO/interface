@@ -17,14 +17,14 @@ import NonProfitsSection from "pages/donations/CausesPage/NonProfitsSection";
 import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
 import CampaignSection from "pages/donations/CausesPage/CampaignSection";
 import { useTicketsContext } from "contexts/ticketsContext";
+import useNavigation from "hooks/useNavigation";
 import ReportsSection from "./ReportsSection";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
 import CausesSelectSection from "./CausesSelectSection";
-import * as S from "./styles";
-
 import showErrorModal from "./errorModal";
 import MadeByRibonSection from "./MadeByRibonSection";
+import * as S from "./styles";
 
 function CausesPage(): JSX.Element {
   const integrationId = useIntegrationId();
@@ -37,7 +37,7 @@ function CausesPage(): JSX.Element {
   });
   const { state } = useLocation<LocationStateType>();
   showErrorModal(state);
-
+  const { navigateTo } = useNavigation();
   const { refetchTickets, hasTickets } = useTicketsContext();
   const { signedIn } = useCurrentUser();
   const { isFirstAccessToIntegration } = useFirstAccessToIntegration(

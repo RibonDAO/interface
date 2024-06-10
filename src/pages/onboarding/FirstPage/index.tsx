@@ -2,21 +2,19 @@ import { useTranslation } from "react-i18next";
 import LeftImage from "assets/images/bottom-left-shape-red.svg";
 import RightImage from "assets/images/top-right-shape.svg";
 import useNavigation from "hooks/useNavigation";
-import useBreakpoint from "hooks/useBreakpoint";
 import { useIntegrationId } from "hooks/useIntegrationId";
 import { useIntegration } from "@ribon.io/shared/hooks";
-import { useLanguage } from "hooks/useLanguage";
 import { useEffect } from "react";
-import { APP_LINK, RIBON_COMPANY_ID } from "utils/constants";
+import { RIBON_COMPANY_ID } from "utils/constants";
 import Tooltip from "components/moleculars/Tooltip";
 import Button from "components/atomics/buttons/Button";
+import MadeByRibonPill from "components/atomics/MadeByRibonPill";
 import { logEvent } from "lib/events";
 import { theme } from "@ribon.io/shared/styles";
 import { useTicketsContext } from "contexts/ticketsContext";
-import RibonLogo from "assets/images/logo-ribon.svg";
-import Avatar from "assets/images/avatar.svg";
+import LogoBackgroundIcon from "assets/icons/logo-background-icon.svg";
 import ArrowLeft from "./assets/arrow-left-dark-green.svg";
-import Envelope from "./assets/envelope.svg";
+import Wrapper from "./assets/wrapper.svg";
 import * as S from "./styles";
 
 export type Props = {
@@ -31,17 +29,17 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
   const integrationId = useIntegrationId();
   const { integration } = useIntegration(integrationId);
   const { ticketsCounter } = useTicketsContext();
-  const { isMobile } = useBreakpoint();
-  const { currentLang } = useLanguage();
 
   const handleClick = () => {
     logEvent("P10_getTicketBtn_click");
 
-    if (isOnboarding) {
-      navigateTo("/intro/step-2");
-    } else {
-      navigateTo("/causes");
-    }
+    navigateTo("/intro/step-3");
+  };
+
+  const handleSkip = () => {
+    logEvent("P10_skipBtn_click");
+
+    navigateTo("/causes");
   };
 
   const isRibonIntegration = integration?.id === parseInt(RIBON_COMPANY_ID, 10);
@@ -67,27 +65,6 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
     navigateTo("/auth/sign-in");
   };
 
-  const handleDownload = () => {
-    logEvent("downloadCTA_click", { from: "firstScreen" });
-
-    const queryParams = new URLSearchParams({
-      integration_id: integrationId as string,
-      utm_source: currentLang === "pt-BR" ? "ribonweb_pt" : "ribonweb_en",
-      utm_medium: "first_screen",
-      utm_campaign: isMobile ? "mobile" : "desktop",
-    });
-
-    if (isMobile) {
-      window.open(`${APP_LINK}?${queryParams}`);
-      return;
-    }
-    navigateTo({
-      pathname: "/app-download",
-      search: queryParams.toString(),
-      state: { cameFrom: "intro" },
-    });
-  };
-
   useEffect(() => {
     logEvent("P10_view");
   }, []);
@@ -107,21 +84,20 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
 
         <S.ContentContainer>
           <S.Header>
-            <S.LogosWrapper>
-              <S.Logo src={RibonLogo} alt="ribon-logo" />
-              {!isRibonIntegration && (
-                <>
-                  <S.ImageContainerText>+</S.ImageContainerText>
-                  <S.Logo
-                    src={integration?.logo || Avatar}
-                    alt="integration-logo"
-                  />
-                </>
-              )}
-            </S.LogosWrapper>
+            <MadeByRibonPill
+              text={t("madeBy")}
+              backgroundColor={theme.colors.brand.primary[50]}
+            />
           </S.Header>
           <S.TextContainer>
-            <S.DefaultImage src={Envelope} />
+            <S.IntegrationWrapper>
+              <S.DefaultImage src={Wrapper} />
+              <S.IntegrationLogoWrapper>
+                <S.IntegrationLogo
+                  src={integration?.logo || LogoBackgroundIcon}
+                />
+              </S.IntegrationLogoWrapper>
+            </S.IntegrationWrapper>
             <S.Title>
               {ticketsCounter > 1
                 ? t("titlePlural", { ticketsCounter })
@@ -130,16 +106,16 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
             <S.Description>{subtitle}</S.Description>
           </S.TextContainer>
           <S.ButtonContainer>
-            <S.FilledButton onClick={handleDownload}>
-              {t("downloadAppButton")}
+            <S.FilledButton onClick={handleClick}>
+              {t("howItWorksButton")}
             </S.FilledButton>
             <Button
-              text={t("stayInBrowserButton")}
+              text={t("skipButton")}
               textColor={theme.colors.brand.primary[600]}
               backgroundColor="transparent"
               borderColor={theme.colors.brand.primary[500]}
               borderRadius="4px"
-              onClick={handleClick}
+              onClick={handleSkip}
             />
 
             {isOnboarding && (

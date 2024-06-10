@@ -28,13 +28,17 @@ function GiveTicketCouponPage(): JSX.Element {
   const { handleCanCollectByCoupon, handleCollectByCoupon } = useCoupons();
 
   async function canCollectByCoupon() {
-    const canCollectByCouponData = await handleCanCollectByCoupon();
-    setLoading(false);
-    if (!canCollectByCouponData.canCollect) {
+    try {
+      const canCollectByCouponData = await handleCanCollectByCoupon();
+      setLoading(false);
+      if (!canCollectByCouponData.canCollect) {
+        navigateTo("/coupons/expired-coupon");
+      } else {
+        logEvent("P37_view", { couponId });
+        setCouponData(canCollectByCouponData.coupon);
+      }
+    } catch (error) {
       navigateTo("/coupons/expired-coupon");
-    } else {
-      logEvent("P37_view", { couponId });
-      setCouponData(canCollectByCouponData.coupon);
     }
   }
 
@@ -43,7 +47,7 @@ function GiveTicketCouponPage(): JSX.Element {
     if (currentUser) {
       canCollectByCoupon();
     } else {
-      navigateTo("/sign-in-coupon");
+      navigateTo("/coupons/sign-in");
     }
   }, [currentUser]);
 

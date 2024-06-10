@@ -21,4 +21,23 @@ describe("IntegrationBanner", () => {
     );
     expectTextToBeInTheDocument("Ribon + Qulture Rocks");
   });
+
+  it("should render without error and custom fields", () => {
+    renderComponent(
+      <IntegrationBanner
+        integration={{
+          id: 1,
+          status: "string",
+          ticketAvailabilityInMinutes: 10,
+          name: "Qulture Rocks",
+          logo: "other",
+          bannerTitle: "Custom title",
+          bannerDescription: "Custom description",
+        }}
+      />,
+    );
+
+    expectTextToBeInTheDocument("Custom title");
+    expectTextToBeInTheDocument("Custom description");
+  });
 });

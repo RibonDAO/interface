@@ -1,11 +1,11 @@
 import { renderComponent } from "config/testUtils/renders";
 import ContributionStatsPage from "pages/users/ContributionStatsPage/index";
-import { expectTextToBeInTheDocument } from "config/testUtils/expects";
+import { screen } from "@testing-library/react";
 
 describe("ContributionStatsPage", () => {
   it("renders without error", () => {
     renderComponent(<ContributionStatsPage />);
 
-    expectTextToBeInTheDocument("spinner.svg");
+    expect(screen.queryAllByTestId("spinner")).toHaveLength(1);
   });
 });

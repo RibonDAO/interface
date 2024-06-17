@@ -21,7 +21,7 @@ import useNavigation from "hooks/useNavigation";
 import ReportsSection from "./ReportsSection";
 import ContributionNotification from "./ContributionNotification";
 import { LocationStateType } from "./LocationStateType";
-import CausesSelectSection from "./CausesSelectSection";
+import TagsSelectSection from "./TagsSelectSection";
 import showErrorModal from "./errorModal";
 import MadeByRibonSection from "./MadeByRibonSection";
 import * as S from "./styles";
@@ -86,7 +86,7 @@ function CausesPage(): JSX.Element {
         {donatedToday && <CampaignSection cardId="1" />}
 
         <ContributionNotification />
-        <CausesSelectSection />
+        <TagsSelectSection />
         <NonProfitsSection />
         {isMobile && (
           <S.TooltipSection>

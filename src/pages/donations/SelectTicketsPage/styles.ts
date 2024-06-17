@@ -53,10 +53,9 @@ export const Subtitle = styled.p`
   color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
-export const Image = styled.img`
-  width: 200px;
-  height: 200px;
-  border-radius: 8px;
+export const Icon = styled.img`
+  width: 128px;
+  height: 128px;
   z-index: 1;
   object-fit: cover;
 `;

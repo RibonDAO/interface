@@ -56,10 +56,10 @@ import CausesProvider, {
 } from "contexts/causesContext";
 
 import { QueryClientComponent } from "@ribon.io/shared/hooks";
-import CauseDonationProvider, {
-  CauseDonationContext,
-  ICauseDonationContext,
-} from "contexts/causeDonationContext";
+import TagDonationProvider, {
+  TagDonationContext,
+  ITagDonationContext,
+} from "contexts/tagDonationContext";
 import CauseContributionProvider, {
   CauseContributionContext,
   ICauseContributionContext,
@@ -96,6 +96,7 @@ import CouponProvider, {
   CouponContext,
   ICouponContext,
 } from "contexts/couponContext";
+import TagsProvider, { ITagsContext, TagsContext } from "contexts/tagsContext";
 
 export function renderWithTheme(children: React.ReactNode): RenderResult {
   return render(<ThemeProvider theme={theme}>{children}</ThemeProvider>);
@@ -142,7 +143,8 @@ export type RenderComponentProps = {
   walletProviderValue?: Partial<IWalletContext>;
   tasksProviderValue?: Partial<ITasksContext>;
   causesProviderValue?: Partial<ICausesContext>;
-  causeDonationProviderValue?: Partial<ICauseDonationContext>;
+  tagDonationProviderValue?: Partial<ITagDonationContext>;
+  tagsProviderValue?: Partial<ITagsContext>;
   causeContributionProviderValue?: Partial<ICauseContributionContext>;
   currentUserProviderValue?: Partial<ICurrentUserContext>;
   toastProviderValue?: Partial<IToastContext>;
@@ -168,7 +170,8 @@ export function renderComponent(
     walletProviderValue = {},
     tasksProviderValue = {},
     causesProviderValue = {},
-    causeDonationProviderValue = {},
+    tagDonationProviderValue = {},
+    tagsProviderValue = {},
     causeContributionProviderValue = {},
     currentUserProviderValue = {},
     toastProviderValue = {},
@@ -210,74 +213,79 @@ export function renderComponent(
                     CausesContext,
                     causesProviderValue,
                     renderProvider(
-                      CauseDonationProvider,
-                      CauseDonationContext,
-                      causeDonationProviderValue,
+                      TagDonationProvider,
+                      TagDonationContext,
+                      tagDonationProviderValue,
                       renderProvider(
-                        CauseContributionProvider,
-                        CauseContributionContext,
-                        causeContributionProviderValue,
+                        TagsProvider,
+                        TagsContext,
+                        tagsProviderValue,
                         renderProvider(
-                          ToastContextProvider,
-                          ToastContext,
-                          toastProviderValue,
+                          CauseContributionProvider,
+                          CauseContributionContext,
+                          causeContributionProviderValue,
                           renderProvider(
-                            LoadingOverlayProvider,
-                            LoadingOverlayContext,
-                            loadingOverlayValue,
+                            ToastContextProvider,
+                            ToastContext,
+                            toastProviderValue,
                             renderProvider(
-                              ModalProvider,
-                              ModalContext,
-                              modalProviderValue,
+                              LoadingOverlayProvider,
+                              LoadingOverlayContext,
+                              loadingOverlayValue,
                               renderProvider(
-                                NonProfitsProvider,
-                                NonProfitsContext,
-                                nonProfitsProviderValue,
+                                ModalProvider,
+                                ModalContext,
+                                modalProviderValue,
                                 renderProvider(
-                                  PaymentInformationProvider,
-                                  PaymentInformationContext,
-                                  paymentProviderValue,
+                                  NonProfitsProvider,
+                                  NonProfitsContext,
+                                  nonProfitsProviderValue,
                                   renderProvider(
-                                    CardPaymentInformationProvider,
-                                    CardPaymentInformationContext,
-                                    cardPaymentProviderValue,
+                                    PaymentInformationProvider,
+                                    PaymentInformationContext,
+                                    paymentProviderValue,
                                     renderProvider(
-                                      NetworkProvider,
-                                      NetworkContext,
-                                      networkProviderValue,
+                                      CardPaymentInformationProvider,
+                                      CardPaymentInformationContext,
+                                      cardPaymentProviderValue,
                                       renderProvider(
-                                        WalletProvider,
-                                        WalletContext,
-                                        walletProviderValue,
+                                        NetworkProvider,
+                                        NetworkContext,
+                                        networkProviderValue,
                                         renderProvider(
-                                          CryptoPaymentProvider,
-                                          CryptoPaymentContext,
-                                          cryptoPaymentProviderValue,
+                                          WalletProvider,
+                                          WalletContext,
+                                          walletProviderValue,
                                           renderProvider(
-                                            StripeProvider,
-                                            StripeContext,
-                                            stripeProviderValue,
+                                            CryptoPaymentProvider,
+                                            CryptoPaymentContext,
+                                            cryptoPaymentProviderValue,
                                             renderProvider(
-                                              PixPaymentInformationProvider,
-                                              PixPaymentInformationContext,
-                                              pixPaymentProviderValue,
+                                              StripeProvider,
+                                              StripeContext,
+                                              stripeProviderValue,
                                               renderProvider(
-                                                UserLevelProvider,
-                                                UserLevelContext,
-                                                userLevelProviderValue,
+                                                PixPaymentInformationProvider,
+                                                PixPaymentInformationContext,
+                                                pixPaymentProviderValue,
                                                 renderProvider(
-                                                  AuthenticationProvider,
-                                                  AuthenticationContext,
-                                                  authenticationProviderValue,
+                                                  UserLevelProvider,
+                                                  UserLevelContext,
+                                                  userLevelProviderValue,
                                                   renderProvider(
-                                                    TicketsProvider,
-                                                    TicketsContext,
-                                                    ticketsProviderValue,
+                                                    AuthenticationProvider,
+                                                    AuthenticationContext,
+                                                    authenticationProviderValue,
                                                     renderProvider(
-                                                      CouponProvider,
-                                                      CouponContext,
-                                                      couponProviderValue,
-                                                      component,
+                                                      TicketsProvider,
+                                                      TicketsContext,
+                                                      ticketsProviderValue,
+                                                      renderProvider(
+                                                        CouponProvider,
+                                                        CouponContext,
+                                                        couponProviderValue,
+                                                        component,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),

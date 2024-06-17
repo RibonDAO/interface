@@ -1,4 +1,4 @@
-import { useCauseDonationContext } from "contexts/causeDonationContext";
+import { useTagDonationContext } from "contexts/tagDonationContext";
 import Intersection from "./assets/intersect.svg";
 import * as S from "./styles";
 
@@ -10,13 +10,11 @@ type Props = {
 };
 
 function CauseImage({ name, coverImage, id, index }: Props) {
-  const { setChosenCauseId, setChooseCauseModalVisible, setChosenCauseIndex } =
-    useCauseDonationContext();
+  const { setChosenTagId, setChosenTagIndex } = useTagDonationContext();
 
   const handleClick = () => {
-    setChosenCauseId(id);
-    setChosenCauseIndex(index + 1);
-    setChooseCauseModalVisible(false);
+    setChosenTagId(id);
+    setChosenTagIndex(index + 1);
   };
 
   return (

@@ -12,12 +12,13 @@ import NonProfitsProvider from "contexts/nonProfitsContext";
 import DebugEventsView from "config/debugEventsView";
 import { debugEnabled } from "config/debugEventsView/helpers";
 import AuthenticationProvider from "contexts/authenticationContext";
-import CauseDonationProvider from "contexts/causeDonationContext";
+import CauseDonationProvider from "contexts/tagDonationContext";
 import CauseContributionProvider from "contexts/causeContributionContext";
 import UserLevelProvider from "contexts/userLevelContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import TicketsProvider from "contexts/ticketsContext";
 import CouponProvider from "contexts/couponContext";
+import TagsProvider from "contexts/tagsContext";
 import RoutesComponent from "./config/routes";
 import GlobalStyle from "./styles/globalStyle";
 import theme from "./styles/theme";
@@ -58,18 +59,20 @@ function App() {
                         <TicketsProvider>
                           <TasksProvider>
                             <CouponProvider>
-                              <NonProfitsProvider>
-                                <CausesProvider>
-                                  <CauseDonationProvider>
-                                    <CauseContributionProvider>
-                                      <UserLevelProvider>
-                                        <RoutesComponent />
-                                        <Zendesk />
-                                      </UserLevelProvider>
-                                    </CauseContributionProvider>
-                                  </CauseDonationProvider>
-                                </CausesProvider>
-                              </NonProfitsProvider>
+                              <TagsProvider>
+                                <NonProfitsProvider>
+                                  <CausesProvider>
+                                    <CauseDonationProvider>
+                                      <CauseContributionProvider>
+                                        <UserLevelProvider>
+                                          <RoutesComponent />
+                                          <Zendesk />
+                                        </UserLevelProvider>
+                                      </CauseContributionProvider>
+                                    </CauseDonationProvider>
+                                  </CausesProvider>
+                                </NonProfitsProvider>
+                              </TagsProvider>
                             </CouponProvider>
                           </TasksProvider>
                         </TicketsProvider>

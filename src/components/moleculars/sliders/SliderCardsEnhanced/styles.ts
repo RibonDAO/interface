@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const NavigationWrapper = styled.div`
+  width: 100%;
   max-width: 900px;
   position: relative;
 `;
@@ -34,6 +35,7 @@ export const LeftSide = styled.div<{ visible: boolean }>`
 export const RightSide = styled.div<{ visible: boolean }>`
   width: 100px;
   height: 100%;
+  margin-right: -32px;
   position: absolute;
   top: 0;
   right: 0;

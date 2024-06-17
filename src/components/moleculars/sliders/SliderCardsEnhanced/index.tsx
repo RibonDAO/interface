@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { KeenSliderPlugin, useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import RoundedArrow from "components/atomics/arrows/RoundedArrow";
-import useBreakpoint from "hooks/useBreakpoint";
 import * as S from "./styles";
 
 export type Props = {
@@ -18,27 +17,20 @@ export type Props = {
 export default function SliderCardsEnhanced({
   loop = false,
   children,
-  slideWidthOnDesktop = 287,
+  slideWidthOnDesktop = 296,
 }: Props) {
   const [loaded, setLoaded] = useState(false);
-  const { isMobile } = useBreakpoint();
   const mounted = useRef(true);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [showLeftSide, setShowLeftSide] = useState(false);
 
-  const calculateSlidesPerViewOnDesktop = () => {
+  const slidesPerView = () => {
     if (wrapperRef.current) {
       const wrapperWidth = wrapperRef.current.offsetWidth;
       return wrapperWidth / slideWidthOnDesktop;
     }
 
     return 2.2;
-  };
-
-  const getSlidesPerView = () => {
-    if (isMobile) return 1.2;
-
-    return calculateSlidesPerViewOnDesktop();
   };
 
   const MutationPlugin: KeenSliderPlugin = (slider) => {
@@ -65,8 +57,8 @@ export default function SliderCardsEnhanced({
       loop,
       mode: "free-snap",
       slides: {
-        perView: getSlidesPerView(),
-        spacing: 0,
+        perView: slidesPerView(),
+        spacing: 24,
       },
       created() {
         setLoaded(true);
@@ -76,6 +68,13 @@ export default function SliderCardsEnhanced({
       },
       animationStarted() {
         if (!showLeftSide) setShowLeftSide(true);
+      },
+      slideChanged(slider) {
+        if (slider.track.details.rel === 0) {
+          setShowLeftSide(false);
+        } else {
+          setShowLeftSide(true);
+        }
       },
     },
     [MutationPlugin],

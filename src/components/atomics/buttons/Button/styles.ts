@@ -50,8 +50,8 @@ export const Container = styled.button<{
   justify-content: center;
   background-color: ${(props) => props.backgroundColor};
   color: ${(props) => props.textColor};
-  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
-  cursor: pointer;
+  opacity: 1;
+  cursor: ${(props) => props.disabled ? "default" : "pointer"};
 
   #left-icon {
     margin-right: ${({ theme }) => theme.spacing(4)};
@@ -67,5 +67,9 @@ export const Container = styled.button<{
     path {
       fill: ${(props) => props.ribonsColor};
     }
+  }
+
+  &:hover {
+    cursor: ${(props) => props.disabled ? "default" : "pointer"};
   }
 `;

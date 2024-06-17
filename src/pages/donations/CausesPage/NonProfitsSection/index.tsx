@@ -1,47 +1,21 @@
 import Spinner from "components/atomics/Spinner";
 import { useNonProfitsContext } from "contexts/nonProfitsContext";
-import { useCausesContext } from "contexts/causesContext";
-import { useCauseDonationContext } from "contexts/causeDonationContext";
+import { useTagDonationContext } from "contexts/tagDonationContext";
 
-import { useEffect } from "react";
-import NonProfitsList from "../NonProfitsList";
+import NonProfitsListCarousel from "../NonProfitsListCarousel";
 import * as S from "./styles";
 
 function NonProfitsSection() {
   const { filteredNonProfits, isLoading: isLoadingNonProfits } =
     useNonProfitsContext();
-  const { filteredCauses } = useCausesContext();
-  const { chosenCause } = useCauseDonationContext();
+  const { chosenTag } = useTagDonationContext();
 
   const nonProfitsFilter = () => {
-    if (chosenCause) {
-      return (
-        filteredNonProfits?.filter(
-          (nonProfit) => nonProfit.cause?.id === chosenCause.id,
-        ) || []
-      );
+    if (chosenTag && chosenTag.nonProfits) {
+      return chosenTag.nonProfits;
     }
     return filteredNonProfits || [];
   };
-
-  const sortNonProfits = () => {
-    const nonProfitsFiltered = nonProfitsFilter();
-    const sorted = nonProfitsFiltered?.sort((a, b) => {
-      const causeAIndex = filteredCauses.findIndex(
-        (cause) => cause.id === a.cause.id,
-      );
-      const causeBIndex = filteredCauses.findIndex(
-        (cause) => cause.id === b.cause.id,
-      );
-
-      return causeAIndex - causeBIndex;
-    });
-    return sorted;
-  };
-
-  useEffect(() => {
-    sortNonProfits();
-  }, [chosenCause]);
 
   return (
     <S.Container>
@@ -50,7 +24,7 @@ function NonProfitsSection() {
       ) : (
         filteredNonProfits && (
           <S.NonProfitsContainer>
-            <NonProfitsList nonProfits={sortNonProfits()} />
+            <NonProfitsListCarousel nonProfits={nonProfitsFilter()} />
           </S.NonProfitsContainer>
         )
       )}

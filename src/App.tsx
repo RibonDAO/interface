@@ -19,11 +19,12 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import TicketsProvider from "contexts/ticketsContext";
 import CouponProvider from "contexts/couponContext";
 import TagsProvider from "contexts/tagsContext";
+import IntegrationProvider from "contexts/integrationContext";
+import LoadingOverlayProvider from "./contexts/loadingOverlayContext";
+import ModalProvider from "./contexts/modalContext";
 import RoutesComponent from "./config/routes";
 import GlobalStyle from "./styles/globalStyle";
 import theme from "./styles/theme";
-import LoadingOverlayProvider from "./contexts/loadingOverlayContext";
-import ModalProvider from "./contexts/modalContext";
 
 function App() {
   // useEffect(() => {
@@ -61,16 +62,18 @@ function App() {
                             <CouponProvider>
                               <TagsProvider>
                                 <NonProfitsProvider>
-                                  <CausesProvider>
-                                    <CauseDonationProvider>
-                                      <CauseContributionProvider>
-                                        <UserLevelProvider>
-                                          <RoutesComponent />
-                                          <Zendesk />
-                                        </UserLevelProvider>
-                                      </CauseContributionProvider>
-                                    </CauseDonationProvider>
-                                  </CausesProvider>
+                                  <IntegrationProvider>
+                                    <CausesProvider>
+                                      <CauseDonationProvider>
+                                        <CauseContributionProvider>
+                                          <UserLevelProvider>
+                                            <RoutesComponent />
+                                            <Zendesk />
+                                          </UserLevelProvider>
+                                        </CauseContributionProvider>
+                                      </CauseDonationProvider>
+                                    </CausesProvider>
+                                  </IntegrationProvider>
                                 </NonProfitsProvider>
                               </TagsProvider>
                             </CouponProvider>

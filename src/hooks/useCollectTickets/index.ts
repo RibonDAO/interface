@@ -1,9 +1,7 @@
 import { PLATFORM } from "utils/constants";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useTickets } from "@ribon.io/shared/hooks";
-import { useIntegrationId } from "hooks/useIntegrationId";
-import extractUrlValue from "lib/extractUrlValue";
-import { useLocation } from "react-router-dom";
+import { useIntegrationContext } from "contexts/integrationContext";
 import {
   RECEIVED_TICKET_AT_KEY,
   RECEIVED_TICKET_FROM_INTEGRATION,
@@ -27,9 +25,9 @@ export function useCollectTickets() {
     collectByIntegration,
   } = useTickets();
 
-  const { search } = useLocation();
-  const externalId = extractUrlValue("external_id", search);
-  const integrationId = useIntegrationId();
+  const { externalId } = useIntegrationContext();
+  const { currentIntegrationId: integrationId, setExternalId } =
+    useIntegrationContext();
   const externalIds = externalId?.split(",");
 
   function hasReceivedTicketToday() {
@@ -72,7 +70,10 @@ export function useCollectTickets() {
           PLATFORM,
           currentUser?.email ?? "",
         );
-        if (onSuccess) onSuccess();
+        if (onSuccess) {
+          setExternalId(undefined);
+          onSuccess();
+        }
       } else if (integrationId) {
         await collectByIntegration(
           integrationId,

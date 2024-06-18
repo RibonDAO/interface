@@ -8,7 +8,7 @@ import useBreakpoint from "hooks/useBreakpoint";
 import { logEvent } from "lib/events";
 import { useLanguage } from "hooks/useLanguage";
 import { ANDROID_APP_LINK, APP_LINK, IOS_APP_LINK } from "utils/constants";
-import { useIntegrationId } from "hooks/useIntegrationId";
+import { useIntegrationContext } from "contexts/integrationContext";
 import AppleBadge from "assets/images/apple-badge.png";
 import GoogleBadge from "assets/images/google-badge.png";
 import * as S from "./styles";
@@ -56,7 +56,7 @@ function CardCenterImageButton({
   });
 
   const { isMobile } = useBreakpoint();
-  const integrationId = useIntegrationId();
+  const { currentIntegrationId: integrationId } = useIntegrationContext();
   const { currentLang } = useLanguage();
 
   const utmParamsFor = (campaign: string) => ({

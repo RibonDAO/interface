@@ -2,8 +2,7 @@ import { useTranslation } from "react-i18next";
 import LeftImage from "assets/images/bottom-left-shape-red.svg";
 import RightImage from "assets/images/top-right-shape.svg";
 import useNavigation from "hooks/useNavigation";
-import { useIntegrationId } from "hooks/useIntegrationId";
-import { useIntegration } from "@ribon.io/shared/hooks";
+import { useIntegrationContext } from "contexts/integrationContext";
 import { useEffect } from "react";
 import { RIBON_COMPANY_ID } from "utils/constants";
 import Tooltip from "components/moleculars/Tooltip";
@@ -26,8 +25,7 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
     keyPrefix: "onboarding.firstPage",
   });
   const { navigateTo, navigateBack } = useNavigation();
-  const integrationId = useIntegrationId();
-  const { integration } = useIntegration(integrationId);
+  const { integration } = useIntegrationContext();
   const { ticketsCounter } = useTicketsContext();
 
   const handleClick = () => {

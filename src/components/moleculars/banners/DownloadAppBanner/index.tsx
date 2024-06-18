@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useTranslation } from "react-i18next";
-import { useIntegrationId } from "hooks/useIntegrationId";
+import { useIntegrationContext } from "contexts/integrationContext";
 import { logEvent } from "lib/events";
 import { ANDROID_APP_LINK, APP_LINK, IOS_APP_LINK } from "utils/constants";
 import MobilePng from "./assets/mobile.png";
@@ -15,7 +15,7 @@ export default function DownlaodAppBanner() {
   });
 
   const { isMobile } = useBreakpoint();
-  const integrationId = useIntegrationId();
+  const { currentIntegrationId: integrationId } = useIntegrationContext();
 
   useEffect(() => {
     logEvent("downloadCTA_view", { from: "profileBanner" });

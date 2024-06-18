@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useTickets } from "@ribon.io/shared/hooks";
-import { useIntegrationId } from "hooks/useIntegrationId";
+import { useIntegrationContext } from "contexts/integrationContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { logError } from "services/crashReport";
 import { useAuthentication } from "contexts/authenticationContext";
@@ -28,7 +28,7 @@ function TicketsProvider({ children }: Props) {
     integrationTickets: userIntegrationTickets,
     refetch,
   } = ticketsAvailable();
-  const integrationId = useIntegrationId();
+  const { currentIntegrationId: integrationId } = useIntegrationContext();
   const { currentUser } = useCurrentUser();
   const { isAuthenticated } = useAuthentication();
   const [ticketsCounter, setTicketsCounter] = useState<number>(1);

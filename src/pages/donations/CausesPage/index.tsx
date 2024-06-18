@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
-  useIntegration,
   useFirstAccessToIntegration,
   useDonatedToday,
 } from "@ribon.io/shared/hooks";
 import { useLocation } from "react-router-dom";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { useIntegrationId } from "hooks/useIntegrationId";
+import { useIntegrationContext } from "contexts/integrationContext";
 import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
@@ -15,6 +14,7 @@ import { INTEGRATION_AUTH_ID } from "utils/constants";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import NonProfitsSection from "pages/donations/CausesPage/NonProfitsSection";
 import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
+import { useCollectTickets } from "hooks/useCollectTickets";
 import CampaignSection from "pages/donations/CausesPage/CampaignSection";
 import { useTicketsContext } from "contexts/ticketsContext";
 import useNavigation from "hooks/useNavigation";
@@ -27,8 +27,8 @@ import MadeByRibonSection from "./MadeByRibonSection";
 import * as S from "./styles";
 
 function CausesPage(): JSX.Element {
-  const integrationId = useIntegrationId();
-  const { integration } = useIntegration(integrationId);
+  const { currentIntegrationId: integrationId, integration } =
+    useIntegrationContext();
   const [shouldShowIntegrationBanner, setShouldShowIntegrationBanner] =
     useState<boolean | undefined>(false);
 
@@ -43,11 +43,20 @@ function CausesPage(): JSX.Element {
   const { isFirstAccessToIntegration } = useFirstAccessToIntegration(
     integration?.id || integrationId,
   );
-
   const { isMobile } = useBreakpoint();
   const { donatedToday } = useDonatedToday();
+  const { handleCanCollect } = useCollectTickets();
+  const { externalId } = useIntegrationContext();
+
+  const hasTicketsToCollect = async () => {
+    if (signedIn && externalId) {
+      const canCollect = await handleCanCollect();
+      if (canCollect) navigateTo("/intro/receive-tickets");
+    }
+  };
 
   useEffect(() => {
+    hasTicketsToCollect();
     refetchTickets();
   }, []);
 

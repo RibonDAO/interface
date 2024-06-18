@@ -1,17 +1,14 @@
 import { Cause, NonProfit } from "@ribon.io/shared/types";
 import { useCanDonate, useStatistics } from "@ribon.io/shared/hooks";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { useIntegrationId } from "hooks/useIntegrationId";
+import { useIntegrationContext } from "contexts/integrationContext";
 import useNavigation from "hooks/useNavigation";
-import extractUrlValue from "lib/extractUrlValue";
 import { useCallback, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { PLATFORM } from "utils/constants";
 
 function usePostTicketDonationNavigation() {
-  const integrationId = useIntegrationId();
-  const { search } = useLocation();
-  const externalId = extractUrlValue("external_id", search);
+  const { currentIntegrationId: integrationId } = useIntegrationContext();
+  const { externalId } = useIntegrationContext();
   const { donateApp } = useCanDonate(integrationId, PLATFORM, externalId);
   const { currentUser } = useCurrentUser();
   const { navigateTo } = useNavigation();

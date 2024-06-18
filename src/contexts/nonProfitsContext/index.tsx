@@ -6,6 +6,7 @@ import { useCurrentUser } from "contexts/currentUserContext";
 export interface INonProfitsContext {
   nonProfits: NonProfit[] | undefined;
   filteredNonProfits: NonProfit[] | undefined;
+  shuffledNonProfits: NonProfit[] | undefined;
   refetch: () => void;
   isLoading: boolean;
 }
@@ -43,10 +44,13 @@ function NonProfitsProvider({ children }: any) {
     }
   });
 
+  const shuffledNonProfits = nonProfits?.sort(() => 0.5 - Math.random());
+
   const nonProfitsObject: INonProfitsContext = useMemo(
     () => ({
       nonProfits,
       filteredNonProfits,
+      shuffledNonProfits,
       refetch,
       isLoading,
     }),

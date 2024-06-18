@@ -17,6 +17,8 @@ function NonProfitsSection() {
     return filteredNonProfits || [];
   };
 
+  const shuffledNonProfits = nonProfitsFilter().sort(() => 0.5 - Math.random());
+
   return (
     <S.Container>
       {isLoadingNonProfits ? (
@@ -24,7 +26,7 @@ function NonProfitsSection() {
       ) : (
         filteredNonProfits && (
           <S.NonProfitsContainer>
-            <NonProfitsListCarousel nonProfits={nonProfitsFilter()} />
+            <NonProfitsListCarousel nonProfits={shuffledNonProfits} />
           </S.NonProfitsContainer>
         )
       )}

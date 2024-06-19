@@ -28,14 +28,14 @@ export const LeftImage = styled.img`
 `;
 
 export const AvatarContainer = styled.div<{bg: string}>`
-  background-image: url(${props => props.bg});
   width: 100%;
   height: 100%;
   border: 4px solid ${theme.colors.neutral10};
   border-radius: 52px;
   background-color: ${theme.colors.neutral10};
-  background-size: cover;
+  background-image: url(${props => props.bg});
   background-position: center;
+  background-size: cover;
   background-repeat: no-repeat;
   `;
 export const RightContainer = styled.div`

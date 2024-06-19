@@ -107,10 +107,6 @@ function CausesPage(): JSX.Element {
 
         {signedIn && !isFirstAccessToIntegration && <ReportsSection />}
         <MadeByRibonSection />
-        <ImageWithIconOverlay
-          leftImage={integration?.logo || "src/assets/images/avatar.svg"}
-          rightImage={integration?.logo || "src/assets/images/avatar.svg"}
-        />
       </S.BodyContainer>
     </S.Container>
   );

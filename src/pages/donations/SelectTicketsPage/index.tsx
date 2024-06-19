@@ -5,12 +5,14 @@ import SliderButton from "components/moleculars/sliders/SliderButton";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import { useCallback, useEffect, useState } from "react";
 import { useCurrentUser } from "contexts/currentUserContext";
+import { useUserProfile } from "@ribon.io/shared/hooks";
 import { logEvent } from "@amplitude/analytics-browser";
 import useNavigation from "hooks/useNavigation";
 import { useLocation } from "react-router";
 import { NonProfit } from "@ribon.io/shared/types";
 import { useTicketsContext } from "contexts/ticketsContext";
 import useDonationFlow from "hooks/useDonationFlow";
+import ImageWithIconOverlay from "components/atomics/ImageWithIconOverlay";
 import DonatingSection from "../auth/DonatingSection";
 import * as S from "./styles";
 
@@ -31,6 +33,8 @@ export default function SelectTicketsPage() {
   const { handleDonate } = useDonationFlow();
   const { navigateTo } = useNavigation();
   const { ticketsCounter } = useTicketsContext();
+  const { userProfile } = useUserProfile();
+  const { profile } = userProfile();
   const [donationInProgress, setDonationInProgress] = useState(false);
   const [donationSucceeded, setDonationSucceeded] = useState(true);
   const [ticketsQuantity, setTicketsQuantity] = useState(1);
@@ -118,7 +122,10 @@ export default function SelectTicketsPage() {
   ) : (
     <S.Container>
       <S.ImageContainer>
-        <S.Icon src={nonProfit?.icon} />
+        <ImageWithIconOverlay
+          leftImage={profile?.photo}
+          rightImage={nonProfit?.icon}
+        />
       </S.ImageContainer>
       <S.ContentContainer>
         <S.Title>{t("title")}</S.Title>

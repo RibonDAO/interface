@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ProfilePhoto from "assets/images/apple-badge.png";
+import ProfilePhoto from "assets/icons/user.svg";
 import {
   LeftImagePlaceholder,
   RightImagePlaceholder,
@@ -28,9 +28,7 @@ function ImageWithIconOverlay({ leftImage, rightImage }: Props): JSX.Element {
               onError={() => setIsLeftImageLoading(false)}
             />
           ) : (
-            <S.AvatarContainer>
-              <ProfilePhoto />
-            </S.AvatarContainer>
+            <S.AvatarContainer bg={ProfilePhoto} />
           )}
         </S.LeftImageContainer>
       </S.LeftContainer>

@@ -11,6 +11,7 @@ import { useIntegrationId } from "hooks/useIntegrationId";
 import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
+import ImageWithIconOverlay from "components/atomics/ImageWithIconOverlay";
 import { INTEGRATION_AUTH_ID } from "utils/constants";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import NonProfitsSection from "pages/donations/CausesPage/NonProfitsSection";
@@ -106,6 +107,10 @@ function CausesPage(): JSX.Element {
 
         {signedIn && !isFirstAccessToIntegration && <ReportsSection />}
         <MadeByRibonSection />
+        <ImageWithIconOverlay
+          leftImage={integration?.logo || "src/assets/images/avatar.svg"}
+          rightImage={integration?.logo || "src/assets/images/avatar.svg"}
+        />
       </S.BodyContainer>
     </S.Container>
   );

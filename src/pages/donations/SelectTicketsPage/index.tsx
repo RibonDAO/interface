@@ -43,6 +43,12 @@ export default function SelectTicketsPage() {
   );
 
   const [step, setStep] = useState<number | undefined>(undefined);
+  const formattedImpact = formattedImpactText(
+    nonProfit,
+    currentImpact,
+    false,
+    true,
+  );
 
   const onDonationSuccess = () => {
     setDonationSucceeded(true);
@@ -130,7 +136,8 @@ export default function SelectTicketsPage() {
       <S.ContentContainer>
         <S.Title>{t("title")}</S.Title>
         <S.Subtitle>
-          {formattedImpactText(nonProfit, currentImpact, false, true)}
+          {t("description")}
+          {formattedImpact}
         </S.Subtitle>
         <TicketIconText quantity={ticketsQuantity} buttonDisabled />
         {step && (
@@ -141,7 +148,7 @@ export default function SelectTicketsPage() {
           />
         )}
         <S.Button
-          text={t("button")}
+          text={ticketsQuantity > 1? t("buttonPlural", {ticketsQuantity}) : t("buttonSingular")}
           textColor={theme.colors.neutral10}
           backgroundColor={theme.colors.brand.primary[600]}
           borderColor={theme.colors.neutral[300]}

@@ -174,8 +174,9 @@
     },
     "selectTicketsPage": {
       "title": "Você está prestes a doar:",
-      "description": "o equivalente a",
-      "button": "Doar {{ticketsQuantity}} tickets"
+      "description": "O equivalente a ",
+      "buttonSingular": "Doar 1 ticket",
+      "buttonPlural": "Doar {{ticketsQuantity}} tickets"
     }
   },
   "coupons": {

@@ -6,8 +6,7 @@ describe("Navigation", () => {
   it("should render without error", () => {
     renderComponent(<Navigation />);
 
-    expectTextToBeInTheDocument("Donate tickets");
+    expectTextToBeInTheDocument("Home");
     expectTextToBeInTheDocument("Earn tickets");
-    expectTextToBeInTheDocument("My impact");
   });
 });

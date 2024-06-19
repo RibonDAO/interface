@@ -27,17 +27,17 @@ export const LeftImage = styled.img`
   object-fit: cover;
 `;
 
-export const AvatarContainer = styled.div<{bg: string}>`
+export const AvatarContainer = styled.div<{ bg: string }>`
   width: 100%;
   height: 100%;
   border: 4px solid ${theme.colors.neutral10};
   border-radius: 52px;
   background-color: ${theme.colors.neutral10};
-  background-image: url(${props => props.bg});
+  background-image: url(${(props) => props.bg});
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  `;
+`;
 export const RightContainer = styled.div`
   width: 128px;
   height: 128px;

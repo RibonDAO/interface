@@ -4,6 +4,7 @@ import Ticket from "assets/icons/ticket-rounded-icon.svg";
 import { useTranslation } from "react-i18next";
 import { NonProfit } from "@ribon.io/shared/types";
 import { useUserProfile } from "@ribon.io/shared/hooks";
+import { useEffect } from "react";
 import * as S from "./styles";
 
 type Props = {
@@ -17,6 +18,15 @@ function DonatingSection({ nonProfit, onAnimationEnd }: Props): JSX.Element {
   });
   const { userProfile } = useUserProfile();
   const { profile } = userProfile();
+
+  useEffect(() => {
+    document.body.style.pointerEvents = "none";
+
+    return () => {
+      document.body.style.pointerEvents = "auto";
+    };
+  }, []);
+
   return (
     <S.Container>
       <TransferAnimation

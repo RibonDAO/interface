@@ -148,7 +148,11 @@ export default function SelectTicketsPage() {
           />
         )}
         <S.Button
-          text={ticketsQuantity > 1? t("buttonPlural", {ticketsQuantity}) : t("buttonSingular")}
+          text={
+            ticketsQuantity > 1
+              ? t("buttonPlural", { ticketsQuantity })
+              : t("buttonSingular")
+          }
           textColor={theme.colors.neutral10}
           backgroundColor={theme.colors.brand.primary[600]}
           borderColor={theme.colors.neutral[300]}

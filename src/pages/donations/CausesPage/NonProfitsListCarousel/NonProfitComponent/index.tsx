@@ -33,16 +33,15 @@ function NonProfitComponent({
   const minNumberOfTickets =
     nonProfit?.nonProfitImpacts?.[0]?.minimumNumberOfTickets ?? 0;
   const hasEnoughTickets = hasTickets && ticketsCounter >= minNumberOfTickets;
-
-  const storyElements: JSX.Element[] | undefined = nonProfit.stories?.flatMap(
-    (story) => [
+  const storyElements: JSX.Element[] | undefined = nonProfit.stories
+    ?.sort((a, b) => a.position! - b.position!)
+    .flatMap((story) => [
       <CardNonProfitStories
         key={`${story.id}-card-story`}
         markdownText={story.description}
         backgroundImage={story.image}
       />,
-    ],
-  );
+    ]);
 
   return (
     <S.Container>

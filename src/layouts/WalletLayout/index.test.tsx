@@ -24,9 +24,8 @@ describe("WalletLayout", () => {
       </WalletLayout>,
     );
 
-    expectTextToBeInTheDocument("Donate tickets");
+    expectTextToBeInTheDocument("Home");
     expectTextToBeInTheDocument("Earn tickets");
-    expectTextToBeInTheDocument("My impact");
   });
 
   describe("when the wallet is connected", () => {
@@ -87,9 +86,8 @@ describe("WalletLayout", () => {
         </WalletLayout>,
       );
 
-      expectTextNotToBeInTheDocument("Donate tickets");
+      expectTextNotToBeInTheDocument("Home");
       expectTextNotToBeInTheDocument("Earn tickets");
-      expectTextNotToBeInTheDocument("My impact");
     });
   });
 });

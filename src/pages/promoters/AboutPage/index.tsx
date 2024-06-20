@@ -1,25 +1,27 @@
-// import { useEffect } from "react";
-// import useAboutPageActivity from "hooks/useAboutPageActivity";
 import { useLanguage } from "hooks/useLanguage";
+import {
+  getUTMFromLocationSearch,
+  utmParamsToString,
+} from "lib/getUTMFromLocationSearch";
+import useNavigation from "hooks/useNavigation";
 import * as S from "./styles";
 
 function AboutPage(): JSX.Element {
-  // const { setHasSeenToday } = useAboutPageActivity();
-
-  // useEffect(() => {
-  //   setHasSeenToday();
-  // }, []);
-
   const { currentLang } = useLanguage();
+  const { history } = useNavigation();
+  const utmParams = getUTMFromLocationSearch(history.location.search);
 
-  const pageSlug = currentLang === "pt-BR" ? "beneficios" : "benefits";
+  const pageUrl = () => {
+    const baseUrl = "https://projetos.ribon.io/";
+    const pageSlug =
+      currentLang === "pt-BR" ? "ganhe-tickets" : "en/ganhe-tickets";
+    const queryParams = utmParamsToString(utmParams);
+
+    return `${baseUrl}${pageSlug}?${queryParams}`;
+  };
 
   return (
-    <S.Container
-      src={`https://projetos.ribon.io/${pageSlug}`}
-      title="Benefícios download"
-      data-testid="about-page"
-    />
+    <S.Container src={pageUrl()} title="Download" data-testid="about-page" />
   );
 }
 

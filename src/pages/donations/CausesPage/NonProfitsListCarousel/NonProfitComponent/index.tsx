@@ -6,6 +6,7 @@ import { logError } from "services/crashReport";
 import FirstCard from "pages/donations/CausesPage/NonProfitsListCarousel/NonProfitComponent/FirstCard";
 import { useState, ReactElement, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useTagDonationContext } from "contexts/tagDonationContext";
 import CardMarginButtonImage from "./CardMarginButtonImage";
 import CardNonProfitStories from "./CardNonProfitStories";
 import * as S from "./styles";
@@ -28,6 +29,8 @@ function NonProfitComponent({
   const [nonProfitStories, setNonProfitStories] = useState<Story[]>([]);
   const { hasTickets, ticketsCounter } = useTicketsContext();
   const { fetchNonProfitStories } = useStories();
+
+  const { nonProfitsTag } = useTagDonationContext();
 
   const minNumberOfTickets =
     nonProfit?.nonProfitImpacts?.[0]?.minimumNumberOfTickets ?? 0;
@@ -61,6 +64,7 @@ function NonProfitComponent({
         currentSlide={currentCardIndex}
         onCurrentSlideChange={(index) => setCurrentCardIndex(index)}
         saveStateIdentifier="nonProfitsList"
+        show={nonProfitsTag?.map((np) => np.id).includes(nonProfit.id) ?? false}
       >
         {[
           <FirstCard

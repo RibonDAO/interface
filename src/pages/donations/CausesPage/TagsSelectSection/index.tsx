@@ -17,8 +17,6 @@ function TagsSelectSection(): JSX.Element {
       setChosenTagIndex(index);
       if (tag.id !== 0) {
         setChosenTag(tag);
-      } else {
-        setChosenTag(undefined);
       }
     }
   };

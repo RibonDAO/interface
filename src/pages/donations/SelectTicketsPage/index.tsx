@@ -114,6 +114,10 @@ export default function SelectTicketsPage() {
   }, [nonProfit, ticketsQuantity]);
 
   useEffect(() => {
+    logEvent("p40_view");
+  }, []);
+
+  useEffect(() => {
     const impacts = nonProfit?.nonProfitImpacts || [];
     const nonProfitsImpactsLength = impacts.length;
     const lastImpact = impacts[nonProfitsImpactsLength - 1];

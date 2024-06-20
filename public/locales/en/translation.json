@@ -138,7 +138,8 @@
         "impactDescription": "with {{value}}"
       },
       "signInPage": {
-        "title": "You are donating",
+        "title": "You're about to donate:",
+        "prefix": "The equivalent of",
         "google": "Continue with Google",
         "apple": "Continue with Apple",
         "email": "Continue with e-mail",

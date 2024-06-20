@@ -112,7 +112,7 @@ function SignInPage(): JSX.Element {
   }, []);
 
   const oldImpactFormat = () =>
-    formattedImpactText(nonProfit, undefined, false, true);
+    formattedImpactText(nonProfit, undefined, false, false);
 
   return donationInProgress ? (
     <DonatingSection nonProfit={nonProfit} onAnimationEnd={onAnimationEnd} />
@@ -126,7 +126,9 @@ function SignInPage(): JSX.Element {
         </S.ImageContainer>
         <S.ContentContainer>
           <S.Title>{t("title")}</S.Title>
-          <S.Description>{oldImpactFormat()}</S.Description>
+          <S.Description>
+            {t("prefix")} {oldImpactFormat()}
+          </S.Description>
           <S.ButtonContainer>
             <GoogleLogin onContinue={onContinue} from="donation_flow" />
             <AppleLogin onContinue={onContinue} from="donation_flow" />

@@ -62,7 +62,8 @@ function LoadingPage(): JSX.Element {
   };
 
   const isRibonIntegration = integration?.id === parseInt(RIBON_COMPANY_ID, 10);
-  const itIsNotDeeplink =
+
+  const itIsNotDeeplink = () =>
     !history.location.search?.includes("_branch_match_id") &&
     integrationId &&
     !process.env.REACT_APP_DEBUG_VIEW;
@@ -73,37 +74,26 @@ function LoadingPage(): JSX.Element {
     try {
       const canCollect = await handleCanCollect();
       const receivedTicketToday = await hasReceivedTicketToday();
-      if (canCollect) {
-        if (currentUser && externalId) {
-          navigateTo("/intro/receive-tickets");
-        } else if (currentUser && !receivedTicketToday) {
-          if (!isRibonIntegration) {
-            navigateTo("/intro/receive-tickets");
-          } else {
-            await collectFromRibon();
-            navigateTo("/causes");
-          }
-        } else {
-          navigateTo("/causes");
-        }
-      } else {
-        navigateTo("/causes");
-      }
+      if (!canCollect) return navigateTo("/causes");
+      if (externalId) return navigateTo("/intro/receive-tickets");
+      if (receivedTicketToday) return navigateTo("/causes");
+      if (!isRibonIntegration) return navigateTo("/intro/receive-tickets");
+      await collectFromRibon();
+      return navigateTo("/causes");
     } catch (error) {
       logError(error);
-      navigateTo("/causes");
+      return navigateTo("/causes");
     }
   }
 
   function redirectToCollect() {
     if (hasCoupon) {
       setCouponId(couponId);
-      navigateTo("/coupons/give-ticket");
-    } else if (!currentUser) {
-      navigateTo("/intro");
-    } else {
-      receiveTicket();
+      return navigateTo("/coupons/give-ticket");
     }
+    if (!currentUser) return navigateTo("/intro");
+
+    return receiveTicket();
   }
 
   useEffect(() => {
@@ -118,8 +108,8 @@ function LoadingPage(): JSX.Element {
     if (integration) {
       localStorage.setItem("integrationName", integration.name);
       logEvent("P1_view");
-      if (itIsNotDeeplink) redirectToDeeplink();
-      else redirectToCollect();
+      if (itIsNotDeeplink()) redirectToDeeplink();
+      redirectToCollect();
     }
   }, [integration]);
 

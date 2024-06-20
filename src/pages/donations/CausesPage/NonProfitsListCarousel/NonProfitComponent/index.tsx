@@ -2,6 +2,7 @@ import { NonProfit, Story } from "@ribon.io/shared/types";
 import { useStories } from "@ribon.io/shared/hooks";
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
 import { useTicketsContext } from "contexts/ticketsContext";
+import useNavigation from "hooks/useNavigation";
 import { logError } from "services/crashReport";
 import FirstCard from "pages/donations/CausesPage/NonProfitsListCarousel/NonProfitComponent/FirstCard";
 import { useState, ReactElement, useEffect } from "react";
@@ -29,6 +30,8 @@ function NonProfitComponent({
   const { hasTickets, ticketsCounter } = useTicketsContext();
   const { fetchNonProfitStories } = useStories();
 
+  const { navigateTo } = useNavigation();
+
   const minNumberOfTickets =
     nonProfit?.nonProfitImpacts?.[0]?.minimumNumberOfTickets ?? 0;
   const hasEnoughTickets = hasTickets && ticketsCounter >= minNumberOfTickets;
@@ -55,6 +58,14 @@ function NonProfitComponent({
     loadStories();
   }, [nonProfit]);
 
+  const handleFirstButtonClick = (from: string) => {
+    if (!hasEnoughTickets) {
+      navigateTo("/earn");
+    } else {
+      onFirstButtonClick(nonProfit, from);
+    }
+  };
+
   return (
     <S.Container>
       <SliderCardsEnhanced
@@ -66,7 +77,7 @@ function NonProfitComponent({
           <FirstCard
             key="first-card"
             nonProfit={nonProfit}
-            buttonOnClick={() => onFirstButtonClick(nonProfit, "stories")}
+            buttonOnClick={() => handleFirstButtonClick("stories")}
             buttonText={
               hasEnoughTickets ? t("donateText") : t("notEnoughTickets")
             }
@@ -80,9 +91,7 @@ function NonProfitComponent({
               hasEnoughTickets ? t("donateText") : t("notEnoughTickets")
             }
             secondButtonText={t("donateCash")}
-            onFirstButtonClick={() =>
-              onFirstButtonClick(nonProfit, "firstCard")
-            }
+            onFirstButtonClick={() => handleFirstButtonClick("lastCard")}
             firstButtonDisabled={!hasEnoughTickets}
             onSecondButtonClick={() => onSecondButtonClick(nonProfit)}
             topImage={nonProfit.logo}

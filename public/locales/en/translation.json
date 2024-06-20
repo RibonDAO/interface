@@ -109,6 +109,7 @@
       "checkboxText": "I want to receive information about my donations by e-mail"
     },
     "menu": {
+      "homeTitle": "Home",
       "myImpactPageTitle": "My impact",
       "donateTicketsPageTitle": "Donate tickets",
       "earnTicketsPageTitle": "Earn tickets",

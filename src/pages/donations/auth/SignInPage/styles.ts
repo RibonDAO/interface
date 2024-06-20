@@ -64,8 +64,8 @@ export const Description = styled.p`
   ${defaultBodyMdMedium}
 
   margin-bottom: ${({ theme }) => theme.spacing(24)};
-  color: ${({ theme }) => theme.colors.neutral[600]};
   text-align: center;
+  color: ${({ theme }) => theme.colors.neutral[600]};
 `;
 
 export const Button = styled(ButtonComponent)`

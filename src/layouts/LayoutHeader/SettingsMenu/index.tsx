@@ -10,7 +10,6 @@ import SignInOrCreateAccount from "./SignInOrCreateAccount";
 import GetTheApp from "./GetTheApp";
 import UserSupport from "./UserSupport";
 import DeleteAccount from "./DeleteAccount";
-import Subscriptions from "./Subscriptions";
 
 type Props = {
   outline?: boolean;
@@ -55,7 +54,6 @@ function SettingsMenu({ outline = false }: Props) {
         <GetTheApp />
         <UserSupport />
         <ChangeLanguage />
-        <Subscriptions />
         <Logout closeMenu={closeMenu} />
         <DeleteAccount />
       </ModalBlank>

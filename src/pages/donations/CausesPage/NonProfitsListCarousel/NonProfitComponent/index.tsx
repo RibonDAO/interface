@@ -1,8 +1,7 @@
 import { NonProfit } from "@ribon.io/shared/types";
-
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
 import { useTicketsContext } from "contexts/ticketsContext";
-
+import useNavigation from "hooks/useNavigation";
 import FirstCard from "pages/donations/CausesPage/NonProfitsListCarousel/NonProfitComponent/FirstCard";
 import { useState, ReactElement } from "react";
 import { useTranslation } from "react-i18next";
@@ -30,6 +29,8 @@ function NonProfitComponent({
 
   const { nonProfitsTag } = useTagDonationContext();
 
+  const { navigateTo } = useNavigation();
+
   const minNumberOfTickets =
     nonProfit?.nonProfitImpacts?.[0]?.minimumNumberOfTickets ?? 0;
   const hasEnoughTickets = hasTickets && ticketsCounter >= minNumberOfTickets;
@@ -43,6 +44,14 @@ function NonProfitComponent({
       />,
     ]);
 
+  const handleFirstButtonClick = (from: string) => {
+    if (!hasEnoughTickets) {
+      navigateTo("/earn");
+    } else {
+      onFirstButtonClick(nonProfit, from);
+    }
+  };
+
   return (
     <S.Container>
       <SliderCardsEnhanced
@@ -55,7 +64,7 @@ function NonProfitComponent({
           <FirstCard
             key="first-card"
             nonProfit={nonProfit}
-            buttonOnClick={() => onFirstButtonClick(nonProfit, "stories")}
+            buttonOnClick={() => handleFirstButtonClick("stories")}
             buttonText={
               hasEnoughTickets ? t("donateText") : t("notEnoughTickets")
             }
@@ -69,9 +78,7 @@ function NonProfitComponent({
               hasEnoughTickets ? t("donateText") : t("notEnoughTickets")
             }
             secondButtonText={t("donateCash")}
-            onFirstButtonClick={() =>
-              onFirstButtonClick(nonProfit, "firstCard")
-            }
+            onFirstButtonClick={() => handleFirstButtonClick("lastCard")}
             firstButtonDisabled={!hasEnoughTickets}
             onSecondButtonClick={() => onSecondButtonClick(nonProfit)}
             topImage={nonProfit.logo}

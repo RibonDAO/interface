@@ -3,9 +3,10 @@ import { useTranslation } from "react-i18next";
 import useNavigation from "hooks/useNavigation";
 import { useEffect } from "react";
 import { logEvent } from "lib/events";
+import { useCurrentUser } from "contexts/currentUserContext";
 import Item from "../Item";
 
-function GetTheApp(): JSX.Element {
+function GetTheApp(): JSX.Element | null {
   const { t } = useTranslation("translation", {
     keyPrefix: "layouts.layoutHeader.settingsMenu",
   });
@@ -20,8 +21,12 @@ function GetTheApp(): JSX.Element {
 
   const handleClick = () => {
     logEvent("downloadCTA_click", { from: "config_page" });
-    navigateTo("/app-download");
+    navigateTo("/earn");
   };
+
+  const { currentUser } = useCurrentUser();
+
+  if (!currentUser) return null;
 
   return (
     <Item

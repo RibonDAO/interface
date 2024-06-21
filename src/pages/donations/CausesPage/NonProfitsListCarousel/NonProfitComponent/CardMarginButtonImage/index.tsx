@@ -34,7 +34,7 @@ function CardMarginButtonImage({
           text={firstButtonText}
           onClick={onFirstButtonClick}
           backgroundColor={mainColor}
-          disabled={firstButtonDisabled}
+          softDisabled={firstButtonDisabled}
         />
         <Button
           text={secondButtonText}

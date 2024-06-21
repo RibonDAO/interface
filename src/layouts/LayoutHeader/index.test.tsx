@@ -5,7 +5,6 @@ import { HAS_AN_AVAILABLE_VOUCHER } from "lib/localStorage/constants";
 import React from "react";
 import { mockRequest } from "config/testUtils/test-helper";
 import { screen } from "@testing-library/react";
-import { mockLogEventFunction } from "setupTests";
 import { useImpactConversion } from "hooks/useImpactConversion";
 import LayoutHeader from ".";
 
@@ -45,10 +44,10 @@ describe("LayoutHeader", () => {
       setLocalStorageItem(HAS_AN_AVAILABLE_VOUCHER, "123");
     });
 
-    it("should navigate to give ticket page when click in ticket button", () => {
+    it("should navigate to earn page", () => {
       renderComponent(<LayoutHeader />);
       clickOn("1");
-      expectPageToNavigateTo("/tickets");
+      expectPageToNavigateTo("/earn");
     });
   });
 
@@ -78,15 +77,10 @@ describe("LayoutHeader", () => {
       renderComponent(<LayoutHeader />);
     });
 
-    it("should open blocked donation contribution modal", () => {
-      clickOn("0");
-      expect(mockLogEventFunction).toHaveBeenCalledWith(
-        "contributeNgoBtn_view",
-        {
-          from: "zeroTickets_modal",
-          platform: "web",
-        },
-      );
+    it("should navigate to earn page", () => {
+      renderComponent(<LayoutHeader />);
+      clickOn("1");
+      expectPageToNavigateTo("/earn");
     });
   });
 

@@ -30,7 +30,7 @@ export default function FirstCard({
         <Button
           text={buttonText}
           onClick={buttonOnClick}
-          disabled={buttonDisabled}
+          softDisabled={buttonDisabled}
           backgroundColor={theme.colors.brand.primary[600]}
         />
       </S.ButtonContainer>

@@ -8,7 +8,7 @@ jest.mock("lib/events");
 describe("CauseImage", () => {
   describe("default props", () => {
     beforeEach(() => {
-      renderComponent(<CauseImage id={1} name="Test Cause" index={0} />, {
+      renderComponent(<CauseImage name="Test Cause" index={0} />, {
         causesProviderValue: {
           causes: [],
         },
@@ -24,7 +24,6 @@ describe("CauseImage", () => {
     beforeEach(() => {
       renderComponent(
         <CauseImage
-          id={1}
           name="Test Cause with image"
           coverImage="https://example.com/cover.jpg"
           index={0}

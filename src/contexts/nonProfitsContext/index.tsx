@@ -8,6 +8,7 @@ export interface INonProfitsContext {
   filteredNonProfits: NonProfit[] | undefined;
   refetch: () => void;
   isLoading: boolean;
+  shuffledNonProfits?: NonProfit[];
 }
 
 export const NonProfitsContext = createContext<INonProfitsContext>(
@@ -43,14 +44,19 @@ function NonProfitsProvider({ children }: any) {
     }
   });
 
+  const shuffledNonProfits = filteredNonProfits?.sort(
+    () => 0.5 - Math.random(),
+  );
+
   const nonProfitsObject: INonProfitsContext = useMemo(
     () => ({
       nonProfits,
       filteredNonProfits,
       refetch,
       isLoading,
+      shuffledNonProfits,
     }),
-    [nonProfits, refetch, isLoading],
+    [nonProfits, refetch, isLoading, shuffledNonProfits, filteredNonProfits],
   );
 
   return (

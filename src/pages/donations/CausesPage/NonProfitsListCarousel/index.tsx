@@ -9,6 +9,7 @@ import { useOffers } from "@ribon.io/shared/hooks";
 import { useLanguage } from "hooks/useLanguage";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useTicketsContext } from "contexts/ticketsContext";
+
 import * as S from "../styles";
 import NonProfitComponent from "./NonProfitComponent";
 

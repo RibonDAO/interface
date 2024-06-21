@@ -12,7 +12,7 @@ import NonProfitsProvider from "contexts/nonProfitsContext";
 import DebugEventsView from "config/debugEventsView";
 import { debugEnabled } from "config/debugEventsView/helpers";
 import AuthenticationProvider from "contexts/authenticationContext";
-import CauseDonationProvider from "contexts/tagDonationContext";
+import TagDonationProvider from "contexts/tagDonationContext";
 import CauseContributionProvider from "contexts/causeContributionContext";
 import UserLevelProvider from "contexts/userLevelContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -62,14 +62,14 @@ function App() {
                               <TagsProvider>
                                 <NonProfitsProvider>
                                   <CausesProvider>
-                                    <CauseDonationProvider>
+                                    <TagDonationProvider>
                                       <CauseContributionProvider>
                                         <UserLevelProvider>
                                           <RoutesComponent />
                                           <Zendesk />
                                         </UserLevelProvider>
                                       </CauseContributionProvider>
-                                    </CauseDonationProvider>
+                                    </TagDonationProvider>
                                   </CausesProvider>
                                 </NonProfitsProvider>
                               </TagsProvider>

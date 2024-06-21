@@ -1,30 +1,21 @@
 import Spinner from "components/atomics/Spinner";
 import { useNonProfitsContext } from "contexts/nonProfitsContext";
-import { useTagDonationContext } from "contexts/tagDonationContext";
 
 import NonProfitsListCarousel from "../NonProfitsListCarousel";
 import * as S from "./styles";
 
 function NonProfitsSection() {
-  const { filteredNonProfits, isLoading: isLoadingNonProfits } =
+  const { shuffledNonProfits, isLoading: isLoadingNonProfits } =
     useNonProfitsContext();
-  const { chosenTag } = useTagDonationContext();
-
-  const nonProfitsFilter = () => {
-    if (chosenTag && chosenTag.nonProfits) {
-      return chosenTag.nonProfits;
-    }
-    return filteredNonProfits || [];
-  };
 
   return (
     <S.Container>
       {isLoadingNonProfits ? (
         <Spinner size="26" />
       ) : (
-        filteredNonProfits && (
+        shuffledNonProfits && (
           <S.NonProfitsContainer>
-            <NonProfitsListCarousel nonProfits={nonProfitsFilter()} />
+            <NonProfitsListCarousel nonProfits={shuffledNonProfits} />
           </S.NonProfitsContainer>
         )
       )}

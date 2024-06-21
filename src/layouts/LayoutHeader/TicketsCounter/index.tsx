@@ -12,7 +12,7 @@ function TicketsCounter({ outline = false }: Props): JSX.Element {
   const { navigateTo } = useNavigation();
 
   const handleCounterClick = () => {
-    logEvent("ticketIcon_click", { ticketQtd: 1 });
+    logEvent("ticketIcon_click", { ticketQtd: ticketsCounter });
     navigateTo("/earn");
   };
 

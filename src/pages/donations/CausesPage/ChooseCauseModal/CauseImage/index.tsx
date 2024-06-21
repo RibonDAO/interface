@@ -3,13 +3,12 @@ import Intersection from "./assets/intersect.svg";
 import * as S from "./styles";
 
 type Props = {
-  id: number;
   name: string;
   coverImage?: string;
   index: number;
 };
 
-function CauseImage({ name, coverImage, id, index }: Props) {
+function CauseImage({ name, coverImage, index }: Props) {
   const { setChosenTagIndex } = useTagDonationContext();
 
   const handleClick = () => {

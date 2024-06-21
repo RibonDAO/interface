@@ -1,9 +1,7 @@
 import { NonProfit } from "@ribon.io/shared/types";
-
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
 import { useTicketsContext } from "contexts/ticketsContext";
 import useNavigation from "hooks/useNavigation";
-import { logError } from "services/crashReport";
 import FirstCard from "pages/donations/CausesPage/NonProfitsListCarousel/NonProfitComponent/FirstCard";
 import { useState, ReactElement } from "react";
 import { useTranslation } from "react-i18next";

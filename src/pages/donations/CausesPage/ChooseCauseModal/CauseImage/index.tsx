@@ -10,10 +10,9 @@ type Props = {
 };
 
 function CauseImage({ name, coverImage, id, index }: Props) {
-  const { setChosenTagId, setChosenTagIndex } = useTagDonationContext();
+  const { setChosenTagIndex } = useTagDonationContext();
 
   const handleClick = () => {
-    setChosenTagId(id);
     setChosenTagIndex(index + 1);
   };
 

@@ -1,11 +1,12 @@
-import { NonProfit, Story } from "@ribon.io/shared/types";
-import { useStories } from "@ribon.io/shared/hooks";
+import { NonProfit } from "@ribon.io/shared/types";
+
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
 import { useTicketsContext } from "contexts/ticketsContext";
-import { logError } from "services/crashReport";
+
 import FirstCard from "pages/donations/CausesPage/NonProfitsListCarousel/NonProfitComponent/FirstCard";
-import { useState, ReactElement, useEffect } from "react";
+import { useState, ReactElement } from "react";
 import { useTranslation } from "react-i18next";
+import { useTagDonationContext } from "contexts/tagDonationContext";
 import CardMarginButtonImage from "./CardMarginButtonImage";
 import CardNonProfitStories from "./CardNonProfitStories";
 import * as S from "./styles";
@@ -25,35 +26,22 @@ function NonProfitComponent({
     keyPrefix: "donations.causesPage",
   });
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
-  const [nonProfitStories, setNonProfitStories] = useState<Story[]>([]);
   const { hasTickets, ticketsCounter } = useTicketsContext();
-  const { fetchNonProfitStories } = useStories();
+
+  const { nonProfitsTag } = useTagDonationContext();
 
   const minNumberOfTickets =
     nonProfit?.nonProfitImpacts?.[0]?.minimumNumberOfTickets ?? 0;
   const hasEnoughTickets = hasTickets && ticketsCounter >= minNumberOfTickets;
-
-  const storyElements: JSX.Element[] = nonProfitStories.flatMap((story) => [
-    <CardNonProfitStories
-      key={`${story.id}-card-story`}
-      markdownText={story.description}
-      backgroundImage={story.image}
-    />,
-  ]);
-
-  const loadStories = async () => {
-    try {
-      const stories = await fetchNonProfitStories(nonProfit.id);
-      if (stories.length === 0) return;
-      setNonProfitStories(stories);
-    } catch (e) {
-      logError(e);
-    }
-  };
-
-  useEffect(() => {
-    loadStories();
-  }, [nonProfit]);
+  const storyElements: JSX.Element[] | undefined = nonProfit.stories
+    ?.sort((a, b) => a.position! - b.position!)
+    .flatMap((story) => [
+      <CardNonProfitStories
+        key={`${story.id}-card-story`}
+        markdownText={story.description}
+        backgroundImage={story.image}
+      />,
+    ]);
 
   return (
     <S.Container>
@@ -61,6 +49,7 @@ function NonProfitComponent({
         currentSlide={currentCardIndex}
         onCurrentSlideChange={(index) => setCurrentCardIndex(index)}
         saveStateIdentifier="nonProfitsList"
+        show={nonProfitsTag?.map((np) => np.id).includes(nonProfit.id) ?? false}
       >
         {[
           <FirstCard
@@ -73,7 +62,7 @@ function NonProfitComponent({
             buttonDisabled={!hasEnoughTickets}
             ticketsQuantity={minNumberOfTickets}
           />,
-          ...storyElements,
+          ...(storyElements ?? []),
           <CardMarginButtonImage
             key="last-card"
             firstButtonText={

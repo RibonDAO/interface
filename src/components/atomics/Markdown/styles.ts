@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { defaultBodyLgBold, defaultBodySmSemibold } from "styles/typography/default";
 
 export const MarkdownContainer = styled.div`
   width: 100%;
@@ -9,13 +10,21 @@ export const MarkdownContainer = styled.div`
   flex-direction: column;
   gap: 12px;
 
-  ul {
-    margin-top: -12px;
-    padding-left: 24px;
-    line-height: 24px;
+  h2 {
+    ${defaultBodyLgBold}
+  }
+
+  h3 {
+    ${defaultBodySmSemibold}
   }
 
   p {
+    line-height: 24px;
+  }
+
+  ul {
+    margin-top: -12px;
+    padding-left: 24px;
     line-height: 24px;
   }
 
@@ -33,10 +42,14 @@ export const MarkdownContainer = styled.div`
     margin-bottom: 12px;
   }
 
+  table {
+    width: 100%;
+  }
+
   th,
   td {
-    padding: 8px;
-
-    border: 1px solid #000;
+    padding: 4px 4px 4px 4px;
+    font-weight: normal;
+    text-align: start;
   }
 `;

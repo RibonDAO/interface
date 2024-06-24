@@ -1,19 +1,13 @@
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { logEvent } from "lib/events";
-import { useTasksContext } from "contexts/tasksContext";
-import useContributionActivity from "hooks/useContributionActivity";
 import { useLanguage } from "hooks/useLanguage";
 import { getMobileOS } from "lib/getMobileOS";
 import useBreakpoint from "hooks/useBreakpoint";
 import CausesIconOn from "./assets/causesIconOn.svg";
 import CausesIconOff from "./assets/causesIconOff.svg";
-import ForYouIconOn from "./assets/forYouIconOn.svg";
-import ForYouIconOff from "./assets/forYouIconOff.svg";
-import ImpactIconOn from "./assets/impactIconOn.svg";
-import ImpactIconOff from "./assets/impactIconOff.svg";
-import RibonIconOn from "./assets/ribonIconOn.svg";
-import RibonIconOff from "./assets/ribonIconOff.svg";
+import HomeIconOn from "./assets/homeIconOn.svg";
+import HomeIconOff from "./assets/homeIconOff.svg";
 import NavigationLink from "./NavigationLink";
 import * as S from "./styles";
 
@@ -44,8 +38,6 @@ function Navigation(): JSX.Element {
   });
   const location = useLocation();
   const { search } = location;
-  const { hasCompletedATask } = useTasksContext();
-  const { newContributionActivity } = useContributionActivity();
   const { currentLang } = useLanguage();
   const { isMobile } = useBreakpoint();
 
@@ -64,34 +56,17 @@ function Navigation(): JSX.Element {
   const routes: NavigationItem[] = [
     {
       path: "/causes",
-      iconOn: CausesIconOn,
-      iconOff: CausesIconOff,
-      title: t("donateTicketsPageTitle"),
+      iconOn: HomeIconOn,
+      iconOff: HomeIconOff,
+      title: t("homeTitle"),
       event: "homeNavBtn_click",
     },
     {
-      path: "/forYou",
-      iconOn: ForYouIconOn,
-      iconOff: ForYouIconOff,
+      path: "/earn",
+      iconOn: CausesIconOn,
+      iconOff: CausesIconOff,
       title: t("earnTicketsPageTitle"),
-      event: "forYouNavBtn_click",
-      showActivityIndicatorCircle: hasCompletedATask,
-    },
-    {
-      path: "/impact",
-      iconOn: ImpactIconOn,
-      iconOff: ImpactIconOff,
-      title: t("myImpactPageTitle"),
-      event: "impactNavBtn_click",
-      showActivityIndicatorCircle: newContributionActivity,
-    },
-    {
-      path: "/benefits",
-      iconOn: RibonIconOn,
-      iconOff: RibonIconOff,
-      title: t("aboutPageTitle"),
-      event: "benefitsNavBtn_click",
-      showNewLabel: true,
+      event: "earnTicketsNavBtn_click",
       params: {
         utmSource: currentLang === "pt-BR" ? "ribonweb_pt" : "ribonweb_en",
         utmMedium: "feature_toggle",

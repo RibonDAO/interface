@@ -76,7 +76,7 @@ function CausesPage(): JSX.Element {
 
   return (
     <S.Container>
-      <DownloadAppToast />
+      {signedIn && !isFirstAccessToIntegration && <DownloadAppToast />}
       <S.BodyContainer>
         <S.TitleContainer>
           {hasTickets && <S.Title>{t("pageTitle")}</S.Title>}

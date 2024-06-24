@@ -113,6 +113,7 @@
       "checkboxText": "Quero receber informações sobre minhas doações por e-mail"
     },
     "menu": {
+      "homeTitle": "Início",
       "myImpactPageTitle": "Meu impacto",
       "donateTicketsPageTitle": "Doe tickets",
       "earnTicketsPageTitle": "Ganhe tickets",
@@ -368,7 +369,7 @@
     "firstPage": {
       "onboardingRibonTitle": "Vem com a Ribon!",
       "onboardingIntegrationTitle": "{{integrationName}} te convida para a Ribon!",
-      "onboardingSubtitle": "Baixe o app e ganhe tickets para ajudar projetos sociais todos os dias de graça!",
+      "onboardingSubtitle": "Você recebeu 1 ticket para doar para um projeto social!",
       "onboardingButtonText": "Receber meu ticket",
       "title": "Você tem 1 ticket",
       "titlePlural": "Você tem {{ticketsCounter}} tickets",

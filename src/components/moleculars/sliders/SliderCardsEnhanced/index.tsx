@@ -12,12 +12,14 @@ export type Props = {
   saveStateIdentifier?: string;
   slideWidthOnDesktop?: number;
   resetOnChildrenChange?: boolean;
+  show?: boolean;
 };
 
 export default function SliderCardsEnhanced({
   loop = false,
   children,
   slideWidthOnDesktop = 296,
+  show,
 }: Props) {
   const [loaded, setLoaded] = useState(false);
   const mounted = useRef(true);
@@ -90,25 +92,34 @@ export default function SliderCardsEnhanced({
   return (
     <S.NavigationWrapper ref={wrapperRef}>
       <div
-        ref={sliderRef}
-        className="keen-slider"
-        onDrag={(e) => e.preventDefault()}
+        style={{
+          display: show ? "block" : "none",
+        }}
       >
-        {children.flat().map(
-          (component: any) =>
-            component && (
-              <div
-                className="keen-slider__slide"
-                style={{ overflow: "visible", width: "auto" }}
-                key={`keen_slider___slide_element_${component.key}`}
-              >
-                {component}
-              </div>
-            ),
-        )}
+        <div
+          ref={sliderRef}
+          className="keen-slider"
+          onDrag={(e) => e.preventDefault()}
+        >
+          {children.flat().map(
+            (component: any) =>
+              component && (
+                <div
+                  className="keen-slider__slide"
+                  style={{
+                    overflow: "visible",
+                    width: "auto",
+                  }}
+                  key={`keen_slider___slide_element_${component.key}`}
+                >
+                  {component}
+                </div>
+              ),
+          )}
+        </div>
       </div>
       {loaded && instanceRef.current && (
-        <>
+        <div style={{ display: show ? "block" : "none" }}>
           <S.RightSide visible={children.length > 3}>
             <RoundedArrow
               direction="right"
@@ -125,7 +136,7 @@ export default function SliderCardsEnhanced({
               }
             />
           </S.LeftSide>
-        </>
+        </div>
       )}
     </S.NavigationWrapper>
   );

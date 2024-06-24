@@ -43,7 +43,10 @@ export default function showErrorModal(state: LocationStateType) {
         description: state?.message || t("noTicketsModalText"),
         primaryButton: {
           text: t("noTicketsModalPrimaryButton"),
-          onClick: () => navigateTo("/earn"),
+          onClick: () => {
+            closeNoTicketsModal();
+            navigateTo("/earn");
+          },
         },
         onClose: () => closeNoTicketsModal(),
         eventName: "P12_noTicketsModal",

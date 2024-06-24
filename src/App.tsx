@@ -12,7 +12,7 @@ import NonProfitsProvider from "contexts/nonProfitsContext";
 import DebugEventsView from "config/debugEventsView";
 import { debugEnabled } from "config/debugEventsView/helpers";
 import AuthenticationProvider from "contexts/authenticationContext";
-import CauseDonationProvider from "contexts/tagDonationContext";
+import TagDonationProvider from "contexts/tagDonationContext";
 import CauseContributionProvider from "contexts/causeContributionContext";
 import UserLevelProvider from "contexts/userLevelContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -57,28 +57,28 @@ function App() {
                   <AuthenticationProvider>
                     <ModalProvider>
                       <Suspense fallback={<div />}>
-                        <TicketsProvider>
-                          <TasksProvider>
-                            <CouponProvider>
-                              <TagsProvider>
-                                <NonProfitsProvider>
-                                  <IntegrationProvider>
+                        <IntegrationProvider>
+                          <TicketsProvider>
+                            <TasksProvider>
+                              <CouponProvider>
+                                <TagsProvider>
+                                  <NonProfitsProvider>
                                     <CausesProvider>
-                                      <CauseDonationProvider>
+                                      <TagDonationProvider>
                                         <CauseContributionProvider>
                                           <UserLevelProvider>
                                             <RoutesComponent />
                                             <Zendesk />
                                           </UserLevelProvider>
                                         </CauseContributionProvider>
-                                      </CauseDonationProvider>
+                                      </TagDonationProvider>
                                     </CausesProvider>
-                                  </IntegrationProvider>
-                                </NonProfitsProvider>
-                              </TagsProvider>
-                            </CouponProvider>
-                          </TasksProvider>
-                        </TicketsProvider>
+                                  </NonProfitsProvider>
+                                </TagsProvider>
+                              </CouponProvider>
+                            </TasksProvider>
+                          </TicketsProvider>
+                        </IntegrationProvider>
                       </Suspense>
                     </ModalProvider>
                   </AuthenticationProvider>

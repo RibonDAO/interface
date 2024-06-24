@@ -44,7 +44,7 @@ export const AvatarContainer = styled.div<{ bg: string }>`
 export const RightContainer = styled.div`
   width: 128px;
   height: 128px;
-  margin-left: -50px;
+  margin-left: -40px;
   align-items: center;
   justify-content: center;
 `;

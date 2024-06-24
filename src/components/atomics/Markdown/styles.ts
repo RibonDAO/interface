@@ -48,7 +48,7 @@ export const MarkdownContainer = styled.div`
 
   th,
   td {
-    padding: ${({ theme }) => theme.spacing(4)};;
+    padding: ${({ theme }) => theme.spacing(4)};
     font-weight: 400;
     text-align: start;
   }

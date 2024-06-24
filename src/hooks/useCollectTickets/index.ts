@@ -9,6 +9,7 @@ import {
 import { today } from "lib/dateTodayFormatter";
 import { getLocalStorageItem } from "lib/localStorage";
 import { logError } from "services/crashReport";
+import { useIntegrationId } from "hooks/useIntegrationId";
 
 type HandleCollectProps = {
   onSuccess?: () => void;
@@ -25,9 +26,8 @@ export function useCollectTickets() {
     collectByIntegration,
   } = useTickets();
 
-  const { externalId } = useIntegrationContext();
-  const { currentIntegrationId: integrationId, setExternalId } =
-    useIntegrationContext();
+  const { externalId, setExternalId } = useIntegrationContext();
+  const integrationId = useIntegrationId();
   const externalIds = externalId?.split(",");
 
   function hasReceivedTicketToday() {

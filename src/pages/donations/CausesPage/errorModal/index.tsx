@@ -35,6 +35,25 @@ export default function showErrorModal(state: LocationStateType) {
     state?.failedDonation,
   );
 
+  const { hide: closeNoTicketsModal } = useModal(
+    {
+      type: MODAL_TYPES.MODAL_DIALOG,
+      props: {
+        title: t("noTicketsModalTitle"),
+        description: state?.message || t("noTicketsModalText"),
+        primaryButton: {
+          text: t("noTicketsModalPrimaryButton"),
+          onClick: () => navigateTo("/earn"),
+        },
+        onClose: () => closeNoTicketsModal(),
+        eventName: "P12_noTicketsModal",
+        supportButton: false,
+        type: "warning",
+      },
+    },
+    state?.noTickets,
+  );
+
   const { hide: closeUnauthorizedModal } = useModal(
     {
       type: MODAL_TYPES.MODAL_DIALOG,

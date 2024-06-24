@@ -11,6 +11,7 @@ export interface ITicketsContext {
   setTicketsCounter: (tickets: number) => void;
   refetchTickets: () => void;
   hasTickets: boolean;
+  isLoading: boolean;
 }
 
 export type Props = {
@@ -27,6 +28,7 @@ function TicketsProvider({ children }: Props) {
     tickets: userTickets,
     integrationTickets: userIntegrationTickets,
     refetch,
+    isLoading,
   } = ticketsAvailable();
   const { currentIntegrationId: integrationId } = useIntegrationContext();
   const { currentUser } = useCurrentUser();
@@ -79,8 +81,9 @@ function TicketsProvider({ children }: Props) {
       setTicketsCounter,
       hasTickets,
       refetchTickets: refetch,
+      isLoading,
     }),
-    [ticketsCounter],
+    [ticketsCounter, isLoading, hasTickets],
   );
 
   return (

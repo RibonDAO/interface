@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ProfilePhoto from "assets/icons/user.svg";
+import ProfilePhoto from "assets/icons/profile.svg";
 import {
   LeftImagePlaceholder,
   RightImagePlaceholder,

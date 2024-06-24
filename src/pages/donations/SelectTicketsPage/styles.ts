@@ -62,5 +62,5 @@ export const Icon = styled.img`
 
 export const Button = styled(ButtonComponent)`
   height: 48px;
-  margin-top: ${({ theme }) => theme.spacing(24)};
+  margin-top: ${({ theme }) => theme.spacing(32)};
 `;

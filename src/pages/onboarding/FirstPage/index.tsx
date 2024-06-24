@@ -26,7 +26,7 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
   });
   const { navigateTo, navigateBack } = useNavigation();
   const { integration } = useIntegrationContext();
-  const { ticketsCounter } = useTicketsContext();
+  const { ticketsCounter, refetchTickets } = useTicketsContext();
 
   const handleClick = () => {
     logEvent("P10_getTicketBtn_click");
@@ -64,6 +64,7 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
   };
 
   useEffect(() => {
+    refetchTickets();
     logEvent("P10_view");
   }, []);
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { defaultBodyMdSemibold } from "styles/typography/default";
+import { defaultBodyMdMedium } from "styles/typography/default";
 import { stylizedDisplayXs } from "styles/typography/stylized";
 import ButtonComponent from "components/atomics/buttons/Button";
 
@@ -45,7 +45,7 @@ export const ContentContainer = styled.div`
 `;
 
 export const Subtitle = styled.p`
-  ${defaultBodyMdSemibold}
+  ${defaultBodyMdMedium}
 
   min-height: 48px;
   margin-bottom: ${({ theme }) => theme.spacing(8)};

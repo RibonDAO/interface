@@ -47,7 +47,7 @@ export default function SelectTicketsPage() {
     nonProfit,
     currentImpact,
     false,
-    true,
+    false,
   );
 
   const onDonationSuccess = () => {

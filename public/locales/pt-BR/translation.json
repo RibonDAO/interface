@@ -177,8 +177,10 @@
       }
     },
     "selectTicketsPage": {
-      "title": "Escolha o tamanho da sua ajuda",
-      "button": "Continuar"
+      "title": "Você está prestes a doar:",
+      "description": "O equivalente a ",
+      "buttonSingular": "Doar 1 ticket",
+      "buttonPlural": "Doar {{ticketsQuantity}} tickets"
     }
   },
   "coupons": {

@@ -19,6 +19,7 @@ import useAvoidBackButton from "hooks/useAvoidBackButton";
 import usePostTicketDonationNavigation from "hooks/usePostTicketDonationNavigation";
 
 import { logEvent } from "lib/events";
+import ImageWithIconOverlay from "components/atomics/ImageWithIconOverlay";
 import * as S from "./styles";
 
 function TicketDonationDonePage(): JSX.Element {
@@ -71,7 +72,7 @@ function TicketDonationDonePage(): JSX.Element {
             quantityOfDonationsToShowEmailCheckbox ===
             0 ||
           Number(userStatistics.totalTickets) === firstDonation) &&
-        !config.allowedEmailMarketing
+        config.allowedEmailMarketing
       );
     }
     return false;
@@ -127,39 +128,44 @@ function TicketDonationDonePage(): JSX.Element {
 
   return (
     <S.Container>
-      {audio && <ReactHowler src={audio} loop={false} playing />}
-      <S.TopContainer>
-        <S.CardImage src={nonProfit?.confirmationImage} />
-        <S.ImageWithIconOverlayContainer>
-          {/* <ImageWithIconOverlay
-            leftImage={profile?.photo}
-            rightImage={nonProfit?.icon}
-          /> */}
-        </S.ImageWithIconOverlayContainer>
-      </S.TopContainer>
+      <S.MainContainer>
+        {audio && <ReactHowler src={audio} loop={false} playing />}
+        <S.TopContainer>
+          <S.CardImage src={nonProfit?.confirmationImage} />
+          <S.ImageWithIconOverlayContainer>
+            <ImageWithIconOverlay
+              leftImage={profile?.photo}
+              rightImage={nonProfit?.icon}
+            />
+          </S.ImageWithIconOverlayContainer>
+        </S.TopContainer>
 
-      <S.ContentContainer>
-        {renderImpactValue()}
-        {shouldShowEmailCheckbox() && (
-          <S.CheckboxContainer>
-            <S.CheckboxLabel>
-              <S.Checkbox
-                type="checkbox"
-                onChange={(e) =>
-                  setAllowedEmailMarketing(e.currentTarget.checked)
-                }
-              />
-              {t("checkboxText")}
-            </S.CheckboxLabel>
-          </S.CheckboxContainer>
-        )}
-        <S.FinishButton
-          text={t("button")}
-          onClick={() => {
-            navigate();
-          }}
-        />
-      </S.ContentContainer>
+        <S.TextContainer>
+          {renderImpactValue()}
+          {shouldShowEmailCheckbox() && (
+            <S.CheckboxContainer>
+              <S.CheckboxLabel>
+                <S.Checkbox
+                  type="checkbox"
+                  onChange={(e) =>
+                    setAllowedEmailMarketing(e.currentTarget.checked)
+                  }
+                />
+                {t("checkboxText")}
+              </S.CheckboxLabel>
+            </S.CheckboxContainer>
+          )}
+        </S.TextContainer>
+
+        <S.ButtonContainer>
+          <S.FinishButton
+            text={t("button")}
+            onClick={() => {
+              navigate();
+            }}
+          />
+        </S.ButtonContainer>
+      </S.MainContainer>
     </S.Container>
   );
 }

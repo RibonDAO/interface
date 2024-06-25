@@ -407,7 +407,7 @@
       "integrationTitle": "{{integrationName}} te deu 1 ticket!",
       "integrationTitlePlural": "{{integrationName}} te deu {{tickets}} tickets!",
       "subtitle": "Use o seu ticket para fazer o bem!",
-      "downloadAppButton": "Coletar ticket no app",
+      "downloadAppButton": "Abrir aplicativo",
       "stayInBrowserButton": "Ficar no navegador",
       "nextButton": "Próximo"
     }

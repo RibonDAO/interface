@@ -651,7 +651,7 @@
       "integrationTitle": "{{integrationName}} gave you 1 ticket!",
       "integrationTitlePlural": "{{integrationName}} gave you {{tickets}} tickets!",
       "subtitle": "Use your ticket to do good!",
-      "downloadAppButton": "Get ticket on app",
+      "downloadAppButton": "Go to app",
       "stayInBrowserButton": "Stay in browser",
       "nextButton": "Next"
     }

@@ -1,7 +1,6 @@
 import CardCampaign from "components/moleculars/cards/CardCampaign";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useTranslation } from "react-i18next";
-import { logError } from "services/crashReport";
 import useImpressionCards from "hooks/useImpressionCards";
 import { useCallback, useEffect, useState } from "react";
 import { useLanguage } from "hooks/useLanguage";
@@ -73,12 +72,8 @@ function CampaignSection({ cardId }: Props): JSX.Element {
   const { getImpressionCard } = useImpressionCards();
 
   const fetchImpressionCard = useCallback(async () => {
-    try {
-      const impressionCardData = await getImpressionCard(cardId);
-      setImpressionCard(impressionCardData);
-    } catch (e) {
-      logError(e);
-    }
+    const impressionCardData = await getImpressionCard(cardId);
+    setImpressionCard(impressionCardData);
   }, [cardId]);
 
   useEffect(() => {

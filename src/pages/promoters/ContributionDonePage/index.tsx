@@ -11,7 +11,6 @@ import useNavigation from "hooks/useNavigation";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
-import { logError } from "services/crashReport";
 import { Cause, NonProfit, Offer, Currencies } from "@ribon.io/shared/types";
 import getThemeByFlow from "lib/themeByFlow";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
@@ -61,13 +60,9 @@ function ContributionDonePage(): JSX.Element {
 
   const donationInfos = useCallback(
     async (idOffer: number) => {
-      try {
-        if (idOffer !== 0) {
-          const price = await getOffer(idOffer);
-          setOffer(price);
-        }
-      } catch (e) {
-        logError(e);
+      if (idOffer !== 0) {
+        const price = await getOffer(idOffer);
+        setOffer(price);
       }
     },
     [offerId],

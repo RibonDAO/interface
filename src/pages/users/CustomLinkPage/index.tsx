@@ -10,7 +10,6 @@ import useUserIntegration from "hooks/userHooks/useUserIntegration";
 import Spinner from "components/atomics/Spinner";
 import { useCurrentUser } from "contexts/currentUserContext";
 import theme from "styles/theme";
-import { logError } from "services/crashReport";
 import useToast from "hooks/useToast";
 import * as S from "./styles";
 
@@ -136,7 +135,6 @@ function CustomLinkPage(): JSX.Element {
         });
       }, 5000);
     } catch (error) {
-      logError(error);
       toast({
         message: t("onErrorMessage"),
         type: "error",

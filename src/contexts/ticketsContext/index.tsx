@@ -2,7 +2,6 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useTickets } from "@ribon.io/shared/hooks";
 import { useIntegrationContext } from "contexts/integrationContext";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { logError } from "services/crashReport";
 import { useAuthentication } from "contexts/authenticationContext";
 import { useCollectTickets } from "hooks/useCollectTickets";
 
@@ -57,8 +56,8 @@ function TicketsProvider({ children }: Props) {
           setTicketsCounter(1);
         }
       }
-    } catch (error) {
-      logError(error);
+    } catch {
+      setTicketsCounter(0);
     }
   }
 

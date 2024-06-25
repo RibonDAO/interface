@@ -50,8 +50,6 @@ export async function connectWalletRequest({
     if (error.code === USER_REJECTED_CONNECTION_ERROR_CODE) {
       if (onUserRejectedConnection) onUserRejectedConnection();
     } else if (onError) onError();
-
-    logError(error);
   }
 
   return null;

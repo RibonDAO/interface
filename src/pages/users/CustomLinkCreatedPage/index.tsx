@@ -9,7 +9,6 @@ import useNavigation from "hooks/useNavigation";
 import { useLanguage } from "hooks/useLanguage";
 import { useTranslation } from "react-i18next";
 import { Integration } from "@ribon.io/shared/types";
-import { logError } from "services/crashReport";
 import { useAuthentication } from "contexts/authenticationContext";
 import useUserIntegration from "hooks/userHooks/useUserIntegration";
 import { APP_LINK } from "utils/constants";
@@ -53,7 +52,6 @@ function CustomLinkCreatedPage(): JSX.Element {
         const userIntegration = await getUserIntegration("partners");
         setIntegration(userIntegration);
       } catch (error) {
-        logError(error);
         navigateTo("/custom-link");
       }
     };

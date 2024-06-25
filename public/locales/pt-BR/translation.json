@@ -108,6 +108,9 @@
       "button": "Finalizar",
       "checkboxText": "Quero receber informações sobre minhas doações por e-mail"
     },
+    "donationInProgressSection": {
+      "loadingText": "Processando sua doação..."
+    },
     "menu": {
       "myImpactPageTitle": "Meu impacto",
       "donateTicketsPageTitle": "Doe tickets",

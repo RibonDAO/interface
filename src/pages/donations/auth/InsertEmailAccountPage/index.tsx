@@ -12,7 +12,7 @@ import useNavigation from "hooks/useNavigation";
 import { useAuthentication } from "contexts/authenticationContext";
 import { useLocation } from "react-router";
 import * as S from "./styles";
-import DonatingSection from "../DonatingSection";
+import DonationInProgressSection from "../DonationInProgressSection";
 
 type LocationStateType = {
   nonProfit: NonProfit;
@@ -95,9 +95,10 @@ function InsertEmailAccountPage(): JSX.Element {
       <S.LeftImage src={LeftImage} />
       <S.RightImage src={RightImage} />
       {donationInProgress ? (
-        <DonatingSection
+        <DonationInProgressSection
           nonProfit={nonProfit}
           onAnimationEnd={onAnimationEnd}
+          shouldRepeatAnimation={donationInProgress && !donationSucceeded}
         />
       ) : (
         <>

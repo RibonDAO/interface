@@ -10,7 +10,7 @@ import useNavigation from "hooks/useNavigation";
 import { logEvent } from "lib/events";
 import { useLocation } from "react-router";
 import * as S from "./styles";
-import DonatingSection from "../DonatingSection";
+import DonationInProgressSection from "../DonationInProgressSection";
 
 type LocationStateType = {
   nonProfit: NonProfit;
@@ -70,7 +70,11 @@ function SignedInPage(): JSX.Element {
   };
 
   return donationInProgress ? (
-    <DonatingSection nonProfit={nonProfit} onAnimationEnd={onAnimationEnd} />
+    <DonationInProgressSection
+      nonProfit={nonProfit}
+      onAnimationEnd={onAnimationEnd}
+      shouldRepeatAnimation={donationInProgress && !donationSucceeded}
+    />
   ) : (
     <S.Container>
       <S.ImageContainer>

@@ -11,7 +11,7 @@ import { useLocation } from "react-router";
 import { NonProfit } from "@ribon.io/shared/types";
 import { useTicketsContext } from "contexts/ticketsContext";
 import useDonationFlow from "hooks/useDonationFlow";
-import DonatingSection from "../auth/DonatingSection";
+import DonationInProgressSection from "../auth/DonationInProgressSection";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -114,7 +114,11 @@ export default function SelectTicketsPage() {
   }, [nonProfit]);
 
   return donationInProgress ? (
-    <DonatingSection nonProfit={nonProfit} onAnimationEnd={onAnimationEnd} />
+    <DonationInProgressSection
+      nonProfit={nonProfit}
+      onAnimationEnd={onAnimationEnd}
+      shouldRepeatAnimation={donationInProgress && !donationSucceeded}
+    />
   ) : (
     <S.Container>
       <S.ImageContainer>

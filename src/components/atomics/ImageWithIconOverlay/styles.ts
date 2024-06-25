@@ -10,6 +10,7 @@ export const LeftContainer = styled.div`
   height: 128px;
   align-items: center;
   justify-content: center;
+  display: flex;
 `;
 export const LeftImageContainer = styled.div`
   width: 104px;
@@ -44,6 +45,7 @@ export const RightContainer = styled.div`
   margin-left: -40px;
   align-items: center;
   justify-content: center;
+  display: flex;
 `;
 export const RightImage = styled.img`
   width: 128px;

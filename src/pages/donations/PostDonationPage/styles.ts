@@ -1,13 +1,12 @@
 import styled from "styled-components";
 import { stylizedDisplaySm } from "styles/typography/stylized";
 import { defaultBodyMdMedium } from "styles/typography/default";
-import { theme } from "@ribon.io/shared/styles";
 
 export const TopContainer = styled.div`
   align-items: center;
 `;
 export const Container = styled.div`
-  color: ${theme.colors.brand.primary[300]};
+  color: ${({ theme }) => theme.colors.brand.primary[300]};
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -27,15 +26,15 @@ export const ContentContainer = styled.div`
 
 export const Title = styled.p`
   ${stylizedDisplaySm}
-  color: ${theme.colors.neutral[800]};
-  margin-bottom: ${theme.spacing(12)};
+  color: ${({ theme }) => theme.colors.neutral[800]};
+  margin-bottom: ${({ theme }) => theme.spacing(12)};
 `;
 
 export const Description = styled.p`
   ${defaultBodyMdMedium}
-  color: ${theme.colors.neutral[600]};
+  color: ${({ theme }) => theme.colors.neutral[600]};
   text-align: center;
-  margin-bottom: ${theme.spacing(64)};
+  margin-bottom: ${({ theme }) => theme.spacing(64)};
 `;
 export const BackgroundSun = styled.div`
   position: absolute;
@@ -57,12 +56,13 @@ export const ButtonContainer = styled.div`
   justify-content: center;
   z-index: 3;
   min-width: 360px;
-  @media (max-width: ${theme.breakpoints.pad}) {
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
     align-items: flex-end;
     width: 100%;
     position: absolute;
     bottom: 0;
 
-    padding: ${theme.spacing(0, 16, 16, 16)};
+    padding: ${({ theme }) => theme.spacing(0, 16, 16, 16)};
   }
 `;

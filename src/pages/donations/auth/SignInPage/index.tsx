@@ -51,7 +51,7 @@ function SignInPage(): JSX.Element {
   }, [currentUser]);
 
   const oldImpactFormat = () =>
-    formattedImpactText(nonProfit, undefined, false, true);
+    formattedImpactText(nonProfit, undefined, false, false);
 
   return (
     <>
@@ -63,7 +63,9 @@ function SignInPage(): JSX.Element {
         </S.ImageContainer>
         <S.ContentContainer>
           <S.Title>{t("title")}</S.Title>
-          <S.Description>{oldImpactFormat()}</S.Description>
+          <S.Description>
+            {t("prefix")} {oldImpactFormat()}
+          </S.Description>
           <S.ButtonContainer>
             <GoogleLogin from="donation_flow" />
             <AppleLogin from="donation_flow" />

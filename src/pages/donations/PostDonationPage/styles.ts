@@ -3,8 +3,8 @@ import { stylizedDisplaySm } from "styles/typography/stylized";
 import { defaultBodyMdMedium } from "styles/typography/default";
 
 export const TopContainer = styled.div`
-  align-items: center;
   margin-top: -64px;
+  align-items: center;
 `;
 export const Container = styled.div`
   height: 100vh;

@@ -31,20 +31,13 @@ export const TopContainer = styled.div`
   align-items: center;
 `;
 
-export const ImageContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  flex-grow: 1;
-`;
-
 export const CardImage = styled.img`
   width: 426px;
   height: 280px;
   border-radius: ${({ theme }) => theme.spacing(0, 0, 16, 16)};
   object-fit: cover;
   object-position: center;
+
   @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 328px;
     height: 216px;
@@ -55,6 +48,19 @@ export const CardImage = styled.img`
 export const ImageWithIconOverlayContainer = styled.div`
   margin-top: -64px;
   align-items: center;
+`;
+
+export const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(8)};
+  align-items: center;
+  max-width: 328px;
+  margin-bottom: ${({ theme }) => theme.spacing(40)};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
+    margin-bottom: ${({ theme }) => theme.spacing(8)};
+  }
 `;
 
 export const Title = styled.h1`
@@ -70,31 +76,6 @@ export const Subtitle = styled.span`
 
   text-align: center;
   color: ${({ theme }) => theme.colors.neutral[600]};
-`;
-
-export const FinishButton = styled(Button)`
-  margin-top: ${({ theme }) => theme.spacing(3)};
-  margin-bottom: ${({ theme }) => theme.spacing(16)};
-  border: 0px;
-  display: block;
-  justify-self: end;
-  background-color: ${({ theme }) => theme.colors.brand.primary[600]};
-`;
-
-export const ButtonContainer = styled.div`
-  display: flex;
-  width: 360px;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: ${({ theme }) => theme.spacing(24)};
-  padding: ${({ theme }) => theme.spacing(16)};
-  margin-bottom: ${({ theme }) => theme.spacing(48)};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
-    width: 100%;
-    margin-bottom: ${({ theme }) => theme.spacing(0)};
-  }
 `;
 
 export const ImpactDescription = styled.span`
@@ -131,15 +112,26 @@ export const Checkbox = styled.input`
   margin-right: ${({ theme }) => theme.spacing(8)};
 `;
 
-export const TextContainer = styled.div`
+export const ButtonContainer = styled.div`
   display: flex;
+  width: 360px;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing(8)};
   align-items: center;
-  max-width: 328px;
-  margin-bottom: ${({ theme }) => theme.spacing(40)};
+  text-align: center;
+  gap: ${({ theme }) => theme.spacing(24)};
+  padding: ${({ theme }) => theme.spacing(16)};
+  margin-bottom: ${({ theme }) => theme.spacing(48)};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
-    margin-bottom: ${({ theme }) => theme.spacing(8)};
+    width: 100%;
+    margin-bottom: ${({ theme }) => theme.spacing(0)};
   }
+`;
+
+export const FinishButton = styled(Button)`
+  margin-top: ${({ theme }) => theme.spacing(3)};
+  border: 0px;
+  display: block;
+  justify-self: end;
+  background-color: ${({ theme }) => theme.colors.brand.primary[600]};
 `;

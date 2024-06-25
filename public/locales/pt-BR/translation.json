@@ -104,7 +104,7 @@
     },
     "ticketDonationDonePage": {
       "title": "Obrigada pela doação!",
-      "description": "Você doou",
+      "description": "Você doou o equivalente a ",
       "button": "Finalizar",
       "checkboxText": "Quero receber informações sobre minhas doações por e-mail"
     },

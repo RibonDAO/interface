@@ -24,6 +24,10 @@
       "errorModalTitle": "Falha no processamento",
       "errorModalText": "A rede está instável e não foi possível registrar sua doação. Tente novamente, por favor.",
       "errorModalButtonText": "Ok",
+      "noTicketsModalTitle": "Você não tem tickets",
+      "noTicketsModalText": "Clique em Ganhe tickets para saber como ganhar mais tickets.",
+      "noTicketsModalPrimaryButton": "Ganhe tickets",
+      "noTicketsModalSecondaryButton": "ok",
       "unauthorizedModalTitle": "Confirme seu e-mail",
       "unauthorizedModalText": "Por favor, confirme seu e-mail para continuar a doação com segurança.",
       "unauthorizedModalButtonText": "confirmar e-mail",
@@ -139,7 +143,8 @@
         "impactDescription": "com {{value}}"
       },
       "signInPage": {
-        "title": "Você está doando",
+        "title": "Você está prestes a doar:",
+        "prefix": "O equivalente a ",
         "google": "Continuar com Google",
         "apple": "Continuar com Apple",
         "email": "Continuar com e-mail",
@@ -367,7 +372,8 @@
     "firstPage": {
       "onboardingRibonTitle": "Vem com a Ribon!",
       "onboardingIntegrationTitle": "{{integrationName}} te convida para a Ribon!",
-      "onboardingSubtitle": "Você recebeu 1 ticket para doar para um projeto social!",
+      "onboardingSubtitle": "Você recebeu {{tickets}} ticket para doar para um projeto social!",
+      "onboardingSubtitlePlural": "Você recebeu {{tickets}} tickets para doar para um projeto social!",
       "onboardingButtonText": "Receber meu ticket",
       "title": "Você tem 1 ticket",
       "titlePlural": "Você tem {{ticketsCounter}} tickets",
@@ -402,9 +408,9 @@
     "giveTicketPage": {
       "title": "Você ganhou 1 ticket!",
       "integrationTitle": "{{integrationName}} te deu 1 ticket!",
-      "integrationTitlePlural": "{{integrationName}} te deu tickets!",
+      "integrationTitlePlural": "{{integrationName}} te deu {{tickets}} tickets!",
       "subtitle": "Use o seu ticket para fazer o bem!",
-      "downloadAppButton": "Coletar ticket no app",
+      "downloadAppButton": "Abrir aplicativo",
       "stayInBrowserButton": "Ficar no navegador",
       "nextButton": "Próximo"
     }

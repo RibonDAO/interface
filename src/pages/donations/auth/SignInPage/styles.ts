@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { stylizedDisplayXs } from "styles/typography/stylized";
+import { stylizedDisplaySm } from "styles/typography/stylized";
 import {
   defaultBodyLgBold,
   defaultBodyMdMedium,
-  defaultBodyMdSemibold,
   defaultBodySmRegular,
   defaultBodySmSemibold,
 } from "styles/typography/default";
@@ -55,17 +54,18 @@ export const Icon = styled.img`
 `;
 
 export const Title = styled.h1`
-  ${stylizedDisplayXs}
+  ${stylizedDisplaySm}
 
   margin-bottom: ${({ theme }) => theme.spacing(8)};
-  color: ${({ theme }) => theme.colors.brand.primary[900]};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;
 
 export const Description = styled.p`
-  ${defaultBodyMdSemibold}
+  ${defaultBodyMdMedium}
 
   margin-bottom: ${({ theme }) => theme.spacing(24)};
-  color: ${({ theme }) => theme.colors.neutral[500]};
+  text-align: center;
+  color: ${({ theme }) => theme.colors.neutral[600]};
 `;
 
 export const Button = styled(ButtonComponent)`

@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 import useTokenDecimals from "hooks/useTokenDecimals";
-import { useIntegrationId } from "hooks/useIntegrationId";
+import { useIntegrationContext } from "contexts/integrationContext";
 import { useTranslation } from "react-i18next";
 import { useContract } from "hooks/useContract";
 import RibonAbi from "utils/abis/RibonAbi.json";
@@ -67,7 +67,7 @@ function CryptoPaymentProvider({ children }: Props) {
   );
   const [tokenSymbol, setTokenSymbol] = useState("USDC");
 
-  const integrationId = useIntegrationId();
+  const { currentIntegrationId: integrationId } = useIntegrationContext();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportTreasurePage",

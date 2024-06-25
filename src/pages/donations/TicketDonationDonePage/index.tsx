@@ -14,7 +14,7 @@ import { getAudioFromStorage } from "lib/cachedAudio";
 import ReactHowler from "react-howler";
 import { useTasksContext } from "contexts/tasksContext";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { useIntegrationId } from "hooks/useIntegrationId";
+import { useIntegrationContext } from "contexts/integrationContext";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import usePostTicketDonationNavigation from "hooks/usePostTicketDonationNavigation";
 
@@ -58,7 +58,7 @@ function TicketDonationDonePage(): JSX.Element {
     userId: currentUser?.id,
   });
 
-  const integrationId = useIntegrationId();
+  const { currentIntegrationId: integrationId } = useIntegrationContext();
 
   const quantityOfDonationsToShowEmailCheckbox = 3;
   const firstDonation = 1;

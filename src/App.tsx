@@ -19,11 +19,12 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import TicketsProvider from "contexts/ticketsContext";
 import CouponProvider from "contexts/couponContext";
 import TagsProvider from "contexts/tagsContext";
+import IntegrationProvider from "contexts/integrationContext";
+import LoadingOverlayProvider from "./contexts/loadingOverlayContext";
+import ModalProvider from "./contexts/modalContext";
 import RoutesComponent from "./config/routes";
 import GlobalStyle from "./styles/globalStyle";
 import theme from "./styles/theme";
-import LoadingOverlayProvider from "./contexts/loadingOverlayContext";
-import ModalProvider from "./contexts/modalContext";
 
 function App() {
   // useEffect(() => {
@@ -49,38 +50,40 @@ function App() {
           <BrowserRouter>
             {debugEnabled() && <DebugEventsView />}
             <ToastContextProvider>
-              <CurrentUserProvider>
-                <GoogleOAuthProvider
-                  clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID!}
-                >
-                  <AuthenticationProvider>
-                    <ModalProvider>
-                      <Suspense fallback={<div />}>
-                        <TicketsProvider>
-                          <TasksProvider>
-                            <CouponProvider>
-                              <TagsProvider>
-                                <NonProfitsProvider>
-                                  <CausesProvider>
-                                    <TagDonationProvider>
-                                      <CauseContributionProvider>
-                                        <UserLevelProvider>
-                                          <RoutesComponent />
-                                          <Zendesk />
-                                        </UserLevelProvider>
-                                      </CauseContributionProvider>
-                                    </TagDonationProvider>
-                                  </CausesProvider>
-                                </NonProfitsProvider>
-                              </TagsProvider>
-                            </CouponProvider>
-                          </TasksProvider>
-                        </TicketsProvider>
-                      </Suspense>
-                    </ModalProvider>
-                  </AuthenticationProvider>
-                </GoogleOAuthProvider>
-              </CurrentUserProvider>
+              <IntegrationProvider>
+                <CurrentUserProvider>
+                  <GoogleOAuthProvider
+                    clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID!}
+                  >
+                    <AuthenticationProvider>
+                      <ModalProvider>
+                        <Suspense fallback={<div />}>
+                          <TicketsProvider>
+                            <TasksProvider>
+                              <CouponProvider>
+                                <TagsProvider>
+                                  <NonProfitsProvider>
+                                    <CausesProvider>
+                                      <TagDonationProvider>
+                                        <CauseContributionProvider>
+                                          <UserLevelProvider>
+                                            <RoutesComponent />
+                                            <Zendesk />
+                                          </UserLevelProvider>
+                                        </CauseContributionProvider>
+                                      </TagDonationProvider>
+                                    </CausesProvider>
+                                  </NonProfitsProvider>
+                                </TagsProvider>
+                              </CouponProvider>
+                            </TasksProvider>
+                          </TicketsProvider>
+                        </Suspense>
+                      </ModalProvider>
+                    </AuthenticationProvider>
+                  </GoogleOAuthProvider>
+                </CurrentUserProvider>
+              </IntegrationProvider>
               <Toast />
             </ToastContextProvider>
           </BrowserRouter>

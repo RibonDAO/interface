@@ -2,9 +2,8 @@ import { useTranslation } from "react-i18next";
 import LeftImage from "assets/images/bottom-left-shape-red.svg";
 import RightImage from "assets/images/top-right-shape.svg";
 import useNavigation from "hooks/useNavigation";
-import { useIntegrationId } from "hooks/useIntegrationId";
-import { useIntegration } from "@ribon.io/shared/hooks";
-import { useEffect } from "react";
+import { useIntegrationContext } from "contexts/integrationContext";
+import { useCallback, useEffect } from "react";
 import { RIBON_COMPANY_ID } from "utils/constants";
 import Tooltip from "components/moleculars/Tooltip";
 import Button from "components/atomics/buttons/Button";
@@ -26,9 +25,8 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
     keyPrefix: "onboarding.firstPage",
   });
   const { navigateTo, navigateBack } = useNavigation();
-  const integrationId = useIntegrationId();
-  const { integration } = useIntegration(integrationId);
-  const { ticketsCounter } = useTicketsContext();
+  const { integration, ticketsFromIntegration } = useIntegrationContext();
+  const { setTicketsCounter } = useTicketsContext();
 
   const handleClick = () => {
     logEvent("P10_getTicketBtn_click");
@@ -50,13 +48,26 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
         integrationName: integration?.name,
       });
 
+  const subtitleOnboarding = useCallback(() => {
+    switch (ticketsFromIntegration) {
+      case 0:
+        return "";
+      case 1:
+        return t("onboardingSubtitle", { tickets: ticketsFromIntegration });
+      default:
+        return t("onboardingSubtitlePlural", {
+          tickets: ticketsFromIntegration,
+        });
+    }
+  }, [ticketsFromIntegration]);
+
   const handleSubtitle = isRibonIntegration
     ? t("subtitle")
     : t("integrationSubtitle", {
         integrationName: integration?.name,
       });
 
-  const subtitle = isOnboarding ? t("onboardingSubtitle") : handleSubtitle;
+  const subtitle = isOnboarding ? subtitleOnboarding() : handleSubtitle;
 
   const title = isOnboarding ? titleOnboarding : t("title");
 
@@ -66,8 +77,9 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
   };
 
   useEffect(() => {
+    setTicketsCounter(ticketsFromIntegration);
     logEvent("P10_view");
-  }, []);
+  }, [ticketsFromIntegration]);
 
   const hasCustomOnboarding =
     integration?.onboardingTitle && integration?.onboardingDescription;
@@ -78,12 +90,9 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
       <S.Description>{integration?.onboardingDescription}</S.Description>
     </>
   );
-
   const renderFallbackOnboarding = () => (
     <>
-      <S.Title>
-        {ticketsCounter > 1 ? t("titlePlural", { ticketsCounter }) : title}
-      </S.Title>
+      <S.Title>{title}</S.Title>
       <S.Description>{subtitle}</S.Description>
     </>
   );

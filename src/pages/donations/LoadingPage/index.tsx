@@ -16,6 +16,7 @@ import { useCollectTickets } from "hooks/useCollectTickets";
 import { logError } from "services/crashReport";
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import { setLocalStorageItem } from "lib/localStorage";
+import { useIntegrationContext } from "contexts/integrationContext";
 import {
   RECEIVED_TICKET_AT_KEY,
   RECEIVED_TICKET_FROM_INTEGRATION,
@@ -29,6 +30,8 @@ function LoadingPage(): JSX.Element {
   const { setCouponId } = useCouponContext();
   const externalId = extractUrlValue("external_id", history.location.search);
   const couponId = extractUrlValue("coupon_id", history.location.search);
+  const { setExternalId, setCurrentIntegrationId, setTicketsFromIntegration } =
+    useIntegrationContext();
   const { currentUser } = useCurrentUser();
   const { hasReceivedTicketToday, handleCanCollect, handleCollect } =
     useCollectTickets();
@@ -44,67 +47,77 @@ function LoadingPage(): JSX.Element {
     );
   };
 
+  const collectFromRibon = async () => {
+    await handleCollect({
+      onSuccess: () => {
+        logEvent("ticketCollected", { from: "collect" });
+      },
+    });
+
+    showReceiveTicketToast();
+    setLocalStorageItem(RECEIVED_TICKET_AT_KEY, Date.now().toString());
+    setLocalStorageItem(
+      RECEIVED_TICKET_FROM_INTEGRATION,
+      integrationId?.toLocaleString() ?? RIBON_COMPANY_ID,
+    );
+  };
+
+  const itIsNotDeeplink = () =>
+    !history.location.search?.includes("_branch_match_id") &&
+    integrationId &&
+    !process.env.REACT_APP_DEBUG_VIEW;
+
+  const hasCoupon = couponId !== "" && couponId !== undefined;
+
+  const fetchTickets = async () => {
+    try {
+      const { canCollect, quantity } = await handleCanCollect();
+      setTicketsFromIntegration(quantity);
+      return canCollect;
+    } catch (error) {
+      setTicketsFromIntegration(1);
+      return false;
+    }
+  };
+
   async function receiveTicket() {
-    if (
-      !history.location.search?.includes("_branch_match_id") &&
-      integrationId &&
-      !process.env.REACT_APP_DEBUG_VIEW
-    )
-      redirectToDeeplink();
-    else {
-      try {
-        const isRibonIntegration =
-          integration?.id === parseInt(RIBON_COMPANY_ID, 10);
-        const canCollect = await handleCanCollect();
-        const receivedTicketToday = await hasReceivedTicketToday();
-
-        if (couponId !== "" && couponId !== undefined) {
-          setCouponId(couponId);
-          navigateTo("/coupons/give-ticket");
-        } else if (canCollect) {
-          if (currentUser && externalId) {
-            navigateTo("/intro/receive-tickets");
-          } else if (currentUser && !receivedTicketToday) {
-            if (!isRibonIntegration) {
-              navigateTo("/intro/receive-tickets");
-            } else {
-              await handleCollect({
-                onSuccess: () => {
-                  logEvent("ticketCollected", { from: "collect" });
-                },
-              });
-
-              showReceiveTicketToast();
-              setLocalStorageItem(
-                RECEIVED_TICKET_AT_KEY,
-                Date.now().toString(),
-              );
-              setLocalStorageItem(
-                RECEIVED_TICKET_FROM_INTEGRATION,
-                integrationId?.toLocaleString() ?? RIBON_COMPANY_ID,
-              );
-              navigateTo("/causes");
-            }
-          } else if (!currentUser) {
-            navigateTo("/intro");
-          } else {
-            navigateTo("/causes");
-          }
-        } else {
-          navigateTo("/causes");
-        }
-      } catch (error) {
-        logError(error);
-      }
+    try {
+      const receivedTicketToday = await hasReceivedTicketToday();
+      if (receivedTicketToday) return navigateTo("/causes");
+      await collectFromRibon();
+      return navigateTo("/causes");
+    } catch (error) {
+      logError(error);
+      return navigateTo("/causes");
     }
   }
+
+  async function redirectToCollect() {
+    if (hasCoupon) {
+      setCouponId(couponId);
+      return navigateTo("/coupons/give-ticket");
+    }
+    await fetchTickets();
+    if (!currentUser) return navigateTo("/intro");
+
+    return receiveTicket();
+  }
+
+  useEffect(() => {
+    if (externalId) setExternalId(externalId);
+  }, [externalId]);
+
+  useEffect(() => {
+    if (integrationId) setCurrentIntegrationId(integrationId);
+  }, [integrationId]);
 
   useEffect(() => {
     if (integration) {
       localStorage.setItem("integrationName", integration.name);
       logEvent("P1_view");
+      if (itIsNotDeeplink()) redirectToDeeplink();
+      redirectToCollect();
     }
-    receiveTicket();
   }, [integration]);
 
   return (

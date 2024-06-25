@@ -14,6 +14,7 @@ import { useTicketsContext } from "contexts/ticketsContext";
 import useDonationFlow from "hooks/useDonationFlow";
 import ImageWithIconOverlay from "components/atomics/ImageWithIconOverlay";
 import NavigationBackHeader from "config/routes/Navigation/NavigationBackHeader";
+import LoadingOverlay from "components/moleculars/modals/LoadingOverlay";
 import DonatingSection from "../auth/DonatingSection";
 import * as S from "./styles";
 
@@ -33,7 +34,7 @@ export default function SelectTicketsPage() {
   const { signedIn } = useCurrentUser();
   const { handleDonate } = useDonationFlow();
   const { navigateTo } = useNavigation();
-  const { ticketsCounter } = useTicketsContext();
+  const { ticketsCounter, refetchTickets, isLoading } = useTicketsContext();
   const { userProfile } = useUserProfile();
   const { profile } = userProfile();
   const [donationInProgress, setDonationInProgress] = useState(false);
@@ -119,15 +120,26 @@ export default function SelectTicketsPage() {
   }, []);
 
   useEffect(() => {
-    const impacts = nonProfit?.nonProfitImpacts || [];
-    const nonProfitsImpactsLength = impacts.length;
-    const lastImpact = impacts[nonProfitsImpactsLength - 1];
-    if (lastImpact?.minimumNumberOfTickets) {
-      setStep(lastImpact.minimumNumberOfTickets);
-      setTicketsQuantity(lastImpact.minimumNumberOfTickets);
-    }
-  }, [nonProfit]);
+    logEvent("p40_view");
+  }, []);
 
+  useEffect(() => {
+    refetchTickets();
+    if (!isLoading) {
+      const impacts = nonProfit?.nonProfitImpacts || [];
+      const nonProfitsImpactsLength = impacts.length;
+      const lastImpact = impacts[nonProfitsImpactsLength - 1];
+      if (lastImpact?.minimumNumberOfTickets) {
+        setStep(lastImpact.minimumNumberOfTickets);
+        setTicketsQuantity(lastImpact.minimumNumberOfTickets);
+        if (ticketsCounter < lastImpact.minimumNumberOfTickets) {
+          navigateTo({ pathname: "/causes", state: { noTickets: true } });
+        }
+      }
+    }
+  }, [ticketsCounter]);
+
+  if (isLoading) return <LoadingOverlay />;
   return donationInProgress ? (
     <DonatingSection nonProfit={nonProfit} onAnimationEnd={onAnimationEnd} />
   ) : (

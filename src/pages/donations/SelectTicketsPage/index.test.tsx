@@ -4,7 +4,9 @@ import SelectTicketsPage from ".";
 
 describe("SelectTicketsPage", () => {
   it("should render without error", () => {
-    renderComponent(<SelectTicketsPage />);
+    renderComponent(<SelectTicketsPage />, {
+      ticketsProviderValue: { isLoading: false },
+    });
 
     expectTextToBeInTheDocument("You're about to donate:");
   });

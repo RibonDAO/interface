@@ -11,7 +11,7 @@ import usePaymentParams from "hooks/usePaymentParams";
 import { logEvent } from "lib/events";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useIntegrationId } from "hooks/useIntegrationId";
+import { useIntegrationContext } from "contexts/integrationContext";
 import { useLanguage } from "hooks/useLanguage";
 import CheckoutArtImage from "assets/images/checkout-art.png";
 import ButtonSelectorTemplate from "../Components/ButtonSelectorTemplate";
@@ -30,7 +30,7 @@ function RecurrencePage(): JSX.Element {
 
   const [currentOfferIndex, setCurrentOfferIndex] = useState(0);
   const { updateLocationSearch } = useLocationSearch();
-  const integrationId = useIntegrationId();
+  const { currentIntegrationId: integrationId } = useIntegrationContext();
   const { setCurrentLang } = useLanguage();
 
   const { target, targetId, offer, currency, language } = usePaymentParams();

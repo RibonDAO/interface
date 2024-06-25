@@ -6,6 +6,8 @@ import useNavigation from "hooks/useNavigation";
 import Button from "components/atomics/buttons/Button";
 import LottieAnimation from "components/atomics/LottieAnimation";
 
+import { useEffect } from "react";
+import { logEvent } from "lib/events";
 import * as S from "./styles";
 
 import postDonationAnimation from "./assets/breathingFace.json";
@@ -22,6 +24,10 @@ function PostDonationPage() {
   const handleNavigate = () => {
     navigateTo("/causes");
   };
+
+  useEffect(() => {
+    logEvent("P39_view");
+  }, []);
 
   return isLoading ? null : (
     <S.Container>

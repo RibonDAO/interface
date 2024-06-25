@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { NonProfit } from "@ribon.io/shared/types";
 import { useTranslation } from "react-i18next";
 import { theme } from "@ribon.io/shared/styles";
@@ -7,12 +7,12 @@ import RightImage from "assets/images/top-right-shape.svg";
 import { isValidEmail } from "lib/validators";
 import { logEvent } from "lib/events";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
-import useDonationFlow from "hooks/useDonationFlow";
 import useNavigation from "hooks/useNavigation";
 import { useAuthentication } from "contexts/authenticationContext";
 import { useLocation } from "react-router";
+import { useCollectTickets } from "hooks/useCollectTickets";
+import { useCurrentUser } from "contexts/currentUserContext";
 import * as S from "./styles";
-import DonatingSection from "../DonatingSection";
 
 type LocationStateType = {
   nonProfit: NonProfit;
@@ -24,11 +24,10 @@ function InsertEmailAccountPage(): JSX.Element {
   });
 
   const [email, setEmail] = useState("");
-  const [donationInProgress, setDonationInProgress] = useState(false);
-  const [donationSucceeded, setDonationSucceeded] = useState(false);
   const { formattedImpactText } = useFormattedImpactText();
-  const { handleCollectAndDonate } = useDonationFlow();
+  const { handleCollect } = useCollectTickets();
   const { navigateTo } = useNavigation();
+  const { currentUser } = useCurrentUser();
   const {
     state: { nonProfit },
   } = useLocation<LocationStateType>();
@@ -36,39 +35,8 @@ function InsertEmailAccountPage(): JSX.Element {
   const { sendAuthenticationEmail } = useAuthentication();
 
   const onContinue = async () => {
-    setDonationInProgress(true);
     await sendAuthenticationEmail({ email });
-    await handleCollectAndDonate({
-      nonProfit,
-      email,
-      onSuccess: () => {
-        logEvent("ticketCollected", { from: "collectAndDonate" });
-        logEvent("ticketDonated_end", {
-          nonProfitId: nonProfit.id,
-          quantity: 1,
-        });
-        setDonationSucceeded(true);
-      },
-      onError: () => {
-        setDonationSucceeded(false);
-      },
-    });
   };
-
-  const onAnimationEnd = useCallback(() => {
-    if (donationSucceeded && nonProfit) {
-      navigateTo({
-        pathname: "/ticket-donation-done",
-        state: {
-          cause: nonProfit.cause,
-          nonProfit,
-          hasButton: true,
-          hasCheckbox: true,
-          flow: "magicLink",
-        },
-      });
-    }
-  }, [donationSucceeded]);
 
   useEffect(() => {
     if (nonProfit) {
@@ -87,6 +55,20 @@ function InsertEmailAccountPage(): JSX.Element {
     onContinue();
   };
 
+  useEffect(() => {
+    if (currentUser) {
+      handleCollect({
+        onSuccess: () => {
+          logEvent("ticketCollected", { from: "collect" });
+          navigateTo({ pathname: "/select-tickets", state: { nonProfit } });
+        },
+        onError: () => {
+          navigateTo({ pathname: "/select-tickets", state: { nonProfit } });
+        },
+      });
+    }
+  }, [currentUser]);
+
   const oldImpactFormat = () =>
     formattedImpactText(nonProfit, undefined, false, true);
 
@@ -94,42 +76,35 @@ function InsertEmailAccountPage(): JSX.Element {
     <S.Container>
       <S.LeftImage src={LeftImage} />
       <S.RightImage src={RightImage} />
-      {donationInProgress ? (
-        <DonatingSection
-          nonProfit={nonProfit}
-          onAnimationEnd={onAnimationEnd}
-        />
-      ) : (
-        <>
-          <S.ImageContainer>
-            <S.Icon src={nonProfit.icon} />
-          </S.ImageContainer>
-          <S.ContentContainer>
-            <S.Title>{t("title")}</S.Title>
-            <S.Description>{oldImpactFormat()}</S.Description>
-            <S.InputLabel htmlFor="email">{t("emailLabel")}</S.InputLabel>
-            <S.Input
-              name="email"
-              type="email"
-              placeholder={t("emailPlaceholder")}
-              value={email}
-              onChange={(event) => {
-                setEmail(event.target.value);
-              }}
-            />
-            <S.Button
-              text={t("confirmText")}
-              onClick={handleButtonPress}
-              backgroundColor={theme.colors.brand.primary[600]}
-              borderColor={theme.colors.brand.primary[600]}
-              textColor={theme.colors.neutral[25]}
-              disabled={!isValidEmail(email)}
-              eventName="authEmailFormBtn_click"
-              eventParams={{ from: "donation_flow" }}
-            />
-          </S.ContentContainer>
-        </>
-      )}
+      <>
+        <S.ImageContainer>
+          <S.Icon src={nonProfit.icon} />
+        </S.ImageContainer>
+        <S.ContentContainer>
+          <S.Title>{t("title")}</S.Title>
+          <S.Description>{oldImpactFormat()}</S.Description>
+          <S.InputLabel htmlFor="email">{t("emailLabel")}</S.InputLabel>
+          <S.Input
+            name="email"
+            type="email"
+            placeholder={t("emailPlaceholder")}
+            value={email}
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+          />
+          <S.Button
+            text={t("confirmText")}
+            onClick={handleButtonPress}
+            backgroundColor={theme.colors.brand.primary[600]}
+            borderColor={theme.colors.brand.primary[600]}
+            textColor={theme.colors.neutral[25]}
+            disabled={!isValidEmail(email)}
+            eventName="authEmailFormBtn_click"
+            eventParams={{ from: "donation_flow" }}
+          />
+        </S.ContentContainer>
+      </>
     </S.Container>
   );
 }

@@ -7,7 +7,7 @@ import { Currencies, NonProfit } from "@ribon.io/shared/types";
 import SliderCardsEnhanced from "components/moleculars/sliders/SliderCardsEnhanced";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import causeIllustration from "assets/images/direct-illustration.svg";
-import { useIntegrationId } from "hooks/useIntegrationId";
+import { useIntegrationContext } from "contexts/integrationContext";
 import { useOffers } from "@ribon.io/shared/hooks";
 import { useLanguage } from "hooks/useLanguage";
 import { useCurrentUser } from "contexts/currentUserContext";
@@ -55,7 +55,7 @@ function NonProfitsList({ nonProfits }: Props): JSX.Element {
   const currentOffer = () =>
     currentLang === "pt-BR" ? offersBrl?.[0] : offersUsd?.[0];
 
-  const integrationId = useIntegrationId();
+  const { currentIntegrationId: integrationId } = useIntegrationContext();
 
   const navigateToCheckout = (nonProfit: NonProfit) => {
     const searchParams = new URLSearchParams({

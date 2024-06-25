@@ -11,7 +11,7 @@ import { useAuthentication } from "contexts/authenticationContext";
 import ModalWrongEmail from "components/moleculars/modals/ModalWrongEmail";
 
 type Props = {
-  onContinue: () => void;
+  onContinue?: () => void;
   from: string;
 };
 function GoogleLogin({ onContinue, from }: Props): JSX.Element {
@@ -26,7 +26,7 @@ function GoogleLogin({ onContinue, from }: Props): JSX.Element {
     onSuccess: async (tokenResponse: any) => {
       try {
         await signInWithGoogle(tokenResponse);
-        onContinue();
+        if (onContinue) onContinue();
       } catch (error: any) {
         if (error.message.includes("Email does not match")) {
           setModalVisible(true);

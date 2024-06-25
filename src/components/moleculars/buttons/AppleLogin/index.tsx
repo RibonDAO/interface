@@ -11,7 +11,7 @@ import { APPLE_CLIENT_ID, APPLE_REDIRECT_URL } from "utils/constants";
 import ModalWrongEmail from "components/moleculars/modals/ModalWrongEmail";
 
 type Props = {
-  onContinue: () => void;
+  onContinue?: () => void;
   from: string;
 };
 function AppleLogin({ onContinue, from }: Props): JSX.Element {
@@ -29,7 +29,7 @@ function AppleLogin({ onContinue, from }: Props): JSX.Element {
     if (!response.error) {
       try {
         await signInWithApple(response);
-        onContinue();
+        if (onContinue) onContinue();
       } catch (error: any) {
         if (error.message.includes("Email does not match")) {
           setModalVisible(true);

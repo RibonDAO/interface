@@ -1,8 +1,7 @@
 import { useEffect } from "react";
-import { useIntegrationId } from "hooks/useIntegrationId";
+import { useIntegrationContext } from "contexts/integrationContext";
 import { useLanguage } from "hooks/useLanguage";
 import { getMobileOS } from "lib/getMobileOS";
-import { useIntegration } from "@ribon.io/shared/hooks";
 import useNavigation from "hooks/useNavigation";
 import { logEvent } from "lib/events";
 import RibonLogo from "assets/images/logo-ribon.svg";
@@ -10,9 +9,7 @@ import LeftImage from "assets/images/bottom-left-shape.svg";
 import RightImage from "assets/images/top-right-sun-shape.svg";
 import Button from "components/atomics/buttons/Button";
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router";
 import { APP_LINK, RIBON_COMPANY_ID } from "utils/constants";
-import extractUrlValue from "lib/extractUrlValue";
 import useBreakpoint from "hooks/useBreakpoint";
 import theme from "styles/theme";
 import { useCollectTickets } from "hooks/useCollectTickets";
@@ -30,10 +27,11 @@ function GiveTicketPage(): JSX.Element {
     keyPrefix: "onboarding.giveTicketPage",
   });
   const { navigateTo } = useNavigation();
-  const integrationId = useIntegrationId();
-  const { search } = useLocation();
-  const externalId = extractUrlValue("external_id", search);
-  const { integration } = useIntegration(integrationId);
+  const {
+    currentIntegrationId: integrationId,
+    integration,
+    externalId,
+  } = useIntegrationContext();
   const { isMobile } = useBreakpoint();
   const { handleCollect } = useCollectTickets();
   const { refetchTickets } = useTicketsContext();

@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useTickets } from "@ribon.io/shared/hooks";
-import { useIntegrationId } from "hooks/useIntegrationId";
+import { useIntegrationContext } from "contexts/integrationContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { logError } from "services/crashReport";
 import { useAuthentication } from "contexts/authenticationContext";
@@ -11,6 +11,7 @@ export interface ITicketsContext {
   setTicketsCounter: (tickets: number) => void;
   refetchTickets: () => void;
   hasTickets: boolean;
+  isLoading: boolean;
 }
 
 export type Props = {
@@ -27,8 +28,9 @@ function TicketsProvider({ children }: Props) {
     tickets: userTickets,
     integrationTickets: userIntegrationTickets,
     refetch,
+    isLoading,
   } = ticketsAvailable();
-  const integrationId = useIntegrationId();
+  const { currentIntegrationId: integrationId } = useIntegrationContext();
   const { currentUser } = useCurrentUser();
   const { isAuthenticated } = useAuthentication();
   const [ticketsCounter, setTicketsCounter] = useState<number>(1);
@@ -79,8 +81,9 @@ function TicketsProvider({ children }: Props) {
       setTicketsCounter,
       hasTickets,
       refetchTickets: refetch,
+      isLoading,
     }),
-    [ticketsCounter],
+    [ticketsCounter, isLoading, hasTickets],
   );
 
   return (

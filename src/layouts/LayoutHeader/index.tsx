@@ -1,6 +1,5 @@
 import Header from "components/atomics/sections/Header";
-import { useIntegration } from "@ribon.io/shared/hooks";
-import { useIntegrationId } from "hooks/useIntegrationId";
+import { useIntegrationContext } from "contexts/integrationContext";
 import useNavigation from "hooks/useNavigation";
 import { RIBON_COMPANY_ID } from "utils/constants";
 import { logEvent } from "lib/events";
@@ -25,10 +24,9 @@ function LayoutHeader({
   outline = false,
   member = false,
 }: Props): JSX.Element {
-  const integrationId = useIntegrationId();
+  const { currentIntegrationId: integrationId, integration } =
+    useIntegrationContext();
   const { navigateBack, navigateTo } = useNavigation();
-
-  const { integration } = useIntegration(integrationId);
 
   const { hasTickets } = useTicketsContext();
 

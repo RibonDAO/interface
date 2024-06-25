@@ -10,7 +10,7 @@ import {
   useEffect,
 } from "react";
 import { Currencies, Cause, NonProfit } from "@ribon.io/shared/types";
-import { useIntegrationId } from "hooks/useIntegrationId";
+import { useIntegrationContext } from "contexts/integrationContext";
 import { getLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import useLocalStorageState from "hooks/useLocalStorageState";
 import { useTranslation } from "react-i18next";
@@ -71,7 +71,7 @@ function PaymentInformationProvider({ children }: Props) {
     setLocalStorageItem(CURRENT_COIN_KEY, currentCoin);
   }, [currentCoin]);
 
-  const integrationId = useIntegrationId();
+  const { currentIntegrationId: integrationId } = useIntegrationContext();
 
   const [taxId, setTaxId] = useState("");
   const [email, setEmail] = useState(currentUser?.email ?? "");

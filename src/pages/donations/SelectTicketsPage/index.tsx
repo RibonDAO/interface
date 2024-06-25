@@ -11,6 +11,7 @@ import { useLocation } from "react-router";
 import { NonProfit } from "@ribon.io/shared/types";
 import { useTicketsContext } from "contexts/ticketsContext";
 import useDonationFlow from "hooks/useDonationFlow";
+import LoadingOverlay from "components/moleculars/modals/LoadingOverlay";
 import DonatingSection from "../auth/DonatingSection";
 import * as S from "./styles";
 
@@ -30,7 +31,7 @@ export default function SelectTicketsPage() {
   const { signedIn } = useCurrentUser();
   const { handleDonate } = useDonationFlow();
   const { navigateTo } = useNavigation();
-  const { ticketsCounter } = useTicketsContext();
+  const { ticketsCounter, refetchTickets, isLoading } = useTicketsContext();
   const [donationInProgress, setDonationInProgress] = useState(false);
   const [donationSucceeded, setDonationSucceeded] = useState(true);
   const [ticketsQuantity, setTicketsQuantity] = useState(1);
@@ -104,15 +105,22 @@ export default function SelectTicketsPage() {
   }, [nonProfit, ticketsQuantity]);
 
   useEffect(() => {
-    const impacts = nonProfit?.nonProfitImpacts || [];
-    const nonProfitsImpactsLength = impacts.length;
-    const lastImpact = impacts[nonProfitsImpactsLength - 1];
-    if (lastImpact?.minimumNumberOfTickets) {
-      setStep(lastImpact.minimumNumberOfTickets);
-      setTicketsQuantity(lastImpact.minimumNumberOfTickets);
+    refetchTickets();
+    if (!isLoading) {
+      const impacts = nonProfit?.nonProfitImpacts || [];
+      const nonProfitsImpactsLength = impacts.length;
+      const lastImpact = impacts[nonProfitsImpactsLength - 1];
+      if (lastImpact?.minimumNumberOfTickets) {
+        setStep(lastImpact.minimumNumberOfTickets);
+        setTicketsQuantity(lastImpact.minimumNumberOfTickets);
+        if (ticketsCounter < lastImpact.minimumNumberOfTickets) {
+          navigateTo({ pathname: "/causes", state: { noTickets: true } });
+        }
+      }
     }
-  }, [nonProfit]);
+  }, [ticketsCounter]);
 
+  if (isLoading) return <LoadingOverlay />;
   return donationInProgress ? (
     <DonatingSection nonProfit={nonProfit} onAnimationEnd={onAnimationEnd} />
   ) : (

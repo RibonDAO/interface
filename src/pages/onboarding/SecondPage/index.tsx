@@ -2,8 +2,7 @@ import { useTranslation } from "react-i18next";
 import LeftImage from "assets/images/bottom-left-shape.svg";
 import RightImage from "assets/images/top-right-sun-shape.svg";
 import useNavigation from "hooks/useNavigation";
-import { useIntegrationId } from "hooks/useIntegrationId";
-import { useIntegration } from "@ribon.io/shared/hooks";
+import { useIntegrationContext } from "contexts/integrationContext";
 import { RIBON_COMPANY_ID } from "utils/constants";
 import Button from "components/atomics/buttons/Button";
 
@@ -19,8 +18,7 @@ function SecondPage(): JSX.Element {
     keyPrefix: "onboarding.secondPage",
   });
   const { navigateTo, navigateBack } = useNavigation();
-  const integrationId = useIntegrationId();
-  const { integration } = useIntegration(integrationId);
+  const { integration } = useIntegrationContext();
 
   const handleClick = () => {
     navigateTo("/intro/step-3");

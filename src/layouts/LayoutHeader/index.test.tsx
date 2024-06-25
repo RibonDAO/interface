@@ -2,33 +2,24 @@ import { clickOn, renderComponent, waitForPromises } from "config/testUtils";
 import { expectPageToNavigateTo } from "config/testUtils/expects";
 import { removeLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import { HAS_AN_AVAILABLE_VOUCHER } from "lib/localStorage/constants";
-import React from "react";
 import { mockRequest } from "config/testUtils/test-helper";
 import { screen } from "@testing-library/react";
 import { useImpactConversion } from "hooks/useImpactConversion";
 import LayoutHeader from ".";
 
 const mockIntegration = {
-  id: "1",
+  id: 3,
   name: "Test Integration",
   logo: "logo",
   integrationTask: {
+    id: 1,
+    description: "Test description",
+    link: "Test link",
     linkAddress: "https://www.test.com",
   },
+  status: "active",
+  ticketAvailabilityInMinutes: 1,
 };
-jest.mock("@ribon.io/shared/hooks", () => ({
-  __esModule: true,
-  ...jest.requireActual("@ribon.io/shared/hooks"),
-  useIntegration: () => ({
-    integration: mockIntegration,
-    refetch: jest.fn(),
-  }),
-}));
-jest.mock("hooks/useIntegrationId", () => ({
-  __esModule: true,
-  ...jest.requireActual("hooks/useIntegrationId"),
-  useIntegrationId: () => "9",
-}));
 
 jest.mock("hooks/useImpactConversion", () => ({
   __esModule: true,
@@ -106,7 +97,12 @@ describe("LayoutHeader", () => {
     describe("when user can donate", () => {
       beforeEach(() => {
         setLocalStorageItem(HAS_AN_AVAILABLE_VOUCHER, "true");
-        renderComponent(<LayoutHeader />);
+        renderComponent(<LayoutHeader />, {
+          integrationProviderValue: {
+            integration: mockIntegration,
+            currentIntegrationId: "3",
+          },
+        });
 
         const sideLogo = screen.getByAltText("side-logo");
         clickOn(sideLogo);
@@ -123,6 +119,10 @@ describe("LayoutHeader", () => {
         removeLocalStorageItem(HAS_AN_AVAILABLE_VOUCHER);
         renderComponent(<LayoutHeader />, {
           ticketsProviderValue: { hasTickets: false },
+          integrationProviderValue: {
+            integration: mockIntegration,
+            currentIntegrationId: "3",
+          },
         });
 
         const sideLogo = screen.getByAltText("side-logo");

@@ -12,8 +12,9 @@ import AppleLogin from "components/moleculars/buttons/AppleLogin";
 import MagicLinkLogin from "components/moleculars/buttons/MagicLinkLogin";
 import useDonationFlow from "hooks/useDonationFlow";
 import { useCollectTickets } from "hooks/useCollectTickets";
+import NavigationBackHeader from "config/routes/Navigation/NavigationBackHeader";
 import * as S from "./styles";
-import DonationInProgressSection from "../DonationInProgressSection";
+import DonatingSection from "../DonatingSection";
 
 type LocationStateType = {
   nonProfit: NonProfit;
@@ -115,13 +116,14 @@ function SignInPage(): JSX.Element {
     formattedImpactText(nonProfit, undefined, false, false);
 
   return donationInProgress ? (
-    <DonationInProgressSection
+    <DonatingSection
       nonProfit={nonProfit}
       onAnimationEnd={onAnimationEnd}
       shouldRepeatAnimation={donationInProgress && !donationSucceeded}
     />
   ) : (
     <>
+      <NavigationBackHeader />
       <S.RightImage src={RightImage} />
       <S.LeftImage src={LeftImage} />
       <S.Container>

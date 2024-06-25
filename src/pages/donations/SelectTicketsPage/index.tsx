@@ -14,7 +14,7 @@ import { useTicketsContext } from "contexts/ticketsContext";
 import useDonationFlow from "hooks/useDonationFlow";
 import ImageWithIconOverlay from "components/atomics/ImageWithIconOverlay";
 import NavigationBackHeader from "config/routes/Navigation/NavigationBackHeader";
-import DonationInProgressSection from "../auth/DonationInProgressSection";
+import DonatingSection from "../auth/DonatingSection";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -129,7 +129,7 @@ export default function SelectTicketsPage() {
   }, [nonProfit]);
 
   return donationInProgress ? (
-    <DonationInProgressSection
+    <DonatingSection
       nonProfit={nonProfit}
       onAnimationEnd={onAnimationEnd}
       shouldRepeatAnimation={donationInProgress && !donationSucceeded}

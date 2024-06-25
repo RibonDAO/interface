@@ -11,8 +11,9 @@ import useDonationFlow from "hooks/useDonationFlow";
 import useNavigation from "hooks/useNavigation";
 import { useAuthentication } from "contexts/authenticationContext";
 import { useLocation } from "react-router";
+import NavigationBackHeader from "config/routes/Navigation/NavigationBackHeader";
 import * as S from "./styles";
-import DonationInProgressSection from "../DonationInProgressSection";
+import DonatingSection from "../DonatingSection";
 
 type LocationStateType = {
   nonProfit: NonProfit;
@@ -90,48 +91,48 @@ function InsertEmailAccountPage(): JSX.Element {
   const oldImpactFormat = () =>
     formattedImpactText(nonProfit, undefined, false, true);
 
-  return (
-    <S.Container>
-      <S.LeftImage src={LeftImage} />
-      <S.RightImage src={RightImage} />
-      {donationInProgress ? (
-        <DonationInProgressSection
-          nonProfit={nonProfit}
-          onAnimationEnd={onAnimationEnd}
-          shouldRepeatAnimation={donationInProgress && !donationSucceeded}
-        />
-      ) : (
-        <>
-          <S.ImageContainer>
-            <S.Icon src={nonProfit.icon} />
-          </S.ImageContainer>
-          <S.ContentContainer>
-            <S.Title>{t("title")}</S.Title>
-            <S.Description>{oldImpactFormat()}</S.Description>
-            <S.InputLabel htmlFor="email">{t("emailLabel")}</S.InputLabel>
-            <S.Input
-              name="email"
-              type="email"
-              placeholder={t("emailPlaceholder")}
-              value={email}
-              onChange={(event) => {
-                setEmail(event.target.value);
-              }}
-            />
-            <S.Button
-              text={t("confirmText")}
-              onClick={handleButtonPress}
-              backgroundColor={theme.colors.brand.primary[600]}
-              borderColor={theme.colors.brand.primary[600]}
-              textColor={theme.colors.neutral[25]}
-              disabled={!isValidEmail(email)}
-              eventName="authEmailFormBtn_click"
-              eventParams={{ from: "donation_flow" }}
-            />
-          </S.ContentContainer>
-        </>
-      )}
-    </S.Container>
+  return donationInProgress ? (
+    <DonatingSection
+      nonProfit={nonProfit}
+      onAnimationEnd={onAnimationEnd}
+      shouldRepeatAnimation={donationInProgress && !donationSucceeded}
+    />
+  ) : (
+    <>
+      <NavigationBackHeader />
+      <S.Container>
+        <S.LeftImage src={LeftImage} />
+        <S.RightImage src={RightImage} />
+
+        <S.ImageContainer>
+          <S.Icon src={nonProfit.icon} />
+        </S.ImageContainer>
+        <S.ContentContainer>
+          <S.Title>{t("title")}</S.Title>
+          <S.Description>{oldImpactFormat()}</S.Description>
+          <S.InputLabel htmlFor="email">{t("emailLabel")}</S.InputLabel>
+          <S.Input
+            name="email"
+            type="email"
+            placeholder={t("emailPlaceholder")}
+            value={email}
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+          />
+          <S.Button
+            text={t("confirmText")}
+            onClick={handleButtonPress}
+            backgroundColor={theme.colors.brand.primary[600]}
+            borderColor={theme.colors.brand.primary[600]}
+            textColor={theme.colors.neutral[25]}
+            disabled={!isValidEmail(email)}
+            eventName="authEmailFormBtn_click"
+            eventParams={{ from: "donation_flow" }}
+          />
+        </S.ContentContainer>
+      </S.Container>
+    </>
   );
 }
 

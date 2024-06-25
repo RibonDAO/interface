@@ -108,7 +108,7 @@
       "button": "Finalizar",
       "checkboxText": "Quero receber informações sobre minhas doações por e-mail"
     },
-    "donationInProgressSection": {
+    "donatingSection": {
       "loadingText": "Processando sua doação..."
     },
     "menu": {

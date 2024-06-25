@@ -5,6 +5,14 @@ import { useCurrentUser } from "contexts/currentUserContext";
 import { logError } from "services/crashReport";
 import { useAuthentication } from "contexts/authenticationContext";
 import { useCollectTickets } from "hooks/useCollectTickets";
+import { logEvent } from "lib/events";
+import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
+import { setLocalStorageItem } from "lib/localStorage";
+import {
+  RECEIVED_TICKET_AT_KEY,
+  RECEIVED_TICKET_FROM_INTEGRATION,
+} from "lib/localStorage/constants";
+import { RIBON_COMPANY_ID } from "utils/constants";
 
 export interface ITicketsContext {
   ticketsCounter: number;
@@ -31,11 +39,12 @@ function TicketsProvider({ children }: Props) {
     isLoading,
   } = ticketsAvailable();
   const { currentIntegrationId: integrationId } = useIntegrationContext();
-  const { currentUser } = useCurrentUser();
+  const { signedIn } = useCurrentUser();
   const { isAuthenticated } = useAuthentication();
+  const { showReceiveTicketToast } = useReceiveTicketToast();
   const [ticketsCounter, setTicketsCounter] = useState<number>(1);
 
-  const { handleCanCollect } = useCollectTickets();
+  const { handleCanCollect, handleCollect } = useCollectTickets();
   const hasTickets = ticketsCounter > 0;
 
   function updateTicketsCounterForLoggedInUser() {
@@ -49,16 +58,34 @@ function TicketsProvider({ children }: Props) {
 
   async function updateTicketsCounterForNotLoggedInUser() {
     try {
-      if (!currentUser) {
-        const canCollect = await handleCanCollect();
-        if (!canCollect) {
-          setTicketsCounter(0);
-        } else {
-          setTicketsCounter(1);
-        }
-      }
+      const { quantity } = await handleCanCollect();
+      setTicketsCounter(quantity);
     } catch (error) {
       logError(error);
+      setTicketsCounter(1);
+    }
+  }
+
+  async function collectTickets() {
+    await handleCollect({
+      onSuccess: () => {
+        logEvent("ticketCollected", { from: "collect" });
+        showReceiveTicketToast();
+        setLocalStorageItem(RECEIVED_TICKET_AT_KEY, Date.now().toString());
+        setLocalStorageItem(
+          RECEIVED_TICKET_FROM_INTEGRATION,
+          integrationId?.toLocaleString() ?? RIBON_COMPANY_ID,
+        );
+      },
+    });
+    refetch();
+  }
+
+  function collectAndRefetchTickets() {
+    if (signedIn) {
+      collectTickets();
+    } else {
+      updateTicketsCounterForNotLoggedInUser();
     }
   }
 
@@ -68,12 +95,11 @@ function TicketsProvider({ children }: Props) {
     } else {
       updateTicketsCounterForLoggedInUser();
     }
-  }, [userTickets, userIntegrationTickets, currentUser]);
+  }, [userTickets, userIntegrationTickets]);
 
   useEffect(() => {
-    refetch();
-    updateTicketsCounterForNotLoggedInUser();
-  }, [integrationId, currentUser]);
+    collectAndRefetchTickets();
+  }, [integrationId, signedIn]);
 
   const ticketsObject: ITicketsContext = useMemo(
     () => ({

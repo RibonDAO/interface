@@ -30,7 +30,8 @@ function LoadingPage(): JSX.Element {
   const { setCouponId } = useCouponContext();
   const externalId = extractUrlValue("external_id", history.location.search);
   const couponId = extractUrlValue("coupon_id", history.location.search);
-  const { setExternalId, setCurrentIntegrationId } = useIntegrationContext();
+  const { setExternalId, setCurrentIntegrationId, setTicketsFromIntegration } =
+    useIntegrationContext();
   const { currentUser } = useCurrentUser();
   const { hasReceivedTicketToday, handleCanCollect, handleCollect } =
     useCollectTickets();
@@ -61,8 +62,6 @@ function LoadingPage(): JSX.Element {
     );
   };
 
-  const isRibonIntegration = integration?.id === parseInt(RIBON_COMPANY_ID, 10);
-
   const itIsNotDeeplink = () =>
     !history.location.search?.includes("_branch_match_id") &&
     integrationId &&
@@ -70,14 +69,21 @@ function LoadingPage(): JSX.Element {
 
   const hasCoupon = couponId !== "" && couponId !== undefined;
 
+  const fetchTickets = async () => {
+    try {
+      const { canCollect, quantity } = await handleCanCollect();
+      setTicketsFromIntegration(quantity);
+      return canCollect;
+    } catch (error) {
+      setTicketsFromIntegration(1);
+      return false;
+    }
+  };
+
   async function receiveTicket() {
     try {
-      const canCollect = await handleCanCollect();
       const receivedTicketToday = await hasReceivedTicketToday();
-      if (!canCollect) return navigateTo("/causes");
-      if (externalId) return navigateTo("/intro/receive-tickets");
       if (receivedTicketToday) return navigateTo("/causes");
-      if (!isRibonIntegration) return navigateTo("/intro/receive-tickets");
       await collectFromRibon();
       return navigateTo("/causes");
     } catch (error) {
@@ -86,11 +92,12 @@ function LoadingPage(): JSX.Element {
     }
   }
 
-  function redirectToCollect() {
+  async function redirectToCollect() {
     if (hasCoupon) {
       setCouponId(couponId);
       return navigateTo("/coupons/give-ticket");
     }
+    await fetchTickets();
     if (!currentUser) return navigateTo("/intro");
 
     return receiveTicket();

@@ -26,8 +26,8 @@ export function useCollectTickets() {
     collectByIntegration,
   } = useTickets();
 
-  const { externalId, setExternalId } = useIntegrationContext();
   const integrationId = useIntegrationId();
+  const { externalId, setExternalId } = useIntegrationContext();
   const externalIds = externalId?.split(",");
 
   function hasReceivedTicketToday() {
@@ -48,16 +48,18 @@ export function useCollectTickets() {
 
   async function handleCanCollect() {
     if (externalIds && externalIds.length > 0) {
-      const { canCollect } = await canCollectByExternalIds(externalIds);
-      return canCollect;
+      const { canCollect, quantity } = await canCollectByExternalIds(
+        externalIds,
+      );
+      return { canCollect, quantity };
     } else if (integrationId) {
       const { canCollect } = await canCollectByIntegration(
         integrationId,
         currentUser?.email ?? "",
       );
-      return canCollect;
+      return { canCollect, quantity: 1 };
     } else {
-      return false;
+      return { canCollect: false, quantity: 0 };
     }
   }
 

@@ -4,6 +4,7 @@ import { defaultBodyMdMedium } from "styles/typography/default";
 
 export const TopContainer = styled.div`
   align-items: center;
+  margin-top: -64px;
 `;
 export const Container = styled.div`
   height: 100vh;
@@ -11,17 +12,23 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+
   color: ${({ theme }) => theme.colors.brand.primary[300]};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    height: 640px;
+  }
 `;
 
 export const ContentContainer = styled.div`
   max-width: 360px;
 
-  margin-top: 90px;
   z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 
 export const Title = styled.p`
@@ -34,7 +41,6 @@ export const Title = styled.p`
 export const Description = styled.p`
   ${defaultBodyMdMedium}
 
-  margin-bottom: ${({ theme }) => theme.spacing(64)};
   text-align: center;
   color: ${({ theme }) => theme.colors.neutral[600]};
 `;
@@ -46,12 +52,11 @@ export const BackgroundSun = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
 
-export const BreathingFace = styled.img`
-  width: 100%;
+  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
+    display: none;
+  }
 `;
-export const GreenSun = styled.img``;
 
 export const ButtonContainer = styled.div`
   min-width: 360px;
@@ -61,10 +66,5 @@ export const ButtonContainer = styled.div`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 100%;
-
-    padding: ${({ theme }) => theme.spacing(0, 16, 16, 16)};
-    position: absolute;
-    bottom: 0;
-    align-items: flex-end;
   }
 `;

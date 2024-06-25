@@ -3,8 +3,8 @@ import Lottie from "react-lottie-player";
 
 export type Props = {
   animationData: Record<string, unknown> | undefined;
-  width: number;
-  height: number;
+  width: number | string;
+  height: number | string;
   style?: CSSProperties;
 };
 

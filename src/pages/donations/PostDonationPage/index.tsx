@@ -4,9 +4,12 @@ import { theme } from "@ribon.io/shared/styles";
 import { useWarmGlowMessages } from "@ribon.io/shared/hooks";
 import useNavigation from "hooks/useNavigation";
 import Button from "components/atomics/buttons/Button";
-import GreenSun from "./assets/green-sun.svg";
+import LottieAnimation from "components/atomics/LottieAnimation";
+
 import * as S from "./styles";
-import BreathingFace from "./assets/breathing-face.svg";
+
+import postDonationAnimation from "./assets/breathingFace.json";
+import sunAnimation from "./assets/green-sun.json";
 
 function PostDonationPage() {
   const { t } = useTranslation("translation", {
@@ -23,7 +26,11 @@ function PostDonationPage() {
   return isLoading ? null : (
     <S.Container>
       <S.TopContainer>
-        <S.BreathingFace src={BreathingFace} />
+        <LottieAnimation
+          animationData={postDonationAnimation}
+          width={428}
+          height={428}
+        />
       </S.TopContainer>
 
       <S.ContentContainer>
@@ -42,7 +49,11 @@ function PostDonationPage() {
         />
       </S.ButtonContainer>
       <S.BackgroundSun>
-        <S.GreenSun src={GreenSun} />
+        <LottieAnimation
+          animationData={sunAnimation}
+          width="100%"
+          height={262}
+        />
       </S.BackgroundSun>
     </S.Container>
   );

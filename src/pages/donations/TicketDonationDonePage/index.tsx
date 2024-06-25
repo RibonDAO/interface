@@ -21,6 +21,7 @@ import usePostTicketDonationNavigation from "hooks/usePostTicketDonationNavigati
 import { logEvent } from "lib/events";
 import ImageWithIconOverlay from "components/atomics/ImageWithIconOverlay";
 import * as S from "./styles";
+import CardImageImagePlaceholder from "./ImagePlaceholder";
 
 function TicketDonationDonePage(): JSX.Element {
   useAvoidBackButton();
@@ -40,6 +41,7 @@ function TicketDonationDonePage(): JSX.Element {
     state: { nonProfit, impact },
   } = useLocation<LocationState>();
   const [allowedEmailMarketing, setAllowedEmailMarketing] = useState(false);
+  const [isCardImageLoading, setIsCardImageLoading] = useState(true);
   const { currentUser } = useCurrentUser();
   const { registerAction } = useTasksContext();
   const { userConfig, updateUserConfig } = useUserConfig();
@@ -131,7 +133,13 @@ function TicketDonationDonePage(): JSX.Element {
       <S.MainContainer>
         {audio && <ReactHowler src={audio} loop={false} playing />}
         <S.TopContainer>
-          <S.CardImage src={nonProfit?.confirmationImage} />
+          {nonProfit?.confirmationImage && isCardImageLoading && (
+            <CardImageImagePlaceholder/>
+          )}
+          <S.CardImage 
+            src={nonProfit?.confirmationImage}
+            onLoad={() => setIsCardImageLoading(false)}
+           />
           <S.ImageWithIconOverlayContainer>
             <ImageWithIconOverlay
               leftImage={profile?.photo}

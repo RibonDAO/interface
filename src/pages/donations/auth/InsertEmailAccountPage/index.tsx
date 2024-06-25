@@ -10,7 +10,6 @@ import useFormattedImpactText from "hooks/useFormattedImpactText";
 import useNavigation from "hooks/useNavigation";
 import { useAuthentication } from "contexts/authenticationContext";
 import { useLocation } from "react-router";
-import { useCollectTickets } from "hooks/useCollectTickets";
 import { useCurrentUser } from "contexts/currentUserContext";
 import * as S from "./styles";
 
@@ -25,7 +24,6 @@ function InsertEmailAccountPage(): JSX.Element {
 
   const [email, setEmail] = useState("");
   const { formattedImpactText } = useFormattedImpactText();
-  const { handleCollect } = useCollectTickets();
   const { navigateTo } = useNavigation();
   const { currentUser } = useCurrentUser();
   const {
@@ -57,15 +55,7 @@ function InsertEmailAccountPage(): JSX.Element {
 
   useEffect(() => {
     if (currentUser) {
-      handleCollect({
-        onSuccess: () => {
-          logEvent("ticketCollected", { from: "collect" });
-          navigateTo({ pathname: "/select-tickets", state: { nonProfit } });
-        },
-        onError: () => {
-          navigateTo({ pathname: "/select-tickets", state: { nonProfit } });
-        },
-      });
+      navigateTo({ pathname: "/select-tickets", state: { nonProfit } });
     }
   }, [currentUser]);
 

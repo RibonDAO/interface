@@ -613,7 +613,8 @@
     "firstPage": {
       "onboardingRibonTitle": "Welcome to Ribon!",
       "onboardingIntegrationTitle": "{{integrationName}} invited you to use Ribon's app!",
-      "onboardingSubtitle": "You've received a free ticket to donate to awesome charities!",
+      "onboardingSubtitle": "You've received {{tickets} ticket to donate to awesome charities!",
+      "onboardingSubtitlePlural": "You've received {{tickets} tickets to donate to awesome charities!",
       "onboardingButtonText": "Get my ticket",
       "title": "You have 1 special ticket",
       "titlePlural": "You have {{ticketsCounter}} ticket",
@@ -648,9 +649,9 @@
     "giveTicketPage": {
       "title": "You won 1 ticket!",
       "integrationTitle": "{{integrationName}} gave you 1 ticket!",
-      "integrationTitlePlural": "{{integrationName}} gave you tickets!",
+      "integrationTitlePlural": "{{integrationName}} gave you {{tickets}} tickets!",
       "subtitle": "Use your ticket to do good!",
-      "downloadAppButton": "Get ticket on app",
+      "downloadAppButton": "Go to app",
       "stayInBrowserButton": "Stay in browser",
       "nextButton": "Next"
     }

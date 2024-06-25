@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useIntegrationContext } from "contexts/integrationContext";
 import { useLanguage } from "hooks/useLanguage";
 import { getMobileOS } from "lib/getMobileOS";
@@ -31,13 +31,15 @@ function GiveTicketPage(): JSX.Element {
     currentIntegrationId: integrationId,
     integration,
     externalId,
+    ticketsFromIntegration,
   } = useIntegrationContext();
   const { isMobile } = useBreakpoint();
   const { handleCollect } = useCollectTickets();
   const { refetchTickets } = useTicketsContext();
   const { currentLang } = useLanguage();
 
-  const isRibonIntegration = integration?.id === parseInt(RIBON_COMPANY_ID, 10);
+  const isRibonIntegration = () =>
+    integration?.id === parseInt(RIBON_COMPANY_ID, 10);
 
   useEffect(() => {
     logEvent("P35_view", { from: integration?.id });
@@ -79,17 +81,19 @@ function GiveTicketPage(): JSX.Element {
     navigateTo("/causes");
   };
 
-  const title = () => {
+  const title = useCallback(() => {
     if (!integration) return t("title");
 
     const integrationName = integration.name;
 
-    if (externalId) return t("integrationTitlePlural", { integrationName });
-
-    if (isRibonIntegration) return t("title");
-
-    return t("integrationTitle", { integrationName });
-  };
+    if (isRibonIntegration()) return t("title");
+    return ticketsFromIntegration > 1
+      ? t("integrationTitlePlural", {
+          integrationName,
+          tickets: ticketsFromIntegration,
+        })
+      : t("integrationTitle", { integrationName });
+  }, [ticketsFromIntegration, integration, externalId, isRibonIntegration]);
 
   return (
     <S.Container>
@@ -99,7 +103,7 @@ function GiveTicketPage(): JSX.Element {
         <S.Header>
           <S.LogosWrapper>
             <S.Logo src={RibonLogo} alt="ribon-logo" />
-            {integration && !isRibonIntegration && (
+            {integration && !isRibonIntegration() && (
               <>
                 <S.ImageContainerText>+</S.ImageContainerText>
                 <S.Logo src={integration.logo} alt="integration-logo" />

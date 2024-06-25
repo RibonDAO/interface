@@ -50,14 +50,14 @@ function App() {
           <BrowserRouter>
             {debugEnabled() && <DebugEventsView />}
             <ToastContextProvider>
-              <CurrentUserProvider>
-                <GoogleOAuthProvider
-                  clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID!}
-                >
-                  <AuthenticationProvider>
-                    <ModalProvider>
-                      <Suspense fallback={<div />}>
-                        <IntegrationProvider>
+              <IntegrationProvider>
+                <CurrentUserProvider>
+                  <GoogleOAuthProvider
+                    clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID!}
+                  >
+                    <AuthenticationProvider>
+                      <ModalProvider>
+                        <Suspense fallback={<div />}>
                           <TicketsProvider>
                             <TasksProvider>
                               <CouponProvider>
@@ -78,12 +78,12 @@ function App() {
                               </CouponProvider>
                             </TasksProvider>
                           </TicketsProvider>
-                        </IntegrationProvider>
-                      </Suspense>
-                    </ModalProvider>
-                  </AuthenticationProvider>
-                </GoogleOAuthProvider>
-              </CurrentUserProvider>
+                        </Suspense>
+                      </ModalProvider>
+                    </AuthenticationProvider>
+                  </GoogleOAuthProvider>
+                </CurrentUserProvider>
+              </IntegrationProvider>
               <Toast />
             </ToastContextProvider>
           </BrowserRouter>

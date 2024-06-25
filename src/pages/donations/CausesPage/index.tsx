@@ -14,7 +14,6 @@ import { INTEGRATION_AUTH_ID } from "utils/constants";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import NonProfitsSection from "pages/donations/CausesPage/NonProfitsSection";
 import IntegrationBanner from "components/moleculars/banners/IntegrationBanner";
-import { useCollectTickets } from "hooks/useCollectTickets";
 import CampaignSection from "pages/donations/CausesPage/CampaignSection";
 import { useTicketsContext } from "contexts/ticketsContext";
 import useNavigation from "hooks/useNavigation";
@@ -38,27 +37,13 @@ function CausesPage(): JSX.Element {
   const { state } = useLocation<LocationStateType>();
   showErrorModal(state);
   const { navigateTo } = useNavigation();
-  const { refetchTickets, hasTickets } = useTicketsContext();
   const { signedIn } = useCurrentUser();
+  const { hasTickets, refetchTickets } = useTicketsContext();
   const { isFirstAccessToIntegration } = useFirstAccessToIntegration(
     integration?.id || integrationId,
   );
   const { isMobile } = useBreakpoint();
   const { donatedToday } = useDonatedToday();
-  const { handleCanCollect } = useCollectTickets();
-  const { externalId } = useIntegrationContext();
-
-  const hasTicketsToCollect = async () => {
-    if (signedIn && externalId) {
-      const canCollect = await handleCanCollect();
-      if (canCollect) navigateTo("/intro/receive-tickets");
-    }
-  };
-
-  useEffect(() => {
-    hasTicketsToCollect();
-    refetchTickets();
-  }, []);
 
   useEffect(() => {
     setShouldShowIntegrationBanner(
@@ -71,6 +56,10 @@ function CausesPage(): JSX.Element {
   const handleInfoClick = () => {
     navigateTo("/intro/step-3");
   };
+
+  useEffect(() => {
+    refetchTickets();
+  }, [signedIn]);
 
   useAvoidBackButton();
 

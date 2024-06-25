@@ -66,7 +66,7 @@ describe("GiveTicketPage", () => {
     });
 
     it("should render button to download app and stay in browser", () => {
-      expectTextToBeInTheDocument("Get ticket on app");
+      expectTextToBeInTheDocument("Go to app");
       expectTextToBeInTheDocument("Stay in browser");
     });
   });

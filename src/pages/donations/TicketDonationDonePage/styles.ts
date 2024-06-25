@@ -1,10 +1,10 @@
 import Button from "components/atomics/buttons/Button";
 import styled from "styled-components";
 import {
-  defaultBodyLgBold,
+  defaultBodyMdMedium,
   defaultBodySmRegular,
 } from "styles/typography/default";
-import { stylizedDisplayMd } from "styles/typography/stylized";
+import { stylizedDisplaySm } from "styles/typography/stylized";
 
 export const Container = styled.div`
   width: 100%;
@@ -19,12 +19,27 @@ export const Container = styled.div`
 
 export const ImageContainer = styled.div``;
 
+export const TopContainer = styled.div`
+  width: 100%;
+`;
+
+export const CardImage = styled.img`
+  width: 100%;
+  height: 216px;
+  border-radius: ${({ theme }) => theme.spacing(16)};
+`;
+
+export const ImageWithIconOverlayContainer = styled.div`
+  margin-top: -64px;
+  align-items: center;
+`;
+
 export const Title = styled.h1`
-  ${stylizedDisplayMd}
+  ${stylizedDisplaySm}
 
   margin-top: 12px;
   margin-bottom: 8px;
-  color: ${({ theme }) => theme.colors.brand.primary[800]};
+  color: ${({ theme }) => theme.colors.neutral[800]};
 `;
 
 export const Subtitle = styled.p`
@@ -57,11 +72,11 @@ export const ContentContainer = styled.div`
 `;
 
 export const ImpactDescription = styled.p`
-  ${defaultBodyLgBold}
+  ${defaultBodyMdMedium}
 
   margin-bottom: ${({ theme }) => theme.spacing(8)};
   text-align: center;
-  color: ${({ theme }) => theme.colors.brand.primary[800]};
+  color: ${({ theme }) => theme.colors.neutral[600]};
 `;
 
 export const CheckboxContainer = styled.div`

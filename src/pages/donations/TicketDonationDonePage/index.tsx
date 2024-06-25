@@ -2,10 +2,8 @@ import {
   useStatistics,
   useFirstAccessToIntegration,
   useUserConfig,
+  useUserProfile,
 } from "@ribon.io/shared/hooks";
-import ConfirmationNumberPink from "assets/icons/confirmation-number-pink.svg";
-import ConfirmationNumberYellow from "assets/icons/confirmation-number-yellow.svg";
-import ConfirmationNumberGreen from "assets/icons/confirmation-number-green.svg";
 import { setLocalStorageItem } from "lib/localStorage";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -21,7 +19,6 @@ import useAvoidBackButton from "hooks/useAvoidBackButton";
 import usePostTicketDonationNavigation from "hooks/usePostTicketDonationNavigation";
 
 import { logEvent } from "lib/events";
-import IconsAroundImage from "components/atomics/sections/IconsAroundImage";
 import * as S from "./styles";
 
 function TicketDonationDonePage(): JSX.Element {
@@ -47,6 +44,8 @@ function TicketDonationDonePage(): JSX.Element {
   const { userConfig, updateUserConfig } = useUserConfig();
   const { refetch: refetchUserConfig, config } = userConfig();
   const { handleNavigate } = usePostTicketDonationNavigation();
+  const { userProfile } = useUserProfile();
+  const { profile } = userProfile();
 
   const {
     userStatistics,
@@ -129,15 +128,16 @@ function TicketDonationDonePage(): JSX.Element {
   return (
     <S.Container>
       {audio && <ReactHowler src={audio} loop={false} playing />}
-      <S.ImageContainer>
-        <IconsAroundImage
-          isInfiniteAnimation={false}
-          imageSrc={nonProfit?.mainImage}
-          iconAnimationYellow={ConfirmationNumberYellow}
-          iconAnimationPink={ConfirmationNumberPink}
-          iconAnimationGreen={ConfirmationNumberGreen}
-        />
-      </S.ImageContainer>
+      <S.TopContainer>
+        <S.CardImage src={nonProfit?.confirmationImage} />
+        <S.ImageWithIconOverlayContainer>
+          {/* <ImageWithIconOverlay
+            leftImage={profile?.photo}
+            rightImage={nonProfit?.icon}
+          /> */}
+        </S.ImageWithIconOverlayContainer>
+      </S.TopContainer>
+
       <S.ContentContainer>
         {renderImpactValue()}
         {shouldShowEmailCheckbox() && (

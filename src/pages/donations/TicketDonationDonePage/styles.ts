@@ -5,9 +5,9 @@ import { stylizedDisplaySm } from "styles/typography/stylized";
 
 export const Container = styled.div`
   width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  height: 100vh;
   overflow-x: hidden;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
@@ -17,10 +17,10 @@ export const Container = styled.div`
 
 export const MainContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   flex-grow: 1;
+  flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 `;
 
 export const TopContainer = styled.div`
@@ -32,11 +32,11 @@ export const TopContainer = styled.div`
 `;
 
 export const CardImage = styled.img`
+  object-position: center;
   width: 426px;
   height: 280px;
   border-radius: ${({ theme }) => theme.spacing(0, 0, 16, 16)};
   object-fit: cover;
-  object-position: center;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 328px;
@@ -51,12 +51,12 @@ export const ImageWithIconOverlayContainer = styled.div`
 `;
 
 export const TextContainer = styled.div`
+  max-width: 328px;
+  margin-bottom: ${({ theme }) => theme.spacing(40)};
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(8)};
   align-items: center;
-  max-width: 328px;
-  margin-bottom: ${({ theme }) => theme.spacing(40)};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
     margin-bottom: ${({ theme }) => theme.spacing(8)};
@@ -113,14 +113,14 @@ export const Checkbox = styled.input`
 `;
 
 export const ButtonContainer = styled.div`
-  display: flex;
   width: 360px;
+  margin-bottom: ${({ theme }) => theme.spacing(48)};
+  padding: ${({ theme }) => theme.spacing(16)};
+  display: flex;
   flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(24)};
   align-items: center;
   text-align: center;
-  gap: ${({ theme }) => theme.spacing(24)};
-  padding: ${({ theme }) => theme.spacing(16)};
-  margin-bottom: ${({ theme }) => theme.spacing(48)};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 100%;

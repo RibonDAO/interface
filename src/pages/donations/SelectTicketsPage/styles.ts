@@ -5,62 +5,65 @@ import ButtonComponent from "components/atomics/buttons/Button";
 
 export const Title = styled.p`
   ${stylizedDisplayXs}
-
-  margin-bottom: ${({ theme }) => theme.spacing(8)};
   color: ${({ theme }) => theme.colors.brand.primary[900]};
 `;
 
 export const Container = styled.div`
-  padding: ${({ theme }) => theme.spacing(0, 16)};
   display: flex;
   flex-direction: column;
-  align-items: center;
+  min-height: 100vh;
 `;
 
 export const MainContainer = styled.div`
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  align-items: center;
 `;
 
 export const ImageContainer = styled.div`
-  margin-top: ${({ theme }) => theme.spacing(24)};
-  padding: ${({ theme }) => theme.spacing(16, 64, 48)};
-  position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  height: 100%;
+  flex-grow: 1;
 `;
 
 export const ContentContainer = styled.div`
-  width: 100%;
-  margin-top: ${({ theme }) => theme.spacing(24)};
   display: flex;
+  width: 328px;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    width: 368px;
-  }
+  text-align: center;
+  gap: ${({ theme }) => theme.spacing(24)};
+  padding: ${({ theme }) => theme.spacing(16)};
+  margin-bottom: 52px;
 `;
 
 export const Subtitle = styled.p`
   ${defaultBodyMdMedium}
-
   min-height: 48px;
-  margin-bottom: ${({ theme }) => theme.spacing(8)};
   text-align: center;
   color: ${({ theme }) => theme.colors.neutral[500]};
 `;
 
-export const Icon = styled.img`
-  width: 128px;
-  height: 128px;
-  z-index: 1;
-  object-fit: cover;
+export const Button = styled(ButtonComponent)`
+  background-color: ${({ theme }) => theme.colors.brand.primary[600]};
+  width: 100%;
+  height: 48px;
+  border-radius: 12px;
+  margin-top: ${({ theme }) => theme.spacing(8)};
 `;
 
-export const Button = styled(ButtonComponent)`
-  height: 48px;
-  margin-top: ${({ theme }) => theme.spacing(32)};
+export const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(8)};
+`;
+
+export const SliderContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 `;

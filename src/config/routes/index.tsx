@@ -226,7 +226,6 @@ function RoutesComponent(): JSX.Element {
 
       <Route path="/select-tickets" exact>
         <Suspense fallback={<div />}>
-          <NavigationBackHeader hasTicketCounter />
           <SelectTicketsPage />
         </Suspense>
       </Route>

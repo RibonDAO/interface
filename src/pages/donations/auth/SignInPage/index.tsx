@@ -10,7 +10,6 @@ import RightImage from "assets/images/top-right-shape.svg";
 import GoogleLogin from "components/moleculars/buttons/GoogleLogin";
 import AppleLogin from "components/moleculars/buttons/AppleLogin";
 import MagicLinkLogin from "components/moleculars/buttons/MagicLinkLogin";
-import { useCollectTickets } from "hooks/useCollectTickets";
 import { useCurrentUser } from "contexts/currentUserContext";
 import * as S from "./styles";
 
@@ -25,7 +24,6 @@ function SignInPage(): JSX.Element {
   const { formattedImpactText } = useFormattedImpactText();
   const { navigateTo } = useNavigation();
 
-  const { handleCollect } = useCollectTickets();
   const { currentUser } = useCurrentUser();
 
   const {
@@ -48,15 +46,7 @@ function SignInPage(): JSX.Element {
 
   useEffect(() => {
     if (currentUser) {
-      handleCollect({
-        onSuccess: () => {
-          logEvent("ticketCollected", { from: "collect" });
-          navigateTo({ pathname: "/select-tickets", state: { nonProfit } });
-        },
-        onError: () => {
-          navigateTo({ pathname: "/select-tickets", state: { nonProfit } });
-        },
-      });
+      navigateTo({ pathname: "/select-tickets", state: { nonProfit } });
     }
   }, [currentUser]);
 

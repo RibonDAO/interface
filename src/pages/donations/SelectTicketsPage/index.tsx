@@ -5,12 +5,15 @@ import SliderButton from "components/moleculars/sliders/SliderButton";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import { useCallback, useEffect, useState } from "react";
 import { useCurrentUser } from "contexts/currentUserContext";
+import { useUserProfile } from "@ribon.io/shared/hooks";
 import { logEvent } from "@amplitude/analytics-browser";
 import useNavigation from "hooks/useNavigation";
 import { useLocation } from "react-router";
 import { NonProfit } from "@ribon.io/shared/types";
 import { useTicketsContext } from "contexts/ticketsContext";
 import useDonationFlow from "hooks/useDonationFlow";
+import ImageWithIconOverlay from "components/atomics/ImageWithIconOverlay";
+import NavigationBackHeader from "config/routes/Navigation/NavigationBackHeader";
 import DonatingSection from "../auth/DonatingSection";
 import * as S from "./styles";
 
@@ -31,6 +34,8 @@ export default function SelectTicketsPage() {
   const { handleDonate } = useDonationFlow();
   const { navigateTo } = useNavigation();
   const { ticketsCounter } = useTicketsContext();
+  const { userProfile } = useUserProfile();
+  const { profile } = userProfile();
   const [donationInProgress, setDonationInProgress] = useState(false);
   const [donationSucceeded, setDonationSucceeded] = useState(true);
   const [ticketsQuantity, setTicketsQuantity] = useState(1);
@@ -39,6 +44,12 @@ export default function SelectTicketsPage() {
   );
 
   const [step, setStep] = useState<number | undefined>(undefined);
+  const formattedImpact = formattedImpactText(
+    nonProfit,
+    currentImpact,
+    false,
+    false,
+  );
 
   const onDonationSuccess = () => {
     setDonationSucceeded(true);
@@ -104,6 +115,10 @@ export default function SelectTicketsPage() {
   }, [nonProfit, ticketsQuantity]);
 
   useEffect(() => {
+    logEvent("p40_view");
+  }, []);
+
+  useEffect(() => {
     const impacts = nonProfit?.nonProfitImpacts || [];
     const nonProfitsImpactsLength = impacts.length;
     const lastImpact = impacts[nonProfitsImpactsLength - 1];
@@ -117,30 +132,46 @@ export default function SelectTicketsPage() {
     <DonatingSection nonProfit={nonProfit} onAnimationEnd={onAnimationEnd} />
   ) : (
     <S.Container>
-      <S.ImageContainer>
-        <S.Icon src={nonProfit?.icon} />
-      </S.ImageContainer>
-      <S.ContentContainer>
-        <S.Title>{t("title")}</S.Title>
-        <S.Subtitle>
-          {formattedImpactText(nonProfit, currentImpact, false, true)}
-        </S.Subtitle>
-        <TicketIconText quantity={ticketsQuantity} buttonDisabled />
-        {step && (
-          <SliderButton
-            rangeSize={ticketsCounter}
-            setValue={setTicketsQuantity}
-            step={step}
+      <NavigationBackHeader hasTicketCounter />
+
+      <S.MainContainer>
+        <S.ImageContainer>
+          <ImageWithIconOverlay
+            leftImage={profile?.photo}
+            rightImage={nonProfit?.icon}
           />
-        )}
-        <S.Button
-          text={t("button")}
-          textColor={theme.colors.neutral10}
-          backgroundColor={theme.colors.brand.primary[600]}
-          borderColor={theme.colors.neutral[300]}
-          onClick={handleButtonPress}
-        />
-      </S.ContentContainer>
+        </S.ImageContainer>
+        <S.ContentContainer>
+          <S.TextContainer>
+            <S.Title>{t("title")}</S.Title>
+            <S.Subtitle>
+              {t("description")}
+              {formattedImpact}
+            </S.Subtitle>
+          </S.TextContainer>
+          <S.SliderContainer>
+            <TicketIconText quantity={ticketsQuantity} buttonDisabled />
+            {step && (
+              <SliderButton
+                rangeSize={ticketsCounter}
+                setValue={setTicketsQuantity}
+                step={step}
+              />
+            )}
+          </S.SliderContainer>
+          <S.Button
+            text={
+              ticketsQuantity > 1
+                ? t("buttonPlural", { ticketsQuantity })
+                : t("buttonSingular")
+            }
+            textColor={theme.colors.neutral10}
+            backgroundColor={theme.colors.brand.primary[600]}
+            borderColor={theme.colors.neutral[300]}
+            onClick={handleButtonPress}
+          />
+        </S.ContentContainer>
+      </S.MainContainer>
     </S.Container>
   );
 }

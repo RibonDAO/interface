@@ -174,8 +174,10 @@
       }
     },
     "selectTicketsPage": {
-      "title": "Choose the size of your help",
-      "button": "Continue"
+      "title": "You're about to donate:",
+      "description": "The equivalent of ",
+      "buttonSingular": "Donate 1 ticket",
+      "buttonPlural": "Donate {{ticketsQuantity}} tickets"
     }
   },
   "coupons": {

@@ -1,41 +1,41 @@
-import { theme } from "@ribon.io/shared/styles";
 import styled from "styled-components";
 import { defaultBodySmSemibold } from "styles/typography/default";
 
 export const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+  padding-top: 96px;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  width: 100%;
-  justify-content: space-between;
-  padding-top: 96px;
   align-items: center;
+  justify-content: space-between;
 `;
 
 export const AnimationContainer = styled.div`
+  padding: ${({ theme }) => theme.spacing(24)};
   align-items: center;
-  padding: ${theme.spacing(24)};
 `;
 
 export const LoadingContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  background-color: ${theme.colors.brand.primary[100]};
-  align-items: center;
-  border-radius: 99px;
   height: 40px;
   padding: 0 20px;
+  border-radius: 99px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ theme }) => theme.colors.brand.primary[100]};
 `;
 
 export const BottomContainer = styled.div`
+  margin-bottom: 72px;
   display: flex;
   flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(24)};
   align-items: center;
-  gap: ${theme.spacing(24)};
-  margin-bottom: 72px;
 `;
 export const LoadingText = styled.p`
   ${defaultBodySmSemibold}
+
   text-align: center;
-  color: ${theme.colors.brand.primary[900]};
+  color: ${({ theme }) => theme.colors.brand.primary[900]};
 `;

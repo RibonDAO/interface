@@ -8,9 +8,9 @@ export const Container = styled.div`
 export const LeftContainer = styled.div`
   width: 128px;
   height: 128px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  display: flex;
 `;
 export const LeftImageContainer = styled.div`
   width: 104px;
@@ -43,9 +43,9 @@ export const RightContainer = styled.div`
   width: 128px;
   height: 128px;
   margin-left: -40px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  display: flex;
 `;
 export const RightImage = styled.img`
   width: 128px;

@@ -134,12 +134,12 @@ function TicketDonationDonePage(): JSX.Element {
         {audio && <ReactHowler src={audio} loop={false} playing />}
         <S.TopContainer>
           {nonProfit?.confirmationImage && isCardImageLoading && (
-            <CardImageImagePlaceholder/>
+            <CardImageImagePlaceholder />
           )}
-          <S.CardImage 
+          <S.CardImage
             src={nonProfit?.confirmationImage}
             onLoad={() => setIsCardImageLoading(false)}
-           />
+          />
           <S.ImageWithIconOverlayContainer>
             <ImageWithIconOverlay
               leftImage={profile?.photo}

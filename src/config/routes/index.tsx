@@ -433,7 +433,7 @@ function RoutesComponent(): JSX.Element {
 
       <Route path="/earn" exact>
         <Suspense fallback={<div />}>
-          <MainLayout hideHeader fullSize>
+          <MainLayout hideHeader fullSize showNavigation>
             <AboutPage />
           </MainLayout>
         </Suspense>

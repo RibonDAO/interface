@@ -922,7 +922,8 @@
     "sentMagicLinkEmailPage": {
       "title": "We sent you a sign in link",
       "firstText": "Click the link sent to",
-      "secondText": "to sign in to your account in this device"
+      "secondText": "to sign in to your account in this device",
+      "button": "Continue"
     }
   },
   "components": {

@@ -2,7 +2,6 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useTickets } from "@ribon.io/shared/hooks";
 import { useIntegrationContext } from "contexts/integrationContext";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { logError } from "services/crashReport";
 import { useAuthentication } from "contexts/authenticationContext";
 import { useCollectTickets } from "hooks/useCollectTickets";
 import { logEvent } from "lib/events";
@@ -38,13 +37,14 @@ function TicketsProvider({ children }: Props) {
     refetch,
     isLoading,
   } = ticketsAvailable();
-  const { currentIntegrationId: integrationId } = useIntegrationContext();
+  const { currentIntegrationId: integrationId, ticketsFromIntegration } =
+    useIntegrationContext();
   const { signedIn } = useCurrentUser();
   const { isAuthenticated } = useAuthentication();
   const { showReceiveTicketToast } = useReceiveTicketToast();
   const [ticketsCounter, setTicketsCounter] = useState<number>(1);
 
-  const { handleCanCollect, handleCollect } = useCollectTickets();
+  const { handleCollect } = useCollectTickets();
   const hasTickets = ticketsCounter > 0;
 
   function updateTicketsCounterForLoggedInUser() {
@@ -57,13 +57,7 @@ function TicketsProvider({ children }: Props) {
   }
 
   async function updateTicketsCounterForNotLoggedInUser() {
-    try {
-      const { quantity } = await handleCanCollect();
-      setTicketsCounter(quantity);
-    } catch (error) {
-      logError(error);
-      setTicketsCounter(1);
-    }
+    setTicketsCounter(ticketsFromIntegration || 1);
   }
 
   async function collectTickets() {

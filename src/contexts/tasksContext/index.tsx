@@ -56,8 +56,7 @@ function TasksProvider({ children }: any) {
     keyPrefix: "contexts.tasksContext",
   });
   const { currentIntegrationId: integrationId } = useIntegrationContext();
-  const { externalId } = useIntegrationContext();
-  const { donateApp } = useCanDonate(integrationId, PLATFORM, externalId);
+  const { donateApp } = useCanDonate(integrationId, PLATFORM);
 
   const toast = useToast();
 

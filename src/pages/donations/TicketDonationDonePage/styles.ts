@@ -6,12 +6,12 @@ import { stylizedDisplaySm } from "styles/typography/stylized";
 export const Container = styled.div<{bg: string}>`
   width: 100%;
   height: 100vh;
-  background-image: ${({ bg }) => `url(${bg})`};
-  background-position: bottom;
-  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  background-image: ${({ bg }) => `url(${bg})`};
+  background-position: bottom;
+  background-repeat: no-repeat;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
     padding: ${({ theme }) => theme.spacing(16)};

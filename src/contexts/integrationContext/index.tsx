@@ -31,7 +31,7 @@ function IntegrationProvider({ children }: any) {
   >(RIBON_COMPANY_ID);
   const [externalId, setExternalId] = useState<string>();
   const [ticketsFromIntegration, setTicketsFromIntegration] =
-    useState<number>(0);
+    useState<number>(1);
   const { integration, refetch } = useIntegration(currentIntegrationId);
 
   useEffect(() => {

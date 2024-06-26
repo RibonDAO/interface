@@ -80,6 +80,7 @@ describe("Causes", () => {
         filteredCauses: [cause1],
         isLoading: false,
       },
+
       ticketsProviderValue: {
         ticketsCounter: 1,
         isLoading: false,

@@ -40,9 +40,10 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
     navigateTo("/causes");
   };
 
-  const isRibonIntegration = integration?.id === parseInt(RIBON_COMPANY_ID, 10);
+  const isRibonIntegration = () =>
+    integration?.id === parseInt(RIBON_COMPANY_ID, 10);
 
-  const titleOnboarding = isRibonIntegration
+  const titleOnboarding = isRibonIntegration()
     ? t("onboardingRibonTitle")
     : t("onboardingIntegrationTitle", {
         integrationName: integration?.name,
@@ -61,7 +62,7 @@ function FirstPage({ isOnboarding = false }: Props): JSX.Element {
     }
   }, [ticketsFromIntegration]);
 
-  const handleSubtitle = isRibonIntegration
+  const handleSubtitle = isRibonIntegration()
     ? t("subtitle")
     : t("integrationSubtitle", {
         integrationName: integration?.name,

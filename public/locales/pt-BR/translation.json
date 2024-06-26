@@ -921,7 +921,8 @@
     "sentMagicLinkEmailPage": {
       "title": "Enviamos um link para você",
       "firstText": "Clique no link enviado para",
-      "secondText": "e entre na sua conta neste dispositivo"
+      "secondText": "e entre na sua conta neste dispositivo",
+      "button": "Continuar"
     }
   },
   "components": {

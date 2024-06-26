@@ -29,12 +29,12 @@ function LoadingPage(): JSX.Element {
   const { integration } = useIntegration(integrationId);
   const { setCouponId } = useCouponContext();
   const externalId = extractUrlValue("external_id", history.location.search);
+  const externalIds = externalId?.split(",");
   const couponId = extractUrlValue("coupon_id", history.location.search);
   const { setExternalId, setCurrentIntegrationId, setTicketsFromIntegration } =
     useIntegrationContext();
   const { currentUser } = useCurrentUser();
-  const { hasReceivedTicketToday, handleCanCollect, handleCollect } =
-    useCollectTickets();
+  const { hasReceivedTicketToday, handleCollect } = useCollectTickets();
   const { showReceiveTicketToast } = useReceiveTicketToast();
 
   const redirectToDeeplink = () => {
@@ -70,13 +70,10 @@ function LoadingPage(): JSX.Element {
   const hasCoupon = couponId !== "" && couponId !== undefined;
 
   const fetchTickets = async () => {
-    try {
-      const { canCollect, quantity } = await handleCanCollect();
-      setTicketsFromIntegration(quantity);
-      return canCollect;
-    } catch (error) {
+    if (externalIds && externalIds.length > 0) {
+      setTicketsFromIntegration(externalIds.length);
+    } else {
       setTicketsFromIntegration(1);
-      return false;
     }
   };
 

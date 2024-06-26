@@ -130,9 +130,7 @@ function TicketDonationDonePage(): JSX.Element {
   const renderImpactValue = () => oldImpactFormat();
 
   return (
-    <S.Container
-      bg={greenSunBg}
-    >
+    <S.Container bg={greenSunBg}>
       <S.MainContainer>
         {audio && <ReactHowler src={audio} loop={false} playing />}
         <S.TopContainer>

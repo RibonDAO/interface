@@ -6,6 +6,7 @@ import {
 } from "@ribon.io/shared/hooks";
 import { setLocalStorageItem } from "lib/localStorage";
 import { useCallback, useEffect, useState } from "react";
+import greenSunBg from "assets/images/green-sun-bg.svg";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { NonProfit } from "@ribon.io/shared/types";
@@ -129,7 +130,9 @@ function TicketDonationDonePage(): JSX.Element {
   const renderImpactValue = () => oldImpactFormat();
 
   return (
-    <S.Container>
+    <S.Container
+      bg={greenSunBg}
+    >
       <S.MainContainer>
         {audio && <ReactHowler src={audio} loop={false} playing />}
         <S.TopContainer>

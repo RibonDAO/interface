@@ -51,6 +51,7 @@ export const CardImage = styled.img`
 export const ImageWithIconOverlayContainer = styled.div`
   margin-top: -64px;
   align-items: center;
+  z-index: ${({ theme }) => theme.zindex.above};
 `;
 
 export const TextContainer = styled.div`

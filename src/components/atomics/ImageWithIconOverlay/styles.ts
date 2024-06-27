@@ -4,6 +4,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
+  z-index: ${theme.zindex.above};
 `;
 
 export const LeftContainer = styled.div`

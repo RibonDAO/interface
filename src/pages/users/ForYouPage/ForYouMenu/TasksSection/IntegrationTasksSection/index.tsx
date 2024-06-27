@@ -1,13 +1,12 @@
-import { useIntegration } from "@ribon.io/shared/hooks";
 import { useTasksContext } from "contexts/tasksContext";
-import { useIntegrationId } from "hooks/useIntegrationId";
+import { useIntegrationContext } from "contexts/integrationContext";
 import { useTasks } from "utils/constants/Tasks";
 import Avatar from "assets/images/avatar.svg";
 import * as S from "./styles";
 
 function IntegrationTasksSection() {
-  const integrationId = useIntegrationId();
-  const { integration } = useIntegration(integrationId);
+  const { integration } = useIntegrationContext();
+
   const dailyTasks = useTasks("daily");
   const { tasksState } = useTasksContext();
   const donateTicketTask = dailyTasks.find(

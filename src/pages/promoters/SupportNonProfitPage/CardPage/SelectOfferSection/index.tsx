@@ -11,7 +11,7 @@ import {
 import { setLocalStorageItem } from "lib/localStorage";
 import { usePaymentInformation } from "contexts/paymentInformationContext";
 import { formatImpact } from "lib/formatters/impactFormatter";
-import { useIntegrationId } from "hooks/useIntegrationId";
+import { useIntegrationContext } from "contexts/integrationContext";
 import { useWalletContext } from "contexts/walletContext";
 import { useCryptoPayment } from "contexts/cryptoPaymentContext";
 import useNavigation from "hooks/useNavigation";
@@ -44,7 +44,7 @@ function SelectOfferPage({ nonProfit }: Props): JSX.Element {
     tokenSymbol,
     setCurrentPool,
   } = useCryptoPayment();
-  const integrationId = useIntegrationId();
+  const { currentIntegrationId: integrationId } = useIntegrationContext();
 
   const { t } = useTranslation("translation", {
     keyPrefix: "promoters.supportNonProfitPage.selectOfferSection",

@@ -1,22 +1,21 @@
-import { renderComponent } from "config/testUtils/renders";
 import { expectPageToNavigateTo } from "config/testUtils/expects";
-import { clickOn, waitForPromises } from "config/testUtils";
+import { clickOn, waitForPromises, renderComponent } from "config/testUtils";
 import ReturnToIntegrationPage from ".";
 
 const mockIntegration = {
-  id: "1",
+  id: 3,
   name: "Test Integration",
+  logo: "logo",
   integrationTask: {
+    id: 1,
+    description: "Test description",
+    link: "Test link",
     linkAddress: "https://www.test.com",
   },
+  status: "active",
+  ticketAvailabilityInMinutes: 1,
 };
-jest.mock("@ribon.io/shared/hooks", () => ({
-  __esModule: true,
-  ...jest.requireActual("@ribon.io/shared/hooks"),
-  useIntegration: () => ({
-    integration: mockIntegration,
-  }),
-}));
+
 describe("ReturnToIntegrationPage", () => {
   describe("when the user clicks on the stay button", () => {
     beforeEach(() => {
@@ -32,7 +31,12 @@ describe("ReturnToIntegrationPage", () => {
   describe("when the user clicks on the navigate button", () => {
     beforeEach(async () => {
       global.open = jest.fn();
-      renderComponent(<ReturnToIntegrationPage />);
+      renderComponent(<ReturnToIntegrationPage />, {
+        integrationProviderValue: {
+          currentIntegrationId: 3,
+          integration: mockIntegration,
+        },
+      });
       await waitForPromises();
     });
 

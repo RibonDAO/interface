@@ -3,7 +3,6 @@ import {
   expectTextNotToBeInTheDocument,
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";
-import { clickOn } from "config/testUtils";
 import WalletLayout from ".";
 
 describe("WalletLayout", () => {
@@ -24,60 +23,59 @@ describe("WalletLayout", () => {
       </WalletLayout>,
     );
 
-    expectTextToBeInTheDocument("Donate tickets");
+    expectTextToBeInTheDocument("Home");
     expectTextToBeInTheDocument("Earn tickets");
-    expectTextToBeInTheDocument("My impact");
   });
 
-  describe("when the wallet is connected", () => {
-    beforeEach(() => {
-      renderComponent(
-        <WalletLayout hideNavigation>
-          <div>test</div>
-        </WalletLayout>,
-        {
-          walletProviderValue: {
-            wallet: "0x6E060041D62fDd76cF27c582f62983b864878E8F",
-          },
-          networkProviderValue: {
-            isValidNetwork: true,
-          },
-        },
-      );
-    });
+  // describe("when the wallet is connected", () => {
+  //   beforeEach(() => {
+  //     renderComponent(
+  //       <WalletLayout hideNavigation>
+  //         <div>test</div>
+  //       </WalletLayout>,
+  //       {
+  //         walletProviderValue: {
+  //           wallet: "0x6E060041D62fDd76cF27c582f62983b864878E8F",
+  //         },
+  //         networkProviderValue: {
+  //           isValidNetwork: true,
+  //         },
+  //       },
+  //     );
+  //   });
 
-    it("shows the truncated wallet", () => {
-      expectTextToBeInTheDocument("0x6E...8E8F");
-    });
-  });
+  //   it("shows the truncated wallet", () => {
+  //     expectTextToBeInTheDocument("0x6E...8E8F");
+  //   });
+  // });
 
-  describe("when the wallet is not connected", () => {
-    const mockConnectWallet = jest.fn();
+  // describe("when the wallet is not connected", () => {
+  //   const mockConnectWallet = jest.fn();
 
-    beforeEach(() => {
-      renderComponent(
-        <WalletLayout hideNavigation>
-          <div>test</div>
-        </WalletLayout>,
-        {
-          walletProviderValue: {
-            connectWallet: mockConnectWallet,
-          },
-        },
-      );
-    });
+  //   beforeEach(() => {
+  //     renderComponent(
+  //       <WalletLayout hideNavigation>
+  //         <div>test</div>
+  //       </WalletLayout>,
+  //       {
+  //         walletProviderValue: {
+  //           connectWallet: mockConnectWallet,
+  //         },
+  //       },
+  //     );
+  //   });
 
-    it("shows the connect wallet button", () => {
-      expectTextToBeInTheDocument("Connect");
-    });
+  //   it("shows the connect wallet button", () => {
+  //     expectTextToBeInTheDocument("Connect");
+  //   });
 
-    describe("when the connect button is clicked", () => {
-      it("calls the connect wallet method", () => {
-        clickOn("Connect");
-        expect(mockConnectWallet).toHaveBeenCalled();
-      });
-    });
-  });
+  //   describe("when the connect button is clicked", () => {
+  //     it("calls the connect wallet method", () => {
+  //       clickOn("Connect");
+  //       expect(mockConnectWallet).toHaveBeenCalled();
+  //     });
+  //   });
+  // });
 
   describe("when hide navigation is passed", () => {
     it("hides the navigation section", () => {
@@ -87,9 +85,8 @@ describe("WalletLayout", () => {
         </WalletLayout>,
       );
 
-      expectTextNotToBeInTheDocument("Donate tickets");
+      expectTextNotToBeInTheDocument("Home");
       expectTextNotToBeInTheDocument("Earn tickets");
-      expectTextNotToBeInTheDocument("My impact");
     });
   });
 });

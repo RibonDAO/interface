@@ -17,7 +17,7 @@ import {
 } from "lib/localStorage/constants";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useTickets, useUserProfile } from "@ribon.io/shared/hooks";
-import { useIntegrationId } from "hooks/useIntegrationId";
+import { useIntegrationContext } from "contexts/integrationContext";
 import { PLATFORM, RIBON_COMPANY_ID } from "utils/constants";
 import * as S from "./styles";
 
@@ -34,7 +34,7 @@ function ReceiveTicketPage(): JSX.Element {
   const { profile } = userProfile();
 
   const { currentUser } = useCurrentUser();
-  const integrationId = useIntegrationId();
+  const { currentIntegrationId: integrationId } = useIntegrationContext();
   const { collectByIntegration } = useTickets();
 
   const renderDiamond = (isFullSize: boolean, image: string) =>

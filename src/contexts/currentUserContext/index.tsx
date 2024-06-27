@@ -71,9 +71,9 @@ function CurrentUserProvider({ children }: Props) {
   }
 
   useEffect(() => {
-    setSignedIn(!!currentUser);
     setUserInLocalStorage();
     initializeApi();
+    setSignedIn(!!currentUser);
 
     if (process.env.NODE_ENV !== "development") {
       setUserIdInAnalytics();

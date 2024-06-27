@@ -24,6 +24,10 @@
       "errorModalTitle": "Processing failed",
       "errorModalText": "The network is unstable and it was not possible to process your donation. Try again shortly.",
       "errorModalButtonText": "Ok",
+      "noTicketsModalTitle": "You have no tickets",
+      "noTicketsModalText": "Click on Earn tickets to learn how to get more tickets.",
+      "noTicketsModalPrimaryButton": "Earn tickets",
+      "noTicketsModalSecondaryButton": "ok",
       "unauthorizedModalTitle": "Sign in to continue donating",
       "unauthorizedModalText": "Please, sign in to your account created with {{email}} to continue your donation.",
       "unauthorizedModalButtonText": "validate my account",
@@ -112,6 +116,7 @@
       "loadingText": "Processing your donation..."
     },
     "menu": {
+      "homeTitle": "Home",
       "myImpactPageTitle": "My impact",
       "donateTicketsPageTitle": "Donate tickets",
       "earnTicketsPageTitle": "Earn tickets",
@@ -614,7 +619,8 @@
     "firstPage": {
       "onboardingRibonTitle": "Welcome to Ribon!",
       "onboardingIntegrationTitle": "{{integrationName}} invited you to use Ribon's app!",
-      "onboardingSubtitle": "Download the app and get free tickets to donate to awesome charities!",
+      "onboardingSubtitle": "You've received {{tickets} ticket to donate to awesome charities!",
+      "onboardingSubtitlePlural": "You've received {{tickets} tickets to donate to awesome charities!",
       "onboardingButtonText": "Get my ticket",
       "title": "You have 1 special ticket",
       "titlePlural": "You have {{ticketsCounter}} ticket",
@@ -649,9 +655,9 @@
     "giveTicketPage": {
       "title": "You won 1 ticket!",
       "integrationTitle": "{{integrationName}} gave you 1 ticket!",
-      "integrationTitlePlural": "{{integrationName}} gave you tickets!",
+      "integrationTitlePlural": "{{integrationName}} gave you {{tickets}} tickets!",
       "subtitle": "Use your ticket to do good!",
-      "downloadAppButton": "Get ticket on app",
+      "downloadAppButton": "Go to app",
       "stayInBrowserButton": "Stay in browser",
       "nextButton": "Next"
     }
@@ -919,7 +925,8 @@
     "sentMagicLinkEmailPage": {
       "title": "We sent you a sign in link",
       "firstText": "Click the link sent to",
-      "secondText": "to sign in to your account in this device"
+      "secondText": "to sign in to your account in this device",
+      "button": "Continue"
     }
   },
   "components": {

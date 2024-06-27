@@ -17,10 +17,8 @@ import { theme } from "@ribon.io/shared/styles";
 import useToast from "hooks/useToast";
 import useBreakpoint from "hooks/useBreakpoint";
 import { useTranslation } from "react-i18next";
-import extractUrlValue from "lib/extractUrlValue";
-import { useIntegrationId } from "hooks/useIntegrationId";
+import { useIntegrationContext } from "contexts/integrationContext";
 import { PLATFORM } from "utils/constants";
-import { useLocation } from "react-router-dom";
 import TasksStatistics from "@ribon.io/shared/types/apiResponses/TasksStatistics";
 
 export type TaskStateItem = {
@@ -57,9 +55,8 @@ function TasksProvider({ children }: any) {
   const { t } = useTranslation("translation", {
     keyPrefix: "contexts.tasksContext",
   });
-  const integrationId = useIntegrationId();
-  const { search } = useLocation();
-  const externalId = extractUrlValue("external_id", search);
+  const { currentIntegrationId: integrationId } = useIntegrationContext();
+  const { externalId } = useIntegrationContext();
   const { donateApp } = useCanDonate(integrationId, PLATFORM, externalId);
 
   const toast = useToast();

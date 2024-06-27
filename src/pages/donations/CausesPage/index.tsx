@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
-  useIntegration,
   useFirstAccessToIntegration,
   useDonatedToday,
 } from "@ribon.io/shared/hooks";
 import { useLocation } from "react-router-dom";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { useIntegrationId } from "hooks/useIntegrationId";
+import { useIntegrationContext } from "contexts/integrationContext";
 import Tooltip from "components/moleculars/Tooltip";
 import useBreakpoint from "hooks/useBreakpoint";
 import DownloadAppToast from "components/moleculars/Toasts/DownloadAppToast";
@@ -27,8 +26,8 @@ import MadeByRibonSection from "./MadeByRibonSection";
 import * as S from "./styles";
 
 function CausesPage(): JSX.Element {
-  const integrationId = useIntegrationId();
-  const { integration } = useIntegration(integrationId);
+  const { currentIntegrationId: integrationId, integration } =
+    useIntegrationContext();
   const [shouldShowIntegrationBanner, setShouldShowIntegrationBanner] =
     useState<boolean | undefined>(false);
 
@@ -38,18 +37,13 @@ function CausesPage(): JSX.Element {
   const { state } = useLocation<LocationStateType>();
   showErrorModal(state);
   const { navigateTo } = useNavigation();
-  const { refetchTickets, hasTickets } = useTicketsContext();
   const { signedIn } = useCurrentUser();
+  const { hasTickets, refetchTickets } = useTicketsContext();
   const { isFirstAccessToIntegration } = useFirstAccessToIntegration(
     integration?.id || integrationId,
   );
-
   const { isMobile } = useBreakpoint();
   const { donatedToday } = useDonatedToday();
-
-  useEffect(() => {
-    refetchTickets();
-  }, []);
 
   useEffect(() => {
     setShouldShowIntegrationBanner(
@@ -63,11 +57,15 @@ function CausesPage(): JSX.Element {
     navigateTo("/intro/step-3");
   };
 
+  useEffect(() => {
+    refetchTickets();
+  }, [signedIn]);
+
   useAvoidBackButton();
 
   return (
     <S.Container>
-      <DownloadAppToast />
+      {signedIn && !isFirstAccessToIntegration && <DownloadAppToast />}
       <S.BodyContainer>
         <S.TitleContainer>
           {hasTickets && <S.Title>{t("pageTitle")}</S.Title>}

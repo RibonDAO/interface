@@ -34,6 +34,15 @@ function DonatingSection({
       onAnimationEnd();
     }
   }, [shouldRepeatAnimation, goToNextScreen]);
+
+  useEffect(() => {
+    document.body.style.pointerEvents = "none";
+
+    return () => {
+      document.body.style.pointerEvents = "auto";
+    };
+  }, []);
+
   return (
     <S.Container>
       <S.AnimationContainer>

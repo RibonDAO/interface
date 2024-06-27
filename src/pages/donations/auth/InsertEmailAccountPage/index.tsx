@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { NonProfit } from "@ribon.io/shared/types";
 import { useTranslation } from "react-i18next";
 import { theme } from "@ribon.io/shared/styles";
@@ -7,13 +7,12 @@ import RightImage from "assets/images/top-right-shape.svg";
 import { isValidEmail } from "lib/validators";
 import { logEvent } from "lib/events";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
-import useDonationFlow from "hooks/useDonationFlow";
 import useNavigation from "hooks/useNavigation";
 import { useAuthentication } from "contexts/authenticationContext";
 import { useLocation } from "react-router";
 import NavigationBackHeader from "config/routes/Navigation/NavigationBackHeader";
+import { useCurrentUser } from "contexts/currentUserContext";
 import * as S from "./styles";
-import DonatingSection from "../DonatingSection";
 
 type LocationStateType = {
   nonProfit: NonProfit;
@@ -25,11 +24,9 @@ function InsertEmailAccountPage(): JSX.Element {
   });
 
   const [email, setEmail] = useState("");
-  const [donationInProgress, setDonationInProgress] = useState(false);
-  const [donationSucceeded, setDonationSucceeded] = useState(false);
   const { formattedImpactText } = useFormattedImpactText();
-  const { handleCollectAndDonate } = useDonationFlow();
   const { navigateTo } = useNavigation();
+  const { currentUser } = useCurrentUser();
   const {
     state: { nonProfit },
   } = useLocation<LocationStateType>();
@@ -37,39 +34,8 @@ function InsertEmailAccountPage(): JSX.Element {
   const { sendAuthenticationEmail } = useAuthentication();
 
   const onContinue = async () => {
-    setDonationInProgress(true);
     await sendAuthenticationEmail({ email });
-    await handleCollectAndDonate({
-      nonProfit,
-      email,
-      onSuccess: () => {
-        logEvent("ticketCollected", { from: "collectAndDonate" });
-        logEvent("ticketDonated_end", {
-          nonProfitId: nonProfit.id,
-          quantity: 1,
-        });
-        setDonationSucceeded(true);
-      },
-      onError: () => {
-        setDonationSucceeded(false);
-      },
-    });
   };
-
-  const onAnimationEnd = useCallback(() => {
-    if (donationSucceeded && nonProfit) {
-      navigateTo({
-        pathname: "/ticket-donation-done",
-        state: {
-          cause: nonProfit.cause,
-          nonProfit,
-          hasButton: true,
-          hasCheckbox: true,
-          flow: "magicLink",
-        },
-      });
-    }
-  }, [donationSucceeded]);
 
   useEffect(() => {
     if (nonProfit) {
@@ -88,16 +54,16 @@ function InsertEmailAccountPage(): JSX.Element {
     onContinue();
   };
 
+  useEffect(() => {
+    if (currentUser) {
+      navigateTo({ pathname: "/select-tickets", state: { nonProfit } });
+    }
+  }, [currentUser]);
+
   const oldImpactFormat = () =>
     formattedImpactText(nonProfit, undefined, false, true);
 
-  return donationInProgress ? (
-    <DonatingSection
-      nonProfit={nonProfit}
-      onAnimationEnd={onAnimationEnd}
-      shouldRepeatAnimation={donationInProgress && !donationSucceeded}
-    />
-  ) : (
+  return (
     <>
       <NavigationBackHeader />
       <S.Container>

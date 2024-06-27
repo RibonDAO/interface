@@ -3,8 +3,9 @@ import { useUserProfile } from "@ribon.io/shared/hooks";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ImageWithIconOverlay from "components/atomics/ImageWithIconOverlay";
+import LottieAnimation from "components/atomics/LottieAnimation";
+import donationAnimation from "./assets/donationAnimation.json";
 import * as S from "./styles";
-import GreenSun from "./assets/GreenSun";
 
 type Props = {
   nonProfit: NonProfit;
@@ -22,11 +23,23 @@ function DonatingSection({
   const { userProfile } = useUserProfile();
   const { profile } = userProfile();
   const [goToNextScreen, setGoToNextScreen] = useState(false);
+  const [startFrame, setStartFrame] = useState(0);
+
+  function getRandomFrame() {
+    // frame 0 -> inicio
+    // frame 63 -> seringa
+    // frame 110 -> medicamento
+    // frame 136 -> pintinho
+    // frame 239 -> final
+    const frames = [0, 63, 110, 136];
+    return frames[Math.floor(Math.random() * frames.length)];
+  }
 
   useEffect(() => {
     setTimeout(() => {
       setGoToNextScreen(true);
-    }, 3000);
+    }, 4500);
+    setStartFrame(getRandomFrame());
   }, []);
 
   useEffect(() => {
@@ -46,7 +59,12 @@ function DonatingSection({
   return (
     <S.Container>
       <S.AnimationContainer>
-        <GreenSun />
+        <LottieAnimation
+          animationData={donationAnimation}
+          width={360}
+          height={360}
+          startFrame={startFrame}
+        />
       </S.AnimationContainer>
       <S.BottomContainer>
         <ImageWithIconOverlay

@@ -38,6 +38,7 @@ export default function SelectTicketsPage() {
   const { userProfile } = useUserProfile();
   const { profile } = userProfile();
   const [donationInProgress, setDonationInProgress] = useState(false);
+  const [shouldRepeatAnimation, setShouldRepeatAnimation] = useState(true);
   const [donationSucceeded, setDonationSucceeded] = useState(true);
   const [ticketsQuantity, setTicketsQuantity] = useState(1);
   const [currentImpact, setCurrentImpact] = useState(
@@ -54,6 +55,7 @@ export default function SelectTicketsPage() {
 
   const onDonationSuccess = () => {
     setDonationSucceeded(true);
+    setShouldRepeatAnimation(false);
     logEvent("ticketDonated_end", {
       nonProfitId: nonProfit.id,
       quantity: ticketsQuantity,
@@ -78,6 +80,7 @@ export default function SelectTicketsPage() {
       message: error.response?.data?.formatted_message || error.message,
     };
     setDonationSucceeded(false);
+    setShouldRepeatAnimation(false);
     navigateTo({ pathname: "/causes", state: newState });
   };
 
@@ -144,7 +147,7 @@ export default function SelectTicketsPage() {
     <DonatingSection
       nonProfit={nonProfit}
       onAnimationEnd={onAnimationEnd}
-      shouldRepeatAnimation={donationInProgress && !donationSucceeded}
+      shouldRepeatAnimation={shouldRepeatAnimation}
     />
   ) : (
     <S.Container>

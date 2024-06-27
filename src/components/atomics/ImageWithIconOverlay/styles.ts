@@ -2,6 +2,7 @@ import { theme } from "@ribon.io/shared/styles";
 import styled from "styled-components";
 
 export const Container = styled.div`
+  z-index: ${theme.zindex.above};
   display: flex;
   flex-direction: row;
 `;

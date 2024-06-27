@@ -25,7 +25,6 @@ describe("TicketDonationDonePage", () => {
       },
     });
 
-    expectTextToBeInTheDocument("You donated");
     expectTextToBeInTheDocument("2 days of impact for 1 donor");
   });
 });

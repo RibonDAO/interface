@@ -113,7 +113,6 @@ function TicketDonationDonePage(): JSX.Element {
         from: "confirmedDonation_page",
       });
     }
-    logEvent("ticketDonated_end");
   }, []);
 
   const bottomText = formattedImpactText(nonProfit, impact);

@@ -141,7 +141,11 @@ export default function SelectTicketsPage() {
 
   if (isLoading) return <LoadingOverlay />;
   return donationInProgress ? (
-    <DonatingSection nonProfit={nonProfit} onAnimationEnd={onAnimationEnd} />
+    <DonatingSection
+      nonProfit={nonProfit}
+      onAnimationEnd={onAnimationEnd}
+      shouldRepeatAnimation={donationInProgress && !donationSucceeded}
+    />
   ) : (
     <S.Container>
       <NavigationBackHeader hasTicketCounter />

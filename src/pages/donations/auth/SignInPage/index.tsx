@@ -11,6 +11,7 @@ import GoogleLogin from "components/moleculars/buttons/GoogleLogin";
 import AppleLogin from "components/moleculars/buttons/AppleLogin";
 import MagicLinkLogin from "components/moleculars/buttons/MagicLinkLogin";
 import { useCurrentUser } from "contexts/currentUserContext";
+import NavigationBackHeader from "config/routes/Navigation/NavigationBackHeader";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -55,6 +56,7 @@ function SignInPage(): JSX.Element {
 
   return (
     <>
+      <NavigationBackHeader />
       <S.RightImage src={RightImage} />
       <S.LeftImage src={LeftImage} />
       <S.Container>

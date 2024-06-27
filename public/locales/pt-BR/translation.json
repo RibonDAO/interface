@@ -112,6 +112,9 @@
       "button": "Finalizar",
       "checkboxText": "Quero receber informações sobre minhas doações por e-mail"
     },
+    "donatingSection": {
+      "loadingText": "Processando sua doação..."
+    },
     "menu": {
       "homeTitle": "Início",
       "myImpactPageTitle": "Meu impacto",

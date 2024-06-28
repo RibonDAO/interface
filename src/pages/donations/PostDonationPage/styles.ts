@@ -9,22 +9,20 @@ export const TopContainer = styled.div`
 export const Container = styled.div`
   height: 100vh;
   padding: 0 16px 16px;
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  overflow-x: hidden;
+  overflow-y: hidden;
 
   color: ${({ theme }) => theme.colors.brand.primary[300]};
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    height: 640px;
-  }
 `;
 
 export const ContentContainer = styled.div`
-  max-width: 360px;
-
-  z-index: 2;
+  max-width: 426px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,19 +42,6 @@ export const Description = styled.p`
   text-align: center;
   color: ${({ theme }) => theme.colors.neutral[600]};
 `;
-export const BackgroundSun = styled.div`
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.pad}) {
-    display: none;
-  }
-`;
 
 export const ButtonContainer = styled.div`
   min-width: 360px;
@@ -66,5 +51,32 @@ export const ButtonContainer = styled.div`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
     width: 100%;
+  }
+`;
+
+export const BackgroundSun = styled.div`
+  width: 100%;
+  position: absolute;
+  bottom: -232px;
+  z-index: -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+`;
+
+export const sunAnimation = styled.img`
+  width: 446px;
+  height: 464px;
+  animation: spin 50s linear infinite;
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
   }
 `;

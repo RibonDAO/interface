@@ -8,10 +8,9 @@ import LottieAnimation from "components/atomics/LottieAnimation";
 
 import { useEffect } from "react";
 import { logEvent } from "lib/events";
-import * as S from "./styles";
-
+import greenSun from "assets/images/green-sun.svg";
 import postDonationAnimation from "./assets/breathingFace.json";
-import sunAnimation from "./assets/green-sun.json";
+import * as S from "./styles";
 
 function PostDonationPage() {
   const { t } = useTranslation("translation", {
@@ -22,7 +21,7 @@ function PostDonationPage() {
   const { warmGlowMessage, isLoading } = useWarmGlowMessages();
 
   const handleNavigate = () => {
-    navigateTo("/causes");
+    navigateTo("/earn");
   };
 
   useEffect(() => {
@@ -55,11 +54,7 @@ function PostDonationPage() {
         />
       </S.ButtonContainer>
       <S.BackgroundSun>
-        <LottieAnimation
-          animationData={sunAnimation}
-          width="100%"
-          height={262}
-        />
+        <S.sunAnimation src={greenSun} />
       </S.BackgroundSun>
     </S.Container>
   );

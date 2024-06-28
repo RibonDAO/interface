@@ -11,6 +11,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  overflow-y: hidden;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
     padding: ${({ theme }) => theme.spacing(16)};

@@ -3,15 +3,14 @@ import styled from "styled-components";
 import { defaultBodyMdMedium } from "styles/typography/default";
 import { stylizedDisplaySm } from "styles/typography/stylized";
 
-export const Container = styled.div<{bg: string}>`
+export const Container = styled.div`
   width: 100%;
   height: 100vh;
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
-  background-image: ${({ bg }) => `url(${bg})`};
-  background-position: bottom;
-  background-repeat: no-repeat;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.pad}) {
     padding: ${({ theme }) => theme.spacing(16)};
@@ -138,4 +137,30 @@ export const FinishButton = styled(Button)`
   display: block;
   justify-self: end;
   background-color: ${({ theme }) => theme.colors.brand.primary[600]};
+`;
+
+export const BackgroundSun = styled.div`
+  width: 100%;
+  position: absolute;
+  bottom: -232px;
+  z-index: -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const sunAnimation = styled.img`
+  width: 446px;
+  height: 464px;
+  animation: spin 50s linear infinite;
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
 `;

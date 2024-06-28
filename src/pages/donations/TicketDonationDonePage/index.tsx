@@ -6,7 +6,6 @@ import {
 } from "@ribon.io/shared/hooks";
 import { setLocalStorageItem } from "lib/localStorage";
 import { useCallback, useEffect, useState } from "react";
-import greenSunBg from "assets/images/green-sun-bg.svg";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { NonProfit } from "@ribon.io/shared/types";
@@ -21,8 +20,9 @@ import usePostTicketDonationNavigation from "hooks/usePostTicketDonationNavigati
 
 import { logEvent } from "lib/events";
 import ImageWithIconOverlay from "components/atomics/ImageWithIconOverlay";
-import * as S from "./styles";
+import greenSun from "assets/images/green-sun.svg";
 import CardImageImagePlaceholder from "./ImagePlaceholder";
+import * as S from "./styles";
 
 function TicketDonationDonePage(): JSX.Element {
   useAvoidBackButton();
@@ -130,7 +130,7 @@ function TicketDonationDonePage(): JSX.Element {
   const renderImpactValue = () => oldImpactFormat();
 
   return (
-    <S.Container bg={greenSunBg}>
+    <S.Container>
       <S.MainContainer>
         {audio && <ReactHowler src={audio} loop={false} playing />}
         <S.TopContainer>
@@ -175,6 +175,9 @@ function TicketDonationDonePage(): JSX.Element {
           />
         </S.ButtonContainer>
       </S.MainContainer>
+      <S.BackgroundSun>
+        <S.sunAnimation src={greenSun} />
+      </S.BackgroundSun>
     </S.Container>
   );
 }

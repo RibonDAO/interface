@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { NonProfit } from "@ribon.io/shared/types";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "lib/events";
@@ -10,9 +10,8 @@ import RightImage from "assets/images/top-right-shape.svg";
 import GoogleLogin from "components/moleculars/buttons/GoogleLogin";
 import AppleLogin from "components/moleculars/buttons/AppleLogin";
 import MagicLinkLogin from "components/moleculars/buttons/MagicLinkLogin";
-import useDonationFlow from "hooks/useDonationFlow";
-import { useCollectTickets } from "hooks/useCollectTickets";
-import DonatingSection from "../DonatingSection";
+import { useCurrentUser } from "contexts/currentUserContext";
+import NavigationBackHeader from "config/routes/Navigation/NavigationBackHeader";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -26,61 +25,11 @@ function SignInPage(): JSX.Element {
   const { formattedImpactText } = useFormattedImpactText();
   const { navigateTo } = useNavigation();
 
-  const [donationInProgress, setDonationInProgress] = useState(false);
-  const [donationSucceeded, setDonationSucceeded] = useState(false);
-  const { handleDonate } = useDonationFlow();
-  const { handleCollect } = useCollectTickets();
+  const { currentUser } = useCurrentUser();
 
   const {
     state: { nonProfit },
   } = useLocation<LocationStateType>();
-
-  const errorType = (type: number) => {
-    switch (type) {
-      case 403: {
-        return "blockedDonation";
-      }
-      default: {
-        return "failedDonation";
-      }
-    }
-  };
-
-  const onDonationFail = (error: any) => {
-    const failedKey = errorType(error.response?.status);
-    const newState = {
-      [failedKey]: true,
-      message: error.response?.data?.formatted_message || error.message,
-    };
-    setDonationSucceeded(false);
-    navigateTo({ pathname: "/causes", state: newState });
-  };
-
-  const onContinue = async () => {
-    setDonationInProgress(true);
-    await handleCollect({
-      onSuccess: () => {
-        logEvent("ticketCollected", { from: "collect" });
-      },
-      onError: () => {
-        setDonationSucceeded(false);
-      },
-    });
-    await handleDonate({
-      nonProfit,
-      ticketsQuantity: 1,
-      onSuccess: () => {
-        logEvent("ticketDonated_end", {
-          nonProfitId: nonProfit.id,
-          quantity: 1,
-        });
-        setDonationSucceeded(true);
-      },
-      onError: (error) => {
-        onDonationFail(error);
-      },
-    });
-  };
 
   const onContinueMagicLink = () => {
     navigateTo({
@@ -89,21 +38,6 @@ function SignInPage(): JSX.Element {
     });
   };
 
-  const onAnimationEnd = useCallback(() => {
-    if (donationSucceeded) {
-      navigateTo({
-        pathname: "/ticket-donation-done",
-        state: {
-          cause: nonProfit.cause,
-          nonProfit,
-          hasButton: true,
-          hasCheckbox: true,
-          flow: "login",
-        },
-      });
-    }
-  }, [donationSucceeded]);
-
   useEffect(() => {
     logEvent("P27_view", {
       nonProfitId: nonProfit.id,
@@ -111,13 +45,18 @@ function SignInPage(): JSX.Element {
     });
   }, []);
 
-  const oldImpactFormat = () =>
-    formattedImpactText(nonProfit, undefined, false, true);
+  useEffect(() => {
+    if (currentUser) {
+      navigateTo({ pathname: "/select-tickets", state: { nonProfit } });
+    }
+  }, [currentUser]);
 
-  return donationInProgress ? (
-    <DonatingSection nonProfit={nonProfit} onAnimationEnd={onAnimationEnd} />
-  ) : (
+  const oldImpactFormat = () =>
+    formattedImpactText(nonProfit, undefined, false, false);
+
+  return (
     <>
+      <NavigationBackHeader />
       <S.RightImage src={RightImage} />
       <S.LeftImage src={LeftImage} />
       <S.Container>
@@ -126,10 +65,12 @@ function SignInPage(): JSX.Element {
         </S.ImageContainer>
         <S.ContentContainer>
           <S.Title>{t("title")}</S.Title>
-          <S.Description>{oldImpactFormat()}</S.Description>
+          <S.Description>
+            {t("prefix")} {oldImpactFormat()}
+          </S.Description>
           <S.ButtonContainer>
-            <GoogleLogin onContinue={onContinue} from="donation_flow" />
-            <AppleLogin onContinue={onContinue} from="donation_flow" />
+            <GoogleLogin from="donation_flow" />
+            <AppleLogin from="donation_flow" />
             <MagicLinkLogin
               onContinue={onContinueMagicLink}
               from="donation_flow"

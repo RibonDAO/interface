@@ -17,7 +17,7 @@ import getThemeByFlow from "lib/themeByFlow";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import { useTasksContext } from "contexts/tasksContext";
 import { useCurrentUser } from "contexts/currentUserContext";
-import { useIntegrationId } from "hooks/useIntegrationId";
+import { useIntegrationContext } from "contexts/integrationContext";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
 import * as S from "./styles";
 
@@ -51,7 +51,7 @@ function ContributionDonePage(): JSX.Element {
     userId: currentUser?.id,
   });
 
-  const integrationId = useIntegrationId();
+  const { currentIntegrationId: integrationId } = useIntegrationContext();
 
   const { refetch } = useFirstAccessToIntegration(integrationId);
 

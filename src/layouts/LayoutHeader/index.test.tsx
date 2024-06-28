@@ -1,34 +1,24 @@
-import { clickOn, renderComponent, waitForPromises } from "config/testUtils";
+import { clickOn, renderComponent } from "config/testUtils";
 import { expectPageToNavigateTo } from "config/testUtils/expects";
 import { removeLocalStorageItem, setLocalStorageItem } from "lib/localStorage";
 import { HAS_AN_AVAILABLE_VOUCHER } from "lib/localStorage/constants";
-import React from "react";
-import { mockRequest } from "config/testUtils/test-helper";
 import { screen } from "@testing-library/react";
 import { useImpactConversion } from "hooks/useImpactConversion";
 import LayoutHeader from ".";
 
 const mockIntegration = {
-  id: "1",
+  id: 3,
   name: "Test Integration",
   logo: "logo",
   integrationTask: {
+    id: 1,
+    description: "Test description",
+    link: "Test link",
     linkAddress: "https://www.test.com",
   },
+  status: "active",
+  ticketAvailabilityInMinutes: 1,
 };
-jest.mock("@ribon.io/shared/hooks", () => ({
-  __esModule: true,
-  ...jest.requireActual("@ribon.io/shared/hooks"),
-  useIntegration: () => ({
-    integration: mockIntegration,
-    refetch: jest.fn(),
-  }),
-}));
-jest.mock("hooks/useIntegrationId", () => ({
-  __esModule: true,
-  ...jest.requireActual("hooks/useIntegrationId"),
-  useIntegrationId: () => "9",
-}));
 
 jest.mock("hooks/useImpactConversion", () => ({
   __esModule: true,
@@ -37,49 +27,25 @@ jest.mock("hooks/useImpactConversion", () => ({
 
 describe("LayoutHeader", () => {
   describe("when user can donate", () => {
-    beforeEach(async () => {
-      const mockUseImpactConversion = useImpactConversion as jest.Mock;
-      mockUseImpactConversion.mockReturnValue({});
-      await waitForPromises();
-      setLocalStorageItem(HAS_AN_AVAILABLE_VOUCHER, "123");
-    });
-
     it("should navigate to earn page", () => {
-      renderComponent(<LayoutHeader />);
+      renderComponent(<LayoutHeader />, {
+        ticketsProviderValue: {
+          ticketsCounter: 1,
+        },
+      });
       clickOn("1");
       expectPageToNavigateTo("/earn");
     });
   });
 
   describe("when user can't donate", () => {
-    mockRequest("/api/v1/tickets/can_collect_by_integration", {
-      payload: { canCollect: false },
-      method: "POST",
-    });
-
-    beforeEach(() => {
-      const mockUseImpactConversion = useImpactConversion as jest.Mock;
-      mockUseImpactConversion.mockReturnValue({
-        contribution: {
-          image: "test-image-url",
-          impact: "This is a test impact",
-          value: 100,
-        },
-        nonProfit: {
-          name: "Test Non-Profit",
-          impactDescription: "description",
-        },
-        offer: { id: 1 },
-        description: "This is a test description",
-        variation: "Test Variation",
-      });
-      removeLocalStorageItem(HAS_AN_AVAILABLE_VOUCHER);
-      renderComponent(<LayoutHeader />);
-    });
-
     it("should navigate to earn page", () => {
-      renderComponent(<LayoutHeader />);
-      clickOn("1");
+      renderComponent(<LayoutHeader />, {
+        ticketsProviderValue: {
+          ticketsCounter: 0,
+        },
+      });
+      clickOn("0");
       expectPageToNavigateTo("/earn");
     });
   });
@@ -106,7 +72,12 @@ describe("LayoutHeader", () => {
     describe("when user can donate", () => {
       beforeEach(() => {
         setLocalStorageItem(HAS_AN_AVAILABLE_VOUCHER, "true");
-        renderComponent(<LayoutHeader />);
+        renderComponent(<LayoutHeader />, {
+          integrationProviderValue: {
+            integration: mockIntegration,
+            currentIntegrationId: "3",
+          },
+        });
 
         const sideLogo = screen.getByAltText("side-logo");
         clickOn(sideLogo);
@@ -123,6 +94,10 @@ describe("LayoutHeader", () => {
         removeLocalStorageItem(HAS_AN_AVAILABLE_VOUCHER);
         renderComponent(<LayoutHeader />, {
           ticketsProviderValue: { hasTickets: false },
+          integrationProviderValue: {
+            integration: mockIntegration,
+            currentIntegrationId: "3",
+          },
         });
 
         const sideLogo = screen.getByAltText("side-logo");

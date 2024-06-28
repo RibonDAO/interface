@@ -97,6 +97,10 @@ import CouponProvider, {
   ICouponContext,
 } from "contexts/couponContext";
 import TagsProvider, { ITagsContext, TagsContext } from "contexts/tagsContext";
+import IntegrationProvider, {
+  IIntegrationContext,
+  IntegrationContext,
+} from "contexts/integrationContext";
 
 export function renderWithTheme(children: React.ReactNode): RenderResult {
   return render(<ThemeProvider theme={theme}>{children}</ThemeProvider>);
@@ -150,6 +154,7 @@ export type RenderComponentProps = {
   toastProviderValue?: Partial<IToastContext>;
   loadingOverlayValue?: Partial<ILoadingOverlayContext>;
   modalProviderValue?: Partial<IModalContext>;
+  integrationProviderValue?: Partial<IIntegrationContext>;
   nonProfitsProviderValue?: Partial<INonProfitsContext>;
   cardPaymentProviderValue?: Partial<ICardPaymentInformationContext>;
   paymentProviderValue?: Partial<IPaymentInformationContext>;
@@ -179,6 +184,7 @@ export function renderComponent(
     loadingOverlayValue = {},
     modalProviderValue = {},
     nonProfitsProviderValue = {},
+    integrationProviderValue = {},
     cardPaymentProviderValue = {},
     paymentProviderValue = {},
     networkProviderValue = {},
@@ -205,41 +211,41 @@ export function renderComponent(
                 CurrentUserContext,
                 currentUserProviderValue,
                 renderProvider(
-                  TasksProvider,
-                  TasksContext,
-                  tasksProviderValue,
+                  CausesProvider,
+                  CausesContext,
+                  causesProviderValue,
                   renderProvider(
-                    CausesProvider,
-                    CausesContext,
-                    causesProviderValue,
+                    TagDonationProvider,
+                    TagDonationContext,
+                    tagDonationProviderValue,
                     renderProvider(
-                      TagDonationProvider,
-                      TagDonationContext,
-                      tagDonationProviderValue,
+                      TagsProvider,
+                      TagsContext,
+                      tagsProviderValue,
                       renderProvider(
-                        TagsProvider,
-                        TagsContext,
-                        tagsProviderValue,
+                        CauseContributionProvider,
+                        CauseContributionContext,
+                        causeContributionProviderValue,
                         renderProvider(
-                          CauseContributionProvider,
-                          CauseContributionContext,
-                          causeContributionProviderValue,
+                          ToastContextProvider,
+                          ToastContext,
+                          toastProviderValue,
                           renderProvider(
-                            ToastContextProvider,
-                            ToastContext,
-                            toastProviderValue,
+                            LoadingOverlayProvider,
+                            LoadingOverlayContext,
+                            loadingOverlayValue,
                             renderProvider(
-                              LoadingOverlayProvider,
-                              LoadingOverlayContext,
-                              loadingOverlayValue,
+                              ModalProvider,
+                              ModalContext,
+                              modalProviderValue,
                               renderProvider(
-                                ModalProvider,
-                                ModalContext,
-                                modalProviderValue,
+                                NonProfitsProvider,
+                                NonProfitsContext,
+                                nonProfitsProviderValue,
                                 renderProvider(
-                                  NonProfitsProvider,
-                                  NonProfitsContext,
-                                  nonProfitsProviderValue,
+                                  IntegrationProvider,
+                                  IntegrationContext,
+                                  integrationProviderValue,
                                   renderProvider(
                                     PaymentInformationProvider,
                                     PaymentInformationContext,
@@ -277,14 +283,19 @@ export function renderComponent(
                                                     AuthenticationContext,
                                                     authenticationProviderValue,
                                                     renderProvider(
-                                                      TicketsProvider,
-                                                      TicketsContext,
-                                                      ticketsProviderValue,
+                                                      TasksProvider,
+                                                      TasksContext,
+                                                      tasksProviderValue,
                                                       renderProvider(
-                                                        CouponProvider,
-                                                        CouponContext,
-                                                        couponProviderValue,
-                                                        component,
+                                                        TicketsProvider,
+                                                        TicketsContext,
+                                                        ticketsProviderValue,
+                                                        renderProvider(
+                                                          CouponProvider,
+                                                          CouponContext,
+                                                          couponProviderValue,
+                                                          component,
+                                                        ),
                                                       ),
                                                     ),
                                                   ),

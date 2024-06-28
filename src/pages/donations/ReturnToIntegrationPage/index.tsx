@@ -3,8 +3,7 @@ import ticketImage from "assets/images/ticket-image.svg";
 import LeftImage from "assets/images/bottom-left-shape-red.svg";
 import RightImage from "assets/images/top-right-shape.svg";
 import useNavigation from "hooks/useNavigation";
-import { useIntegrationId } from "hooks/useIntegrationId";
-import { useIntegration } from "@ribon.io/shared/hooks";
+import { useIntegrationContext } from "contexts/integrationContext";
 import { logEvent } from "lib/events";
 import ArrowLeft from "./assets/arrow-left-dark-green.svg";
 import * as S from "./styles";
@@ -14,8 +13,7 @@ function ReturnToIntegrationPage(): JSX.Element {
     keyPrefix: "donations.returnToIntegrationPage",
   });
   const { navigateTo, navigateBack } = useNavigation();
-  const integrationId = useIntegrationId();
-  const { integration } = useIntegration(integrationId);
+  const { integration } = useIntegrationContext();
 
   const handleStayButtonClick = () => {
     navigateTo("/impact");

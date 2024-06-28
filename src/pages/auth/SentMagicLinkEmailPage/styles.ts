@@ -4,6 +4,7 @@ import {
   defaultBodyMdBold,
   defaultBodyMdMedium,
 } from "styles/typography/default";
+import Button from "components/atomics/buttons/Button";
 
 export const Container = styled.div`
   padding: ${({ theme }) => theme.spacing(0, 16)};
@@ -59,7 +60,7 @@ export const Text = styled.p`
 
 export const EmailText = styled.p`
   ${defaultBodyMdBold}
-  
+
   color: ${({ theme }) => theme.colors.neutral[600]};
 `;
 
@@ -82,4 +83,8 @@ export const RightImage = styled.img`
     right: 0;
     display: block;
   }
+`;
+
+export const ButtonContinue = styled(Button)`
+  margin-top: ${({ theme }) => theme.spacing(24)};
 `;

@@ -8,14 +8,12 @@ import {
   useUsers,
   useUserTickets,
 } from "@ribon.io/shared/hooks";
-import { useIntegrationId } from "hooks/useIntegrationId";
+import { useIntegrationContext } from "contexts/integrationContext";
 import { NonProfit } from "@ribon.io/shared/types";
 import useNavigation from "hooks/useNavigation";
 import useVoucher from "hooks/useVoucher";
 import { normalizedLanguage } from "lib/currentLanguage";
 import { getUTMFromLocationSearch } from "lib/getUTMFromLocationSearch";
-import extractUrlValue from "lib/extractUrlValue";
-import { useLocation } from "react-router-dom";
 import useDonateTickets from "hooks/apiHooks/useDonateTickets";
 import { useAuthentication } from "contexts/authenticationContext";
 
@@ -38,14 +36,13 @@ function useDonationFlow() {
   const { isAuthenticated } = useAuthentication();
   const { findOrCreateUser } = useUsers();
   const { createSource } = useSources();
-  const integrationId = useIntegrationId();
+  const { currentIntegrationId: integrationId } = useIntegrationContext();
   const { history, navigateTo } = useNavigation();
   const { destroyVoucher } = useVoucher();
   const { collectAndDonateByIntegration, collectAndDonateByExternalIds } =
     useTickets();
   const utmParams = getUTMFromLocationSearch(history.location.search);
-  const { search } = useLocation();
-  const externalId = extractUrlValue("external_id", search);
+  const { externalId } = useIntegrationContext();
   const externalIds = externalId?.split(",");
 
   async function handleCollectAndDonate({

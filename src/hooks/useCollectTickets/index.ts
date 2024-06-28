@@ -1,9 +1,7 @@
 import { PLATFORM } from "utils/constants";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useTickets } from "@ribon.io/shared/hooks";
-import { useIntegrationId } from "hooks/useIntegrationId";
-import extractUrlValue from "lib/extractUrlValue";
-import { useLocation } from "react-router-dom";
+import { useIntegrationContext } from "contexts/integrationContext";
 import {
   RECEIVED_TICKET_AT_KEY,
   RECEIVED_TICKET_FROM_INTEGRATION,
@@ -11,6 +9,7 @@ import {
 import { today } from "lib/dateTodayFormatter";
 import { getLocalStorageItem } from "lib/localStorage";
 import { logError } from "services/crashReport";
+import { useIntegrationId } from "hooks/useIntegrationId";
 
 type HandleCollectProps = {
   onSuccess?: () => void;
@@ -27,9 +26,8 @@ export function useCollectTickets() {
     collectByIntegration,
   } = useTickets();
 
-  const { search } = useLocation();
-  const externalId = extractUrlValue("external_id", search);
   const integrationId = useIntegrationId();
+  const { externalId, setExternalId } = useIntegrationContext();
   const externalIds = externalId?.split(",");
 
   function hasReceivedTicketToday() {
@@ -50,16 +48,18 @@ export function useCollectTickets() {
 
   async function handleCanCollect() {
     if (externalIds && externalIds.length > 0) {
-      const { canCollect } = await canCollectByExternalIds(externalIds);
-      return canCollect;
+      const { canCollect, quantity } = await canCollectByExternalIds(
+        externalIds,
+      );
+      return { canCollect, quantity };
     } else if (integrationId) {
       const { canCollect } = await canCollectByIntegration(
         integrationId,
         currentUser?.email ?? "",
       );
-      return canCollect;
+      return { canCollect, quantity: 1 };
     } else {
-      return false;
+      return { canCollect: false, quantity: 0 };
     }
   }
 
@@ -72,7 +72,10 @@ export function useCollectTickets() {
           PLATFORM,
           currentUser?.email ?? "",
         );
-        if (onSuccess) onSuccess();
+        if (onSuccess) {
+          setExternalId(undefined);
+          onSuccess();
+        }
       } else if (integrationId) {
         await collectByIntegration(
           integrationId,

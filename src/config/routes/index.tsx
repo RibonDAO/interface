@@ -199,21 +199,18 @@ function RoutesComponent(): JSX.Element {
 
       <Route path="/donation/auth/sign-in" exact>
         <Suspense fallback={<div />}>
-          <NavigationBackHeader />
           <DonationSignInPage />
         </Suspense>
       </Route>
 
       <Route path="/signed-in" exact>
         <Suspense fallback={<div />}>
-          <NavigationBackHeader />
           <SignedInPage />
         </Suspense>
       </Route>
 
       <Route path="/insert-email" exact>
         <Suspense fallback={<div />}>
-          <NavigationBackHeader />
           <InsertEmailAccountPage />
         </Suspense>
       </Route>
@@ -227,7 +224,6 @@ function RoutesComponent(): JSX.Element {
 
       <Route path="/select-tickets" exact>
         <Suspense fallback={<div />}>
-          <NavigationBackHeader hasTicketCounter />
           <SelectTicketsPage />
         </Suspense>
       </Route>
@@ -441,7 +437,7 @@ function RoutesComponent(): JSX.Element {
 
       <Route path="/earn" exact>
         <Suspense fallback={<div />}>
-          <MainLayout hideHeader fullSize>
+          <MainLayout hideHeader fullSize showNavigation>
             <AboutPage />
           </MainLayout>
         </Suspense>

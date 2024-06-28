@@ -44,14 +44,6 @@ function IntegrationProvider({ children }: any) {
   );
   const externalIdsArray = externalIdFromUrl?.split(",");
 
-  const fetchTickets = async () => {
-    if (externalIdsArray && externalIdsArray.length > 0) {
-      setTicketsFromIntegration(externalIdsArray.length);
-    } else {
-      setTicketsFromIntegration(1);
-    }
-  };
-
   useEffect(() => {
     if (integrationId) {
       setCurrentIntegrationId(integrationId);
@@ -61,9 +53,11 @@ function IntegrationProvider({ children }: any) {
   useEffect(() => {
     if (externalIdsArray && externalIdsArray.length > 0) {
       setExternalIds(externalIdsArray);
+      setTicketsFromIntegration(externalIdsArray.length);
+    } else {
+      setTicketsFromIntegration(1);
     }
-    fetchTickets();
-  }, [externalIdsArray]);
+  }, []);
 
   useEffect(() => {
     if (currentIntegrationId) {

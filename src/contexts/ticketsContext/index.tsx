@@ -70,9 +70,9 @@ function TicketsProvider({ children }: Props) {
           RECEIVED_TICKET_FROM_INTEGRATION,
           integrationId?.toLocaleString() ?? RIBON_COMPANY_ID,
         );
+        refetch();
       },
     });
-    refetch();
   }
 
   function collectAndRefetchTickets() {

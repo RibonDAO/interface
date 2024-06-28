@@ -59,7 +59,7 @@ function CausesPage(): JSX.Element {
 
   useEffect(() => {
     refetchTickets();
-  }, [signedIn]);
+  }, []);
 
   useAvoidBackButton();
 

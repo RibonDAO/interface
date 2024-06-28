@@ -613,8 +613,8 @@
     "firstPage": {
       "onboardingRibonTitle": "Welcome to Ribon!",
       "onboardingIntegrationTitle": "{{integrationName}} invited you to use Ribon's app!",
-      "onboardingSubtitle": "You've received {{tickets} ticket to donate to awesome charities!",
-      "onboardingSubtitlePlural": "You've received {{tickets} tickets to donate to awesome charities!",
+      "onboardingSubtitle": "You've received {{tickets}} ticket to donate to awesome charities!",
+      "onboardingSubtitlePlural": "You've received {{tickets}} tickets to donate to awesome charities!",
       "onboardingButtonText": "Get my ticket",
       "title": "You have 1 special ticket",
       "titlePlural": "You have {{ticketsCounter}} ticket",

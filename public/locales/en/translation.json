@@ -106,6 +106,10 @@
       "button": "Finish",
       "checkboxText": "I agree to receive emails with information about my donations"
     },
+    "postDonationPage": {
+      "title": "Enjoy this moment...",
+      "buttonText": "Finish"
+    },
     "ticketDonationDonePage": {
       "title": "Thanks for donating!",
       "description": "You donated the equivalent of ",

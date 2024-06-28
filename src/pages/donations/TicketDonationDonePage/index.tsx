@@ -16,8 +16,7 @@ import { useTasksContext } from "contexts/tasksContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationContext } from "contexts/integrationContext";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
-import usePostTicketDonationNavigation from "hooks/usePostTicketDonationNavigation";
-
+import useNavigation from "hooks/useNavigation";
 import { logEvent } from "lib/events";
 import ImageWithIconOverlay from "components/atomics/ImageWithIconOverlay";
 import greenSun from "assets/images/green-sun.svg";
@@ -47,9 +46,9 @@ function TicketDonationDonePage(): JSX.Element {
   const { registerAction } = useTasksContext();
   const { userConfig, updateUserConfig } = useUserConfig();
   const { refetch: refetchUserConfig, config } = userConfig();
-  const { handleNavigate } = usePostTicketDonationNavigation();
   const { userProfile } = useUserProfile();
   const { profile } = userProfile();
+  const { navigateTo } = useNavigation();
 
   const {
     userStatistics,
@@ -99,7 +98,7 @@ function TicketDonationDonePage(): JSX.Element {
     }
 
     if (!isLoading) {
-      handleNavigate(nonProfit);
+      navigateTo("/post-donation");
     }
   }
 

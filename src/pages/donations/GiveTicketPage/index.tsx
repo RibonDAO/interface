@@ -12,13 +12,6 @@ import { useTranslation } from "react-i18next";
 import { APP_LINK, RIBON_COMPANY_ID } from "utils/constants";
 import useBreakpoint from "hooks/useBreakpoint";
 import theme from "styles/theme";
-import { useCollectTickets } from "hooks/useCollectTickets";
-import { useTicketsContext } from "contexts/ticketsContext";
-import { setLocalStorageItem } from "lib/localStorage";
-import {
-  RECEIVED_TICKET_AT_KEY,
-  RECEIVED_TICKET_FROM_INTEGRATION,
-} from "lib/localStorage/constants";
 import * as S from "./styles";
 import Ticket from "./assets/ticket.svg";
 
@@ -26,16 +19,13 @@ function GiveTicketPage(): JSX.Element {
   const { t } = useTranslation("translation", {
     keyPrefix: "onboarding.giveTicketPage",
   });
-  const { navigateTo } = useNavigation();
+  const { navigateTo, navigateBack } = useNavigation();
   const {
     currentIntegrationId: integrationId,
     integration,
-    externalId,
     ticketsFromIntegration,
   } = useIntegrationContext();
   const { isMobile } = useBreakpoint();
-  const { handleCollect } = useCollectTickets();
-  const { refetchTickets } = useTicketsContext();
   const { currentLang } = useLanguage();
 
   const isRibonIntegration = () =>
@@ -67,18 +57,8 @@ function GiveTicketPage(): JSX.Element {
   };
 
   const handleReceiveTicket = async () => {
-    await handleCollect({
-      onSuccess: () => {
-        setLocalStorageItem(RECEIVED_TICKET_AT_KEY, Date.now().toString());
-        setLocalStorageItem(
-          RECEIVED_TICKET_FROM_INTEGRATION,
-          integrationId?.toString() ?? RIBON_COMPANY_ID,
-        );
-      },
-    });
-    refetchTickets();
-    logEvent("P35_getTicketBtn_click");
-    navigateTo("/causes");
+    logEvent("P35_continuetBtn_click");
+    navigateBack();
   };
 
   const title = useCallback(() => {
@@ -93,7 +73,7 @@ function GiveTicketPage(): JSX.Element {
           tickets: ticketsFromIntegration,
         })
       : t("integrationTitle", { integrationName });
-  }, [ticketsFromIntegration, integration, externalId, isRibonIntegration]);
+  }, [ticketsFromIntegration, integration, isRibonIntegration]);
 
   return (
     <S.Container>

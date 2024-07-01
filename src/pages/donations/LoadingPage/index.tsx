@@ -16,7 +16,6 @@ import { useCollectTickets } from "hooks/useCollectTickets";
 import { logError } from "services/crashReport";
 import { useReceiveTicketToast } from "hooks/toastHooks/useReceiveTicketToast";
 import { setLocalStorageItem } from "lib/localStorage";
-import { useIntegrationContext } from "contexts/integrationContext";
 import {
   RECEIVED_TICKET_AT_KEY,
   RECEIVED_TICKET_FROM_INTEGRATION,
@@ -29,16 +28,15 @@ function LoadingPage(): JSX.Element {
   const { integration } = useIntegration(integrationId);
   const { setCouponId } = useCouponContext();
   const externalId = extractUrlValue("external_id", history.location.search);
-  const externalIds = externalId?.split(",");
   const couponId = extractUrlValue("coupon_id", history.location.search);
-  const { setExternalId, setCurrentIntegrationId, setTicketsFromIntegration } =
-    useIntegrationContext();
   const { currentUser } = useCurrentUser();
   const { hasReceivedTicketToday, handleCollect } = useCollectTickets();
   const { showReceiveTicketToast } = useReceiveTicketToast();
 
   const redirectToDeeplink = () => {
-    const externalIdParam = externalId ? `&external_id=${externalId}` : "";
+    const externalIdParam = externalId
+      ? `&external_id=${encodeURIComponent(externalId)}`
+      : "";
     const couponIdParam = couponId ? `&coupon_id=${couponId}` : "";
     const utmParams = getUTMFromLocationSearch(history.location.search);
     const utmParamsString = utmParamsToString(utmParams);
@@ -69,14 +67,6 @@ function LoadingPage(): JSX.Element {
 
   const hasCoupon = couponId !== "" && couponId !== undefined;
 
-  const fetchTickets = async () => {
-    if (externalIds && externalIds.length > 0) {
-      setTicketsFromIntegration(externalIds.length);
-    } else {
-      setTicketsFromIntegration(1);
-    }
-  };
-
   async function receiveTicket() {
     try {
       const receivedTicketToday = await hasReceivedTicketToday();
@@ -94,19 +84,10 @@ function LoadingPage(): JSX.Element {
       setCouponId(couponId);
       return navigateTo("/coupons/give-ticket");
     }
-    await fetchTickets();
     if (!currentUser) return navigateTo("/intro");
 
     return receiveTicket();
   }
-
-  useEffect(() => {
-    if (externalId) setExternalId(externalId);
-  }, [externalId]);
-
-  useEffect(() => {
-    if (integrationId) setCurrentIntegrationId(integrationId);
-  }, [integrationId]);
 
   useEffect(() => {
     if (integration) {

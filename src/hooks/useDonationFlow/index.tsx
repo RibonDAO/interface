@@ -42,8 +42,7 @@ function useDonationFlow() {
   const { collectAndDonateByIntegration, collectAndDonateByExternalIds } =
     useTickets();
   const utmParams = getUTMFromLocationSearch(history.location.search);
-  const { externalId } = useIntegrationContext();
-  const externalIds = externalId?.split(",");
+  const { externalIds } = useIntegrationContext();
 
   async function handleCollectAndDonate({
     nonProfit,

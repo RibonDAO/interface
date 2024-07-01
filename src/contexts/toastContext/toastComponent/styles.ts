@@ -30,6 +30,11 @@ export const NotificationToast = styled.div`
   }
 `;
 
+export const NotificationToastContent = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const Message = styled.span`
   ${defaultBodySmMedium}
 

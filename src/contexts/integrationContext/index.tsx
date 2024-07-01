@@ -9,13 +9,16 @@ import {
 } from "react";
 import { Integration } from "@ribon.io/shared/types";
 import { RIBON_COMPANY_ID } from "utils/constants";
+import { useIntegrationId } from "hooks/useIntegrationId";
+import extractUrlValue from "lib/extractUrlValue";
+import useNavigation from "hooks/useNavigation";
 
 export interface IIntegrationContext {
   integration?: Integration;
   currentIntegrationId: string | number;
   setCurrentIntegrationId: (id: SetStateAction<string | number>) => void;
-  externalId: string | undefined;
-  setExternalId: (id: SetStateAction<string | undefined>) => void;
+  externalIds: string[] | undefined;
+  setExternalIds: (id: SetStateAction<string[] | undefined>) => void;
   refetch: () => void;
   ticketsFromIntegration: number;
   setTicketsFromIntegration: (tickets: SetStateAction<number>) => void;
@@ -29,10 +32,34 @@ function IntegrationProvider({ children }: any) {
   const [currentIntegrationId, setCurrentIntegrationId] = useState<
     string | number
   >(RIBON_COMPANY_ID);
-  const [externalId, setExternalId] = useState<string>();
+  const [externalIds, setExternalIds] = useState<string[]>();
   const [ticketsFromIntegration, setTicketsFromIntegration] =
     useState<number>(1);
+  const integrationId = useIntegrationId();
   const { integration, refetch } = useIntegration(currentIntegrationId);
+  const { history } = useNavigation();
+  const externalIdFromUrl = extractUrlValue(
+    "external_id",
+    history.location.search,
+  );
+  const externalIdsArray = externalIdFromUrl
+    ? decodeURIComponent(externalIdFromUrl).split(",")
+    : [];
+
+  useEffect(() => {
+    if (integrationId) {
+      setCurrentIntegrationId(integrationId);
+    }
+  }, [integrationId]);
+
+  useEffect(() => {
+    if (externalIdsArray && externalIdsArray.length > 0) {
+      setExternalIds(externalIdsArray);
+      setTicketsFromIntegration(externalIdsArray.length);
+    } else {
+      setTicketsFromIntegration(1);
+    }
+  }, []);
 
   useEffect(() => {
     if (currentIntegrationId) {
@@ -44,14 +71,14 @@ function IntegrationProvider({ children }: any) {
     () => ({
       integration,
       refetch,
-      externalId,
+      externalIds,
       currentIntegrationId,
       setCurrentIntegrationId,
-      setExternalId,
+      setExternalIds,
       ticketsFromIntegration,
       setTicketsFromIntegration,
     }),
-    [integration, currentIntegrationId, externalId, ticketsFromIntegration],
+    [integration, currentIntegrationId, externalIds, ticketsFromIntegration],
   );
 
   return (

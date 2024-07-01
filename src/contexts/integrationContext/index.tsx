@@ -42,7 +42,9 @@ function IntegrationProvider({ children }: any) {
     "external_id",
     history.location.search,
   );
-  const externalIdsArray = externalIdFromUrl?.split(",");
+  const externalIdsArray = externalIdFromUrl
+    ? decodeURIComponent(externalIdFromUrl).split(",")
+    : [];
 
   useEffect(() => {
     if (integrationId) {

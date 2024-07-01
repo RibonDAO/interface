@@ -34,7 +34,9 @@ function LoadingPage(): JSX.Element {
   const { showReceiveTicketToast } = useReceiveTicketToast();
 
   const redirectToDeeplink = () => {
-    const externalIdParam = externalId ? `&external_id=${externalId}` : "";
+    const externalIdParam = externalId
+      ? `&external_id=${encodeURIComponent(externalId)}`
+      : "";
     const couponIdParam = couponId ? `&coupon_id=${couponId}` : "";
     const utmParams = getUTMFromLocationSearch(history.location.search);
     const utmParamsString = utmParamsToString(utmParams);

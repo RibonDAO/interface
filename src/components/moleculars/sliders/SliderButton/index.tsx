@@ -27,7 +27,7 @@ function SliderButton({ rangeSize, setValue, step }: Props): JSX.Element {
     setValue(newValue);
   };
 
-  const minimumValue = step;
+  const minimumValue = rangeSize < 2 * step ? 0 : step;
   const maximumValue = Math.floor(rangeSize / step) * step;
 
   const minusDisabled = sliderValue <= step;

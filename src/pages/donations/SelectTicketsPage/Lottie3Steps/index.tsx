@@ -74,7 +74,7 @@ export default function Lottie3Steps({
     setAnimationFrame3([0, 0]);
   };
 
-  const minimumValue = step;
+  const minimumValue = rangeSize < 2 * step ? 0 : step;
   const maximumValue = Math.floor(rangeSize / step) * step;
 
   const removeDups = (arr: number[]): number[] => [...new Set(arr)];

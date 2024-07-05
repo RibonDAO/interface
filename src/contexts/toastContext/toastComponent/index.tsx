@@ -102,37 +102,48 @@ function Toast() {
               ...positionToast(notification.position || "bottom-right"),
             }}
             key={index}
-            onClick={
-              notification.navigate
-                ? () => navigateTo(notification.navigate ?? "/")
-                : () => {}
-            }
           >
-            <Icon
-              className={
-                notification.icon
-                  ? notification.icon
-                  : iconToast(notification.type)
+            <S.NotificationToastContent
+              role="button"
+              tabIndex={0}
+              key={`notification-${index}`}
+              onClick={
+                notification.navigate
+                  ? () => navigateTo(notification.navigate ?? "/")
+                  : () => {}
               }
-              name={
-                notification.icon
-                  ? notification.icon
-                  : iconToast(notification.type)
+              onKeyDown={
+                notification.navigate
+                  ? () => navigateTo(notification.navigate ?? "/")
+                  : () => {}
               }
-              size="24"
-              color={
-                notification.iconColor || iconColorToast(notification.type)
-              }
-            />
-            <S.Message
-              style={{
-                color: notification.textColor
-                  ? notification.textColor
-                  : textColorToast(notification.type),
-              }}
             >
-              {notification.message}
-            </S.Message>
+              <Icon
+                className={
+                  notification.icon
+                    ? notification.icon
+                    : iconToast(notification.type)
+                }
+                name={
+                  notification.icon
+                    ? notification.icon
+                    : iconToast(notification.type)
+                }
+                size="24"
+                color={
+                  notification.iconColor || iconColorToast(notification.type)
+                }
+              />
+              <S.Message
+                style={{
+                  color: notification.textColor
+                    ? notification.textColor
+                    : textColorToast(notification.type),
+                }}
+              >
+                {notification.message}
+              </S.Message>
+            </S.NotificationToastContent>
             <S.Wrapper>
               {notification.link && (
                 <S.Link href={notification.link} target="_blank" key={index}>

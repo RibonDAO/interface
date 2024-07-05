@@ -118,29 +118,27 @@ export default function SelectTicketsPage() {
     );
   }, [nonProfit, ticketsQuantity]);
 
-  useEffect(() => {
-    logEvent("p40_view");
-  }, []);
-
-  useEffect(() => {
-    logEvent("p40_view");
-  }, []);
-
-  useEffect(() => {
-    refetchTickets();
-    if (!isLoading) {
-      const impacts = nonProfit?.nonProfitImpacts || [];
-      const nonProfitsImpactsLength = impacts.length;
-      const lastImpact = impacts[nonProfitsImpactsLength - 1];
-      if (lastImpact?.minimumNumberOfTickets) {
-        setStep(lastImpact.minimumNumberOfTickets);
-        setTicketsQuantity(lastImpact.minimumNumberOfTickets);
-        if (ticketsCounter < lastImpact.minimumNumberOfTickets) {
-          navigateTo({ pathname: "/causes", state: { noTickets: true } });
-        }
+  const handleTicketQuantityChange = async () => {
+    const impacts = nonProfit?.nonProfitImpacts || [];
+    const nonProfitsImpactsLength = impacts.length;
+    const lastImpact = impacts[nonProfitsImpactsLength - 1];
+    if (lastImpact?.minimumNumberOfTickets) {
+      setStep(lastImpact.minimumNumberOfTickets);
+      setTicketsQuantity(lastImpact.minimumNumberOfTickets);
+      if (ticketsCounter < lastImpact.minimumNumberOfTickets) {
+        navigateTo({ pathname: "/causes", state: { noTickets: true } });
       }
     }
-  }, [ticketsCounter]);
+  };
+
+  useEffect(() => {
+    logEvent("p40_view");
+    refetchTickets();
+  }, []);
+
+  useEffect(() => {
+    if (!isLoading) handleTicketQuantityChange();
+  }, [isLoading, ticketsCounter]);
 
   if (isLoading) return <LoadingOverlay />;
   return donationInProgress ? (

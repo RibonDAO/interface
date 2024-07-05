@@ -27,8 +27,7 @@ export function useCollectTickets() {
   } = useTickets();
 
   const integrationId = useIntegrationId();
-  const { externalId, setExternalId } = useIntegrationContext();
-  const externalIds = externalId?.split(",");
+  const { externalIds, setExternalIds } = useIntegrationContext();
 
   function hasReceivedTicketToday() {
     const receivedTicketAtKey = getLocalStorageItem(RECEIVED_TICKET_AT_KEY);
@@ -73,7 +72,7 @@ export function useCollectTickets() {
           currentUser?.email ?? "",
         );
         if (onSuccess) {
-          setExternalId(undefined);
+          setExternalIds(undefined);
           onSuccess();
         }
       } else if (integrationId) {

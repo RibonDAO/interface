@@ -59,6 +59,7 @@ export const Button = styled(ButtonComponent)`
 `;
 
 export const TextContainer = styled.div`
+  height: 120px;
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(8)};

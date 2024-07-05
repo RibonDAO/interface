@@ -27,6 +27,9 @@ function SliderButton({ rangeSize, setValue, step }: Props): JSX.Element {
     setValue(newValue);
   };
 
+  const minimumValue = rangeSize < 2 * step ? 0 : step;
+  const maximumValue = Math.floor(rangeSize / step) * step;
+
   const minusDisabled = sliderValue <= step;
   const plusDisabled = sliderValue + step > rangeSize;
 
@@ -71,13 +74,13 @@ function SliderButton({ rangeSize, setValue, step }: Props): JSX.Element {
       </S.Button>
       <S.SliderContainer>
         <Slider
-          min={rangeSize < 2 * step ? 0 : step}
-          max={rangeSize < 2 * step ? step : rangeSize}
+          min={minimumValue}
+          max={maximumValue}
           step={step}
           styles={customStyles}
           value={sliderValue}
           onChange={handleSliderChange}
-          disabled={rangeSize === 1}
+          disabled={rangeSize < 2 * step}
         />
       </S.SliderContainer>
       <S.Button

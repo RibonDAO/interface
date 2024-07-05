@@ -17,6 +17,7 @@ import NavigationBackHeader from "config/routes/Navigation/NavigationBackHeader"
 import LoadingOverlay from "components/moleculars/modals/LoadingOverlay";
 import DonatingSection from "../auth/DonatingSection";
 import * as S from "./styles";
+import Lottie3Steps from "./Lottie3Steps";
 
 type LocationStateType = {
   nonProfit: NonProfit;
@@ -153,6 +154,11 @@ export default function SelectTicketsPage() {
 
       <S.MainContainer>
         <S.ImageContainer>
+          <Lottie3Steps
+            rangeSize={ticketsCounter}
+            step={step || 1}
+            value={ticketsQuantity}
+          />
           <ImageWithIconOverlay
             leftImage={profile?.photo}
             rightImage={nonProfit?.icon}

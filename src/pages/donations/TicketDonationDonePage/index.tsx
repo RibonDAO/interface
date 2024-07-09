@@ -74,7 +74,7 @@ function TicketDonationDonePage(): JSX.Element {
             quantityOfDonationsToShowEmailCheckbox ===
             0 ||
           Number(userStatistics.totalTickets) === firstDonation) &&
-        config.allowedEmailMarketing
+        !config.allowedEmailMarketing
       );
     }
     return false;

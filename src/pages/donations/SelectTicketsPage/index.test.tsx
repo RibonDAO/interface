@@ -8,6 +8,6 @@ describe("SelectTicketsPage", () => {
       ticketsProviderValue: { isLoading: false },
     });
 
-    expectTextToBeInTheDocument("Choose the size of your help");
+    expectTextToBeInTheDocument("You're about to donate:");
   });
 });

@@ -10,6 +10,7 @@ import useFormattedImpactText from "hooks/useFormattedImpactText";
 import useNavigation from "hooks/useNavigation";
 import { useAuthentication } from "contexts/authenticationContext";
 import { useLocation } from "react-router";
+import NavigationBackHeader from "config/routes/Navigation/NavigationBackHeader";
 import { useCurrentUser } from "contexts/currentUserContext";
 import * as S from "./styles";
 
@@ -63,10 +64,12 @@ function InsertEmailAccountPage(): JSX.Element {
     formattedImpactText(nonProfit, undefined, false, true);
 
   return (
-    <S.Container>
-      <S.LeftImage src={LeftImage} />
-      <S.RightImage src={RightImage} />
-      <>
+    <>
+      <NavigationBackHeader />
+      <S.Container>
+        <S.LeftImage src={LeftImage} />
+        <S.RightImage src={RightImage} />
+
         <S.ImageContainer>
           <S.Icon src={nonProfit.icon} />
         </S.ImageContainer>
@@ -94,8 +97,8 @@ function InsertEmailAccountPage(): JSX.Element {
             eventParams={{ from: "donation_flow" }}
           />
         </S.ContentContainer>
-      </>
-    </S.Container>
+      </S.Container>
+    </>
   );
 }
 

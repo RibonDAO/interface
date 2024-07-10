@@ -5,15 +5,19 @@ import SliderButton from "components/moleculars/sliders/SliderButton";
 import useFormattedImpactText from "hooks/useFormattedImpactText";
 import { useCallback, useEffect, useState } from "react";
 import { useCurrentUser } from "contexts/currentUserContext";
+import { useUserProfile } from "@ribon.io/shared/hooks";
 import { logEvent } from "@amplitude/analytics-browser";
 import useNavigation from "hooks/useNavigation";
 import { useLocation } from "react-router";
 import { NonProfit } from "@ribon.io/shared/types";
 import { useTicketsContext } from "contexts/ticketsContext";
 import useDonationFlow from "hooks/useDonationFlow";
+import ImageWithIconOverlay from "components/atomics/ImageWithIconOverlay";
+import NavigationBackHeader from "config/routes/Navigation/NavigationBackHeader";
 import LoadingOverlay from "components/moleculars/modals/LoadingOverlay";
 import DonatingSection from "../auth/DonatingSection";
 import * as S from "./styles";
+import Lottie3Steps from "./Lottie3Steps";
 
 type LocationStateType = {
   nonProfit: NonProfit;
@@ -32,7 +36,10 @@ export default function SelectTicketsPage() {
   const { handleDonate } = useDonationFlow();
   const { navigateTo } = useNavigation();
   const { ticketsCounter, refetchTickets, isLoading } = useTicketsContext();
+  const { userProfile } = useUserProfile();
+  const { profile } = userProfile();
   const [donationInProgress, setDonationInProgress] = useState(false);
+  const [shouldRepeatAnimation, setShouldRepeatAnimation] = useState(true);
   const [donationSucceeded, setDonationSucceeded] = useState(true);
   const [ticketsQuantity, setTicketsQuantity] = useState(1);
   const [currentImpact, setCurrentImpact] = useState(
@@ -40,9 +47,16 @@ export default function SelectTicketsPage() {
   );
 
   const [step, setStep] = useState<number | undefined>(undefined);
+  const formattedImpact = formattedImpactText(
+    nonProfit,
+    currentImpact,
+    false,
+    false,
+  );
 
   const onDonationSuccess = () => {
     setDonationSucceeded(true);
+    setShouldRepeatAnimation(false);
     logEvent("ticketDonated_end", {
       nonProfitId: nonProfit.id,
       quantity: ticketsQuantity,
@@ -67,6 +81,7 @@ export default function SelectTicketsPage() {
       message: error.response?.data?.formatted_message || error.message,
     };
     setDonationSucceeded(false);
+    setShouldRepeatAnimation(false);
     navigateTo({ pathname: "/causes", state: newState });
   };
 
@@ -118,6 +133,7 @@ export default function SelectTicketsPage() {
   };
 
   useEffect(() => {
+    logEvent("p40_view");
     refetchTickets();
   }, []);
 
@@ -127,33 +143,58 @@ export default function SelectTicketsPage() {
 
   if (isLoading) return <LoadingOverlay />;
   return donationInProgress ? (
-    <DonatingSection nonProfit={nonProfit} onAnimationEnd={onAnimationEnd} />
+    <DonatingSection
+      nonProfit={nonProfit}
+      onAnimationEnd={onAnimationEnd}
+      shouldRepeatAnimation={shouldRepeatAnimation}
+    />
   ) : (
     <S.Container>
-      <S.ImageContainer>
-        <S.Icon src={nonProfit?.icon} />
-      </S.ImageContainer>
-      <S.ContentContainer>
-        <S.Title>{t("title")}</S.Title>
-        <S.Subtitle>
-          {formattedImpactText(nonProfit, currentImpact, false, true)}
-        </S.Subtitle>
-        <TicketIconText quantity={ticketsQuantity} buttonDisabled />
-        {step && (
-          <SliderButton
+      <NavigationBackHeader hasTicketCounter />
+
+      <S.MainContainer>
+        <S.ImageContainer>
+          <Lottie3Steps
             rangeSize={ticketsCounter}
-            setValue={setTicketsQuantity}
-            step={step}
+            step={step || 1}
+            value={ticketsQuantity}
           />
-        )}
-        <S.Button
-          text={t("button")}
-          textColor={theme.colors.neutral10}
-          backgroundColor={theme.colors.brand.primary[600]}
-          borderColor={theme.colors.neutral[300]}
-          onClick={handleButtonPress}
-        />
-      </S.ContentContainer>
+          <ImageWithIconOverlay
+            leftImage={profile?.photo}
+            rightImage={nonProfit?.icon}
+          />
+        </S.ImageContainer>
+        <S.ContentContainer>
+          <S.TextContainer>
+            <S.Title>{t("title")}</S.Title>
+            <S.Subtitle>
+              {t("description")}
+              {formattedImpact}
+            </S.Subtitle>
+          </S.TextContainer>
+          <S.SliderContainer>
+            <TicketIconText quantity={ticketsQuantity} buttonDisabled />
+            {step && (
+              <SliderButton
+                rangeSize={ticketsCounter}
+                setValue={setTicketsQuantity}
+                step={step}
+              />
+            )}
+          </S.SliderContainer>
+          <S.Button
+            text={
+              ticketsQuantity > 1
+                ? t("buttonPlural", { ticketsQuantity })
+                : t("buttonSingular")
+            }
+            textColor={theme.colors.neutral10}
+            backgroundColor={theme.colors.brand.primary[600]}
+            borderColor={theme.colors.neutral[300]}
+            onClick={handleButtonPress}
+          />
+        </S.ContentContainer>
+      </S.MainContainer>
     </S.Container>
   );
 }

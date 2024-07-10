@@ -2,10 +2,8 @@ import {
   useStatistics,
   useFirstAccessToIntegration,
   useUserConfig,
+  useUserProfile,
 } from "@ribon.io/shared/hooks";
-import ConfirmationNumberPink from "assets/icons/confirmation-number-pink.svg";
-import ConfirmationNumberYellow from "assets/icons/confirmation-number-yellow.svg";
-import ConfirmationNumberGreen from "assets/icons/confirmation-number-green.svg";
 import { setLocalStorageItem } from "lib/localStorage";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -18,10 +16,11 @@ import { useTasksContext } from "contexts/tasksContext";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useIntegrationContext } from "contexts/integrationContext";
 import useAvoidBackButton from "hooks/useAvoidBackButton";
-import usePostTicketDonationNavigation from "hooks/usePostTicketDonationNavigation";
-
+import useNavigation from "hooks/useNavigation";
 import { logEvent } from "lib/events";
-import IconsAroundImage from "components/atomics/sections/IconsAroundImage";
+import ImageWithIconOverlay from "components/atomics/ImageWithIconOverlay";
+import greenSun from "assets/images/green-sun.svg";
+import CardImageImagePlaceholder from "./ImagePlaceholder";
 import * as S from "./styles";
 
 function TicketDonationDonePage(): JSX.Element {
@@ -42,11 +41,14 @@ function TicketDonationDonePage(): JSX.Element {
     state: { nonProfit, impact },
   } = useLocation<LocationState>();
   const [allowedEmailMarketing, setAllowedEmailMarketing] = useState(false);
+  const [isCardImageLoading, setIsCardImageLoading] = useState(true);
   const { currentUser } = useCurrentUser();
   const { registerAction } = useTasksContext();
   const { userConfig, updateUserConfig } = useUserConfig();
   const { refetch: refetchUserConfig, config } = userConfig();
-  const { handleNavigate } = usePostTicketDonationNavigation();
+  const { userProfile } = useUserProfile();
+  const { profile } = userProfile();
+  const { navigateTo } = useNavigation();
 
   const {
     userStatistics,
@@ -96,7 +98,7 @@ function TicketDonationDonePage(): JSX.Element {
     }
 
     if (!isLoading) {
-      handleNavigate(nonProfit);
+      navigateTo("/post-donation");
     }
   }
 
@@ -128,38 +130,53 @@ function TicketDonationDonePage(): JSX.Element {
 
   return (
     <S.Container>
-      {audio && <ReactHowler src={audio} loop={false} playing />}
-      <S.ImageContainer>
-        <IconsAroundImage
-          isInfiniteAnimation={false}
-          imageSrc={nonProfit?.mainImage}
-          iconAnimationYellow={ConfirmationNumberYellow}
-          iconAnimationPink={ConfirmationNumberPink}
-          iconAnimationGreen={ConfirmationNumberGreen}
-        />
-      </S.ImageContainer>
-      <S.ContentContainer>
-        {renderImpactValue()}
-        {shouldShowEmailCheckbox() && (
-          <S.CheckboxContainer>
-            <S.CheckboxLabel>
-              <S.Checkbox
-                type="checkbox"
-                onChange={(e) =>
-                  setAllowedEmailMarketing(e.currentTarget.checked)
-                }
-              />
-              {t("checkboxText")}
-            </S.CheckboxLabel>
-          </S.CheckboxContainer>
-        )}
-        <S.FinishButton
-          text={t("button")}
-          onClick={() => {
-            navigate();
-          }}
-        />
-      </S.ContentContainer>
+      <S.MainContainer>
+        {audio && <ReactHowler src={audio} loop={false} playing />}
+        <S.TopContainer>
+          {nonProfit?.confirmationImage && isCardImageLoading && (
+            <CardImageImagePlaceholder />
+          )}
+          <S.CardImage
+            src={nonProfit?.confirmationImage}
+            onLoad={() => setIsCardImageLoading(false)}
+          />
+          <S.ImageWithIconOverlayContainer>
+            <ImageWithIconOverlay
+              leftImage={profile?.photo}
+              rightImage={nonProfit?.icon}
+            />
+          </S.ImageWithIconOverlayContainer>
+        </S.TopContainer>
+
+        <S.TextContainer>
+          {renderImpactValue()}
+          {shouldShowEmailCheckbox() && (
+            <S.CheckboxContainer>
+              <S.CheckboxLabel>
+                <S.Checkbox
+                  type="checkbox"
+                  onChange={(e) =>
+                    setAllowedEmailMarketing(e.currentTarget.checked)
+                  }
+                />
+                {t("checkboxText")}
+              </S.CheckboxLabel>
+            </S.CheckboxContainer>
+          )}
+        </S.TextContainer>
+
+        <S.ButtonContainer>
+          <S.FinishButton
+            text={t("button")}
+            onClick={() => {
+              navigate();
+            }}
+          />
+        </S.ButtonContainer>
+      </S.MainContainer>
+      <S.BackgroundSun>
+        <S.sunAnimation src={greenSun} />
+      </S.BackgroundSun>
     </S.Container>
   );
 }

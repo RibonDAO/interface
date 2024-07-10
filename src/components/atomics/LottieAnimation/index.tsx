@@ -1,11 +1,12 @@
-import React, { CSSProperties } from "react";
+import { CSSProperties } from "react";
 import Lottie from "react-lottie-player";
 
 export type Props = {
   animationData: Record<string, unknown> | undefined;
-  width: number;
-  height: number;
+  width: number | string;
+  height: number | string;
   style?: CSSProperties;
+  startFrame?: number;
 };
 
 function LottieAnimation({
@@ -13,6 +14,7 @@ function LottieAnimation({
   width,
   height,
   style,
+  startFrame,
 }: Props): JSX.Element {
   return (
     <Lottie
@@ -21,6 +23,7 @@ function LottieAnimation({
       animationData={animationData}
       style={{ width, height, ...style }}
       data-testid="loader"
+      goTo={startFrame}
     />
   );
 }

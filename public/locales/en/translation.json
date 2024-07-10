@@ -106,11 +106,18 @@
       "button": "Finish",
       "checkboxText": "I agree to receive emails with information about my donations"
     },
+    "postDonationPage": {
+      "title": "Enjoy this moment...",
+      "buttonText": "Finish"
+    },
     "ticketDonationDonePage": {
       "title": "Thanks for donating!",
-      "description": "You donated",
+      "description": "You donated the equivalent of ",
       "button": "Finish",
       "checkboxText": "I want to receive information about my donations by e-mail"
+    },
+    "donatingSection": {
+      "loadingText": "Processing your donation..."
     },
     "menu": {
       "homeTitle": "Home",
@@ -143,7 +150,8 @@
         "impactDescription": "with {{value}}"
       },
       "signInPage": {
-        "title": "You are donating",
+        "title": "You're about to donate:",
+        "prefix": "The equivalent of",
         "google": "Continue with Google",
         "apple": "Continue with Apple",
         "email": "Continue with e-mail",
@@ -178,8 +186,10 @@
       }
     },
     "selectTicketsPage": {
-      "title": "Choose the size of your help",
-      "button": "Continue"
+      "title": "You're about to donate:",
+      "description": "The equivalent of ",
+      "buttonSingular": "Donate 1 ticket",
+      "buttonPlural": "Donate {{ticketsQuantity}} tickets"
     }
   },
   "coupons": {

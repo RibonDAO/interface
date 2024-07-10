@@ -70,7 +70,11 @@ function SignedInPage(): JSX.Element {
   };
 
   return donationInProgress ? (
-    <DonatingSection nonProfit={nonProfit} onAnimationEnd={onAnimationEnd} />
+    <DonatingSection
+      nonProfit={nonProfit}
+      onAnimationEnd={onAnimationEnd}
+      shouldRepeatAnimation={donationInProgress && !donationSucceeded}
+    />
   ) : (
     <S.Container>
       <S.ImageContainer>

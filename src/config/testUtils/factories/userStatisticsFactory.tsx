@@ -11,6 +11,7 @@ function userStatisticsFactory(
       usd: 3,
     },
     totalTickets: 10,
+    daysDonating: 5,
   };
   return Object.assign(defaultValues, params) as UserStatistics;
 }

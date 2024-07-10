@@ -9,9 +9,13 @@ describe("DonatingSection", () => {
 
   it("renders without error", () => {
     renderComponent(
-      <DonatingSection nonProfit={nonProfit} onAnimationEnd={mockFn} />,
+      <DonatingSection
+        nonProfit={nonProfit}
+        onAnimationEnd={mockFn}
+        shouldRepeatAnimation={false}
+      />,
     );
 
-    expectTextToBeInTheDocument("Making donation...");
+    expectTextToBeInTheDocument("Processing your donation...");
   });
 });

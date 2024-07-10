@@ -3633,10 +3633,10 @@
   resolved "https://registry.yarnpkg.com/@react-oauth/google/-/google-0.11.1.tgz#f937c8d02bd37e3a6be7713b8212e9b9b9b3f914"
   integrity sha512-tywZisXbsdaRBVbEu0VX6dRbOSL2I6DgY97woq5NMOOOz+xtDsm418vqq+Vx10KMtra3kdHMRMf0hXLWrk2RMg==
 
-"@ribon.io/shared@^1.1.61":
-  version "1.1.61"
-  resolved "https://registry.yarnpkg.com/@ribon.io/shared/-/shared-1.1.61.tgz#fd0a1996341b3c2c13eee2846124049266ee355e"
-  integrity sha512-Mi/0ydzmE0pKZZbkLU3qPZt+kVsqUD0wY++6+rQUd4eyKyjFCKoXIdd3KIWRMx4EUIR6alSawlZ7awVjJoAPow==
+"@ribon.io/shared@^1.1.63":
+  version "1.1.63"
+  resolved "https://registry.yarnpkg.com/@ribon.io/shared/-/shared-1.1.63.tgz#8a54270f5acffb7f4329e48c48d509b445b2ee34"
+  integrity sha512-alpuHxFN7QuJMLDivu+i8KEhHxt0IB0zWRBEE3aIfmUFr0Bu+hkNYwlZD55YTeJFhtHDxyPfNe+ImTHCiS+p1g==
   dependencies:
     "@apollo/client" "^3.6.9"
     "@types/base-64" "^1.0.0"
@@ -7682,15 +7682,10 @@ caniuse-api@^3.0.0:
     lodash.memoize "^4.1.2"
     lodash.uniq "^4.5.0"
 
-caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001297, caniuse-lite@^1.0.30001299, caniuse-lite@^1.0.30001426, caniuse-lite@^1.0.30001503:
-  version "1.0.30001576"
-  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001576.tgz"
-  integrity sha512-ff5BdakGe2P3SQsMsiqmt1Lc8221NR1VzHj5jXN5vBny9A6fpze94HiVV/n7XRosOlsShJcvMv5mdnpjOGCEgg==
-
-caniuse-lite@^1.0.30001587:
-  version "1.0.30001618"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001618.tgz#fad74fa006aef0f01e8e5c0a5540c74d8d36ec6f"
-  integrity sha512-p407+D1tIkDvsEAPS22lJxLQQaG8OTBEqo0KhzfABGk0TU4juBNDSfH0hyAp/HRyx+M8L17z/ltyhxh27FTfQg==
+caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001297, caniuse-lite@^1.0.30001299, caniuse-lite@^1.0.30001426, caniuse-lite@^1.0.30001503, caniuse-lite@^1.0.30001587:
+  version "1.0.30001636"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001636.tgz"
+  integrity sha512-bMg2vmr8XBsbL6Lr0UHXy/21m84FTxDLWn2FSqMd5PrlbMxwJlQnC2YWYxVgp66PZE+BBNF2jYQUBKCo1FDeZg==
 
 capital-case@^1.0.4:
   version "1.0.4"
@@ -17352,6 +17347,11 @@ react-lifecycles-compat@^3.0.0:
   version "3.0.4"
   resolved "https://registry.npmjs.org/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-loading-skeleton@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/react-loading-skeleton/-/react-loading-skeleton-3.4.0.tgz#c71a3a17259d08e4064974aa0b07f150a09dfd57"
+  integrity sha512-1oJEBc9+wn7BbkQQk7YodlYEIjgeR+GrRjD+QXkVjwZN7LGIcAFHrx4NhT7UHGBxNY1+zax3c+Fo6XQM4R7CgA==
 
 react-lottie-player@^1.4.3:
   version "1.4.3"

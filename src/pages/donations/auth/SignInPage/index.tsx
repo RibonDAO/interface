@@ -11,6 +11,7 @@ import GoogleLogin from "components/moleculars/buttons/GoogleLogin";
 import AppleLogin from "components/moleculars/buttons/AppleLogin";
 import MagicLinkLogin from "components/moleculars/buttons/MagicLinkLogin";
 import { useCurrentUser } from "contexts/currentUserContext";
+import NavigationBackHeader from "config/routes/Navigation/NavigationBackHeader";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -51,10 +52,11 @@ function SignInPage(): JSX.Element {
   }, [currentUser]);
 
   const oldImpactFormat = () =>
-    formattedImpactText(nonProfit, undefined, false, true);
+    formattedImpactText(nonProfit, undefined, false, false);
 
   return (
     <>
+      <NavigationBackHeader />
       <S.RightImage src={RightImage} />
       <S.LeftImage src={LeftImage} />
       <S.Container>
@@ -63,7 +65,9 @@ function SignInPage(): JSX.Element {
         </S.ImageContainer>
         <S.ContentContainer>
           <S.Title>{t("title")}</S.Title>
-          <S.Description>{oldImpactFormat()}</S.Description>
+          <S.Description>
+            {t("prefix")} {oldImpactFormat()}
+          </S.Description>
           <S.ButtonContainer>
             <GoogleLogin from="donation_flow" />
             <AppleLogin from="donation_flow" />

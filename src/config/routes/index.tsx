@@ -59,6 +59,7 @@ import GiveTicketCouponPage from "pages/coupons/GiveTicketCouponPage";
 import CouponCollectedPage from "pages/coupons/CouponCollectedPage";
 import ExpiredCouponPage from "pages/coupons/ExpiredCouponPage";
 import InsertEmailCouponPage from "pages/coupons/auth/InsertEmailCouponPage";
+import PostDonationPage from "pages/donations/PostDonationPage";
 import NavigationBackHeader from "./Navigation/NavigationBackHeader";
 
 function RoutesComponent(): JSX.Element {
@@ -198,21 +199,18 @@ function RoutesComponent(): JSX.Element {
 
       <Route path="/donation/auth/sign-in" exact>
         <Suspense fallback={<div />}>
-          <NavigationBackHeader />
           <DonationSignInPage />
         </Suspense>
       </Route>
 
       <Route path="/signed-in" exact>
         <Suspense fallback={<div />}>
-          <NavigationBackHeader />
           <SignedInPage />
         </Suspense>
       </Route>
 
       <Route path="/insert-email" exact>
         <Suspense fallback={<div />}>
-          <NavigationBackHeader />
           <InsertEmailAccountPage />
         </Suspense>
       </Route>
@@ -226,7 +224,6 @@ function RoutesComponent(): JSX.Element {
 
       <Route path="/select-tickets" exact>
         <Suspense fallback={<div />}>
-          <NavigationBackHeader hasTicketCounter />
           <SelectTicketsPage />
         </Suspense>
       </Route>
@@ -240,6 +237,12 @@ function RoutesComponent(): JSX.Element {
       <Route path="/contribution-done" exact>
         <Suspense fallback={<div />}>
           <ContributionDonePage />
+        </Suspense>
+      </Route>
+
+      <Route path="/post-donation" exact>
+        <Suspense fallback={<div />}>
+          <PostDonationPage />
         </Suspense>
       </Route>
 

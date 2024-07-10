@@ -106,11 +106,18 @@
       "button": "Terminar",
       "checkboxText": "Aceito receber e-mails com informações sobre minhas doações"
     },
+    "postDonationScreen": {
+      "title": "Aprecie este momento...",
+      "buttonText": "Finalizar"
+    },
     "ticketDonationDonePage": {
       "title": "Obrigada pela doação!",
-      "description": "Você doou",
+      "description": "Você doou o equivalente a ",
       "button": "Finalizar",
       "checkboxText": "Quero receber informações sobre minhas doações por e-mail"
+    },
+    "donatingSection": {
+      "loadingText": "Processando sua doação..."
     },
     "menu": {
       "homeTitle": "Início",
@@ -143,7 +150,8 @@
         "impactDescription": "com {{value}}"
       },
       "signInPage": {
-        "title": "Você está doando",
+        "title": "Você está prestes a doar:",
+        "prefix": "O equivalente a ",
         "google": "Continuar com Google",
         "apple": "Continuar com Apple",
         "email": "Continuar com e-mail",
@@ -178,8 +186,10 @@
       }
     },
     "selectTicketsPage": {
-      "title": "Escolha o tamanho da sua ajuda",
-      "button": "Continuar"
+      "title": "Você está prestes a doar:",
+      "description": "O equivalente a ",
+      "buttonSingular": "Doar 1 ticket",
+      "buttonPlural": "Doar {{ticketsQuantity}} tickets"
     }
   },
   "coupons": {

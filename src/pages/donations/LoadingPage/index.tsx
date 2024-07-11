@@ -29,6 +29,8 @@ function LoadingPage(): JSX.Element {
   const { setCouponId } = useCouponContext();
   const externalId = extractUrlValue("external_id", history.location.search);
   const couponId = extractUrlValue("coupon_id", history.location.search);
+  const authToken = extractUrlValue("authToken", history.location.search);
+  const accountId = extractUrlValue("id", history.location.search);
   const { currentUser } = useCurrentUser();
   const { hasReceivedTicketToday, handleCollect } = useCollectTickets();
   const { showReceiveTicketToast } = useReceiveTicketToast();
@@ -38,10 +40,13 @@ function LoadingPage(): JSX.Element {
       ? `&external_id=${encodeURIComponent(externalId)}`
       : "";
     const couponIdParam = couponId ? `&coupon_id=${couponId}` : "";
+    const authenticationParam = authToken ? "/auth" : "";
+    const authTokenParam = authToken ? `&authToken=${authToken}` : "";
+    const accountIdParam = accountId ? `&id=${accountId}` : "";
     const utmParams = getUTMFromLocationSearch(history.location.search);
     const utmParamsString = utmParamsToString(utmParams);
     window.location.replace(
-      `${APP_INTEGRATION_LINK}?integration_id=${integrationId}&${externalIdParam}&${couponIdParam}${utmParamsString}`,
+      `${APP_INTEGRATION_LINK}${authenticationParam}?integration_id=${integrationId}&${externalIdParam}&${couponIdParam}${utmParamsString}${authTokenParam}${accountIdParam}`,
     );
   };
 

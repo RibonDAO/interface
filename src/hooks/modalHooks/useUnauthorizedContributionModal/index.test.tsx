@@ -1,5 +1,4 @@
 import {
-  expectPageToNavigateTo,
   expectTextNotToBeInTheDocument,
   expectTextToBeInTheDocument,
 } from "config/testUtils/expects";

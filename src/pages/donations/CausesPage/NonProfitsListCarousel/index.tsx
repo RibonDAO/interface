@@ -9,7 +9,8 @@ import { useOffers } from "@ribon.io/shared/hooks";
 import { useLanguage } from "hooks/useLanguage";
 import { useCurrentUser } from "contexts/currentUserContext";
 import { useTicketsContext } from "contexts/ticketsContext";
-
+import { useUnauthorizedContributionModal } from "hooks/modalHooks/useUnauthorizedContributionModal";
+import { useAuthentication } from "contexts/authenticationContext";
 import * as S from "../styles";
 import NonProfitComponent from "./NonProfitComponent";
 
@@ -34,6 +35,9 @@ function NonProfitsListCarousel({ nonProfits }: Props): JSX.Element {
   const { offers: offersUsd } = useOffers(Currencies.USD, false);
 
   const { currentLang } = useLanguage();
+  const { isAuthenticated } = useAuthentication();
+  const { showUnauthorizedContributionModal } =
+    useUnauthorizedContributionModal();
 
   const currentOffer = () =>
     currentLang === "pt-BR" ? offersBrl?.[0] : offersUsd?.[0];
@@ -51,10 +55,18 @@ function NonProfitsListCarousel({ nonProfits }: Props): JSX.Element {
       from: "DirectCardNgo",
     });
 
-    navigateTo({
-      pathname: "/promoters/checkout",
-      search: searchParams.toString(),
-    });
+    if (isAuthenticated()) {
+      navigateTo({
+        pathname: "/promoters/checkout",
+        search: searchParams.toString(),
+      });
+    } else if (signedIn) {
+      showUnauthorizedContributionModal();
+    } else {
+      navigateTo({
+        pathname: "auth/sign-in",
+      });
+    }
   };
 
   const handleButtonClick = useCallback(

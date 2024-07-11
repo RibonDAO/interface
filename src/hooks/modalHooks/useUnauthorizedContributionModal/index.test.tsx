@@ -12,16 +12,6 @@ jest.mock("hooks/useLanguage", () => ({
   }),
 }));
 
-jest.mock("hooks/useImpactConversion", () => ({
-  __esModule: true,
-  useImpactConversion: () => ({
-    contribution: {
-      image: "test-image-url",
-      impact: "This is a test impact",
-      value: 100,
-    },
-  }),
-}));
 jest.mock("@react-oauth/google", () => ({
   useGoogleLogin: () => {},
 }));

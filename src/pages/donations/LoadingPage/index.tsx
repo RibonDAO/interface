@@ -5,7 +5,11 @@ import useNavigation from "hooks/useNavigation";
 import { useEffect } from "react";
 import { logEvent } from "lib/events";
 import { useCouponContext } from "contexts/couponContext";
-import { APP_INTEGRATION_LINK, RIBON_COMPANY_ID } from "utils/constants";
+import {
+  APP_INTEGRATION_LINK,
+  APP_MAGIC_LINK,
+  RIBON_COMPANY_ID,
+} from "utils/constants";
 import extractUrlValue from "lib/extractUrlValue";
 import {
   getUTMFromLocationSearch,
@@ -40,13 +44,14 @@ function LoadingPage(): JSX.Element {
       ? `&external_id=${encodeURIComponent(externalId)}`
       : "";
     const couponIdParam = couponId ? `&coupon_id=${couponId}` : "";
-    const authenticationParam = authToken ? "/auth" : "";
     const authTokenParam = authToken ? `&authToken=${authToken}` : "";
     const accountIdParam = accountId ? `&id=${accountId}` : "";
     const utmParams = getUTMFromLocationSearch(history.location.search);
     const utmParamsString = utmParamsToString(utmParams);
     window.location.replace(
-      `${APP_INTEGRATION_LINK}${authenticationParam}?integration_id=${integrationId}&${externalIdParam}&${couponIdParam}${utmParamsString}${authTokenParam}${accountIdParam}`,
+      `${
+        authToken ? APP_MAGIC_LINK : APP_INTEGRATION_LINK
+      }?integration_id=${integrationId}&${externalIdParam}&${couponIdParam}${utmParamsString}${authTokenParam}${accountIdParam}`,
     );
   };
 

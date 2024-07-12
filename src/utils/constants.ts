@@ -19,6 +19,7 @@ export const PLATFORM = "web";
 export const APP_LINK = "https://donation.app.link/RibonApp";
 
 export const APP_INTEGRATION_LINK = "https://donation.app.link/1VkFv9U1yBb";
+export const APP_MAGIC_LINK = "https://donation.app.link/fDYe1M1TwFb";
 
 export const ANDROID_APP_LINK =
   "https://play.google.com/store/apps/details?id=com.app.ribon&hl=pt_BR&gl=US";

@@ -7,6 +7,7 @@ function impactFactory(params: Partial<Impact> = {}): Impact {
     walletAddress: "0x0000000000000000000000000000000000000000",
     totalDonated: 100,
     nonProfit: { impactDescription: "days of water" } as NonProfit,
+    donationCount: 0,
   };
   return Object.assign(defaultValues, params) as Impact;
 }

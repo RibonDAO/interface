@@ -10,7 +10,7 @@ export type Props = {
   hasBackButton?: boolean;
   outline?: boolean;
   fullSize?: boolean;
-  member?: boolean;
+  clubMember?: boolean;
   showNavigation?: boolean;
 };
 
@@ -20,7 +20,7 @@ function MainLayout({
   hasBackButton = false,
   outline = false,
   fullSize = false,
-  member = false,
+  clubMember = false,
   showNavigation = false,
 }: Props): JSX.Element {
   const { signedIn } = useCurrentUser();
@@ -32,7 +32,7 @@ function MainLayout({
         <LayoutHeader
           hasBackButton={hasBackButton}
           outline={outline}
-          member={member}
+          clubMember={clubMember}
         />
       )}
       <S.MainContainer isFullSize={fullSize}>

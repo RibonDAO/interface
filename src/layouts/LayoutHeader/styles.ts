@@ -8,14 +8,14 @@ export const ContainerButtons = styled.div`
 
 interface ContainerProps {
   outline: boolean;
-  member: boolean;
+  clubMember: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
-  background-color: ${({ theme, outline, member }) => {
-    if (outline && member) {
+  background-color: ${({ theme, outline, clubMember }) => {
+    if (outline && clubMember) {
       return theme.colors.brand.tertiary[600];
-    } else if (outline && member === false) {
+    } else if (outline && clubMember === false) {
       return theme.colors.brand.primary[800];
     } else {
       return theme.colors.neutral10;

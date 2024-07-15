@@ -29,11 +29,11 @@ function ImpactPage(): JSX.Element {
     walletAddress: wallet!,
   });
   const { currentLang } = useLanguage();
-  const { userIsMember } = useSubscriptions();
-  const { isMember, refetch: refetchIsMember } = userIsMember();
+  const { userIsClubMember } = useSubscriptions();
+  const { isClubMember, refetch: refetchIsClubMember } = userIsClubMember();
 
   useEffect(() => {
-    refetchIsMember();
+    refetchIsClubMember();
   }, [currentUser]);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ function ImpactPage(): JSX.Element {
   }, [wallet, currentUser?.id]);
 
   return (
-    <MainLayout outline={!!currentUser} member={isMember} fullSize>
+    <MainLayout outline={!!currentUser} clubMember={isClubMember} fullSize>
       <S.Container>
         <DownloadAppToast />
         {currentUser && <ProfileSection />}

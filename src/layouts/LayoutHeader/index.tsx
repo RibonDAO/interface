@@ -14,7 +14,7 @@ export type Props = {
   hasBackButton?: boolean;
   hideWallet?: boolean;
   outline?: boolean;
-  member?: boolean;
+  clubMember?: boolean;
 };
 
 function LayoutHeader({
@@ -22,7 +22,7 @@ function LayoutHeader({
   hasBackButton = false,
   hideWallet = false,
   outline = false,
-  member = false,
+  clubMember = false,
 }: Props): JSX.Element {
   const { currentIntegrationId: integrationId, integration } =
     useIntegrationContext();
@@ -54,7 +54,7 @@ function LayoutHeader({
     : undefined;
 
   return (
-    <S.Container outline={outline} member={member}>
+    <S.Container outline={outline} clubMember={clubMember}>
       <Header
         hasBackButton={hasBackButton}
         onBackButtonClick={navigateBack}

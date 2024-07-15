@@ -4,7 +4,7 @@ import UserAvatar from ".";
 
 describe("UserAvatar", () => {
   it("renders without error", () => {
-    renderComponent(<UserAvatar isMember />);
+    renderComponent(<UserAvatar isClubMember />);
 
     expectTextToBeInTheDocument("Ribon Club");
   });

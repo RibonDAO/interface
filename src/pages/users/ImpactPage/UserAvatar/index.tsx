@@ -9,9 +9,9 @@ type Props = {
   userAvatar?: string;
   email?: string;
   name?: string;
-  isMember?: boolean;
+  isClubMember?: boolean;
 };
-function UserAvatar({ userAvatar, email, name, isMember }: Props) {
+function UserAvatar({ userAvatar, email, name, isClubMember }: Props) {
   const { t } = useTranslation("translation", {
     keyPrefix: "impactPage.profileSection",
   });
@@ -20,13 +20,13 @@ function UserAvatar({ userAvatar, email, name, isMember }: Props) {
     <S.AvatarSection>
       <S.AvatarContainer>
         <S.Avatar src={userAvatar || Avatar} alt="user-avatar" />
-        {isMember && <S.LeftSparkle src={LeftSparkle} />}
-        {isMember && <S.RightSparkle src={RightSparkle} />}
+        {isClubMember && <S.LeftSparkle src={LeftSparkle} />}
+        {isClubMember && <S.RightSparkle src={RightSparkle} />}
       </S.AvatarContainer>
       <S.ProfileSection>
         <S.Username>{name}</S.Username>
         <S.Email>{email}</S.Email>
-        {isMember && (
+        {isClubMember && (
           <S.TagContainer>
             <S.ClubTag>
               <S.TagText>{t("clubTagText")}</S.TagText>

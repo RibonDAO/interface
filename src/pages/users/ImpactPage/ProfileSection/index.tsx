@@ -17,21 +17,23 @@ function ProfileSection() {
   const { userProfile } = useUserProfile();
   const { currentUser } = useCurrentUser();
   const { profile } = userProfile();
-  const { userIsMember } = useSubscriptions();
-  const { isMember, refetch: refetchIsMember } = userIsMember();
+  const { userIsClubMember } = useSubscriptions();
+  const { isClubMember, refetch: refetchIsClubMember } = userIsClubMember();
 
   useEffect(() => {
-    refetchIsMember();
+    refetchIsClubMember();
   }, [currentUser]);
 
   return (
-    <S.Container member={isMember}>
+    <S.Container clubMember={isClubMember}>
       <S.BackgroundShapeLeft
-        src={isMember ? BackgroundShapeLeftRed : BackgroundShapeLeftGreen}
+        src={isClubMember ? BackgroundShapeLeftRed : BackgroundShapeLeftGreen}
       />
       <S.CenterContainer>
         <S.BackgroundShapeRight
-          src={isMember ? BackgroundShapeRightRed : BackgroundShapeRightGreen}
+          src={
+            isClubMember ? BackgroundShapeRightRed : BackgroundShapeRightGreen
+          }
         />
         <S.UserInfo>
           <UserAvatar
@@ -40,7 +42,7 @@ function ProfileSection() {
             email={
               profile?.user?.email ? profile.user.email : currentUser?.email
             }
-            isMember={isMember}
+            isClubMember={isClubMember}
           />
         </S.UserInfo>
       </S.CenterContainer>

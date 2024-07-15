@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
 export const Container = styled.div<{
-  member?: boolean;
+  clubMember?: boolean;
 }>`
   width: 100%;
   height: 100%;
   border-radius: ${({ theme }) => theme.spacing(0, 0, 8, 8)};
   position: relative;
   top: -1px;
-  background-color: ${({ theme, member }) =>
-    member
+  background-color: ${({ theme, clubMember }) =>
+    clubMember
       ? theme.colors.brand.tertiary[600]
       : theme.colors.brand.primary[800]};
 

@@ -7,6 +7,14 @@ import {
 import ButtonComponent from "components/atomics/buttons/Button";
 import InputText from "components/atomics/inputs/InputText";
 
+export const LoaderContainer = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const Container = styled.div`
   padding: ${({ theme }) => theme.spacing(0, 16)};
   display: flex;

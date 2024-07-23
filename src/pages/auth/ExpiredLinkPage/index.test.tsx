@@ -24,7 +24,9 @@ describe("ExpiredLinkPage", () => {
 
   describe("when click on button", () => {
     it("should call function when click on button", async () => {
-      const mockSendAuthenticationEmail = jest.fn(() => "test@example.com");
+      const mockSendAuthenticationEmail = jest.fn(
+        async () => "test@example.com",
+      );
 
       renderComponent(<ExpiredLinkPage />, {
         authenticationProviderValue: {

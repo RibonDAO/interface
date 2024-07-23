@@ -11,7 +11,7 @@ import useNavigation from "hooks/useNavigation";
 import { useAuthentication } from "contexts/authenticationContext";
 import { useLocation } from "react-router";
 import NavigationBackHeader from "config/routes/Navigation/NavigationBackHeader";
-import { useCurrentUser } from "contexts/currentUserContext";
+import Spinner from "components/atomics/Spinner";
 import * as S from "./styles";
 
 type LocationStateType = {
@@ -24,9 +24,9 @@ function InsertEmailAccountPage(): JSX.Element {
   });
 
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const { formattedImpactText } = useFormattedImpactText();
   const { navigateTo } = useNavigation();
-  const { currentUser } = useCurrentUser();
   const {
     state: { nonProfit },
   } = useLocation<LocationStateType>();
@@ -34,7 +34,11 @@ function InsertEmailAccountPage(): JSX.Element {
   const { sendAuthenticationEmail } = useAuthentication();
 
   const onContinue = async () => {
+    setIsLoading(true);
     await sendAuthenticationEmail({ email });
+    setTimeout(() => {
+      navigateTo({ pathname: "/select-tickets", state: { nonProfit } });
+    }, 1000);
   };
 
   useEffect(() => {
@@ -54,15 +58,15 @@ function InsertEmailAccountPage(): JSX.Element {
     onContinue();
   };
 
-  useEffect(() => {
-    if (currentUser) {
-      navigateTo({ pathname: "/select-tickets", state: { nonProfit } });
-    }
-  }, [currentUser]);
-
   const oldImpactFormat = () =>
     formattedImpactText(nonProfit, undefined, false, true);
 
+  if (isLoading)
+    return (
+      <S.LoaderContainer>
+        <Spinner />
+      </S.LoaderContainer>
+    );
   return (
     <>
       <NavigationBackHeader />

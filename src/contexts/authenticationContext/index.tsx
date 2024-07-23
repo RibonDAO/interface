@@ -29,7 +29,7 @@ export interface IAuthenticationContext {
   signInByMagicLink: (signInByMagicLinkProps: authTokenProps) => void;
   sendAuthenticationEmail: (
     sendAuthenticationEmailProps: authenticationEmailProps,
-  ) => void;
+  ) => Promise<string>;
 }
 
 export type Props = {

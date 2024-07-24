@@ -30,6 +30,7 @@ function TicketDonationDonePage(): JSX.Element {
     flow?: "nonProfit" | "login" | "magicLink";
     from?: string;
     impact?: number;
+    ticketsQuantity?: number;
   };
 
   const { t } = useTranslation("translation", {
@@ -38,7 +39,7 @@ function TicketDonationDonePage(): JSX.Element {
   const { formattedImpactText } = useFormattedImpactText();
 
   const {
-    state: { nonProfit, impact },
+    state: { nonProfit, impact, ticketsQuantity },
   } = useLocation<LocationState>();
   const [allowedEmailMarketing, setAllowedEmailMarketing] = useState(false);
   const [isCardImageLoading, setIsCardImageLoading] = useState(true);
@@ -84,6 +85,13 @@ function TicketDonationDonePage(): JSX.Element {
     refetchStatistics();
     refetchUserConfig();
   }, [currentUser]);
+
+  useEffect(() => {
+    logEvent("ticketDonated_end", {
+      nonProfitId: nonProfit.id,
+      quantity: ticketsQuantity,
+    });
+  }, []);
 
   function navigate() {
     refetch();

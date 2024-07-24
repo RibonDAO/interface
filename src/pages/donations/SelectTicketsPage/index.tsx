@@ -41,12 +41,16 @@ export default function SelectTicketsPage() {
   const [donationInProgress, setDonationInProgress] = useState(false);
   const [shouldRepeatAnimation, setShouldRepeatAnimation] = useState(true);
   const [donationSucceeded, setDonationSucceeded] = useState(true);
-  const [ticketsQuantity, setTicketsQuantity] = useState(1);
   const [currentImpact, setCurrentImpact] = useState(
     nonProfit?.impactByTicket || undefined,
   );
-
   const [step, setStep] = useState<number | undefined>(undefined);
+  const minimumNumberOfTickets =
+    nonProfit?.nonProfitImpacts?.[0].minimumNumberOfTickets;
+
+  const [ticketsQuantity, setTicketsQuantity] = useState(
+    minimumNumberOfTickets ?? 1,
+  );
   const formattedImpact = formattedImpactText(
     nonProfit,
     currentImpact,
@@ -57,10 +61,6 @@ export default function SelectTicketsPage() {
   const onDonationSuccess = () => {
     setDonationSucceeded(true);
     setShouldRepeatAnimation(false);
-    logEvent("ticketDonated_end", {
-      nonProfitId: nonProfit.id,
-      quantity: ticketsQuantity,
-    });
   };
 
   const errorType = (type: number) => {
@@ -106,10 +106,11 @@ export default function SelectTicketsPage() {
           cause: nonProfit.cause,
           nonProfit,
           impact: currentImpact,
+          ticketsQuantity,
         },
       });
     }
-  }, [donationSucceeded, currentImpact]);
+  }, [donationSucceeded, currentImpact, ticketsQuantity]);
 
   useEffect(() => {
     setCurrentImpact(

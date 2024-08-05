@@ -107,7 +107,9 @@ export const Image = styled.img`
 `;
 
 export const DefaultImage = styled.img`
-  max-width: 100%;
+  max-width: 200px;
+
+  margin-bottom: ${({ theme }) => theme.spacing(24)};
   transform: scale(1.3);
 `;
 

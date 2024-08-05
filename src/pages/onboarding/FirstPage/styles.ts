@@ -108,8 +108,9 @@ export const Image = styled.img`
 
 export const DefaultImage = styled.img`
   max-width: 200px;
-  transform: scale(1.3);
+
   margin-bottom: ${({ theme }) => theme.spacing(24)};
+  transform: scale(1.3);
 `;
 
 export const ImageWrapper = styled.div`

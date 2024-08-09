@@ -44,9 +44,9 @@ function IntegrationProvider({ children }: any) {
   );
   // eslint-disable-next-line no-nested-ternary
   const externalIdsArray = externalIdFromUrl
-    ? decodeURIComponent(externalIdFromUrl).includes(",")
-      ? decodeURIComponent(externalIdFromUrl).split(",")
-      : decodeURIComponent(externalIdFromUrl).split("%2C")
+    ? externalIdFromUrl.includes(",")
+      ? externalIdFromUrl.split(",")
+      : externalIdFromUrl.split("%2C")
     : [];
 
   useEffect(() => {

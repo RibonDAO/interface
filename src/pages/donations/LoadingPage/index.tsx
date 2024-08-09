@@ -40,9 +40,8 @@ function LoadingPage(): JSX.Element {
   const { showReceiveTicketToast } = useReceiveTicketToast();
 
   const redirectToDeeplink = () => {
-    const externalIdParam = externalId
-      ? `&external_id=${encodeURIComponent(externalId)}`
-      : "";
+    const externalIdParam = externalId ? `&external_id=${externalId}` : "";
+
     const couponIdParam = couponId ? `&coupon_id=${couponId}` : "";
     const authTokenParam = authToken ? `&authToken=${authToken}` : "";
     const accountIdParam = accountId ? `&id=${accountId}` : "";
